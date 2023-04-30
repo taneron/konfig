@@ -15,7 +15,6 @@ echo "Installing new/better version of poetry into our virtual env..."
 ./venv/bin/pip install poetry==1.4.2
 
 echo "Installing our (non-dev) packages..."
-cd /opt/render/project/src
 ./venv/bin/poetry install --without dev
 
 echo "Done"
