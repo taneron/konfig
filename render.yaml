@@ -1,0 +1,89 @@
+#####
+# Documentation
+# Redwood: https://render.com/docs/deploy-redwood
+# YAML (all config values): https://render.com/docs/yaml-spec
+#####
+
+services:
+  - name: konfig-dash
+    type: web
+    env: static
+    buildCommand: yarn install && yarn build && yarn rw deploy render web
+    staticPublishPath: ./web/dist
+    envVars:
+      - key: NODE_VERSION
+        value: 16
+      - key: SKIP_INSTALL_DEPS
+        value: true
+    routes:
+      - type: rewrite
+        source: /.redwood/functions/*
+        #####
+        # NOTE: replace destination api url after first deploy to Render
+        # example:
+        #   destination: https://myredwoodproject-api.onrender.com/*
+        #####
+        destination: https://api.konfigthis.com/*
+      - type: rewrite
+        source: /*
+        destination: /index.html
+
+  - name: konfig-api
+    type: web
+    plan: starter
+    env: node
+    region: oregon
+    buildCommand: yarn && yarn build && yarn rw build api
+    startCommand: yarn rw deploy render api --prisma=false --data-migrate=false
+    envVars:
+      - fromGroup: aws
+      - key: SESSION_SECRET
+        generateValue: true
+      - key: SKIP_INSTALL_DEPS
+        value: true
+      - key: NODE_VERSION
+        value: 16
+      - key: DATABASE_URL
+        fromDatabase:
+          name: konfig-db
+          property: connectionString
+      - key: GENERATOR_API_HOST_PORT
+        fromService:
+          name: konfig-openapi-generator-api
+          type: pserv
+          property: hostport
+      - key: BLACKD_API_HOST_PORT
+        fromService:
+          name: konfig-python-formatter
+          type: pserv
+          property: hostport
+
+  - type: pserv
+    name: konfig-python-formatter
+    env: python
+    buildCommand: ./build.sh
+    startCommand: ./start.sh
+    repo: https://github.com/konfig-dev/konfig
+    rootDir: generator/konfig-python-formatter-server-blackd
+
+  - type: pserv
+    name: konfig-openapi-generator-api
+    env: docker
+    repo: https://github.com/konfig-dev/openapi-generator-api # optional
+    envVars:
+      - fromGroup: aws
+      - key: PORT
+        value: 8080
+
+databases:
+  - name: konfig-db
+    region: oregon
+    plan: starter
+
+envVarGroups:
+  - name: aws
+    envVars:
+      - key: AWS_ACCESS_KEY_ID
+        sync: false
+      - key: AWS_SECRET_ACCESS_KEY
+        sync: false
