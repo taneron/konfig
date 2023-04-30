@@ -1,0 +1,58 @@
+# Naming your Operation IDs for better SDK Method Names
+
+## Definitions
+
+### What is an Operation ID?
+
+Every [Operation Object](https://swagger.io/specification/#operation-object) has
+an optional field called `operationId` that is globally unique. This field is
+required to create SDKs with pleasing method names. The OpenAPI Specification
+does not require these IDs by default but Konfig's linter will recommend that
+you fill them out.
+
+### What is a Tag?
+
+A "Tag" which is specified globally in the [Tag Object](https://swagger.io/specification/#tag-object) and locally in the [Operation Object](https://swagger.io/specification/#operation-object) is used for logical grouping of operations. Konfig uses the Tag to namespace method names.
+
+## How to name your Operation ID
+
+The best way to name your operation ID:
+
+1. Prefix your operation IDs with the Tag that is specified in the Operation
+   Object and an underscore character `_` (i.e. `Dog_` or `Authentication_`).
+   Konfig will remove the prefix from the operation id and use the suffix for the
+   generated method name. This allows us to make operation ID globally unique while
+   sharing generated method names.
+   :::note
+   It is not strictly enforced that
+   you use your tags in your prefix but just make sure your operation
+   IDs are globally unique.
+   :::
+
+2. Use camel case (i.e. `create` or `createUser`). Camel case is succint and
+   since we are already using `_` it would be visually confusing to use snake case.
+
+### Example
+
+```yaml
+paths:
+  /v1/pets/dog: # notice how the path is not used to generate method names
+    post:
+      tags:
+        - Dog # tag is used to determine namespace of method name
+      operationId: Pet_create # does not use the "Dog" tag prefix but still works
+  /v1/pets/cat:
+    post:
+      tags:
+        - Cat
+      operationId: Cat_create
+```
+
+This will generate pleasing SDK class and method names in TypeScript:
+
+```typescript
+await dog.create();
+await cat.create();
+```
+
+Both method names are succinct yet not conflicting with each other because they are under different namespaces.

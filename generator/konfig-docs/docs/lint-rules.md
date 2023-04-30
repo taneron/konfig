@@ -1,0 +1,522 @@
+# Lint Rules
+
+:::note
+Konfig's ruleset extends [Spectral's OpenAPI Rules](https://meta.stoplight.io/docs/spectral/4dec24461f3af-open-api-rules) so if you can't find the rule in this reference then it is likely to be found in their reference.
+:::
+
+This is reference documentation for Konfig's linting rules for [Konfig's OAS Linter](https://www.npmjs.com/package/konfig-spectral-ruleset) to maintain high quality SDKs.
+
+#### Explanation of diagnostic severities
+
+| Diagnostic Severity | Meaning                                                                     |
+| ------------------- | --------------------------------------------------------------------------- |
+| Error               | Something not allowed by the rules of a language or other means             |
+| Warning             | Something suspicious but allowed                                            |
+| Information         | Something to inform about but not a problem                                 |
+| Hint                | Something to hint to a better way of doing it, like proposing a refactoring |
+
+## missing-date-format
+
+Severity: Warning
+
+#### Example
+
+```
+Schema type of "string" has no format "date" but has example "2022-04-12"
+```
+
+#### Explanation
+
+If your example contains an example that could be formatted as `date` (As
+defined by full-date - [RFC3339](https://www.rfc-editor.org/rfc/rfc3339))
+
+Primitive data types and their formats are mentioned in the OpenAPI
+Specification here: https://spec.openapis.org/oas/v3.0.3#data-types.
+
+---
+
+## missing-date-time-format
+
+Severity: Warning
+
+#### Example
+
+```
+Schema type of "string" has no format "date-time" but has example "2022-04-12T12:00:00+00:00"
+```
+
+#### Explanation
+
+If your example contains an example that could be formatted as `date-time` (As
+defined by date-time - [RFC3339](https://www.rfc-editor.org/rfc/rfc3339)).
+
+Primitive data types and their formats are mentioned in the OpenAPI
+Specification here: https://spec.openapis.org/oas/v3.0.3#data-types.
+
+---
+
+## no-parameter-named-requestbody
+
+Severity: Error
+
+#### Example
+
+```
+Parameter's are not allowed to have a name that can be camelcased to "requestBody" as it is a reserved keyword for Konfig's TypeScript SDK
+```
+
+#### Explanation
+
+Parameters named `requestBody` will cause a compilation error in Konfig's TypeScript SDK as its a reserved keyword for providing arguments to SDK methods.
+
+---
+
+## boolean-query-parameter
+
+Severity: Information
+
+#### Example
+
+```
+There is no standard method of serializing boolean values in query parameters according to RFC 6570 (https://www.rfc-editor.org/rfc/rfc6570)
+```
+
+#### Explanation
+
+Boolean query parameters are OK to use but do note that there is no standard for
+serializing boolean values in query parameters. Konfig defaults to lowercase
+"true" and "false" string values but this might not necessarily be compatible
+with your server implementation.
+
+---
+
+## disallowed-header-names-request
+
+Severity: Error
+
+#### Example
+
+```
+Konfig's Python SDK does not allow 'Accept', 'Content-Type', or 'Authorization' to be specified as a header in the request
+```
+
+#### Explanation
+
+See [disallowed-header-names-response](#disallowed-header-names-response)
+
+---
+
+## disallowed-header-names-response
+
+Severity: Error
+
+#### Example
+
+```
+Konfig's Python SDK does not allow 'Accept', 'Content-Type', or 'Authorization' to be specified as a header in the response
+```
+
+#### Explanation
+
+The disallowed headers should be implicit as part of the operation's media
+object and security requirements. Today we throw an error at runtime if we
+detect disallowed headers in our Python SDK.
+
+---
+
+## empty-property-name
+
+Severity: Error
+
+#### Example
+
+```
+Empty property names cause generated SDKs to fail
+```
+
+#### Explanation
+
+Empty property names on object type schemas breaks Konfig's generated SDKs. Example:
+
+```yaml
+type: object
+properties:
+  "": # problematic empty property name
+    type: string
+```
+
+---
+
+## duplicate-tag-names
+
+Severitiy: Warning
+
+#### Example
+
+```
+Duplicate case-insensitive tag name "pet"
+```
+
+#### Explanation
+
+There is no functional difference between two tags which are case-insensitive
+equal as they will be converted to each language's idiomatic naming convention.
+Its just that duplicate names is simply confusing.
+
+---
+
+## missing-2xx-response
+
+Severity: Warning
+
+#### Example
+
+```
+Specify a "default" or "2xx" range HTTP Status Code response
+```
+
+#### Explanation
+
+Generated SDK methods will specify a return type either in documentation or
+through types if a "default" or "2xx" range response is described in an
+operation. Returning results from an API call can be helpful for debugging or
+logging results.
+
+---
+
+## object-with-no-properties
+
+#### Example
+
+```
+Schema type of "object" has no properties
+```
+
+#### Explanation
+
+Describing the properties of an "object" type schema is helpful for generating
+typed classes in SDKs. Typed classes allows for better in-line documentation and
+serialization/deserialization. We suggest that you describe the properties of
+the "object" type schema by filling out the "properties" field.
+
+---
+
+## structured-request-body
+
+#### Example
+
+```
+Detected JSON example '{"hello":"world"}'. Request body schemas should be structured to generate helpful method parameters and classes.
+```
+
+#### Explanation
+
+Generate SDKs by providing schemas instead of raw string types (i.e. "string"
+type with serialized JSON). In other words, your example should be expressed as
+structured data instead of a raw string.
+
+---
+
+## duplicate-schema-name-oas2
+
+#### Example
+
+```
+Duplicate case-insensitive schema name "User"
+```
+
+#### Explanation
+
+See [duplicate-schema-name-oas3](#duplicate-schema-name-oas3)
+
+---
+
+## duplicate-schema-name-oas3
+
+#### Example
+
+```
+Duplicate case-insensitive schema name "User"
+```
+
+#### Explanation
+
+Our generator will coerce names to conform to idiomatic naming conventions such
+as PascalCase for Java (e.g. "user" -> "User" or "User" -> "user"). This means
+that case insensitive equal schema names will conflict thus causing errors
+in the generated output. Prefer naming things with unique case insensitive
+names.
+
+---
+
+## adv-security-schemes-defined
+
+#### Example
+
+```
+This API definition does not have any security scheme defined.
+```
+
+#### Explanation
+
+Defining security schemes is important to auto-generate configurations state in SDKs.
+
+---
+
+## multiple-tags
+
+#### Example
+
+```
+Having more than 1 tag can be confusing as generated SDKs will only show up under one tag.
+```
+
+#### Explanation
+
+Tags are used to logically namespace SDK methods into separate classes. If you
+have more than 1 tag for an operation then it will show up under two namespaces.
+Furthermore, some languages like TypeScript won't even allow you to export two
+methods of the same name from the top-level `index.ts` file so it won't even
+compile.
+
+---
+
+## operationId-pattern
+
+#### Example
+
+```
+Does not match regex: "/^[a-zA-Z0-9]+\_[a-zA-Z0-9]+$/g". Prefix operation IDs with "Tag_" (https://docs.konfigthis.com/tutorials/naming-operation-ids)
+```
+
+#### Explanation
+
+See [how to name your operation IDs](/tutorials/naming-operation-ids)
+
+---
+
+## tag-naming-convention
+
+#### Example
+
+```
+Detected use of ">" character. This could be because you are exporting from Postman. Folders in Postman are bad for namespace structuring in SDKs. Always prefer a flat namespacing structure for discoverability and succinct code.
+```
+
+#### Explanation
+
+There could be multiple possible issues:
+
+- `konfig p2o` uses the ">" character to denote folder structure in Tags. You should prefer flat naming structure for better quality SDKs. Use [konfig fix](/tutorials/fix-openapi-spec) to do this.
+- "default" is the tag generated for `konfig p2o` if requests are not structured into folders in Postman. We should rename this to something more meaningful such as entites like "Pet" or concepts like "Authorization"
+
+---
+
+## components-schemas-defined-oas2
+
+#### Example
+
+```
+APIs should define schemas for developer friendly SDK generation.
+```
+
+#### Explanation
+
+See [components-schemas-defined-oas3](#explanation-components-schemas-defined-oas3)
+
+---
+
+## components-schemas-defined-oas3
+
+#### Example
+
+```
+APIs should define schemas for developer friendly SDK generation.
+```
+
+#### Explanation (components-schemas-defined-oas3)
+
+Defining schemas is important for generating native classes in SDKs for strongly
+typed request and response bodies. It also makes it easy to document schemas
+in-line so developers can move faster in their IDE.
+
+---
+
+## use-security-instead
+
+#### Example
+
+```
+Use security requirement "clientId" instead of parameter with name "client_id"
+```
+
+#### Explanation
+
+A warning is thrown if a parameter describes the same parameter inferred by a
+security scheme declared in the global OAS. You should always prefer using
+security requirement instead. Security requirements can be configured once in
+the SDK and be automatically provided for any operations that need require the
+security scheme. Think of security as "state" for the SDK instances.
+
+Example suggested change:
+
+```diff
+openapi: 3.0.0
+info:
+  title: Example API
+  version: 1.0.0
+paths:
+  "/":
+    get:
+-     parameters:
+-       - name: client_id
+-         in: query
++     security:
++       clientId: []
+      responses: {}
+components:
+  securitySchemes:
+    clientId:
+      name: client_id
+      type: apiKey
+      in: query
+```
+
+---
+
+## redundant-security-and-parameter
+
+#### Example
+
+```
+Detected security requirement and parameter with the same name "Authorization" paths./api/pet.create
+```
+
+#### Explanation
+
+If a security requirement describe conflicting parameters then undesirable code
+will be generated for SDKs. For example providing a parameter with the
+"Authorization" header and also adding an API key security requirement which
+also uses the "Authorization" header will throw this warning. Note that global
+**and** local security requirements are also considered.
+
+---
+
+## list-usage-of-security
+
+#### Example
+
+```
+Potential misuse of the security field. Only use list when you have multiple security strategies. (i.e. list vs map is significant https://swagger.io/docs/specification/authentication/)
+```
+
+#### Explanation
+
+Expressing security requirements as a list implies that there are different strategies for authentication. Often this is not the case so a warning is thrown to ensure your API security requirements are being properly expressed.
+
+---
+
+## empty-response-body-schema
+
+#### Example
+
+```
+Provide a response body schema to provide helpful information regarding the operation.
+```
+
+#### Explanation
+
+Describe schemas to generate native classes in SDKs for response of operations.
+
+:::note
+Response body can be empty if you export from Postman Collections without
+[saving example
+responses](/tutorials/postman-to-openapi#1-save-example-responses-in-postman).
+Otherwise use [konfig fix](/tutorials/fix-openapi-spec) to easily populate with
+examples and generate the schema field.
+:::
+
+---
+
+## empty-request-body-content
+
+#### Example
+
+```
+Empty request body content is not allowed for SDK generation
+```
+
+#### Explanation
+
+Request body with no media type is unsupported.
+
+---
+
+## components-schemas-defined-oas3
+
+#### Example
+
+```
+APIs should define schemas for developer friendly SDK generation.
+```
+
+#### Explanation
+
+In OAS 3.x, use the [schemas field](https://swagger.io/specification/#components-object) to define a map of
+[schema objects](https://swagger.io/specification/#schema-object). This is important to generate native classes in generated SDKs.
+
+---
+
+## operation-operationId
+
+#### Example
+
+```
+Assign Operation#operationId to create better SDK method names.
+```
+
+#### Explanation
+
+Konfig uses an [Operation Object's](https://swagger.io/specification/#operation-object) `operationId`
+field to assign names to generated methods of SDKs. If no `operationId` is
+assigned then SDK method names are generated from the HTTP method and path. For
+developer-friendly SDKs it is important that you provide friendly method names
+that are easy to discover and succint.
+
+---
+
+## potential-incorrect-type
+
+#### Example
+
+```
+Could be integer type based on example. Ensure your types are correct.
+```
+
+#### Explanation
+
+Every data type describe in your OAS must be correct to generate working SDKs. To ensure correctness,
+Konfig's linter will check to see if examples could represent other data types.
+In the following example the string `"3291231"` could represent an `integer`
+type so a warning is thrown.
+
+```yaml
+components:
+  schemas:
+    User:
+    type: object
+    properties:
+      id:
+        type: string
+        example: "3291231"
+```
+
+To ignore the error add the `x-konfig-ignore` to the top-level `info` object:
+
+```yaml
+info:
+  title: Example API
+  version: 1.0.0
+  x-konfig-ignore:
+    potential-incorrect-type: true
+```

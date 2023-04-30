@@ -1,0 +1,184 @@
+# Setup linting for your OpenAPI Spec
+
+### Documentation for Lint Rules
+
+See rules and their explanations [here](/lint-rules)
+
+## Methods
+
+There are four ways to lint your spec:
+
+1. [GitHub Action](setup-linting#github-action-setup)
+2. [VSCode Extension](setup-linting#vscode-extension-or-cli-setup)
+3. [CLI](setup-linting#vscode-extension-or-cli-setup)
+4. [REST API](/api-reference/linting)
+
+## Required Setup
+
+Ensure you have the `konfig-cli` installed by running
+
+```bash
+npm install -g konfig-cli
+```
+
+## GitHub Action Setup
+
+:::info
+
+No setup is required besides setting up GitHub workflow. The latest [linting ruleset](https://www.npmjs.com/package/konfig-spectral-ruleset) will always be used.
+
+:::
+
+To setup GitHub Action add the following workflow under `.github/workflows/konfig-lint.yaml` and replace `main` and `path/to/openapi.yaml` with your own values:
+
+```yaml
+name: "konfig-lint-openapi-spec"
+on:
+  pull_request:
+  push:
+    branches:
+      # replace "main" with the name of your base branch
+      - main
+jobs:
+  konfig-lint-openapi-spec:
+    runs-on: ubuntu-latest
+    env:
+      CLI_VERSION: 1.0.181
+    steps:
+      - uses: actions/checkout@v3
+      - name: Cache node_modules
+        id: cache-npm
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-build-${{ env.CLI_VERSION }}
+      - name: Install Konfig CLI
+        run: npm install -g konfig-cli@$CLI_VERSION
+      - name: Initialize Linting Rules
+        run: konfig init -s
+      - name: Lint OpenAPI Spec
+        # replace "path/to/openapi.yaml" with the path from root to your OpenAPI Specification file
+        run: konfig lint path/to/openapi.yaml
+```
+
+Commit and push the generated file:
+
+```bash
+~/Git/my-repo
+❯ git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        .github/
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+~/Git/my-repo
+❯ git add -A
+
+~/Git/my-repo
+❯ git commit -m "Commit Konfig lint GitHub action"
+[master 83d1f7e] Commit Konfig lint GitHub action
+ 1 file changed, 26 insertions(+)
+ create mode 100644 .github/workflows/konfig-lint.yaml
+```
+
+### Linting with GitHub Action
+
+On every PR or commit to your production branch the following a job will
+fail if any warnings or errors occur when linting your spec:
+
+![GitHub Action Lint Error](/img/github-action-lint-error.png)
+
+## VSCode Extension or CLI Setup
+
+Initialize your target repository (the one that has your OpenAPI spec) with:
+
+```bash
+❯ konfig init -s
+Downloading Konfig's lint rules... done
+Setting up Spectral... done
+```
+
+Commit the generated files
+
+```bash
+~/Git/my-repo
+❯ git status
+On branch master
+Your branch is ahead of 'origin/master' by 1 commit.
+  (use "git push" to publish your local commits)
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        .konfig/
+        .spectral.yaml
+        .vscode/
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+~/Git/my-repo
+❯ git add -A
+
+~/Git/my-repo
+❯ git commit -m "Commit Konfig linting ruleset and VSCode settings"
+[master 06c577e] Commit Konfig linting ruleset and VSCode settings
+ 4 files changed, 28 insertions(+)
+ create mode 100644 .konfig/ruleset.js
+ create mode 100644 .spectral.yaml
+ create mode 100644 .vscode/extensions.json
+ create mode 100644 .vscode/settings.json
+```
+
+:::info
+
+To update your ruleset to the latest verson simply run:
+
+```bash
+konfig init -s
+```
+
+And commit the updated ruleset to share with your team:
+
+```bash
+❯ git status
+On branch master
+Your branch is ahead of 'origin/master' by 2 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   .konfig/ruleset.js
+
+no changes added to commit (use "git add" and/or "git commit -a")
+```
+
+:::
+
+### Linting with VSCode Extension
+
+When opening VSCode to your repo, you will be prompted to install the [Spectral](https://marketplace.visualstudio.com/items?itemName=stoplight.spectral) extension.
+
+![VSCode Popup](/img/vscode-popup.png)
+
+Click `Install` to install the Spectral extension.
+
+When viewing any OpenAPI spec, you will see inline errors:
+
+![VSCode Error](/img/vscode-lint-error.png)
+
+### Linting with CLI
+
+To lint with CLI run `konfig lint`.
+
+```bash
+❯ konfig lint api.yaml
+
+/api.yaml
+ 22:10  warning  operation-operationId  Operation must have "operationId" for generated SDK method names.  paths./pet.post
+
+✖ 1 problem (0 errors, 1 warning, 0 infos, 0 hints)
+```

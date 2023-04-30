@@ -1,0 +1,62 @@
+import Figure from "../src/components/figure";
+
+# Customize your SDKs
+
+<Figure
+  caption="Different reasons why you would customize Konfig's generated SDK (i.e. the 'convenience layer')"
+  src="/img/customize-sdk-reasons.svg"
+/>
+
+## Why customize your SDK?
+
+Generating your SDK allows you to avoid writing a lot of the tedious boilerplate
+that a developer would otherwise need to write like configuring authentication,
+creating HTTP requests, or serializing/deserializing responses. But sometimes
+its necessary to customize the output of the SDK generation so you can implement
+custom business logic into your SDKs. Common use-cases are:
+
+1. Implementing language-specific paradigms such as JavaScript's async iterators or Python's context manager
+2. Parameters or Responses that can't be described as part of your OpenAPI
+   Specification such as OS-level primitives like file pointers or custom classes
+3. Streaming responses
+4. Request signing
+5. Custom documentation snippets
+6. Custom flows (pagination or combining operations)
+7. Custom functions
+
+## How to customize your SDK
+
+<Figure
+  caption="Use .konfigignore or konfig.yaml to customize your SDK"
+  src="/img/customize-sdks.svg"
+/>
+
+Konfig allows you to override or customize any part of a generated SDK by doing any of the following:
+
+1. Create a `.konfigignore` file at the top-level of the generated SDK. The
+   syntax for `.konfigignore` is the same as `.gitignore` and tells the generator
+   to not override or delete these files when re-generating your SDK. This means
+   you can add new files or modify generated files to fit your exact requirements.
+   Adding particular files to `.konfigignore` is how pagination is implemented in SDKs.
+   :::info
+   Using `.konfigignore` covers all customization use-cases as it allows you to
+   modify anything about the generated SDK.
+   :::
+
+2. Implement request lifecycle hooks. For example here is a Python SDK with a
+   custom lifecycle hook for request signing:
+   https://github.com/passiv/snaptrade-sdks/blob/master/sdks/python/snaptrade_client/request_after_hook.py).
+   This is helpful when you need to modify the contents of every request without
+   customizing core files in the generated SDK.
+3. Every generator config allows you to override documentation snippets. For
+   example here is a Python SDK that contains a custom "getting started" snippet in
+   the top-level `README.md` file using the `readmeSnippet` /
+   `apiDocumentationAuthenticationPartial` fields
+   https://github.com/passiv/snaptrade-sdks/tree/master/sdks/python. This is
+   helpful when you have a default workflow that all your API users need to follow
+   and don't want to override the entire `README.md` as some parts of the
+   `README.md` are auto-generated.
+4. Konfig supports customizations out of the box such as `topLevelOperations`
+   which places an operation on the top-level client for convenience or
+   `clientState` which allows you to add more state to the client to be used in
+   custom files or request lifecycle hooks.

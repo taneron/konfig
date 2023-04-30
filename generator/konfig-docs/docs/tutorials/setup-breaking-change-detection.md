@@ -1,0 +1,36 @@
+# Setup Breaking Change Detection in GitHub Pull Requests
+
+:::info
+Breaking change detection ensures that your API does not break older SDKs.
+:::
+
+### Workflow Template
+
+Create a new workflow file under `.github/workflows/konfig-detect-breaking-change.yaml` and replace `main` and `path/to/openapi.yaml` with your own values:
+
+```yaml
+name: "konfig-detect-breaking-change"
+on:
+  pull_request:
+    branches:
+      # replace "main" with your target branch or add more target branches
+      - main
+jobs:
+  konfig-lint-openapi-spec:
+    runs-on: ubuntu-latest
+    env:
+      CLI_VERSION: 1.0.181
+    steps:
+      - uses: actions/checkout@v3
+      - name: Cache node_modules
+        id: cache-npm
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-build-${{ env.CLI_VERSION }}
+      - name: Install Konfig CLI
+        run: npm install -g konfig-cli@$CLI_VERSION
+      - name: Detect breaking change
+        # replace "path/to/openapi.yaml" with the path from root to your OpenAPI Specification file
+        run: konfig detect-breaking-change -m ${{github.base_ref}} -s path/to/openapi.yaml
+```
