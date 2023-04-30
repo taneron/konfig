@@ -1,0 +1,70 @@
+# {{npmName}}@{{npmVersion}}
+
+{{^omitInfoDescription}}{{{appDescription}}}
+{{/omitInfoDescription}}
+## Installing
+
+### npm
+```
+npm install {{npmName}} --save
+```
+
+### yarn
+```
+yarn add {{npmName}}
+```
+
+**Important note: this library is can be used in both the client-side or server-side, but using it
+in client-side browser code is not recommended as you would expose security credentials.**
+{{#readmeDescriptionSnippet}}{{{readmeDescriptionSnippet}}}{{/readmeDescriptionSnippet}}
+{{#includeFetchAdapter}}{{#apiInfo}}{{#apis}}{{#-first}}{{#operations}}{{#operation}}{{#-first}}
+### Usage in Next.js Edge Runtime
+
+If you are using `{{npmName}}` in a Next.js Edge runtime make sure to set `useFetch: true` like so:
+
+```typescript
+import { {{{clientName}}} } from "{{{npmName}}}"
+
+export const config = {
+    runtime: "edge",
+};
+
+export default async function handler(req: Request): Promise<Response> {
+    const {{{clientNameLowercase}}} = new {{{clientName}}}({
+        useFetch: true, // useFetch must be "true" for {{{npmName}}} to work in Next.js edge runtime
+    })
+    return new Response(JSON.stringify({ message: "This is from {{{npmName}}}" }), { status: 200 })
+}
+```
+{{/-first}}{{/operation}}{{/operations}}{{/-first}}{{/apis}}{{/apiInfo}}{{/includeFetchAdapter}}
+
+## Getting Started
+
+```typescript
+{{#readmeSnippet}}
+{{{.}}}
+{{/readmeSnippet}}
+{{^readmeSnippet}}
+{{> api_doc_example_setup}}
+
+{{#apiInfo}}
+{{#hasTopLevelOperations}}
+{{#topLevelOperations}}
+{{> api_doc_example_execute}}
+{{/topLevelOperations}}
+{{/hasTopLevelOperations}}
+{{^hasTopLevelOperations}}
+{{#apis}}{{#-first}}{{#operations}}{{#operation}}{{#-first}}{{> api_doc_example_execute}}{{/-first}}{{/operation}}{{/operations}}{{/-first}}{{/apis}}
+{{/hasTopLevelOperations}}
+{{/apiInfo}}
+{{/readmeSnippet}}
+```
+
+## Documentation for API Endpoints
+
+All URIs are relative to *{{basePath}}*
+
+Class | Method | HTTP request | Description
+------------ | ------------- | ------------- | -------------
+{{#apiInfo}}{{#apis}}{{#operations}}{{#operation}}*{{classname}}* | [**{{operationId}}**]({{apiDocPath}}{{classname}}.md#{{operationId}}) | **{{httpMethod}}** {{path}} | {{#summary}}{{summary}}{{/summary}}
+{{/operation}}{{/operations}}{{/apis}}{{/apiInfo}}

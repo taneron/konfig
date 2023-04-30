@@ -1,0 +1,34 @@
+{{>licenseInfo}}
+
+import { AxiosRequestConfig } from "axios";
+{{#apiInfo}}
+import {
+{{#apis}}
+  {{classname}},
+  {{#topLevelOperations}}
+  {{> singleRequestParameterName}},
+  {{/topLevelOperations}}
+{{/apis}}
+} from "./api";
+import { Configuration, ConfigurationParameters } from "./configuration";
+import { {{{clientName}}}Custom } from "./client-custom";
+
+export class {{{clientName}}} extends {{{clientName}}}Custom {
+  {{#apis}}
+  readonly {{> apiClassName}}: {{classname}};
+  {{/apis}}
+
+  constructor(configurationParameters: ConfigurationParameters) {
+    super(configurationParameters);
+    const configuration = new Configuration(configurationParameters);
+    {{#apis}}
+    this.{{> apiClassName}} = new {{classname}}(configuration);
+    {{/apis}}
+  }
+{{#apis}}{{#topLevelOperations}}
+   {{vendorExtensions.x-konfig-top-level-operation}}(requestParameters: {{> singleRequestParameterName}}, options?: AxiosRequestConfig) {
+       return this.{{> apiClassName}}.{{operationId}}(requestParameters, options)
+   }
+{{/topLevelOperations}}{{/apis}}
+}
+{{/apiInfo}}

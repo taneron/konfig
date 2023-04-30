@@ -1,0 +1,26 @@
+{{#if bodyParam}}
+{{#with bodyParam}}
+if body is None:
+    body = {}
+{{#each flattenedParamsFromRequestBodyProperties}}
+if isinstance(body, dict) and {{{paramName}}} is not None:
+    body["{{{baseName}}}"] = {{{paramName}}}
+{{/each}}
+{{/with}}
+{{/if}}
+{{#each queryParams}}
+if {{{paramName}}} is not None:
+    query_params["{{{baseName}}}"] = {{{paramName}}}
+{{/each}}
+{{#each headerParams}}
+if {{{paramName}}} is not None:
+    header_params["{{{baseName}}}"] = {{{paramName}}}
+{{/each}}
+{{#each pathParams}}
+if {{{paramName}}} is not None:
+    path_params["{{{baseName}}}"] = {{{paramName}}}
+{{/each}}
+{{#each cookieParams}}
+if {{{paramName}}} is not None:
+    cookie_params["{{{baseName}}}"] = {{{paramName}}}
+{{/each}}

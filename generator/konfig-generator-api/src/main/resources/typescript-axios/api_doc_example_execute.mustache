@@ -1,0 +1,26 @@
+{{#vendorExtensions.x-konfig-pagination}}
+let page = await {{clientNameLowercase}}.{{classVarName}}.{{operationId}}({
+{{#allParams}}
+{{^isBodyParam}}
+    '{{{paramName}}}': {{{example}}},
+{{/isBodyParam}}
+{{#isBodyParam}}
+    'requestBody': {{{example}}},
+{{/isBodyParam}}
+{{/allParams}}
+})
+// Use .next() and .hasNext() to paginate forward
+while (page.hasNext()) {
+    page = await page.next();
+    console.log(page.data);
+}
+// Use .previous() and .hasPrevious() to paginate backwards
+while (page.hasPrevious()) {
+    page = await page.previous();
+    console.log(page.data);
+}
+{{/vendorExtensions.x-konfig-pagination}}
+{{^vendorExtensions.x-konfig-pagination}}
+const {{{operationId}}}Response = await {{clientNameLowercase}}.{{#vendorExtensions.x-konfig-top-level-operation}}{{.}}{{/vendorExtensions.x-konfig-top-level-operation}}{{^vendorExtensions.x-konfig-top-level-operation}}{{> apiClassName}}.{{operationId}}{{/vendorExtensions.x-konfig-top-level-operation}}{{> api_doc_example_execute_parameters}}
+console.log({{{operationId}}}Response)
+{{/vendorExtensions.x-konfig-pagination}}

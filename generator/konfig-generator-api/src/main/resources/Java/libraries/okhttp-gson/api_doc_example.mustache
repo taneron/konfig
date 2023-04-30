@@ -1,0 +1,89 @@
+import {{{invokerPackage}}}.ApiClient;
+import {{{invokerPackage}}}.ApiException;
+import {{{invokerPackage}}}.ApiResponse;
+import {{{invokerPackage}}}.Configuration;{{#hasAuthMethods}}
+import {{{invokerPackage}}}.auth.*;{{/hasAuthMethods}}
+import {{{invokerPackage}}}.model.*;
+import {{{package}}}.{{{classname}}};
+
+public class Example {
+  public static void main(String[] args) {
+    {{^hasAuthMethods}}
+    ApiClient apiClient = Configuration.getDefaultApiClient();
+    apiClient.setBasePath("{{{basePath}}}");
+    {{/hasAuthMethods}}
+    {{#hasAuthMethods}}
+    {{#authMethods}}
+    {{#-first}}
+    {{#isApplication}}
+    // Configure OAuth2 client credentials for "application" OAuth flow
+    String clientId = System.getenv("CLIENT_ID");
+    String secretId = System.getenv("CLIENT_SECRET");
+    ApiClient apiClient = new ApiClient(clientId, secretId, null);
+
+    // Set custom base path if desired
+    // apiClient.setBasePath("{{{basePath}}}");{{/isApplication}}{{^isApplication}}
+    ApiClient apiClient = Configuration.getDefaultApiClient();
+    // Set custom base path if desired
+    // apiClient.setBasePath("{{{basePath}}}");
+    {{/isApplication}}
+    {{/-first}}
+    {{/authMethods}}
+    {{/hasAuthMethods}}
+    {{#hasAuthMethods}}
+    {{#authMethods}}{{#isBasic}}{{#isBasicBasic}}
+    // Configure HTTP basic authorization: {{{name}}}
+    apiClient.setUsername("YOUR USERNAME");
+    apiClient.setPassword("YOUR PASSWORD");{{/isBasicBasic}}{{#isBasicBearer}}
+    // Configure HTTP bearer authorization: {{{name}}}
+    HttpBearerAuth {{{name}}} = (HttpBearerAuth) apiClient.getAuthentication("{{{name}}}");
+    {{{name}}}.setBearerToken("BEARER TOKEN");{{/isBasicBearer}}{{/isBasic}}{{#isApiKey}}
+    // Configure API key authorization: {{{name}}}
+    apiClient.set{{{nameInCamelCase}}}("YOUR API KEY");{{/isApiKey}}{{#isOAuth}}{{^isApplication}}
+    // Configure OAuth2 access token for authorization: {{{name}}}
+    OAuth {{{name}}} = (OAuth) apiClient.getAuthentication("{{{name}}}");
+    {{{name}}}.setAccessToken("YOUR ACCESS TOKEN");{{/isApplication}}{{/isOAuth}}
+    {{/authMethods}}
+    {{/hasAuthMethods}}
+
+    {{{classname}}} api = new {{{classname}}}(apiClient);
+    {{#requiredParamsWithRequestBodyProperties}}
+    {{{dataType}}} {{{paramName}}} = {{{example}}};{{#description}} // {{{.}}}{{/description}}
+    {{/requiredParamsWithRequestBodyProperties}}
+    {{#optionalParamsWithRequestBodyProperties}}
+    {{{dataType}}} {{{paramName}}} = {{{example}}};{{#description}} // {{{.}}}{{/description}}
+    {{/optionalParamsWithRequestBodyProperties}}
+    try {
+      {{#returnType}}{{{.}}} result = {{/returnType}}api
+              .{{{operationId}}}{{^vendorExtensions.x-group-parameters}}({{#allParams}}{{{paramName}}}{{^-last}}, {{/-last}}{{/allParams}});{{/vendorExtensions.x-group-parameters}}{{#vendorExtensions.x-group-parameters}}({{#requiredParamsWithRequestBodyProperties}}{{{paramName}}}{{^-last}}, {{/-last}}{{/requiredParamsWithRequestBodyProperties}}){{#optionalParamsWithRequestBodyProperties}}
+              .{{{paramName}}}({{{paramName}}}){{/optionalParamsWithRequestBodyProperties}}
+              .execute();{{/vendorExtensions.x-group-parameters}}{{#returnType}}
+      System.out.println(result);
+      System.out.println(result.toJson()); // Serialize response back to JSON {{/returnType}}
+    } catch (ApiException e) {
+      System.err.println("Exception when calling {{{classname}}}#{{{operationId}}}");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+
+    // Use .executeWithHttpInfo() to retrieve HTTP Status Code, Headers and Request 
+    try {
+      {{#returnType}}ApiResponse<{{{.}}}> response = {{/returnType}}api
+              .{{{operationId}}}{{^vendorExtensions.x-group-parameters}}({{#allParams}}{{{paramName}}}{{^-last}}, {{/-last}}{{/allParams}});{{/vendorExtensions.x-group-parameters}}{{#vendorExtensions.x-group-parameters}}({{#requiredParamsWithRequestBodyProperties}}{{{paramName}}}{{^-last}}, {{/-last}}{{/requiredParamsWithRequestBodyProperties}}){{#optionalParamsWithRequestBodyProperties}}
+              .{{{paramName}}}({{{paramName}}}){{/optionalParamsWithRequestBodyProperties}}
+              .executeWithHttpInfo();{{/vendorExtensions.x-group-parameters}}{{#returnType}}
+      System.out.println(response.getData());
+      System.out.println(response.getHeaders());
+      System.out.println(response.getStatusCode());
+      System.out.println(response.getRequest());{{/returnType}}
+    } catch (ApiException e) {
+      System.err.println("Exception when calling {{{classname}}}#{{{operationId}}}");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}

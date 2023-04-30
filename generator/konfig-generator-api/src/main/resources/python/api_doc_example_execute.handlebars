@@ -1,0 +1,40 @@
+try:
+    {{#if summary}}
+    # {{{summary}}}
+    {{/if}}
+    {{#if returnType}}{{operationId}}_response = {{/if}}{{lower clientName}}.{{#if vendorExtensions.x-konfig-top-level-operation}}{{vendorExtensions.x-konfig-top-level-operation}}{{/if}}{{#unless vendorExtensions.x-konfig-top-level-operation}}{{> api_class_name}}.{{operationId}}{{/unless}}{{^hasParams}}(){{/hasParams}}{{#hasParams}}(
+    {{#if bodyParam}}
+    {{#with bodyParam}}
+    {{#unless isModel}}
+        body={{{example}}},
+    {{/unless}}
+    {{/with}}
+    {{/if}}
+    {{#each allParamsWithRequestBodyProperties}}
+        {{paramName}}={{{example}}},
+    {{/each}}
+    ){{/hasParams}}
+{{#if returnModel}}
+{{#with returnModel}}
+    pprint({{operationId}}_response.body)
+{{#each vars}}
+    pprint({{operationId}}_response.body["{{{name}}}"])
+{{/each}}
+{{/with}}
+{{/if}}
+    pprint({{operationId}}_response.headers)
+    pprint({{operationId}}_response.status)
+    pprint({{operationId}}_response.round_trip_time)
+except ApiException as e:
+    print("Exception when calling {{classname}}.{{operationId}}: %s\n" % e)
+    pprint(e.body)
+{{#each errorReturnModels}}{{#unless this.anyOf.length}}{{#unless this.isArray}}
+    if e.status == {{@key}}:
+    {{#each this.vars}}
+        pprint(e.body["{{{name}}}"])
+    {{/each}}
+{{/unless}}{{/unless}}{{/each}}
+    pprint(e.headers)
+    pprint(e.status)
+    pprint(e.reason)
+    pprint(e.round_trip_time)

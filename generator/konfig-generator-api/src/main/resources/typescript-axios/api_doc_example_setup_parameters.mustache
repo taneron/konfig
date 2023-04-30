@@ -1,0 +1,15 @@
+{{#clientState}}
+    {{{.}}}: '{{{.}}}',
+{{/clientState}}
+{{#authMethods}}
+{{#isApiKey}}
+    {{#hasMultipleApiKeys}}{{keyParamName}}{{/hasMultipleApiKeys}}{{^hasMultipleApiKeys}}apiKey{{/hasMultipleApiKeys}}: 'API_KEY',
+{{/isApiKey}}
+{{#isImplicit}}
+    accessToken: 'ACCESS_TOKEN',
+{{/isImplicit}}
+{{#isApplication}}
+    oauthClientId: 'CLIENT_ID',
+    oauthClientSecret: 'CLIENT_SECRET',
+{{/isApplication}}
+{{/authMethods}}

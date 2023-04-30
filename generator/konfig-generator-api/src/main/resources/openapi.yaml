@@ -1,0 +1,197 @@
+openapi: 3.0.3
+info:
+  contact:
+    email: dylan@konfigthis.com
+  description: "This is the specification for [Konfig's Generator API](https://api.konfigthis.com)"
+  title: Konfig Generator API
+  version: 1.0.0
+servers:
+- url: https://api.konfigthis.com
+tags:
+- description: Generate SDKs from an OpenAPI spec
+  name: Generate
+- description: Check to see if API is working
+  name: ApiStatus
+paths:
+  /healthz:
+    get:
+      responses:
+        "200":
+          description: Successful health check
+      summary: Health check
+      tags:
+      - ApiStatus
+      x-accepts: application/json
+      x-tags:
+      - tag: ApiStatus
+  /generate:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GenerateBody'
+        description: Generation Configuration
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AwsPresignedUrl'
+          description: Successful operation
+      summary: Generate SDKs
+      tags:
+      - Generate
+      x-content-type: application/json
+      x-accepts: application/json
+      x-tags:
+      - tag: Generate
+components:
+  schemas:
+    GeneratorName:
+      description: The name of the generator
+      type: string
+    OpenAPISpec:
+      description: YAML formatted OpenAPISpec
+      example:
+        src: src
+      properties:
+        src:
+          type: string
+      type: object
+    GenerateBody:
+      description: The request body for /generate
+      example:
+        config:
+          removeOperationIdPrefix: true
+          additionalProperties:
+            artifactId: acme-java-sdk
+            groupId: com.acme
+            invokerPackage: com.acme.client
+            modelPackage: com.acme.client.model
+            apiPackage: com.acme.client.api
+          files:
+            gitignore.mustaache:
+              source: |-
+                *.class
+                # Mobile Tools for Java (J2ME) .mtj.tmp/
+                # Package Files # *.jar *.war *.ear
+                # exclude jar for gradle wrapper !gradle/wrapper/*.jar
+                # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml hs_err_pid*
+                # build files **/target target .gradle build // CUSTOM CODE .DS_Store
+              destinationFilename: .gitignore
+            Configuration.mustache:
+              source: "{{>licenseInfo}}\npackage {{invokerPackage}};\nimport com.acme.client.auth.ApiKeyAuth;\n\
+                {{>generatedAnnotation}} public class Configuration { private static\
+                \ ApiClient defaultApiClient = new ApiClient();\n/** * Get the default\
+                \ API client, which would be used when creating API * instances without\
+                \ providing an API client. * * @return Default API client */ public\
+                \ static ApiClient getDefaultApiClient() { return defaultApiClient;\
+                \ }\n// CUSTOM CODE public static void setDefaultConsumerKey(String\
+                \ consumerKey) { defaultApiClient.setConsumerKey(consumerKey); }\n\
+                // CUSTOM CODE public static void setDefaultClientId(String clientId)\
+                \ { defaultApiClient.setClientId(clientId); }\n/** * Set the default\
+                \ API client, which would be used when creating API * instances without\
+                \ providing an API client. * * @param apiClient API client */ public\
+                \ static void setDefaultApiClient(ApiClient apiClient) { defaultApiClient\
+                \ = apiClient; } } "
+              destinationFilename: src/main/java/com/acme/client/Configuration.java
+          generatorName: java
+        spec:
+          src: src
+      properties:
+        spec:
+          $ref: '#/components/schemas/OpenAPISpec'
+        config:
+          $ref: '#/components/schemas/GeneratorConfig'
+      type: object
+    AdditionalProperties:
+      description: Additional properties depending on the generator specified
+      properties:
+        artifactId:
+          type: string
+        groupId:
+          type: string
+        invokerPackage:
+          type: string
+        modelPackage:
+          type: string
+        apiPackage:
+          type: string
+      type: object
+    Files:
+      additionalProperties:
+        $ref: '#/components/schemas/Files_value'
+      description: Collection of template files
+      type: object
+    GeneratorConfig:
+      description: Configuration of the OpenAPI Generator
+      example:
+        removeOperationIdPrefix: true
+        additionalProperties:
+          artifactId: acme-java-sdk
+          groupId: com.acme
+          invokerPackage: com.acme.client
+          modelPackage: com.acme.client.model
+          apiPackage: com.acme.client.api
+        files:
+          gitignore.mustaache:
+            source: |-
+              *.class
+              # Mobile Tools for Java (J2ME) .mtj.tmp/
+              # Package Files # *.jar *.war *.ear
+              # exclude jar for gradle wrapper !gradle/wrapper/*.jar
+              # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml hs_err_pid*
+              # build files **/target target .gradle build // CUSTOM CODE .DS_Store
+            destinationFilename: .gitignore
+          Configuration.mustache:
+            source: "{{>licenseInfo}}\npackage {{invokerPackage}};\nimport com.acme.client.auth.ApiKeyAuth;\n\
+              {{>generatedAnnotation}} public class Configuration { private static\
+              \ ApiClient defaultApiClient = new ApiClient();\n/** * Get the default\
+              \ API client, which would be used when creating API * instances without\
+              \ providing an API client. * * @return Default API client */ public\
+              \ static ApiClient getDefaultApiClient() { return defaultApiClient;\
+              \ }\n// CUSTOM CODE public static void setDefaultConsumerKey(String\
+              \ consumerKey) { defaultApiClient.setConsumerKey(consumerKey); }\n//\
+              \ CUSTOM CODE public static void setDefaultClientId(String clientId)\
+              \ { defaultApiClient.setClientId(clientId); }\n/** * Set the default\
+              \ API client, which would be used when creating API * instances without\
+              \ providing an API client. * * @param apiClient API client */ public\
+              \ static void setDefaultApiClient(ApiClient apiClient) { defaultApiClient\
+              \ = apiClient; } } "
+            destinationFilename: src/main/java/com/acme/client/Configuration.java
+        generatorName: java
+      properties:
+        additionalProperties:
+          $ref: '#/components/schemas/AdditionalProperties'
+        generatorName:
+          description: The name of the generator
+          type: string
+        removeOperationIdPrefix:
+          type: boolean
+        files:
+          additionalProperties:
+            $ref: '#/components/schemas/Files_value'
+          description: Collection of template files
+          type: object
+      type: object
+    AwsPresignedUrl:
+      example:
+        key: key
+        url: https://s3.us-west-1.amazonaws.com/gethappy.dev/1-2022-10-31T09%3A53%3A05.034Z.tar.gz?response-content-disposition=inline&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEAgaCXVzLXdlc3QtMSJHMEUCIQDN%2FI%2BsfI6pdiX%2BE9j5d72qgN1CXqvXRfaNDlF%2FWdQqqAIgd%2BKT7nXd7Pu2WijVAb%2Ff6EeguNbR%2FEfqg1PcoGI5ssEq7QII8P%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARACGgw5MTUzMzY0MDcwNDkiDNqHxwN%2BVheq0XLnYCrBAjltsx31J1LRpyjRGeCW7C8xX5jodCkEX9rtsF7EQIfT9j3VWrhZ7eAfvrSkaMkXgmKqfFZYKBOCfF0gKfSbO6CeC70GiMtKBxZCafw7wENGFakhnKuoHI7UOvSS86Ii%2BIZqxOW9A%2BGhzbEqeCIuTUITMGfnRvyaIclixzupjHB26bc4ZH8WlDtohGg0EyaNEwicSV1%2B2Hr35sTYU4hM8hHlMSXvjOlsfROKL5pUmlGOV5HWFWQGTJUnT9lb%2FAegV05ehWbuuGfan84831S57EI59cDIZrBx%2FdTgidR9Ni5fw6jrJyP8rmZ5W4CAmIpsBVL8H1hromels7mOCl%2B6EU9ZNcJ2s6%2BIPaE1cycuYi%2BIUAUiOtDEdXaZO%2FUNP6zq5N16xmY%2FM6OUUxpWi7tmhD2NtlLEuMbHL1n6C4gDoIrCJzCq%2FpmbBjqzAjDFZNgQJtN5%2FPSIwauQ8yzn0ohsM0yHjKKx4tOfTRKZQnyzYWenzi01oEihutGjfGn518QsQa20gDhyYc1DVsdU0UdJlHbgV0nrAuzv0K5xL46Wn9Wh387dGbRawbZRSAPsRDs2cQfPptncTPlzGPYfbz4pzMIOJtcDBAtxFtR6OlJjmPnmmnW05L0cgDweM9swtlc0KPH6j%2F1KAbkOUC7jLrcPJrBSvANAyzUmErn2LlR22%2BbC2rDvKhRLTT44vx3udx%2BI3wdT%2FN%2FjeRhb8kF9FcBjfxTHbTkL%2FYJwkfZaU9Okf5FcmEJJ2SQQAJRQ%2B3d2IW0uvtMy4f571R5G2qH1u0wYAXHRk2ABEeNskhhmZEwFWsrAZ4CQVVaiwRmgyh6qgPgLx8ukmGvsbl9vLD2BwMo%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20221105T152040Z&X-Amz-SignedHeaders=host&X-Amz-Expires=60&X-Amz-Credential=ASIA5KHSNFAE5VTHOPML%2F20221105%2Fus-west-1%2Fs3%2Faws4_request&X-Amz-Signature=c63fb4ffb1d71e9ff4c331d54e9ed46219fd5c3008c2749db9a536432e6f4998
+      properties:
+        key:
+          description: S3 Bucket Key
+          type: string
+        url:
+          description: Download link with expiration of 1 minute
+          example: https://s3.us-west-1.amazonaws.com/gethappy.dev/1-2022-10-31T09%3A53%3A05.034Z.tar.gz?response-content-disposition=inline&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEAgaCXVzLXdlc3QtMSJHMEUCIQDN%2FI%2BsfI6pdiX%2BE9j5d72qgN1CXqvXRfaNDlF%2FWdQqqAIgd%2BKT7nXd7Pu2WijVAb%2Ff6EeguNbR%2FEfqg1PcoGI5ssEq7QII8P%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARACGgw5MTUzMzY0MDcwNDkiDNqHxwN%2BVheq0XLnYCrBAjltsx31J1LRpyjRGeCW7C8xX5jodCkEX9rtsF7EQIfT9j3VWrhZ7eAfvrSkaMkXgmKqfFZYKBOCfF0gKfSbO6CeC70GiMtKBxZCafw7wENGFakhnKuoHI7UOvSS86Ii%2BIZqxOW9A%2BGhzbEqeCIuTUITMGfnRvyaIclixzupjHB26bc4ZH8WlDtohGg0EyaNEwicSV1%2B2Hr35sTYU4hM8hHlMSXvjOlsfROKL5pUmlGOV5HWFWQGTJUnT9lb%2FAegV05ehWbuuGfan84831S57EI59cDIZrBx%2FdTgidR9Ni5fw6jrJyP8rmZ5W4CAmIpsBVL8H1hromels7mOCl%2B6EU9ZNcJ2s6%2BIPaE1cycuYi%2BIUAUiOtDEdXaZO%2FUNP6zq5N16xmY%2FM6OUUxpWi7tmhD2NtlLEuMbHL1n6C4gDoIrCJzCq%2FpmbBjqzAjDFZNgQJtN5%2FPSIwauQ8yzn0ohsM0yHjKKx4tOfTRKZQnyzYWenzi01oEihutGjfGn518QsQa20gDhyYc1DVsdU0UdJlHbgV0nrAuzv0K5xL46Wn9Wh387dGbRawbZRSAPsRDs2cQfPptncTPlzGPYfbz4pzMIOJtcDBAtxFtR6OlJjmPnmmnW05L0cgDweM9swtlc0KPH6j%2F1KAbkOUC7jLrcPJrBSvANAyzUmErn2LlR22%2BbC2rDvKhRLTT44vx3udx%2BI3wdT%2FN%2FjeRhb8kF9FcBjfxTHbTkL%2FYJwkfZaU9Okf5FcmEJJ2SQQAJRQ%2B3d2IW0uvtMy4f571R5G2qH1u0wYAXHRk2ABEeNskhhmZEwFWsrAZ4CQVVaiwRmgyh6qgPgLx8ukmGvsbl9vLD2BwMo%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20221105T152040Z&X-Amz-SignedHeaders=host&X-Amz-Expires=60&X-Amz-Credential=ASIA5KHSNFAE5VTHOPML%2F20221105%2Fus-west-1%2Fs3%2Faws4_request&X-Amz-Signature=c63fb4ffb1d71e9ff4c331d54e9ed46219fd5c3008c2749db9a536432e6f4998
+          type: string
+      type: object
+    Files_value:
+      properties:
+        source:
+          type: string
+        destinationFilename:
+          type: string
+      type: object

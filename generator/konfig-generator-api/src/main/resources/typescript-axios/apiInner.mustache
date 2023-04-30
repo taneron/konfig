@@ -1,0 +1,451 @@
+{{#withSeparateModelsAndApi}}
+/* tslint:disable */
+/* eslint-disable */
+{{>licenseInfo}}
+
+import globalAxios, { AxiosPromise, AxiosInstance, AxiosRequestConfig } from 'axios';
+import { Configuration } from '{{apiRelativeToRoot}}configuration';
+{{#withNodeImports}}
+// URLSearchParams not necessarily used
+// @ts-ignore
+import { URL, URLSearchParams } from 'url';
+{{#multipartFormData}}
+import FormData from 'form-data'
+{{/multipartFormData}}
+{{/withNodeImports}}
+// Some imports not used depending on template conditions
+// @ts-ignore
+import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '{{apiRelativeToRoot}}common';
+{{#hasOAuthMethods}}
+import { setOAuthToObject } from '{{apiRelativeToRoot}}common';
+{{/hasOAuthMethods}}
+// @ts-ignore
+import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '{{apiRelativeToRoot}}base';
+{{#imports}}
+// @ts-ignore
+import { {{classname}} } from '{{apiRelativeToRoot}}{{tsModelPackage}}';
+{{/imports}}
+import { paginate } from "../pagination/paginate";
+import { requestBeforeHook } from '../requestBeforeHook';
+import { {{classname}}Custom } from "./{{classFilename}}-custom";
+{{/withSeparateModelsAndApi}}
+{{^withSeparateModelsAndApi}}
+{{/withSeparateModelsAndApi}}
+{{#operations}}
+/**
+ * {{classname}} - axios parameter creator{{#description}}
+ * {{&description}}{{/description}}
+ * @export
+ */
+export const {{classname}}AxiosParamCreator = function (configuration?: Configuration) {
+    return {
+    {{#operation}}
+        /**
+         * {{&notes}}
+         {{#summary}}
+         * @summary {{&summary}}
+         {{/summary}}
+         {{#allParams}}
+         * @param {{=<% %>=}}{<%&dataType%>}<%={{ }}=%> {{^required}}[{{/required}}{{paramName}}{{^required}}]{{/required}} {{description}}
+         {{/allParams}}
+         * @param {*} [options] Override http request option.{{#isDeprecated}}
+         * @deprecated{{/isDeprecated}}
+         * @throws {RequiredError}
+         */
+        {{nickname}}: async ({{#allParams}}{{paramName}}{{^required}}?{{/required}}: {{{dataType}}}, {{/allParams}}options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+    {{#allParams}}
+    {{#required}}
+            // verify required parameter '{{paramName}}' is not null or undefined
+            assertParamExists('{{nickname}}', '{{paramName}}', {{paramName}})
+    {{/required}}
+    {{/allParams}}
+            const localVarPath = `{{{path}}}`{{#pathParams}}
+                .replace(`{${"{{baseName}}"}}`, encodeURIComponent(String({{paramName}}))){{/pathParams}};
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions: AxiosRequestConfig = { method: '{{httpMethod}}', ...baseOptions, ...options};
+            const localVarHeaderParameter = configuration ? { "User-Agent": configuration.userAgent } : {} as any;
+            const localVarQueryParameter = {} as any;{{#vendorExtensions}}{{#hasFormParams}}
+            const localVarFormParams = new {{^multipartFormData}}URLSearchParams(){{/multipartFormData}}{{#multipartFormData}}((configuration && configuration.formDataCtor) || FormData)(){{/multipartFormData}};{{/hasFormParams}}{{/vendorExtensions}}
+
+    {{#authMethods}}
+            // authentication {{name}} required
+            {{#isApiKey}}
+            {{#isKeyInHeader}}
+            await setApiKeyToObject({ object: localVarHeaderParameter, keyParamName: "{{keyParamName}}", configuration{{#vendorExtensions.x-konfig-prefix}}, prefix: "{{vendorExtensions.x-konfig-prefix}}"{{/vendorExtensions.x-konfig-prefix}} })
+            {{/isKeyInHeader}}
+            {{#isKeyInQuery}}
+            await setApiKeyToObject({object: localVarQueryParameter, keyParamName: "{{keyParamName}}", configuration})
+            {{/isKeyInQuery}}
+            {{#isKeyInCookie}}
+            await setApiKeyToObject({object: localVarHeaderParameter, type: "Cookie", key: "Cookie", keyParamName: "{{keyParamName}}", configuration})
+            {{/isKeyInCookie}}
+            {{/isApiKey}}
+            {{#isBasicBasic}}
+            // http basic authentication required
+            setBasicAuthToObject(localVarRequestOptions, configuration)
+            {{/isBasicBasic}}
+            {{#isBasicBearer}}
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+            {{/isBasicBearer}}
+            {{#isOAuth}}
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "{{name}}", [{{#scopes}}"{{{scope}}}"{{^-last}}, {{/-last}}{{/scopes}}], configuration)
+            {{/isOAuth}}
+    {{/authMethods}}
+    {{#queryParams}}
+            {{#isArray}}
+            if ({{paramName}}) {
+            {{#isCollectionFormatMulti}}
+                {{#uniqueItems}}
+                localVarQueryParameter['{{baseName}}'] = Array.from({{paramName}});
+                {{/uniqueItems}}
+                {{^uniqueItems}}
+                localVarQueryParameter['{{baseName}}'] = {{paramName}};
+                {{/uniqueItems}}
+            {{/isCollectionFormatMulti}}
+            {{^isCollectionFormatMulti}}
+                {{#uniqueItems}}
+                localVarQueryParameter['{{baseName}}'] = Array.from({{paramName}}).join(COLLECTION_FORMATS.{{collectionFormat}});
+                {{/uniqueItems}}
+                {{^uniqueItems}}
+                localVarQueryParameter['{{baseName}}'] = {{paramName}}.join(COLLECTION_FORMATS.{{collectionFormat}});
+                {{/uniqueItems}}
+            {{/isCollectionFormatMulti}}
+            }
+            {{/isArray}}
+            {{^isArray}}
+            if ({{paramName}} !== undefined) {
+                {{#isDateTime}}
+                localVarQueryParameter['{{baseName}}'] = ({{paramName}} as any instanceof Date) ?
+                    ({{paramName}} as any).toISOString() :
+                    {{paramName}};
+                {{/isDateTime}}
+                {{^isDateTime}}
+                {{#isDate}}
+                localVarQueryParameter['{{baseName}}'] = ({{paramName}} as any instanceof Date) ?
+                    ({{paramName}} as any).toISOString().substr(0,10) :
+                    {{paramName}};
+                {{/isDate}}
+                {{^isDate}}
+                localVarQueryParameter['{{baseName}}'] = {{paramName}};
+                {{/isDate}}
+                {{/isDateTime}}
+            }
+            {{/isArray}}
+
+    {{/queryParams}}
+    {{#headerParams}}
+            {{#isArray}}
+            if ({{paramName}}) {
+                {{#uniqueItems}}
+                let mapped = Array.from({{paramName}}).map(value => (<any>"{{{dataType}}}" !== "Set<string>") ? JSON.stringify(value) : (value || ""));
+                {{/uniqueItems}}
+                {{^uniqueItems}}
+                let mapped = {{paramName}}.map(value => (<any>"{{{dataType}}}" !== "Array<string>") ? JSON.stringify(value) : (value || ""));
+                {{/uniqueItems}}
+                localVarHeaderParameter['{{baseName}}'] = mapped.join(COLLECTION_FORMATS["{{collectionFormat}}"]);
+            }
+            {{/isArray}}
+            {{^isArray}}
+            {{! `val == null` covers for both `null` and `undefined`}}
+            if ({{paramName}} != null) {
+                {{#isString}}
+                localVarHeaderParameter['{{baseName}}'] = String({{paramName}});
+                {{/isString}}
+                {{^isString}}
+                {{! isString is falsy also for $ref that defines a string or enum type}}
+                localVarHeaderParameter['{{baseName}}'] = typeof {{paramName}} === 'string' 
+                    ? {{paramName}} 
+                    : JSON.stringify({{paramName}});
+                {{/isString}}
+            }
+            {{/isArray}}
+
+    {{/headerParams}}
+    {{#vendorExtensions}}
+    {{#formParams}}
+            {{#isArray}}
+            if ({{paramName}}) {
+            {{#isCollectionFormatMulti}}
+                {{paramName}}.forEach((element) => {
+                    localVarFormParams.{{#multipartFormData}}append{{/multipartFormData}}{{^multipartFormData}}set{{/multipartFormData}}('{{baseName}}', element as any);
+                })
+            {{/isCollectionFormatMulti}}
+            {{^isCollectionFormatMulti}}
+                localVarFormParams.{{#multipartFormData}}append{{/multipartFormData}}{{^multipartFormData}}set{{/multipartFormData}}('{{baseName}}', {{paramName}}.join(COLLECTION_FORMATS.{{collectionFormat}}));
+            {{/isCollectionFormatMulti}}
+            }{{/isArray}}
+            {{^isArray}}
+            if ({{paramName}} !== undefined) { {{^multipartFormData}}
+                localVarFormParams.set('{{baseName}}', {{paramName}} as any);{{/multipartFormData}}{{#multipartFormData}}{{#isPrimitiveType}}
+                localVarFormParams.append('{{baseName}}', {{paramName}} as any);{{/isPrimitiveType}}{{^isPrimitiveType}}
+                localVarFormParams.append('{{baseName}}', new Blob([JSON.stringify({{paramName}})], { type: "application/json", }));{{/isPrimitiveType}}{{/multipartFormData}}
+            }{{/isArray}}
+    {{/formParams}}{{/vendorExtensions}}
+    {{#vendorExtensions}}{{#hasFormParams}}{{^multipartFormData}}
+            localVarHeaderParameter['Content-Type'] = 'application/x-www-form-urlencoded';{{/multipartFormData}}{{#multipartFormData}}
+            localVarHeaderParameter['Content-Type'] = 'multipart/form-data';{{/multipartFormData}}
+    {{/hasFormParams}}{{/vendorExtensions}}
+    {{#bodyParam}}
+            {{^consumes}}
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+            {{/consumes}}
+            {{#consumes.0}}
+            localVarHeaderParameter['Content-Type'] = '{{{mediaType}}}';
+            {{/consumes.0}}
+
+    {{/bodyParam}}
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions,{{#hasFormParams}}{{#multipartFormData}} ...(localVarFormParams as any).getHeaders?.(),{{/multipartFormData}}{{/hasFormParams}} ...options.headers};
+    {{#hasFormParams}}
+            localVarRequestOptions.data = localVarFormParams{{#vendorExtensions}}{{^multipartFormData}}.toString(){{/multipartFormData}}{{/vendorExtensions}};
+    {{/hasFormParams}}
+    {{#bodyParam}}
+            requestBeforeHook({
+                requestBody: {{paramName}},
+                queryParameters: localVarQueryParameter,
+                requestConfig: localVarRequestOptions,
+                path: localVarPath,
+                configuration
+            });
+            localVarRequestOptions.data = serializeDataIfNeeded({{paramName}}, localVarRequestOptions, configuration)
+    {{/bodyParam}}
+    {{^bodyParam}}
+            requestBeforeHook({
+                queryParameters: localVarQueryParameter,
+                requestConfig: localVarRequestOptions,
+                path: localVarPath,
+                configuration
+            });
+    {{/bodyParam}}
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    {{/operation}}
+    }
+};
+
+/**
+ * {{classname}} - functional programming interface{{#description}}
+ * {{{.}}}{{/description}}
+ * @export
+ */
+export const {{classname}}Fp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = {{classname}}AxiosParamCreator(configuration)
+    return {
+    {{#operation}}
+        /**
+         * {{&notes}}
+         {{#summary}}
+         * @summary {{&summary}}
+         {{/summary}}
+        {{#useSingleRequestParameter}}
+         {{#allParams.0}}
+         * @param {{=<% %>=}}{<%& classname %><%& operationIdCamelCase %>Request}<%={{ }}=%> requestParameters Request parameters.
+         {{/allParams.0}}
+        {{/useSingleRequestParameter}}
+        {{^useSingleRequestParameter}}
+         {{#allParams}}
+         * @param {{=<% %>=}}{<%&dataType%>}<%={{ }}=%> {{^required}}[{{/required}}{{paramName}}{{^required}}]{{/required}} {{description}}
+         {{/allParams}}
+        {{/useSingleRequestParameter}}
+         * @param {*} [options] Override http request option.{{#isDeprecated}}
+         * @deprecated{{/isDeprecated}}
+         * @throws {RequiredError}
+         */
+        {{#useSingleRequestParameter}}
+        async {{nickname}}({{#allParams.0}}requestParameters: {{classname}}{{operationIdCamelCase}}Request{{^onlyHasPrimitiveBodyParameter}}{{#defaultCanBeEmptyObject}} = {}{{/defaultCanBeEmptyObject}}{{/onlyHasPrimitiveBodyParameter}}, {{/allParams.0}}options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<{{{returnType}}}{{^returnType}}void{{/returnType}}>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.{{nickname}}({{#allParams}}requestParameters{{#isBodyParam}}{{^operationVendorExtensions.x-konfig-operation-can-have-single-parameter}}.requestBody{{/operationVendorExtensions.x-konfig-operation-can-have-single-parameter}}{{/isBodyParam}}{{^isBodyParam}}.{{paramName}}{{/isBodyParam}}, {{/allParams}}options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        {{/useSingleRequestParameter}}
+        {{^useSingleRequestParameter}}
+        async {{nickname}}({{#allParams}}{{paramName}}{{^required}}?{{/required}}: {{{dataType}}}, {{/allParams}}options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<{{{returnType}}}{{^returnType}}void{{/returnType}}>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.{{nickname}}({{#allParams}}{{paramName}}, {{/allParams}}options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        {{/useSingleRequestParameter}}
+    {{/operation}}
+    }
+};
+
+/**
+ * {{classname}} - factory interface{{#description}}
+ * {{&description}}{{/description}}
+ * @export
+ */
+export const {{classname}}Factory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = {{classname}}Fp(configuration)
+    return {
+    {{#operation}}
+        /**
+         * {{&notes}}
+         {{#summary}}
+         * @summary {{&summary}}
+         {{/summary}}
+        {{#useSingleRequestParameter}}
+         {{#allParams.0}}
+         * @param {{=<% %>=}}{<%& classname %><%& operationIdCamelCase %>Request}<%={{ }}=%> requestParameters Request parameters.
+         {{/allParams.0}}
+        {{/useSingleRequestParameter}}
+        {{^useSingleRequestParameter}}
+         {{#allParams}}
+         * @param {{=<% %>=}}{<%&dataType%>}<%={{ }}=%> {{^required}}[{{/required}}{{paramName}}{{^required}}]{{/required}} {{description}}
+         {{/allParams}}
+        {{/useSingleRequestParameter}}
+         * @param {*} [options] Override http request option.{{#isDeprecated}}
+         * @deprecated{{/isDeprecated}}
+         * @throws {RequiredError}
+         */
+        {{#useSingleRequestParameter}}
+        {{nickname}}({{#allParams.0}}requestParameters: {{classname}}{{operationIdCamelCase}}Request{{^onlyHasPrimitiveBodyParameter}}{{#defaultCanBeEmptyObject}} = {}{{/defaultCanBeEmptyObject}}{{/onlyHasPrimitiveBodyParameter}}, {{/allParams.0}}options?: AxiosRequestConfig): AxiosPromise<{{{returnType}}}{{^returnType}}void{{/returnType}}> {
+            return localVarFp.{{nickname}}({{#allParams.0}}requestParameters, {{/allParams.0}}options).then((request) => request(axios, basePath));
+        },
+        {{/useSingleRequestParameter}}
+        {{^useSingleRequestParameter}}
+        {{nickname}}({{#allParams}}{{paramName}}{{^required}}?{{/required}}: {{{dataType}}}, {{/allParams}}options?: any): AxiosPromise<{{{returnType}}}{{^returnType}}void{{/returnType}}> {
+            return localVarFp.{{nickname}}({{#allParams}}{{paramName}}, {{/allParams}}options).then((request) => request(axios, basePath));
+        },
+        {{/useSingleRequestParameter}}
+    {{/operation}}
+    };
+};
+
+{{#withInterfaces}}
+/**
+ * {{classname}} - interface{{#description}}
+ * {{&description}}{{/description}}
+ * @export
+ * @interface {{classname}}
+ */
+export interface {{classname}}Interface {
+{{#operation}}
+    /**
+     * {{&notes}}
+     {{#summary}}
+     * @summary {{&summary}}
+     {{/summary}}
+     {{#allParams}}
+     * @param {{=<% %>=}}{<%&dataType%>}<%={{ }}=%> {{^required}}[{{/required}}{{paramName}}{{^required}}]{{/required}} {{description}}
+     {{/allParams}}
+     * @param {*} [options] Override http request option.{{#isDeprecated}}
+     * @deprecated{{/isDeprecated}}
+     * @throws {RequiredError}
+     * @memberof {{classname}}Interface
+     */
+    {{nickname}}({{#allParams}}{{paramName}}{{^required}}?{{/required}}: {{{dataType}}}, {{/allParams}}options?: AxiosRequestConfig): AxiosPromise<{{{returnType}}}{{^returnType}}void{{/returnType}}>;
+
+{{/operation}}
+}
+
+{{/withInterfaces}}
+{{#useSingleRequestParameter}}
+{{#operation}}
+{{#allParams.0}}
+/**
+ * Request parameters for {{nickname}} operation in {{classname}}.
+ * @export
+ * @interface {{> singleRequestParameterName}}
+ */
+export type {{> singleRequestParameterName}} = {{#onlyHasPrimitiveBodyParameter}}{{{dataType}}}{{/onlyHasPrimitiveBodyParameter}}{{^onlyHasPrimitiveBodyParameter}}{
+ {{#operationVendorExtensions.x-konfig-operation-can-have-single-parameter}}
+    {{#allParams}}{{^isBodyParam}}
+    /**
+    * {{{description}}}
+    * @type {{=<% %>=}}{<%&dataType%>}<%={{ }}=%>
+    * @memberof {{classname}}{{operationIdCamelCase}}
+    */
+    readonly {{paramName}}{{^required}}?{{/required}}: {{{dataType}}}
+    {{/isBodyParam}}{{/allParams}}
+{{/operationVendorExtensions.x-konfig-operation-can-have-single-parameter}}
+{{^operationVendorExtensions.x-konfig-operation-can-have-single-parameter}}
+    {{#allParams}}
+    /**
+    * {{{description}}}
+    * @type {{=<% %>=}}{<%&dataType%>}<%={{ }}=%>
+    * @memberof {{classname}}{{operationIdCamelCase}}
+    */
+    readonly {{#isBodyParam}}requestBody{{/isBodyParam}}{{^isBodyParam}}{{paramName}}{{/isBodyParam}}{{^required}}?{{/required}}: {{{dataType}}}
+    {{/allParams}}
+{{/operationVendorExtensions.x-konfig-operation-can-have-single-parameter}}
+}{{#bodyParam}}{{#operationVendorExtensions.x-konfig-operation-can-have-single-parameter}} & {{{dataType}}}{{/operationVendorExtensions.x-konfig-operation-can-have-single-parameter}}{{/bodyParam}}{{/onlyHasPrimitiveBodyParameter}}
+
+{{/allParams.0}}
+{{/operation}}
+{{/useSingleRequestParameter}}
+/**
+ * {{classname}} - object-oriented interface{{#description}}
+ * {{{.}}}{{/description}}
+ * @export
+ * @class {{classname}}
+ * @extends {BaseAPI}
+ */
+{{#withInterfaces}}
+export class {{classname}} extends BaseAPI implements {{classname}}Interface {
+{{/withInterfaces}}
+{{^withInterfaces}}
+export class {{classname}} extends {{classname}}Custom {
+{{/withInterfaces}}
+    {{#operation}}
+    /**
+     * {{&notes}}
+     {{#summary}}
+     * @summary {{&summary}}
+     {{/summary}}
+     {{#useSingleRequestParameter}}
+     {{#allParams.0}}
+     * @param {{=<% %>=}}{<%& classname %><%& operationIdCamelCase %>Request}<%={{ }}=%> requestParameters Request parameters.
+     {{/allParams.0}}
+     {{/useSingleRequestParameter}}
+     {{^useSingleRequestParameter}}
+     {{#allParams}}
+     * @param {{=<% %>=}}{<%&dataType%>}<%={{ }}=%> {{^required}}[{{/required}}{{paramName}}{{^required}}]{{/required}} {{description}}
+     {{/allParams}}
+     {{/useSingleRequestParameter}}
+     * @param {*} [options] Override http request option.{{#isDeprecated}}
+     * @deprecated{{/isDeprecated}}
+     * @throws {RequiredError}
+     * @memberof {{classname}}
+     */
+    {{#useSingleRequestParameter}}
+    public {{nickname}}({{#allParams.0}}requestParameters: {{classname}}{{operationIdCamelCase}}Request{{^onlyHasPrimitiveBodyParameter}}{{#defaultCanBeEmptyObject}} = {}{{/defaultCanBeEmptyObject}}{{/onlyHasPrimitiveBodyParameter}}, {{/allParams.0}}options?: AxiosRequestConfig) {
+        {{#vendorExtensions}}
+        {{#x-konfig-pagination}}
+        return paginate({
+            initialParameters: requestParameters,
+            request: (parameters: {{classname}}{{operationIdCamelCase}}Request) => {
+                return {{classname}}Fp(this.configuration).{{nickname}}({{#allParams.0}}parameters, {{/allParams.0}}options).then((request) => request(this.axios, this.basePath));
+            },
+        });
+        {{/x-konfig-pagination}}
+        {{^x-konfig-pagination}}
+        {{>apiSingleRequestParameterInvoke}}
+        {{/x-konfig-pagination}}
+        {{/vendorExtensions}}
+        {{^vendorExtensions}}
+        {{>apiSingleRequestParameterInvoke}}
+        {{/vendorExtensions}}
+    }
+    {{/useSingleRequestParameter}}
+    {{^useSingleRequestParameter}}
+    public {{nickname}}({{#allParams}}{{paramName}}{{^required}}?{{/required}}: {{{dataType}}}, {{/allParams}}options?: AxiosRequestConfig) {
+        return {{classname}}Fp(this.configuration).{{nickname}}({{#allParams}}{{paramName}}, {{/allParams}}options).then((request) => request(this.axios, this.basePath));
+    }
+    {{/useSingleRequestParameter}}
+    {{^-last}}
+
+    {{/-last}}
+    {{/operation}}
+}
+{{/operations}}

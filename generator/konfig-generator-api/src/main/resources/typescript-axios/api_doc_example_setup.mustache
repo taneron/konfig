@@ -1,0 +1,16 @@
+import { {{{clientName}}} } from "{{{npmName}}}"
+
+const {{{clientNameLowercase}}} = new {{{clientName}}}({
+    // Defining the base path is optional and defaults to {{{basePath}}}
+    // basePath: "{{{basePath}}}",
+{{#apiDocumentationAuthenticationPartial}}
+{{{apiDocumentationAuthenticationPartial}}}
+{{/apiDocumentationAuthenticationPartial}}
+{{^apiDocumentationAuthenticationPartial}}
+{{#includeFetchAdapter}}
+    // Use native Fetch API instead of axios
+    // useFetch: true,
+{{/includeFetchAdapter}}
+{{> api_doc_example_setup_parameters}}
+{{/apiDocumentationAuthenticationPartial}}
+})

@@ -1,0 +1,34 @@
+# coding: utf-8
+{{>partial_header}}
+
+from {{packageName}}.configuration import Configuration
+from {{packageName}}.api_client import ApiClient
+{{#with apiInfo}}
+{{#each apis}}
+from {{packageName}}.apis.tags.{{classVarName}} import {{classname}}
+{{/each}}
+{{/with}}
+
+
+class {{clientName}}:
+
+    def __init__(self, configuration: Configuration = None, **kwargs):
+        if (len(kwargs) > 0):
+            configuration = Configuration(**kwargs)
+        if (configuration is None):
+            raise Exception("configuration is required")
+        api_client = ApiClient(configuration)
+        {{#with apiInfo}}
+        {{#each apis}}
+        self.{{> api_class_name}} = {{classname}}(api_client)
+        {{/each}}
+        {{/with}}
+{{#with apiInfo}}
+{{#each apis}}
+{{#each topLevelOperations}}
+
+    def {{vendorExtensions.x-konfig-top-level-operation}}(self, *args, **kwargs):
+        return self.{{> api_class_name}}.{{operationId}}(*args, **kwargs)
+{{/each}}
+{{/each}}
+{{/with}}

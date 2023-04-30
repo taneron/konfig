@@ -1,0 +1,1029 @@
+package com.konfigthis.model;
+
+import java.net.URI;
+import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.konfigthis.model.AdditionalPropertiesTopLevelOperationsInner;
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.time.OffsetDateTime;
+import javax.validation.Valid;
+import javax.validation.constraints.*;
+import io.swagger.v3.oas.annotations.media.Schema;
+
+
+import java.util.*;
+import javax.annotation.Generated;
+
+/**
+ * Additional properties depending on the generator specified
+ */
+
+@Schema(name = "AdditionalProperties", description = "Additional properties depending on the generator specified")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
+public class AdditionalProperties {
+
+  @JsonProperty("objectPropertyNamingConvention")
+  private String objectPropertyNamingConvention;
+
+  @JsonProperty("gitRepoName")
+  private String gitRepoName;
+
+  @JsonProperty("clientName")
+  private String clientName;
+
+  @JsonProperty("outputDirectory")
+  private String outputDirectory;
+
+  @JsonProperty("topLevelOperations")
+  @Valid
+  private List<AdditionalPropertiesTopLevelOperationsInner> topLevelOperations = null;
+
+  @JsonProperty("omitInfoDescription")
+  private Boolean omitInfoDescription;
+
+  @JsonProperty("setSkipSerializationToTrueByDefault")
+  private Boolean setSkipSerializationToTrueByDefault;
+
+  @JsonProperty("includeFetchAdapter")
+  private Boolean includeFetchAdapter;
+
+  @JsonProperty("packagistUsername")
+  private String packagistUsername;
+
+  @JsonProperty("toStringReturnsJson")
+  private Boolean toStringReturnsJson;
+
+  @JsonProperty("includeEventSourceParser")
+  private Boolean includeEventSourceParser;
+
+  @JsonProperty("apiDocumentationAuthenticationPartial")
+  private String apiDocumentationAuthenticationPartial;
+
+  @JsonProperty("composerPackageName")
+  private String composerPackageName;
+
+  @JsonProperty("defaultTimeout")
+  private BigDecimal defaultTimeout;
+
+  @JsonProperty("useSingleRequestParameter")
+  private Boolean useSingleRequestParameter;
+
+  @JsonProperty("artifactUrl")
+  private String artifactUrl;
+
+  @JsonProperty("artifactId")
+  private String artifactId;
+
+  @JsonProperty("groupId")
+  private String groupId;
+
+  @JsonProperty("invokerPackage")
+  private String invokerPackage;
+
+  @JsonProperty("modelPackage")
+  private String modelPackage;
+
+  @JsonProperty("apiPackage")
+  private String apiPackage;
+
+  @JsonProperty("projectName")
+  private String projectName;
+
+  @JsonProperty("podVersion")
+  private String podVersion;
+
+  @JsonProperty("removeKonfigBranding")
+  private Boolean removeKonfigBranding;
+
+  @JsonProperty("podName")
+  private String podName;
+
+  @JsonProperty("classPrefix")
+  private String classPrefix;
+
+  @JsonProperty("authorName")
+  private String authorName;
+
+  @JsonProperty("authorEmail")
+  private String authorEmail;
+
+  @JsonProperty("podAuthors")
+  private String podAuthors;
+
+  @JsonProperty("swiftPackagePath")
+  private String swiftPackagePath;
+
+  @JsonProperty("disallowAdditionalPropertiesIfNotPresent")
+  private Boolean disallowAdditionalPropertiesIfNotPresent;
+
+  @JsonProperty("packageVersion")
+  private String packageVersion;
+
+  @JsonProperty("packageUrl")
+  private String packageUrl;
+
+  @JsonProperty("npmVersion")
+  private String npmVersion;
+
+  @JsonProperty("npmName")
+  private String npmName;
+
+  @JsonProperty("readmeSnippet")
+  private String readmeSnippet;
+
+  @JsonProperty("readmeDescriptionSnippet")
+  private String readmeDescriptionSnippet;
+
+  @JsonProperty("apiKeyAlias")
+  @Valid
+  private Map<String, String> apiKeyAlias = null;
+
+  @JsonProperty("clientState")
+  @Valid
+  private List<String> clientState = null;
+
+  public AdditionalProperties objectPropertyNamingConvention(String objectPropertyNamingConvention) {
+    this.objectPropertyNamingConvention = objectPropertyNamingConvention;
+    return this;
+  }
+
+  /**
+   * Get objectPropertyNamingConvention
+   * @return objectPropertyNamingConvention
+  */
+  
+  @Schema(name = "objectPropertyNamingConvention", required = false)
+  public String getObjectPropertyNamingConvention() {
+    return objectPropertyNamingConvention;
+  }
+
+  public void setObjectPropertyNamingConvention(String objectPropertyNamingConvention) {
+    this.objectPropertyNamingConvention = objectPropertyNamingConvention;
+  }
+
+  public AdditionalProperties gitRepoName(String gitRepoName) {
+    this.gitRepoName = gitRepoName;
+    return this;
+  }
+
+  /**
+   * Get gitRepoName
+   * @return gitRepoName
+  */
+  
+  @Schema(name = "gitRepoName", required = false)
+  public String getGitRepoName() {
+    return gitRepoName;
+  }
+
+  public void setGitRepoName(String gitRepoName) {
+    this.gitRepoName = gitRepoName;
+  }
+
+  public AdditionalProperties clientName(String clientName) {
+    this.clientName = clientName;
+    return this;
+  }
+
+  /**
+   * Get clientName
+   * @return clientName
+  */
+  
+  @Schema(name = "clientName", required = false)
+  public String getClientName() {
+    return clientName;
+  }
+
+  public void setClientName(String clientName) {
+    this.clientName = clientName;
+  }
+
+  public AdditionalProperties outputDirectory(String outputDirectory) {
+    this.outputDirectory = outputDirectory;
+    return this;
+  }
+
+  /**
+   * Get outputDirectory
+   * @return outputDirectory
+  */
+  
+  @Schema(name = "outputDirectory", required = false)
+  public String getOutputDirectory() {
+    return outputDirectory;
+  }
+
+  public void setOutputDirectory(String outputDirectory) {
+    this.outputDirectory = outputDirectory;
+  }
+
+  public AdditionalProperties topLevelOperations(List<AdditionalPropertiesTopLevelOperationsInner> topLevelOperations) {
+    this.topLevelOperations = topLevelOperations;
+    return this;
+  }
+
+  public AdditionalProperties addTopLevelOperationsItem(AdditionalPropertiesTopLevelOperationsInner topLevelOperationsItem) {
+    if (this.topLevelOperations == null) {
+      this.topLevelOperations = new ArrayList<>();
+    }
+    this.topLevelOperations.add(topLevelOperationsItem);
+    return this;
+  }
+
+  /**
+   * Get topLevelOperations
+   * @return topLevelOperations
+  */
+  @Valid 
+  @Schema(name = "topLevelOperations", required = false)
+  public List<AdditionalPropertiesTopLevelOperationsInner> getTopLevelOperations() {
+    return topLevelOperations;
+  }
+
+  public void setTopLevelOperations(List<AdditionalPropertiesTopLevelOperationsInner> topLevelOperations) {
+    this.topLevelOperations = topLevelOperations;
+  }
+
+  public AdditionalProperties omitInfoDescription(Boolean omitInfoDescription) {
+    this.omitInfoDescription = omitInfoDescription;
+    return this;
+  }
+
+  /**
+   * Get omitInfoDescription
+   * @return omitInfoDescription
+  */
+  
+  @Schema(name = "omitInfoDescription", required = false)
+  public Boolean getOmitInfoDescription() {
+    return omitInfoDescription;
+  }
+
+  public void setOmitInfoDescription(Boolean omitInfoDescription) {
+    this.omitInfoDescription = omitInfoDescription;
+  }
+
+  public AdditionalProperties setSkipSerializationToTrueByDefault(Boolean setSkipSerializationToTrueByDefault) {
+    this.setSkipSerializationToTrueByDefault = setSkipSerializationToTrueByDefault;
+    return this;
+  }
+
+  /**
+   * Get setSkipSerializationToTrueByDefault
+   * @return setSkipSerializationToTrueByDefault
+  */
+  
+  @Schema(name = "setSkipSerializationToTrueByDefault", required = false)
+  public Boolean getSetSkipSerializationToTrueByDefault() {
+    return setSkipSerializationToTrueByDefault;
+  }
+
+  public void setSetSkipSerializationToTrueByDefault(Boolean setSkipSerializationToTrueByDefault) {
+    this.setSkipSerializationToTrueByDefault = setSkipSerializationToTrueByDefault;
+  }
+
+  public AdditionalProperties includeFetchAdapter(Boolean includeFetchAdapter) {
+    this.includeFetchAdapter = includeFetchAdapter;
+    return this;
+  }
+
+  /**
+   * Get includeFetchAdapter
+   * @return includeFetchAdapter
+  */
+  
+  @Schema(name = "includeFetchAdapter", required = false)
+  public Boolean getIncludeFetchAdapter() {
+    return includeFetchAdapter;
+  }
+
+  public void setIncludeFetchAdapter(Boolean includeFetchAdapter) {
+    this.includeFetchAdapter = includeFetchAdapter;
+  }
+
+  public AdditionalProperties packagistUsername(String packagistUsername) {
+    this.packagistUsername = packagistUsername;
+    return this;
+  }
+
+  /**
+   * Get packagistUsername
+   * @return packagistUsername
+  */
+  
+  @Schema(name = "packagistUsername", required = false)
+  public String getPackagistUsername() {
+    return packagistUsername;
+  }
+
+  public void setPackagistUsername(String packagistUsername) {
+    this.packagistUsername = packagistUsername;
+  }
+
+  public AdditionalProperties toStringReturnsJson(Boolean toStringReturnsJson) {
+    this.toStringReturnsJson = toStringReturnsJson;
+    return this;
+  }
+
+  /**
+   * Get toStringReturnsJson
+   * @return toStringReturnsJson
+  */
+  
+  @Schema(name = "toStringReturnsJson", required = false)
+  public Boolean getToStringReturnsJson() {
+    return toStringReturnsJson;
+  }
+
+  public void setToStringReturnsJson(Boolean toStringReturnsJson) {
+    this.toStringReturnsJson = toStringReturnsJson;
+  }
+
+  public AdditionalProperties includeEventSourceParser(Boolean includeEventSourceParser) {
+    this.includeEventSourceParser = includeEventSourceParser;
+    return this;
+  }
+
+  /**
+   * Get includeEventSourceParser
+   * @return includeEventSourceParser
+  */
+  
+  @Schema(name = "includeEventSourceParser", required = false)
+  public Boolean getIncludeEventSourceParser() {
+    return includeEventSourceParser;
+  }
+
+  public void setIncludeEventSourceParser(Boolean includeEventSourceParser) {
+    this.includeEventSourceParser = includeEventSourceParser;
+  }
+
+  public AdditionalProperties apiDocumentationAuthenticationPartial(String apiDocumentationAuthenticationPartial) {
+    this.apiDocumentationAuthenticationPartial = apiDocumentationAuthenticationPartial;
+    return this;
+  }
+
+  /**
+   * Get apiDocumentationAuthenticationPartial
+   * @return apiDocumentationAuthenticationPartial
+  */
+  
+  @Schema(name = "apiDocumentationAuthenticationPartial", required = false)
+  public String getApiDocumentationAuthenticationPartial() {
+    return apiDocumentationAuthenticationPartial;
+  }
+
+  public void setApiDocumentationAuthenticationPartial(String apiDocumentationAuthenticationPartial) {
+    this.apiDocumentationAuthenticationPartial = apiDocumentationAuthenticationPartial;
+  }
+
+  public AdditionalProperties composerPackageName(String composerPackageName) {
+    this.composerPackageName = composerPackageName;
+    return this;
+  }
+
+  /**
+   * Get composerPackageName
+   * @return composerPackageName
+  */
+  
+  @Schema(name = "composerPackageName", required = false)
+  public String getComposerPackageName() {
+    return composerPackageName;
+  }
+
+  public void setComposerPackageName(String composerPackageName) {
+    this.composerPackageName = composerPackageName;
+  }
+
+  public AdditionalProperties defaultTimeout(BigDecimal defaultTimeout) {
+    this.defaultTimeout = defaultTimeout;
+    return this;
+  }
+
+  /**
+   * Get defaultTimeout
+   * @return defaultTimeout
+  */
+  @Valid 
+  @Schema(name = "defaultTimeout", required = false)
+  public BigDecimal getDefaultTimeout() {
+    return defaultTimeout;
+  }
+
+  public void setDefaultTimeout(BigDecimal defaultTimeout) {
+    this.defaultTimeout = defaultTimeout;
+  }
+
+  public AdditionalProperties useSingleRequestParameter(Boolean useSingleRequestParameter) {
+    this.useSingleRequestParameter = useSingleRequestParameter;
+    return this;
+  }
+
+  /**
+   * Get useSingleRequestParameter
+   * @return useSingleRequestParameter
+  */
+  
+  @Schema(name = "useSingleRequestParameter", required = false)
+  public Boolean getUseSingleRequestParameter() {
+    return useSingleRequestParameter;
+  }
+
+  public void setUseSingleRequestParameter(Boolean useSingleRequestParameter) {
+    this.useSingleRequestParameter = useSingleRequestParameter;
+  }
+
+  public AdditionalProperties artifactUrl(String artifactUrl) {
+    this.artifactUrl = artifactUrl;
+    return this;
+  }
+
+  /**
+   * Get artifactUrl
+   * @return artifactUrl
+  */
+  
+  @Schema(name = "artifactUrl", required = false)
+  public String getArtifactUrl() {
+    return artifactUrl;
+  }
+
+  public void setArtifactUrl(String artifactUrl) {
+    this.artifactUrl = artifactUrl;
+  }
+
+  public AdditionalProperties artifactId(String artifactId) {
+    this.artifactId = artifactId;
+    return this;
+  }
+
+  /**
+   * Get artifactId
+   * @return artifactId
+  */
+  
+  @Schema(name = "artifactId", required = false)
+  public String getArtifactId() {
+    return artifactId;
+  }
+
+  public void setArtifactId(String artifactId) {
+    this.artifactId = artifactId;
+  }
+
+  public AdditionalProperties groupId(String groupId) {
+    this.groupId = groupId;
+    return this;
+  }
+
+  /**
+   * Get groupId
+   * @return groupId
+  */
+  
+  @Schema(name = "groupId", required = false)
+  public String getGroupId() {
+    return groupId;
+  }
+
+  public void setGroupId(String groupId) {
+    this.groupId = groupId;
+  }
+
+  public AdditionalProperties invokerPackage(String invokerPackage) {
+    this.invokerPackage = invokerPackage;
+    return this;
+  }
+
+  /**
+   * Get invokerPackage
+   * @return invokerPackage
+  */
+  
+  @Schema(name = "invokerPackage", required = false)
+  public String getInvokerPackage() {
+    return invokerPackage;
+  }
+
+  public void setInvokerPackage(String invokerPackage) {
+    this.invokerPackage = invokerPackage;
+  }
+
+  public AdditionalProperties modelPackage(String modelPackage) {
+    this.modelPackage = modelPackage;
+    return this;
+  }
+
+  /**
+   * Get modelPackage
+   * @return modelPackage
+  */
+  
+  @Schema(name = "modelPackage", required = false)
+  public String getModelPackage() {
+    return modelPackage;
+  }
+
+  public void setModelPackage(String modelPackage) {
+    this.modelPackage = modelPackage;
+  }
+
+  public AdditionalProperties apiPackage(String apiPackage) {
+    this.apiPackage = apiPackage;
+    return this;
+  }
+
+  /**
+   * Get apiPackage
+   * @return apiPackage
+  */
+  
+  @Schema(name = "apiPackage", required = false)
+  public String getApiPackage() {
+    return apiPackage;
+  }
+
+  public void setApiPackage(String apiPackage) {
+    this.apiPackage = apiPackage;
+  }
+
+  public AdditionalProperties projectName(String projectName) {
+    this.projectName = projectName;
+    return this;
+  }
+
+  /**
+   * Get projectName
+   * @return projectName
+  */
+  
+  @Schema(name = "projectName", required = false)
+  public String getProjectName() {
+    return projectName;
+  }
+
+  public void setProjectName(String projectName) {
+    this.projectName = projectName;
+  }
+
+  public AdditionalProperties podVersion(String podVersion) {
+    this.podVersion = podVersion;
+    return this;
+  }
+
+  /**
+   * Get podVersion
+   * @return podVersion
+  */
+  
+  @Schema(name = "podVersion", required = false)
+  public String getPodVersion() {
+    return podVersion;
+  }
+
+  public void setPodVersion(String podVersion) {
+    this.podVersion = podVersion;
+  }
+
+  public AdditionalProperties removeKonfigBranding(Boolean removeKonfigBranding) {
+    this.removeKonfigBranding = removeKonfigBranding;
+    return this;
+  }
+
+  /**
+   * Get removeKonfigBranding
+   * @return removeKonfigBranding
+  */
+  
+  @Schema(name = "removeKonfigBranding", required = false)
+  public Boolean getRemoveKonfigBranding() {
+    return removeKonfigBranding;
+  }
+
+  public void setRemoveKonfigBranding(Boolean removeKonfigBranding) {
+    this.removeKonfigBranding = removeKonfigBranding;
+  }
+
+  public AdditionalProperties podName(String podName) {
+    this.podName = podName;
+    return this;
+  }
+
+  /**
+   * Get podName
+   * @return podName
+  */
+  
+  @Schema(name = "podName", required = false)
+  public String getPodName() {
+    return podName;
+  }
+
+  public void setPodName(String podName) {
+    this.podName = podName;
+  }
+
+  public AdditionalProperties classPrefix(String classPrefix) {
+    this.classPrefix = classPrefix;
+    return this;
+  }
+
+  /**
+   * Get classPrefix
+   * @return classPrefix
+  */
+  
+  @Schema(name = "classPrefix", required = false)
+  public String getClassPrefix() {
+    return classPrefix;
+  }
+
+  public void setClassPrefix(String classPrefix) {
+    this.classPrefix = classPrefix;
+  }
+
+  public AdditionalProperties authorName(String authorName) {
+    this.authorName = authorName;
+    return this;
+  }
+
+  /**
+   * Get authorName
+   * @return authorName
+  */
+  
+  @Schema(name = "authorName", required = false)
+  public String getAuthorName() {
+    return authorName;
+  }
+
+  public void setAuthorName(String authorName) {
+    this.authorName = authorName;
+  }
+
+  public AdditionalProperties authorEmail(String authorEmail) {
+    this.authorEmail = authorEmail;
+    return this;
+  }
+
+  /**
+   * Get authorEmail
+   * @return authorEmail
+  */
+  
+  @Schema(name = "authorEmail", required = false)
+  public String getAuthorEmail() {
+    return authorEmail;
+  }
+
+  public void setAuthorEmail(String authorEmail) {
+    this.authorEmail = authorEmail;
+  }
+
+  public AdditionalProperties podAuthors(String podAuthors) {
+    this.podAuthors = podAuthors;
+    return this;
+  }
+
+  /**
+   * Get podAuthors
+   * @return podAuthors
+  */
+  
+  @Schema(name = "podAuthors", required = false)
+  public String getPodAuthors() {
+    return podAuthors;
+  }
+
+  public void setPodAuthors(String podAuthors) {
+    this.podAuthors = podAuthors;
+  }
+
+  public AdditionalProperties swiftPackagePath(String swiftPackagePath) {
+    this.swiftPackagePath = swiftPackagePath;
+    return this;
+  }
+
+  /**
+   * Get swiftPackagePath
+   * @return swiftPackagePath
+  */
+  
+  @Schema(name = "swiftPackagePath", required = false)
+  public String getSwiftPackagePath() {
+    return swiftPackagePath;
+  }
+
+  public void setSwiftPackagePath(String swiftPackagePath) {
+    this.swiftPackagePath = swiftPackagePath;
+  }
+
+  public AdditionalProperties disallowAdditionalPropertiesIfNotPresent(Boolean disallowAdditionalPropertiesIfNotPresent) {
+    this.disallowAdditionalPropertiesIfNotPresent = disallowAdditionalPropertiesIfNotPresent;
+    return this;
+  }
+
+  /**
+   * Get disallowAdditionalPropertiesIfNotPresent
+   * @return disallowAdditionalPropertiesIfNotPresent
+  */
+  
+  @Schema(name = "disallowAdditionalPropertiesIfNotPresent", required = false)
+  public Boolean getDisallowAdditionalPropertiesIfNotPresent() {
+    return disallowAdditionalPropertiesIfNotPresent;
+  }
+
+  public void setDisallowAdditionalPropertiesIfNotPresent(Boolean disallowAdditionalPropertiesIfNotPresent) {
+    this.disallowAdditionalPropertiesIfNotPresent = disallowAdditionalPropertiesIfNotPresent;
+  }
+
+  public AdditionalProperties packageVersion(String packageVersion) {
+    this.packageVersion = packageVersion;
+    return this;
+  }
+
+  /**
+   * Get packageVersion
+   * @return packageVersion
+  */
+  
+  @Schema(name = "packageVersion", required = false)
+  public String getPackageVersion() {
+    return packageVersion;
+  }
+
+  public void setPackageVersion(String packageVersion) {
+    this.packageVersion = packageVersion;
+  }
+
+  public AdditionalProperties packageUrl(String packageUrl) {
+    this.packageUrl = packageUrl;
+    return this;
+  }
+
+  /**
+   * Get packageUrl
+   * @return packageUrl
+  */
+  
+  @Schema(name = "packageUrl", required = false)
+  public String getPackageUrl() {
+    return packageUrl;
+  }
+
+  public void setPackageUrl(String packageUrl) {
+    this.packageUrl = packageUrl;
+  }
+
+  public AdditionalProperties npmVersion(String npmVersion) {
+    this.npmVersion = npmVersion;
+    return this;
+  }
+
+  /**
+   * Get npmVersion
+   * @return npmVersion
+  */
+  
+  @Schema(name = "npmVersion", required = false)
+  public String getNpmVersion() {
+    return npmVersion;
+  }
+
+  public void setNpmVersion(String npmVersion) {
+    this.npmVersion = npmVersion;
+  }
+
+  public AdditionalProperties npmName(String npmName) {
+    this.npmName = npmName;
+    return this;
+  }
+
+  /**
+   * Get npmName
+   * @return npmName
+  */
+  
+  @Schema(name = "npmName", required = false)
+  public String getNpmName() {
+    return npmName;
+  }
+
+  public void setNpmName(String npmName) {
+    this.npmName = npmName;
+  }
+
+  public AdditionalProperties readmeSnippet(String readmeSnippet) {
+    this.readmeSnippet = readmeSnippet;
+    return this;
+  }
+
+  /**
+   * Get readmeSnippet
+   * @return readmeSnippet
+  */
+  
+  @Schema(name = "readmeSnippet", required = false)
+  public String getReadmeSnippet() {
+    return readmeSnippet;
+  }
+
+  public void setReadmeSnippet(String readmeSnippet) {
+    this.readmeSnippet = readmeSnippet;
+  }
+
+  public AdditionalProperties readmeDescriptionSnippet(String readmeDescriptionSnippet) {
+    this.readmeDescriptionSnippet = readmeDescriptionSnippet;
+    return this;
+  }
+
+  /**
+   * Get readmeDescriptionSnippet
+   * @return readmeDescriptionSnippet
+  */
+  
+  @Schema(name = "readmeDescriptionSnippet", required = false)
+  public String getReadmeDescriptionSnippet() {
+    return readmeDescriptionSnippet;
+  }
+
+  public void setReadmeDescriptionSnippet(String readmeDescriptionSnippet) {
+    this.readmeDescriptionSnippet = readmeDescriptionSnippet;
+  }
+
+  public AdditionalProperties apiKeyAlias(Map<String, String> apiKeyAlias) {
+    this.apiKeyAlias = apiKeyAlias;
+    return this;
+  }
+
+  public AdditionalProperties putApiKeyAliasItem(String key, String apiKeyAliasItem) {
+    if (this.apiKeyAlias == null) {
+      this.apiKeyAlias = new HashMap<>();
+    }
+    this.apiKeyAlias.put(key, apiKeyAliasItem);
+    return this;
+  }
+
+  /**
+   * Get apiKeyAlias
+   * @return apiKeyAlias
+  */
+  
+  @Schema(name = "apiKeyAlias", required = false)
+  public Map<String, String> getApiKeyAlias() {
+    return apiKeyAlias;
+  }
+
+  public void setApiKeyAlias(Map<String, String> apiKeyAlias) {
+    this.apiKeyAlias = apiKeyAlias;
+  }
+
+  public AdditionalProperties clientState(List<String> clientState) {
+    this.clientState = clientState;
+    return this;
+  }
+
+  public AdditionalProperties addClientStateItem(String clientStateItem) {
+    if (this.clientState == null) {
+      this.clientState = new ArrayList<>();
+    }
+    this.clientState.add(clientStateItem);
+    return this;
+  }
+
+  /**
+   * Get clientState
+   * @return clientState
+  */
+  
+  @Schema(name = "clientState", required = false)
+  public List<String> getClientState() {
+    return clientState;
+  }
+
+  public void setClientState(List<String> clientState) {
+    this.clientState = clientState;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    AdditionalProperties additionalProperties = (AdditionalProperties) o;
+    return Objects.equals(this.objectPropertyNamingConvention, additionalProperties.objectPropertyNamingConvention) &&
+        Objects.equals(this.gitRepoName, additionalProperties.gitRepoName) &&
+        Objects.equals(this.clientName, additionalProperties.clientName) &&
+        Objects.equals(this.outputDirectory, additionalProperties.outputDirectory) &&
+        Objects.equals(this.topLevelOperations, additionalProperties.topLevelOperations) &&
+        Objects.equals(this.omitInfoDescription, additionalProperties.omitInfoDescription) &&
+        Objects.equals(this.setSkipSerializationToTrueByDefault, additionalProperties.setSkipSerializationToTrueByDefault) &&
+        Objects.equals(this.includeFetchAdapter, additionalProperties.includeFetchAdapter) &&
+        Objects.equals(this.packagistUsername, additionalProperties.packagistUsername) &&
+        Objects.equals(this.toStringReturnsJson, additionalProperties.toStringReturnsJson) &&
+        Objects.equals(this.includeEventSourceParser, additionalProperties.includeEventSourceParser) &&
+        Objects.equals(this.apiDocumentationAuthenticationPartial, additionalProperties.apiDocumentationAuthenticationPartial) &&
+        Objects.equals(this.composerPackageName, additionalProperties.composerPackageName) &&
+        Objects.equals(this.defaultTimeout, additionalProperties.defaultTimeout) &&
+        Objects.equals(this.useSingleRequestParameter, additionalProperties.useSingleRequestParameter) &&
+        Objects.equals(this.artifactUrl, additionalProperties.artifactUrl) &&
+        Objects.equals(this.artifactId, additionalProperties.artifactId) &&
+        Objects.equals(this.groupId, additionalProperties.groupId) &&
+        Objects.equals(this.invokerPackage, additionalProperties.invokerPackage) &&
+        Objects.equals(this.modelPackage, additionalProperties.modelPackage) &&
+        Objects.equals(this.apiPackage, additionalProperties.apiPackage) &&
+        Objects.equals(this.projectName, additionalProperties.projectName) &&
+        Objects.equals(this.podVersion, additionalProperties.podVersion) &&
+        Objects.equals(this.removeKonfigBranding, additionalProperties.removeKonfigBranding) &&
+        Objects.equals(this.podName, additionalProperties.podName) &&
+        Objects.equals(this.classPrefix, additionalProperties.classPrefix) &&
+        Objects.equals(this.authorName, additionalProperties.authorName) &&
+        Objects.equals(this.authorEmail, additionalProperties.authorEmail) &&
+        Objects.equals(this.podAuthors, additionalProperties.podAuthors) &&
+        Objects.equals(this.swiftPackagePath, additionalProperties.swiftPackagePath) &&
+        Objects.equals(this.disallowAdditionalPropertiesIfNotPresent, additionalProperties.disallowAdditionalPropertiesIfNotPresent) &&
+        Objects.equals(this.packageVersion, additionalProperties.packageVersion) &&
+        Objects.equals(this.packageUrl, additionalProperties.packageUrl) &&
+        Objects.equals(this.npmVersion, additionalProperties.npmVersion) &&
+        Objects.equals(this.npmName, additionalProperties.npmName) &&
+        Objects.equals(this.readmeSnippet, additionalProperties.readmeSnippet) &&
+        Objects.equals(this.readmeDescriptionSnippet, additionalProperties.readmeDescriptionSnippet) &&
+        Objects.equals(this.apiKeyAlias, additionalProperties.apiKeyAlias) &&
+        Objects.equals(this.clientState, additionalProperties.clientState);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(objectPropertyNamingConvention, gitRepoName, clientName, outputDirectory, topLevelOperations, omitInfoDescription, setSkipSerializationToTrueByDefault, includeFetchAdapter, packagistUsername, toStringReturnsJson, includeEventSourceParser, apiDocumentationAuthenticationPartial, composerPackageName, defaultTimeout, useSingleRequestParameter, artifactUrl, artifactId, groupId, invokerPackage, modelPackage, apiPackage, projectName, podVersion, removeKonfigBranding, podName, classPrefix, authorName, authorEmail, podAuthors, swiftPackagePath, disallowAdditionalPropertiesIfNotPresent, packageVersion, packageUrl, npmVersion, npmName, readmeSnippet, readmeDescriptionSnippet, apiKeyAlias, clientState);
+  }
+
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("class AdditionalProperties {\n");
+    sb.append("    objectPropertyNamingConvention: ").append(toIndentedString(objectPropertyNamingConvention)).append("\n");
+    sb.append("    gitRepoName: ").append(toIndentedString(gitRepoName)).append("\n");
+    sb.append("    clientName: ").append(toIndentedString(clientName)).append("\n");
+    sb.append("    outputDirectory: ").append(toIndentedString(outputDirectory)).append("\n");
+    sb.append("    topLevelOperations: ").append(toIndentedString(topLevelOperations)).append("\n");
+    sb.append("    omitInfoDescription: ").append(toIndentedString(omitInfoDescription)).append("\n");
+    sb.append("    setSkipSerializationToTrueByDefault: ").append(toIndentedString(setSkipSerializationToTrueByDefault)).append("\n");
+    sb.append("    includeFetchAdapter: ").append(toIndentedString(includeFetchAdapter)).append("\n");
+    sb.append("    packagistUsername: ").append(toIndentedString(packagistUsername)).append("\n");
+    sb.append("    toStringReturnsJson: ").append(toIndentedString(toStringReturnsJson)).append("\n");
+    sb.append("    includeEventSourceParser: ").append(toIndentedString(includeEventSourceParser)).append("\n");
+    sb.append("    apiDocumentationAuthenticationPartial: ").append(toIndentedString(apiDocumentationAuthenticationPartial)).append("\n");
+    sb.append("    composerPackageName: ").append(toIndentedString(composerPackageName)).append("\n");
+    sb.append("    defaultTimeout: ").append(toIndentedString(defaultTimeout)).append("\n");
+    sb.append("    useSingleRequestParameter: ").append(toIndentedString(useSingleRequestParameter)).append("\n");
+    sb.append("    artifactUrl: ").append(toIndentedString(artifactUrl)).append("\n");
+    sb.append("    artifactId: ").append(toIndentedString(artifactId)).append("\n");
+    sb.append("    groupId: ").append(toIndentedString(groupId)).append("\n");
+    sb.append("    invokerPackage: ").append(toIndentedString(invokerPackage)).append("\n");
+    sb.append("    modelPackage: ").append(toIndentedString(modelPackage)).append("\n");
+    sb.append("    apiPackage: ").append(toIndentedString(apiPackage)).append("\n");
+    sb.append("    projectName: ").append(toIndentedString(projectName)).append("\n");
+    sb.append("    podVersion: ").append(toIndentedString(podVersion)).append("\n");
+    sb.append("    removeKonfigBranding: ").append(toIndentedString(removeKonfigBranding)).append("\n");
+    sb.append("    podName: ").append(toIndentedString(podName)).append("\n");
+    sb.append("    classPrefix: ").append(toIndentedString(classPrefix)).append("\n");
+    sb.append("    authorName: ").append(toIndentedString(authorName)).append("\n");
+    sb.append("    authorEmail: ").append(toIndentedString(authorEmail)).append("\n");
+    sb.append("    podAuthors: ").append(toIndentedString(podAuthors)).append("\n");
+    sb.append("    swiftPackagePath: ").append(toIndentedString(swiftPackagePath)).append("\n");
+    sb.append("    disallowAdditionalPropertiesIfNotPresent: ").append(toIndentedString(disallowAdditionalPropertiesIfNotPresent)).append("\n");
+    sb.append("    packageVersion: ").append(toIndentedString(packageVersion)).append("\n");
+    sb.append("    packageUrl: ").append(toIndentedString(packageUrl)).append("\n");
+    sb.append("    npmVersion: ").append(toIndentedString(npmVersion)).append("\n");
+    sb.append("    npmName: ").append(toIndentedString(npmName)).append("\n");
+    sb.append("    readmeSnippet: ").append(toIndentedString(readmeSnippet)).append("\n");
+    sb.append("    readmeDescriptionSnippet: ").append(toIndentedString(readmeDescriptionSnippet)).append("\n");
+    sb.append("    apiKeyAlias: ").append(toIndentedString(apiKeyAlias)).append("\n");
+    sb.append("    clientState: ").append(toIndentedString(clientState)).append("\n");
+    sb.append("}");
+    return sb.toString();
+  }
+
+  /**
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
+   */
+  private String toIndentedString(Object o) {
+    if (o == null) {
+      return "null";
+    }
+    return o.toString().replace("\n", "\n    ");
+  }
+}
+
