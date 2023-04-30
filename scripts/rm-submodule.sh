@@ -10,10 +10,20 @@ fi
 # replace subfolder with provided path
 path=$1
 
-# execute commands with updated path
-mv $path ${path}_tmp
-git submodule deinit $path
+# remove trailing slash from path
+path=${path%/}
+
+# remove the submodule from the index
+git submodule deinit -f $path
+
+# remove the submodule from the .gitmodules file
+git config -f .gitmodules --remove-section submodule.$path
+
+# remove the submodule from the working directory
 git rm --cached $path
-mv ${path}_tmp $path
-rm -rf ${path}_tmp
+
+# remove the submodule from the project files but keep the files
 git add $path
+
+# commit the changes
+git commit -m "Removed submodule: $path"
