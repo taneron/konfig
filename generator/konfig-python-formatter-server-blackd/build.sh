@@ -1,4 +1,8 @@
 #!/usr/bin/env bash
+
+# make sure you can run this from any directory
+cd "$(dirname "$0")"
+
 set -o errexit
 
 echo "Creating a virtual env for both poetry and our packages..."
