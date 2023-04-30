@@ -22,7 +22,6 @@ git rm $path
 
 # remove evidence of git for that submodule
 rm ${path}_tmp/.git
-rm -rf .git/modules/${path}
 
 # move preserved files back
 mv ${path}_tmp $path
