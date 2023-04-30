@@ -69,11 +69,20 @@ services:
   - type: pserv
     name: konfig-openapi-generator-api
     env: docker
-    repo: https://github.com/konfig-dev/openapi-generator-api # optional
+    repo: https://github.com/konfig-dev/openapi-generator-api
     envVars:
       - fromGroup: aws
       - key: PORT
         value: 8080
+
+  - type: web
+    env: static
+    name: konfig-docs
+    buildCommand: yarn install; yarn build
+    staticPublishPath: ./build
+    repo: https://github.com/konfig-dev/konfig-docs
+    domains:
+      - docs.konfigthis.com
 
 databases:
   - name: konfig-db
