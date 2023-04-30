@@ -1,0 +1,697 @@
+{
+  "x-generator": "NSwag v13.18.2.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v13.0.0.0))",
+  "swagger": "2.0",
+  "info": {
+    "title": "Splitit.OnBoarding.Api.V2",
+    "version": "1.0.0"
+  },
+  "host": "onboarding-v2.sandbox.splitit.com",
+  "schemes": [
+    "https"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/data/get-countries": {
+      "get": {
+        "tags": [
+          "Data"
+        ],
+        "operationId": "GetCountries",
+        "responses": {
+          "200": {
+            "x-nullable": false,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/CountriesResponse"
+            }
+          },
+          "400": {
+            "x-nullable": false,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/SelfOnBoardingErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "oauth2": []
+          }
+        ]
+      }
+    },
+    "/api/data/get-currencies": {
+      "get": {
+        "tags": [
+          "Data"
+        ],
+        "operationId": "GetCurrencies",
+        "responses": {
+          "200": {
+            "x-nullable": false,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/CurrenciesResponse"
+            }
+          },
+          "400": {
+            "x-nullable": false,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/SelfOnBoardingErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "oauth2": []
+          }
+        ]
+      }
+    },
+    "/api/data/get-processors": {
+      "get": {
+        "tags": [
+          "Data"
+        ],
+        "operationId": "GetProcessors",
+        "responses": {
+          "200": {
+            "x-nullable": false,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/ProcessorsResponse"
+            }
+          },
+          "400": {
+            "x-nullable": false,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/SelfOnBoardingErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "oauth2": []
+          }
+        ]
+      }
+    },
+    "/api/data/get-verticals": {
+      "get": {
+        "tags": [
+          "Data"
+        ],
+        "operationId": "GetVerticals",
+        "responses": {
+          "200": {
+            "x-nullable": false,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/MerchantVerticalsResponse"
+            }
+          },
+          "400": {
+            "x-nullable": false,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/SelfOnBoardingErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "oauth2": []
+          }
+        ]
+      }
+    },
+    "/api/data/status-legend": {
+      "get": {
+        "tags": [
+          "Data"
+        ],
+        "operationId": "StatusLegend",
+        "responses": {
+          "200": {
+            "x-nullable": false,
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/EnumDTO"
+              }
+            }
+          },
+          "400": {
+            "x-nullable": false,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/SelfOnBoardingErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "oauth2": []
+          }
+        ]
+      }
+    },
+    "/api/merchants/get": {
+      "get": {
+        "tags": [
+          "Merchants"
+        ],
+        "operationId": "GetMerchants",
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "NumberOfRowsInPage",
+            "in": "query",
+            "required": true,
+            "format": "int32",
+            "x-nullable": false
+          },
+          {
+            "type": "integer",
+            "name": "PageNumber",
+            "in": "query",
+            "required": true,
+            "format": "int32",
+            "x-nullable": false
+          },
+          {
+            "type": "string",
+            "name": "Name",
+            "in": "query",
+            "x-nullable": true
+          },
+          {
+            "type": "string",
+            "name": "LegalName",
+            "in": "query",
+            "x-nullable": true
+          },
+          {
+            "type": "integer",
+            "name": "Status",
+            "in": "query",
+            "format": "int32",
+            "x-nullable": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": false,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/GetMerchantsResponse"
+            }
+          },
+          "400": {
+            "x-nullable": false,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/SelfOnBoardingErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "oauth2": []
+          }
+        ]
+      }
+    },
+    "/api/merchants/get-details": {
+      "get": {
+        "tags": [
+          "Merchants"
+        ],
+        "operationId": "GetMerchantDetails",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "merchantTempId",
+            "in": "query",
+            "required": true,
+            "x-nullable": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": false,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/GetMerchantDetailsResponse"
+            }
+          },
+          "400": {
+            "x-nullable": false,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/SelfOnBoardingErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "oauth2": []
+          }
+        ]
+      }
+    },
+    "/api/merchants/create": {
+      "post": {
+        "tags": [
+          "Merchants"
+        ],
+        "operationId": "CreateMerchant",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "CreateMerchantRequest",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/CreateMerchantRequest"
+            },
+            "x-nullable": false
+          }
+        ],
+        "responses": {
+          "201": {
+            "x-nullable": false,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/CreateMerchantResponse"
+            }
+          },
+          "400": {
+            "x-nullable": false,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/SelfOnBoardingErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "oauth2": []
+          }
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "CountriesResponse": {
+      "type": "object",
+      "required": [
+        "countries"
+      ],
+      "properties": {
+        "countries": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CountryResponse"
+          }
+        }
+      }
+    },
+    "CountryResponse": {
+      "type": "object",
+      "required": [
+        "id",
+        "name",
+        "isoA2",
+        "isoA3",
+        "isoNumber"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "isoA2": {
+          "type": "string"
+        },
+        "isoA3": {
+          "type": "string"
+        },
+        "isoNumber": {
+          "type": "string"
+        }
+      }
+    },
+    "SelfOnBoardingErrorResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        },
+        "errorCode": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "paramName": {
+          "type": "string"
+        },
+        "traceId": {
+          "type": "string"
+        }
+      }
+    },
+    "CurrenciesResponse": {
+      "type": "object",
+      "required": [
+        "currencies"
+      ],
+      "properties": {
+        "currencies": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CurrencyResponse"
+          }
+        }
+      }
+    },
+    "CurrencyResponse": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "symbol": {
+          "type": "string"
+        },
+        "isoNumber": {
+          "type": "string"
+        }
+      }
+    },
+    "ProcessorsResponse": {
+      "type": "object",
+      "required": [
+        "processors"
+      ],
+      "properties": {
+        "processors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ProcessorResponse"
+          }
+        }
+      }
+    },
+    "ProcessorResponse": {
+      "type": "object",
+      "required": [
+        "id",
+        "name",
+        "processorAuthenticationParametersResponse"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "processorAuthenticationParametersResponse": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ProcessorAuthenticationParametersResponse"
+          }
+        }
+      }
+    },
+    "ProcessorAuthenticationParametersResponse": {
+      "type": "object",
+      "required": [
+        "key"
+      ],
+      "properties": {
+        "key": {
+          "type": "string"
+        }
+      }
+    },
+    "MerchantVerticalsResponse": {
+      "type": "object",
+      "required": [
+        "merchantVerticals"
+      ],
+      "properties": {
+        "merchantVerticals": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MerchantVerticalResponse"
+          }
+        }
+      }
+    },
+    "MerchantVerticalResponse": {
+      "type": "object",
+      "required": [
+        "verticalDisplayName",
+        "verticalSplititName",
+        "subCategories"
+      ],
+      "properties": {
+        "verticalDisplayName": {
+          "type": "string"
+        },
+        "verticalSplititName": {
+          "type": "string"
+        },
+        "subCategories": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "EnumDTO": {
+      "type": "object",
+      "required": [
+        "key",
+        "name"
+      ],
+      "properties": {
+        "key": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "GetMerchantsResponse": {
+      "type": "object",
+      "required": [
+        "merchants"
+      ],
+      "properties": {
+        "merchants": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/GetMerchantResponse"
+          }
+        }
+      }
+    },
+    "GetMerchantResponse": {
+      "type": "object",
+      "required": [
+        "name",
+        "legalName",
+        "phone",
+        "country",
+        "annualSales",
+        "status",
+        "merchantTempId"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "legalName": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        },
+        "annualSales": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "merchantTempId": {
+          "type": "string"
+        }
+      }
+    },
+    "GetMerchantDetailsResponse": {
+      "type": "object",
+      "required": [
+        "publicName",
+        "legalName",
+        "phoneNumber",
+        "merchantTempId",
+        "email",
+        "merchantStatus"
+      ],
+      "properties": {
+        "publicName": {
+          "type": "string"
+        },
+        "legalName": {
+          "type": "string"
+        },
+        "phoneNumber": {
+          "type": "string"
+        },
+        "merchantTempId": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "merchantStatus": {
+          "type": "string"
+        }
+      }
+    },
+    "CreateMerchantResponse": {
+      "type": "object",
+      "required": [
+        "merchantTempId",
+        "merchantStatus"
+      ],
+      "properties": {
+        "merchantTempId": {
+          "type": "string"
+        },
+        "merchantStatus": {
+          "type": "string"
+        }
+      }
+    },
+    "CreateMerchantRequest": {
+      "type": "object",
+      "required": [
+        "publicName",
+        "email",
+        "phoneNumber",
+        "countryIso2",
+        "legalName",
+        "currencyCode"
+      ],
+      "properties": {
+        "publicName": {
+          "type": "string",
+          "minLength": 1
+        },
+        "email": {
+          "type": "string",
+          "minLength": 1
+        },
+        "phoneNumber": {
+          "type": "string",
+          "minLength": 1
+        },
+        "countryIso2": {
+          "type": "string",
+          "minLength": 1
+        },
+        "legalName": {
+          "type": "string",
+          "minLength": 1
+        },
+        "currencyCode": {
+          "type": "string",
+          "minLength": 1
+        },
+        "tier": {
+          "type": "string"
+        },
+        "businessStreetAddress": {
+          "type": "string"
+        },
+        "businessCity": {
+          "type": "string"
+        },
+        "businessPostalCode": {
+          "type": "string"
+        },
+        "businessCountry": {
+          "type": "string"
+        },
+        "businessState": {
+          "type": "string"
+        },
+        "vertical": {
+          "type": "string"
+        },
+        "subVertical": {
+          "type": "string"
+        },
+        "nameOnBankAccount": {
+          "type": "string"
+        },
+        "incorporationCountry": {
+          "type": "string"
+        },
+        "accountNumber": {
+          "type": "string"
+        },
+        "routingNumber": {
+          "type": "string"
+        },
+        "taxIdNumber": {
+          "type": "string"
+        },
+        "totalAnnualSales": {
+          "type": "string"
+        },
+        "platformName": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "oauth2": {
+      "type": "oauth2",
+      "flow": "application",
+      "tokenUrl": "https://auth.sandbox.splitit.com/connect/token",
+      "scopes": {
+        "onboarding.api.v2": "onboarding.api.v2"
+      }
+    }
+  },
+  "security": [
+    {
+      "oauth2": []
+    }
+  ]
+}

@@ -1,0 +1,274 @@
+openapi: 3.0.3
+info:
+  title: Konfig Generator API
+  description: |-
+    This is the specification for [Konfig's Generator API](https://api.konfigthis.com)
+  contact:
+    email: dylan@konfigthis.com
+  version: 1.0.0
+servers:
+  - url: https://api.konfigthis.com
+tags:
+  - name: Generate
+    description: Generate SDKs from an OpenAPI spec
+  - name: ApiStatus
+    description: Check to see if API is working
+paths:
+  /healthz:
+    get:
+      tags:
+        - ApiStatus
+      summary: Health check
+      responses:
+        "200":
+          description: Successful health check
+  /generate:
+    post:
+      tags:
+        - Generate
+      summary: Generate SDKs
+      requestBody:
+        description: "Generation Configuration"
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/GenerateBody"
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AwsPresignedUrl"
+components:
+  schemas:
+    GeneratorName:
+      type: string
+      description: "The name of the generator"
+    OpenAPISpec:
+      type: object
+      description: "YAML formatted OpenAPISpec"
+      properties:
+        src:
+          type: string
+    GenerateBody:
+      type: object
+      description: "The request body for /generate"
+      properties:
+        spec:
+          $ref: "#/components/schemas/OpenAPISpec"
+        config:
+          $ref: "#/components/schemas/GeneratorConfig"
+        validateSpec:
+          type: boolean
+    AdditionalProperties:
+      type: object
+      description: "Additional properties depending on the generator specified"
+      properties:
+        objectPropertyNamingConvention:
+          type: string
+        gitRepoName:
+          type: string
+        clientName:
+          type: string
+        outputDirectory:
+          type: string
+        topLevelOperations:
+          type: array
+          items:
+            type: object
+            properties:
+              operationId:
+                type: string
+              methodName:
+                type: string
+        omitInfoDescription:
+          type: boolean
+        setSkipSerializationToTrueByDefault:
+          type: boolean
+        includeFetchAdapter:
+          type: boolean
+        packagistUsername:
+          type: string
+        toStringReturnsJson:
+          type: boolean
+        includeEventSourceParser:
+          type: boolean
+        apiDocumentationAuthenticationPartial:
+          type: string
+        composerPackageName:
+          type: string
+        defaultTimeout:
+          type: number
+        useSingleRequestParameter:
+          type: boolean
+        artifactUrl:
+          type: string
+        artifactId:
+          type: string
+        groupId:
+          type: string
+        invokerPackage:
+          type: string
+        modelPackage:
+          type: string
+        apiPackage:
+          type: string
+        projectName:
+          type: string
+        podVersion:
+          type: string
+        removeKonfigBranding:
+          type: boolean
+        podName:
+          type: string
+        classPrefix:
+          type: string
+        authorName:
+          type: string
+        authorEmail:
+          type: string
+        podAuthors:
+          type: string
+        swiftPackagePath:
+          type: string
+        disallowAdditionalPropertiesIfNotPresent:
+          type: boolean
+        packageVersion:
+          type: string
+        packageUrl:
+          type: string
+        npmVersion:
+          type: string
+        npmName:
+          type: string
+        readmeSnippet:
+          type: string
+        readmeDescriptionSnippet:
+          type: string
+        apiKeyAlias:
+          type: object
+          additionalProperties:
+            type: string
+        clientState:
+          type: array
+          items:
+            type: string
+    Files:
+      type: object
+      description: Collection of template files
+      additionalProperties:
+        type: object
+        properties:
+          source:
+            type: string
+          destinationFilename:
+            type: string
+    GeneratorConfig:
+      type: object
+      description: "Configuration of the OpenAPI Generator"
+      properties:
+        artifactVersion:
+          type: string
+        additionalProperties:
+          $ref: "#/components/schemas/AdditionalProperties"
+        generatorName:
+          $ref: "#/components/schemas/GeneratorName"
+        removeOperationIdPrefix:
+          type: boolean
+        files:
+          $ref: "#/components/schemas/Files"
+        packageName:
+          type: string
+        gitHost:
+          type: string
+        gitUserId:
+          type: string
+        gitRepoId:
+          type: string
+      example:
+        {
+          removeOperationIdPrefix: true,
+          additionalProperties:
+            {
+              artifactId: acme-java-sdk,
+              groupId: com.acme,
+              invokerPackage: com.acme.client,
+              modelPackage: com.acme.client.model,
+              apiPackage: com.acme.client.api,
+            },
+          files: { gitignore.mustaache: { source: "*.class
+
+                    # Mobile Tools for Java (J2ME)
+                    .mtj.tmp/
+
+                    # Package Files #
+                    *.jar
+                    *.war
+                    *.ear
+
+                    # exclude jar for gradle wrapper
+                    !gradle/wrapper/*.jar
+
+                    # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+                    hs_err_pid*
+
+                    # build files
+                    **/target
+                    target
+                    .gradle
+                    build
+                    // CUSTOM CODE
+                    .DS_Store", destinationFilename: .gitignore }, Configuration.mustache: { source: "{{>licenseInfo}}
+
+                    package {{invokerPackage}};
+
+                    import com.acme.client.auth.ApiKeyAuth;
+
+                    {{>generatedAnnotation}}
+                    public class Configuration {
+                    private static ApiClient defaultApiClient = new ApiClient();
+
+                    /**
+                    * Get the default API client, which would be used when creating API
+                    * instances without providing an API client.
+                    *
+                    * @return Default API client
+                    */
+                    public static ApiClient getDefaultApiClient() {
+                    return defaultApiClient;
+                    }
+
+                    // CUSTOM CODE
+                    public static void setDefaultConsumerKey(String consumerKey) {
+                    defaultApiClient.setConsumerKey(consumerKey);
+                    }
+
+                    // CUSTOM CODE
+                    public static void setDefaultClientId(String clientId) {
+                    defaultApiClient.setClientId(clientId);
+                    }
+
+                    /**
+                    * Set the default API client, which would be used when creating API
+                    * instances without providing an API client.
+                    *
+                    * @param apiClient API client
+                    */
+                    public static void setDefaultApiClient(ApiClient apiClient) {
+                    defaultApiClient = apiClient;
+                    }
+                    }
+                    ", destinationFilename: src/main/java/com/acme/client/Configuration.java } },
+          generatorName: "java",
+        }
+    AwsPresignedUrl:
+      type: object
+      properties:
+        key:
+          type: string
+          description: "S3 Bucket Key"
+        url:
+          type: string
+          description: "Download link with expiration of 10 minutes"
+          example: "https://s3.us-west-1.amazonaws.com/gethappy.dev/1-2022-10-31T09%3A53%3A05.034Z.tar.gz?response-content-disposition=inline&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEAgaCXVzLXdlc3QtMSJHMEUCIQDN%2FI%2BsfI6pdiX%2BE9j5d72qgN1CXqvXRfaNDlF%2FWdQqqAIgd%2BKT7nXd7Pu2WijVAb%2Ff6EeguNbR%2FEfqg1PcoGI5ssEq7QII8P%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARACGgw5MTUzMzY0MDcwNDkiDNqHxwN%2BVheq0XLnYCrBAjltsx31J1LRpyjRGeCW7C8xX5jodCkEX9rtsF7EQIfT9j3VWrhZ7eAfvrSkaMkXgmKqfFZYKBOCfF0gKfSbO6CeC70GiMtKBxZCafw7wENGFakhnKuoHI7UOvSS86Ii%2BIZqxOW9A%2BGhzbEqeCIuTUITMGfnRvyaIclixzupjHB26bc4ZH8WlDtohGg0EyaNEwicSV1%2B2Hr35sTYU4hM8hHlMSXvjOlsfROKL5pUmlGOV5HWFWQGTJUnT9lb%2FAegV05ehWbuuGfan84831S57EI59cDIZrBx%2FdTgidR9Ni5fw6jrJyP8rmZ5W4CAmIpsBVL8H1hromels7mOCl%2B6EU9ZNcJ2s6%2BIPaE1cycuYi%2BIUAUiOtDEdXaZO%2FUNP6zq5N16xmY%2FM6OUUxpWi7tmhD2NtlLEuMbHL1n6C4gDoIrCJzCq%2FpmbBjqzAjDFZNgQJtN5%2FPSIwauQ8yzn0ohsM0yHjKKx4tOfTRKZQnyzYWenzi01oEihutGjfGn518QsQa20gDhyYc1DVsdU0UdJlHbgV0nrAuzv0K5xL46Wn9Wh387dGbRawbZRSAPsRDs2cQfPptncTPlzGPYfbz4pzMIOJtcDBAtxFtR6OlJjmPnmmnW05L0cgDweM9swtlc0KPH6j%2F1KAbkOUC7jLrcPJrBSvANAyzUmErn2LlR22%2BbC2rDvKhRLTT44vx3udx%2BI3wdT%2FN%2FjeRhb8kF9FcBjfxTHbTkL%2FYJwkfZaU9Okf5FcmEJJ2SQQAJRQ%2B3d2IW0uvtMy4f571R5G2qH1u0wYAXHRk2ABEeNskhhmZEwFWsrAZ4CQVVaiwRmgyh6qgPgLx8ukmGvsbl9vLD2BwMo%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20221105T152040Z&X-Amz-SignedHeaders=host&X-Amz-Expires=60&X-Amz-Credential=ASIA5KHSNFAE5VTHOPML%2F20221105%2Fus-west-1%2Fs3%2Faws4_request&X-Amz-Signature=c63fb4ffb1d71e9ff4c331d54e9ed46219fd5c3008c2749db9a536432e6f4998"
