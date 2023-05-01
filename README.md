@@ -20,7 +20,19 @@ git submodule update --init --recursive --remote --merge
 ## Environment Setup
 
 1. Run Postgres as a background process
-2. Add a `.env` file to `generator/konfig-dash`
+2. Setup environment variables
+
+Paste this into your `~/.zshrc` or `~/.bashrc`
+
+```bash
+if [ -f $HOME/.envvars ]; then
+    . $HOME/.envvars
+else
+    print "404: ~/.envvars not found."
+fi
+```
+
+Then create `~/.envvars` with values from Dylan.
 
 ## How to run Konfig
 
