@@ -29,7 +29,7 @@ cd "$(dirname "$0")"
 if sh ./guard.sh; then
   if [[ $no_python != true ]]; then
     echo "Running Python service"
-    yarn start-python-formatter-server &
+    yarn start-python &
   else
     echo "Not running Python service"
   fi
