@@ -14,5 +14,5 @@ cd konfig
 This repository has submodules so pull all of them. **Also take a few minutes.**
 
 ```shell
-git submodule update --init --recursive --remote
+git submodule update --init --recursive --remote --merge
 ```
