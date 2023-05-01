@@ -5,7 +5,7 @@ try:
     {{#if returnType}}{{operationId}}_response = {{/if}}{{lower clientName}}.{{#if vendorExtensions.x-konfig-top-level-operation}}{{vendorExtensions.x-konfig-top-level-operation}}{{/if}}{{#unless vendorExtensions.x-konfig-top-level-operation}}{{> api_class_name}}.{{operationId}}{{/unless}}{{^hasParams}}(){{/hasParams}}{{#hasParams}}(
     {{#if bodyParam}}
     {{#with bodyParam}}
-    {{#unless isModel}}
+    {{#unless isObject}}
         body={{{example}}},
     {{/unless}}
     {{/with}}
