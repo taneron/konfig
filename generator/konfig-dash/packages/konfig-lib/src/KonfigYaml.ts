@@ -375,7 +375,10 @@ export const KonfigYaml = KonfigYamlCommon.merge(
           if (pythonConfig === undefined) return
           if (pythonConfig.test !== undefined) return pythonConfig
           pythonConfig.test = {
-            script: ['tox'],
+            script: [
+              'poetry install',
+              `poetry run pytest --cov=${pythonConfig.packageName}`,
+            ],
           }
           return pythonConfig
         }),

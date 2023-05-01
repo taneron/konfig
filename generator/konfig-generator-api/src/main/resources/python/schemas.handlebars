@@ -10,6 +10,7 @@ import io
 import re
 import types
 import typing
+import typing_extensions
 import uuid
 
 from dateutil.parser.isoparser import isoparser, _takes_ascii
@@ -28,7 +29,7 @@ from {{packageName}}.validation_metadata import ValidationMetadata
 from {{packageName}}.exceptions import AnyOfValidationError
 from {{packageName}}.exceptions import MissingRequiredPropertiesError
 
-Primitive: typing.TypeAlias = typing.Union[int, float, bool, str]
+Primitive: typing_extensions.TypeAlias = typing.Union[int, float, bool, str]
 
 class Unset(object):
     """

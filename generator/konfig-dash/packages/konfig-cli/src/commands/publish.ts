@@ -161,9 +161,9 @@ const publishScripts = {
     })
     return [
       'rm -rf dist/',
-      'python3 -m build',
-      'twine check dist/*',
-      `twine upload ${repository}${credentials}dist/*`,
+      'poetry run python -m build',
+      'poetry run twine check dist/*',
+      `poetry run twine upload ${repository}${credentials}dist/*`,
       ...gitTagCommands,
     ]
   },
