@@ -10,6 +10,10 @@ services:
     env: static
     buildCommand: yarn install && yarn build && yarn rw deploy render web
     staticPublishPath: ./web/dist
+    repo: https://github.com/konfig-dev/konfig
+    rootDir: generator/konfig-dash
+    domains:
+      - dash.konfigthis.com
     envVars:
       - key: NODE_VERSION
         value: 16
@@ -33,6 +37,10 @@ services:
     plan: starter
     env: node
     region: oregon
+    repo: https://github.com/konfig-dev/konfig
+    rootDir: generator/konfig-dash
+    domains:
+      - api.konfigthis.com
     buildCommand: yarn && yarn build && yarn rw build api
     startCommand: yarn rw deploy render api --prisma=false --data-migrate=false
     envVars:
