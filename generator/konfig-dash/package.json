@@ -9,9 +9,9 @@
   },
   "scripts": {
     "build": "yarn workspaces foreach -pitv -j unlimited run build",
-    "dev": "yarn workspaces foreach -piv -j unlimited run dev & yarn rw dev web & yarn start-python-formatter-server",
-    "dev-without-python-formatter-server": "yarn workspaces foreach -piv -j unlimited run dev & yarn rw dev web",
-    "start-python-formatter-server": "cd ../konfig-python-formatter-server-blackd && ./build-dev.sh && ./start.sh",
+    "dev": "./bash-scripts/dev.sh",
+    "dev-without-python": "./bash-scripts/dev.sh --no-python",
+    "start-python": "./bash-scripts/start-python.sh",
     "test": "yarn build && yarn rw build api && ./node_modules/.bin/ts-node --project scripts/tsconfig.json scripts/test.ts",
     "release": "yarn workspaces foreach -tv --no-private run release-ci"
   },
