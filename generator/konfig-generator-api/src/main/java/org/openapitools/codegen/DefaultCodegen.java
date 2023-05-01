@@ -7311,6 +7311,7 @@ public class DefaultCodegen implements CodegenConfig {
 
     protected void updateRequestBodyForObject(CodegenParameter codegenParameter, Schema schema, String name,
                                               Set<String> imports, String bodyParameterName) {
+        codegenParameter.isObject = true;
         if (ModelUtils.isMapSchema(schema)) {
             // Schema with additionalproperties: true (including composed schemas with
             // additionalproperties: true)
