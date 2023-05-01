@@ -1,6 +1,6 @@
 # Konfig
 
-The monorepo that holds all...
+The monorepo that holds everything...
 
 ## Getting started
 
