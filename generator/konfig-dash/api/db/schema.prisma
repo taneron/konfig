@@ -1,0 +1,125 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = "native"
+}
+
+model GenerateConfig {
+  id                   String   @id @default(uuid())
+  created              DateTime @default(now())
+  updated              DateTime @updatedAt
+  openApiSpecification String
+  konfigyaml           String
+
+  executions GenerateExecution[]
+
+  space   Space  @relation(fields: [spaceId], references: [id])
+  spaceId String
+
+  user   User   @relation(fields: [userId], references: [id])
+  userId String
+}
+
+model GenerateExecution {
+  id      String   @id @default(uuid())
+  created DateTime @default(now())
+  updated DateTime @updatedAt
+
+  // S3 Object Key
+  s3Key String
+
+  space   Space  @relation(fields: [spaceId], references: [id])
+  spaceId String
+
+  user   User   @relation(fields: [userId], references: [id])
+  userId String
+
+  generateConfig   GenerateConfig @relation(fields: [generateConfigId], references: [id])
+  generateConfigId String
+
+  @@index([spaceId])
+  @@index([userId])
+}
+
+enum GlobalRole {
+  SuperAdmin
+  User
+}
+
+enum MembershipRole {
+  Owner
+  Admin
+  User
+}
+
+model User {
+  id                  String    @id @default(uuid())
+  created             DateTime  @default(now())
+  updated             DateTime  @updatedAt
+  email               String    @unique
+  hashedPassword      String
+  salt                String
+  resetToken          String?
+  resetTokenExpiresAt DateTime?
+
+  currentSpace   Space  @relation(fields: [currentSpaceId], references: [id])
+  currentSpaceId String
+
+  currentOrganization   Organization @relation(fields: [currentOrganizationId], references: [id])
+  currentOrganizationId String
+
+  roles             GlobalRole          @default(User)
+  memberships       Membership[]
+  GenerateExecution GenerateExecution[]
+  GenerateConfig    GenerateConfig[]
+}
+
+model Membership {
+  id             String         @id @default(uuid())
+  role           MembershipRole
+  created        DateTime       @default(now())
+  updated        DateTime       @updatedAt
+  organization   Organization   @relation(fields: [organizationId], references: [id])
+  organizationId String
+  user           User?          @relation(fields: [userId], references: [id])
+  userId         String?
+  // When the user joins, we will clear out the name and email and set the user.
+  invitedName    String?
+  invitedEmail   String?
+
+  @@unique([organizationId, invitedEmail])
+  @@unique([organizationId, userId])
+}
+
+model Organization {
+  id         String       @id @default(uuid())
+  name       String
+  created    DateTime     @default(now())
+  updated    DateTime     @updatedAt
+  membership Membership[]
+  Space      Space[]
+  User       User[]
+}
+
+model Space {
+  id                String              @id @default(uuid())
+  name              String
+  created           DateTime            @default(now())
+  updated           DateTime            @updatedAt
+  organization      Organization        @relation(fields: [organizationId], references: [id])
+  organizationId    String
+  User              User[]
+  GenerateExecution GenerateExecution[]
+  GenerateConfig    GenerateConfig[]
+}
+
+model RW_DataMigration {
+  version    String   @id
+  name       String
+  startedAt  DateTime
+  finishedAt DateTime
+}

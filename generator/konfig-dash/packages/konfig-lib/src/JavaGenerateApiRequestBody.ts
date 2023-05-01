@@ -1,0 +1,82 @@
+import { z } from './zod'
+
+import { TemplateFiles } from './TemplateFiles'
+import { topLevelOperationsOrderedSchema } from './KonfigYaml'
+
+const additionalProperties = z.object({
+  apiPackage: z.string().optional(),
+  artifactId: z.string().optional(),
+  artifactUrl: z.string().optional(),
+  authorEmail: z.string().describe('engineering@acme.com').optional(),
+  authorName: z.string().describe('acme.com').optional(),
+  classPrefix: z.string().describe('A').optional(),
+  disallowAdditionalPropertiesIfNotPresent: z.boolean().optional(),
+  groupId: z.string().optional(),
+  outputDirectory: z.string().optional(),
+  gitRepoName: z.string().optional(),
+  invokerPackage: z.string().optional(),
+  objectPropertyNamingConvention: z.string().optional(),
+  clientState: z.string().array().optional(),
+  modelPackage: z.string().optional(),
+  packagistUsername: z.string().optional(),
+  apiKeyAlias: z.record(z.string(), z.string()).optional(),
+  apiDocumentationAuthenticationPartial: z.string().optional(),
+  setSkipSerializationToTrueByDefault: z.boolean().optional(),
+  toStringReturnsJson: z.boolean().optional(),
+  includeFetchAdapter: z.boolean().optional(),
+  includeEventSourceParser: z.boolean().optional(),
+  repoName: z.string().optional(),
+  packageUrl: z.string().optional(),
+  moduleName: z.string().optional(),
+  omitInfoDescription: z.boolean().optional(),
+  removeKonfigBranding: z.boolean().optional(),
+  npmName: z.string().optional(),
+  npmVersion: z.string().optional(),
+  clientName: z.string().optional(),
+  packageVersion: z.string().describe('1.0.0').optional(),
+  topLevelOperations: topLevelOperationsOrderedSchema.optional(),
+  podAuthors: z.string().optional(),
+  podName: z.string().describe('AcmeClient').optional(),
+  podVersion: z.string().describe('1.0.0').optional(),
+  projectName: z.string().optional(),
+  readmeSnippet: z.string().optional(),
+  readmeDescriptionSnippet: z.string().optional(),
+  swiftPackagePath: z.string().optional(),
+  useSingleRequestParameter: z.boolean().optional(),
+  defaultTimeout: z.number().optional(),
+})
+
+export const javaGenerateApiRequestBody = z.object({
+  validateSpec: z.boolean().optional(),
+  spec: z.object({
+    src: z.string(),
+  }),
+  config: z
+    .object({
+      artifactVersion: z.string().optional(),
+      packageName: z.string().optional(),
+      gitHost: z.string().optional(),
+      gitUserId: z.string().optional(),
+      gitRepoId: z.string().optional(),
+      additionalProperties,
+      generatorName: z
+        .literal('java')
+        .or(z.literal('python'))
+        .or(z.literal('python-prior'))
+        .or(z.literal('csharp-netcore'))
+        .or(z.literal('android'))
+        .or(z.literal('php'))
+        .or(z.literal('swift5'))
+        .or(z.literal('kotlin'))
+        .or(z.literal('objc'))
+        .or(z.literal('go'))
+        .or(z.literal('typescript-axios')),
+      removeOperationIdPrefix: z.boolean(),
+      files: TemplateFiles,
+    })
+    .strict(),
+})
+
+export type JavaGenerateApiRequestBodyType = z.infer<
+  typeof javaGenerateApiRequestBody
+>

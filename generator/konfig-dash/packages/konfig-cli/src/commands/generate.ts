@@ -1,0 +1,1320 @@
+/* eslint-disable max-depth */
+/* eslint-disable complexity */
+import { CliUx, Command, Flags } from '@oclif/core'
+import { getSessionToken } from '../util/get-session-token'
+import waiton from 'wait-on'
+import {
+  GenerateRequestBodyInputType,
+  JavaGenerateApiRequestBodyType,
+  TemplateFilesType,
+  KonfigYamlFilesType,
+  KonfigYamlType,
+  yamlLanguageServerComment,
+} from 'konfig-lib'
+import globby from 'globby'
+import { Konfig } from 'konfig-typescript-sdk'
+import * as fs from 'fs-extra'
+import axios, { AxiosError } from 'axios'
+import * as os from 'os'
+import { getApiUrl } from '../util/get-api-url'
+import { generateHeaders } from '../util/generate-headers'
+import * as tar from 'tar'
+import * as stream from 'node:stream'
+import * as path from 'node:path'
+import ignore, { Ignore } from 'ignore'
+import { getLastGenerateIdPath } from '../util/get-last-generate-id-path'
+import { getKonfigFolder, KONFIG_FOLDER_NAME } from '../util/get-konfig-folder'
+import chokidar from 'chokidar'
+import { KONFIG_YAML_NAME } from 'konfig-lib'
+import { shouldGenerate } from '../util/should-generate'
+import { parseKonfigYaml } from '../util/parse-konfig-yaml'
+import { parseFilterFlag } from '../util/parseFilterFlag'
+import { generateReadme } from '../util/generate-readme'
+import { HomeDirParams } from '../util/ensure-config-setup'
+import { generateLicense } from '../util/generate-license'
+import { oasYamlDump } from '../util/oas-yaml-dump'
+import simpleGit from 'simple-git'
+import { getUserId } from '../util/get-user-id'
+import prettier from 'prettier'
+import replaceAsync from 'string-replace-async'
+
+function getOutputDir(
+  outputFlag: string | undefined,
+  konfigOutputDirectory: string | undefined
+): string {
+  if (outputFlag !== undefined) return outputFlag
+  if (konfigOutputDirectory) return konfigOutputDirectory
+  return `${process.cwd()}/out`
+}
+
+export default class Deploy extends Command {
+  static description = 'Generate SDKs'
+
+  static examples = ['<%= config.bin %> <%= command.id %>']
+
+  static flags = {
+    dev: Flags.boolean({ char: 'd', hidden: true, exclusive: ['test'] }),
+    test: Flags.boolean({ char: 't', hidden: true, exclusive: ['dev'] }),
+    onlyCopyAdditionalGenerators: Flags.boolean({
+      char: 'x',
+      description:
+        "Only copy generated SDKs specified under 'additionalGenerators'",
+    }),
+    watch: Flags.string({
+      char: 'w',
+      description:
+        'Watch any files under a regex pattern and re-run generation if any files are changed. Be default "konfig.yaml" is always added to the watch list. This is generally only useful for when you are actively customizing / testing an SDK.',
+    }),
+    inputSpec: Flags.file({
+      char: 'i',
+      description: 'Path to OpenAPI Spec file.',
+      exists: true,
+    }),
+    configDir: Flags.directory({
+      char: 'c',
+      description: 'Path to configuration directory.',
+      exists: true,
+    }),
+    outputSpec: Flags.file({
+      char: 's',
+      exists: false,
+      description: 'Return the transformed specs to a specified directory.',
+      exclusive: ['outputDir'],
+    }),
+    outputDir: Flags.directory({
+      char: 'o',
+      description:
+        'Path to output directory. Deletes any existing directory at output location.',
+    }),
+    doNotCopy: Flags.boolean({
+      char: 'n',
+      description: 'Do not copy',
+    }),
+    copyJavaOutputDir: Flags.directory({
+      char: 'j',
+      description:
+        'Path to java output directory. Contents of existing directory will be deleted first.',
+    }),
+    copyPythonOutputDir: Flags.directory({
+      char: 'p',
+      description:
+        'Path to python output directory. Contents of existing directory will be deleted first.',
+    }),
+    copyTypescriptOutputDir: Flags.directory({
+      char: 't',
+      description:
+        'Path to typescript output directory. Contents of existing directory will be deleted first.',
+    }),
+    copyCSharpOutputDir: Flags.directory({
+      char: 'C',
+      description:
+        'Path to C# output directory. Contents of existing directory will be deleted first.',
+    }),
+    copySwiftOutputDir: Flags.directory({
+      char: 'S',
+      description:
+        'Path to Swift output directory. Contents of existing directory will be deleted first.',
+    }),
+    copyPHPOutputDir: Flags.directory({
+      char: 'P',
+      description:
+        'Path to PHP output directory. Contents of existing directory will be deleted first.',
+    }),
+    copyKotlinOutputDir: Flags.directory({
+      char: 'k',
+      description:
+        'Path to Kotlin output directory. Contents of existing directory will be deleted first.',
+    }),
+    copyGoOutputDir: Flags.directory({
+      char: 'g',
+      description:
+        'Path to Go output directory. Contents of existing directory will be deleted first.',
+    }),
+    copyObjcOutputDir: Flags.directory({
+      char: 'O',
+      description:
+        'Path to Objective-C output directory. Contents of existing directory will be deleted first.',
+    }),
+    generatorFilter: Flags.string({
+      char: 'f',
+      description:
+        'Comma separated list of generators to run (e.g. "-f python,java,go,csharp,objc")',
+    }),
+  }
+
+  static args = []
+
+  public async run(): Promise<void> {
+    const { flags } = await this.parse(Deploy)
+
+    const configDir =
+      flags.configDir === undefined ? process.cwd() : flags.configDir
+
+    const generateSdks = async () => {
+      const homeParams: HomeDirParams = {
+        mode: flags.dev ? 'dev' : flags.test ? 'test' : 'prod',
+      }
+
+      this.debug('before getSessionToken')
+      const sessionToken = getSessionToken(homeParams)
+      this.debug('sessionToken:', sessionToken)
+
+      if (!flags.test && sessionToken === null) {
+        CliUx.ux.error('Login with "konfig login"')
+      }
+
+      this.debug('before parseFilterFlag')
+      const generatorFilter = parseFilterFlag(flags.generatorFilter)
+      this.debug('after parseFilterFlag')
+
+      this.debug('before parseKonfigYaml')
+      const {
+        generators,
+        additionalGenerators,
+        common,
+        konfigYamlRaw,
+        konfigYamlPath,
+        parsedKonfigYaml,
+      } = parseKonfigYaml({
+        configDir,
+      })
+      if (!konfigYamlRaw.includes(yamlLanguageServerComment))
+        fs.writeFileSync(
+          konfigYamlPath,
+          `${yamlLanguageServerComment}${os.EOL}${os.EOL}${konfigYamlRaw}`
+        )
+      this.debug('after parseKonfigYaml')
+      const inputSpecPath = path.join(
+        configDir,
+        flags.inputSpec ?? common.specPath
+      )
+      if (inputSpecPath === undefined)
+        throw Error(
+          `Must provide path to OpenAPI Spec. Either provide the '-i' flag or assign 'specPath' in ${KONFIG_YAML_NAME}`
+        )
+      const spec = fs.readFileSync(inputSpecPath, 'utf-8')
+
+      const generateConfigs = Object.entries(generators)
+      if (generateConfigs.length === 0)
+        this.error('Must specify at least one generator')
+
+      this.debug(generators)
+
+      // Read templates from expected directory (i.e. templates/java) and create a files object
+      const requestGenerators: GenerateRequestBodyInputType['generators'] = {}
+
+      const getConfig = <Generator extends keyof KonfigYamlType['generators']>(
+        generatorName: Generator
+      ) => {
+        return shouldGenerate({
+          generatorName,
+          generators,
+          generatorFilter,
+        })
+      }
+
+      this.debug('before creating language configs')
+      const goGeneratorConfig = getConfig('go')
+      if (goGeneratorConfig && !goGeneratorConfig.disabled) {
+        const { files, ...restOfConfig } = goGeneratorConfig
+        const requestJava: GenerateRequestBodyInputType['generators']['go'] = {
+          files: createTemplateFilesObject(files, 'kotlin', configDir),
+          ...handleReadmeSnippet({ config: restOfConfig }),
+          ...handleapiDocumentationAuthenticationPartialSnippet({
+            config: restOfConfig,
+          }),
+        }
+        requestGenerators.go = requestJava
+      }
+
+      const objcGeneratorConfig = getConfig('objc')
+      if (objcGeneratorConfig && !objcGeneratorConfig.disabled) {
+        const { files, ...restOfConfig } = objcGeneratorConfig
+        const requestJava: GenerateRequestBodyInputType['generators']['objc'] =
+          {
+            files: createTemplateFilesObject(files, 'kotlin', configDir),
+            ...handleReadmeSnippet({ config: restOfConfig }),
+            ...handleapiDocumentationAuthenticationPartialSnippet({
+              config: restOfConfig,
+            }),
+          }
+        requestGenerators.objc = requestJava
+      }
+
+      const kotlinGeneratorConfig = getConfig('kotlin')
+      if (kotlinGeneratorConfig && !kotlinGeneratorConfig.disabled) {
+        const { files, ...restOfConfig } = kotlinGeneratorConfig
+        const requestJava: GenerateRequestBodyInputType['generators']['kotlin'] =
+          {
+            files: createTemplateFilesObject(files, 'kotlin', configDir),
+            ...handleReadmeSnippet({ config: restOfConfig }),
+            ...handleapiDocumentationAuthenticationPartialSnippet({
+              config: restOfConfig,
+            }),
+          }
+        requestGenerators.kotlin = requestJava
+      }
+
+      const phpGeneratorConfig = getConfig('php')
+      if (phpGeneratorConfig && !phpGeneratorConfig.disabled) {
+        const { files, ...restOfConfig } = phpGeneratorConfig
+        const requestJava: GenerateRequestBodyInputType['generators']['php'] = {
+          files: createTemplateFilesObject(files, 'php', configDir),
+          ...handleReadmeSnippet({ config: restOfConfig }),
+          ...handleapiDocumentationAuthenticationPartialSnippet({
+            config: restOfConfig,
+          }),
+        }
+        requestGenerators.php = requestJava
+      }
+
+      const swiftGeneratorConfig = getConfig('swift')
+      if (swiftGeneratorConfig && !swiftGeneratorConfig.disabled) {
+        const { files, ...restOfConfig } = swiftGeneratorConfig
+        const requestJava: GenerateRequestBodyInputType['generators']['swift'] =
+          {
+            files: createTemplateFilesObject(files, 'swift', configDir),
+            ...handleReadmeSnippet({ config: restOfConfig }),
+            ...handleapiDocumentationAuthenticationPartialSnippet({
+              config: restOfConfig,
+            }),
+          }
+        requestGenerators.swift = requestJava
+      }
+
+      const csharpGeneratorConfig = getConfig('csharp')
+      if (csharpGeneratorConfig && !csharpGeneratorConfig.disabled) {
+        const { files, ...restOfConfig } = csharpGeneratorConfig
+        const requestJava: GenerateRequestBodyInputType['generators']['csharp'] =
+          {
+            files: createTemplateFilesObject(files, 'csharp', configDir),
+            ...handleReadmeSnippet({ config: restOfConfig }),
+            ...handleapiDocumentationAuthenticationPartialSnippet({
+              config: restOfConfig,
+            }),
+          }
+        requestGenerators.csharp = requestJava
+      }
+
+      const androidGeneratorConfig = getConfig('android')
+      if (androidGeneratorConfig && !androidGeneratorConfig.disabled) {
+        const { files, ...restOfConfig } = androidGeneratorConfig
+        const requestJava: GenerateRequestBodyInputType['generators']['android'] =
+          {
+            files: createTemplateFilesObject(files, 'android', configDir),
+            ...handleReadmeSnippet({ config: restOfConfig }),
+            ...handleapiDocumentationAuthenticationPartialSnippet({
+              config: restOfConfig,
+            }),
+          }
+        requestGenerators.android = requestJava
+      }
+
+      const javaGeneratorConfig = getConfig('java')
+      if (javaGeneratorConfig && !javaGeneratorConfig.disabled) {
+        const { files, ...restOfConfig } = javaGeneratorConfig
+        const requestJava: GenerateRequestBodyInputType['generators']['java'] =
+          {
+            files: createTemplateFilesObject(files, 'java', configDir),
+            ...handleReadmeSnippet({ config: restOfConfig }),
+            ...handleapiDocumentationAuthenticationPartialSnippet({
+              config: restOfConfig,
+            }),
+          }
+        requestGenerators.java = requestJava
+      }
+
+      const pythonGeneratorConfig = getConfig('python')
+      if (pythonGeneratorConfig && !pythonGeneratorConfig.disabled) {
+        const { files, ...restOfConfig } = pythonGeneratorConfig
+
+        const requestPython: GenerateRequestBodyInputType['generators']['python'] =
+          {
+            files: createTemplateFilesObject(files, 'python', configDir),
+            ...handleReadmeSnippet({ config: restOfConfig }),
+            ...handleapiDocumentationAuthenticationPartialSnippet({
+              config: restOfConfig,
+            }),
+          }
+        requestGenerators.python = requestPython
+      }
+
+      const typescriptGeneratorConfig = getConfig('typescript')
+      if (typescriptGeneratorConfig) {
+        if ('generatorVersion' in typescriptGeneratorConfig) {
+          requestGenerators.typescript = typescriptGeneratorConfig
+        } else if (!typescriptGeneratorConfig.disabled) {
+          const { files, ...restOfConfig } = typescriptGeneratorConfig
+
+          const requestTypescript: GenerateRequestBodyInputType['generators']['typescript'] =
+            {
+              files: createTemplateFilesObject(files, 'typescript', configDir),
+              ...handleReadmeSnippet({ config: restOfConfig }),
+              ...handleapiDocumentationAuthenticationPartialSnippet({
+                config: restOfConfig,
+              }),
+            }
+          requestGenerators.typescript = requestTypescript
+        }
+      }
+      this.debug('after creating language configs')
+
+      const body: GenerateRequestBodyInputType = {
+        spec,
+        generators: requestGenerators,
+        outputSpec: flags.outputSpec !== undefined,
+        additionalGenerators,
+        konfigYaml: konfigYamlRaw,
+        ...common,
+      }
+
+      const outputDirectory = getOutputDir(
+        flags.outputDir,
+        common.outputDirectory
+      )
+      const url = `${getApiUrl(homeParams)}/generate`
+      const headers = generateHeaders(homeParams)
+      if (flags.outputSpec) {
+        try {
+          // Make request to generate Spec
+          CliUx.ux.action.start('Generating transformed OpenAPI Spec')
+          const { data: specs } = await axios.put<{
+            [generator: string]: string
+          }>(url, body, {
+            headers,
+          })
+          CliUx.ux.action.stop()
+
+          if (
+            fs.existsSync(flags.outputSpec) &&
+            !fs.lstatSync(flags.outputSpec).isDirectory()
+          )
+            CliUx.ux.error(
+              `Found file at ${flags.outputSpec}. Make sure specified output is non-existent so we don't override anything`
+            )
+          CliUx.ux.action.start(
+            `Writing spec to directory "${flags.outputSpec}"`
+          )
+          fs.ensureDirSync(flags.outputSpec)
+          for (const generator of Object.keys(specs)) {
+            fs.writeFileSync(
+              path.join(flags.outputSpec, `${generator}.yaml`),
+              oasYamlDump(specs)
+            )
+          }
+          CliUx.ux.action.stop()
+        } catch (error) {
+          if (error instanceof AxiosError) {
+            console.error(error.message)
+            if (error.response?.status === 401)
+              console.error('Login with "konfig login"')
+          }
+
+          if (error instanceof Error) CliUx.ux.error(error)
+          if (typeof error === 'string') CliUx.ux.error(error)
+        }
+      } else {
+        CliUx.ux.info('Output directory set to: %s', outputDirectory)
+        try {
+          // Make request to generate SDKs
+          CliUx.ux.action.start(
+            `Generating ${Object.keys(body.generators)
+              .concat(Object.keys(body.additionalGenerators ?? {}))
+              .join(', ')} SDKs`
+          )
+          this.debug(
+            `Generate Request Body generator configs: ${JSON.stringify(
+              body.generators,
+              undefined,
+              2
+            )}`
+          )
+
+          const session = getSessionToken(homeParams)
+
+          if (session === null)
+            throw Error('Missing session token for generating SDK')
+
+          const konfig = new Konfig({
+            basePath: getApiUrl(homeParams),
+            authorization: `Bearer ${getUserId(homeParams)}`,
+            session,
+          })
+          const {
+            data: { urls, generateConfigId },
+          } = await konfig.sdk.generate(body as any, {
+            headers: { 'auth-provider': 'dbAuth' },
+          }) // TODO: type mismatch here—whats going on?
+          CliUx.ux.action.stop()
+
+          this.debug(urls)
+          this.debug(generateConfigId)
+
+          fs.ensureDirSync(getKonfigFolder({ dir: configDir }))
+
+          // Download SDKs
+          CliUx.ux.action.start(`Downloading ${urls.length} SDKs`)
+          const sdkTars = (
+            await Promise.all(
+              urls.map(({ url }) => {
+                return axios.get<Buffer>(url, { responseType: 'arraybuffer' })
+              })
+            )
+          ).map((res) => res.data)
+          CliUx.ux.action.stop()
+
+          CliUx.ux.action.start('Deleting output directory')
+          fs.rmSync(outputDirectory, { recursive: true, force: true })
+          CliUx.ux.action.stop()
+          CliUx.ux.action.start('Creating output directory')
+          const topLevelOutputDirectory = `${outputDirectory}/sdks`
+          const snippetOutputDir = `${outputDirectory}/snippets`
+          fs.ensureDirSync(topLevelOutputDirectory)
+          fs.ensureDirSync(snippetOutputDir)
+          CliUx.ux.action.stop()
+
+          // // Extract to output directory
+          CliUx.ux.action.start('Extracting SDKs')
+          await Promise.all(
+            sdkTars.map((sdkTar) => {
+              return new Promise((resolve) => {
+                const ws = tar.x({ cwd: topLevelOutputDirectory })
+                const s = new stream.Readable()
+                // eslint-disable-next-line @typescript-eslint/no-empty-function
+                s._read = () => {}
+                s.push(sdkTar)
+                // eslint-disable-next-line unicorn/no-array-push-push
+                s.push(null)
+                s.pipe(ws).on('finish', () => {
+                  resolve(true)
+                })
+              })
+            })
+          )
+          renameOpenApiGeneratorNameBackToLanguage({
+            outputDir: topLevelOutputDirectory,
+          })
+
+          // Write generate-id.txt file to all generated SDK dirs
+          const sdkDirs = fs.readdirSync(topLevelOutputDirectory)
+          for (const sdkDirName of sdkDirs) {
+            const sdkDir = `${topLevelOutputDirectory}/${sdkDirName}`
+            const konfigFolder = getKonfigFolder({ dir: sdkDir })
+            fs.ensureDirSync(konfigFolder)
+            this.debug(`sdkDir: ${sdkDir}`)
+            const lastGenerateIdPath = getLastGenerateIdPath({ sdkDir })
+            this.debug(`Writing ${generateConfigId} to ${lastGenerateIdPath}`)
+            fs.writeFileSync(lastGenerateIdPath, generateConfigId)
+          }
+
+          CliUx.ux.action.stop()
+
+          //         if (generators.python && getConfig('python') !== undefined) {
+          //           CliUx.ux.action.start('Generating snippet for Python')
+          //           // Extract snippet from README
+          //           const readme = fs.readFileSync(
+          //             `${topLevelOutputDirectory}/python/README.md`,
+          //             'utf-8'
+          //           )
+          //           const snippet = readme
+          //             .split(
+          //               'Please follow the [installation procedure](#installation--usage) and then run the following:'
+          //             )[1]
+          //             .split('```python')[1]
+          //             .split('```')[0]
+          //             .trim()
+          //           const snippetSplit = snippet.split('\n')
+
+          //           // Insert workaround code for this particular case
+          //           if (
+          //             snippet.includes('category=Category') &&
+          //             snippet.includes('model.pet import Pet')
+          //           ) {
+          //             // Find line with model.pet import Pet
+          //             const modelImportLine = snippetSplit.find((line) =>
+          //               line.includes('model.pet import Pet')
+          //             )
+
+          //             if (!modelImportLine)
+          //               throw new Error('Could not find specific line to copy')
+
+          //             // workaround for this particular case
+          //             snippetSplit.splice(
+          //               5,
+          //               0,
+          //               modelImportLine
+          //                 .replace('pet', 'category')
+          //                 .replace('Pet', 'Category')
+          //             )
+          //             snippetSplit.splice(
+          //               5,
+          //               0,
+          //               modelImportLine.replace('pet', 'tag').replace('Pet', 'Tag')
+          //             )
+          //           }
+
+          //           // Import dir to sdk
+          //           snippetSplit.splice(
+          //             1,
+          //             0,
+          //             `import sys
+          // from pathlib import Path
+          // python_sdk_dir = str(Path(__file__).parents[1]) + '/sdks/python'
+          // sys.path.append(python_sdk_dir)`
+          //           )
+
+          //           // Write snippet to snippet file
+          //           fs.writeFileSync(
+          //             `${snippetOutputDir}/main.py`,
+          //             snippetSplit.join('\n')
+          //           )
+
+          //           // Write to settings.json for extra python path
+          //           // const settingsJson = vscodeSettingsJson({
+          //           //   configDir,
+          //           // })
+          //           // settingsJson['python.analysis.extraPaths'] = ['./out/sdks/python']
+          //           // fs.ensureDirSync(path.join(configDir, '.vscode'))
+          //           // fs.writeFileSync(
+          //           //   vscodeSettingsJsonPath({configDir: configDir}),
+          //           //   JSON.stringify(settingsJson, undefined, 2),
+          //           // )
+
+          //           CliUx.ux.action.stop()
+          //         }
+
+          const copyToOutputDirectory = async ({
+            generator,
+            outputDirectory,
+          }: {
+            generator: keyof KonfigYamlType['generators'] | string
+            outputDirectory: string
+            init?: boolean
+          }) => {
+            if (!topLevelOutputDirectory) return
+            const ig = createIgnore(outputDirectory)
+            const topLevelSdkOutputDirectory = path.join(
+              topLevelOutputDirectory,
+              generator
+            )
+            this.debug(
+              `Copying from ${topLevelSdkOutputDirectory} to ${outputDirectory}`
+            )
+            const files = await getFiles(topLevelSdkOutputDirectory)
+            this.debug(`Found ${files.length} files to copy`)
+            for (const file of files) {
+              const subpath = path.relative(topLevelSdkOutputDirectory, file)
+              const absoluteDestinationPath = path.join(
+                outputDirectory,
+                subpath
+              )
+
+              // If the file does not exist, then its fine to copy. <-- Update 1: this is wrong
+              // Otherwise check if file is part of .konfigignore
+              // If the file is in our copy blacklist, then don't copy
+
+              // Update 1:
+              // I needed to add "yarn.lock" to .konfigignore and delete it and
+              // was hoping it never comes back. But because we first check if
+              // the file exists to not copy, we chose to copy it over despite
+              // what I assumed .konfigignore should do (which is essentially
+              // force a no-op for any files that match the globs)
+              if (
+                isFileIgnored({
+                  ig,
+                  relativePath: subpath,
+                }) ||
+                DO_NOT_COPY_THESE_FILES.has(subpath)
+              ) {
+                this.debug(`File copy status: Not copying ${subpath}`)
+                continue
+              }
+
+              this.debug(
+                `File copy status: Copying ${file} to ${absoluteDestinationPath}`
+              )
+
+              fs.ensureDirSync(path.dirname(absoluteDestinationPath))
+              fs.copyFileSync(file, absoluteDestinationPath)
+            }
+          }
+
+          if (body.additionalGenerators) {
+            for (const [name, config] of Object.entries(
+              body.additionalGenerators
+            )) {
+              if (!config.outputDirectory) continue
+              CliUx.ux.action.start(
+                `Deleting contents of existing directory "${config.outputDirectory}"`
+              )
+              await safelyDeleteFiles(config.outputDirectory)
+              CliUx.ux.action.stop()
+
+              // Copy content of generated SDK to existing directory
+              CliUx.ux.action.start(
+                `Copying ${name} SDK to "${config.outputDirectory}"`
+              )
+              await copyToOutputDirectory({
+                generator: name,
+                outputDirectory: config.outputDirectory,
+              })
+              CliUx.ux.action.stop()
+            }
+          }
+
+          if (flags.onlyCopyAdditionalGenerators) return
+
+          if (body.generators.kotlin) {
+            const outputDirectory =
+              flags.copyKotlinOutputDir ??
+              body.generators.kotlin.outputDirectory
+            if (outputDirectory && !flags.doNotCopy) {
+              CliUx.ux.action.start(
+                `Deleting contents of existing directory "${outputDirectory}"`
+              )
+              await safelyDeleteFiles(outputDirectory)
+              CliUx.ux.action.stop()
+
+              // Copy content of generated SDK to existing directory
+              CliUx.ux.action.start(
+                `Copying Kotlin SDK to "${outputDirectory}"`
+              )
+              await copyToOutputDirectory({
+                generator: 'kotlin',
+                outputDirectory,
+              })
+              CliUx.ux.action.stop()
+            }
+          }
+
+          if (body.generators.objc) {
+            const outputDirectory =
+              flags.copyObjcOutputDir ?? body.generators.objc.outputDirectory
+            if (outputDirectory && !flags.doNotCopy) {
+              CliUx.ux.action.start(
+                `Deleting contents of existing directory "${outputDirectory}"`
+              )
+              await safelyDeleteFiles(outputDirectory)
+              CliUx.ux.action.stop()
+
+              // Copy content of generated SDK to existing directory
+              CliUx.ux.action.start(
+                `Copying Objective-C SDK to "${outputDirectory}"`
+              )
+              await copyToOutputDirectory({
+                generator: 'objc',
+                outputDirectory,
+              })
+              CliUx.ux.action.stop()
+            }
+          }
+
+          if (body.generators.go) {
+            const outputDirectory =
+              flags.copyGoOutputDir ?? body.generators.go.outputDirectory
+            if (outputDirectory && !flags.doNotCopy) {
+              CliUx.ux.action.start(
+                `Deleting contents of existing directory "${outputDirectory}"`
+              )
+              await safelyDeleteFiles(outputDirectory)
+              CliUx.ux.action.stop()
+
+              // Copy content of generated SDK to existing directory
+              CliUx.ux.action.start(`Copying Go SDK to "${outputDirectory}"`)
+              await copyToOutputDirectory({ generator: 'go', outputDirectory })
+              fs.writeFileSync(
+                path.join(outputDirectory, 'LICENSE'),
+                generateLicense()
+              )
+              CliUx.ux.action.stop()
+            }
+          }
+
+          if (body.generators.php) {
+            const outputDirectory =
+              flags.copyPHPOutputDir ?? body.generators.php.outputDirectory
+            if (outputDirectory && !flags.doNotCopy) {
+              const topLevelGitRepo = simpleGit()
+              if (fs.existsSync(outputDirectory)) {
+                const phpGitRepo = simpleGit(outputDirectory)
+                const isRepo =
+                  path.join(configDir, outputDirectory) ===
+                  (await phpGitRepo.revparse(['--show-toplevel']))
+                if (!isRepo) {
+                  // delete the directory as its probably not important
+                  fs.rmSync(outputDirectory, { recursive: true, force: true })
+
+                  CliUx.ux.action.start(
+                    `Adding git submodule at ${outputDirectory}`
+                  )
+                  await topLevelGitRepo.submoduleAdd(
+                    `https://github.com/${body.generators.php.git.userId}/${body.generators.php.git.repoId}.git`,
+                    outputDirectory
+                  )
+                  await topLevelGitRepo.commit(
+                    'Initialized git submodule for PHP SDK'
+                  )
+                  CliUx.ux.action.stop()
+                }
+              } else {
+                CliUx.ux.action.start(
+                  `Adding git submodule at ${outputDirectory}`
+                )
+                await topLevelGitRepo.submoduleAdd(
+                  `https://github.com/${body.generators.php.git.userId}/${body.generators.php.git.repoId}.git`,
+                  outputDirectory
+                )
+                await topLevelGitRepo.commit(
+                  'Initialized git submodule for PHP SDK'
+                )
+                CliUx.ux.action.stop()
+              }
+              CliUx.ux.action.start(
+                `Deleting contents of existing directory "${outputDirectory}"`
+              )
+              await safelyDeleteFiles(outputDirectory)
+              CliUx.ux.action.stop()
+              // Copy content of generated SDK to existing directory
+              CliUx.ux.action.start(`Copying PHP SDK to "${outputDirectory}"`)
+              await copyToOutputDirectory({ generator: 'php', outputDirectory })
+              // const phpGitRepo = simpleGit(outputDirectory)
+              // await phpGitRepo.add('.')
+              // await phpGitRepo.commit(generateConfigId)
+              // await phpGitRepo.push()
+              // await topLevelGitRepo.add(outputDirectory)
+              // await topLevelGitRepo.commit('Generated PHP SDK', outputDirectory)
+
+              // Copy composer.json to top-level of SDK directory since Packagist
+              // see "Creating a composer.json file" here
+              // https://packagist.org/about
+              // CliUx.ux.info(
+              //   'Copying composer.json to root directory for Packagist (see explanation https://packagist.org/about)'
+              // )
+              // const packageKey = `${body.generators.php.invokerPackage}\\`
+              // const packageTestKey = `${body.generators.php.invokerPackage}\\Test\\`
+              // const composerJsonSchema = z
+              //   .object({
+              //     autoload: z.object({
+              //       'psr-4': z.object({
+              //         [packageKey]: z.string(),
+              //       }),
+              //     }),
+              //     'autoload-dev': z.object({
+              //       'psr-4': z.object({ [packageTestKey]: z.string() }),
+              //     }),
+              //     readme: z.string().optional(),
+              //   })
+              //   .passthrough()
+              // const composerJson = composerJsonSchema.parse(
+              //   JSON.parse(
+              //     fs.readFileSync(
+              //       path.join(
+              //         body.generators.php.outputDirectory,
+              //         'composer.json'
+              //       ),
+              //       'utf-8'
+              //     )
+              //   )
+              // )
+              // composerJson.readme = `${body.generators.php.outputDirectory}/README.md`
+              // composerJson.autoload['psr-4'][
+              //   packageKey
+              // ] = `${body.generators.php.outputDirectory}/${composerJson.autoload['psr-4'][packageKey]}`
+              // composerJson['autoload-dev']['psr-4'][
+              //   packageTestKey
+              // ] = `${body.generators.php.outputDirectory}/${composerJson['autoload-dev']['psr-4'][packageTestKey]}`
+
+              // fs.writeFileSync(
+              //   path.join(configDir, 'composer.json'),
+              //   JSON.stringify(composerJson, undefined, 2)
+              // )
+
+              CliUx.ux.action.stop()
+            }
+          }
+
+          if (body.generators.swift) {
+            const outputDirectory =
+              flags.copySwiftOutputDir ?? body.generators.swift.outputDirectory
+            this.debug(
+              `swift generator config: ${JSON.stringify(
+                body.generators.swift,
+                undefined,
+                2
+              )}`
+            )
+            this.debug(`swift output directory: ${outputDirectory}`)
+            if (outputDirectory && !flags.doNotCopy) {
+              CliUx.ux.action.start(
+                `Deleting contents of existing directory "${outputDirectory}"`
+              )
+              await safelyDeleteFiles(outputDirectory)
+              CliUx.ux.action.stop()
+
+              // Copy content of generated SDK to existing directory
+              CliUx.ux.action.start(`Copying Swift SDK to "${outputDirectory}"`)
+              await copyToOutputDirectory({
+                generator: 'swift',
+                outputDirectory,
+              })
+              CliUx.ux.action.stop()
+            }
+          }
+
+          if (body.generators.csharp) {
+            const outputDirectory =
+              flags.copyCSharpOutputDir ??
+              body.generators.csharp.outputDirectory
+            if (outputDirectory && !flags.doNotCopy) {
+              CliUx.ux.action.start(
+                `Deleting contents of existing directory "${outputDirectory}"`
+              )
+              await safelyDeleteFiles(outputDirectory)
+              CliUx.ux.action.stop()
+
+              // Copy content of generated SDK to existing directory
+              CliUx.ux.action.start(`Copying C# SDK to "${outputDirectory}"`)
+              await copyToOutputDirectory({
+                generator: 'csharp',
+                outputDirectory,
+              })
+              fs.copySync(
+                body.generators.csharp.logoPath,
+                path.join(outputDirectory, 'logo.png')
+              )
+              CliUx.ux.action.stop()
+            }
+          }
+
+          if (body.generators.android) {
+            const outputDirectory = body.generators.android.outputDirectory
+            if (outputDirectory && !flags.doNotCopy) {
+              CliUx.ux.action.start(
+                `Deleting contents of existing directory "${outputDirectory}"`
+              )
+              await safelyDeleteFiles(outputDirectory)
+              CliUx.ux.action.stop()
+
+              // Copy content of generated SDK to existing directory
+              CliUx.ux.action.start(
+                `Copying Android SDK to "${outputDirectory}"`
+              )
+              await copyToOutputDirectory({
+                generator: 'java',
+                outputDirectory,
+              })
+
+              // Make gradlew executable from command line
+              fs.chmodSync(
+                path.join(outputDirectory, 'gradlew'),
+                fs.constants.S_IRWXU
+              )
+
+              CliUx.ux.action.stop()
+            }
+          }
+
+          if (body.generators.java) {
+            const outputDirectory =
+              flags.copyJavaOutputDir ?? body.generators.java.outputDirectory
+            if (outputDirectory && !flags.doNotCopy) {
+              CliUx.ux.action.start(
+                `Deleting contents of existing directory "${outputDirectory}"`
+              )
+              await safelyDeleteFiles(outputDirectory)
+              CliUx.ux.action.stop()
+
+              // Copy content of generated SDK to existing directory
+              CliUx.ux.action.start(`Copying Java SDK to "${outputDirectory}"`)
+              await copyToOutputDirectory({
+                generator: 'java',
+                outputDirectory,
+              })
+              CliUx.ux.action.stop()
+            }
+          }
+
+          if (body.generators.python) {
+            const outputDirectory =
+              flags.copyPythonOutputDir ??
+              body.generators.python.outputDirectory
+            if (outputDirectory && !flags.doNotCopy) {
+              CliUx.ux.action.start(
+                `Deleting contents of existing directory "${outputDirectory}"`
+              )
+              await safelyDeleteFiles(outputDirectory)
+              CliUx.ux.action.stop()
+
+              CliUx.ux.action.start(
+                `Copying Python SDK to "${outputDirectory}"`
+              )
+              // Copy content of generated SDK to existing directory
+              await copyToOutputDirectory({
+                generator: 'python',
+                outputDirectory,
+              })
+              fs.writeFileSync(
+                path.join(outputDirectory, 'LICENSE'),
+                generateLicense()
+              )
+
+              // find all files in outputdirectory that end with .md and use the "globby" package
+              const markdownFiles = await globby([
+                path.join(outputDirectory, '**/*.md'),
+              ])
+              for (const markdownPath of markdownFiles) {
+                const markdown = fs.readFileSync(markdownPath, 'utf-8')
+                const pythonSnippetRegex =
+                  // rewrite the following regex to not include "```" in the match
+                  /\`\`\`python\n([\s\S]*?)\n\`\`\`/g
+
+                // find all code snippets in the markdown string that matches typescriptSnippetRegex
+                // and format them and replace the code snippets with the formatted code snippets
+                const formattedMarkdown = await replaceAsync(
+                  markdown,
+                  pythonSnippetRegex,
+                  async (_, codeSnippet) => {
+                    const { data: formattedCodeSnippet } =
+                      await konfig.sdk.formatPython(codeSnippet)
+                    return '```python\n' + formattedCodeSnippet + '```'
+                  }
+                )
+                fs.writeFileSync(markdownPath, formattedMarkdown)
+              }
+
+              CliUx.ux.action.stop()
+            }
+          }
+
+          if (body.generators.typescript) {
+            const outputDirectory =
+              flags.copyTypescriptOutputDir ??
+              body.generators.typescript.outputDirectory
+            if (outputDirectory && !flags.doNotCopy) {
+              CliUx.ux.action.start(
+                `Deleting contents of existing directory "${outputDirectory}"`
+              )
+              await safelyDeleteFiles(outputDirectory)
+              CliUx.ux.action.stop()
+
+              CliUx.ux.action.start(
+                `Copying Typescript SDK to "${outputDirectory}"`
+              )
+              // Copy content of generated SDK to existing directory
+              await copyToOutputDirectory({
+                generator: 'typescript',
+                outputDirectory,
+              })
+
+              // find all files in outputdirectory that end with .md and use the "globby" package
+              const markdownFiles = await globby([
+                path.join(outputDirectory, '**/*.md'),
+                // write a glob to exclude the node_modules directory
+                `!${path.join(outputDirectory, '**/node_modules/**')}`,
+              ])
+              for (const markdownPath of markdownFiles) {
+                const markdown = fs.readFileSync(markdownPath, 'utf-8')
+                const typescriptSnippetRegex =
+                  // rewrite the following regex to not include "```" in the match
+                  /\`\`\`typescript\n([\s\S]*?)\n\`\`\`/g
+
+                // find all code snippets in the markdown string that matches typescriptSnippetRegex
+                // and format them and replace the code snippets with the formatted code snippets
+                const formattedMarkdown = markdown.replace(
+                  typescriptSnippetRegex,
+                  (_, codeSnippet) => {
+                    const formattedCodeSnippet = prettier.format(codeSnippet, {
+                      parser: 'typescript',
+                    })
+                    return '```typescript\n' + formattedCodeSnippet + '```'
+                  }
+                )
+                fs.writeFileSync(markdownPath, formattedMarkdown)
+              }
+
+              CliUx.ux.action.stop()
+            }
+          }
+
+          CliUx.ux.action.start('Generating top-level README.md')
+          const readme = generateReadme({ konfigYaml: parsedKonfigYaml })
+          fs.writeFileSync(path.join(configDir, 'README.md'), readme)
+          CliUx.ux.action.stop()
+          CliUx.ux.action.start('Writing top-level LICENSE')
+          fs.writeFileSync(path.join(configDir, 'LICENSE'), generateLicense())
+          CliUx.ux.action.stop()
+        } catch (error) {
+          // stop whatever action was happening if an error happened
+          CliUx.ux.action.stop()
+
+          if (error instanceof AxiosError) {
+            console.error(error.message)
+            if (error.response?.status === 401)
+              console.error('Login with "konfig login"')
+          }
+
+          if (error instanceof Error) this.error(error)
+          if (typeof error === 'string') this.error(error)
+        }
+      }
+    }
+
+    if (flags.watch !== undefined) {
+      CliUx.ux.info(`Watching "${flags.watch}" for changes`)
+      let isRunning = false
+      const watcher = chokidar.watch(
+        [flags.watch, path.join(configDir, KONFIG_YAML_NAME)],
+        {
+          ignoreInitial: true,
+          followSymlinks: false,
+          ignored: (testString) => {
+            if (testString.includes('node_modules')) return true
+            if (testString.includes('.redwood')) return true
+            if (testString.includes('dist')) return true
+            // idk where this is coming from, redwood?
+            if (testString.includes('.watchman-cookie')) return true
+            return false
+          },
+        }
+      )
+      const runOrSkip: (
+        eventName?: 'add' | 'addDir' | 'change' | 'unlink' | 'unlinkDir',
+        path?: string,
+        stats?: fs.Stats
+      ) => void = (event, path) => {
+        if (isRunning) {
+          if (event !== undefined && path !== undefined) {
+            CliUx.ux.info(
+              `DETECTED CHANGE BUT ALREADY GENERATING: ${event} at "${path}", re-generating SDKs`
+            )
+          }
+          return
+        }
+        if (event !== undefined && path !== undefined) {
+          CliUx.ux.info(
+            `DETECTED CHANGE: ${event} at "${path}", re-generating SDKs`
+          )
+        }
+        isRunning = true
+
+        // Have to wait until server restarts in dev mode
+        waiton({
+          // set delay because chokidar will catch file change before nodemon in konfig-dash: "yarn dev" catches file change
+          delay: 1000,
+          resources: [
+            `${getApiUrl({ mode: flags.dev ? 'dev' : 'prod' })}/healthz`,
+          ],
+          timeout: 60_000,
+        }).then(() => {
+          generateSdks()
+            .then(() => {
+              isRunning = false
+            })
+            .catch((reason) => {
+              if (
+                reason instanceof AxiosError &&
+                reason.code === 'ECONNRESET'
+              ) {
+                // happens when you make a file change in the middle of generation
+                CliUx.ux.info('Lost connection to API, restarting generation')
+                isRunning = false
+                runOrSkip(event, path)
+                return
+              }
+              if (
+                reason instanceof AxiosError &&
+                reason.response?.status === 500
+              ) {
+                CliUx.ux.info('API had internal failure, stopping generation')
+                isRunning = false
+                return
+              }
+              if (
+                reason instanceof Error &&
+                reason.message.includes('Request failed with status code 500')
+              ) {
+                this.warn(reason)
+                isRunning = false
+                return
+              }
+              if (typeof reason === 'string') this.error(reason)
+              throw Error(reason)
+            })
+        })
+      }
+      watcher.on('ready', () => {
+        runOrSkip()
+      })
+      watcher.on('all', (event, path) => {
+        CliUx.ux.debug(event, path)
+        runOrSkip(event, path)
+      })
+    } else {
+      await generateSdks()
+    }
+  }
+}
+
+// Renames OpenAPI Generator specific-names back to Konfig's simple language names
+const renameOpenApiGeneratorNameBackToLanguage = ({
+  outputDir,
+}: {
+  outputDir: string
+}) => {
+  const generatorNames: JavaGenerateApiRequestBodyType['config']['generatorName'][] =
+    ['python-prior', 'typescript-axios', 'swift5', 'csharp-netcore']
+  for (const name of generatorNames) {
+    const dir = `${outputDir}/${name}`
+    if (fs.existsSync(`${outputDir}/${name}`)) {
+      if (name === 'python-prior') {
+        fs.renameSync(dir, `${outputDir}/python`)
+      }
+
+      if (name === 'typescript-axios') {
+        fs.renameSync(dir, `${outputDir}/typescript`)
+      }
+
+      if (name === 'swift5') {
+        fs.renameSync(dir, `${outputDir}/swift`)
+      }
+
+      if (name === 'csharp-netcore') {
+        fs.renameSync(dir, `${outputDir}/csharp`)
+      }
+    }
+  }
+}
+
+/**
+ * Converts readmeSnippet file path to raw string
+ */
+function handleReadmeSnippet<
+  C extends object & {
+    readmeSnippet?: string
+    readmeDescriptionSnippet?: string
+  }
+>({ config }: { config: C }): C {
+  if (config.readmeSnippet !== undefined)
+    config.readmeSnippet = fs.readFileSync(config.readmeSnippet, 'utf-8')
+  if (config.readmeDescriptionSnippet !== undefined)
+    config.readmeDescriptionSnippet = fs.readFileSync(
+      config.readmeDescriptionSnippet,
+      'utf-8'
+    )
+  return config
+}
+
+/**
+ * Converts apiDocumentationAuthenticationPartial file path to raw string
+ */
+function handleapiDocumentationAuthenticationPartialSnippet<
+  C extends object & { apiDocumentationAuthenticationPartial?: string }
+>({ config }: { config: C }): C {
+  if (config.apiDocumentationAuthenticationPartial !== undefined)
+    config.apiDocumentationAuthenticationPartial = fs.readFileSync(
+      config.apiDocumentationAuthenticationPartial,
+      'utf-8'
+    )
+  return config
+}
+
+const createTemplateFilesObject = (
+  konfigFiles: KonfigYamlFilesType,
+  generator: keyof KonfigYamlType['generators'],
+  configDir: string
+): TemplateFilesType => {
+  if (konfigFiles === undefined) return
+  const requestFiles: TemplateFilesType = {}
+  for (const [templateFile, { destinationFilename }] of Object.entries(
+    konfigFiles
+  )) {
+    const source = fs.readFileSync(
+      `${configDir}/templates/${generator}/${templateFile}`,
+      'utf-8'
+    )
+    requestFiles[templateFile] = { source, destinationFilename }
+  }
+
+  return requestFiles
+}
+
+const createIgnore = (dir: string) => {
+  const ig = ignore()
+  const ignorePaths = [
+    path.join(dir, '.gitignore'),
+    path.join(dir, '.konfigignore'),
+  ]
+  for (const path of ignorePaths) {
+    if (fs.existsSync(path)) ig.add(fs.readFileSync(path, 'utf-8').split('\n'))
+  }
+
+  return ig
+}
+
+const isFileIgnored = ({
+  ig,
+  relativePath,
+}: {
+  ig: Ignore
+  relativePath: string
+}): boolean => {
+  return !(
+    relativePath !== '' &&
+    !ig.ignores(relativePath) &&
+    !DO_NOT_DELETE_THESE_FILES.has(relativePath)
+  )
+}
+
+const DO_NOT_COPY_THESE_FILES = new Set([
+  'git_push.sh',
+  '.gitlab-ci.yml',
+  '.travis.yml',
+])
+
+const DO_NOT_DELETE_THESE_FILES = new Set(['.git', '.konfigignore'])
+
+const safelyDeleteFiles = async (
+  directory: string
+): Promise<{ directoryExists: boolean }> => {
+  if (!fs.existsSync(directory)) return { directoryExists: false }
+
+  const ig = createIgnore(directory)
+  // Delete content of existing directory
+  const files = await getFiles(directory)
+  for (const absolutePath of files) {
+    const relativePath = path.relative(directory, absolutePath)
+    if (!isFileIgnored({ ig, relativePath }))
+      fs.rmSync(absolutePath, { recursive: true, force: true })
+  }
+  return { directoryExists: true }
+}
+
+const getFiles = async (
+  dir: string,
+  options?: { skipHiddenFiles: boolean }
+): Promise<string[]> => {
+  const subdirs = fs.readdirSync(dir)
+  const files: string[][] = await Promise.all(
+    subdirs.map(async (subdir) => {
+      const res = path.resolve(dir, subdir)
+      if (options?.skipHiddenFiles && isUnixHiddenPath(res)) return []
+
+      // For some reason node_modules/.bin/ files do not exist but show up as
+      // part of readdirSync so we have to exit early to avoid error in statSync
+      if (!fs.existsSync(res)) return []
+
+      return fs.statSync(res).isDirectory() ? getFiles(res, options) : [res]
+    })
+  )
+  return files.flat()
+}
+
+/**
+ *
+ * Checks whether a path starts with or contains a hidden file or a folder.
+ * @param path - The path of the file that needs to be validated.
+ * @returns - `true` if the source is blacklisted and otherwise `false`.
+ */
+const isUnixHiddenPath = (path: string) => {
+  return /(^|\/)\.[^./]/g.test(path)
+}

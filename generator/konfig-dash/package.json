@@ -1,0 +1,36 @@
+{
+  "private": true,
+  "workspaces": {
+    "packages": [
+      "api",
+      "web",
+      "packages/*"
+    ]
+  },
+  "scripts": {
+    "build": "yarn workspaces foreach -pitv -j unlimited run build",
+    "dev": "yarn workspaces foreach -piv -j unlimited run dev & yarn rw dev web & yarn start-python-formatter-server",
+    "dev-without-python-formatter-server": "yarn workspaces foreach -piv -j unlimited run dev & yarn rw dev web",
+    "start-python-formatter-server": "sh ../konfig-python-formatter-server-blackd/start-blackd.sh",
+    "test": "yarn build && yarn rw build api && ./node_modules/.bin/ts-node --project scripts/tsconfig.json scripts/test.ts",
+    "release": "yarn workspaces foreach -tv --no-private run release-ci"
+  },
+  "devDependencies": {
+    "@redwoodjs/core": "^3.3.1",
+    "@types/wait-on": "^5.3.1",
+    "wait-on": "^7.0.1"
+  },
+  "eslintConfig": {
+    "extends": "@redwoodjs/eslint-config",
+    "root": true
+  },
+  "engines": {
+    "node": ">=14.19 <=16.x",
+    "yarn": ">=1.15"
+  },
+  "prisma": {
+    "seed": "yarn rw exec seed"
+  },
+  "packageManager": "yarn@3.2.4",
+  "name": "konfig-dash"
+}

@@ -1,0 +1,138 @@
+operationIds:
+  /projects:
+    get: Projects_list
+    post: Projects_create
+  /projects/{id}:
+    get: Projects_get
+    patch: Projects_update
+  /projects/{id}/model-configs:
+    get: Projects_getModelConfigs
+  /projects/{id}/model-config:
+    get: Projects_getModelConfig
+  /projects/{id}/active-model-config:
+    delete: Projects_deleteActiveModelConfig
+  /projects/{id}/active-experiment:
+    delete: Projects_deleteActiveExperiment
+  /projects/{id}/feedback-types:
+    patch: Projects_updateFeedbackTypes
+  /projects/{id}/export:
+    post: Projects_exportDatapoints
+  /generate:
+    post: Generate_generate
+  /logs:
+    post: Logs_log
+  /feedback:
+    post: Feedback_submit
+  /model-configs:
+    post: Modelconfigs_register
+  /model-configs/{id}:
+    get: Modelconfigs_get
+  /projects/{project_id}/experiments:
+    get: Experiments_list
+    post: Experiments_create
+  /experiments/{experiment_id}:
+    delete: Experiments_delete
+    patch: Experiments_update
+  /experiments/{experiment_id}/model-config:
+    get: Experiments_getModelConfig
+  /projects/{project_id}/metrics:
+    get: Metrics_list
+    post: Metrics_create
+  /projects/{project_id}/metrics/{metric_id}:
+    delete: Metrics_delete
+    patch: Metrics_update
+  /organizations/{id}:
+    get: Organizations_get
+    patch: Organizations_update
+  /organizations/{id}/subscriptions:
+    get: Organizations_getSubscriptions
+  /organizations/{id}/users/{user_id}/role:
+    put: Organizations_updateUserRole
+  /organizations/{id}/users/{user_id}:
+    delete: Organizations_removeUser
+  /organizations/{id}/api-keys:
+    get: Organizations_getApiKeys
+  /organizations/{id}/tools:
+    get: Organizations_getTools
+    post: Organizations_createTool
+  /organizations/{id}/tools/{tool_id}:
+    patch: Organizations_updateTool
+  /tools:
+    get: Tools_getSpecs
+renameTags: {}
+operationTags: {}
+examples: {}
+securityParameters:
+  page:
+    query: false
+  size:
+    query: false
+  organization_id:
+    query: false
+  filter:
+    query: false
+  user_filter:
+    query: false
+  sort_by:
+    query: false
+  order:
+    query: false
+examples_2:
+  /projects/{id}/feedback-types:
+    patch: {}
+requestSchemaNames:
+  /projects/{id}/feedback-types:
+    patch:
+      application/json: UpdateFeedbackTypesRequest
+  /generate:
+    post:
+      application/json: GenerateRequest
+  /logs:
+    post:
+      application/json: LogRequestBody
+  /feedback:
+    post:
+      application/json: SubmitRequest
+responseSchemaNames:
+  /projects/{id}/model-configs:
+    get:
+      '200':
+        application/json: GetModelConfigsResponse
+  /projects/{id}/feedback-types:
+    patch:
+      '200':
+        application/json: UpdateFeedbackTypesResponse
+  /logs:
+    post:
+      '200':
+        application/json: Log200Response
+  /feedback:
+    post:
+      '200':
+        application/json: SubmitResponse
+  /projects/{project_id}/experiments:
+    get:
+      '200':
+        application/json: ListResponse
+  /projects/{project_id}/metrics:
+    get:
+      '200':
+        application/json: List200Response
+  /organizations/{id}/subscriptions:
+    get:
+      '200':
+        application/json: GetSubscriptionsResponse
+  /organizations/{id}/api-keys:
+    get:
+      '200':
+        application/json: GetApiKeysResponse
+  /organizations/{id}/tools:
+    get:
+      '200':
+        application/json: GetToolsResponse
+  /tools:
+    get:
+      '200':
+        application/json: GetSpecsResponse
+responseDescriptions: {}
+ignoreObjectsWithNoProperties: true

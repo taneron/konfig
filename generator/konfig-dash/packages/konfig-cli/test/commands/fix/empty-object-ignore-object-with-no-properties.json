@@ -1,0 +1,4181 @@
+{
+  "openapi": "3.0.2",
+  "info": {
+    "title": "Humanloop API",
+    "description": "The Humanloop API allows you to interact with Humanloop from your product or service.\n\nYou can do this through HTTP requests from any language or via our official Python SDK.\n\nTo install the official Python SDK, run the following command:\n\n```bash\npip install humanloop\n```\n\n---\n\nGuides and further details about key concepts can be found in [our docs](https://humanloop.gitbook.io/humanloop-docs/).",
+    "version": "3.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://api.humanloop.com/v3",
+      "description": "Production server"
+    }
+  ],
+  "paths": {
+    "/projects": {
+      "get": {
+        "tags": ["Projects"],
+        "summary": "Get Projects",
+        "description": "Retrieve a paginated list of projects associated to your user.",
+        "operationId": "get_projects_projects_get",
+        "parameters": [
+          {
+            "description": "Page offset for pagination.",
+            "required": false,
+            "schema": {
+              "title": "Page index",
+              "type": "integer",
+              "description": "Page offset for pagination.",
+              "default": 0
+            },
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "description": "Page size for pagination. Number of projects to fetch.",
+            "required": false,
+            "schema": {
+              "title": "Page size",
+              "type": "integer",
+              "description": "Page size for pagination. Number of projects to fetch.",
+              "default": 10
+            },
+            "name": "size",
+            "in": "query"
+          },
+          {
+            "description": "ID of organization that fetched projects belong to. Starts with `org_`.",
+            "required": false,
+            "schema": {
+              "title": "Organization filter",
+              "type": "string",
+              "description": "ID of organization that fetched projects belong to. Starts with `org_`."
+            },
+            "name": "organization_id",
+            "in": "query"
+          },
+          {
+            "description": "Case-insensitive filter for project name.",
+            "required": false,
+            "schema": {
+              "title": "Project name filter",
+              "type": "string",
+              "description": "Case-insensitive filter for project name."
+            },
+            "name": "filter",
+            "in": "query"
+          },
+          {
+            "description": "Case-insensitive filter for users in the project. This filter matches against both email address and name of users.",
+            "required": false,
+            "schema": {
+              "title": "User filter",
+              "type": "string",
+              "description": "Case-insensitive filter for users in the project. This filter matches against both email address and name of users."
+            },
+            "name": "user_filter",
+            "in": "query"
+          },
+          {
+            "description": "Field to sort projects by",
+            "required": false,
+            "schema": {
+              "title": "Sort by",
+              "allOf": [{ "$ref": "#/components/schemas/ProjectSortBy" }],
+              "description": "Field to sort projects by",
+              "default": "created_at"
+            },
+            "name": "sort_by",
+            "in": "query"
+          },
+          {
+            "description": "Direction to sort by.",
+            "required": false,
+            "schema": {
+              "title": "Sort order",
+              "allOf": [{ "$ref": "#/components/schemas/SortOrder" }],
+              "description": "Direction to sort by.",
+              "default": "desc"
+            },
+            "name": "order",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginatedData_ProjectResponse_"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        },
+        "security": [{ "APIKeyHeader": [] }]
+      },
+      "post": {
+        "tags": ["Projects"],
+        "summary": "Create Project",
+        "description": "Creates a new project with the provided name.\n\nAn error will be raised if the user is already associated to a project with\nthat name.",
+        "operationId": "create_project_projects_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/CreateProjectRequest" }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ProjectResponse" }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        },
+        "security": [{ "APIKeyHeader": [] }]
+      }
+    },
+    "/projects/{id}": {
+      "get": {
+        "tags": ["Projects"],
+        "summary": "Get Project",
+        "operationId": "get_project_projects__id__get",
+        "parameters": [
+          {
+            "description": "String ID of project. Starts with `pr_`.",
+            "required": true,
+            "schema": {
+              "title": "Project ID",
+              "type": "string",
+              "description": "String ID of project. Starts with `pr_`."
+            },
+            "name": "id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ProjectResponse" }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        },
+        "security": [{ "APIKeyHeader": [] }]
+      },
+      "patch": {
+        "tags": ["Projects"],
+        "summary": "Update Project",
+        "description": "Update the project with the specified ID.\n\nSet the project's active model config/experiment by passing either\n`active_experiment_id` or `active_model_config_id`.\n\nSet the feedback labels to be treated as positive user feedback used in\ncalculating top-level project metrics by passing a list of labels in\n`positive_labels`.",
+        "operationId": "update_project_projects__id__patch",
+        "parameters": [
+          {
+            "description": "String ID of project. Starts with `pr_`.",
+            "required": true,
+            "schema": {
+              "title": "Project ID",
+              "type": "string",
+              "description": "String ID of project. Starts with `pr_`."
+            },
+            "name": "id",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/UpdateProjectRequest" }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ProjectResponse" }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        },
+        "security": [{ "APIKeyHeader": [] }]
+      }
+    },
+    "/projects/{id}/model-configs": {
+      "get": {
+        "tags": ["Projects"],
+        "summary": "Get Project Model Configs",
+        "description": "Get an array of model_configs associated to your project",
+        "operationId": "get_project_model_configs_projects__id__model_configs_get",
+        "parameters": [
+          {
+            "description": "String ID of project. Starts with `pr_`.",
+            "required": true,
+            "schema": {
+              "title": "Project ID",
+              "type": "string",
+              "description": "String ID of project. Starts with `pr_`."
+            },
+            "name": "id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Get Project Model Configs Projects  Id  Model Configs Get",
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProjectModelConfigResponse"
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        },
+        "security": [{ "APIKeyHeader": [] }]
+      }
+    },
+    "/projects/{id}/model-config": {
+      "get": {
+        "tags": ["Projects"],
+        "summary": "Get Model Config From Project",
+        "description": "Retrieves a model config to use to execute your model.\n\nA model config will be selected based on the project's\nactive model config/experiment settings.",
+        "operationId": "get_model_config_from_project_projects__id__model_config_get",
+        "parameters": [
+          {
+            "description": "String ID of project. Starts with `pr_`.",
+            "required": true,
+            "schema": {
+              "title": "Project ID",
+              "type": "string",
+              "description": "String ID of project. Starts with `pr_`."
+            },
+            "name": "id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetModelConfigResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        },
+        "security": [{ "APIKeyHeader": [] }]
+      }
+    },
+    "/projects/{id}/active-model-config": {
+      "delete": {
+        "tags": ["Projects"],
+        "summary": "Delete Active Model Config",
+        "description": "Remove the project's active model config, if set.\n\nThis has no effect if the project does not have an active model config set.",
+        "operationId": "delete_active_model_config_projects__id__active_model_config_delete",
+        "parameters": [
+          {
+            "description": "String ID of project. Starts with `pr_`.",
+            "required": true,
+            "schema": {
+              "title": "Project ID",
+              "type": "string",
+              "description": "String ID of project. Starts with `pr_`."
+            },
+            "name": "id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ProjectResponse" }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        },
+        "security": [{ "APIKeyHeader": [] }]
+      }
+    },
+    "/projects/{id}/active-experiment": {
+      "delete": {
+        "tags": ["Projects"],
+        "summary": "Delete Active Experiment",
+        "description": "Remove the project's active experiment, if set.\n\nThis has no effect if the project does not have an active experiment set.",
+        "operationId": "delete_active_experiment_projects__id__active_experiment_delete",
+        "parameters": [
+          {
+            "description": "String ID of project. Starts with `pr_`.",
+            "required": true,
+            "schema": {
+              "title": "Project ID",
+              "type": "string",
+              "description": "String ID of project. Starts with `pr_`."
+            },
+            "name": "id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ProjectResponse" }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        },
+        "security": [{ "APIKeyHeader": [] }]
+      }
+    },
+    "/projects/{id}/feedback-types": {
+      "patch": {
+        "tags": ["Projects"],
+        "summary": "Update Feedback Types",
+        "description": "Update feedback types.\n\nAllows creation of the default feedback types and setting status of\nfeedback types/categorical values.\n\nThis behaves like an upsert; any feedback categorical values that do not\nalready exist in the project will be created.",
+        "operationId": "update_feedback_types_projects__id__feedback_types_patch",
+        "parameters": [
+          {
+            "description": "String ID of project. Starts with `pr_`.",
+            "required": true,
+            "schema": {
+              "title": "Project ID",
+              "type": "string",
+              "description": "String ID of project. Starts with `pr_`."
+            },
+            "name": "id",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "title": "Feedback Types",
+                "type": "array",
+                "items": { "$ref": "#/components/schemas/FeedbackTypeRequest" }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": { "application/json": { "schema": {} } }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        },
+        "security": [{ "APIKeyHeader": [] }]
+      }
+    },
+    "/projects/{id}/export": {
+      "post": {
+        "tags": ["Projects"],
+        "summary": "Export Datapoints",
+        "description": "Export all logged datapoints associated to your project.\n\nResults are paginated and sorts the datapoints based on `created_at` in\ndescending order.",
+        "operationId": "export_datapoints_projects__id__export_post",
+        "parameters": [
+          {
+            "description": "String ID of project. Starts with `pr_`.",
+            "required": true,
+            "schema": {
+              "title": "Project ID",
+              "type": "string",
+              "description": "String ID of project. Starts with `pr_`."
+            },
+            "name": "id",
+            "in": "path"
+          },
+          {
+            "description": "Page offset for pagination.",
+            "required": false,
+            "schema": {
+              "title": "Page index",
+              "type": "integer",
+              "description": "Page offset for pagination.",
+              "default": 0
+            },
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "description": "Page size for pagination. Number of logs to export.",
+            "required": false,
+            "schema": {
+              "title": "Page size",
+              "type": "integer",
+              "description": "Page size for pagination. Number of logs to export.",
+              "default": 10
+            },
+            "name": "size",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginatedData_LogResponse_"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        },
+        "security": [{ "APIKeyHeader": [] }]
+      }
+    },
+    "/generate": {
+      "post": {
+        "tags": ["Generate"],
+        "summary": "Generate",
+        "description": "Generates an output from your model and automatically logs the results for feedback later.\n\nThe model config used for the generation depends on what parameters were specified. The 4 different behaviours, and the required parameters for each are listed below:\n\n1. `model_config`:\n    - The specific model config parameters will be used to link to an existing or create a new model config that will be used for this generation.\n    - E.g. `{ \"model_config\": { \"model: \"text-davinci-002\", \"prompt_template\", \"parameters\", ... } }`\n2. `model_config_id`:\n    - The ID of an existing model config to be used.\n    - E.g. `{ \"model_config_id\": \"config_abcdef1234567\" }`\n3. `experiment_id`:\n    - The ID of an existing experiment. A model config will be sampled from the experiment's list of active model configs.\n    - E.g. `{ \"experiment_id\": \"exp_abcdef1234567\" }`\n4. `project`:\n    - A model config will be selected based on the project's deployment settings.\n    - E.g. `{ \"project\": \"your-project-name-001\" }`\n\n\nThese signatures have been listed in decreasing priority. If multiple signatures are satisfied, the highest priority signature will be used.\nFor example, if both `model_config` and `experiment_id` are provided, the `model_config`  will be used and the `experiment_id` will be ignored.\n\n\nNote that all of the above signatures also require the following parameters: `project`, `inputs`, `source`, and `provider_api_keys`.\nAdditionally, the following parameters are supported: `num_samples`, `logprobs`, `suffix`, `user`, and `metadata`.",
+        "operationId": "generate_generate_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "title": "Request",
+                "anyOf": [
+                  { "$ref": "#/components/schemas/RawGenerate" },
+                  { "$ref": "#/components/schemas/ModelConfigGenerate" },
+                  { "$ref": "#/components/schemas/ExperimentGenerate" },
+                  { "$ref": "#/components/schemas/ProjectGenerate" }
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/GenerateResponse" }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        },
+        "security": [{ "APIKeyHeader": [] }]
+      }
+    },
+    "/logs": {
+      "post": {
+        "tags": ["Logs"],
+        "summary": "Log",
+        "description": "Log a datapoint or array of datapoints to your Humanloop project.",
+        "operationId": "log_logs_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "title": "Log Request",
+                "anyOf": [
+                  {
+                    "type": "array",
+                    "items": { "$ref": "#/components/schemas/LogRequest" }
+                  },
+                  { "$ref": "#/components/schemas/LogRequest" }
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Log Logs Post",
+                  "anyOf": [
+                    {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/CreateLogResponse"
+                      }
+                    },
+                    { "$ref": "#/components/schemas/CreateLogResponse" }
+                  ]
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        },
+        "security": [{ "APIKeyHeader": [] }]
+      }
+    },
+    "/feedback": {
+      "post": {
+        "tags": ["Feedback"],
+        "summary": "Feedback",
+        "description": "Submit a list of feedback for existing `data_ids`",
+        "operationId": "feedback_feedback_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "title": "Feedback Request",
+                "anyOf": [
+                  {
+                    "type": "array",
+                    "items": { "$ref": "#/components/schemas/FeedbackRequest" }
+                  },
+                  { "$ref": "#/components/schemas/FeedbackRequest" }
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Feedback Feedback Post",
+                  "anyOf": [
+                    {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/FeedbackResponse"
+                      }
+                    },
+                    { "$ref": "#/components/schemas/FeedbackResponse" }
+                  ]
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        },
+        "security": [{ "APIKeyHeader": [] }]
+      }
+    },
+    "/model-configs": {
+      "post": {
+        "tags": ["Model configs"],
+        "summary": "Register Project Model Config",
+        "description": "Register a model config to a project and optionally add it to an\nexperiment.\n\nIf the project provided does not exist, a new project will be created\nautomatically.\nIf an experiment name is provided, the specified experiment must already\nexist. Otherwise, an error will be raised.\n\nIf the model config is the first to be associated to the project, it will\nbe set as the active model config.",
+        "operationId": "register_project_model_config_model_configs_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProjectModelConfigRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProjectModelConfigResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        },
+        "security": [{ "APIKeyHeader": [] }]
+      }
+    },
+    "/model-configs/{id}": {
+      "get": {
+        "tags": ["Model configs"],
+        "summary": "Get Model Config",
+        "operationId": "get_model_config_model_configs__id__get",
+        "parameters": [
+          {
+            "description": "String ID of the model config. Starts with `config_`.",
+            "required": true,
+            "schema": {
+              "title": "Model config ID",
+              "type": "string",
+              "description": "String ID of the model config. Starts with `config_`."
+            },
+            "name": "id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ModelConfigResponse" }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        },
+        "security": [{ "APIKeyHeader": [] }]
+      }
+    },
+    "/projects/{project_id}/experiments": {
+      "get": {
+        "tags": ["Experiments"],
+        "summary": "Get Project Experiments",
+        "description": "Get an array of experiments associated to your project.",
+        "operationId": "get_project_experiments_projects__project_id__experiments_get",
+        "parameters": [
+          {
+            "description": "String ID of project. Starts with `pr_`.",
+            "required": true,
+            "schema": {
+              "title": "Project ID",
+              "type": "string",
+              "description": "String ID of project. Starts with `pr_`."
+            },
+            "name": "project_id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Get Project Experiments Projects  Project Id  Experiments Get",
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/ExperimentResponse" }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        },
+        "security": [{ "APIKeyHeader": [] }]
+      },
+      "post": {
+        "tags": ["Experiments"],
+        "summary": "Create Project Experiment",
+        "description": "Create an experiment for your project.\n\nYou can optionally specify IDs of your project's model configs to include\nin the experiment, along with a set of labels to consider as positive feedback\nand whether the experiment should be set as active.",
+        "operationId": "create_project_experiment_projects__project_id__experiments_post",
+        "parameters": [
+          {
+            "description": "String ID of project. Starts with `pr_`.",
+            "required": true,
+            "schema": {
+              "title": "Project ID",
+              "type": "string",
+              "description": "String ID of project. Starts with `pr_`."
+            },
+            "name": "project_id",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateExperimentRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ExperimentResponse" }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        },
+        "security": [{ "APIKeyHeader": [] }]
+      }
+    },
+    "/experiments/{experiment_id}": {
+      "delete": {
+        "tags": ["Experiments"],
+        "summary": "Delete Experiment",
+        "description": "Delete the experiment with the specified ID.",
+        "operationId": "delete_experiment_experiments__experiment_id__delete",
+        "parameters": [
+          {
+            "description": "String ID of experiment. Starts with `exp_`.",
+            "required": true,
+            "schema": {
+              "title": "Experiment ID",
+              "type": "string",
+              "description": "String ID of experiment. Starts with `exp_`."
+            },
+            "name": "experiment_id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "204": { "description": "Successful Response" },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        },
+        "security": [{ "APIKeyHeader": [] }]
+      },
+      "patch": {
+        "tags": ["Experiments"],
+        "summary": "Update Experiment",
+        "description": "Update your experiment, including registering and de-registering\nmodel configs.",
+        "operationId": "update_experiment_experiments__experiment_id__patch",
+        "parameters": [
+          {
+            "description": "String ID of experiment. Starts with `exp_`.",
+            "required": true,
+            "schema": {
+              "title": "Experiment ID",
+              "type": "string",
+              "description": "String ID of experiment. Starts with `exp_`."
+            },
+            "name": "experiment_id",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateExperimentRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ExperimentResponse" }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        },
+        "security": [{ "APIKeyHeader": [] }]
+      }
+    },
+    "/experiments/{experiment_id}/model-config": {
+      "get": {
+        "tags": ["Experiments"],
+        "summary": "Get Model Config From Experiment",
+        "description": "Retrieves a model config to use to execute your model.\n\nA model config will be sampled from the experiment's list of active\nmodel configs.",
+        "operationId": "get_model_config_from_experiment_experiments__experiment_id__model_config_get",
+        "parameters": [
+          {
+            "description": "String ID of experiment. Starts with `exp_`.",
+            "required": true,
+            "schema": {
+              "title": "Experiment ID",
+              "type": "string",
+              "description": "String ID of experiment. Starts with `exp_`."
+            },
+            "name": "experiment_id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetModelConfigResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        },
+        "security": [{ "APIKeyHeader": [] }]
+      }
+    },
+    "/projects/{project_id}/metrics": {
+      "get": {
+        "tags": ["Metrics"],
+        "summary": "Get Metrics",
+        "description": "Get an array of existing metrics for a given project.",
+        "operationId": "get_metrics_projects__project_id__metrics_get",
+        "parameters": [
+          {
+            "description": "String ID of project. Starts with `pr_`.",
+            "required": true,
+            "schema": {
+              "title": "Project ID",
+              "type": "string",
+              "description": "String ID of project. Starts with `pr_`."
+            },
+            "name": "project_id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Get Metrics Projects  Project Id  Metrics Get",
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/MetricResponse" }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        },
+        "security": [{ "APIKeyHeader": [] }]
+      },
+      "post": {
+        "tags": ["Metrics"],
+        "summary": "Create Metric",
+        "description": "Create a metric for your project.\n\nThe metric will be calculated for all datapoints in the project.",
+        "operationId": "create_metric_projects__project_id__metrics_post",
+        "parameters": [
+          {
+            "description": "String ID of project. Starts with `pr_`.",
+            "required": true,
+            "schema": {
+              "title": "Project ID",
+              "type": "string",
+              "description": "String ID of project. Starts with `pr_`."
+            },
+            "name": "project_id",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/CreateMetricRequest" }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/MetricResponse" }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        },
+        "security": [{ "APIKeyHeader": [] }]
+      }
+    },
+    "/projects/{project_id}/metrics/{metric_id}": {
+      "delete": {
+        "tags": ["Metrics"],
+        "summary": "Delete Metric",
+        "description": "Delete a metric by its ID.",
+        "operationId": "delete_metric_projects__project_id__metrics__metric_id__delete",
+        "parameters": [
+          {
+            "description": "String ID of project. Starts with `pr_`.",
+            "required": true,
+            "schema": {
+              "title": "Project ID",
+              "type": "string",
+              "description": "String ID of project. Starts with `pr_`."
+            },
+            "name": "project_id",
+            "in": "path"
+          },
+          {
+            "description": "String ID of metric. Starts with `metric_`.",
+            "required": true,
+            "schema": {
+              "title": "Metric ID",
+              "type": "string",
+              "description": "String ID of metric. Starts with `metric_`."
+            },
+            "name": "metric_id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "204": { "description": "Successful Response" },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        },
+        "security": [{ "APIKeyHeader": [] }]
+      },
+      "patch": {
+        "tags": ["Metrics"],
+        "summary": "Update Metric",
+        "description": "Update a metric by its ID.",
+        "operationId": "update_metric_projects__project_id__metrics__metric_id__patch",
+        "parameters": [
+          {
+            "description": "String ID of project. Starts with `pr_`.",
+            "required": true,
+            "schema": {
+              "title": "Project ID",
+              "type": "string",
+              "description": "String ID of project. Starts with `pr_`."
+            },
+            "name": "project_id",
+            "in": "path"
+          },
+          {
+            "description": "String ID of metric. Starts with `metric_`.",
+            "required": true,
+            "schema": {
+              "title": "Metric ID",
+              "type": "string",
+              "description": "String ID of metric. Starts with `metric_`."
+            },
+            "name": "metric_id",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/UpdateMetricRequest" }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/MetricResponse" }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        },
+        "security": [{ "APIKeyHeader": [] }]
+      }
+    },
+    "/organizations/{id}": {
+      "get": {
+        "tags": ["Organizations"],
+        "summary": "Get Organization",
+        "operationId": "get_organization_organizations__id__get",
+        "parameters": [
+          {
+            "description": "String ID of organization. Starts with `org_`.",
+            "required": true,
+            "schema": {
+              "title": "Organization ID",
+              "type": "string",
+              "description": "String ID of organization. Starts with `org_`."
+            },
+            "name": "id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrganizationResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        },
+        "security": [{ "APIKeyHeader": [] }]
+      },
+      "patch": {
+        "tags": ["Organizations"],
+        "summary": "Update Organization",
+        "description": "Update the specified organization.",
+        "operationId": "update_organization_organizations__id__patch",
+        "parameters": [
+          {
+            "description": "String ID of organization. Starts with `org_`.",
+            "required": true,
+            "schema": {
+              "title": "Organization ID",
+              "type": "string",
+              "description": "String ID of organization. Starts with `org_`."
+            },
+            "name": "id",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateOrganizationRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrganizationResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        },
+        "security": [{ "APIKeyHeader": [] }]
+      }
+    },
+    "/organizations/{id}/subscriptions": {
+      "get": {
+        "tags": ["Organizations"],
+        "summary": "Get Organization Subscriptions",
+        "description": "Fetches an organizations subscriptions.",
+        "operationId": "get_organization_subscriptions_organizations__id__subscriptions_get",
+        "parameters": [
+          {
+            "description": "String ID of organization. Starts with `org_`.",
+            "required": true,
+            "schema": {
+              "title": "Organization ID",
+              "type": "string",
+              "description": "String ID of organization. Starts with `org_`."
+            },
+            "name": "id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Get Organization Subscriptions Organizations  Id  Subscriptions Get",
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SubscriptionResponse"
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        },
+        "security": [{ "APIKeyHeader": [] }]
+      }
+    },
+    "/organizations/{id}/users/{user_id}/role": {
+      "put": {
+        "tags": ["Organizations"],
+        "summary": "Update Organization User Role",
+        "description": "Updates a user's role in the specified organization.",
+        "operationId": "update_organization_user_role_organizations__id__users__user_id__role_put",
+        "parameters": [
+          {
+            "description": "String ID of organization. Starts with `org_`.",
+            "required": true,
+            "schema": {
+              "title": "Organization ID",
+              "type": "string",
+              "description": "String ID of organization. Starts with `org_`."
+            },
+            "name": "id",
+            "in": "path"
+          },
+          {
+            "description": "String ID of user. Starts with `usr_`.",
+            "required": true,
+            "schema": {
+              "title": "User ID",
+              "type": "string",
+              "description": "String ID of user. Starts with `usr_`."
+            },
+            "name": "user_id",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateUserOrganizationRole"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "204": { "description": "Successful Response" },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        },
+        "security": [{ "APIKeyHeader": [] }]
+      }
+    },
+    "/organizations/{id}/users/{user_id}": {
+      "delete": {
+        "tags": ["Organizations"],
+        "summary": "Remove User From Organization",
+        "description": "Removes a user from the specified organization.",
+        "operationId": "remove_user_from_organization_organizations__id__users__user_id__delete",
+        "parameters": [
+          {
+            "description": "String ID of organization. Starts with `org_`.",
+            "required": true,
+            "schema": {
+              "title": "Organization ID",
+              "type": "string",
+              "description": "String ID of organization. Starts with `org_`."
+            },
+            "name": "id",
+            "in": "path"
+          },
+          {
+            "description": "String ID of user. Starts with `usr_`.",
+            "required": true,
+            "schema": {
+              "title": "User ID",
+              "type": "string",
+              "description": "String ID of user. Starts with `usr_`."
+            },
+            "name": "user_id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "204": { "description": "Successful Response" },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        },
+        "security": [{ "APIKeyHeader": [] }]
+      }
+    },
+    "/organizations/{id}/api-keys": {
+      "get": {
+        "tags": ["Organizations"],
+        "summary": "Get Api Keys",
+        "description": "Get API keys for the organization.",
+        "operationId": "get_api_keys_organizations__id__api_keys_get",
+        "parameters": [
+          {
+            "description": "String ID of organization. Starts with `org_`.",
+            "required": true,
+            "schema": {
+              "title": "Organization ID",
+              "type": "string",
+              "description": "String ID of organization. Starts with `org_`."
+            },
+            "name": "id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Get Api Keys Organizations  Id  Api Keys Get",
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/ApiKeyResponse" }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        },
+        "security": [{ "APIKeyHeader": [] }]
+      }
+    },
+    "/organizations/{id}/tools": {
+      "get": {
+        "tags": ["Organizations"],
+        "summary": "Get Organization Tools",
+        "description": "Get all active tools for an organization.",
+        "operationId": "get_organization_tools_organizations__id__tools_get",
+        "parameters": [
+          {
+            "description": "String ID of organization. Starts with `org_`.",
+            "required": true,
+            "schema": {
+              "title": "Organization ID",
+              "type": "string",
+              "description": "String ID of organization. Starts with `org_`."
+            },
+            "name": "id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Get Organization Tools Organizations  Id  Tools Get",
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/OrganizationToolResponse"
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        },
+        "security": [{ "APIKeyHeader": [] }]
+      },
+      "post": {
+        "tags": ["Organizations"],
+        "summary": "Create Organization Tool",
+        "description": "Create new organization tool with setup values.",
+        "operationId": "create_organization_tool_organizations__id__tools_post",
+        "parameters": [
+          {
+            "description": "String ID of organization. Starts with `org_`.",
+            "required": true,
+            "schema": {
+              "title": "Organization ID",
+              "type": "string",
+              "description": "String ID of organization. Starts with `org_`."
+            },
+            "name": "id",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/CreateOrgToolRequest" }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrganizationToolResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        },
+        "security": [{ "APIKeyHeader": [] }]
+      }
+    },
+    "/organizations/{id}/tools/{tool_id}": {
+      "patch": {
+        "tags": ["Organizations"],
+        "summary": "Update Organization Tool",
+        "description": "Update organization tool.",
+        "operationId": "update_organization_tool_organizations__id__tools__tool_id__patch",
+        "parameters": [
+          {
+            "description": "String ID of organization. Starts with `org_`.",
+            "required": true,
+            "schema": {
+              "title": "Organization ID",
+              "type": "string",
+              "description": "String ID of organization. Starts with `org_`."
+            },
+            "name": "id",
+            "in": "path"
+          },
+          {
+            "description": "Unique ID of the organization's tool. Starts with `org_tool`.",
+            "required": true,
+            "schema": {
+              "title": "Tool ID",
+              "type": "string",
+              "description": "Unique ID of the organization's tool. Starts with `org_tool`."
+            },
+            "name": "tool_id",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/UpdateOrgToolRequest" }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrganizationToolResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        },
+        "security": [{ "APIKeyHeader": [] }]
+      }
+    },
+    "/tools": {
+      "get": {
+        "tags": ["Tools"],
+        "summary": "Get Tool Specs",
+        "description": "Get all Humanloop provided tool specifications",
+        "operationId": "get_tool_specs_tools_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response Get Tool Specs Tools Get",
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/ToolSpecResponse" }
+                }
+              }
+            }
+          }
+        },
+        "security": [{ "APIKeyHeader": [] }]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ActiveSubscriptionResponse": {
+        "title": "ActiveSubscriptionResponse",
+        "required": ["id", "status", "created_at", "product", "interval"],
+        "type": "object",
+        "properties": {
+          "id": { "title": "Id", "type": "string" },
+          "status": { "$ref": "#/components/schemas/SubscriptionStatus" },
+          "created_at": {
+            "title": "Created At",
+            "type": "string",
+            "format": "date-time"
+          },
+          "product": { "$ref": "#/components/schemas/ProductResponse" },
+          "interval": { "$ref": "#/components/schemas/PaymentInterval" },
+          "cancel_at_period_end": {
+            "title": "Cancel At Period End",
+            "type": "boolean"
+          }
+        }
+      },
+      "ApiKeyResponse": {
+        "title": "ApiKeyResponse",
+        "required": [
+          "id",
+          "name",
+          "api_key",
+          "organization_id",
+          "created_by",
+          "created_at"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "title": "API key ID",
+            "type": "string",
+            "description": "String ID of API key. Starts with `key_`. This is an ID that can be used to revoke keys, and is not the key itself."
+          },
+          "name": {
+            "title": "API key name",
+            "type": "string",
+            "description": "Displayed name of the generated API key."
+          },
+          "api_key": {
+            "title": "API key",
+            "type": "string",
+            "description": "The API key. This is censored and will only contain a few leading and trailing characters."
+          },
+          "organization_id": {
+            "title": "Organization ID",
+            "type": "string",
+            "description": "String ID of organization that the API key belongs to. Starts with `org_`."
+          },
+          "created_by": {
+            "title": "Created by",
+            "allOf": [{ "$ref": "#/components/schemas/UserResponse" }],
+            "description": "The user that created the API key."
+          },
+          "last_used": {
+            "title": "Last used",
+            "type": "string",
+            "description": "The most recent time the API key was used to authenticate a request.",
+            "format": "date-time"
+          },
+          "created_at": {
+            "title": "Created At",
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "BaseMetricResponse": {
+        "title": "BaseMetricResponse",
+        "required": [
+          "id",
+          "name",
+          "description",
+          "code",
+          "default",
+          "active",
+          "created_at",
+          "updated_at"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "title": "Metric ID",
+            "type": "string",
+            "description": "ID of the metric. Starts with 'metric_'."
+          },
+          "name": {
+            "title": "Metric name",
+            "type": "string",
+            "description": "The name of the metric."
+          },
+          "description": {
+            "title": "Metric description",
+            "type": "string",
+            "description": "A description of what the metric measures."
+          },
+          "code": {
+            "title": "Metric code",
+            "type": "string",
+            "description": "Python code used to calculate a metric value on each logged datapoint."
+          },
+          "default": {
+            "title": "Metric default flag",
+            "type": "boolean",
+            "description": "Whether the metric is a global default metric. Metrics with this flag enabled cannot be deleted or modified."
+          },
+          "active": {
+            "title": "Metric active flag",
+            "type": "boolean",
+            "description": "If enabled, the metric is calculated for every logged datapoint."
+          },
+          "created_at": {
+            "title": "Created At",
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "title": "Updated At",
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "CategoricalFeedbackLabel": {
+        "title": "CategoricalFeedbackLabel",
+        "required": ["value", "sentiment"],
+        "type": "object",
+        "properties": {
+          "value": { "title": "Label value", "type": "string" },
+          "sentiment": {
+            "title": "Feedback label sentiment",
+            "allOf": [{ "$ref": "#/components/schemas/LabelSentiment" }],
+            "description": "Whether the feedback sentiment is positive or negative."
+          }
+        }
+      },
+      "CreateExperimentRequest": {
+        "title": "CreateExperimentRequest",
+        "required": ["name", "positive_labels"],
+        "type": "object",
+        "properties": {
+          "name": {
+            "title": "Experiment name",
+            "type": "string",
+            "description": "Name of experiment."
+          },
+          "model_config_ids": {
+            "title": "Model config IDs",
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "Model configs to add to this experiment. Further model configs can be added later."
+          },
+          "positive_labels": {
+            "title": "Positive labels",
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/PositiveLabel" },
+            "description": "Feedback labels to treat as positive user feedback. Used to monitor the performance of model configs in the experiment."
+          },
+          "set_active": {
+            "title": "Set as project's active experiment",
+            "type": "boolean",
+            "description": "Whether to set the created project as the project's active experiment.",
+            "default": false
+          }
+        }
+      },
+      "CreateLogResponse": {
+        "title": "CreateLogResponse",
+        "required": ["id", "project_id"],
+        "type": "object",
+        "properties": {
+          "id": {
+            "title": "Datapoint ID",
+            "type": "string",
+            "description": "String ID of logged datapoint. Starts with `data_`."
+          },
+          "project_id": {
+            "title": "Project ID",
+            "type": "string",
+            "description": "String ID of project the experiment belongs to. Starts with `pr_`."
+          }
+        }
+      },
+      "CreateMetricRequest": {
+        "title": "CreateMetricRequest",
+        "required": ["name", "description", "code"],
+        "type": "object",
+        "properties": {
+          "name": {
+            "title": "Metric name",
+            "type": "string",
+            "description": "Name of the metric to be created."
+          },
+          "description": {
+            "title": "Metric description",
+            "type": "string",
+            "description": "Description of the metric to be created."
+          },
+          "code": {
+            "title": "Metric code",
+            "type": "string",
+            "description": "Python code used to calculate a metric value on each logged datapoint. The last defined function in the code block will be called with a `log` dict, and should return a number, or `None`."
+          }
+        }
+      },
+      "CreateOrgToolRequest": {
+        "title": "CreateOrgToolRequest",
+        "required": ["spec"],
+        "type": "object",
+        "properties": {
+          "name": {
+            "title": "Tool name",
+            "type": "string",
+            "description": "Organizations name for the tool. If not provided, the spec name will be used"
+          },
+          "func_name": {
+            "title": "Function name",
+            "type": "string",
+            "description": "Name of the function as it called"
+          },
+          "description": {
+            "title": "Tool description",
+            "type": "string",
+            "description": "Organization's description for the tool. If not provided, the spec description will be used"
+          },
+          "setup_values": {
+            "title": "Tool setup values",
+            "type": "object",
+            "description": "Any setup values needed to set the tool as active - retrieve what setup values are required from GET on v3/tools"
+          },
+          "status": {
+            "title": "Tool status",
+            "allOf": [
+              { "$ref": "#/components/schemas/OrganizationToolStatus" }
+            ],
+            "description": "Whether the tool has been set up by the org."
+          },
+          "spec": {
+            "title": "Spec name",
+            "type": "string",
+            "description": "Unique name of tool spec. Retrieve from GET on /v3/tools"
+          }
+        }
+      },
+      "CreateProjectRequest": {
+        "title": "CreateProjectRequest",
+        "required": ["name"],
+        "type": "object",
+        "properties": {
+          "name": {
+            "title": "Project name",
+            "type": "string",
+            "description": "Unique project name."
+          },
+          "feedback_types": {
+            "title": "Feedback types",
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/FeedbackTypeRequest" },
+            "description": "Feedback types to be created."
+          }
+        }
+      },
+      "DataResponse": {
+        "title": "DataResponse",
+        "required": [
+          "id",
+          "index",
+          "output",
+          "raw_output",
+          "inputs",
+          "model_config_id"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "title": "Data ID",
+            "type": "string",
+            "description": "Unique ID for the model inputs and output logged to Humanloop. Use this when recording feedback later."
+          },
+          "index": {
+            "title": "Sample index",
+            "type": "integer",
+            "description": "The index for the sampled generation for a given input. The num_samples request parameter controls how many samples are generated."
+          },
+          "output": {
+            "title": "Sanitized output text",
+            "type": "string",
+            "description": "Output text returned from the provider model with leading and trailing whitespaces stripped."
+          },
+          "raw_output": {
+            "title": "Provider's output text",
+            "type": "string",
+            "description": "Raw output text returned from the provider model."
+          },
+          "inputs": {
+            "title": "Inputs",
+            "type": "object",
+            "description": "The inputs passed to the prompt template to send to provider model."
+          },
+          "finish_reason": {
+            "title": "Finish reason",
+            "type": "string",
+            "description": "Why the completion ended. Usually one of 'stop' (indicating a stop token was encountered), or 'length' (indicating the max tokens limit has been reached). It will be set as null for the intermediary responses during a stream, and will only be set as non-null for the final streamed token."
+          },
+          "model_config_id": {
+            "title": "The ID of your model configuration",
+            "type": "string",
+            "description": "The model configuration used to create the generation."
+          },
+          "tools": {
+            "title": "Tool results",
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/ToolResultResponse" },
+            "description": "Results of any tools run during the generation."
+          }
+        }
+      },
+      "ExperimentGenerate": {
+        "title": "ExperimentGenerate",
+        "required": ["project", "inputs", "provider_api_keys", "experiment_id"],
+        "type": "object",
+        "properties": {
+          "project": {
+            "title": "Project name",
+            "type": "string",
+            "description": "Unique project name. The model configuration will be added to the project if necessary."
+          },
+          "inputs": {
+            "title": "Model input data",
+            "type": "object",
+            "description": "List of name, value pairs for the inputs used by your prompt template, or directly by your model."
+          },
+          "source": {
+            "title": "Source",
+            "type": "string",
+            "description": "What was source of the model used for this generation?e.g. website-landing-page"
+          },
+          "provider_api_keys": {
+            "title": "Provider API Keys",
+            "allOf": [{ "$ref": "#/components/schemas/ProviderApiKeys" }],
+            "description": "API keys required by each provider to make API calls. These API keys are not stored by Humanloop."
+          },
+          "num_samples": {
+            "title": "Number of samples",
+            "type": "integer",
+            "description": "How many generations to make for each set of inputs. Each generate will sample a model config for an experiment.",
+            "default": 1
+          },
+          "logprobs": {
+            "title": "Log probabilities of most likely n tokens",
+            "type": "integer",
+            "description": "Include the log probabilities of the top n tokens in the provider_response"
+          },
+          "stream": {
+            "title": "Whether to stream partial results",
+            "type": "boolean",
+            "description": "If true, tokens will be sent as data-only server-sent events as they become available. If num_samples > 1, samples are streamed back independently. The stream for each sample will be terminated with a non-null finish_reason.",
+            "default": false
+          },
+          "suffix": {
+            "title": "Completion suffix",
+            "type": "string",
+            "description": "The suffix that comes after a completion of inserted text. Useful for completions that act like inserts."
+          },
+          "user": {
+            "title": "End-user identifier",
+            "type": "string",
+            "description": "End-user id passed through to provider call."
+          },
+          "metadata": {
+            "title": "Metadata",
+            "type": "object",
+            "description": "Any additional metadata that you would like to log for reference."
+          },
+          "experiment_id": {
+            "title": "ID of experiment",
+            "type": "string",
+            "description": "If an experiment ID is provided a model configuration will be sampled from the experiments active model configurations."
+          }
+        }
+      },
+      "ExperimentModelConfigResponse": {
+        "title": "ExperimentModelConfigResponse",
+        "required": [
+          "trials_count",
+          "active",
+          "id",
+          "display_name",
+          "model_config",
+          "created_at",
+          "updated_at"
+        ],
+        "type": "object",
+        "properties": {
+          "mean": {
+            "title": "Mean of experiment's metric",
+            "type": "number",
+            "description": "The mean performance of the model config, as measured by the experiment's metric."
+          },
+          "spread": {
+            "title": "Spread of experiment's metric",
+            "type": "number",
+            "description": "The spread of performance of the model config, as measured by the experiment's metric. A measure of the uncertainty in the model config's performance."
+          },
+          "trials_count": {
+            "title": "The number of trials that have happened in this experiment",
+            "type": "integer",
+            "description": "Number of datapoints with feedback associated to this experiment."
+          },
+          "active": {
+            "title": "Model config active",
+            "type": "boolean",
+            "description": "Whether the model config is active in the experiment. Only active model configs can be sampled from the experiment."
+          },
+          "id": {
+            "title": "Model config ID",
+            "type": "string",
+            "description": "String ID of model config. Starts with `config_`."
+          },
+          "display_name": {
+            "title": "Display name",
+            "type": "string",
+            "description": "Display name of model config. If this is not set by the user, a friendly name will be generated."
+          },
+          "model_config": {
+            "title": "Model config",
+            "allOf": [{ "$ref": "#/components/schemas/ModelConfigResponse" }],
+            "description": "Full definition of model config used in the experiment."
+          },
+          "created_at": {
+            "title": "Created At",
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "title": "Updated At",
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "ExperimentResponse": {
+        "title": "ExperimentResponse",
+        "required": [
+          "id",
+          "project_id",
+          "name",
+          "status",
+          "metric",
+          "positive_labels",
+          "created_at",
+          "updated_at"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "title": "Experiment ID",
+            "type": "string",
+            "description": "String ID of experiment. Starts with `exp_`."
+          },
+          "project_id": {
+            "title": "Project ID",
+            "type": "string",
+            "description": "String ID of project the experiment belongs to. Starts with `pr_`."
+          },
+          "name": {
+            "title": "Experiment name",
+            "type": "string",
+            "description": "Name of experiment."
+          },
+          "status": {
+            "title": "Experiment status",
+            "allOf": [{ "$ref": "#/components/schemas/ExperimentStatus" }],
+            "description": "Status of experiment."
+          },
+          "model_configs": {
+            "title": "Experiment model configs",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ExperimentModelConfigResponse"
+            },
+            "description": "List of model configs associated to the experiment."
+          },
+          "metric": {
+            "title": "Experiment metric",
+            "allOf": [{ "$ref": "#/components/schemas/BaseMetricResponse" }],
+            "description": "Metric used as the experiment's objective."
+          },
+          "positive_labels": {
+            "title": "Positive labels",
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/PositiveLabel" },
+            "description": "Feedback labels to treat as positive user feedback. Used to monitor the performance of model configs in the experiment."
+          },
+          "created_at": {
+            "title": "Created At",
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "title": "Updated At",
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "ExperimentStatus": {
+        "title": "ExperimentStatus",
+        "enum": ["Initialized", "In progress"],
+        "type": "string",
+        "description": "An enumeration."
+      },
+      "Feedback": {
+        "title": "Feedback",
+        "required": ["type", "value"],
+        "type": "object",
+        "properties": {
+          "type": {
+            "title": "Feedback type",
+            "anyOf": [
+              { "$ref": "#/components/schemas/FeedbackType" },
+              { "type": "string" }
+            ],
+            "description": "The type of feedback. The default feedback types available are 'rating', 'action', 'issue', 'correction', and 'comment'."
+          },
+          "value": {
+            "title": "Feedback value",
+            "type": "string",
+            "description": "The feedback value to set. This would be the appropriate text for 'correction' or 'comment', or a label to apply for 'rating', 'action', or 'issue'."
+          },
+          "data_id": {
+            "title": "Datapoint ID",
+            "type": "string",
+            "description": "ID to associate the feedback to a previously logged datapoint.When providing instant feedback as part of the hl.log(...) call you don't need to provide a data_id."
+          },
+          "user": {
+            "title": "User",
+            "type": "string",
+            "description": "A unique identifier to who provided the feedback. This gets passed through to the provider as required."
+          },
+          "created_at": {
+            "title": "Created at",
+            "type": "string",
+            "description": "Timestamp for when the feedback was created. If not provided, the time the call was made will be used as a timestamp.",
+            "format": "date-time"
+          }
+        }
+      },
+      "FeedbackClass": {
+        "title": "FeedbackClass",
+        "enum": ["select", "multi_select", "text"],
+        "type": "string",
+        "description": "An enumeration."
+      },
+      "FeedbackLabelRequest": {
+        "title": "FeedbackLabelRequest",
+        "required": ["value"],
+        "type": "object",
+        "properties": {
+          "value": { "title": "Value", "type": "string" },
+          "sentiment": { "$ref": "#/components/schemas/LabelSentiment" }
+        }
+      },
+      "FeedbackRequest": {
+        "title": "FeedbackRequest",
+        "required": ["type"],
+        "type": "object",
+        "properties": {
+          "type": {
+            "title": "Feedback type",
+            "anyOf": [
+              { "$ref": "#/components/schemas/FeedbackType" },
+              { "type": "string" }
+            ],
+            "description": "The type of feedback. The default feedback types available are 'rating', 'action', 'issue', 'correction', and 'comment'."
+          },
+          "value": {
+            "title": "Feedback value",
+            "type": "string",
+            "description": "The feedback value to be set. This field should be left blank when unsetting 'rating', 'correction' or 'comment', but is required otherwise."
+          },
+          "data_id": {
+            "title": "Datapoint ID",
+            "type": "string",
+            "description": "ID to associate the feedback to a previously logged datapoint.When providing instant feedback as part of the hl.log(...) call you don't need to provide a data_id."
+          },
+          "user": {
+            "title": "User",
+            "type": "string",
+            "description": "A unique identifier to who provided the feedback. This gets passed through to the provider as required."
+          },
+          "created_at": {
+            "title": "Created at",
+            "type": "string",
+            "description": "Timestamp for when the feedback was created. If not provided, the time the call was made will be used as a timestamp.",
+            "format": "date-time"
+          },
+          "unset": {
+            "title": "Unset",
+            "type": "boolean",
+            "description": "If true, the value for this feedback type is unset."
+          }
+        }
+      },
+      "FeedbackResponse": {
+        "title": "FeedbackResponse",
+        "required": ["type", "value", "id"],
+        "type": "object",
+        "properties": {
+          "type": {
+            "title": "Feedback type",
+            "anyOf": [
+              { "$ref": "#/components/schemas/FeedbackType" },
+              { "type": "string" }
+            ],
+            "description": "The type of feedback. The default feedback types available are 'rating', 'action', 'issue', 'correction', and 'comment'."
+          },
+          "value": {
+            "title": "Feedback value",
+            "type": "string",
+            "description": "The feedback value to set. This would be the appropriate text for 'correction' or 'comment', or a label to apply for 'rating', 'action', or 'issue'."
+          },
+          "data_id": {
+            "title": "Datapoint ID",
+            "type": "string",
+            "description": "ID to associate the feedback to a previously logged datapoint.When providing instant feedback as part of the hl.log(...) call you don't need to provide a data_id."
+          },
+          "user": {
+            "title": "User",
+            "type": "string",
+            "description": "A unique identifier to who provided the feedback. This gets passed through to the provider as required."
+          },
+          "created_at": {
+            "title": "Created at",
+            "type": "string",
+            "description": "Timestamp for when the feedback was created. If not provided, the time the call was made will be used as a timestamp.",
+            "format": "date-time"
+          },
+          "id": {
+            "title": "Feedback ID",
+            "type": "string",
+            "description": "String ID of user feedback. Starts with `ann_`, short for annotation."
+          }
+        }
+      },
+      "FeedbackType": {
+        "title": "FeedbackType",
+        "enum": ["rating", "action", "issue", "correction", "comment"],
+        "type": "string",
+        "description": "An enumeration."
+      },
+      "FeedbackTypeModel": {
+        "title": "FeedbackTypeModel",
+        "required": ["type"],
+        "type": "object",
+        "properties": {
+          "type": {
+            "title": "Feedback type",
+            "anyOf": [
+              { "$ref": "#/components/schemas/FeedbackType" },
+              { "type": "string" }
+            ],
+            "description": "The type of feedback. The default feedback types available are 'rating', 'action', 'issue', 'correction', and 'comment'."
+          },
+          "values": {
+            "title": "Allowed values for categorical feedback types",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CategoricalFeedbackLabel"
+            },
+            "description": "The allowed values for categorical feedback types. Not populated for `correction` and `comment`."
+          }
+        }
+      },
+      "FeedbackTypeRequest": {
+        "title": "FeedbackTypeRequest",
+        "required": ["type"],
+        "type": "object",
+        "properties": {
+          "type": {
+            "title": "Feedback type",
+            "type": "string",
+            "description": "The type of feedback to update."
+          },
+          "values": {
+            "title": "Feedback label values",
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/FeedbackLabelRequest" },
+            "description": "The feedback values to be available. This field should only be populated when updating a 'select' or 'multi_select' feedback class."
+          },
+          "class": {
+            "title": "Feedback class",
+            "allOf": [{ "$ref": "#/components/schemas/FeedbackClass" }],
+            "description": "The data type associated to this feedback type; whether it is a 'text'/'select'/'multi_select'. This is optional when updating the default feedback types (i.e. when `type` is 'rating', 'action' or 'issue')."
+          }
+        }
+      },
+      "FeedbackTypes": {
+        "title": "FeedbackTypes",
+        "type": "array",
+        "items": { "$ref": "#/components/schemas/FeedbackTypeModel" }
+      },
+      "GenerateResponse": {
+        "title": "GenerateResponse",
+        "required": ["project_id", "data", "provider_responses"],
+        "type": "object",
+        "properties": {
+          "project_id": {
+            "title": "Project id",
+            "type": "string",
+            "description": "Unique identifier of the parent project."
+          },
+          "num_samples": {
+            "title": "Number of samples",
+            "type": "integer",
+            "description": "How many generates to make for each set of inputs.",
+            "default": 1
+          },
+          "logprobs": {
+            "title": "Log probabilities of most likely n tokens",
+            "type": "integer",
+            "description": "Include the log probabilities of the top n tokens in the provider_response"
+          },
+          "suffix": {
+            "title": "Completion suffix",
+            "type": "string",
+            "description": "The suffix that comes after a completion of inserted text. Useful for completions that act like inserts."
+          },
+          "user": {
+            "title": "End-user identifier",
+            "type": "string",
+            "description": "End-user id passed through to provider call."
+          },
+          "data": {
+            "title": "Logged data",
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/DataResponse" },
+            "description": "Array containing the details of the resulting generations."
+          },
+          "usage": {
+            "title": "Usage",
+            "allOf": [{ "$ref": "#/components/schemas/GenerateUsage" }],
+            "description": "Counts of the number of tokens used and related stats."
+          },
+          "metadata": {
+            "title": "Metadata",
+            "type": "object",
+            "description": "Any additional metadata that you would like to log for reference."
+          },
+          "provider_responses": {
+            "title": "Provider responses",
+            "type": "array",
+            "items": {},
+            "description": "The full raw responses provided by the calls to the provider."
+          }
+        }
+      },
+      "GenerateUsage": {
+        "title": "GenerateUsage",
+        "required": ["prompt_tokens", "generation_tokens", "total_tokens"],
+        "type": "object",
+        "properties": {
+          "prompt_tokens": {
+            "title": "Prompt tokens",
+            "type": "integer",
+            "description": "Number of tokens used in the prompt."
+          },
+          "generation_tokens": {
+            "title": "Generation tokens",
+            "type": "integer",
+            "description": "Number of tokens produced by the generation."
+          },
+          "total_tokens": {
+            "title": "Total tokens",
+            "type": "integer",
+            "description": "Total number of tokens used by the prompt and generation combined."
+          }
+        }
+      },
+      "GetModelConfigResponse": {
+        "title": "GetModelConfigResponse",
+        "required": [
+          "model",
+          "prompt_template",
+          "id",
+          "created_at",
+          "updated_at",
+          "last_used"
+        ],
+        "type": "object",
+        "properties": {
+          "provider": {
+            "title": "Model provider",
+            "allOf": [{ "$ref": "#/components/schemas/ModelProviders" }],
+            "description": "The company providing the underlying model service.",
+            "default": "openai"
+          },
+          "endpoint": {
+            "title": "Provider endpoint",
+            "allOf": [{ "$ref": "#/components/schemas/ModelEndpoints" }],
+            "description": "Which of the providers model endpoints to use. For example Complete or Edit.",
+            "default": "complete"
+          },
+          "model": {
+            "title": "Model instance used",
+            "type": "string",
+            "description": "What model instance to use for the generation. e.g. text-davinci-002."
+          },
+          "prompt_template": {
+            "title": "Prompt template",
+            "type": "string",
+            "description": "Prompt template that will take your specified inputs to form your final request to the provider model. NB: Input variables within the prompt template should be specified with syntax: {{INPUT_NAME}}."
+          },
+          "temperature": {
+            "title": "Sampling temperature",
+            "type": "number",
+            "description": "What sampling temperature to use when making a generation. Higher values means the model will be more creative.",
+            "default": 1
+          },
+          "max_tokens": {
+            "title": "Maximum tokens",
+            "type": "integer",
+            "description": "The maximum number of tokens to generate in the completion.",
+            "default": 16
+          },
+          "top_p": {
+            "title": "Top p probability mass",
+            "type": "number",
+            "description": "An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass.",
+            "default": 1
+          },
+          "stop": {
+            "title": "Stop sequence(s)",
+            "anyOf": [
+              { "type": "string" },
+              { "type": "array", "items": { "type": "string" } }
+            ],
+            "description": "The string (or list of strings) after which the model will stop generating. The returned text will not contain the stop sequence."
+          },
+          "presence_penalty": {
+            "title": "Penalize tokens on whether present.",
+            "type": "number",
+            "description": "Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the generation so far.",
+            "default": 0
+          },
+          "frequency_penalty": {
+            "title": "Penalize tokens on whether frequent.",
+            "type": "number",
+            "description": "Number between -2.0 and 2.0. Positive values penalize new tokens based on how frequently they appear in the generation so far.",
+            "default": 0
+          },
+          "other": {
+            "title": "Other provider parameters",
+            "type": "object",
+            "description": "Other parameter values to be passed to the provider call.",
+            "default": {}
+          },
+          "id": {
+            "title": "Model config ID",
+            "type": "string",
+            "description": "Model config unique identifier generated by Humanloop."
+          },
+          "display_name": {
+            "title": "Model config name",
+            "type": "string",
+            "description": "A friendly display name for the model config."
+          },
+          "project_id": {
+            "title": "Project ID",
+            "type": "string",
+            "description": "String ID of project the model config belongs to. Starts with `pr_`."
+          },
+          "project_name": {
+            "title": "Project name",
+            "type": "string",
+            "description": "Name of the project the model config belongs to."
+          },
+          "created_at": {
+            "title": "Created At",
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "title": "Updated At",
+            "type": "string",
+            "format": "date-time"
+          },
+          "last_used": {
+            "title": "Last Used",
+            "type": "string",
+            "format": "date-time"
+          },
+          "feedback_stats": {
+            "title": "Feedback Stats",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProjectModelConfigFeedbackStatsResponse"
+            }
+          },
+          "experiment_id": {
+            "title": "Experiment ID",
+            "type": "string",
+            "description": "The ID of the experiment the model config has been registered to. Only populated when registering a model config to an experiment."
+          },
+          "trial_id": {
+            "title": "Trial ID",
+            "type": "string",
+            "description": "ID of trial to reference in subsequent log calls."
+          }
+        },
+        "description": "A selected model configuration.\n\nIf the model configuration was selected in the context of an experiment,\nthe response will include a trial_id to associate a subsequent log() call."
+      },
+      "HTTPValidationError": {
+        "title": "HTTPValidationError",
+        "type": "object",
+        "properties": {
+          "detail": {
+            "title": "Detail",
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/ValidationError" }
+          }
+        }
+      },
+      "LabelSentiment": {
+        "title": "LabelSentiment",
+        "enum": ["positive", "negative", "neutral", "unset"],
+        "type": "string",
+        "description": "How a label should be treated in calculating model config performance.\n\nUsed by a project's PAPV metric."
+      },
+      "LogRequest": {
+        "title": "LogRequest",
+        "required": ["project", "inputs", "output"],
+        "type": "object",
+        "properties": {
+          "project": {
+            "title": "Project name",
+            "type": "string",
+            "description": "Unique project name. If it does not exist, a new project will be created."
+          },
+          "trial_id": {
+            "title": "Trial ID",
+            "type": "string",
+            "description": "Unique ID of trial to associate to a log to inform an experiment."
+          },
+          "inputs": {
+            "title": "Model input data",
+            "type": "object",
+            "description": "List of (name, value) pairs for the inputs used by your prompt template, or directly by your model."
+          },
+          "output": {
+            "title": "Model output",
+            "type": "string",
+            "description": "Generated output from your model for the provided inputs."
+          },
+          "source": {
+            "title": "Source of generation",
+            "type": "string",
+            "description": "What was source of the model used for this generation? e.g. website-landing-page"
+          },
+          "model_config": {
+            "title": "Model config",
+            "allOf": [{ "$ref": "#/components/schemas/ModelConfigRequest" }],
+            "description": "The model config used for this generation. Required unless `trial_id` is provided."
+          },
+          "metadata": {
+            "title": "Metadata",
+            "type": "object",
+            "description": "Any additional metadata that you would like to log for reference."
+          },
+          "feedback": {
+            "title": "Feedback labels",
+            "anyOf": [
+              { "$ref": "#/components/schemas/Feedback" },
+              {
+                "type": "array",
+                "items": { "$ref": "#/components/schemas/Feedback" }
+              }
+            ],
+            "description": "Optional parameter to provide feedback with your logged datapoint."
+          },
+          "created_at": {
+            "title": "Created at",
+            "type": "string",
+            "description": "Timestamp for when the log was created. If not provided, the time the log call was made will be used as a timestamp.",
+            "format": "date-time"
+          }
+        }
+      },
+      "LogResponse": {
+        "title": "LogResponse",
+        "required": ["project", "inputs", "output", "id", "project_id"],
+        "type": "object",
+        "properties": {
+          "project": {
+            "title": "Project name",
+            "type": "string",
+            "description": "Unique project name. If it does not exist, a new project will be created."
+          },
+          "trial_id": {
+            "title": "Trial ID",
+            "type": "string",
+            "description": "Unique ID of trial to associate to a log to inform an experiment."
+          },
+          "inputs": {
+            "title": "Model input data",
+            "type": "object",
+            "description": "List of (name, value) pairs for the inputs used by your prompt template, or directly by your model."
+          },
+          "output": {
+            "title": "Model output",
+            "type": "string",
+            "description": "Generated output from your model for the provided inputs."
+          },
+          "source": {
+            "title": "Source of generation",
+            "type": "string",
+            "description": "What was source of the model used for this generation? e.g. website-landing-page"
+          },
+          "model_config": {
+            "title": "Model config",
+            "allOf": [
+              { "$ref": "#/components/schemas/ProjectModelConfigResponse" }
+            ],
+            "description": "The model config used for this generation"
+          },
+          "metadata": {
+            "title": "Metadata",
+            "type": "object",
+            "description": "Additional metadata logged for reference."
+          },
+          "feedback": {
+            "title": "Feedback",
+            "anyOf": [
+              { "$ref": "#/components/schemas/Feedback" },
+              {
+                "type": "array",
+                "items": { "$ref": "#/components/schemas/Feedback" }
+              }
+            ],
+            "description": "Feedback associated to the datapoint."
+          },
+          "created_at": {
+            "title": "Created at",
+            "type": "string",
+            "description": "Timestamp for when the log was created.",
+            "format": "date-time"
+          },
+          "id": {
+            "title": "Datapoint ID",
+            "type": "string",
+            "description": "String ID of logged datapoint. Starts with `data_`."
+          },
+          "project_id": {
+            "title": "Project ID",
+            "type": "string",
+            "description": "String ID of project the datapoint belongs to. Starts with `pr_`."
+          }
+        }
+      },
+      "MetricExperimentResponse": {
+        "title": "MetricExperimentResponse",
+        "required": ["id", "name"],
+        "type": "object",
+        "properties": {
+          "id": {
+            "title": "Experiment ID",
+            "type": "string",
+            "description": "String ID of experiment. Starts with `exp_`."
+          },
+          "name": {
+            "title": "Experiment name",
+            "type": "string",
+            "description": "Name of experiment."
+          }
+        }
+      },
+      "MetricResponse": {
+        "title": "MetricResponse",
+        "required": [
+          "id",
+          "name",
+          "description",
+          "code",
+          "default",
+          "active",
+          "created_at",
+          "updated_at",
+          "experiments",
+          "num_values"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "title": "Metric ID",
+            "type": "string",
+            "description": "ID of the metric. Starts with 'metric_'."
+          },
+          "name": {
+            "title": "Metric name",
+            "type": "string",
+            "description": "The name of the metric."
+          },
+          "description": {
+            "title": "Metric description",
+            "type": "string",
+            "description": "A description of what the metric measures."
+          },
+          "code": {
+            "title": "Metric code",
+            "type": "string",
+            "description": "Python code used to calculate a metric value on each logged datapoint."
+          },
+          "default": {
+            "title": "Metric default flag",
+            "type": "boolean",
+            "description": "Whether the metric is a global default metric. Metrics with this flag enabled cannot be deleted or modified."
+          },
+          "active": {
+            "title": "Metric active flag",
+            "type": "boolean",
+            "description": "If enabled, the metric is calculated for every logged datapoint."
+          },
+          "created_at": {
+            "title": "Created At",
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "title": "Updated At",
+            "type": "string",
+            "format": "date-time"
+          },
+          "experiments": {
+            "title": "Experiments using the metric",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MetricExperimentResponse"
+            },
+            "description": "List of experiments optimizing for this metric."
+          },
+          "num_values": {
+            "title": "Number of values",
+            "type": "integer",
+            "description": "Number of datapoints this metric has been calculated on. This does not include datapoints where the metric returned `None`."
+          }
+        }
+      },
+      "ModelConfigGenerate": {
+        "title": "ModelConfigGenerate",
+        "required": [
+          "project",
+          "inputs",
+          "provider_api_keys",
+          "model_config_id"
+        ],
+        "type": "object",
+        "properties": {
+          "project": {
+            "title": "Project name",
+            "type": "string",
+            "description": "Unique project name. The model configuration will be added to the project if necessary."
+          },
+          "inputs": {
+            "title": "Model input data",
+            "type": "object",
+            "description": "List of name, value pairs for the inputs used by your prompt template, or directly by your model."
+          },
+          "source": {
+            "title": "Source",
+            "type": "string",
+            "description": "What was source of the model used for this generation?e.g. website-landing-page"
+          },
+          "provider_api_keys": {
+            "title": "Provider API Keys",
+            "allOf": [{ "$ref": "#/components/schemas/ProviderApiKeys" }],
+            "description": "API keys required by each provider to make API calls. These API keys are not stored by Humanloop."
+          },
+          "num_samples": {
+            "title": "Number of samples",
+            "type": "integer",
+            "description": "How many generations to make for each set of inputs for the specified model config.",
+            "default": 1
+          },
+          "logprobs": {
+            "title": "Log probabilities of most likely n tokens",
+            "type": "integer",
+            "description": "Include the log probabilities of the top n tokens in the provider_response"
+          },
+          "stream": {
+            "title": "Whether to stream partial results",
+            "type": "boolean",
+            "description": "If true, tokens will be sent as data-only server-sent events as they become available. If num_samples > 1, samples are streamed back independently. The stream for each sample will be terminated with a non-null finish_reason.",
+            "default": false
+          },
+          "suffix": {
+            "title": "Completion suffix",
+            "type": "string",
+            "description": "The suffix that comes after a completion of inserted text. Useful for completions that act like inserts."
+          },
+          "user": {
+            "title": "End-user identifier",
+            "type": "string",
+            "description": "End-user id passed through to provider call."
+          },
+          "metadata": {
+            "title": "Metadata",
+            "type": "object",
+            "description": "Any additional metadata that you would like to log for reference."
+          },
+          "model_config_id": {
+            "title": "ID of a model config",
+            "type": "string",
+            "description": "The model configuration specified will be used to create a generation."
+          }
+        }
+      },
+      "ModelConfigRequest": {
+        "title": "ModelConfigRequest",
+        "required": ["model", "prompt_template"],
+        "type": "object",
+        "properties": {
+          "provider": {
+            "title": "Model provider",
+            "allOf": [{ "$ref": "#/components/schemas/ModelProviders" }],
+            "description": "The company providing the underlying model service.",
+            "default": "openai"
+          },
+          "endpoint": {
+            "title": "Provider endpoint",
+            "allOf": [{ "$ref": "#/components/schemas/ModelEndpoints" }],
+            "description": "Which of the providers model endpoints to use. For example Complete or Edit.",
+            "default": "complete"
+          },
+          "model": {
+            "title": "Model instance used",
+            "type": "string",
+            "description": "What model instance to use for the generation. e.g. text-davinci-002."
+          },
+          "prompt_template": {
+            "title": "Prompt template",
+            "type": "string",
+            "description": "Prompt template that will take your specified inputs to form your final request to the provider model. NB: Input variables within the prompt template should be specified with syntax: {{INPUT_NAME}}."
+          },
+          "temperature": {
+            "title": "Sampling temperature",
+            "type": "number",
+            "description": "What sampling temperature to use when making a generation. Higher values means the model will be more creative.",
+            "default": 1
+          },
+          "max_tokens": {
+            "title": "Maximum tokens",
+            "type": "integer",
+            "description": "The maximum number of tokens to generate in the completion.",
+            "default": 16
+          },
+          "top_p": {
+            "title": "Top p probability mass",
+            "type": "number",
+            "description": "An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass.",
+            "default": 1
+          },
+          "stop": {
+            "title": "Stop sequence(s)",
+            "anyOf": [
+              { "type": "string" },
+              { "type": "array", "items": { "type": "string" } }
+            ],
+            "description": "The string (or list of strings) after which the model will stop generating. The returned text will not contain the stop sequence."
+          },
+          "presence_penalty": {
+            "title": "Penalize tokens on whether present.",
+            "type": "number",
+            "description": "Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the generation so far.",
+            "default": 0
+          },
+          "frequency_penalty": {
+            "title": "Penalize tokens on whether frequent.",
+            "type": "number",
+            "description": "Number between -2.0 and 2.0. Positive values penalize new tokens based on how frequently they appear in the generation so far.",
+            "default": 0
+          },
+          "other": {
+            "title": "Other provider parameters",
+            "type": "object",
+            "description": "Other parameter values to be passed to the provider call.",
+            "default": {}
+          }
+        },
+        "description": "Core ModelConfig request model.\nFollowing closely: https://beta.openai.com/docs/api-reference/completions/create"
+      },
+      "ModelConfigResponse": {
+        "title": "ModelConfigResponse",
+        "required": ["model", "prompt_template", "id"],
+        "type": "object",
+        "properties": {
+          "provider": {
+            "title": "Model provider",
+            "allOf": [{ "$ref": "#/components/schemas/ModelProviders" }],
+            "description": "The company providing the underlying model service.",
+            "default": "openai"
+          },
+          "endpoint": {
+            "title": "Provider endpoint",
+            "allOf": [{ "$ref": "#/components/schemas/ModelEndpoints" }],
+            "description": "Which of the providers model endpoints to use. For example Complete or Edit.",
+            "default": "complete"
+          },
+          "model": {
+            "title": "Model instance used",
+            "type": "string",
+            "description": "What model instance to use for the generation. e.g. text-davinci-002."
+          },
+          "prompt_template": {
+            "title": "Prompt template",
+            "type": "string",
+            "description": "Prompt template that will take your specified inputs to form your final request to the provider model. NB: Input variables within the prompt template should be specified with syntax: {{INPUT_NAME}}."
+          },
+          "temperature": {
+            "title": "Sampling temperature",
+            "type": "number",
+            "description": "What sampling temperature to use when making a generation. Higher values means the model will be more creative.",
+            "default": 1
+          },
+          "max_tokens": {
+            "title": "Maximum tokens",
+            "type": "integer",
+            "description": "The maximum number of tokens to generate in the completion.",
+            "default": 16
+          },
+          "top_p": {
+            "title": "Top p probability mass",
+            "type": "number",
+            "description": "An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass.",
+            "default": 1
+          },
+          "stop": {
+            "title": "Stop sequence(s)",
+            "anyOf": [
+              { "type": "string" },
+              { "type": "array", "items": { "type": "string" } }
+            ],
+            "description": "The string (or list of strings) after which the model will stop generating. The returned text will not contain the stop sequence."
+          },
+          "presence_penalty": {
+            "title": "Penalize tokens on whether present.",
+            "type": "number",
+            "description": "Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the generation so far.",
+            "default": 0
+          },
+          "frequency_penalty": {
+            "title": "Penalize tokens on whether frequent.",
+            "type": "number",
+            "description": "Number between -2.0 and 2.0. Positive values penalize new tokens based on how frequently they appear in the generation so far.",
+            "default": 0
+          },
+          "other": {
+            "title": "Other provider parameters",
+            "type": "object",
+            "description": "Other parameter values to be passed to the provider call.",
+            "default": {}
+          },
+          "id": {
+            "title": "Model config ID",
+            "type": "string",
+            "description": "Model config unique identifier generated by Humanloop."
+          },
+          "display_name": {
+            "title": "Model config name",
+            "type": "string",
+            "description": "A friendly display name for the model config."
+          }
+        },
+        "description": "Extends the core ModelConfig request object to include Humanloop generated\nidentifier and method for serializing response from ModelConfig domain object."
+      },
+      "ModelEndpoints": {
+        "title": "ModelEndpoints",
+        "enum": ["complete", "edit"],
+        "type": "string",
+        "description": "Supported model provider endpoints."
+      },
+      "ModelProviders": {
+        "title": "ModelProviders",
+        "enum": ["openai", "ai21", "mock", "anthropic"],
+        "type": "string",
+        "description": "Supported model providers."
+      },
+      "OrganizationResponse": {
+        "title": "OrganizationResponse",
+        "required": [
+          "name",
+          "id",
+          "created_at",
+          "updated_at",
+          "teams",
+          "users"
+        ],
+        "type": "object",
+        "properties": {
+          "name": { "title": "Organization name", "type": "string" },
+          "slug": {
+            "title": "Organization unique slug",
+            "type": "string",
+            "description": "A unique slug that will be used for the organization. Only accepts letters, numbers, and hyphens."
+          },
+          "id": {
+            "title": "Organization ID",
+            "type": "string",
+            "description": "String ID of organization. Starts with `org_`."
+          },
+          "active_subscription": {
+            "title": "Active subscription",
+            "allOf": [
+              { "$ref": "#/components/schemas/ActiveSubscriptionResponse" }
+            ],
+            "description": "The active subscription of the organization including product information. If None the org has no active subscription."
+          },
+          "customer_id": {
+            "title": "Stripe customer ID",
+            "type": "string",
+            "description": "The customer ID of the organization in stripe. None if they have never made a subscription."
+          },
+          "created_at": {
+            "title": "Created At",
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "title": "Updated At",
+            "type": "string",
+            "format": "date-time"
+          },
+          "teams": {
+            "title": "Teams",
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/TeamResponse" },
+            "description": "Teams associated to this organization."
+          },
+          "users": {
+            "title": "Users",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OrganizationUserResponse"
+            },
+            "description": "Users in this organization"
+          }
+        }
+      },
+      "OrganizationToolResponse": {
+        "title": "OrganizationToolResponse",
+        "required": [
+          "id",
+          "name",
+          "description",
+          "signature",
+          "status",
+          "spec"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "title": "Organization tool ID",
+            "type": "string",
+            "description": "Unique ID for the orgs tool setup."
+          },
+          "name": {
+            "title": "Org tool name",
+            "type": "string",
+            "description": "Organization's name for the tool."
+          },
+          "description": {
+            "title": "Org tool description",
+            "type": "string",
+            "description": "Organization's description for the tool."
+          },
+          "signature": {
+            "title": "Org tool signature",
+            "type": "string",
+            "description": "The call signature for the tool of its name and parameters which is used to call the tool from the `prompt_template`."
+          },
+          "status": {
+            "title": "Tool status",
+            "allOf": [
+              { "$ref": "#/components/schemas/OrganizationToolStatus" }
+            ],
+            "description": "Whether the tool has been set up by the org."
+          },
+          "setup_values": {
+            "title": "Setup values",
+            "type": "object",
+            "description": "Values used to set up the tool - following the spec's setup model."
+          },
+          "spec": {
+            "title": "Tool spec",
+            "allOf": [{ "$ref": "#/components/schemas/ToolSpecResponse" }],
+            "description": "The specification of the tool's requirements for setup and execution."
+          }
+        }
+      },
+      "OrganizationToolStatus": {
+        "title": "OrganizationToolStatus",
+        "enum": ["active", "inactive"],
+        "type": "string",
+        "description": "An enumeration."
+      },
+      "OrganizationUserResponse": {
+        "title": "OrganizationUserResponse",
+        "required": ["id", "email_address", "verified", "role"],
+        "type": "object",
+        "properties": {
+          "id": {
+            "title": "User ID",
+            "type": "string",
+            "description": "String ID of user. Starts with `usr_`."
+          },
+          "email_address": {
+            "title": "Email address",
+            "type": "string",
+            "description": "The user's email address."
+          },
+          "full_name": {
+            "title": "Full name",
+            "type": "string",
+            "description": "The user's full name."
+          },
+          "verified": {
+            "title": "Verified",
+            "type": "boolean",
+            "description": "Whether the user has verified their email address."
+          },
+          "feature_flags": {
+            "title": "Feature Flags",
+            "type": "object",
+            "additionalProperties": { "type": "boolean" }
+          },
+          "role": { "$ref": "#/components/schemas/UserOrganizationRole" }
+        }
+      },
+      "PaginatedData_LogResponse_": {
+        "title": "PaginatedData[LogResponse]",
+        "required": ["records", "page", "size", "total"],
+        "type": "object",
+        "properties": {
+          "records": {
+            "title": "Records",
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/LogResponse" }
+          },
+          "page": { "title": "Page", "type": "integer" },
+          "size": { "title": "Size", "type": "integer" },
+          "total": { "title": "Total", "type": "integer" }
+        }
+      },
+      "PaginatedData_ProjectResponse_": {
+        "title": "PaginatedData[ProjectResponse]",
+        "required": ["records", "page", "size", "total"],
+        "type": "object",
+        "properties": {
+          "records": {
+            "title": "Records",
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/ProjectResponse" }
+          },
+          "page": { "title": "Page", "type": "integer" },
+          "size": { "title": "Size", "type": "integer" },
+          "total": { "title": "Total", "type": "integer" }
+        }
+      },
+      "PaymentInterval": {
+        "title": "PaymentInterval",
+        "enum": ["month", "year", "week", "day"],
+        "type": "string",
+        "description": "Interval units used for pricing and usage."
+      },
+      "PositiveLabel": {
+        "title": "PositiveLabel",
+        "required": ["type", "value"],
+        "type": "object",
+        "properties": {
+          "type": { "title": "Feedback type", "type": "string" },
+          "value": { "title": "Feedback value", "type": "string" }
+        }
+      },
+      "PriceResponse": {
+        "title": "PriceResponse",
+        "required": ["id", "interval", "subscription_duration", "model"],
+        "type": "object",
+        "properties": {
+          "id": { "title": "Id", "type": "string" },
+          "interval": { "$ref": "#/components/schemas/PaymentInterval" },
+          "subscription_duration": {
+            "$ref": "#/components/schemas/SubscriptionDuration"
+          },
+          "model": { "$ref": "#/components/schemas/PricingModel" },
+          "data_limit": {
+            "title": "Data limit",
+            "type": "integer",
+            "description": "Value over which usage pricing kicks in at num datapoints used x unit price."
+          },
+          "data_unit_price": { "title": "Data Unit Price", "type": "number" },
+          "data_unit_currency": {
+            "title": "Data Unit Currency",
+            "type": "string"
+          }
+        }
+      },
+      "PricingModel": {
+        "title": "PricingModel",
+        "enum": ["fixed", "usage"],
+        "type": "string",
+        "description": "Models of pricing - fixed or graduated usage based"
+      },
+      "ProductResponse": {
+        "title": "ProductResponse",
+        "required": ["id", "name", "prices", "seats_limit"],
+        "type": "object",
+        "properties": {
+          "id": { "title": "Id", "type": "string" },
+          "name": { "title": "Name", "type": "string" },
+          "prices": {
+            "title": "Prices",
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/PriceResponse" }
+          },
+          "seats_limit": { "title": "Seats Limit", "type": "integer" },
+          "feature_flags": {
+            "title": "Feature Flags",
+            "type": "object",
+            "additionalProperties": { "type": "boolean" }
+          }
+        }
+      },
+      "ProjectGenerate": {
+        "title": "ProjectGenerate",
+        "required": ["project", "inputs", "provider_api_keys"],
+        "type": "object",
+        "properties": {
+          "project": {
+            "title": "Project name",
+            "type": "string",
+            "description": "Unique project name. This project must already have an active deployment configured."
+          },
+          "inputs": {
+            "title": "Model input data",
+            "type": "object",
+            "description": "List of name, value pairs for the inputs used by your prompt template, or directly by your model."
+          },
+          "source": {
+            "title": "Source",
+            "type": "string",
+            "description": "What was source of the model used for this generation?e.g. website-landing-page"
+          },
+          "provider_api_keys": {
+            "title": "Provider API Keys",
+            "allOf": [{ "$ref": "#/components/schemas/ProviderApiKeys" }],
+            "description": "API keys required by each provider to make API calls. These API keys are not stored by Humanloop."
+          },
+          "num_samples": {
+            "title": "Number of samples",
+            "type": "integer",
+            "description": "How many generations to make for each set of inputs for the specified model config.",
+            "default": 1
+          },
+          "logprobs": {
+            "title": "Log probabilities of most likely n tokens",
+            "type": "integer",
+            "description": "Include the log probabilities of the top n tokens in the provider_response"
+          },
+          "stream": {
+            "title": "Whether to stream partial results",
+            "type": "boolean",
+            "description": "If true, tokens will be sent as data-only server-sent events as they become available. If num_samples > 1, samples are streamed back independently. The stream for each sample will be terminated with a non-null finish_reason.",
+            "default": false
+          },
+          "suffix": {
+            "title": "Completion suffix",
+            "type": "string",
+            "description": "The suffix that comes after a completion of inserted text. Useful for completions that act like inserts."
+          },
+          "user": {
+            "title": "End-user identifier",
+            "type": "string",
+            "description": "End-user id passed through to provider call."
+          },
+          "metadata": {
+            "title": "Metadata",
+            "type": "object",
+            "description": "Any additional metadata that you would like to log for reference."
+          }
+        },
+        "description": "Alias for BaseGenerate that providers a better name for the consumer of docs"
+      },
+      "ProjectModelConfigFeedbackStatsResponse": {
+        "title": "ProjectModelConfigFeedbackStatsResponse",
+        "required": [
+          "feedback_group_id",
+          "feedback_group_name",
+          "feedback_label",
+          "feedback_count"
+        ],
+        "type": "object",
+        "properties": {
+          "feedback_group_id": {
+            "title": "Feedback Group Id",
+            "type": "integer"
+          },
+          "feedback_group_name": {
+            "title": "Feedback Group Name",
+            "type": "string"
+          },
+          "feedback_label": { "title": "Feedback Label", "type": "string" },
+          "feedback_count": { "title": "Feedback Count", "type": "integer" }
+        }
+      },
+      "ProjectModelConfigRequest": {
+        "title": "ProjectModelConfigRequest",
+        "required": ["model", "prompt_template", "project"],
+        "type": "object",
+        "properties": {
+          "provider": {
+            "title": "Model provider",
+            "allOf": [{ "$ref": "#/components/schemas/ModelProviders" }],
+            "description": "The company providing the underlying model service.",
+            "default": "openai"
+          },
+          "endpoint": {
+            "title": "Provider endpoint",
+            "allOf": [{ "$ref": "#/components/schemas/ModelEndpoints" }],
+            "description": "Which of the providers model endpoints to use. For example Complete or Edit.",
+            "default": "complete"
+          },
+          "model": {
+            "title": "Model instance used",
+            "type": "string",
+            "description": "What model instance to use for the generation. e.g. text-davinci-002."
+          },
+          "prompt_template": {
+            "title": "Prompt template",
+            "type": "string",
+            "description": "Prompt template that will take your specified inputs to form your final request to the provider model. NB: Input variables within the prompt template should be specified with syntax: {{INPUT_NAME}}."
+          },
+          "temperature": {
+            "title": "Sampling temperature",
+            "type": "number",
+            "description": "What sampling temperature to use when making a generation. Higher values means the model will be more creative.",
+            "default": 1
+          },
+          "max_tokens": {
+            "title": "Maximum tokens",
+            "type": "integer",
+            "description": "The maximum number of tokens to generate in the completion.",
+            "default": 16
+          },
+          "top_p": {
+            "title": "Top p probability mass",
+            "type": "number",
+            "description": "An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass.",
+            "default": 1
+          },
+          "stop": {
+            "title": "Stop sequence(s)",
+            "anyOf": [
+              { "type": "string" },
+              { "type": "array", "items": { "type": "string" } }
+            ],
+            "description": "The string (or list of strings) after which the model will stop generating. The returned text will not contain the stop sequence."
+          },
+          "presence_penalty": {
+            "title": "Penalize tokens on whether present.",
+            "type": "number",
+            "description": "Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the generation so far.",
+            "default": 0
+          },
+          "frequency_penalty": {
+            "title": "Penalize tokens on whether frequent.",
+            "type": "number",
+            "description": "Number between -2.0 and 2.0. Positive values penalize new tokens based on how frequently they appear in the generation so far.",
+            "default": 0
+          },
+          "other": {
+            "title": "Other provider parameters",
+            "type": "object",
+            "description": "Other parameter values to be passed to the provider call.",
+            "default": {}
+          },
+          "project": {
+            "title": "Project name",
+            "type": "string",
+            "description": "Unique project name. If it does not exist, a new project will be created."
+          },
+          "name": {
+            "title": "Model config name",
+            "type": "string",
+            "description": "A friendly display name for the model config. If not provided, a name will be generated."
+          },
+          "experiment": {
+            "title": "Experiment name",
+            "type": "string",
+            "description": "If specified, the model config will be added to this experiment. Experiments are used for A/B testing and optimizing hyperparameters."
+          }
+        },
+        "description": "Core ModelConfig request model.\nFollowing closely: https://beta.openai.com/docs/api-reference/completions/create"
+      },
+      "ProjectModelConfigResponse": {
+        "title": "ProjectModelConfigResponse",
+        "required": [
+          "model",
+          "prompt_template",
+          "id",
+          "created_at",
+          "updated_at",
+          "last_used"
+        ],
+        "type": "object",
+        "properties": {
+          "provider": {
+            "title": "Model provider",
+            "allOf": [{ "$ref": "#/components/schemas/ModelProviders" }],
+            "description": "The company providing the underlying model service.",
+            "default": "openai"
+          },
+          "endpoint": {
+            "title": "Provider endpoint",
+            "allOf": [{ "$ref": "#/components/schemas/ModelEndpoints" }],
+            "description": "Which of the providers model endpoints to use. For example Complete or Edit.",
+            "default": "complete"
+          },
+          "model": {
+            "title": "Model instance used",
+            "type": "string",
+            "description": "What model instance to use for the generation. e.g. text-davinci-002."
+          },
+          "prompt_template": {
+            "title": "Prompt template",
+            "type": "string",
+            "description": "Prompt template that will take your specified inputs to form your final request to the provider model. NB: Input variables within the prompt template should be specified with syntax: {{INPUT_NAME}}."
+          },
+          "temperature": {
+            "title": "Sampling temperature",
+            "type": "number",
+            "description": "What sampling temperature to use when making a generation. Higher values means the model will be more creative.",
+            "default": 1
+          },
+          "max_tokens": {
+            "title": "Maximum tokens",
+            "type": "integer",
+            "description": "The maximum number of tokens to generate in the completion.",
+            "default": 16
+          },
+          "top_p": {
+            "title": "Top p probability mass",
+            "type": "number",
+            "description": "An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass.",
+            "default": 1
+          },
+          "stop": {
+            "title": "Stop sequence(s)",
+            "anyOf": [
+              { "type": "string" },
+              { "type": "array", "items": { "type": "string" } }
+            ],
+            "description": "The string (or list of strings) after which the model will stop generating. The returned text will not contain the stop sequence."
+          },
+          "presence_penalty": {
+            "title": "Penalize tokens on whether present.",
+            "type": "number",
+            "description": "Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the generation so far.",
+            "default": 0
+          },
+          "frequency_penalty": {
+            "title": "Penalize tokens on whether frequent.",
+            "type": "number",
+            "description": "Number between -2.0 and 2.0. Positive values penalize new tokens based on how frequently they appear in the generation so far.",
+            "default": 0
+          },
+          "other": {
+            "title": "Other provider parameters",
+            "type": "object",
+            "description": "Other parameter values to be passed to the provider call.",
+            "default": {}
+          },
+          "id": {
+            "title": "Model config ID",
+            "type": "string",
+            "description": "Model config unique identifier generated by Humanloop."
+          },
+          "display_name": {
+            "title": "Model config name",
+            "type": "string",
+            "description": "A friendly display name for the model config."
+          },
+          "project_id": {
+            "title": "Project ID",
+            "type": "string",
+            "description": "String ID of project the model config belongs to. Starts with `pr_`."
+          },
+          "project_name": {
+            "title": "Project name",
+            "type": "string",
+            "description": "Name of the project the model config belongs to."
+          },
+          "created_at": {
+            "title": "Created At",
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "title": "Updated At",
+            "type": "string",
+            "format": "date-time"
+          },
+          "last_used": {
+            "title": "Last Used",
+            "type": "string",
+            "format": "date-time"
+          },
+          "feedback_stats": {
+            "title": "Feedback Stats",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProjectModelConfigFeedbackStatsResponse"
+            }
+          },
+          "experiment_id": {
+            "title": "Experiment ID",
+            "type": "string",
+            "description": "The ID of the experiment the model config has been registered to. Only populated when registering a model config to an experiment."
+          }
+        },
+        "description": "Extends the core ModelConfig request object to include Humanloop generated\nidentifier and method for serializing response from ModelConfig domain object."
+      },
+      "ProjectResponse": {
+        "title": "ProjectResponse",
+        "required": [
+          "id",
+          "internal_id",
+          "name",
+          "users",
+          "data_count",
+          "feedback_types",
+          "team_id",
+          "created_at",
+          "updated_at"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "title": "Project ID",
+            "type": "string",
+            "description": "Project ID"
+          },
+          "internal_id": {
+            "title": "Internal project ID",
+            "type": "integer",
+            "description": "Project ID for internal Humanloop use."
+          },
+          "name": {
+            "title": "Project name",
+            "type": "string",
+            "description": "Unique project name."
+          },
+          "active_experiment": {
+            "title": "Active experiment",
+            "allOf": [{ "$ref": "#/components/schemas/ExperimentResponse" }],
+            "description": "Experiment that has been set as the project's active deployment. At most one of active_experiment and active_model_config can be set."
+          },
+          "active_model_config": {
+            "title": "Active model configuration",
+            "allOf": [
+              { "$ref": "#/components/schemas/ProjectModelConfigResponse" }
+            ],
+            "description": "Model configuration that has been set as the project's active deployment. At most one of active_experiment and active_model_config can be set."
+          },
+          "users": {
+            "title": "Project users",
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/ProjectUserResponse" },
+            "description": "Users associated to the project."
+          },
+          "data_count": {
+            "title": "Number of datapoints",
+            "type": "integer",
+            "description": "The count of datapoints that have been logged to the project."
+          },
+          "feedback_types": {
+            "title": "Feedback types",
+            "allOf": [{ "$ref": "#/components/schemas/FeedbackTypes" }],
+            "description": "The feedback types that have been defined in the project."
+          },
+          "team_id": {
+            "title": "Team ID",
+            "type": "string",
+            "description": "Unique ID of the team the project belongs to. Starts with `tm_`."
+          },
+          "created_at": {
+            "title": "Created At",
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "title": "Updated At",
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "ProjectSortBy": {
+        "title": "ProjectSortBy",
+        "enum": ["created_at", "updated_at", "name"],
+        "type": "string",
+        "description": "An enumeration."
+      },
+      "ProjectUserResponse": {
+        "title": "ProjectUserResponse",
+        "required": ["id", "email_address"],
+        "type": "object",
+        "properties": {
+          "id": {
+            "title": "User ID",
+            "type": "string",
+            "description": "String ID of user. Starts with `usr_`."
+          },
+          "email_address": {
+            "title": "Email address",
+            "type": "string",
+            "description": "The user's email address."
+          },
+          "full_name": {
+            "title": "Full name",
+            "type": "string",
+            "description": "The user's full name."
+          }
+        }
+      },
+      "ProviderApiKeys": {
+        "title": "ProviderApiKeys",
+        "type": "object",
+        "properties": {
+          "openai": { "title": "Openai", "type": "string" },
+          "ai21": { "title": "Ai21", "type": "string" },
+          "mock": { "title": "Mock", "type": "string" },
+          "anthropic": { "title": "Anthropic", "type": "string" }
+        }
+      },
+      "RawGenerate": {
+        "title": "RawGenerate",
+        "required": ["project", "inputs", "provider_api_keys", "model_config"],
+        "type": "object",
+        "properties": {
+          "project": {
+            "title": "Project name",
+            "type": "string",
+            "description": "Unique project name. The model configuration will be added to the project if necessary."
+          },
+          "inputs": {
+            "title": "Model input data",
+            "type": "object",
+            "description": "List of name, value pairs for the inputs used by your prompt template, or directly by your model."
+          },
+          "source": {
+            "title": "Source",
+            "type": "string",
+            "description": "What was source of the model used for this generation?e.g. website-landing-page"
+          },
+          "provider_api_keys": {
+            "title": "Provider API Keys",
+            "allOf": [{ "$ref": "#/components/schemas/ProviderApiKeys" }],
+            "description": "API keys required by each provider to make API calls. These API keys are not stored by Humanloop."
+          },
+          "num_samples": {
+            "title": "Number of samples",
+            "type": "integer",
+            "description": "How many generations to make for each set of inputs for the specified model config.",
+            "default": 1
+          },
+          "logprobs": {
+            "title": "Log probabilities of most likely n tokens",
+            "type": "integer",
+            "description": "Include the log probabilities of the top n tokens in the provider_response"
+          },
+          "stream": {
+            "title": "Whether to stream partial results",
+            "type": "boolean",
+            "description": "If true, tokens will be sent as data-only server-sent events as they become available. If num_samples > 1, samples are streamed back independently. The stream for each sample will be terminated with a non-null finish_reason.",
+            "default": false
+          },
+          "suffix": {
+            "title": "Completion suffix",
+            "type": "string",
+            "description": "The suffix that comes after a completion of inserted text. Useful for completions that act like inserts."
+          },
+          "user": {
+            "title": "End-user identifier",
+            "type": "string",
+            "description": "End-user id passed through to provider call."
+          },
+          "metadata": {
+            "title": "Metadata",
+            "type": "object",
+            "description": "Any additional metadata that you would like to log for reference."
+          },
+          "model_config": {
+            "title": "The configuration of your model",
+            "allOf": [{ "$ref": "#/components/schemas/ModelConfigRequest" }],
+            "description": "The model configuration provided will be recorded and used to create a generation."
+          }
+        }
+      },
+      "SetupAndRunSpec": {
+        "title": "SetupAndRunSpec",
+        "required": ["name", "required", "type", "title", "description"],
+        "type": "object",
+        "properties": {
+          "name": { "title": "Name", "type": "string" },
+          "required": { "title": "Required", "type": "boolean" },
+          "type": { "title": "Type", "type": "string" },
+          "title": { "title": "Title", "type": "string" },
+          "description": { "title": "Description", "type": "string" },
+          "default": { "title": "Default" }
+        }
+      },
+      "SortOrder": {
+        "title": "SortOrder",
+        "enum": ["asc", "desc"],
+        "type": "string",
+        "description": "An enumeration."
+      },
+      "SubscriptionDuration": {
+        "title": "SubscriptionDuration",
+        "enum": ["month", "year"],
+        "type": "string",
+        "description": "An enumeration."
+      },
+      "SubscriptionResponse": {
+        "title": "SubscriptionResponse",
+        "required": [
+          "id",
+          "status",
+          "created_at",
+          "product",
+          "interval",
+          "duration",
+          "usage_reports",
+          "current_period_start",
+          "current_period_end",
+          "current_usage"
+        ],
+        "type": "object",
+        "properties": {
+          "id": { "title": "Id", "type": "string" },
+          "status": { "$ref": "#/components/schemas/SubscriptionStatus" },
+          "created_at": {
+            "title": "Created At",
+            "type": "string",
+            "format": "date-time"
+          },
+          "product": { "$ref": "#/components/schemas/ProductResponse" },
+          "interval": { "$ref": "#/components/schemas/PaymentInterval" },
+          "duration": { "$ref": "#/components/schemas/SubscriptionDuration" },
+          "usage_reports": {
+            "title": "Usage Reports",
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/UsageReportResponse" }
+          },
+          "current_period_start": {
+            "title": "Current Period Start",
+            "type": "string",
+            "format": "date-time"
+          },
+          "current_period_end": {
+            "title": "Current Period End",
+            "type": "string",
+            "format": "date-time"
+          },
+          "cancel_at_period_end": {
+            "title": "Cancel At Period End",
+            "type": "boolean"
+          },
+          "current_usage": { "title": "Current Usage", "type": "integer" }
+        }
+      },
+      "SubscriptionStatus": {
+        "title": "SubscriptionStatus",
+        "enum": ["active", "inactive"],
+        "type": "string",
+        "description": "An enumeration."
+      },
+      "TeamResponse": {
+        "title": "TeamResponse",
+        "required": [
+          "name",
+          "organization_id",
+          "id",
+          "created_at",
+          "updated_at",
+          "users"
+        ],
+        "type": "object",
+        "properties": {
+          "name": { "title": "Team name", "type": "string" },
+          "description": { "title": "Team description", "type": "string" },
+          "organization_id": {
+            "title": "Organization ID",
+            "type": "string",
+            "description": "String ID of organization that this team belongs to. Starts with `org_`."
+          },
+          "id": {
+            "title": "Team ID",
+            "type": "string",
+            "description": "String ID of team. Starts with `tm_`."
+          },
+          "created_at": {
+            "title": "Created At",
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "title": "Updated At",
+            "type": "string",
+            "format": "date-time"
+          },
+          "users": {
+            "title": "Users",
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/TeamUserResponse" }
+          }
+        },
+        "description": "Team without an expanded list of users.\n\nUsed to avoid circular nesting of `Team.users` -> `User.teams`."
+      },
+      "TeamUserResponse": {
+        "title": "TeamUserResponse",
+        "required": ["id", "email_address", "verified", "role"],
+        "type": "object",
+        "properties": {
+          "id": {
+            "title": "User ID",
+            "type": "string",
+            "description": "String ID of user. Starts with `usr_`."
+          },
+          "email_address": {
+            "title": "Email address",
+            "type": "string",
+            "description": "The user's email address."
+          },
+          "full_name": {
+            "title": "Full name",
+            "type": "string",
+            "description": "The user's full name."
+          },
+          "verified": {
+            "title": "Verified",
+            "type": "boolean",
+            "description": "Whether the user has verified their email address."
+          },
+          "feature_flags": {
+            "title": "Feature Flags",
+            "type": "object",
+            "additionalProperties": { "type": "boolean" }
+          },
+          "role": { "$ref": "#/components/schemas/UserTeamRole" }
+        }
+      },
+      "ToolResultResponse": {
+        "title": "ToolResultResponse",
+        "required": ["id", "name", "signature", "result"],
+        "type": "object",
+        "properties": {
+          "id": { "title": "Id", "type": "string" },
+          "name": { "title": "Name", "type": "string" },
+          "signature": { "title": "Signature", "type": "string" },
+          "result": { "title": "Result", "type": "string" }
+        },
+        "description": "A result from a tool used to populate the prompt template"
+      },
+      "ToolSpecResponse": {
+        "title": "ToolSpecResponse",
+        "required": ["name", "description", "func_name", "signature"],
+        "type": "object",
+        "properties": {
+          "name": {
+            "title": "Name",
+            "type": "string",
+            "description": "Unique name for the tool"
+          },
+          "description": {
+            "title": "Description",
+            "type": "string",
+            "description": "Description of the tool - acts as a specification to agents for how to use the tool "
+          },
+          "setup_spec": {
+            "title": "Setup arguments spec",
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/SetupAndRunSpec" },
+            "description": "Field definitions for the setup (i.e. init) arguments that the tool needs - e.g api_key"
+          },
+          "run_spec": {
+            "title": "Run arguments spec",
+            "type": "array",
+            "items": { "type": "object" },
+            "description": "Field definitions for the run arguments the tool needs - e.g query"
+          },
+          "func_name": {
+            "title": "Name of callable",
+            "type": "string",
+            "description": "Unique name to use when running tool."
+          },
+          "signature": {
+            "title": "Signature",
+            "type": "string",
+            "description": "The function signature of the tool when being called."
+          }
+        }
+      },
+      "UpdateExperimentRequest": {
+        "title": "UpdateExperimentRequest",
+        "type": "object",
+        "properties": {
+          "name": {
+            "title": "Experiment name",
+            "type": "string",
+            "description": "Name of experiment."
+          },
+          "positive_labels": {
+            "title": "Positive labels",
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/PositiveLabel" },
+            "description": "Feedback labels to treat as positive user feedback. Used to monitor the performance of model configs in the experiment."
+          },
+          "config_ids_to_register": {
+            "title": "Model config IDs to register",
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "Model configs to add to this experiment."
+          },
+          "config_ids_to_deregister": {
+            "title": "Model config IDs to deregister",
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "Model configs in this experiment to be deactivated."
+          }
+        }
+      },
+      "UpdateMetricRequest": {
+        "title": "UpdateMetricRequest",
+        "type": "object",
+        "properties": {
+          "name": {
+            "title": "Metric name",
+            "type": "string",
+            "description": "The name of the metric."
+          },
+          "description": {
+            "title": "Metric description",
+            "type": "string",
+            "description": "A description of what the metric measures."
+          },
+          "code": {
+            "title": "Metric code",
+            "type": "string",
+            "description": "Python code used to calculate a metric value on each logged datapoint."
+          },
+          "active": {
+            "title": "Metric active flag",
+            "type": "boolean",
+            "description": "If enabled, the metric is calculated for every logged datapoint."
+          }
+        }
+      },
+      "UpdateOrgToolRequest": {
+        "title": "UpdateOrgToolRequest",
+        "type": "object",
+        "properties": {
+          "name": {
+            "title": "Tool name",
+            "type": "string",
+            "description": "Organizations name for the tool. If not provided, the spec name will be used"
+          },
+          "func_name": {
+            "title": "Function name",
+            "type": "string",
+            "description": "Name of the function as it called"
+          },
+          "description": {
+            "title": "Tool description",
+            "type": "string",
+            "description": "Organization's description for the tool. If not provided, the spec description will be used"
+          },
+          "setup_values": {
+            "title": "Tool setup values",
+            "type": "object",
+            "description": "Any setup values needed to set the tool as active - retrieve what setup values are required from GET on v3/tools"
+          },
+          "status": {
+            "title": "Tool status",
+            "allOf": [
+              { "$ref": "#/components/schemas/OrganizationToolStatus" }
+            ],
+            "description": "Whether the tool has been set up by the org."
+          }
+        }
+      },
+      "UpdateOrganizationRequest": {
+        "title": "UpdateOrganizationRequest",
+        "type": "object",
+        "properties": {
+          "name": { "title": "Organization name", "type": "string" },
+          "slug": {
+            "title": "Organization unique slug",
+            "type": "string",
+            "description": "A unique slug that will be used for the organization. Only accepts letters, numbers, and hyphens."
+          }
+        }
+      },
+      "UpdateProjectRequest": {
+        "title": "UpdateProjectRequest",
+        "type": "object",
+        "properties": {
+          "active_experiment_id": {
+            "title": "Active experiment ID",
+            "type": "string",
+            "description": "ID for an experiment to set as the project's active deployment. Starts with 'exp_'. At most one of 'active_experiment_id' and 'active_model_config_id' can be set."
+          },
+          "active_model_config_id": {
+            "title": "Active model configuration ID",
+            "type": "string",
+            "description": "ID for a model configuration to set as the project's active deployment. Starts with 'config_'. At most one of 'active_experiment_id' and 'active_model_config_id' can be set."
+          },
+          "positive_labels": {
+            "title": "List of feedback labels to consider as positive actions",
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/PositiveLabel" },
+            "description": "The full list of labels to treat as positive user feedback."
+          }
+        }
+      },
+      "UpdateUserOrganizationRole": {
+        "title": "UpdateUserOrganizationRole",
+        "required": ["role"],
+        "type": "object",
+        "properties": {
+          "role": {
+            "title": "User role",
+            "allOf": [{ "$ref": "#/components/schemas/UserOrganizationRole" }],
+            "description": "Role assigned to the user."
+          }
+        }
+      },
+      "UsageReportResponse": {
+        "title": "UsageReportResponse",
+        "required": [
+          "id",
+          "unit",
+          "units_used",
+          "usage_from",
+          "usage_to",
+          "created_at"
+        ],
+        "type": "object",
+        "properties": {
+          "id": { "title": "Id", "type": "string" },
+          "unit": { "title": "Unit", "type": "string" },
+          "units_used": { "title": "Units Used", "type": "integer" },
+          "usage_from": {
+            "title": "Usage From",
+            "type": "string",
+            "format": "date-time"
+          },
+          "usage_to": {
+            "title": "Usage To",
+            "type": "string",
+            "format": "date-time"
+          },
+          "created_at": {
+            "title": "Created At",
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "description": "Usage reports sent to payments provider over time."
+      },
+      "UserOrganizationRole": {
+        "title": "UserOrganizationRole",
+        "enum": ["admin", "member"],
+        "type": "string",
+        "description": "An enumeration."
+      },
+      "UserResponse": {
+        "title": "UserResponse",
+        "required": ["id", "email_address", "verified"],
+        "type": "object",
+        "properties": {
+          "id": {
+            "title": "User ID",
+            "type": "string",
+            "description": "String ID of user. Starts with `usr_`."
+          },
+          "email_address": {
+            "title": "Email address",
+            "type": "string",
+            "description": "The user's email address."
+          },
+          "full_name": {
+            "title": "Full name",
+            "type": "string",
+            "description": "The user's full name."
+          },
+          "verified": {
+            "title": "Verified",
+            "type": "boolean",
+            "description": "Whether the user has verified their email address."
+          },
+          "feature_flags": {
+            "title": "Feature Flags",
+            "type": "object",
+            "additionalProperties": { "type": "boolean" }
+          }
+        }
+      },
+      "UserTeamRole": {
+        "title": "UserTeamRole",
+        "enum": ["admin", "member"],
+        "type": "string",
+        "description": "An enumeration."
+      },
+      "ValidationError": {
+        "title": "ValidationError",
+        "required": ["loc", "msg", "type"],
+        "type": "object",
+        "properties": {
+          "loc": {
+            "title": "Location",
+            "type": "array",
+            "items": { "anyOf": [{ "type": "string" }, { "type": "integer" }] }
+          },
+          "msg": { "title": "Message", "type": "string" },
+          "type": { "title": "Error Type", "type": "string" }
+        }
+      }
+    },
+    "securitySchemes": {
+      "APIKeyHeader": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "X-API-KEY",
+        "description": "The Humanloop API uses API keys for authentication. Visit your \n[User Settings](https://app.humanloop.com/llama/settings) page to retrieve the\nAPI key you'll use in your requests.\n\nThis key allows full access and control over your projects, so keep this secret\nand take care to not expose it in any client-side code.\n\nTo use your API key, include it under the `X-API-KEY` header in your HTTP request.\n\n```bash\ncurl https://api.humanloop.com/v3/projects -H 'X-API-KEY: YOUR_API_KEY'\n```\n\nIf you're using the Python SDK, initialize the client with your API key before\nusing other SDK methods:\n\n```python\nhl.init(api_key=\"YOUR_API_KEY\")\n```"
+      }
+    }
+  },
+  "x-readme": { "samples-languages": ["python", "javascript", "curl"] },
+  "tags": [
+    {
+      "name": "Authentication",
+      "description": "The Humanloop API uses API keys for authentication. Visit your \n[User Settings](https://app.humanloop.com/llama/settings) page to retrieve the\nAPI key you'll use in your requests.\n\nThis key allows full access and control over your projects, so keep this secret\nand take care to not expose it in any client-side code.\n\nTo use your API key, include it under the `X-API-KEY` header in your HTTP request.\n\n```bash\ncurl https://api.humanloop.com/v3/projects -H 'X-API-KEY: YOUR_API_KEY'\n```\n\nIf you're using the Python SDK, initialize the client with your API key before\nusing other SDK methods:\n\n```python\nhl.init(api_key=\"YOUR_API_KEY\")\n```"
+    }
+  ]
+}

@@ -1,0 +1,131 @@
+{
+  "name": "konfig-cli",
+  "version": "1.0.188",
+  "description": "CLI for Generating SDKs with Konfig",
+  "author": "dphuang2 @dphuang2",
+  "bin": {
+    "konfig": "./bin/run"
+  },
+  "homepage": "https://github.com/konfig-dev/konfig-cli",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "repository": "konfig-dev/konfig-cli",
+  "files": [
+    "/bin",
+    "/dist",
+    "/npm-shrinkwrap.json",
+    "/oclif.manifest.json"
+  ],
+  "dependencies": {
+    "@oclif/core": "^1.19.1",
+    "@oclif/plugin-help": "^5",
+    "@oclif/plugin-plugins": "^2.1.5",
+    "@stoplight/prism-cli": "^4.10.5",
+    "@stoplight/spectral-cli": "^6.6.0",
+    "@useoptic/optic": "^0.35.10",
+    "axios": "0.27.2",
+    "boxen": "5.1.2",
+    "camelcase": "5.3.1",
+    "chokidar": "^3.5.3",
+    "cookie": "^0.5.0",
+    "deep-equal": "^2.1.0",
+    "execa": "^5.1.1",
+    "find-up": "^5.0.0",
+    "find-versions": "4.0.0",
+    "find-yarn-workspace-root": "^2.0.0",
+    "fs-extra": "^10.1.0",
+    "globby": "11.1.0",
+    "handlebars": "^4.7.7",
+    "ignore": "^5.2.0",
+    "inquirer": "^8.2.5",
+    "js-yaml": "^4.1.0",
+    "json-stable-stringify": "^1.0.2",
+    "jsonpath-plus": "^7.2.0",
+    "konfig-lib": "workspace:^",
+    "konfig-openapi-spec": "workspace:^",
+    "konfig-postman-to-openapi": "workspace:^",
+    "konfig-typescript-sdk": "workspace:^",
+    "lodash.merge": "^4.6.2",
+    "prettier": "^2.8.8",
+    "semver": "^7.3.8",
+    "shelljs": "^0.8.5",
+    "simple-git": "^3.17.0",
+    "string-replace-async": "2.0.0",
+    "tar": "^6.1.12",
+    "wait-on": "^7.0.1",
+    "yaml": "^2.1.3",
+    "zod": "^3.20.2"
+  },
+  "devDependencies": {
+    "@oclif/test": "^2.2.6",
+    "@types/chai": "^4",
+    "@types/cookie": "^0.5.1",
+    "@types/deep-equal": "^1.0.1",
+    "@types/fs-extra": "^9.0.13",
+    "@types/inquirer": "^8.2.5",
+    "@types/lodash.merge": "^4.6.7",
+    "@types/mocha": "^9.0.0",
+    "@types/node": "^16.18.2",
+    "@types/semver": "^7.3.13",
+    "@types/shelljs": "^0.8.11",
+    "@types/tar": "^6.1.3",
+    "chai": "^4.3.7",
+    "copyfiles": "^2.4.1",
+    "eslint": "^7.32.0",
+    "eslint-config-oclif": "^4",
+    "eslint-config-oclif-typescript": "^1.0.3",
+    "jest": "^29.4.1",
+    "konfig-release-it": "workspace:^",
+    "oclif": "^3",
+    "openapi-types": "^12.1.0",
+    "shx": "^0.3.3",
+    "ts-jest": "^29.0.5",
+    "ts-node": "^10.9.1",
+    "tslib": "^2.3.1",
+    "typescript": "^4.8.4"
+  },
+  "oclif": {
+    "bin": "konfig",
+    "dirname": "konfig",
+    "commands": "./dist/commands",
+    "plugins": [
+      "@oclif/plugin-help"
+    ],
+    "helpClass": "./dist/help",
+    "topicSeparator": " ",
+    "topics": {}
+  },
+  "scripts": {
+    "build": "shx rm -rf dist && tsc -b",
+    "lint": "eslint . --ext .ts --config .eslintrc",
+    "postpack": "shx rm -f oclif.manifest.json",
+    "posttest": "yarn lint",
+    "prepack": "yarn build && oclif manifest && oclif readme",
+    "test": "jest",
+    "ss": "jest --updateSnapshot",
+    "release": "konfig-release-it",
+    "release-ci": "konfig-release-it --ci",
+    "readme": "oclif readme"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
+  "engines": {
+    "node": ">=12.0.0"
+  },
+  "bugs": "https://github.com/konfig-dev/konfig-cli/issues",
+  "keywords": [
+    "oclif"
+  ],
+  "release-it": {
+    "hooks": {
+      "before:init": [
+        "yarn build"
+      ],
+      "after:bump": [
+        "yarn readme"
+      ]
+    }
+  },
+  "types": "dist/index.d.ts"
+}

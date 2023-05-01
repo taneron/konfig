@@ -1,0 +1,39 @@
+{
+  "name": "konfig-typescript-sdk",
+  "version": "1.0.18",
+  "description": "Client for Konfig REST API",
+  "author": "Konfig",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/konfig-dev/konfig-typescript-sdk"
+  },
+  "keywords": [
+    "axios",
+    "typescript",
+    "konfig",
+    "konfig-typescript-sdk"
+  ],
+  "license": "Unlicense",
+  "main": "./dist/index.js",
+  "typings": "./dist/index.d.ts",
+  "scripts": {
+    "dev": "tsc --preserveWatchOutput --watch --pretty",
+    "build": "npm run clean && tsc",
+    "clean": "rm -rf dist/",
+    "prepack": "npm run build",
+    "release-ci": "konfig-release-it --ci",
+    "test": "jest"
+  },
+  "dependencies": {
+    "axios": "^0.26.1"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.2.4",
+    "@types/node": "^12.11.5",
+    "jest": "^29.3.1",
+    "konfig-release-it": "workspace:^",
+    "ts-jest": "^29.0.3",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.0"
+  }
+}

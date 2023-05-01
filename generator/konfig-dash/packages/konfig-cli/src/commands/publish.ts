@@ -1,0 +1,388 @@
+import { CliUx, Command, Flags } from '@oclif/core'
+import { parseKonfigYaml } from '../util/parse-konfig-yaml'
+import { parseFilterFlag } from '../util/parseFilterFlag'
+import {
+  CSharpConfigType,
+  GeneratorCommonGitType,
+  KonfigYamlGeneratorNames,
+} from 'konfig-lib'
+import * as shell from 'shelljs'
+import * as path from 'path'
+import * as fs from 'fs-extra'
+import { isGitDirectoryClean } from '../util/is-git-directory-clean'
+import { isGitRemoteInSync } from '../util/is-git-remote-in-sync'
+import { executeTestCommand } from '../util/execute-test-command'
+import axios, { AxiosError } from 'axios'
+
+function generateGitTagCommands({
+  version,
+  generator,
+  skipTag,
+}: {
+  version: string
+  generator: KonfigYamlGeneratorNames
+  skipTag?: boolean
+}): [string, string] | [] {
+  if (skipTag) return []
+  // PHP does not allow for suffix with any random string in versioning
+  const tag = generator === 'php' ? `v${version}` : `v${version}-${generator}`
+  return [`git tag ${tag}`, `git push origin ${tag}`]
+}
+
+const publishScripts = {
+  swift: ({
+    version,
+    projectName,
+    skipTag,
+  }: {
+    version: string
+    projectName: string
+    skipTag: boolean
+  }) => {
+    const gitTagCommands = generateGitTagCommands({
+      version,
+      generator: 'swift',
+      skipTag,
+    })
+    // git tag has to be present for pod trunk to work
+    return [...gitTagCommands, `pod trunk push ${projectName}.podspec`]
+  },
+  go: ({ version }: { version: string }) => {
+    return generateGitTagCommands({ version, generator: 'go' })
+  },
+  npm: ({ version }: { version: string }) => {
+    const gitTagCommands = generateGitTagCommands({
+      version,
+      generator: 'typescript',
+    })
+    return ['npm publish', ...gitTagCommands]
+  },
+  mavenCentral: ({ version }: { version: string }) => {
+    const gitTagCommands = generateGitTagCommands({
+      version,
+      generator: 'java',
+    })
+    return ['mvn clean deploy', ...gitTagCommands]
+  },
+  php: async ({
+    version,
+    gitConfig,
+    skipTag,
+    packageName,
+    outputDirectory,
+  }: {
+    version: string
+    gitConfig: GeneratorCommonGitType['git']
+    skipTag?: boolean
+    packageName: string
+    outputDirectory: string
+  }) => {
+    const vendorDirectory = path.join(process.cwd(), outputDirectory, 'vendor')
+    const vendorDirectoryExists = fs.existsSync(vendorDirectory)
+    if (!(await isGitRemoteInSync({ cwd: outputDirectory })))
+      CliUx.ux.error('Git remote is out of sync for PHP SDK')
+    return [
+      ...(vendorDirectoryExists ? [] : ['composer install']),
+      ...generateGitTagCommands({
+        version,
+        generator: 'php',
+        skipTag,
+      }),
+      async () => {
+        // POST https://packagist.org/api/create-package?username=[username]&apiToken=[apiToken] -d '{"repository":{"url":"[url]"}}'
+        const axiosConfig = {
+          params: {
+            username: 'konfig',
+            apiToken: process.env.PACKAGIST_API_TOKEN,
+          },
+        }
+        const gitUrl = `https://${gitConfig.host}/${gitConfig.userId}/${gitConfig.repoName}`
+        try {
+          const response = await axios.post(
+            'https://packagist.org/api/create-package',
+            {
+              repository: {
+                url: gitUrl,
+              },
+            },
+            axiosConfig
+          )
+          CliUx.ux.debug(JSON.stringify(response.data, undefined, 2))
+          CliUx.ux.info('Successfully created PHP package')
+        } catch (error) {
+          if (!(error instanceof AxiosError))
+            CliUx.ux.error('Could not create PHP package')
+          const message = error.response?.data.message.repository as string
+          if (message.search('already exists') === -1) {
+            if (message.search('Repository not found') !== -1)
+              CliUx.ux.error(
+                `Git repo (${gitUrl}) does not exist, double check your konfig.yaml`
+              )
+            CliUx.ux.error('Could not create PHP package')
+          }
+
+          try {
+            // try update instead
+            const response = await axios.post(
+              'https://packagist.org/api/update-package',
+              {
+                repository: {
+                  url: `https://packagist.org/packages/konfig/${packageName}`,
+                },
+              },
+              axiosConfig
+            )
+            if (response.data.status === 'success') {
+              CliUx.ux.info('Successfuly updated PHP package')
+            } else {
+              CliUx.ux.error('Could not create PHP package')
+            }
+          } catch (error) {
+            CliUx.ux.error('Could not update PHP package')
+          }
+        }
+      },
+    ]
+  },
+  pypi: ({
+    test,
+    token,
+    version,
+  }: {
+    test?: boolean
+    token?: string
+    version: string
+  }) => {
+    const repository = test ? '-r testpypi ' : ''
+    const credentials = token !== undefined ? `-u __token__ -p ${token} ` : ''
+    const gitTagCommands = generateGitTagCommands({
+      version,
+      generator: 'python',
+    })
+    return [
+      'rm -rf dist/',
+      'python3 -m build',
+      'twine check dist/*',
+      `twine upload ${repository}${credentials}dist/*`,
+      ...gitTagCommands,
+    ]
+  },
+  nuget: ({
+    config,
+    version,
+  }: {
+    config: CSharpConfigType
+    version: string
+  }) => {
+    const gitTagCommands = generateGitTagCommands({
+      version,
+      generator: 'csharp',
+    })
+    return [
+      'dotnet pack',
+      `dotnet nuget push src/${config.packageName}/bin/Debug/${config.packageName}.${config.version}.nupkg --api-key $NUGET_API_KEY --source https://api.nuget.org/v3/index.json`,
+      ...gitTagCommands,
+    ]
+  },
+} as const
+
+export default class Publish extends Command {
+  static description = 'Publish SDKs'
+
+  static examples = ['<%= config.bin %> <%= command.id %>']
+
+  static flags = {
+    debug: Flags.boolean({ name: 'debug', char: 'd' }),
+    generator: Flags.string({ name: 'generator', char: 'g', required: true }),
+    test: Flags.boolean({ name: 'test', char: 't' }),
+    skipTests: Flags.boolean({
+      name: 'skipTests',
+      description: 'Do not run tests before publishing',
+    }),
+    skipTag: Flags.boolean({
+      name: 'skip tag',
+      char: 's',
+      description: 'Skip pushing git tag',
+    }),
+  }
+
+  public async run(): Promise<void> {
+    const { flags } = await this.parse(Publish)
+
+    if (!isGitDirectoryClean())
+      CliUx.ux.error(
+        'Git directory must be clean. Make sure there are no unstaged changes.'
+      )
+
+    if (!(await isGitRemoteInSync()))
+      CliUx.ux.error(
+        'Git remote is out of sync. Make sure all changes are pushed or pulled before publishing.'
+      )
+
+    // Run all tests before publishing to ensure everything works
+    if (!flags.skipTests)
+      await executeTestCommand({ filterInput: flags.generator, sequence: true })
+
+    const filter = parseFilterFlag(flags.generator)
+    const { generators } = parseKonfigYaml({
+      configDir: process.cwd(),
+    })
+    for (const [generatorName, generatorConfig] of Object.entries(generators)) {
+      if ('disabled' in generatorConfig && generatorConfig.disabled) continue
+      if (filter !== null && !filter.includes(generatorName)) continue
+      if (generatorConfig.outputDirectory === undefined)
+        throw Error(
+          `Generator "${generatorName}" must provide "outputDirectory" to publish`
+        )
+
+      const outputDirectory = generatorConfig.outputDirectory
+
+      const executePublishScript = async ({
+        script,
+        cwd,
+      }: {
+        script: (string | (() => Promise<unknown>))[]
+        cwd?: string
+      }) => {
+        for (const command of script) {
+          if (flags.debug) {
+            if (typeof command === 'string') CliUx.ux.info(`DEBUG: ${command}`)
+            else await command()
+          } else {
+            if (typeof command === 'string') {
+              const shellResult = shell.exec(command, {
+                cwd: cwd !== undefined ? cwd : outputDirectory,
+              })
+              if (shellResult.code !== 0) {
+                CliUx.ux.error(
+                  `Message: "${shellResult.stderr.trim()}"\nCommand "${command}" failed with exit code ${
+                    shellResult.code
+                  }"`
+                )
+              }
+            } else {
+              await command()
+            }
+          }
+        }
+      }
+
+      if (generatorName === 'go' && 'packageName' in generatorConfig) {
+        await executePublishScript({
+          script: publishScripts['go']({ version: generatorConfig.version }),
+        })
+      }
+
+      // NPM config detected
+      if ('npmName' in generatorConfig && 'version' in generatorConfig) {
+        await executePublishScript({
+          script: publishScripts['npm']({ version: generatorConfig.version }),
+        })
+      }
+
+      // Maven Central config detected
+      if (
+        'groupId' in generatorConfig &&
+        (generatorName === 'java' || generatorName === 'kotlin')
+      ) {
+        await executePublishScript({
+          script: publishScripts['mavenCentral']({
+            version: generatorConfig.version,
+          }),
+        })
+      }
+
+      // Swift config detected
+      if ('projectName' in generatorConfig && generatorName === 'swift') {
+        await executePublishScript({
+          script: publishScripts['swift']({
+            version: generatorConfig.version,
+            projectName: generatorConfig.projectName,
+            skipTag: flags.skipTag,
+          }),
+        })
+      }
+
+      if ('packageName' in generatorConfig && generatorName === 'php') {
+        if (!process.env.PACKAGIST_API_TOKEN)
+          CliUx.ux.error(
+            'Set PACKAGIST_API_TOKEN environment variable to publish to Packagist'
+          )
+        if (generatorConfig.packageName === undefined)
+          throw Error('packageName is required for PHP generator')
+        await executePublishScript({
+          script: await publishScripts['php']({
+            gitConfig: generatorConfig.git,
+            version: generatorConfig.version,
+            skipTag: flags.skipTag,
+            packageName: generatorConfig.packageName,
+            outputDirectory,
+          }),
+        })
+      }
+
+      // PyPI config detected
+      if (
+        'generator' in generatorConfig &&
+        (generatorConfig.generator === 'python' ||
+          generatorConfig.generator === 'python-prior')
+      ) {
+        const testPyPI = flags.test || generatorConfig.testPyPI
+        if (testPyPI) {
+          if (!process.env.TEST_TWINE_USERNAME)
+            CliUx.ux.error(
+              'Set TEST_TWINE_USERNAME environment variable to publish to PyPI (see https://twine.readthedocs.io/en/stable/index.html#environment-variables)'
+            )
+          if (!process.env.TEST_TWINE_PASSWORD)
+            CliUx.ux.error(
+              'Set TEST_TWINE_PASSWORD environment variable to publish to PyPI (see https://twine.readthedocs.io/en/stable/index.html#environment-variables)'
+            )
+          // Override TWINE_USERNAME / PASWORD
+          process.env.TWINE_USERNAME = process.env.TEST_TWINE_USERNAME
+          process.env.TWINE_PASSWORD = process.env.TEST_TWINE_PASSWORD
+        } else {
+          if (!process.env.TWINE_USERNAME)
+            CliUx.ux.error(
+              'Set TWINE_USERNAME environment variable to publish to PyPI (see https://twine.readthedocs.io/en/stable/index.html#environment-variables)'
+            )
+          if (!process.env.TWINE_PASSWORD)
+            CliUx.ux.error(
+              'Set TWINE_PASSWORD environment variable to publish to PyPI (see https://twine.readthedocs.io/en/stable/index.html#environment-variables)'
+            )
+        }
+        const token =
+          generatorConfig.pypiApiTokenEnvironmentVariable === undefined
+            ? undefined
+            : process.env[generatorConfig.pypiApiTokenEnvironmentVariable]
+        if (
+          generatorConfig.pypiApiTokenEnvironmentVariable !== undefined &&
+          token === undefined
+        )
+          throw Error(
+            `Set ${generatorConfig.pypiApiTokenEnvironmentVariable} environment variable to publish to PyPI`
+          )
+        await executePublishScript({
+          script: publishScripts['pypi']({
+            test: !!testPyPI,
+            token,
+            version: generatorConfig.version,
+          }),
+        })
+      }
+
+      // NuGet config detected
+      if ('logoPath' in generatorConfig && generatorName === 'csharp') {
+        if (!process.env.NUGET_API_KEY)
+          CliUx.ux.error(
+            'Set NUGET_API_KEY environment variable to publish to NuGet (see https://www.nuget.org/account/apikeys)'
+          )
+        await executePublishScript({
+          script: publishScripts['nuget']({
+            config: generatorConfig,
+            version: generatorConfig.version,
+          }),
+        })
+      }
+    }
+  }
+}

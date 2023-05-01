@@ -1,0 +1,662 @@
+import type { APIGatewayEvent, Context } from 'aws-lambda'
+import axios from 'axios'
+import {
+  GenerateRequestBody,
+  javaGenerateApiRequestBody,
+  KonfigYamlGeneratorNames,
+  KONFIG_API_TEST_ENVIRONMENT_NAME,
+} from 'konfig-lib'
+import type { JavaGenerateApiRequestBodyType } from 'konfig-lib'
+import * as fs from 'fs-extra'
+import { sep } from 'path'
+import { tmpdir } from 'os'
+
+import { useRequireAuth } from '@redwoodjs/graphql-server'
+
+import { currentUser, getCurrentUser, isAuthenticated } from 'src/lib/auth'
+import { db } from 'src/lib/db'
+import { logger } from 'src/lib/logger'
+import { parseSpec, transformSpec } from 'konfig-lib'
+import { urlForGenerateApi } from 'src/lib/urlForGenerateApi'
+import { tarDir } from 'src/lib/tar'
+import { getSignedGetObjectUrl, uploadFile } from 'src/lib/s3'
+import {
+  GenerateResponseBody,
+  GenerateResponseBodySchema,
+} from 'konfig-openapi-spec'
+const DEBUG_TMP_FOLDER = '/tmp/konfig/'
+
+/**
+ * The handler function is your code that processes http request events.
+ * You can use return and throw to send a response or error, respectively.
+ *
+ * Important: When deployed, a custom serverless function is an open API endpoint and
+ * is your responsibility to secure appropriately.
+ *
+ * @see {@link https://redwoodjs.com/docs/serverless-functions#security-considerations|Serverless Function Considerations}
+ * in the RedwoodJS documentation for more information.
+ *
+ * @typedef { import('aws-lambda').APIGatewayEvent } APIGatewayEvent
+ * @typedef { import('aws-lambda').Context } Context
+ * @param { APIGatewayEvent } event - an object which contains information from the invoker.
+ * @param { Context } context - contains information about the invocation,
+ * function, and execution environment.
+ */
+export const myHandler = async (event: APIGatewayEvent, context: Context) => {
+  const authenticateResult = authenticate()
+  if (authenticateResult.statusCode !== undefined) return authenticateResult
+
+  if (event.body === null) {
+    logger.error('Invalid request to /generate')
+    return {
+      statusCode: 400,
+    }
+  }
+
+  const parsed = GenerateRequestBody.safeParse(JSON.parse(event.body))
+  if (parsed.success === false) {
+    logger.error(parsed.error)
+    logger.error('Invalid request to /generate')
+    return {
+      statusCode: 400,
+    }
+  }
+
+  const body = parsed.data
+
+  // if (process.env.NODE_ENV === 'development') {
+  //   fs.ensureDirSync(DEBUG_TMP_FOLDER)
+  //   fs.writeFileSync(`${DEBUG_TMP_FOLDER}transformed-spec.yaml`, spec)
+  // }
+  if (body.outputSpec) {
+    const outputSpecs = {} as Record<string, string>
+    for (const generator of Object.keys(body.generators)) {
+      const generatorConfig =
+        body.generators[generator as KonfigYamlGeneratorNames]
+      if (generatorConfig === undefined)
+        throw Error(`missing generator config for "${generator}"`)
+      outputSpecs[generator] = await transformSpec({
+        specString: body.spec,
+        generator,
+        paginationConfig:
+          'pagination' in generatorConfig
+            ? generatorConfig.pagination
+            : undefined,
+        ...body,
+      })
+    }
+    return {
+      statusCode: 200,
+      body: outputSpecs,
+    }
+  }
+
+  logger.debug(urlForGenerateApi())
+  const sdkS3SignedGetUrls: Promise<GenerateResponseBody['urls'][number]>[] = []
+
+  const createQueueEntry = async (
+    requestBody: JavaGenerateApiRequestBodyType
+  ): Promise<GenerateResponseBody['urls'][number]> => {
+    return (
+      await axios.post<GenerateResponseBody['urls'][number]>(
+        urlForGenerateApi(),
+        JSON.stringify(requestBody),
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            accept: 'application/json',
+          },
+          maxBodyLength: Infinity, // Handle "Request body larger than maxBodyLength limit" error
+        }
+      )
+    ).data
+  }
+
+  async function transformSpecForGenerator({
+    generator,
+  }: {
+    generator: KonfigYamlGeneratorNames
+  }) {
+    return await transformSpec({
+      specString: body.spec,
+      generator,
+      ...body,
+    })
+  }
+
+  logger.debug("Creating requests for Konfig's Generator API")
+
+  const queue = (requestBody: JavaGenerateApiRequestBodyType) =>
+    sdkS3SignedGetUrls.push(
+      createQueueEntry(javaGenerateApiRequestBody.parse(requestBody))
+    )
+
+  if (body.additionalGenerators) {
+    for (const [name, generatorConfig] of Object.entries(
+      body.additionalGenerators
+    )) {
+      if (generatorConfig.generator === 'python') {
+        throw Error('Python v2 generator not implemented')
+        // const tmpDir = fs.mkdtempSync(`${tmpdir()}${sep}`)
+        // logger.debug(`tmpDir for python v2 generator: ${tmpDir}`)
+        // const spec = await transformSpecForGenerator({
+        //   generator: generatorConfig.generator,
+        // })
+        // const input = (await parseSpec(spec)).spec
+        // await generate({
+        //   input,
+        //   generator: {
+        //     python: generatorConfig,
+        //   },
+        //   output: `${tmpDir}/sdk/${name}`,
+        // })
+        // const archive = await tarDir(
+        //   `${tmpDir}/sdk/`,
+        //   `${tmpDir}/archive.tar.gz`
+        // )
+        // const key = await uploadFile(archive)
+        // sdkS3SignedGetUrls.push(getSignedGetObjectUrl(key))
+      } else {
+        throw Error(
+          `${generatorConfig.generator} not implemented under additional generators`
+        )
+      }
+    }
+  }
+
+  if (body.generators.objc) {
+    const {
+      files,
+      version,
+      podName,
+      classPrefix,
+      authorEmail,
+      authorName,
+      readmeSnippet,
+      readmeDescriptionSnippet,
+      git,
+      defaultTimeout,
+      apiDocumentationAuthenticationPartial,
+    } = body.generators.objc
+    const requestBody: JavaGenerateApiRequestBodyType = {
+      spec: {
+        src: await transformSpecForGenerator({ generator: 'objc' }),
+      },
+      config: {
+        additionalProperties: {
+          omitInfoDescription: body.omitInfoDescription,
+          podVersion: version,
+          podName,
+          classPrefix,
+          authorEmail,
+          authorName,
+          readmeSnippet,
+          readmeDescriptionSnippet,
+          apiDocumentationAuthenticationPartial,
+          defaultTimeout,
+        },
+        generatorName: 'objc',
+        gitHost: git?.host,
+        gitUserId: git?.userId,
+        gitRepoId: git?.repoId,
+        removeOperationIdPrefix: true,
+        files,
+      },
+    }
+    queue(requestBody)
+  }
+
+  if (body.generators.go) {
+    const generatorConfig = body.generators.go
+    const requestBody: JavaGenerateApiRequestBodyType = {
+      spec: {
+        src: await transformSpecForGenerator({ generator: 'go' }),
+      },
+      config: {
+        additionalProperties: {
+          omitInfoDescription: body.omitInfoDescription,
+          packageVersion: generatorConfig.version,
+          readmeSnippet: generatorConfig.readmeSnippet,
+          readmeDescriptionSnippet: generatorConfig.readmeDescriptionSnippet,
+          apiDocumentationAuthenticationPartial:
+            generatorConfig.apiDocumentationAuthenticationPartial,
+          defaultTimeout: generatorConfig.defaultTimeout,
+        },
+        packageName: generatorConfig.packageName,
+        generatorName: 'go',
+        gitHost: generatorConfig.git?.host,
+        gitUserId: generatorConfig.git?.userId,
+        gitRepoId: generatorConfig.git?.repoId,
+        removeOperationIdPrefix: true,
+        files: generatorConfig.files,
+      },
+    }
+    queue(requestBody)
+  }
+
+  if (body.generators.kotlin) {
+    const generatorConfig = body.generators.kotlin
+    const requestBody: JavaGenerateApiRequestBodyType = {
+      spec: {
+        src: await transformSpecForGenerator({ generator: 'kotlin' }),
+      },
+      config: {
+        additionalProperties: {
+          omitInfoDescription: body.omitInfoDescription,
+          groupId: generatorConfig.groupId,
+          artifactId: generatorConfig.artifactId,
+          readmeSnippet: generatorConfig.readmeSnippet,
+          readmeDescriptionSnippet: generatorConfig.readmeDescriptionSnippet,
+          apiDocumentationAuthenticationPartial:
+            generatorConfig.apiDocumentationAuthenticationPartial,
+          defaultTimeout: generatorConfig.defaultTimeout,
+        },
+        packageName: `${generatorConfig.groupId}.client`,
+        artifactVersion: generatorConfig.version,
+        generatorName: 'kotlin',
+        gitHost: generatorConfig.git?.host,
+        gitUserId: generatorConfig.git?.userId,
+        gitRepoId: generatorConfig.git?.repoId,
+        removeOperationIdPrefix: true,
+        files: generatorConfig.files,
+      },
+    }
+    queue(requestBody)
+  }
+
+  if (body.generators.php) {
+    const generatorConfig = body.generators.php
+    const requestBody: JavaGenerateApiRequestBodyType = {
+      spec: {
+        src: await transformSpecForGenerator({ generator: 'php' }),
+      },
+      config: {
+        additionalProperties: {
+          omitInfoDescription: body.omitInfoDescription,
+          invokerPackage: generatorConfig.invokerPackage,
+          readmeSnippet: generatorConfig.readmeSnippet,
+          readmeDescriptionSnippet: generatorConfig.readmeDescriptionSnippet,
+          packagistUsername: generatorConfig.packagistUsername,
+          apiDocumentationAuthenticationPartial:
+            generatorConfig.apiDocumentationAuthenticationPartial,
+          defaultTimeout: generatorConfig.defaultTimeout,
+          gitRepoName: generatorConfig.git.repoName,
+        },
+        packageName: generatorConfig.packageName,
+        artifactVersion: generatorConfig.version,
+        generatorName: 'php',
+        gitHost: generatorConfig.git?.host,
+        gitUserId: generatorConfig.git?.userId,
+        gitRepoId: generatorConfig.git?.repoId,
+        removeOperationIdPrefix: true,
+        files: generatorConfig.files,
+      },
+    }
+    queue(requestBody)
+  }
+
+  if (body.generators.android) {
+    const generatorConfig = body.generators.android
+    const packageName = generatorConfig.packageName
+      ? `${generatorConfig.groupId}.${generatorConfig.packageName}.client`
+      : `${generatorConfig.groupId}.client`
+    const requestBody: JavaGenerateApiRequestBodyType = {
+      spec: {
+        src: await transformSpecForGenerator({ generator: 'android' }),
+      },
+      config: {
+        additionalProperties: {
+          omitInfoDescription: body.omitInfoDescription,
+          artifactId: generatorConfig.artifactId,
+          groupId: generatorConfig.groupId,
+          invokerPackage: packageName,
+          modelPackage: `${packageName}.model`,
+          apiPackage: `${packageName}.api`,
+          artifactUrl: `https://${generatorConfig.git.host}/${generatorConfig.git.userId}/${generatorConfig.git.repoId}`,
+          readmeSnippet: generatorConfig.readmeSnippet,
+          readmeDescriptionSnippet: generatorConfig.readmeDescriptionSnippet,
+          disallowAdditionalPropertiesIfNotPresent: false,
+          apiDocumentationAuthenticationPartial:
+            generatorConfig.apiDocumentationAuthenticationPartial,
+          defaultTimeout: generatorConfig.defaultTimeout,
+        },
+        artifactVersion: generatorConfig.version,
+        generatorName: 'java',
+        removeOperationIdPrefix: true,
+        gitHost: generatorConfig.git.host,
+        gitUserId: generatorConfig.git.userId,
+        gitRepoId: generatorConfig.git.repoId,
+        files: generatorConfig.files,
+      },
+    }
+    queue(requestBody)
+  }
+
+  if (body.generators.java) {
+    const generatorConfig = body.generators.java
+    const packageName = generatorConfig.packageName
+      ? `${generatorConfig.groupId}.${generatorConfig.packageName}.client`
+      : `${generatorConfig.groupId}.client`
+    const requestBody: JavaGenerateApiRequestBodyType = {
+      spec: {
+        src: await transformSpecForGenerator({ generator: 'java' }),
+      },
+      config: {
+        additionalProperties: {
+          omitInfoDescription: body.omitInfoDescription,
+          artifactId: generatorConfig.artifactId,
+          groupId: generatorConfig.groupId,
+          invokerPackage: packageName,
+          apiDocumentationAuthenticationPartial:
+            generatorConfig.apiDocumentationAuthenticationPartial,
+          removeKonfigBranding: generatorConfig.removeKonfigBranding,
+          modelPackage: `${packageName}.model`,
+          apiPackage: `${packageName}.api`,
+          toStringReturnsJson: generatorConfig.toStringReturnsJson,
+          artifactUrl: generatorConfig.git
+            ? `https://${generatorConfig.git.host}/${generatorConfig.git.userId}/${generatorConfig.git.repoId}`
+            : 'https://github.com/USER_ID/REPO_ID',
+          readmeSnippet: generatorConfig.readmeSnippet,
+          readmeDescriptionSnippet: generatorConfig.readmeDescriptionSnippet,
+          disallowAdditionalPropertiesIfNotPresent: false,
+          defaultTimeout: generatorConfig.defaultTimeout,
+          useSingleRequestParameter: true,
+        },
+        artifactVersion: generatorConfig.version,
+        generatorName: 'java',
+        removeOperationIdPrefix: true,
+        gitHost: generatorConfig.git?.host,
+        gitUserId: generatorConfig.git?.userId,
+        gitRepoId: generatorConfig.git?.repoId,
+        files: generatorConfig.files,
+      },
+    }
+    queue(requestBody)
+  }
+
+  if (body.generators.swift) {
+    const generatorConfig = body.generators.swift
+    const requestBody: JavaGenerateApiRequestBodyType = {
+      spec: {
+        src: await transformSpecForGenerator({ generator: 'swift' }),
+      },
+
+      config: {
+        additionalProperties: {
+          omitInfoDescription: body.omitInfoDescription,
+          podVersion: generatorConfig.version,
+          podAuthors: generatorConfig.podAuthors,
+          projectName: generatorConfig.projectName,
+          swiftPackagePath: generatorConfig.projectName,
+          readmeSnippet: generatorConfig.readmeSnippet,
+          readmeDescriptionSnippet: generatorConfig.readmeDescriptionSnippet,
+          gitRepoName: generatorConfig.git.repoName,
+          outputDirectory: generatorConfig.outputDirectory,
+          apiDocumentationAuthenticationPartial:
+            generatorConfig.apiDocumentationAuthenticationPartial,
+          defaultTimeout: generatorConfig.defaultTimeout,
+        },
+        generatorName: 'swift5',
+        gitHost: generatorConfig.git?.host,
+        gitUserId: generatorConfig.git?.userId,
+        gitRepoId: generatorConfig.git?.repoId,
+        removeOperationIdPrefix: true,
+        files: generatorConfig.files,
+      },
+    }
+    queue(requestBody)
+  }
+
+  if (body.generators.csharp) {
+    const generatorConfig = body.generators.csharp
+    const requestBody: JavaGenerateApiRequestBodyType = {
+      spec: {
+        src: await transformSpecForGenerator({ generator: 'csharp' }),
+      },
+
+      config: {
+        additionalProperties: {
+          omitInfoDescription: body.omitInfoDescription,
+          packageVersion: generatorConfig.version,
+          readmeSnippet: generatorConfig.readmeSnippet,
+          readmeDescriptionSnippet: generatorConfig.readmeDescriptionSnippet,
+          apiDocumentationAuthenticationPartial:
+            generatorConfig.apiDocumentationAuthenticationPartial,
+          defaultTimeout: generatorConfig.defaultTimeout,
+          clientState: generatorConfig.clientState,
+        },
+        generatorName: 'csharp-netcore',
+        packageName: generatorConfig.packageName,
+        removeOperationIdPrefix: true,
+        gitHost: generatorConfig.git?.host,
+        gitUserId: generatorConfig.git?.userId,
+        gitRepoId: generatorConfig.git?.repoId,
+        files: generatorConfig.files,
+      },
+    }
+    queue(requestBody)
+  }
+
+  if (body.generators.python) {
+    const generatorConfig = body.generators.python
+    const src = await transformSpec({
+      specString: body.spec,
+      generator: 'python',
+      topLevelOperations: generatorConfig.topLevelOperations,
+      ...body,
+    })
+    const requestBody: JavaGenerateApiRequestBodyType = {
+      spec: {
+        src,
+      },
+
+      config: {
+        additionalProperties: {
+          omitInfoDescription: body.omitInfoDescription,
+          projectName: generatorConfig.projectName,
+          disallowAdditionalPropertiesIfNotPresent: false,
+          packageVersion: generatorConfig.version,
+          readmeSnippet: generatorConfig.readmeSnippet,
+          readmeDescriptionSnippet: generatorConfig.readmeDescriptionSnippet,
+          removeKonfigBranding: generatorConfig.removeKonfigBranding,
+          objectPropertyNamingConvention:
+            generatorConfig.objectPropertyNamingConvention,
+          clientName: generatorConfig.clientName,
+          clientState: generatorConfig.clientState,
+          apiKeyAlias: generatorConfig.apiKeyAlias,
+          packageUrl: generatorConfig.packageUrl,
+          apiDocumentationAuthenticationPartial:
+            generatorConfig.apiDocumentationAuthenticationPartial,
+          setSkipSerializationToTrueByDefault:
+            generatorConfig.setSkipSerializationToTrueByDefault,
+          defaultTimeout: generatorConfig.defaultTimeout,
+          // Only include the top-level operations if it is an array (i.e. ordered)
+          ...(Array.isArray(generatorConfig.topLevelOperations)
+            ? { topLevelOperations: generatorConfig.topLevelOperations }
+            : {}),
+        },
+        gitHost: generatorConfig.git?.host,
+        gitUserId: generatorConfig.git?.userId,
+        gitRepoId: generatorConfig.git?.repoId,
+        generatorName: generatorConfig.generator,
+        packageName: generatorConfig.packageName,
+        removeOperationIdPrefix: true,
+        files: generatorConfig.files,
+      },
+    }
+    queue(requestBody)
+  }
+
+  if (body.generators.typescript) {
+    if (!('generatorVersion' in body.generators.typescript)) {
+      const generatorConfig = body.generators.typescript
+      const src = (await parseSpec(body.spec)).spec.openapi.startsWith('3.1')
+        ? await transformSpec({
+            specString: body.spec,
+            ...body,
+            convertArrayDataTypesToAny: true,
+            generator: 'typescript',
+            paginationConfig: generatorConfig.pagination,
+            topLevelOperations: generatorConfig.topLevelOperations,
+            removeRequiredProperties: generatorConfig.removeRequiredProperties,
+          })
+        : await transformSpec({
+            specString: body.spec,
+            ...body,
+            generator: 'typescript',
+            paginationConfig: generatorConfig.pagination,
+            topLevelOperations: generatorConfig.topLevelOperations,
+            removeRequiredProperties: generatorConfig.removeRequiredProperties,
+          })
+      if (process.env.NODE_ENV === 'development') {
+        fs.ensureDirSync(DEBUG_TMP_FOLDER)
+        fs.writeFileSync(
+          `${DEBUG_TMP_FOLDER}transformed-typescript-spec.yaml`,
+          src
+        )
+      }
+      const requestBody: JavaGenerateApiRequestBodyType = {
+        spec: {
+          src,
+        },
+        config: {
+          additionalProperties: {
+            omitInfoDescription: body.omitInfoDescription,
+            npmName: generatorConfig.npmName,
+            npmVersion: generatorConfig.version,
+            disallowAdditionalPropertiesIfNotPresent: false,
+            readmeSnippet: generatorConfig.readmeSnippet,
+            readmeDescriptionSnippet: generatorConfig.readmeDescriptionSnippet,
+            clientName: generatorConfig.clientName,
+            apiPackage: 'api',
+            modelPackage: 'models',
+            useSingleRequestParameter: true,
+            // Only include the top-level operations if it is an array (i.e. ordered)
+            ...(Array.isArray(generatorConfig.topLevelOperations)
+              ? { topLevelOperations: generatorConfig.topLevelOperations }
+              : {}),
+            apiDocumentationAuthenticationPartial:
+              generatorConfig.apiDocumentationAuthenticationPartial,
+            clientState: generatorConfig.clientState,
+            defaultTimeout: generatorConfig.defaultTimeout,
+            includeFetchAdapter: generatorConfig.includeFetchAdapter,
+            includeEventSourceParser: generatorConfig.includeEventSourceParser,
+          },
+          gitHost: generatorConfig.git?.host,
+          gitUserId: generatorConfig.git?.userId,
+          gitRepoId: generatorConfig.git?.repoId,
+          generatorName: 'typescript-axios',
+          removeOperationIdPrefix: true,
+          files: generatorConfig.files,
+        },
+        validateSpec: body.validateSpec,
+      }
+      queue(requestBody)
+    } else {
+      throw Error("typescript generator v2 isn't supported yet")
+      // const tmpDir = fs.mkdtempSync(`${tmpdir()}${sep}`)
+      // logger.debug(`tmpDir for typescript v2 generator: ${tmpDir}`)
+      // const input = (
+      //   await parseSpec(
+      //     await transformSpecForGenerator({ generator: 'typescript' })
+      //   )
+      // ).spec
+      // await generate({
+      //   ...body.generators.typescript,
+      //   input,
+      //   generator: {
+      //     typescript: body.generators.typescript,
+      //   },
+      //   output: `${tmpDir}/sdk/typescript`,
+      // })
+      // const archive = await tarDir(`${tmpDir}/sdk/`, `${tmpDir}/archive.tar.gz`)
+      // const key = await uploadFile(archive)
+      // sdkS3SignedGetUrls.push(getSignedGetObjectUrl(key))
+    }
+  }
+
+  logger.debug("Finished creating requests for Konfig's Generator API")
+
+  if (sdkS3SignedGetUrls.length === 0)
+    throw Error('You must provide at least one generator')
+
+  try {
+    logger.debug("Waiting for Konfig's Generator to push S3 Artifacts")
+    const urls = await Promise.all(sdkS3SignedGetUrls)
+    logger.debug("Konfig's Generator finished pushing S3 Artifacts")
+
+    if (!authenticateResult.testing) {
+      const generateConfig = await db.generateConfig.create({
+        data: {
+          konfigyaml: parsed.data.konfigYaml,
+          userId: authenticateResult.user.id,
+          spaceId: authenticateResult.user.currentSpaceId,
+          openApiSpecification: body.spec,
+        },
+      })
+      // Save GenerateExecution run
+      await Promise.all(
+        urls.map(({ key }) => {
+          return db.generateExecution.create({
+            data: {
+              userId: authenticateResult.user.id,
+              generateConfigId: generateConfig.id,
+              spaceId: authenticateResult.user.currentSpaceId,
+              s3Key: key,
+            },
+          })
+        })
+      )
+
+      return {
+        statusCode: 200,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(
+          GenerateResponseBodySchema.parse({
+            urls,
+            generateConfigId: generateConfig.id,
+          })
+        ),
+      }
+    }
+    return {
+      statusCode: 200,
+    }
+  } catch (e) {
+    if (e instanceof Error) {
+      logger.error(e.message)
+      return {
+        statusCode: 500,
+        body: e.message,
+      }
+    }
+  }
+}
+
+function authenticate() {
+  if (!process.env[KONFIG_API_TEST_ENVIRONMENT_NAME]) {
+    if (!isAuthenticated()) {
+      logger.error('Unauthorized access to /generate')
+      return {
+        statusCode: 401,
+      } as const
+    }
+
+    const user = currentUser()
+    if (user === undefined)
+      return {
+        statusCode: 401,
+      } as const
+    return { user, authenticated: true } as const
+  }
+  return { testing: true } as const
+}
+
+export const handler = process.env[KONFIG_API_TEST_ENVIRONMENT_NAME]
+  ? myHandler
+  : useRequireAuth({
+      getCurrentUser: getCurrentUser,
+      handlerFn: myHandler,
+    })
