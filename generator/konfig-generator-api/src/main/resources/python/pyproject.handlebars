@@ -1,0 +1,29 @@
+[tool.poetry]
+name = "{{projectName}}"
+version = "{{packageVersion}}"
+description = "{{appDescription}}"
+authors = ["{{#if infoName}}{{infoName}}{{else}}Konfig{{/if}} <{{#if infoEmail}}{{infoEmail}}{{else}}engineering@konfigthis.com{{/if}}>"]
+license = "MIT"
+readme = "README.md"
+packages = [{include = "{{packageName}}"}]
+
+[tool.poetry.dependencies]
+python = "^3.7"
+certifi = "2022.12.7"
+python-dateutil = "2.8.2"
+setuptools = "21.0.0"
+typing_extensions = "4.3.0"
+urllib3 = "1.26.7"
+validators = "0.20.0"
+frozendict = "2.3.4"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "4.6.7"
+pytest-cov = "2.8.1"
+pytest-randomly = "1.2.3"
+build = "^0.10.0"
+twine = "^4.0.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
