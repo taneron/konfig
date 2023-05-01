@@ -36,9 +36,16 @@ Then create `~/.envvars` with values from Dylan.
 
 ## How to run Konfig
 
-1. Start the server with `yarn dev`
+0. Make sure `node_modules` was initiated
 
 ```shell
 cd generator/konfig-dash
+yarn
+```
+
+1. Start the server with `yarn dev`
+
+```shell
+# inside generator/konfig-dash
 yarn dev
 ```
