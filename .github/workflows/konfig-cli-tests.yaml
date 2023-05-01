@@ -23,4 +23,6 @@ jobs:
           node-version: ${{ matrix.node_version }}
           cache: yarn
       - run: yarn install --network-timeout 600000
+        working-directory: generator/konfig-dash
       - run: yarn test
+        working-directory: generator/konfig-dash
