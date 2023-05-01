@@ -3,5 +3,9 @@
     "tag": false,
     "push": false,
     "commitMessage": "Release konfig-cli@${version}"
+  },
+  "hooks": {
+    "before:init": ["yarn build"],
+    "after:bump": ["yarn readme"]
   }
 }
