@@ -24,5 +24,6 @@ jobs:
         with:
           node-version: ${{ matrix.node_version }}
           cache: yarn
+          cache-dependency-path: generatoe/konfig-dash/yarn.lock
       - run: yarn install --network-timeout 600000
       - run: yarn test
