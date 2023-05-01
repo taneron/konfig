@@ -147,30 +147,14 @@ class ApiResponseForDefault(api_client.ApiResponse):
 class ApiResponseFor{{code}}(api_client.ApiResponse):
 {{/if}}
 {{#and responseHeaders content}}
-    body: typing.Union[
-{{#each content}}
-{{#if this.schema}}
-        {{this.schema.baseName}},
-{{else}}
-        schemas.Unset,
-{{/if}}
-{{/each}}
-    ]
+    body: {{> schema_ref}}
 {{else}}
 {{#or responseHeaders content}}
 {{#if responseHeaders}}
     headers: ResponseHeadersFor{{code}}
     body: schemas.Unset = schemas.unset
 {{else}}
-    body: typing.Union[
-{{#each content}}
-{{#if this.schema}}
-        {{this.schema.baseName}},
-{{else}}
-        schemas.Unset,
-{{/if}}
-{{/each}}
-    ]
+    body: {{> schema_ref}}
 {{/if}}
 {{/or}}
 {{/and}}
