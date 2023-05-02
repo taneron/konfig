@@ -1624,16 +1624,16 @@ public class PythonClientCodegen extends AbstractPythonCodegen {
             fullSuffix = ", None" + suffix;
         }
         if (ModelUtils.isNumberSchema(p)) {
-            return prefix + "int, float" + fullSuffix;
+            return prefix + "typing.Union[int, float]" + fullSuffix;
         } else if (ModelUtils.isTypeObjectSchema(p)) {
             if (p.getAdditionalProperties() != null && p.getAdditionalProperties().equals(false)) {
                 if (p.getProperties() == null) {
                     // type object with no properties and additionalProperties = false, empty dict only
-                    return prefix + "{str: typing.Any}" + fullSuffix;
+                    return prefix + "typing.Dict[str, typing.Any]" + fullSuffix;
                 } else {
                     // properties only
                     // TODO add type hints for those properties only as values
-                    return prefix + "{str: typing.Any}" + fullSuffix;
+                    return prefix + "typing.Dict[str, typing.Any]" + fullSuffix;
                 }
             } else {
                 // additionalProperties exists
