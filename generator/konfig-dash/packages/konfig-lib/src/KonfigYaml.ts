@@ -377,7 +377,7 @@ export const KonfigYaml = KonfigYamlCommon.merge(
           pythonConfig.test = {
             script: [
               'poetry install',
-              `poetry run pytest --cov=${pythonConfig.packageName}`,
+              `poetry run pytest --cov=${pythonConfig.packageName} -o cache_dir=${pythonConfig.outputDirectory}/.pytest_cache`,
             ],
           }
           return pythonConfig
