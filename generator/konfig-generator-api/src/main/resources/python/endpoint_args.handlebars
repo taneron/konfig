@@ -35,7 +35,7 @@
     {{/if}}
     {{#eq interface "True"}}
         {{#each allParamsWithRequestBodyProperties}}
-    {{paramName}}: typing.Union[{{dataType}}, None] = None,
+    {{paramName}}: typing.Optional[{{dataType}}] = None,
         {{/each}}
     {{/eq}}
 {{else}}
@@ -44,7 +44,7 @@
     {{paramName}}: {{dataType}},
         {{/each}}
         {{#each optionalParamsWithRequestBodyProperties}}
-    {{paramName}}: typing.Union[{{dataType}}, None] = None,
+    {{paramName}}: typing.Optional[{{dataType}}] = None,
         {{/each}}
     {{/eq}}
 {{/if}}
