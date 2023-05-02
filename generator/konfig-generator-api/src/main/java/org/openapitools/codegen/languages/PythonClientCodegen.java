@@ -1653,9 +1653,12 @@ public class PythonClientCodegen extends AbstractPythonCodegen {
                 //    "[bool, date, datetime, dict, float, int, list, str, none_type]"
                 // Using recursion to wrap the allowed python types in an array.
                 Schema anyType = new Schema(); // A Schema without any attribute represents 'any type'.
-                return getTypeString(anyType, "[", "]", referencedModelNames);
+
+                // Dylan: Added typing.List [...] is not a valid Type definition in Python
+                return getTypeString(anyType, "typing.List[", "]", referencedModelNames);
             } else {
-                return prefix + getTypeString(inner, "[", "]", referencedModelNames) + fullSuffix;
+                // Dylan: Added typing.List [...] is not a valid Type definition in Python
+                return prefix + getTypeString(inner, "typing.List[", "]", referencedModelNames) + fullSuffix;
             }
         } else if (ModelUtils.isFileSchema(p)) {
             return prefix + "file_type" + fullSuffix;
