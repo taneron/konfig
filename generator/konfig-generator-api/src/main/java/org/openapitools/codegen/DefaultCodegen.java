@@ -7099,7 +7099,7 @@ public class DefaultCodegen implements CodegenConfig {
             codegenParameter.collectionFormat = StringUtils.isEmpty(collectionFormat) ? "csv" : collectionFormat;
             codegenParameter.isCollectionFormatMulti = "multi".equals(collectionFormat);
 
-            if (!addSchemaImportsFromV3SpecLocations) {
+            if (addSchemaImportsFromV3SpecLocations) {
                 // recursively add import
                 while (arrayInnerProperty != null) {
                     imports.add(arrayInnerProperty.baseType);
