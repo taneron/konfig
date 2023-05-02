@@ -1617,11 +1617,11 @@ public class PythonClientCodegen extends AbstractPythonCodegen {
             }
         }
         if (ModelUtils.isAnyType(p)) {
-            return prefix + "bool, date, datetime, dict, float, int, list, str, none_type" + suffix;
+            return prefix + "bool, date, datetime, dict, float, int, list, str, None" + suffix;
         }
         // Resolve $ref because ModelUtils.isXYZ methods do not automatically resolve references.
         if (ModelUtils.isNullable(ModelUtils.getReferencedSchema(this.openAPI, p))) {
-            fullSuffix = ", none_type" + suffix;
+            fullSuffix = ", None" + suffix;
         }
         if (ModelUtils.isNumberSchema(p)) {
             return prefix + "int, float" + fullSuffix;
@@ -1650,7 +1650,7 @@ public class PythonClientCodegen extends AbstractPythonCodegen {
                 // specification is aligned with the JSON schema specification.
                 // When "items" is not specified, the elements of the array may be anything at all.
                 // In that case, the return value should be:
-                //    "[bool, date, datetime, dict, float, int, list, str, none_type]"
+                //    "[bool, date, datetime, dict, float, int, list, str, None]"
                 // Using recursion to wrap the allowed python types in an array.
                 Schema anyType = new Schema(); // A Schema without any attribute represents 'any type'.
 
