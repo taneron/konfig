@@ -168,8 +168,8 @@ export default class Init extends Command {
           '.konfigignore': 'ignore',
         },
         'python.testing.pytestArgs': ['python'],
-        'python.testing.unittestEnabled': true,
-        'python.testing.pytestEnabled': false,
+        'python.testing.unittestEnabled': false,
+        'python.testing.pytestEnabled': true,
         'dotnet-test-explorer.testProjectPath': '**/*.sln',
         'python.analysis.typeCheckingMode': 'basic',
         'python.testing.unittestArgs': [
