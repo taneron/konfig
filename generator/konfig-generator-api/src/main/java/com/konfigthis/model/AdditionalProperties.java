@@ -62,6 +62,9 @@ public class AdditionalProperties {
   @JsonProperty("includeEventSourceParser")
   private Boolean includeEventSourceParser;
 
+  @JsonProperty("keepAllParametersOptional")
+  private Boolean keepAllParametersOptional;
+
   @JsonProperty("apiDocumentationAuthenticationPartial")
   private String apiDocumentationAuthenticationPartial;
 
@@ -363,6 +366,25 @@ public class AdditionalProperties {
 
   public void setIncludeEventSourceParser(Boolean includeEventSourceParser) {
     this.includeEventSourceParser = includeEventSourceParser;
+  }
+
+  public AdditionalProperties keepAllParametersOptional(Boolean keepAllParametersOptional) {
+    this.keepAllParametersOptional = keepAllParametersOptional;
+    return this;
+  }
+
+  /**
+   * Get keepAllParametersOptional
+   * @return keepAllParametersOptional
+  */
+  
+  @Schema(name = "keepAllParametersOptional", required = false)
+  public Boolean getKeepAllParametersOptional() {
+    return keepAllParametersOptional;
+  }
+
+  public void setKeepAllParametersOptional(Boolean keepAllParametersOptional) {
+    this.keepAllParametersOptional = keepAllParametersOptional;
   }
 
   public AdditionalProperties apiDocumentationAuthenticationPartial(String apiDocumentationAuthenticationPartial) {
@@ -933,6 +955,7 @@ public class AdditionalProperties {
         Objects.equals(this.packagistUsername, additionalProperties.packagistUsername) &&
         Objects.equals(this.toStringReturnsJson, additionalProperties.toStringReturnsJson) &&
         Objects.equals(this.includeEventSourceParser, additionalProperties.includeEventSourceParser) &&
+        Objects.equals(this.keepAllParametersOptional, additionalProperties.keepAllParametersOptional) &&
         Objects.equals(this.apiDocumentationAuthenticationPartial, additionalProperties.apiDocumentationAuthenticationPartial) &&
         Objects.equals(this.composerPackageName, additionalProperties.composerPackageName) &&
         Objects.equals(this.defaultTimeout, additionalProperties.defaultTimeout) &&
@@ -965,7 +988,7 @@ public class AdditionalProperties {
 
   @Override
   public int hashCode() {
-    return Objects.hash(objectPropertyNamingConvention, gitRepoName, clientName, outputDirectory, topLevelOperations, omitInfoDescription, setSkipSerializationToTrueByDefault, includeFetchAdapter, packagistUsername, toStringReturnsJson, includeEventSourceParser, apiDocumentationAuthenticationPartial, composerPackageName, defaultTimeout, useSingleRequestParameter, artifactUrl, artifactId, groupId, invokerPackage, modelPackage, apiPackage, projectName, podVersion, removeKonfigBranding, podName, classPrefix, authorName, authorEmail, podAuthors, swiftPackagePath, disallowAdditionalPropertiesIfNotPresent, packageVersion, packageUrl, npmVersion, npmName, readmeSnippet, readmeDescriptionSnippet, apiKeyAlias, clientState);
+    return Objects.hash(objectPropertyNamingConvention, gitRepoName, clientName, outputDirectory, topLevelOperations, omitInfoDescription, setSkipSerializationToTrueByDefault, includeFetchAdapter, packagistUsername, toStringReturnsJson, includeEventSourceParser, keepAllParametersOptional, apiDocumentationAuthenticationPartial, composerPackageName, defaultTimeout, useSingleRequestParameter, artifactUrl, artifactId, groupId, invokerPackage, modelPackage, apiPackage, projectName, podVersion, removeKonfigBranding, podName, classPrefix, authorName, authorEmail, podAuthors, swiftPackagePath, disallowAdditionalPropertiesIfNotPresent, packageVersion, packageUrl, npmVersion, npmName, readmeSnippet, readmeDescriptionSnippet, apiKeyAlias, clientState);
   }
 
   @Override
@@ -983,6 +1006,7 @@ public class AdditionalProperties {
     sb.append("    packagistUsername: ").append(toIndentedString(packagistUsername)).append("\n");
     sb.append("    toStringReturnsJson: ").append(toIndentedString(toStringReturnsJson)).append("\n");
     sb.append("    includeEventSourceParser: ").append(toIndentedString(includeEventSourceParser)).append("\n");
+    sb.append("    keepAllParametersOptional: ").append(toIndentedString(keepAllParametersOptional)).append("\n");
     sb.append("    apiDocumentationAuthenticationPartial: ").append(toIndentedString(apiDocumentationAuthenticationPartial)).append("\n");
     sb.append("    composerPackageName: ").append(toIndentedString(composerPackageName)).append("\n");
     sb.append("    defaultTimeout: ").append(toIndentedString(defaultTimeout)).append("\n");

@@ -249,6 +249,7 @@ public interface GenerateApi {
         putIfPresent(map, "packageVersion", additionalProperties.getPackageVersion());
         putIfPresent(map, "npmName", additionalProperties.getNpmName());
         putIfPresent(map, "npmVersion", additionalProperties.getNpmVersion());
+        putIfPresent(map, "keepAllParametersOptional", additionalProperties.getKeepAllParametersOptional());
         putIfPresent(map, "podVersion", additionalProperties.getPodVersion());
         putIfPresent(map, "podAuthors", additionalProperties.getPodAuthors());
         putIfPresent(map, "podName", additionalProperties.getPodName());

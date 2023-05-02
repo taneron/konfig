@@ -117,6 +117,12 @@ export const pythonConfig = z.object({
   packageUrl: z.string().optional(),
   topLevelOperations: topLevelOperationsSchema,
   testPyPI: z.boolean().optional(),
+  keepAllParametersOptional: z
+    .boolean()
+    .optional()
+    .describe(
+      'This is a feature flag for ensuring that all parameters stay optional in the case of Python SDKs that have been published and distributed to developers already and want to preserve backwards compatability. Particularly we want to handle flattened kwargs and "query_params" / "header_params" form arguments.'
+    ),
   generator: z
     .literal('python-prior')
     .or(z.literal('python'))
