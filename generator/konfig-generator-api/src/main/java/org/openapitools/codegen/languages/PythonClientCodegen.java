@@ -1617,7 +1617,7 @@ public class PythonClientCodegen extends AbstractPythonCodegen {
             }
         }
         if (ModelUtils.isAnyType(p)) {
-            return prefix + "bool, date, datetime, dict, float, int, list, str, None" + suffix;
+            return prefix + "typing.Union[bool, date, datetime, dict, float, int, list, str, None]" + suffix;
         }
         // Resolve $ref because ModelUtils.isXYZ methods do not automatically resolve references.
         if (ModelUtils.isNullable(ModelUtils.getReferencedSchema(this.openAPI, p))) {
@@ -1638,7 +1638,7 @@ public class PythonClientCodegen extends AbstractPythonCodegen {
             } else {
                 // additionalProperties exists
                 Schema inner = getAdditionalProperties(p);
-                return prefix + "{str: " + getTypeString(inner, "(", ")", referencedModelNames) + "}" + fullSuffix;
+                return prefix + "typing.Dict[str, " + getTypeString(inner, "", "", referencedModelNames) + "]" + fullSuffix;
                 // TODO add code here to add property values too if they exist
             }
         } else if (ModelUtils.isArraySchema(p)) {
