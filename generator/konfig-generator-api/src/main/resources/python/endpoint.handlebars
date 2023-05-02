@@ -216,7 +216,7 @@ _all_accept_content_types = (
 class BaseApi(api_client.Api):
 
     def _{{operationId}}_oapg(
-    {{> endpoint_args isOapg=true isOverload=false skipDeserialization="null" contentType="null"}}
+    {{> endpoint_args isOapg=true isOverload=false skipDeserialization="null" contentType="null" interface=false}}
         """
     {{#if summary}}
         {{summary}}
@@ -384,7 +384,7 @@ class {{operationIdCamelCase}}(BaseApi):
     # this class is used by api classes that refer to endpoints with operationId fn names
 
     def {{operationId}}(
-    {{> endpoint_args isOverload=false skipDeserialization="null" contentType="null" interface="True"}}
+    {{> endpoint_args isOverload=false skipDeserialization="null" contentType="null" interface=true}}
         {{> endpoint_args_map_to_param_type}}
         return self._{{operationId}}_oapg(
             {{> endpoint_args_passed }}
@@ -395,7 +395,7 @@ class ApiFor{{httpMethod}}(BaseApi):
     # this class is used by api classes that refer to endpoints by path and http method names
 
     def {{httpMethod}}(
-    {{> endpoint_args isOverload=false skipDeserialization="null" contentType="null" interface="True"}}
+    {{> endpoint_args isOverload=false skipDeserialization="null" contentType="null" interface=true}}
         {{> endpoint_args_map_to_param_type}}
         return self._{{operationId}}_oapg(
             {{> endpoint_args_passed }}
