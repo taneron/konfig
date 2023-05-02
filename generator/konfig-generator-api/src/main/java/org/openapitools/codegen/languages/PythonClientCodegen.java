@@ -414,6 +414,7 @@ public class PythonClientCodegen extends AbstractPythonCodegen {
         supportingFiles.add(new SupportingFile("exceptions_base." + templateExtension, packagePath(), "exceptions_base.py"));
         supportingFiles.add(new SupportingFile("validation_metadata." + templateExtension, packagePath(), "validation_metadata.py"));
         supportingFiles.add(new SupportingFile("client." + templateExtension, packagePath(), "client.py"));
+        supportingFiles.add(new SupportingFile("client." + templateExtension, packagePath(), "client.pyi"));
         supportingFiles.add(new SupportingFile("request_after_hook." + templateExtension, packagePath(), "request_after_hook.py"));
         supportingFiles.add(new SupportingFile("request_before_hook." + templateExtension, packagePath(), "request_before_hook.py"));
         supportingFiles.add(new SupportingFile("__init__package." + templateExtension, packagePath(), "__init__.py"));
