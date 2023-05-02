@@ -5,15 +5,15 @@
 {{#if produces}}
     accept_content_types: typing.Tuple[str] = _all_accept_content_types,
 {{/if}}
-    {{#if bodyParam}}
-        {{#with bodyParam}}
-            {{#each getContent}}
-                {{#if @first}}
+{{#if bodyParam}}
+    {{#with bodyParam}}
+        {{#each getContent}}
+            {{#if @first}}
     content_type: str = '{{{@key}}}',
-                {{/if}}
-            {{/each}}
-        {{/with}}
-    {{/if}}
+            {{/if}}
+        {{/each}}
+    {{/with}}
+{{/if}}
 {{/if}}
 {{#if bodyParam}}
     {{#if bodyParam.required}}
@@ -33,12 +33,21 @@
         {{/eq}}
         {{/with}}
     {{/if}}
+    {{#eq interface "True"}}
+        {{#each allParamsWithRequestBodyProperties}}
+    {{paramName}}: typing.Union[{{dataType}}, None] = None,
+        {{/each}}
+    {{/eq}}
+{{else}}
+    {{#eq interface "True"}}
+        {{#each requiredParamsWithRequestBodyProperties}}
+    {{paramName}}: {{dataType}},
+        {{/each}}
+        {{#each optionalParamsWithRequestBodyProperties}}
+    {{paramName}}: typing.Union[{{dataType}}, None] = None,
+        {{/each}}
+    {{/eq}}
 {{/if}}
-{{#eq interface "True"}}
-{{#each allParamsWithRequestBodyProperties}}
-    {{paramName}}: typing.Any = None,
-{{/each}}
-{{/eq}}
 {{#if queryParams}}
     query_params: typing.Union[RequestQueryParams, dict] = {},
 {{/if}}
