@@ -405,6 +405,19 @@ public class DefaultGenerator implements Generator {
         }
     }
 
+    private void generateType(List<File> files, Map<String, Object> models, String modelName) throws IOException {
+        for (String templateName : config.typeTemplateFiles().keySet()) {
+            String filename = config.typeFilename(templateName, modelName);
+            File written = processTemplateToFile(models, templateName, filename, generateModels, CodegenConstants.MODELS);
+            if (written != null) {
+                files.add(written);
+                if (config.isEnablePostProcessFile() && !dryRun) {
+                    config.postProcessFile(written, "model");
+                }
+            }
+        }
+    }
+
     void generateModels(List<File> files, List<ModelMap> allModels, List<String> unusedModels) {
         if (!generateModels) {
             // TODO: Process these anyway and add to dryRun info
@@ -553,6 +566,9 @@ public class DefaultGenerator implements Generator {
 
                 // to generate model files
                 generateModel(files, models, modelName);
+
+                // to generate type files
+                generateType(files, models, modelName);
 
                 // to generate model test files
                 generateModelTests(files, models, modelName);

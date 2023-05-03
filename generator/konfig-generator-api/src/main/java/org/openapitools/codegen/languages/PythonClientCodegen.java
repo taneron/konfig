@@ -170,6 +170,7 @@ public class PythonClientCodegen extends AbstractPythonCodegen {
         importMapping.clear();
 
         modelPackage = "model";
+        typePackage = "type";
         apiPackage = "apis";
         outputFolder = "generated-code" + File.separatorChar + "python";
 
@@ -307,6 +308,9 @@ public class PythonClientCodegen extends AbstractPythonCodegen {
         See https://youtrack.jetbrains.com/issue/PY-42137/PyCharm-type-hinting-doesnt-work-well-with-overload-decorator
          */
         modelTemplateFiles.put("model_stub." + templateExtension, ".pyi");
+
+        typeTemplateFiles.put("type." + templateExtension, ".pyi");
+
         apiTemplateFiles.put("api." + templateExtension, ".py");
         modelTestTemplateFiles.put("model_test." + templateExtension, ".py");
         modelDocTemplateFiles.put("model_doc." + templateExtension, ".md");
@@ -2682,6 +2686,11 @@ public class PythonClientCodegen extends AbstractPythonCodegen {
     @Override
     public String modelFileFolder() {
         return outputFolder + File.separatorChar + packagePath() + File.separatorChar +  modelPackage();
+    }
+
+    @Override
+    public String typeFileFolder() {
+        return outputFolder + File.separatorChar + packagePath() + File.separatorChar +  typePackage();
     }
 
     @Override
