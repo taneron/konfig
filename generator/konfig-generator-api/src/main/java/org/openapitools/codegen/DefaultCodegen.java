@@ -7609,6 +7609,9 @@ public class DefaultCodegen implements CodegenConfig {
                 // additionalproperties: true)
                 updateRequestBodyForMap(codegenParameter, schema, name, imports, bodyParameterName);
             } else if (ModelUtils.isComposedSchema(schema)) {
+                if (isComposedObject(schema)){
+                    codegenParameter.isComposedObject = true;
+                }
                 this.addBodyModelSchema(codegenParameter, name, schema, imports, bodyParameterName, false);
             } else if (ModelUtils.isObjectSchema(schema)) {
                 // object type schema OR (AnyType schema with properties defined)
@@ -7629,6 +7632,41 @@ public class DefaultCodegen implements CodegenConfig {
         setParameterExampleValue(codegenParameter, body);
 
         return codegenParameter;
+    }
+
+    // Dylan: This was created because Humanloop has an operation "Logs_log" with a request body that is
+    // anyOf[array, object]. We want to know whether anyOf includes an Object so we can make the "body" parameter
+    // optional. By default the "body" parameter is required if the schema is not an object type schema. But in this
+    // case, it could be an object type schema so we want to make "body" optional in case they want to use kwargs.
+    //
+    // reference: 3964bce6904246ad8e95118225e94883
+    //
+    // Handles the case where the schema is a composed schema where one of the schemas in anyOf or oneOf are and object type schema
+    protected boolean isComposedObject(Schema schema) {
+        if (schema == null) {
+            return false;
+        }
+        schema = ModelUtils.getReferencedSchema(this.openAPI, schema);
+        if (ModelUtils.isComposedSchema(schema)) {
+            ComposedSchema composedSchema = (ComposedSchema) schema;
+            if (composedSchema.getAnyOf() != null) {
+                for (Schema anyOfSchema : composedSchema.getAnyOf()) {
+                    anyOfSchema = ModelUtils.getReferencedSchema(this.openAPI, anyOfSchema);
+                    if (ModelUtils.isObjectSchema(anyOfSchema)) {
+                        return true;
+                    }
+                }
+            }
+            if (composedSchema.getOneOf() != null) {
+                for (Schema oneOfSchema : composedSchema.getOneOf()) {
+                    oneOfSchema = ModelUtils.getReferencedSchema(this.openAPI, oneOfSchema);
+                    if (ModelUtils.isObjectSchema(oneOfSchema)) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
 
     protected void addRequiredVarsMap(Schema schema, IJsonSchemaValidationProperties property) {
