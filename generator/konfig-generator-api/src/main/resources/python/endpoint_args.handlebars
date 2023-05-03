@@ -43,6 +43,9 @@
 {{#if or @root.keepAllParametersOptional (not interface)}}
     {{> endpoint_args_params}}
 {{/if}}
+{{#unless interface}}
+    {{> endpoint_args_params}}
+{{/unless}}
 {{#if isOapg}}
     skip_deserialization: bool = {{#if operations.additionalProperties.setSkipSerializationToTrueByDefault}}True{{else}}False{{/if}},
     timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
