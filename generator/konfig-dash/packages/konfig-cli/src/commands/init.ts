@@ -167,7 +167,11 @@ export default class Init extends Command {
         'files.associations': {
           '.konfigignore': 'ignore',
         },
-        'python.testing.pytestArgs': ['python'],
+        'python.testing.pytestArgs': [
+          'python',
+          '-o',
+          'cache_dir=python/.pytest_cache',
+        ],
         'python.testing.unittestEnabled': false,
         'python.testing.pytestEnabled': true,
         'dotnet-test-explorer.testProjectPath': '**/*.sln',
