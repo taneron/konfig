@@ -1,3 +1,20 @@
+{{#unless @root.keepAllParametersOptional}}
+    {{#if bodyParam.isObject}}
+body = {}
+    {{/if}}
+    {{#if queryParams}}
+query_params = {}
+    {{/if}}
+    {{#if headerParams}}
+header_params = {}
+    {{/if}}
+    {{#if pathParams}}
+path_params = {}
+    {{/if}}
+    {{#if cookieParams}}
+cookie_params = {}
+    {{/if}}
+{{/unless}}
 {{#if bodyParam}}
 {{#with bodyParam}}
 if body is None:
