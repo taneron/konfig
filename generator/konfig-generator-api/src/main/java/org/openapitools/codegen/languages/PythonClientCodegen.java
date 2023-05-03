@@ -458,6 +458,7 @@ public class PythonClientCodegen extends AbstractPythonCodegen {
         // add the models and apis folders
         supportingFiles.add(new SupportingFile("__init__models." + templateExtension, packagePath() + File.separatorChar + "models", "__init__.py"));
         supportingFiles.add(new SupportingFile("__init__model." + templateExtension, packagePath() + File.separatorChar + modelPackage, "__init__.py"));
+        supportingFiles.add(new SupportingFile("__init__type." + templateExtension, packagePath() + File.separatorChar + typePackage, "__init__.py"));
         supportingFiles.add(new SupportingFile("__init__apis." + templateExtension, packagePath() + File.separatorChar + apiPackage, "__init__.py"));
         // Generate the 'signing.py' module, but only if the 'HTTP signature' security scheme is specified in the OAS.
         Map<String, SecurityScheme> securitySchemeMap = openAPI != null ?
@@ -929,6 +930,11 @@ public class PythonClientCodegen extends AbstractPythonCodegen {
     }
 
     @Override
+    public String toTypeImport(String name) {
+        return "from " + packagePath() + "." +  typePackage() + "." + toModelFilename(name) + " import " + toModelName(name);
+    }
+
+    @Override
     @SuppressWarnings("static-method")
     public OperationsMap postProcessOperationsWithModels(OperationsMap objs, List<ModelMap> allModels) {
         // fix the imports that each model has, add the module reference to the model
@@ -945,6 +951,9 @@ public class PythonClientCodegen extends AbstractPythonCodegen {
             operation.imports.clear();
             for (String modelName : modelNames) {
                 operation.imports.add(toModelImport(modelName));
+            }
+            for (String modelName : modelNames) {
+                operation.typeImports.add(toTypeImport(modelName));
             }
         }
         generateEndpoints(objs);
@@ -986,6 +995,9 @@ public class PythonClientCodegen extends AbstractPythonCodegen {
                 cm.imports.clear();
                 for (String importModelName : importModelNames) {
                     cm.imports.add(toModelImport(importModelName));
+                }
+                for (String importModelName : importModelNames) {
+                    cm.typeImports.add(toTypeImport(importModelName));
                 }
             }
         }

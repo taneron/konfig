@@ -1659,6 +1659,15 @@ public class DefaultCodegen implements CodegenConfig {
         }
     }
 
+    @Override
+    public String toTypeImport(String name) {
+        if ("".equals(typePackage())) {
+            return name;
+        } else {
+            return typePackage() + "." + name;
+        }
+    }
+
     /**
      * Returns the same content as [[toModelImport]] with key the fully-qualified
      * Model name and value the initial input.

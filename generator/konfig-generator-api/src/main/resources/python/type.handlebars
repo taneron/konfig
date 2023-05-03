@@ -5,11 +5,14 @@
 from datetime import datetime, date
 import typing
 from typing_extensions import TypedDict
-
 {{#each models}}
 {{#with model}}
 
-class Required{{name}}(TypedDict):
+{{#each typeImports}}
+{{.}}
+{{/each}}
+
+class Required{{classname}}(TypedDict):
     {{#if hasRequired}}
     {{#each requiredVars}}
         {{#if description}}
@@ -21,7 +24,7 @@ class Required{{name}}(TypedDict):
     pass
     {{/if}}
 
-class Optional{{name}}(TypedDict, total=False):
+class Optional{{classname}}(TypedDict, total=False):
     {{#if hasOptional}}
     {{#each optionalVars}}
         {{#if description}}
@@ -33,7 +36,7 @@ class Optional{{name}}(TypedDict, total=False):
     pass
     {{/if}}
 
-class {{name}}(Required{{name}}, Optional{{name}}):
+class {{classname}}(Required{{classname}}, Optional{{classname}}):
     pass
 {{/with}}
 {{/each}}
