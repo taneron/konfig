@@ -1,0 +1,8 @@
+{{#if isEnum}}
+class {{classname}}(Enum):
+    {{#with allowableValues}}
+        {{#each enumVars}}
+    {{name}} = {{{value}}}
+        {{/each}}
+    {{/with}}
+{{/if}}
