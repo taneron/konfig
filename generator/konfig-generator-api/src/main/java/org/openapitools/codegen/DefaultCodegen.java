@@ -4094,6 +4094,10 @@ public class DefaultCodegen implements CodegenConfig {
                     || ModelUtils.isObjectSchema(referencedSchema)) && ModelUtils.isModel(referencedSchema);
         }
 
+        if (property.complexType != null) {
+            property.schemaName = property.complexType + "Schema";
+        }
+
         LOGGER.debug("debugging from property return: {}", property);
         schemaCodegenPropertyCache.put(ns, property);
         return property;

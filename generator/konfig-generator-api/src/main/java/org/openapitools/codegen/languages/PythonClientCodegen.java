@@ -309,7 +309,7 @@ public class PythonClientCodegen extends AbstractPythonCodegen {
          */
         modelTemplateFiles.put("model_stub." + templateExtension, ".pyi");
 
-        typeTemplateFiles.put("type." + templateExtension, ".pyi");
+        typeTemplateFiles.put("type." + templateExtension, ".py");
 
         apiTemplateFiles.put("api." + templateExtension, ".py");
         modelTestTemplateFiles.put("model_test." + templateExtension, ".py");
@@ -596,6 +596,8 @@ public class PythonClientCodegen extends AbstractPythonCodegen {
             Map<String, Object> endpointMap = new HashMap<>();
             endpointMap.put("operation", co);
             endpointMap.put("imports", co.imports);
+            endpointMap.put("schemaImports", co.schemaImports);
+            endpointMap.put("typeImports", co.typeImports);
             endpointMap.put("packageName", packageName);
             endpointMap.put("operations", operations);
             ((HashMap<String, Object>) operations.get("additionalProperties")).entrySet().forEach((entry) -> {
@@ -929,6 +931,10 @@ public class PythonClientCodegen extends AbstractPythonCodegen {
         return "from " + packagePath() + "." +  modelPackage() + "." + toModelFilename(name) + " import " + toModelName(name);
     }
 
+    public String toSchemaImport(String name) {
+        return "from " + packagePath() + "." +  modelPackage() + "." + toModelFilename(name) + " import " + toModelName(name) + " as " + toModelName(name) + "Schema";
+    }
+
     @Override
     public String toTypeImport(String name) {
         return "from " + packagePath() + "." +  typePackage() + "." + toModelFilename(name) + " import " + toModelName(name);
@@ -951,6 +957,9 @@ public class PythonClientCodegen extends AbstractPythonCodegen {
             operation.imports.clear();
             for (String modelName : modelNames) {
                 operation.imports.add(toModelImport(modelName));
+            }
+            for (String modelName : modelNames) {
+                operation.schemaImports.add(toSchemaImport(modelName));
             }
             for (String modelName : modelNames) {
                 operation.typeImports.add(toTypeImport(modelName));

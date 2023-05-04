@@ -1,7 +1,7 @@
 {{#with bodyParam}}
-    {{#eq ../contentType "null"}}
-body: typing.Union[{{#each getContent}}{{#with this.schema}}{{baseName}},{{> model_templates/schema_python_types }}{{/with}}{{/each}} dict, list, schemas.Primitive{{#if isOptional}}, None{{/if}}]{{#if isOptional}} = None{{/if}},
+    {{#if isOptional}}
+body: typing.Optional[{{dataType}}] = None,
     {{else}}
-body: typing.Union[{{#each getContent}}{{#eq @key ../../contentType }}{{#with this.schema}}{{baseName}}, {{> model_templates/schema_python_types }}{{/with}}{{/eq}}{{/each}} dict, list, schemas.Primitive{{#if isOptional}}, None{{/if}}]{{#if isOptional}} = None{{/if}},
-    {{/eq}}
+body: {{dataType}},
+    {{/if}}
 {{/with}}

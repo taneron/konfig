@@ -68,6 +68,10 @@ public class CodegenOperation {
     public List<CodegenResponse> errorResponses = new ArrayList<CodegenResponse>();
     public List<CodegenCallback> callbacks = new ArrayList<>();
     public Set<String> imports = new HashSet<String>();
+
+    // Dylan: added so we can create a new import string for Python SDK suffixed with Schema to avoid conflict with
+    // type imports
+    public Set<String> schemaImports = new HashSet<String>();
     public Set<String> typeImports = new HashSet<String>();
     public List<Map<String, String>> examples;
     public List<Map<String, String>> requestBodyExamples;

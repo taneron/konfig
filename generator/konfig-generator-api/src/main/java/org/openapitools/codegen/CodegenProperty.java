@@ -26,6 +26,10 @@ public class CodegenProperty implements Cloneable, IJsonSchemaValidationProperti
      */
     public String openApiType;
     public String baseName;
+
+    // Dylan: Added this field so I could append "Schema" to the dataType for Python SDK
+    public String schemaName;
+
     public String complexType;
     public String getter;
     public String setter;

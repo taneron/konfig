@@ -14,7 +14,14 @@ from urllib3._collections import HTTPHeaderDict
 
 from {{packageName}} import api_client, exceptions
 {{> model_templates/imports_schema_types }}
-{{> model_templates/imports_schemas }}
+
+{{#each schemaImports}}
+{{{.}}}
+{{/each}}
+
+{{#each typeImports}}
+{{.}}
+{{/each}}
 
 {{#unless isStub}}
 from . import path
