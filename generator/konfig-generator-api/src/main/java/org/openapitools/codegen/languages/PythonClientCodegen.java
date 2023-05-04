@@ -170,6 +170,7 @@ public class PythonClientCodegen extends AbstractPythonCodegen {
         importMapping.clear();
 
         modelPackage = "model";
+        typePackage = "type";
         apiPackage = "apis";
         outputFolder = "generated-code" + File.separatorChar + "python";
 
@@ -307,6 +308,9 @@ public class PythonClientCodegen extends AbstractPythonCodegen {
         See https://youtrack.jetbrains.com/issue/PY-42137/PyCharm-type-hinting-doesnt-work-well-with-overload-decorator
          */
         modelTemplateFiles.put("model_stub." + templateExtension, ".pyi");
+
+        typeTemplateFiles.put("type." + templateExtension, ".py");
+
         apiTemplateFiles.put("api." + templateExtension, ".py");
         modelTestTemplateFiles.put("model_test." + templateExtension, ".py");
         modelDocTemplateFiles.put("model_doc." + templateExtension, ".md");
@@ -414,6 +418,7 @@ public class PythonClientCodegen extends AbstractPythonCodegen {
         supportingFiles.add(new SupportingFile("exceptions_base." + templateExtension, packagePath(), "exceptions_base.py"));
         supportingFiles.add(new SupportingFile("validation_metadata." + templateExtension, packagePath(), "validation_metadata.py"));
         supportingFiles.add(new SupportingFile("client." + templateExtension, packagePath(), "client.py"));
+        supportingFiles.add(new SupportingFile("client." + templateExtension, packagePath(), "client.pyi"));
         supportingFiles.add(new SupportingFile("request_after_hook." + templateExtension, packagePath(), "request_after_hook.py"));
         supportingFiles.add(new SupportingFile("request_before_hook." + templateExtension, packagePath(), "request_before_hook.py"));
         supportingFiles.add(new SupportingFile("__init__package." + templateExtension, packagePath(), "__init__.py"));
@@ -453,6 +458,7 @@ public class PythonClientCodegen extends AbstractPythonCodegen {
         // add the models and apis folders
         supportingFiles.add(new SupportingFile("__init__models." + templateExtension, packagePath() + File.separatorChar + "models", "__init__.py"));
         supportingFiles.add(new SupportingFile("__init__model." + templateExtension, packagePath() + File.separatorChar + modelPackage, "__init__.py"));
+        supportingFiles.add(new SupportingFile("__init__type." + templateExtension, packagePath() + File.separatorChar + typePackage, "__init__.py"));
         supportingFiles.add(new SupportingFile("__init__apis." + templateExtension, packagePath() + File.separatorChar + apiPackage, "__init__.py"));
         // Generate the 'signing.py' module, but only if the 'HTTP signature' security scheme is specified in the OAS.
         Map<String, SecurityScheme> securitySchemeMap = openAPI != null ?
@@ -590,6 +596,8 @@ public class PythonClientCodegen extends AbstractPythonCodegen {
             Map<String, Object> endpointMap = new HashMap<>();
             endpointMap.put("operation", co);
             endpointMap.put("imports", co.imports);
+            endpointMap.put("schemaImports", co.schemaImports);
+            endpointMap.put("typeImports", co.typeImports);
             endpointMap.put("packageName", packageName);
             endpointMap.put("operations", operations);
             ((HashMap<String, Object>) operations.get("additionalProperties")).entrySet().forEach((entry) -> {
@@ -923,6 +931,15 @@ public class PythonClientCodegen extends AbstractPythonCodegen {
         return "from " + packagePath() + "." +  modelPackage() + "." + toModelFilename(name) + " import " + toModelName(name);
     }
 
+    public String toSchemaImport(String name) {
+        return "from " + packagePath() + "." +  modelPackage() + "." + toModelFilename(name) + " import " + toModelName(name) + " as " + toModelName(name) + "Schema";
+    }
+
+    @Override
+    public String toTypeImport(String name) {
+        return "from " + packagePath() + "." +  typePackage() + "." + toModelFilename(name) + " import " + toModelName(name);
+    }
+
     @Override
     @SuppressWarnings("static-method")
     public OperationsMap postProcessOperationsWithModels(OperationsMap objs, List<ModelMap> allModels) {
@@ -940,6 +957,12 @@ public class PythonClientCodegen extends AbstractPythonCodegen {
             operation.imports.clear();
             for (String modelName : modelNames) {
                 operation.imports.add(toModelImport(modelName));
+            }
+            for (String modelName : modelNames) {
+                operation.schemaImports.add(toSchemaImport(modelName));
+            }
+            for (String modelName : modelNames) {
+                operation.typeImports.add(toTypeImport(modelName));
             }
         }
         generateEndpoints(objs);
@@ -981,6 +1004,9 @@ public class PythonClientCodegen extends AbstractPythonCodegen {
                 cm.imports.clear();
                 for (String importModelName : importModelNames) {
                     cm.imports.add(toModelImport(importModelName));
+                }
+                for (String importModelName : importModelNames) {
+                    cm.typeImports.add(toTypeImport(importModelName));
                 }
             }
         }
@@ -1615,29 +1641,66 @@ public class PythonClientCodegen extends AbstractPythonCodegen {
                 return prefix + modelName + fullSuffix;
             }
         }
+        if (ModelUtils.isComposedSchema(p)) {
+            if (p.getAnyOf() != null && p.getAnyOf().size() > 0) {
+                StringBuilder sb = new StringBuilder();
+
+                // Gather types
+                for (int i = 0; i < p.getAnyOf().size(); i++) {
+                    List<Schema> anyOf = p.getAnyOf();
+                    Schema s = anyOf.get(i);
+                    sb.append(getTypeString(s, prefix, suffix, referencedModelNames));
+                    if (i < p.getAnyOf().size() - 1) {
+                        sb.append(", ");
+                    }
+                }
+
+                return prefix + "typing.Union[" + sb + "]" + fullSuffix;
+            }
+
+            if (p.getOneOf() != null && p.getOneOf().size() > 0) {
+                StringBuilder sb = new StringBuilder();
+
+                // Gather types
+                for (int i = 0; i < p.getOneOf().size(); i++) {
+                    List<Schema> oneOf = p.getOneOf();
+                    Schema s = oneOf.get(i);
+                    sb.append(getTypeString(s, prefix, suffix, referencedModelNames));
+                    if (i < p.getAnyOf().size() - 1) {
+                        sb.append(", ");
+                    }
+                }
+
+                return prefix + "typing.Union[" + sb + "]" + fullSuffix;
+            }
+
+            if (p.getAllOf() != null && p.getAllOf().size() == 1) {
+                return getTypeString((Schema) p.getAllOf().get(0), prefix, suffix, referencedModelNames);
+            }
+        }
         if (ModelUtils.isAnyType(p)) {
-            return prefix + "bool, date, datetime, dict, float, int, list, str, none_type" + suffix;
+            return prefix + "typing.Union[bool, date, datetime, dict, float, int, list, str, None]" + suffix;
         }
         // Resolve $ref because ModelUtils.isXYZ methods do not automatically resolve references.
         if (ModelUtils.isNullable(ModelUtils.getReferencedSchema(this.openAPI, p))) {
-            fullSuffix = ", none_type" + suffix;
+            fullSuffix = ", None" + suffix;
         }
         if (ModelUtils.isNumberSchema(p)) {
-            return prefix + "int, float" + fullSuffix;
+            return prefix + "typing.Union[int, float]" + fullSuffix;
         } else if (ModelUtils.isTypeObjectSchema(p)) {
             if (p.getAdditionalProperties() != null && p.getAdditionalProperties().equals(false)) {
                 if (p.getProperties() == null) {
                     // type object with no properties and additionalProperties = false, empty dict only
-                    return prefix + "{str: typing.Any}" + fullSuffix;
+                    return prefix + "typing.Dict[str, typing.Any]" + fullSuffix;
                 } else {
                     // properties only
                     // TODO add type hints for those properties only as values
-                    return prefix + "{str: typing.Any}" + fullSuffix;
+                    return prefix + "typing.Dict[str, typing.Any]" + fullSuffix;
                 }
             } else {
                 // additionalProperties exists
                 Schema inner = getAdditionalProperties(p);
-                return prefix + "{str: " + getTypeString(inner, "(", ")", referencedModelNames) + "}" + fullSuffix;
+                return prefix + "typing.Dict[str, " + getTypeString(inner, "", "", referencedModelNames) + "]" + fullSuffix;
                 // TODO add code here to add property values too if they exist
             }
         } else if (ModelUtils.isArraySchema(p)) {
@@ -1649,12 +1712,15 @@ public class PythonClientCodegen extends AbstractPythonCodegen {
                 // specification is aligned with the JSON schema specification.
                 // When "items" is not specified, the elements of the array may be anything at all.
                 // In that case, the return value should be:
-                //    "[bool, date, datetime, dict, float, int, list, str, none_type]"
+                //    "[bool, date, datetime, dict, float, int, list, str, None]"
                 // Using recursion to wrap the allowed python types in an array.
                 Schema anyType = new Schema(); // A Schema without any attribute represents 'any type'.
-                return getTypeString(anyType, "[", "]", referencedModelNames);
+
+                // Dylan: Added typing.List [...] is not a valid Type definition in Python
+                return getTypeString(anyType, "typing.List[", "]", referencedModelNames);
             } else {
-                return prefix + getTypeString(inner, "[", "]", referencedModelNames) + fullSuffix;
+                // Dylan: Added typing.List [...] is not a valid Type definition in Python
+                return prefix + getTypeString(inner, "typing.List[", "]", referencedModelNames) + fullSuffix;
             }
         } else if (ModelUtils.isFileSchema(p)) {
             return prefix + "file_type" + fullSuffix;
@@ -2678,6 +2744,11 @@ public class PythonClientCodegen extends AbstractPythonCodegen {
     @Override
     public String modelFileFolder() {
         return outputFolder + File.separatorChar + packagePath() + File.separatorChar +  modelPackage();
+    }
+
+    @Override
+    public String typeFileFolder() {
+        return outputFolder + File.separatorChar + packagePath() + File.separatorChar +  typePackage();
     }
 
     @Override

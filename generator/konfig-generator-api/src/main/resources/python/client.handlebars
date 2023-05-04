@@ -1,6 +1,7 @@
 # coding: utf-8
 {{>partial_header}}
 
+import typing
 from {{packageName}}.configuration import Configuration
 from {{packageName}}.api_client import ApiClient
 {{#with apiInfo}}
@@ -12,7 +13,7 @@ from {{packageName}}.apis.tags.{{classVarName}} import {{classname}}
 
 class {{clientName}}:
 
-    def __init__(self, configuration: Configuration = None, **kwargs):
+    def __init__(self, configuration: typing.Union[Configuration, None] = None, **kwargs):
         if (len(kwargs) > 0):
             configuration = Configuration(**kwargs)
         if (configuration is None):

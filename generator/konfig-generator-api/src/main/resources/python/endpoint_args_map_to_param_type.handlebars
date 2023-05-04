@@ -1,11 +1,25 @@
+{{#unless @root.keepAllParametersOptional}}
+    {{#if queryParams}}
+query_params = {}
+    {{/if}}
+    {{#if headerParams}}
+header_params = {}
+    {{/if}}
+    {{#if pathParams}}
+path_params = {}
+    {{/if}}
+    {{#if cookieParams}}
+cookie_params = {}
+    {{/if}}
+{{/unless}}
 {{#if bodyParam}}
 {{#with bodyParam}}
-if body is None:
-    body = {}
+_body = {}
 {{#each flattenedParamsFromRequestBodyProperties}}
-if isinstance(body, dict) and {{{paramName}}} is not None:
-    body["{{{baseName}}}"] = {{{paramName}}}
+if {{{paramName}}} is not None:
+    _body["{{{baseName}}}"] = {{{paramName}}}
 {{/each}}
+body_param = {{#if isObject}}_body{{else}}body if body is not None else _body{{/if}}
 {{/with}}
 {{/if}}
 {{#each queryParams}}

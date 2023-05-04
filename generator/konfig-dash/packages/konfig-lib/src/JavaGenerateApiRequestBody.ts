@@ -43,6 +43,7 @@ const additionalProperties = z.object({
   readmeDescriptionSnippet: z.string().optional(),
   swiftPackagePath: z.string().optional(),
   useSingleRequestParameter: z.boolean().optional(),
+  keepAllParametersOptional: z.boolean().optional(),
   defaultTimeout: z.number().optional(),
 })
 

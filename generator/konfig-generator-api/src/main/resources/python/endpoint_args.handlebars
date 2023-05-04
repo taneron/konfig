@@ -1,10 +1,67 @@
     self,
+{{!-- https://www.notion.so/konfigthis/Improve-in-line-type-information-for-Python-SDK-Pydantic-Types-from-last-sprint-3964bce6904246ad8e95118225e94883?pvs=4#81e549ed9c1e4bb3a510baccbbaaa838 --}}
+{{#if bodyParam}}
+    {{#if @root.keepAllParametersOptional}}
+        {{#if bodyParam.isObject}}
+    {{> body_arg isOptional=true}}
+        {{else}}
+            {{#if bodyParam.required}}
+    {{!-- this is the case of a non-object type required schema which we can
+    enforce even while maintaining backwards compatability --}}
+    {{> body_arg isOptional=false}}
+            {{else}}
+    {{> body_arg isOptional=true}}
+            {{/if}}
+        {{/if}}
+        {{#if interface}}
+    {{> flattened_args allOptional=true}}
+        {{/if}}
+    {{else}}
+        {{#if bodyParam.isObject}}
+            {{#if interface}}
+    {{> flattened_args allOptional=false}}
+            {{else}}
+    {{> body_arg isOptional=true}}
+            {{/if}}
+        {{else}}
+            {{#if bodyParam.required}}
+                {{!-- reference: 3964bce6904246ad8e95118225e94883 --}}
+                {{#if bodyParam.isComposedObject}}
+    {{> body_arg isOptional=true}}
+                    {{#if interface}}
+    {{> flattened_args allOptional=false}}
+                    {{/if}}
+                {{else}}
+    {{> body_arg isOptional=false}}
+                    {{#if interface}}
+    {{> flattened_args allOptional=false}}
+                    {{/if}}
+                {{/if}}
+            {{else}}
+                {{#if interface}}
+    {{> flattened_args allOptional=false}}
+                {{/if}}
+    {{> body_arg isOptional=true}}
+            {{/if}}
+        {{/if}}
+    {{/if}}
+{{else}}
+    {{#if interface}}
+    {{> flattened_args allOptional=@root.keepAllParametersOptional}}
+    {{/if}}
+{{/if}}
+{{#if @root.keepAllParametersOptional}}
+    {{> endpoint_args_params}}
+{{/if}}
+{{#unless interface}}
+    {{> endpoint_args_params}}
+{{/unless}}
 {{#if isOapg}}
     skip_deserialization: bool = {{#if operations.additionalProperties.setSkipSerializationToTrueByDefault}}True{{else}}False{{/if}},
     timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
-{{#if produces}}
+    {{#if produces}}
     accept_content_types: typing.Tuple[str] = _all_accept_content_types,
-{{/if}}
+    {{/if}}
     {{#if bodyParam}}
         {{#with bodyParam}}
             {{#each getContent}}
@@ -14,42 +71,6 @@
             {{/each}}
         {{/with}}
     {{/if}}
-{{/if}}
-{{#if bodyParam}}
-    {{#if bodyParam.required}}
-        {{#with bodyParam}}
-        {{#eq ../contentType "null"}}
-    body: typing.Union[{{#each getContent}}{{#with this.schema}}{{baseName}},{{> model_templates/schema_python_types }}{{/with}}{{/each}} None, dict, list, schemas.Primitive] = None,
-        {{else}}
-    body: typing.Union[{{#each getContent}}{{#eq @key ../../contentType }}{{#with this.schema}}{{baseName}},{{> model_templates/schema_python_types }}{{/with}}{{/eq}}{{/each}} None, dict, list, schemas.Primitive] = None,
-        {{/eq}}
-        {{/with}}
-    {{else}}
-        {{#with bodyParam}}
-        {{#eq ../contentType "null"}}
-    body: typing.Union[{{#each getContent}}{{#with this.schema}}{{baseName}}, {{> model_templates/schema_python_types }}{{/with}}{{/each}} None, dict, list, schemas.Primitive] = None,
-        {{else}}
-    body: typing.Union[{{#each getContent}}{{#eq @key ../../contentType }}{{#with this.schema}}{{baseName}}, {{> model_templates/schema_python_types }}{{/with}}{{/eq}}{{/each}} None, dict, list, schemas.Primitive] = none,
-        {{/eq}}
-        {{/with}}
-    {{/if}}
-{{/if}}
-{{#eq interface "True"}}
-{{#each allParamsWithRequestBodyProperties}}
-    {{paramName}}: typing.Any = None,
-{{/each}}
-{{/eq}}
-{{#if queryParams}}
-    query_params: typing.Union[RequestQueryParams, dict] = {},
-{{/if}}
-{{#if headerParams}}
-    header_params: typing.Union[RequestHeaderParams, dict] = {},
-{{/if}}
-{{#if pathParams}}
-    path_params: typing.Union[RequestPathParams, dict] = {},
-{{/if}}
-{{#if cookieParams}}
-    cookie_params: typing.Union[RequestCookieParams, dict] = {},
 {{/if}}
 ) -> typing.Union[
     {{#each responses}}

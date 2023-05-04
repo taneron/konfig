@@ -179,6 +179,7 @@ public class DefaultCodegen implements CodegenConfig {
     // a map to store the inline schema naming conventions
     protected Map<String, String> inlineSchemaNameDefault = new HashMap<>();
     protected String modelPackage = "", apiPackage = "", fileSuffix;
+    protected String typePackage = "";
     protected String modelNamePrefix = "", modelNameSuffix = "";
     protected String apiNamePrefix = "", apiNameSuffix = "Api";
     protected String testPackage = "";
@@ -191,6 +192,7 @@ public class DefaultCodegen implements CodegenConfig {
      */
     protected Map<String, String> apiTemplateFiles = new HashMap<>();
     protected Map<String, String> modelTemplateFiles = new HashMap<>();
+    protected Map<String, String> typeTemplateFiles = new HashMap<>();
     protected Map<String, String> apiTestTemplateFiles = new HashMap<>();
     protected Map<String, String> modelTestTemplateFiles = new HashMap<>();
     protected Map<String, String> apiDocTemplateFiles = new HashMap<>();
@@ -1170,6 +1172,11 @@ public class DefaultCodegen implements CodegenConfig {
     }
 
     @Override
+    public String typePackage() {
+        return typePackage;
+    }
+
+    @Override
     public String apiPackage() {
         return apiPackage;
     }
@@ -1229,6 +1236,11 @@ public class DefaultCodegen implements CodegenConfig {
     }
 
     @Override
+    public Map<String, String> typeTemplateFiles() {
+        return typeTemplateFiles;
+    }
+
+    @Override
     public String apiFileFolder() {
         return outputFolder + File.separator + apiPackage().replace('.', File.separatorChar);
     }
@@ -1236,6 +1248,11 @@ public class DefaultCodegen implements CodegenConfig {
     @Override
     public String modelFileFolder() {
         return outputFolder + File.separator + modelPackage().replace('.', File.separatorChar);
+    }
+
+    @Override
+    public String typeFileFolder() {
+        return outputFolder + File.separator + typePackage().replace('.', File.separatorChar);
     }
 
     @Override
@@ -1639,6 +1656,15 @@ public class DefaultCodegen implements CodegenConfig {
             return name;
         } else {
             return modelPackage() + "." + name;
+        }
+    }
+
+    @Override
+    public String toTypeImport(String name) {
+        if ("".equals(typePackage())) {
+            return name;
+        } else {
+            return typePackage() + "." + name;
         }
     }
 
@@ -4068,6 +4094,10 @@ public class DefaultCodegen implements CodegenConfig {
                     || ModelUtils.isObjectSchema(referencedSchema)) && ModelUtils.isModel(referencedSchema);
         }
 
+        if (property.complexType != null) {
+            property.schemaName = property.complexType + "Schema";
+        }
+
         LOGGER.debug("debugging from property return: {}", property);
         schemaCodegenPropertyCache.put(ns, property);
         return property;
@@ -6050,6 +6080,12 @@ public class DefaultCodegen implements CodegenConfig {
         return modelFileFolder() + File.separator + toModelFilename(modelName) + suffix;
     }
 
+    @Override
+    public String typeFilename(String templateName, String modelName) {
+        String suffix = typeTemplateFiles().get(templateName);
+        return typeFileFolder() + File.separator + toModelFilename(modelName) + suffix;
+    }
+
     /**
      * Return the full path and API documentation file
      *
@@ -7064,7 +7100,14 @@ public class DefaultCodegen implements CodegenConfig {
             ;
         } else if (ModelUtils.isAnyType(ps)) {
             // any schema with no type set, composed schemas often do this
-            ;
+
+            // Dylan: make sure we capture imports from composed schemas
+            if (ModelUtils.isComposedSchema(ps)) {
+                CodegenProperty composed = fromProperty("composed", ps, false);
+                Optional.ofNullable(composed.getComposedSchemas().getAllOf()).ifPresent(schemas -> schemas.forEach(schema -> imports.add(schema.baseType)));
+                Optional.ofNullable(composed.getComposedSchemas().getOneOf()).ifPresent(schemas -> schemas.forEach(schema -> imports.add(schema.baseType)));
+                Optional.ofNullable(composed.getComposedSchemas().getAnyOf()).ifPresent(schemas -> schemas.forEach(schema -> imports.add(schema.baseType)));
+            }
         } else if (ModelUtils.isArraySchema(ps)) {
             Schema inner = getSchemaItems((ArraySchema) ps);
             CodegenProperty arrayInnerProperty = fromProperty("inner", inner, false);
@@ -7099,7 +7142,7 @@ public class DefaultCodegen implements CodegenConfig {
             codegenParameter.collectionFormat = StringUtils.isEmpty(collectionFormat) ? "csv" : collectionFormat;
             codegenParameter.isCollectionFormatMulti = "multi".equals(collectionFormat);
 
-            if (!addSchemaImportsFromV3SpecLocations) {
+            if (addSchemaImportsFromV3SpecLocations) {
                 // recursively add import
                 while (arrayInnerProperty != null) {
                     imports.add(arrayInnerProperty.baseType);
@@ -7609,6 +7652,9 @@ public class DefaultCodegen implements CodegenConfig {
                 // additionalproperties: true)
                 updateRequestBodyForMap(codegenParameter, schema, name, imports, bodyParameterName);
             } else if (ModelUtils.isComposedSchema(schema)) {
+                if (isComposedObject(schema)){
+                    codegenParameter.isComposedObject = true;
+                }
                 this.addBodyModelSchema(codegenParameter, name, schema, imports, bodyParameterName, false);
             } else if (ModelUtils.isObjectSchema(schema)) {
                 // object type schema OR (AnyType schema with properties defined)
@@ -7629,6 +7675,41 @@ public class DefaultCodegen implements CodegenConfig {
         setParameterExampleValue(codegenParameter, body);
 
         return codegenParameter;
+    }
+
+    // Dylan: This was created because Humanloop has an operation "Logs_log" with a request body that is
+    // anyOf[array, object]. We want to know whether anyOf includes an Object so we can make the "body" parameter
+    // optional. By default the "body" parameter is required if the schema is not an object type schema. But in this
+    // case, it could be an object type schema so we want to make "body" optional in case they want to use kwargs.
+    //
+    // reference: 3964bce6904246ad8e95118225e94883
+    //
+    // Handles the case where the schema is a composed schema where one of the schemas in anyOf or oneOf are and object type schema
+    protected boolean isComposedObject(Schema schema) {
+        if (schema == null) {
+            return false;
+        }
+        schema = ModelUtils.getReferencedSchema(this.openAPI, schema);
+        if (ModelUtils.isComposedSchema(schema)) {
+            ComposedSchema composedSchema = (ComposedSchema) schema;
+            if (composedSchema.getAnyOf() != null) {
+                for (Schema anyOfSchema : composedSchema.getAnyOf()) {
+                    anyOfSchema = ModelUtils.getReferencedSchema(this.openAPI, anyOfSchema);
+                    if (ModelUtils.isObjectSchema(anyOfSchema)) {
+                        return true;
+                    }
+                }
+            }
+            if (composedSchema.getOneOf() != null) {
+                for (Schema oneOfSchema : composedSchema.getOneOf()) {
+                    oneOfSchema = ModelUtils.getReferencedSchema(this.openAPI, oneOfSchema);
+                    if (ModelUtils.isObjectSchema(oneOfSchema)) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
 
     protected void addRequiredVarsMap(Schema schema, IJsonSchemaValidationProperties property) {

@@ -1,0 +1,11 @@
+{{#with bodyParam}}
+    {{#if interface}}
+        {{#if isOptional}}
+body: typing.Optional[{{dataType}}] = None,
+        {{else}}
+body: {{dataType}},
+        {{/if}}
+    {{else}}
+body: typing.Any = None,
+    {{/if}}
+{{/with}}

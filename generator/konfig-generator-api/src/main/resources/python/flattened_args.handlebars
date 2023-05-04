@@ -1,0 +1,12 @@
+{{#if allOptional}}
+    {{#each allParamsWithRequestBodyProperties}}
+{{paramName}}: typing.Optional[{{dataType}}] = None,
+    {{/each}}
+{{else}}
+    {{#each requiredParamsWithRequestBodyProperties}}
+{{paramName}}: {{dataType}},
+    {{/each}}
+    {{#each optionalParamsWithRequestBodyProperties}}
+{{paramName}}: typing.Optional[{{dataType}}] = None,
+    {{/each}}
+{{/if}}

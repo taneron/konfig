@@ -461,6 +461,7 @@ export const myHandler = async (event: APIGatewayEvent, context: Context) => {
           removeKonfigBranding: generatorConfig.removeKonfigBranding,
           objectPropertyNamingConvention:
             generatorConfig.objectPropertyNamingConvention,
+          keepAllParametersOptional: generatorConfig.keepAllParametersOptional,
           clientName: generatorConfig.clientName,
           clientState: generatorConfig.clientState,
           apiKeyAlias: generatorConfig.apiKeyAlias,

@@ -28,7 +28,13 @@ public class CodegenParameter implements IJsonSchemaValidationProperties {
     public boolean isFormParam, isQueryParam, isPathParam, isHeaderParam,
             isCookieParam, isBodyParam, isContainer,
             isCollectionFormatMulti, isPrimitiveType, isModel, isExplode, isDeepObject, isAllowEmptyValue;
+
+    // If this schema is an object type schema
     public boolean isObject;
+
+    // If this is an anyOf/oneOf schema that includes an object type schema
+    public boolean isComposedObject;
+
     public String baseName, paramName, dataType, datatypeWithEnum, dataFormat, contentType,
             collectionFormat, description, unescapedDescription, baseType, defaultValue, enumDefaultValue, enumName, style;
     public String dataTypeLowerCase;
