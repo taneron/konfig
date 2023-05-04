@@ -1,0 +1,28 @@
+{{#if hasVars}}
+class Required{{classname}}(TypedDict):
+    {{#if hasRequired}}
+    {{#each requiredVars}}
+        {{#if description}}
+    """{{{description}}}"""
+        {{/if}}
+    {{name}}: {{dataType}}
+    {{/each}}
+    {{else}}
+    pass
+    {{/if}}
+
+class Optional{{classname}}(TypedDict, total=False):
+    {{#if hasOptional}}
+    {{#each optionalVars}}
+        {{#if description}}
+    """{{{description}}}"""
+        {{/if}}
+    {{name}}: {{dataType}}
+    {{/each}}
+    {{else}}
+    pass
+    {{/if}}
+
+class {{classname}}(Required{{classname}}, Optional{{classname}}):
+    pass
+{{/if}}
