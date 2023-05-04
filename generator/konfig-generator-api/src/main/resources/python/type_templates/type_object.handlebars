@@ -1,27 +1,27 @@
 {{#if hasVars}}
-class Required{{classname}}(TypedDict):
-    {{#if hasRequired}}
+Required{{classname}} = TypedDict("Required{{classname}}", {
     {{#each requiredVars}}
         {{#if description}}
-    """{{{description}}}"""
+    # {{{description}}}
         {{/if}}
-    {{name}}: {{dataType}}
-    {{/each}}
-    {{else}}
-    pass
-    {{/if}}
+    "{{baseName}}": {{dataType}},
+    {{#unless @last}}
 
-class Optional{{classname}}(TypedDict, total=False):
-    {{#if hasOptional}}
+    {{/unless}}
+    {{/each}}
+    })
+
+Optional{{classname}} = TypedDict("Optional{{classname}}", {
     {{#each optionalVars}}
         {{#if description}}
-    """{{{description}}}"""
+    # {{{description}}}
         {{/if}}
-    {{name}}: {{dataType}}
+    "{{baseName}}": {{dataType}},
+    {{#unless @last}}
+
+    {{/unless}}
     {{/each}}
-    {{else}}
-    pass
-    {{/if}}
+    }, total=False)
 
 class {{classname}}(Required{{classname}}, Optional{{classname}}):
     pass
