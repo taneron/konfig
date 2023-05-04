@@ -154,14 +154,14 @@ class ApiResponseForDefault(api_client.ApiResponse):
 class ApiResponseFor{{code}}(api_client.ApiResponse):
 {{/if}}
 {{#and responseHeaders content}}
-    body: {{> schema_ref}}
+    body: {{dataType}}
 {{else}}
 {{#or responseHeaders content}}
 {{#if responseHeaders}}
     headers: ResponseHeadersFor{{code}}
     body: schemas.Unset = schemas.unset
 {{else}}
-    body: {{> schema_ref}}
+    body: {{dataType}}
 {{/if}}
 {{/or}}
 {{/and}}
