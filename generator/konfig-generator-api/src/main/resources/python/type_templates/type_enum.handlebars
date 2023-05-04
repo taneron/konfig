@@ -1,8 +1,3 @@
 {{#if isEnum}}
-class {{classname}}(Enum):
-    {{#with allowableValues}}
-        {{#each enumVars}}
-    {{name}} = {{{value}}}
-        {{/each}}
-    {{/with}}
+{{classname}} = Literal[{{#with allowableValues}}{{#each enumVars}}{{{value}}}{{#unless @last}}, {{/unless}}{{/each}}{{/with}}]
 {{/if}}
