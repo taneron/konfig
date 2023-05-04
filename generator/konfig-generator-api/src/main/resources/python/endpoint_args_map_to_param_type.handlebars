@@ -1,7 +1,4 @@
 {{#unless @root.keepAllParametersOptional}}
-    {{#if bodyParam.isObject}}
-body = {}
-    {{/if}}
     {{#if queryParams}}
 query_params = {}
     {{/if}}
@@ -17,12 +14,12 @@ cookie_params = {}
 {{/unless}}
 {{#if bodyParam}}
 {{#with bodyParam}}
-if body is None:
-    body = {}
+_body = {}
 {{#each flattenedParamsFromRequestBodyProperties}}
-if isinstance(body, dict) and {{{paramName}}} is not None:
-    body["{{{baseName}}}"] = {{{paramName}}}
+if {{{paramName}}} is not None:
+    _body["{{{baseName}}}"] = {{{paramName}}}
 {{/each}}
+body_param = {{#if isObject}}_body{{else}}body if body is not None else _body{{/if}}
 {{/with}}
 {{/if}}
 {{#each queryParams}}
