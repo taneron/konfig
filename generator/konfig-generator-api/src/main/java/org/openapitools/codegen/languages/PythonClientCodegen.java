@@ -1641,6 +1641,43 @@ public class PythonClientCodegen extends AbstractPythonCodegen {
                 return prefix + modelName + fullSuffix;
             }
         }
+        if (ModelUtils.isComposedSchema(p)) {
+            if (p.getAnyOf() != null && p.getAnyOf().size() > 0) {
+                StringBuilder sb = new StringBuilder();
+
+                // Gather types
+                for (int i = 0; i < p.getAnyOf().size(); i++) {
+                    List<Schema> anyOf = p.getAnyOf();
+                    Schema s = anyOf.get(i);
+                    sb.append(getTypeString(s, prefix, suffix, referencedModelNames));
+                    if (i < p.getAnyOf().size() - 1) {
+                        sb.append(", ");
+                    }
+                }
+
+                return prefix + "typing.Union[" + sb + "]" + fullSuffix;
+            }
+
+            if (p.getOneOf() != null && p.getOneOf().size() > 0) {
+                StringBuilder sb = new StringBuilder();
+
+                // Gather types
+                for (int i = 0; i < p.getOneOf().size(); i++) {
+                    List<Schema> oneOf = p.getOneOf();
+                    Schema s = oneOf.get(i);
+                    sb.append(getTypeString(s, prefix, suffix, referencedModelNames));
+                    if (i < p.getAnyOf().size() - 1) {
+                        sb.append(", ");
+                    }
+                }
+
+                return prefix + "typing.Union[" + sb + "]" + fullSuffix;
+            }
+
+            if (p.getAllOf() != null && p.getAllOf().size() == 1) {
+                return getTypeString((Schema) p.getAllOf().get(0), prefix, suffix, referencedModelNames);
+            }
+        }
         if (ModelUtils.isAnyType(p)) {
             return prefix + "typing.Union[bool, date, datetime, dict, float, int, list, str, None]" + suffix;
         }

@@ -7100,7 +7100,14 @@ public class DefaultCodegen implements CodegenConfig {
             ;
         } else if (ModelUtils.isAnyType(ps)) {
             // any schema with no type set, composed schemas often do this
-            ;
+
+            // Dylan: make sure we capture imports from composed schemas
+            if (ModelUtils.isComposedSchema(ps)) {
+                CodegenProperty composed = fromProperty("composed", ps, false);
+                Optional.ofNullable(composed.getComposedSchemas().getAllOf()).ifPresent(schemas -> schemas.forEach(schema -> imports.add(schema.baseType)));
+                Optional.ofNullable(composed.getComposedSchemas().getOneOf()).ifPresent(schemas -> schemas.forEach(schema -> imports.add(schema.baseType)));
+                Optional.ofNullable(composed.getComposedSchemas().getAnyOf()).ifPresent(schemas -> schemas.forEach(schema -> imports.add(schema.baseType)));
+            }
         } else if (ModelUtils.isArraySchema(ps)) {
             Schema inner = getSchemaItems((ArraySchema) ps);
             CodegenProperty arrayInnerProperty = fromProperty("inner", inner, false);
