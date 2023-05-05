@@ -31,7 +31,7 @@ def all_of(cls):
     return [
 {{#each allOf}}
 {{#if complexType}}
-        {{complexType}},
+        {{#if inEndpoint}}{{schemaName}}{{else}}{{complexType}}{{/if}},
 {{else}}
     {{#if nameInSnakeCase}}
         cls.{{name}},
@@ -57,7 +57,7 @@ def one_of(cls):
     return [
 {{#each oneOf}}
 {{#if complexType}}
-        {{complexType}},
+        {{#if inEndpoint}}{{schemaName}}{{else}}{{complexType}}{{/if}},
 {{else}}
     {{#if nameInSnakeCase}}
         cls.{{name}},
@@ -83,7 +83,7 @@ def any_of(cls):
     return [
 {{#each anyOf}}
 {{#if complexType}}
-        {{complexType}},
+        {{#if inEndpoint}}{{schemaName}}{{else}}{{complexType}}{{/if}},
 {{else}}
     {{#if nameInSnakeCase}}
         cls.{{name}},
