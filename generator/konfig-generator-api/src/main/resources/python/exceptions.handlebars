@@ -4,7 +4,7 @@
 
 
 import typing
-from {{packageName}}.api_response import ApiResponse
+from {{packageName}}.api_response import ApiResponse, AsyncApiResponse
 from {{packageName}}.exceptions_base import OpenApiException, ApiTypeError, ApiValueError, render_path
 
 class ClientConfigurationError(OpenApiException):
@@ -50,12 +50,12 @@ class ApiKeyError(OpenApiException, KeyError):
 
 class ApiException(OpenApiException):
 
-    def __init__(self, status=None, reason=None, api_response: ApiResponse = None):
+    def __init__(self, status=None, reason=None, api_response: typing.Optional[typing.Union[ApiResponse, AsyncApiResponse]] = None):
         if api_response:
             self.status = api_response.status
             self.reason = api_response.response.reason
             self.body = api_response.body
-            self.headers = api_response.response.getheaders()
+            self.headers = api_response.response.headers
             self.round_trip_time = api_response.round_trip_time
         else:
             self.status = status

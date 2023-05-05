@@ -75,12 +75,12 @@
 ){{#unless omitReturnType}} -> typing.Union[
     {{#each responses}}
         {{#if isDefault}}
-    ApiResponseForDefault,
+    ApiResponseForDefault{{#if async}}Async{{/if}},
         {{else}}
             {{#if is2xx}}
-    ApiResponseFor{{code}},
+    ApiResponseFor{{code}}{{#if async}}Async{{/if}},
             {{/if}}
         {{/if}}
     {{/each}}
-    api_client.ApiResponseWithoutDeserialization,
+    api_client.ApiResponseWithoutDeserialization{{#if async}}Async{{/if}},
 ]{{/unless}}:

@@ -1,0 +1,23 @@
+@dataclass
+{{#if isDefault}}
+class ApiResponseForDefault{{#if async}}Async{{/if}}(api_client.{{#if async}}Async{{/if}}ApiResponse):
+{{else}}
+class ApiResponseFor{{code}}{{#if async}}Async{{/if}}(api_client.{{#if async}}Async{{/if}}ApiResponse):
+{{/if}}
+{{#and responseHeaders content}}
+    body: {{dataType}}
+{{else}}
+{{#or responseHeaders content}}
+{{#if responseHeaders}}
+    headers: ResponseHeadersFor{{code}}
+    body: schemas.Unset = schemas.unset
+{{else}}
+    body: {{dataType}}
+{{/if}}
+{{/or}}
+{{/and}}
+{{#unless responseHeaders}}
+{{#unless content}}
+    body: schemas.Unset = schemas.unset
+{{/unless}}
+{{/unless}}
