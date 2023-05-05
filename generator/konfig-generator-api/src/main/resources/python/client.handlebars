@@ -34,11 +34,19 @@ class {{clientName}}:
 {{#each apis}}
 {{#each topLevelOperations}}
 
+    async def a{{vendorExtensions.x-konfig-top-level-operation}}(
+    {{> endpoint_args async=true isOverload=false skipDeserialization="null" contentType="null" interface=true omitReturnType=true}}
+        _args = {}
+        for arg in inspect.getfullargspec(self.{{vendorExtensions.x-konfig-top-level-operation}}).args:
+            if arg != "self":
+                _args[arg] = locals()[arg]
+        return await self.{{> api_class_name}}.a{{operationId}}(**_args)
+
     def {{vendorExtensions.x-konfig-top-level-operation}}(
     {{> endpoint_args isOverload=false skipDeserialization="null" contentType="null" interface=true omitReturnType=true}}
         _args = {}
         for arg in inspect.getfullargspec(self.{{vendorExtensions.x-konfig-top-level-operation}}).args:
-            if arg == "self":
+            if arg != "self":
                 _args[arg] = locals()[arg]
         return self.{{> api_class_name}}.{{operationId}}(**_args)
 {{/each}}
