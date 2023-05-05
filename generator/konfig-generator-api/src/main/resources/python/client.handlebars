@@ -2,6 +2,8 @@
 {{>partial_header}}
 
 import typing
+import inspect
+from datetime import date, datetime
 from {{packageName}}.configuration import Configuration
 from {{packageName}}.api_client import ApiClient
 {{#with apiInfo}}
@@ -9,6 +11,10 @@ from {{packageName}}.api_client import ApiClient
 from {{packageName}}.apis.tags.{{classVarName}} import {{classname}}
 {{/each}}
 {{/with}}
+
+{{#each topLevelClientTypeImports}}
+{{.}}
+{{/each}}
 
 
 class {{clientName}}:
@@ -28,8 +34,13 @@ class {{clientName}}:
 {{#each apis}}
 {{#each topLevelOperations}}
 
-    def {{vendorExtensions.x-konfig-top-level-operation}}(self, *args, **kwargs):
-        return self.{{> api_class_name}}.{{operationId}}(*args, **kwargs)
+    def {{vendorExtensions.x-konfig-top-level-operation}}(
+    {{> endpoint_args isOverload=false skipDeserialization="null" contentType="null" interface=true omitReturnType=true}}
+        _args = {}
+        for arg in inspect.getfullargspec(self.{{vendorExtensions.x-konfig-top-level-operation}}).args:
+            if arg == "self":
+                _args[arg] = locals()[arg]
+        return self.{{> api_class_name}}.{{operationId}}(**_args)
 {{/each}}
 {{/each}}
 {{/with}}

@@ -837,6 +837,14 @@ public class DefaultGenerator implements Generator {
         apis.setTopLevelOperations(topLevelOperations);
         apis.setHasTopLevelOperations(topLevelOperations.size() > 0);
 
+        List<String> topLevelClientTypeImports = new ArrayList<>();
+        apis.getTopLevelOperations().forEach(operation -> {
+            if (operation.imports != null) {
+                topLevelClientTypeImports.addAll(operation.typeImports);
+            }
+        });
+        bundle.put("topLevelClientTypeImports", topLevelClientTypeImports);
+
         URL url = URLPathUtils.getServerURL(openAPI, config.serverVariableOverrides());
 
         bundle.put("openAPI", openAPI);

@@ -2,7 +2,6 @@ package org.openapitools.codegen.model;
 
 import org.openapitools.codegen.CodegenOperation;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
