@@ -103,12 +103,12 @@ class InvalidHostConfigurationError(ClientConfigurationError):
         super().__init__('Invalid host: "{}", {}'.format(self.host, self.reason))
 
 
-class MissingRequiredPropertiesError(TypeError):
+class MissingRequiredPropertiesError(ApiTypeError):
     def __init__(self, msg: str):
         super().__init__(msg)
 
 
-class MissingRequiredParametersError(TypeError):
+class MissingRequiredParametersError(ApiTypeError):
     def __init__(self, error: TypeError):
         self.error = error
         error_str = str(error)
