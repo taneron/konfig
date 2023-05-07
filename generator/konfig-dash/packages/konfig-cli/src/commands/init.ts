@@ -175,6 +175,12 @@ export default class Init extends Command {
         'python.testing.unittestEnabled': false,
         'python.testing.pytestEnabled': true,
         'dotnet-test-explorer.testProjectPath': '**/*.sln',
+        '[python]': {
+          'editor.defaultFormatter': 'ms-python.black-formatter',
+          'editor.formatOnSave': true,
+        },
+        'black-formatter.importStrategy': 'fromEnvironment',
+        'python.formatting.provider': 'none',
         'python.analysis.typeCheckingMode': 'basic',
         'python.testing.unittestArgs': [
           '-v',
