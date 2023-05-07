@@ -1,0 +1,36 @@
+args: api_client.MappedArgs = api_client.MappedArgs()
+query_params = {}
+header_params = {}
+path_params = {}
+cookie_params = {}
+{{#if bodyParam}}
+{{#with bodyParam}}
+_body = {}
+{{#each flattenedParamsFromRequestBodyProperties}}
+if {{{paramName}}} is not None:
+    _body["{{{baseName}}}"] = {{{paramName}}}
+{{/each}}
+args.body = {{#if isObject}}_body{{else}}body if body is not None else _body{{/if}}
+{{/with}}
+{{/if}}
+{{#each queryParams}}
+if {{{paramName}}} is not None:
+    query_params["{{{baseName}}}"] = {{{paramName}}}
+{{/each}}
+{{#each headerParams}}
+if {{{paramName}}} is not None:
+    header_params["{{{baseName}}}"] = {{{paramName}}}
+{{/each}}
+{{#each pathParams}}
+if {{{paramName}}} is not None:
+    path_params["{{{baseName}}}"] = {{{paramName}}}
+{{/each}}
+{{#each cookieParams}}
+if {{{paramName}}} is not None:
+    cookie_params["{{{baseName}}}"] = {{{paramName}}}
+{{/each}}
+args.query = query_params
+args.header = header_params
+args.path = path_params
+args.cookie = cookie_params
+return args

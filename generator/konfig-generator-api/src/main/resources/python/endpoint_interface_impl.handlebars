@@ -1,0 +1,17 @@
+async def a{{methodName}}(
+{{> endpoint_args async=true isOverload=false skipDeserialization="null" contentType="null" interface=true}}
+    args = self._{{operationId}}_mapped_args(
+        {{> endpoint_args_call_mapped_args}}
+    )
+    return await self._a{{operationId}}_oapg(
+        {{> endpoint_args_passed }}
+    )
+
+def {{methodName}}(
+{{> endpoint_args isOverload=false skipDeserialization="null" contentType="null" interface=true}}
+    args = self._{{operationId}}_mapped_args(
+        {{> endpoint_args_call_mapped_args}}
+    )
+    return self._{{operationId}}_oapg(
+        {{> endpoint_args_passed }}
+    )

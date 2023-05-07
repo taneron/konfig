@@ -71,8 +71,9 @@
             {{/each}}
         {{/with}}
     {{/if}}
+    stream: bool = False,
 {{/if}}
-){{#unless omitReturnType}} -> typing.Union[
+){{#unless omitReturnType}} -> {{#if isMappedArgs}}api_client.MappedArgs{{else}}typing.Union[
     {{#each responses}}
         {{#if isDefault}}
     ApiResponseForDefault{{#if async}}Async{{/if}},
@@ -83,4 +84,4 @@
         {{/if}}
     {{/each}}
     api_client.ApiResponseWithoutDeserialization{{#if async}}Async{{/if}},
-]{{/unless}}:
+]{{/if}}{{/unless}}:

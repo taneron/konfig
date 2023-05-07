@@ -204,6 +204,10 @@ _all_accept_content_types = (
 
 class BaseApi(api_client.Api):
 
+    def _{{operationId}}_mapped_args(
+    {{> endpoint_args isMappedArgs=true isOverload=false skipDeserialization="null" contentType="null" interface=true}}
+        {{> endpoint_args_mapped_args_impl}}
+
     {{> endpoint_operation_impl async=true}}
 
 
@@ -213,37 +217,13 @@ class BaseApi(api_client.Api):
 class {{operationIdCamelCase}}(BaseApi):
     # this class is used by api classes that refer to endpoints with operationId fn names
 
-    async def a{{operationId}}(
-    {{> endpoint_args async=true isOverload=false skipDeserialization="null" contentType="null" interface=true}}
-        {{> endpoint_args_map_to_param_type}}
-        return await self._a{{operationId}}_oapg(
-            {{> endpoint_args_passed }}
-        )
-
-    def {{operationId}}(
-    {{> endpoint_args isOverload=false skipDeserialization="null" contentType="null" interface=true}}
-        {{> endpoint_args_map_to_param_type}}
-        return self._{{operationId}}_oapg(
-            {{> endpoint_args_passed }}
-        )
+    {{> endpoint_interface_impl methodName=operationId}}
 
 
 class ApiFor{{httpMethod}}(BaseApi):
     # this class is used by api classes that refer to endpoints by path and http method names
 
-    async def a{{httpMethod}}(
-    {{> endpoint_args async=true isOverload=false skipDeserialization="null" contentType="null" interface=true}}
-        {{> endpoint_args_map_to_param_type}}
-        return await self._a{{operationId}}_oapg(
-            {{> endpoint_args_passed }}
-        )
-
-    def {{httpMethod}}(
-    {{> endpoint_args isOverload=false skipDeserialization="null" contentType="null" interface=true}}
-        {{> endpoint_args_map_to_param_type}}
-        return self._{{operationId}}_oapg(
-            {{> endpoint_args_passed }}
-        )
+    {{> endpoint_interface_impl methodName=httpMethod}}
 
 
 {{/with}}
