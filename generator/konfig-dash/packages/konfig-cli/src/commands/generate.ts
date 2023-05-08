@@ -220,6 +220,7 @@ export default class Deploy extends Command {
         const requestJava: GenerateRequestBodyInputType['generators']['go'] = {
           files: createTemplateFilesObject(files, 'kotlin', configDir),
           ...handleReadmeSnippet({ config: restOfConfig }),
+          ...handleReadmeSupportingDescriptionSnippet({ config: restOfConfig }),
           ...handleapiDocumentationAuthenticationPartialSnippet({
             config: restOfConfig,
           }),
@@ -234,6 +235,9 @@ export default class Deploy extends Command {
           {
             files: createTemplateFilesObject(files, 'kotlin', configDir),
             ...handleReadmeSnippet({ config: restOfConfig }),
+            ...handleReadmeSupportingDescriptionSnippet({
+              config: restOfConfig,
+            }),
             ...handleapiDocumentationAuthenticationPartialSnippet({
               config: restOfConfig,
             }),
@@ -248,6 +252,9 @@ export default class Deploy extends Command {
           {
             files: createTemplateFilesObject(files, 'kotlin', configDir),
             ...handleReadmeSnippet({ config: restOfConfig }),
+            ...handleReadmeSupportingDescriptionSnippet({
+              config: restOfConfig,
+            }),
             ...handleapiDocumentationAuthenticationPartialSnippet({
               config: restOfConfig,
             }),
@@ -261,6 +268,7 @@ export default class Deploy extends Command {
         const requestJava: GenerateRequestBodyInputType['generators']['php'] = {
           files: createTemplateFilesObject(files, 'php', configDir),
           ...handleReadmeSnippet({ config: restOfConfig }),
+          ...handleReadmeSupportingDescriptionSnippet({ config: restOfConfig }),
           ...handleapiDocumentationAuthenticationPartialSnippet({
             config: restOfConfig,
           }),
@@ -275,6 +283,9 @@ export default class Deploy extends Command {
           {
             files: createTemplateFilesObject(files, 'swift', configDir),
             ...handleReadmeSnippet({ config: restOfConfig }),
+            ...handleReadmeSupportingDescriptionSnippet({
+              config: restOfConfig,
+            }),
             ...handleapiDocumentationAuthenticationPartialSnippet({
               config: restOfConfig,
             }),
@@ -289,6 +300,9 @@ export default class Deploy extends Command {
           {
             files: createTemplateFilesObject(files, 'csharp', configDir),
             ...handleReadmeSnippet({ config: restOfConfig }),
+            ...handleReadmeSupportingDescriptionSnippet({
+              config: restOfConfig,
+            }),
             ...handleapiDocumentationAuthenticationPartialSnippet({
               config: restOfConfig,
             }),
@@ -303,6 +317,9 @@ export default class Deploy extends Command {
           {
             files: createTemplateFilesObject(files, 'android', configDir),
             ...handleReadmeSnippet({ config: restOfConfig }),
+            ...handleReadmeSupportingDescriptionSnippet({
+              config: restOfConfig,
+            }),
             ...handleapiDocumentationAuthenticationPartialSnippet({
               config: restOfConfig,
             }),
@@ -317,6 +334,9 @@ export default class Deploy extends Command {
           {
             files: createTemplateFilesObject(files, 'java', configDir),
             ...handleReadmeSnippet({ config: restOfConfig }),
+            ...handleReadmeSupportingDescriptionSnippet({
+              config: restOfConfig,
+            }),
             ...handleapiDocumentationAuthenticationPartialSnippet({
               config: restOfConfig,
             }),
@@ -332,6 +352,9 @@ export default class Deploy extends Command {
           {
             files: createTemplateFilesObject(files, 'python', configDir),
             ...handleReadmeSnippet({ config: restOfConfig }),
+            ...handleReadmeSupportingDescriptionSnippet({
+              config: restOfConfig,
+            }),
             ...handleapiDocumentationAuthenticationPartialSnippet({
               config: restOfConfig,
             }),
@@ -350,6 +373,9 @@ export default class Deploy extends Command {
             {
               files: createTemplateFilesObject(files, 'typescript', configDir),
               ...handleReadmeSnippet({ config: restOfConfig }),
+              ...handleReadmeSupportingDescriptionSnippet({
+                config: restOfConfig,
+              }),
               ...handleapiDocumentationAuthenticationPartialSnippet({
                 config: restOfConfig,
               }),
@@ -1199,6 +1225,20 @@ function handleReadmeSnippet<
   if (config.readmeDescriptionSnippet !== undefined)
     config.readmeDescriptionSnippet = fs.readFileSync(
       config.readmeDescriptionSnippet,
+      'utf-8'
+    )
+  return config
+}
+
+/**
+ * Converts apiDocumentationAuthenticationPartial file path to raw string
+ */
+function handleReadmeSupportingDescriptionSnippet<
+  C extends object & { readmeSupportingDescriptionSnippet?: string }
+>({ config }: { config: C }): C {
+  if (config.readmeSupportingDescriptionSnippet !== undefined)
+    config.readmeSupportingDescriptionSnippet = fs.readFileSync(
+      config.readmeSupportingDescriptionSnippet,
       'utf-8'
     )
   return config

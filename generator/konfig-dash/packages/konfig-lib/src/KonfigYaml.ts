@@ -273,6 +273,7 @@ export const generatorCommonOptional = z
   .object({
     outputDirectory: z.string(),
     readmeSnippet: z.string().optional(),
+    readmeSupportingDescriptionSnippet: z.string().optional(),
     readmeDescriptionSnippet: z.string().optional(),
     apiDocumentationAuthenticationPartial: z.string().optional(),
     disabled: z.boolean().optional(),

@@ -173,6 +173,7 @@ export const myHandler = async (event: APIGatewayEvent, context: Context) => {
       authorEmail,
       authorName,
       readmeSnippet,
+      readmeSupportingDescriptionSnippet,
       readmeDescriptionSnippet,
       git,
       defaultTimeout,
@@ -191,6 +192,7 @@ export const myHandler = async (event: APIGatewayEvent, context: Context) => {
           authorEmail,
           authorName,
           readmeSnippet,
+          readmeSupportingDescriptionSnippet,
           readmeDescriptionSnippet,
           apiDocumentationAuthenticationPartial,
           defaultTimeout,
@@ -217,6 +219,8 @@ export const myHandler = async (event: APIGatewayEvent, context: Context) => {
           omitInfoDescription: body.omitInfoDescription,
           packageVersion: generatorConfig.version,
           readmeSnippet: generatorConfig.readmeSnippet,
+          readmeSupportingDescriptionSnippet:
+            generatorConfig.readmeSupportingDescriptionSnippet,
           readmeDescriptionSnippet: generatorConfig.readmeDescriptionSnippet,
           apiDocumentationAuthenticationPartial:
             generatorConfig.apiDocumentationAuthenticationPartial,
@@ -246,6 +250,8 @@ export const myHandler = async (event: APIGatewayEvent, context: Context) => {
           groupId: generatorConfig.groupId,
           artifactId: generatorConfig.artifactId,
           readmeSnippet: generatorConfig.readmeSnippet,
+          readmeSupportingDescriptionSnippet:
+            generatorConfig.readmeSupportingDescriptionSnippet,
           readmeDescriptionSnippet: generatorConfig.readmeDescriptionSnippet,
           apiDocumentationAuthenticationPartial:
             generatorConfig.apiDocumentationAuthenticationPartial,
@@ -275,6 +281,8 @@ export const myHandler = async (event: APIGatewayEvent, context: Context) => {
           omitInfoDescription: body.omitInfoDescription,
           invokerPackage: generatorConfig.invokerPackage,
           readmeSnippet: generatorConfig.readmeSnippet,
+          readmeSupportingDescriptionSnippet:
+            generatorConfig.readmeSupportingDescriptionSnippet,
           readmeDescriptionSnippet: generatorConfig.readmeDescriptionSnippet,
           packagistUsername: generatorConfig.packagistUsername,
           apiDocumentationAuthenticationPartial:
@@ -314,6 +322,8 @@ export const myHandler = async (event: APIGatewayEvent, context: Context) => {
           apiPackage: `${packageName}.api`,
           artifactUrl: `https://${generatorConfig.git.host}/${generatorConfig.git.userId}/${generatorConfig.git.repoId}`,
           readmeSnippet: generatorConfig.readmeSnippet,
+          readmeSupportingDescriptionSnippet:
+            generatorConfig.readmeSupportingDescriptionSnippet,
           readmeDescriptionSnippet: generatorConfig.readmeDescriptionSnippet,
           disallowAdditionalPropertiesIfNotPresent: false,
           apiDocumentationAuthenticationPartial:
@@ -357,6 +367,8 @@ export const myHandler = async (event: APIGatewayEvent, context: Context) => {
             ? `https://${generatorConfig.git.host}/${generatorConfig.git.userId}/${generatorConfig.git.repoId}`
             : 'https://github.com/USER_ID/REPO_ID',
           readmeSnippet: generatorConfig.readmeSnippet,
+          readmeSupportingDescriptionSnippet:
+            generatorConfig.readmeSupportingDescriptionSnippet,
           readmeDescriptionSnippet: generatorConfig.readmeDescriptionSnippet,
           disallowAdditionalPropertiesIfNotPresent: false,
           defaultTimeout: generatorConfig.defaultTimeout,
@@ -389,6 +401,8 @@ export const myHandler = async (event: APIGatewayEvent, context: Context) => {
           projectName: generatorConfig.projectName,
           swiftPackagePath: generatorConfig.projectName,
           readmeSnippet: generatorConfig.readmeSnippet,
+          readmeSupportingDescriptionSnippet:
+            generatorConfig.readmeSupportingDescriptionSnippet,
           readmeDescriptionSnippet: generatorConfig.readmeDescriptionSnippet,
           gitRepoName: generatorConfig.git.repoName,
           outputDirectory: generatorConfig.outputDirectory,
@@ -419,6 +433,8 @@ export const myHandler = async (event: APIGatewayEvent, context: Context) => {
           omitInfoDescription: body.omitInfoDescription,
           packageVersion: generatorConfig.version,
           readmeSnippet: generatorConfig.readmeSnippet,
+          readmeSupportingDescriptionSnippet:
+            generatorConfig.readmeSupportingDescriptionSnippet,
           readmeDescriptionSnippet: generatorConfig.readmeDescriptionSnippet,
           apiDocumentationAuthenticationPartial:
             generatorConfig.apiDocumentationAuthenticationPartial,
@@ -457,6 +473,8 @@ export const myHandler = async (event: APIGatewayEvent, context: Context) => {
           disallowAdditionalPropertiesIfNotPresent: false,
           packageVersion: generatorConfig.version,
           readmeSnippet: generatorConfig.readmeSnippet,
+          readmeSupportingDescriptionSnippet:
+            generatorConfig.readmeSupportingDescriptionSnippet,
           readmeDescriptionSnippet: generatorConfig.readmeDescriptionSnippet,
           removeKonfigBranding: generatorConfig.removeKonfigBranding,
           omitApiDocumentation: generatorConfig.omitApiDocumentation,
@@ -529,6 +547,8 @@ export const myHandler = async (event: APIGatewayEvent, context: Context) => {
             npmVersion: generatorConfig.version,
             disallowAdditionalPropertiesIfNotPresent: false,
             readmeSnippet: generatorConfig.readmeSnippet,
+            readmeSupportingDescriptionSnippet:
+              generatorConfig.readmeSupportingDescriptionSnippet,
             readmeDescriptionSnippet: generatorConfig.readmeDescriptionSnippet,
             omitApiDocumentation: generatorConfig.omitApiDocumentation,
             clientName: generatorConfig.clientName,

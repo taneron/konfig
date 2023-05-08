@@ -262,6 +262,7 @@ public interface GenerateApi {
         putIfPresent(map, "swiftPackagePath", additionalProperties.getSwiftPackagePath());
         putIfPresent(map, "apiDocumentationAuthenticationPartial", additionalProperties.getApiDocumentationAuthenticationPartial());
         putIfPresent(map, "readmeSnippet", additionalProperties.getReadmeSnippet());
+        putIfPresent(map, "readmeSupportingDescriptionSnippet", additionalProperties.getReadmeSupportingDescriptionSnippet());
         putIfPresent(map, "readmeDescriptionSnippet", additionalProperties.getReadmeDescriptionSnippet());
         putIfPresent(map, "objectPropertyNamingConvention", additionalProperties.getObjectPropertyNamingConvention());
         putIfPresent(map, "setSkipSerializationToTrueByDefault", additionalProperties.getSetSkipSerializationToTrueByDefault());
