@@ -129,6 +129,8 @@
             iterates over response.http_response.content and closes connection once iteration has finished
             """
             async for line in response.http_response.content:
+                if line == b'\r\n':
+                    continue
                 yield line
             response.http_response.close()
             await response.session.close()
