@@ -29,6 +29,8 @@ const additionalProperties = z.object({
   packageUrl: z.string().optional(),
   moduleName: z.string().optional(),
   omitInfoDescription: z.boolean().optional(),
+  omitModelDocumentation: z.boolean().optional(),
+  omitApiDocumentation: z.boolean().optional(),
   removeKonfigBranding: z.boolean().optional(),
   npmName: z.string().optional(),
   npmVersion: z.string().optional(),

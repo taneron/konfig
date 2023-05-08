@@ -114,6 +114,8 @@ export const pythonConfig = z.object({
   setSkipSerializationToTrueByDefault: z.boolean().optional(),
   apiKeyAlias: z.record(z.string(), z.string()).optional(),
   validateRequiredStringsAreNonEmpty: z.boolean().optional(),
+  omitApiDocumentation: z.boolean().optional(),
+  omitModelDocumentation: z.boolean().optional(),
   packageUrl: z.string().optional(),
   topLevelOperations: topLevelOperationsSchema,
   testPyPI: z.boolean().optional(),

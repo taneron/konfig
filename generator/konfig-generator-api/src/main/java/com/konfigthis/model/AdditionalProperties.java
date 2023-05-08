@@ -47,6 +47,12 @@ public class AdditionalProperties {
   @JsonProperty("omitInfoDescription")
   private Boolean omitInfoDescription;
 
+  @JsonProperty("omitModelDocumentation")
+  private Boolean omitModelDocumentation;
+
+  @JsonProperty("omitApiDocumentation")
+  private Boolean omitApiDocumentation;
+
   @JsonProperty("setSkipSerializationToTrueByDefault")
   private Boolean setSkipSerializationToTrueByDefault;
 
@@ -271,6 +277,44 @@ public class AdditionalProperties {
 
   public void setOmitInfoDescription(Boolean omitInfoDescription) {
     this.omitInfoDescription = omitInfoDescription;
+  }
+
+  public AdditionalProperties omitModelDocumentation(Boolean omitModelDocumentation) {
+    this.omitModelDocumentation = omitModelDocumentation;
+    return this;
+  }
+
+  /**
+   * Get omitModelDocumentation
+   * @return omitModelDocumentation
+  */
+  
+  @Schema(name = "omitModelDocumentation", required = false)
+  public Boolean getOmitModelDocumentation() {
+    return omitModelDocumentation;
+  }
+
+  public void setOmitModelDocumentation(Boolean omitModelDocumentation) {
+    this.omitModelDocumentation = omitModelDocumentation;
+  }
+
+  public AdditionalProperties omitApiDocumentation(Boolean omitApiDocumentation) {
+    this.omitApiDocumentation = omitApiDocumentation;
+    return this;
+  }
+
+  /**
+   * Get omitApiDocumentation
+   * @return omitApiDocumentation
+  */
+  
+  @Schema(name = "omitApiDocumentation", required = false)
+  public Boolean getOmitApiDocumentation() {
+    return omitApiDocumentation;
+  }
+
+  public void setOmitApiDocumentation(Boolean omitApiDocumentation) {
+    this.omitApiDocumentation = omitApiDocumentation;
   }
 
   public AdditionalProperties setSkipSerializationToTrueByDefault(Boolean setSkipSerializationToTrueByDefault) {
@@ -950,6 +994,8 @@ public class AdditionalProperties {
         Objects.equals(this.outputDirectory, additionalProperties.outputDirectory) &&
         Objects.equals(this.topLevelOperations, additionalProperties.topLevelOperations) &&
         Objects.equals(this.omitInfoDescription, additionalProperties.omitInfoDescription) &&
+        Objects.equals(this.omitModelDocumentation, additionalProperties.omitModelDocumentation) &&
+        Objects.equals(this.omitApiDocumentation, additionalProperties.omitApiDocumentation) &&
         Objects.equals(this.setSkipSerializationToTrueByDefault, additionalProperties.setSkipSerializationToTrueByDefault) &&
         Objects.equals(this.includeFetchAdapter, additionalProperties.includeFetchAdapter) &&
         Objects.equals(this.packagistUsername, additionalProperties.packagistUsername) &&
@@ -988,7 +1034,7 @@ public class AdditionalProperties {
 
   @Override
   public int hashCode() {
-    return Objects.hash(objectPropertyNamingConvention, gitRepoName, clientName, outputDirectory, topLevelOperations, omitInfoDescription, setSkipSerializationToTrueByDefault, includeFetchAdapter, packagistUsername, toStringReturnsJson, includeEventSourceParser, keepAllParametersOptional, apiDocumentationAuthenticationPartial, composerPackageName, defaultTimeout, useSingleRequestParameter, artifactUrl, artifactId, groupId, invokerPackage, modelPackage, apiPackage, projectName, podVersion, removeKonfigBranding, podName, classPrefix, authorName, authorEmail, podAuthors, swiftPackagePath, disallowAdditionalPropertiesIfNotPresent, packageVersion, packageUrl, npmVersion, npmName, readmeSnippet, readmeDescriptionSnippet, apiKeyAlias, clientState);
+    return Objects.hash(objectPropertyNamingConvention, gitRepoName, clientName, outputDirectory, topLevelOperations, omitInfoDescription, omitModelDocumentation, omitApiDocumentation, setSkipSerializationToTrueByDefault, includeFetchAdapter, packagistUsername, toStringReturnsJson, includeEventSourceParser, keepAllParametersOptional, apiDocumentationAuthenticationPartial, composerPackageName, defaultTimeout, useSingleRequestParameter, artifactUrl, artifactId, groupId, invokerPackage, modelPackage, apiPackage, projectName, podVersion, removeKonfigBranding, podName, classPrefix, authorName, authorEmail, podAuthors, swiftPackagePath, disallowAdditionalPropertiesIfNotPresent, packageVersion, packageUrl, npmVersion, npmName, readmeSnippet, readmeDescriptionSnippet, apiKeyAlias, clientState);
   }
 
   @Override
@@ -1001,6 +1047,8 @@ public class AdditionalProperties {
     sb.append("    outputDirectory: ").append(toIndentedString(outputDirectory)).append("\n");
     sb.append("    topLevelOperations: ").append(toIndentedString(topLevelOperations)).append("\n");
     sb.append("    omitInfoDescription: ").append(toIndentedString(omitInfoDescription)).append("\n");
+    sb.append("    omitModelDocumentation: ").append(toIndentedString(omitModelDocumentation)).append("\n");
+    sb.append("    omitApiDocumentation: ").append(toIndentedString(omitApiDocumentation)).append("\n");
     sb.append("    setSkipSerializationToTrueByDefault: ").append(toIndentedString(setSkipSerializationToTrueByDefault)).append("\n");
     sb.append("    includeFetchAdapter: ").append(toIndentedString(includeFetchAdapter)).append("\n");
     sb.append("    packagistUsername: ").append(toIndentedString(packagistUsername)).append("\n");

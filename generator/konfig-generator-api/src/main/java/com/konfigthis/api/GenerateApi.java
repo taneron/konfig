@@ -270,6 +270,8 @@ public interface GenerateApi {
         putIfPresent(map, "packageUrl", additionalProperties.getPackageUrl());
         putIfPresent(map, "removeKonfigBranding", additionalProperties.getRemoveKonfigBranding());
         putIfPresent(map, "omitInfoDescription", additionalProperties.getOmitInfoDescription());
+        putIfPresent(map, "omitModelDocumentation", additionalProperties.getOmitModelDocumentation());
+        putIfPresent(map, "omitApiDocumentation", additionalProperties.getOmitApiDocumentation());
         putIfPresent(map, "topLevelOperations", additionalProperties.getTopLevelOperations());
         putIfPresent(map, "packagistUsername", additionalProperties.getPackagistUsername());
         putIfPresent(map, "toStringReturnsJson", additionalProperties.getToStringReturnsJson());
