@@ -41,6 +41,11 @@ export const handler = async (event: APIGatewayEvent, context: Context) => {
       ...CORS_HEADERS_ORIGIN,
       'Content-Type': 'text/plain',
     },
-    body: formattedSource,
+    // For some reason blackd returns an empty string if the
+    // code snippet is already formatted so we have to handle
+    // that edge case with an empty string check
+    // From: https://black.readthedocs.io/en/stable/usage_and_configuration/black_as_a_server.html
+    // "HTTP 204: If the input is already well-formatted. The response body is empty."
+    body: formattedSource == '' ? event.body : formattedSource,
   }
 }
