@@ -166,6 +166,7 @@ export const typescriptConfig = z.object({
   clientState,
   removeRequiredProperties: removeRequiredPropertiesSchema.optional(),
   topLevelOperations: topLevelOperationsSchema,
+  omitApiDocumentation: z.boolean().optional(),
   includeFetchAdapter: z.boolean().optional(),
   includeEventSourceParser: z.boolean().optional(),
 })
