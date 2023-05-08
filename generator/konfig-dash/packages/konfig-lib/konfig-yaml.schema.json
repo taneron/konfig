@@ -72,6 +72,39 @@
           },
           "additionalProperties": false
         },
+        "fixObjectProperties": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "propertyName": {
+                "type": "string",
+                "description": "Name of property to match against"
+              },
+              "when": {
+                "type": "object",
+                "additionalProperties": {
+                  "$ref": "#/definitions/konfigYaml/properties/fixConfig/properties/updateProperty/additionalProperties/additionalProperties/additionalProperties"
+                },
+                "description": "Object to match against (e.g. {\"type\": \"number\"})"
+              },
+              "merge": {
+                "type": "object",
+                "additionalProperties": {
+                  "$ref": "#/definitions/konfigYaml/properties/fixConfig/properties/updateProperty/additionalProperties/additionalProperties/additionalProperties"
+                },
+                "description": "Object to merge with property objects that match the \"propertyName\" and \"when\" fields"
+              }
+            },
+            "required": [
+              "propertyName",
+              "when",
+              "merge"
+            ],
+            "additionalProperties": false
+          },
+          "description": "If you need to automatically modify all object properties with a particular name and data type you can configure \"modifyObjectProperty\" to update all object properties with a given name and condition."
+        },
         "filterQueryParams": {
           "type": "array",
           "items": {
@@ -209,6 +242,9 @@
                 "readmeSnippet": {
                   "type": "string"
                 },
+                "readmeSupportingDescriptionSnippet": {
+                  "type": "string"
+                },
                 "readmeDescriptionSnippet": {
                   "type": "string"
                 },
@@ -304,6 +340,9 @@
                 "readmeSnippet": {
                   "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/readmeSnippet"
                 },
+                "readmeSupportingDescriptionSnippet": {
+                  "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/readmeSupportingDescriptionSnippet"
+                },
                 "readmeDescriptionSnippet": {
                   "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/readmeDescriptionSnippet"
                 },
@@ -358,6 +397,9 @@
                 "readmeSnippet": {
                   "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/readmeSnippet"
                 },
+                "readmeSupportingDescriptionSnippet": {
+                  "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/readmeSupportingDescriptionSnippet"
+                },
                 "readmeDescriptionSnippet": {
                   "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/readmeDescriptionSnippet"
                 },
@@ -402,6 +444,9 @@
                 },
                 "readmeSnippet": {
                   "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/readmeSnippet"
+                },
+                "readmeSupportingDescriptionSnippet": {
+                  "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/readmeSupportingDescriptionSnippet"
                 },
                 "readmeDescriptionSnippet": {
                   "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/readmeDescriptionSnippet"
@@ -465,6 +510,12 @@
                 "validateRequiredStringsAreNonEmpty": {
                   "type": "boolean"
                 },
+                "omitApiDocumentation": {
+                  "type": "boolean"
+                },
+                "omitModelDocumentation": {
+                  "type": "boolean"
+                },
                 "packageUrl": {
                   "type": "string"
                 },
@@ -499,6 +550,10 @@
                 },
                 "testPyPI": {
                   "type": "boolean"
+                },
+                "keepAllParametersOptional": {
+                  "type": "boolean",
+                  "description": "This is a feature flag for ensuring that all parameters stay optional in the case of Python SDKs that have been published and distributed to developers already and want to preserve backwards compatability. Particularly we want to handle flattened kwargs and \"query_params\" / \"header_params\" form arguments."
                 },
                 "generator": {
                   "type": "string",
@@ -535,6 +590,9 @@
                     },
                     "readmeSnippet": {
                       "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/readmeSnippet"
+                    },
+                    "readmeSupportingDescriptionSnippet": {
+                      "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/readmeSupportingDescriptionSnippet"
                     },
                     "readmeDescriptionSnippet": {
                       "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/readmeDescriptionSnippet"
@@ -594,6 +652,9 @@
                     },
                     "topLevelOperations": {
                       "$ref": "#/definitions/konfigYaml/properties/generators/properties/python/properties/topLevelOperations"
+                    },
+                    "omitApiDocumentation": {
+                      "type": "boolean"
                     },
                     "includeFetchAdapter": {
                       "type": "boolean"
@@ -750,6 +811,9 @@
                 "readmeSnippet": {
                   "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/readmeSnippet"
                 },
+                "readmeSupportingDescriptionSnippet": {
+                  "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/readmeSupportingDescriptionSnippet"
+                },
                 "readmeDescriptionSnippet": {
                   "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/readmeDescriptionSnippet"
                 },
@@ -803,6 +867,9 @@
                 },
                 "readmeSnippet": {
                   "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/readmeSnippet"
+                },
+                "readmeSupportingDescriptionSnippet": {
+                  "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/readmeSupportingDescriptionSnippet"
                 },
                 "readmeDescriptionSnippet": {
                   "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/readmeDescriptionSnippet"
@@ -859,6 +926,9 @@
                 "readmeSnippet": {
                   "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/readmeSnippet"
                 },
+                "readmeSupportingDescriptionSnippet": {
+                  "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/readmeSupportingDescriptionSnippet"
+                },
                 "readmeDescriptionSnippet": {
                   "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/readmeDescriptionSnippet"
                 },
@@ -909,6 +979,9 @@
                 },
                 "readmeSnippet": {
                   "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/readmeSnippet"
+                },
+                "readmeSupportingDescriptionSnippet": {
+                  "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/readmeSupportingDescriptionSnippet"
                 },
                 "readmeDescriptionSnippet": {
                   "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/readmeDescriptionSnippet"
@@ -965,6 +1038,9 @@
                 "readmeSnippet": {
                   "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/readmeSnippet"
                 },
+                "readmeSupportingDescriptionSnippet": {
+                  "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/readmeSupportingDescriptionSnippet"
+                },
                 "readmeDescriptionSnippet": {
                   "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/readmeDescriptionSnippet"
                 },
@@ -1016,6 +1092,9 @@
                 },
                 "readmeSnippet": {
                   "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/readmeSnippet"
+                },
+                "readmeSupportingDescriptionSnippet": {
+                  "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/readmeSupportingDescriptionSnippet"
                 },
                 "readmeDescriptionSnippet": {
                   "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/readmeDescriptionSnippet"
@@ -1089,6 +1168,9 @@
                   "readmeSnippet": {
                     "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/readmeSnippet"
                   },
+                  "readmeSupportingDescriptionSnippet": {
+                    "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/readmeSupportingDescriptionSnippet"
+                  },
                   "readmeDescriptionSnippet": {
                     "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/readmeDescriptionSnippet"
                   },
@@ -1152,6 +1234,9 @@
                   "readmeSnippet": {
                     "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/readmeSnippet"
                   },
+                  "readmeSupportingDescriptionSnippet": {
+                    "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/readmeSupportingDescriptionSnippet"
+                  },
                   "readmeDescriptionSnippet": {
                     "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/readmeDescriptionSnippet"
                   },
@@ -1201,6 +1286,9 @@
                   },
                   "readmeSnippet": {
                     "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/readmeSnippet"
+                  },
+                  "readmeSupportingDescriptionSnippet": {
+                    "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/readmeSupportingDescriptionSnippet"
                   },
                   "readmeDescriptionSnippet": {
                     "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/readmeDescriptionSnippet"
@@ -1252,6 +1340,9 @@
                   },
                   "readmeSnippet": {
                     "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/readmeSnippet"
+                  },
+                  "readmeSupportingDescriptionSnippet": {
+                    "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/readmeSupportingDescriptionSnippet"
                   },
                   "readmeDescriptionSnippet": {
                     "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/readmeDescriptionSnippet"
@@ -1390,6 +1481,9 @@
                   "readmeSnippet": {
                     "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/readmeSnippet"
                   },
+                  "readmeSupportingDescriptionSnippet": {
+                    "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/readmeSupportingDescriptionSnippet"
+                  },
                   "readmeDescriptionSnippet": {
                     "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/readmeDescriptionSnippet"
                   },
@@ -1446,6 +1540,9 @@
                   },
                   "readmeSnippet": {
                     "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/readmeSnippet"
+                  },
+                  "readmeSupportingDescriptionSnippet": {
+                    "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/readmeSupportingDescriptionSnippet"
                   },
                   "readmeDescriptionSnippet": {
                     "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/readmeDescriptionSnippet"
@@ -1504,6 +1601,9 @@
                   "readmeSnippet": {
                     "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/readmeSnippet"
                   },
+                  "readmeSupportingDescriptionSnippet": {
+                    "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/readmeSupportingDescriptionSnippet"
+                  },
                   "readmeDescriptionSnippet": {
                     "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/readmeDescriptionSnippet"
                   },
@@ -1557,6 +1657,9 @@
                   },
                   "readmeSnippet": {
                     "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/readmeSnippet"
+                  },
+                  "readmeSupportingDescriptionSnippet": {
+                    "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/readmeSupportingDescriptionSnippet"
                   },
                   "readmeDescriptionSnippet": {
                     "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/readmeDescriptionSnippet"
@@ -1614,6 +1717,9 @@
                   "readmeSnippet": {
                     "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/readmeSnippet"
                   },
+                  "readmeSupportingDescriptionSnippet": {
+                    "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/readmeSupportingDescriptionSnippet"
+                  },
                   "readmeDescriptionSnippet": {
                     "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/readmeDescriptionSnippet"
                   },
@@ -1669,6 +1775,9 @@
                   },
                   "readmeSnippet": {
                     "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/readmeSnippet"
+                  },
+                  "readmeSupportingDescriptionSnippet": {
+                    "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/readmeSupportingDescriptionSnippet"
                   },
                   "readmeDescriptionSnippet": {
                     "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/readmeDescriptionSnippet"
