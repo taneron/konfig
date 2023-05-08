@@ -47,6 +47,13 @@ from {{packageName}}.schemas import (
     unset,
 )
 
+@dataclass
+class MappedArgs:
+    body: typing.Any = None
+    query: typing.Optional[dict] = None
+    path: typing.Optional[dict] = None
+    header: typing.Optional[dict] = None
+    cookie: typing.Optional[dict] = None
 
 class RequestField(RequestFieldBase):
     def __eq__(self, other):

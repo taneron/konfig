@@ -1,0 +1,26 @@
+{{#if bodyParam}}
+    {{#if @root.keepAllParametersOptional}}
+body=body,
+    {{else}}
+        {{#unless bodyParam.isObject}}
+body=body,
+        {{/unless}}
+    {{/if}}
+{{/if}}
+{{#if @root.keepAllParametersOptional}}
+    {{#if queryParams}}
+query_params=query_params,
+    {{/if}}
+    {{#if headerParams}}
+header_params=header_params,
+    {{/if}}
+    {{#if pathParams}}
+path_params=path_params,
+    {{/if}}
+    {{#if cookieParams}}
+cookie_params=cookie_params,
+    {{/if}}
+{{/if}}
+{{#each allParamsWithRequestBodyProperties}}
+{{paramName}}={{paramName}},
+{{/each}}

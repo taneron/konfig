@@ -121,6 +121,26 @@
 {{/if}}
         timeout=timeout,
     )
+    {{#if async}}
+    
+    if stream:
+        async def stream_iterator():
+            """
+            iterates over response.http_response.content and closes connection once iteration has finished
+            """
+            async for line in response.http_response.content:
+                if line == b'\r\n':
+                    continue
+                yield line
+            response.http_response.close()
+            await response.session.close()
+        return AsyncGeneratorResponse(
+            content=stream_iterator(),
+            headers=response.http_response.headers,
+            status=response.http_response.status,
+            response=response.http_response
+        )
+    {{/if}}
 
     response_for_status = _status_code_to_response.get(str(response.http_response.status))
     if response_for_status:
@@ -162,8 +182,8 @@
     {{#if async}}
 
     # cleanup session / response
-    await response.session.close()
     response.http_response.close()
+    await response.session.close()
     {{/if}}
 
     return api_response
