@@ -19,7 +19,7 @@ for port in 8911 8910 9090 10000; do
   process=$(lsof -t -i:$port)
   if [[ ! -z "$process" ]]; then
     echo "Killing process $process using port $port"
-    kill $process
+    kill -9 $process
   fi
 done
 

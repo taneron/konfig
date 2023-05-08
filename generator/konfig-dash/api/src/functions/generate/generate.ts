@@ -459,6 +459,8 @@ export const myHandler = async (event: APIGatewayEvent, context: Context) => {
           readmeSnippet: generatorConfig.readmeSnippet,
           readmeDescriptionSnippet: generatorConfig.readmeDescriptionSnippet,
           removeKonfigBranding: generatorConfig.removeKonfigBranding,
+          omitApiDocumentation: generatorConfig.omitApiDocumentation,
+          omitModelDocumentation: generatorConfig.omitModelDocumentation,
           objectPropertyNamingConvention:
             generatorConfig.objectPropertyNamingConvention,
           keepAllParametersOptional: generatorConfig.keepAllParametersOptional,
