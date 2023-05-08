@@ -1725,7 +1725,7 @@ public class PythonClientCodegen extends AbstractPythonCodegen {
                 return prefix + getTypeString(inner, "typing.List[", "]", referencedModelNames) + fullSuffix;
             }
         } else if (ModelUtils.isFileSchema(p)) {
-            return prefix + "file_type" + fullSuffix;
+            return prefix + "typing.IO" + fullSuffix;
         }
         String baseType = getSchemaType(p);
         return prefix + baseType + fullSuffix;
