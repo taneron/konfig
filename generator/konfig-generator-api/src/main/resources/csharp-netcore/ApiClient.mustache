@@ -453,11 +453,11 @@ namespace {{packageName}}.Client
                 CookieContainer = cookies,
                 MaxTimeout = configuration.Timeout,
                 Proxy = configuration.Proxy,
-                UserAgent = configuration.UserAgent
             };
 
             RestClient client = new RestClient(clientOptions)
                 .UseSerializer(() => new CustomJsonCodec(SerializerSettings, configuration));
+            client.AddDefaultHeader("User-Agent", configuration.UserAgent);
 
             {{#hasOAuthMethods}}
             if (!string.IsNullOrEmpty(configuration.OAuthTokenUrl) &&
@@ -565,11 +565,11 @@ namespace {{packageName}}.Client
                 ClientCertificates = configuration.ClientCertificates,
                 MaxTimeout = configuration.Timeout,
                 Proxy = configuration.Proxy,
-                UserAgent = configuration.UserAgent
             };
 
             RestClient client = new RestClient(clientOptions)
                 .UseSerializer(() => new CustomJsonCodec(SerializerSettings, configuration));
+            client.AddDefaultHeader("User-Agent", configuration.UserAgent);
 
             {{#hasOAuthMethods}}
             if (!string.IsNullOrEmpty(configuration.OAuthTokenUrl) &&

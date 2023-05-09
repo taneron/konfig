@@ -129,7 +129,7 @@ namespace {{packageName}}.Client
         public Configuration()
         {
             Proxy = null;
-            UserAgent = WebUtility.UrlEncode("{{httpUserAgent}}{{^httpUserAgent}}Konfig/{{packageVersion}}/csharp{{/httpUserAgent}}");
+            UserAgent = "{{httpUserAgent}}{{^httpUserAgent}}Konfig/{{packageVersion}}/csharp{{/httpUserAgent}}";
             BasePath = "{{{basePath}}}";
             DefaultHeaders = new {{^net35}}Concurrent{{/net35}}Dictionary<string, string>();
             ApiKey = new {{^net35}}Concurrent{{/net35}}Dictionary<string, string>();
