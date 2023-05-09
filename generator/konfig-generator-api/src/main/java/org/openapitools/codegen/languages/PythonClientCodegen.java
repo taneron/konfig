@@ -2820,6 +2820,14 @@ public class PythonClientCodegen extends AbstractPythonCodegen {
         // smuggle path Api class name ins operationIdSnakeCase
         co.operationIdSnakeCase = toModelName(path);
 
+        // Dylan: Still add body param to operation so it can used in template in case of
+        // keepAllParametersOptional flag
+        RequestBody requestBody = operation.getRequestBody();
+        if (co.bodyParam == null && requestBody != null) {
+            co.bodyParam = fromRequestBody(requestBody, co.imports, "");
+            co.bodyParam.description = escapeText(requestBody.getDescription());
+        }
+
         if (co.bodyParam == null) {
             for (CodegenParameter cp: co.allParams) {
                 if (cp.isBodyParam) {
