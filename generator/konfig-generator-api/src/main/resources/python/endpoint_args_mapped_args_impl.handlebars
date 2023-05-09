@@ -10,7 +10,7 @@ _body = {}
 if {{{paramName}}} is not None:
     _body["{{{baseName}}}"] = {{{paramName}}}
 {{/each}}
-args.body = {{#if isObject}}_body{{else}}body if body is not None else _body{{/if}}
+args.body = {{#if isObject}}{{#if @root.keepAllParametersOptional}}body if body is not None else _body{{else}}_body{{/if}}{{else}}body if body is not None else _body{{/if}}
 {{/with}}
 {{/if}}
 {{#each queryParams}}
