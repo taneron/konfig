@@ -4582,11 +4582,6 @@ public class DefaultCodegen implements CodegenConfig {
                     (contentType.startsWith("application/x-www-form-urlencoded") ||
                             contentType.startsWith("multipart"))) {
 
-                // Dylan: Still add body param to operation so it can used in template in case of
-                // keepAllParametersOptional flag
-                bodyParam = fromRequestBody(requestBody, imports, "");
-                bodyParam.description = escapeText(requestBody.getDescription());
-
                 // process form parameters
                 formParams = fromRequestBodyToFormParameters(requestBody, imports);
                 op.isMultipart = contentType.startsWith("multipart");
