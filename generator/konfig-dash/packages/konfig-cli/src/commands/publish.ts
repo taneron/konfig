@@ -57,12 +57,21 @@ const publishScripts = {
     })
     return ['npm publish', ...gitTagCommands]
   },
-  mavenCentral: ({ version }: { version: string }) => {
+  mavenCentral: ({
+    version,
+    skipTests,
+  }: {
+    version: string
+    skipTests?: boolean
+  }) => {
     const gitTagCommands = generateGitTagCommands({
       version,
       generator: 'java',
     })
-    return ['mvn clean deploy', ...gitTagCommands]
+    return [
+      `mvn clean deploy${skipTests ? ` -Dmaven.test.skip=true` : ''}`,
+      ...gitTagCommands,
+    ]
   },
   php: async ({
     version,
@@ -160,6 +169,7 @@ const publishScripts = {
       generator: 'python',
     })
     return [
+      'poetry install',
       'rm -rf dist/',
       'poetry run python -m build',
       'poetry run twine check dist/*',
@@ -288,6 +298,7 @@ export default class Publish extends Command {
         await executePublishScript({
           script: publishScripts['mavenCentral']({
             version: generatorConfig.version,
+            skipTests: flags.skipTests,
           }),
         })
       }

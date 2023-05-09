@@ -4581,6 +4581,12 @@ public class DefaultCodegen implements CodegenConfig {
             if (contentType != null &&
                     (contentType.startsWith("application/x-www-form-urlencoded") ||
                             contentType.startsWith("multipart"))) {
+
+                // Dylan: Still add body param to operation so it can used in template in case of
+                // keepAllParametersOptional flag
+                bodyParam = fromRequestBody(requestBody, imports, "");
+                bodyParam.description = escapeText(requestBody.getDescription());
+
                 // process form parameters
                 formParams = fromRequestBodyToFormParameters(requestBody, imports);
                 op.isMultipart = contentType.startsWith("multipart");
@@ -4594,6 +4600,13 @@ public class DefaultCodegen implements CodegenConfig {
                         allParams.add(cp.copy());
                     }
                 }
+
+                // Dylan: flattenedParamsFromRequestBodyProperties is used when mapping kwargs to body argument in
+                // Python SDK so we need it in the case of form params as well
+                for (CodegenParameter cp : formParams) {
+                    flattenedParamsFromRequestBodyProperties.add(cp);
+                }
+
             } else {
                 // process body parameter
                 requestBody = ModelUtils.getReferencedRequestBody(this.openAPI, requestBody);

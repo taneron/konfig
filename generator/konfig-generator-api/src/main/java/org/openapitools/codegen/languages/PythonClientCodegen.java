@@ -1668,7 +1668,7 @@ public class PythonClientCodegen extends AbstractPythonCodegen {
                     List<Schema> oneOf = p.getOneOf();
                     Schema s = oneOf.get(i);
                     sb.append(getTypeString(s, prefix, suffix, referencedModelNames));
-                    if (i < p.getAnyOf().size() - 1) {
+                    if (i < p.getOneOf().size() - 1) {
                         sb.append(", ");
                     }
                 }
@@ -1725,7 +1725,7 @@ public class PythonClientCodegen extends AbstractPythonCodegen {
                 return prefix + getTypeString(inner, "typing.List[", "]", referencedModelNames) + fullSuffix;
             }
         } else if (ModelUtils.isFileSchema(p)) {
-            return prefix + "file_type" + fullSuffix;
+            return prefix + "typing.IO" + fullSuffix;
         }
         String baseType = getSchemaType(p);
         return prefix + baseType + fullSuffix;
