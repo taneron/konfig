@@ -48,6 +48,19 @@ class Configuration
      */
     protected $accessToken = '';
 {{#hasAuthMethods}}
+{{#authMethods}}
+{{#-first}}
+
+    /**
+     * Token url for OAuth/Application authentication
+     *
+     * @var string
+     */
+    protected string $tokenUrl = "{{tokenUrl}}";
+{{/-first}}
+{{/authMethods}}
+{{/hasAuthMethods}}
+{{#hasAuthMethods}}
 
     /**
      * Access token for OAuth/Application authentication
@@ -273,6 +286,31 @@ class Configuration
         return $this->password;
     }
 
+{{#hasAuthMethods}}
+    /**
+     * Sets the tokenUrl for OAuth
+     *
+     * @param string $tokenUrl
+     *
+     * @return $this
+     */
+    public function setTokenUrl($tokenUrl)
+    {
+        $this->tokenUrl = $tokenUrl;
+        return $this;
+    }
+
+    /**
+     * Gets the tokenUrl for OAuth
+     *
+     * @return string $tokenUrl
+     */
+    public function getTokenUrl()
+    {
+        return $this->tokenUrl;
+    }
+
+{{/hasAuthMethods}}
     /**
      * Sets the host
      *
@@ -572,7 +610,7 @@ class Configuration
         if (empty($this->clientId) || empty($this->clientSecret)) return;
         $client = new Client();
 
-        $url = "{{{tokenUrl}}}";
+        $url = $this->tokenUrl;
 
         $params = [
             'form_params' => [
