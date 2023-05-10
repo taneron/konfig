@@ -1,8 +1,16 @@
 args: api_client.MappedArgs = api_client.MappedArgs()
-query_params = {}
-header_params = {}
-path_params = {}
-cookie_params = {}
+{{#if queryParams}}
+_query_params = {}
+{{/if}}
+{{#if headerParams}}
+_header_params = {}
+{{/if}}
+{{#if pathParams}}
+_path_params = {}
+{{/if}}
+{{#if cookieParams}}
+_cookie_params = {}
+{{/if}}
 {{#if bodyParam}}
 {{#with bodyParam}}
 _body = {}
@@ -15,22 +23,30 @@ args.body = {{#if isObject}}{{#if @root.keepAllParametersOptional}}body if body 
 {{/if}}
 {{#each queryParams}}
 if {{{paramName}}} is not None:
-    query_params["{{{baseName}}}"] = {{{paramName}}}
+    _query_params["{{{baseName}}}"] = {{{paramName}}}
 {{/each}}
 {{#each headerParams}}
 if {{{paramName}}} is not None:
-    header_params["{{{baseName}}}"] = {{{paramName}}}
+    _header_params["{{{baseName}}}"] = {{{paramName}}}
 {{/each}}
 {{#each pathParams}}
 if {{{paramName}}} is not None:
-    path_params["{{{baseName}}}"] = {{{paramName}}}
+    _path_params["{{{baseName}}}"] = {{{paramName}}}
 {{/each}}
 {{#each cookieParams}}
 if {{{paramName}}} is not None:
-    cookie_params["{{{baseName}}}"] = {{{paramName}}}
+    _cookie_params["{{{baseName}}}"] = {{{paramName}}}
 {{/each}}
-args.query = query_params
-args.header = header_params
-args.path = path_params
-args.cookie = cookie_params
+{{#if queryParams}}
+args.query = {{#if @root.keepAllParametersOptional}}query_params if query_params else _query_params{{else}}_query_params{{/if}}
+{{/if}}
+{{#if headerParams}}
+args.header = {{#if @root.keepAllParametersOptional}}header_params if header_params else _header_params{{else}}_header_params{{/if}}
+{{/if}}
+{{#if pathParams}}
+args.path = {{#if @root.keepAllParametersOptional}}path_params if path_params else _path_params{{else}}_path_params{{/if}}
+{{/if}}
+{{#if cookieParams}}
+args.cookie = {{#if @root.keepAllParametersOptional}}cookie_params if cookie_params else _cookie_params{{else}}_cookie_params{{/if}}
+{{/if}}
 return args

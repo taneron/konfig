@@ -1272,7 +1272,7 @@ public class PythonClientCodegen extends AbstractPythonCodegen {
                     codegenModelName = codegenModel.classname;
                     codegenModelDescription = codegenModel.description;
                 } else {
-                    codegenModelName = "anyType";
+                    codegenModelName = "typing.Any";
                     codegenModelDescription = "";
                 }
 
@@ -1685,7 +1685,8 @@ public class PythonClientCodegen extends AbstractPythonCodegen {
         }
         // Resolve $ref because ModelUtils.isXYZ methods do not automatically resolve references.
         if (ModelUtils.isNullable(ModelUtils.getReferencedSchema(this.openAPI, p))) {
-            fullSuffix = ", None" + suffix;
+            prefix += "typing.Optional[";
+            fullSuffix += "]";
         }
         if (ModelUtils.isNumberSchema(p)) {
             return prefix + "typing.Union[int, float]" + fullSuffix;
@@ -2462,10 +2463,13 @@ public class PythonClientCodegen extends AbstractPythonCodegen {
      */
     protected void updateModelForString(CodegenModel model, Schema schema) {
         if (ModelUtils.isDateTimeSchema(schema)) {
+            model.isPrimitiveType = true;
             // isString stays true, format stores that this is a date-time
         } else if (ModelUtils.isDateSchema(schema)) {
+            model.isPrimitiveType = true;
             // isString stays true, format stores that this is a date
         } else if (ModelUtils.isUUIDSchema(schema)) {
+            model.isPrimitiveType = true;
             // isString stays true, format stores that this is a uuid
         } else if (ModelUtils.isDecimalSchema(schema)) {
             // isString stays true, format stores that this is a uuid
@@ -2476,11 +2480,13 @@ public class PythonClientCodegen extends AbstractPythonCodegen {
     }
 
     protected void updateModelForNumber(CodegenModel model, Schema schema) {
+        model.isPrimitiveType = true;
         model.setIsNumber(true);
         // float vs double info is stored in format
     }
 
     protected void updateModelForInteger(CodegenModel model, Schema schema) {
+        model.isPrimitiveType = true;
         model.isInteger = true;
         // int32 int64 info is stored in format
     }

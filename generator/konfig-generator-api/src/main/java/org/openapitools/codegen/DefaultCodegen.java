@@ -7188,7 +7188,7 @@ public class DefaultCodegen implements CodegenConfig {
             }
         }
 
-        if (!addSchemaImportsFromV3SpecLocations) {
+        if (addSchemaImportsFromV3SpecLocations) {
             // import
             if (codegenProperty.complexType != null) {
                 imports.add(codegenProperty.complexType);
