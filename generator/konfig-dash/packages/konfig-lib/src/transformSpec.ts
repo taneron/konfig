@@ -82,6 +82,7 @@ export const transformSpec = async ({
   // Dylan: TODO: this should also be performed for Python but SnapTrade Python
   // SDK has already been published with "callList" as the method name so we can
   // only enable it if we also enable a feature flag for Python SDK
+  // Notion Ticket: 33ae6d7954834584a62673739f9fe1c4
   if (generator === 'php') {
     recurseObject(spec.spec, ({ value: operationObject }) => {
       if (typeof operationObject !== 'object') return
