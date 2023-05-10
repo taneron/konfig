@@ -47,9 +47,7 @@ class Configuration
      * @var string
      */
     protected $accessToken = '';
-{{#hasAuthMethods}}
-{{#authMethods}}
-{{#-first}}
+{{#hasOAuthMethods}}
 
     /**
      * Token url for OAuth/Application authentication
@@ -57,10 +55,6 @@ class Configuration
      * @var string
      */
     protected string $tokenUrl = "{{tokenUrl}}";
-{{/-first}}
-{{/authMethods}}
-{{/hasAuthMethods}}
-{{#hasAuthMethods}}
 
     /**
      * Access token for OAuth/Application authentication
@@ -75,7 +69,7 @@ class Configuration
      * @var string
      */
     protected string $clientSecret = '';
-{{/hasAuthMethods}}
+{{/hasOAuthMethods}}
 
     /**
      * Boolean format for query string
@@ -589,9 +583,7 @@ class Configuration
     {
         return self::getHostString($this->getHostSettings(), $index, $variables);
     }
-{{#hasAuthMethods}}
-{{#authMethods}}
-{{#-first}}
+{{#hasOAuthMethods}}
 
     public function setClientId($client_id)
     {
@@ -625,7 +617,5 @@ class Configuration
         $data = json_decode($response->getBody(), true);
         $this->accessToken = $data['access_token'];
     }
-{{/-first}}
-{{/authMethods}}
-{{/hasAuthMethods}}
+{{/hasOAuthMethods}}
 }
