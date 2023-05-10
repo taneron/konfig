@@ -1,0 +1,23 @@
+<?php
+
+namespace {{invokerPackage}};
+
+class BaseApi
+{
+    public function beforeSendHook(
+        \GuzzleHttp\Psr7\Request $request,
+        \{{invokerPackage}}\RequestOptions $requestOptions,
+        \{{invokerPackage}}\Configuration $configuration
+    ): \GuzzleHttp\Psr7\Request {
+        return $request;
+    }
+
+    public function beforeCreateRequestHook(
+        string $method,
+        string $resourcePath,
+        array $queryParams,
+        array $headers,
+        $httpBody,
+    ): void {
+    }
+}

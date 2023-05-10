@@ -25,7 +25,7 @@ use {{invokerPackage}}\Configuration;
 use {{invokerPackage}}\HeaderSelector;
 use {{invokerPackage}}\ObjectSerializer;
 
-{{#operations}}class {{classname}}
+{{#operations}}class {{classname}} extends \{{invokerPackage}}\BaseApi
 {
     /**
      * @var ClientInterface
@@ -218,6 +218,8 @@ use {{invokerPackage}}\ObjectSerializer;
     public function {{operationId}}WithHttpInfo({{^vendorExtensions.x-group-parameters}}{{#allParams}}${{paramName}}{{^required}} = {{#defaultValue}}{{{.}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}}, {{/allParams}}{{#servers}}{{#-first}}?int $hostIndex = null, array $variables = [], {{/-first}}{{/servers}}string $contentType = self::contentTypes['{{{operationId}}}'][0], \{{invokerPackage}}\RequestOptions $requestOptions = new \{{invokerPackage}}\RequestOptions(){{/vendorExtensions.x-group-parameters}}{{#vendorExtensions.x-group-parameters}}$associative_array{{/vendorExtensions.x-group-parameters}})
     {
         $request = $this->{{operationId}}Request({{^vendorExtensions.x-group-parameters}}{{#allParams}}${{paramName}}, {{/allParams}}{{#servers}}{{#-first}}$hostIndex, $variables, {{/-first}}{{/servers}}$contentType{{/vendorExtensions.x-group-parameters}}{{#vendorExtensions.x-group-parameters}}$associative_array{{/vendorExtensions.x-group-parameters}});
+
+        $this->beforeSendHook($request, $requestOptions, $this->config);
         {{#vendorExtensions.x-group-parameters}}
         $associative_array["requestOptions"] = $associative_array["requestOptions"] ?? new \{{invokerPackage}}\RequestOptions();
         $requestOptions = $associative_array["requestOptions"];
@@ -773,6 +775,8 @@ use {{invokerPackage}}\ObjectSerializer;
             $headerParams,
             $headers
         );
+
+        $this->beforeCreateRequestHook('{{httpMethod}}', $resourcePath, $queryParams, $headers, $httpBody);
 
         {{#servers.0}}
         # Preserve the original behavior of server indexing.
