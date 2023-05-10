@@ -27,6 +27,33 @@
     {{/with}}
 {{/if}}
 ```
+
+## Async
+
+`async` support is available by prepending `a` to any method.
+
+```python
+{{#with apiInfo}}
+{{#each apis}}
+{{#if @first}}
+{{#with operations}}
+{{#each operation}}
+{{#if @first}}
+
+{{> api_doc_example_setup}}
+
+async def main():
+    {{> api_doc_example_execute async=true}}
+
+asyncio.run(main())
+{{/if}}
+{{/each}}
+{{/with}}
+{{/if}}
+{{/each}}
+{{/with}}
+```
+
 {{#if readmeSupportingDescriptionSnippet}}
 
 {{{readmeSupportingDescriptionSnippet}}}

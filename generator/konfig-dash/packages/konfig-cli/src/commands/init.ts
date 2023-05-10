@@ -20,6 +20,7 @@ import { getKonfigFolder, KONFIG_FOLDER_NAME } from '../util/get-konfig-folder'
 import { KONFIG_YAML_NAME } from 'konfig-lib'
 import camelcase from 'camelcase'
 import { generateKonfigYamlString } from '../util/generate-konfig-yaml-string'
+import { parseKonfigYaml } from '../util/parse-konfig-yaml'
 
 interface Answers {
   languages: (keyof KonfigYamlType['generators'])[]
@@ -150,6 +151,12 @@ export default class Init extends Command {
       yaml: true,
     })
     fs.writeFileSync(fromKonfigFolder('ruleset.js'), ruleset)
+    let konfigYaml: KonfigYamlType | null = null
+    try {
+      konfigYaml = parseKonfigYaml({ configDir: root }).parsedKonfigYaml
+    } catch (e) {
+      this.debug('Could not find konfig.yaml')
+    }
     if (rulesetVersion)
       fs.writeFileSync(fromKonfigFolder('ruleset-version'), rulesetVersion)
     mergeWithExistingObjectAndWrite({
@@ -160,6 +167,11 @@ export default class Init extends Command {
     })
     CliUx.ux.action.stop()
     CliUx.ux.action.start('Setting up VScode settings.json')
+    const pythonOutputDirectory =
+      konfigYaml !== null &&
+      konfigYaml.generators.python?.outputDirectory !== undefined
+        ? konfigYaml.generators.python.outputDirectory
+        : 'python'
     mergeWithExistingObjectAndWrite({
       path: fromVscodeFolder('settings.json'),
       json: {
@@ -168,9 +180,9 @@ export default class Init extends Command {
           '.konfigignore': 'ignore',
         },
         'python.testing.pytestArgs': [
-          'python',
+          pythonOutputDirectory,
           '-o',
-          'cache_dir=python/.pytest_cache',
+          `cache_dir=${pythonOutputDirectory}/.pytest_cache`,
         ],
         'python.testing.unittestEnabled': false,
         'python.testing.pytestEnabled': true,
@@ -185,7 +197,7 @@ export default class Init extends Command {
         'python.testing.unittestArgs': [
           '-v',
           '-s',
-          './python',
+          `./${pythonOutputDirectory}`,
           '-p',
           'test_*.py',
         ],
