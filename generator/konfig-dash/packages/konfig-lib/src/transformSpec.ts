@@ -79,18 +79,23 @@ export const transformSpec = async ({
   })
 
   // Since "list" is a reserved keyword in PHP lets convert all operation IDs from "list" to "all"
-  recurseObject(spec.spec, ({ value: operationObject }) => {
-    if (typeof operationObject !== 'object') return
-    if (operationObject === null) return
-    if (!('operationId' in operationObject)) return
-    const operationId = operationObject['operationId']
-    if (typeof operationId !== 'string') return
-    if (!operationIdSchema.safeParse(operationId).success) return
-    const methodName = operationId.split('_')[1]
-    if (methodName === 'list') {
-      operationObject['operationId'] = operationId.replace('_list', '_all')
-    }
-  })
+  // Dylan: TODO: this should also be performed for Python but SnapTrade Python
+  // SDK has already been published with "callList" as the method name so we can
+  // only enable it if we also enable a feature flag for Python SDK
+  if (generator === 'php') {
+    recurseObject(spec.spec, ({ value: operationObject }) => {
+      if (typeof operationObject !== 'object') return
+      if (operationObject === null) return
+      if (!('operationId' in operationObject)) return
+      const operationId = operationObject['operationId']
+      if (typeof operationId !== 'string') return
+      if (!operationIdSchema.safeParse(operationId).success) return
+      const methodName = operationId.split('_')[1]
+      if (methodName === 'list') {
+        operationObject['operationId'] = operationId.replace('_list', '_all')
+      }
+    })
+  }
 
   // I thought that associative array as parameterse was more
   // ergonomic/idiomatic for PHP since the Stripe SDK is doing that but I later
