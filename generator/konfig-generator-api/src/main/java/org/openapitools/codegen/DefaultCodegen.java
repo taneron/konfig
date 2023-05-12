@@ -7188,12 +7188,13 @@ public class DefaultCodegen implements CodegenConfig {
             }
         }
 
-        if (addSchemaImportsFromV3SpecLocations) {
-            // import
-            if (codegenProperty.complexType != null) {
-                imports.add(codegenProperty.complexType);
-            }
+        // import
+        // Dylan: this use to be conditional but why wouldn't we add an import
+        // for every property we find?? So I uncommented the if statement.
+        if (codegenProperty.complexType != null) {
+            imports.add(codegenProperty.complexType);
         }
+
         setParameterExampleValue(codegenParameter);
         // set nullable
         setParameterNullable(codegenParameter, codegenProperty);
