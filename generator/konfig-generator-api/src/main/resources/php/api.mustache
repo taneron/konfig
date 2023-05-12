@@ -25,7 +25,7 @@ use {{invokerPackage}}\Configuration;
 use {{invokerPackage}}\HeaderSelector;
 use {{invokerPackage}}\ObjectSerializer;
 
-{{#operations}}class {{classname}} extends \{{invokerPackage}}\BaseApi
+{{#operations}}class {{classname}} extends \{{invokerPackage}}\CustomApi
 {
     /**
      * @var ClientInterface
@@ -776,7 +776,13 @@ use {{invokerPackage}}\ObjectSerializer;
             $headers
         );
 
-        $this->beforeCreateRequestHook('{{httpMethod}}', $resourcePath, $queryParams, $headers, $httpBody);
+        [
+            "method" => $method,
+            "queryParams" => $queryParams,
+            "resourcePath" => $resourcePath,
+            "headers" => $headers,
+            "httpBody" => $httpBody,
+        ] = $this->beforeCreateRequestHook('{{httpMethod}}', $resourcePath, $queryParams, $headers, $httpBody);
 
         {{#servers.0}}
         # Preserve the original behavior of server indexing.
@@ -796,7 +802,7 @@ use {{invokerPackage}}\ObjectSerializer;
         {{/servers.0}}
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
-            '{{httpMethod}}',
+            $method,
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody

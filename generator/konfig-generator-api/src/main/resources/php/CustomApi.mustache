@@ -2,12 +2,12 @@
 
 namespace {{invokerPackage}};
 
-class BaseApi
+class CustomApi
 {
     public function beforeSendHook(
         \GuzzleHttp\Psr7\Request $request,
-        \{{invokerPackage}}\RequestOptions $requestOptions,
-        \{{invokerPackage}}\Configuration $configuration
+        \SnapTrade\RequestOptions $requestOptions,
+        \SnapTrade\Configuration $configuration
     ): \GuzzleHttp\Psr7\Request {
         return $request;
     }
@@ -18,6 +18,14 @@ class BaseApi
         array $queryParams,
         array $headers,
         $httpBody,
-    ): void {
+    ): array {
+        return [
+            "method" => $method,
+            "queryParams" => $queryParams,
+            "resourcePath" => $resourcePath,
+            "headers" => $headers,
+            "httpBody" => $httpBody,
+        ];
     }
 }
+
