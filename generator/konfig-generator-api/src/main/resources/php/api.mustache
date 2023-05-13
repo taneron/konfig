@@ -217,9 +217,10 @@ use {{invokerPackage}}\ObjectSerializer;
      */
     public function {{operationId}}WithHttpInfo({{^vendorExtensions.x-group-parameters}}{{#allParams}}${{paramName}}{{^required}} = {{#defaultValue}}{{{.}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}}, {{/allParams}}{{#servers}}{{#-first}}?int $hostIndex = null, array $variables = [], {{/-first}}{{/servers}}string $contentType = self::contentTypes['{{{operationId}}}'][0], \{{invokerPackage}}\RequestOptions $requestOptions = new \{{invokerPackage}}\RequestOptions(){{/vendorExtensions.x-group-parameters}}{{#vendorExtensions.x-group-parameters}}$associative_array{{/vendorExtensions.x-group-parameters}})
     {
-        $request = $this->{{operationId}}Request({{^vendorExtensions.x-group-parameters}}{{#allParams}}${{paramName}}, {{/allParams}}{{#servers}}{{#-first}}$hostIndex, $variables, {{/-first}}{{/servers}}$contentType{{/vendorExtensions.x-group-parameters}}{{#vendorExtensions.x-group-parameters}}$associative_array{{/vendorExtensions.x-group-parameters}});
+        ["request" => $request, "serializedBody" => $serializedBody] = $this->{{operationId}}Request({{^vendorExtensions.x-group-parameters}}{{#allParams}}${{paramName}}, {{/allParams}}{{#servers}}{{#-first}}$hostIndex, $variables, {{/-first}}{{/servers}}$contentType{{/vendorExtensions.x-group-parameters}}{{#vendorExtensions.x-group-parameters}}$associative_array{{/vendorExtensions.x-group-parameters}});
 
-        $this->beforeSendHook($request, $requestOptions, $this->config);
+        // Customization hook
+        $this->beforeSendHook($request, $requestOptions, $this->config{{#bodyParam}}, $serializedBody{{/bodyParam}});
         {{#vendorExtensions.x-group-parameters}}
         $associative_array["requestOptions"] = $associative_array["requestOptions"] ?? new \{{invokerPackage}}\RequestOptions();
         $requestOptions = $associative_array["requestOptions"];
@@ -463,10 +464,13 @@ use {{invokerPackage}}\ObjectSerializer;
      * @deprecated
     {{/isDeprecated}}
      */
-    public function {{operationId}}AsyncWithHttpInfo({{^vendorExtensions.x-group-parameters}}{{#allParams}}${{paramName}}{{^required}} = {{#defaultValue}}{{{.}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}}, {{/allParams}}{{#servers}}{{#-first}}?int $hostIndex = null, array $variables = [], {{/-first}}{{/servers}}string $contentType = self::contentTypes['{{{operationId}}}'][0]{{/vendorExtensions.x-group-parameters}}{{#vendorExtensions.x-group-parameters}}$associative_array{{/vendorExtensions.x-group-parameters}})
+    public function {{operationId}}AsyncWithHttpInfo({{^vendorExtensions.x-group-parameters}}{{#allParams}}${{paramName}}{{^required}} = {{#defaultValue}}{{{.}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}}, {{/allParams}}{{#servers}}{{#-first}}?int $hostIndex = null, array $variables = [], {{/-first}}{{/servers}}string $contentType = self::contentTypes['{{{operationId}}}'][0], \{{invokerPackage}}\RequestOptions $requestOptions = new \{{invokerPackage}}\RequestOptions(){{/vendorExtensions.x-group-parameters}}{{#vendorExtensions.x-group-parameters}}$associative_array{{/vendorExtensions.x-group-parameters}})
     {
         $returnType = '{{{returnType}}}';
-        $request = $this->{{operationId}}Request({{^vendorExtensions.x-group-parameters}}{{#allParams}}${{paramName}}, {{/allParams}}{{#servers}}{{#-first}}$hostIndex, $variables, {{/-first}}{{/servers}}$contentType{{/vendorExtensions.x-group-parameters}}{{#vendorExtensions.x-group-parameters}}$associative_array{{/vendorExtensions.x-group-parameters}});
+        ["request" => $request, "serializedBody" => $serializedBody] = $this->{{operationId}}Request({{^vendorExtensions.x-group-parameters}}{{#allParams}}${{paramName}}, {{/allParams}}{{#servers}}{{#-first}}$hostIndex, $variables, {{/-first}}{{/servers}}$contentType{{/vendorExtensions.x-group-parameters}}{{#vendorExtensions.x-group-parameters}}$associative_array{{/vendorExtensions.x-group-parameters}});
+
+        // Customization hook
+        $this->beforeSendHook($request, $requestOptions, $this->config{{#bodyParam}}, $serializedBody{{/bodyParam}});
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -566,8 +570,13 @@ use {{invokerPackage}}\ObjectSerializer;
         $contentType = $associative_array['contentType'] ?? self::contentTypes['{{{operationId}}}'][0];
         {{/vendorExtensions.x-group-parameters}}{{#allParams}}
         {{#isModel}}
-        if (!(${{paramName}} instanceof {{dataType}})) {
-            throw new \InvalidArgumentException('"{{paramName}}" must be instance of "{{dataType}}" when calling {{classname}}.{{operationId}}.');
+        if (${{paramName}} != null) {
+            if (!(${{paramName}} instanceof {{dataType}})) {
+                if (!is_array(${{paramName}}))
+                    throw new \InvalidArgumentException('"{{paramName}}" must be associative array or an instance of {{dataType}} {{classname}}.{{operationId}}.');
+                else
+                    ${{paramName}} = new {{dataType}}(${{paramName}});
+            }
         }
         {{/isModel}}
         {{#isString}}
@@ -776,13 +785,8 @@ use {{invokerPackage}}\ObjectSerializer;
             $headers
         );
 
-        [
-            "method" => $method,
-            "queryParams" => $queryParams,
-            "resourcePath" => $resourcePath,
-            "headers" => $headers,
-            "httpBody" => $httpBody,
-        ] = $this->beforeCreateRequestHook('{{httpMethod}}', $resourcePath, $queryParams, $headers, $httpBody);
+        $method = '{{httpMethod}}';
+        $this->beforeCreateRequestHook($method, $resourcePath, $queryParams, $headers, $httpBody);
 
         {{#servers.0}}
         # Preserve the original behavior of server indexing.
@@ -801,12 +805,15 @@ use {{invokerPackage}}\ObjectSerializer;
         $operationHost = $this->config->getHost();
         {{/servers.0}}
         $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            $method,
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
+        return [
+            "request" => new Request(
+                $method,
+                $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+                $headers,
+                $httpBody
+            ),
+            "serializedBody" => $httpBody
+        ];
     }
 
     {{#servers.0}}

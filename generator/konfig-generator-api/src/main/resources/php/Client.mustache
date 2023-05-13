@@ -1,0 +1,40 @@
+<?php
+
+namespace {{invokerPackage}};
+
+{{#apiInfo}}
+class Client
+{
+    {{#apis}}
+    public readonly \{{apiPackage}}\{{classname}} ${{classNameCamelCase}};
+    {{/apis}}
+
+    /**
+     * Constructor
+     */
+    public function __construct(
+        {{#clientState}}
+        string ${{.}} = null,
+        {{/clientState}}
+        {{#apiKeyMethods}}
+        string ${{{keyParamName}}} = null,
+        {{/apiKeyMethods}}
+        \{{invokerPackage}}\Configuration $config = null
+    )
+    {
+        if ($config == null) {
+            $config = new \{{invokerPackage}}\Configuration(
+                {{#clientState}}
+                {{.}}: ${{.}},
+                {{/clientState}}
+                {{#apiKeyMethods}}
+                {{keyParamName}}: ${{keyParamName}},
+                {{/apiKeyMethods}}
+            );
+        }
+        {{#apis}}
+        $this->{{classNameCamelCase}} = new \{{apiPackage}}\{{classname}}($config);
+        {{/apis}}
+    }
+}
+{{/apiInfo}}

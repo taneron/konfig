@@ -139,6 +139,7 @@ export const swiftConfig = z.object({
 
 export const phpConfig = z.object({
   packageName: z.string().describe('acme-php'),
+  clientState,
   packagistUsername: z
     .string()
     .optional()
