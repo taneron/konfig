@@ -1,0 +1,15 @@
+        {{^vendorExtensions.x-group-parameters}}
+        {{#allParamsWithRequestBodyProperties}}
+        ${{paramName}}{{^required}} = {{#defaultValue}}{{{.}}}{{/defaultValue}}{{^defaultValue}}SENTINEL_VALUE{{/defaultValue}}{{/required}},
+        {{/allParamsWithRequestBodyProperties}}
+        {{#servers}}
+        {{#-first}}
+        ?int $hostIndex = null,
+        array $variables = [], 
+        {{/-first}}
+        {{/servers}}
+        string $contentType = self::contentTypes['{{{operationId}}}'][0]
+        {{/vendorExtensions.x-group-parameters}}
+        {{#vendorExtensions.x-group-parameters}}
+        $associative_array
+        {{/vendorExtensions.x-group-parameters}}

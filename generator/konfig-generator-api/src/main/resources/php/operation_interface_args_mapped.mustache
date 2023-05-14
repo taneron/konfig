@@ -1,0 +1,7 @@
+        {{#bodyParam}}
+        $_body = {{#required}}[]{{/required}}{{^required}}null{{/required}};
+        {{#flattenedParamsFromRequestBodyProperties}}
+        $this->setRequestBodyProperty($_body, "{{paramName}}", ${{paramName}});
+        {{/flattenedParamsFromRequestBodyProperties}}
+        ${{paramName}} = $_body;
+        {{/bodyParam}}
