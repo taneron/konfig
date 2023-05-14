@@ -7683,6 +7683,10 @@ public class DefaultCodegen implements CodegenConfig {
         // should be overridden by lang codegen
         setParameterExampleValue(codegenParameter, body);
 
+        // notion id: 89f2890a38c54955b96d66b35369e22c
+        // compute isObjectOrComposedObject
+        codegenParameter.isObjectOrComposedObject = codegenParameter.isComposedObject || codegenParameter.isObject;
+
         return codegenParameter;
     }
 

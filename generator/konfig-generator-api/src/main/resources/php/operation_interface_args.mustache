@@ -2,6 +2,21 @@
         {{#allParamsWithRequestBodyProperties}}
         ${{paramName}}{{^required}} = {{#defaultValue}}{{{.}}}{{/defaultValue}}{{^defaultValue}}SENTINEL_VALUE{{/defaultValue}}{{/required}},
         {{/allParamsWithRequestBodyProperties}}
+        {{#bodyParam}}
+        {{^isObject}}
+        {{#required}}
+        {{#isComposedObject}}
+        $body = SENTINEL_VALUE,
+        {{/isComposedObject}}
+        {{^isComposedObject}}
+        $body,
+        {{/isComposedObject}}
+        {{/required}}
+        {{^required}}
+        $body = SENTINEL_VALUE,
+        {{/required}}
+        {{/isObject}}
+        {{/bodyParam}}
         {{#servers}}
         {{#-first}}
         ?int $hostIndex = null,

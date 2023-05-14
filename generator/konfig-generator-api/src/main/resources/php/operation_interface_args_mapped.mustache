@@ -1,7 +1,12 @@
         {{#bodyParam}}
+        {{#isObjectOrComposedObject}}
         $_body = {{#required}}[]{{/required}}{{^required}}null{{/required}};
         {{#flattenedParamsFromRequestBodyProperties}}
         $this->setRequestBodyProperty($_body, "{{paramName}}", ${{paramName}});
         {{/flattenedParamsFromRequestBodyProperties}}
         ${{paramName}} = $_body;
+        {{/isObjectOrComposedObject}}
+        {{^isObjectOrComposedObject}}
+        ${{paramName}} = {{#isRequired}}$body{{/isRequired}}{{^isRequired}}$body === SENTINEL_VALUE ? null : $body{{/isRequired}};
+        {{/isObjectOrComposedObject}}
         {{/bodyParam}}

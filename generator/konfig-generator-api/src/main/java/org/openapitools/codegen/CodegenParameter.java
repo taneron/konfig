@@ -35,6 +35,9 @@ public class CodegenParameter implements IJsonSchemaValidationProperties {
     // If this is an anyOf/oneOf schema that includes an object type schema
     public boolean isComposedObject;
 
+    // For convenience in mustache templating
+    public boolean isObjectOrComposedObject;
+
     public String baseName, paramName, dataType, datatypeWithEnum, dataFormat, contentType,
             collectionFormat, description, unescapedDescription, baseType, defaultValue, enumDefaultValue, enumName, style;
     public String dataTypeLowerCase;
