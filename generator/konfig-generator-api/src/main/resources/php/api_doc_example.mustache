@@ -1,15 +1,7 @@
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-{{> php_doc_auth_partial}}
-// Setting host path is optional and defaults to {{{basePath}}}
-// {{invokerPackage}}\Configuration::getDefaultConfiguration()->setHost("{{{basePath}}}");
 
-$apiInstance = new {{invokerPackage}}\Api\{{classname}}(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    // new GuzzleHttp\Client(){{#hasAuthMethods}},
-    $config{{/hasAuthMethods}}
-);
+{{> php_doc_auth_partial}}
 
 {{^vendorExtensions.x-group-parameters}}
 {{#allParams}}${{paramName}} = {{#isModel}}new {{dataType}}({{/isModel}}{{{example}}}{{#isModel}}){{/isModel}};{{#description}} // {{{.}}}{{/description}}
@@ -31,7 +23,7 @@ $request = [
 {{/vendorExtensions.x-group-parameters}}
 
 try {
-    {{#returnType}}$result = {{/returnType}}$apiInstance->{{{operationId}}}{{^hasParams}}(){{/hasParams}}{{#hasParams}}{{^vendorExtensions.x-group-parameters}}(
+    {{#returnType}}$result = {{/returnType}}${{invokerPackageLowerCase}}->{{classNameCamelCase}}->{{{operationId}}}{{^hasParams}}(){{/hasParams}}{{#hasParams}}{{^vendorExtensions.x-group-parameters}}(
 {{#allParams}}
         {{paramName}}: ${{paramName}}{{^-last}}, {{/-last}}
 {{/allParams}}

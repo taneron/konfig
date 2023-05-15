@@ -5446,6 +5446,7 @@ public class DefaultCodegen implements CodegenConfig {
                 cs.isApiKey = true;
                 cs.keyParamName = securityScheme.getName();
                 cs.keyParamNameSnakeCase = underscore(securityScheme.getName());
+                cs.keyParamNameSnakeCaseUppercase = cs.keyParamNameSnakeCase.toUpperCase();
                 cs.isKeyInHeader = securityScheme.getIn() == SecurityScheme.In.HEADER;
                 cs.isKeyInQuery = securityScheme.getIn() == SecurityScheme.In.QUERY;
                 cs.isKeyInCookie = securityScheme.getIn() == SecurityScheme.In.COOKIE; // it assumes a validation step

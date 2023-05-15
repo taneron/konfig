@@ -276,7 +276,12 @@ export const generatorCommonOptional = z
     readmeSnippet: z.string().optional(),
     readmeSupportingDescriptionSnippet: z.string().optional(),
     readmeDescriptionSnippet: z.string().optional(),
-    apiDocumentationAuthenticationPartial: z.string().optional(),
+    apiDocumentationAuthenticationPartial: z
+      .string()
+      .describe(
+        'Filepath to file containing override for the section in generated documentation for setting up authentication in the SDK.'
+      )
+      .optional(),
     disabled: z.boolean().optional(),
     defaultTimeout: z.number().optional().default(0),
   })

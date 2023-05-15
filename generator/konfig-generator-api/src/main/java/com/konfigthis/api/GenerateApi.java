@@ -28,6 +28,7 @@ import org.openapitools.codegen.ClientOptInput;
 import org.openapitools.codegen.DefaultGenerator;
 import org.openapitools.codegen.api.TemplateDefinition;
 import org.openapitools.codegen.config.CodegenConfigurator;
+import org.openapitools.codegen.utils.CamelizeOption;
 import org.openapitools.codegen.utils.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -213,6 +214,7 @@ public interface GenerateApi {
         File templateDir = new File(tmpDir, "templates");
         templateDir.mkdir();
         configurator.setTemplateDir(templateDir.getAbsolutePath());
+        configurator.setValidateSpec(false);
         ClientOptInput clientOptInput = configurator.toClientOptInput();
         List<TemplateDefinition> templateDefinitions = new ArrayList<>();
 
@@ -240,6 +242,8 @@ public interface GenerateApi {
         Map<String, Object> map = new HashMap<>();
         putIfPresent(map, "apiPackage", additionalProperties.getApiPackage());
         putIfPresent(map, "invokerPackage", additionalProperties.getInvokerPackage());
+        if (additionalProperties.getInvokerPackage() != null)
+            putIfPresent(map, "invokerPackageLowerCase", additionalProperties.getInvokerPackage().toLowerCase());
         putIfPresent(map, "gitRepoName", additionalProperties.getGitRepoName());
         putIfPresent(map, "modelPackage", additionalProperties.getModelPackage());
         putIfPresent(map, "artifactId", additionalProperties.getArtifactId());

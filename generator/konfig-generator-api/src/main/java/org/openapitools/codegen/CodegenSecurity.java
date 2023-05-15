@@ -36,6 +36,7 @@ public class CodegenSecurity {
     // ApiKey specific
     public String keyParamName;
     public String keyParamNameSnakeCase;
+    public String keyParamNameSnakeCaseUppercase;
     public Boolean isKeyInQuery, isKeyInHeader, isKeyInCookie;
     // Oauth specific
     public String flow, authorizationUrl, tokenUrl, refreshUrl;
