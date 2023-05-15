@@ -25,9 +25,9 @@ $request = [
 try {
     {{#returnType}}$result = {{/returnType}}${{invokerPackageLowerCase}}->{{classNameCamelCase}}->{{{operationId}}}{{^hasParams}}(){{/hasParams}}{{#hasParams}}{{^vendorExtensions.x-group-parameters}}(
 {{#bodyParam}}
-    {{^isObject}}
+    {{^isStrictlyObject}}
         body: {{{example}}},
-    {{/isObject}}
+    {{/isStrictlyObject}}
 {{/bodyParam}}
 {{#allParamsWithRequestBodyProperties}}
         {{paramName}}: ${{paramName}}{{^-last}}, {{/-last}}

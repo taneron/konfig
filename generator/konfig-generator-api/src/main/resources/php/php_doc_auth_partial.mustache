@@ -7,6 +7,10 @@ ${{invokerPackageLowerCase}} = new \{{invokerPackage}}\Client(
 {{#isApiKey}}
     {{keyParamName}}: YOUR_{{keyParamNameSnakeCaseUppercase}},
 {{/isApiKey}}
+{{#isApplication}}
+    clientId: "YOUR_CLIENT_ID",
+    clientSecret: "YOUR_CLIENT_ID",
+{{/isApplication}}
 {{/authMethods}}
 {{/apiDocumentationAuthenticationPartial}}
 );

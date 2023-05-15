@@ -42,6 +42,11 @@ public class CodegenParameter implements IJsonSchemaValidationProperties {
     // For convenience in mustache templating
     public boolean isObjectOrComposedObject;
 
+    // For convenience in mustache templating
+    // essentially this is true if the generated type for this parameter/schema can be represented as an object with
+    // properties (i.e. its either an object type schema or its polymorphic and all schemas are object types
+    public boolean isStrictlyObject;
+
     public String baseName, paramName, dataType, datatypeWithEnum, dataFormat, contentType,
             collectionFormat, description, unescapedDescription, baseType, defaultValue, enumDefaultValue, enumName, style;
     public String dataTypeLowerCase;

@@ -13,12 +13,18 @@ class Client
      * Constructor
      */
     public function __construct(
+{{#hasOAuthMethods}}
+        string $tokenUrl = null,
+        string $clientId = null,
+        string $clientSecret = null,
+{{/hasOAuthMethods}}
         {{#clientState}}
         string ${{.}} = null,
         {{/clientState}}
         {{#apiKeyMethods}}
         string ${{{keyParamName}}} = null,
         {{/apiKeyMethods}}
+        string $host = null,
         \{{invokerPackage}}\Configuration $config = null
     )
     {
@@ -31,6 +37,12 @@ class Client
                 {{keyParamName}}: ${{keyParamName}},
                 {{/apiKeyMethods}}
             );
+            $config->setHost($host);
+{{#hasOAuthMethods}}
+            $config->setTokenUrl($tokenUrl);
+            $config->setClientId($clientId);
+            $config->setClientSecret($clientSecret);
+{{/hasOAuthMethods}}
         }
         {{#apis}}
         $this->{{classNameCamelCase}} = new \{{apiPackage}}\{{classname}}($config);
