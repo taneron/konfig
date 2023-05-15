@@ -26,6 +26,7 @@ import org.openapitools.codegen.CodegenParameter;
 import org.openapitools.codegen.CodegenType;
 import org.openapitools.codegen.SupportingFile;
 import org.openapitools.codegen.meta.features.*;
+import org.openapitools.codegen.utils.CamelizeOption;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -138,9 +139,14 @@ public class PhpClientCodegen extends AbstractPhpCodegen {
 
     // Dylan: for SnapTrade this ensures "API Disclaimer" is turned into -> "ApiDisclaimer" which is then turned into
     // "apiDisclaimer" as a variable name in the top-level client.
+    // Update: We also need to make sure we turn "InstallmentPlan" to "installmentPlan"
     @Override
     public String sanitizeTag(String tag) {
-        return toCamelCase(sanitizeName(tag), true);
+        // "API Disclaimer" -> "ApiDisclaimer"
+        if (sanitizeName(tag).contains("_"))
+            return toCamelCase(sanitizeName(tag), true);
+        // "InstallmentPlan" -> "installmentPlan"
+        return org.openapitools.codegen.utils.StringUtils.camelize(tag, CamelizeOption.LOWERCASE_FIRST_LETTER);
     }
 
     @Override
