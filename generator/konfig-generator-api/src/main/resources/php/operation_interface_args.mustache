@@ -1,7 +1,4 @@
         {{^vendorExtensions.x-group-parameters}}
-        {{#allParamsWithRequestBodyProperties}}
-        ${{paramName}}{{^required}} = {{#defaultValue}}{{{.}}}{{/defaultValue}}{{^defaultValue}}SENTINEL_VALUE{{/defaultValue}}{{/required}},
-        {{/allParamsWithRequestBodyProperties}}
         {{#bodyParam}}
         {{^isObject}}
         {{#required}}
@@ -17,6 +14,9 @@
         {{/required}}
         {{/isObject}}
         {{/bodyParam}}
+        {{#allParamsWithRequestBodyProperties}}
+        ${{paramName}}{{^required}} = {{#defaultValue}}{{{.}}}{{/defaultValue}}{{^defaultValue}}SENTINEL_VALUE{{/defaultValue}}{{/required}},
+        {{/allParamsWithRequestBodyProperties}}
         {{#servers}}
         {{#-first}}
         ?int $hostIndex = null,
