@@ -72,39 +72,6 @@
           },
           "additionalProperties": false
         },
-        "fixObjectProperties": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "properties": {
-              "propertyName": {
-                "type": "string",
-                "description": "Name of property to match against"
-              },
-              "when": {
-                "type": "object",
-                "additionalProperties": {
-                  "$ref": "#/definitions/konfigYaml/properties/fixConfig/properties/updateProperty/additionalProperties/additionalProperties/additionalProperties"
-                },
-                "description": "Object to match against (e.g. {\"type\": \"number\"})"
-              },
-              "merge": {
-                "type": "object",
-                "additionalProperties": {
-                  "$ref": "#/definitions/konfigYaml/properties/fixConfig/properties/updateProperty/additionalProperties/additionalProperties/additionalProperties"
-                },
-                "description": "Object to merge with property objects that match the \"propertyName\" and \"when\" fields"
-              }
-            },
-            "required": [
-              "propertyName",
-              "when",
-              "merge"
-            ],
-            "additionalProperties": false
-          },
-          "description": "If you need to automatically modify all object properties with a particular name and data type you can configure \"modifyObjectProperty\" to update all object properties with a given name and condition."
-        },
         "filterQueryParams": {
           "type": "array",
           "items": {
@@ -249,7 +216,8 @@
                   "type": "string"
                 },
                 "apiDocumentationAuthenticationPartial": {
-                  "type": "string"
+                  "type": "string",
+                  "description": "Filepath to file containing override for the section in generated documentation for setting up authentication in the SDK."
                 },
                 "disabled": {
                   "type": "boolean"
@@ -892,6 +860,9 @@
                 "packageName": {
                   "type": "string",
                   "description": "acme-php"
+                },
+                "clientState": {
+                  "$ref": "#/definitions/konfigYaml/properties/generators/properties/python/properties/clientState"
                 },
                 "packagistUsername": {
                   "type": "string",
@@ -1564,6 +1535,9 @@
                   },
                   "packageName": {
                     "$ref": "#/definitions/konfigYaml/properties/generators/properties/php/properties/packageName"
+                  },
+                  "clientState": {
+                    "$ref": "#/definitions/konfigYaml/properties/generators/properties/python/properties/clientState"
                   },
                   "packagistUsername": {
                     "$ref": "#/definitions/konfigYaml/properties/generators/properties/php/properties/packagistUsername"
