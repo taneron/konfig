@@ -17,6 +17,8 @@
 
 package org.openapitools.codegen;
 
+import io.swagger.v3.oas.models.media.Schema;
+
 import java.util.*;
 
 /**
@@ -29,11 +31,16 @@ public class CodegenParameter implements IJsonSchemaValidationProperties {
             isCookieParam, isBodyParam, isContainer,
             isCollectionFormatMulti, isPrimitiveType, isModel, isExplode, isDeepObject, isAllowEmptyValue;
 
+    public Schema oasSchema;
+
     // If this schema is an object type schema
     public boolean isObject;
 
     // If this is an anyOf/oneOf schema that includes an object type schema
     public boolean isComposedObject;
+
+    // For convenience in mustache templating
+    public boolean isObjectOrComposedObject;
 
     public String baseName, paramName, dataType, datatypeWithEnum, dataFormat, contentType,
             collectionFormat, description, unescapedDescription, baseType, defaultValue, enumDefaultValue, enumName, style;

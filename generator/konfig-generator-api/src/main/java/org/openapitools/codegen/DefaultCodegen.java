@@ -5097,6 +5097,7 @@ public class DefaultCodegen implements CodegenConfig {
     public CodegenParameter fromParameter(Parameter parameter, Set<String> imports) {
         CodegenParameter codegenParameter = CodegenModelFactory.newInstance(CodegenModelType.PARAMETER);
 
+        codegenParameter.oasSchema = parameter.getSchema();
         codegenParameter.baseName = parameter.getName();
         codegenParameter.description = escapeText(parameter.getDescription());
         codegenParameter.unescapedDescription = parameter.getDescription();
@@ -5446,6 +5447,7 @@ public class DefaultCodegen implements CodegenConfig {
                 cs.isApiKey = true;
                 cs.keyParamName = securityScheme.getName();
                 cs.keyParamNameSnakeCase = underscore(securityScheme.getName());
+                cs.keyParamNameSnakeCaseUppercase = cs.keyParamNameSnakeCase.toUpperCase();
                 cs.isKeyInHeader = securityScheme.getIn() == SecurityScheme.In.HEADER;
                 cs.isKeyInQuery = securityScheme.getIn() == SecurityScheme.In.QUERY;
                 cs.isKeyInCookie = securityScheme.getIn() == SecurityScheme.In.COOKIE; // it assumes a validation step
@@ -7023,6 +7025,8 @@ public class DefaultCodegen implements CodegenConfig {
     public CodegenParameter fromFormProperty(String name, Schema propertySchema, Set<String> imports) {
         CodegenParameter codegenParameter = CodegenModelFactory.newInstance(CodegenModelType.PARAMETER);
 
+        codegenParameter.oasSchema = propertySchema;
+
         LOGGER.debug("Debugging fromFormProperty {}: {}", name, propertySchema);
         CodegenProperty codegenProperty = fromProperty(name, propertySchema, false);
 
@@ -7609,6 +7613,7 @@ public class DefaultCodegen implements CodegenConfig {
             throw new RuntimeException(
                     "Request body cannot be null. Possible cause: missing schema in body parameter (OAS v2): " + body);
         }
+        codegenParameter.oasSchema = schema;
         codegenParameter.setContent(getContent(body.getContent(), imports, "RequestBody"));
 
         if (StringUtils.isNotBlank(schema.get$ref())) {
@@ -7682,6 +7687,10 @@ public class DefaultCodegen implements CodegenConfig {
         // set the parameter's example value
         // should be overridden by lang codegen
         setParameterExampleValue(codegenParameter, body);
+
+        // notion id: 89f2890a38c54955b96d66b35369e22c
+        // compute isObjectOrComposedObject
+        codegenParameter.isObjectOrComposedObject = codegenParameter.isComposedObject || codegenParameter.isObject;
 
         return codegenParameter;
     }

@@ -1,0 +1,30 @@
+        {{^vendorExtensions.x-group-parameters}}
+        {{#allParamsWithRequestBodyProperties}}
+        ${{paramName}}{{^required}} = {{#defaultValue}}{{{.}}}{{/defaultValue}}{{^defaultValue}}SENTINEL_VALUE{{/defaultValue}}{{/required}},
+        {{/allParamsWithRequestBodyProperties}}
+        {{#bodyParam}}
+        {{^isObject}}
+        {{#required}}
+        {{#isComposedObject}}
+        $body = SENTINEL_VALUE,
+        {{/isComposedObject}}
+        {{^isComposedObject}}
+        $body,
+        {{/isComposedObject}}
+        {{/required}}
+        {{^required}}
+        $body = SENTINEL_VALUE,
+        {{/required}}
+        {{/isObject}}
+        {{/bodyParam}}
+        {{#servers}}
+        {{#-first}}
+        ?int $hostIndex = null,
+        array $variables = [], 
+        {{/-first}}
+        {{/servers}}
+        string $contentType = self::contentTypes['{{{operationId}}}'][0]
+        {{/vendorExtensions.x-group-parameters}}
+        {{#vendorExtensions.x-group-parameters}}
+        $associative_array
+        {{/vendorExtensions.x-group-parameters}}

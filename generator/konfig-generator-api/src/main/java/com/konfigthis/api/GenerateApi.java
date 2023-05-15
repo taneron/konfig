@@ -28,6 +28,8 @@ import org.openapitools.codegen.ClientOptInput;
 import org.openapitools.codegen.DefaultGenerator;
 import org.openapitools.codegen.api.TemplateDefinition;
 import org.openapitools.codegen.config.CodegenConfigurator;
+import org.openapitools.codegen.utils.CamelizeOption;
+import org.openapitools.codegen.utils.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -56,6 +58,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.*;
+import java.util.stream.Collectors;
 import javax.annotation.Generated;
 
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-11-05T10:28:00.101-07:00[America/Los_Angeles]")
@@ -211,6 +214,7 @@ public interface GenerateApi {
         File templateDir = new File(tmpDir, "templates");
         templateDir.mkdir();
         configurator.setTemplateDir(templateDir.getAbsolutePath());
+        configurator.setValidateSpec(false);
         ClientOptInput clientOptInput = configurator.toClientOptInput();
         List<TemplateDefinition> templateDefinitions = new ArrayList<>();
 
@@ -238,6 +242,8 @@ public interface GenerateApi {
         Map<String, Object> map = new HashMap<>();
         putIfPresent(map, "apiPackage", additionalProperties.getApiPackage());
         putIfPresent(map, "invokerPackage", additionalProperties.getInvokerPackage());
+        if (additionalProperties.getInvokerPackage() != null)
+            putIfPresent(map, "invokerPackageLowerCase", additionalProperties.getInvokerPackage().toLowerCase());
         putIfPresent(map, "gitRepoName", additionalProperties.getGitRepoName());
         putIfPresent(map, "modelPackage", additionalProperties.getModelPackage());
         putIfPresent(map, "artifactId", additionalProperties.getArtifactId());
@@ -305,6 +311,14 @@ public interface GenerateApi {
         if (additionalProperties.getClientName() != null)
             putIfPresent(map, "clientNameLowercase", additionalProperties.getClientName().toLowerCase());
         putIfPresent(map, "clientState", additionalProperties.getClientState());
+        if (additionalProperties.getClientState() != null)
+            putIfPresent(map, "clientStateSetterGetterCamelCase", additionalProperties.getClientState().stream().map(state -> {
+                Map<String, String> object = new HashMap<>();
+                object.put("state", state);
+                object.put("setter", "set" + StringUtils.camelize(state));
+                object.put("getter", "get" + StringUtils.camelize(state));
+                return object;
+            }).collect(Collectors.toList())); // added for PHP setter in Configuration.php
         putIfPresent(map, "apiKeyAlias", additionalProperties.getApiKeyAlias());
 
         // https://openapi-generator.tech/docs/generators/go

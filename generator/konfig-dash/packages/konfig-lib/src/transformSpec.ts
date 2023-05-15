@@ -23,6 +23,7 @@ import { sanitizeSchemaName } from './util/sanitizeSchemaName'
 import { recurseObjectTypeSchemaWithRequiredProperties } from './recurse-object-type-schema-with-required-properties'
 import { fixCustomModifications } from './util/fix-custom-modifications'
 import { defaultOr200RangeStatusCodeRegex } from './util/default-or-200-range-status-code-regex'
+import { operationIdSchema } from './util/operation-id-schema'
 
 export const doNotGenerateVendorExtension = 'x-do-not-generate'
 
@@ -76,6 +77,26 @@ export const transformSpec = async ({
       [key]: `${firstHalf}...SHORTENED-BY-KONFIG...${secondHalf}`,
     })
   })
+
+  // Since "list" is a reserved keyword in PHP lets convert all operation IDs from "list" to "all"
+  // Dylan: TODO: this should also be performed for Python but SnapTrade Python
+  // SDK has already been published with "callList" as the method name so we can
+  // only enable it if we also enable a feature flag for Python SDK
+  // Notion Ticket: 33ae6d7954834584a62673739f9fe1c4
+  if (generator === 'php') {
+    recurseObject(spec.spec, ({ value: operationObject }) => {
+      if (typeof operationObject !== 'object') return
+      if (operationObject === null) return
+      if (!('operationId' in operationObject)) return
+      const operationId = operationObject['operationId']
+      if (typeof operationId !== 'string') return
+      if (!operationIdSchema.safeParse(operationId).success) return
+      const methodName = operationId.split('_')[1]
+      if (methodName === 'list') {
+        operationObject['operationId'] = operationId.replace('_list', '_all')
+      }
+    })
+  }
 
   // I thought that associative array as parameterse was more
   // ergonomic/idiomatic for PHP since the Stripe SDK is doing that but I later

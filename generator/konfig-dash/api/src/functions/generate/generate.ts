@@ -289,6 +289,7 @@ export const myHandler = async (event: APIGatewayEvent, context: Context) => {
             generatorConfig.apiDocumentationAuthenticationPartial,
           defaultTimeout: generatorConfig.defaultTimeout,
           gitRepoName: generatorConfig.git.repoName,
+          clientState: generatorConfig.clientState,
         },
         packageName: generatorConfig.packageName,
         artifactVersion: generatorConfig.version,

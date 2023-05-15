@@ -25,7 +25,7 @@ use {{invokerPackage}}\Configuration;
 use {{invokerPackage}}\HeaderSelector;
 use {{invokerPackage}}\ObjectSerializer;
 
-{{#operations}}class {{classname}}
+{{#operations}}class {{classname}} extends \{{invokerPackage}}\CustomApi
 {
     /**
      * @var ClientInterface
@@ -102,6 +102,16 @@ use {{invokerPackage}}\ObjectSerializer;
         return $this->config;
     }
 
+    /**
+     * For initializing request body parameter
+     */
+    private function setRequestBodyProperty(&$body, $property, $value) {
+        if ($body === null) $body = [];
+        // user did not pass in a value for this parameter
+        if ($value === SENTINEL_VALUE) return;
+        $body[$property] = $value;
+    }
+
 {{#operation}}
     /**
      * Operation {{{operationId}}}
@@ -156,8 +166,11 @@ use {{invokerPackage}}\ObjectSerializer;
      * @deprecated
     {{/isDeprecated}}
      */
-    public function {{operationId}}({{^vendorExtensions.x-group-parameters}}{{#allParams}}${{paramName}}{{^required}} = {{#defaultValue}}{{{.}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}}, {{/allParams}}{{#servers}}{{#-first}}?int $hostIndex = null, array $variables = [], {{/-first}}{{/servers}}string $contentType = self::contentTypes['{{{operationId}}}'][0]{{/vendorExtensions.x-group-parameters}}{{#vendorExtensions.x-group-parameters}}$associative_array{{/vendorExtensions.x-group-parameters}})
+    public function {{operationId}}(
+{{> operation_interface_args}}
+    )
     {
+{{> operation_interface_args_mapped}}
         {{#returnType}}list($response) = {{/returnType}}$this->{{operationId}}WithHttpInfo({{^vendorExtensions.x-group-parameters}}{{#allParams}}${{paramName}}, {{/allParams}}{{#servers}}{{#-first}}$hostIndex, $variables, {{/-first}}{{/servers}}$contentType{{/vendorExtensions.x-group-parameters}}{{#vendorExtensions.x-group-parameters}}$associative_array{{/vendorExtensions.x-group-parameters}});{{#returnType}}
         return $response;{{/returnType}}
     }
@@ -217,7 +230,10 @@ use {{invokerPackage}}\ObjectSerializer;
      */
     public function {{operationId}}WithHttpInfo({{^vendorExtensions.x-group-parameters}}{{#allParams}}${{paramName}}{{^required}} = {{#defaultValue}}{{{.}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}}, {{/allParams}}{{#servers}}{{#-first}}?int $hostIndex = null, array $variables = [], {{/-first}}{{/servers}}string $contentType = self::contentTypes['{{{operationId}}}'][0], \{{invokerPackage}}\RequestOptions $requestOptions = new \{{invokerPackage}}\RequestOptions(){{/vendorExtensions.x-group-parameters}}{{#vendorExtensions.x-group-parameters}}$associative_array{{/vendorExtensions.x-group-parameters}})
     {
-        $request = $this->{{operationId}}Request({{^vendorExtensions.x-group-parameters}}{{#allParams}}${{paramName}}, {{/allParams}}{{#servers}}{{#-first}}$hostIndex, $variables, {{/-first}}{{/servers}}$contentType{{/vendorExtensions.x-group-parameters}}{{#vendorExtensions.x-group-parameters}}$associative_array{{/vendorExtensions.x-group-parameters}});
+        ["request" => $request, "serializedBody" => $serializedBody] = $this->{{operationId}}Request({{^vendorExtensions.x-group-parameters}}{{#allParams}}${{paramName}}, {{/allParams}}{{#servers}}{{#-first}}$hostIndex, $variables, {{/-first}}{{/servers}}$contentType{{/vendorExtensions.x-group-parameters}}{{#vendorExtensions.x-group-parameters}}$associative_array{{/vendorExtensions.x-group-parameters}});
+
+        // Customization hook
+        $this->beforeSendHook($request, $requestOptions, $this->config{{#bodyParam}}, $serializedBody{{/bodyParam}});
         {{#vendorExtensions.x-group-parameters}}
         $associative_array["requestOptions"] = $associative_array["requestOptions"] ?? new \{{invokerPackage}}\RequestOptions();
         $requestOptions = $associative_array["requestOptions"];
@@ -399,8 +415,11 @@ use {{invokerPackage}}\ObjectSerializer;
      * @deprecated
     {{/isDeprecated}}
      */
-    public function {{operationId}}Async({{^vendorExtensions.x-group-parameters}}{{#allParams}}${{paramName}}{{^required}} = {{#defaultValue}}{{{.}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}}, {{/allParams}}{{#servers}}{{#-first}}?int $hostIndex = null, array $variables = [], {{/-first}}{{/servers}}string $contentType = self::contentTypes['{{{operationId}}}'][0]{{/vendorExtensions.x-group-parameters}}{{#vendorExtensions.x-group-parameters}}$associative_array{{/vendorExtensions.x-group-parameters}})
+    public function {{operationId}}Async(
+{{> operation_interface_args}}
+    )
     {
+{{> operation_interface_args_mapped}}
         return $this->{{operationId}}AsyncWithHttpInfo({{^vendorExtensions.x-group-parameters}}{{#allParams}}${{paramName}}, {{/allParams}}{{#servers}}{{#-first}}$hostIndex, $variables, {{/-first}}{{/servers}}$contentType{{/vendorExtensions.x-group-parameters}}{{#vendorExtensions.x-group-parameters}}$associative_array{{/vendorExtensions.x-group-parameters}})
             ->then(
                 function ($response) {
@@ -461,10 +480,13 @@ use {{invokerPackage}}\ObjectSerializer;
      * @deprecated
     {{/isDeprecated}}
      */
-    public function {{operationId}}AsyncWithHttpInfo({{^vendorExtensions.x-group-parameters}}{{#allParams}}${{paramName}}{{^required}} = {{#defaultValue}}{{{.}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}}, {{/allParams}}{{#servers}}{{#-first}}?int $hostIndex = null, array $variables = [], {{/-first}}{{/servers}}string $contentType = self::contentTypes['{{{operationId}}}'][0]{{/vendorExtensions.x-group-parameters}}{{#vendorExtensions.x-group-parameters}}$associative_array{{/vendorExtensions.x-group-parameters}})
+    public function {{operationId}}AsyncWithHttpInfo({{^vendorExtensions.x-group-parameters}}{{#allParams}}${{paramName}}{{^required}} = {{#defaultValue}}{{{.}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}}, {{/allParams}}{{#servers}}{{#-first}}?int $hostIndex = null, array $variables = [], {{/-first}}{{/servers}}string $contentType = self::contentTypes['{{{operationId}}}'][0], \{{invokerPackage}}\RequestOptions $requestOptions = new \{{invokerPackage}}\RequestOptions(){{/vendorExtensions.x-group-parameters}}{{#vendorExtensions.x-group-parameters}}$associative_array{{/vendorExtensions.x-group-parameters}})
     {
         $returnType = '{{{returnType}}}';
-        $request = $this->{{operationId}}Request({{^vendorExtensions.x-group-parameters}}{{#allParams}}${{paramName}}, {{/allParams}}{{#servers}}{{#-first}}$hostIndex, $variables, {{/-first}}{{/servers}}$contentType{{/vendorExtensions.x-group-parameters}}{{#vendorExtensions.x-group-parameters}}$associative_array{{/vendorExtensions.x-group-parameters}});
+        ["request" => $request, "serializedBody" => $serializedBody] = $this->{{operationId}}Request({{^vendorExtensions.x-group-parameters}}{{#allParams}}${{paramName}}, {{/allParams}}{{#servers}}{{#-first}}$hostIndex, $variables, {{/-first}}{{/servers}}$contentType{{/vendorExtensions.x-group-parameters}}{{#vendorExtensions.x-group-parameters}}$associative_array{{/vendorExtensions.x-group-parameters}});
+
+        // Customization hook
+        $this->beforeSendHook($request, $requestOptions, $this->config{{#bodyParam}}, $serializedBody{{/bodyParam}});
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -551,7 +573,7 @@ use {{invokerPackage}}\ObjectSerializer;
      * @deprecated
     {{/isDeprecated}}
      */
-    public function {{operationId}}Request({{^vendorExtensions.x-group-parameters}}{{#allParams}}${{paramName}}{{^required}} = {{#defaultValue}}{{{.}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}}, {{/allParams}}{{#servers}}{{#-first}}?int $hostIndex = null, array $variables = [], {{/-first}}{{/servers}}string $contentType = self::contentTypes['{{{operationId}}}'][0]{{/vendorExtensions.x-group-parameters}}{{#vendorExtensions.x-group-parameters}}$associative_array{{/vendorExtensions.x-group-parameters}})
+    public function {{operationId}}Request({{^vendorExtensions.x-group-parameters}}{{#allParams}}${{paramName}}{{^required}} = {{#defaultValue}}{{{.}}}{{/defaultValue}}{{^defaultValue}}SENTINEL_VALUE{{/defaultValue}}{{/required}}, {{/allParams}}{{#servers}}{{#-first}}?int $hostIndex = null, array $variables = [], {{/-first}}{{/servers}}string $contentType = self::contentTypes['{{{operationId}}}'][0]{{/vendorExtensions.x-group-parameters}}{{#vendorExtensions.x-group-parameters}}$associative_array{{/vendorExtensions.x-group-parameters}})
     {
         {{#vendorExtensions.x-group-parameters}}
         // unbox the parameters from the associative array
@@ -562,21 +584,28 @@ use {{invokerPackage}}\ObjectSerializer;
         $variables = array_key_exists('variables', $associative_array) ? $associative_array['variables'] : [];
 {{/servers.0}}
         $contentType = $associative_array['contentType'] ?? self::contentTypes['{{{operationId}}}'][0];
-        {{/vendorExtensions.x-group-parameters}}{{#allParams}}
+        {{/vendorExtensions.x-group-parameters}}
+
+        {{#allParams}}
         {{#isModel}}
-        if (!(${{paramName}} instanceof {{dataType}})) {
-            throw new \InvalidArgumentException('"{{paramName}}" must be instance of "{{dataType}}" when calling {{classname}}.{{operationId}}.');
+        if (${{paramName}} !== SENTINEL_VALUE) {
+            if (!(${{paramName}} instanceof {{dataType}})) {
+                if (!is_array(${{paramName}}))
+                    throw new \InvalidArgumentException('"{{paramName}}" must be associative array or an instance of {{dataType}} {{classname}}.{{operationId}}.');
+                else
+                    ${{paramName}} = new {{dataType}}(${{paramName}});
+            }
         }
         {{/isModel}}
         {{#isString}}
         // Check if ${{paramName}} is a string
-        if (!is_null(${{paramName}}) && !is_string(${{paramName}})) {
+        if (${{paramName}} !== SENTINEL_VALUE && !is_string(${{paramName}})) {
             throw new \InvalidArgumentException(sprintf('Invalid value %s, please provide a string, %s given', var_export(${{paramName}}, true), gettype(${{paramName}})));
         }
         {{/isString}}
         {{#required}}
         // verify the required parameter '{{paramName}}' is set
-        if (${{paramName}} === null || (is_array(${{paramName}}) && count(${{paramName}}) === 0)) {
+        if (${{paramName}} === SENTINEL_VALUE || (is_array(${{paramName}}) && count(${{paramName}}) === 0)) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter {{paramName}} when calling {{operationId}}'
             );
@@ -584,37 +613,37 @@ use {{invokerPackage}}\ObjectSerializer;
         {{/required}}
         {{#hasValidation}}
         {{#maxLength}}
-        if ({{^required}}${{paramName}} !== null && {{/required}}strlen(${{paramName}}) > {{maxLength}}) {
+        if ({{^required}}${{paramName}} !== SENTINEL_VALUE && {{/required}}strlen(${{paramName}}) > {{maxLength}}) {
             throw new \InvalidArgumentException('invalid length for "{{paramName}}" when calling {{classname}}.{{operationId}}, must be smaller than or equal to {{maxLength}}.');
         }
         {{/maxLength}}
         {{#minLength}}
-        if ({{^required}}${{paramName}} !== null && {{/required}}strlen(${{paramName}}) < {{minLength}}) {
+        if ({{^required}}${{paramName}} !== SENTINEL_VALUE && {{/required}}strlen(${{paramName}}) < {{minLength}}) {
             throw new \InvalidArgumentException('invalid length for "{{paramName}}" when calling {{classname}}.{{operationId}}, must be bigger than or equal to {{minLength}}.');
         }
         {{/minLength}}
         {{#maximum}}
-        if ({{^required}}${{paramName}} !== null && {{/required}}${{paramName}} >{{#exclusiveMaximum}}={{/exclusiveMaximum}} {{maximum}}) {
+        if ({{^required}}${{paramName}} !== SENTINEL_VALUE && {{/required}}${{paramName}} >{{#exclusiveMaximum}}={{/exclusiveMaximum}} {{maximum}}) {
             throw new \InvalidArgumentException('invalid value for "{{paramName}}" when calling {{classname}}.{{operationId}}, must be smaller than {{^exclusiveMaximum}}or equal to {{/exclusiveMaximum}}{{maximum}}.');
         }
         {{/maximum}}
         {{#minimum}}
-        if ({{^required}}${{paramName}} !== null && {{/required}}${{paramName}} <{{#exclusiveMinimum}}={{/exclusiveMinimum}} {{minimum}}) {
+        if ({{^required}}${{paramName}} !== SENTINEL_VALUE && {{/required}}${{paramName}} <{{#exclusiveMinimum}}={{/exclusiveMinimum}} {{minimum}}) {
             throw new \InvalidArgumentException('invalid value for "{{paramName}}" when calling {{classname}}.{{operationId}}, must be bigger than {{^exclusiveMinimum}}or equal to {{/exclusiveMinimum}}{{minimum}}.');
         }
         {{/minimum}}
         {{#pattern}}
-        if ({{^required}}${{paramName}} !== null && {{/required}}!preg_match("{{{pattern}}}", ${{paramName}})) {
+        if ({{^required}}${{paramName}} !== SENTINEL_VALUE && {{/required}}!preg_match("{{{pattern}}}", ${{paramName}})) {
             throw new \InvalidArgumentException('invalid value for "{{paramName}}" when calling {{classname}}.{{operationId}}, must conform to the pattern {{{pattern}}}.');
         }
         {{/pattern}}
         {{#maxItems}}
-        if ({{^required}}${{paramName}} !== null && {{/required}}count(${{paramName}}) > {{maxItems}}) {
+        if ({{^required}}${{paramName}} !== SENTINEL_VALUE && {{/required}}count(${{paramName}}) > {{maxItems}}) {
             throw new \InvalidArgumentException('invalid value for "{{paramName}}" when calling {{classname}}.{{operationId}}, number of items must be less than or equal to {{maxItems}}.');
         }
         {{/maxItems}}
         {{#minItems}}
-        if ({{^required}}${{paramName}} !== null && {{/required}}count(${{paramName}}) < {{minItems}}) {
+        if ({{^required}}${{paramName}} !== SENTINEL_VALUE && {{/required}}count(${{paramName}}) < {{minItems}}) {
             throw new \InvalidArgumentException('invalid value for "{{paramName}}" when calling {{classname}}.{{operationId}}, number of items must be greater than or equal to {{minItems}}.');
         }
         {{/minItems}}
@@ -628,15 +657,17 @@ use {{invokerPackage}}\ObjectSerializer;
         $multipart = false;
 
         {{#queryParams}}
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            ${{paramName}},
-            '{{baseName}}', // param base name
-            '{{#schema}}{{openApiType}}{{/schema}}', // openApiType
-            '{{style}}', // style
-            {{#isExplode}}true{{/isExplode}}{{^isExplode}}false{{/isExplode}}, // explode
-            {{required}} // required
-        ) ?? []);
+        if (${{paramName}} !== SENTINEL_VALUE) {
+            // query params
+            $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+                ${{paramName}},
+                '{{baseName}}', // param base name
+                '{{#schema}}{{openApiType}}{{/schema}}', // openApiType
+                '{{style}}', // style
+                {{#isExplode}}true{{/isExplode}}{{^isExplode}}false{{/isExplode}}, // explode
+                {{required}} // required
+            ) ?? []);
+        }
         {{/queryParams}}
 
         {{#headerParams}}
@@ -646,7 +677,7 @@ use {{invokerPackage}}\ObjectSerializer;
             ${{paramName}} = ObjectSerializer::serializeCollection(${{paramName}}, '{{collectionFormat}}');
         }
         {{/collectionFormat}}
-        if (${{paramName}} !== null) {
+        if (${{paramName}} !== SENTINEL_VALUE) {
             $headerParams['{{baseName}}'] = ObjectSerializer::toHeaderValue(${{paramName}});
         }
         {{/headerParams}}
@@ -658,7 +689,7 @@ use {{invokerPackage}}\ObjectSerializer;
             ${{paramName}} = ObjectSerializer::serializeCollection(${{paramName}}, '{{collectionFormat}}');
         }
         {{/collectionFormat}}
-        if (${{paramName}} !== null) {
+        if (${{paramName}} !== SENTINEL_VALUE) {
             $resourcePath = str_replace(
                 '{' . '{{baseName}}' . '}',
                 ObjectSerializer::toPathValue(${{paramName}}),
@@ -669,7 +700,7 @@ use {{invokerPackage}}\ObjectSerializer;
 
         {{#formParams}}
         // form params
-        if (${{paramName}} !== null) {
+        if (${{paramName}} !== SENTINEL_VALUE) {
             {{#isFile}}
             $multipart = true;
             $formParams['{{baseName}}'] = [];
@@ -774,6 +805,9 @@ use {{invokerPackage}}\ObjectSerializer;
             $headers
         );
 
+        $method = '{{httpMethod}}';
+        $this->beforeCreateRequestHook($method, $resourcePath, $queryParams, $headers, $httpBody);
+
         {{#servers.0}}
         # Preserve the original behavior of server indexing.
         if ($hostIndex === null) {
@@ -791,12 +825,15 @@ use {{invokerPackage}}\ObjectSerializer;
         $operationHost = $this->config->getHost();
         {{/servers.0}}
         $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            '{{httpMethod}}',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
+        return [
+            "request" => new Request(
+                $method,
+                $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+                $headers,
+                $httpBody
+            ),
+            "serializedBody" => $httpBody
+        ];
     }
 
     {{#servers.0}}

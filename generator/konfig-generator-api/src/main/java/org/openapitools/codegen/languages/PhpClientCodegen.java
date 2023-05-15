@@ -35,6 +35,8 @@ import java.util.Collections;
 import java.util.EnumSet;
 import java.util.List;
 
+import static org.openapitools.codegen.languages.TypeScriptAxiosClientCodegen.toCamelCase;
+
 public class PhpClientCodegen extends AbstractPhpCodegen {
     @SuppressWarnings("hiding")
     private final Logger LOGGER = LoggerFactory.getLogger(PhpClientCodegen.class);
@@ -99,6 +101,18 @@ public class PhpClientCodegen extends AbstractPhpCodegen {
     }
 
     @Override
+    public void setParameterExampleValue(CodegenParameter p) {
+        // hacky workaround by using Python's implementation here
+        PythonClientCodegen pythonClientCodegen = new PythonClientCodegen();
+        pythonClientCodegen.objectFieldDelimiter = " => ";
+        pythonClientCodegen.objectOpenChar = "[";
+        pythonClientCodegen.objectCloseChar = "]";
+        // got a NPE when I don't add this here. I'm scared I might be missing other things but it seems work
+        pythonClientCodegen.setOpenAPI(this.openAPI);
+        pythonClientCodegen.setParameterExampleValue(p, p.oasSchema);
+    }
+
+    @Override
     public void setParameterExampleValue(CodegenParameter codegenParameter, Parameter parameter) {
         // hacky workaround by using Python's implementation here
         PythonClientCodegen pythonClientCodegen = new PythonClientCodegen();
@@ -122,12 +136,21 @@ public class PhpClientCodegen extends AbstractPhpCodegen {
         pythonClientCodegen.setParameterExampleValue(codegenParameter, requestBody);
     }
 
+    // Dylan: for SnapTrade this ensures "API Disclaimer" is turned into -> "ApiDisclaimer" which is then turned into
+    // "apiDisclaimer" as a variable name in the top-level client.
+    @Override
+    public String sanitizeTag(String tag) {
+        return toCamelCase(sanitizeName(tag), true);
+    }
+
     @Override
     public void processOpts() {
         super.processOpts();
 
         supportingFiles.add(new SupportingFile("ApiException.mustache", toSrcPath(invokerPackage, srcBasePath), "ApiException.php"));
+        supportingFiles.add(new SupportingFile("CustomApi.mustache", toSrcPath(invokerPackage, srcBasePath), "CustomApi.php"));
         supportingFiles.add(new SupportingFile("Configuration.mustache", toSrcPath(invokerPackage, srcBasePath), "Configuration.php"));
+        supportingFiles.add(new SupportingFile("Client.mustache", toSrcPath(invokerPackage, srcBasePath), "Client.php"));
         supportingFiles.add(new SupportingFile("ObjectSerializer.mustache", toSrcPath(invokerPackage, srcBasePath), "ObjectSerializer.php"));
         supportingFiles.add(new SupportingFile("ModelInterface.mustache", toSrcPath(modelPackage, srcBasePath), "ModelInterface.php"));
         supportingFiles.add(new SupportingFile("HeaderSelector.mustache", toSrcPath(invokerPackage, srcBasePath), "HeaderSelector.php"));
