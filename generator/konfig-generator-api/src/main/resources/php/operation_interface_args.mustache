@@ -1,18 +1,13 @@
         {{^vendorExtensions.x-group-parameters}}
         {{#bodyParam}}
-        {{^isObject}}
+        {{^isStrictlyObject}}
         {{#required}}
-        {{#isComposedObject}}
-        $body = SENTINEL_VALUE,
-        {{/isComposedObject}}
-        {{^isComposedObject}}
         $body,
-        {{/isComposedObject}}
         {{/required}}
         {{^required}}
         $body = SENTINEL_VALUE,
         {{/required}}
-        {{/isObject}}
+        {{/isStrictlyObject}}
         {{/bodyParam}}
         {{#allParamsWithRequestBodyProperties}}
         ${{paramName}}{{^required}} = {{#defaultValue}}{{{.}}}{{/defaultValue}}{{^defaultValue}}SENTINEL_VALUE{{/defaultValue}}{{/required}},
