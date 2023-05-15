@@ -45,7 +45,6 @@ import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.tuple.Pair;
 import org.apache.commons.text.StringEscapeUtils;
-import org.openapitools.codegen.*;
 import org.openapitools.codegen.CodegenDiscriminator.MappedModel;
 import org.openapitools.codegen.api.TemplatingEngineAdapter;
 import org.openapitools.codegen.config.GlobalSettings;
@@ -63,7 +62,6 @@ import org.openapitools.codegen.model.OperationsMap;
 import org.openapitools.codegen.serializer.SerializerUtils;
 import org.openapitools.codegen.templating.MustacheEngineAdapter;
 import org.openapitools.codegen.templating.mustache.*;
-import org.openapitools.codegen.utils.CamelizeOption;
 import org.openapitools.codegen.utils.ModelUtils;
 import org.openapitools.codegen.utils.OneOfImplementorAdditionalData;
 import org.slf4j.Logger;
@@ -7626,6 +7624,7 @@ public class DefaultCodegen implements CodegenConfig {
         ModelUtils.syncValidationProperties(unaliasedSchema, codegenParameter);
         codegenParameter.setTypeProperties(unaliasedSchema);
         codegenParameter.setComposedSchemas(getComposedSchemas(unaliasedSchema));
+        codegenParameter.isStrictlyObject = isStrictlyObject(schema);
         // TODO in the future switch al the below schema usages to unaliasedSchema
         // because it keeps models as refs and will not get their referenced schemas
         if (ModelUtils.isArraySchema(schema)) {
@@ -7725,6 +7724,72 @@ public class DefaultCodegen implements CodegenConfig {
                         return true;
                     }
                 }
+            }
+
+            // Dylan: this edge case occurs if you have an allOf schema and there are two scenarios:
+            // 1) all schemas are object schemas thus the resulting schema is also an object schema so return true
+            // 2) one schema object is not an object which means it could be either a non-object so return false
+            if (composedSchema.getAllOf() != null) {
+                for (Schema allOfSchema : composedSchema.getAllOf()) {
+                    allOfSchema = ModelUtils.getReferencedSchema(this.openAPI, allOfSchema);
+                    if (!ModelUtils.isObjectSchema(allOfSchema)) {
+                        return false;
+                    }
+                }
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // Dylan: computes if one of the schemas in this polymorphic schema is not an object
+    // this is necessary computation in the case that you have one schema that is a non-object which helps determine
+    // if the SDK method needs to accept a "body" parameter which could be a primitive or array type
+    // examples:
+    // anyOf[array, object] -> false
+    // oneOf[array, object] -> false
+    // allOf[array, object] -> false
+    // allOf[string, object] -> true
+    // allOf[object, object] -> true
+    // oneOf[object, object] -> true
+    // anyOf[object, object] -> true
+    // object -> true
+    protected boolean isStrictlyObject(Schema schema) {
+        if (schema == null) {
+            return false;
+        }
+        schema = ModelUtils.getReferencedSchema(this.openAPI, schema);
+        if (ModelUtils.isObjectSchema(schema)) return true;
+        if (ModelUtils.isComposedSchema(schema)) {
+            ComposedSchema composedSchema = (ComposedSchema) schema;
+            if (composedSchema.getAnyOf() != null) {
+                for (Schema anyOfSchema : composedSchema.getAnyOf()) {
+                    anyOfSchema = ModelUtils.getReferencedSchema(this.openAPI, anyOfSchema);
+                    if (!ModelUtils.isObjectSchema(anyOfSchema)) {
+                        return false;
+                    }
+                }
+            }
+            if (composedSchema.getOneOf() != null) {
+                for (Schema oneOfSchema : composedSchema.getOneOf()) {
+                    oneOfSchema = ModelUtils.getReferencedSchema(this.openAPI, oneOfSchema);
+                    if (!ModelUtils.isObjectSchema(oneOfSchema)) {
+                        return false;
+                    }
+                }
+            }
+
+            // Dylan: this edge case occurs if you have an allOf schema and there are two scenarios:
+            // 1) all schemas are object schemas thus the resulting schema is also an object schema so return true
+            // 2) one schema object is not an object which means it could be either a non-object so return false
+            if (composedSchema.getAllOf() != null) {
+                for (Schema allOfSchema : composedSchema.getAllOf()) {
+                    allOfSchema = ModelUtils.getReferencedSchema(this.openAPI, allOfSchema);
+                    if (!ModelUtils.isObjectSchema(allOfSchema)) {
+                        return false;
+                    }
+                }
+                return true;
             }
         }
         return false;
