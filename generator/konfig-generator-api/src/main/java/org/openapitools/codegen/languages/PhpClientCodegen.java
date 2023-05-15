@@ -101,6 +101,18 @@ public class PhpClientCodegen extends AbstractPhpCodegen {
     }
 
     @Override
+    public void setParameterExampleValue(CodegenParameter p) {
+        // hacky workaround by using Python's implementation here
+        PythonClientCodegen pythonClientCodegen = new PythonClientCodegen();
+        pythonClientCodegen.objectFieldDelimiter = " => ";
+        pythonClientCodegen.objectOpenChar = "[";
+        pythonClientCodegen.objectCloseChar = "]";
+        // got a NPE when I don't add this here. I'm scared I might be missing other things but it seems work
+        pythonClientCodegen.setOpenAPI(this.openAPI);
+        pythonClientCodegen.setParameterExampleValue(p, p.oasSchema);
+    }
+
+    @Override
     public void setParameterExampleValue(CodegenParameter codegenParameter, Parameter parameter) {
         // hacky workaround by using Python's implementation here
         PythonClientCodegen pythonClientCodegen = new PythonClientCodegen();

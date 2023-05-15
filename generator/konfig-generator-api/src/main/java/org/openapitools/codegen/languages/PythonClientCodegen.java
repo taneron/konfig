@@ -2323,6 +2323,19 @@ public class PythonClientCodegen extends AbstractPythonCodegen {
         codegenParameter.example = finalExample;
     }
 
+    public void setParameterExampleValue(CodegenParameter codegenParameter, Schema schema) {
+        if (schema == null) {
+            LOGGER.warn("CodegenParameter.example defaulting to null because parameter lacks a schema");
+            return;
+        }
+
+        Object example = null;
+        example = getObjectExample(schema);
+        example = exampleFromStringOrArraySchema(schema, example, codegenParameter.paramName, Optional.ofNullable(codegenParameter.required).orElse(Boolean.FALSE));
+        String finalExample = toExampleValue(schema, example);
+        codegenParameter.example = finalExample;
+    }
+
     /**
      * Return the example value of the parameter.
      *

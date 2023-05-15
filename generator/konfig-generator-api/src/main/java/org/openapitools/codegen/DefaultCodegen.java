@@ -5097,6 +5097,7 @@ public class DefaultCodegen implements CodegenConfig {
     public CodegenParameter fromParameter(Parameter parameter, Set<String> imports) {
         CodegenParameter codegenParameter = CodegenModelFactory.newInstance(CodegenModelType.PARAMETER);
 
+        codegenParameter.oasSchema = parameter.getSchema();
         codegenParameter.baseName = parameter.getName();
         codegenParameter.description = escapeText(parameter.getDescription());
         codegenParameter.unescapedDescription = parameter.getDescription();
@@ -7024,6 +7025,8 @@ public class DefaultCodegen implements CodegenConfig {
     public CodegenParameter fromFormProperty(String name, Schema propertySchema, Set<String> imports) {
         CodegenParameter codegenParameter = CodegenModelFactory.newInstance(CodegenModelType.PARAMETER);
 
+        codegenParameter.oasSchema = propertySchema;
+
         LOGGER.debug("Debugging fromFormProperty {}: {}", name, propertySchema);
         CodegenProperty codegenProperty = fromProperty(name, propertySchema, false);
 
@@ -7610,6 +7613,7 @@ public class DefaultCodegen implements CodegenConfig {
             throw new RuntimeException(
                     "Request body cannot be null. Possible cause: missing schema in body parameter (OAS v2): " + body);
         }
+        codegenParameter.oasSchema = schema;
         codegenParameter.setContent(getContent(body.getContent(), imports, "RequestBody"));
 
         if (StringUtils.isNotBlank(schema.get$ref())) {
