@@ -4,28 +4,21 @@ namespace {{invokerPackage}};
 
 class CustomApi
 {
+
     public function beforeSendHook(
-        \GuzzleHttp\Psr7\Request $request,
+        \GuzzleHttp\Psr7\Request &$request,
         \{{invokerPackage}}\RequestOptions $requestOptions,
-        \{{invokerPackage}}\Configuration $configuration
-    ): \GuzzleHttp\Psr7\Request {
-        return $request;
+        \{{invokerPackage}}\Configuration $configuration,
+        $body = null
+    ) {
     }
 
     public function beforeCreateRequestHook(
-        string $method,
-        string $resourcePath,
-        array $queryParams,
-        array $headers,
-        $httpBody,
-    ): array {
-        return [
-            "method" => $method,
-            "queryParams" => $queryParams,
-            "resourcePath" => $resourcePath,
-            "headers" => $headers,
-            "httpBody" => $httpBody,
-        ];
+        string &$method,
+        string &$resourcePath,
+        array &$queryParams,
+        array &$headers,
+        &$httpBody,
+    ) {
     }
 }
-
