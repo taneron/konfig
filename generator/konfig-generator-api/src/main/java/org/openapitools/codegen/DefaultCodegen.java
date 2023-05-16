@@ -5686,12 +5686,12 @@ public class DefaultCodegen implements CodegenConfig {
      */
     @Override
     @SuppressWarnings("static-method")
-    public void addOperationToGroup(String tag, String resourcePath, Operation operation, CodegenOperation co,
-                                    Map<String, List<CodegenOperation>> operations) {
-        List<CodegenOperation> opList = operations.get(tag);
+    public void addOperationToGroup(String tag, String originalTag, String resourcePath, Operation operation, CodegenOperation co,
+                                    Map<DefaultGenerator.PathKey, List<CodegenOperation>> operations) {
+        List<CodegenOperation> opList = operations.get(new DefaultGenerator.PathKey(originalTag, tag));
         if (opList == null) {
             opList = new ArrayList<>();
-            operations.put(tag, opList);
+            operations.put(new DefaultGenerator.PathKey(originalTag, tag), opList);
         }
         // check for operationId uniqueness
         String uniqueName = co.operationId;
@@ -7760,6 +7760,7 @@ public class DefaultCodegen implements CodegenConfig {
         }
         schema = ModelUtils.getReferencedSchema(this.openAPI, schema);
         if (ModelUtils.isObjectSchema(schema)) return true;
+        if (ModelUtils.isMapSchema(schema)) return true;
         if (ModelUtils.isComposedSchema(schema)) {
             ComposedSchema composedSchema = (ComposedSchema) schema;
             if (composedSchema.getAnyOf() != null) {

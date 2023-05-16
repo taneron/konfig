@@ -186,6 +186,7 @@ export const myHandler = async (event: APIGatewayEvent, context: Context) => {
       config: {
         additionalProperties: {
           omitInfoDescription: body.omitInfoDescription,
+          tagPriority: body.tagPriority,
           podVersion: version,
           podName,
           classPrefix,
@@ -217,6 +218,7 @@ export const myHandler = async (event: APIGatewayEvent, context: Context) => {
       config: {
         additionalProperties: {
           omitInfoDescription: body.omitInfoDescription,
+          tagPriority: body.tagPriority,
           packageVersion: generatorConfig.version,
           readmeSnippet: generatorConfig.readmeSnippet,
           readmeSupportingDescriptionSnippet:
@@ -247,6 +249,7 @@ export const myHandler = async (event: APIGatewayEvent, context: Context) => {
       config: {
         additionalProperties: {
           omitInfoDescription: body.omitInfoDescription,
+          tagPriority: body.tagPriority,
           groupId: generatorConfig.groupId,
           artifactId: generatorConfig.artifactId,
           readmeSnippet: generatorConfig.readmeSnippet,
@@ -279,6 +282,7 @@ export const myHandler = async (event: APIGatewayEvent, context: Context) => {
       config: {
         additionalProperties: {
           omitInfoDescription: body.omitInfoDescription,
+          tagPriority: body.tagPriority,
           invokerPackage: generatorConfig.invokerPackage,
           readmeSnippet: generatorConfig.readmeSnippet,
           readmeSupportingDescriptionSnippet:
@@ -316,6 +320,7 @@ export const myHandler = async (event: APIGatewayEvent, context: Context) => {
       config: {
         additionalProperties: {
           omitInfoDescription: body.omitInfoDescription,
+          tagPriority: body.tagPriority,
           artifactId: generatorConfig.artifactId,
           groupId: generatorConfig.groupId,
           invokerPackage: packageName,
@@ -355,6 +360,7 @@ export const myHandler = async (event: APIGatewayEvent, context: Context) => {
       config: {
         additionalProperties: {
           omitInfoDescription: body.omitInfoDescription,
+          tagPriority: body.tagPriority,
           artifactId: generatorConfig.artifactId,
           groupId: generatorConfig.groupId,
           invokerPackage: packageName,
@@ -397,6 +403,7 @@ export const myHandler = async (event: APIGatewayEvent, context: Context) => {
       config: {
         additionalProperties: {
           omitInfoDescription: body.omitInfoDescription,
+          tagPriority: body.tagPriority,
           podVersion: generatorConfig.version,
           podAuthors: generatorConfig.podAuthors,
           projectName: generatorConfig.projectName,
@@ -432,6 +439,7 @@ export const myHandler = async (event: APIGatewayEvent, context: Context) => {
       config: {
         additionalProperties: {
           omitInfoDescription: body.omitInfoDescription,
+          tagPriority: body.tagPriority,
           packageVersion: generatorConfig.version,
           readmeSnippet: generatorConfig.readmeSnippet,
           readmeSupportingDescriptionSnippet:
@@ -470,6 +478,7 @@ export const myHandler = async (event: APIGatewayEvent, context: Context) => {
       config: {
         additionalProperties: {
           omitInfoDescription: body.omitInfoDescription,
+          tagPriority: body.tagPriority,
           projectName: generatorConfig.projectName,
           disallowAdditionalPropertiesIfNotPresent: false,
           packageVersion: generatorConfig.version,
@@ -544,6 +553,7 @@ export const myHandler = async (event: APIGatewayEvent, context: Context) => {
         config: {
           additionalProperties: {
             omitInfoDescription: body.omitInfoDescription,
+            tagPriority: body.tagPriority,
             npmName: generatorConfig.npmName,
             npmVersion: generatorConfig.version,
             disallowAdditionalPropertiesIfNotPresent: false,

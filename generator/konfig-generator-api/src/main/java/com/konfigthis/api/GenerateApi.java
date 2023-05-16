@@ -259,6 +259,7 @@ public interface GenerateApi {
         putIfPresent(map, "podVersion", additionalProperties.getPodVersion());
         putIfPresent(map, "podAuthors", additionalProperties.getPodAuthors());
         putIfPresent(map, "podName", additionalProperties.getPodName());
+        putIfPresent(map, "tagPriority", additionalProperties.getTagPriority());
         putIfPresent(map, "classPrefix", additionalProperties.getClassPrefix());
         putIfPresent(map, "outputDirectory", additionalProperties.getOutputDirectory());
         putIfPresent(map, "authorName", additionalProperties.getAuthorName());

@@ -53,6 +53,10 @@ public class AdditionalProperties {
   @JsonProperty("omitApiDocumentation")
   private Boolean omitApiDocumentation;
 
+  @JsonProperty("tagPriority")
+  @Valid
+  private List<String> tagPriority = null;
+
   @JsonProperty("setSkipSerializationToTrueByDefault")
   private Boolean setSkipSerializationToTrueByDefault;
 
@@ -318,6 +322,33 @@ public class AdditionalProperties {
 
   public void setOmitApiDocumentation(Boolean omitApiDocumentation) {
     this.omitApiDocumentation = omitApiDocumentation;
+  }
+
+  public AdditionalProperties tagPriority(List<String> tagPriority) {
+    this.tagPriority = tagPriority;
+    return this;
+  }
+
+  public AdditionalProperties addTagPriorityItem(String tagPriorityItem) {
+    if (this.tagPriority == null) {
+      this.tagPriority = new ArrayList<>();
+    }
+    this.tagPriority.add(tagPriorityItem);
+    return this;
+  }
+
+  /**
+   * Get tagPriority
+   * @return tagPriority
+  */
+  
+  @Schema(name = "tagPriority", required = false)
+  public List<String> getTagPriority() {
+    return tagPriority;
+  }
+
+  public void setTagPriority(List<String> tagPriority) {
+    this.tagPriority = tagPriority;
   }
 
   public AdditionalProperties setSkipSerializationToTrueByDefault(Boolean setSkipSerializationToTrueByDefault) {
@@ -1018,6 +1049,7 @@ public class AdditionalProperties {
         Objects.equals(this.omitInfoDescription, additionalProperties.omitInfoDescription) &&
         Objects.equals(this.omitModelDocumentation, additionalProperties.omitModelDocumentation) &&
         Objects.equals(this.omitApiDocumentation, additionalProperties.omitApiDocumentation) &&
+        Objects.equals(this.tagPriority, additionalProperties.tagPriority) &&
         Objects.equals(this.setSkipSerializationToTrueByDefault, additionalProperties.setSkipSerializationToTrueByDefault) &&
         Objects.equals(this.includeFetchAdapter, additionalProperties.includeFetchAdapter) &&
         Objects.equals(this.packagistUsername, additionalProperties.packagistUsername) &&
@@ -1057,7 +1089,7 @@ public class AdditionalProperties {
 
   @Override
   public int hashCode() {
-    return Objects.hash(objectPropertyNamingConvention, gitRepoName, clientName, outputDirectory, topLevelOperations, omitInfoDescription, omitModelDocumentation, omitApiDocumentation, setSkipSerializationToTrueByDefault, includeFetchAdapter, packagistUsername, toStringReturnsJson, includeEventSourceParser, keepAllParametersOptional, apiDocumentationAuthenticationPartial, composerPackageName, defaultTimeout, useSingleRequestParameter, artifactUrl, artifactId, groupId, invokerPackage, modelPackage, apiPackage, projectName, podVersion, removeKonfigBranding, podName, classPrefix, authorName, authorEmail, podAuthors, swiftPackagePath, disallowAdditionalPropertiesIfNotPresent, packageVersion, packageUrl, npmVersion, npmName, readmeSnippet, readmeSupportingDescriptionSnippet, readmeDescriptionSnippet, apiKeyAlias, clientState);
+    return Objects.hash(objectPropertyNamingConvention, gitRepoName, clientName, outputDirectory, topLevelOperations, omitInfoDescription, omitModelDocumentation, omitApiDocumentation, tagPriority, setSkipSerializationToTrueByDefault, includeFetchAdapter, packagistUsername, toStringReturnsJson, includeEventSourceParser, keepAllParametersOptional, apiDocumentationAuthenticationPartial, composerPackageName, defaultTimeout, useSingleRequestParameter, artifactUrl, artifactId, groupId, invokerPackage, modelPackage, apiPackage, projectName, podVersion, removeKonfigBranding, podName, classPrefix, authorName, authorEmail, podAuthors, swiftPackagePath, disallowAdditionalPropertiesIfNotPresent, packageVersion, packageUrl, npmVersion, npmName, readmeSnippet, readmeSupportingDescriptionSnippet, readmeDescriptionSnippet, apiKeyAlias, clientState);
   }
 
   @Override
@@ -1072,6 +1104,7 @@ public class AdditionalProperties {
     sb.append("    omitInfoDescription: ").append(toIndentedString(omitInfoDescription)).append("\n");
     sb.append("    omitModelDocumentation: ").append(toIndentedString(omitModelDocumentation)).append("\n");
     sb.append("    omitApiDocumentation: ").append(toIndentedString(omitApiDocumentation)).append("\n");
+    sb.append("    tagPriority: ").append(toIndentedString(tagPriority)).append("\n");
     sb.append("    setSkipSerializationToTrueByDefault: ").append(toIndentedString(setSkipSerializationToTrueByDefault)).append("\n");
     sb.append("    includeFetchAdapter: ").append(toIndentedString(includeFetchAdapter)).append("\n");
     sb.append("    packagistUsername: ").append(toIndentedString(packagistUsername)).append("\n");

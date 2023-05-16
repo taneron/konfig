@@ -2,6 +2,7 @@ import { z } from './zod'
 
 import { TemplateFiles } from './TemplateFiles'
 import { topLevelOperationsOrderedSchema } from './KonfigYaml'
+import { tagPrioritySchema } from './KonfigYamlCommon'
 
 const additionalProperties = z.object({
   apiPackage: z.string().optional(),
@@ -48,6 +49,7 @@ const additionalProperties = z.object({
   useSingleRequestParameter: z.boolean().optional(),
   keepAllParametersOptional: z.boolean().optional(),
   defaultTimeout: z.number().optional(),
+  tagPriority: tagPrioritySchema.optional(),
 })
 
 export const javaGenerateApiRequestBody = z.object({
