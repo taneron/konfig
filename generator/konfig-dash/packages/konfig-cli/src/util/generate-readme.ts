@@ -179,7 +179,11 @@ export function getPublishedPackageUrl({
         packageManagerName: 'CocoaPods',
       }
     case 'ruby':
-      throw Error('Not implemented')
+      console.warn('Ruby README generation not implemented')
+      return {
+        url: 'Not Implemented',
+        packageManagerName: 'Not Implemented',
+      }
   }
   throw Error(`Unexpected generator name: ${generatorName}`)
 }
