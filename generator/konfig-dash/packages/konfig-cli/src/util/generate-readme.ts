@@ -147,8 +147,12 @@ export function getPublishedPackageUrl({
     case 'typescript':
       config = konfigYaml.generators.typescript
       if (config === undefined) throw Error('Config undefined')
-      const version =
-        'version' in config ? config.version : config.packageVersion
+      let version = 'version' in config ? config.version : config.packageVersion
+
+      // 0.4.0a1 gets converted to 0.4.0-a1 on npm
+      // this edge case was surfaced when publishing for humanloop
+      if (version.includes('a')) version = version.replace(/a/, '-a')
+
       return {
         url: `https://www.npmjs.com/package/${config.npmName}/v/${version}`,
         packageManagerName: 'npm',
