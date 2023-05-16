@@ -2879,7 +2879,7 @@ public class PythonClientCodegen extends AbstractPythonCodegen {
     @SuppressWarnings("static-method")
     public void addOperationToGroup(String tag, String originalTag, String resourcePath, Operation operation, CodegenOperation
             co, Map<DefaultGenerator.PathKey, List<CodegenOperation>> operations) {
-        List<CodegenOperation> opList = operations.get(tag);
+        List<CodegenOperation> opList = operations.get(new DefaultGenerator.PathKey(originalTag, tag));
         if (opList == null) {
             opList = new ArrayList<>();
             operations.put(new DefaultGenerator.PathKey(originalTag, tag), opList);
