@@ -594,24 +594,25 @@ public class DefaultGenerator implements Generator {
             LOGGER.info("Skipping generation of APIs.");
             return;
         }
-        Map<String, List<CodegenOperation>> paths = processPaths(this.openAPI.getPaths());
+        Map<PathKey, List<CodegenOperation>> paths = processPaths(this.openAPI.getPaths());
         Set<String> apisToGenerate = null;
         String apiNames = GlobalSettings.getProperty("apis");
         if (apiNames != null && !apiNames.isEmpty()) {
             apisToGenerate = new HashSet<>(Arrays.asList(apiNames.split(",")));
         }
         if (apisToGenerate != null && !apisToGenerate.isEmpty()) {
-            Map<String, List<CodegenOperation>> updatedPaths = new TreeMap<>();
-            for (String m : paths.keySet()) {
-                if (apisToGenerate.contains(m)) {
+            Map<PathKey, List<CodegenOperation>> updatedPaths = new TreeMap<>(Comparator.comparing(a -> a.originalTag));
+            for (PathKey m : paths.keySet()) {
+                if (apisToGenerate.contains(m.tag)) {
                     updatedPaths.put(m, paths.get(m));
                 }
             }
             paths = updatedPaths;
         }
-        for (String tag : paths.keySet()) {
+        for (PathKey pathKey : paths.keySet()) {
+            String tag = pathKey.tag;
             try {
-                List<CodegenOperation> ops = paths.get(tag);
+                List<CodegenOperation> ops = paths.get(pathKey);
                 ops.sort((one, another) -> ObjectUtils.compare(one.operationId, another.operationId));
                 OperationsMap operation = processOperations(config, tag, ops, allModels);
                 URL url = URLPathUtils.getServerURL(openAPI, config.serverVariableOverrides());
@@ -619,6 +620,7 @@ public class DefaultGenerator implements Generator {
                 operation.put("basePathWithoutHost", removeTrailingSlash(config.encodePath(url.getPath())));
                 operation.put("contextPath", contextPath);
                 operation.put("baseName", tag);
+                operation.put("originalTag", pathKey.originalTag);
                 operation.put("apiPackage", config.apiPackage());
                 operation.put("modelPackage", config.modelPackage());
                 operation.putAll(config.additionalProperties());
@@ -990,6 +992,17 @@ public class DefaultGenerator implements Generator {
         List<OperationsMap> allOperations = new ArrayList<>();
         generateApis(files, allOperations, allModels);
 
+        if (config.additionalProperties().get("tagPriority") != null) {
+            List<String> tagPriority = (List<String>) config.additionalProperties().get("tagPriority");
+            allOperations.sort((a, b) -> {
+                int aIndex = tagPriority.indexOf(a.get("originalTag"));
+                int bIndex = tagPriority.indexOf(b.get("originalTag"));
+                if (aIndex == -1) return 1;
+                if (bIndex == -1) return -1;
+                return bIndex - aIndex;
+            });
+        }
+
         // supporting files
         Map<String, Object> bundle = buildSupportFileBundle(allOperations, allModels);
         generateSupportingFiles(files, bundle);
@@ -1142,8 +1155,19 @@ public class DefaultGenerator implements Generator {
         }
     }
 
-    public Map<String, List<CodegenOperation>> processPaths(Paths paths) {
-        Map<String, List<CodegenOperation>> ops = new TreeMap<>();
+    public static class PathKey {
+        final String originalTag;
+        final String tag;
+
+        public PathKey(String originalTag, String tag) {
+            this.originalTag = originalTag;
+            this.tag = tag;
+        }
+
+    }
+
+    public Map<PathKey, List<CodegenOperation>> processPaths(Paths paths) {
+        Map<PathKey, List<CodegenOperation>> ops = new TreeMap<>(Comparator.comparing(a -> a.originalTag));
         // when input file is not valid and doesn't contain any paths
         if (paths == null) {
             return ops;
@@ -1163,7 +1187,7 @@ public class DefaultGenerator implements Generator {
         return ops;
     }
 
-    private void processOperation(String resourcePath, String httpMethod, Operation operation, Map<String, List<CodegenOperation>> operations, PathItem path) {
+    private void processOperation(String resourcePath, String httpMethod, Operation operation, Map<PathKey, List<CodegenOperation>> operations, PathItem path) {
         if (operation == null) {
             return;
         }
@@ -1230,7 +1254,7 @@ public class DefaultGenerator implements Generator {
             try {
                 CodegenOperation codegenOperation = config.fromOperation(resourcePath, httpMethod, operation, path.getServers());
                 codegenOperation.tags = new ArrayList<>(tags);
-                config.addOperationToGroup(config.sanitizeTag(tag.getName()), resourcePath, operation, codegenOperation, operations);
+                config.addOperationToGroup(config.sanitizeTag(tag.getName()), tag.getName(), resourcePath, operation, codegenOperation, operations);
 
                 List<SecurityRequirement> securities = operation.getSecurity();
                 if (securities != null && securities.isEmpty()) {

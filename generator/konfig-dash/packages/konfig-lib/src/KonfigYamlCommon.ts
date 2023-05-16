@@ -25,6 +25,14 @@ export const fixConfig = z.object({
     ),
 })
 
+export const tagPrioritySchema = z
+  .string()
+  .describe('Name of tag')
+  .array()
+  .describe(
+    'Order of tags to be processed by Konfig. This can be used to configure which operation is used when generated the getting started documentation in the generated README for an SDK.'
+  )
+
 export const KonfigYamlCommon = z
   .object({
     fixConfig: fixConfig.optional(),
@@ -40,6 +48,7 @@ export const KonfigYamlCommon = z
     omitInfoDescription: z.boolean().optional(),
     validateSpec: z.boolean().optional(),
     infoContactUrl: z.string().url().optional(),
+    tagPriority: tagPrioritySchema.optional(),
     takeFirstTag: z
       .boolean()
       .default(true)

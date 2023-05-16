@@ -202,7 +202,7 @@ public interface CodegenConfig {
 
     String toApiImport(String name);
 
-    void addOperationToGroup(String tag, String resourcePath, Operation operation, CodegenOperation co, Map<String, List<CodegenOperation>> operations);
+    void addOperationToGroup(String tag, String originalTag, String resourcePath, Operation operation, CodegenOperation co, Map<DefaultGenerator.PathKey, List<CodegenOperation>> operations);
 
     Map<String, ModelsMap> updateAllModels(Map<String, ModelsMap> objs);
 
