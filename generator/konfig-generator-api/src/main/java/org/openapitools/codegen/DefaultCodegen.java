@@ -7760,6 +7760,7 @@ public class DefaultCodegen implements CodegenConfig {
         }
         schema = ModelUtils.getReferencedSchema(this.openAPI, schema);
         if (ModelUtils.isObjectSchema(schema)) return true;
+        if (ModelUtils.isMapSchema(schema)) return true;
         if (ModelUtils.isComposedSchema(schema)) {
             ComposedSchema composedSchema = (ComposedSchema) schema;
             if (composedSchema.getAnyOf() != null) {
