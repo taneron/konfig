@@ -30,7 +30,8 @@ class {{clientName}}(ClientCustom):
         api_client = ApiClient(configuration)
         {{#with apiInfo}}
         {{#each apis}}
-        self.{{> api_class_name}} = {{classname}}(api_client)
+        {{! we need to add ": classname" for PyCharm to throw type hint / unexpected parameter errors }}
+        self.{{> api_class_name}}: {{classname}} = {{classname}}(api_client)
         {{/each}}
         {{/with}}
 {{#with apiInfo}}
