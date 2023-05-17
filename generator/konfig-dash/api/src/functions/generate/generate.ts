@@ -483,6 +483,7 @@ export const myHandler = async (event: APIGatewayEvent, context: Context) => {
           disallowAdditionalPropertiesIfNotPresent: false,
           packageVersion: generatorConfig.version,
           readmeSnippet: generatorConfig.readmeSnippet,
+          asyncReadmeSnippet: generatorConfig.asyncReadmeSnippet,
           readmeSupportingDescriptionSnippet:
             generatorConfig.readmeSupportingDescriptionSnippet,
           readmeDescriptionSnippet: generatorConfig.readmeDescriptionSnippet,

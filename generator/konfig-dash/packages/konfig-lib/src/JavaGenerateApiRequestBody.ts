@@ -43,6 +43,7 @@ const additionalProperties = z.object({
   podVersion: z.string().describe('1.0.0').optional(),
   projectName: z.string().optional(),
   readmeSnippet: z.string().optional(),
+  asyncReadmeSnippet: z.string().optional(),
   readmeSupportingDescriptionSnippet: z.string().optional(),
   readmeDescriptionSnippet: z.string().optional(),
   swiftPackagePath: z.string().optional(),

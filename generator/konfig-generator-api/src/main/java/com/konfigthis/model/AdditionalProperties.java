@@ -150,6 +150,9 @@ public class AdditionalProperties {
   @JsonProperty("readmeSnippet")
   private String readmeSnippet;
 
+  @JsonProperty("asyncReadmeSnippet")
+  private String asyncReadmeSnippet;
+
   @JsonProperty("readmeSupportingDescriptionSnippet")
   private String readmeSupportingDescriptionSnippet;
 
@@ -940,6 +943,25 @@ public class AdditionalProperties {
     this.readmeSnippet = readmeSnippet;
   }
 
+  public AdditionalProperties asyncReadmeSnippet(String asyncReadmeSnippet) {
+    this.asyncReadmeSnippet = asyncReadmeSnippet;
+    return this;
+  }
+
+  /**
+   * Get asyncReadmeSnippet
+   * @return asyncReadmeSnippet
+  */
+  
+  @Schema(name = "asyncReadmeSnippet", required = false)
+  public String getAsyncReadmeSnippet() {
+    return asyncReadmeSnippet;
+  }
+
+  public void setAsyncReadmeSnippet(String asyncReadmeSnippet) {
+    this.asyncReadmeSnippet = asyncReadmeSnippet;
+  }
+
   public AdditionalProperties readmeSupportingDescriptionSnippet(String readmeSupportingDescriptionSnippet) {
     this.readmeSupportingDescriptionSnippet = readmeSupportingDescriptionSnippet;
     return this;
@@ -1081,6 +1103,7 @@ public class AdditionalProperties {
         Objects.equals(this.npmVersion, additionalProperties.npmVersion) &&
         Objects.equals(this.npmName, additionalProperties.npmName) &&
         Objects.equals(this.readmeSnippet, additionalProperties.readmeSnippet) &&
+        Objects.equals(this.asyncReadmeSnippet, additionalProperties.asyncReadmeSnippet) &&
         Objects.equals(this.readmeSupportingDescriptionSnippet, additionalProperties.readmeSupportingDescriptionSnippet) &&
         Objects.equals(this.readmeDescriptionSnippet, additionalProperties.readmeDescriptionSnippet) &&
         Objects.equals(this.apiKeyAlias, additionalProperties.apiKeyAlias) &&
@@ -1089,7 +1112,7 @@ public class AdditionalProperties {
 
   @Override
   public int hashCode() {
-    return Objects.hash(objectPropertyNamingConvention, gitRepoName, clientName, outputDirectory, topLevelOperations, omitInfoDescription, omitModelDocumentation, omitApiDocumentation, tagPriority, setSkipSerializationToTrueByDefault, includeFetchAdapter, packagistUsername, toStringReturnsJson, includeEventSourceParser, keepAllParametersOptional, apiDocumentationAuthenticationPartial, composerPackageName, defaultTimeout, useSingleRequestParameter, artifactUrl, artifactId, groupId, invokerPackage, modelPackage, apiPackage, projectName, podVersion, removeKonfigBranding, podName, classPrefix, authorName, authorEmail, podAuthors, swiftPackagePath, disallowAdditionalPropertiesIfNotPresent, packageVersion, packageUrl, npmVersion, npmName, readmeSnippet, readmeSupportingDescriptionSnippet, readmeDescriptionSnippet, apiKeyAlias, clientState);
+    return Objects.hash(objectPropertyNamingConvention, gitRepoName, clientName, outputDirectory, topLevelOperations, omitInfoDescription, omitModelDocumentation, omitApiDocumentation, tagPriority, setSkipSerializationToTrueByDefault, includeFetchAdapter, packagistUsername, toStringReturnsJson, includeEventSourceParser, keepAllParametersOptional, apiDocumentationAuthenticationPartial, composerPackageName, defaultTimeout, useSingleRequestParameter, artifactUrl, artifactId, groupId, invokerPackage, modelPackage, apiPackage, projectName, podVersion, removeKonfigBranding, podName, classPrefix, authorName, authorEmail, podAuthors, swiftPackagePath, disallowAdditionalPropertiesIfNotPresent, packageVersion, packageUrl, npmVersion, npmName, readmeSnippet, asyncReadmeSnippet, readmeSupportingDescriptionSnippet, readmeDescriptionSnippet, apiKeyAlias, clientState);
   }
 
   @Override
@@ -1136,6 +1159,7 @@ public class AdditionalProperties {
     sb.append("    npmVersion: ").append(toIndentedString(npmVersion)).append("\n");
     sb.append("    npmName: ").append(toIndentedString(npmName)).append("\n");
     sb.append("    readmeSnippet: ").append(toIndentedString(readmeSnippet)).append("\n");
+    sb.append("    asyncReadmeSnippet: ").append(toIndentedString(asyncReadmeSnippet)).append("\n");
     sb.append("    readmeSupportingDescriptionSnippet: ").append(toIndentedString(readmeSupportingDescriptionSnippet)).append("\n");
     sb.append("    readmeDescriptionSnippet: ").append(toIndentedString(readmeDescriptionSnippet)).append("\n");
     sb.append("    apiKeyAlias: ").append(toIndentedString(apiKeyAlias)).append("\n");

@@ -1217,11 +1217,17 @@ const renameOpenApiGeneratorNameBackToLanguage = ({
 function handleReadmeSnippet<
   C extends object & {
     readmeSnippet?: string
+    asyncReadmeSnippet?: string
     readmeDescriptionSnippet?: string
   }
 >({ config }: { config: C }): C {
   if (config.readmeSnippet !== undefined)
     config.readmeSnippet = fs.readFileSync(config.readmeSnippet, 'utf-8')
+  if (config.asyncReadmeSnippet !== undefined)
+    config.asyncReadmeSnippet = fs.readFileSync(
+      config.asyncReadmeSnippet,
+      'utf-8'
+    )
   if (config.readmeDescriptionSnippet !== undefined)
     config.readmeDescriptionSnippet = fs.readFileSync(
       config.readmeDescriptionSnippet,
