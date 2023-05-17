@@ -105,6 +105,7 @@ export const pythonConfig = z.object({
   projectName: z.string().describe('acme-python-sdk'),
   removeKonfigBranding: z.boolean().optional(),
   pypiApiTokenEnvironmentVariable: z.string().optional(),
+  asyncReadmeSnippet: z.string().optional(),
   objectPropertyNamingConvention: z
     .union([z.literal('camelCase'), z.literal('snake_case')])
     .optional()
