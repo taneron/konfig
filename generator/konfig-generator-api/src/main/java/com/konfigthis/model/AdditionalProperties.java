@@ -37,6 +37,9 @@ public class AdditionalProperties {
   @JsonProperty("clientName")
   private String clientName;
 
+  @JsonProperty("moduleName")
+  private String moduleName;
+
   @JsonProperty("outputDirectory")
   private String outputDirectory;
 
@@ -225,6 +228,25 @@ public class AdditionalProperties {
 
   public void setClientName(String clientName) {
     this.clientName = clientName;
+  }
+
+  public AdditionalProperties moduleName(String moduleName) {
+    this.moduleName = moduleName;
+    return this;
+  }
+
+  /**
+   * Get moduleName
+   * @return moduleName
+  */
+  
+  @Schema(name = "moduleName", required = false)
+  public String getModuleName() {
+    return moduleName;
+  }
+
+  public void setModuleName(String moduleName) {
+    this.moduleName = moduleName;
   }
 
   public AdditionalProperties outputDirectory(String outputDirectory) {
@@ -1088,6 +1110,7 @@ public class AdditionalProperties {
     return Objects.equals(this.objectPropertyNamingConvention, additionalProperties.objectPropertyNamingConvention) &&
         Objects.equals(this.gitRepoName, additionalProperties.gitRepoName) &&
         Objects.equals(this.clientName, additionalProperties.clientName) &&
+        Objects.equals(this.moduleName, additionalProperties.moduleName) &&
         Objects.equals(this.outputDirectory, additionalProperties.outputDirectory) &&
         Objects.equals(this.topLevelOperations, additionalProperties.topLevelOperations) &&
         Objects.equals(this.omitInfoDescription, additionalProperties.omitInfoDescription) &&
@@ -1135,7 +1158,7 @@ public class AdditionalProperties {
 
   @Override
   public int hashCode() {
-    return Objects.hash(objectPropertyNamingConvention, gitRepoName, clientName, outputDirectory, topLevelOperations, omitInfoDescription, omitModelDocumentation, omitApiDocumentation, tagPriority, setSkipSerializationToTrueByDefault, includeFetchAdapter, packagistUsername, toStringReturnsJson, includeEventSourceParser, keepAllParametersOptional, apiDocumentationAuthenticationPartial, composerPackageName, defaultTimeout, useSingleRequestParameter, artifactUrl, artifactId, groupId, invokerPackage, modelPackage, apiPackage, projectName, podVersion, removeKonfigBranding, podName, classPrefix, authorName, authorEmail, podAuthors, swiftPackagePath, disallowAdditionalPropertiesIfNotPresent, packageVersion, packageUrl, npmVersion, npmName, readmeSnippet, asyncReadmeSnippet, readmeSupportingDescriptionSnippet, readmeDescriptionSnippet, apiKeyAlias, clientState, clientStateIsOptional);
+    return Objects.hash(objectPropertyNamingConvention, gitRepoName, clientName, moduleName, outputDirectory, topLevelOperations, omitInfoDescription, omitModelDocumentation, omitApiDocumentation, tagPriority, setSkipSerializationToTrueByDefault, includeFetchAdapter, packagistUsername, toStringReturnsJson, includeEventSourceParser, keepAllParametersOptional, apiDocumentationAuthenticationPartial, composerPackageName, defaultTimeout, useSingleRequestParameter, artifactUrl, artifactId, groupId, invokerPackage, modelPackage, apiPackage, projectName, podVersion, removeKonfigBranding, podName, classPrefix, authorName, authorEmail, podAuthors, swiftPackagePath, disallowAdditionalPropertiesIfNotPresent, packageVersion, packageUrl, npmVersion, npmName, readmeSnippet, asyncReadmeSnippet, readmeSupportingDescriptionSnippet, readmeDescriptionSnippet, apiKeyAlias, clientState, clientStateIsOptional);
   }
 
   @Override
@@ -1145,6 +1168,7 @@ public class AdditionalProperties {
     sb.append("    objectPropertyNamingConvention: ").append(toIndentedString(objectPropertyNamingConvention)).append("\n");
     sb.append("    gitRepoName: ").append(toIndentedString(gitRepoName)).append("\n");
     sb.append("    clientName: ").append(toIndentedString(clientName)).append("\n");
+    sb.append("    moduleName: ").append(toIndentedString(moduleName)).append("\n");
     sb.append("    outputDirectory: ").append(toIndentedString(outputDirectory)).append("\n");
     sb.append("    topLevelOperations: ").append(toIndentedString(topLevelOperations)).append("\n");
     sb.append("    omitInfoDescription: ").append(toIndentedString(omitInfoDescription)).append("\n");
