@@ -1,0 +1,10 @@
+        {{#bodyParam}}
+        {{^isStrictlyObject}}
+        {{#required}}
+        $body,
+        {{/required}}
+        {{^required}}
+        $body = SENTINEL_VALUE,
+        {{/required}}
+        {{/isStrictlyObject}}
+        {{/bodyParam}}
