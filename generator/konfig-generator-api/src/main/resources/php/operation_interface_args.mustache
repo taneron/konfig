@@ -1,17 +1,12 @@
         {{^vendorExtensions.x-group-parameters}}
-        {{#bodyParam}}
-        {{^isStrictlyObject}}
-        {{#required}}
-        $body,
-        {{/required}}
-        {{^required}}
-        $body = SENTINEL_VALUE,
-        {{/required}}
-        {{/isStrictlyObject}}
-        {{/bodyParam}}
-        {{#allParamsWithRequestBodyProperties}}
-        ${{paramName}}{{^required}} = {{#defaultValue}}{{{.}}}{{/defaultValue}}{{^defaultValue}}SENTINEL_VALUE{{/defaultValue}}{{/required}},
-        {{/allParamsWithRequestBodyProperties}}
+        {{#bodyParam.required}}
+{{> operation_interface_args_body_param}}
+{{> operation_interface_args_flattened_args}}
+        {{/bodyParam.required}}
+        {{^bodyParam.required}}
+{{> operation_interface_args_flattened_args}}
+{{> operation_interface_args_body_param}}
+        {{/bodyParam.required}}
         {{#servers}}
         {{#-first}}
         ?int $hostIndex = null,
