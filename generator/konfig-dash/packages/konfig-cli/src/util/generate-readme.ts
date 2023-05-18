@@ -168,7 +168,7 @@ export function getPublishedPackageUrl({
       config = konfigYaml.generators.php
       if (config === undefined) throw Error('Config undefined')
       return {
-        url: `https://packagist.org/packages/konfig/${config.packageName}`,
+        url: `https://packagist.org/packages/konfig/${config.packageName}#${config.version}`,
         packageManagerName: 'Packagist',
       }
     case 'swift':
@@ -188,7 +188,7 @@ export function getPublishedPackageUrl({
   throw Error(`Unexpected generator name: ${generatorName}`)
 }
 
-function generatorNameAsDisplayName({
+export function generatorNameAsDisplayName({
   generatorName,
 }: {
   generatorName: string
