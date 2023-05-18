@@ -312,6 +312,7 @@ public interface GenerateApi {
         putIfPresent(map, "clientName", additionalProperties.getClientName());
         if (additionalProperties.getClientName() != null)
             putIfPresent(map, "clientNameLowercase", additionalProperties.getClientName().toLowerCase());
+        putIfPresent(map, "clientStateIsOptional", additionalProperties.getClientStateIsOptional());
         putIfPresent(map, "clientState", additionalProperties.getClientState());
         if (additionalProperties.getClientState() != null)
             putIfPresent(map, "clientStateSetterGetterCamelCase", additionalProperties.getClientState().stream().map(state -> {

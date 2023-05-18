@@ -167,6 +167,9 @@ public class AdditionalProperties {
   @Valid
   private List<String> clientState = null;
 
+  @JsonProperty("clientStateIsOptional")
+  private Boolean clientStateIsOptional;
+
   public AdditionalProperties objectPropertyNamingConvention(String objectPropertyNamingConvention) {
     this.objectPropertyNamingConvention = objectPropertyNamingConvention;
     return this;
@@ -1054,6 +1057,25 @@ public class AdditionalProperties {
     this.clientState = clientState;
   }
 
+  public AdditionalProperties clientStateIsOptional(Boolean clientStateIsOptional) {
+    this.clientStateIsOptional = clientStateIsOptional;
+    return this;
+  }
+
+  /**
+   * Get clientStateIsOptional
+   * @return clientStateIsOptional
+  */
+  
+  @Schema(name = "clientStateIsOptional", required = false)
+  public Boolean getClientStateIsOptional() {
+    return clientStateIsOptional;
+  }
+
+  public void setClientStateIsOptional(Boolean clientStateIsOptional) {
+    this.clientStateIsOptional = clientStateIsOptional;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -1107,12 +1129,13 @@ public class AdditionalProperties {
         Objects.equals(this.readmeSupportingDescriptionSnippet, additionalProperties.readmeSupportingDescriptionSnippet) &&
         Objects.equals(this.readmeDescriptionSnippet, additionalProperties.readmeDescriptionSnippet) &&
         Objects.equals(this.apiKeyAlias, additionalProperties.apiKeyAlias) &&
-        Objects.equals(this.clientState, additionalProperties.clientState);
+        Objects.equals(this.clientState, additionalProperties.clientState) &&
+        Objects.equals(this.clientStateIsOptional, additionalProperties.clientStateIsOptional);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(objectPropertyNamingConvention, gitRepoName, clientName, outputDirectory, topLevelOperations, omitInfoDescription, omitModelDocumentation, omitApiDocumentation, tagPriority, setSkipSerializationToTrueByDefault, includeFetchAdapter, packagistUsername, toStringReturnsJson, includeEventSourceParser, keepAllParametersOptional, apiDocumentationAuthenticationPartial, composerPackageName, defaultTimeout, useSingleRequestParameter, artifactUrl, artifactId, groupId, invokerPackage, modelPackage, apiPackage, projectName, podVersion, removeKonfigBranding, podName, classPrefix, authorName, authorEmail, podAuthors, swiftPackagePath, disallowAdditionalPropertiesIfNotPresent, packageVersion, packageUrl, npmVersion, npmName, readmeSnippet, asyncReadmeSnippet, readmeSupportingDescriptionSnippet, readmeDescriptionSnippet, apiKeyAlias, clientState);
+    return Objects.hash(objectPropertyNamingConvention, gitRepoName, clientName, outputDirectory, topLevelOperations, omitInfoDescription, omitModelDocumentation, omitApiDocumentation, tagPriority, setSkipSerializationToTrueByDefault, includeFetchAdapter, packagistUsername, toStringReturnsJson, includeEventSourceParser, keepAllParametersOptional, apiDocumentationAuthenticationPartial, composerPackageName, defaultTimeout, useSingleRequestParameter, artifactUrl, artifactId, groupId, invokerPackage, modelPackage, apiPackage, projectName, podVersion, removeKonfigBranding, podName, classPrefix, authorName, authorEmail, podAuthors, swiftPackagePath, disallowAdditionalPropertiesIfNotPresent, packageVersion, packageUrl, npmVersion, npmName, readmeSnippet, asyncReadmeSnippet, readmeSupportingDescriptionSnippet, readmeDescriptionSnippet, apiKeyAlias, clientState, clientStateIsOptional);
   }
 
   @Override
@@ -1164,6 +1187,7 @@ public class AdditionalProperties {
     sb.append("    readmeDescriptionSnippet: ").append(toIndentedString(readmeDescriptionSnippet)).append("\n");
     sb.append("    apiKeyAlias: ").append(toIndentedString(apiKeyAlias)).append("\n");
     sb.append("    clientState: ").append(toIndentedString(clientState)).append("\n");
+    sb.append("    clientStateIsOptional: ").append(toIndentedString(clientStateIsOptional)).append("\n");
     sb.append("}");
     return sb.toString();
   }

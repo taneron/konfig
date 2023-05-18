@@ -112,6 +112,10 @@ export const pythonConfig = z.object({
     .default('snake_case'),
   clientName: z.string(),
   clientState,
+  clientStateIsOptional: z
+    .boolean()
+    .describe('Whether or not to raise an error if client state is provided')
+    .optional(),
   setSkipSerializationToTrueByDefault: z.boolean().optional(),
   apiKeyAlias: z.record(z.string(), z.string()).optional(),
   validateRequiredStringsAreNonEmpty: z.boolean().optional(),

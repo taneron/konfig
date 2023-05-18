@@ -18,6 +18,7 @@ const additionalProperties = z.object({
   invokerPackage: z.string().optional(),
   objectPropertyNamingConvention: z.string().optional(),
   clientState: z.string().array().optional(),
+  clientStateIsOptional: z.boolean().optional(),
   modelPackage: z.string().optional(),
   packagistUsername: z.string().optional(),
   apiKeyAlias: z.record(z.string(), z.string()).optional(),

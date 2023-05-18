@@ -204,10 +204,12 @@ conf = {{{packageName}}}.Configuration(
         """Default server index
         """
 {{#each clientState}}
+{{^clientStateIsOptional}}
         if {{{.}}} is None:
             raise Exception("{{{.}}} is required")
+{{/clientStateIsOptional}}
         self.{{{.}}} = {{{.}}}
-{{#if @first}}
+{{#if @last}}
         """Client State
         """
 {{/if}}
@@ -248,7 +250,12 @@ conf = {{{packageName}}}.Configuration(
 {{#unless @root.clientState}}{{#if vendorExtensions.x-konfig-globally-required-security}}
         {{#if @root.hasMultipleApiKeys}}else{{else}}elif api_key is None{{/if}}:
             raise ClientConfigurationError('API Key "{{{name}}}" is required')
-{{/if}}{{/unless}}
+{{/if}}{{else}}
+{{#unless @root.hasMultipleApiKeys}}
+        elif api_key is None:
+            raise ClientConfigurationError('API Key "{{{name}}}" is required')
+{{/unless}}
+{{/unless}}
 {{/each}}
 {{#each apiKeyAlias}}
         if {{{this}}} is None:
