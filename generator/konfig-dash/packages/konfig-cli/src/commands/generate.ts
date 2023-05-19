@@ -10,6 +10,7 @@ import {
   KonfigYamlFilesType,
   KonfigYamlType,
   yamlLanguageServerComment,
+  KonfigYamlGeneratorNames,
 } from 'konfig-lib'
 import globby from 'globby'
 import { Konfig } from 'konfig-typescript-sdk'
@@ -213,6 +214,17 @@ export default class Deploy extends Command {
         })
       }
 
+      const initializeFlowsDirectory = (
+        generatorName: KonfigYamlGeneratorNames
+      ) => {
+        const flowsDirectory = path.join(configDir, 'flows')
+        fs.ensureDirSync(flowsDirectory)
+        const generatorFlowsDirectory = path.join(flowsDirectory, generatorName)
+        fs.ensureDirSync(generatorFlowsDirectory)
+        const gitKeepPath = path.join(generatorFlowsDirectory, '.gitkeep')
+        fs.ensureFileSync(gitKeepPath)
+      }
+
       this.debug('before creating language configs')
       const goGeneratorConfig = getConfig('go')
       if (goGeneratorConfig && !goGeneratorConfig.disabled) {
@@ -225,6 +237,7 @@ export default class Deploy extends Command {
             config: restOfConfig,
           }),
         }
+        initializeFlowsDirectory('go')
         requestGenerators.go = requestJava
       }
 
@@ -242,6 +255,7 @@ export default class Deploy extends Command {
               config: restOfConfig,
             }),
           }
+        initializeFlowsDirectory('objc')
         requestGenerators.objc = requestJava
       }
 
@@ -259,6 +273,7 @@ export default class Deploy extends Command {
               config: restOfConfig,
             }),
           }
+        initializeFlowsDirectory('kotlin')
         requestGenerators.kotlin = requestJava
       }
 
@@ -273,6 +288,7 @@ export default class Deploy extends Command {
             config: restOfConfig,
           }),
         }
+        initializeFlowsDirectory('php')
         requestGenerators.php = requestJava
       }
 
@@ -290,6 +306,7 @@ export default class Deploy extends Command {
               config: restOfConfig,
             }),
           }
+        initializeFlowsDirectory('swift')
         requestGenerators.swift = requestJava
       }
 
@@ -307,6 +324,7 @@ export default class Deploy extends Command {
               config: restOfConfig,
             }),
           }
+        initializeFlowsDirectory('csharp')
         requestGenerators.csharp = requestJava
       }
 
@@ -324,6 +342,7 @@ export default class Deploy extends Command {
               config: restOfConfig,
             }),
           }
+        initializeFlowsDirectory('android')
         requestGenerators.android = requestJava
       }
 
@@ -341,6 +360,7 @@ export default class Deploy extends Command {
               config: restOfConfig,
             }),
           }
+        initializeFlowsDirectory('java')
         requestGenerators.java = requestJava
       }
 
@@ -359,6 +379,7 @@ export default class Deploy extends Command {
               config: restOfConfig,
             }),
           }
+        initializeFlowsDirectory('python')
         requestGenerators.python = requestPython
       }
 
@@ -380,6 +401,7 @@ export default class Deploy extends Command {
                 config: restOfConfig,
               }),
             }
+          initializeFlowsDirectory('typescript')
           requestGenerators.typescript = requestTypescript
         }
       }

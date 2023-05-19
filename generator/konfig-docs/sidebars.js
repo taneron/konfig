@@ -58,6 +58,7 @@ const sidebars = {
       items: [
         "custom-sdks/implementing-pagination",
         "custom-sdks/example-customized-sdks",
+        "custom-sdks/flows",
       ],
     },
     {
