@@ -391,7 +391,14 @@ export const KonfigYaml = KonfigYamlCommon.merge(
           return javaConfig
         }),
         android: android.optional(),
-        ruby: ruby.optional(),
+        ruby: ruby.optional().transform((rubyConfig) => {
+          if (rubyConfig === undefined) return
+          if (rubyConfig.test !== undefined) return rubyConfig
+          rubyConfig.test = {
+            script: ['bundle install', `bundle exec rspec`],
+          }
+          return rubyConfig
+        }),
         python: python.optional().transform((pythonConfig) => {
           if (pythonConfig === undefined) return
           if (pythonConfig.test !== undefined) return pythonConfig
