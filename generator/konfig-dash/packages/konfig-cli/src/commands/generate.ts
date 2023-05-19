@@ -324,6 +324,7 @@ export default class Deploy extends Command {
               config: restOfConfig,
             }),
           }
+        initializeFlowsDirectory('ruby')
         requestGenerators.ruby = requestJava
       }
 
