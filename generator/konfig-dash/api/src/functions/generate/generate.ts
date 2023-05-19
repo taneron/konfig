@@ -291,6 +291,7 @@ export const myHandler = async (event: APIGatewayEvent, context: Context) => {
           defaultTimeout: generatorConfig.defaultTimeout,
           gitRepoName: generatorConfig.git.repoName,
           moduleName: generatorConfig.moduleName,
+          clientState: generatorConfig.clientState,
           tagPriority: body.tagPriority,
         },
         artifactVersion: generatorConfig.version,

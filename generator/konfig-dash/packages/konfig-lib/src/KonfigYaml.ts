@@ -4,6 +4,14 @@ import { KonfigYamlCommon } from './KonfigYamlCommon'
 import { KonfigYamlFiles } from './KonfigYamlFiles'
 import { testConfig } from './TestConfig'
 
+const clientState = z
+  .string()
+  .array()
+  .optional()
+  .describe(
+    'A list of stateful properties generated into the SDK that can be used in custom implementation hooks. This is useful when you need state in the SDK that is not described in the OpenAPI Specification such as a key used for request signing.'
+  )
+
 const javaGroupId = z
   .string()
   .describe(
@@ -36,6 +44,7 @@ export const kotlinConfig = z.object({
 
 export const rubyConfig = z.object({
   moduleName: z.string(),
+  clientState,
 })
 
 export const goConfig = z.object({
@@ -59,14 +68,6 @@ export const objcConfig = z.object({
   authorName: z.string().describe('acme.com'),
   authorEmail: z.string().describe('engineering@acme.com'),
 })
-
-const clientState = z
-  .string()
-  .array()
-  .optional()
-  .describe(
-    'A list of stateful properties generated into the SDK that can be used in custom implementation hooks. This is useful when you need state in the SDK that is not described in the OpenAPI Specification such as a key used for request signing.'
-  )
 
 export const csharpConfig = z.object({
   logoPath: z

@@ -25,6 +25,17 @@ module {{moduleName}}
     # Default server operation variables
     attr_accessor :server_operation_variables
 
+{{#apiKeyMethods}}
+    def {{keyParamNameSnakeCase}}=(value)
+      @api_key['{{name}}'] = value
+    end
+
+{{/apiKeyMethods}}
+{{#clientState}}
+    # client state configured through konfig.yaml
+    attr_accessor :{{.}}
+
+{{/clientState}}
     # Defines API keys used with API Key authentications.
     #
     # @return [Hash] key: parameter name, value: parameter value (API key)
