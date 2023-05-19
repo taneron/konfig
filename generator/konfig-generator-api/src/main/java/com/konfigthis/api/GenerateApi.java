@@ -240,6 +240,8 @@ public interface GenerateApi {
     default Map<String, Object> transformAdditionalPropertiesToMap(AdditionalProperties additionalProperties,
                                                                    String packageName, String generator) {
         Map<String, Object> map = new HashMap<>();
+        if (generator.equals("ruby"))
+            putIfPresent(map, "isFaraday", true);
         putIfPresent(map, "apiPackage", additionalProperties.getApiPackage());
         putIfPresent(map, "invokerPackage", additionalProperties.getInvokerPackage());
         if (additionalProperties.getInvokerPackage() != null)
