@@ -251,6 +251,14 @@ components:
                   description: Configuration of "konfig test"
                 moduleName:
                   type: string
+                clientState:
+                  type: array
+                  items:
+                    type: string
+                  description: A list of stateful properties generated into the SDK that can be
+                    used in custom implementation hooks. This is useful when you
+                    need state in the SDK that is not described in the OpenAPI
+                    Specification such as a key used for request signing.
               required:
                 - version
                 - git
@@ -1178,6 +1186,15 @@ components:
                     properties: *a1
                   moduleName:
                     type: string
+                  clientState:
+                    type: array
+                    items:
+                      type: string
+                    description: A list of stateful properties generated into the SDK that can be
+                      used in custom implementation hooks. This is useful when
+                      you need state in the SDK that is not described in the
+                      OpenAPI Specification such as a key used for request
+                      signing.
                 required:
                   - generator
                   - version
