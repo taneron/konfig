@@ -2,22 +2,18 @@ import {
   AppShell,
   Navbar,
   Header,
-  Text,
   Burger,
   Group,
   MediaQuery,
   NavLink,
-  ThemeIcon,
   useMantineTheme,
-  ActionIcon,
-  useMantineColorScheme,
-  Box,
   Title,
+  useMantineColorScheme,
+  ActionIcon,
 } from '@mantine/core'
 import { MetaTags } from '@redwoodjs/web'
 import {
   IconChevronRight,
-  IconLogout,
   IconMoonStars,
   IconRocket,
   IconSun,
@@ -27,8 +23,9 @@ import SnapTradeDemo from 'src/components/SnapTradeDemo/SnapTradeDemo'
 
 const SnaptradePage = () => {
   const theme = useMantineTheme()
-  const colorScheme = 'dark'
+  const { colorScheme, toggleColorScheme } = useMantineColorScheme()
   const [opened, setOpened] = useState(false)
+
   return (
     <>
       <MetaTags title="Snaptrade" description="Snaptrade page" />
@@ -86,8 +83,19 @@ const SnaptradePage = () => {
                     mr="md"
                   />
                 </MediaQuery>
-                <Title order={3}>SnapTrade Demo</Title>
+                <Title order={4}>SnapTrade Demo</Title>
               </Group>
+              <ActionIcon
+                variant="default"
+                onClick={() => toggleColorScheme()}
+                size={30}
+              >
+                {colorScheme === 'dark' ? (
+                  <IconSun size="1rem" />
+                ) : (
+                  <IconMoonStars size="1rem" />
+                )}
+              </ActionIcon>
             </div>
           </Header>
         }
