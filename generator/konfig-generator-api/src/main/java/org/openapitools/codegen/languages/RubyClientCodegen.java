@@ -266,6 +266,7 @@ public class RubyClientCodegen extends AbstractRubyCodegen {
         supportingFiles.add(new SupportingFile("gemspec.mustache", "", gemName + ".gemspec"));
         supportingFiles.add(new SupportingFile("configuration.mustache", gemFolder, "configuration.rb"));
         supportingFiles.add(new SupportingFile("api_client.mustache", gemFolder, "api_client.rb"));
+        supportingFiles.add(new SupportingFile("api_client_custom.mustache", gemFolder, "api_client_custom.rb"));
 
         if (TYPHOEUS.equals(getLibrary())) {
             // for Typhoeus

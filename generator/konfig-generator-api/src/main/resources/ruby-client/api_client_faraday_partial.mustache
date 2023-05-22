@@ -71,6 +71,9 @@
       request.url url
       request.params = query_params
       download_file(request) if opts[:return_type] == 'File' || opts[:return_type] == 'Binary'
+
+      ApiClientCustom.request_hook(request, @config)
+
       request
     end
 
