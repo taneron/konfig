@@ -10,6 +10,8 @@ import {
   Title,
   useMantineColorScheme,
   ActionIcon,
+  SegmentedControl,
+  Aside,
 } from '@mantine/core'
 import { MetaTags } from '@redwoodjs/web'
 import {
@@ -18,10 +20,32 @@ import {
   IconRocket,
   IconSun,
 } from '@tabler/icons'
+import { makeAutoObservable } from 'mobx'
+import { observer } from 'mobx-react'
 import { useState } from 'react'
 import SnapTradeDemo from 'src/components/SnapTradeDemo/SnapTradeDemo'
 
-const SnaptradePage = () => {
+type ShowCodeState = 'show-code' | 'hide-code'
+class DemoState {
+  showCode: ShowCodeState = 'hide-code'
+
+  constructor() {
+    makeAutoObservable(this)
+  }
+
+  setShowCode(state: ShowCodeState) {
+    console.log(state)
+    this.showCode = state
+  }
+
+  get in() {
+    return this.showCode === 'show-code'
+  }
+}
+
+export const demoState = new DemoState()
+
+const SnaptradePage = observer(() => {
   const theme = useMantineTheme()
   const { colorScheme, toggleColorScheme } = useMantineColorScheme()
   const [opened, setOpened] = useState(false)
@@ -63,6 +87,18 @@ const SnaptradePage = () => {
             </Navbar.Section>
           </Navbar>
         }
+        aside={
+          <MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
+            <Aside p="md" hiddenBreakpoint="sm" width={{ sm: 200, lg: 300 }}>
+              <NavLink label="1) Initialize a client with your clientId and consumerKey" />
+              <NavLink label="2) Check that the client is able to make a request to the API server" />
+              <NavLink label="3) Create a new user on SnapTrade" />
+              <NavLink label="4) Get a redirect URI" />
+              <NavLink label="5) Get account holdings dataGet a redirect URI" />
+              <NavLink label="6) Deleting a user" />
+            </Aside>
+          </MediaQuery>
+        }
         header={
           <Header height={{ base: 50, md: 70 }} p="md">
             <div
@@ -85,17 +121,31 @@ const SnaptradePage = () => {
                 </MediaQuery>
                 <Title order={4}>SnapTrade Demo</Title>
               </Group>
-              <ActionIcon
-                variant="default"
-                onClick={() => toggleColorScheme()}
-                size={30}
-              >
-                {colorScheme === 'dark' ? (
-                  <IconSun size="1rem" />
-                ) : (
-                  <IconMoonStars size="1rem" />
-                )}
-              </ActionIcon>
+              <Group>
+                <SegmentedControl
+                  size="xs"
+                  color="blue"
+                  data={[
+                    { label: 'Show Code', value: 'show-code' },
+                    { label: 'Hide Code', value: 'hide-code' },
+                  ]}
+                  defaultValue="hide-code"
+                  onChange={(value) => {
+                    demoState.setShowCode(value as ShowCodeState)
+                  }}
+                />
+                <ActionIcon
+                  variant="default"
+                  onClick={() => toggleColorScheme()}
+                  size={30}
+                >
+                  {colorScheme === 'dark' ? (
+                    <IconSun size="1rem" />
+                  ) : (
+                    <IconMoonStars size="1rem" />
+                  )}
+                </ActionIcon>
+              </Group>
             </div>
           </Header>
         }
@@ -104,6 +154,6 @@ const SnaptradePage = () => {
       </AppShell>
     </>
   )
-}
+})
 
 export default SnaptradePage
