@@ -12,6 +12,7 @@ import {
   ActionIcon,
   SegmentedControl,
   Aside,
+  Stack,
 } from '@mantine/core'
 import { MetaTags } from '@redwoodjs/web'
 import {
@@ -20,6 +21,7 @@ import {
   IconRocket,
   IconSun,
 } from '@tabler/icons'
+import { KonfigYamlGeneratorNames } from 'konfig-lib'
 import { makeAutoObservable } from 'mobx'
 import { observer } from 'mobx-react'
 import { useState } from 'react'
@@ -28,14 +30,18 @@ import SnapTradeDemo from 'src/components/SnapTradeDemo/SnapTradeDemo'
 type ShowCodeState = 'show-code' | 'hide-code'
 class DemoState {
   showCode: ShowCodeState = 'hide-code'
+  language: KonfigYamlGeneratorNames = 'python'
 
   constructor() {
     makeAutoObservable(this)
   }
 
   setShowCode(state: ShowCodeState) {
-    console.log(state)
     this.showCode = state
+  }
+
+  setLanguage(language: KonfigYamlGeneratorNames) {
+    this.language = language
   }
 
   get in() {
@@ -72,18 +78,37 @@ const SnaptradePage = observer(() => {
             width={{ sm: 225, lg: 325 }}
           >
             <Navbar.Section mt="xs">
-              <NavLink
-                onClick={() => {
-                  setOpened(false)
-                }}
-                p="xs"
-                variant="filled"
-                sx={(theme) => ({ borderRadius: theme.radius.sm })}
-                rightSection={<IconChevronRight size="0.8rem" stroke={1.5} />}
-                icon={<IconRocket />}
-                label="Getting Started"
-                active
-              />
+              <Stack spacing="xs">
+                <NavLink
+                  onClick={() => {
+                    setOpened(false)
+                  }}
+                  p="xs"
+                  variant="filled"
+                  sx={(theme) => ({ borderRadius: theme.radius.sm })}
+                  rightSection={<IconChevronRight size="0.8rem" stroke={1.5} />}
+                  label="Getting Started"
+                  active
+                />
+                <NavLink
+                  onClick={() => {
+                    setOpened(false)
+                  }}
+                  p="xs"
+                  variant="filled"
+                  sx={(theme) => ({ borderRadius: theme.radius.sm })}
+                  label="Getting Started with Trades"
+                />
+                <NavLink
+                  onClick={() => {
+                    setOpened(false)
+                  }}
+                  p="xs"
+                  variant="filled"
+                  sx={(theme) => ({ borderRadius: theme.radius.sm })}
+                  label="Managing Portfolios"
+                />
+              </Stack>
             </Navbar.Section>
           </Navbar>
         }
@@ -94,7 +119,7 @@ const SnaptradePage = observer(() => {
               <NavLink label="2) Check that the client is able to make a request to the API server" />
               <NavLink label="3) Create a new user on SnapTrade" />
               <NavLink label="4) Get a redirect URI" />
-              <NavLink label="5) Get account holdings dataGet a redirect URI" />
+              <NavLink label="5) Get account holdings data" />
               <NavLink label="6) Deleting a user" />
             </Aside>
           </MediaQuery>
@@ -125,11 +150,11 @@ const SnaptradePage = observer(() => {
                 <SegmentedControl
                   size="xs"
                   color="blue"
+                  value={demoState.showCode}
                   data={[
                     { label: 'Show Code', value: 'show-code' },
                     { label: 'Hide Code', value: 'hide-code' },
                   ]}
-                  defaultValue="hide-code"
                   onChange={(value) => {
                     demoState.setShowCode(value as ShowCodeState)
                   }}

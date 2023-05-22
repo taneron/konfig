@@ -11,7 +11,11 @@ import {
   Anchor,
 } from '@mantine/core'
 import { Prism } from '@mantine/prism'
+import { IconCheck } from '@tabler/icons'
+import { KonfigYamlGeneratorNames } from 'konfig-lib'
+import { makeAutoObservable } from 'mobx'
 import { observer } from 'mobx-react'
+import { useCallback } from 'react'
 import { demoState } from 'src/pages/SnaptradePage/SnaptradePage'
 
 const python1 = `from snaptrade_client import SnapTrade
@@ -21,6 +25,8 @@ snaptrade = SnapTrade(
     consumer_key=os.environ["SNAPTRADE_CONSUMER_KEY"],
     client_id=os.environ["SNAPTRADE_CLIENT_ID"],
 )
+
+print("Successfully initiated client")
 `
 
 const python2 = `api_response = snaptrade.api_status.check()
@@ -58,7 +64,10 @@ const typescript1 = `import { Snaptrade } = "snaptrade-typescript-sdk";
 const snaptrade = new Snaptrade({
   consumerKey: process.env.SNAPTRADE_CONSUMER_KEY,
   clientId: process.env.SNAPTRADE_CLIENT_ID,
-});`
+});
+
+console.log("Successfully initiated client")
+`
 
 const typescript2 = `const status = await snaptrade.apiStatus.check();
 console.log("status:", status.data);`
@@ -96,7 +105,51 @@ const typescript6 = `const deleteResponse = (
 console.log("deleteResponse:", deleteResponse);
 `
 
+class CellState {
+  show = false
+  running = false
+  ran = false
+
+  constructor() {
+    makeAutoObservable(this)
+  }
+
+  run() {
+    this.running = true
+    this.show = false
+    this.ran = false
+    setTimeout(() => {
+      this.running = false
+      this.show = true
+      this.ran = true
+    }, 300)
+  }
+}
+
+class DemoRunState {
+  cells: CellState[] = [
+    new CellState(),
+    new CellState(),
+    new CellState(),
+    new CellState(),
+    new CellState(),
+    new CellState(),
+  ]
+  constructor() {
+    makeAutoObservable(this)
+  }
+
+  runCell(index: number) {
+    this.cells[index].run()
+  }
+}
+
+export const demoRunState = new DemoRunState()
+
 const SnapTradeDemo = observer(() => {
+  const onTabChange = useCallback((value) => {
+    demoState.setLanguage(value)
+  }, [])
   return (
     <Container size="xl">
       <Paper shadow="md" p="md" withBorder>
@@ -121,7 +174,7 @@ const SnapTradeDemo = observer(() => {
             withAsterisk
           />
           <Collapse in={demoState.in}>
-            <Prism.Tabs defaultValue="python">
+            <Prism.Tabs onTabChange={onTabChange} value={demoState.language}>
               <Prism.TabsList>
                 <Prism.Tab value="python">Python</Prism.Tab>
                 <Prism.Tab value="typescript">TypeScript</Prism.Tab>
@@ -134,7 +187,21 @@ const SnapTradeDemo = observer(() => {
               </Prism.Panel>
             </Prism.Tabs>
           </Collapse>
-          <Button variant="light">Run</Button>
+          <Collapse in={demoRunState.cells[0].show}>
+            <Code block>Successfully initiated client</Code>
+          </Collapse>
+          <Button
+            onClick={() => demoRunState.cells[0].run()}
+            loading={demoRunState.cells[0].running}
+            color={demoRunState.cells[0].ran ? 'green' : 'blue'}
+            leftIcon={
+              demoRunState.cells[0].ran ? <IconCheck size="1rem" /> : undefined
+            }
+            compact
+            variant="light"
+          >
+            Run
+          </Button>
           <Title order={3}>
             2) Check that the client is able to make a request to the API server
           </Title>
@@ -145,7 +212,12 @@ const SnapTradeDemo = observer(() => {
             API minor version number.
           </Text>
           <Collapse in={demoState.in}>
-            <Prism.Tabs defaultValue="python">
+            <Prism.Tabs
+              onTabChange={(value) => {
+                demoState.setLanguage(value as KonfigYamlGeneratorNames)
+              }}
+              value={demoState.language}
+            >
               <Prism.TabsList>
                 <Prism.Tab value="python">Python</Prism.Tab>
                 <Prism.Tab value="typescript">TypeScript</Prism.Tab>
@@ -158,7 +230,25 @@ const SnapTradeDemo = observer(() => {
               </Prism.Panel>
             </Prism.Tabs>
           </Collapse>
-          <Button variant="light">Run</Button>
+          <Collapse in={demoRunState.cells[1].show}>
+            <Code block>
+              {
+                "{'online': True, 'timestamp': '2023-05-22T02:33:33.526534Z', 'version': 151}"
+              }
+            </Code>
+          </Collapse>
+          <Button
+            onClick={() => demoRunState.cells[1].run()}
+            loading={demoRunState.cells[1].running}
+            color={demoRunState.cells[1].ran ? 'green' : 'blue'}
+            leftIcon={
+              demoRunState.cells[1].ran ? <IconCheck size="1rem" /> : undefined
+            }
+            compact
+            variant="light"
+          >
+            Run
+          </Button>
           <Title order={3}>3) Create a new user on SnapTrade</Title>
           <Text>
             To create a secure brokerage authorization, we first need to
@@ -178,7 +268,7 @@ const SnapTradeDemo = observer(() => {
             withAsterisk
           />
           <Collapse in={demoState.in}>
-            <Prism.Tabs defaultValue="python">
+            <Prism.Tabs onTabChange={onTabChange} value={demoState.language}>
               <Prism.TabsList>
                 <Prism.Tab value="python">Python</Prism.Tab>
                 <Prism.Tab value="typescript">TypeScript</Prism.Tab>
@@ -191,15 +281,28 @@ const SnapTradeDemo = observer(() => {
               </Prism.Panel>
             </Prism.Tabs>
           </Collapse>
-          <Button variant="light">Run</Button>
+          <Collapse in={demoRunState.cells[2].show}>
+            <Code block>
+              {
+                "{'userId': 'b97dab76-a211-467d-b2d0-5f4b8b5e72e9', 'userSecret': '48fb0b73-ee01-4823-b301-3a8bf41c8449'}"
+              }
+            </Code>
+          </Collapse>
+          <Button
+            onClick={() => demoRunState.cells[2].run()}
+            loading={demoRunState.cells[2].running}
+            color={demoRunState.cells[2].ran ? 'green' : 'blue'}
+            leftIcon={
+              demoRunState.cells[2].ran ? <IconCheck size="1rem" /> : undefined
+            }
+            compact
+            variant="light"
+          >
+            Run
+          </Button>
           <Title order={3}>4) Get a redirect URI</Title>
-          <TextInput
-            placeholder="YOUR_SNAPTRADE_USER_ID"
-            label="SnapTrade User ID"
-            withAsterisk
-          />
           <Collapse in={demoState.in}>
-            <Prism.Tabs defaultValue="python">
+            <Prism.Tabs onTabChange={onTabChange} value={demoState.language}>
               <Prism.TabsList>
                 <Prism.Tab value="python">Python</Prism.Tab>
                 <Prism.Tab value="typescript">TypeScript</Prism.Tab>
@@ -212,10 +315,28 @@ const SnapTradeDemo = observer(() => {
               </Prism.Panel>
             </Prism.Tabs>
           </Collapse>
-          <Button variant="light">Run</Button>
+          <Collapse in={demoRunState.cells[3].show}>
+            <Code block>
+              {
+                "{'redirectURI': 'https://app.snaptrade.com/snapTrade/redeemToken?token=ZJnSwmkwPOe4FuQKwB6YsrqyL2ShHN8pt4YVTzsPjl0B2gpa3xMAAEAQt%2B/k8ud%2B0kttPgZUP3ornkU6Yz4VuvJZp7JYGxoCYQv84dcCt2BPpvVW0D7JqGywaG8UVHTYuXpa88s%3D&clientId=SDK-GEN', 'sessionId': 'b51d6e09-a5ba-45ab-b08e-8bab258b39ce'}"
+              }
+            </Code>
+          </Collapse>
+          <Button
+            onClick={() => demoRunState.cells[3].run()}
+            loading={demoRunState.cells[3].running}
+            color={demoRunState.cells[3].ran ? 'green' : 'blue'}
+            leftIcon={
+              demoRunState.cells[3].ran ? <IconCheck size="1rem" /> : undefined
+            }
+            compact
+            variant="light"
+          >
+            Run
+          </Button>
           <Title order={3}>5) Get account holdings data</Title>
           <Collapse in={demoState.in}>
-            <Prism.Tabs defaultValue="python">
+            <Prism.Tabs onTabChange={onTabChange} value={demoState.language}>
               <Prism.TabsList>
                 <Prism.Tab value="python">Python</Prism.Tab>
                 <Prism.Tab value="typescript">TypeScript</Prism.Tab>
@@ -228,10 +349,48 @@ const SnapTradeDemo = observer(() => {
               </Prism.Panel>
             </Prism.Tabs>
           </Collapse>
-          <Button variant="light">Run</Button>
+          <Collapse in={demoRunState.cells[4].show}>
+            <Code block>
+              {`{'account': {'brokerage_authorization': '2ca80860-41a6-40c7-bb8b-51e6a99bfa70',
+                'cash_restrictions': [],
+                'created_date': '2023-02-28T19:11:02.605980Z',
+                'id': '27f0bbd1-8f3b-4702-9336-6bf7d6a3692f',
+                'institution_name': 'Alpaca Paper',
+                'meta': {'institution_name': 'Alpaca Paper',
+                         'status': 'ACTIVE',
+                         'type': 'Margin'},
+                'name': 'Alpaca Margin',
+                'number': 'PA3MI0Y86VBD',
+                'portfolio_group': 'c8599857-68a8-43a7-b123-2c291da40847',
+                'sync_status': {'transactions': {'initial_sync_completed': True,
+                                                 'last_successful_sync': '2023-05-20'}}},
+    'balances': [{'cash': 100000.0,
+                  'currency': {'code': 'USD',
+                               'id': '57f81c53-bdda-45a7-a51f-032afd1ae41b',
+                               'name': 'US Dollar'}}],
+    'cache_expired': False,
+    'cache_expiry': '2023-05-22T02:41:45.654041Z',
+    'cache_timestamp': '2023-05-22T02:36:45.654041Z',
+    'option_positions': [],
+    'orders': [],
+    'positions': []}`}
+            </Code>
+          </Collapse>
+          <Button
+            onClick={() => demoRunState.cells[4].run()}
+            loading={demoRunState.cells[4].running}
+            color={demoRunState.cells[4].ran ? 'green' : 'blue'}
+            leftIcon={
+              demoRunState.cells[4].ran ? <IconCheck size="1rem" /> : undefined
+            }
+            compact
+            variant="light"
+          >
+            Run
+          </Button>
           <Title order={3}>6) Deleting a user</Title>
           <Collapse in={demoState.in}>
-            <Prism.Tabs defaultValue="python">
+            <Prism.Tabs onTabChange={onTabChange} value={demoState.language}>
               <Prism.TabsList>
                 <Prism.Tab value="python">Python</Prism.Tab>
                 <Prism.Tab value="typescript">TypeScript</Prism.Tab>
@@ -244,7 +403,26 @@ const SnapTradeDemo = observer(() => {
               </Prism.Panel>
             </Prism.Tabs>
           </Collapse>
-          <Button variant="light">Run</Button>
+          <Collapse in={demoRunState.cells[5].show}>
+            <Code block>
+              {`{'detail': 'User queued for deletion; please wait for webhook for '
+              'confirmation.',
+    'status': 'deleted',
+    'userId': '5acda78a-fd2f-4161-b17c-c839e4d356a2'}`}
+            </Code>
+          </Collapse>
+          <Button
+            onClick={() => demoRunState.cells[5].run()}
+            loading={demoRunState.cells[5].running}
+            color={demoRunState.cells[5].ran ? 'green' : 'blue'}
+            leftIcon={
+              demoRunState.cells[5].ran ? <IconCheck size="1rem" /> : undefined
+            }
+            compact
+            variant="light"
+          >
+            Run
+          </Button>
         </Stack>
       </Paper>
     </Container>
