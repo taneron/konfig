@@ -144,7 +144,7 @@ const SnaptradePage = observer(() => {
                     mr="md"
                   />
                 </MediaQuery>
-                <Title order={4}>SnapTrade Demo</Title>
+                <Title order={5}>SnapTrade Demo</Title>
               </Group>
               <Group>
                 <SegmentedControl
