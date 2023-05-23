@@ -18,6 +18,8 @@
 package org.openapitools.codegen.languages;
 
 import io.swagger.v3.oas.models.media.Schema;
+import io.swagger.v3.oas.models.parameters.Parameter;
+import io.swagger.v3.oas.models.parameters.RequestBody;
 import org.apache.commons.lang3.StringUtils;
 import org.openapitools.codegen.*;
 import org.openapitools.codegen.meta.features.*;
@@ -593,6 +595,36 @@ public class RubyClientCodegen extends AbstractRubyCodegen {
 
     public void setUseAutoload(boolean useAutoload) {
         this.useAutoload = useAutoload;
+    }
+
+    @Override
+    public void setParameterExampleValue(CodegenParameter p) {
+        // hacky workaround by using Python's implementation here
+        PythonClientCodegen pythonClientCodegen = new PythonClientCodegen();
+        pythonClientCodegen.objectFieldDelimiter = " => ";
+        // got a NPE when I don't add this here. I'm scared I might be missing other things but it seems work
+        pythonClientCodegen.setOpenAPI(this.openAPI);
+        pythonClientCodegen.setParameterExampleValue(p, p.oasSchema);
+    }
+
+    @Override
+    public void setParameterExampleValue(CodegenParameter codegenParameter, Parameter parameter) {
+        // hacky workaround by using Python's implementation here
+        PythonClientCodegen pythonClientCodegen = new PythonClientCodegen();
+        pythonClientCodegen.objectFieldDelimiter = " => ";
+        // got a NPE when I don't add this here. I'm scared I might be missing other things but it seems work
+        pythonClientCodegen.setOpenAPI(this.openAPI);
+        pythonClientCodegen.setParameterExampleValue(codegenParameter, parameter);
+    }
+
+    @Override
+    public void setParameterExampleValue(CodegenParameter codegenParameter, RequestBody requestBody) {
+        // hacky workaround by using Python's implementation here
+        PythonClientCodegen pythonClientCodegen = new PythonClientCodegen();
+        pythonClientCodegen.objectFieldDelimiter = " => ";
+        // got a NPE when I don't add this here. I'm scared I might be missing other things but it seems work
+        pythonClientCodegen.setOpenAPI(this.openAPI);
+        pythonClientCodegen.setParameterExampleValue(codegenParameter, requestBody);
     }
 
     @Override
