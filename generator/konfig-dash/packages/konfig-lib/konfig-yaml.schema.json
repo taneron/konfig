@@ -241,7 +241,8 @@
                       "type": "array",
                       "items": {
                         "type": "string"
-                      }
+                      },
+                      "description": "Series of commands that are sequentially executed to test the SDK"
                     },
                     "requiredEnvironmentVariables": {
                       "$ref": "#/definitions/konfigYaml/properties/requiredEnvironmentVariables"
@@ -250,7 +251,8 @@
                   "required": [
                     "script"
                   ],
-                  "additionalProperties": false
+                  "additionalProperties": false,
+                  "description": "Configuration of \"konfig test\""
                 },
                 "git": {
                   "type": "object",
@@ -396,13 +398,24 @@
                 },
                 "moduleName": {
                   "type": "string"
+                },
+                "gemName": {
+                  "type": "string"
+                },
+                "clientState": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "A list of stateful properties generated into the SDK that can be used in custom implementation hooks. This is useful when you need state in the SDK that is not described in the OpenAPI Specification such as a key used for request signing."
                 }
               },
               "required": [
                 "version",
                 "outputDirectory",
                 "git",
-                "moduleName"
+                "moduleName",
+                "gemName"
               ],
               "additionalProperties": false
             },
@@ -456,6 +469,9 @@
                 "pypiApiTokenEnvironmentVariable": {
                   "type": "string"
                 },
+                "asyncReadmeSnippet": {
+                  "type": "string"
+                },
                 "objectPropertyNamingConvention": {
                   "type": "string",
                   "enum": [
@@ -468,11 +484,11 @@
                   "type": "string"
                 },
                 "clientState": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  },
-                  "description": "A list of stateful properties generated into the SDK that can be used in custom implementation hooks. This is useful when you need state in the SDK that is not described in the OpenAPI Specification such as a key used for request signing."
+                  "$ref": "#/definitions/konfigYaml/properties/generators/properties/ruby/properties/clientState"
+                },
+                "clientStateIsOptional": {
+                  "type": "boolean",
+                  "description": "Whether or not to raise an error if client state is provided"
                 },
                 "setSkipSerializationToTrueByDefault": {
                   "type": "boolean"
@@ -618,7 +634,7 @@
                       "additionalProperties": false
                     },
                     "clientState": {
-                      "$ref": "#/definitions/konfigYaml/properties/generators/properties/python/properties/clientState"
+                      "$ref": "#/definitions/konfigYaml/properties/generators/properties/ruby/properties/clientState"
                     },
                     "removeRequiredProperties": {
                       "type": "array",
@@ -817,7 +833,7 @@
                   "description": "The name of this package that shows up on https://nuget.org (e.g. \"Acme.Net\")"
                 },
                 "clientState": {
-                  "$ref": "#/definitions/konfigYaml/properties/generators/properties/python/properties/clientState"
+                  "$ref": "#/definitions/konfigYaml/properties/generators/properties/ruby/properties/clientState"
                 }
               },
               "required": [
@@ -870,7 +886,7 @@
                   "description": "acme-php"
                 },
                 "clientState": {
-                  "$ref": "#/definitions/konfigYaml/properties/generators/properties/python/properties/clientState"
+                  "$ref": "#/definitions/konfigYaml/properties/generators/properties/ruby/properties/clientState"
                 },
                 "packagistUsername": {
                   "type": "string",
@@ -1236,6 +1252,12 @@
                   },
                   "moduleName": {
                     "$ref": "#/definitions/konfigYaml/properties/generators/properties/ruby/properties/moduleName"
+                  },
+                  "gemName": {
+                    "$ref": "#/definitions/konfigYaml/properties/generators/properties/ruby/properties/gemName"
+                  },
+                  "clientState": {
+                    "$ref": "#/definitions/konfigYaml/properties/generators/properties/ruby/properties/clientState"
                   }
                 },
                 "required": [
@@ -1243,7 +1265,8 @@
                   "version",
                   "outputDirectory",
                   "git",
-                  "moduleName"
+                  "moduleName",
+                  "gemName"
                 ],
                 "additionalProperties": false
               },
@@ -1488,7 +1511,7 @@
                     "$ref": "#/definitions/konfigYaml/properties/generators/properties/csharp/properties/packageName"
                   },
                   "clientState": {
-                    "$ref": "#/definitions/konfigYaml/properties/generators/properties/python/properties/clientState"
+                    "$ref": "#/definitions/konfigYaml/properties/generators/properties/ruby/properties/clientState"
                   }
                 },
                 "required": [
@@ -1545,7 +1568,7 @@
                     "$ref": "#/definitions/konfigYaml/properties/generators/properties/php/properties/packageName"
                   },
                   "clientState": {
-                    "$ref": "#/definitions/konfigYaml/properties/generators/properties/python/properties/clientState"
+                    "$ref": "#/definitions/konfigYaml/properties/generators/properties/ruby/properties/clientState"
                   },
                   "packagistUsername": {
                     "$ref": "#/definitions/konfigYaml/properties/generators/properties/php/properties/packagistUsername"
