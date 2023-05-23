@@ -62,6 +62,7 @@ public class CodegenOperation {
     public List<CodegenParameter> requiredParams = new ArrayList<CodegenParameter>();
     public List<CodegenParameter> requiredParamsWithRequestBodyProperties = new ArrayList<CodegenParameter>();
     public List<CodegenParameter> optionalParams = new ArrayList<CodegenParameter>();
+    public List<CodegenParameter> optionalNonBodyParams = new ArrayList<CodegenParameter>();
     public List<CodegenParameter> optionalParamsWithRequestBodyProperties = new ArrayList<CodegenParameter>();
     public List<CodegenSecurity> authMethods;
     public List<Tag> tags;

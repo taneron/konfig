@@ -10,3 +10,6 @@
       extra[:{{paramName}}] = _body if !_body.empty?
       {{/required}}
       {{/bodyParam}}
+      {{#optionalNonBodyParams}}
+      extra[:{{paramName}}] = {{paramName}} if {{paramName}} != SENTINEL
+      {{/optionalNonBodyParams}}
