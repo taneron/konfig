@@ -44,6 +44,7 @@ export const kotlinConfig = z.object({
 
 export const rubyConfig = z.object({
   moduleName: z.string(),
+  gemName: z.string(),
   clientState,
 })
 
@@ -301,24 +302,24 @@ export const generatorCommon = generatorCommonRequired
   .merge(generatorCommonOptional)
   .merge(generatorCommonGitRequired)
 
-const java = generatorCommon.merge(javaConfig).strict()
-const android = generatorCommon.merge(androidConfig).strict()
-const ruby = generatorCommon.merge(rubyConfig).strict()
-const python = generatorCommon.merge(pythonConfig).strict()
-const typescript = generatorCommon
+export const java = generatorCommon.merge(javaConfig).strict()
+export const android = generatorCommon.merge(androidConfig).strict()
+export const ruby = generatorCommon.merge(rubyConfig).strict()
+export const python = generatorCommon.merge(pythonConfig).strict()
+export const typescript = generatorCommon
   .merge(typescriptConfig)
   .strict()
   .or(konfigTypeScriptConfig)
-const csharp = generatorCommon.merge(csharpConfig).strict()
-const php = generatorCommon.merge(phpConfig).strict()
-const kotlin = generatorCommon.merge(kotlinConfig).strict()
-const objc = generatorCommon.merge(objcConfig).strict()
-const go = generatorCommonOptional
+export const csharp = generatorCommon.merge(csharpConfig).strict()
+export const php = generatorCommon.merge(phpConfig).strict()
+export const kotlin = generatorCommon.merge(kotlinConfig).strict()
+export const objc = generatorCommon.merge(objcConfig).strict()
+export const go = generatorCommonOptional
   .merge(generatorCommonRequired)
   .merge(generatorCommonGitRequired)
   .merge(goConfig)
   .strict()
-const swift = generatorCommon.merge(swiftConfig).strict()
+export const swift = generatorCommon.merge(swiftConfig).strict()
 
 export const genericGeneratorConfig = z.union([
   z
@@ -396,7 +397,15 @@ export const KonfigYaml = KonfigYamlCommon.merge(
           if (rubyConfig === undefined) return
           if (rubyConfig.test !== undefined) return rubyConfig
           rubyConfig.test = {
-            script: ['bundle install', `bundle exec rspec`],
+            script: [
+              // If you don't remove .gem files you get:
+              // You have one or more invalid gemspecs that need to be fixed.
+              // The gemspec at snaptrade-sdks/sdks/ruby/snaptrade.gemspec is not valid. Please fix this gemspec.
+              // The validation error was 'snaptrade-1.0.0 contains itself (snaptrade-1.0.0.gem), check your files list'
+              `rm *.gem || true`, // "|| true" is used to ensure command exits w/o code of 1 (https://superuser.com/a/887349),
+              'bundle install',
+              `bundle exec rspec`,
+            ],
           }
           return rubyConfig
         }),
