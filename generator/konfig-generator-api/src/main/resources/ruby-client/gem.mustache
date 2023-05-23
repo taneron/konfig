@@ -49,8 +49,14 @@ require '{{importPath}}'
 
 module {{moduleName}}
   @config = Configuration.default
+  SENTINEL = Object.new
   class << self
     extend Forwardable
+
+    def is_sentinel(value)
+      value == SENTINEL
+    end
+
 {{#apiKeyMethods}}
     def_delegators :@config, :{{keyParamNameSnakeCase}}, :{{keyParamNameSnakeCase}}= # api key
 {{/apiKeyMethods}}

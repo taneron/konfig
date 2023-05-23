@@ -1,0 +1,15 @@
+    {{#summary}}
+    # {{{.}}}
+    {{/summary}}
+    {{#notes}}
+    # {{{.}}}
+    {{/notes}}
+    {{#allParamsWithRequestBodyProperties}}
+    {{#required}}
+    # @param {{paramName}} [{{{dataType}}}] {{description}}
+    {{/required}}
+    {{^required}}
+    # @param {{paramName}} [{{{dataType}}}] {{description}}
+    {{/required}}
+    {{/allParamsWithRequestBodyProperties}}
+    # @param [Hash] extra additional parameters to pass along through :header_params or :query_params

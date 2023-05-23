@@ -4709,6 +4709,8 @@ public class DefaultCodegen implements CodegenConfig {
         allParamsWithRequestBodyProperties.addAll(requiredParamsWithRequestBodyProperties);
         allParamsWithRequestBodyProperties.addAll(optionalParamsWithRequestBodyProperties);
 
+        op.hasOneRequiredParamIncludingRequestBodyProperties = requiredParamsWithRequestBodyProperties.size() == 1;
+
         // add imports to operation import tag
         for (String i : imports) {
             if (needToImport(i)) {

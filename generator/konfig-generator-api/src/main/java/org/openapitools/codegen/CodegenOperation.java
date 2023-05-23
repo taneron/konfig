@@ -48,6 +48,7 @@ public class CodegenOperation {
     public CodegenParameter bodyParam;
     public CodegenModel returnModel;
     public Map<String, CodegenModel> errorReturnModels = new HashMap<>();
+    public boolean hasOneRequiredParamIncludingRequestBodyProperties;
     public List<CodegenParameter> allParams = new ArrayList<CodegenParameter>();
     public List<CodegenParameter> allParamsWithRequestBodyProperties = new ArrayList<CodegenParameter>();
     public List<CodegenParameter> flattenedParamsFromRequestBodyProperties = new ArrayList<CodegenParameter>();

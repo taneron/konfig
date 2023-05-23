@@ -1,0 +1,12 @@
+      {{#bodyParam}}
+      _body = {}
+      {{#flattenedParamsFromRequestBodyProperties}}
+      _body[:{{baseName}}] = {{paramName}} if {{paramName}} != SENTINEL
+      {{/flattenedParamsFromRequestBodyProperties}}
+      {{#required}}
+      {{paramName}} = _body
+      {{/required}}
+      {{^required}}
+      extra[:{{paramName}}] = _body if !_body.empty?
+      {{/required}}
+      {{/bodyParam}}
