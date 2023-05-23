@@ -202,6 +202,15 @@ export default class Init extends Command {
           'test_*.py',
         ],
         'java.compile.nullAnalysis.mode': 'automatic',
+        'ruby.useBundler': true, //run non-lint commands with bundle exec
+        'ruby.useLanguageServer': true, // use the internal language server (see below)
+        'ruby.intellisense': 'rubyLocate',
+        'ruby.lint': {
+          rubocop: {
+            useBundler: true, // enable rubocop via bundler
+          },
+        },
+        'ruby.format': 'rubocop', // use rubocop for formatting
       },
     })
     CliUx.ux.action.stop()

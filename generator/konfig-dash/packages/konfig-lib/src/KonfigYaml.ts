@@ -4,6 +4,14 @@ import { KonfigYamlCommon } from './KonfigYamlCommon'
 import { KonfigYamlFiles } from './KonfigYamlFiles'
 import { testConfig } from './TestConfig'
 
+const clientState = z
+  .string()
+  .array()
+  .optional()
+  .describe(
+    'A list of stateful properties generated into the SDK that can be used in custom implementation hooks. This is useful when you need state in the SDK that is not described in the OpenAPI Specification such as a key used for request signing.'
+  )
+
 const javaGroupId = z
   .string()
   .describe(
@@ -36,6 +44,8 @@ export const kotlinConfig = z.object({
 
 export const rubyConfig = z.object({
   moduleName: z.string(),
+  gemName: z.string(),
+  clientState,
 })
 
 export const goConfig = z.object({
@@ -59,14 +69,6 @@ export const objcConfig = z.object({
   authorName: z.string().describe('acme.com'),
   authorEmail: z.string().describe('engineering@acme.com'),
 })
-
-const clientState = z
-  .string()
-  .array()
-  .optional()
-  .describe(
-    'A list of stateful properties generated into the SDK that can be used in custom implementation hooks. This is useful when you need state in the SDK that is not described in the OpenAPI Specification such as a key used for request signing.'
-  )
 
 export const csharpConfig = z.object({
   logoPath: z
@@ -300,24 +302,24 @@ export const generatorCommon = generatorCommonRequired
   .merge(generatorCommonOptional)
   .merge(generatorCommonGitRequired)
 
-const java = generatorCommon.merge(javaConfig).strict()
-const android = generatorCommon.merge(androidConfig).strict()
-const ruby = generatorCommon.merge(rubyConfig).strict()
-const python = generatorCommon.merge(pythonConfig).strict()
-const typescript = generatorCommon
+export const java = generatorCommon.merge(javaConfig).strict()
+export const android = generatorCommon.merge(androidConfig).strict()
+export const ruby = generatorCommon.merge(rubyConfig).strict()
+export const python = generatorCommon.merge(pythonConfig).strict()
+export const typescript = generatorCommon
   .merge(typescriptConfig)
   .strict()
   .or(konfigTypeScriptConfig)
-const csharp = generatorCommon.merge(csharpConfig).strict()
-const php = generatorCommon.merge(phpConfig).strict()
-const kotlin = generatorCommon.merge(kotlinConfig).strict()
-const objc = generatorCommon.merge(objcConfig).strict()
-const go = generatorCommonOptional
+export const csharp = generatorCommon.merge(csharpConfig).strict()
+export const php = generatorCommon.merge(phpConfig).strict()
+export const kotlin = generatorCommon.merge(kotlinConfig).strict()
+export const objc = generatorCommon.merge(objcConfig).strict()
+export const go = generatorCommonOptional
   .merge(generatorCommonRequired)
   .merge(generatorCommonGitRequired)
   .merge(goConfig)
   .strict()
-const swift = generatorCommon.merge(swiftConfig).strict()
+export const swift = generatorCommon.merge(swiftConfig).strict()
 
 export const genericGeneratorConfig = z.union([
   z
@@ -391,7 +393,22 @@ export const KonfigYaml = KonfigYamlCommon.merge(
           return javaConfig
         }),
         android: android.optional(),
-        ruby: ruby.optional(),
+        ruby: ruby.optional().transform((rubyConfig) => {
+          if (rubyConfig === undefined) return
+          if (rubyConfig.test !== undefined) return rubyConfig
+          rubyConfig.test = {
+            script: [
+              // If you don't remove .gem files you get:
+              // You have one or more invalid gemspecs that need to be fixed.
+              // The gemspec at snaptrade-sdks/sdks/ruby/snaptrade.gemspec is not valid. Please fix this gemspec.
+              // The validation error was 'snaptrade-1.0.0 contains itself (snaptrade-1.0.0.gem), check your files list'
+              `rm *.gem || true`, // "|| true" is used to ensure command exits w/o code of 1 (https://superuser.com/a/887349),
+              'bundle install',
+              `bundle exec rspec`,
+            ],
+          }
+          return rubyConfig
+        }),
         python: python.optional().transform((pythonConfig) => {
           if (pythonConfig === undefined) return
           if (pythonConfig.test !== undefined) return pythonConfig

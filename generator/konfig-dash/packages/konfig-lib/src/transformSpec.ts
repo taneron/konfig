@@ -24,6 +24,9 @@ import { recurseObjectTypeSchemaWithRequiredProperties } from './recurse-object-
 import { fixCustomModifications } from './util/fix-custom-modifications'
 import { defaultOr200RangeStatusCodeRegex } from './util/default-or-200-range-status-code-regex'
 import { operationIdSchema } from './util/operation-id-schema'
+import equals from 'deep-equal'
+import camelcase from './util/camelcase'
+import { HttpMethods } from './forEachOperation'
 
 export const doNotGenerateVendorExtension = 'x-do-not-generate'
 
@@ -77,6 +80,73 @@ export const transformSpec = async ({
       [key]: `${firstHalf}...SHORTENED-BY-KONFIG...${secondHalf}`,
     })
   })
+
+  // Ruby generator throws a syntax error for SnapTrade when property of object type is enum w/ default:
+  // 1) SnapTrade::ModelPortfolio test an instance of ModelPortfolio should create an instance of ModelPortfolio
+  //    Failure/Error: self.model_type = MODEL_TYPE::NMINUS_1
+  //    NameError:
+  //      uninitialized constant SnapTrade::ModelPortfolio::MODEL_TYPE
+  //              self.model_type = MODEL_TYPE::NMINUS_1
+  //
+  // To avoid this we transform all in-line enum object type properties into components
+  if (generator === 'ruby') {
+    recurseObject(spec.spec, ({ value: objectTypeSchema, path }) => {
+      if (typeof objectTypeSchema !== 'object') return
+      if (objectTypeSchema === null) return
+      if (objectTypeSchema['type'] !== 'object') return
+      if (objectTypeSchema.properties === undefined) return
+      for (const key in objectTypeSchema.properties) {
+        const value = objectTypeSchema.properties[key]
+        if (!('enum' in value)) continue
+        // found an in-line enum property, lets convert this property to a $ref and create a component schema
+        let name = camelcase(key, { pascalCase: true })
+        if (spec.spec.components === undefined) spec.spec.components = {}
+        if (spec.spec.components.schemas === undefined)
+          spec.spec.components.schemas = {}
+
+        // handle naming conflict case
+        if (name in spec.spec.components.schemas) {
+          // cool, the conflict is not a problem since the schemas equal each other anyway so just continue
+          if (equals(spec.spec.components.schemas[name], value)) break
+          else {
+            // find a new prefix to prepend to the name
+            // there are a two different cases we could run into
+            // 1. we are in some in-line schema inside an operation
+            // 2. we are in some schema under components
+
+            // 1
+            if (path[0] === 'paths') {
+              const operationId = operationIdSchema.parse(
+                spec.spec.paths?.[path[1] as any]?.[path[2] as HttpMethods]
+                  ?.operationId
+              )
+              const prefix = operationId.split('_')[1]
+              name = camelcase(`${prefix}_${name}`, { pascalCase: true })
+            }
+
+            // 2
+            else if (path[0] === 'components') {
+              name = camelcase(`${path[2]}_${name}`, { pascalCase: true })
+            } else {
+              throw Error(
+                `Ran into unexpected case. Here is the path: ${path.join(', ')}`
+              )
+            }
+          }
+        }
+        if (name in spec.spec.components.schemas)
+          throw Error(
+            `We couldn't find a new name for this enum property "${name}" :(`
+          )
+
+        spec.spec.components.schemas[name] = { ...value }
+        Object.keys(value).forEach((p) => {
+          delete value[p]
+        })
+        value['$ref'] = `#/components/schemas/${name}`
+      }
+    })
+  }
 
   // Since "list" is a reserved keyword in PHP lets convert all operation IDs from "list" to "all"
   // Dylan: TODO: this should also be performed for Python but SnapTrade Python

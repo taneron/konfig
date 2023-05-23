@@ -240,6 +240,8 @@ public interface GenerateApi {
     default Map<String, Object> transformAdditionalPropertiesToMap(AdditionalProperties additionalProperties,
                                                                    String packageName, String generator) {
         Map<String, Object> map = new HashMap<>();
+        if (generator.equals("ruby"))
+            putIfPresent(map, "isFaraday", true);
         putIfPresent(map, "apiPackage", additionalProperties.getApiPackage());
         putIfPresent(map, "invokerPackage", additionalProperties.getInvokerPackage());
         if (additionalProperties.getInvokerPackage() != null)
@@ -254,6 +256,8 @@ public interface GenerateApi {
                 additionalProperties.getDisallowAdditionalPropertiesIfNotPresent());
         putIfPresent(map, "packageVersion", additionalProperties.getPackageVersion());
         putIfPresent(map, "npmName", additionalProperties.getNpmName());
+        putIfPresent(map, "gemName", additionalProperties.getGemName());
+        putIfPresent(map, "gemVersion", additionalProperties.getGemVersion());
         putIfPresent(map, "npmVersion", additionalProperties.getNpmVersion());
         putIfPresent(map, "keepAllParametersOptional", additionalProperties.getKeepAllParametersOptional());
         putIfPresent(map, "podVersion", additionalProperties.getPodVersion());
@@ -277,6 +281,7 @@ public interface GenerateApi {
         putIfPresent(map, "defaultTimeout", additionalProperties.getDefaultTimeout());
         putIfPresent(map, "composerPackageName", additionalProperties.getComposerPackageName());
         putIfPresent(map, "packageUrl", additionalProperties.getPackageUrl());
+        putIfPresent(map, "moduleName", additionalProperties.getModuleName());
         putIfPresent(map, "removeKonfigBranding", additionalProperties.getRemoveKonfigBranding());
         putIfPresent(map, "omitInfoDescription", additionalProperties.getOmitInfoDescription());
         putIfPresent(map, "omitModelDocumentation", additionalProperties.getOmitModelDocumentation());

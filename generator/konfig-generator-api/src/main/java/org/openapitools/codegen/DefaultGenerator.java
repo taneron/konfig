@@ -69,6 +69,7 @@ import java.util.stream.Collectors;
 import static org.apache.commons.lang3.StringUtils.removeStart;
 import static org.openapitools.codegen.utils.OnceLogger.once;
 import static org.openapitools.codegen.utils.StringUtils.camelize;
+import static org.openapitools.codegen.utils.StringUtils.underscore;
 
 @SuppressWarnings("rawtypes")
 public class DefaultGenerator implements Generator {
@@ -627,6 +628,7 @@ public class DefaultGenerator implements Generator {
                 operation.put("classname", config.toApiName(tag));
                 operation.put("classVarName", config.toApiVarName(tag));
                 operation.put("classNameCamelCase", camelize(tag, CamelizeOption.LOWERCASE_FIRST_LETTER));
+                operation.put("classNameSnakeCase", underscore(tag));
                 operation.put("importPath", config.toApiImport(tag));
                 operation.put("classFilename", config.toApiFilename(tag));
                 operation.put("clientApiName", config.toClientApiName(tag));

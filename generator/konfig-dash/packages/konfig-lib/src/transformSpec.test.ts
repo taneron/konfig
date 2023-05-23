@@ -603,6 +603,23 @@ describe('transformSpec', () => {
       expect(spec).toMatchSnapshot()
     })
   })
+
+  describe('transform in-line enum properties for ruby', () => {
+    it('snaptrade', async () => {
+      const specPath = path.join(
+        __dirname,
+        'transform-spec-test',
+        'snaptrade.yaml'
+      )
+      const specString = fs.readFileSync(specPath, 'utf-8')
+      const spec = await transformSpec({
+        specString,
+        generator: 'ruby',
+      })
+      expect(spec).toMatchSnapshot()
+    })
+  })
+
   describe('attach nullable', () => {
     it('snaptrade', async () => {
       const specPath = path.join(

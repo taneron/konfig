@@ -1,0 +1,22 @@
+require '{{{gemName}}}'
+{{#apiDocumentationAuthenticationPartial}}
+
+{{{apiDocumentationAuthenticationPartial}}}
+{{/apiDocumentationAuthenticationPartial}}
+{{^apiDocumentationAuthenticationPartial}}
+{{#authMethods}}{{#isBasic}}{{#isBasicBasic}}
+{{moduleName}}.username = 'YOUR_USERNAME'
+{{moduleName}}.password = 'YOUR_PASSWORD'{{/isBasicBasic}}{{#isBasicBearer}}
+{{moduleName}}.access_token = 'YOUR_BEARER_TOKEN'{{/isBasicBearer}}{{/isBasic}}{{#isApiKey}}
+{{moduleName}}.{{{keyParamNameSnakeCase}}} = 'YOUR API KEY'{{/isApiKey}}{{#isOAuth}}
+{{moduleName}}.access_token = 'YOUR ACCESS TOKEN'{{/isOAuth}}{{/authMethods}}
+{{/apiDocumentationAuthenticationPartial}}
+
+{{> api_doc_arg_setup}}
+begin
+{{#summary}}  # {{{.}}}
+{{/summary}}  {{#returnType}}result = {{/returnType}}{{moduleName}}::{{clientApiName}}.{{{operationId}}}{{> api_doc_execute_pass_args}}{{#returnType}}
+  p result{{/returnType}}
+rescue {{{moduleName}}}::ApiError => e
+  puts "Exception when calling {{moduleName}}::{{clientApiName}}.{{{operationId}}}: #{e}"
+end

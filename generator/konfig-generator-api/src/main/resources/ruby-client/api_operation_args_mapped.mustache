@@ -1,0 +1,25 @@
+      {{#bodyParam}}
+      {{#isStrictlyObject}}
+      _body = {}
+      {{#flattenedParamsFromRequestBodyProperties}}
+      _body[:{{baseName}}] = {{paramName}} if {{paramName}} != SENTINEL
+      {{/flattenedParamsFromRequestBodyProperties}}
+      {{#required}}
+      {{paramName}} = _body
+      {{/required}}
+      {{^required}}
+      extra[:{{paramName}}] = _body if !_body.empty?
+      {{/required}}
+      {{/isStrictlyObject}}
+      {{^isStrictlyObject}}
+      {{#required}}
+      {{paramName}} = body
+      {{/required}}
+      {{^required}}
+      extra[:{{paramName}}] = body if body != SENTINEL
+      {{/required}}
+      {{/isStrictlyObject}}
+      {{/bodyParam}}
+      {{#optionalNonBodyParams}}
+      extra[:{{paramName}}] = {{paramName}} if {{paramName}} != SENTINEL
+      {{/optionalNonBodyParams}}

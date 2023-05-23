@@ -60,6 +60,7 @@ export async function executeTestCommand({
     const commandOptions: SyncOptions = {
       cwd: path.join(configDir, outputDirectory),
       stdio: 'inherit',
+      shell: true,
     }
 
     if (sequence) {

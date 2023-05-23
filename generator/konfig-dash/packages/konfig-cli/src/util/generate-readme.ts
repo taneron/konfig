@@ -179,10 +179,11 @@ export function getPublishedPackageUrl({
         packageManagerName: 'CocoaPods',
       }
     case 'ruby':
-      console.warn('Ruby README generation not implemented')
+      config = konfigYaml.generators.ruby
+      if (config === undefined) throw Error('Config undefined')
       return {
-        url: 'Not Implemented',
-        packageManagerName: 'Not Implemented',
+        url: `https://rubygems.org/gems/${config.gemName}/versions/${config.version}`,
+        packageManagerName: 'RubyGems',
       }
   }
   throw Error(`Unexpected generator name: ${generatorName}`)

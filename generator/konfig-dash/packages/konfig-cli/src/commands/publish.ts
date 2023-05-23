@@ -5,6 +5,8 @@ import {
   CSharpConfigType,
   GeneratorCommonGitType,
   KonfigYamlGeneratorNames,
+  csharp,
+  python,
 } from 'konfig-lib'
 import * as shell from 'shelljs'
 import * as path from 'path'
@@ -30,6 +32,32 @@ function generateGitTagCommands({
 }
 
 const publishScripts = {
+  ruby: ({
+    version,
+    gemName,
+    skipTag,
+  }: {
+    version: string
+    gemName: string
+    skipTag: boolean
+  }) => {
+    const gitTagCommands = generateGitTagCommands({
+      version,
+      generator: 'ruby',
+      skipTag,
+    })
+    // git tag has to be present for pod trunk to work
+    return [
+      // If you don't remove .gem files you get:
+      // You have one or more invalid gemspecs that need to be fixed.
+      // The gemspec at snaptrade-sdks/sdks/ruby/snaptrade.gemspec is not valid. Please fix this gemspec.
+      // The validation error was 'snaptrade-1.0.0 contains itself (snaptrade-1.0.0.gem), check your files list'
+      `rm *.gem || true`, // "|| true" is used to ensure command exits w/o code of 1 (https://superuser.com/a/887349)
+      `gem build ${gemName}.gemspec -o ${gemName}-${version}.gem`,
+      `gem push ${gemName}-${version}.gem`,
+      ...gitTagCommands,
+    ]
+  },
   swift: ({
     version,
     projectName,
@@ -290,6 +318,21 @@ export default class Publish extends Command {
         })
       }
 
+      // Ruby config detected
+      if (
+        'gemName' in generatorConfig &&
+        'version' in generatorConfig &&
+        generatorName === 'ruby'
+      ) {
+        await executePublishScript({
+          script: publishScripts['ruby']({
+            version: generatorConfig.version,
+            gemName: generatorConfig.gemName,
+            skipTag: flags.skipTag,
+          }),
+        })
+      }
+
       // Maven Central config detected
       if (
         'groupId' in generatorConfig &&
@@ -335,10 +378,13 @@ export default class Publish extends Command {
       // PyPI config detected
       if (
         'generator' in generatorConfig &&
+        '_brand' in generatorConfig &&
+        generatorConfig._brand === 'python' &&
         (generatorConfig.generator === 'python' ||
           generatorConfig.generator === 'python-prior')
       ) {
-        const testPyPI = flags.test || generatorConfig.testPyPI
+        const pythonConfig = python.parse(generatorConfig)
+        const testPyPI = flags.test || pythonConfig.testPyPI
         if (testPyPI) {
           if (!process.env.TEST_TWINE_USERNAME)
             CliUx.ux.error(
@@ -362,21 +408,21 @@ export default class Publish extends Command {
             )
         }
         const token =
-          generatorConfig.pypiApiTokenEnvironmentVariable === undefined
+          pythonConfig.pypiApiTokenEnvironmentVariable === undefined
             ? undefined
-            : process.env[generatorConfig.pypiApiTokenEnvironmentVariable]
+            : process.env[pythonConfig.pypiApiTokenEnvironmentVariable]
         if (
-          generatorConfig.pypiApiTokenEnvironmentVariable !== undefined &&
+          pythonConfig.pypiApiTokenEnvironmentVariable !== undefined &&
           token === undefined
         )
           throw Error(
-            `Set ${generatorConfig.pypiApiTokenEnvironmentVariable} environment variable to publish to PyPI`
+            `Set ${pythonConfig.pypiApiTokenEnvironmentVariable} environment variable to publish to PyPI`
           )
         await executePublishScript({
           script: publishScripts['pypi']({
             test: !!testPyPI,
             token,
-            version: generatorConfig.version,
+            version: pythonConfig.version,
           }),
         })
       }
@@ -387,10 +433,11 @@ export default class Publish extends Command {
           CliUx.ux.error(
             'Set NUGET_API_KEY environment variable to publish to NuGet (see https://www.nuget.org/account/apikeys)'
           )
+        const csharpConfig = csharp.parse(generatorConfig)
         await executePublishScript({
           script: publishScripts['nuget']({
-            config: generatorConfig,
-            version: generatorConfig.version,
+            config: csharpConfig,
+            version: csharpConfig.version,
           }),
         })
       }

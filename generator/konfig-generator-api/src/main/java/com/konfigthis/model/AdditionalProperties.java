@@ -37,6 +37,9 @@ public class AdditionalProperties {
   @JsonProperty("clientName")
   private String clientName;
 
+  @JsonProperty("moduleName")
+  private String moduleName;
+
   @JsonProperty("outputDirectory")
   private String outputDirectory;
 
@@ -144,6 +147,12 @@ public class AdditionalProperties {
   @JsonProperty("npmVersion")
   private String npmVersion;
 
+  @JsonProperty("gemName")
+  private String gemName;
+
+  @JsonProperty("gemVersion")
+  private String gemVersion;
+
   @JsonProperty("npmName")
   private String npmName;
 
@@ -225,6 +234,25 @@ public class AdditionalProperties {
 
   public void setClientName(String clientName) {
     this.clientName = clientName;
+  }
+
+  public AdditionalProperties moduleName(String moduleName) {
+    this.moduleName = moduleName;
+    return this;
+  }
+
+  /**
+   * Get moduleName
+   * @return moduleName
+  */
+  
+  @Schema(name = "moduleName", required = false)
+  public String getModuleName() {
+    return moduleName;
+  }
+
+  public void setModuleName(String moduleName) {
+    this.moduleName = moduleName;
   }
 
   public AdditionalProperties outputDirectory(String outputDirectory) {
@@ -908,6 +936,44 @@ public class AdditionalProperties {
     this.npmVersion = npmVersion;
   }
 
+  public AdditionalProperties gemName(String gemName) {
+    this.gemName = gemName;
+    return this;
+  }
+
+  /**
+   * Get gemName
+   * @return gemName
+  */
+  
+  @Schema(name = "gemName", required = false)
+  public String getGemName() {
+    return gemName;
+  }
+
+  public void setGemName(String gemName) {
+    this.gemName = gemName;
+  }
+
+  public AdditionalProperties gemVersion(String gemVersion) {
+    this.gemVersion = gemVersion;
+    return this;
+  }
+
+  /**
+   * Get gemVersion
+   * @return gemVersion
+  */
+  
+  @Schema(name = "gemVersion", required = false)
+  public String getGemVersion() {
+    return gemVersion;
+  }
+
+  public void setGemVersion(String gemVersion) {
+    this.gemVersion = gemVersion;
+  }
+
   public AdditionalProperties npmName(String npmName) {
     this.npmName = npmName;
     return this;
@@ -1088,6 +1154,7 @@ public class AdditionalProperties {
     return Objects.equals(this.objectPropertyNamingConvention, additionalProperties.objectPropertyNamingConvention) &&
         Objects.equals(this.gitRepoName, additionalProperties.gitRepoName) &&
         Objects.equals(this.clientName, additionalProperties.clientName) &&
+        Objects.equals(this.moduleName, additionalProperties.moduleName) &&
         Objects.equals(this.outputDirectory, additionalProperties.outputDirectory) &&
         Objects.equals(this.topLevelOperations, additionalProperties.topLevelOperations) &&
         Objects.equals(this.omitInfoDescription, additionalProperties.omitInfoDescription) &&
@@ -1123,6 +1190,8 @@ public class AdditionalProperties {
         Objects.equals(this.packageVersion, additionalProperties.packageVersion) &&
         Objects.equals(this.packageUrl, additionalProperties.packageUrl) &&
         Objects.equals(this.npmVersion, additionalProperties.npmVersion) &&
+        Objects.equals(this.gemName, additionalProperties.gemName) &&
+        Objects.equals(this.gemVersion, additionalProperties.gemVersion) &&
         Objects.equals(this.npmName, additionalProperties.npmName) &&
         Objects.equals(this.readmeSnippet, additionalProperties.readmeSnippet) &&
         Objects.equals(this.asyncReadmeSnippet, additionalProperties.asyncReadmeSnippet) &&
@@ -1135,7 +1204,7 @@ public class AdditionalProperties {
 
   @Override
   public int hashCode() {
-    return Objects.hash(objectPropertyNamingConvention, gitRepoName, clientName, outputDirectory, topLevelOperations, omitInfoDescription, omitModelDocumentation, omitApiDocumentation, tagPriority, setSkipSerializationToTrueByDefault, includeFetchAdapter, packagistUsername, toStringReturnsJson, includeEventSourceParser, keepAllParametersOptional, apiDocumentationAuthenticationPartial, composerPackageName, defaultTimeout, useSingleRequestParameter, artifactUrl, artifactId, groupId, invokerPackage, modelPackage, apiPackage, projectName, podVersion, removeKonfigBranding, podName, classPrefix, authorName, authorEmail, podAuthors, swiftPackagePath, disallowAdditionalPropertiesIfNotPresent, packageVersion, packageUrl, npmVersion, npmName, readmeSnippet, asyncReadmeSnippet, readmeSupportingDescriptionSnippet, readmeDescriptionSnippet, apiKeyAlias, clientState, clientStateIsOptional);
+    return Objects.hash(objectPropertyNamingConvention, gitRepoName, clientName, moduleName, outputDirectory, topLevelOperations, omitInfoDescription, omitModelDocumentation, omitApiDocumentation, tagPriority, setSkipSerializationToTrueByDefault, includeFetchAdapter, packagistUsername, toStringReturnsJson, includeEventSourceParser, keepAllParametersOptional, apiDocumentationAuthenticationPartial, composerPackageName, defaultTimeout, useSingleRequestParameter, artifactUrl, artifactId, groupId, invokerPackage, modelPackage, apiPackage, projectName, podVersion, removeKonfigBranding, podName, classPrefix, authorName, authorEmail, podAuthors, swiftPackagePath, disallowAdditionalPropertiesIfNotPresent, packageVersion, packageUrl, npmVersion, gemName, gemVersion, npmName, readmeSnippet, asyncReadmeSnippet, readmeSupportingDescriptionSnippet, readmeDescriptionSnippet, apiKeyAlias, clientState, clientStateIsOptional);
   }
 
   @Override
@@ -1145,6 +1214,7 @@ public class AdditionalProperties {
     sb.append("    objectPropertyNamingConvention: ").append(toIndentedString(objectPropertyNamingConvention)).append("\n");
     sb.append("    gitRepoName: ").append(toIndentedString(gitRepoName)).append("\n");
     sb.append("    clientName: ").append(toIndentedString(clientName)).append("\n");
+    sb.append("    moduleName: ").append(toIndentedString(moduleName)).append("\n");
     sb.append("    outputDirectory: ").append(toIndentedString(outputDirectory)).append("\n");
     sb.append("    topLevelOperations: ").append(toIndentedString(topLevelOperations)).append("\n");
     sb.append("    omitInfoDescription: ").append(toIndentedString(omitInfoDescription)).append("\n");
@@ -1180,6 +1250,8 @@ public class AdditionalProperties {
     sb.append("    packageVersion: ").append(toIndentedString(packageVersion)).append("\n");
     sb.append("    packageUrl: ").append(toIndentedString(packageUrl)).append("\n");
     sb.append("    npmVersion: ").append(toIndentedString(npmVersion)).append("\n");
+    sb.append("    gemName: ").append(toIndentedString(gemName)).append("\n");
+    sb.append("    gemVersion: ").append(toIndentedString(gemVersion)).append("\n");
     sb.append("    npmName: ").append(toIndentedString(npmName)).append("\n");
     sb.append("    readmeSnippet: ").append(toIndentedString(readmeSnippet)).append("\n");
     sb.append("    asyncReadmeSnippet: ").append(toIndentedString(asyncReadmeSnippet)).append("\n");

@@ -35,6 +35,8 @@ const additionalProperties = z.object({
   omitApiDocumentation: z.boolean().optional(),
   removeKonfigBranding: z.boolean().optional(),
   npmName: z.string().optional(),
+  gemName: z.string().optional(),
+  gemVersion: z.string().optional(),
   npmVersion: z.string().optional(),
   clientName: z.string().optional(),
   packageVersion: z.string().describe('1.0.0').optional(),
@@ -76,6 +78,7 @@ export const javaGenerateApiRequestBody = z.object({
         .or(z.literal('php'))
         .or(z.literal('swift5'))
         .or(z.literal('kotlin'))
+        .or(z.literal('ruby'))
         .or(z.literal('objc'))
         .or(z.literal('go'))
         .or(z.literal('typescript-axios')),

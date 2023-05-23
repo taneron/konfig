@@ -273,6 +273,41 @@ export const myHandler = async (event: APIGatewayEvent, context: Context) => {
     queue(requestBody)
   }
 
+  if (body.generators.ruby) {
+    const generatorConfig = body.generators.ruby
+    const requestBody: JavaGenerateApiRequestBodyType = {
+      spec: {
+        src: await transformSpecForGenerator({ generator: 'ruby' }),
+      },
+      config: {
+        additionalProperties: {
+          omitInfoDescription: body.omitInfoDescription,
+          readmeSnippet: generatorConfig.readmeSnippet,
+          readmeSupportingDescriptionSnippet:
+            generatorConfig.readmeSupportingDescriptionSnippet,
+          readmeDescriptionSnippet: generatorConfig.readmeDescriptionSnippet,
+          apiDocumentationAuthenticationPartial:
+            generatorConfig.apiDocumentationAuthenticationPartial,
+          gemName: generatorConfig.gemName,
+          gemVersion: generatorConfig.version,
+          defaultTimeout: generatorConfig.defaultTimeout,
+          gitRepoName: generatorConfig.git.repoName,
+          moduleName: generatorConfig.moduleName,
+          clientState: generatorConfig.clientState,
+          tagPriority: body.tagPriority,
+        },
+        artifactVersion: generatorConfig.version,
+        generatorName: 'ruby',
+        gitHost: generatorConfig.git?.host,
+        gitUserId: generatorConfig.git?.userId,
+        gitRepoId: generatorConfig.git?.repoId,
+        removeOperationIdPrefix: true,
+        files: generatorConfig.files,
+      },
+    }
+    queue(requestBody)
+  }
+
   if (body.generators.php) {
     const generatorConfig = body.generators.php
     const requestBody: JavaGenerateApiRequestBodyType = {

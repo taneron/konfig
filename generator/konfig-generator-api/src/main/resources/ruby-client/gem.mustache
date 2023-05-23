@@ -1,0 +1,96 @@
+=begin
+{{> api_info}}
+=end
+
+require 'forwardable'
+
+# Common files
+require '{{gemName}}/api_client'
+require '{{gemName}}/api_error'
+require '{{gemName}}/version'
+require '{{gemName}}/configuration'
+
+# Models
+{{^useAutoload}}
+{{#models}}
+{{#model}}
+{{^parent}}
+require '{{gemName}}/{{modelPackage}}/{{classFilename}}'
+{{/parent}}
+{{/model}}
+{{/models}}
+{{#models}}
+{{#model}}
+{{#parent}}
+require '{{gemName}}/{{modelPackage}}/{{classFilename}}'
+{{/parent}}
+{{/model}}
+{{/models}}
+{{/useAutoload}}
+{{#useAutoload}}
+{{#models}}
+{{#model}}
+{{moduleName}}.autoload :{{classname}}, '{{gemName}}/{{modelPackage}}/{{classFilename}}'
+{{/model}}
+{{/models}}
+{{/useAutoload}}
+
+# APIs
+{{#apiInfo}}
+{{#apis}}
+{{^useAutoload}}
+require '{{importPath}}'
+{{/useAutoload}}
+{{#useAutoload}}
+{{moduleName}}.autoload :{{classname}}, '{{importPath}}'
+{{/useAutoload}}
+{{/apis}}
+{{/apiInfo}}
+
+module {{moduleName}}
+  @config = Configuration.default
+  SENTINEL = Object.new
+  class << self
+    extend Forwardable
+
+    def is_sentinel(value)
+      value == SENTINEL
+    end
+
+{{#apiKeyMethods}}
+    def_delegators :@config, :{{keyParamNameSnakeCase}}, :{{keyParamNameSnakeCase}}= # api key
+{{/apiKeyMethods}}
+{{#clientState}}
+    def_delegators :@config, :{{.}}, :{{.}}= # client state from konfig.yaml
+{{/clientState}}
+
+    # Customize default settings for the SDK using block.
+    #   {{moduleName}}.configure do |config|
+    #     config.username = "xxx"
+    #     config.password = "xxx"
+    #   end
+    # If no block given, return the default Configuration object.
+    def configure
+      if block_given?
+        yield(Configuration.default)
+      else
+        Configuration.default
+      end
+    end
+  end
+
+  {{#apiInfo}}
+  class Client
+    {{#apis}}
+    attr_accessor :{{classNameSnakeCase}}
+    {{/apis}}
+
+    def initialize(config = Configuration.default)
+      @api_client = ApiClient::new(config)
+      {{#apis}}
+      @{{classNameSnakeCase}} = {{moduleName}}::{{classname}}.new(@api_client)
+      {{/apis}}
+    end
+  end
+  {{/apiInfo}}
+end

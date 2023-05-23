@@ -4567,6 +4567,7 @@ public class DefaultCodegen implements CodegenConfig {
         List<CodegenParameter> requiredParamsWithRequestBodyProperties = new ArrayList<>();
         List<CodegenParameter> flattenedParamsFromRequestBodyProperties = new ArrayList<>();
         List<CodegenParameter> optionalParams = new ArrayList<>();
+        List<CodegenParameter> optionalNonBodyParams = new ArrayList<>();
         List<CodegenParameter> optionalParamsWithRequestBodyProperties = new ArrayList<>();
 
         CodegenParameter bodyParam = null;
@@ -4701,13 +4702,17 @@ public class DefaultCodegen implements CodegenConfig {
             } else { // optional parameters
                 optionalParams.add(cp.copy());
                 op.hasOptionalParams = true;
-                if (!cp.isBodyParam)
+                if (!cp.isBodyParam) {
                     optionalParamsWithRequestBodyProperties.add(cp.copy());
+                    optionalNonBodyParams.add(cp.copy());
+                }
             }
         }
 
         allParamsWithRequestBodyProperties.addAll(requiredParamsWithRequestBodyProperties);
         allParamsWithRequestBodyProperties.addAll(optionalParamsWithRequestBodyProperties);
+
+        op.hasOneRequiredParamIncludingRequestBodyProperties = requiredParamsWithRequestBodyProperties.size() == 1;
 
         // add imports to operation import tag
         for (String i : imports) {
@@ -4750,6 +4755,7 @@ public class DefaultCodegen implements CodegenConfig {
         op.requiredParams = requiredParams;
         op.requiredParamsWithRequestBodyProperties = requiredParamsWithRequestBodyProperties;
         op.optionalParams = optionalParams;
+        op.optionalNonBodyParams = optionalNonBodyParams;
         op.optionalParamsWithRequestBodyProperties = optionalParamsWithRequestBodyProperties;
         op.externalDocs = operation.getExternalDocs();
         // legacy support
