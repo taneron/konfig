@@ -256,6 +256,8 @@ public interface GenerateApi {
                 additionalProperties.getDisallowAdditionalPropertiesIfNotPresent());
         putIfPresent(map, "packageVersion", additionalProperties.getPackageVersion());
         putIfPresent(map, "npmName", additionalProperties.getNpmName());
+        putIfPresent(map, "gemName", additionalProperties.getGemName());
+        putIfPresent(map, "gemVersion", additionalProperties.getGemVersion());
         putIfPresent(map, "npmVersion", additionalProperties.getNpmVersion());
         putIfPresent(map, "keepAllParametersOptional", additionalProperties.getKeepAllParametersOptional());
         putIfPresent(map, "podVersion", additionalProperties.getPodVersion());

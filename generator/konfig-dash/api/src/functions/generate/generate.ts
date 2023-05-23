@@ -288,6 +288,8 @@ export const myHandler = async (event: APIGatewayEvent, context: Context) => {
           readmeDescriptionSnippet: generatorConfig.readmeDescriptionSnippet,
           apiDocumentationAuthenticationPartial:
             generatorConfig.apiDocumentationAuthenticationPartial,
+          gemName: generatorConfig.gemName,
+          gemVersion: generatorConfig.version,
           defaultTimeout: generatorConfig.defaultTimeout,
           gitRepoName: generatorConfig.git.repoName,
           moduleName: generatorConfig.moduleName,

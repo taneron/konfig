@@ -147,6 +147,12 @@ public class AdditionalProperties {
   @JsonProperty("npmVersion")
   private String npmVersion;
 
+  @JsonProperty("gemName")
+  private String gemName;
+
+  @JsonProperty("gemVersion")
+  private String gemVersion;
+
   @JsonProperty("npmName")
   private String npmName;
 
@@ -930,6 +936,44 @@ public class AdditionalProperties {
     this.npmVersion = npmVersion;
   }
 
+  public AdditionalProperties gemName(String gemName) {
+    this.gemName = gemName;
+    return this;
+  }
+
+  /**
+   * Get gemName
+   * @return gemName
+  */
+  
+  @Schema(name = "gemName", required = false)
+  public String getGemName() {
+    return gemName;
+  }
+
+  public void setGemName(String gemName) {
+    this.gemName = gemName;
+  }
+
+  public AdditionalProperties gemVersion(String gemVersion) {
+    this.gemVersion = gemVersion;
+    return this;
+  }
+
+  /**
+   * Get gemVersion
+   * @return gemVersion
+  */
+  
+  @Schema(name = "gemVersion", required = false)
+  public String getGemVersion() {
+    return gemVersion;
+  }
+
+  public void setGemVersion(String gemVersion) {
+    this.gemVersion = gemVersion;
+  }
+
   public AdditionalProperties npmName(String npmName) {
     this.npmName = npmName;
     return this;
@@ -1146,6 +1190,8 @@ public class AdditionalProperties {
         Objects.equals(this.packageVersion, additionalProperties.packageVersion) &&
         Objects.equals(this.packageUrl, additionalProperties.packageUrl) &&
         Objects.equals(this.npmVersion, additionalProperties.npmVersion) &&
+        Objects.equals(this.gemName, additionalProperties.gemName) &&
+        Objects.equals(this.gemVersion, additionalProperties.gemVersion) &&
         Objects.equals(this.npmName, additionalProperties.npmName) &&
         Objects.equals(this.readmeSnippet, additionalProperties.readmeSnippet) &&
         Objects.equals(this.asyncReadmeSnippet, additionalProperties.asyncReadmeSnippet) &&
@@ -1158,7 +1204,7 @@ public class AdditionalProperties {
 
   @Override
   public int hashCode() {
-    return Objects.hash(objectPropertyNamingConvention, gitRepoName, clientName, moduleName, outputDirectory, topLevelOperations, omitInfoDescription, omitModelDocumentation, omitApiDocumentation, tagPriority, setSkipSerializationToTrueByDefault, includeFetchAdapter, packagistUsername, toStringReturnsJson, includeEventSourceParser, keepAllParametersOptional, apiDocumentationAuthenticationPartial, composerPackageName, defaultTimeout, useSingleRequestParameter, artifactUrl, artifactId, groupId, invokerPackage, modelPackage, apiPackage, projectName, podVersion, removeKonfigBranding, podName, classPrefix, authorName, authorEmail, podAuthors, swiftPackagePath, disallowAdditionalPropertiesIfNotPresent, packageVersion, packageUrl, npmVersion, npmName, readmeSnippet, asyncReadmeSnippet, readmeSupportingDescriptionSnippet, readmeDescriptionSnippet, apiKeyAlias, clientState, clientStateIsOptional);
+    return Objects.hash(objectPropertyNamingConvention, gitRepoName, clientName, moduleName, outputDirectory, topLevelOperations, omitInfoDescription, omitModelDocumentation, omitApiDocumentation, tagPriority, setSkipSerializationToTrueByDefault, includeFetchAdapter, packagistUsername, toStringReturnsJson, includeEventSourceParser, keepAllParametersOptional, apiDocumentationAuthenticationPartial, composerPackageName, defaultTimeout, useSingleRequestParameter, artifactUrl, artifactId, groupId, invokerPackage, modelPackage, apiPackage, projectName, podVersion, removeKonfigBranding, podName, classPrefix, authorName, authorEmail, podAuthors, swiftPackagePath, disallowAdditionalPropertiesIfNotPresent, packageVersion, packageUrl, npmVersion, gemName, gemVersion, npmName, readmeSnippet, asyncReadmeSnippet, readmeSupportingDescriptionSnippet, readmeDescriptionSnippet, apiKeyAlias, clientState, clientStateIsOptional);
   }
 
   @Override
@@ -1204,6 +1250,8 @@ public class AdditionalProperties {
     sb.append("    packageVersion: ").append(toIndentedString(packageVersion)).append("\n");
     sb.append("    packageUrl: ").append(toIndentedString(packageUrl)).append("\n");
     sb.append("    npmVersion: ").append(toIndentedString(npmVersion)).append("\n");
+    sb.append("    gemName: ").append(toIndentedString(gemName)).append("\n");
+    sb.append("    gemVersion: ").append(toIndentedString(gemVersion)).append("\n");
     sb.append("    npmName: ").append(toIndentedString(npmName)).append("\n");
     sb.append("    readmeSnippet: ").append(toIndentedString(readmeSnippet)).append("\n");
     sb.append("    asyncReadmeSnippet: ").append(toIndentedString(asyncReadmeSnippet)).append("\n");
