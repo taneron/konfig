@@ -1413,12 +1413,12 @@ public class PythonClientCodegen extends AbstractPythonCodegen {
             } else if (value instanceof BigDecimal) {
                 enumVar.put("value", value);
             } else if (value == null) {
-                enumVar.put("value", "schemas.NoneClass.NONE");
+                enumVar.put("value", "None");
             } else if (value instanceof Boolean) {
                 if (value.equals(Boolean.TRUE)) {
-                    enumVar.put("value", "schemas.BoolClass.TRUE");
+                    enumVar.put("value", "True");
                 } else {
-                    enumVar.put("value", "schemas.BoolClass.FALSE");
+                    enumVar.put("value", "False");
                 }
             } else {
                 String fixedValue = (String) processTestExampleData(value);
