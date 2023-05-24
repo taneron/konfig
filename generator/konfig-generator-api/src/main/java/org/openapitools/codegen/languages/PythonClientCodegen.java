@@ -1985,6 +1985,13 @@ public class PythonClientCodegen extends AbstractPythonCodegen {
                 CodegenProperty cp = new CodegenProperty();
                 cp.setName(disc.getPropertyName());
                 cp.setExample(discPropNameValue);
+                
+                // Dylan: this is an edge case when OAS includes a discriminator and the modelSchema is an Object, we still need to add opening and closing character (e.g. "{" and "}" in Python)
+                if (ModelUtils.isObjectSchema(modelSchema)) {
+                    // Surround with dictionary syntax
+                    fullPrefix += objectOpenChar;
+                    closeChars = objectCloseChar;
+                }
                 return exampleForObjectModel(modelSchema, fullPrefix, closeChars, cp, indentationLevel, exampleLine, closingIndentation, includedSchemas);
             }
             return fullPrefix + nullLiteral + closeChars;
@@ -2569,6 +2576,36 @@ public class PythonClientCodegen extends AbstractPythonCodegen {
             // passing null to allProperties and allRequired as there's no parent
             addVars(m, unaliasPropertySchema(schema.getProperties()), schema.getRequired(), null, null);
         }
+
+        // Dylan: Handle the case where the inner property references itself and wrap the reference to itself in quotes.
+        // This bug occurred when Humanloop created a self-referencing schema in an OAS update:
+        //       "TraceLogRequest": {
+        //        "type": "object",
+        //        "properties": {
+        //          ...
+        //          "children": {
+        //            "title": "Children",
+        //            "description": "List of children logs.",
+        //            "type": "array",
+        //            "items": {
+        //              "$ref": "#/components/schemas/TraceLogRequest" <-- self-referencing
+        //            }
+        //          }
+        //        },
+        //      },
+        m.vars.forEach(p -> {
+
+            // Do a word match so we don't match with words like "ModelConfigChatRequest" for the "ChatRequest" model
+            String regexPattern = "\\b" + m.classname + "\\b";
+            Pattern pattern = Pattern.compile(regexPattern);
+            Matcher matcher = pattern.matcher(p.dataType);
+            if (matcher.find()){
+                p.dataType = p.dataType.replace(m.classname, "\"" + m.classname + "\"");
+            }
+        });
+
+        m.hasPropertyNameConflictingWithReservedWord = m.vars.stream().anyMatch(v -> reservedWords.contains(v.baseName));
+
         // an object or anyType composed schema that has additionalProperties set
         addAdditionPropertiesToCodeGenModel(m, schema);
         // process 'additionalProperties'
