@@ -40,6 +40,12 @@ public class CodegenModel implements IJsonSchemaValidationProperties {
     // from the 'allOf' attribute, then 'anyOf', and finally 'oneOf'.
     public List<String> allParents;
 
+    // Dylan: This attribute was created for the case where a property was named "class"
+    // which was causing a problem for class-based TypedDict declarations for the Python SDK
+    // but we need to use class-based TypedDict definition because we were running into an error when a schema
+    // self-referenced itself and the dictionary-based TypedDict was not working.
+    public boolean hasPropertyNameConflictingWithReservedWord;
+
     // References to parent and interface CodegenModels. Only set when code generator supports inheritance.
     public CodegenModel parentModel;
     public List<CodegenModel> interfaceModels;
