@@ -51,7 +51,7 @@ export const transformSpec = async ({
   attachNullabletoAllResponseSchemas,
   paginationConfig,
   topLevelOperations,
-  validateRequiredPropertiesAreNonEmpty,
+  validateRequiredPropertiesAndParametersAreNonEmpty,
   stripRequiredStringProperties,
   infoContactEmail,
   infoContactName,
@@ -259,8 +259,17 @@ export const transformSpec = async ({
     )
   }
 
-  // validateRequiredPropertiesAreNonEmpty (i.e. minLength: 1)
-  if (validateRequiredPropertiesAreNonEmpty) {
+  // validateRequiredPropertiesAndParametersAreNonEmpty (i.e. minLength: 1)
+  if (validateRequiredPropertiesAndParametersAreNonEmpty) {
+    recurseObject(spec.spec, ({ value: parameter, parent, path }) => {
+      if (!Array.isArray(parent)) return
+      if (path[3] !== 'parameters') return
+      if (!('required' in parameter)) return
+      if (!parameter['required']) return
+      if (!('schema' in parameter)) return
+      if ('minLength' in parameter['schema']) return
+      parameter['schema']['minLength'] = 1
+    })
     recurseObjectTypeSchemaWithRequiredProperties(
       spec.spec,
       ({ value: schema }) => {

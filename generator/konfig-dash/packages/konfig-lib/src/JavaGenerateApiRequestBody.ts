@@ -34,6 +34,7 @@ const additionalProperties = z.object({
   omitModelDocumentation: z.boolean().optional(),
   omitApiDocumentation: z.boolean().optional(),
   removeKonfigBranding: z.boolean().optional(),
+  userAgent: z.string().optional(),
   npmName: z.string().optional(),
   gemName: z.string().optional(),
   gemVersion: z.string().optional(),

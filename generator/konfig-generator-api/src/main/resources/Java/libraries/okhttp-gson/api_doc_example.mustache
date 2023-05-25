@@ -74,8 +74,8 @@ public class Example {
               .{{{operationId}}}{{^vendorExtensions.x-group-parameters}}({{#allParams}}{{{paramName}}}{{^-last}}, {{/-last}}{{/allParams}});{{/vendorExtensions.x-group-parameters}}{{#vendorExtensions.x-group-parameters}}({{#requiredParamsWithRequestBodyProperties}}{{{paramName}}}{{^-last}}, {{/-last}}{{/requiredParamsWithRequestBodyProperties}}){{#optionalParamsWithRequestBodyProperties}}
               .{{{paramName}}}({{{paramName}}}){{/optionalParamsWithRequestBodyProperties}}
               .executeWithHttpInfo();{{/vendorExtensions.x-group-parameters}}{{#returnType}}
-      System.out.println(response.getData());
-      System.out.println(response.getHeaders());
+      System.out.println(response.getResponseBody());
+      System.out.println(response.getResponseHeaders());
       System.out.println(response.getStatusCode());
       System.out.println(response.getRoundTripTime());
       System.out.println(response.getRequest());{{/returnType}}
