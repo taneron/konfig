@@ -302,7 +302,7 @@ public class {{classname}} {
     {{^vendorExtensions.x-streaming}}
     public {{#returnType}}{{{.}}} {{/returnType}}{{^returnType}}void {{/returnType}}{{operationId}}({{#allParams}}{{{dataType}}} {{paramName}}{{^-last}}, {{/-last}}{{/allParams}}) throws ApiException {
         {{#returnType}}ApiResponse<{{{.}}}> localVarResp = {{/returnType}}{{operationId}}WithHttpInfo({{#allParams}}{{paramName}}{{^-last}}, {{/-last}}{{/allParams}});{{#returnType}}
-        return localVarResp.getData();{{/returnType}}
+        return localVarResp.getResponseBody();{{/returnType}}
     }
     {{/vendorExtensions.x-streaming}}
     {{/vendorExtensions.x-group-parameters}}
@@ -514,7 +514,7 @@ public class {{classname}} {
             {{dataType}} {{paramName}} = buildBodyParams();
             {{/bodyParams}}
             {{#returnType}}ApiResponse<{{{.}}}> localVarResp = {{/returnType}}{{operationId}}WithHttpInfo({{#allParams}}{{paramName}}{{^-last}}, {{/-last}}{{/allParams}});{{#returnType}}
-            return localVarResp.getData();{{/returnType}}
+            return localVarResp.getResponseBody();{{/returnType}}
         }
         {{/vendorExtensions.x-streaming}}
         {{#vendorExtensions.x-streaming}}
