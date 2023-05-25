@@ -48,6 +48,12 @@ export const KonfigYamlCommon = z
     omitInfoDescription: z.boolean().optional(),
     validateSpec: z.boolean().optional(),
     infoContactUrl: z.string().url().optional(),
+    progressYamlPath: z
+      .string()
+      .optional()
+      .describe(
+        'Overrides the path of progress.yaml which is used in the "konfig fix" CLI command. This is helpful if you have a staging and production OpenAPI Specification and you want to host two different SDK repos for staging and production releases but want to share the same progress for "konfig fix".'
+      ),
     tagPriority: tagPrioritySchema.optional(),
     takeFirstTag: z
       .boolean()
