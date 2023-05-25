@@ -247,7 +247,7 @@ public class ApiClient {
         json = new JSON();
 
         // Set default User-Agent.
-        setUserAgent("{{{httpUserAgent}}}{{^httpUserAgent}}Konfig/{{{artifactVersion}}}/java{{/httpUserAgent}}");
+        setUserAgent("{{{httpUserAgent}}}{{^httpUserAgent}}{{userAgent}}/{{{artifactVersion}}}/java{{/httpUserAgent}}");
 
         authentications = new HashMap<String, Authentication>();
         {{#dynamicOperations}}
