@@ -41,7 +41,7 @@ export const KonfigYamlCommon = z
     filterModels: z.array(z.string()).optional(),
     filterRequestBodies: z.array(z.string()).optional(),
     attachNullabletoAllResponseSchemas: z.boolean().optional(),
-    validateRequiredPropertiesAreNonEmpty: z.boolean().optional(),
+    validateRequiredPropertiesAndParametersAreNonEmpty: z.boolean().optional(),
     stripRequiredStringProperties: z.boolean().optional(),
     infoContactEmail: z.string().optional(),
     infoContactName: z.string().optional(),
