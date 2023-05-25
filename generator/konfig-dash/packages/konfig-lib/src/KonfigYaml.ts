@@ -277,12 +277,34 @@ const generatorCommonRequired = z.object({
   version: z.string(),
 })
 
+const copyFilesSchema = z
+  .object({
+    from: z
+      .string()
+      .describe(
+        'Relative path from directory that contains konfig.yaml to file that you want to copy'
+      ),
+    to: z
+      .string()
+      .describe(
+        'Relative path from directory that contains konfig.yaml to destination you want to copy to'
+      ),
+  })
+  .array()
+
+export type CopyFilesType = z.infer<typeof copyFilesSchema>
+
 export const generatorCommonOptional = z
   .object({
     outputDirectory: z.string(),
     readmeSnippet: z.string().optional(),
     readmeSupportingDescriptionSnippet: z.string().optional(),
     readmeDescriptionSnippet: z.string().optional(),
+    copyFiles: copyFilesSchema
+      .optional()
+      .describe(
+        'Configure copying a set of files from a source to a destination. This is useful if you have custom implementations that you would like duplicated across multiple SDK repos.'
+      ),
     apiDocumentationAuthenticationPartial: z
       .string()
       .describe(
