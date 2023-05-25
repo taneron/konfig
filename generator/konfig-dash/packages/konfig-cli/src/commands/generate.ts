@@ -11,6 +11,7 @@ import {
   KonfigYamlType,
   yamlLanguageServerComment,
   KonfigYamlGeneratorNames,
+  CopyFilesType,
 } from 'konfig-lib'
 import globby from 'globby'
 import { Konfig } from 'konfig-typescript-sdk'
@@ -652,9 +653,11 @@ export default class Deploy extends Command {
           const copyToOutputDirectory = async ({
             generator,
             outputDirectory,
+            generatorConfig,
           }: {
             generator: keyof KonfigYamlType['generators'] | string
             outputDirectory: string
+            generatorConfig: { copyFiles?: CopyFilesType }
             init?: boolean
           }) => {
             if (!topLevelOutputDirectory) return
@@ -703,6 +706,12 @@ export default class Deploy extends Command {
               fs.ensureDirSync(path.dirname(absoluteDestinationPath))
               fs.copyFileSync(file, absoluteDestinationPath)
             }
+
+            if (generatorConfig.copyFiles) {
+              for (const { from, to } of generatorConfig.copyFiles) {
+                fs.copyFileSync(from, to)
+              }
+            }
           }
 
           if (body.additionalGenerators) {
@@ -723,6 +732,7 @@ export default class Deploy extends Command {
               await copyToOutputDirectory({
                 generator: name,
                 outputDirectory: config.outputDirectory,
+                generatorConfig: {}, // TODO: support this?
               })
               CliUx.ux.action.stop()
             }
@@ -748,6 +758,7 @@ export default class Deploy extends Command {
               await copyToOutputDirectory({
                 generator: 'kotlin',
                 outputDirectory,
+                generatorConfig: body.generators.kotlin,
               })
               CliUx.ux.action.stop()
             }
@@ -770,6 +781,7 @@ export default class Deploy extends Command {
               await copyToOutputDirectory({
                 generator: 'objc',
                 outputDirectory,
+                generatorConfig: body.generators.objc,
               })
               CliUx.ux.action.stop()
             }
@@ -787,7 +799,11 @@ export default class Deploy extends Command {
 
               // Copy content of generated SDK to existing directory
               CliUx.ux.action.start(`Copying Go SDK to "${outputDirectory}"`)
-              await copyToOutputDirectory({ generator: 'go', outputDirectory })
+              await copyToOutputDirectory({
+                generator: 'go',
+                outputDirectory,
+                generatorConfig: body.generators.go,
+              })
               fs.writeFileSync(
                 path.join(outputDirectory, 'LICENSE'),
                 generateLicense()
@@ -842,7 +858,11 @@ export default class Deploy extends Command {
               CliUx.ux.action.stop()
               // Copy content of generated SDK to existing directory
               CliUx.ux.action.start(`Copying PHP SDK to "${outputDirectory}"`)
-              await copyToOutputDirectory({ generator: 'php', outputDirectory })
+              await copyToOutputDirectory({
+                generator: 'php',
+                outputDirectory,
+                generatorConfig: body.generators.php,
+              })
               // const phpGitRepo = simpleGit(outputDirectory)
               // await phpGitRepo.add('.')
               // await phpGitRepo.commit(generateConfigId)
@@ -921,6 +941,7 @@ export default class Deploy extends Command {
               await copyToOutputDirectory({
                 generator: 'ruby',
                 outputDirectory,
+                generatorConfig: body.generators.ruby,
               })
               CliUx.ux.action.stop()
             }
@@ -949,6 +970,7 @@ export default class Deploy extends Command {
               await copyToOutputDirectory({
                 generator: 'swift',
                 outputDirectory,
+                generatorConfig: body.generators.swift,
               })
               CliUx.ux.action.stop()
             }
@@ -970,6 +992,7 @@ export default class Deploy extends Command {
               await copyToOutputDirectory({
                 generator: 'csharp',
                 outputDirectory,
+                generatorConfig: body.generators.csharp,
               })
               fs.copySync(
                 body.generators.csharp.logoPath,
@@ -995,6 +1018,7 @@ export default class Deploy extends Command {
               await copyToOutputDirectory({
                 generator: 'java',
                 outputDirectory,
+                generatorConfig: body.generators.android,
               })
 
               // Make gradlew executable from command line
@@ -1022,6 +1046,7 @@ export default class Deploy extends Command {
               await copyToOutputDirectory({
                 generator: 'java',
                 outputDirectory,
+                generatorConfig: body.generators.java,
               })
               CliUx.ux.action.stop()
             }
@@ -1045,6 +1070,7 @@ export default class Deploy extends Command {
               await copyToOutputDirectory({
                 generator: 'python',
                 outputDirectory,
+                generatorConfig: body.generators.python,
               })
               fs.writeFileSync(
                 path.join(outputDirectory, 'LICENSE'),
@@ -1083,6 +1109,11 @@ export default class Deploy extends Command {
             const outputDirectory =
               flags.copyTypescriptOutputDir ??
               body.generators.typescript.outputDirectory
+            if ('generatorVersion' in body.generators.typescript) {
+              throw Error(
+                'Unsupported generator. Use generator version 1 instead.'
+              )
+            }
             if (outputDirectory && !flags.doNotCopy) {
               CliUx.ux.action.start(
                 `Deleting contents of existing directory "${outputDirectory}"`
@@ -1097,6 +1128,7 @@ export default class Deploy extends Command {
               await copyToOutputDirectory({
                 generator: 'typescript',
                 outputDirectory,
+                generatorConfig: body.generators.typescript,
               })
 
               // find all files in outputdirectory that end with .md and use the "globby" package
