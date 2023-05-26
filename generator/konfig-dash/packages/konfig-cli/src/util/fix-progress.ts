@@ -465,7 +465,7 @@ export class Progress {
         Progress.getProgressPath({ konfigDir, progressYamlPathOverride })
       )
     )
-      return new Progress({ konfigDir })
+      return new Progress({ konfigDir, progressYamlPathOverride })
     const progress = progressSchema.parse(
       yaml.load(
         fs.readFileSync(
@@ -474,7 +474,7 @@ export class Progress {
         )
       )
     )
-    return new Progress({ progress, konfigDir })
+    return new Progress({ progress, konfigDir, progressYamlPathOverride })
   }
 
   save() {
