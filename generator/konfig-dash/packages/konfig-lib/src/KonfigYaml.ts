@@ -291,6 +291,7 @@ export const generatorCommonOptional = z
       .optional(),
     disabled: z.boolean().optional(),
     defaultTimeout: z.number().optional().default(0),
+    userAgent: z.string().optional().default('Konfig'),
   })
   .merge(testConfig)
 

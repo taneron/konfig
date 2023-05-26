@@ -802,7 +802,24 @@ describe('transformSpec', () => {
     })
   })
 
-  describe('validateRequiredPropertiesAreNonEmpty', () => {
+  describe('validateRequiredPropertiesAndParametersAreNonEmpty - collections', () => {
+    it('decentro', async () => {
+      const specPath = path.join(
+        __dirname,
+        'transform-spec-test',
+        'decentro-collections.yaml'
+      )
+      const specString = fs.readFileSync(specPath, 'utf-8')
+      const spec = await transformSpec({
+        specString,
+        generator: 'python',
+        validateRequiredPropertiesAndParametersAreNonEmpty: true,
+      })
+      expect(spec).toMatchSnapshot()
+    })
+  })
+
+  describe('validateRequiredPropertiesAndParametersAreNonEmpty', () => {
     it('decentro', async () => {
       const specPath = path.join(
         __dirname,
@@ -813,7 +830,7 @@ describe('transformSpec', () => {
       const spec = await transformSpec({
         specString,
         generator: 'python',
-        validateRequiredPropertiesAreNonEmpty: true,
+        validateRequiredPropertiesAndParametersAreNonEmpty: true,
       })
       expect(spec).toMatchSnapshot()
     })

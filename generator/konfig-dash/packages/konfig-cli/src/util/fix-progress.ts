@@ -177,17 +177,21 @@ export class Progress {
   progress: ProgressSchema = progressSchema.parse({})
   noSave?: boolean
   konfigDir?: string
+  progressYamlPathOverride?: string
 
   constructor({
     progress,
     noSave,
     konfigDir,
+    progressYamlPathOverride,
   }: {
     progress?: ProgressInput | ProgressSchema
     noSave?: boolean
     konfigDir?: string
+    progressYamlPathOverride?: string
   }) {
     this.konfigDir = konfigDir
+    this.progressYamlPathOverride = progressYamlPathOverride
     if (!progress) return
     this.progress = progressSchema.parse(progress)
     this.noSave = noSave
@@ -449,12 +453,25 @@ export class Progress {
     this.save()
   }
 
-  static getSaved({ konfigDir }: { konfigDir: string }): Progress {
-    if (!fs.existsSync(Progress.getProgressPath({ konfigDir })))
+  static getSaved({
+    konfigDir,
+    progressYamlPathOverride,
+  }: {
+    konfigDir: string
+    progressYamlPathOverride?: string
+  }): Progress {
+    if (
+      !fs.existsSync(
+        Progress.getProgressPath({ konfigDir, progressYamlPathOverride })
+      )
+    )
       return new Progress({ konfigDir })
     const progress = progressSchema.parse(
       yaml.load(
-        fs.readFileSync(Progress.getProgressPath({ konfigDir }), 'utf-8')
+        fs.readFileSync(
+          Progress.getProgressPath({ konfigDir, progressYamlPathOverride }),
+          'utf-8'
+        )
       )
     )
     return new Progress({ progress, konfigDir })
@@ -463,12 +480,22 @@ export class Progress {
   save() {
     if (this.noSave) return
     fs.writeFileSync(
-      Progress.getProgressPath({ konfigDir: this.konfigDir ?? process.cwd() }),
+      Progress.getProgressPath({
+        konfigDir: this.konfigDir ?? process.cwd(),
+        progressYamlPathOverride: this.progressYamlPathOverride,
+      }),
       yaml.dump(this.progress, { sortKeys: true })
     )
   }
 
-  static getProgressPath({ konfigDir }: { konfigDir: string }) {
+  static getProgressPath({
+    konfigDir,
+    progressYamlPathOverride,
+  }: {
+    konfigDir: string
+    progressYamlPathOverride?: string
+  }): string {
+    if (progressYamlPathOverride !== undefined) return progressYamlPathOverride
     // verify that we are in a konfig folder
     parseKonfigYaml({ configDir: konfigDir })
     const sdkKonfigFolder = getKonfigFolder({ dir: konfigDir })

@@ -153,6 +153,9 @@ public class AdditionalProperties {
   @JsonProperty("gemVersion")
   private String gemVersion;
 
+  @JsonProperty("userAgent")
+  private String userAgent;
+
   @JsonProperty("npmName")
   private String npmName;
 
@@ -974,6 +977,25 @@ public class AdditionalProperties {
     this.gemVersion = gemVersion;
   }
 
+  public AdditionalProperties userAgent(String userAgent) {
+    this.userAgent = userAgent;
+    return this;
+  }
+
+  /**
+   * Get userAgent
+   * @return userAgent
+  */
+  
+  @Schema(name = "userAgent", required = false)
+  public String getUserAgent() {
+    return userAgent;
+  }
+
+  public void setUserAgent(String userAgent) {
+    this.userAgent = userAgent;
+  }
+
   public AdditionalProperties npmName(String npmName) {
     this.npmName = npmName;
     return this;
@@ -1192,6 +1214,7 @@ public class AdditionalProperties {
         Objects.equals(this.npmVersion, additionalProperties.npmVersion) &&
         Objects.equals(this.gemName, additionalProperties.gemName) &&
         Objects.equals(this.gemVersion, additionalProperties.gemVersion) &&
+        Objects.equals(this.userAgent, additionalProperties.userAgent) &&
         Objects.equals(this.npmName, additionalProperties.npmName) &&
         Objects.equals(this.readmeSnippet, additionalProperties.readmeSnippet) &&
         Objects.equals(this.asyncReadmeSnippet, additionalProperties.asyncReadmeSnippet) &&
@@ -1204,7 +1227,7 @@ public class AdditionalProperties {
 
   @Override
   public int hashCode() {
-    return Objects.hash(objectPropertyNamingConvention, gitRepoName, clientName, moduleName, outputDirectory, topLevelOperations, omitInfoDescription, omitModelDocumentation, omitApiDocumentation, tagPriority, setSkipSerializationToTrueByDefault, includeFetchAdapter, packagistUsername, toStringReturnsJson, includeEventSourceParser, keepAllParametersOptional, apiDocumentationAuthenticationPartial, composerPackageName, defaultTimeout, useSingleRequestParameter, artifactUrl, artifactId, groupId, invokerPackage, modelPackage, apiPackage, projectName, podVersion, removeKonfigBranding, podName, classPrefix, authorName, authorEmail, podAuthors, swiftPackagePath, disallowAdditionalPropertiesIfNotPresent, packageVersion, packageUrl, npmVersion, gemName, gemVersion, npmName, readmeSnippet, asyncReadmeSnippet, readmeSupportingDescriptionSnippet, readmeDescriptionSnippet, apiKeyAlias, clientState, clientStateIsOptional);
+    return Objects.hash(objectPropertyNamingConvention, gitRepoName, clientName, moduleName, outputDirectory, topLevelOperations, omitInfoDescription, omitModelDocumentation, omitApiDocumentation, tagPriority, setSkipSerializationToTrueByDefault, includeFetchAdapter, packagistUsername, toStringReturnsJson, includeEventSourceParser, keepAllParametersOptional, apiDocumentationAuthenticationPartial, composerPackageName, defaultTimeout, useSingleRequestParameter, artifactUrl, artifactId, groupId, invokerPackage, modelPackage, apiPackage, projectName, podVersion, removeKonfigBranding, podName, classPrefix, authorName, authorEmail, podAuthors, swiftPackagePath, disallowAdditionalPropertiesIfNotPresent, packageVersion, packageUrl, npmVersion, gemName, gemVersion, userAgent, npmName, readmeSnippet, asyncReadmeSnippet, readmeSupportingDescriptionSnippet, readmeDescriptionSnippet, apiKeyAlias, clientState, clientStateIsOptional);
   }
 
   @Override
@@ -1252,6 +1275,7 @@ public class AdditionalProperties {
     sb.append("    npmVersion: ").append(toIndentedString(npmVersion)).append("\n");
     sb.append("    gemName: ").append(toIndentedString(gemName)).append("\n");
     sb.append("    gemVersion: ").append(toIndentedString(gemVersion)).append("\n");
+    sb.append("    userAgent: ").append(toIndentedString(userAgent)).append("\n");
     sb.append("    npmName: ").append(toIndentedString(npmName)).append("\n");
     sb.append("    readmeSnippet: ").append(toIndentedString(readmeSnippet)).append("\n");
     sb.append("    asyncReadmeSnippet: ").append(toIndentedString(asyncReadmeSnippet)).append("\n");

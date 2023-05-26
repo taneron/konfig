@@ -97,6 +97,7 @@ export default class Fix extends Command {
 
     const progress: Progress = Progress.getSaved({
       konfigDir: flags.konfigDir ?? process.cwd(),
+      progressYamlPathOverride: parsedKonfigYaml.progressYamlPath,
     })
 
     const {

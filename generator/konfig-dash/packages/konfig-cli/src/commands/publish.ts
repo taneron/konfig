@@ -378,8 +378,6 @@ export default class Publish extends Command {
       // PyPI config detected
       if (
         'generator' in generatorConfig &&
-        '_brand' in generatorConfig &&
-        generatorConfig._brand === 'python' &&
         (generatorConfig.generator === 'python' ||
           generatorConfig.generator === 'python-prior')
       ) {

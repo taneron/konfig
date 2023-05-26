@@ -227,6 +227,7 @@ export const myHandler = async (event: APIGatewayEvent, context: Context) => {
           apiDocumentationAuthenticationPartial:
             generatorConfig.apiDocumentationAuthenticationPartial,
           defaultTimeout: generatorConfig.defaultTimeout,
+          userAgent: generatorConfig.userAgent,
         },
         packageName: generatorConfig.packageName,
         generatorName: 'go',
@@ -259,6 +260,7 @@ export const myHandler = async (event: APIGatewayEvent, context: Context) => {
           apiDocumentationAuthenticationPartial:
             generatorConfig.apiDocumentationAuthenticationPartial,
           defaultTimeout: generatorConfig.defaultTimeout,
+          userAgent: generatorConfig.userAgent,
         },
         packageName: `${generatorConfig.groupId}.client`,
         artifactVersion: generatorConfig.version,
@@ -291,6 +293,7 @@ export const myHandler = async (event: APIGatewayEvent, context: Context) => {
           gemName: generatorConfig.gemName,
           gemVersion: generatorConfig.version,
           defaultTimeout: generatorConfig.defaultTimeout,
+          userAgent: generatorConfig.userAgent,
           gitRepoName: generatorConfig.git.repoName,
           moduleName: generatorConfig.moduleName,
           clientState: generatorConfig.clientState,
@@ -327,6 +330,7 @@ export const myHandler = async (event: APIGatewayEvent, context: Context) => {
           apiDocumentationAuthenticationPartial:
             generatorConfig.apiDocumentationAuthenticationPartial,
           defaultTimeout: generatorConfig.defaultTimeout,
+          userAgent: generatorConfig.userAgent,
           gitRepoName: generatorConfig.git.repoName,
           clientState: generatorConfig.clientState,
         },
@@ -370,6 +374,7 @@ export const myHandler = async (event: APIGatewayEvent, context: Context) => {
           apiDocumentationAuthenticationPartial:
             generatorConfig.apiDocumentationAuthenticationPartial,
           defaultTimeout: generatorConfig.defaultTimeout,
+          userAgent: generatorConfig.userAgent,
         },
         artifactVersion: generatorConfig.version,
         generatorName: 'java',
@@ -414,6 +419,7 @@ export const myHandler = async (event: APIGatewayEvent, context: Context) => {
           readmeDescriptionSnippet: generatorConfig.readmeDescriptionSnippet,
           disallowAdditionalPropertiesIfNotPresent: false,
           defaultTimeout: generatorConfig.defaultTimeout,
+          userAgent: generatorConfig.userAgent,
           useSingleRequestParameter: true,
         },
         artifactVersion: generatorConfig.version,
@@ -452,6 +458,7 @@ export const myHandler = async (event: APIGatewayEvent, context: Context) => {
           apiDocumentationAuthenticationPartial:
             generatorConfig.apiDocumentationAuthenticationPartial,
           defaultTimeout: generatorConfig.defaultTimeout,
+          userAgent: generatorConfig.userAgent,
         },
         generatorName: 'swift5',
         gitHost: generatorConfig.git?.host,
@@ -483,6 +490,7 @@ export const myHandler = async (event: APIGatewayEvent, context: Context) => {
           apiDocumentationAuthenticationPartial:
             generatorConfig.apiDocumentationAuthenticationPartial,
           defaultTimeout: generatorConfig.defaultTimeout,
+          userAgent: generatorConfig.userAgent,
           clientState: generatorConfig.clientState,
         },
         generatorName: 'csharp-netcore',
@@ -538,6 +546,7 @@ export const myHandler = async (event: APIGatewayEvent, context: Context) => {
           setSkipSerializationToTrueByDefault:
             generatorConfig.setSkipSerializationToTrueByDefault,
           defaultTimeout: generatorConfig.defaultTimeout,
+          userAgent: generatorConfig.userAgent,
           // Only include the top-level operations if it is an array (i.e. ordered)
           ...(Array.isArray(generatorConfig.topLevelOperations)
             ? { topLevelOperations: generatorConfig.topLevelOperations }
@@ -611,6 +620,7 @@ export const myHandler = async (event: APIGatewayEvent, context: Context) => {
               generatorConfig.apiDocumentationAuthenticationPartial,
             clientState: generatorConfig.clientState,
             defaultTimeout: generatorConfig.defaultTimeout,
+            userAgent: generatorConfig.userAgent,
             includeFetchAdapter: generatorConfig.includeFetchAdapter,
             includeEventSourceParser: generatorConfig.includeEventSourceParser,
           },
