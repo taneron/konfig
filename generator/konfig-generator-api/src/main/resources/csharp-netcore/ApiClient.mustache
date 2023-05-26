@@ -454,6 +454,10 @@ namespace {{packageName}}.Client
                 MaxTimeout = configuration.Timeout,
                 Proxy = configuration.Proxy,
             };
+            if (!configuration.VerifySsl)
+            {
+                clientOptions.RemoteCertificateValidationCallback = (sender, certificate, chain, sslPolicyErrors) => true;
+            };
 
             RestClient client = new RestClient(clientOptions)
                 .UseSerializer(() => new CustomJsonCodec(SerializerSettings, configuration));
@@ -565,6 +569,10 @@ namespace {{packageName}}.Client
                 ClientCertificates = configuration.ClientCertificates,
                 MaxTimeout = configuration.Timeout,
                 Proxy = configuration.Proxy,
+            };
+            if (!configuration.VerifySsl)
+            {
+                clientOptions.RemoteCertificateValidationCallback = (sender, certificate, chain, sslPolicyErrors) => true;
             };
 
             RestClient client = new RestClient(clientOptions)

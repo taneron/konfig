@@ -134,6 +134,7 @@ namespace {{packageName}}.Client
             DefaultHeaders = new {{^net35}}Concurrent{{/net35}}Dictionary<string, string>();
             ApiKey = new {{^net35}}Concurrent{{/net35}}Dictionary<string, string>();
             ApiKeyPrefix = new {{^net35}}Concurrent{{/net35}}Dictionary<string, string>();
+            VerifySsl = true;
             {{#hasOAuthMethods}}
             {{#oauthMethods}}
             {{#-first}}
@@ -314,6 +315,12 @@ namespace {{packageName}}.Client
         /// </summary>
         /// <value>The password.</value>
         public virtual string Password { get; set; }
+
+        /// <summary>
+        /// Gets or sets the verifySsl flag.
+        /// </summary>
+        /// <value>verifySsl flag.</value>
+        public virtual bool VerifySsl { get; set; }
 
         /// <summary>
         /// Gets the API key with prefix.
@@ -706,6 +713,7 @@ namespace {{packageName}}.Client
                 UserAgent = second.UserAgent ?? first.UserAgent,
                 Username = second.Username ?? first.Username,
                 Password = second.Password ?? first.Password,
+                VerifySsl = second.VerifySsl && first.VerifySsl,
                 AccessToken = second.AccessToken ?? first.AccessToken,
                 {{#clientState}}
                 {{{.}}} = second.{{{.}}} ?? first.{{{.}}},
