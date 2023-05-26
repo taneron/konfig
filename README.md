@@ -7,11 +7,11 @@ The monorepo that holds everything...
 Get the repository on your local machine. **Takes a minute.**
 
 ```shell
-git clone https://github.com/konfig-dev/konfig
+git clone https://github.com/konfig-dev/konfig --recursive
 cd konfig
 ```
 
-This repository has submodules so pull all of them. **Also take a few minutes.**
+This repository has submodules so pull all of them.  **Also take a few minutes.**
 
 ```shell
 git submodule update --init --recursive --remote --merge
