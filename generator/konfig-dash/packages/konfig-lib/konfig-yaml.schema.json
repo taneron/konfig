@@ -99,7 +99,7 @@
         "attachNullabletoAllResponseSchemas": {
           "type": "boolean"
         },
-        "validateRequiredPropertiesAreNonEmpty": {
+        "validateRequiredPropertiesAndParametersAreNonEmpty": {
           "type": "boolean"
         },
         "stripRequiredStringProperties": {
@@ -120,6 +120,10 @@
         "infoContactUrl": {
           "type": "string",
           "format": "uri"
+        },
+        "progressYamlPath": {
+          "type": "string",
+          "description": "Overrides the path of progress.yaml which is used in the \"konfig fix\" CLI command. This is helpful if you have a staging and production OpenAPI Specification and you want to host two different SDK repos for staging and production releases but want to share the same progress for \"konfig fix\"."
         },
         "tagPriority": {
           "type": "array",
@@ -223,6 +227,28 @@
                 "readmeDescriptionSnippet": {
                   "type": "string"
                 },
+                "copyFiles": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "from": {
+                        "type": "string",
+                        "description": "Relative path from directory that contains konfig.yaml to file that you want to copy"
+                      },
+                      "to": {
+                        "type": "string",
+                        "description": "Relative path from directory that contains konfig.yaml to destination you want to copy to"
+                      }
+                    },
+                    "required": [
+                      "from",
+                      "to"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "description": "Configure copying a set of files from a source to a destination. This is useful if you have custom implementations that you would like duplicated across multiple SDK repos."
+                },
                 "apiDocumentationAuthenticationPartial": {
                   "type": "string",
                   "description": "Filepath to file containing override for the section in generated documentation for setting up authentication in the SDK."
@@ -233,6 +259,10 @@
                 "defaultTimeout": {
                   "type": "number",
                   "default": 0
+                },
+                "userAgent": {
+                  "type": "string",
+                  "default": "Konfig"
                 },
                 "test": {
                   "type": "object",
@@ -324,6 +354,9 @@
                 "readmeDescriptionSnippet": {
                   "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/readmeDescriptionSnippet"
                 },
+                "copyFiles": {
+                  "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/copyFiles"
+                },
                 "apiDocumentationAuthenticationPartial": {
                   "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/apiDocumentationAuthenticationPartial"
                 },
@@ -332,6 +365,9 @@
                 },
                 "defaultTimeout": {
                   "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/defaultTimeout"
+                },
+                "userAgent": {
+                  "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/userAgent"
                 },
                 "test": {
                   "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/test"
@@ -381,6 +417,9 @@
                 "readmeDescriptionSnippet": {
                   "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/readmeDescriptionSnippet"
                 },
+                "copyFiles": {
+                  "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/copyFiles"
+                },
                 "apiDocumentationAuthenticationPartial": {
                   "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/apiDocumentationAuthenticationPartial"
                 },
@@ -389,6 +428,9 @@
                 },
                 "defaultTimeout": {
                   "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/defaultTimeout"
+                },
+                "userAgent": {
+                  "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/userAgent"
                 },
                 "test": {
                   "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/test"
@@ -440,6 +482,9 @@
                 "readmeDescriptionSnippet": {
                   "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/readmeDescriptionSnippet"
                 },
+                "copyFiles": {
+                  "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/copyFiles"
+                },
                 "apiDocumentationAuthenticationPartial": {
                   "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/apiDocumentationAuthenticationPartial"
                 },
@@ -448,6 +493,9 @@
                 },
                 "defaultTimeout": {
                   "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/defaultTimeout"
+                },
+                "userAgent": {
+                  "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/userAgent"
                 },
                 "test": {
                   "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/test"
@@ -589,6 +637,9 @@
                     "readmeDescriptionSnippet": {
                       "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/readmeDescriptionSnippet"
                     },
+                    "copyFiles": {
+                      "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/copyFiles"
+                    },
                     "apiDocumentationAuthenticationPartial": {
                       "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/apiDocumentationAuthenticationPartial"
                     },
@@ -597,6 +648,9 @@
                     },
                     "defaultTimeout": {
                       "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/defaultTimeout"
+                    },
+                    "userAgent": {
+                      "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/userAgent"
                     },
                     "test": {
                       "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/test"
@@ -809,6 +863,9 @@
                 "readmeDescriptionSnippet": {
                   "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/readmeDescriptionSnippet"
                 },
+                "copyFiles": {
+                  "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/copyFiles"
+                },
                 "apiDocumentationAuthenticationPartial": {
                   "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/apiDocumentationAuthenticationPartial"
                 },
@@ -817,6 +874,9 @@
                 },
                 "defaultTimeout": {
                   "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/defaultTimeout"
+                },
+                "userAgent": {
+                  "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/userAgent"
                 },
                 "test": {
                   "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/test"
@@ -866,6 +926,9 @@
                 "readmeDescriptionSnippet": {
                   "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/readmeDescriptionSnippet"
                 },
+                "copyFiles": {
+                  "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/copyFiles"
+                },
                 "apiDocumentationAuthenticationPartial": {
                   "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/apiDocumentationAuthenticationPartial"
                 },
@@ -874,6 +937,9 @@
                 },
                 "defaultTimeout": {
                   "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/defaultTimeout"
+                },
+                "userAgent": {
+                  "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/userAgent"
                 },
                 "test": {
                   "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/test"
@@ -927,6 +993,9 @@
                 "readmeDescriptionSnippet": {
                   "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/readmeDescriptionSnippet"
                 },
+                "copyFiles": {
+                  "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/copyFiles"
+                },
                 "apiDocumentationAuthenticationPartial": {
                   "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/apiDocumentationAuthenticationPartial"
                 },
@@ -935,6 +1004,9 @@
                 },
                 "defaultTimeout": {
                   "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/defaultTimeout"
+                },
+                "userAgent": {
+                  "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/userAgent"
                 },
                 "test": {
                   "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/test"
@@ -981,6 +1053,9 @@
                 "readmeDescriptionSnippet": {
                   "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/readmeDescriptionSnippet"
                 },
+                "copyFiles": {
+                  "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/copyFiles"
+                },
                 "apiDocumentationAuthenticationPartial": {
                   "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/apiDocumentationAuthenticationPartial"
                 },
@@ -989,6 +1064,9 @@
                 },
                 "defaultTimeout": {
                   "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/defaultTimeout"
+                },
+                "userAgent": {
+                  "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/userAgent"
                 },
                 "test": {
                   "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/test"
@@ -1039,6 +1117,9 @@
                 "readmeDescriptionSnippet": {
                   "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/readmeDescriptionSnippet"
                 },
+                "copyFiles": {
+                  "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/copyFiles"
+                },
                 "apiDocumentationAuthenticationPartial": {
                   "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/apiDocumentationAuthenticationPartial"
                 },
@@ -1047,6 +1128,9 @@
                 },
                 "defaultTimeout": {
                   "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/defaultTimeout"
+                },
+                "userAgent": {
+                  "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/userAgent"
                 },
                 "test": {
                   "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/test"
@@ -1094,6 +1178,9 @@
                 "readmeDescriptionSnippet": {
                   "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/readmeDescriptionSnippet"
                 },
+                "copyFiles": {
+                  "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/copyFiles"
+                },
                 "apiDocumentationAuthenticationPartial": {
                   "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/apiDocumentationAuthenticationPartial"
                 },
@@ -1102,6 +1189,9 @@
                 },
                 "defaultTimeout": {
                   "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/defaultTimeout"
+                },
+                "userAgent": {
+                  "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/userAgent"
                 },
                 "test": {
                   "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/test"
@@ -1169,6 +1259,9 @@
                   "readmeDescriptionSnippet": {
                     "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/readmeDescriptionSnippet"
                   },
+                  "copyFiles": {
+                    "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/copyFiles"
+                  },
                   "apiDocumentationAuthenticationPartial": {
                     "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/apiDocumentationAuthenticationPartial"
                   },
@@ -1177,6 +1270,9 @@
                   },
                   "defaultTimeout": {
                     "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/defaultTimeout"
+                  },
+                  "userAgent": {
+                    "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/userAgent"
                   },
                   "test": {
                     "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/test"
@@ -1235,6 +1331,9 @@
                   "readmeDescriptionSnippet": {
                     "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/readmeDescriptionSnippet"
                   },
+                  "copyFiles": {
+                    "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/copyFiles"
+                  },
                   "apiDocumentationAuthenticationPartial": {
                     "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/apiDocumentationAuthenticationPartial"
                   },
@@ -1243,6 +1342,9 @@
                   },
                   "defaultTimeout": {
                     "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/defaultTimeout"
+                  },
+                  "userAgent": {
+                    "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/userAgent"
                   },
                   "test": {
                     "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/test"
@@ -1295,6 +1397,9 @@
                   "readmeDescriptionSnippet": {
                     "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/readmeDescriptionSnippet"
                   },
+                  "copyFiles": {
+                    "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/copyFiles"
+                  },
                   "apiDocumentationAuthenticationPartial": {
                     "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/apiDocumentationAuthenticationPartial"
                   },
@@ -1303,6 +1408,9 @@
                   },
                   "defaultTimeout": {
                     "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/defaultTimeout"
+                  },
+                  "userAgent": {
+                    "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/userAgent"
                   },
                   "test": {
                     "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/test"
@@ -1349,6 +1457,9 @@
                   "readmeDescriptionSnippet": {
                     "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/readmeDescriptionSnippet"
                   },
+                  "copyFiles": {
+                    "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/copyFiles"
+                  },
                   "apiDocumentationAuthenticationPartial": {
                     "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/apiDocumentationAuthenticationPartial"
                   },
@@ -1357,6 +1468,9 @@
                   },
                   "defaultTimeout": {
                     "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/defaultTimeout"
+                  },
+                  "userAgent": {
+                    "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/userAgent"
                   },
                   "test": {
                     "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/test"
@@ -1489,6 +1603,9 @@
                   "readmeDescriptionSnippet": {
                     "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/readmeDescriptionSnippet"
                   },
+                  "copyFiles": {
+                    "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/copyFiles"
+                  },
                   "apiDocumentationAuthenticationPartial": {
                     "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/apiDocumentationAuthenticationPartial"
                   },
@@ -1497,6 +1614,9 @@
                   },
                   "defaultTimeout": {
                     "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/defaultTimeout"
+                  },
+                  "userAgent": {
+                    "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/userAgent"
                   },
                   "test": {
                     "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/test"
@@ -1549,6 +1669,9 @@
                   "readmeDescriptionSnippet": {
                     "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/readmeDescriptionSnippet"
                   },
+                  "copyFiles": {
+                    "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/copyFiles"
+                  },
                   "apiDocumentationAuthenticationPartial": {
                     "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/apiDocumentationAuthenticationPartial"
                   },
@@ -1557,6 +1680,9 @@
                   },
                   "defaultTimeout": {
                     "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/defaultTimeout"
+                  },
+                  "userAgent": {
+                    "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/userAgent"
                   },
                   "test": {
                     "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/test"
@@ -1612,6 +1738,9 @@
                   "readmeDescriptionSnippet": {
                     "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/readmeDescriptionSnippet"
                   },
+                  "copyFiles": {
+                    "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/copyFiles"
+                  },
                   "apiDocumentationAuthenticationPartial": {
                     "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/apiDocumentationAuthenticationPartial"
                   },
@@ -1620,6 +1749,9 @@
                   },
                   "defaultTimeout": {
                     "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/defaultTimeout"
+                  },
+                  "userAgent": {
+                    "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/userAgent"
                   },
                   "test": {
                     "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/test"
@@ -1669,6 +1801,9 @@
                   "readmeDescriptionSnippet": {
                     "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/readmeDescriptionSnippet"
                   },
+                  "copyFiles": {
+                    "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/copyFiles"
+                  },
                   "apiDocumentationAuthenticationPartial": {
                     "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/apiDocumentationAuthenticationPartial"
                   },
@@ -1677,6 +1812,9 @@
                   },
                   "defaultTimeout": {
                     "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/defaultTimeout"
+                  },
+                  "userAgent": {
+                    "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/userAgent"
                   },
                   "test": {
                     "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/test"
@@ -1728,6 +1866,9 @@
                   "readmeDescriptionSnippet": {
                     "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/readmeDescriptionSnippet"
                   },
+                  "copyFiles": {
+                    "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/copyFiles"
+                  },
                   "apiDocumentationAuthenticationPartial": {
                     "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/apiDocumentationAuthenticationPartial"
                   },
@@ -1736,6 +1877,9 @@
                   },
                   "defaultTimeout": {
                     "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/defaultTimeout"
+                  },
+                  "userAgent": {
+                    "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/userAgent"
                   },
                   "test": {
                     "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/test"
@@ -1787,6 +1931,9 @@
                   "readmeDescriptionSnippet": {
                     "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/readmeDescriptionSnippet"
                   },
+                  "copyFiles": {
+                    "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/copyFiles"
+                  },
                   "apiDocumentationAuthenticationPartial": {
                     "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/apiDocumentationAuthenticationPartial"
                   },
@@ -1795,6 +1942,9 @@
                   },
                   "defaultTimeout": {
                     "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/defaultTimeout"
+                  },
+                  "userAgent": {
+                    "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/userAgent"
                   },
                   "test": {
                     "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/test"
