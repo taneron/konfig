@@ -40,6 +40,10 @@ class SessionNotFoundError(BaseModel):
     session_id: str
     error: str
 
+# magic...
+# https://stackoverflow.com/a/56434301
+import nest_asyncio
+nest_asyncio.apply()
 
 @app.on_event("startup")
 async def startup():
