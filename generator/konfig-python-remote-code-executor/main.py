@@ -28,6 +28,9 @@ class SessionInfo(BaseModel):
 class SessionListResponse(BaseModel):
     sessions: list[SessionInfo]
 
+class SessionCloseResponse(BaseModel):
+    message: str
+
 class ExecutionResult(BaseModel):
     result: str
     output: str
@@ -43,19 +46,19 @@ async def startup():
     async with await FileWriteStream.from_path("openapi.json") as stream:
         await stream.send(bytes(json.dumps(app.openapi(), indent=4).encode("utf-8")))
 
-@app.post("/sessions/create", response_model=SessionCreateResponse)
+@app.post("/sessions/create", response_model=SessionCreateResponse, tags=["session"])
 async def create_session():
     session_id = str(uuid.uuid4())
     shell = TerminalInteractiveShell()
     sessions[session_id] = shell
     return SessionCreateResponse(session_id=session_id)
 
-@app.get("/sessions/list", response_model=SessionListResponse)
+@app.get("/sessions/list", response_model=SessionListResponse, tags=["session"])
 async def list_sessions():
     session_list = [SessionInfo(session_id=session_id) for session_id in sessions]
     return SessionListResponse(sessions=session_list)
 
-@app.post("/sessions/execute", response_model=ExecutionResult, responses={404: {"model": SessionNotFoundError}})
+@app.post("/sessions/execute", response_model=ExecutionResult, responses={404: {"model": SessionNotFoundError}}, tags=["session"])
 async def execute_code(request: SessionExecuteRequest):
     session_id = request.session_id
     code = request.code
@@ -94,12 +97,12 @@ async def execute_code(request: SessionExecuteRequest):
     else:
         return JSONResponse(status_code=404, content={"error":"Session not found", "session_id": session_id})
 
-@app.post("/sessions/close", responses={404: {"model": SessionNotFoundError}})
+@app.post("/sessions/close", response_model=SessionCloseResponse, responses={404: {"model": SessionNotFoundError}}, tags=["session"])
 async def close_session(request: SessionCloseRequest):
     session_id = request.session_id
 
     if session_id in sessions:
         del sessions[session_id]
-        return {"message": "Session closed"}
+        return SessionCloseResponse(message="Session closed")
     else:
         raise HTTPException(status_code=404, detail=SessionNotFoundError(error="Session not found", session_id=session_id))

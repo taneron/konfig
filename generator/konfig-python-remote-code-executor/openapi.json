@@ -7,6 +7,9 @@
     "paths": {
         "/sessions/create": {
             "post": {
+                "tags": [
+                    "session"
+                ],
                 "summary": "Create Session",
                 "operationId": "create_session_sessions_create_post",
                 "responses": {
@@ -25,6 +28,9 @@
         },
         "/sessions/list": {
             "get": {
+                "tags": [
+                    "session"
+                ],
                 "summary": "List Sessions",
                 "operationId": "list_sessions_sessions_list_get",
                 "responses": {
@@ -43,6 +49,9 @@
         },
         "/sessions/execute": {
             "post": {
+                "tags": [
+                    "session"
+                ],
                 "summary": "Execute Code",
                 "operationId": "execute_code_sessions_execute_post",
                 "requestBody": {
@@ -91,6 +100,9 @@
         },
         "/sessions/close": {
             "post": {
+                "tags": [
+                    "session"
+                ],
                 "summary": "Close Session",
                 "operationId": "close_session_sessions_close_post",
                 "requestBody": {
@@ -108,7 +120,9 @@
                         "description": "Successful Response",
                         "content": {
                             "application/json": {
-                                "schema": {}
+                                "schema": {
+                                    "$ref": "#/components/schemas/SessionCloseResponse"
+                                }
                             }
                         }
                     },
@@ -183,6 +197,19 @@
                 "properties": {
                     "session_id": {
                         "title": "Session Id",
+                        "type": "string"
+                    }
+                }
+            },
+            "SessionCloseResponse": {
+                "title": "SessionCloseResponse",
+                "required": [
+                    "message"
+                ],
+                "type": "object",
+                "properties": {
+                    "message": {
+                        "title": "Message",
                         "type": "string"
                     }
                 }
