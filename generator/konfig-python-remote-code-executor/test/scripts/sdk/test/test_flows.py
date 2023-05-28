@@ -52,6 +52,28 @@ class TestSessionsCreate(unittest.TestCase):
         r3 = api.session.execute(session_id=session_id, code="pprint(test)")
         pprint(r3.body)
 
+    def test_async(self):
+        api = PythonRce(Configuration())
+        session_create_response = api.session.create()
+        print(session_create_response.body)
+        session_id = session_create_response.body["session_id"]
+        r = api.session.execute(
+            session_id=session_id,
+            code="""%autoawait""",
+        )
+        pprint(r.body)
+        r1 = api.session.execute(
+            session_id=session_id,
+            code="""import aiohttp
+from pprint import pprint
+session = aiohttp.ClientSession()
+result = session.get('https://api.github.com')
+response = await result
+pprint(await response.json())
+            """,
+        )
+        pprint(r1.body)
+
     def test_kernels_do_not_have_access_to_each_others_memory(self):
         api = PythonRce(Configuration())
         s1 = api.session.create()
