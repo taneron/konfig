@@ -11,9 +11,9 @@
 
 import unittest
 
-import api_client
-from api_client.model.session_list_response import SessionListResponse
-from api_client import configuration
+import python_rce
+from python_rce.model.session_list_response import SessionListResponse
+from python_rce import configuration
 
 
 class TestSessionListResponse(unittest.TestCase):

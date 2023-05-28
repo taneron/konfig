@@ -1,4 +1,4 @@
-# api_client.model.session_list_response.SessionListResponse
+# python_rce.model.session_list_response.SessionListResponse
 
 ## Model Type Info
 Input Type | Accessed Type | Description | Notes

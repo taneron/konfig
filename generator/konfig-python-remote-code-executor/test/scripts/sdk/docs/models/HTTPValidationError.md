@@ -1,4 +1,4 @@
-# api_client.model.http_validation_error.HTTPValidationError
+# python_rce.model.http_validation_error.HTTPValidationError
 
 ## Model Type Info
 Input Type | Accessed Type | Description | Notes

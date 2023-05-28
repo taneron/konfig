@@ -11,9 +11,9 @@
 
 import unittest
 
-import api_client
-from api_client.model.http_validation_error import HTTPValidationError
-from api_client import configuration
+import python_rce
+from python_rce.model.http_validation_error import HTTPValidationError
+from python_rce import configuration
 
 
 class TestHTTPValidationError(unittest.TestCase):

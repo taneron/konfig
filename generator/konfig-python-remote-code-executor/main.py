@@ -6,10 +6,10 @@ import uuid
 from IPython.terminal.interactiveshell import TerminalInteractiveShell
 from io import StringIO
 import sys
-from anyio.streams.file import FileReadStream, FileWriteStream
+from anyio.streams.file import FileWriteStream
 
 
-app = FastAPI()
+app = FastAPI(servers=[{"url": "http://127.0.0.1:8000"}])
 sessions: dict[str, TerminalInteractiveShell] = {}
 
 class SessionCreateResponse(BaseModel):

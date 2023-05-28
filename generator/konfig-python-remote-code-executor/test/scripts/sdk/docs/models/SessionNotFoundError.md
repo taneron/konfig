@@ -1,4 +1,4 @@
-# api_client.model.session_not_found_error.SessionNotFoundError
+# python_rce.model.session_not_found_error.SessionNotFoundError
 
 ## Model Type Info
 Input Type | Accessed Type | Description | Notes

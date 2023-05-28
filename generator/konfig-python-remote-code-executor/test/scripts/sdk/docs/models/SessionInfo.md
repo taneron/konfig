@@ -1,4 +1,4 @@
-# api_client.model.session_info.SessionInfo
+# python_rce.model.session_info.SessionInfo
 
 ## Model Type Info
 Input Type | Accessed Type | Description | Notes

@@ -11,9 +11,9 @@
 
 import unittest
 
-import api_client
-from api_client.model.validation_error import ValidationError
-from api_client import configuration
+import python_rce
+from python_rce.model.validation_error import ValidationError
+from python_rce import configuration
 
 
 class TestValidationError(unittest.TestCase):

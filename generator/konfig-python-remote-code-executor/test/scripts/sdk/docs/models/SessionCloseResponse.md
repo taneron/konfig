@@ -1,4 +1,4 @@
-# api_client.model.session_close_response.SessionCloseResponse
+# python_rce.model.session_close_response.SessionCloseResponse
 
 ## Model Type Info
 Input Type | Accessed Type | Description | Notes

@@ -1,4 +1,4 @@
-# api_client.model.execution_result.ExecutionResult
+# python_rce.model.execution_result.ExecutionResult
 
 ## Model Type Info
 Input Type | Accessed Type | Description | Notes

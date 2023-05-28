@@ -14,9 +14,9 @@ from unittest.mock import patch
 
 import urllib3
 
-import api_client
-from api_client.paths.sessions_list import get
-from api_client import configuration, schemas, api_client
+import python_rce
+from python_rce.paths.sessions_list import get
+from python_rce import configuration, schemas, api_client
 
 from .. import ApiTestMixin
 

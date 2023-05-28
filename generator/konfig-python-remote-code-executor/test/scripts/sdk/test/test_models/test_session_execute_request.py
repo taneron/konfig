@@ -11,9 +11,9 @@
 
 import unittest
 
-import api_client
-from api_client.model.session_execute_request import SessionExecuteRequest
-from api_client import configuration
+import python_rce
+from python_rce.model.session_execute_request import SessionExecuteRequest
+from python_rce import configuration
 
 
 class TestSessionExecuteRequest(unittest.TestCase):

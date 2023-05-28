@@ -11,9 +11,9 @@
 
 import unittest
 
-import api_client
-from api_client.model.session_not_found_error import SessionNotFoundError
-from api_client import configuration
+import python_rce
+from python_rce.model.session_not_found_error import SessionNotFoundError
+from python_rce import configuration
 
 
 class TestSessionNotFoundError(unittest.TestCase):

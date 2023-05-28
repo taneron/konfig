@@ -1,4 +1,4 @@
-# api_client.model.validation_error.ValidationError
+# python_rce.model.validation_error.ValidationError
 
 ## Model Type Info
 Input Type | Accessed Type | Description | Notes

@@ -1,4 +1,4 @@
-# api_client.model.session_execute_request.SessionExecuteRequest
+# python_rce.model.session_execute_request.SessionExecuteRequest
 
 ## Model Type Info
 Input Type | Accessed Type | Description | Notes

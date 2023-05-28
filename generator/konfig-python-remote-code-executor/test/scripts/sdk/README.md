@@ -1,4 +1,4 @@
-# api-python-sdk@1.0.0
+# python-rce@1.0.0
 Arbitrarily execute Python code in IPython
 
 
@@ -9,24 +9,24 @@ Python >=3.7
 ## Installing
 
 ```sh
-pip install api-python-sdk==1.0.0
+pip install python-rce==1.0.0
 ```
 
 ## Getting Started
 
 ```python
 from pprint import pprint
-from api_client import Api, ApiException
+from python_rce import PythonRce, ApiException
 
-api = Api(
-    # Defining the host is optional and defaults to http://localhost
+pythonrce = PythonRce(
+    # Defining the host is optional and defaults to http://127.0.0.1:8000
     # See configuration.py for a list of all supported configuration parameters.
-    host="http://localhost",
+    host="http://127.0.0.1:8000",
 )
 
 try:
     # Close Session
-    close_response = api.session.close(
+    close_response = pythonrce.session.close(
         session_id="string_example",  # required
     )
     pprint(close_response.body)
@@ -55,19 +55,19 @@ except ApiException as e:
 ```python
 import asyncio
 from pprint import pprint
-from api_client import Api, ApiException
+from python_rce import PythonRce, ApiException
 
-api = Api(
-    # Defining the host is optional and defaults to http://localhost
+pythonrce = PythonRce(
+    # Defining the host is optional and defaults to http://127.0.0.1:8000
     # See configuration.py for a list of all supported configuration parameters.
-    host="http://localhost",
+    host="http://127.0.0.1:8000",
 )
 
 
 async def main():
     try:
         # Close Session
-        close_response = await api.session.aclose(
+        close_response = await pythonrce.session.aclose(
             session_id="string_example",  # required
         )
         pprint(close_response.body)
@@ -95,7 +95,7 @@ asyncio.run(main())
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *http://localhost*
+All URIs are relative to *http://127.0.0.1:8000*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------

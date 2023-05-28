@@ -11,9 +11,9 @@
 
 import unittest
 
-import api_client
-from api_client.model.execution_result import ExecutionResult
-from api_client import configuration
+import python_rce
+from python_rce.model.execution_result import ExecutionResult
+from python_rce import configuration
 
 
 class TestExecutionResult(unittest.TestCase):

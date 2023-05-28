@@ -1,4 +1,4 @@
-# api_client.model.session_create_response.SessionCreateResponse
+# python_rce.model.session_create_response.SessionCreateResponse
 
 ## Model Type Info
 Input Type | Accessed Type | Description | Notes
