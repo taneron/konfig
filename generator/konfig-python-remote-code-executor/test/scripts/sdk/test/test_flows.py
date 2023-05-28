@@ -38,6 +38,28 @@ class TestSessionsCreate(unittest.TestCase):
         r1 = api.session.execute(session_id=session_id, code="print(test)")
         pprint(r1.body)
 
+    def test_pprint(self):
+        api = PythonRce(Configuration())
+        session_create_response = api.session.create()
+        print(session_create_response.body)
+        session_id = session_create_response.body["session_id"]
+        r1 = api.session.execute(
+            session_id=session_id, code="from pprint import pprint"
+        )
+        pprint(r1.body)
+        r2 = api.session.execute(session_id=session_id, code="test = {1: 2}")
+        pprint(r2.body)
+        r3 = api.session.execute(session_id=session_id, code="pprint(test)")
+        pprint(r3.body)
+
+    def test_kernels_do_not_have_access_to_each_others_memory(self):
+        api = PythonRce(Configuration())
+        s1 = api.session.create()
+        s2 = api.session.create()
+        api.session.execute(session_id=s1.body["session_id"], code="test = 2")
+        r2 = api.session.execute(session_id=s2.body["session_id"], code="test")
+        assert r2.body["error"] == "name 'test' is not defined"
+
 
 if __name__ == "__main__":
     unittest.main()
