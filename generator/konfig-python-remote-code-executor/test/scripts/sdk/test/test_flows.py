@@ -60,6 +60,65 @@ class TestSessionsCreate(unittest.TestCase):
         r2 = api.session.execute(session_id=s2.body["session_id"], code="test")
         assert r2.body["error"] == "name 'test' is not defined"
 
+    def test_setting_environment_variable(self):
+        api = PythonRce(Configuration())
+        s1 = api.session.create()
+        api.session.execute(
+            session_id=s1.body["session_id"],
+            code="%set_env TEST=HELLO_WORLD",
+        )
+        r = api.session.execute(
+            session_id=s1.body["session_id"],
+            code="%env TEST",
+        )
+        assert "'HELLO_WORLD'\n" == r.body["output"]
+
+    def test_snaptrade_getting_started(self):
+        api = PythonRce(Configuration())
+        snippets = [
+            """from snaptrade_client import SnapTrade
+from pprint import pprint
+import uuid
+import os
+        """,
+            """snaptrade = SnapTrade(
+    consumer_key=os.environ["SNAPTRADE_CONSUMER_KEY"],
+    client_id=os.environ["SNAPTRADE_CLIENT_ID"],
+)
+
+print("Successfully initiated client")
+""",
+            """api_response = snaptrade.api_status.check()
+pprint(api_response.body)""",
+            """user_id = str(uuid.uuid4())
+register_response = snaptrade.authentication.register_snap_trade_user(
+    user_id=user_id
+)
+pprint(register_response.body)
+
+# Note: A user secret is only generated once. It's required to access
+# resources for certain endpoints.
+user_secret = register_response.body["userSecret"]""",
+            """redirect_uri = snaptrade.authentication.login_snap_trade_user(
+  user_id=user_id, user_secret=user_secret
+)
+print(redirect_uri.body)
+""",
+            """holdings = snaptrade.account_information.get_all_user_holdings(
+    user_id=user_id, user_secret=user_secret
+)
+pprint(holdings.body)""",
+            """deleted_response = snaptrade.authentication.delete_snap_trade_user(
+    user_id=user_id
+)
+pprint(deleted_response.body)""",
+        ]
+        s = api.session.create()
+        for snippet in snippets:
+            r = api.session.execute(session_id=s.body["session_id"], code=snippet)
+            assert r.body["result"] == "Code executed"
+            pprint(r.body)
+
 
 if __name__ == "__main__":
     unittest.main()
