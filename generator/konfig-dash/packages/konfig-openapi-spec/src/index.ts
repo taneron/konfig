@@ -184,6 +184,7 @@ export const input = z.object({
     label: z.string(),
     required: z.boolean(),
     placeholder: z.string(),
+    name: z.string(),
   }),
 })
 
@@ -210,10 +211,12 @@ export const code = z.object({
   }),
 })
 
-export const demoContent = header_1.or(paragraph).or(code).or(input)
+export const demoContent = z.union([header_1, paragraph, code, input]).array()
+
+export type DemoContent = z.infer<typeof demoContent>
 
 export const demoGetResponseBodySchema = z.object({
-  demos: demoContent.array(),
+  demos: z.record(z.string(), demoContent),
 })
 
 export type DemoGetResponseBody = z.infer<typeof demoGetResponseBodySchema>

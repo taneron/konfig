@@ -4,30 +4,54 @@ import { DemoGetResponseBody } from 'konfig-openapi-spec'
 
 const data = {
   snaptrade: {
-    demos: [
-      {
-        type: 'header_1',
-        header_1: {
-          rich_text: [
-            {
-              type: 'text',
-              text: {
-                content: '1) Initialize a client with your',
+    demos: {
+      'Getting Started': [
+        {
+          type: 'header_1',
+          header_1: {
+            rich_text: [
+              {
+                type: 'text',
+                text: {
+                  content: '1) Initialize a client with your',
+                },
               },
-            },
-            {
-              type: 'text',
-              text: {
-                content: 'clientId',
+              {
+                type: 'text',
+                text: {
+                  content: 'clientId',
+                },
+                annotations: {
+                  code: true,
+                },
               },
-              annotations: {
-                code: true,
+
+              {
+                type: 'text',
+                text: {
+                  content: 'and',
+                },
               },
-            },
-          ],
+              {
+                type: 'text',
+                text: {
+                  content: 'consumerKey',
+                },
+                annotations: {
+                  code: true,
+                },
+              },
+            ],
+          },
         },
-      },
-    ],
+        {
+          type: 'paragraph',
+          pargraph: {
+            rich_text: [],
+          },
+        },
+      ],
+    },
   } as DemoGetResponseBody,
 } as const
 
