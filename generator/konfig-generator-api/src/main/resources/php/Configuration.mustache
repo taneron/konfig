@@ -52,6 +52,8 @@ class Configuration
      */
     protected $accessToken = '';
 {{#hasOAuthMethods}}
+{{#authMethods}}
+{{#-first}}
 
     /**
      * Token url for OAuth/Application authentication
@@ -73,6 +75,8 @@ class Configuration
      * @var string
      */
     protected string $clientSecret = '';
+{{/-first}}
+{{/authMethods}}
 {{/hasOAuthMethods}}
 
     /**
@@ -137,7 +141,7 @@ class Configuration
      */
     protected string ${{state}} = '';
 
-    
+
     /**
      * {{state}} - client state setter from konfig.yaml
      */
