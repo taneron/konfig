@@ -198,7 +198,7 @@ export const paragraph = z.object({
 export const code = z.object({
   type: z.literal('code'),
   code: z.object({
-    rich_text: text.array(),
+    content: z.string(),
     language: z.enum([
       'python',
       'typescript',
@@ -210,6 +210,8 @@ export const code = z.object({
     ]),
   }),
 })
+
+export type Text = z.infer<typeof text>
 
 export const demoContent = z.union([header_1, paragraph, code, input]).array()
 

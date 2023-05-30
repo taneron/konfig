@@ -4259,56 +4259,8 @@ components:
                     code:
                       type: object
                       properties:
-                        rich_text:
-                          type: array
-                          items:
-                            type: object
-                            properties:
-                              type:
-                                type: string
-                                enum:
-                                  - text
-                              text:
-                                type: object
-                                properties:
-                                  content:
-                                    type: string
-                                  link:
-                                    type: object
-                                    properties:
-                                      url:
-                                        type: string
-                                    required:
-                                      - url
-                                required:
-                                  - content
-                                  - link
-                              annotations:
-                                type: object
-                                properties:
-                                  bold:
-                                    type: boolean
-                                  italic:
-                                    type: boolean
-                                  strikethrough:
-                                    type: boolean
-                                  underline:
-                                    type: boolean
-                                  code:
-                                    type: boolean
-                                  color:
-                                    type: string
-                                    enum: *a3
-                                required:
-                                  - bold
-                                  - italic
-                                  - strikethrough
-                                  - underline
-                                  - code
-                                  - color
-                            required:
-                              - type
-                              - text
+                        content:
+                          type: string
                         language:
                           type: string
                           enum:
@@ -4320,7 +4272,7 @@ components:
                             - go
                             - php
                       required:
-                        - rich_text
+                        - content
                         - language
                   required:
                     - type
