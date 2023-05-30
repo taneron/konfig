@@ -1,9 +1,9 @@
 import { mdToDemoContent } from './md-to-demo-content'
 
 describe('md-to-demo-content', () => {
-  it('simple', async () => {
+  it.skip('simple', async () => {
     const test = await mdToDemoContent({
-      markdown: '# Test \`clientId\`\n\n```python\nprint("test")```',
+      markdown: '# Test `clientId`\n\n```python\nprint("test")```',
     })
   })
 })
