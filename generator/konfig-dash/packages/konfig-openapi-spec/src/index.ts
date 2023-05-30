@@ -124,6 +124,105 @@ export const LintResponseBody = registry.register(
   })
 )
 
+export const text = z.object({
+  type: z.literal('text'),
+  text: z.object({
+    content: z.string(),
+    link: z.object({
+      url: z.string(),
+    }),
+  }),
+  annotations: z
+    .object({
+      bold: z.boolean(),
+      italic: z.boolean(),
+      strikethrough: z.boolean(),
+      underline: z.boolean(),
+      code: z.boolean(),
+      color: z.enum([
+        'blue',
+        'blue_background',
+        'brown',
+        'brown_background',
+        'default',
+        'gray',
+        'gray_background',
+        'green',
+        'green_background',
+        'orange',
+        'orange_background',
+        'pink',
+        'pink_background',
+        'purple',
+        'purple_background',
+        'red',
+        'red_background',
+        'yellow',
+        'yellow_background',
+      ]),
+    })
+    .optional(),
+})
+
+export const header_1 = z.object({
+  type: z.literal('header_1'),
+  header_1: z.object({
+    rich_text: text.array(),
+  }),
+})
+
+export const header_2 = z.object({
+  type: z.literal('header_2'),
+  header_2: z.object({
+    rich_text: text.array(),
+  }),
+})
+
+export const input = z.object({
+  type: z.literal('input'),
+  input: z.object({
+    label: z.string(),
+    required: z.boolean(),
+    placeholder: z.string(),
+  }),
+})
+
+export const paragraph = z.object({
+  type: z.literal('paragraph'),
+  pargraph: z.object({
+    rich_text: text.array(),
+  }),
+})
+
+export const code = z.object({
+  type: z.literal('code'),
+  code: z.object({
+    rich_text: text.array(),
+    language: z.enum([
+      'python',
+      'typescript',
+      'ruby',
+      'java',
+      'csharp',
+      'go',
+      'php',
+    ]),
+  }),
+})
+
+export const demoContent = header_1.or(paragraph).or(code).or(input)
+
+export const demoGetResponseBodySchema = z.object({
+  demos: demoContent.array(),
+})
+
+export type DemoGetResponseBody = z.infer<typeof demoGetResponseBodySchema>
+
+export const DemoGetResponseBody = registry.register(
+  'DemoGetResponseBody',
+  demoGetResponseBodySchema
+)
+
 export const PushResponseBody = registry.register(
   'PushResponseBody',
   z.union([
@@ -230,6 +329,26 @@ registry.registerPath({
       content: {
         'application/json': {
           schema: PushResponseBody,
+        },
+      },
+    },
+  },
+})
+
+registry.registerPath({
+  method: 'get',
+  path: '/demo',
+  description: 'Retrieve the contents of a demo',
+  summary: 'Get Demo Content',
+  operationId: 'Demo_get',
+  tags: ['Demo'],
+  parameters: [{ name: 'id', in: 'query', schema: { type: 'string' } }],
+  responses: {
+    200: {
+      description: 'Demo Content',
+      content: {
+        'application/json': {
+          schema: DemoGetResponseBody,
         },
       },
     },

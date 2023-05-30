@@ -4094,6 +4094,259 @@ components:
       required:
         - diagnosis
         - passed
+    DemoGetResponseBody:
+      type: object
+      properties:
+        demos:
+          type: array
+          items:
+            anyOf:
+              - type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                      - header_1
+                  header_1:
+                    type: object
+                    properties:
+                      rich_text:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            type:
+                              type: string
+                              enum:
+                                - text
+                            text:
+                              type: object
+                              properties:
+                                content:
+                                  type: string
+                                link:
+                                  type: object
+                                  properties:
+                                    url:
+                                      type: string
+                                  required:
+                                    - url
+                              required:
+                                - content
+                                - link
+                            annotations:
+                              type: object
+                              properties:
+                                bold:
+                                  type: boolean
+                                italic:
+                                  type: boolean
+                                strikethrough:
+                                  type: boolean
+                                underline:
+                                  type: boolean
+                                code:
+                                  type: boolean
+                                color:
+                                  type: string
+                                  enum: &a3
+                                    - blue
+                                    - blue_background
+                                    - brown
+                                    - brown_background
+                                    - default
+                                    - gray
+                                    - gray_background
+                                    - green
+                                    - green_background
+                                    - orange
+                                    - orange_background
+                                    - pink
+                                    - pink_background
+                                    - purple
+                                    - purple_background
+                                    - red
+                                    - red_background
+                                    - yellow
+                                    - yellow_background
+                              required:
+                                - bold
+                                - italic
+                                - strikethrough
+                                - underline
+                                - code
+                                - color
+                          required:
+                            - type
+                            - text
+                    required:
+                      - rich_text
+                required:
+                  - type
+                  - header_1
+              - type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                      - paragraph
+                  pargraph:
+                    type: object
+                    properties:
+                      rich_text:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            type:
+                              type: string
+                              enum:
+                                - text
+                            text:
+                              type: object
+                              properties:
+                                content:
+                                  type: string
+                                link:
+                                  type: object
+                                  properties:
+                                    url:
+                                      type: string
+                                  required:
+                                    - url
+                              required:
+                                - content
+                                - link
+                            annotations:
+                              type: object
+                              properties:
+                                bold:
+                                  type: boolean
+                                italic:
+                                  type: boolean
+                                strikethrough:
+                                  type: boolean
+                                underline:
+                                  type: boolean
+                                code:
+                                  type: boolean
+                                color:
+                                  type: string
+                                  enum: *a3
+                              required:
+                                - bold
+                                - italic
+                                - strikethrough
+                                - underline
+                                - code
+                                - color
+                          required:
+                            - type
+                            - text
+                    required:
+                      - rich_text
+                required:
+                  - type
+                  - pargraph
+              - type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                      - code
+                  code:
+                    type: object
+                    properties:
+                      rich_text:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            type:
+                              type: string
+                              enum:
+                                - text
+                            text:
+                              type: object
+                              properties:
+                                content:
+                                  type: string
+                                link:
+                                  type: object
+                                  properties:
+                                    url:
+                                      type: string
+                                  required:
+                                    - url
+                              required:
+                                - content
+                                - link
+                            annotations:
+                              type: object
+                              properties:
+                                bold:
+                                  type: boolean
+                                italic:
+                                  type: boolean
+                                strikethrough:
+                                  type: boolean
+                                underline:
+                                  type: boolean
+                                code:
+                                  type: boolean
+                                color:
+                                  type: string
+                                  enum: *a3
+                              required:
+                                - bold
+                                - italic
+                                - strikethrough
+                                - underline
+                                - code
+                                - color
+                          required:
+                            - type
+                            - text
+                      language:
+                        type: string
+                        enum:
+                          - python
+                          - typescript
+                          - ruby
+                          - java
+                          - csharp
+                          - go
+                          - php
+                    required:
+                      - rich_text
+                      - language
+                required:
+                  - type
+                  - code
+              - type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                      - input
+                  input:
+                    type: object
+                    properties:
+                      label:
+                        type: string
+                      required:
+                        type: boolean
+                      placeholder:
+                        type: string
+                    required:
+                      - label
+                      - required
+                      - placeholder
+                required:
+                  - type
+                  - input
+      required:
+        - demos
     PushResponseBody:
       anyOf:
         - type: object
@@ -4182,6 +4435,25 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/PushResponseBody"
+  /demo:
+    get:
+      description: Retrieve the contents of a demo
+      summary: Get Demo Content
+      operationId: Demo_get
+      tags:
+        - Demo
+      parameters:
+        - name: id
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Demo Content
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DemoGetResponseBody"
   /lint:
     post:
       description: Lint your OpenAPI Specification to ensure generation of high
