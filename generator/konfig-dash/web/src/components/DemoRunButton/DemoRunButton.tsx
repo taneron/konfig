@@ -1,5 +1,5 @@
 import { Button } from '@mantine/core'
-import { IconCheck, IconCircleOff } from '@tabler/icons'
+import { IconAlertCircle, IconCheck } from '@tabler/icons'
 import { CellState, RunCellParams } from '../SnapTradeDemo/SnapTradeDemo'
 import { observer } from 'mobx-react'
 
@@ -14,7 +14,7 @@ const DemoRunButton = observer(
           cell.ranSuccessfully ? (
             <IconCheck size="1rem" />
           ) : cell.failed ? (
-            <IconCircleOff size="1rem" />
+            <IconAlertCircle size="1rem" />
           ) : undefined
         }
         compact
