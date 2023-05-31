@@ -162,10 +162,26 @@ const SnaptradePage = observer(() => {
                 {snapTradeGettingStarted.map(({ title }, i) => {
                   return (
                     <NavLink
-                      active={demoRunState.cells[i].ran}
-                      color="green"
+                      key={title}
+                      active={demoRunState.cells[i].state !== 'N/A'}
+                      color={
+                        demoRunState.cells[i].ranSuccessfully
+                          ? 'blue'
+                          : demoRunState.cells[i].failed
+                          ? 'red'
+                          : undefined
+                      }
                       variant="light"
                       label={title}
+                      onClick={() => {
+                        const element = document.getElementById(title)
+                        console.log(element)
+                        demoRunState.cells[i].focus()
+                        element?.scrollIntoView({
+                          behavior: 'smooth',
+                          block: 'center',
+                        })
+                      }}
                     />
                   )
                 })}
