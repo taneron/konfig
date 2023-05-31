@@ -70,6 +70,7 @@ async def startup():
 async def create_session():
     session_id = str(uuid.uuid4())
     shell = TerminalInteractiveShell()
+    shell.run_line_magic("colors", "NoColor")
     sessions[session_id] = (shell, time.time())  # Store session with creation time
     return SessionCreateResponse(session_id=session_id)
 
