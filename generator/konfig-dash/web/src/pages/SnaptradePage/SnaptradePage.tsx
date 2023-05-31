@@ -81,10 +81,10 @@ const SnaptradePage = observer(() => {
     <>
       <MetaTags title="Snaptrade" description="Snaptrade page" />
 
-      <Affix position={{ bottom: '1rem', right: '2rem' }}>
+      <Affix position={{ bottom: '0.5rem', right: '1rem' }}>
         <HoverCard width={280} shadow="md">
           <HoverCard.Target>
-            <ThemeIcon size="sm" color="gray">
+            <ThemeIcon size="xs" color="gray">
               <IconBug />
             </ThemeIcon>
           </HoverCard.Target>
@@ -158,7 +158,7 @@ const SnaptradePage = observer(() => {
         aside={
           <MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
             <Aside p="md" hiddenBreakpoint="sm" width={{ sm: 200, lg: 300 }}>
-              <Stack spacing="xs">
+              <Stack spacing={2}>
                 {snapTradeGettingStarted.map(({ title }, i) => {
                   return (
                     <NavLink

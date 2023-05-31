@@ -20,6 +20,7 @@ import { observer } from 'mobx-react'
 import { useCallback } from 'react'
 import { demoState } from 'src/pages/SnaptradePage/SnaptradePage'
 import axios from 'axios'
+import CellOutput from '../CellOutput/CellOutput'
 
 const typescript1 = `import { Snaptrade } = "snaptrade-typescript-sdk";
 
@@ -67,7 +68,7 @@ const typescript6 = `const deleteResponse = (
 console.log("deleteResponse:", deleteResponse);
 `
 
-class CellState {
+export class CellState {
   show = false
   running = false
   ran = false
@@ -189,9 +190,7 @@ const SnapTradeDemo = observer(() => {
               </Prism.Panel>
             </Prism.Tabs>
           </Collapse>
-          <Collapse in={demoRunState.cells[0].show}>
-            <Code block>{demoRunState.cells[0].output}</Code>
-          </Collapse>
+          <CellOutput cell={demoRunState.cells[0]} />
           <Button
             onClick={() =>
               demoRunState.cells[0].run({
@@ -238,9 +237,7 @@ const SnapTradeDemo = observer(() => {
               </Prism.Panel>
             </Prism.Tabs>
           </Collapse>
-          <Collapse in={demoRunState.cells[1].show}>
-            <Code block>{demoRunState.cells[1].output}</Code>
-          </Collapse>
+          <CellOutput cell={demoRunState.cells[1]} />
           <Button
             onClick={() => demoRunState.cells[1].run()}
             loading={demoRunState.cells[1].running}
@@ -288,9 +285,7 @@ const SnapTradeDemo = observer(() => {
               </Prism.Panel>
             </Prism.Tabs>
           </Collapse>
-          <Collapse in={demoRunState.cells[2].show}>
-            <Code block>{demoRunState.cells[2].output}</Code>
-          </Collapse>
+          <CellOutput cell={demoRunState.cells[2]} />
           <Button
             onClick={() =>
               demoRunState.cells[2].run({
@@ -335,9 +330,7 @@ const SnapTradeDemo = observer(() => {
               </Prism.Panel>
             </Prism.Tabs>
           </Collapse>
-          <Collapse in={demoRunState.cells[3].show}>
-            <Code block>{demoRunState.cells[3].output}</Code>
-          </Collapse>
+          <CellOutput cell={demoRunState.cells[3]} />
           <Button
             onClick={() => demoRunState.cells[3].run()}
             loading={demoRunState.cells[3].running}
@@ -373,9 +366,7 @@ const SnapTradeDemo = observer(() => {
               </Prism.Panel>
             </Prism.Tabs>
           </Collapse>
-          <Collapse in={demoRunState.cells[4].show}>
-            <Code block>{demoRunState.cells[4].output}</Code>
-          </Collapse>
+          <CellOutput cell={demoRunState.cells[4]} />
           <Button
             onClick={() => demoRunState.cells[4].run()}
             loading={demoRunState.cells[4].running}
@@ -408,9 +399,7 @@ const SnapTradeDemo = observer(() => {
               </Prism.Panel>
             </Prism.Tabs>
           </Collapse>
-          <Collapse in={demoRunState.cells[5].show}>
-            <Code block>{demoRunState.cells[5].output}</Code>
-          </Collapse>
+          <CellOutput cell={demoRunState.cells[5]} />
           <Button
             onClick={() => demoRunState.cells[5].run()}
             loading={demoRunState.cells[5].running}
