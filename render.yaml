@@ -65,6 +65,19 @@ services:
           name: konfig-python-formatter
           type: pserv
           property: hostport
+      - key: PYTHON_RCE_API_HOST_PORT
+        fromService:
+          name: konfig-python-remote-code-executor
+          type: pserv
+          property: hostport
+
+  - type: pserv
+    name: konfig-python-remote-code-executor
+    env: python
+    buildCommand: ./build-render.sh
+    startCommand: ./start.sh
+    repo: https://github.com/konfig-dev/konfig
+    rootDir: generator/konfig-python-remote-code-executor
 
   - type: pserv
     name: konfig-python-formatter
