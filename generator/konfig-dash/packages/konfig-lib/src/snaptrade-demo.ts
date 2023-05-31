@@ -38,7 +38,7 @@ user_secret = register_response.body["userSecret"]`,
   user_id=user_id, user_secret=user_secret
 )
 
-pprint(redirect_uri.body)
+print(redirect_uri.body["redirectURI"])
 `,
   },
   {

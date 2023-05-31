@@ -32,7 +32,9 @@ import { snapTradeGettingStarted } from 'konfig-lib/dist/snaptrade-demo'
 import { makeAutoObservable } from 'mobx'
 import { observer } from 'mobx-react'
 import { useState } from 'react'
-import SnapTradeDemo from 'src/components/SnapTradeDemo/SnapTradeDemo'
+import SnapTradeDemo, {
+  demoRunState,
+} from 'src/components/SnapTradeDemo/SnapTradeDemo'
 
 type ShowCodeState = 'show-code' | 'hide-code'
 class DemoState {
@@ -82,7 +84,7 @@ const SnaptradePage = observer(() => {
       <Affix position={{ bottom: '1rem', right: '2rem' }}>
         <HoverCard width={280} shadow="md">
           <HoverCard.Target>
-            <ThemeIcon>
+            <ThemeIcon size="sm" color="gray">
               <IconBug />
             </ThemeIcon>
           </HoverCard.Target>
@@ -156,12 +158,18 @@ const SnaptradePage = observer(() => {
         aside={
           <MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
             <Aside p="md" hiddenBreakpoint="sm" width={{ sm: 200, lg: 300 }}>
-              <NavLink label={snapTradeGettingStarted[0].title} />
-              <NavLink label={snapTradeGettingStarted[1].title} />
-              <NavLink label={snapTradeGettingStarted[2].title} />
-              <NavLink label={snapTradeGettingStarted[3].title} />
-              <NavLink label={snapTradeGettingStarted[4].title} />
-              <NavLink label={snapTradeGettingStarted[5].title} />
+              <Stack spacing="xs">
+                {snapTradeGettingStarted.map(({ title }, i) => {
+                  return (
+                    <NavLink
+                      active={demoRunState.cells[i].ran}
+                      color="green"
+                      variant="light"
+                      label={title}
+                    />
+                  )
+                })}
+              </Stack>
             </Aside>
           </MediaQuery>
         }

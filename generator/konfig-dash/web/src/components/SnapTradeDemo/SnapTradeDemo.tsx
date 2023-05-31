@@ -73,10 +73,14 @@ class CellState {
   ran = false
   output: string = ''
   id: number
+  _disabled: boolean
+  disableOverride?: () => boolean
 
-  constructor(id: number) {
+  constructor(id: number, disabled: boolean, disableOverride?: () => boolean) {
     makeAutoObservable(this)
     this.id = id
+    this._disabled = disabled
+    this.disableOverride = disableOverride
   }
 
   async run(params?: { environment_variables: { [name: string]: string } }) {
@@ -94,6 +98,11 @@ class CellState {
     this.running = false
     this.show = true
     this.ran = true
+    if (this.id < 5) demoRunState.cells[this.id + 1]._disabled = false
+  }
+
+  get disabled() {
+    return this.disableOverride ? this.disableOverride() : this._disabled
   }
 }
 
@@ -102,12 +111,16 @@ class DemoRunState {
   consumerKey: string = ''
   userId: string = ''
   cells: CellState[] = [
-    new CellState(0),
-    new CellState(1),
-    new CellState(2),
-    new CellState(3),
-    new CellState(4),
-    new CellState(5),
+    new CellState(
+      0,
+      false,
+      () => this.clientId === '' || this.consumerKey === ''
+    ),
+    new CellState(1, true),
+    new CellState(2, true, () => this.userId === ''),
+    new CellState(3, true),
+    new CellState(4, true),
+    new CellState(5, true),
   ]
   constructor() {
     makeAutoObservable(this)
@@ -151,12 +164,14 @@ const SnapTradeDemo = observer(() => {
             label="Client ID"
             withAsterisk
             value={demoRunState.clientId}
+            autoComplete="off"
             onChange={(e) => demoRunState.setClientId(e.target.value)}
           />
           <PasswordInput
             placeholder="YOUR_CONSUMER_KEY"
             label="Consumer Key"
             withAsterisk
+            autoComplete="off"
             value={demoRunState.consumerKey}
             onChange={(e) => demoRunState.setConsumerKey(e.target.value)}
           />
@@ -191,6 +206,7 @@ const SnapTradeDemo = observer(() => {
             leftIcon={
               demoRunState.cells[0].ran ? <IconCheck size="1rem" /> : undefined
             }
+            disabled={demoRunState.cells[0].disabled}
             compact
             variant="light"
           >
@@ -233,6 +249,7 @@ const SnapTradeDemo = observer(() => {
               demoRunState.cells[1].ran ? <IconCheck size="1rem" /> : undefined
             }
             compact
+            disabled={demoRunState.cells[1].disabled}
             variant="light"
           >
             Run
@@ -288,6 +305,7 @@ const SnapTradeDemo = observer(() => {
               demoRunState.cells[2].ran ? <IconCheck size="1rem" /> : undefined
             }
             compact
+            disabled={demoRunState.cells[2].disabled}
             variant="light"
           >
             Run
@@ -328,6 +346,7 @@ const SnapTradeDemo = observer(() => {
               demoRunState.cells[3].ran ? <IconCheck size="1rem" /> : undefined
             }
             compact
+            disabled={demoRunState.cells[3].disabled}
             variant="light"
           >
             Run
@@ -365,6 +384,7 @@ const SnapTradeDemo = observer(() => {
               demoRunState.cells[4].ran ? <IconCheck size="1rem" /> : undefined
             }
             compact
+            disabled={demoRunState.cells[4].disabled}
             variant="light"
           >
             Run
@@ -399,6 +419,7 @@ const SnapTradeDemo = observer(() => {
               demoRunState.cells[5].ran ? <IconCheck size="1rem" /> : undefined
             }
             compact
+            disabled={demoRunState.cells[5].disabled}
             variant="light"
           >
             Run
