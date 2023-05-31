@@ -1,7 +1,7 @@
 import json
 import time
-from typing import Optional
-from fastapi import BackgroundTasks, FastAPI, HTTPException
+from typing import Literal, Optional
+from fastapi import FastAPI, HTTPException
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 import uuid
@@ -43,7 +43,7 @@ class SessionCloseResponse(BaseModel):
 
 
 class ExecutionResult(BaseModel):
-    result: str
+    result: Literal["Success", "Error"]
     output: str
     error: str
 
@@ -112,7 +112,7 @@ async def execute_code(request: SessionExecuteRequest):
             output = output_stream.getvalue()
 
             execution_result = ExecutionResult(
-                result="Code executed",
+                result="Success",
                 output=output,
                 error=str(exec_result.error_in_exec)
                 if exec_result.error_in_exec
