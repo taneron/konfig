@@ -120,7 +120,8 @@ export class CellState {
     this.running = false
     this.show = true
     this.state = data.error === '' ? 'Success' : 'Error'
-    if (this.id < 5) demoRunState.cells[this.id + 1]._disabled = false
+    if (this.id < 5 && this.state === 'Success')
+      demoRunState.cells[this.id + 1]._disabled = false
   }
 
   get disabled() {
