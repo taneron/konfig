@@ -1,4 +1,5 @@
 import json
+from typing import Optional
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel
@@ -18,6 +19,7 @@ class SessionCreateResponse(BaseModel):
 class SessionExecuteRequest(BaseModel):
     session_id: str
     code: str
+    environment_variables: Optional[dict[str, str]]
 
 class SessionCloseRequest(BaseModel):
     session_id: str
@@ -68,13 +70,20 @@ async def execute_code(request: SessionExecuteRequest):
     code = request.code
 
     if session_id in sessions:
+
         shell = sessions[session_id]
+
+        # Set any environment variables
+        if request.environment_variables is not None:
+            for name, value in request.environment_variables.items():
+                shell.run_line_magic("set_env", "{} {}".format(name, value))
 
         # Create a custom output stream to capture print statements
         output_stream = StringIO()
         sys.stdout = output_stream
 
         try:
+
             # Execute the code
             exec_result = shell.run_cell(code)
 

@@ -2,6 +2,7 @@ import {
   AppShell,
   Navbar,
   Header,
+  Text,
   Burger,
   Group,
   MediaQuery,
@@ -13,15 +14,21 @@ import {
   SegmentedControl,
   Aside,
   Stack,
+  Affix,
+  ThemeIcon,
+  HoverCard,
 } from '@mantine/core'
 import { MetaTags } from '@redwoodjs/web'
 import {
+  IconBug,
   IconChevronRight,
   IconMoonStars,
   IconRocket,
   IconSun,
 } from '@tabler/icons'
+import axios from 'axios'
 import { KonfigYamlGeneratorNames } from 'konfig-lib'
+import { snapTradeGettingStarted } from 'konfig-lib/dist/snaptrade-demo'
 import { makeAutoObservable } from 'mobx'
 import { observer } from 'mobx-react'
 import { useState } from 'react'
@@ -31,9 +38,12 @@ type ShowCodeState = 'show-code' | 'hide-code'
 class DemoState {
   showCode: ShowCodeState = 'hide-code'
   language: KonfigYamlGeneratorNames = 'python'
+  sessionId: string | null = null
 
   constructor() {
     makeAutoObservable(this)
+
+    this.startSession()
   }
 
   setShowCode(state: ShowCodeState) {
@@ -42,6 +52,15 @@ class DemoState {
 
   setLanguage(language: KonfigYamlGeneratorNames) {
     this.language = language
+  }
+
+  async startSession() {
+    const { data } = await axios.get('/.redwood/functions/startSession')
+    this.sessionId = data.session_id
+  }
+
+  get sessionStarted() {
+    return this.sessionId !== null
   }
 
   get in() {
@@ -59,6 +78,28 @@ const SnaptradePage = observer(() => {
   return (
     <>
       <MetaTags title="Snaptrade" description="Snaptrade page" />
+
+      <Affix position={{ bottom: '1rem', right: '2rem' }}>
+        <HoverCard width={280} shadow="md">
+          <HoverCard.Target>
+            <ThemeIcon>
+              <IconBug />
+            </ThemeIcon>
+          </HoverCard.Target>
+          <HoverCard.Dropdown>
+            <Text size="sm">
+              {JSON.stringify(
+                {
+                  sessionId: demoState.sessionId,
+                  sessionStarted: demoState.sessionStarted,
+                },
+                undefined,
+                2
+              )}
+            </Text>
+          </HoverCard.Dropdown>
+        </HoverCard>
+      </Affix>
       <AppShell
         styles={{
           main: {
@@ -90,7 +131,7 @@ const SnaptradePage = observer(() => {
                   label="Getting Started"
                   active
                 />
-                <NavLink
+                {/* <NavLink
                   onClick={() => {
                     setOpened(false)
                   }}
@@ -107,7 +148,7 @@ const SnaptradePage = observer(() => {
                   variant="filled"
                   sx={(theme) => ({ borderRadius: theme.radius.sm })}
                   label="Managing Portfolios"
-                />
+                /> */}
               </Stack>
             </Navbar.Section>
           </Navbar>
@@ -115,12 +156,12 @@ const SnaptradePage = observer(() => {
         aside={
           <MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
             <Aside p="md" hiddenBreakpoint="sm" width={{ sm: 200, lg: 300 }}>
-              <NavLink label="1) Initialize a client with your clientId and consumerKey" />
-              <NavLink label="2) Check that the client is able to make a request to the API server" />
-              <NavLink label="3) Create a new user on SnapTrade" />
-              <NavLink label="4) Get a redirect URI" />
-              <NavLink label="5) Get account holdings data" />
-              <NavLink label="6) Deleting a user" />
+              <NavLink label={snapTradeGettingStarted[0].title} />
+              <NavLink label={snapTradeGettingStarted[1].title} />
+              <NavLink label={snapTradeGettingStarted[2].title} />
+              <NavLink label={snapTradeGettingStarted[3].title} />
+              <NavLink label={snapTradeGettingStarted[4].title} />
+              <NavLink label={snapTradeGettingStarted[5].title} />
             </Aside>
           </MediaQuery>
         }

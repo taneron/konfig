@@ -9,55 +9,17 @@ import {
   Button,
   Collapse,
   Anchor,
+  PasswordInput,
 } from '@mantine/core'
 import { Prism } from '@mantine/prism'
 import { IconCheck } from '@tabler/icons'
 import { KonfigYamlGeneratorNames } from 'konfig-lib'
+import { snapTradeGettingStarted } from 'konfig-lib/dist/snaptrade-demo'
 import { makeAutoObservable } from 'mobx'
 import { observer } from 'mobx-react'
 import { useCallback } from 'react'
 import { demoState } from 'src/pages/SnaptradePage/SnaptradePage'
-
-const python1 = `from snaptrade_client import SnapTrade
-from pprint import pprint
-
-snaptrade = SnapTrade(
-    consumer_key=os.environ["SNAPTRADE_CONSUMER_KEY"],
-    client_id=os.environ["SNAPTRADE_CLIENT_ID"],
-)
-
-print("Successfully initiated client")
-`
-
-const python2 = `api_response = snaptrade.api_status.check()
-pprint(api_response.body)`
-
-const python3 = `user_id = os.environ["SNAPTRADE_USER_ID"]
-register_response = snaptrade.authentication.register_snap_trade_user(
-    user_id=user_id
-)
-pprint(register_response.body)
-
-# Note: A user secret is only generated once. It's required to access
-# resources for certain endpoints.
-user_secret = register_response.body["userSecret"]
-`
-
-const python4 = `redirect_uri = snaptrade.authentication.login_snap_trade_user(
-  user_id=user_id, user_secret=user_secret
-)
-print(redirect_uri.body)
-`
-
-const python5 = `holdings = snaptrade.account_information.get_all_user_holdings(
-    user_id=user_id, user_secret=user_secret
-)
-pprint(holdings.body)`
-
-const python6 = `deleted_response = snaptrade.authentication.delete_snap_trade_user(
-    user_id=user_id
-)
-pprint(deleted_response.body)`
+import axios from 'axios'
 
 const typescript1 = `import { Snaptrade } = "snaptrade-typescript-sdk";
 
@@ -109,34 +71,58 @@ class CellState {
   show = false
   running = false
   ran = false
+  output: string = ''
+  id: number
 
-  constructor() {
+  constructor(id: number) {
     makeAutoObservable(this)
+    this.id = id
   }
 
-  run() {
+  async run(params?: { environment_variables: { [name: string]: string } }) {
     this.running = true
     this.show = false
     this.ran = false
-    setTimeout(() => {
-      this.running = false
-      this.show = true
-      this.ran = true
-    }, 300)
+    const { data } = await axios.post(`/.redwood/functions/executeCode`, {
+      demo: 'snaptrade',
+      id: this.id,
+      session_id: demoState.sessionId,
+      ...params,
+    })
+    console.log(data)
+    this.output = data.output
+    this.running = false
+    this.show = true
+    this.ran = true
   }
 }
 
 class DemoRunState {
+  clientId: string = ''
+  consumerKey: string = ''
+  userId: string = ''
   cells: CellState[] = [
-    new CellState(),
-    new CellState(),
-    new CellState(),
-    new CellState(),
-    new CellState(),
-    new CellState(),
+    new CellState(0),
+    new CellState(1),
+    new CellState(2),
+    new CellState(3),
+    new CellState(4),
+    new CellState(5),
   ]
   constructor() {
     makeAutoObservable(this)
+  }
+
+  setClientId(value: string) {
+    this.clientId = value
+  }
+
+  setUserId(value: string) {
+    this.userId = value
+  }
+
+  setConsumerKey(value: string) {
+    this.consumerKey = value
   }
 
   runCell(index: number) {
@@ -154,24 +140,25 @@ const SnapTradeDemo = observer(() => {
     <Container size="xl">
       <Paper shadow="md" p="md" withBorder>
         <Stack>
-          <Title order={3}>
-            1) Initialize a client with your <Code>clientId</Code> and{' '}
-            <Code>consumerKey</Code>
-          </Title>
+          <Title order={3}>{snapTradeGettingStarted[0].title}</Title>
           <Text>
             You can get your <Code>clientId</Code> and <Code>consumerKey</Code>{' '}
             by contacting{' '}
             <Anchor href="mailto: api@snaptrade.com">api@snaptrade.com</Anchor>
           </Text>
-          <TextInput
+          <PasswordInput
             placeholder="YOUR_CLIENT_ID"
             label="Client ID"
             withAsterisk
+            value={demoRunState.clientId}
+            onChange={(e) => demoRunState.setClientId(e.target.value)}
           />
-          <TextInput
+          <PasswordInput
             placeholder="YOUR_CONSUMER_KEY"
             label="Consumer Key"
             withAsterisk
+            value={demoRunState.consumerKey}
+            onChange={(e) => demoRunState.setConsumerKey(e.target.value)}
           />
           <Collapse in={demoState.in}>
             <Prism.Tabs onTabChange={onTabChange} value={demoState.language}>
@@ -180,7 +167,7 @@ const SnapTradeDemo = observer(() => {
                 <Prism.Tab value="typescript">TypeScript</Prism.Tab>
               </Prism.TabsList>
               <Prism.Panel value="python" language="python">
-                {python1}
+                {snapTradeGettingStarted[0].python}
               </Prism.Panel>
               <Prism.Panel value="typescript" language="typescript">
                 {typescript1}
@@ -188,10 +175,17 @@ const SnapTradeDemo = observer(() => {
             </Prism.Tabs>
           </Collapse>
           <Collapse in={demoRunState.cells[0].show}>
-            <Code block>Successfully initiated client</Code>
+            <Code block>{demoRunState.cells[0].output}</Code>
           </Collapse>
           <Button
-            onClick={() => demoRunState.cells[0].run()}
+            onClick={() =>
+              demoRunState.cells[0].run({
+                environment_variables: {
+                  SNAPTRADE_CLIENT_ID: demoRunState.clientId,
+                  SNAPTRADE_CONSUMER_KEY: demoRunState.consumerKey,
+                },
+              })
+            }
             loading={demoRunState.cells[0].running}
             color={demoRunState.cells[0].ran ? 'green' : 'blue'}
             leftIcon={
@@ -202,9 +196,7 @@ const SnapTradeDemo = observer(() => {
           >
             Run
           </Button>
-          <Title order={3}>
-            2) Check that the client is able to make a request to the API server
-          </Title>
+          <Title order={3}>{snapTradeGettingStarted[1].title}</Title>
           <Text>
             Call the API Status endpoint to make sure the API is live and that
             you can make the most basic request. You should receive a response
@@ -223,7 +215,7 @@ const SnapTradeDemo = observer(() => {
                 <Prism.Tab value="typescript">TypeScript</Prism.Tab>
               </Prism.TabsList>
               <Prism.Panel value="python" language="python">
-                {python2}
+                {snapTradeGettingStarted[1].python}
               </Prism.Panel>
               <Prism.Panel value="typescript" language="typescript">
                 {typescript2}
@@ -231,11 +223,7 @@ const SnapTradeDemo = observer(() => {
             </Prism.Tabs>
           </Collapse>
           <Collapse in={demoRunState.cells[1].show}>
-            <Code block>
-              {
-                "{'online': True, 'timestamp': '2023-05-22T02:33:33.526534Z', 'version': 151}"
-              }
-            </Code>
+            <Code block>{demoRunState.cells[1].output}</Code>
           </Collapse>
           <Button
             onClick={() => demoRunState.cells[1].run()}
@@ -249,7 +237,7 @@ const SnapTradeDemo = observer(() => {
           >
             Run
           </Button>
-          <Title order={3}>3) Create a new user on SnapTrade</Title>
+          <Title order={3}>{snapTradeGettingStarted[2].title}</Title>
           <Text>
             To create a secure brokerage authorization, we first need to
             register a test user. Call the Register user endpoint with a userId
@@ -266,6 +254,8 @@ const SnapTradeDemo = observer(() => {
             placeholder="YOUR_SNAPTRADE_USER_ID"
             label="SnapTrade User ID"
             withAsterisk
+            value={demoRunState.userId}
+            onChange={(e) => demoRunState.setUserId(e.target.value)}
           />
           <Collapse in={demoState.in}>
             <Prism.Tabs onTabChange={onTabChange} value={demoState.language}>
@@ -274,7 +264,7 @@ const SnapTradeDemo = observer(() => {
                 <Prism.Tab value="typescript">TypeScript</Prism.Tab>
               </Prism.TabsList>
               <Prism.Panel value="python" language="python">
-                {python3}
+                {snapTradeGettingStarted[2].python}
               </Prism.Panel>
               <Prism.Panel value="typescript" language="typescript">
                 {typescript3}
@@ -282,14 +272,16 @@ const SnapTradeDemo = observer(() => {
             </Prism.Tabs>
           </Collapse>
           <Collapse in={demoRunState.cells[2].show}>
-            <Code block>
-              {
-                "{'userId': 'b97dab76-a211-467d-b2d0-5f4b8b5e72e9', 'userSecret': '48fb0b73-ee01-4823-b301-3a8bf41c8449'}"
-              }
-            </Code>
+            <Code block>{demoRunState.cells[2].output}</Code>
           </Collapse>
           <Button
-            onClick={() => demoRunState.cells[2].run()}
+            onClick={() =>
+              demoRunState.cells[2].run({
+                environment_variables: {
+                  SNAPTRADE_USER_ID: demoRunState.userId,
+                },
+              })
+            }
             loading={demoRunState.cells[2].running}
             color={demoRunState.cells[2].ran ? 'green' : 'blue'}
             leftIcon={
@@ -300,7 +292,7 @@ const SnapTradeDemo = observer(() => {
           >
             Run
           </Button>
-          <Title order={3}>4) Get a redirect URI</Title>
+          <Title order={3}>{snapTradeGettingStarted[3].title}</Title>
           <Text>
             SnapTrade partners need to generate a redirect URI for a user so
             they can securely log in to the SnapTrade Connection portal and
@@ -318,7 +310,7 @@ const SnapTradeDemo = observer(() => {
                 <Prism.Tab value="typescript">TypeScript</Prism.Tab>
               </Prism.TabsList>
               <Prism.Panel value="python" language="python">
-                {python4}
+                {snapTradeGettingStarted[3].python}
               </Prism.Panel>
               <Prism.Panel value="typescript" language="typescript">
                 {typescript4}
@@ -326,11 +318,7 @@ const SnapTradeDemo = observer(() => {
             </Prism.Tabs>
           </Collapse>
           <Collapse in={demoRunState.cells[3].show}>
-            <Code block>
-              {
-                "{'redirectURI': 'https://app.snaptrade.com/snapTrade/redeemToken?token=ZJnSwmkwPOe4FuQKwB6YsrqyL2ShHN8pt4YVTzsPjl0B2gpa3xMAAEAQt%2B/k8ud%2B0kttPgZUP3ornkU6Yz4VuvJZp7JYGxoCYQv84dcCt2BPpvVW0D7JqGywaG8UVHTYuXpa88s%3D&clientId=SDK-GEN', 'sessionId': 'b51d6e09-a5ba-45ab-b08e-8bab258b39ce'}"
-              }
-            </Code>
+            <Code block>{demoRunState.cells[3].output}</Code>
           </Collapse>
           <Button
             onClick={() => demoRunState.cells[3].run()}
@@ -344,7 +332,7 @@ const SnapTradeDemo = observer(() => {
           >
             Run
           </Button>
-          <Title order={3}>5) Get account holdings data</Title>
+          <Title order={3}>{snapTradeGettingStarted[4].title}</Title>
           <Text>
             In order to retrieve user holdings for a specific account, you can
             call the Holdings endpoint by passing the clientId, timestamp,
@@ -359,7 +347,7 @@ const SnapTradeDemo = observer(() => {
                 <Prism.Tab value="typescript">TypeScript</Prism.Tab>
               </Prism.TabsList>
               <Prism.Panel value="python" language="python">
-                {python5}
+                {snapTradeGettingStarted[4].python}
               </Prism.Panel>
               <Prism.Panel value="typescript" language="typescript">
                 {typescript5}
@@ -367,31 +355,7 @@ const SnapTradeDemo = observer(() => {
             </Prism.Tabs>
           </Collapse>
           <Collapse in={demoRunState.cells[4].show}>
-            <Code block>
-              {`{'account': {'brokerage_authorization': '2ca80860-41a6-40c7-bb8b-51e6a99bfa70',
-                'cash_restrictions': [],
-                'created_date': '2023-02-28T19:11:02.605980Z',
-                'id': '27f0bbd1-8f3b-4702-9336-6bf7d6a3692f',
-                'institution_name': 'Alpaca Paper',
-                'meta': {'institution_name': 'Alpaca Paper',
-                         'status': 'ACTIVE',
-                         'type': 'Margin'},
-                'name': 'Alpaca Margin',
-                'number': 'PA3MI0Y86VBD',
-                'portfolio_group': 'c8599857-68a8-43a7-b123-2c291da40847',
-                'sync_status': {'transactions': {'initial_sync_completed': True,
-                                                 'last_successful_sync': '2023-05-20'}}},
-    'balances': [{'cash': 100000.0,
-                  'currency': {'code': 'USD',
-                               'id': '57f81c53-bdda-45a7-a51f-032afd1ae41b',
-                               'name': 'US Dollar'}}],
-    'cache_expired': False,
-    'cache_expiry': '2023-05-22T02:41:45.654041Z',
-    'cache_timestamp': '2023-05-22T02:36:45.654041Z',
-    'option_positions': [],
-    'orders': [],
-    'positions': []}`}
-            </Code>
+            <Code block>{demoRunState.cells[4].output}</Code>
           </Collapse>
           <Button
             onClick={() => demoRunState.cells[4].run()}
@@ -405,7 +369,7 @@ const SnapTradeDemo = observer(() => {
           >
             Run
           </Button>
-          <Title order={3}>6) Deleting a user</Title>
+          <Title order={3}>{snapTradeGettingStarted[5].title}</Title>
           <Text>
             Disabling all brokerage authorizations and permanently deleting all
             data associated with the user
@@ -417,7 +381,7 @@ const SnapTradeDemo = observer(() => {
                 <Prism.Tab value="typescript">TypeScript</Prism.Tab>
               </Prism.TabsList>
               <Prism.Panel value="python" language="python">
-                {python6}
+                {snapTradeGettingStarted[5].python}
               </Prism.Panel>
               <Prism.Panel value="typescript" language="typescript">
                 {typescript6}
@@ -425,12 +389,7 @@ const SnapTradeDemo = observer(() => {
             </Prism.Tabs>
           </Collapse>
           <Collapse in={demoRunState.cells[5].show}>
-            <Code block>
-              {`{'detail': 'User queued for deletion; please wait for webhook for '
-              'confirmation.',
-    'status': 'deleted',
-    'userId': '5acda78a-fd2f-4161-b17c-c839e4d356a2'}`}
-            </Code>
+            <Code block>{demoRunState.cells[5].output}</Code>
           </Collapse>
           <Button
             onClick={() => demoRunState.cells[5].run()}
