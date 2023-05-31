@@ -24,8 +24,6 @@ export const handler = async (event: APIGatewayEvent, context: Context) => {
   const url = `${urlForPythonRceApi()}/sessions/execute`
   const { python: code } = snippets['snaptrade'][id]
 
-  console.log(body)
-
   const { data } = await axios.post(url, {
     session_id,
     code,
