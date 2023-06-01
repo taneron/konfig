@@ -156,14 +156,21 @@ export const handler = async (event: APIGatewayEvent, context: Context) => {
     sha: specSha,
   })
 
-  // Delete existing PRs with same label
+  // Delete existing PRs with same label and matching "directory" string if provided
   const prs = await repo.octokit.rest.pulls.list({
     owner: repo.owner,
     repo: repo.repo,
   })
-  const prsWithLabel = prs.data.filter(
-    (pr) => pr.labels.find((label) => label.name === LABEL_NAME) !== undefined
-  )
+  const prsWithLabel = prs.data.filter((pr) => {
+    const matchesDirectory =
+      requestBodyParseResult.data.directory === undefined
+        ? true
+        : pr.title.includes(`(${requestBodyParseResult.data.directory})`)
+    return (
+      matchesDirectory &&
+      pr.labels.find((label) => label.name === LABEL_NAME) !== undefined
+    )
+  })
   await Promise.all(
     prsWithLabel.map((pr) =>
       repo.octokit.rest.pulls.update({
@@ -178,7 +185,11 @@ export const handler = async (event: APIGatewayEvent, context: Context) => {
   // Make PR to main branch
   const pullRequest = await repo.octokit.rest.pulls.create({
     ...repo,
-    title: `Update OpenAPI Specification`,
+    title: `Update OpenAPI Specification${
+      requestBodyParseResult.data.directory
+        ? ` (${requestBodyParseResult.data.directory})`
+        : ''
+    }`,
     base: repo.repository.default_branch,
     head: newBranch,
   })
