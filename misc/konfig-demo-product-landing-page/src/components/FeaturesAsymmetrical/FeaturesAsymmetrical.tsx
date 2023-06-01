@@ -79,7 +79,7 @@ const mockdata = [
     icon: IconDeviceDesktop,
     title: "Self-service",
     description:
-      "Allow your customers to self-service your API demo with their own inputs. Developers can also copy-paste the demo's source code to easily integrate.",
+      "Allow your customers to self-service your API demo with their own inputs. Developers can also copy-paste the demo's source code to accelerate integration.",
   },
   {
     icon: IconCube,
