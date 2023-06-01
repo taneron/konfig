@@ -70,8 +70,6 @@ such as `konfig`/`acme-sdks`/`openapi.json`. You must also have
 https://github.com/apps/konfig-bot installed on your GitHub repository.
 :::
 
-````
-
 ```yaml
 name: konfig-poll-every-30-minutes
 on:
@@ -99,7 +97,7 @@ jobs:
         run: konfig pull
       - name: Push the OpenAPI Specification to Konfig
         run: konfig push -o YOUR_GITHUB_OWNER_ID -r YOUR_REPO_NAME -s YOUR_OAS_PATH
-````
+```
 
 ## Versioning and Publishing
 
