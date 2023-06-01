@@ -77,6 +77,7 @@ name: konfig-poll-every-30-minutes
 on:
   schedule:
     - cron: "*/30 * * * *"
+  workflow_dispatch:
 
 jobs:
   poll:
