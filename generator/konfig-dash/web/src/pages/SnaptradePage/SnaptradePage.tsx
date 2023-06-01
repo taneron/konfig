@@ -133,14 +133,14 @@ const SnaptradePage = observer(() => {
                   label="Getting Started"
                   active
                 />
-                {/* <NavLink
+                <NavLink
                   onClick={() => {
                     setOpened(false)
                   }}
                   p="xs"
                   variant="filled"
                   sx={(theme) => ({ borderRadius: theme.radius.sm })}
-                  label="Getting Started with Trades"
+                  label="Registering Users"
                 />
                 <NavLink
                   onClick={() => {
@@ -149,8 +149,17 @@ const SnaptradePage = observer(() => {
                   p="xs"
                   variant="filled"
                   sx={(theme) => ({ borderRadius: theme.radius.sm })}
-                  label="Managing Portfolios"
-                /> */}
+                  label="Handling User Data"
+                />
+                <NavLink
+                  onClick={() => {
+                    setOpened(false)
+                  }}
+                  p="xs"
+                  variant="filled"
+                  sx={(theme) => ({ borderRadius: theme.radius.sm })}
+                  label="Placing Trades"
+                />
               </Stack>
             </Navbar.Section>
           </Navbar>
