@@ -18,7 +18,7 @@ Today there are two ways of automating SDK updates with Konfig:
 - [Public Endpoint serving your OpenAPI Spec](automate-sdk-updates#public-endpoint-serving-your-openapi-spec) (poll)
   - Use Polling when you do not version control your OAS and instead serve your OAS as a public endpoint
 
-### GitHub Action
+### Push (GitHub Action)
 
 Add the following GitHub Action under `.github/workflows/konfig-push.yaml` to
 the repository that hosts your OAS. Replace the following values with your own:
@@ -58,10 +58,47 @@ jobs:
         run: konfig push -s api.yaml -o konfig-dev -r acme-sdks
 ```
 
-### Public Endpoint serving your OpenAPI Spec
+### Public Endpoint serving your OpenAPI Spec (GitHub Action)
 
-Konfig will periodically poll updates from your OpenAPI Spec being served at a
-public endpoint.
+You can easily setup polling for updates on your OpenAPI Spec being served at a
+public endpoint. Here is an example workflow to add to your SDK repository (that contains your `konfig.yaml`).
+
+:::note
+Make sure to use `CLI_VERSION` >= 10.0.206 and replace
+`YOUR_GITHUB_OWNER_ID`/`YOUR_REPO_NAME`/`YOUR_OAS_PATH` with your own values
+such as `konfig`/`acme-sdks`/`openapi.json`. You must also have
+https://github.com/apps/konfig-bot installed on your GitHub repository.
+:::
+
+````
+
+```yaml
+name: konfig-poll-every-30-minutes
+on:
+  schedule:
+    - cron: "*/30 * * * *"
+
+jobs:
+  poll:
+    runs-on: ubuntu-latest
+    env:
+      CLI_VERSION: 1.0.206
+    steps:
+      - uses: actions/checkout@v3
+      - name: Cache node_modules
+        id: cache-npm
+        uses: actions/cache@v3
+        with:
+          # npm cache files are stored in "~/.npm" on Linux/macOS
+          path: ~/.npm
+          key: ${{ runner.os }}-build-${{ env.CLI_VERSION }}
+      - name: Install Konfig CLI
+        run: npm install -g konfig-cli@$CLI_VERSION
+      - name: Pull the latest OpenAPI Specification
+        run: konfig pull
+      - name: Push the OpenAPI Specification to Konfig
+        run: konfig push -o YOUR_GITHUB_OWNER_ID -r YOUR_REPO_NAME -s YOUR_OAS_PATH
+````
 
 ## Versioning and Publishing
 
