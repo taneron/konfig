@@ -87,7 +87,7 @@ export function HeroBullets() {
               Easily build interactive notebook-style demos that are runnable in
               the browser and{" "}
               <Mark color="red">
-                stop using developer tools to demo your API.
+                stop using clunky developer tools to demo your API.
               </Mark>
             </Text>
 
