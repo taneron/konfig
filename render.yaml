@@ -5,6 +5,16 @@
 #####
 
 services:
+  - name: konfig-demo-product-landing-page
+    type: web
+    env: static
+    buildCommand: yarn; yarn build; yarn next export
+    staticPublishPath: ./out
+    repo: https://github.com/konfig-dev/konfig
+    rootDir: misc/konfig-demo-product-landing-page
+    domains:
+      - apidemo.konfigthis.com
+
   - name: konfig-dash
     type: web
     env: static
