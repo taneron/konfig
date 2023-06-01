@@ -29,8 +29,9 @@ export default class Push extends Command {
       required: true,
     }),
     directory: Flags.directory({
-      exists: true,
       name: 'directory',
+      description:
+        'Path from root of Git repository to directory containing konfig.yaml. This is useful if your have multiple SDK repositories (directories containing a konfig.yaml file).',
       char: 'x',
     }),
     dev: Flags.boolean({ char: 'd', hidden: true }),
