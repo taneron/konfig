@@ -35,7 +35,7 @@ export function FooterSimple() {
 
   return (
     <div className={classes.footer}>
-      <Container className={classes.inner}>
+      <Container size="lg" className={classes.inner}>
         <Image height={25} src={logo} alt="Konfig Logo" />
         <Text color="gray" size="xs">
           Copyright © Konfig Inc.

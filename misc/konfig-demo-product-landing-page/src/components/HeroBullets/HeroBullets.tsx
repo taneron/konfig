@@ -1,15 +1,15 @@
 import {
   createStyles,
-  Image,
   Container,
-  Title,
-  Anchor,
+  Stack,
   Button,
+  Title,
   Group,
   Text,
   List,
   ThemeIcon,
   rem,
+  AspectRatio,
 } from "@mantine/core";
 import { IconCheck } from "@tabler/icons-react";
 import image from "./image.svg";
@@ -19,9 +19,9 @@ const useStyles = createStyles((theme) => ({
     display: "flex",
     justifyContent: "space-between",
     paddingTop: `calc(${theme.spacing.xl} * 4)`,
+    alignItems: "center",
     [theme.fn.smallerThan("md")]: {
       flexDirection: "column",
-      alignItems: "center",
       gap: rem(50),
     },
   },
@@ -53,8 +53,11 @@ const useStyles = createStyles((theme) => ({
     },
   },
 
-  image: {
-    flex: 1,
+  video: {
+    width: "600px",
+    [theme.fn.smallerThan("sm")]: {
+      width: "450px",
+    },
   },
 
   highlight: {
@@ -73,7 +76,7 @@ export function HeroBullets() {
   const { classes } = useStyles();
   return (
     <div>
-      <Container>
+      <Container size="lg">
         <div className={classes.inner}>
           <div className={classes.content}>
             <Title className={classes.title}>
@@ -124,12 +127,20 @@ export function HeroBullets() {
               </Button>
             </Group>
           </div>
-          <Image
-            width={400}
-            src={image.src}
-            className={classes.image}
-            alt="Hero Image"
-          />
+          <Stack align="center" spacing="xs">
+            <AspectRatio className={classes.video} ratio={3022 / 1664}>
+              <iframe
+                src="https://www.youtube.com/embed/JewOol5njqk"
+                title="YouTube video player"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+              />
+            </AspectRatio>
+            <Text color="gray" size="xs">
+              Run through a Demo Built on Konfig in 37 seconds
+            </Text>
+          </Stack>
         </div>
       </Container>
     </div>

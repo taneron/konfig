@@ -16,7 +16,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.png" />
       </Head>
       <main>
-        <HeaderSimple links={[]} />
+        <HeaderSimple />
         <HeroBullets />
         <FooterSimple />
       </main>

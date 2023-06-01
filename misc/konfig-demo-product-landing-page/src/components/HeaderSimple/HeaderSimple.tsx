@@ -63,17 +63,12 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-interface HeaderSimpleProps {
-  links: { link: string; label: string }[];
-}
-
-export function HeaderSimple({ links }: HeaderSimpleProps) {
-  const [opened, { toggle }] = useDisclosure(false);
-  const { classes, cx } = useStyles();
+export function HeaderSimple() {
+  const { classes } = useStyles();
 
   return (
     <Header height={60}>
-      <Container className={classes.header}>
+      <Container size="lg" className={classes.header}>
         <Image height={40} src={logo} alt="Konfig Logo" />
         <Button
           target="_blank"
