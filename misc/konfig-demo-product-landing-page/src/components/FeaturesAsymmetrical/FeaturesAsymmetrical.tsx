@@ -85,7 +85,7 @@ const mockdata = [
     icon: IconCube,
     title: "Sleek",
     description:
-      "Stop using clunky developer tools to demo your API. Impress your customers with a sleek and convincing demo.",
+      "Stop using clunky developer tools to demo your API. Impress your customers with a sleek demo.",
   },
 ];
 
