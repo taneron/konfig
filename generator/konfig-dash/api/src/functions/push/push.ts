@@ -1,6 +1,7 @@
 import type { APIGatewayEvent, Context } from 'aws-lambda'
 import { logger } from 'src/lib/logger'
 import { App } from 'octokit'
+import * as path from 'path'
 
 import { KonfigYaml, KONFIG_YAML_NAME } from 'konfig-lib'
 import {
@@ -84,16 +85,23 @@ export const handler = async (event: APIGatewayEvent, context: Context) => {
     }
   }
 
-  const { content: konfigYaml } = await getContent({ path: KONFIG_YAML_NAME })
+  const directory = requestBodyParseResult.data.directory ?? ''
+
+  const { content: konfigYaml } = await getContent({
+    path: path.join(directory, KONFIG_YAML_NAME),
+  })
 
   const konfigYamlParseResult = KonfigYaml.safeParse(parse(konfigYaml))
   if (konfigYamlParseResult.success === false)
     throw Error(`Could not find valid ${KONFIG_YAML_NAME} in ${repoFullName}`)
 
   // Push to specInputPath if it exists, otherwise push to specPath
-  const specPath = konfigYamlParseResult.data.specInputPath
-    ? konfigYamlParseResult.data.specInputPath
-    : konfigYamlParseResult.data.specPath
+  const specPath = path.join(
+    directory,
+    konfigYamlParseResult.data.specInputPath
+      ? konfigYamlParseResult.data.specInputPath
+      : konfigYamlParseResult.data.specPath
+  )
   if (specPath === undefined)
     throw Error(
       `${KONFIG_YAML_NAME} must specify path to OpenAPI Spec with "specPath" field`

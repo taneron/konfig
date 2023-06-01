@@ -50,6 +50,10 @@ export const PushRequestBody = registry.register(
   PUSH_REQUEST_BODY_NAME,
   z.object({
     spec: specSchema,
+    directory: z
+      .string()
+      .optional()
+      .describe('Path from root directory to directory containing konfig.yaml'),
     gitHub: z.object({
       owner: z.string().openapi({
         description: 'The account owner of the repository',

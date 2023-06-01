@@ -28,6 +28,11 @@ export default class Push extends Command {
       exists: true,
       required: true,
     }),
+    directory: Flags.directory({
+      exists: true,
+      name: 'directory',
+      char: 'x',
+    }),
     dev: Flags.boolean({ char: 'd', hidden: true }),
   }
 
@@ -46,6 +51,7 @@ export default class Push extends Command {
         owner: flags.owner,
         repo: flags.repo,
       },
+      directory: flags.directory,
     }
 
     const suffix = `${flags.spec} to https://github.com/${flags.owner}/${flags.repo}`
