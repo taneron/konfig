@@ -1,24 +1,23 @@
 import {
   createStyles,
   Container,
+  Mark,
   Stack,
   Button,
   Title,
   Group,
   Text,
-  List,
-  ThemeIcon,
   rem,
   AspectRatio,
 } from "@mantine/core";
-import { IconCheck } from "@tabler/icons-react";
-import image from "./image.svg";
+import { FeaturesAsymmetrical } from "../FeaturesAsymmetrical/FeaturesAsymmetrical";
 
 const useStyles = createStyles((theme) => ({
   inner: {
     display: "flex",
     justifyContent: "space-between",
     paddingTop: `calc(${theme.spacing.xl} * 4)`,
+    paddingBottom: `calc(${theme.spacing.xl} * 2)`,
     alignItems: "center",
     [theme.fn.smallerThan("md")]: {
       flexDirection: "column",
@@ -85,35 +84,12 @@ export function HeroBullets() {
             </Title>
             <Text color="dimmed" mt="md">
               Konfig makes it easy for you to impress buyers with your API.
-              Easily build interactive code-based demos that are runnable in the
-              browser and stop using developer tools to demo your API.
+              Easily build interactive notebook-style demos that are runnable in
+              the browser and{" "}
+              <Mark color="red">
+                stop using developer tools to demo your API.
+              </Mark>
             </Text>
-
-            <List
-              mt={30}
-              spacing="sm"
-              size="sm"
-              icon={
-                <ThemeIcon size={20} radius="xl">
-                  <IconCheck size={rem(12)} stroke={1.5} />
-                </ThemeIcon>
-              }
-            >
-              <List.Item>
-                <b>No Developer Required</b> – No developer is required to
-                operate the demo. Easily demonstrate custom flows by clicking
-                buttons.
-              </List.Item>
-              <List.Item>
-                <b>Self-service</b> – Allow your customers to self-service your
-                API demo with their own inputs. Developers can also copy-paste
-                the source code to integrate the demo in their own application.
-              </List.Item>
-              <List.Item>
-                <b>Professional</b> – Stop using Postman or Readme to demo your
-                API. Impress your customers with a sleek and convincing demo.
-              </List.Item>
-            </List>
 
             <Group mt={30}>
               <Button
@@ -142,6 +118,7 @@ export function HeroBullets() {
             </Text>
           </Stack>
         </div>
+        <FeaturesAsymmetrical />
       </Container>
     </div>
   );
