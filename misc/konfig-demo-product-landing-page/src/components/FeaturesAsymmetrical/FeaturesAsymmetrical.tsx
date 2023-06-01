@@ -73,7 +73,7 @@ const mockdata = [
     icon: IconUserX,
     title: "No Developer Required",
     description:
-      "No developer is required to operate the demo. Easily demonstrate custom flows for your API in the browser.",
+      "No developer is required to operate the demo. Easily demo custom flows for your API in the browser.",
   },
   {
     icon: IconDeviceDesktop,
