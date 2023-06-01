@@ -103,8 +103,8 @@ export function HeroBullets() {
               </List.Item>
               <List.Item>
                 <b>Self-service</b> – Allow your customers to self-service your
-                API with their own inputs. Developers can also copy-paste the
-                source code to integrate the demo in their own application.
+                API demo with their own inputs. Developers can also copy-paste
+                the source code to integrate the demo in their own application.
               </List.Item>
               <List.Item>
                 <b>Professional</b> – Stop using Postman or Readme to demo your
