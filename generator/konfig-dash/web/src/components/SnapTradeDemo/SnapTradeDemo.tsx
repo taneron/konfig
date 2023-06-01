@@ -3,17 +3,11 @@ import {
   Container,
   Paper,
   Stack,
-  Title,
   Code,
   TextInput,
-  Button,
-  Collapse,
   Anchor,
   PasswordInput,
 } from '@mantine/core'
-import { Prism } from '@mantine/prism'
-import { IconCheck } from '@tabler/icons'
-import { KonfigYamlGeneratorNames } from 'konfig-lib'
 import { snapTradeGettingStarted } from 'konfig-lib/dist/snaptrade-demo'
 import { makeAutoObservable } from 'mobx'
 import { observer } from 'mobx-react'
@@ -23,52 +17,7 @@ import axios from 'axios'
 import CellOutput from '../CellOutput/CellOutput'
 import DemoTitle from '../DemoTitle/DemoTitle'
 import DemoRunButton from '../DemoRunButton/DemoRunButton'
-
-const typescript1 = `import { Snaptrade } = "snaptrade-typescript-sdk";
-
-const snaptrade = new Snaptrade({
-  consumerKey: process.env.SNAPTRADE_CONSUMER_KEY,
-  clientId: process.env.SNAPTRADE_CLIENT_ID,
-});
-
-console.log("Successfully initiated client")
-`
-
-const typescript2 = `const status = await snaptrade.apiStatus.check();
-console.log("status:", status.data);`
-
-const typescript3 = `const userId = process.env.SNAPTRADE_USER_ID;
-const { userSecret } = (
-  await snaptrade.authentication.registerSnapTradeUser({
-    userId,
-  })
-).data;
-
-// Note: A user secret is only generated once. It's required to access
-// resources for certain endpoints.
-console.log("userSecret:", userSecret);
-`
-
-const typescript4 = `const data = (
-  await snaptrade.authentication.loginSnapTradeUser({ userId, userSecret })
-).data;
-if (!("redirectURI" in data)) throw Error("Should have gotten redirect URI");
-console.log("redirectURI:", data.redirectURI);
-`
-
-const typescript5 = `const holdings = (
-  await snaptrade.accountInformation.getAllUserHoldings({
-    userId,
-    userSecret,
-  })
-).data;
-console.log("holdings:", holdings);`
-
-const typescript6 = `const deleteResponse = (
-  await snaptrade.authentication.deleteSnapTradeUser({ userId })
-).data;
-console.log("deleteResponse:", deleteResponse);
-`
+import CodeSnippet from '../CodeSnippet/CodeSnippet'
 
 export type RunCellParams = {
   environment_variables: { [name: string]: string }
@@ -203,20 +152,12 @@ const SnapTradeDemo = observer(() => {
             value={demoRunState.consumerKey}
             onChange={(e) => demoRunState.setConsumerKey(e.target.value)}
           />
-          <Collapse in={demoState.in}>
-            <Prism.Tabs onTabChange={onTabChange} value={demoState.language}>
-              <Prism.TabsList>
-                <Prism.Tab value="python">Python</Prism.Tab>
-                <Prism.Tab value="typescript">TypeScript</Prism.Tab>
-              </Prism.TabsList>
-              <Prism.Panel value="python" language="python">
-                {snapTradeGettingStarted[0].python}
-              </Prism.Panel>
-              <Prism.Panel value="typescript" language="typescript">
-                {typescript1}
-              </Prism.Panel>
-            </Prism.Tabs>
-          </Collapse>
+          <CodeSnippet
+            open={demoState.in}
+            onTabChange={onTabChange}
+            language={demoState.language}
+            {...snapTradeGettingStarted[0]}
+          />
           <CellOutput cell={demoRunState.cells[0]} />
           <DemoRunButton
             runParams={{
@@ -237,25 +178,12 @@ const SnapTradeDemo = observer(() => {
             indicating the API status, current server timestamp, and internal
             API minor version number.
           </Text>
-          <Collapse in={demoState.in}>
-            <Prism.Tabs
-              onTabChange={(value) => {
-                demoState.setLanguage(value as KonfigYamlGeneratorNames)
-              }}
-              value={demoState.language}
-            >
-              <Prism.TabsList>
-                <Prism.Tab value="python">Python</Prism.Tab>
-                <Prism.Tab value="typescript">TypeScript</Prism.Tab>
-              </Prism.TabsList>
-              <Prism.Panel value="python" language="python">
-                {snapTradeGettingStarted[1].python}
-              </Prism.Panel>
-              <Prism.Panel value="typescript" language="typescript">
-                {typescript2}
-              </Prism.Panel>
-            </Prism.Tabs>
-          </Collapse>
+          <CodeSnippet
+            open={demoState.in}
+            onTabChange={onTabChange}
+            language={demoState.language}
+            {...snapTradeGettingStarted[1]}
+          />
           <CellOutput cell={demoRunState.cells[1]} />
           <DemoRunButton cell={demoRunState.cells[1]} />
           <DemoTitle
@@ -281,20 +209,12 @@ const SnapTradeDemo = observer(() => {
             value={demoRunState.userId}
             onChange={(e) => demoRunState.setUserId(e.target.value)}
           />
-          <Collapse in={demoState.in}>
-            <Prism.Tabs onTabChange={onTabChange} value={demoState.language}>
-              <Prism.TabsList>
-                <Prism.Tab value="python">Python</Prism.Tab>
-                <Prism.Tab value="typescript">TypeScript</Prism.Tab>
-              </Prism.TabsList>
-              <Prism.Panel value="python" language="python">
-                {snapTradeGettingStarted[2].python}
-              </Prism.Panel>
-              <Prism.Panel value="typescript" language="typescript">
-                {typescript3}
-              </Prism.Panel>
-            </Prism.Tabs>
-          </Collapse>
+          <CodeSnippet
+            open={demoState.in}
+            onTabChange={onTabChange}
+            language={demoState.language}
+            {...snapTradeGettingStarted[2]}
+          />
           <CellOutput cell={demoRunState.cells[2]} />
           <DemoRunButton
             runParams={{
@@ -318,20 +238,12 @@ const SnapTradeDemo = observer(() => {
             would indicate a redirectURI to be used for login a user to the
             SnapTrade portal.
           </Text>
-          <Collapse in={demoState.in}>
-            <Prism.Tabs onTabChange={onTabChange} value={demoState.language}>
-              <Prism.TabsList>
-                <Prism.Tab value="python">Python</Prism.Tab>
-                <Prism.Tab value="typescript">TypeScript</Prism.Tab>
-              </Prism.TabsList>
-              <Prism.Panel value="python" language="python">
-                {snapTradeGettingStarted[3].python}
-              </Prism.Panel>
-              <Prism.Panel value="typescript" language="typescript">
-                {typescript4}
-              </Prism.Panel>
-            </Prism.Tabs>
-          </Collapse>
+          <CodeSnippet
+            open={demoState.in}
+            onTabChange={onTabChange}
+            language={demoState.language}
+            {...snapTradeGettingStarted[3]}
+          />
           <CellOutput cell={demoRunState.cells[3]} />
           <DemoRunButton cell={demoRunState.cells[3]} />
           <DemoTitle
@@ -345,20 +257,12 @@ const SnapTradeDemo = observer(() => {
             holdings. In the response, you should get an array of objects
             containing each account holdings data.
           </Text>
-          <Collapse in={demoState.in}>
-            <Prism.Tabs onTabChange={onTabChange} value={demoState.language}>
-              <Prism.TabsList>
-                <Prism.Tab value="python">Python</Prism.Tab>
-                <Prism.Tab value="typescript">TypeScript</Prism.Tab>
-              </Prism.TabsList>
-              <Prism.Panel value="python" language="python">
-                {snapTradeGettingStarted[4].python}
-              </Prism.Panel>
-              <Prism.Panel value="typescript" language="typescript">
-                {typescript5}
-              </Prism.Panel>
-            </Prism.Tabs>
-          </Collapse>
+          <CodeSnippet
+            open={demoState.in}
+            onTabChange={onTabChange}
+            language={demoState.language}
+            {...snapTradeGettingStarted[4]}
+          />
           <CellOutput cell={demoRunState.cells[4]} />
           <DemoRunButton cell={demoRunState.cells[4]} />
           <DemoTitle
@@ -369,20 +273,12 @@ const SnapTradeDemo = observer(() => {
             Disabling all brokerage authorizations and permanently deleting all
             data associated with the user
           </Text>
-          <Collapse in={demoState.in}>
-            <Prism.Tabs onTabChange={onTabChange} value={demoState.language}>
-              <Prism.TabsList>
-                <Prism.Tab value="python">Python</Prism.Tab>
-                <Prism.Tab value="typescript">TypeScript</Prism.Tab>
-              </Prism.TabsList>
-              <Prism.Panel value="python" language="python">
-                {snapTradeGettingStarted[5].python}
-              </Prism.Panel>
-              <Prism.Panel value="typescript" language="typescript">
-                {typescript6}
-              </Prism.Panel>
-            </Prism.Tabs>
-          </Collapse>
+          <CodeSnippet
+            open={demoState.in}
+            onTabChange={onTabChange}
+            language={demoState.language}
+            {...snapTradeGettingStarted[5]}
+          />
           <CellOutput cell={demoRunState.cells[5]} />
           <DemoRunButton cell={demoRunState.cells[5]} />
         </Stack>

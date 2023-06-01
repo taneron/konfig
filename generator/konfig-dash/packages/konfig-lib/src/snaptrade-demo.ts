@@ -13,12 +13,23 @@ snaptrade = SnapTrade(
 
 print("Successfully initiated client")
   `,
+    typescript: `import { Snaptrade } = "snaptrade-typescript-sdk";
+
+const snaptrade = new Snaptrade({
+  consumerKey: process.env.SNAPTRADE_CONSUMER_KEY,
+  clientId: process.env.SNAPTRADE_CLIENT_ID,
+});
+
+console.log("Successfully initiated client")
+`,
   },
   {
     title:
       '2) Check that the client is able to make a request to the API server',
     python: `api_response = snaptrade.api_status.check()
 pprint(api_response.body)`,
+    typescript: `const status = await snaptrade.apiStatus.check();
+console.log("status:", status.data);`,
   },
   {
     title: '3) Create a new user on SnapTrade',
@@ -31,6 +42,17 @@ pprint(register_response.body)
 # Note: A user secret is only generated once. It's required to access
 # resources for certain endpoints.
 user_secret = register_response.body["userSecret"]`,
+    typescript: `const userId = process.env.SNAPTRADE_USER_ID;
+const { userSecret } = (
+  await snaptrade.authentication.registerSnapTradeUser({
+    userId,
+  })
+).data;
+
+// Note: A user secret is only generated once. It's required to access
+// resources for certain endpoints.
+console.log("userSecret:", userSecret);
+`,
   },
   {
     title: '4) Get a redirect URI',
@@ -40,6 +62,13 @@ user_secret = register_response.body["userSecret"]`,
 
 print(redirect_uri.body["redirectURI"])
 `,
+
+    typescript: `const data = (
+  await snaptrade.authentication.loginSnapTradeUser({ userId, userSecret })
+).data;
+if (!("redirectURI" in data)) throw Error("Should have gotten redirect URI");
+console.log("redirectURI:", data.redirectURI);
+`,
   },
   {
     title: '5) Get account holdings data',
@@ -47,12 +76,25 @@ print(redirect_uri.body["redirectURI"])
   user_id=user_id, user_secret=user_secret
 )
 pprint(holdings.body)`,
+    typescript: `const holdings = (
+  await snaptrade.accountInformation.getAllUserHoldings({
+    userId,
+    userSecret,
+  })
+).data;
+console.log("holdings:", holdings);`,
   },
+
   {
     title: '6) Deleting a user',
     python: `deleted_response = snaptrade.authentication.delete_snap_trade_user(
   user_id=user_id
 )
 pprint(deleted_response.body)`,
+    typescript: `const deleteResponse = (
+  await snaptrade.authentication.deleteSnapTradeUser({ userId })
+).data;
+console.log("deleteResponse:", deleteResponse);
+`,
   },
 ] as const
