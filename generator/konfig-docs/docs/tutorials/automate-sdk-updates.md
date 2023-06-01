@@ -61,7 +61,7 @@ jobs:
 ### Public Endpoint serving your OpenAPI Spec (GitHub Action)
 
 You can easily setup polling for updates on your OpenAPI Spec being served at a
-public endpoint. Here is an example workflow to add to your SDK repository (that contains your `konfig.yaml`).
+public endpoint. Here is an example workflow to add to your SDK repository (that contains your `konfig.yaml`). You can add this under `.github/workflows/konfig-poll-every-30-minutes.yaml`
 
 :::note
 Make sure to use `CLI_VERSION` >= 10.0.206 and replace
