@@ -44,6 +44,7 @@ const Form: Components['form'] = ({
     createFormContext()
   )
 
+  // Initialize values
   const initialValues = node.children.reduce((initialValues, child) => {
     if (child.type === 'element' && child.tagName === 'input') {
       const id = child.properties?.['id']
@@ -54,6 +55,7 @@ const Form: Components['form'] = ({
     return initialValues
   }, {} as { [key: string]: string })
 
+  // Ensure all inputs are non-empty
   const validate = node.children.reduce((validate, child) => {
     if (child.type === 'element' && child.tagName === 'input') {
       const id = child.properties?.['id']
@@ -65,9 +67,12 @@ const Form: Components['form'] = ({
     return validate
   }, {} as { [key: string]: (value: string) => string | null })
 
+  // Find the first section of code that is a Python snippet
   const firstPreNode = node.children.find((child) => {
     return child.type === 'element' && child.tagName === 'pre'
   })
+
+  console.log(firstPreNode)
 
   const firstCodeSnippet = firstPreNode ? toText(firstPreNode) : undefined
 
@@ -78,6 +83,7 @@ const Form: Components['form'] = ({
       <FormProvider form={form}>
         <form
           onSubmit={form.onSubmit((values) => {
+            console.log(values)
             console.log(firstCodeSnippet)
           })}
           {...props}
@@ -116,13 +122,13 @@ const Button: Components['button'] = ({
 }) => {
   return (
     <MantineButton
-      color="cyan"
       type="submit"
+      color="cyan"
       compact
       variant="light"
       {...props}
     >
-      Run
+      {children}
     </MantineButton>
   )
 }
