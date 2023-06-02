@@ -1,7 +1,5 @@
 import {
   Text,
-  Container,
-  Paper,
   Stack,
   Code,
   TextInput,
@@ -19,6 +17,7 @@ import DemoTitle from '../DemoTitle/DemoTitle'
 import DemoRunButton from '../DemoRunButton/DemoRunButton'
 import CodeSnippet from '../CodeSnippet/CodeSnippet'
 import DemoWrapper from '../DemoWrapper/DemoWrapper'
+import { useForm } from '@mantine/form'
 
 export type RunCellParams = {
   environment_variables: { [name: string]: string }
@@ -32,13 +31,11 @@ export class CellState {
   id: number
   _disabled: boolean
   focused = false
-  disableOverride?: () => boolean
 
-  constructor(id: number, disabled: boolean, disableOverride?: () => boolean) {
+  constructor(id: number, disabled: boolean) {
     makeAutoObservable(this)
     this.id = id
     this._disabled = disabled
-    this.disableOverride = disableOverride
   }
 
   get ranSuccessfully() {
@@ -65,7 +62,6 @@ export class CellState {
       session_id: demoState.sessionId,
       ...params,
     })
-    console.log(data)
     this.output = data.output
     this.running = false
     this.show = true
@@ -76,10 +72,6 @@ export class CellState {
 
   get disabled() {
     return this._disabled
-      ? true
-      : this.disableOverride !== undefined
-      ? this.disableOverride()
-      : this._disabled
   }
 }
 
@@ -88,11 +80,9 @@ class DemoRunState {
   consumerKey: string = ''
   userId: string = ''
   cells: CellState[] = [
-    new CellState(0, false, () => {
-      return this.clientId === '' || this.consumerKey === ''
-    }),
+    new CellState(0, false),
     new CellState(1, true),
-    new CellState(2, true, () => this.userId === ''),
+    new CellState(2, true),
     new CellState(3, true),
     new CellState(4, true),
     new CellState(5, true),
@@ -124,6 +114,30 @@ const SnapTradeDemo = observer(() => {
   const onTabChange = useCallback((value) => {
     demoState.setLanguage(value)
   }, [])
+
+  const step1Form = useForm({
+    initialValues: {
+      SNAPTRADE_CLIENT_ID: '',
+      SNAPTRADE_CONSUMER_KEY: '',
+    },
+    validate: {
+      SNAPTRADE_CLIENT_ID: (value) =>
+        value === '' ? 'Client ID is required' : null,
+      SNAPTRADE_CONSUMER_KEY: (value) =>
+        value === '' ? 'Consumer Key is required' : null,
+    },
+  })
+
+  const step3Form = useForm({
+    initialValues: {
+      SNAPTRADE_USER_ID: '',
+    },
+    validate: {
+      SNAPTRADE_USER_ID: (value) =>
+        value === '' ? 'Client ID is required' : null,
+    },
+  })
+
   return (
     <DemoWrapper>
       <DemoTitle
@@ -135,38 +149,36 @@ const SnapTradeDemo = observer(() => {
         contacting{' '}
         <Anchor href="mailto: api@snaptrade.com">api@snaptrade.com</Anchor>
       </Text>
-      <PasswordInput
-        placeholder="YOUR_CLIENT_ID"
-        label="Client ID"
-        withAsterisk
-        value={demoRunState.clientId}
-        autoComplete="off"
-        onChange={(e) => demoRunState.setClientId(e.target.value)}
-      />
-      <PasswordInput
-        placeholder="YOUR_CONSUMER_KEY"
-        label="Consumer Key"
-        withAsterisk
-        autoComplete="off"
-        value={demoRunState.consumerKey}
-        onChange={(e) => demoRunState.setConsumerKey(e.target.value)}
-      />
-      <CodeSnippet
-        open={demoState.in}
-        onTabChange={onTabChange}
-        language={demoState.language}
-        {...snapTradeGettingStarted[0]}
-      />
-      <CellOutput cell={demoRunState.cells[0]} />
-      <DemoRunButton
-        runParams={{
-          environment_variables: {
-            SNAPTRADE_CLIENT_ID: demoRunState.clientId,
-            SNAPTRADE_CONSUMER_KEY: demoRunState.consumerKey,
-          },
-        }}
-        cell={demoRunState.cells[0]}
-      />
+      <form
+        onSubmit={step1Form.onSubmit((values) =>
+          demoRunState.cells[0].run({ environment_variables: values })
+        )}
+      >
+        <Stack>
+          <PasswordInput
+            placeholder="YOUR_CLIENT_ID"
+            label="Client ID"
+            withAsterisk
+            autoComplete="off"
+            {...step1Form.getInputProps('SNAPTRADE_CLIENT_ID')}
+          />
+          <PasswordInput
+            placeholder="YOUR_CONSUMER_KEY"
+            label="Consumer Key"
+            withAsterisk
+            autoComplete="off"
+            {...step1Form.getInputProps('SNAPTRADE_CONSUMER_KEY')}
+          />
+          <CodeSnippet
+            open={demoState.in}
+            onTabChange={onTabChange}
+            language={demoState.language}
+            {...snapTradeGettingStarted[0]}
+          />
+          <CellOutput cell={demoRunState.cells[0]} />
+          <DemoRunButton cell={demoRunState.cells[0]} />
+        </Stack>
+      </form>
       <DemoTitle
         title={snapTradeGettingStarted[1].title}
         focused={demoRunState.cells[1].focused}
@@ -200,28 +212,29 @@ const SnapTradeDemo = observer(() => {
         user secret need to be passed along to all SnapTrade API endpoints that
         involve access to user data.
       </Text>
-      <TextInput
-        placeholder="YOUR_SNAPTRADE_USER_ID"
-        label="SnapTrade User ID"
-        withAsterisk
-        value={demoRunState.userId}
-        onChange={(e) => demoRunState.setUserId(e.target.value)}
-      />
-      <CodeSnippet
-        open={demoState.in}
-        onTabChange={onTabChange}
-        language={demoState.language}
-        {...snapTradeGettingStarted[2]}
-      />
-      <CellOutput cell={demoRunState.cells[2]} />
-      <DemoRunButton
-        runParams={{
-          environment_variables: {
-            SNAPTRADE_USER_ID: demoRunState.userId,
-          },
-        }}
-        cell={demoRunState.cells[2]}
-      />
+      <form
+        onSubmit={step3Form.onSubmit((environment_variables) =>
+          demoRunState.cells[2].run({ environment_variables })
+        )}
+      >
+        <Stack>
+          <TextInput
+            placeholder="YOUR_SNAPTRADE_USER_ID"
+            label="SnapTrade User ID"
+            withAsterisk
+            value={demoRunState.userId}
+            onChange={(e) => demoRunState.setUserId(e.target.value)}
+          />
+          <CodeSnippet
+            open={demoState.in}
+            onTabChange={onTabChange}
+            language={demoState.language}
+            {...snapTradeGettingStarted[2]}
+          />
+          <CellOutput cell={demoRunState.cells[2]} />
+          <DemoRunButton cell={demoRunState.cells[2]} />
+        </Stack>
+      </form>
       <DemoTitle
         title={snapTradeGettingStarted[3].title}
         focused={demoRunState.cells[3].focused}

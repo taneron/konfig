@@ -1,4 +1,17 @@
-export const snapTradeGettingStarted = [
+type DemoCellContent = {
+  title: string
+  python: string
+  typescript?: string
+}
+
+export const snapTradeGettingStartedMarkdown: string = `
+# 1) Initialize a client with your clientId and consumerKey
+
+You can get your \`clientId\` and \`consumerKey\` by contacting [api@snaptrade.com](mailto:api@snaptrade.com)
+
+`
+
+export const snapTradeGettingStarted: DemoCellContent[] = [
   {
     title: '1) Initialize a client with your clientId and consumerKey',
     python: `from snaptrade_client import SnapTrade
@@ -97,4 +110,75 @@ pprint(deleted_response.body)`,
 console.log("deleteResponse:", deleteResponse);
 `,
   },
-] as const
+]
+
+export const snapTradeRegisteringUsers: DemoCellContent[] = [
+  {
+    title: '1) Initialize a client with your clientId and consumerKey',
+    python: `from snaptrade_client import SnapTrade
+from pprint import pprint
+import uuid
+import os
+
+snaptrade = SnapTrade(
+  consumer_key=os.environ["SNAPTRADE_CONSUMER_KEY"],
+  client_id=os.environ["SNAPTRADE_CLIENT_ID"],
+)
+
+print("Successfully initiated client")
+  `,
+    typescript: `import { Snaptrade } = "snaptrade-typescript-sdk";
+
+const snaptrade = new Snaptrade({
+  consumerKey: process.env.SNAPTRADE_CONSUMER_KEY,
+  clientId: process.env.SNAPTRADE_CLIENT_ID,
+});
+
+console.log("Successfully initiated client")
+`,
+  },
+  {
+    title: '2) Create a new user on SnapTrade',
+    python: `user_id = os.environ["SNAPTRADE_USER_ID"]
+register_response = snaptrade.authentication.register_snap_trade_user(
+    user_id=user_id
+)
+pprint(register_response.body)
+
+# Note: A user secret is only generated once. It's required to access
+# resources for certain endpoints.
+user_secret = register_response.body["userSecret"]`,
+    typescript: `const userId = process.env.SNAPTRADE_USER_ID;
+const { userSecret } = (
+  await snaptrade.authentication.registerSnapTradeUser({
+    userId,
+  })
+).data;
+
+// Note: A user secret is only generated once. It's required to access
+// resources for certain endpoints.
+console.log("userSecret:", userSecret);
+`,
+  },
+  {
+    title: '3) List all users',
+    python: `list_snap_trade_users_response = snaptrade.authentication.list_snap_trade_users()
+pprint(list_snap_trade_users_response.body)`,
+    typescript: `const listSnapTradeUsersResponse = (
+  await snaptrade.authentication.listSnapTradeUsers()
+).data;
+console.log(listSnapTradeUsersResponse);`,
+  },
+  {
+    title: '4) Deleting a user',
+    python: `deleted_response = snaptrade.authentication.delete_snap_trade_user(
+  user_id=user_id
+)
+pprint(deleted_response.body)`,
+    typescript: `const deleteResponse = (
+  await snaptrade.authentication.deleteSnapTradeUser({ userId })
+).data;
+console.log("deleteResponse:", deleteResponse);
+`,
+  },
+]
