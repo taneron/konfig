@@ -6,8 +6,9 @@ import {
   MantineProvider,
 } from '@mantine/core'
 import { useLocalStorage } from '@mantine/hooks'
+import { trpc } from '../utils/trpc'
 
-export default function App(props: AppProps) {
+function App(props: AppProps) {
   const { Component, pageProps } = props
 
   const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({
@@ -43,3 +44,5 @@ export default function App(props: AppProps) {
     </>
   )
 }
+
+export default trpc.withTRPC(App)

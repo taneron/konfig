@@ -17,11 +17,16 @@ import {
 import { toText } from 'hast-util-to-text'
 import { createFormContext } from '@mantine/form'
 import { createContext, useContext, useState } from 'react'
+import { api } from '@/utils/trpc'
 
 export class DemoState {
   showCode = true
+  sessionId: string | null = null
   constructor() {
     makeAutoObservable(this)
+    api.startSession
+      .query()
+      .then((response) => (this.sessionId = response.session_id))
   }
 }
 
