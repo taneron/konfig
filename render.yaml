@@ -9,11 +9,13 @@ services:
     type: cron
     schedule: "*/30 * * * *"
     buildCommand: npm install -g konfig-cli
+    env: node
     rootDir: v4
     repo: https://github.com/konfig-dev/humanloop-sdks
     startCommand: konfig pull && konfig push -o konfig-dev -r humanloop-sdks -s openapi.json -x v4
   - name: humanloop-polling-v4-alpha
     type: cron
+    env: node
     schedule: "*/30 * * * *"
     buildCommand: npm install -g konfig-cli
     rootDir: v4-alpha
