@@ -29,7 +29,24 @@ print("Successfully initiated client")
 \`\`\`
 
 
-::button
+::button[Run]
+
+:::
+
+### 2) Check that the client is able to make a request to the API server
+
+Call the API Status endpoint to make sure the API is live and that you can make
+the most basic request. You should receive a response indicating the API status,
+current server timestamp, and internal API minor version number.
+
+:::form
+
+\`\`\`python
+api_response = snaptrade.api_status.check()
+pprint(api_response.body)
+\`\`\`
+
+::button[Run]
 
 :::
 
