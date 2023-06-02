@@ -6,17 +6,6 @@ import { urlForPythonRceApi } from '@/utils/urlForPythonRceApi'
 const StartSessionResponse = z.object({ session_id: z.string() })
 
 export const appRouter = router({
-  hello: procedure
-    .input(
-      z.object({
-        text: z.string(),
-      })
-    )
-    .query((opts) => {
-      return {
-        greeting: `hello ${opts.input.text}`,
-      }
-    }),
   startSession: procedure.output(StartSessionResponse).query(async () => {
     const url = `${urlForPythonRceApi()}/sessions/create`
 
