@@ -63,10 +63,11 @@ export const handler = async (event: APIGatewayEvent, context: Context) => {
   if (repo === null)
     throw Error(`Could not find repository under ${repoFullName}`)
 
-  const getContent = async ({ path }: { path: string }) => {
+  const getContent = async ({ path, ref }: { path: string; ref?: string }) => {
     const metadata = await repo.octokit.rest.repos.getContent({
       ...repo,
       path,
+      ref,
     })
     if (typeof metadata !== 'object' || !('content' in metadata.data))
       throw Error('Unexpected type for content object')
@@ -76,6 +77,7 @@ export const handler = async (event: APIGatewayEvent, context: Context) => {
       mediaType: {
         format: 'raw',
       },
+      ref,
     })
     if (typeof content.data !== 'string')
       throw Error('Unexpected type for content string')
@@ -171,16 +173,42 @@ export const handler = async (event: APIGatewayEvent, context: Context) => {
       pr.labels.find((label) => label.name === LABEL_NAME) !== undefined
     )
   })
+
+  // If PRs contain same OAS then just move on, otherwise close it and create a new PR
+  let alreadyExists = false
   await Promise.all(
-    prsWithLabel.map((pr) =>
-      repo.octokit.rest.pulls.update({
+    prsWithLabel.map(async (pr) => {
+      const existingSpec = await getContent({
+        path: specPath,
+        ref: pr.head.ref,
+      })
+      if (existingSpec.content === requestBodyParseResult.data.spec) {
+        alreadyExists = true
+        return
+      }
+      await repo.octokit.rest.pulls.update({
         owner: repo.owner,
         repo: repo.repo,
         pull_number: pr.number,
         state: 'closed',
       })
-    )
+    })
   )
+
+  if (alreadyExists) {
+    // Do nothing if there is no diff
+    const response: PushResponseBodyType = {
+      status: 'no-diff',
+    }
+    return {
+      statusCode: 200,
+      headers: {
+        ...CORS_HEADERS_ORIGIN,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(PushResponseBody.parse(response)),
+    }
+  }
 
   // Make PR to main branch
   const pullRequest = await repo.octokit.rest.pulls.create({
