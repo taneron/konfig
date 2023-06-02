@@ -185,10 +185,12 @@ const publishScripts = {
     test,
     token,
     version,
+    gitlabRepositoryId,
   }: {
     test?: boolean
     token?: string
     version: string
+    gitlabRepositoryId?: string
   }) => {
     const repository = test ? '-r testpypi ' : ''
     const credentials = token !== undefined ? `-u __token__ -p ${token} ` : ''
@@ -196,12 +198,19 @@ const publishScripts = {
       version,
       generator: 'python',
     })
+    const useGitlab = gitlabRepositoryId !== undefined
+    const gitlabAuth = useGitlab
+      ? `TWINE_PASSWORD=${process.env.GITLAB_TOKEN} TWINE_USERNAME=${process.env.GITLAB_USERNAME} `
+      : ''
+    const gitLabRepository = useGitlab
+      ? `--repository-url https://gitlab.com/api/v4/projects/${gitlabRepositoryId}/packages/pypi `
+      : ''
     return [
       'poetry install',
       'rm -rf dist/',
       'poetry run python -m build',
       'poetry run twine check dist/*',
-      `poetry run twine upload ${repository}${credentials}dist/*`,
+      `${gitlabAuth}poetry run twine upload ${gitLabRepository}${repository}${credentials}dist/*`,
       ...gitTagCommands,
     ]
   },
@@ -233,6 +242,10 @@ export default class Publish extends Command {
     debug: Flags.boolean({ name: 'debug', char: 'd' }),
     generator: Flags.string({ name: 'generator', char: 'g', required: true }),
     test: Flags.boolean({ name: 'test', char: 't' }),
+    skipRemoteCheck: Flags.boolean({
+      name: 'skipRemoteCheck',
+      description: 'Do not check that remote is in sync',
+    }),
     skipTests: Flags.boolean({
       name: 'skipTests',
       description: 'Do not run tests before publishing',
@@ -252,7 +265,7 @@ export default class Publish extends Command {
         'Git directory must be clean. Make sure there are no unstaged changes.'
       )
 
-    if (!(await isGitRemoteInSync()))
+    if (!flags.skipRemoteCheck && !(await isGitRemoteInSync()))
       CliUx.ux.error(
         'Git remote is out of sync. Make sure all changes are pushed or pulled before publishing.'
       )
@@ -416,11 +429,23 @@ export default class Publish extends Command {
           throw Error(
             `Set ${pythonConfig.pypiApiTokenEnvironmentVariable} environment variable to publish to PyPI`
           )
+
+        if (pythonConfig.gitlabRepositoryId !== undefined) {
+          if (!process.env.GITLAB_USERNAME)
+            CliUx.ux.error(
+              'Set GITLAB_USERNAME environment variable to publish to PyPI (see https://docs.gitlab.com/ee/user/packages/pypi_repository/#publish-a-pypi-package-by-using-twine)'
+            )
+          if (!process.env.GITLAB_TOKEN)
+            CliUx.ux.error(
+              'Set GITLAB_TOKEN environment variable to publish to PyPI (see https://docs.gitlab.com/ee/user/packages/pypi_repository/#publish-a-pypi-package-by-using-twine)'
+            )
+        }
         await executePublishScript({
           script: publishScripts['pypi']({
             test: !!testPyPI,
             token,
             version: pythonConfig.version,
+            gitlabRepositoryId: pythonConfig.gitlabRepositoryId,
           }),
         })
       }
