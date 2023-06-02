@@ -6,8 +6,20 @@ import DemoMarkdown, {
 
 const state = new DemoState()
 
+const initialValue = `# Getting Started
+:::form
+
+::input{label="Client ID" required placeholder="YOUR_CLIENT_ID" type="password"}
+
+::input{label="Consumer Key" required placeholder="YOUR_CONSUMER_KEY" type="password"}
+
+::button
+
+:::
+`
+
 const MarkdownSandboxPage = () => {
-  const [markdown, setMarkdown] = useState('')
+  const [markdown, setMarkdown] = useState(initialValue)
   return (
     <>
       <Container pt="xl" size="lg">
