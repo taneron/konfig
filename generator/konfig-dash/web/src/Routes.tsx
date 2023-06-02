@@ -15,6 +15,7 @@ import AppLayout from './layouts/AppLayout/AppLayout'
 const Routes = () => {
   return (
     <Router>
+      <Route path="/markdown-sandbox" page={MarkdownSandboxPage} name="markdownSandbox" />
       <Route path="/snaptrade" page={SnaptradePage} name="snaptrade" />
       <Private unauthenticated="login">
         <Route path="/" page={HomePage} name="home" />
