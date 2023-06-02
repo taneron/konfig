@@ -1,4 +1,5 @@
 import { Container, Textarea, Paper } from '@mantine/core'
+import { snapTradeGettingStartedMarkdown } from 'konfig-lib/dist/snaptrade-demo'
 import { useState } from 'react'
 import DemoMarkdown, {
   DemoState,
@@ -6,20 +7,8 @@ import DemoMarkdown, {
 
 const state = new DemoState()
 
-const initialValue = `# Getting Started
-:::form
-
-::input{label="Client ID" required placeholder="YOUR_CLIENT_ID" type="password"}
-
-::input{label="Consumer Key" required placeholder="YOUR_CONSUMER_KEY" type="password"}
-
-::button
-
-:::
-`
-
 const MarkdownSandboxPage = () => {
-  const [markdown, setMarkdown] = useState(initialValue)
+  const [markdown, setMarkdown] = useState(snapTradeGettingStartedMarkdown)
   return (
     <>
       <Container pt="xl" size="lg">

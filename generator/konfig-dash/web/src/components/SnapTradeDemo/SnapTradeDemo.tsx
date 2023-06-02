@@ -123,8 +123,9 @@ const SnapTradeDemo = observer(() => {
     validate: {
       SNAPTRADE_CLIENT_ID: (value) =>
         value === '' ? 'Client ID is required' : null,
-      SNAPTRADE_CONSUMER_KEY: (value) =>
-        value === '' ? 'Consumer Key is required' : null,
+      SNAPTRADE_CONSUMER_KEY: (value) => {
+        return value === '' ? 'Consumer Key is required' : null
+      },
     },
   })
 

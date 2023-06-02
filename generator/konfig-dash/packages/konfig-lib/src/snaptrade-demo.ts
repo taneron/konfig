@@ -4,10 +4,34 @@ type DemoCellContent = {
   typescript?: string
 }
 
-export const snapTradeGettingStartedMarkdown: string = `
-# 1) Initialize a client with your clientId and consumerKey
+export const snapTradeGettingStartedMarkdown = `### 1) Initialize a client with your clientId and consumerKey
 
 You can get your \`clientId\` and \`consumerKey\` by contacting [api@snaptrade.com](mailto:api@snaptrade.com)
+
+:::form
+
+::input{#SNAPTRADE_CLIENT_ID label="Client ID" placeholder="YOUR_CLIENT_ID" type="password"}
+
+::input{#SNAPTRADE_CONSUMER_KEY label="Consumer Key" placeholder="YOUR_CONSUMER_KEY" type="password"}
+
+\`\`\`python
+from snaptrade_client import SnapTrade
+from pprint import pprint
+import uuid
+import os
+
+snaptrade = SnapTrade(
+  consumer_key=os.environ["SNAPTRADE_CONSUMER_KEY"],
+  client_id=os.environ["SNAPTRADE_CLIENT_ID"],
+)
+
+print("Successfully initiated client")
+\`\`\`
+
+
+::button
+
+:::
 
 `
 
