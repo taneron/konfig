@@ -7,6 +7,7 @@ import {
 } from '@mantine/core'
 import { useLocalStorage } from '@mantine/hooks'
 import { trpc } from '../utils/trpc'
+import '@/styles/globals.css'
 
 function App(props: AppProps) {
   const { Component, pageProps } = props

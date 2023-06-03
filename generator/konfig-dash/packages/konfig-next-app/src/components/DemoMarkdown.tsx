@@ -5,7 +5,6 @@ import remarkDirectiveRehype from 'remark-directive-rehype'
 import { Prism } from '@mantine/prism'
 import {
   Anchor,
-  Button as MantineButton,
   Code,
   Collapse,
   PasswordInput,
