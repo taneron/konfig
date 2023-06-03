@@ -58,10 +58,7 @@ export const appRouter = router({
           result: 'Could not find code',
         }
       }
-      console.log(matchingNode)
       const code = toText(matchingNode, { whitespace: 'pre' })
-
-      console.log(code)
 
       const { data } = await axios.post(url, {
         session_id: input.sessionId,
