@@ -1,61 +1,22 @@
-import { z } from 'zod'
 import { procedure, router } from '../trpc'
 import axios from 'axios'
 import { urlForPythonRceApi } from '@/utils/urlForPythonRceApi'
-import { snapTradeGettingStartedMarkdown } from 'konfig-lib'
+import { snapTradeGettingStartedMarkdown } from 'konfig-lib/dist/snaptrade-demo'
 import remarkDirective from 'remark-directive'
 import remarkDirectiveRehype from 'remark-directive-rehype'
 import remarkParse from 'remark-parse'
 import remarkRehype from 'remark-rehype'
+import { visit } from 'unist-util-visit'
+import { position } from 'unist-util-position'
+import { stringifyPosition } from 'unist-util-stringify-position'
+import { Node } from 'unist'
+import { toText } from 'hast-util-to-text'
 import { unified } from 'unified'
-
-const StartSessionResponse = z.object({ session_id: z.string() })
-
-const Point = z.object({
-  /**
-   * Line in a source file (1-indexed integer).
-   */
-  line: z.number(),
-
-  /**
-   * Column in a source file (1-indexed integer).
-   */
-  column: z.number(),
-  /**
-   * Character in a source file (0-indexed integer).
-   */
-  offset: z.number().optional(),
-})
-
-const Position = z.object({
-  /**
-   * Place of the first character of the parsed source region.
-   */
-  start: Point,
-
-  /**
-   * Place of the first character after the parsed source region.
-   */
-  end: Point,
-
-  /**
-   * Start column at each index (plus start line) in the source region,
-   * for elements that span multiple lines.
-   */
-  indent: z.number().optional(),
-})
-
-const ExecuteCodeRequest = z.object({
-  demoId: z.literal('snaptrade'),
-  sessionId: z.string(),
-  codePosition: Position,
-  environmentVariables: z.record(z.string(), z.string()),
-})
-const ExecuteCodeResponse = z.object({
-  result: z.union([z.literal('Success'), z.literal('Error')]),
-  output: z.string(),
-  error: z.string(),
-})
+import {
+  StartSessionResponse,
+  ExecuteCodeRequest,
+  ExecuteCodeResponse,
+} from '@/utils/schemas'
 
 export const appRouter = router({
   startSession: procedure.output(StartSessionResponse).query(async () => {
@@ -69,21 +30,42 @@ export const appRouter = router({
     .output(ExecuteCodeResponse)
     .query(async ({ input }) => {
       const url = `${urlForPythonRceApi()}/sessions/execute`
-
       const processor = unified()
         .use(remarkParse)
         .use(remarkDirective)
         .use(remarkDirectiveRehype)
         .use(remarkRehype)
-
       const hast = processor.runSync(
-        processor.parse(snapTradeGettingStartedMarkdown),
-        snapTradeGettingStartedMarkdown
+        processor.parse(snapTradeGettingStartedMarkdown)
       )
+
+      // Find the node with the same position and convert to code
+      let matchingNode: Node | null = null
+      visit(
+        hast,
+        (node) => {
+          const id = stringifyPosition(position(node))
+          const positionQuery = stringifyPosition(input.codePosition)
+          return id === positionQuery
+        },
+        (node) => {
+          matchingNode = node
+        }
+      )
+
+      if (matchingNode === null) {
+        return {
+          result: 'Could not find code',
+        }
+      }
+      console.log(matchingNode)
+      const code = toText(matchingNode, { whitespace: 'pre' })
+
+      console.log(code)
 
       const { data } = await axios.post(url, {
         session_id: input.sessionId,
-        code: '',
+        code: code,
         environment_variables: input.environmentVariables,
       })
 

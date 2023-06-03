@@ -1,11 +1,12 @@
 import DemoMarkdown, { DemoState } from '@/components/DemoMarkdown'
 import { Container, Textarea, Paper } from '@mantine/core'
 import { snapTradeGettingStartedMarkdown } from 'konfig-lib/dist/snaptrade-demo'
+import { observer } from 'mobx-react'
 import { useState } from 'react'
 
 const state = new DemoState()
 
-const MarkdownSandboxPage = () => {
+const MarkdownSandboxPage = observer(() => {
   const [markdown, setMarkdown] = useState(snapTradeGettingStartedMarkdown)
   return (
     <>
@@ -23,6 +24,6 @@ const MarkdownSandboxPage = () => {
       </Container>
     </>
   )
-}
+})
 
 export default MarkdownSandboxPage
