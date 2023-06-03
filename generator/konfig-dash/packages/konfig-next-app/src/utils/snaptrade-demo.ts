@@ -40,7 +40,7 @@ api_response = snaptrade.api_status.check()
 pprint(api_response.body)
 \`\`\`
 
-::button[Run]
+::button[Check API Status]
 
 :::
 

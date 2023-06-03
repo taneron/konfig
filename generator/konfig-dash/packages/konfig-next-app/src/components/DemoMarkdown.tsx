@@ -18,14 +18,21 @@ import { toText } from 'hast-util-to-text'
 import { createContext, useContext, useState } from 'react'
 import { api } from '@/utils/api'
 import { observer } from 'mobx-react'
-import { DemoForm, FormContext } from './DemoForm'
+import { CellState, DemoForm, FormContext } from './DemoForm'
+import { DemoButton } from './DemoButton'
 
 export class DemoState {
   showCode = true
   sessionId: string | null = null
+  cells: CellState[] = []
   constructor() {
     makeAutoObservable(this)
     this.init()
+  }
+
+  pushCell({ cell }: { cell: CellState }) {
+    this.cells.push(cell)
+    return cell
   }
 
   async init() {
@@ -43,7 +50,7 @@ const langDisplayName = {
   typescript: 'TypeScript',
 } as const
 
-export const SessionIdContext = createContext<string | null>(null)
+export const DemoStateContext = createContext<DemoState | null>(null)
 
 const Input: Components['input'] = ({
   node,
@@ -64,29 +71,10 @@ const Input: Components['input'] = ({
   return <Component type={type} autoComplete="off" {...props} {...inputProps} />
 }
 
-const Button: Components['button'] = ({
-  node,
-  children,
-  siblingCount,
-  ...props
-}) => {
-  return (
-    <MantineButton
-      type="submit"
-      color="cyan"
-      compact
-      variant="light"
-      {...props}
-    >
-      {children}
-    </MantineButton>
-  )
-}
-
 const DemoMarkdown = observer(
   ({ markdown, state }: { markdown: string; state: DemoState }) => {
     return (
-      <SessionIdContext.Provider value={state.sessionId}>
+      <DemoStateContext.Provider value={state}>
         <Stack spacing="xs">
           <ReactMarkdown
             children={markdown}
@@ -100,7 +88,7 @@ const DemoMarkdown = observer(
               },
               form: DemoForm,
               input: Input,
-              button: Button,
+              button: DemoButton,
               h1(props) {
                 return (
                   <Title id={toText(props.node)} order={1}>
@@ -184,7 +172,7 @@ const DemoMarkdown = observer(
             }}
           />
         </Stack>
-      </SessionIdContext.Provider>
+      </DemoStateContext.Provider>
     )
   }
 )
