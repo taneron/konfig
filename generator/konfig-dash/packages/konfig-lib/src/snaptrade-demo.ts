@@ -29,7 +29,7 @@ print("Successfully initiated client")
 \`\`\`
 
 
-::button[Run]
+::button[Initialize SDK Client]
 
 :::
 

@@ -1,7 +1,6 @@
 import { procedure, router } from '../trpc'
 import axios from 'axios'
 import { urlForPythonRceApi } from '@/utils/urlForPythonRceApi'
-import { snapTradeGettingStartedMarkdown } from 'konfig-lib/dist/snaptrade-demo'
 import remarkDirective from 'remark-directive'
 import remarkDirectiveRehype from 'remark-directive-rehype'
 import remarkParse from 'remark-parse'
@@ -17,6 +16,7 @@ import {
   ExecuteCodeRequest,
   ExecuteCodeResponse,
 } from '@/utils/schemas'
+import { snapTradeGettingStartedMarkdown } from '@/utils/snaptrade-demo'
 
 export const appRouter = router({
   startSession: procedure.output(StartSessionResponse).query(async () => {

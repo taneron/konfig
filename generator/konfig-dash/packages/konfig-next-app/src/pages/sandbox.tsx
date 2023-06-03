@@ -1,6 +1,6 @@
 import DemoMarkdown, { DemoState } from '@/components/DemoMarkdown'
+import { snapTradeGettingStartedMarkdown } from '@/utils/snaptrade-demo'
 import { Container, Textarea, Paper } from '@mantine/core'
-import { snapTradeGettingStartedMarkdown } from 'konfig-lib/dist/snaptrade-demo'
 import { observer } from 'mobx-react'
 import { useState } from 'react'
 
