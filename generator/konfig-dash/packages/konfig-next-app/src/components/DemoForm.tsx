@@ -15,10 +15,11 @@ export const FormContext = createContext<
 
 export const CellContext = createContext<CellState | null>(null)
 
+type RunState = 'Success' | 'Error' | 'N/A'
 export class CellState {
   show = false
   running = false
-  state: 'Success' | 'Error' | 'N/A' = 'N/A'
+  runState: RunState = 'N/A'
   output: string = ''
   demoState: DemoState | null
 
@@ -28,11 +29,27 @@ export class CellState {
   }
 
   get ranSuccessfully() {
-    return this.state === 'Success'
+    return this.runState === 'Success'
   }
 
   get failed() {
-    return this.state === 'Error'
+    return this.runState === 'Error'
+  }
+
+  setRunning(value: boolean) {
+    this.running = value
+  }
+
+  setShow(value: boolean) {
+    this.show = value
+  }
+
+  setOutput(value: string) {
+    this.output = value
+  }
+
+  setRunState(value: RunState) {
+    this.runState = value
   }
 
   async run({
@@ -43,8 +60,8 @@ export class CellState {
     environmentVariables: unknown
   }) {
     if (!this.demoState?.sessionId) return
-    this.running = true
-    this.show = false
+    this.setRunning(true)
+    this.setShow(false)
 
     const response = await api.executeCode.query({
       demoId: 'snaptrade',
@@ -54,10 +71,10 @@ export class CellState {
     })
 
     if (response.result === 'Could not find code') return
-    this.output = response.output
-    this.running = false
-    this.show = true
-    this.state = response.error === '' ? 'Success' : 'Error'
+    this.setOutput(response.output)
+    this.setRunning(false)
+    this.setShow(true)
+    this.setRunState(response.error === '' ? 'Success' : 'Error')
   }
 }
 
@@ -132,7 +149,6 @@ const _Form: Components['form'] = ({
               if (firstPreNode.position === undefined) {
                 return
               }
-              console.log(cell)
               cell?.run({
                 position: firstPreNode.position,
                 environmentVariables: values,
@@ -140,9 +156,7 @@ const _Form: Components['form'] = ({
             })}
             {...props}
           >
-            <Stack spacing="xs">
-              <>{children}</>
-            </Stack>
+            <Stack spacing="xs">{children}</Stack>
           </form>
         </FormProvider>
       </CellContext.Provider>
