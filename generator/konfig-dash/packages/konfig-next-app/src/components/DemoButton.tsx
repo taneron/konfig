@@ -3,6 +3,7 @@ import { Components } from 'react-markdown'
 import { Code, Collapse, Button as MantineButton } from '@mantine/core'
 import { useContext } from 'react'
 import { CellContext } from './DemoForm'
+import { IconCheck, IconAlertCircle } from '@tabler/icons-react'
 
 const _DemoButton: Components['button'] = ({
   node,
@@ -22,8 +23,16 @@ const _DemoButton: Components['button'] = ({
         </Code>
       </Collapse>
       <MantineButton
+        loading={cell.running}
+        color={cell.ranSuccessfully ? 'blue' : cell.failed ? 'red' : 'cyan'}
+        leftIcon={
+          cell.ranSuccessfully ? (
+            <IconCheck size="1rem" />
+          ) : cell.failed ? (
+            <IconAlertCircle size="1rem" />
+          ) : undefined
+        }
         type="submit"
-        color="cyan"
         compact
         variant="light"
         {...props}
