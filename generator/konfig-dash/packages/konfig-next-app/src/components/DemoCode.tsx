@@ -3,7 +3,7 @@ import { Prism } from '@mantine/prism'
 import { observer } from 'mobx-react'
 import { useContext } from 'react'
 import { Components } from 'react-markdown'
-import { DemoStateContext } from './DemoMarkdown'
+import { ShowCodeContext } from './DemoMarkdown'
 
 const langDisplayName = {
   python: 'Python',
@@ -18,7 +18,7 @@ const _DemoCode: Components['code'] = ({
   siblingCount,
   ...props
 }) => {
-  const state = useContext(DemoStateContext)
+  const showCode = useContext(ShowCodeContext)
   if (inline) return <Code>{children}</Code>
   const match = /language-(\w+)/.exec(className || '')
   if (match === null || inline)
@@ -35,7 +35,7 @@ const _DemoCode: Components['code'] = ({
       </code>
     )
   return (
-    <Collapse in={state?.showCode ?? true}>
+    <Collapse in={showCode}>
       <Prism.Tabs value={language}>
         <Prism.TabsList>
           <Prism.Tab value={language}>{langDisplayName[language]}</Prism.Tab>

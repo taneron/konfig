@@ -19,7 +19,6 @@ import { DemoButton } from './DemoButton'
 import { DemoCode } from './DemoCode'
 
 export class DemoState {
-  showCode = true
   sessionId: string | null = null
   cells: CellState[] = []
   constructor() {
@@ -30,10 +29,6 @@ export class DemoState {
   pushCell({ cell }: { cell: CellState }) {
     this.cells.push(cell)
     return cell
-  }
-
-  setShowCode(value: boolean) {
-    this.showCode = value
   }
 
   async init() {
@@ -47,6 +42,7 @@ export class DemoState {
 }
 
 export const DemoStateContext = createContext<DemoState | null>(null)
+export const ShowCodeContext = createContext<boolean>(false)
 
 const Input: Components['input'] = ({
   node,
@@ -68,70 +64,80 @@ const Input: Components['input'] = ({
 }
 
 const DemoMarkdown = observer(
-  ({ markdown, state }: { markdown: string; state: DemoState }) => {
+  ({
+    markdown,
+    state,
+    showCode,
+  }: {
+    markdown: string
+    state: DemoState
+    showCode: boolean
+  }) => {
     return (
-      <DemoStateContext.Provider value={state}>
-        <Stack spacing="xs">
-          <ReactMarkdown
-            children={markdown}
-            remarkPlugins={[remarkDirective, remarkDirectiveRehype]}
-            components={{
-              a({ children, node, siblingCount, ...props }) {
-                return <Anchor {...props}>{children}</Anchor>
-              },
-              p({ node, children, siblingCount, ...props }) {
-                return <Text {...props}>{children}</Text>
-              },
-              form: DemoForm,
-              input: Input,
-              button: DemoButton,
-              code: DemoCode,
-              h1(props) {
-                return (
-                  <Title id={toText(props.node)} order={1}>
-                    {props.children}
-                  </Title>
-                )
-              },
-              h2(props) {
-                return (
-                  <Title id={toText(props.node)} order={2}>
-                    {props.children}
-                  </Title>
-                )
-              },
-              h3(props) {
-                return (
-                  <Title id={toText(props.node)} order={3}>
-                    {props.children}
-                  </Title>
-                )
-              },
-              h4(props) {
-                return (
-                  <Title id={toText(props.node)} order={4}>
-                    {props.children}
-                  </Title>
-                )
-              },
-              h5(props) {
-                return (
-                  <Title id={toText(props.node)} order={5}>
-                    {props.children}
-                  </Title>
-                )
-              },
-              h6(props) {
-                return (
-                  <Title id={toText(props.node)} order={6}>
-                    {props.children}
-                  </Title>
-                )
-              },
-            }}
-          />
-        </Stack>
-      </DemoStateContext.Provider>
+      <ShowCodeContext.Provider value={showCode}>
+        <DemoStateContext.Provider value={state}>
+          <Stack spacing="xs">
+            <ReactMarkdown
+              children={markdown}
+              remarkPlugins={[remarkDirective, remarkDirectiveRehype]}
+              components={{
+                a({ children, node, siblingCount, ...props }) {
+                  return <Anchor {...props}>{children}</Anchor>
+                },
+                p({ node, children, siblingCount, ...props }) {
+                  return <Text {...props}>{children}</Text>
+                },
+                form: DemoForm,
+                input: Input,
+                button: DemoButton,
+                code: DemoCode,
+                h1(props) {
+                  return (
+                    <Title id={toText(props.node)} order={1}>
+                      {props.children}
+                    </Title>
+                  )
+                },
+                h2(props) {
+                  return (
+                    <Title id={toText(props.node)} order={2}>
+                      {props.children}
+                    </Title>
+                  )
+                },
+                h3(props) {
+                  return (
+                    <Title id={toText(props.node)} order={3}>
+                      {props.children}
+                    </Title>
+                  )
+                },
+                h4(props) {
+                  return (
+                    <Title id={toText(props.node)} order={4}>
+                      {props.children}
+                    </Title>
+                  )
+                },
+                h5(props) {
+                  return (
+                    <Title id={toText(props.node)} order={5}>
+                      {props.children}
+                    </Title>
+                  )
+                },
+                h6(props) {
+                  return (
+                    <Title id={toText(props.node)} order={6}>
+                      {props.children}
+                    </Title>
+                  )
+                },
+              }}
+            />
+          </Stack>
+        </DemoStateContext.Provider>
+      </ShowCodeContext.Provider>
     )
   }
 )

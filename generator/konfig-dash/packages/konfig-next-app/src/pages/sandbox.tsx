@@ -8,19 +8,20 @@ const state = new DemoState()
 
 const MarkdownSandboxPage = observer(() => {
   const [markdown, setMarkdown] = useState(snapTradeGettingStartedMarkdown)
+  const [showCode, setShowCode] = useState(false)
   return (
     <>
       <Container pt="xl" size="lg">
         <SegmentedControl
           size="xs"
           color="blue"
-          value={state.showCode ? 'show-code' : 'hide-code'}
+          value={showCode ? 'show-code' : 'hide-code'}
           data={[
             { label: 'Show Code', value: 'show-code' },
             { label: 'Hide Code', value: 'hide-code' },
           ]}
           onChange={(value) => {
-            state.setShowCode(value === 'show-code' ? true : false)
+            setShowCode(value === 'show-code' ? true : false)
           }}
         />
         <Textarea
@@ -31,7 +32,7 @@ const MarkdownSandboxPage = observer(() => {
           minRows={10}
         />
         <Paper withBorder shadow="xs" p="md">
-          <DemoMarkdown markdown={markdown} state={state} />
+          <DemoMarkdown markdown={markdown} state={state} showCode={showCode} />
         </Paper>
       </Container>
     </>
