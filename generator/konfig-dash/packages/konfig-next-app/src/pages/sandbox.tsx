@@ -1,6 +1,6 @@
 import DemoMarkdown, { DemoState } from '@/components/DemoMarkdown'
 import { snapTradeGettingStartedMarkdown } from '@/utils/snaptrade-demo'
-import { Container, Textarea, Paper } from '@mantine/core'
+import { Container, Textarea, Paper, SegmentedControl } from '@mantine/core'
 import { observer } from 'mobx-react'
 import { useState } from 'react'
 
@@ -11,6 +11,18 @@ const MarkdownSandboxPage = observer(() => {
   return (
     <>
       <Container pt="xl" size="lg">
+        <SegmentedControl
+          size="xs"
+          color="blue"
+          value={state.showCode ? 'show-code' : 'hide-code'}
+          data={[
+            { label: 'Show Code', value: 'show-code' },
+            { label: 'Hide Code', value: 'hide-code' },
+          ]}
+          onChange={(value) => {
+            state.setShowCode(value === 'show-code' ? true : false)
+          }}
+        />
         <Textarea
           value={markdown}
           onChange={(event) => setMarkdown(event.target.value)}

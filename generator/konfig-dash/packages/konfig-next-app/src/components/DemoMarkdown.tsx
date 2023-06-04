@@ -2,11 +2,8 @@ import { makeAutoObservable } from 'mobx'
 import ReactMarkdown, { Components } from 'react-markdown'
 import remarkDirective from 'remark-directive'
 import remarkDirectiveRehype from 'remark-directive-rehype'
-import { Prism } from '@mantine/prism'
 import {
   Anchor,
-  Code,
-  Collapse,
   PasswordInput,
   Stack,
   TextInput,
@@ -19,6 +16,7 @@ import { api } from '@/utils/api'
 import { observer } from 'mobx-react'
 import { CellState, DemoForm, FormContext } from './DemoForm'
 import { DemoButton } from './DemoButton'
+import { DemoCode } from './DemoCode'
 
 export class DemoState {
   showCode = true
@@ -34,6 +32,10 @@ export class DemoState {
     return cell
   }
 
+  setShowCode(value: boolean) {
+    this.showCode = value
+  }
+
   async init() {
     const { session_id } = await api.startSession.query()
     this.setSessionId(session_id)
@@ -43,11 +45,6 @@ export class DemoState {
     this.sessionId = sessionId
   }
 }
-
-const langDisplayName = {
-  python: 'Python',
-  typescript: 'TypeScript',
-} as const
 
 export const DemoStateContext = createContext<DemoState | null>(null)
 
@@ -88,6 +85,7 @@ const DemoMarkdown = observer(
               form: DemoForm,
               input: Input,
               button: DemoButton,
+              code: DemoCode,
               h1(props) {
                 return (
                   <Title id={toText(props.node)} order={1}>
@@ -128,44 +126,6 @@ const DemoMarkdown = observer(
                   <Title id={toText(props.node)} order={6}>
                     {props.children}
                   </Title>
-                )
-              },
-              code({
-                node,
-                inline,
-                className,
-                children,
-                siblingCount,
-                ...props
-              }) {
-                if (inline) return <Code>{children}</Code>
-                const match = /language-(\w+)/.exec(className || '')
-                if (match === null || inline)
-                  return (
-                    <code {...props} className={className}>
-                      {children}
-                    </code>
-                  )
-                const language = match[1]
-                if (language !== 'python' && language !== 'typescript')
-                  return (
-                    <code {...props} className={className}>
-                      {children}
-                    </code>
-                  )
-                return (
-                  <Collapse in={state.showCode}>
-                    <Prism.Tabs value={language}>
-                      <Prism.TabsList>
-                        <Prism.Tab value={language}>
-                          {langDisplayName[language]}
-                        </Prism.Tab>
-                      </Prism.TabsList>
-                      <Prism.Panel value={language} language={language}>
-                        {String(children).replace(/\n$/, '')}
-                      </Prism.Panel>
-                    </Prism.Tabs>
-                  </Collapse>
                 )
               },
             }}
