@@ -136,7 +136,4 @@ pprint(deleted_response.body)
 ::button[Delete User]
 
 :::
-
-
-
 `
