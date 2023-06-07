@@ -4,10 +4,9 @@ import { Container, Textarea, Paper, SegmentedControl } from '@mantine/core'
 import { observer } from 'mobx-react'
 import { useState } from 'react'
 
-const state = new DemoState()
+const state = new DemoState({ markdown: snapTradeGettingStartedMarkdown })
 
 const MarkdownSandboxPage = observer(() => {
-  const [markdown, setMarkdown] = useState(snapTradeGettingStartedMarkdown)
   const [showCode, setShowCode] = useState(false)
   return (
     <>
@@ -25,14 +24,14 @@ const MarkdownSandboxPage = observer(() => {
           }}
         />
         <Textarea
-          value={markdown}
-          onChange={(event) => setMarkdown(event.target.value)}
+          value={state.markdown}
+          onChange={(event) => state.setMarkdown(event.target.value)}
           label="Markdown"
           mb="xl"
           minRows={10}
         />
         <Paper withBorder shadow="xs" p="md">
-          <DemoMarkdown markdown={markdown} state={state} showCode={showCode} />
+          <DemoMarkdown state={state} showCode={showCode} />
         </Paper>
       </Container>
     </>

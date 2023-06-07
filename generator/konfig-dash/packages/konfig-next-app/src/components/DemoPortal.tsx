@@ -26,18 +26,38 @@ import {
 } from '@tabler/icons-react'
 import { observer } from 'mobx-react'
 import { useState } from 'react'
+import DemoMarkdown, { DemoState } from './DemoMarkdown'
 
-type Demos = { name: string; markdown: string }[]
-class PortalState {
+type DemosInput = { name: string; markdown: string }[]
+
+type Demos = { name: string; state: DemoState }[]
+
+export class PortalState {
   demos: Demos
   showCode = false
+  portalName: string
+  currentDemoIndex = 0
 
-  constructor({ demos }: { demos: Demos }) {
-    this.demos = demos
+  constructor({
+    demos,
+    portalName,
+  }: {
+    demos: DemosInput
+    portalName: string
+  }) {
+    this.demos = demos.map(({ name, markdown }) => ({
+      name,
+      state: new DemoState({ markdown }),
+    }))
+    this.portalName = portalName
   }
 
   setShowCode(value: boolean) {
     this.showCode = value
+  }
+
+  get currentDemo() {
+    return this.demos[this.currentDemoIndex]
   }
 }
 
@@ -55,7 +75,16 @@ export const DemoPortal = observer(({ state }: { state: PortalState }) => {
             </ThemeIcon>
           </HoverCard.Target>
           <HoverCard.Dropdown>
-            <Text size="sm">{JSON.stringify(state, undefined, 2)}</Text>
+            <Text size="sm">
+              {JSON.stringify(
+                state.demos.map((demo) => ({
+                  name: demo.name,
+                  sessionId: demo.state.sessionId,
+                })),
+                undefined,
+                2
+              )}
+            </Text>
           </HoverCard.Dropdown>
         </HoverCard>
       </Affix>
@@ -79,44 +108,26 @@ export const DemoPortal = observer(({ state }: { state: PortalState }) => {
           >
             <Navbar.Section mt="xs">
               <Stack spacing="xs">
-                <NavLink
-                  onClick={() => {
-                    setOpened(false)
-                  }}
-                  p="xs"
-                  variant="filled"
-                  sx={(theme) => ({ borderRadius: theme.radius.sm })}
-                  rightSection={<IconChevronRight size="0.8rem" stroke={1.5} />}
-                  label="Getting Started"
-                  active
-                />
-                <NavLink
-                  onClick={() => {
-                    setOpened(false)
-                  }}
-                  p="xs"
-                  variant="filled"
-                  sx={(theme) => ({ borderRadius: theme.radius.sm })}
-                  label="Registering Users"
-                />
-                <NavLink
-                  onClick={() => {
-                    setOpened(false)
-                  }}
-                  p="xs"
-                  variant="filled"
-                  sx={(theme) => ({ borderRadius: theme.radius.sm })}
-                  label="Handling User Data"
-                />
-                <NavLink
-                  onClick={() => {
-                    setOpened(false)
-                  }}
-                  p="xs"
-                  variant="filled"
-                  sx={(theme) => ({ borderRadius: theme.radius.sm })}
-                  label="Placing Trades"
-                />
+                {state.demos.map(({ name }, i) => {
+                  const isCurrentlySelected = state.currentDemoIndex === i
+                  return (
+                    <NavLink
+                      onClick={() => {
+                        setOpened(false)
+                      }}
+                      p="xs"
+                      variant="filled"
+                      sx={(theme) => ({ borderRadius: theme.radius.sm })}
+                      rightSection={
+                        isCurrentlySelected ? (
+                          <IconChevronRight size="0.8rem" stroke={1.5} />
+                        ) : undefined
+                      }
+                      label={name}
+                      active={isCurrentlySelected}
+                    />
+                  )
+                })}
               </Stack>
             </Navbar.Section>
           </Navbar>
@@ -148,7 +159,7 @@ export const DemoPortal = observer(({ state }: { state: PortalState }) => {
                     mr="md"
                   />
                 </MediaQuery>
-                <Title order={5}>SnapTrade Demo</Title>
+                <Title order={5}>{state.portalName}</Title>
               </Group>
               <Group>
                 <SegmentedControl
@@ -179,7 +190,10 @@ export const DemoPortal = observer(({ state }: { state: PortalState }) => {
           </Header>
         }
       >
-        TODO PASS IN DEMOMARKDOWN OF CURRENTLY SELECTED DEMO
+        <DemoMarkdown
+          state={state.currentDemo.state}
+          showCode={state.showCode}
+        />
       </AppShell>
     </>
   )

@@ -21,8 +21,12 @@ import { DemoCode } from './DemoCode'
 export class DemoState {
   sessionId: string | null = null
   cells: CellState[] = []
-  constructor() {
+  markdown: string = ''
+  constructor(parameters?: { markdown?: string }) {
     makeAutoObservable(this)
+    if (parameters && parameters.markdown !== undefined) {
+      this.markdown = parameters.markdown
+    }
     this.init()
   }
 
@@ -38,6 +42,10 @@ export class DemoState {
 
   setSessionId(sessionId: string) {
     this.sessionId = sessionId
+  }
+
+  setMarkdown(markdown: string) {
+    this.markdown = markdown
   }
 }
 
@@ -64,21 +72,13 @@ const Input: Components['input'] = ({
 }
 
 const DemoMarkdown = observer(
-  ({
-    markdown,
-    state,
-    showCode,
-  }: {
-    markdown: string
-    state: DemoState
-    showCode: boolean
-  }) => {
+  ({ state, showCode }: { state: DemoState; showCode: boolean }) => {
     return (
       <ShowCodeContext.Provider value={showCode}>
         <DemoStateContext.Provider value={state}>
           <Stack spacing="xs">
             <ReactMarkdown
-              children={markdown}
+              children={state.markdown}
               remarkPlugins={[remarkDirective, remarkDirectiveRehype]}
               components={{
                 a({ children, node, siblingCount, ...props }) {
