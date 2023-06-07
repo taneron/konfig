@@ -17,6 +17,7 @@ import { observer } from 'mobx-react'
 import { CellState, DemoForm, FormContext } from './DemoForm'
 import { DemoButton } from './DemoButton'
 import { DemoCode } from './DemoCode'
+import { visit } from 'unist-util-visit'
 
 export class DemoState {
   sessionId: string | null = null
@@ -46,6 +47,10 @@ export class DemoState {
 
   setMarkdown(markdown: string) {
     this.markdown = markdown
+  }
+
+  get titles() {
+    return this.markdown
   }
 }
 
