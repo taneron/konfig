@@ -16,7 +16,7 @@ import {
   ExecuteCodeRequest,
   ExecuteCodeResponse,
 } from '@/utils/schemas'
-import { snapTradeGettingStartedMarkdown } from '@/utils/snaptrade-demo'
+import { demos } from '@/utils/demos'
 
 export const appRouter = router({
   startSession: procedure.output(StartSessionResponse).query(async () => {
@@ -35,9 +35,14 @@ export const appRouter = router({
         .use(remarkDirective)
         .use(remarkDirectiveRehype)
         .use(remarkRehype)
-      const hast = processor.runSync(
-        processor.parse(snapTradeGettingStartedMarkdown)
-      )
+
+      const demo = demos[input.demoId]
+      console.log(input.demoId)
+      if (demo === undefined)
+        return {
+          result: 'Could not find demo',
+        }
+      const hast = processor.runSync(processor.parse(demo))
 
       // Find the node with the same position and convert to code
       let matchingNode: Node | null = null

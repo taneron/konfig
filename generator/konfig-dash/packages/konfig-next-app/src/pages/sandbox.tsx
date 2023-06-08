@@ -1,5 +1,5 @@
 import DemoMarkdown, { DemoState } from '@/components/DemoMarkdown'
-import { snapTradeGettingStartedMarkdown } from '@/utils/snaptrade-demo'
+import { snapTradeGettingStartedMarkdown } from '@/utils/demos'
 import { Container, Textarea, Paper, SegmentedControl } from '@mantine/core'
 import { observer } from 'mobx-react'
 import { useState } from 'react'

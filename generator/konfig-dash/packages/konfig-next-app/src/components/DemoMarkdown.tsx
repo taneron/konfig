@@ -1,33 +1,36 @@
 import { makeAutoObservable } from 'mobx'
-import ReactMarkdown, { Components } from 'react-markdown'
+import ReactMarkdown from 'react-markdown'
 import remarkDirective from 'remark-directive'
 import remarkDirectiveRehype from 'remark-directive-rehype'
-import {
-  Anchor,
-  PasswordInput,
-  Stack,
-  TextInput,
-  Title,
-  Text,
-} from '@mantine/core'
+import { Anchor, Stack, Title, Text } from '@mantine/core'
 import { toText } from 'hast-util-to-text'
-import { createContext, useContext, useState } from 'react'
+import { createContext } from 'react'
 import { api } from '@/utils/api'
 import { observer } from 'mobx-react'
 import { CellState, DemoForm, FormContext } from './DemoForm'
 import { DemoButton } from './DemoButton'
 import { DemoCode } from './DemoCode'
 import { getTitlesFromMarkdown } from '@/utils/get-titles-from-markdown'
+import { DemoInput } from './DemoInput'
+import { PortalState } from './DemoPortal'
 
 export class DemoState {
+  name: string
   sessionId: string | null = null
   cells: CellState[] = []
   markdown: string = ''
-  constructor(parameters?: { markdown?: string }) {
+  portal: PortalState
+  constructor(parameters: {
+    markdown: string
+    name: string
+    portal: PortalState
+  }) {
     makeAutoObservable(this)
     if (parameters && parameters.markdown !== undefined) {
       this.markdown = parameters.markdown
     }
+    this.name = parameters.name
+    this.portal = parameters.portal
     this.init()
   }
 
@@ -57,25 +60,6 @@ export class DemoState {
 export const DemoStateContext = createContext<DemoState | null>(null)
 export const ShowCodeContext = createContext<boolean>(false)
 
-const Input: Components['input'] = ({
-  node,
-  children,
-  size,
-  type,
-  siblingCount,
-  ...props
-}) => {
-  const Component = type === 'password' ? PasswordInput : TextInput
-  const useFormContext = useContext(FormContext)
-  const form = useFormContext?.()
-  const id = node.properties?.id
-  const inputProps =
-    form !== undefined && typeof id === 'string'
-      ? form.getInputProps(id)
-      : undefined
-  return <Component type={type} autoComplete="off" {...props} {...inputProps} />
-}
-
 const DemoMarkdown = observer(
   ({ state, showCode }: { state: DemoState; showCode: boolean }) => {
     return (
@@ -93,7 +77,7 @@ const DemoMarkdown = observer(
                   return <Text {...props}>{children}</Text>
                 },
                 form: DemoForm,
-                input: Input,
+                input: DemoInput,
                 button: DemoButton,
                 code: DemoCode,
                 h1(props) {

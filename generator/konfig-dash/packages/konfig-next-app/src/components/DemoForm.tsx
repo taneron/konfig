@@ -8,6 +8,7 @@ import { Components } from 'react-markdown'
 import { DemoState, DemoStateContext } from './DemoMarkdown'
 import { makeAutoObservable } from 'mobx'
 import { Position } from 'unist-util-position/lib'
+import { v4 as uuid } from 'uuid'
 
 export const FormContext = createContext<
   ReturnType<typeof createFormContext>[1] | null
@@ -22,6 +23,7 @@ export class CellState {
   runState: RunState = 'N/A'
   output: string = ''
   demoState: DemoState | null
+  id = uuid()
 
   constructor({ demoState }: { demoState: DemoState | null }) {
     makeAutoObservable(this)
@@ -64,13 +66,23 @@ export class CellState {
     this.setShow(false)
 
     const response = await api.executeCode.query({
-      demoId: 'snaptrade',
+      demoId: `${this.demoState.portal.portalName}:${this.demoState.name}`,
       sessionId: this.demoState?.sessionId,
       codePosition: position,
       environmentVariables: EnvironmentVariables.parse(environmentVariables),
     })
 
-    if (response.result === 'Could not find code') return
+    this.setRunning(false)
+
+    if (response.result === 'Could not find demo') {
+      this.setRunState('Error')
+      return
+    }
+
+    if (response.result === 'Could not find code') {
+      this.setRunState('Error')
+      return
+    }
     this.setOutput(response.output)
     this.setRunning(false)
     this.setShow(true)
@@ -91,9 +103,9 @@ const _Form: Components['form'] = ({
   // Initialize values
   const initialValues = node.children.reduce((initialValues, child) => {
     if (child.type === 'element' && child.tagName === 'input') {
-      const id = child.properties?.['id']
-      if (typeof id === 'string') {
-        initialValues[id] = ''
+      const name = child.properties?.['name']
+      if (typeof name === 'string') {
+        initialValues[name] = ''
       }
     }
     return initialValues
@@ -102,10 +114,11 @@ const _Form: Components['form'] = ({
   // Ensure all inputs are non-empty
   const validate = node.children.reduce((validate, child) => {
     if (child.type === 'element' && child.tagName === 'input') {
-      const id = child.properties?.['id']
+      const name = child.properties?.['name']
       const label = child.properties?.['label']
-      if (typeof id === 'string') {
-        validate[id] = (value) => (value === '' ? `${label} is required` : null)
+      if (typeof name === 'string') {
+        validate[name] = (value) =>
+          value === '' ? `${label} is required` : null
       }
     }
     return validate

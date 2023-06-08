@@ -17,6 +17,7 @@ import {
   ActionIcon,
   useMantineColorScheme,
   useMantineTheme,
+  Box,
 } from '@mantine/core'
 import {
   IconBug,
@@ -49,7 +50,7 @@ export class PortalState {
     makeAutoObservable(this)
     this.demos = demos.map(({ name, markdown }) => ({
       name,
-      state: new DemoState({ markdown }),
+      state: new DemoState({ markdown, name, portal: this }),
     }))
     this.portalName = portalName
   }
@@ -60,6 +61,10 @@ export class PortalState {
 
   get currentDemo() {
     return this.demos[this.currentDemoIndex]
+  }
+
+  setCurrentDemoIndex(index: number) {
+    this.currentDemoIndex = index
   }
 }
 
@@ -117,6 +122,7 @@ export const DemoPortal = observer(({ state }: { state: PortalState }) => {
                       key={name}
                       onClick={() => {
                         setOpened(false)
+                        state.setCurrentDemoIndex(i)
                       }}
                       p="xs"
                       variant="filled"
@@ -223,10 +229,16 @@ export const DemoPortal = observer(({ state }: { state: PortalState }) => {
           </Header>
         }
       >
-        <DemoMarkdown
-          state={state.currentDemo.state}
-          showCode={state.showCode}
-        />
+        {state.demos.map((demo, i) => {
+          return (
+            <Box
+              key={demo.name}
+              display={state.currentDemoIndex !== i ? 'none' : undefined}
+            >
+              <DemoMarkdown state={demo.state} showCode={state.showCode} />
+            </Box>
+          )
+        })}
       </AppShell>
     </>
   )

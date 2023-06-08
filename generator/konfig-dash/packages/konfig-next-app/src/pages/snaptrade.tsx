@@ -1,6 +1,9 @@
 import { DemoPortal, PortalState } from '@/components/DemoPortal'
 import { observer } from 'mobx-react'
-import { snapTradeGettingStartedMarkdown } from '@/utils/snaptrade-demo'
+import {
+  snapTradeGettingStartedMarkdown,
+  snapTradeRegisteringUsersMarkdown,
+} from '@/utils/demos'
 import Head from 'next/head'
 
 const state = new PortalState({
@@ -9,6 +12,10 @@ const state = new PortalState({
     {
       name: 'Getting Started',
       markdown: snapTradeGettingStartedMarkdown,
+    },
+    {
+      name: 'Registering Users',
+      markdown: snapTradeRegisteringUsersMarkdown,
     },
   ],
 })

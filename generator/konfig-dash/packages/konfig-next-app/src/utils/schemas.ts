@@ -39,7 +39,7 @@ export const Position = z.object({
 export const EnvironmentVariables = z.record(z.string(), z.string())
 
 export const ExecuteCodeRequest = z.object({
-  demoId: z.literal('snaptrade'),
+  demoId: z.string(),
   sessionId: z.string(),
   codePosition: Position,
   environmentVariables: EnvironmentVariables,
@@ -54,5 +54,10 @@ export const ExecuteCodeResponse = z
   .or(
     z.object({
       result: z.literal('Could not find code'),
+    })
+  )
+  .or(
+    z.object({
+      result: z.literal('Could not find demo'),
     })
   )
