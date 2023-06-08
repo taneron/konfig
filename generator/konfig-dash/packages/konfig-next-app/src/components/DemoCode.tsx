@@ -1,7 +1,7 @@
-import { Code, Collapse } from '@mantine/core'
+import { Box, Code, Collapse, Transition } from '@mantine/core'
 import { Prism } from '@mantine/prism'
 import { observer } from 'mobx-react'
-import { useContext } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { Components } from 'react-markdown'
 import { DemoStateContext } from './DemoMarkdown'
 
@@ -36,16 +36,29 @@ const _DemoCode: Components['code'] = ({
   const demoState = useContext(DemoStateContext)
 
   return (
-    <Collapse in={demoState?.portal.showCode ?? false}>
-      <Prism.Tabs value={language}>
-        <Prism.TabsList>
-          <Prism.Tab value={language}>{langDisplayName[language]}</Prism.Tab>
-        </Prism.TabsList>
-        <Prism.Panel value={language} language={language}>
-          {String(children).replace(/\n$/, '')}
-        </Prism.Panel>
-      </Prism.Tabs>
-    </Collapse>
+    <Transition
+      mounted={demoState?.portal.showCode ?? false}
+      transition="pop"
+      duration={400}
+      timingFunction="ease"
+    >
+      {(styles) => {
+        return (
+          <div style={styles}>
+            <Prism.Tabs value={language}>
+              <Prism.TabsList>
+                <Prism.Tab value={language}>
+                  {langDisplayName[language]}
+                </Prism.Tab>
+              </Prism.TabsList>
+              <Prism.Panel value={language} language={language}>
+                {String(children).replace(/\n$/, '')}
+              </Prism.Panel>
+            </Prism.Tabs>
+          </div>
+        )
+      }}
+    </Transition>
   )
 }
 
