@@ -138,7 +138,35 @@ export const DemoPortal = observer(({ state }: { state: PortalState }) => {
         aside={
           <MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
             <Aside p="md" hiddenBreakpoint="sm" width={{ sm: 200, lg: 300 }}>
-              <Stack spacing={2}>{state.currentDemo.state.titles}</Stack>
+              <Stack spacing={2}>
+                {state.currentDemo.state.titles.map((title, i) => {
+                  const cell = state.currentDemo.state.cells[i]
+                  if (cell === undefined)
+                    return <NavLink key={title} label={title} variant="light" />
+                  return (
+                    <NavLink
+                      key={title}
+                      active={cell.runState !== 'N/A'}
+                      color={
+                        cell.ranSuccessfully
+                          ? 'blue'
+                          : cell.failed
+                          ? 'red'
+                          : undefined
+                      }
+                      variant="light"
+                      label={title}
+                      onClick={() => {
+                        const element = document.getElementById(title)
+                        element?.scrollIntoView({
+                          behavior: 'smooth',
+                          block: 'center',
+                        })
+                      }}
+                    />
+                  )
+                })}
+              </Stack>
             </Aside>
           </MediaQuery>
         }
@@ -162,7 +190,9 @@ export const DemoPortal = observer(({ state }: { state: PortalState }) => {
                     mr="md"
                   />
                 </MediaQuery>
-                <Title order={5}>{state.portalName}</Title>
+                <MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
+                  <Title order={5}>{state.portalName}</Title>
+                </MediaQuery>
               </Group>
               <Group>
                 <SegmentedControl
