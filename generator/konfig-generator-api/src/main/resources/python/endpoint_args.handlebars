@@ -2,7 +2,7 @@
 {{!-- https://www.notion.so/konfigthis/Improve-in-line-type-information-for-Python-SDK-Pydantic-Types-from-last-sprint-3964bce6904246ad8e95118225e94883?pvs=4#81e549ed9c1e4bb3a510baccbbaaa838 --}}
 {{#if bodyParam}}
     {{#if @root.keepAllParametersOptional}}
-        {{#if bodyParam.isObject}}
+        {{#if bodyParam.isStrictlyObject}}
     {{> body_arg isOptional=true}}
         {{else}}
             {{#if bodyParam.required}}
@@ -17,7 +17,7 @@
     {{> flattened_args allOptional=true}}
         {{/if}}
     {{else}}
-        {{#if bodyParam.isObject}}
+        {{#if bodyParam.isStrictlyObject}}
             {{#if interface}}
     {{> flattened_args allOptional=false}}
             {{else}}
