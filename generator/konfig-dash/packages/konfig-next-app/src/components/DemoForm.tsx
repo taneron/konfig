@@ -128,7 +128,6 @@ const _Form: Components['form'] = ({
     if (demoState === null) return
     if (demoState.cells.includes(cell)) return
     demoState.pushCell({ cell })
-    console.log(demoState)
   }, [])
 
   return (

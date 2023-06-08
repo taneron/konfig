@@ -114,6 +114,7 @@ export const DemoPortal = observer(({ state }: { state: PortalState }) => {
                   const isCurrentlySelected = state.currentDemoIndex === i
                   return (
                     <NavLink
+                      key={name}
                       onClick={() => {
                         setOpened(false)
                       }}
@@ -137,7 +138,7 @@ export const DemoPortal = observer(({ state }: { state: PortalState }) => {
         aside={
           <MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
             <Aside p="md" hiddenBreakpoint="sm" width={{ sm: 200, lg: 300 }}>
-              <Stack spacing={2}>TODO LINK WITH HEADERS</Stack>
+              <Stack spacing={2}>{state.currentDemo.state.titles}</Stack>
             </Aside>
           </MediaQuery>
         }

@@ -20,8 +20,15 @@ export function getTitlesFromMarkdown({
   visit(
     hast,
     (node) => {
-      return true
+      if (node.type === 'element') return true
+      const headingRegex = /h[1-6]/g
+      if ('tagName' in node && node.tagName.match(headingRegex)) return true
+      return false
     },
-    (node) => {}
+    (node) => {
+      console.log(node)
+    }
   )
+
+  return []
 }
