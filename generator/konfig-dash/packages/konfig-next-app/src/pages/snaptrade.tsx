@@ -1,6 +1,7 @@
 import { DemoPortal, PortalState } from '@/components/DemoPortal'
 import { observer } from 'mobx-react'
 import { snapTradeGettingStartedMarkdown } from '@/utils/snaptrade-demo'
+import Head from 'next/head'
 
 const state = new PortalState({
   portalName: 'SnapTrade Demo',
@@ -13,7 +14,14 @@ const state = new PortalState({
 })
 
 const Snaptrade = observer(() => {
-  return <DemoPortal state={state} />
+  return (
+    <>
+      <Head>
+        <title>SnapTrade | Konfig</title>
+      </Head>
+      <DemoPortal state={state} />
+    </>
+  )
 })
 
 export default Snaptrade

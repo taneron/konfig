@@ -3,6 +3,7 @@ import { snapTradeGettingStartedMarkdown } from '@/utils/snaptrade-demo'
 import { Container, Textarea, Paper, SegmentedControl } from '@mantine/core'
 import { observer } from 'mobx-react'
 import { useState } from 'react'
+import Head from 'next/head'
 
 const state = new DemoState({ markdown: snapTradeGettingStartedMarkdown })
 
@@ -10,6 +11,9 @@ const MarkdownSandboxPage = observer(() => {
   const [showCode, setShowCode] = useState(false)
   return (
     <>
+      <Head>
+        <title>Demo Sandbox | Konfig</title>
+      </Head>
       <Container pt="xl" size="lg">
         <SegmentedControl
           size="xs"
