@@ -27,6 +27,7 @@ import {
 import { observer } from 'mobx-react'
 import { useState } from 'react'
 import DemoMarkdown, { DemoState } from './DemoMarkdown'
+import { makeAutoObservable } from 'mobx'
 
 type DemosInput = { name: string; markdown: string }[]
 
@@ -45,6 +46,7 @@ export class PortalState {
     demos: DemosInput
     portalName: string
   }) {
+    makeAutoObservable(this)
     this.demos = demos.map(({ name, markdown }) => ({
       name,
       state: new DemoState({ markdown }),
