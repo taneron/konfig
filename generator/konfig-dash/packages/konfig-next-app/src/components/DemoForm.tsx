@@ -66,7 +66,9 @@ export class CellState {
     this.setShow(false)
 
     const response = await api.executeCode.query({
-      demoId: `${this.demoState.portal.portalName}:${this.demoState.name}`,
+      organizationId: this.demoState.portal.organizationId,
+      portalId: this.demoState.portal.id,
+      demoId: this.demoState.id,
       sessionId: this.demoState?.sessionId,
       codePosition: position,
       environmentVariables: EnvironmentVariables.parse(environmentVariables),

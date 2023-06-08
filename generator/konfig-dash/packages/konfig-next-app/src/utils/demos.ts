@@ -270,7 +270,129 @@ pprint(deleted_response.body)
 :::
 `
 
-export const demos: Record<string, string | undefined> = {
-  'SnapTrade Demos:Getting Started': snapTradeGettingStartedMarkdown,
-  'SnapTrade Demos:Registering Users': snapTradeRegisteringUsersMarkdown,
+export const snapTradeHandlingUserDataMarkdown = `
+:::info
+This is for after the user is created and connected. See [Getting Started](/snaptrade/snaptrade-demos/getting-started) or
+[Registering Users](/snaptrade/snaptrade-demos/registering-users) for creating and connecting a user to SnapTrade.
+:::
+
+### 1) Initialize a client with your clientId and consumerKey
+
+You can get your \`clientId\` and \`consumerKey\` by contacting [api@snaptrade.com](mailto:api@snaptrade.com)
+
+:::form
+
+::input{name=SNAPTRADE_CLIENT_ID label="Client ID" placeholder="YOUR_CLIENT_ID" type="password"}
+
+::input{name=SNAPTRADE_CONSUMER_KEY label="Consumer Key" placeholder="YOUR_CONSUMER_KEY" type="password"}
+
+\`\`\`python
+from snaptrade_client import SnapTrade
+from pprint import pprint
+import uuid
+import os
+
+snaptrade = SnapTrade(
+  consumer_key=os.environ["SNAPTRADE_CONSUMER_KEY"],
+  client_id=os.environ["SNAPTRADE_CLIENT_ID"],
+)
+
+print("Successfully initiated client")
+\`\`\`
+
+
+::button[Initialize SDK Client]
+
+:::
+
+### 2) Get all user holdings
+
+List all accounts for the user, plus balances and positions for each account.
+
+:::form
+
+::input{name=USER_ID label="User ID" placeholder="YOUR_USER_ID" type="password"}
+
+::input{name=USER_SECRET label="User Secret" placeholder="YOUR_USER_SECRET" type="password"}
+
+\`\`\`python
+user_id = os.environ["USER_ID"]
+user_secret = os.environ["USER_SECRET"]
+holdings = snaptrade.account_information.get_all_user_holdings(
+  user_id=user_id, user_secret=user_secret
+)
+pprint(holdings.body)
+\`\`\`
+
+::button[Get all user holdings]
+
+:::
+
+### 3) Get Transactions / Historical Activities
+
+Returns activities (transactions) for a user. Specifying start and end date is
+highly recommended for automatic calls for better performance.
+
+:::form
+
+::input{name=ACCOUNT_ID label="Account ID" placeholder="YOUR_ACCOUNT_ID(S)" type="password" description="Optional comma seperated list of account IDs used to filter the request on specific accounts"}
+
+\`\`\`python
+holdings = snaptrade.account_information.get_all_user_holdings(
+  user_id=os.environ["USER_ID"], user_secret=os.environ["USER_SECRET"]
+)
+pprint(holdings.body)
+\`\`\`
+
+::button[Get all user holdings]
+
+:::
+
+
+`
+
+export type Demo = {
+  id: string
+  name: string
+  markdown: string
 }
+export type Portal = {
+  id: string
+  portalName: string
+  demos: Demo[]
+}
+export type Organization = {
+  id: string
+  organizationName: string
+  portals: Portal[]
+}
+
+export const demos: Organization[] = [
+  {
+    id: 'snaptrade',
+    organizationName: 'SnapTrade',
+    portals: [
+      {
+        id: 'snaptrade-demos',
+        portalName: 'SnapTrade Demos',
+        demos: [
+          {
+            id: 'getting-started',
+            name: 'Getting Started',
+            markdown: snapTradeGettingStartedMarkdown,
+          },
+          {
+            id: 'registering-users',
+            name: 'Registering Users',
+            markdown: snapTradeRegisteringUsersMarkdown,
+          },
+          {
+            id: 'handling-user-data',
+            name: 'Handling User Data',
+            markdown: snapTradeHandlingUserDataMarkdown,
+          },
+        ],
+      },
+    ],
+  },
+]

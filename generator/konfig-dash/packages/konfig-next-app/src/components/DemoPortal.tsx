@@ -8,7 +8,6 @@ import {
   Stack,
   NavLink,
   MediaQuery,
-  Aside,
   Header,
   Group,
   Burger,
@@ -29,29 +28,45 @@ import { observer } from 'mobx-react'
 import { useState } from 'react'
 import DemoMarkdown, { DemoState } from './DemoMarkdown'
 import { makeAutoObservable } from 'mobx'
+import { useRouter } from 'next/router'
+import { DemoPortalAside } from './DemoPortalAside'
+import { createContext } from 'react'
 
-type DemosInput = { name: string; markdown: string }[]
+type DemosInput = { name: string; markdown: string; id: string }[]
 
-type Demos = { name: string; state: DemoState }[]
+type Demos = DemoState[]
 
 export class PortalState {
   demos: Demos
   showCode = false
+  id: string
   portalName: string
-  currentDemoIndex = 0
+  currentDemoIndex: number
+  organizationId: string
 
   constructor({
     demos,
     portalName,
+    id,
+    organizationId,
+    demoId,
   }: {
     demos: DemosInput
     portalName: string
+    id: string
+    organizationId: string
+    demoId: string
   }) {
     makeAutoObservable(this)
-    this.demos = demos.map(({ name, markdown }) => ({
-      name,
-      state: new DemoState({ markdown, name, portal: this }),
-    }))
+    this.id = id
+    this.organizationId = organizationId
+    this.demos = demos.map(
+      ({ name, markdown, id }) =>
+        new DemoState({ markdown, name, portal: this, id })
+    )
+    this.currentDemoIndex = this.demos.findIndex((demo) => demo.id === demoId)
+    if (this.currentDemoIndex === -1)
+      throw Error(`Could not find demo with id ${demoId}`)
     this.portalName = portalName
   }
 
@@ -60,6 +75,7 @@ export class PortalState {
   }
 
   get currentDemo() {
+    console.log(this.demos[this.currentDemoIndex])
     return this.demos[this.currentDemoIndex]
   }
 
@@ -72,6 +88,8 @@ export const DemoPortal = observer(({ state }: { state: PortalState }) => {
   const theme = useMantineTheme()
   const { colorScheme, toggleColorScheme } = useMantineColorScheme()
   const [opened, setOpened] = useState(false)
+  const router = useRouter()
+
   return (
     <>
       <Affix position={{ bottom: '0.5rem', right: '1rem' }}>
@@ -86,7 +104,7 @@ export const DemoPortal = observer(({ state }: { state: PortalState }) => {
               {JSON.stringify(
                 state.demos.map((demo) => ({
                   name: demo.name,
-                  sessionId: demo.state.sessionId,
+                  sessionId: demo.sessionId,
                 })),
                 undefined,
                 2
@@ -123,6 +141,11 @@ export const DemoPortal = observer(({ state }: { state: PortalState }) => {
                       onClick={() => {
                         setOpened(false)
                         state.setCurrentDemoIndex(i)
+                        router.push(
+                          `/${state.organizationId}/${state.id}/${state.demos[i].id}`,
+                          undefined,
+                          { shallow: true }
+                        )
                       }}
                       p="xs"
                       variant="filled"
@@ -141,41 +164,7 @@ export const DemoPortal = observer(({ state }: { state: PortalState }) => {
             </Navbar.Section>
           </Navbar>
         }
-        aside={
-          <MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
-            <Aside p="md" hiddenBreakpoint="sm" width={{ sm: 200, lg: 300 }}>
-              <Stack spacing={2}>
-                {state.currentDemo.state.titles.map((title, i) => {
-                  const cell = state.currentDemo.state.cells[i]
-                  if (cell === undefined)
-                    return <NavLink key={title} label={title} variant="light" />
-                  return (
-                    <NavLink
-                      key={title}
-                      active={cell.runState !== 'N/A'}
-                      color={
-                        cell.ranSuccessfully
-                          ? 'blue'
-                          : cell.failed
-                          ? 'red'
-                          : undefined
-                      }
-                      variant="light"
-                      label={title}
-                      onClick={() => {
-                        const element = document.getElementById(title)
-                        element?.scrollIntoView({
-                          behavior: 'smooth',
-                          block: 'center',
-                        })
-                      }}
-                    />
-                  )
-                })}
-              </Stack>
-            </Aside>
-          </MediaQuery>
-        }
+        aside={<DemoPortalAside state={state} />}
         header={
           <Header height={{ base: 50, md: 70 }} p="md">
             <div
@@ -229,13 +218,14 @@ export const DemoPortal = observer(({ state }: { state: PortalState }) => {
           </Header>
         }
       >
+        {/* We have to render all demos states at the start so they can each initialize their cells */}
         {state.demos.map((demo, i) => {
           return (
             <Box
               key={demo.name}
               display={state.currentDemoIndex !== i ? 'none' : undefined}
             >
-              <DemoMarkdown state={demo.state} showCode={state.showCode} />
+              <DemoMarkdown state={demo} />
             </Box>
           )
         })}

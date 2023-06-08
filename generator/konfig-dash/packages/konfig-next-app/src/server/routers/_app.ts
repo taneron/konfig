@@ -36,13 +36,19 @@ export const appRouter = router({
         .use(remarkDirectiveRehype)
         .use(remarkRehype)
 
-      const demo = demos[input.demoId]
-      console.log(input.demoId)
+      const organization = demos.find(({ id }) => id === input.organizationId)
+
+      const portal = organization?.portals.find(
+        ({ id }) => id === input.portalId
+      )
+
+      const demo = portal?.demos.find(({ id }) => id === input.demoId)
       if (demo === undefined)
         return {
           result: 'Could not find demo',
         }
-      const hast = processor.runSync(processor.parse(demo))
+
+      const hast = processor.runSync(processor.parse(demo.markdown))
 
       // Find the node with the same position and convert to code
       let matchingNode: Node | null = null

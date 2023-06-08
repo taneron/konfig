@@ -39,6 +39,8 @@ export const Position = z.object({
 export const EnvironmentVariables = z.record(z.string(), z.string())
 
 export const ExecuteCodeRequest = z.object({
+  organizationId: z.string(),
+  portalId: z.string(),
   demoId: z.string(),
   sessionId: z.string(),
   codePosition: Position,
