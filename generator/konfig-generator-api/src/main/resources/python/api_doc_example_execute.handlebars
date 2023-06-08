@@ -28,12 +28,12 @@ try:
 except ApiException as e:
     print("Exception when calling {{classname}}.{{operationId}}: %s\n" % e)
     pprint(e.body)
-{{#each errorReturnModels}}{{#unless this.anyOf.length}}{{#unless this.isArray}}
+{{#each errorReturnModels}}{{#unless this.anyOf.length}}{{#unless this.isArray}}{{#unless this.composedSchemas.allOf.length}}
     if e.status == {{@key}}:
     {{#each this.vars}}
         pprint(e.body["{{{name}}}"])
     {{/each}}
-{{/unless}}{{/unless}}{{/each}}
+{{/unless}}{{/unless}}{{/unless}}{{/each}}
     pprint(e.headers)
     pprint(e.status)
     pprint(e.reason)
