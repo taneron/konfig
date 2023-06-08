@@ -4,7 +4,7 @@ import { snapTradeGettingStartedMarkdown } from '@/utils/snaptrade-demo'
 import Head from 'next/head'
 
 const state = new PortalState({
-  portalName: 'SnapTrade Demo',
+  portalName: 'SnapTrade Demos',
   demos: [
     {
       name: 'Getting Started',
