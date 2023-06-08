@@ -30,7 +30,6 @@ import DemoMarkdown, { DemoState } from './DemoMarkdown'
 import { makeAutoObservable } from 'mobx'
 import { useRouter } from 'next/router'
 import { DemoPortalAside } from './DemoPortalAside'
-import { createContext } from 'react'
 
 type DemosInput = { name: string; markdown: string; id: string }[]
 
