@@ -1,14 +1,14 @@
 import { MediaQuery, Aside, Stack, NavLink } from '@mantine/core'
 import { observer } from 'mobx-react'
-import { PortalState } from './DemoPortal'
+import { DemoState } from './DemoMarkdown'
 
-const _DemoPortalAside = ({ state }: { state: PortalState }) => {
+const _DemoPortalAside = ({ currentDemo }: { currentDemo: DemoState }) => {
   return (
     <MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
       <Aside p="md" hiddenBreakpoint="sm" width={{ sm: 200, lg: 300 }}>
         <Stack spacing={2}>
-          {state.currentDemo.titles.map((title, i) => {
-            const cell = state.currentDemo.cells[i]
+          {currentDemo.titles.map((title, i) => {
+            const cell = currentDemo.cells[i]
             if (cell === undefined)
               return <NavLink key={title} label={title} variant="light" />
             return (

@@ -43,6 +43,7 @@ export class PortalState {
   portalName: string
   currentDemoIndex: number
   organizationId: string
+  currentDemo: DemoState
 
   constructor({
     demos,
@@ -67,6 +68,7 @@ export class PortalState {
     this.currentDemoIndex = this.demos.findIndex((demo) => demo.id === demoId)
     if (this.currentDemoIndex === -1)
       throw Error(`Could not find demo with id ${demoId}`)
+    this.currentDemo = this.demos[this.currentDemoIndex]
     this.portalName = portalName
   }
 
@@ -74,13 +76,9 @@ export class PortalState {
     this.showCode = value
   }
 
-  get currentDemo() {
-    console.log(this.demos[this.currentDemoIndex])
-    return this.demos[this.currentDemoIndex]
-  }
-
   setCurrentDemoIndex(index: number) {
     this.currentDemoIndex = index
+    this.currentDemo = this.demos[this.currentDemoIndex]
   }
 }
 
@@ -164,7 +162,7 @@ export const DemoPortal = observer(({ state }: { state: PortalState }) => {
             </Navbar.Section>
           </Navbar>
         }
-        aside={<DemoPortalAside state={state} />}
+        aside={<DemoPortalAside currentDemo={state.currentDemo} />}
         header={
           <Header height={{ base: 50, md: 70 }} p="md">
             <div
