@@ -118,7 +118,8 @@ const _Form: Components['form'] = ({
     if (child.type === 'element' && child.tagName === 'input') {
       const name = child.properties?.['name']
       const label = child.properties?.['label']
-      if (typeof name === 'string') {
+      const optional = child.properties?.['optional']
+      if (typeof name === 'string' && optional === undefined) {
         validate[name] = (value) =>
           value === '' ? `${label} is required` : null
       }
@@ -132,6 +133,21 @@ const _Form: Components['form'] = ({
   })
 
   const form = useForm({ initialValues, validate })
+
+  useEffect(() => {
+    node.children.forEach((child) => {
+      if (child.type === 'element' && child.tagName === 'input') {
+        const name = child.properties?.['name']
+        if (typeof name === 'string') {
+          const stored = localStorage.getItem(name)
+          if (stored !== null && stored !== 'null') {
+            form.setFieldValue(name, stored)
+          }
+        }
+      }
+      return initialValues
+    })
+  }, [])
 
   const demoState = useContext(DemoStateContext)
 
@@ -162,6 +178,9 @@ const _Form: Components['form'] = ({
               }
               if (firstPreNode.position === undefined) {
                 return
+              }
+              for (const [key, value] of Object.entries(values as object)) {
+                localStorage.setItem(key, value)
               }
               cell?.run({
                 position: firstPreNode.position,
