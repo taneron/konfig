@@ -1,5 +1,5 @@
 import { api } from '@/utils/api'
-import { LocalVariables } from '@/utils/schemas'
+import { LocalVariables, LocalVariablesType } from '@/utils/schemas'
 import { Stack } from '@mantine/core'
 import { createFormContext } from '@mantine/form'
 import { observer } from 'mobx-react'
@@ -121,6 +121,18 @@ const _Form: Components['form'] = ({
     return optionals
   }, [] as string[])
 
+  // collect all precision attributes formats from number inputs
+  const precisions = node.children.reduce((precisions, child) => {
+    if (child.type === 'element' && child.tagName === 'number') {
+      const name = child.properties?.['name']
+      const precision = child.properties?.['precision']
+      if (typeof name === 'string' && typeof precision === 'string') {
+        precisions[name] = parseInt(precision)
+      }
+    }
+    return precisions
+  }, {} as { [key: string]: number })
+
   // collect any value formats from date inputs
   const valueFormats = node.children.reduce((valueFormats, child) => {
     if (child.type === 'element' && child.tagName === 'date') {
@@ -135,16 +147,32 @@ const _Form: Components['form'] = ({
 
   // Initialize values
   const initialValues = node.children.reduce((initialValues, child) => {
-    if (child.type === 'element' && child.tagName === 'input') {
-      const name = child.properties?.['name']
-      const type = child.properties?.['type']
-      const defaultValue = child.properties?.['defaultValue']
-      if (typeof name === 'string') {
-        initialValues[name] = type === 'checkbox' ? defaultValue === 'true' : ''
+    if (child.type === 'element') {
+      if (child.tagName === 'input') {
+        const name = child.properties?.['name']
+        const type = child.properties?.['type']
+        const defaultValue = child.properties?.['defaultValue']
+        if (typeof name === 'string') {
+          initialValues[name] =
+            type === 'checkbox'
+              ? defaultValue === 'true'
+              : defaultValue !== undefined && typeof defaultValue === 'string'
+              ? defaultValue
+              : ''
+        }
+      } else if (child.tagName === 'number') {
+        const name = child.properties?.['name']
+        const defaultValue = child.properties?.['defaultValue']
+        if (typeof name === 'string') {
+          initialValues[name] =
+            typeof defaultValue === 'string' ? parseFloat(defaultValue) : ''
+        }
       }
     }
     return initialValues
-  }, {} as { [key: string]: string | boolean })
+  }, {} as { [key: string]: string | boolean | number })
+
+  console.log(initialValues)
 
   // Ensure all non-optional inputs are non-empty
   const validate = node.children.reduce((validate, child) => {
@@ -228,14 +256,22 @@ const _Form: Components['form'] = ({
               if (firstPreNode.position === undefined) {
                 return
               }
-              for (const [key, value] of Object.entries(values as object)) {
-                localStorage.setItem(key, value)
-              }
 
               // copy existing values object to new object
-              const newValues: Record<string, string> = {}
+              const newValues: LocalVariablesType = {}
               for (const [key, value] of Object.entries(values as object)) {
                 newValues[key] = value
+              }
+
+              // convert precision floats to BoxedFloats based on "precision" attribute
+              for (const [key, value] of Object.entries(values as object)) {
+                if (!(typeof value === 'number')) continue
+                if (!(key in precisions)) continue
+                newValues[key] = {
+                  type: 'float',
+                  data: value.toFixed(precisions[key]),
+                  precision: precisions[key],
+                }
               }
 
               // convert Dates to strings based on "valueFormat" attribute
@@ -268,6 +304,12 @@ const _Form: Components['form'] = ({
                 position: firstPreNode.position,
                 localVariables: newValues,
               })
+
+              if (cell?.ranSuccessfully) {
+                for (const [key, value] of Object.entries(values as object)) {
+                  localStorage.setItem(key, value)
+                }
+              }
             })}
             {...props}
           >

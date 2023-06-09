@@ -37,7 +37,17 @@ export const Position = z.object({
 })
 
 export const EnvironmentVariables = z.record(z.string(), z.string())
-export const LocalVariables = z.record(z.string(), z.string().or(z.boolean()))
+export const BoxedFloat = z.object({
+  type: z.literal('float'),
+  data: z.string(),
+  precision: z.number(),
+})
+export const LocalVariables = z.record(
+  z.string(),
+  z.union([z.string(), z.boolean(), z.number(), BoxedFloat])
+)
+
+export type LocalVariablesType = z.infer<typeof LocalVariables>
 
 export const ExecuteCodeRequest = z.object({
   organizationId: z.string(),
