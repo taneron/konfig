@@ -150,7 +150,7 @@ async def execute_code(request: SessionExecuteRequest):
                     shell.run_cell("{} = {}".format(name, value))
                 elif isinstance(value, float):
                     shell.run_cell("{} = {}".format(name, value))
-                elif value.type is "float":
+                elif value.type == "float":
                     shell.run_cell("{} = float({})".format(name, value.data))
 
         # Create a custom output stream to capture print statements
