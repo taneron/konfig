@@ -1,14 +1,27 @@
-import DemoMarkdown, { DemoState } from '@/components/DemoMarkdown'
+import DemoMarkdown from '@/components/DemoMarkdown'
 import { snapTradeGettingStartedMarkdown } from '@/utils/demos'
 import { Container, Textarea, Paper, SegmentedControl } from '@mantine/core'
 import { observer } from 'mobx-react'
 import { useState } from 'react'
 import Head from 'next/head'
-
-const state = new DemoState({ markdown: snapTradeGettingStartedMarkdown })
+import { PortalState } from '@/components/DemoPortal'
 
 const MarkdownSandboxPage = observer(() => {
-  const [showCode, setShowCode] = useState(false)
+  const [state] = useState(
+    new PortalState({
+      demos: [
+        {
+          id: 'sandbox',
+          name: 'Sandbox',
+          markdown: snapTradeGettingStartedMarkdown,
+        },
+      ],
+      portalName: 'Sandbox',
+      id: 'sandbox',
+      organizationId: 'konfig',
+      demoId: 'sandbox',
+    })
+  )
   return (
     <>
       <Head>
@@ -18,24 +31,26 @@ const MarkdownSandboxPage = observer(() => {
         <SegmentedControl
           size="xs"
           color="blue"
-          value={showCode ? 'show-code' : 'hide-code'}
+          value={state.showCode ? 'show-code' : 'hide-code'}
           data={[
             { label: 'Show Code', value: 'show-code' },
             { label: 'Hide Code', value: 'hide-code' },
           ]}
           onChange={(value) => {
-            setShowCode(value === 'show-code' ? true : false)
+            state.setShowCode(value === 'show-code' ? true : false)
           }}
         />
         <Textarea
-          value={state.markdown}
-          onChange={(event) => state.setMarkdown(event.target.value)}
+          value={state.currentDemo.markdown}
+          onChange={(event) =>
+            state.currentDemo.setMarkdown(event.target.value)
+          }
           label="Markdown"
           mb="xl"
           minRows={10}
         />
         <Paper withBorder shadow="xs" p="md">
-          <DemoMarkdown state={state} showCode={showCode} />
+          <DemoMarkdown state={state.currentDemo} />
         </Paper>
       </Container>
     </>
