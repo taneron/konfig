@@ -39,6 +39,16 @@ services:
     domains:
       - apidemo.konfigthis.com
 
+  - name: konfig-demo-portal
+    type: web
+    env: node
+    buildCommand: yarn; yarn build;
+    startCommand: yarn start;
+    repo: https://github.com/konfig-dev/konfig
+    rootDir: generator/konfig-dash/konfig-next-app
+    domains:
+      - demo.konfigthis.com
+
   - name: konfig-dash
     type: web
     env: static
