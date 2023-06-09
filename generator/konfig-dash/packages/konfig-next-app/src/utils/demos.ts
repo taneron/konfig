@@ -335,16 +335,25 @@ highly recommended for automatic calls for better performance.
 
 :::form
 
-::input{name=ACCOUNT_ID label="Account ID" placeholder="YOUR_ACCOUNT_ID(S)" type="password" description="Optional comma seperated list of account IDs used to filter the request on specific accounts"}
+::input{name=START_DATE label="Start Date" placeholder="START_DATE" optional}
+::input{name=END_DATE label="End Date" placeholder="END_DATE" optional}
+::input{name=ACCOUNTS label="Account(s)" placeholder="YOUR_ACCOUNT_IDS" description="Optional comma seperated list of account IDs used to filter the request on specific accounts" optional}
+::input{name=BROKERAGE_AUTHORIZATIONS label="Brokerage Authorizations" placeholder="YOUR_BROKERAGE_AUTHORIZATION" description="Optional comma seperated list of brokerage authorization IDs used to filter the request on only accounts that belong to those authorizations" optional}
+
 
 \`\`\`python
-holdings = snaptrade.account_information.get_all_user_holdings(
-  user_id=os.environ["USER_ID"], user_secret=os.environ["USER_SECRET"]
+activities = snaptrade.transactions_and_reporting.get_activities(
+  user_id=user_id,
+  user_secret=user_secret,
+  start_date=os.environ["START_DATE"],
+  end_date=os.environ["END_DATE"],
+  accounts=os.environ["ACCOUNTS"],
+  brokerage_authorizations=os.environ["BROKERAGE_AUTHORIZATIONS"],
 )
-pprint(holdings.body)
+pprint(activities.body)
 \`\`\`
 
-::button[Get all user holdings]
+::button[Get Activities]
 
 :::
 
