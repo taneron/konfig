@@ -1,9 +1,9 @@
 import json
 import time
-from typing import Literal, Optional
+from typing import Literal, Optional, Union
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import JSONResponse
-from pydantic import BaseModel
+from pydantic import BaseModel, StrictBool, StrictStr
 import uuid
 from IPython.terminal.interactiveshell import TerminalInteractiveShell
 from fastapi_utils.tasks import repeat_every
@@ -24,7 +24,7 @@ class SessionExecuteRequest(BaseModel):
     session_id: str
     code: str
     environment_variables: Optional[dict[str, str]]
-    local_variables: Optional[dict[str, str]]
+    local_variables: Optional[dict[str, Union[StrictStr, StrictBool]]]
 
 
 class SessionCloseRequest(BaseModel):
@@ -104,7 +104,11 @@ async def execute_code(request: SessionExecuteRequest):
         # Set any global variables
         if request.local_variables is not None:
             for name, value in request.local_variables.items():
-                shell.run_cell("{} = \"{}\"".format(name, value))
+                print(name, value, isinstance(value, bool), type(value))
+                if isinstance(value, bool):
+                    shell.run_cell("{} = {}".format(name, value))
+                else:
+                    shell.run_cell("{} = \"{}\"".format(name, value))
 
         # Create a custom output stream to capture print statements
         output_stream = StringIO()
