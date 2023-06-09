@@ -137,12 +137,14 @@ const _Form: Components['form'] = ({
   const initialValues = node.children.reduce((initialValues, child) => {
     if (child.type === 'element' && child.tagName === 'input') {
       const name = child.properties?.['name']
+      const type = child.properties?.['type']
+      const defaultValue = child.properties?.['defaultValue']
       if (typeof name === 'string') {
-        initialValues[name] = ''
+        initialValues[name] = type === 'checkbox' ? defaultValue === 'true' : ''
       }
     }
     return initialValues
-  }, {} as { [key: string]: string })
+  }, {} as { [key: string]: string | boolean })
 
   // Ensure all non-optional inputs are non-empty
   const validate = node.children.reduce((validate, child) => {
@@ -172,7 +174,9 @@ const _Form: Components['form'] = ({
         if (typeof name === 'string') {
           const stored = localStorage.getItem(name)
           if (stored !== null && stored !== 'null') {
-            form.setFieldValue(name, stored)
+            if (stored === 'true') form.setFieldValue(name, true)
+            else if (stored === 'false') form.setFieldValue(name, false)
+            else form.setFieldValue(name, stored)
           }
         }
       }
@@ -214,13 +218,15 @@ const _Form: Components['form'] = ({
                 localStorage.setItem(key, value)
               }
 
-              // convert Dates to strings based on "valueFormat" attribute
+              // copy existing values object to new object
               const newValues: Record<string, string> = {}
               for (const [key, value] of Object.entries(values as object)) {
-                if (!(value instanceof Date)) {
-                  newValues[key] = value
-                  continue
-                }
+                newValues[key] = value
+              }
+
+              // convert Dates to strings based on "valueFormat" attribute
+              for (const [key, value] of Object.entries(values as object)) {
+                if (!(value instanceof Date)) continue
                 if (!(key in valueFormats)) {
                   newValues[key] = value.toISOString()
                   continue
@@ -241,6 +247,8 @@ const _Form: Components['form'] = ({
                   delete newValues[key]
                 }
               }
+
+              console.log(newValues)
 
               cell?.run({
                 position: firstPreNode.position,

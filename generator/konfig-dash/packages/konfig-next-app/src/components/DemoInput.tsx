@@ -1,4 +1,4 @@
-import { PasswordInput, TextInput } from '@mantine/core'
+import { Checkbox, PasswordInput, TextInput } from '@mantine/core'
 import { useContext } from 'react'
 import { Components } from 'react-markdown'
 import { FormContext } from './DemoForm'
@@ -12,16 +12,27 @@ const _DemoInput: Components['input'] = ({
   siblingCount,
   ...props
 }) => {
+  let Component = TextInput
+  if (type === 'password') Component = PasswordInput
+  if (type === 'checkbox') Component = Checkbox as any
   const useFormContext = useContext(FormContext)
   const form = useFormContext?.()
   const name = node.properties?.name
   const inputProps =
     form !== undefined && typeof name === 'string'
-      ? form.getInputProps(name)
+      ? form.getInputProps(name, {
+          type: type === 'checkbox' ? 'checkbox' : 'input',
+        })
       : undefined
-  let Component = TextInput
-  if (type === 'password') Component = PasswordInput
-  return <Component type={type} autoComplete="off" {...props} {...inputProps} />
+  const optional = node.properties?.optional !== undefined
+  return (
+    <Component
+      withAsterisk={!optional}
+      autoComplete="off"
+      {...props}
+      {...inputProps}
+    />
+  )
 }
 
 export const DemoInput = observer(_DemoInput)

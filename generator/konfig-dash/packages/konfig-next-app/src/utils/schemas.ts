@@ -37,7 +37,7 @@ export const Position = z.object({
 })
 
 export const EnvironmentVariables = z.record(z.string(), z.string())
-export const LocalVariables = z.record(z.string(), z.string())
+export const LocalVariables = z.record(z.string(), z.string().or(z.boolean()))
 
 export const ExecuteCodeRequest = z.object({
   organizationId: z.string(),
