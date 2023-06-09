@@ -226,6 +226,10 @@ def close_inactive_sessions():
     ]  # 2 minutes of inactivity
 
     for session_id in inactive_sessions:
+        # fully exit the IPython terminal (I think this actually helps?)
+        sessions[session_id][0].confirm_exit = False
+        sessions[session_id][0].run_cell("exit")
+
         del sessions[session_id]
 
 

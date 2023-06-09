@@ -46,8 +46,11 @@ export class DemoState {
   }
 
   async init() {
-    const { session_id } = await api.startSession.query();
-    this.setSessionId(session_id);
+    // Only initialize sessions in browser
+    if (typeof window !== "undefined") {
+      const { session_id } = await api.startSession.query();
+      this.setSessionId(session_id);
+    }
   }
 
   setSessionId(sessionId: string) {

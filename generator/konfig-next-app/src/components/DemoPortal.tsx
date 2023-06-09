@@ -71,13 +71,16 @@ export class PortalState {
     this.currentDemo = this.demos[this.currentDemoIndex];
     this.portalName = portalName;
 
-    setInterval(async () => {
-      const sessionIds = this.demos
-        .map((demo) => demo.sessionId as string)
-        .filter((sessionId) => sessionId !== null);
-      if (sessionIds.length === 0) return;
-      await api.pingSessions.query({ sessionIds });
-    }, 30000);
+    // Only start intervals in browser
+    if (typeof window !== "undefined") {
+      setInterval(async () => {
+        const sessionIds = this.demos
+          .map((demo) => demo.sessionId as string)
+          .filter((sessionId) => sessionId !== null);
+        if (sessionIds.length === 0) return;
+        await api.pingSessions.query({ sessionIds });
+      }, 30000);
+    }
   }
 
   setShowCode(value: boolean) {
