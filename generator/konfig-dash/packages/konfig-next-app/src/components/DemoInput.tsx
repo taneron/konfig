@@ -27,7 +27,7 @@ const _DemoInput: Components['input'] = ({
   const optional = node.properties?.optional !== undefined
   return (
     <Component
-      withAsterisk={!optional}
+      withAsterisk={!optional ? true : undefined}
       autoComplete="off"
       {...props}
       {...inputProps}
