@@ -15,8 +15,8 @@ import uuid
 import os
 
 snaptrade = SnapTrade(
-  consumer_key=os.environ["SNAPTRADE_CONSUMER_KEY"],
-  client_id=os.environ["SNAPTRADE_CLIENT_ID"],
+  consumer_key=SNAPTRADE_CONSUMER_KEY,
+  client_id=SNAPTRADE_CLIENT_ID,
 )
 
 print("Successfully initiated client")
@@ -60,7 +60,7 @@ endpoints that involve access to user data.
 ::input{name=SNAPTRADE_USER_ID label="SnapTrade User ID" placeholder="YOUR_SNAPTRADE_USER_ID" type="password"}
 
 \`\`\`python
-user_id = os.environ["SNAPTRADE_USER_ID"]
+user_id = SNAPTRADE_USER_ID
 register_response = snaptrade.authentication.register_snap_trade_user(
     user_id=user_id
 )
@@ -155,8 +155,8 @@ import uuid
 import os
 
 snaptrade = SnapTrade(
-  consumer_key=os.environ["SNAPTRADE_CONSUMER_KEY"],
-  client_id=os.environ["SNAPTRADE_CLIENT_ID"],
+  consumer_key=SNAPTRADE_CONSUMER_KEY,
+  client_id=SNAPTRADE_CLIENT_ID,
 )
 
 print("Successfully initiated client")
@@ -200,7 +200,7 @@ endpoints that involve access to user data.
 ::input{name=SNAPTRADE_USER_ID label="SnapTrade User ID" placeholder="YOUR_SNAPTRADE_USER_ID" type="password"}
 
 \`\`\`python
-user_id = os.environ["SNAPTRADE_USER_ID"]
+user_id = SNAPTRADE_USER_ID
 register_response = snaptrade.authentication.register_snap_trade_user(
     user_id=user_id
 )
@@ -331,7 +331,8 @@ pprint(holdings.body)
 ### 3) Get Transactions / Historical Activities
 
 Returns activities (transactions) for a user. Specifying start and end date is
-highly recommended for automatic calls for better performance.
+highly recommended for automatic calls for better performance. This uses the
+TransactionsAndReporting API.
 
 :::form
 
@@ -343,23 +344,42 @@ highly recommended for automatic calls for better performance.
 
 
 \`\`\`python
-print(
-  user_id,
-  user_secret,
-  START_DATE if "START_DATE" in globals() else None,
-  END_DATE if "END_DATE" in globals() else None,
-  ACCOUNTS if "ACCOUNTS" in globals() else None,
-  BROKERAGE_AUTHORIZATIONS if "BROKERAGE_AUTHORIZATIONS" in globals() else None,
-  TYPE if "TYPE" in globals() else None
-)
 activities = snaptrade.transactions_and_reporting.get_activities(
-  user_id,
-  user_secret,
-  START_DATE if "START_DATE" in globals() else None,
-  END_DATE if "END_DATE" in globals() else None,
-  ACCOUNTS if "ACCOUNTS" in globals() else None,
-  BROKERAGE_AUTHORIZATIONS if "BROKERAGE_AUTHORIZATIONS" in globals() else None,
-  TYPE if "TYPE" in globals() else None
+  user_id=user_id,
+  user_secret=user_secret,
+  start_date=START_DATE if "START_DATE" in globals() else None,
+  end_date=END_DATE if "END_DATE" in globals() else None,
+  accounts=ACCOUNTS if "ACCOUNTS" in globals() else None,
+  brokerage_authorizations=BROKERAGE_AUTHORIZATIONS if "BROKERAGE_AUTHORIZATIONS" in globals() else None,
+  type=TYPE if "TYPE" in globals() else None
+)
+pprint(activities.body)
+\`\`\`
+
+::button[Get Activities]
+
+:::
+
+### 4) Get Quotes
+
+Get symbol quotes for a user, these are account and thus brokerage specific.
+That means if you have a US only account, you cannot get quotes for
+international exchanges. This uses the Trading API.
+
+:::form
+
+::input{name=SYMBOLS label="Symbols" placeholder="AAPL" description="List of universal_symbol_id or tickers to get quotes for"}
+::input{name=ACCOUNT_ID label="Account ID" placeholder="ACCOUNT ID" description="The ID of the account to get quotes"}
+::input{name=USE_TICKER type="checkbox" defaultValue=true label="Use Ticker" description="Should be set to True if providing tickers" optional}
+
+
+\`\`\`python
+activities = snaptrade.trading.get_user_account_quotes(
+  user_id=user_id,
+  user_secret=user_secret,
+  symbols=SYMBOLS,
+  account_id=ACCOUNT_ID,
+  use_ticker=USE_TICKER if "USE_TICKER" in globals() else None,
 )
 pprint(activities.body)
 \`\`\`
