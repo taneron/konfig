@@ -9,6 +9,7 @@ import { DemoState, DemoStateContext } from './DemoMarkdown'
 import { makeAutoObservable } from 'mobx'
 import { Position } from 'unist-util-position/lib'
 import { v4 as uuid } from 'uuid'
+import dayjs from 'dayjs'
 
 export const FormContext = createContext<
   ReturnType<typeof createFormContext>[1] | null
@@ -102,6 +103,34 @@ const _Form: Components['form'] = ({
     createFormContext()
   )
 
+  // collect all optional inputs
+  const optionals = node.children.reduce((optionals, child) => {
+    if (child.type === 'element') {
+      const name = child.properties?.['name']
+      const optional = child.properties?.['optional']
+      if (
+        typeof name === 'string' &&
+        optional !== undefined &&
+        optional !== null
+      ) {
+        optionals.push(name)
+      }
+    }
+    return optionals
+  }, [] as string[])
+
+  // collect any value formats from date inputs
+  const valueFormats = node.children.reduce((valueFormats, child) => {
+    if (child.type === 'element' && child.tagName === 'date') {
+      const name = child.properties?.['name']
+      const valueFormat = child.properties?.['valueFormat']
+      if (typeof name === 'string' && typeof valueFormat === 'string') {
+        valueFormats[name] = valueFormat
+      }
+    }
+    return valueFormats
+  }, {} as { [key: string]: string })
+
   // Initialize values
   const initialValues = node.children.reduce((initialValues, child) => {
     if (child.type === 'element' && child.tagName === 'input') {
@@ -113,7 +142,7 @@ const _Form: Components['form'] = ({
     return initialValues
   }, {} as { [key: string]: string })
 
-  // Ensure all inputs are non-empty
+  // Ensure all non-optional inputs are non-empty
   const validate = node.children.reduce((validate, child) => {
     if (child.type === 'element' && child.tagName === 'input') {
       const name = child.properties?.['name']
@@ -182,9 +211,38 @@ const _Form: Components['form'] = ({
               for (const [key, value] of Object.entries(values as object)) {
                 localStorage.setItem(key, value)
               }
+
+              // convert Dates to strings based on "valueFormat" attribute
+              const newValues: Record<string, string> = {}
+              for (const [key, value] of Object.entries(values as object)) {
+                if (!(value instanceof Date)) {
+                  newValues[key] = value
+                  continue
+                }
+                if (!(key in valueFormats)) {
+                  newValues[key] = value.toISOString()
+                  continue
+                }
+                newValues[key] = dayjs(value).format(valueFormats[key])
+              }
+
+              // remove null values
+              for (const [key, value] of Object.entries(values as object)) {
+                if (value === null) {
+                  delete newValues[key]
+                }
+              }
+
+              // remove optional empty string values
+              for (const [key, value] of Object.entries(values as object)) {
+                if (value === '' && optionals.includes(key)) {
+                  delete newValues[key]
+                }
+              }
+
               cell?.run({
                 position: firstPreNode.position,
-                environmentVariables: values,
+                environmentVariables: newValues,
               })
             })}
             {...props}

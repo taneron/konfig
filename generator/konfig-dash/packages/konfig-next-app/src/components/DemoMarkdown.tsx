@@ -14,6 +14,7 @@ import { getTitlesFromMarkdown } from '@/utils/get-titles-from-markdown'
 import { DemoInput } from './DemoInput'
 import { PortalState } from './DemoPortal'
 import { DemoInfo } from './DemoInfo'
+import { DemoDateInput } from './DemoDateInput'
 
 export class DemoState {
   id: string
@@ -126,6 +127,7 @@ const DemoMarkdown = observer(({ state }: { state: DemoState }) => {
             // Make TypeScript happy by moving this into its own object
             ...{
               info: DemoInfo,
+              date: DemoDateInput,
             },
           }}
         />

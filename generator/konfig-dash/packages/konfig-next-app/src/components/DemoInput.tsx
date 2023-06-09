@@ -12,7 +12,6 @@ const _DemoInput: Components['input'] = ({
   siblingCount,
   ...props
 }) => {
-  const Component = type === 'password' ? PasswordInput : TextInput
   const useFormContext = useContext(FormContext)
   const form = useFormContext?.()
   const name = node.properties?.name
@@ -20,6 +19,8 @@ const _DemoInput: Components['input'] = ({
     form !== undefined && typeof name === 'string'
       ? form.getInputProps(name)
       : undefined
+  let Component = TextInput
+  if (type === 'password') Component = PasswordInput
   return <Component type={type} autoComplete="off" {...props} {...inputProps} />
 }
 

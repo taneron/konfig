@@ -335,8 +335,8 @@ highly recommended for automatic calls for better performance.
 
 :::form
 
-::input{name=START_DATE label="Start Date" placeholder="START_DATE" optional}
-::input{name=END_DATE label="End Date" placeholder="END_DATE" optional}
+::date{name=START_DATE label="Start Date" placeholder="START_DATE" valueFormat="YYYY-MM-DD" optional}
+::date{name=END_DATE label="End Date" placeholder="END_DATE" valueFormat="YYYY-MM-DD" optional}
 ::input{name=ACCOUNTS label="Account(s)" placeholder="YOUR_ACCOUNT_IDS" description="Optional comma seperated list of account IDs used to filter the request on specific accounts" optional}
 ::input{name=BROKERAGE_AUTHORIZATIONS label="Brokerage Authorizations" placeholder="YOUR_BROKERAGE_AUTHORIZATION" description="Optional comma seperated list of brokerage authorization IDs used to filter the request on only accounts that belong to those authorizations" optional}
 
@@ -345,10 +345,10 @@ highly recommended for automatic calls for better performance.
 activities = snaptrade.transactions_and_reporting.get_activities(
   user_id=user_id,
   user_secret=user_secret,
-  start_date=os.environ["START_DATE"],
-  end_date=os.environ["END_DATE"],
-  accounts=os.environ["ACCOUNTS"],
-  brokerage_authorizations=os.environ["BROKERAGE_AUTHORIZATIONS"],
+  start_date=os.environ["START_DATE"] if "START_DATE" in os.environ else None,
+  end_date=os.environ["END_DATE"] if "END_DATE" in os.environ else None,
+  accounts=os.environ["ACCOUNTS"] if "ACCOUNTS" in os.environ else None,
+  brokerage_authorizations=os.environ["BROKERAGE_AUTHORIZATIONS"] if "BROKERAGE_AUTHORIZATIONS" in os.environ else None,
 )
 pprint(activities.body)
 \`\`\`
