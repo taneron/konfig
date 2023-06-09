@@ -10,6 +10,7 @@ const _DemoInput: Components['input'] = ({
   size,
   type,
   siblingCount,
+  defaultValue,
   ...props
 }) => {
   let Component = TextInput
