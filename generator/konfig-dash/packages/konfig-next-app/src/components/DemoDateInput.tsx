@@ -2,6 +2,7 @@ import { observer } from 'mobx-react'
 import { DatePickerInput } from '@mantine/dates'
 import { useContext } from 'react'
 import { FormContext } from './DemoForm'
+import { IconCalendar } from '@tabler/icons-react'
 
 const _DemoDateInput = ({
   node,
@@ -17,7 +18,14 @@ const _DemoDateInput = ({
     form !== undefined && typeof name === 'string'
       ? form.getInputProps(name)
       : undefined
-  return <DatePickerInput clearable {...props} {...inputProps} />
+  return (
+    <DatePickerInput
+      icon={<IconCalendar size="1.1rem" stroke={1.5} />}
+      clearable
+      {...props}
+      {...inputProps}
+    />
+  )
 }
 
 export const DemoDateInput = observer(_DemoDateInput)
