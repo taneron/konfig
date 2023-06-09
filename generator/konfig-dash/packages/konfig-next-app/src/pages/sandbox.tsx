@@ -5,6 +5,12 @@ import { observer } from 'mobx-react'
 import { useState } from 'react'
 import Head from 'next/head'
 import { PortalState } from '@/components/DemoPortal'
+import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
+
+export const getServerSideProps: GetServerSideProps<{}> =
+  async ({}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+    return { props: {} }
+  }
 
 const MarkdownSandboxPage = observer(() => {
   const [state] = useState(

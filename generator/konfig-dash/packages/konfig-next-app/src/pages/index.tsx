@@ -1,8 +1,15 @@
 import { Container, NavLink, Stack, Paper } from '@mantine/core'
 import Head from 'next/head'
 import { useRouter } from 'next/navigation'
+import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
 
-export default function Home() {
+export const getServerSideProps: GetServerSideProps<{}> = async () => {
+  return { props: {} }
+}
+
+export default function Home({}: InferGetServerSidePropsType<
+  typeof getServerSideProps
+>) {
   const router = useRouter()
   return (
     <>
