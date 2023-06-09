@@ -3,7 +3,7 @@ import time
 from typing import Literal, Optional, Union
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import JSONResponse
-from pydantic import BaseModel, StrictBool, StrictStr
+from pydantic import BaseModel, StrictBool, StrictStr, StrictInt, StrictFloat
 import uuid
 from IPython.terminal.interactiveshell import TerminalInteractiveShell
 from fastapi_utils.tasks import repeat_every
@@ -19,12 +19,19 @@ sessions: dict[str, tuple[TerminalInteractiveShell, float]] = {}
 class SessionCreateResponse(BaseModel):
     session_id: str
 
+class BoxedFloat(BaseModel):
+    """
+    This class preserves all information for float that could be lost in the client (Browser) or in transit (NodeJS)
+    """
+    type: Literal["float"]
+    data: str
+    precision: int
 
 class SessionExecuteRequest(BaseModel):
     session_id: str
     code: str
     environment_variables: Optional[dict[str, str]]
-    local_variables: Optional[dict[str, Union[StrictStr, StrictBool]]]
+    local_variables: Optional[dict[str, Union[StrictStr, StrictBool, StrictInt, StrictFloat, BoxedFloat]]]
 
 
 class SessionCloseRequest(BaseModel):
@@ -105,10 +112,16 @@ async def execute_code(request: SessionExecuteRequest):
         if request.local_variables is not None:
             for name, value in request.local_variables.items():
                 print(name, value, isinstance(value, bool), type(value))
-                if isinstance(value, bool):
-                    shell.run_cell("{} = {}".format(name, value))
-                else:
+                if isinstance(value, str):
                     shell.run_cell("{} = \"{}\"".format(name, value))
+                elif isinstance(value, bool):
+                    shell.run_cell("{} = {}".format(name, value))
+                elif isinstance(value, int):
+                    shell.run_cell("{} = {}".format(name, value))
+                elif isinstance(value, float):
+                    shell.run_cell("{} = {}".format(name, value))
+                elif value.type is "float":
+                    shell.run_cell("{} = float({})".format(name, value.data))
 
         # Create a custom output stream to capture print statements
         output_stream = StringIO()

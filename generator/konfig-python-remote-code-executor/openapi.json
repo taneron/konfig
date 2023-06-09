@@ -157,6 +157,33 @@
     },
     "components": {
         "schemas": {
+            "BoxedFloat": {
+                "title": "BoxedFloat",
+                "required": [
+                    "type",
+                    "data",
+                    "precision"
+                ],
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "title": "Type",
+                        "enum": [
+                            "float"
+                        ],
+                        "type": "string"
+                    },
+                    "data": {
+                        "title": "Data",
+                        "type": "string"
+                    },
+                    "precision": {
+                        "title": "Precision",
+                        "type": "integer"
+                    }
+                },
+                "description": "This class preserves all information for float that could be lost in the client (Browser) or in transit (NodeJS)"
+            },
             "ExecutionResult": {
                 "title": "ExecutionResult",
                 "required": [
@@ -269,6 +296,15 @@
                                 },
                                 {
                                     "type": "boolean"
+                                },
+                                {
+                                    "type": "integer"
+                                },
+                                {
+                                    "type": "number"
+                                },
+                                {
+                                    "$ref": "#/components/schemas/BoxedFloat"
                                 }
                             ]
                         }
