@@ -28,6 +28,7 @@ class Client
         {{#apiKeyMethods}}
         string ${{{keyParamName}}} = null,
         {{/apiKeyMethods}}
+        bool $verifySsl = null,
         string $host = '{{basePath}}',
         \{{invokerPackage}}\Configuration $config = null
     )
@@ -42,6 +43,7 @@ class Client
                 {{/apiKeyMethods}}
             );
             if ($host !== null) $config->setHost($host);
+            if ($verifySsl !== null) $config->setVerifySsl($verifySsl);
 {{#hasOAuthMethods}}
             if ($tokenUrl !== null) $config->setTokenUrl($tokenUrl);
             if ($clientId !== null) $config->setClientId($clientId);
