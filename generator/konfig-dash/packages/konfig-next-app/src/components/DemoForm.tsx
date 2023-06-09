@@ -172,8 +172,6 @@ const _Form: Components['form'] = ({
     return initialValues
   }, {} as { [key: string]: string | boolean | number })
 
-  console.log(initialValues)
-
   // Ensure all non-optional inputs are non-empty
   const validate = node.children.reduce((validate, child) => {
     if (child.type === 'element' && child.tagName === 'input') {
@@ -298,9 +296,7 @@ const _Form: Components['form'] = ({
                 }
               }
 
-              console.log(newValues)
-
-              cell?.run({
+              await cell?.run({
                 position: firstPreNode.position,
                 localVariables: newValues,
               })
