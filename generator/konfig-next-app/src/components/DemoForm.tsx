@@ -222,7 +222,7 @@ const _Form: Components["form"] = ({
       }
       return initialValues;
     });
-  }, [form, initialValues, node.children]);
+  }, []);
 
   const demoState = useContext(DemoStateContext);
 
@@ -234,7 +234,7 @@ const _Form: Components["form"] = ({
     if (demoState === null) return;
     if (demoState.cells.includes(cell)) return;
     demoState.pushCell({ cell });
-  }, [cell, demoState]);
+  }, []);
 
   return (
     <FormContext.Provider value={useFormContext}>

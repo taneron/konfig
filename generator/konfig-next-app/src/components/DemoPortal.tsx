@@ -17,33 +17,33 @@ import {
   useMantineColorScheme,
   useMantineTheme,
   Box,
-} from '@mantine/core'
+} from "@mantine/core";
 import {
   IconBug,
   IconChevronRight,
   IconSun,
   IconMoonStars,
-} from '@tabler/icons-react'
-import { observer } from 'mobx-react'
-import { useState } from 'react'
-import DemoMarkdown, { DemoState } from './DemoMarkdown'
-import { makeAutoObservable } from 'mobx'
-import { useRouter } from 'next/router'
-import { DemoPortalAside } from './DemoPortalAside'
-import { api } from '@/utils/api'
+} from "@tabler/icons-react";
+import { observer } from "mobx-react";
+import { useState } from "react";
+import DemoMarkdown, { DemoState } from "./DemoMarkdown";
+import { makeAutoObservable } from "mobx";
+import { useRouter } from "next/router";
+import { DemoPortalAside } from "./DemoPortalAside";
+import { api } from "@/utils/api";
 
-type DemosInput = { name: string; markdown: string; id: string }[]
+type DemosInput = { name: string; markdown: string; id: string }[];
 
-type Demos = DemoState[]
+type Demos = DemoState[];
 
 export class PortalState {
-  demos: Demos
-  showCode = false
-  id: string
-  portalName: string
-  currentDemoIndex: number
-  organizationId: string
-  currentDemo: DemoState
+  demos: Demos;
+  showCode = false;
+  id: string;
+  portalName: string;
+  currentDemoIndex: number;
+  organizationId: string;
+  currentDemo: DemoState;
 
   constructor({
     demos,
@@ -52,53 +52,53 @@ export class PortalState {
     organizationId,
     demoId,
   }: {
-    demos: DemosInput
-    portalName: string
-    id: string
-    organizationId: string
-    demoId: string
+    demos: DemosInput;
+    portalName: string;
+    id: string;
+    organizationId: string;
+    demoId: string;
   }) {
-    makeAutoObservable(this)
-    this.id = id
-    this.organizationId = organizationId
+    makeAutoObservable(this);
+    this.id = id;
+    this.organizationId = organizationId;
     this.demos = demos.map(
       ({ name, markdown, id }) =>
         new DemoState({ markdown, name, portal: this, id })
-    )
-    this.currentDemoIndex = this.demos.findIndex((demo) => demo.id === demoId)
+    );
+    this.currentDemoIndex = this.demos.findIndex((demo) => demo.id === demoId);
     if (this.currentDemoIndex === -1)
-      throw Error(`Could not find demo with id ${demoId}`)
-    this.currentDemo = this.demos[this.currentDemoIndex]
-    this.portalName = portalName
+      throw Error(`Could not find demo with id ${demoId}`);
+    this.currentDemo = this.demos[this.currentDemoIndex];
+    this.portalName = portalName;
 
     setInterval(async () => {
       const sessionIds = this.demos
         .map((demo) => demo.sessionId as string)
-        .filter((sessionId) => sessionId !== null)
-      if (sessionIds.length === 0) return
-      await api.pingSessions.query({ sessionIds })
-    }, 30000)
+        .filter((sessionId) => sessionId !== null);
+      if (sessionIds.length === 0) return;
+      await api.pingSessions.query({ sessionIds });
+    }, 30000);
   }
 
   setShowCode(value: boolean) {
-    this.showCode = value
+    this.showCode = value;
   }
 
   setCurrentDemoIndex(index: number) {
-    this.currentDemoIndex = index
-    this.currentDemo = this.demos[this.currentDemoIndex]
+    this.currentDemoIndex = index;
+    this.currentDemo = this.demos[this.currentDemoIndex];
   }
 }
 
 export const DemoPortal = observer(({ state }: { state: PortalState }) => {
-  const theme = useMantineTheme()
-  const { colorScheme, toggleColorScheme } = useMantineColorScheme()
-  const [opened, setOpened] = useState(false)
-  const router = useRouter()
+  const theme = useMantineTheme();
+  const { colorScheme, toggleColorScheme } = useMantineColorScheme();
+  const [opened, setOpened] = useState(false);
+  const router = useRouter();
 
   return (
     <>
-      <Affix position={{ bottom: '0.5rem', right: '1rem' }}>
+      <Affix position={{ bottom: "0.5rem", right: "1rem" }}>
         <HoverCard width={280} shadow="md">
           <HoverCard.Target>
             <ThemeIcon size="xs" color="gray">
@@ -123,7 +123,7 @@ export const DemoPortal = observer(({ state }: { state: PortalState }) => {
         styles={{
           main: {
             background:
-              colorScheme === 'dark'
+              colorScheme === "dark"
                 ? theme.colors.dark[8]
                 : theme.colors.gray[0],
           },
@@ -140,18 +140,16 @@ export const DemoPortal = observer(({ state }: { state: PortalState }) => {
             <Navbar.Section mt="xs">
               <Stack spacing="xs">
                 {state.demos.map(({ name }, i) => {
-                  const isCurrentlySelected = state.currentDemoIndex === i
+                  const isCurrentlySelected = state.currentDemoIndex === i;
                   return (
                     <NavLink
                       key={name}
                       onClick={() => {
-                        setOpened(false)
-                        state.setCurrentDemoIndex(i)
+                        setOpened(false);
+                        state.setCurrentDemoIndex(i);
                         router.push(
-                          `/${state.organizationId}/${state.id}/${state.demos[i].id}`,
-                          undefined,
-                          { shallow: true }
-                        )
+                          `/${state.organizationId}/${state.id}/${state.demos[i].id}`
+                        );
                       }}
                       p="xs"
                       variant="filled"
@@ -164,7 +162,7 @@ export const DemoPortal = observer(({ state }: { state: PortalState }) => {
                       label={name}
                       active={isCurrentlySelected}
                     />
-                  )
+                  );
                 })}
               </Stack>
             </Navbar.Section>
@@ -175,14 +173,14 @@ export const DemoPortal = observer(({ state }: { state: PortalState }) => {
           <Header height={{ base: 50, md: 70 }} p="md">
             <div
               style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                height: '100%',
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                height: "100%",
               }}
             >
               <Group spacing={0}>
-                <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
+                <MediaQuery largerThan="sm" styles={{ display: "none" }}>
                   <Burger
                     opened={opened}
                     onClick={() => setOpened((o) => !o)}
@@ -191,7 +189,7 @@ export const DemoPortal = observer(({ state }: { state: PortalState }) => {
                     mr="md"
                   />
                 </MediaQuery>
-                <MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
+                <MediaQuery smallerThan="sm" styles={{ display: "none" }}>
                   <Title order={5}>{state.portalName}</Title>
                 </MediaQuery>
               </Group>
@@ -199,13 +197,13 @@ export const DemoPortal = observer(({ state }: { state: PortalState }) => {
                 <SegmentedControl
                   size="xs"
                   color="blue"
-                  value={state.showCode ? 'show-code' : 'hide-code'}
+                  value={state.showCode ? "show-code" : "hide-code"}
                   data={[
-                    { label: 'Show Code', value: 'show-code' },
-                    { label: 'Hide Code', value: 'hide-code' },
+                    { label: "Show Code", value: "show-code" },
+                    { label: "Hide Code", value: "hide-code" },
                   ]}
                   onChange={(value) => {
-                    state.setShowCode(value === 'show-code')
+                    state.setShowCode(value === "show-code");
                   }}
                 />
                 <ActionIcon
@@ -213,7 +211,7 @@ export const DemoPortal = observer(({ state }: { state: PortalState }) => {
                   onClick={() => toggleColorScheme()}
                   size={30}
                 >
-                  {colorScheme === 'dark' ? (
+                  {colorScheme === "dark" ? (
                     <IconSun size="1rem" />
                   ) : (
                     <IconMoonStars size="1rem" />
@@ -229,13 +227,13 @@ export const DemoPortal = observer(({ state }: { state: PortalState }) => {
           return (
             <Box
               key={demo.name}
-              display={state.currentDemoIndex !== i ? 'none' : undefined}
+              display={state.currentDemoIndex !== i ? "none" : undefined}
             >
               <DemoMarkdown state={demo} />
             </Box>
-          )
+          );
         })}
       </AppShell>
     </>
-  )
-})
+  );
+});
