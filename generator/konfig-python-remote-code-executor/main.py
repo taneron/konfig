@@ -1,9 +1,9 @@
 import json
 import time
-from typing import Literal, Optional
+from typing import Literal, Optional, Union
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import JSONResponse
-from pydantic import BaseModel
+from pydantic import BaseModel, StrictBool, StrictStr, StrictInt, StrictFloat
 import uuid
 from IPython.terminal.interactiveshell import TerminalInteractiveShell
 from fastapi_utils.tasks import repeat_every
@@ -20,10 +20,23 @@ class SessionCreateResponse(BaseModel):
     session_id: str
 
 
+class BoxedFloat(BaseModel):
+    """
+    This class preserves all information for float that could be lost in the client (Browser) or in transit (NodeJS)
+    """
+
+    type: Literal["float"]
+    data: str
+    precision: int
+
+
 class SessionExecuteRequest(BaseModel):
     session_id: str
     code: str
     environment_variables: Optional[dict[str, str]]
+    local_variables: Optional[
+        dict[str, Union[StrictStr, StrictBool, StrictInt, StrictFloat, BoxedFloat]]
+    ]
 
 
 class SessionCloseRequest(BaseModel):
@@ -46,6 +59,14 @@ class ExecutionResult(BaseModel):
     result: Literal["Success", "Error"]
     output: str
     error: str
+
+
+class SessionPingRequest(BaseModel):
+    session_ids: list[str]
+
+
+class SessionPingResponse(BaseModel):
+    session_infos: list[SessionInfo]
 
 
 class SessionNotFoundError(BaseModel):
@@ -82,6 +103,24 @@ async def list_sessions():
 
 
 @app.post(
+    "/sessions/ping",
+    response_model=SessionPingResponse,
+    responses={404: {"model": SessionNotFoundError}},
+    tags=["session"],
+)
+async def ping_session(request: SessionPingRequest):
+    pinged = []
+    for session_id in request.session_ids:
+        if session_id in sessions:
+            shell, _ = sessions[session_id]
+            sessions[session_id] = (shell, time.time())  # Update last execution time
+            pinged.append(SessionInfo(session_id=session_id))
+        else:
+            continue
+    return SessionPingResponse(session_infos=pinged)
+
+
+@app.post(
     "/sessions/execute",
     response_model=ExecutionResult,
     responses={404: {"model": SessionNotFoundError}},
@@ -100,6 +139,20 @@ async def execute_code(request: SessionExecuteRequest):
             for name, value in request.environment_variables.items():
                 shell.run_line_magic("set_env", "{} {}".format(name, value))
 
+        # Set any global variables
+        if request.local_variables is not None:
+            for name, value in request.local_variables.items():
+                if isinstance(value, str):
+                    shell.run_cell('{} = "{}"'.format(name, value))
+                elif isinstance(value, bool):
+                    shell.run_cell("{} = {}".format(name, value))
+                elif isinstance(value, int):
+                    shell.run_cell("{} = {}".format(name, value))
+                elif isinstance(value, float):
+                    shell.run_cell("{} = {}".format(name, value))
+                elif value.type is "float":
+                    shell.run_cell("{} = float({})".format(name, value.data))
+
         # Create a custom output stream to capture print statements
         output_stream = StringIO()
         sys.stdout = output_stream
@@ -107,6 +160,11 @@ async def execute_code(request: SessionExecuteRequest):
         try:
             # Execute the code
             exec_result = shell.run_cell(code)
+
+            # Delete any global variables
+            if request.local_variables is not None:
+                for name, value in request.local_variables.items():
+                    shell.run_cell("del {}".format(name))
 
             # Restore the original stdout and capture the output
             sys.stdout = sys.__stdout__
@@ -121,6 +179,11 @@ async def execute_code(request: SessionExecuteRequest):
             )
             return execution_result
         except Exception as e:
+            # Delete any global variables
+            if request.local_variables is not None:
+                for name, value in request.local_variables.items():
+                    shell.run_cell("delete {}".format(name))
+
             # Restore the original stdout in case of error
             sys.stdout = sys.__stdout__
 
@@ -159,15 +222,15 @@ def close_inactive_sessions():
     inactive_sessions = [
         session_id
         for session_id, (_, last_execution_time) in sessions.items()
-        if current_time - last_execution_time > 30 * 60
-    ]  # 30 minutes
+        if current_time - last_execution_time > 2 * 60
+    ]  # 2 minutes of inactivity
 
     for session_id in inactive_sessions:
         del sessions[session_id]
 
 
-# Background task to close inactive sessions every 5 minutes
+# Background task to close inactive sessions every 45 seconds
 @app.on_event("startup")
-@repeat_every(seconds=60*5)
+@repeat_every(seconds=45)
 async def start_background_task():
     close_inactive_sessions()

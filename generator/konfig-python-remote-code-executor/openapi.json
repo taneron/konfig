@@ -52,6 +52,57 @@
                 }
             }
         },
+        "/sessions/ping": {
+            "post": {
+                "tags": [
+                    "session"
+                ],
+                "summary": "Ping Session",
+                "operationId": "ping_session_sessions_ping_post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/SessionPingRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SessionPingResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SessionNotFoundError"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/sessions/execute": {
             "post": {
                 "tags": [
@@ -157,6 +208,33 @@
     },
     "components": {
         "schemas": {
+            "BoxedFloat": {
+                "title": "BoxedFloat",
+                "required": [
+                    "type",
+                    "data",
+                    "precision"
+                ],
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "title": "Type",
+                        "enum": [
+                            "float"
+                        ],
+                        "type": "string"
+                    },
+                    "data": {
+                        "title": "Data",
+                        "type": "string"
+                    },
+                    "precision": {
+                        "title": "Precision",
+                        "type": "integer"
+                    }
+                },
+                "description": "This class preserves all information for float that could be lost in the client (Browser) or in transit (NodeJS)"
+            },
             "ExecutionResult": {
                 "title": "ExecutionResult",
                 "required": [
@@ -258,6 +336,29 @@
                         "additionalProperties": {
                             "type": "string"
                         }
+                    },
+                    "local_variables": {
+                        "title": "Local Variables",
+                        "type": "object",
+                        "additionalProperties": {
+                            "anyOf": [
+                                {
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "boolean"
+                                },
+                                {
+                                    "type": "integer"
+                                },
+                                {
+                                    "type": "number"
+                                },
+                                {
+                                    "$ref": "#/components/schemas/BoxedFloat"
+                                }
+                            ]
+                        }
                     }
                 }
             },
@@ -305,6 +406,38 @@
                     "error": {
                         "title": "Error",
                         "type": "string"
+                    }
+                }
+            },
+            "SessionPingRequest": {
+                "title": "SessionPingRequest",
+                "required": [
+                    "session_ids"
+                ],
+                "type": "object",
+                "properties": {
+                    "session_ids": {
+                        "title": "Session Ids",
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "SessionPingResponse": {
+                "title": "SessionPingResponse",
+                "required": [
+                    "session_infos"
+                ],
+                "type": "object",
+                "properties": {
+                    "session_infos": {
+                        "title": "Session Infos",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/SessionInfo"
+                        }
                     }
                 }
             },

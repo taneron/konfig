@@ -184,7 +184,6 @@ const SnaptradePage = observer(() => {
                       label={title}
                       onClick={() => {
                         const element = document.getElementById(title)
-                        console.log(element)
                         demoRunState.cells[i].focus()
                         element?.scrollIntoView({
                           behavior: 'smooth',
