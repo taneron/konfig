@@ -1,30 +1,35 @@
-import { observer } from 'mobx-react'
-import { Components } from 'react-markdown'
-import { Code, Collapse, Button as MantineButton } from '@mantine/core'
-import { useContext } from 'react'
-import { CellContext } from './DemoForm'
-import { IconCheck, IconAlertCircle } from '@tabler/icons-react'
+import { observer } from "mobx-react";
+import { Components } from "react-markdown";
+import {
+  Code,
+  Collapse,
+  Button as MantineButton,
+  ScrollArea,
+} from "@mantine/core";
+import { useContext } from "react";
+import { CellContext } from "./DemoForm";
+import { IconCheck, IconAlertCircle } from "@tabler/icons-react";
 
-const _DemoButton: Components['button'] = ({
+const _DemoButton: Components["button"] = ({
   node,
   children,
   siblingCount,
   ...props
 }) => {
-  const cell = useContext(CellContext)
+  const cell = useContext(CellContext);
   if (cell === null) {
-    return <MantineButton {...props}>{children}</MantineButton>
+    return <MantineButton {...props}>{children}</MantineButton>;
   }
   return (
     <>
       <Collapse in={cell.show}>
-        <Code color="gray" block>
+        <Code mah={500} sx={{ overflowY: "scroll" }} color="gray" block>
           {cell.output}
         </Code>
       </Collapse>
       <MantineButton
         loading={cell.running}
-        color={cell.ranSuccessfully ? 'blue' : cell.failed ? 'red' : 'cyan'}
+        color={cell.ranSuccessfully ? "blue" : cell.failed ? "red" : "cyan"}
         leftIcon={
           cell.ranSuccessfully ? (
             <IconCheck size="1rem" />
@@ -40,7 +45,7 @@ const _DemoButton: Components['button'] = ({
         {children}
       </MantineButton>
     </>
-  )
-}
+  );
+};
 
-export const DemoButton = observer(_DemoButton)
+export const DemoButton = observer(_DemoButton);
