@@ -169,14 +169,28 @@ const _Form: Components['form'] = ({
 
   useEffect(() => {
     node.children.forEach((child) => {
-      if (child.type === 'element' && child.tagName === 'input') {
-        const name = child.properties?.['name']
-        if (typeof name === 'string') {
-          const stored = localStorage.getItem(name)
-          if (stored !== null && stored !== 'null') {
-            if (stored === 'true') form.setFieldValue(name, true)
-            else if (stored === 'false') form.setFieldValue(name, false)
-            else form.setFieldValue(name, stored)
+      if (child.type === 'element') {
+        if (child.tagName === 'input') {
+          const name = child.properties?.['name']
+          if (typeof name === 'string') {
+            const stored = localStorage.getItem(name)
+            if (stored !== null && stored !== 'null') {
+              if (stored === 'true') form.setFieldValue(name, true)
+              else if (stored === 'false') form.setFieldValue(name, false)
+              else form.setFieldValue(name, stored)
+            }
+          }
+        } else if (child.tagName === 'date') {
+          const name = child.properties?.['name']
+          if (typeof name === 'string') {
+            const stored = localStorage.getItem(name)
+            if (
+              stored !== null &&
+              stored !== 'null' &&
+              !isNaN(new Date(stored).getTime())
+            ) {
+              form.setFieldValue(name, new Date(stored))
+            }
           }
         }
       }
