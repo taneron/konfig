@@ -30,6 +30,7 @@ import DemoMarkdown, { DemoState } from './DemoMarkdown'
 import { makeAutoObservable } from 'mobx'
 import { useRouter } from 'next/router'
 import { DemoPortalAside } from './DemoPortalAside'
+import { api } from '@/utils/api'
 
 type DemosInput = { name: string; markdown: string; id: string }[]
 
@@ -69,6 +70,14 @@ export class PortalState {
       throw Error(`Could not find demo with id ${demoId}`)
     this.currentDemo = this.demos[this.currentDemoIndex]
     this.portalName = portalName
+
+    setInterval(async () => {
+      const sessionIds = this.demos
+        .map((demo) => demo.sessionId as string)
+        .filter((sessionId) => sessionId !== null)
+      if (sessionIds.length === 0) return
+      await api.pingSessions.query({ sessionIds })
+    }, 30000)
   }
 
   setShowCode(value: boolean) {

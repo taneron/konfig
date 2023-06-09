@@ -19,19 +19,24 @@ sessions: dict[str, tuple[TerminalInteractiveShell, float]] = {}
 class SessionCreateResponse(BaseModel):
     session_id: str
 
+
 class BoxedFloat(BaseModel):
     """
     This class preserves all information for float that could be lost in the client (Browser) or in transit (NodeJS)
     """
+
     type: Literal["float"]
     data: str
     precision: int
+
 
 class SessionExecuteRequest(BaseModel):
     session_id: str
     code: str
     environment_variables: Optional[dict[str, str]]
-    local_variables: Optional[dict[str, Union[StrictStr, StrictBool, StrictInt, StrictFloat, BoxedFloat]]]
+    local_variables: Optional[
+        dict[str, Union[StrictStr, StrictBool, StrictInt, StrictFloat, BoxedFloat]]
+    ]
 
 
 class SessionCloseRequest(BaseModel):
@@ -54,6 +59,14 @@ class ExecutionResult(BaseModel):
     result: Literal["Success", "Error"]
     output: str
     error: str
+
+
+class SessionPingRequest(BaseModel):
+    session_ids: list[str]
+
+
+class SessionPingResponse(BaseModel):
+    session_infos: list[SessionInfo]
 
 
 class SessionNotFoundError(BaseModel):
@@ -90,6 +103,24 @@ async def list_sessions():
 
 
 @app.post(
+    "/sessions/ping",
+    response_model=SessionPingResponse,
+    responses={404: {"model": SessionNotFoundError}},
+    tags=["session"],
+)
+async def ping_session(request: SessionPingRequest):
+    pinged = []
+    for session_id in request.session_ids:
+        if session_id in sessions:
+            shell, _ = sessions[session_id]
+            sessions[session_id] = (shell, time.time())  # Update last execution time
+            pinged.append(SessionInfo(session_id=session_id))
+        else:
+            continue
+    return SessionPingResponse(session_infos=pinged)
+
+
+@app.post(
     "/sessions/execute",
     response_model=ExecutionResult,
     responses={404: {"model": SessionNotFoundError}},
@@ -111,9 +142,8 @@ async def execute_code(request: SessionExecuteRequest):
         # Set any global variables
         if request.local_variables is not None:
             for name, value in request.local_variables.items():
-                print(name, value, isinstance(value, bool), type(value))
                 if isinstance(value, str):
-                    shell.run_cell("{} = \"{}\"".format(name, value))
+                    shell.run_cell('{} = "{}"'.format(name, value))
                 elif isinstance(value, bool):
                     shell.run_cell("{} = {}".format(name, value))
                 elif isinstance(value, int):
@@ -149,7 +179,6 @@ async def execute_code(request: SessionExecuteRequest):
             )
             return execution_result
         except Exception as e:
-
             # Delete any global variables
             if request.local_variables is not None:
                 for name, value in request.local_variables.items():
@@ -193,15 +222,15 @@ def close_inactive_sessions():
     inactive_sessions = [
         session_id
         for session_id, (_, last_execution_time) in sessions.items()
-        if current_time - last_execution_time > 30 * 60
-    ]  # 30 minutes
+        if current_time - last_execution_time > 2 * 60
+    ]  # 2 minutes of inactivity
 
     for session_id in inactive_sessions:
         del sessions[session_id]
 
 
-# Background task to close inactive sessions every 5 minutes
+# Background task to close inactive sessions every 45 seconds
 @app.on_event("startup")
-@repeat_every(seconds=60*5)
+@repeat_every(seconds=45)
 async def start_background_task():
     close_inactive_sessions()

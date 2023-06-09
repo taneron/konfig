@@ -15,6 +15,8 @@ import {
   StartSessionResponse,
   ExecuteCodeRequest,
   ExecuteCodeResponse,
+  PingSessionRequest,
+  PingSessionResponse,
 } from '@/utils/schemas'
 import { demos } from '@/utils/demos'
 
@@ -24,6 +26,11 @@ export const appRouter = router({
 
     const { data } = await axios.post(url)
     return StartSessionResponse.parse(data)
+  }),
+  pingSessions: procedure.input(PingSessionRequest).query(async ({ input }) => {
+    const url = `${urlForPythonRceApi()}/sessions/ping`
+    const { data } = await axios.post(url, { session_ids: input.sessionIds })
+    return PingSessionResponse.parse(data)
   }),
   executeCode: procedure
     .input(ExecuteCodeRequest)

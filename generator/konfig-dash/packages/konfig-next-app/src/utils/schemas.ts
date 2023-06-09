@@ -1,5 +1,11 @@
 import { z } from 'zod'
 
+export const PingSessionRequest = z.object({ sessionIds: z.string().array() })
+
+export const PingSessionResponse = z.object({
+  session_infos: z.object({ session_id: z.string() }).array(),
+})
+
 export const StartSessionResponse = z.object({ session_id: z.string() })
 
 export const Point = z.object({

@@ -13,7 +13,9 @@ export default function Home() {
         <Paper withBorder shadow="lg" p="lg">
           <Stack>
             <NavLink
-              onClick={() => router.push('/snaptrade')}
+              onClick={() =>
+                router.push('/snaptrade/snaptrade-demos/getting-started')
+              }
               label="SnapTrade"
               description="https://snaptrade.com/"
             />
