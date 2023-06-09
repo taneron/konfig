@@ -151,7 +151,9 @@ export const DemoPortal = observer(({ state }: { state: PortalState }) => {
                         setOpened(false);
                         state.setCurrentDemoIndex(i);
                         router.push(
-                          `/${state.organizationId}/${state.id}/${state.demos[i].id}`
+                          `/${state.organizationId}/${state.id}/${state.demos[i].id}`,
+                          undefined,
+                          { shallow: true }
                         );
                       }}
                       p="xs"
