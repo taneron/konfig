@@ -24,6 +24,7 @@ class SessionExecuteRequest(BaseModel):
     session_id: str
     code: str
     environment_variables: Optional[dict[str, str]]
+    local_variables: Optional[dict[str, str]]
 
 
 class SessionCloseRequest(BaseModel):
@@ -100,6 +101,11 @@ async def execute_code(request: SessionExecuteRequest):
             for name, value in request.environment_variables.items():
                 shell.run_line_magic("set_env", "{} {}".format(name, value))
 
+        # Set any global variables
+        if request.local_variables is not None:
+            for name, value in request.local_variables.items():
+                shell.run_cell("{} = \"{}\"".format(name, value))
+
         # Create a custom output stream to capture print statements
         output_stream = StringIO()
         sys.stdout = output_stream
@@ -107,6 +113,11 @@ async def execute_code(request: SessionExecuteRequest):
         try:
             # Execute the code
             exec_result = shell.run_cell(code)
+
+            # Delete any global variables
+            if request.local_variables is not None:
+                for name, value in request.local_variables.items():
+                    shell.run_cell("del {}".format(name))
 
             # Restore the original stdout and capture the output
             sys.stdout = sys.__stdout__
@@ -121,6 +132,12 @@ async def execute_code(request: SessionExecuteRequest):
             )
             return execution_result
         except Exception as e:
+
+            # Delete any global variables
+            if request.local_variables is not None:
+                for name, value in request.local_variables.items():
+                    shell.run_cell("delete {}".format(name))
+
             # Restore the original stdout in case of error
             sys.stdout = sys.__stdout__
 

@@ -75,6 +75,7 @@ export const appRouter = router({
         session_id: input.sessionId,
         code: code,
         environment_variables: input.environmentVariables,
+        local_variables: input.localVariables,
       })
 
       return ExecuteCodeResponse.parse(data)

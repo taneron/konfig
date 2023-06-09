@@ -1,5 +1,5 @@
 import { api } from '@/utils/api'
-import { EnvironmentVariables } from '@/utils/schemas'
+import { LocalVariables } from '@/utils/schemas'
 import { Stack } from '@mantine/core'
 import { createFormContext } from '@mantine/form'
 import { observer } from 'mobx-react'
@@ -58,9 +58,11 @@ export class CellState {
   async run({
     position,
     environmentVariables,
+    localVariables,
   }: {
     position: Position
-    environmentVariables: unknown
+    environmentVariables?: unknown
+    localVariables: unknown
   }) {
     if (!this.demoState?.sessionId) return
     this.setRunning(true)
@@ -72,7 +74,7 @@ export class CellState {
       demoId: this.demoState.id,
       sessionId: this.demoState?.sessionId,
       codePosition: position,
-      environmentVariables: EnvironmentVariables.parse(environmentVariables),
+      localVariables: LocalVariables.parse(localVariables),
     })
 
     this.setRunning(false)
@@ -242,7 +244,7 @@ const _Form: Components['form'] = ({
 
               cell?.run({
                 position: firstPreNode.position,
-                environmentVariables: newValues,
+                localVariables: newValues,
               })
             })}
             {...props}

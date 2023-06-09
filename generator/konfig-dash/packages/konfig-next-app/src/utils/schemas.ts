@@ -37,6 +37,7 @@ export const Position = z.object({
 })
 
 export const EnvironmentVariables = z.record(z.string(), z.string())
+export const LocalVariables = z.record(z.string(), z.string())
 
 export const ExecuteCodeRequest = z.object({
   organizationId: z.string(),
@@ -44,7 +45,8 @@ export const ExecuteCodeRequest = z.object({
   demoId: z.string(),
   sessionId: z.string(),
   codePosition: Position,
-  environmentVariables: EnvironmentVariables,
+  environmentVariables: EnvironmentVariables.optional(),
+  localVariables: LocalVariables,
 })
 
 export const ExecuteCodeResponse = z

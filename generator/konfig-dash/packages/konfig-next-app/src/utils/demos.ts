@@ -293,8 +293,8 @@ import uuid
 import os
 
 snaptrade = SnapTrade(
-  consumer_key=os.environ["SNAPTRADE_CONSUMER_KEY"],
-  client_id=os.environ["SNAPTRADE_CLIENT_ID"],
+  consumer_key=SNAPTRADE_CONSUMER_KEY,
+  client_id=SNAPTRADE_CLIENT_ID,
 )
 
 print("Successfully initiated client")
@@ -316,10 +316,10 @@ List all accounts for the user, plus balances and positions for each account.
 ::input{name=USER_SECRET label="User Secret" placeholder="YOUR_USER_SECRET" type="password"}
 
 \`\`\`python
-user_id = os.environ["USER_ID"]
-user_secret = os.environ["USER_SECRET"]
+user_id = USER_ID
+user_secret = USER_SECRET
 holdings = snaptrade.account_information.get_all_user_holdings(
-  user_id=user_id, user_secret=user_secret
+  user_id=USER_ID, user_secret=user_secret
 )
 pprint(holdings.body)
 \`\`\`
@@ -339,16 +339,27 @@ highly recommended for automatic calls for better performance.
 ::date{name=END_DATE label="End Date" placeholder="END_DATE" valueFormat="YYYY-MM-DD" optional}
 ::input{name=ACCOUNTS label="Account(s)" placeholder="YOUR_ACCOUNT_IDS" description="Optional comma seperated list of account IDs used to filter the request on specific accounts" optional}
 ::input{name=BROKERAGE_AUTHORIZATIONS label="Brokerage Authorizations" placeholder="YOUR_BROKERAGE_AUTHORIZATION" description="Optional comma seperated list of brokerage authorization IDs used to filter the request on only accounts that belong to those authorizations" optional}
+::input{name=TYPE label="Type" placeholder="DIVIDEND" description="Optional comma seperated list of types to filter activities by" optional}
 
 
 \`\`\`python
+print(
+  user_id,
+  user_secret,
+  START_DATE if "START_DATE" in globals() else None,
+  END_DATE if "END_DATE" in globals() else None,
+  ACCOUNTS if "ACCOUNTS" in globals() else None,
+  BROKERAGE_AUTHORIZATIONS if "BROKERAGE_AUTHORIZATIONS" in globals() else None,
+  TYPE if "TYPE" in globals() else None
+)
 activities = snaptrade.transactions_and_reporting.get_activities(
-  user_id=user_id,
-  user_secret=user_secret,
-  start_date=os.environ["START_DATE"] if "START_DATE" in os.environ else None,
-  end_date=os.environ["END_DATE"] if "END_DATE" in os.environ else None,
-  accounts=os.environ["ACCOUNTS"] if "ACCOUNTS" in os.environ else None,
-  brokerage_authorizations=os.environ["BROKERAGE_AUTHORIZATIONS"] if "BROKERAGE_AUTHORIZATIONS" in os.environ else None,
+  user_id,
+  user_secret,
+  START_DATE if "START_DATE" in globals() else None,
+  END_DATE if "END_DATE" in globals() else None,
+  ACCOUNTS if "ACCOUNTS" in globals() else None,
+  BROKERAGE_AUTHORIZATIONS if "BROKERAGE_AUTHORIZATIONS" in globals() else None,
+  TYPE if "TYPE" in globals() else None
 )
 pprint(activities.body)
 \`\`\`
