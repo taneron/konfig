@@ -11,15 +11,15 @@ const MarkdownSandboxPage = observer(() => {
     new PortalState({
       demos: [
         {
-          id: 'sandbox',
+          id: 'getting-started',
           name: 'Sandbox',
           markdown: snapTradeGettingStartedMarkdown,
         },
       ],
       portalName: 'Sandbox',
-      id: 'sandbox',
-      organizationId: 'konfig',
-      demoId: 'sandbox',
+      id: 'snaptrade-demos',
+      organizationId: 'snaptrade',
+      demoId: 'getting-started',
     })
   )
   return (
