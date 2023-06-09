@@ -48,6 +48,11 @@ services:
     rootDir: generator/konfig-dash/packages/konfig-next-app
     domains:
       - demo.konfigthis.com
+      - key: PYTHON_RCE_API_HOST_PORT
+        fromService:
+          name: konfig-python-remote-code-executor
+          type: pserv
+          property: hostport
 
   - name: konfig-dash
     type: web
