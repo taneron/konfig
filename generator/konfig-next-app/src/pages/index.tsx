@@ -1,16 +1,16 @@
-import { Container, NavLink, Stack, Paper } from '@mantine/core'
-import Head from 'next/head'
-import { useRouter } from 'next/navigation'
-import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
+import { Container, NavLink, Stack, Paper } from "@mantine/core";
+import Head from "next/head";
+import { useRouter } from "next/navigation";
+import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 
 export const getServerSideProps: GetServerSideProps<{}> = async () => {
-  return { props: {} }
-}
+  return { props: {} };
+};
 
 export default function Home({}: InferGetServerSidePropsType<
   typeof getServerSideProps
 >) {
-  const router = useRouter()
+  const router = useRouter();
   return (
     <>
       <Head>
@@ -21,13 +21,18 @@ export default function Home({}: InferGetServerSidePropsType<
           <Stack>
             <NavLink
               onClick={() =>
-                router.push('/snaptrade/snaptrade-demos/getting-started')
+                router.push("/snaptrade/snaptrade-demos/getting-started")
               }
               label="SnapTrade"
               description="https://snaptrade.com/"
             />
             <NavLink
-              onClick={() => router.push('/sandbox')}
+              onClick={() => router.push("/humanloop/demos/getting-started")}
+              label="Humanloop"
+              description="https://humanloop.com/"
+            />
+            <NavLink
+              onClick={() => router.push("/sandbox")}
               label="Sandbox"
               description="Create your demo"
             />
@@ -35,5 +40,5 @@ export default function Home({}: InferGetServerSidePropsType<
         </Paper>
       </Container>
     </>
-  )
+  );
 }

@@ -136,7 +136,7 @@ pprint(deleted_response.body)
 ::button[Delete User]
 
 :::
-`
+`;
 
 export const snapTradeRegisteringUsersMarkdown = `### 1) Initialize a client with your clientId and consumerKey
 
@@ -268,7 +268,7 @@ pprint(deleted_response.body)
 ::button[Delete User]
 
 :::
-`
+`;
 
 export const snapTradeHandlingUserDataMarkdown = `
 :::info
@@ -387,7 +387,7 @@ pprint(activities.body)
 ::button[Get Activities]
 
 :::
-`
+`;
 
 export const snapTradePlacingTradesMarkdown = `
 :::info
@@ -500,55 +500,310 @@ pprint(result.body)
 
 :::
 
-`
+`;
+
+const humanloopGettingStarted = `### Setup: Initialize SDK
+
+:::info{title="This is an interactive demo"}
+To show the source code of the demo, click \`Show Code\` in the top-right. You
+can run in each step by providing your own values and clicking buttons. To run
+this demo locally you can install Humanloop's Python SDK by running \`pip
+install humanloop\` and paste the code into your own editor any replacing
+variables with your own values.
+:::
+
+:::info{title="Using other model providers"}
+This guide assumes you're using an [OpenAI](https://openai.com/). If you want to use other
+providers or your own model please also look at our [guide to using your own
+model](https://docs.humanloop.com/docs/use-your-own-model-provider).
+:::
+
+
+
+Signup for your Humanloop API key [here](https://app.humanloop.com/signup) and pass
+in your API key from OpenAI.
+
+:::form
+
+::input{name=HUMANLOOP_API_KEY label="Humanloop API Key" placeholder="YOUR_HUMANLOOP_API_KEY" type="password"}
+::input{name=OPENAI_API_KEY label="OpenAI API Key" placeholder="YOUR_OPENAI_API_KEY" type=password}
+
+\`\`\`python
+from pprint import pprint
+from humanloop import Humanloop
+
+humanloop = Humanloop(
+  host="https://neostaging.humanloop.ml/v4",
+  api_key=HUMANLOOP_API_KEY,
+  openai_api_key=OPENAI_API_KEY,
+)
+
+print("Initialized Client")
+\`\`\`
+
+::button[Initialize Client]
+
+:::
+
+### 1) Create a Project
+
+The Humanloop Python SDK allows you to programmatically set up Humanloop
+projects with [model
+configs](https://docs.humanloop.com/docs/key-concepts#model-config) and a
+[feedback schema](https://docs.humanloop.com/docs/key-concepts#feedback).
+
+:::form
+
+::input{name=PROJECT_NAME label="Project Name" placeholder="My Project"}
+
+\`\`\`python
+project_name = "{}-sdk-tutorial".format(PROJECT_NAME)
+project_response = humanloop.projects.create(name=project_name)
+project_id = project_response.body["id"]
+pprint(project_response.body)
+\`\`\`
+
+::button[Create Project]
+
+:::
+
+
+### 2) Add your own feedback types and values
+
+By default your project has a feedback type \`rating\` with labels \`good\` and \`bad\`.
+
+:::form
+
+\`\`\`python
+response = humanloop.projects.update_feedback_types(
+  id=project_id,
+  body=[{
+      "type": "action",
+      "class": "multi_select",
+      "values": [
+        {"value": "copied"}, {"value": "saved"}
+      ],
+  }]
+)
+pprint(response.body)
+\`\`\`
+
+::button[Add Feedback Type]
+
+:::
+
+### 3) Register your Model Config
+
+You can register a model configuration with a specified model and prompt
+template. In this case we are using \`gpt-3.5-turbo\` and \`"Write a snappy
+introduction about {{topic}}:"\`. By using double curly braces such as
+\`{{topic}}\`, we allow the model to accept the \`topic\` input to be later used
+in step 5.
+
+:::form
+
+\`\`\`python
+model_config = humanloop.model_configurations.register(
+  project=project_name,
+  model="gpt-3.5-turbo",
+  prompt_template="Write a snappy introduction about {{topic}}:",
+  temperature=0.8,
+)
+config_id = model_config.body["config"]["id"]
+pprint(model_config.body)
+\`\`\`
+
+::button[Register Model Config]
+
+:::
+
+### 4) Activate Model Config
+
+:::info{title="Ensure that there is an active deployment"}
+
+See
+[here](https://docs.humanloop.com/docs/completion-using-the-sdk#activate-a-model)
+for instructions on how to ensure there is an active deployment in the dashboard.
+
+:::
+
+:::form
+
+\`\`\`python
+print("Setting active config for project with id:", project_id)
+print("Setting active config id to:", config_id)
+project = humanloop.projects.update(id=project_id, active_config_id=config_id)
+pprint(project.body)
+\`\`\`
+
+::button[Activate Model Config]
+:::
+
+### 5) Generate Completions
+
+
+Now we can call the active model config on your project. The inputs must match the input of the prompt template in your project.
+
+:::form
+
+::input{name=TOPIC label="Topic" placeholder="Pickleball" description="Choose a description from the template we registered earlier"}
+
+\`\`\`python
+print("Generating completion for project: ", project_name)
+print("Generating completion with topic: ", TOPIC)
+complete_response = humanloop.complete_deployed(
+    project=project_name,
+    inputs={"topic": TOPIC},
+)
+
+# A single call to generate may return multiple outputs.
+data_id = complete_response.body["data"][0]["id"]
+print("data_id: ", data_id)
+output = complete_response.body["data"][0]["output"]
+print("output: ", output)
+
+# You can also access the raw response from OpenAI.
+pprint(complete_response.body["provider_responses"])
+\`\`\`
+
+::button[Generate Completion]
+
+:::
+
+Navigate to your project's **Data** tab in the browser to see the recorded
+inputs and outputs of your generation.
+
+Now that you have generations flowing through your project you can start to log
+your end user feedback to evaluate and improve your models. Now that we have
+made a generation, we can capture user feedback.
+
+You can record feedback on generations from your users using the Humanloop
+Python SDK. This allows you to monitor how your generations perform with your
+users.
+
+### 7) Record feedback with the datapoint ID
+
+Call \`humanloop.feedback()\` referencing the saved datapoint ID to record user
+feedback. You can provide a \`good\` or \`bad\` rating type feedback that is
+default to every project and custom feedback types in your project. In this case
+we will record either a \`good\` or \`bad\` rating feedback and a \`copied\`
+value for \`action\` type feedback.
+
+:::form
+
+::input{name=RATING type="checkbox" defaultValue=true label="Rating" description="Checked for 'good' and unchecked for 'bad'"}
+
+\`\`\`python
+rating = "good" if RATING else "bad"
+print("Recording feedback of:", rating)
+humanloop.feedback(data_id=data_id, type="rating", value=rating)
+
+# You can capture your own feedback type
+humanloop.feedback(data_id=data_id, type="action", value="copied")
+\`\`\`
+
+::button[Record feedback]
+:::
+
+The feedback recorded for each datapoint can be viewed in the **Data** tab of your project.
+
+Different use cases and user interfaces may require different kinds of feedback
+that need to be mapped to the appropriate end user interaction. There are
+broadly 3 important kinds of feedback:
+
+1. **Explicit feedback**: these are purposeful actions to review the generations. For example, 'thumbs up/down' button presses.
+2. **Implicit feedback**: indirect actions taken by your users may signal whether the generation was good or bad, for example, whether the user 'copied' the generation, 'saved it' or 'dismissed it' (which is negative feedback).
+3. **Free-form feedback**: Corrections and explanations provided by the end-user on the generation.
+
+
+### 8) Recording corrections as feedback
+
+It can also be useful to allow your users to correct the outputs of your model.
+This is strong feedback signal and can also be considered as ground truth data
+for finetuning later.
+
+:::form
+
+::input{name=CORRECTION label="Correction" placeholder="A user provided completion..."}
+
+\`\`\`python
+# You can capture text based feedback to record corrections
+humanloop.feedback(data_id=data_id, type="correction", value=CORRECTION)
+\`\`\`
+
+::button[Record correction]
+
+:::
+
+This feedback will also show up within Humanloop, where your internal users can
+also provide feedback and corrections on logged data to help with evaluation.
+
+`;
 
 export type Demo = {
-  id: string
-  name: string
-  markdown: string
-}
+  id: string;
+  name: string;
+  markdown: string;
+};
 export type Portal = {
-  id: string
-  portalName: string
-  demos: Demo[]
-}
+  id: string;
+  portalName: string;
+  demos: Demo[];
+};
 export type Organization = {
-  id: string
-  organizationName: string
-  portals: Portal[]
-}
+  id: string;
+  organizationName: string;
+  portals: Portal[];
+};
 
 export const demos: Organization[] = [
   {
-    id: 'snaptrade',
-    organizationName: 'SnapTrade',
+    id: "snaptrade",
+    organizationName: "SnapTrade",
     portals: [
       {
-        id: 'snaptrade-demos',
-        portalName: 'SnapTrade Demos',
+        id: "snaptrade-demos",
+        portalName: "SnapTrade Demos",
         demos: [
           {
-            id: 'getting-started',
-            name: 'Getting Started',
+            id: "getting-started",
+            name: "Getting Started",
             markdown: snapTradeGettingStartedMarkdown,
           },
           {
-            id: 'registering-users',
-            name: 'Registering Users',
+            id: "registering-users",
+            name: "Registering Users",
             markdown: snapTradeRegisteringUsersMarkdown,
           },
           {
-            id: 'handling-user-data',
-            name: 'Handling User Data',
+            id: "handling-user-data",
+            name: "Handling User Data",
             markdown: snapTradeHandlingUserDataMarkdown,
           },
           {
-            id: 'placing-trades',
-            name: 'Placing Trades',
+            id: "placing-trades",
+            name: "Placing Trades",
             markdown: snapTradePlacingTradesMarkdown,
           },
         ],
       },
     ],
   },
-]
+  {
+    id: "humanloop",
+    organizationName: "Humanloop",
+    portals: [
+      {
+        id: "demos",
+        portalName: "Humanloop Demo",
+        demos: [
+          {
+            id: "getting-started",
+            name: "Getting Started",
+            markdown: humanloopGettingStarted,
+          },
+        ],
+      },
+    ],
+  },
+];
