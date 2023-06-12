@@ -33,7 +33,6 @@ from {{packageName}}.rest import AsyncResponseWrapper, ResponseWrapper
 from {{packageName}}.configuration import Configuration
 from {{packageName}}.exceptions import ApiTypeError, ApiValueError, MissingRequiredParametersError
 from {{packageName}}.request_after_hook import request_after_hook
-from {{packageName}}.request_before_hook import request_before_hook
 from {{packageName}}.schemas import (
     NoneClass,
     BoolClass,
@@ -1185,16 +1184,6 @@ class ApiClient:
         prefix_separator_iterator: PrefixSeparatorIterator = None,
     ) -> AsyncResponseWrapper:
 
-        request_before_hook(
-            resource_path=resource_path,
-            method=method,
-            configuration=self.configuration,
-            body=body,
-            fields=fields,
-            auth_settings=auth_settings,
-            headers=headers,
-        )
-
         # header parameters
         used_headers = HTTPHeaderDict(self.default_headers)
         if self.cookie:
@@ -1265,16 +1254,6 @@ class ApiClient:
         _retry_oauth = True,
 {{/if}}
     ) -> ResponseWrapper:
-
-        request_before_hook(
-            resource_path=resource_path,
-            method=method,
-            configuration=self.configuration,
-            body=body,
-            fields=fields,
-            auth_settings=auth_settings,
-            headers=headers,
-        )
 
         # header parameters
         used_headers = HTTPHeaderDict(self.default_headers)
