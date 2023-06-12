@@ -150,7 +150,7 @@ export const DemoPortal = observer(({ state }: { state: PortalState }) => {
                       onClick={() => {
                         setOpened(false);
                         state.setCurrentDemoIndex(i);
-                        router.push(
+                        router.replace(
                           `/${state.organizationId}/${state.id}/${state.demos[i].id}`,
                           undefined,
                           { shallow: true }

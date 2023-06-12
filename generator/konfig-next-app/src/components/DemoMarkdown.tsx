@@ -2,8 +2,7 @@ import { makeAutoObservable } from "mobx";
 import ReactMarkdown from "react-markdown";
 import remarkDirective from "remark-directive";
 import remarkDirectiveRehype from "remark-directive-rehype";
-import { Anchor, Stack, Title, Text } from "@mantine/core";
-import { toText } from "hast-util-to-text";
+import { Anchor, Stack, Text } from "@mantine/core";
 import { createContext } from "react";
 import { api } from "@/utils/api";
 import { observer } from "mobx-react";
@@ -16,6 +15,7 @@ import { PortalState } from "./DemoPortal";
 import { DemoInfo } from "./DemoInfo";
 import { DemoDateInput } from "./DemoDateInput";
 import { DemoNumberInput } from "./DemoNumberInput";
+import { DemoTitle } from "./DemoTitle";
 
 export class DemoState {
   id: string;
@@ -85,48 +85,12 @@ const DemoMarkdown = observer(({ state }: { state: DemoState }) => {
             input: DemoInput,
             button: DemoButton,
             code: DemoCode,
-            h1(props) {
-              return (
-                <Title id={toText(props.node)} order={1}>
-                  {props.children}
-                </Title>
-              );
-            },
-            h2(props) {
-              return (
-                <Title id={toText(props.node)} order={2}>
-                  {props.children}
-                </Title>
-              );
-            },
-            h3(props) {
-              return (
-                <Title id={toText(props.node)} order={3}>
-                  {props.children}
-                </Title>
-              );
-            },
-            h4(props) {
-              return (
-                <Title id={toText(props.node)} order={4}>
-                  {props.children}
-                </Title>
-              );
-            },
-            h5(props) {
-              return (
-                <Title id={toText(props.node)} order={5}>
-                  {props.children}
-                </Title>
-              );
-            },
-            h6(props) {
-              return (
-                <Title id={toText(props.node)} order={6}>
-                  {props.children}
-                </Title>
-              );
-            },
+            h1: DemoTitle,
+            h2: DemoTitle,
+            h3: DemoTitle,
+            h4: DemoTitle,
+            h5: DemoTitle,
+            h6: DemoTitle,
             // Make TypeScript happy by moving this into its own object
             ...{
               info: DemoInfo,
