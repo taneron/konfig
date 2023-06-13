@@ -224,6 +224,7 @@ export default class Init extends Command {
 
     const langs = [
       { name: 'Java', checked: true, value: 'java' },
+      { name: 'Ruby', checked: true, value: 'ruby' },
       { name: 'Python', checked: true, value: 'python' },
       { name: 'TypeScript', checked: true, value: 'typescript' },
       { name: 'C#', checked: true, value: 'csharp' },
@@ -308,6 +309,21 @@ export default class Init extends Command {
           git: {
             userId: answers.gitUserId,
             repoId: `${answers.gitRepoName}/tree/main/java`,
+          },
+        }
+      }
+
+      if (lang === 'ruby') {
+        generators.ruby = {
+          version: '1.0.0',
+          moduleName: camelcase(answers.sdkName, {
+            pascalCase: true,
+          }),
+          gemName: answers.sdkName.toLowerCase(),
+          outputDirectory: 'ruby',
+          git: {
+            userId: answers.gitUserId,
+            repoId: `${answers.gitRepoName}/tree/main/ruby`,
           },
         }
       }
