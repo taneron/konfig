@@ -20,14 +20,12 @@ export default function Home({}: InferGetServerSidePropsType<
         <Paper withBorder shadow="lg" p="lg">
           <Stack>
             <NavLink
-              onClick={() =>
-                router.push("/snaptrade/snaptrade-demos/getting-started")
-              }
+              onClick={() => router.push("/snaptrade")}
               label="SnapTrade"
               description="https://snaptrade.com/"
             />
             <NavLink
-              onClick={() => router.push("/humanloop/demos/getting-started")}
+              onClick={() => router.push("/humanloop")}
               label="Humanloop"
               description="https://humanloop.com/"
             />
