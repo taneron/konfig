@@ -35,6 +35,18 @@ export class CellState {
     return this.runState === "Success";
   }
 
+  get idx() {
+    return this.demoState?.cells.findIndex((c) => c === this);
+  }
+
+  get previousCellRanSuccessfully(): "no" | "yes" | "firstCell" {
+    if (this.idx === undefined) return "no";
+    if (this.idx < 1) return "firstCell";
+    return this.demoState?.cells?.[this.idx - 1]?.ranSuccessfully ?? "no"
+      ? "yes"
+      : "no";
+  }
+
   get failed() {
     return this.runState === "Error";
   }
