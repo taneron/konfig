@@ -384,7 +384,7 @@ activities = snaptrade.trading.get_user_account_quotes(
 pprint(activities.body)
 \`\`\`
 
-::button[Get Activities]
+::button[Get Quotes]
 
 :::
 `;
