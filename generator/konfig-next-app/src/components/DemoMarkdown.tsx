@@ -16,6 +16,7 @@ import { DemoInfo } from "./DemoInfo";
 import { DemoDateInput } from "./DemoDateInput";
 import { DemoNumberInput } from "./DemoNumberInput";
 import { DemoTitle } from "./DemoTitle";
+import { DemoEnum } from "./DemoEnum";
 
 export class DemoState {
   id: string;
@@ -96,6 +97,7 @@ const DemoMarkdown = observer(({ state }: { state: DemoState }) => {
               info: DemoInfo,
               date: DemoDateInput,
               number: DemoNumberInput,
+              enum: DemoEnum,
             },
           }}
         >
