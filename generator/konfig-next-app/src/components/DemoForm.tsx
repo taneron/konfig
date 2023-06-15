@@ -19,6 +19,8 @@ export const FormContext = createContext<
 export const CellContext = createContext<CellState | null>(null);
 
 type RunState = "Success" | "Error" | "N/A";
+
+const inputTagNames = ["input", "enum"];
 export class CellState {
   show = false;
   running = false;
@@ -179,10 +181,10 @@ const _Form: Components["form"] = ({
     return valueFormats;
   }, {} as { [key: string]: string });
 
-  // Initialize values
+  // Initialize values from the "defaultValue" attribute
   const initialValues = node.children.reduce((initialValues, child) => {
     if (child.type === "element") {
-      if (child.tagName === "input") {
+      if (inputTagNames.includes(child.tagName)) {
         const name = child.properties?.["name"];
         const type = child.properties?.["type"];
         const defaultValue = child.properties?.["defaultValue"];
@@ -208,13 +210,16 @@ const _Form: Components["form"] = ({
 
   // Ensure all non-optional inputs are non-empty
   const validate = node.children.reduce((validate, child) => {
-    if (child.type === "element" && child.tagName === "input") {
+    if (child.type === "element" && inputTagNames.includes(child.tagName)) {
       const name = child.properties?.["name"];
       const label = child.properties?.["label"];
       const optional = child.properties?.["optional"];
       if (typeof name === "string" && optional === undefined) {
-        validate[name] = (value) =>
-          value === "" ? `${label} is required` : null;
+        validate[name] = (value) => {
+          return value === undefined || value === ""
+            ? `${label} is required`
+            : null;
+        };
       }
     }
     return validate;
@@ -230,7 +235,7 @@ const _Form: Components["form"] = ({
   useEffect(() => {
     node.children.forEach((child) => {
       if (child.type === "element") {
-        if (child.tagName === "input") {
+        if (inputTagNames.includes(child.tagName)) {
           const name = child.properties?.["name"];
           if (typeof name === "string") {
             const stored = localStorage.getItem(name);

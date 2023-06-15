@@ -20,13 +20,21 @@ const _DemoEnum: Components["select"] = ({
       : undefined;
   const { data, ...extractedProps } = props as any;
 
+  const optional = node.properties?.optional !== undefined;
+
   const unknownData: unknown = data;
 
   const parsedData =
     typeof unknownData === "string" ? unknownData.split(",") : [];
 
   return (
-    <Select clearable data={parsedData} {...extractedProps} {...inputProps} />
+    <Select
+      withAsterisk={!optional ? true : undefined}
+      clearable
+      data={parsedData}
+      {...extractedProps}
+      {...inputProps}
+    />
   );
 };
 
