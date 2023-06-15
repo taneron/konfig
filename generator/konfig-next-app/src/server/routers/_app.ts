@@ -38,6 +38,8 @@ export const appRouter = router({
     .input(ExecuteSandboxCodeRequest)
     .output(ExecuteCodeResponse)
     .query(async ({ input }) => {
+      if (process.env.NODE_ENV !== "development")
+        throw new TRPCError({ code: "UNAUTHORIZED" });
       const url = `${urlForPythonRceApi()}/sessions/execute`;
 
       const { data } = await axios.post(url, {
