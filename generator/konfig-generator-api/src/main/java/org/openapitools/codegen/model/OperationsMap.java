@@ -37,4 +37,12 @@ public class OperationsMap extends HashMap<String, Object> {
     public void setHasTopLevelOperations(boolean hasTopLevelOperations) {
         this.put("hasTopLevelOperations", hasTopLevelOperations);
     }
+
+    public void setClassNameCamelCaseConflictsWithTopLevelOperation(boolean classNameCamelCaseConflictsWithTopLevelOperation) {
+        this.put("classNameCamelCaseConflictsWithTopLevelOperation", classNameCamelCaseConflictsWithTopLevelOperation);
+    }
+
+    public void setClassNameSnakeCaseConflictsWithTopLevelOperation(boolean classNameSnakeCaseConflictsWithTopLevelOperation) {
+        this.put("classNameSnakeCaseConflictsWithTopLevelOperation", classNameSnakeCaseConflictsWithTopLevelOperation);
+    }
 }

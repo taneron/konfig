@@ -841,6 +841,21 @@ public class DefaultGenerator implements Generator {
         apis.setTopLevelOperations(topLevelOperations);
         apis.setHasTopLevelOperations(topLevelOperations.size() > 0);
 
+        apis.getApis().forEach(om -> {
+            boolean conflictsWithCamelCase = topLevelOperations.stream().anyMatch(co -> {
+                String methodName = (String) co.vendorExtensions.get("x-konfig-top-level-operation");
+                if (om.get("classNameCamelCase").equals(methodName)) return true;
+                return false;
+            });
+            boolean conflictsWithSnakeCase = topLevelOperations.stream().anyMatch(co -> {
+                String methodName = (String) co.vendorExtensions.get("x-konfig-top-level-operation");
+                if (om.get("classNameSnakeCase").equals(methodName)) return true;
+                return false;
+            });
+            om.setClassNameCamelCaseConflictsWithTopLevelOperation(conflictsWithCamelCase);
+            om.setClassNameSnakeCaseConflictsWithTopLevelOperation(conflictsWithSnakeCase);
+        });
+
         List<String> topLevelClientTypeImports = new ArrayList<>();
         apis.getTopLevelOperations().forEach(operation -> {
             if (operation.imports != null) {
