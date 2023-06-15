@@ -44,15 +44,41 @@ async function _findRepository({
   return null;
 }
 
+export function invalidateDemoGenerationCache() {}
+export function computeCacheKey({
+  orgId,
+  portalId,
+}: Omit<GenerationInput, "demoId">): string {
+  return `${orgId}-${portalId}`;
+}
+type FetchResult = {
+  organization: Organization;
+  portal: Portal;
+  demos: Demo[];
+};
+const _cache: Record<string, FetchResult> = {};
+
+export type GenerationResult =
+  | {
+      result: "success";
+      organization: Organization;
+      portal: Portal;
+      demo: Demo;
+    }
+  | { result: "error"; reason: "no demos" }
+  | { result: "error"; reason: "demo not found" };
+
+export type GenerationInput = {
+  orgId: string;
+  portalId: string;
+  demoId?: string;
+};
+
 export async function generateDemosDataFromGithub({
   orgId,
   portalId,
   demoId,
-}: {
-  orgId: string;
-  portalId: string;
-  demoId?: string;
-}): Promise<
+}: GenerationInput): Promise<
   | {
       result: "success";
       organization: Organization;
@@ -62,6 +88,38 @@ export async function generateDemosDataFromGithub({
   | { result: "error"; reason: "no demos" }
   | { result: "error"; reason: "demo not found" }
 > {
+  const cacheKey = computeCacheKey({ orgId, portalId });
+  const fetchResult =
+    cacheKey in _cache ? _cache[cacheKey] : await _fetch({ orgId, portalId });
+  _cache[cacheKey] = fetchResult;
+
+  const { demos, organization, portal } = fetchResult;
+
+  if (demos.length < 1) return { result: "error", reason: "no demos" };
+
+  let demo: Demo | undefined;
+  if (demoId) {
+    demo = demos.find((demo) => demo.id === demoId);
+  } else {
+    demo = demos[0];
+  }
+  if (demo === undefined) return { result: "error", reason: "demo not found" };
+
+  return {
+    result: "success",
+    organization,
+    portal,
+    demo,
+  };
+}
+
+async function _fetch({
+  orgId,
+  portalId,
+}: {
+  orgId: string;
+  portalId: string;
+}): Promise<FetchResult> {
   // Find the SDK repository
   const privateKey = process.env.GITHUB_APP_PRIVATE_KEY;
   if (privateKey === undefined)
@@ -137,8 +195,6 @@ export async function generateDemosDataFromGithub({
 
   const markdownFiles = files.filter(({ name }) => name.endsWith(".md"));
 
-  if (markdownFiles.length < 1) return { result: "error", reason: "no demos" };
-
   const demos: Demo[] = [];
 
   const processor = unified()
@@ -161,14 +217,6 @@ export async function generateDemosDataFromGithub({
     demos.push({ id, name: demoName, markdown });
   }
 
-  let demo: Demo | undefined;
-  if (demoId) {
-    demo = demos.find((demo) => demo.id === demoId);
-  } else {
-    demo = demos[0];
-  }
-  if (demo === undefined) return { result: "error", reason: "demo not found" };
-
   const portal: Portal = {
     id: repo,
     portalName: parsedDemoYaml.portalName,
@@ -181,10 +229,5 @@ export async function generateDemosDataFromGithub({
     portals: [portal],
   };
 
-  return {
-    result: "success",
-    organization,
-    portal,
-    demo,
-  };
+  return { organization, portal, demos };
 }
