@@ -4,13 +4,16 @@ import remarkParse from "remark-parse";
 import { unified } from "unified";
 import { Demo } from "./demos";
 import { toString } from "mdast-util-to-string";
+import { DemoYaml } from "./generate-demos-from-github";
 
 export type DemoInput = { fileName: string; content: string };
 
 export function generateDemosFromFilenameAndContent({
   demos,
+  demoYaml,
 }: {
   demos: DemoInput[];
+  demoYaml: DemoYaml;
 }): Demo[] {
   const result: Demo[] = [];
 
@@ -31,5 +34,15 @@ export function generateDemosFromFilenameAndContent({
 
     result.push({ id, name: demoName, markdown: content });
   });
+
+  result.sort((a, b) => {
+    if (demoYaml.demos)
+      return (
+        demoYaml.demos.findIndex((demo) => demo.id === a.id) -
+        demoYaml.demos.findIndex((demo) => demo.id === b.id)
+      );
+    return 1;
+  });
+
   return result;
 }

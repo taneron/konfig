@@ -1,12 +1,12 @@
-import { z } from 'zod'
+import { z } from "zod";
 
-export const PingSessionRequest = z.object({ sessionIds: z.string().array() })
+export const PingSessionRequest = z.object({ sessionIds: z.string().array() });
 
 export const PingSessionResponse = z.object({
   session_infos: z.object({ session_id: z.string() }).array(),
-})
+});
 
-export const StartSessionResponse = z.object({ session_id: z.string() })
+export const StartSessionResponse = z.object({ session_id: z.string() });
 
 export const Point = z.object({
   /**
@@ -22,7 +22,7 @@ export const Point = z.object({
    * Character in a source file (0-indexed integer).
    */
   offset: z.number().optional(),
-})
+});
 
 export const Position = z.object({
   /**
@@ -40,20 +40,20 @@ export const Position = z.object({
    * for elements that span multiple lines.
    */
   indent: z.number().array().optional(),
-})
+});
 
-export const EnvironmentVariables = z.record(z.string(), z.string())
+export const EnvironmentVariables = z.record(z.string(), z.string());
 export const BoxedFloat = z.object({
-  type: z.literal('float'),
+  type: z.literal("float"),
   data: z.string(),
   precision: z.number(),
-})
+});
 export const LocalVariables = z.record(
   z.string(),
   z.union([z.string(), z.boolean(), z.number(), BoxedFloat])
-)
+);
 
-export type LocalVariablesType = z.infer<typeof LocalVariables>
+export type LocalVariablesType = z.infer<typeof LocalVariables>;
 
 export const ExecuteCodeRequest = z.object({
   organizationId: z.string(),
@@ -63,21 +63,27 @@ export const ExecuteCodeRequest = z.object({
   codePosition: Position,
   environmentVariables: EnvironmentVariables.optional(),
   localVariables: LocalVariables,
-})
+});
+
+export const ExecuteSandboxCodeRequest = z.object({
+  sessionId: z.string(),
+  code: z.string(),
+  localVariables: LocalVariables,
+});
 
 export const ExecuteCodeResponse = z
   .object({
-    result: z.union([z.literal('Success'), z.literal('Error')]),
+    result: z.union([z.literal("Success"), z.literal("Error")]),
     output: z.string(),
     error: z.string(),
   })
   .or(
     z.object({
-      result: z.literal('Could not find code'),
+      result: z.literal("Could not find code"),
     })
   )
   .or(
     z.object({
-      result: z.literal('Could not find demo'),
+      result: z.literal("Could not find demo"),
     })
-  )
+  );

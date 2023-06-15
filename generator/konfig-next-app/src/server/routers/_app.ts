@@ -17,6 +17,7 @@ import {
   ExecuteCodeResponse,
   PingSessionRequest,
   PingSessionResponse,
+  ExecuteSandboxCodeRequest,
 } from "@/utils/schemas";
 import { generateDemosDataFromGithub } from "@/utils/generate-demos-from-github";
 import { TRPCError } from "@trpc/server";
@@ -33,6 +34,20 @@ export const appRouter = router({
     const { data } = await axios.post(url, { session_ids: input.sessionIds });
     return PingSessionResponse.parse(data);
   }),
+  executeSandboxCode: procedure
+    .input(ExecuteSandboxCodeRequest)
+    .output(ExecuteCodeResponse)
+    .query(async ({ input }) => {
+      const url = `${urlForPythonRceApi()}/sessions/execute`;
+
+      const { data } = await axios.post(url, {
+        session_id: input.sessionId,
+        code: input.code,
+        local_variables: input.localVariables,
+      });
+
+      return ExecuteCodeResponse.parse(data);
+    }),
   executeCode: procedure
     .input(ExecuteCodeRequest)
     .output(ExecuteCodeResponse)

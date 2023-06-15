@@ -5,12 +5,14 @@ import { Stack } from "@mantine/core";
 import { createFormContext } from "@mantine/form";
 import { observer } from "mobx-react";
 import { useState, useContext, createContext, useEffect } from "react";
+import { toText } from "hast-util-to-text";
 import { Components } from "react-markdown";
 import { DemoState, DemoStateContext } from "./DemoMarkdown";
 import { makeAutoObservable } from "mobx";
 import { Position } from "unist-util-position/lib";
 import { v4 as uuid } from "uuid";
 import dayjs from "dayjs";
+import { SandboxContext } from "./DemoPortal";
 
 export const FormContext = createContext<
   ReturnType<typeof createFormContext>[1] | null
@@ -95,23 +97,32 @@ export class CellState {
     position,
     environmentVariables,
     localVariables,
+    sandbox,
   }: {
     position: Position;
     environmentVariables?: unknown;
     localVariables: unknown;
+    sandbox?: { code: string };
   }) {
     if (!this.demoState?.sessionId) return;
     this.setRunning(true);
     this.setShow(false);
 
-    const response = await api.executeCode.query({
-      organizationId: this.demoState.portal.organizationId,
-      portalId: this.demoState.portal.id,
-      demoId: this.demoState.id,
-      sessionId: this.demoState?.sessionId,
-      codePosition: position,
-      localVariables: LocalVariables.parse(localVariables),
-    });
+    const response =
+      sandbox !== undefined
+        ? await api.executeSandboxCode.query({
+            sessionId: this.demoState?.sessionId,
+            code: sandbox.code,
+            localVariables: LocalVariables.parse(localVariables),
+          })
+        : await api.executeCode.query({
+            organizationId: this.demoState.portal.organizationId,
+            portalId: this.demoState.portal.id,
+            demoId: this.demoState.id,
+            sessionId: this.demoState?.sessionId,
+            codePosition: position,
+            localVariables: LocalVariables.parse(localVariables),
+          });
 
     this.setRunning(false);
 
@@ -264,6 +275,7 @@ const _Form: Components["form"] = ({
   }, []);
 
   const demoState = useContext(DemoStateContext);
+  const sandbox = useContext(SandboxContext);
 
   const [cell] = useState(
     new CellState({
@@ -344,6 +356,13 @@ const _Form: Components["form"] = ({
               await cell?.run({
                 position: firstPreNode.position,
                 localVariables: newValues,
+                ...(sandbox
+                  ? {
+                      sandbox: {
+                        code: toText(firstPreNode),
+                      },
+                    }
+                  : {}),
               });
 
               if (cell?.ranSuccessfully) {

@@ -23,9 +23,10 @@ import {
   IconChevronRight,
   IconSun,
   IconMoonStars,
+  IconRefresh,
 } from "@tabler/icons-react";
 import { observer } from "mobx-react";
-import { useState } from "react";
+import { useState, createContext } from "react";
 import DemoMarkdown, { DemoState } from "./DemoMarkdown";
 import { makeAutoObservable } from "mobx";
 import { useRouter } from "next/router";
@@ -93,15 +94,25 @@ export class PortalState {
   }
 }
 
+export const SandboxContext = createContext<boolean>(false);
+
 export const DemoPortal = observer(
-  ({ state, sandbox }: { state: PortalState; sandbox?: boolean }) => {
+  ({
+    state,
+    sandbox,
+    refreshSandbox,
+  }: {
+    state: PortalState;
+    sandbox?: boolean;
+    refreshSandbox?: () => void;
+  }) => {
     const theme = useMantineTheme();
     const { colorScheme, toggleColorScheme } = useMantineColorScheme();
     const [opened, setOpened] = useState(false);
     const router = useRouter();
 
     return (
-      <>
+      <SandboxContext.Provider value={!!sandbox}>
         <Affix position={{ bottom: "0.5rem", right: "1rem" }}>
           <HoverCard width={280} shadow="md">
             <HoverCard.Target>
@@ -231,6 +242,15 @@ export const DemoPortal = observer(
                       <IconMoonStars size="1rem" />
                     )}
                   </ActionIcon>
+                  {refreshSandbox && (
+                    <ActionIcon
+                      onClick={refreshSandbox}
+                      color="green"
+                      variant="light"
+                    >
+                      <IconRefresh size="1rem" />
+                    </ActionIcon>
+                  )}
                 </Group>
               </div>
             </Header>
@@ -248,7 +268,7 @@ export const DemoPortal = observer(
             );
           })}
         </AppShell>
-      </>
+      </SandboxContext.Provider>
     );
   }
 );

@@ -19,7 +19,7 @@ const _mappings: {
   },
 };
 
-const demoYamlSchema = z.object({
+export const demoYamlSchema = z.object({
   organizationName: z.string(),
   portalName: z.string(),
   demos: z
@@ -205,15 +205,9 @@ async function _fetch({
     })
   );
 
-  const demos = generateDemosFromFilenameAndContent({ demos: content });
-
-  demos.sort((a, b) => {
-    if (parsedDemoYaml.demos)
-      return (
-        parsedDemoYaml.demos.findIndex((demo) => demo.id === a.id) -
-        parsedDemoYaml.demos.findIndex((demo) => demo.id === b.id)
-      );
-    return 1;
+  const demos = generateDemosFromFilenameAndContent({
+    demos: content,
+    demoYaml: parsedDemoYaml,
   });
 
   const portal: Portal = {

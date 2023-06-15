@@ -10,6 +10,8 @@ import {
 import { Organization, Portal } from "@/utils/demos";
 import { DemoPortal, PortalState } from "@/components/DemoPortal";
 import { useEffect, useState } from "react";
+import * as yaml from "js-yaml";
+import { DemoYaml, demoYamlSchema } from "@/utils/generate-demos-from-github";
 
 /**
  * This is here to force this page to be SSR only so Next.js doesn't try to make
@@ -20,11 +22,12 @@ export const getServerSideProps: GetServerSideProps<{}> =
     return { props: {} };
   };
 
-let directoryHandle;
+let directoryHandle: any;
 
-async function open() {
+async function open(parameters?: { showPicker?: boolean }) {
   try {
-    directoryHandle = await (window as any).showDirectoryPicker();
+    if (parameters?.showPicker !== false)
+      directoryHandle = await (window as any).showDirectoryPicker();
     const files: DemoInput[] = [];
 
     for await (const entry of directoryHandle.values()) {
@@ -34,7 +37,7 @@ async function open() {
       const file = await entry.getFile();
       files.push({ fileName: file.name, content: await file.text() });
     }
-    return files.filter(({ fileName }) => fileName.endsWith(".md"));
+    return files;
   } catch (error) {}
 }
 
@@ -46,11 +49,19 @@ class SandboxState {
   }
 
   setFiles(files: DemoInput[]) {
+    console.log(files);
     this.files = files;
   }
 
   get demos() {
-    return generateDemosFromFilenameAndContent({ demos: this.files });
+    console.log(this.files);
+    const demoYamlFile = this.files.find((di) => di.fileName === "demo.yaml");
+    if (demoYamlFile === undefined) return [];
+    const demoYaml = demoYamlSchema.parse(yaml.load(demoYamlFile.content));
+    return generateDemosFromFilenameAndContent({
+      demos: this.files.filter((di) => di.fileName.endsWith(".md")),
+      demoYaml,
+    });
   }
 
   get organization(): Organization {
@@ -101,7 +112,17 @@ const MarkdownSandboxPage = observer(() => {
           </Button>
         </Center>
       )}
-      {portalState && <DemoPortal sandbox state={portalState} />}
+      {portalState && (
+        <DemoPortal
+          refreshSandbox={async () => {
+            const files = await open({ showPicker: false });
+            if (files === undefined) return;
+            state.setFiles(files);
+          }}
+          sandbox
+          state={portalState}
+        />
+      )}
     </>
   );
 });
