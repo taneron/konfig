@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { api } from "@/utils/api";
 import { LocalVariables, LocalVariablesType } from "@/utils/schemas";
 import { Stack } from "@mantine/core";
@@ -24,11 +25,23 @@ export class CellState {
   runState: RunState = "N/A";
   output: string = "";
   demoState: DemoState | null;
+  skippable: boolean;
   id = uuid();
+  debug?: string;
 
-  constructor({ demoState }: { demoState: DemoState | null }) {
+  constructor({
+    demoState,
+    skippable,
+    debug,
+  }: {
+    demoState: DemoState | null;
+    skippable: boolean;
+    debug?: string;
+  }) {
     makeAutoObservable(this);
     this.demoState = demoState;
+    this.debug = debug;
+    this.skippable = skippable;
   }
 
   get ranSuccessfully() {
@@ -39,12 +52,21 @@ export class CellState {
     return this.demoState?.cells.findIndex((c) => c === this);
   }
 
-  get previousCellRanSuccessfully(): "no" | "yes" | "firstCell" {
+  /**
+   * If any previous cells haven't been run and are not skippable then you can't
+   * run this cell
+   */
+  get canRunCell(): "no" | "yes" | "firstCell" {
     if (this.idx === undefined) return "no";
-    if (this.idx < 1) return "firstCell";
-    return this.demoState?.cells?.[this.idx - 1]?.ranSuccessfully ?? "no"
-      ? "yes"
-      : "no";
+    if (this.idx === 0) return "firstCell";
+
+    for (let i = 0; i < this.idx; i++) {
+      const cell = this.demoState?.cells?.[i];
+      if (cell === undefined) return "no";
+      if (cell.skippable) continue;
+      if (!cell.ranSuccessfully) return "no";
+    }
+    return "yes";
   }
 
   get failed() {
@@ -238,10 +260,16 @@ const _Form: Components["form"] = ({
 
   const demoState = useContext(DemoStateContext);
 
+  const [cell] = useState(
+    new CellState({
+      demoState,
+      skippable: "skippable" in props,
+      debug: (props as any)["debug"],
+    })
+  );
   // Turns out if you want to do something once for a component this is the
   // pattern you should follow to actually ensure that child components can
   // react to state updates
-  const [cell] = useState(new CellState({ demoState }));
   useEffect(() => {
     if (demoState === null) return;
     if (demoState.cells.includes(cell)) return;

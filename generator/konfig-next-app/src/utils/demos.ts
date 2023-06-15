@@ -438,7 +438,7 @@ print("Initialized user_id and user_secret")
 Check the account has enough cash to place trades.
 
 
-:::form
+:::form{skippable}
 
 ::input{name=ACCOUNT_ID label="Account ID" placeholder="ACCOUNT ID" description="The ID of the account to check"}
 ::input{name=UNIVERSAL_SYMBOL label="Universal Symbol" defaultValue="c15a817e-7171-4940-9ae7-f7b4a95408ee"}
@@ -475,7 +475,7 @@ Place the order without checking impact
 
 ::input{name=ACCOUNT_ID label="Account ID" placeholder="ACCOUNT ID" description="The ID of the account to check"}
 ::input{name=UNIVERSAL_SYMBOL label="Universal Symbol" defaultValue="c15a817e-7171-4940-9ae7-f7b4a95408ee"}
-::input{name=ACTION label="Action" defaultValue="BUY"}
+::enum{name=ACTION label="Action" data="BUY,SELL" defaultValue=BUY}
 ::input{name=ORDER_TYPE label="Order Type" defaultValue="Limit"}
 ::input{name=TIME_IN_FORCE label="Time in Force" defaultValue="Day"}
 ::number{name=PRICE label="Price" defaultValue=10, step=0.01 precision=2}
