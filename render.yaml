@@ -96,6 +96,7 @@ services:
     startCommand: yarn rw deploy render api --prisma=false --data-migrate=false
     envVars:
       - fromGroup: aws
+      - fromGroup: github
       - key: SESSION_SECRET
         generateValue: true
       - key: SKIP_INSTALL_DEPS
