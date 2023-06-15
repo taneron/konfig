@@ -202,20 +202,22 @@ async function _fetch({
     .use(remarkDirective)
     .use(remarkDirectiveRehype);
 
-  for (const { path, name: fileName } of markdownFiles) {
-    const { content: markdown } = await getContent({ path });
+  await Promise.all(
+    markdownFiles.map(async ({ path, name: fileName }) => {
+      const { content: markdown } = await getContent({ path });
 
-    const mdast = processor.parse(markdown);
+      const mdast = processor.parse(markdown);
 
-    // find first heading text and use that as name
-    const node = mdast.children.find(({ type }) => type === "heading");
-    const demoName = toString(node);
+      // find first heading text and use that as name
+      const node = mdast.children.find(({ type }) => type === "heading");
+      const demoName = toString(node);
 
-    // compute id from filename by removing extension
-    const id = fileName.replace(/\.[^/.]+$/, "");
+      // compute id from filename by removing extension
+      const id = fileName.replace(/\.[^/.]+$/, "");
 
-    demos.push({ id, name: demoName, markdown });
-  }
+      demos.push({ id, name: demoName, markdown });
+    })
+  );
 
   const portal: Portal = {
     id: repo,
