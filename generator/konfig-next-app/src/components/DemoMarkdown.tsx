@@ -9,7 +9,7 @@ import { observer } from "mobx-react";
 import { CellState, DemoForm, FormContext } from "./DemoForm";
 import { DemoButton } from "./DemoButton";
 import { DemoCode } from "./DemoCode";
-import { getTitlesFromMarkdown } from "@/utils/get-titles-from-markdown";
+import { getCellTitlesFromMarkdown } from "@/utils/get-cell-titles-from-markdown";
 import { DemoInput } from "./DemoInput";
 import { PortalState } from "./DemoPortal";
 import { DemoInfo } from "./DemoInfo";
@@ -63,7 +63,7 @@ export class DemoState {
   }
 
   get titles() {
-    return getTitlesFromMarkdown({ markdown: this.markdown });
+    return getCellTitlesFromMarkdown({ markdown: this.markdown });
   }
 }
 
