@@ -18,7 +18,7 @@ const _DemoEnum: Components["select"] = ({
     form !== undefined && typeof name === "string"
       ? form.getInputProps(name)
       : undefined;
-  const { data, ...extractedProps } = props as any;
+  const { data, searchable, ...extractedProps } = props as any;
 
   const optional = node.properties?.optional !== undefined;
 
@@ -31,6 +31,7 @@ const _DemoEnum: Components["select"] = ({
     <Select
       withAsterisk={!optional ? true : undefined}
       clearable
+      searchable={searchable !== undefined}
       data={parsedData}
       {...extractedProps}
       {...inputProps}

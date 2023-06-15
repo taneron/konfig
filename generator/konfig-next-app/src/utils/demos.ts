@@ -340,7 +340,7 @@ TransactionsAndReporting API.
 ::date{name=END_DATE label="End Date" placeholder="END_DATE" valueFormat="YYYY-MM-DD" optional}
 ::input{name=ACCOUNTS label="Account(s)" placeholder="YOUR_ACCOUNT_IDS" description="Optional comma seperated list of account IDs used to filter the request on specific accounts" optional}
 ::input{name=BROKERAGE_AUTHORIZATIONS label="Brokerage Authorizations" placeholder="YOUR_BROKERAGE_AUTHORIZATION" description="Optional comma seperated list of brokerage authorization IDs used to filter the request on only accounts that belong to those authorizations" optional}
-::input{name=TYPE label="Type" placeholder="DIVIDEND" description="Optional comma seperated list of types to filter activities by" optional}
+::enum{name=TYPE label="Type" searchable nothingFound="No type" placeholder="TYPE" data="DIVIDEND,BUY,SELL,CONTRIBUTION,WITHDRAWAL,EXTERNAL_ASSET_TRANSFER_IN,EXTERNAL_ASSET_TRANSFER_OUT,INTERNAL_CASH_TRANSFER_IN,INTERNAL_CASH_TRANSFER_OUT,INTERNAL_ASSET_TRANSFER_IN,INTERNAL_ASSET_TRANSFER_OUT,INTEREST,REBATE,GOV_GRANT,TAX,FEE,REI,FXT" description="Optional comma seperated list of types to filter activities by" optional}
 
 
 \`\`\`python
@@ -442,9 +442,9 @@ Check the account has enough cash to place trades.
 
 ::input{name=ACCOUNT_ID label="Account ID" placeholder="ACCOUNT ID" description="The ID of the account to check"}
 ::input{name=UNIVERSAL_SYMBOL label="Universal Symbol" defaultValue="c15a817e-7171-4940-9ae7-f7b4a95408ee"}
-::input{name=ACTION label="Action" defaultValue="BUY"}
-::input{name=ORDER_TYPE label="Order Type" defaultValue="Limit"}
-::input{name=TIME_IN_FORCE label="Time in Force" defaultValue="Day"}
+::enum{name=ACTION label="Action" data="BUY,SELL" defaultValue=BUY}
+::enum{name=ORDER_TYPE label="Order Type" data="Limit,Market,StopLimit,StopLoss" defaultValue="Limit"}
+::enum{name=TIME_IN_FORCE label="Time in Force" data="Day,FOK,GTC" defaultValue="Day"}
 ::number{name=PRICE label="Price" defaultValue=10, step=0.01 precision=2}
 ::number{name=UNITS label="Units" defaultValue=1}
 
@@ -476,8 +476,8 @@ Place the order without checking impact
 ::input{name=ACCOUNT_ID label="Account ID" placeholder="ACCOUNT ID" description="The ID of the account to check"}
 ::input{name=UNIVERSAL_SYMBOL label="Universal Symbol" defaultValue="c15a817e-7171-4940-9ae7-f7b4a95408ee"}
 ::enum{name=ACTION label="Action" data="BUY,SELL" defaultValue=BUY}
-::input{name=ORDER_TYPE label="Order Type" defaultValue="Limit"}
-::input{name=TIME_IN_FORCE label="Time in Force" defaultValue="Day"}
+::enum{name=ORDER_TYPE label="Order Type" data="Limit,Market,StopLimit,StopLoss" defaultValue="Limit"}
+::enum{name=TIME_IN_FORCE label="Time in Force" data="Day,FOK,GTC" defaultValue="Day"}
 ::number{name=PRICE label="Price" defaultValue=10, step=0.01 precision=2}
 ::number{name=UNITS label="Units" defaultValue=1}
 
