@@ -49,12 +49,10 @@ class SandboxState {
   }
 
   setFiles(files: DemoInput[]) {
-    console.log(files);
     this.files = files;
   }
 
   get demos() {
-    console.log(this.files);
     const demoYamlFile = this.files.find((di) => di.fileName === "demo.yaml");
     if (demoYamlFile === undefined) return [];
     const demoYaml = demoYamlSchema.parse(yaml.load(demoYamlFile.content));
