@@ -1,7 +1,7 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import Error from "next/error";
 
-import { demos } from "@/utils/demos";
+import { generateDemosDataFromGithub } from "@/utils/generate-demos-from-github";
 
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
@@ -10,16 +10,22 @@ export const getStaticPaths: GetStaticPaths = async () => {
   };
 };
 
-export const getStaticProps: GetStaticProps = (ctx) => {
-  const organizationId = ctx.params?.org;
-  if (organizationId === undefined || Array.isArray(organizationId)) {
+export const getStaticProps: GetStaticProps = async (ctx) => {
+  const orgId = ctx.params?.org;
+  if (orgId === undefined || Array.isArray(orgId)) {
     return {
       notFound: true,
     };
   }
-  const organization = demos.find(
-    (organization) => organization.id === organizationId
-  );
+  const portalId = ctx.params?.portal;
+  if (portalId === undefined || Array.isArray(portalId)) {
+    return {
+      notFound: true,
+    };
+  }
+  const generation = await generateDemosDataFromGithub({ orgId, portalId });
+  if (generation.result === "error") return { notFound: true };
+  const { organization } = generation;
   if (organization === undefined) {
     return {
       notFound: true,

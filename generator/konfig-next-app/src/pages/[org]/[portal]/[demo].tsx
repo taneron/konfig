@@ -4,6 +4,7 @@ import { Organization, Portal, Demo, demos } from "@/utils/demos";
 import Head from "next/head";
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next";
 import { useState } from "react";
+import { generateDemosDataFromGithub } from "@/utils/generate-demos-from-github";
 
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
@@ -22,12 +23,6 @@ export const getStaticProps: GetStaticProps<{
       notFound: true,
     };
   }
-  const organization = demos.find(({ id }) => id === ctx.params?.org);
-
-  if (organization === undefined)
-    return {
-      notFound: true,
-    };
 
   if (!ctx.params?.portal || Array.isArray(ctx.params.portal)) {
     return {
@@ -35,34 +30,22 @@ export const getStaticProps: GetStaticProps<{
     };
   }
 
-  const portal = organization.portals.find(
-    ({ id }) => id === ctx.params?.portal
-  );
-
-  if (portal === undefined)
-    return {
-      notFound: true,
-    };
-
   if (!ctx.params?.demo || Array.isArray(ctx.params.demo)) {
     return {
       notFound: true,
     };
   }
 
-  const demo = portal.demos.find(({ id }) => id === ctx.params?.demo);
+  const props = await generateDemosDataFromGithub({
+    orgId: ctx.params.org,
+    portalId: ctx.params.portal,
+    demoId: ctx.params.demo,
+  });
 
-  if (demo === undefined)
-    return {
-      notFound: true,
-    };
+  if (props === "no demos") return { notFound: true };
 
   return {
-    props: {
-      organization,
-      portal,
-      demo,
-    },
+    props,
   };
 };
 
