@@ -17,6 +17,7 @@ import {
   useMantineColorScheme,
   useMantineTheme,
   Box,
+  Button,
 } from "@mantine/core";
 import {
   IconBug,
@@ -24,6 +25,7 @@ import {
   IconSun,
   IconMoonStars,
   IconRefresh,
+  IconBrandGithub,
 } from "@tabler/icons-react";
 import { observer } from "mobx-react";
 import { useState, createContext } from "react";
@@ -44,6 +46,7 @@ export class PortalState {
   portalName: string;
   currentDemoIndex: number;
   organizationId: string;
+  portalId: string;
   currentDemo: DemoState;
 
   constructor({
@@ -51,16 +54,19 @@ export class PortalState {
     portalName,
     id,
     organizationId,
+    portalId,
     demoId,
   }: {
     demos: DemosInput;
     portalName: string;
     id: string;
     organizationId: string;
+    portalId: string;
     demoId: string;
   }) {
     makeAutoObservable(this);
     this.id = id;
+    this.portalId = portalId;
     this.organizationId = organizationId;
     this.demos = demos.map(
       ({ name, markdown, id }) =>
@@ -242,6 +248,21 @@ export const DemoPortal = observer(
                       <IconMoonStars size="1rem" />
                     )}
                   </ActionIcon>
+                  {!sandbox && (
+                    <MediaQuery smallerThan="sm" styles={{ display: "none" }}>
+                      <Button
+                        component="a"
+                        target="_blank"
+                        size="xs"
+                        leftIcon={<IconBrandGithub size="1rem" />}
+                        href={`https://github.com/${state.organizationId}/${state.portalId}/tree/HEAD/demos`}
+                        color="gray"
+                        variant="default"
+                      >
+                        Source
+                      </Button>
+                    </MediaQuery>
+                  )}
                   {refreshSandbox && (
                     <ActionIcon
                       onClick={refreshSandbox}

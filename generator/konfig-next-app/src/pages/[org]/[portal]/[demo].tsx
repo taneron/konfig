@@ -58,6 +58,7 @@ const Snaptrade = observer(
     const [state] = useState(
       new PortalState({
         ...portal,
+        portalId: portal.id,
         organizationId: organization.id,
         demoId: demo.id,
       })

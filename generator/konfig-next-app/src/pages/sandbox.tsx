@@ -89,6 +89,7 @@ const MarkdownSandboxPage = observer(() => {
     setPortalState(
       new PortalState({
         ...state.portal,
+        portalId: "demos",
         organizationId: state.organization.id,
         demoId: state.demos[0].id,
       })
