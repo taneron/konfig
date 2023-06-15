@@ -26,6 +26,12 @@ const _mappings: {
 const demoYamlSchema = z.object({
   organizationName: z.string(),
   portalName: z.string(),
+  demos: z
+    .object({
+      id: z.string(),
+    })
+    .array()
+    .optional(),
 });
 
 async function _findRepository({
@@ -218,6 +224,15 @@ async function _fetch({
       demos.push({ id, name: demoName, markdown });
     })
   );
+
+  demos.sort((a, b) => {
+    if (parsedDemoYaml.demos)
+      return (
+        parsedDemoYaml.demos.findIndex((demo) => demo.id === a.id) -
+        parsedDemoYaml.demos.findIndex((demo) => demo.id === b.id)
+      );
+    return 1;
+  });
 
   const portal: Portal = {
     id: repo,
