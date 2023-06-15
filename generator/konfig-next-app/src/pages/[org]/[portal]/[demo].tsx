@@ -42,7 +42,7 @@ export const getStaticProps: GetStaticProps<{
     demoId: ctx.params.demo,
   });
 
-  if (props === "no demos") return { notFound: true };
+  if (props.result === "error") return { notFound: true };
 
   return {
     props,
