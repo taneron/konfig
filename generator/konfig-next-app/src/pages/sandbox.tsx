@@ -1,66 +1,26 @@
-import DemoMarkdown from '@/components/DemoMarkdown'
-import { snapTradeGettingStartedMarkdown } from '@/utils/demos'
-import { Container, Textarea, Paper, SegmentedControl } from '@mantine/core'
-import { observer } from 'mobx-react'
-import { useState } from 'react'
-import Head from 'next/head'
-import { PortalState } from '@/components/DemoPortal'
-import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
+import { Container, SegmentedControl } from "@mantine/core";
+import { observer } from "mobx-react";
+import Head from "next/head";
+import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 
+/**
+ * This is here to force this page to be SSR only so Next.js doesn't try to make
+ * network requests at build time
+ */
 export const getServerSideProps: GetServerSideProps<{}> =
   async ({}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-    return { props: {} }
-  }
+    return { props: {} };
+  };
 
 const MarkdownSandboxPage = observer(() => {
-  const [state] = useState(
-    new PortalState({
-      demos: [
-        {
-          id: 'getting-started',
-          name: 'Sandbox',
-          markdown: snapTradeGettingStartedMarkdown,
-        },
-      ],
-      portalName: 'Sandbox',
-      id: 'snaptrade-demos',
-      organizationId: 'snaptrade',
-      demoId: 'getting-started',
-    })
-  )
   return (
     <>
       <Head>
         <title>Demo Sandbox | Konfig</title>
       </Head>
-      <Container pt="xl" size="lg">
-        <SegmentedControl
-          size="xs"
-          color="blue"
-          value={state.showCode ? 'show-code' : 'hide-code'}
-          data={[
-            { label: 'Show Code', value: 'show-code' },
-            { label: 'Hide Code', value: 'hide-code' },
-          ]}
-          onChange={(value) => {
-            state.setShowCode(value === 'show-code' ? true : false)
-          }}
-        />
-        <Textarea
-          value={state.currentDemo.markdown}
-          onChange={(event) =>
-            state.currentDemo.setMarkdown(event.target.value)
-          }
-          label="Markdown"
-          mb="xl"
-          minRows={10}
-        />
-        <Paper withBorder shadow="xs" p="md">
-          <DemoMarkdown state={state.currentDemo} />
-        </Paper>
-      </Container>
+      <Container pt="xl" size="lg"></Container>
     </>
-  )
-})
+  );
+});
 
-export default MarkdownSandboxPage
+export default MarkdownSandboxPage;
