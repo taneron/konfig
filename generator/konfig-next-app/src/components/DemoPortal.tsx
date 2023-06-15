@@ -93,152 +93,162 @@ export class PortalState {
   }
 }
 
-export const DemoPortal = observer(({ state }: { state: PortalState }) => {
-  const theme = useMantineTheme();
-  const { colorScheme, toggleColorScheme } = useMantineColorScheme();
-  const [opened, setOpened] = useState(false);
-  const router = useRouter();
+export const DemoPortal = observer(
+  ({ state, sandbox }: { state: PortalState; sandbox?: boolean }) => {
+    const theme = useMantineTheme();
+    const { colorScheme, toggleColorScheme } = useMantineColorScheme();
+    const [opened, setOpened] = useState(false);
+    const router = useRouter();
 
-  return (
-    <>
-      <Affix position={{ bottom: "0.5rem", right: "1rem" }}>
-        <HoverCard width={280} shadow="md">
-          <HoverCard.Target>
-            <ThemeIcon size="xs" color="gray">
-              <IconBug />
-            </ThemeIcon>
-          </HoverCard.Target>
-          <HoverCard.Dropdown>
-            <Text size="sm">
-              {JSON.stringify(
-                state.demos.map((demo) => ({
-                  name: demo.name,
-                  sessionId: demo.sessionId,
-                })),
-                undefined,
-                2
-              )}
-            </Text>
-          </HoverCard.Dropdown>
-        </HoverCard>
-      </Affix>
-      <AppShell
-        styles={{
-          main: {
-            background:
-              colorScheme === "dark"
-                ? theme.colors.dark[8]
-                : theme.colors.gray[0],
-          },
-        }}
-        navbarOffsetBreakpoint="sm"
-        asideOffsetBreakpoint="sm"
-        navbar={
-          <Navbar
-            p="md"
-            hiddenBreakpoint="sm"
-            hidden={!opened}
-            width={{ sm: 225, lg: 325 }}
-          >
-            <Navbar.Section mt="xs">
-              <Stack spacing="xs">
-                {state.demos.map(({ name }, i) => {
-                  const isCurrentlySelected = state.currentDemoIndex === i;
-                  return (
-                    <NavLink
-                      key={name}
-                      onClick={() => {
-                        setOpened(false);
-                        state.setCurrentDemoIndex(i);
-                        router.replace(
-                          `/${state.organizationId}/${state.id}/${state.demos[i].id}`,
-                          undefined,
-                          { shallow: true }
-                        );
-                      }}
-                      p="xs"
-                      variant="filled"
-                      sx={(theme) => ({ borderRadius: theme.radius.sm })}
-                      rightSection={
-                        isCurrentlySelected ? (
-                          <IconChevronRight size="0.8rem" stroke={1.5} />
-                        ) : undefined
-                      }
-                      label={name}
-                      active={isCurrentlySelected}
+    return (
+      <>
+        <Affix position={{ bottom: "0.5rem", right: "1rem" }}>
+          <HoverCard width={280} shadow="md">
+            <HoverCard.Target>
+              <ThemeIcon size="xs" color="gray">
+                <IconBug />
+              </ThemeIcon>
+            </HoverCard.Target>
+            <HoverCard.Dropdown>
+              <Text size="sm">
+                {JSON.stringify(
+                  state.demos.map((demo) => ({
+                    name: demo.name,
+                    sessionId: demo.sessionId,
+                  })),
+                  undefined,
+                  2
+                )}
+              </Text>
+            </HoverCard.Dropdown>
+          </HoverCard>
+        </Affix>
+        <AppShell
+          styles={{
+            main: {
+              background:
+                colorScheme === "dark"
+                  ? theme.colors.dark[8]
+                  : theme.colors.gray[0],
+            },
+          }}
+          navbarOffsetBreakpoint="sm"
+          asideOffsetBreakpoint="sm"
+          navbar={
+            <Navbar
+              p="md"
+              hiddenBreakpoint="sm"
+              hidden={!opened}
+              width={{ sm: 225, lg: 325 }}
+            >
+              <Navbar.Section mt="xs">
+                <Stack spacing="xs">
+                  {state.demos.map(({ name }, i) => {
+                    const isCurrentlySelected = state.currentDemoIndex === i;
+                    return (
+                      <NavLink
+                        key={name}
+                        onClick={() => {
+                          setOpened(false);
+                          state.setCurrentDemoIndex(i);
+                          if (!sandbox) {
+                            router.replace(
+                              `/${state.organizationId}/${state.id}/${state.demos[i].id}`,
+                              undefined,
+                              { shallow: true }
+                            );
+                          } else {
+                            // NOTE: this triggers a re-render so when we
+                            // navigate through demos the page actually changes
+                            router.replace("/sandbox", undefined, {
+                              shallow: true,
+                            });
+                          }
+                        }}
+                        p="xs"
+                        variant="filled"
+                        sx={(theme) => ({ borderRadius: theme.radius.sm })}
+                        rightSection={
+                          isCurrentlySelected ? (
+                            <IconChevronRight size="0.8rem" stroke={1.5} />
+                          ) : undefined
+                        }
+                        label={name}
+                        active={isCurrentlySelected}
+                      />
+                    );
+                  })}
+                </Stack>
+              </Navbar.Section>
+            </Navbar>
+          }
+          aside={<DemoPortalAside currentDemo={state.currentDemo} />}
+          header={
+            <Header height={{ base: 50, md: 70 }} p="md">
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  height: "100%",
+                }}
+              >
+                <Group spacing={0}>
+                  <MediaQuery largerThan="sm" styles={{ display: "none" }}>
+                    <Burger
+                      opened={opened}
+                      onClick={() => setOpened((o) => !o)}
+                      size="sm"
+                      color={theme.colors.gray[6]}
+                      mr="md"
                     />
-                  );
-                })}
-              </Stack>
-            </Navbar.Section>
-          </Navbar>
-        }
-        aside={<DemoPortalAside currentDemo={state.currentDemo} />}
-        header={
-          <Header height={{ base: 50, md: 70 }} p="md">
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
-                height: "100%",
-              }}
-            >
-              <Group spacing={0}>
-                <MediaQuery largerThan="sm" styles={{ display: "none" }}>
-                  <Burger
-                    opened={opened}
-                    onClick={() => setOpened((o) => !o)}
-                    size="sm"
-                    color={theme.colors.gray[6]}
-                    mr="md"
+                  </MediaQuery>
+                  <MediaQuery smallerThan="sm" styles={{ display: "none" }}>
+                    <Title order={5}>{state.portalName}</Title>
+                  </MediaQuery>
+                </Group>
+                <Group>
+                  <SegmentedControl
+                    size="xs"
+                    color="blue"
+                    value={state.showCode ? "show-code" : "hide-code"}
+                    data={[
+                      { label: "Show Code", value: "show-code" },
+                      { label: "Hide Code", value: "hide-code" },
+                    ]}
+                    onChange={(value) => {
+                      state.setShowCode(value === "show-code");
+                    }}
                   />
-                </MediaQuery>
-                <MediaQuery smallerThan="sm" styles={{ display: "none" }}>
-                  <Title order={5}>{state.portalName}</Title>
-                </MediaQuery>
-              </Group>
-              <Group>
-                <SegmentedControl
-                  size="xs"
-                  color="blue"
-                  value={state.showCode ? "show-code" : "hide-code"}
-                  data={[
-                    { label: "Show Code", value: "show-code" },
-                    { label: "Hide Code", value: "hide-code" },
-                  ]}
-                  onChange={(value) => {
-                    state.setShowCode(value === "show-code");
-                  }}
-                />
-                <ActionIcon
-                  variant="default"
-                  onClick={() => toggleColorScheme()}
-                  size={30}
-                >
-                  {colorScheme === "dark" ? (
-                    <IconSun size="1rem" />
-                  ) : (
-                    <IconMoonStars size="1rem" />
-                  )}
-                </ActionIcon>
-              </Group>
-            </div>
-          </Header>
-        }
-      >
-        {/* We have to render all demos states at the start so they can each initialize their cells */}
-        {state.demos.map((demo, i) => {
-          return (
-            <Box
-              key={demo.name}
-              display={state.currentDemoIndex !== i ? "none" : undefined}
-            >
-              <DemoMarkdown state={demo} />
-            </Box>
-          );
-        })}
-      </AppShell>
-    </>
-  );
-});
+                  <ActionIcon
+                    variant="default"
+                    onClick={() => toggleColorScheme()}
+                    size={30}
+                  >
+                    {colorScheme === "dark" ? (
+                      <IconSun size="1rem" />
+                    ) : (
+                      <IconMoonStars size="1rem" />
+                    )}
+                  </ActionIcon>
+                </Group>
+              </div>
+            </Header>
+          }
+        >
+          {/* We have to render all demos states at the start so they can each initialize their cells */}
+          {state.demos.map((demo, i) => {
+            return (
+              <Box
+                key={demo.name}
+                display={state.currentDemoIndex !== i ? "none" : undefined}
+              >
+                <DemoMarkdown state={demo} />
+              </Box>
+            );
+          })}
+        </AppShell>
+      </>
+    );
+  }
+);

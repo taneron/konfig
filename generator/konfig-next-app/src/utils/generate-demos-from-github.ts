@@ -2,11 +2,7 @@ import { App } from "octokit";
 import { Demo, Organization, Portal } from "./demos";
 import * as yaml from "js-yaml";
 import { z } from "zod";
-import remarkDirective from "remark-directive";
-import remarkDirectiveRehype from "remark-directive-rehype";
-import remarkParse from "remark-parse";
-import { unified } from "unified";
-import { toString } from "mdast-util-to-string";
+import { generateDemosFromFilenameAndContent } from "./generate-demos-from-file-name-and-content";
 
 /**
  * Custom mappings to preserve existing links for SnapTrade
@@ -34,6 +30,8 @@ const demoYamlSchema = z.object({
     .optional(),
 });
 
+export type DemoYaml = z.infer<typeof demoYamlSchema>;
+
 async function _findRepository({
   gitHub,
   eachRepository,
@@ -57,7 +55,7 @@ export function computeCacheKey({
 }: Omit<GenerationInput, "demoId">): string {
   return `${orgId}-${portalId}`;
 }
-type FetchResult = {
+export type FetchResult = {
   organization: Organization;
   portal: Portal;
   demos: Demo[];
@@ -201,29 +199,13 @@ async function _fetch({
 
   const markdownFiles = files.filter(({ name }) => name.endsWith(".md"));
 
-  const demos: Demo[] = [];
-
-  const processor = unified()
-    .use(remarkParse)
-    .use(remarkDirective)
-    .use(remarkDirectiveRehype);
-
-  await Promise.all(
+  const content = await Promise.all(
     markdownFiles.map(async ({ path, name: fileName }) => {
-      const { content: markdown } = await getContent({ path });
-
-      const mdast = processor.parse(markdown);
-
-      // find first heading text and use that as name
-      const node = mdast.children.find(({ type }) => type === "heading");
-      const demoName = toString(node);
-
-      // compute id from filename by removing extension
-      const id = fileName.replace(/\.[^/.]+$/, "");
-
-      demos.push({ id, name: demoName, markdown });
+      return { content: (await getContent({ path })).content, fileName };
     })
   );
+
+  const demos = generateDemosFromFilenameAndContent({ demos: content });
 
   demos.sort((a, b) => {
     if (parsedDemoYaml.demos)
