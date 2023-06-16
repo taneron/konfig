@@ -14,6 +14,9 @@ import { v4 as uuid } from "uuid";
 import dayjs from "dayjs";
 import { SandboxContext } from "./DemoPortal";
 import { captureSaveOutput } from "@/utils/capture-save-output";
+import { visit } from "unist-util-visit";
+import { Element } from "hast-util-to-text/lib";
+import { extractLanguageFromElement } from "./DemoCode";
 
 export const FormContext = createContext<
   ReturnType<typeof createFormContext>[1] | null
@@ -274,9 +277,19 @@ const _Form: Components["form"] = ({
   }, {} as { [key: string]: (value: string) => string | null });
 
   // Find the first section of code that is a Python snippet
-  const firstPreNode = node.children.find((child) => {
-    return child.type === "element" && child.tagName === "pre";
-  });
+  let firstPreNode: Element | undefined;
+  visit(
+    node,
+    (node) => {
+      const element = node as Element;
+      return element.type === "element" && element.tagName === "code";
+    },
+    (node) => {
+      const element = node as Element;
+      const language = extractLanguageFromElement(element);
+      if (language === "python") firstPreNode = element;
+    }
+  );
 
   const form = useForm({ initialValues, validate });
 
@@ -428,7 +441,7 @@ const _Form: Components["form"] = ({
                 ...(sandbox
                   ? {
                       sandbox: {
-                        code: toText(firstPreNode),
+                        code: toText(firstPreNode, { whitespace: "pre" }),
                       },
                     }
                   : {}),
