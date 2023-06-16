@@ -9,7 +9,6 @@ import {
 } from "@/utils/generate-demos-from-file-name-and-content";
 import { Organization, Portal } from "@/utils/demos";
 import { DemoPortal, PortalState } from "@/components/DemoPortal";
-import { useEffect, useState } from "react";
 import * as yaml from "js-yaml";
 import { demoYamlSchema } from "@/utils/generate-demos-from-github";
 import { notifications } from "@mantine/notifications";
@@ -92,10 +91,6 @@ class SandboxState {
   setDirectoryHandle(directoryHandle: any) {
     this.directoryHandle.set(directoryHandle);
   }
-
-  get currentDemoIndex() {
-    return this.portalState?.currentDemoIndex;
-  }
 }
 
 const state = new SandboxState();
@@ -109,13 +104,15 @@ const DemoPortalWrapper = observer(() => {
         if (files === undefined) return;
 
         // Preserve current demo index
-        const currentDemoIndex = state.currentDemoIndex;
+        const currentDemoIndex = state.portalState?.currentDemoIndex;
+        const showCode = state.portalState?.showCode;
 
         state.setFiles(files);
 
         // Restore current demo index
         if (currentDemoIndex !== undefined)
           state.portalState?.setCurrentDemoIndex(currentDemoIndex);
+        if (showCode !== undefined) state.portalState?.setShowCode(showCode);
 
         notifications.show({
           id: "refresh-sandbox",
