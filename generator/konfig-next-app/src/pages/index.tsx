@@ -22,12 +22,17 @@ export default function Home({}: InferGetServerSidePropsType<
             <NavLink
               onClick={() => router.push("/snaptrade/snaptrade-demos")}
               label="SnapTrade"
-              description="https://snaptrade.com/"
+              description="https://snaptrade.com"
             />
             <NavLink
               onClick={() => router.push("/konfig-dev/konfig-demo-docs")}
               label="Konfig"
-              description="https://apidemo.konfigthis.com/"
+              description="https://apidemo.konfigthis.com"
+            />
+            <NavLink
+              onClick={() => router.push("/konfig-dev/drdroid-sdks")}
+              label="Dr. Droid"
+              description="https://drdroid.io"
             />
             <NavLink
               onClick={() => router.push("/konfig-dev/acme-sdks")}
