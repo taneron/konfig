@@ -26,7 +26,7 @@ const langDisplayName = {
   ruby: { name: "Ruby" },
   csharp: { name: "C#" },
   php: { name: "PHP" },
-  yaml: { name: "Yaml" },
+  yaml: { name: "YAML" },
   shell: { name: "Shell" },
   go: { name: "Go" },
   java: { name: "Java" },
