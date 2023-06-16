@@ -1,14 +1,28 @@
-import { Box, Code, Collapse, Transition } from "@mantine/core";
-import { Prism } from "@mantine/prism";
+import { Code, Transition } from "@mantine/core";
+import { Prism, PrismProps } from "@mantine/prism";
 import { observer } from "mobx-react";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { Components } from "react-markdown";
 import { DemoStateContext } from "./DemoMarkdown";
+import { Prism as ReactPrism } from "prism-react-renderer";
+
+// this is how you add language support to prism according to:
+// https://github.com/FormidableLabs/prism-react-renderer#custom-language-support
+((typeof global !== "undefined" ? global : window) as any).Prism = ReactPrism;
+require("prismjs/components/prism-csharp");
+require("prismjs/components/prism-ruby");
+require("prismjs/components/prism-php");
+
+type Language = PrismProps["language"];
 
 const langDisplayName = {
-  python: "Python",
-  typescript: "TypeScript",
-} as const;
+  python: { name: "Python" },
+  typescript: { name: "TypeScript" },
+  markdown: { name: "Markdown" },
+  ruby: { name: "Ruby" },
+  csharp: { name: "C#" },
+  php: { name: "PHP" },
+} as Record<Language | "ruby" | "csharp" | "php", { name: string }>;
 
 const _DemoCode: Components["code"] = ({
   node,
@@ -24,16 +38,16 @@ const _DemoCode: Components["code"] = ({
   const match = /language-(\w+)/.exec(className || "");
   if (match === null || inline)
     return (
-      <code {...props} className={className}>
+      <Code {...props} className={className}>
         {children}
-      </code>
+      </Code>
     );
   const language = match[1];
-  if (language !== "python" && language !== "typescript")
+  if (!(language in langDisplayName))
     return (
-      <code {...props} className={className}>
+      <Code block {...props} className={className}>
         {children}
-      </code>
+      </Code>
     );
 
   return (
@@ -49,10 +63,13 @@ const _DemoCode: Components["code"] = ({
             <Prism.Tabs value={language}>
               <Prism.TabsList>
                 <Prism.Tab value={language}>
-                  {langDisplayName[language]}
+                  {
+                    langDisplayName[language as keyof typeof langDisplayName]
+                      .name
+                  }
                 </Prism.Tab>
               </Prism.TabsList>
-              <Prism.Panel value={language} language={language}>
+              <Prism.Panel value={language} language={language as Language}>
                 {String(children).replace(/\n$/, "")}
               </Prism.Panel>
             </Prism.Tabs>
