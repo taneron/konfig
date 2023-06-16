@@ -14,11 +14,17 @@ export function getCellTitlesFromMarkdown({
 
   const titles: string[] = [];
 
-  let heading: Heading;
+  let heading: Heading | null = null;
   mdast.children.forEach((child) => {
     if (child.type === "heading") heading = child;
-    if (child.type === "containerDirective" && child.name === "form")
+    if (
+      heading !== null &&
+      child.type === "containerDirective" &&
+      child.name === "form"
+    ) {
       titles.push(toString(heading));
+      heading = null;
+    }
   });
 
   return titles;
