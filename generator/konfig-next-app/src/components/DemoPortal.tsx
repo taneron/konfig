@@ -162,9 +162,12 @@ export const DemoPortal = observer(
                         "0 0 0 1px rgba(0,0,0,.1), 0 1px 3px rgba(0,0,0,.1)",
                     }
                   : {
-                      color: "white",
-                      backgroundColor: "black",
-                      borderColor: "rgba(255,255,255,.4)",
+                      ":hover": {
+                        backgroundColor: "#151515",
+                      },
+                      color: "#e3e3e3",
+                      backgroundColor: "#151515",
+                      borderColor: "rgba(255,255,255,.15)",
                     }),
               }}
               leftIcon={
