@@ -1,10 +1,10 @@
-import { NumberInput } from '@mantine/core'
-import { Components } from 'react-markdown'
-import { observer } from 'mobx-react'
-import { useContext } from 'react'
-import { FormContext } from './DemoForm'
+import { NumberInput } from "@mantine/core";
+import { Components } from "react-markdown";
+import { observer } from "mobx-react";
+import { useContext } from "react";
+import { FormContext } from "./DemoForm";
 
-const _DemoNumberInput: Components['input'] = ({
+const _DemoNumberInput: Components["input"] = ({
   node,
   children,
   size,
@@ -16,25 +16,26 @@ const _DemoNumberInput: Components['input'] = ({
   step,
   ...props
 }) => {
-  const useFormContext = useContext(FormContext)
-  const form = useFormContext?.()
-  const name = node.properties?.name
+  const useFormContext = useContext(FormContext);
+  const form = useFormContext?.();
+  const name = node.properties?.name;
   const inputProps =
-    form !== undefined && typeof name === 'string'
+    form !== undefined && typeof name === "string"
       ? form.getInputProps(name)
-      : undefined
-  const { precision, ...extractedProps } = props as any
+      : undefined;
+  const { precision, ...extractedProps } = props as any;
+  const optional = node.properties?.optional !== undefined;
 
   return (
     <NumberInput
-      max={max ? parseFloat(max.toString()) : undefined}
-      min={min ? parseFloat(min.toString()) : undefined}
+      withAsterisk={!optional ? true : undefined}
+      defaultValue={defaultValue}
       step={step ? parseFloat(step.toString()) : undefined}
       precision={precision ? parseFloat(precision.toString()) : undefined}
       {...extractedProps}
       {...inputProps}
     />
-  )
-}
+  );
+};
 
-export const DemoNumberInput = observer(_DemoNumberInput)
+export const DemoNumberInput = observer(_DemoNumberInput);

@@ -1,4 +1,4 @@
-const regexPattern = /::SAVE\[(.*)\]\/(.*)/;
+const regexPattern = /^::SAVE\[(.*)\]\/(.*)/;
 export function captureSaveOutput({ line }: { line: string }) {
   const matches = line.match(regexPattern);
 

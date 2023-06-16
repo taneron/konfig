@@ -265,11 +265,42 @@ const _Form: Components["form"] = ({
       const name = child.properties?.["name"];
       const label = child.properties?.["label"];
       const optional = child.properties?.["optional"];
-      if (typeof name === "string" && optional === undefined) {
+      const type = child.properties?.["type"];
+      if (
+        type !== "checkbox" && // checkbox should always be optional as you want to allow box to be unchecked
+        typeof name === "string" &&
+        optional === undefined
+      ) {
         validate[name] = (value) => {
           // check for null because thats what is used when you de-select an
           // option from a select input
           return value === undefined || value === "" || value === null
+            ? `${label} is required`
+            : null;
+        };
+      }
+    } else if (child.type === "element" && child.tagName === "number") {
+      const name = child.properties?.["name"];
+      const label = child.properties?.["label"];
+      const min = child.properties?.["min"];
+      const max = child.properties?.["max"];
+      const optional = child.properties?.["optional"];
+      if (typeof name === "string") {
+        validate[name] = (value) => {
+          if (typeof min === "string") {
+            if (parseFloat(min) > parseFloat(value)) {
+              return `${label} must be greater than ${min}`;
+            }
+          }
+          if (typeof max === "string") {
+            if (parseFloat(max) > parseFloat(value)) {
+              return `${label} must be less than ${max}`;
+            }
+          }
+          // check for null because thats what is used when you de-select an
+          // option from a select input
+          return optional === undefined &&
+            (value === undefined || value === "" || value === null)
             ? `${label} is required`
             : null;
         };

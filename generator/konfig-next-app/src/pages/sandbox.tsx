@@ -72,7 +72,7 @@ class SandboxState {
   get portal(): Portal {
     return {
       id: "demo",
-      portalName: "Sandbox Demo",
+      portalName: "Sandbox",
       demos: this.demos,
     };
   }

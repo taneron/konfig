@@ -15,6 +15,7 @@ require("prismjs/components/prism-csharp");
 require("prismjs/components/prism-ruby");
 require("prismjs/components/prism-php");
 require("prismjs/components/prism-shell-session");
+require("prismjs/components/prism-java");
 
 type Language = PrismProps["language"];
 
@@ -27,7 +28,12 @@ const langDisplayName = {
   php: { name: "PHP" },
   yaml: { name: "Yaml" },
   shell: { name: "Shell" },
-} as Record<Language | "ruby" | "csharp" | "php" | "shell", { name: string }>;
+  go: { name: "Go" },
+  java: { name: "Java" },
+} as Record<
+  Language | "ruby" | "csharp" | "php" | "shell" | "java",
+  { name: string }
+>;
 
 export const extractLanguageFromClassName = (className?: string) =>
   /language-(\w+)/.exec(className || "");
@@ -132,6 +138,21 @@ const _DemoCode: Components["code"] = ({
       <Code block {...props} className={className}>
         {children}
       </Code>
+    );
+  }
+
+  if (language === "markdown") {
+    return (
+      <Prism.Tabs value={language}>
+        <Prism.TabsList>
+          <Prism.Tab value={language}>
+            {langDisplayName[language as keyof typeof langDisplayName].name}
+          </Prism.Tab>
+        </Prism.TabsList>
+        <Prism.Panel value={language} language={language as Language}>
+          {String(children).replace(/\n$/, "")}
+        </Prism.Panel>
+      </Prism.Tabs>
     );
   }
 
