@@ -2,7 +2,7 @@ import { Button, Center } from "@mantine/core";
 import { observer } from "mobx-react";
 import Head from "next/head";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
-import { makeAutoObservable } from "mobx";
+import { makeAutoObservable, observable } from "mobx";
 import {
   DemoInput,
   generateDemosFromFilenameAndContent,
@@ -23,15 +23,13 @@ export const getServerSideProps: GetServerSideProps<{}> =
     return { props: {} };
   };
 
-let directoryHandle: any;
-
 async function open(parameters?: { showPicker?: boolean }) {
   try {
     if (parameters?.showPicker !== false)
-      directoryHandle = await (window as any).showDirectoryPicker();
+      state.setDirectoryHandle(await (window as any).showDirectoryPicker());
     const files: DemoInput[] = [];
 
-    for await (const entry of directoryHandle.values()) {
+    for await (const entry of state.directoryHandle.get().values()) {
       if (entry.kind !== "file") {
         continue;
       }
@@ -44,6 +42,7 @@ async function open(parameters?: { showPicker?: boolean }) {
 
 class SandboxState {
   files: DemoInput[] = [];
+  directoryHandle = observable.box<any>();
 
   constructor() {
     makeAutoObservable(this);
@@ -78,28 +77,66 @@ class SandboxState {
       demos: this.demos,
     };
   }
+
+  get portalState() {
+    if (state.demos.length === 0) return null;
+    const portalState = new PortalState({
+      ...state.portal,
+      portalId: "demos",
+      organizationId: state.organization.id,
+      demoId: state.demos[0].id,
+    });
+    return portalState;
+  }
+
+  setDirectoryHandle(directoryHandle: any) {
+    this.directoryHandle.set(directoryHandle);
+  }
+
+  get currentDemoIndex() {
+    return this.portalState?.currentDemoIndex;
+  }
 }
 
+const state = new SandboxState();
+
+const DemoPortalWrapper = observer(() => {
+  if (state.portalState === null) return null;
+  return (
+    <DemoPortal
+      refreshSandbox={async () => {
+        const files = await open({ showPicker: false });
+        if (files === undefined) return;
+
+        // Preserve current demo index
+        const currentDemoIndex = state.currentDemoIndex;
+
+        state.setFiles(files);
+
+        // Restore current demo index
+        if (currentDemoIndex !== undefined)
+          state.portalState?.setCurrentDemoIndex(currentDemoIndex);
+
+        notifications.show({
+          id: "refresh-sandbox",
+          title: "Sandbox Refreshed",
+          message: "Files successfully reloaded from local file system",
+          autoClose: 3000,
+        });
+      }}
+      sandbox
+      state={state.portalState}
+    />
+  );
+});
+
 const MarkdownSandboxPage = observer(() => {
-  const [portalState, setPortalState] = useState<PortalState>();
-  const [state] = useState(new SandboxState());
-  useEffect(() => {
-    if (state.demos.length === 0) return;
-    setPortalState(
-      new PortalState({
-        ...state.portal,
-        portalId: "demos",
-        organizationId: state.organization.id,
-        demoId: state.demos[0].id,
-      })
-    );
-  }, [state.demos, state.organization, state.portal]);
   return (
     <>
       <Head>
         <title>Demo Sandbox | Konfig</title>
       </Head>
-      {!portalState && (
+      {state.directoryHandle.get() === undefined && (
         <Center pt="xl">
           <Button
             onClick={async () => {
@@ -112,23 +149,7 @@ const MarkdownSandboxPage = observer(() => {
           </Button>
         </Center>
       )}
-      {portalState && (
-        <DemoPortal
-          refreshSandbox={async () => {
-            const files = await open({ showPicker: false });
-            if (files === undefined) return;
-            state.setFiles(files);
-            notifications.show({
-              id: "refresh-sandbox",
-              title: "Sandbox Refreshed",
-              message: "Files successfully reloaded from local file system",
-              autoClose: 3000,
-            });
-          }}
-          sandbox
-          state={portalState}
-        />
-      )}
+      {state.directoryHandle.get() !== undefined && <DemoPortalWrapper />}
     </>
   );
 });
