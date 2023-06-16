@@ -1,7 +1,6 @@
 import {
   createStyles,
   Container,
-  Mark,
   Stack,
   Button,
   Title,
@@ -9,6 +8,7 @@ import {
   Text,
   rem,
   AspectRatio,
+  Anchor,
 } from "@mantine/core";
 import { FeaturesAsymmetrical } from "../FeaturesAsymmetrical/FeaturesAsymmetrical";
 
@@ -79,16 +79,13 @@ export function HeroBullets() {
         <div className={classes.inner}>
           <div className={classes.content}>
             <Title className={classes.title}>
-              Build <span className={classes.highlight}>Bespoke</span> <br />{" "}
-              Demos for your API
+              Build <span className={classes.highlight}>Interactive</span>{" "}
+              <br /> Demos for your API
             </Title>
             <Text color="dimmed" mt="md">
               Konfig makes it easy for you to impress buyers with your API.
               Easily build interactive notebook-style demos that are runnable in
-              the browser and{" "}
-              <Mark color="red">
-                stop using clunky developer tools to demo your API.
-              </Mark>
+              the browser.
             </Text>
 
             <Group mt={30}>
@@ -101,6 +98,12 @@ export function HeroBullets() {
               >
                 Schedule a Demo
               </Button>
+              <Anchor
+                href="https://demo.konfigthis.com/konfig-dev/konfig-demo-docs"
+                target="_blank"
+              >
+                Try it yourself
+              </Anchor>
             </Group>
           </div>
           <Stack align="center" spacing="xs">

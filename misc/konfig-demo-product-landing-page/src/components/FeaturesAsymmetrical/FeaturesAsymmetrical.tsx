@@ -71,7 +71,7 @@ function Feature({
 const mockdata = [
   {
     icon: IconUserX,
-    title: "No Developer Required",
+    title: "Non-Technical Friendly",
     description:
       "No developer is required to operate the demo. Easily demo custom flows for your API in the browser.",
   },
@@ -85,7 +85,7 @@ const mockdata = [
     icon: IconCube,
     title: "Sleek",
     description:
-      "Stop using clunky developer tools to demo your API. Impress your customers with a sleek demo.",
+      "Stop using clunky developer tools to document your API. Impress your customers with interactive and sleek demos.",
   },
 ];
 
