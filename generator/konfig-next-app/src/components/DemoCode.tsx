@@ -14,6 +14,7 @@ import { Element } from "hast-util-to-text/lib";
 require("prismjs/components/prism-csharp");
 require("prismjs/components/prism-ruby");
 require("prismjs/components/prism-php");
+require("prismjs/components/prism-shell-session");
 
 type Language = PrismProps["language"];
 
@@ -24,7 +25,9 @@ const langDisplayName = {
   ruby: { name: "Ruby" },
   csharp: { name: "C#" },
   php: { name: "PHP" },
-} as Record<Language | "ruby" | "csharp" | "php", { name: string }>;
+  yaml: { name: "Yaml" },
+  shell: { name: "Shell" },
+} as Record<Language | "ruby" | "csharp" | "php" | "shell", { name: string }>;
 
 export const extractLanguageFromClassName = (className?: string) =>
   /language-(\w+)/.exec(className || "");
@@ -116,9 +119,9 @@ const _DemoCode: Components["code"] = ({
 
   if (inline) return <Code>{children}</Code>;
   const match = extractLanguageFromClassName(className);
-  if (match === null || inline) {
+  if (match === null) {
     return (
-      <Code {...props} className={className}>
+      <Code color="dark" block {...props} className={className}>
         {children}
       </Code>
     );
