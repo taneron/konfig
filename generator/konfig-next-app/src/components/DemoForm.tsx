@@ -32,7 +32,6 @@ export class CellState {
   demoState: DemoState | null;
   skippable: boolean;
   id = uuid();
-  savedData: Record<string, string[]> = {};
   debug?: string;
 
   constructor({
@@ -105,16 +104,28 @@ export class CellState {
       .join("\n");
   }
 
-  private _extractSaved({ output }: { output: string }) {
+  setSaved({ output }: { output: string }) {
+    if (this.demoState === null) return;
     const saved = output
       .split("\n")
       .filter((line) => captureSaveOutput({ line }) !== undefined)
       .map((line) => captureSaveOutput({ line }));
-    saved.forEach((saved) => {
-      if (saved === undefined) return;
-      this.savedData[saved.label] = [];
-      this.savedData[saved.label].push(saved.value);
-    });
+
+    const savedData: Record<string, string[]> = {};
+    for (const output of saved) {
+      if (output === undefined) continue;
+      savedData[output.label] = [];
+    }
+
+    for (const output of saved) {
+      if (output === undefined) continue;
+      savedData[output.label].push(output.value);
+    }
+
+    for (const label in savedData) {
+      this.demoState.setSavedData({ label, values: savedData[label] });
+    }
+
     return saved;
   }
 
@@ -160,8 +171,7 @@ export class CellState {
       this.setRunState("Error");
       return;
     }
-    const saved = this._extractSaved({ output: response.output });
-    console.log(saved);
+    this.setSaved({ output: response.output });
     this.setOutput(response.output);
     this.setRunning(false);
     this.setShow(true);
@@ -274,6 +284,14 @@ const _Form: Components["form"] = ({
     node.children.forEach((child) => {
       if (child.type === "element") {
         if (inputTagNames.includes(child.tagName)) {
+          // if tag name is enum then don't populate default value if it is using savedData and not data
+          if (child.tagName === "enum") {
+            const data = child.properties?.["data"];
+            const savedData = child.properties?.["savedData"];
+            if (savedData !== undefined && data === undefined)
+              return initialValues;
+          }
+
           const name = child.properties?.["name"];
           if (typeof name === "string") {
             const stored = localStorage.getItem(name);

@@ -1,4 +1,4 @@
-import { makeAutoObservable } from "mobx";
+import { makeAutoObservable, observable } from "mobx";
 import ReactMarkdown from "react-markdown";
 import remarkDirective from "remark-directive";
 import remarkDirectiveRehype from "remark-directive-rehype";
@@ -25,6 +25,8 @@ export class DemoState {
   cells: CellState[] = [];
   markdown: string = "";
   portal: PortalState;
+  savedData: Record<string, string[] | undefined> = {};
+
   constructor(parameters: {
     markdown: string;
     name: string;
@@ -44,6 +46,10 @@ export class DemoState {
   pushCell({ cell }: { cell: CellState }) {
     this.cells.push(cell);
     return cell;
+  }
+
+  setSavedData({ label, values }: { label: string; values: string[] }) {
+    this.savedData[label] = values;
   }
 
   async init() {
