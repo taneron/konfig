@@ -24,7 +24,7 @@ const _DemoButton: Components["button"] = ({
     <>
       <Collapse in={cell.show}>
         <Code mah={500} sx={{ overflowY: "scroll" }} color="gray" block>
-          {cell.output}
+          {cell.processedOutput}
         </Code>
       </Collapse>
       <MantineButton

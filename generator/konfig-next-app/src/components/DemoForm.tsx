@@ -13,6 +13,7 @@ import { Position } from "unist-util-position/lib";
 import { v4 as uuid } from "uuid";
 import dayjs from "dayjs";
 import { SandboxContext } from "./DemoPortal";
+import { captureSaveOutput } from "@/utils/capture-save-output";
 
 export const FormContext = createContext<
   ReturnType<typeof createFormContext>[1] | null
@@ -31,6 +32,7 @@ export class CellState {
   demoState: DemoState | null;
   skippable: boolean;
   id = uuid();
+  savedData: Record<string, string[]> = {};
   debug?: string;
 
   constructor({
@@ -93,6 +95,29 @@ export class CellState {
     this.runState = value;
   }
 
+  /**
+   * Removes save labels from output
+   */
+  get processedOutput() {
+    return this.output
+      .split("\n")
+      .filter((line) => captureSaveOutput({ line }) === undefined)
+      .join("\n");
+  }
+
+  private _extractSaved({ output }: { output: string }) {
+    const saved = output
+      .split("\n")
+      .filter((line) => captureSaveOutput({ line }) !== undefined)
+      .map((line) => captureSaveOutput({ line }));
+    saved.forEach((saved) => {
+      if (saved === undefined) return;
+      this.savedData[saved.label] = [];
+      this.savedData[saved.label].push(saved.value);
+    });
+    return saved;
+  }
+
   async run({
     position,
     environmentVariables,
@@ -135,6 +160,8 @@ export class CellState {
       this.setRunState("Error");
       return;
     }
+    const saved = this._extractSaved({ output: response.output });
+    console.log(saved);
     this.setOutput(response.output);
     this.setRunning(false);
     this.setShow(true);
