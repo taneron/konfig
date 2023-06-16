@@ -19,8 +19,15 @@ import {
   PingSessionResponse,
   ExecuteSandboxCodeRequest,
 } from "@/utils/schemas";
-import { generateDemosDataFromGithub } from "@/utils/generate-demos-from-github";
+import {
+  FetchResult,
+  generateDemosDataFromGithub,
+} from "@/utils/generate-demos-from-github";
 import { TRPCError } from "@trpc/server";
+
+export type FetchCache = Record<string, FetchResult>;
+
+export const _cache: FetchCache = {};
 
 export const appRouter = router({
   startSession: procedure.output(StartSessionResponse).query(async () => {
@@ -65,6 +72,7 @@ export const appRouter = router({
         orgId: input.organizationId,
         portalId: input.portalId,
         demoId: input.demoId,
+        _cache,
       });
 
       if (generation.result === "error") {

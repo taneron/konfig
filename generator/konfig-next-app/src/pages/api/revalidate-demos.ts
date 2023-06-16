@@ -1,3 +1,4 @@
+import { _cache } from "@/server/routers/_app";
 import {
   generateDemosDataFromGithub,
   invalidateDemoGenerationCache,
@@ -16,6 +17,11 @@ export default async function handler(
 ) {
   const { organizationId, portalId } = requestBodySchema.parse(req.body);
 
+  invalidateDemoGenerationCache({
+    orgId: organizationId,
+    portalId,
+    _cache,
+  });
   const generation = await generateDemosDataFromGithub({
     orgId: organizationId,
     portalId,
@@ -30,7 +36,6 @@ export default async function handler(
       const path = `/${organizationId}/${portalId}/${demo.id}`;
       await res.revalidate(path);
       pathsRevalidated.push(path);
-      invalidateDemoGenerationCache({ orgId: organizationId, portalId });
     } catch (err) {
       // If there was an error, Next.js will continue
       // to show the last successfully generated page

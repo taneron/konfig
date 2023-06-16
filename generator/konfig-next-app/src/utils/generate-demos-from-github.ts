@@ -3,6 +3,7 @@ import { Demo, Organization, Portal } from "./demos";
 import * as yaml from "js-yaml";
 import { z } from "zod";
 import { generateDemosFromFilenameAndContent } from "./generate-demos-from-file-name-and-content";
+import { FetchCache } from "@/server/routers/_app";
 
 /**
  * Custom mappings to preserve existing links for SnapTrade
@@ -51,9 +52,11 @@ async function _findRepository({
 export function invalidateDemoGenerationCache({
   orgId,
   portalId,
+  _cache,
 }: {
   orgId: string;
   portalId: string;
+  _cache: FetchCache;
 }) {
   delete _cache[computeCacheKey({ orgId, portalId })];
 }
@@ -68,7 +71,6 @@ export type FetchResult = {
   portal: Portal;
   demos: Demo[];
 };
-const _cache: Record<string, FetchResult> = {};
 
 export type GenerationResult =
   | {
@@ -84,12 +86,14 @@ export type GenerationInput = {
   orgId: string;
   portalId: string;
   demoId?: string;
+  _cache?: FetchCache;
 };
 
 export async function generateDemosDataFromGithub({
   orgId,
   portalId,
   demoId,
+  _cache,
 }: GenerationInput): Promise<
   | {
       result: "success";
@@ -101,9 +105,12 @@ export async function generateDemosDataFromGithub({
   | { result: "error"; reason: "demo not found" }
 > {
   const cacheKey = computeCacheKey({ orgId, portalId });
-  const fetchResult =
-    cacheKey in _cache ? _cache[cacheKey] : await _fetch({ orgId, portalId });
-  _cache[cacheKey] = fetchResult;
+  const inCache = _cache !== undefined ? cacheKey in _cache : false;
+  const fetchResult: FetchResult =
+    inCache && _cache !== undefined
+      ? _cache[cacheKey]
+      : await _fetch({ orgId, portalId });
+  if (_cache !== undefined) _cache[cacheKey] = fetchResult;
 
   const { demos, organization, portal } = fetchResult;
 
