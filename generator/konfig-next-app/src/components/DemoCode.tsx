@@ -141,7 +141,7 @@ const _DemoCode: Components["code"] = ({
     );
   }
 
-  if (language === "markdown") {
+  if (language === "markdown" || language === "yaml") {
     return (
       <Prism.Tabs value={language}>
         <Prism.TabsList>
