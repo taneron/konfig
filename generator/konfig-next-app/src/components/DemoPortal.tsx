@@ -18,6 +18,7 @@ import {
   useMantineTheme,
   Box,
   Button,
+  Image,
 } from "@mantine/core";
 import {
   IconBug,
@@ -123,26 +124,55 @@ export const DemoPortal = observer(
 
     return (
       <SandboxContext.Provider value={!!sandbox}>
-        <Affix position={{ bottom: "0.5rem", right: "1rem" }}>
-          <HoverCard width={280} shadow="md">
-            <HoverCard.Target>
-              <ThemeIcon size="xs" color="gray">
-                <IconBug />
-              </ThemeIcon>
-            </HoverCard.Target>
-            <HoverCard.Dropdown>
-              <Text size="sm">
-                {JSON.stringify(
-                  state.demos.map((demo) => ({
-                    name: demo.name,
-                    sessionId: demo.sessionId,
-                  })),
-                  undefined,
-                  2
-                )}
-              </Text>
-            </HoverCard.Dropdown>
-          </HoverCard>
+        {sandbox && (
+          <Affix position={{ bottom: "0.5rem", right: "1rem" }}>
+            <HoverCard width={280} shadow="md">
+              <HoverCard.Target>
+                <ThemeIcon size="xs" color="gray">
+                  <IconBug />
+                </ThemeIcon>
+              </HoverCard.Target>
+              <HoverCard.Dropdown>
+                <Text size="sm">
+                  {JSON.stringify(
+                    state.demos.map((demo) => ({
+                      name: demo.name,
+                      sessionId: demo.sessionId,
+                    })),
+                    undefined,
+                    2
+                  )}
+                </Text>
+              </HoverCard.Dropdown>
+            </HoverCard>
+          </Affix>
+        )}
+        <Affix position={{ bottom: "1rem", left: "1rem" }}>
+          <Button
+            variant={colorScheme === "light" ? "white" : undefined}
+            size="xs"
+            component="a"
+            href="https://apidemo.konfigthis.com"
+            sx={{
+              ...(colorScheme === "light"
+                ? {
+                    color: "black",
+                    boxShadow:
+                      "0 0 0 1px rgba(0,0,0,.1), 0 1px 3px rgba(0,0,0,.1)",
+                  }
+                : {
+                    color: "white",
+                    backgroundColor: "black",
+                    borderColor: "rgba(255,255,255,.4)",
+                  }),
+            }}
+            leftIcon={
+              <Image alt="Logo" width={20} height={20} src="/logo.png" />
+            }
+            target="_blank"
+          >
+            Made with Konfig
+          </Button>
         </Affix>
         <AppShell
           styles={{
@@ -159,6 +189,7 @@ export const DemoPortal = observer(
               hiddenBreakpoint="sm"
               hidden={!opened}
               width={{ sm: 225, lg: 325 }}
+              sx={{ overflowY: "scroll" }}
             >
               <Navbar.Section mt="xs">
                 <Stack spacing="xs">
