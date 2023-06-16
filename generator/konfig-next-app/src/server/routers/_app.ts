@@ -45,8 +45,10 @@ export const appRouter = router({
     .input(ExecuteSandboxCodeRequest)
     .output(ExecuteCodeResponse)
     .query(async ({ input }) => {
-      if (process.env.NODE_ENV !== "development")
-        throw new TRPCError({ code: "UNAUTHORIZED" });
+      // TODO: Add authentication + isolate repls using fly.io for security
+      // if (process.env.NODE_ENV !== "development")
+      //   throw new TRPCError({ code: "UNAUTHORIZED" });
+
       const url = `${urlForPythonRceApi()}/sessions/execute`;
 
       const { data } = await axios.post(url, {
