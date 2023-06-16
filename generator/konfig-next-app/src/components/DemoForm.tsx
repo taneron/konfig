@@ -261,7 +261,10 @@ const _Form: Components["form"] = ({
 
   // Ensure all non-optional inputs are non-empty
   const validate = node.children.reduce((validate, child) => {
-    if (child.type === "element" && inputTagNames.includes(child.tagName)) {
+    if (
+      child.type === "element" &&
+      (inputTagNames.includes(child.tagName) || child.tagName === "date")
+    ) {
       const name = child.properties?.["name"];
       const label = child.properties?.["label"];
       const optional = child.properties?.["optional"];
