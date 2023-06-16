@@ -34,6 +34,7 @@ import { makeAutoObservable } from "mobx";
 import { useRouter } from "next/router";
 import { DemoPortalAside } from "./DemoPortalAside";
 import { api } from "@/utils/api";
+import { v4 as uuid } from "uuid";
 
 type DemosInput = { name: string; markdown: string; id: string }[];
 
@@ -43,6 +44,7 @@ export class PortalState {
   demos: Demos;
   showCode = false;
   id: string;
+  uuid = uuid();
   portalName: string;
   currentDemoIndex: number;
   organizationId: string;

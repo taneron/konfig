@@ -17,6 +17,7 @@ import { DemoDateInput } from "./DemoDateInput";
 import { DemoNumberInput } from "./DemoNumberInput";
 import { DemoTitle } from "./DemoTitle";
 import { DemoEnum } from "./DemoEnum";
+import { v4 as uuid } from "uuid";
 
 export class DemoState {
   id: string;
@@ -24,6 +25,7 @@ export class DemoState {
   sessionId: string | null = null;
   cells: CellState[] = [];
   markdown: string = "";
+  uuid = uuid();
   portal: PortalState;
   savedData: Record<string, string[] | undefined> = {};
 
