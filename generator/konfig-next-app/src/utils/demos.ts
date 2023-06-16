@@ -744,6 +744,7 @@ export type Demo = {
   id: string;
   name: string;
   markdown: string;
+  showCode?: boolean;
 };
 export type Portal = {
   id: string;

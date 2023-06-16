@@ -34,6 +34,7 @@ export class DemoState {
     name: string;
     portal: PortalState;
     id: string;
+    showCode?: boolean;
   }) {
     makeAutoObservable(this);
     if (parameters && parameters.markdown !== undefined) {
@@ -42,6 +43,7 @@ export class DemoState {
     this.id = parameters.id;
     this.name = parameters.name;
     this.portal = parameters.portal;
+    if (parameters.showCode) this.portal.setShowCode(true);
     this.init();
   }
 

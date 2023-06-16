@@ -32,7 +32,11 @@ export function generateDemosFromFilenameAndContent({
     // compute id from filename by removing extension
     const id = fileName.replace(/\.[^/.]+$/, "");
 
-    result.push({ id, name: demoName, markdown: content });
+    const showCode = !!demoYaml.demos?.find(
+      (demo) => demo.showCode && demo.id === id
+    );
+
+    result.push({ id, name: demoName, markdown: content, showCode });
   });
 
   result.sort((a, b) => {

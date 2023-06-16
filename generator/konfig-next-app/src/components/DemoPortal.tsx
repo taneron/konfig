@@ -35,8 +35,9 @@ import { useRouter } from "next/router";
 import { DemoPortalAside } from "./DemoPortalAside";
 import { api } from "@/utils/api";
 import { v4 as uuid } from "uuid";
+import { Demo } from "@/utils/demos";
 
-type DemosInput = { name: string; markdown: string; id: string }[];
+type DemosInput = Demo[];
 
 type Demos = DemoState[];
 
@@ -71,9 +72,10 @@ export class PortalState {
     this.portalId = portalId;
     this.organizationId = organizationId;
     this.demos = demos.map(
-      ({ name, markdown, id }) =>
-        new DemoState({ markdown, name, portal: this, id })
+      ({ name, markdown, id, showCode }) =>
+        new DemoState({ markdown, name, portal: this, id, showCode })
     );
+
     this.currentDemoIndex = this.demos.findIndex((demo) => demo.id === demoId);
     if (this.currentDemoIndex === -1)
       throw Error(`Could not find demo with id ${demoId}`);

@@ -26,6 +26,7 @@ export const demoYamlSchema = z.object({
   demos: z
     .object({
       id: z.string(),
+      showCode: z.boolean().optional(),
     })
     .array()
     .optional(),
