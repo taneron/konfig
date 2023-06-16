@@ -1,4 +1,4 @@
-import { Button, Center, Container } from "@mantine/core";
+import { Button, Center } from "@mantine/core";
 import { observer } from "mobx-react";
 import Head from "next/head";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
@@ -11,7 +11,8 @@ import { Organization, Portal } from "@/utils/demos";
 import { DemoPortal, PortalState } from "@/components/DemoPortal";
 import { useEffect, useState } from "react";
 import * as yaml from "js-yaml";
-import { DemoYaml, demoYamlSchema } from "@/utils/generate-demos-from-github";
+import { demoYamlSchema } from "@/utils/generate-demos-from-github";
+import { notifications } from "@mantine/notifications";
 
 /**
  * This is here to force this page to be SSR only so Next.js doesn't try to make
@@ -117,6 +118,12 @@ const MarkdownSandboxPage = observer(() => {
             const files = await open({ showPicker: false });
             if (files === undefined) return;
             state.setFiles(files);
+            notifications.show({
+              id: "refresh-sandbox",
+              title: "Sandbox Refreshed",
+              message: "Files successfully reloaded from local file system",
+              autoClose: 3000,
+            });
           }}
           sandbox
           state={portalState}

@@ -1,24 +1,25 @@
-import { AppProps } from 'next/app'
-import Head from 'next/head'
+import { AppProps } from "next/app";
+import Head from "next/head";
 import {
   ColorScheme,
   ColorSchemeProvider,
   MantineProvider,
-} from '@mantine/core'
-import { useLocalStorage } from '@mantine/hooks'
-import { trpc } from '../utils/trpc'
-import '@/styles/globals.css'
+} from "@mantine/core";
+import { useLocalStorage } from "@mantine/hooks";
+import { trpc } from "../utils/trpc";
+import "@/styles/globals.css";
+import { Notifications } from "@mantine/notifications";
 
 function App(props: AppProps) {
-  const { Component, pageProps } = props
+  const { Component, pageProps } = props;
 
   const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({
-    key: 'mantine-color-scheme',
-    defaultValue: 'light',
+    key: "mantine-color-scheme",
+    defaultValue: "light",
     getInitialValueInEffect: true,
-  })
+  });
   const toggleColorScheme = (value?: ColorScheme) =>
-    setColorScheme(value || (colorScheme === 'dark' ? 'light' : 'dark'))
+    setColorScheme(value || (colorScheme === "dark" ? "light" : "dark"));
 
   return (
     <>
@@ -39,11 +40,12 @@ function App(props: AppProps) {
           withGlobalStyles
           withNormalizeCSS
         >
+          <Notifications />
           <Component {...pageProps} />
         </MantineProvider>
       </ColorSchemeProvider>
     </>
-  )
+  );
 }
 
-export default trpc.withTRPC(App)
+export default trpc.withTRPC(App);
