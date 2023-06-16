@@ -322,13 +322,14 @@ const _Form: Components["form"] = ({
   const demoState = useContext(DemoStateContext);
   const sandbox = useContext(SandboxContext);
 
-  const [cell] = useState(
+  const [cell, setCell] = useState(
     new CellState({
       demoState,
       skippable: "skippable" in props,
       debug: (props as any)["debug"],
     })
   );
+
   // Turns out if you want to do something once for a component this is the
   // pattern you should follow to actually ensure that child components can
   // react to state updates
@@ -336,7 +337,30 @@ const _Form: Components["form"] = ({
     if (demoState === null) return;
     if (demoState.cells.includes(cell)) return;
     demoState.pushCell({ cell });
-  }, []);
+  }, [cell]);
+
+  // Make sure to update cell if there is a new demoState.
+  //
+  // This somehow fixed bug where sandbox is refreshed but DemoPortalAside was
+  // not updating.  My hypothesis is that although a new demoState was being
+  // created, this DemoForm's cell state was static so by explicitly updating
+  // the cell to a new cell whenever the demoState is updated, we mitigate that
+  // behavior.
+  //
+  // Regarding the first two "if" statements in the effect, I believe it
+  // essentially ensures the cell is not updated if the demoState already
+  // contains the current cell (i.e. we are good to go for this component).
+  useEffect(() => {
+    if (demoState === null) return;
+    if (demoState.cells.includes(cell)) return;
+    setCell(
+      new CellState({
+        demoState,
+        skippable: "skippable" in props,
+        debug: (props as any)["debug"],
+      })
+    );
+  }, [demoState]);
 
   return (
     <FormContext.Provider value={useFormContext}>
