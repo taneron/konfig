@@ -25,6 +25,10 @@ export default function Home({}: InferGetServerSidePropsType<
               description="https://snaptrade.com/"
             />
             <NavLink
+              onClick={() => router.push("/konfig-dev/acme-sdks")}
+              label="Acme"
+            />
+            <NavLink
               onClick={() => router.push("/sandbox")}
               label="Sandbox"
               description="Create your demo"

@@ -48,7 +48,15 @@ async function _findRepository({
   return null;
 }
 
-export function invalidateDemoGenerationCache() {}
+export function invalidateDemoGenerationCache({
+  orgId,
+  portalId,
+}: {
+  orgId: string;
+  portalId: string;
+}) {
+  delete _cache[computeCacheKey({ orgId, portalId })];
+}
 export function computeCacheKey({
   orgId,
   portalId,
