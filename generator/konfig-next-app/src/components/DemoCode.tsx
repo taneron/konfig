@@ -127,7 +127,7 @@ const _DemoCode: Components["code"] = ({
   const match = extractLanguageFromClassName(className);
   if (match === null) {
     return (
-      <Code color="dark" block {...props} className={className}>
+      <Code block {...props} className={className}>
         {children}
       </Code>
     );

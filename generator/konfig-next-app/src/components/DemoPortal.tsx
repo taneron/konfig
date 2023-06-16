@@ -148,9 +148,7 @@ export const DemoPortal = observer(
           styles={{
             main: {
               background:
-                colorScheme === "dark"
-                  ? theme.colors.dark[8]
-                  : theme.colors.gray[0],
+                colorScheme === "dark" ? theme.colors.dark[8] : undefined,
             },
           }}
           navbarOffsetBreakpoint="sm"
