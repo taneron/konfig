@@ -267,7 +267,9 @@ const _Form: Components["form"] = ({
       const optional = child.properties?.["optional"];
       if (typeof name === "string" && optional === undefined) {
         validate[name] = (value) => {
-          return value === undefined || value === ""
+          // check for null because thats what is used when you de-select an
+          // option from a select input
+          return value === undefined || value === "" || value === null
             ? `${label} is required`
             : null;
         };
