@@ -25,6 +25,11 @@ export default function Home({}: InferGetServerSidePropsType<
               description="https://snaptrade.com/"
             />
             <NavLink
+              onClick={() => router.push("/konfig-dev/konfig-demo-docs")}
+              label="Konfig"
+              description="https://apidemo.konfigthis.com/"
+            />
+            <NavLink
               onClick={() => router.push("/konfig-dev/acme-sdks")}
               label="Acme"
             />
