@@ -147,33 +147,35 @@ export const DemoPortal = observer(
             </HoverCard>
           </Affix>
         )}
-        <Affix position={{ bottom: "1rem", left: "1rem" }}>
-          <Button
-            variant={colorScheme === "light" ? "white" : undefined}
-            size="xs"
-            component="a"
-            href="https://apidemo.konfigthis.com"
-            sx={{
-              ...(colorScheme === "light"
-                ? {
-                    color: "black",
-                    boxShadow:
-                      "0 0 0 1px rgba(0,0,0,.1), 0 1px 3px rgba(0,0,0,.1)",
-                  }
-                : {
-                    color: "white",
-                    backgroundColor: "black",
-                    borderColor: "rgba(255,255,255,.4)",
-                  }),
-            }}
-            leftIcon={
-              <Image alt="Logo" width={20} height={20} src="/logo.png" />
-            }
-            target="_blank"
-          >
-            Made with Konfig
-          </Button>
-        </Affix>
+        <MediaQuery smallerThan="sm" styles={{ display: "none" }}>
+          <Affix position={{ bottom: "1rem", left: "1rem" }}>
+            <Button
+              variant={colorScheme === "light" ? "white" : undefined}
+              size="xs"
+              component="a"
+              href="https://apidemo.konfigthis.com"
+              sx={{
+                ...(colorScheme === "light"
+                  ? {
+                      color: "black",
+                      boxShadow:
+                        "0 0 0 1px rgba(0,0,0,.1), 0 1px 3px rgba(0,0,0,.1)",
+                    }
+                  : {
+                      color: "white",
+                      backgroundColor: "black",
+                      borderColor: "rgba(255,255,255,.4)",
+                    }),
+              }}
+              leftIcon={
+                <Image alt="Logo" width={20} height={20} src="/logo.png" />
+              }
+              target="_blank"
+            >
+              Made with Konfig
+            </Button>
+          </Affix>
+        </MediaQuery>
         <AppShell
           styles={{
             main: {
