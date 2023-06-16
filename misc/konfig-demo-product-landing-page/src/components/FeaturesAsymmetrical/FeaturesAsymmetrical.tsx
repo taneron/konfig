@@ -1,5 +1,10 @@
 import { createStyles, Text, SimpleGrid, Container, rem } from "@mantine/core";
-import { IconDeviceDesktop, IconCube, IconUserX } from "@tabler/icons-react";
+import {
+  IconDeviceDesktop,
+  IconCube,
+  IconUserX,
+  IconUserHeart,
+} from "@tabler/icons-react";
 
 const useStyles = createStyles((theme) => ({
   feature: {
@@ -70,20 +75,20 @@ function Feature({
 
 const mockdata = [
   {
-    icon: IconUserX,
+    icon: IconUserHeart,
     title: "Non-Technical Friendly",
     description:
-      "No developer is required to operate the demo. Easily demo custom flows for your API in the browser.",
+      "No developer is required to operate the demo. Anyone can demo custom flows for your API in the browser.",
   },
   {
     icon: IconDeviceDesktop,
-    title: "Self-service",
+    title: "Use Live Data",
     description:
       "Allow your customers to self-service your API demo with their own inputs. Developers can also copy-paste the demo's source code to accelerate integration.",
   },
   {
     icon: IconCube,
-    title: "Sleek",
+    title: "Less Clicks",
     description:
       "Stop using clunky developer tools to document your API. Impress your customers with interactive and sleek demos.",
   },
