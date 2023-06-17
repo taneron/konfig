@@ -3,6 +3,10 @@ import { useContext } from "react";
 import { Components } from "react-markdown";
 import { DemoStateContext } from "./DemoMarkdown";
 import { Transition } from "@mantine/core";
+import { extractLanguageFromElement } from "./DemoCode";
+import { Element } from "hast-util-to-text/lib";
+
+const DO_NOT_HIDE_LANGUAGES = ["markdown", "yaml"];
 
 const _DemoPre: Components["pre"] = ({
   node,
@@ -11,9 +15,13 @@ const _DemoPre: Components["pre"] = ({
   ...props
 }) => {
   const demoState = useContext(DemoStateContext);
+  const language = extractLanguageFromElement(node.children[0] as Element);
+  const doNotHide =
+    language !== undefined ? DO_NOT_HIDE_LANGUAGES.includes(language) : false;
+  const mounted = doNotHide || (demoState?.portal.showCode ?? false);
   return (
     <Transition
-      mounted={demoState?.portal.showCode ?? false}
+      mounted={mounted}
       transition="pop"
       duration={400}
       timingFunction="ease"
