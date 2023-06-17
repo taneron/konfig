@@ -77,20 +77,18 @@ const mockdata = [
   {
     icon: IconUserHeart,
     title: "Non-Technical Friendly",
-    description:
-      "No developer is required to operate the demo. Anyone can demo custom flows for your API in the browser.",
+    description: "No developer is required to operate the demo",
   },
   {
     icon: IconDeviceDesktop,
     title: "Use Live Data",
     description:
-      "Allow your customers to self-service your API demo with their own inputs. Developers can also copy-paste the demo's source code to accelerate integration.",
+      "Allow your customers to self-service your API demo with their own inputs",
   },
   {
     icon: IconCube,
-    title: "Less Clicks",
-    description:
-      "Stop using clunky developer tools to document your API. Impress your customers with interactive and sleek demos.",
+    title: "Sleek",
+    description: "Stop using clunky developer tools to document your API",
   },
 ];
 

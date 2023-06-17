@@ -1,3 +1,4 @@
+import { FeaturesAsymmetrical } from "@/components/FeaturesAsymmetrical/FeaturesAsymmetrical";
 import { FooterSimple } from "@/components/FooterSimple/FooterSimple";
 import { HeaderSimple } from "@/components/HeaderSimple/HeaderSimple";
 import { HeroBullets } from "@/components/HeroBullets/HeroBullets";
@@ -18,6 +19,7 @@ export default function Home() {
       <main>
         <HeaderSimple />
         <HeroBullets />
+        <FeaturesAsymmetrical />
         <FooterSimple />
       </main>
     </>

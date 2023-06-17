@@ -1,73 +1,94 @@
 import {
   createStyles,
   Container,
-  Stack,
   Button,
   Title,
-  Group,
   Text,
   rem,
-  AspectRatio,
-  Anchor,
 } from "@mantine/core";
-import { FeaturesAsymmetrical } from "../FeaturesAsymmetrical/FeaturesAsymmetrical";
 
 const useStyles = createStyles((theme) => ({
-  inner: {
-    display: "flex",
-    justifyContent: "space-between",
-    paddingTop: `calc(${theme.spacing.xl} * 4)`,
-    paddingBottom: `calc(${theme.spacing.xl} * 2)`,
-    alignItems: "center",
-    [theme.fn.smallerThan("md")]: {
-      flexDirection: "column",
-      gap: rem(50),
+  wrapper: {
+    position: "relative",
+    paddingTop: rem(120),
+    paddingBottom: rem(80),
+
+    [theme.fn.smallerThan("sm")]: {
+      paddingTop: rem(80),
+      paddingBottom: rem(60),
     },
   },
 
-  content: {
-    maxWidth: rem(480),
-    marginRight: `calc(${theme.spacing.xl} * 3)`,
+  inner: {
+    position: "relative",
+    zIndex: 1,
+  },
 
-    [theme.fn.smallerThan("md")]: {
-      maxWidth: "100%",
-      marginRight: 0,
+  dots: {
+    position: "absolute",
+    color:
+      theme.colorScheme === "dark"
+        ? theme.colors.dark[5]
+        : theme.colors.gray[1],
+
+    [theme.fn.smallerThan("sm")]: {
+      display: "none",
     },
+  },
+
+  dotsLeft: {
+    left: 0,
+    top: 0,
   },
 
   title: {
+    textAlign: "center",
+    fontWeight: 800,
+    fontSize: rem(40),
+    letterSpacing: -1,
     color: theme.colorScheme === "dark" ? theme.white : theme.black,
-    fontSize: rem(37),
-    lineHeight: 1.2,
-    fontWeight: 900,
+    marginBottom: theme.spacing.xs,
+    fontFamily: `Greycliff CF, ${theme.fontFamily}`,
 
     [theme.fn.smallerThan("xs")]: {
       fontSize: rem(28),
-    },
-  },
-
-  control: {
-    [theme.fn.smallerThan("xs")]: {
-      flex: 1,
-    },
-  },
-
-  video: {
-    width: "600px",
-    [theme.fn.smallerThan("sm")]: {
-      width: "450px",
+      textAlign: "left",
     },
   },
 
   highlight: {
-    position: "relative",
-    whiteSpace: "nowrap",
-    backgroundColor: theme.fn.variant({
-      variant: "light",
-      color: theme.primaryColor,
-    }).background,
-    borderRadius: theme.radius.sm,
-    padding: `${rem(4)} ${rem(12)}`,
+    color:
+      theme.colors[theme.primaryColor][theme.colorScheme === "dark" ? 4 : 6],
+  },
+
+  description: {
+    textAlign: "center",
+
+    [theme.fn.smallerThan("xs")]: {
+      textAlign: "left",
+      fontSize: theme.fontSizes.md,
+    },
+  },
+
+  controls: {
+    marginTop: theme.spacing.lg,
+    display: "flex",
+    justifyContent: "center",
+
+    [theme.fn.smallerThan("xs")]: {
+      flexDirection: "column",
+    },
+  },
+
+  control: {
+    marginLeft: theme.spacing.md,
+
+    [theme.fn.smallerThan("xs")]: {
+      height: rem(42),
+      fontSize: theme.fontSizes.md,
+      marginTop: theme.spacing.md,
+      marginLeft: 0,
+    },
   },
 }));
 
@@ -75,53 +96,47 @@ export function HeroBullets() {
   const { classes } = useStyles();
   return (
     <div>
-      <Container size="lg">
+      <Container className={classes.wrapper} size={1400}>
         <div className={classes.inner}>
-          <div className={classes.content}>
-            <Title className={classes.title}>
-              Build <span className={classes.highlight}>Interactive</span>{" "}
-              <br /> Demos for your API
-            </Title>
-            <Text color="dimmed" mt="md">
+          <Title className={classes.title}>
+            Build{" "}
+            <Text component="span" className={classes.highlight} inherit>
+              Interactive
+            </Text>{" "}
+            Demos for your API
+          </Title>
+
+          <Container p={0} size={600}>
+            <Text size="lg" color="dimmed" className={classes.description}>
               Konfig makes it easy for you to impress buyers with your API.
               Easily build interactive notebook-style demos that are runnable in
               the browser.
             </Text>
+          </Container>
 
-            <Group mt={30}>
-              <Button
-                target="_blank"
-                component="a"
-                href="https://calendly.com/dylan-konfig/meet"
-                size="md"
-                className={classes.control}
-              >
-                Schedule a Demo
-              </Button>
-              <Anchor
-                href="https://demo.konfigthis.com/konfig-dev/konfig-demo-docs"
-                target="_blank"
-              >
-                Try it yourself
-              </Anchor>
-            </Group>
+          <div className={classes.controls}>
+            <Button
+              className={classes.control}
+              size="lg"
+              variant="default"
+              color="gray"
+              target="_blank"
+              component="a"
+              href="https://calendly.com/dylan-konfig/meet"
+            >
+              Book a demo
+            </Button>
+            <Button
+              component="a"
+              href="https://demo.konfigthis.com/konfig-dev/konfig-demo-docs"
+              target="_blank"
+              className={classes.control}
+              size="lg"
+            >
+              Try it yourself
+            </Button>
           </div>
-          <Stack align="center" spacing="xs">
-            <AspectRatio className={classes.video} ratio={3022 / 1664}>
-              <iframe
-                src="https://www.youtube.com/embed/JewOol5njqk"
-                title="YouTube video player"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-              />
-            </AspectRatio>
-            <Text color="gray" size="xs">
-              Run through a Demo Built on Konfig in 37 seconds
-            </Text>
-          </Stack>
         </div>
-        <FeaturesAsymmetrical />
       </Container>
     </div>
   );
