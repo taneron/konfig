@@ -1,9 +1,7 @@
-import { Code, Transition } from "@mantine/core";
+import { Code } from "@mantine/core";
 import { Prism, PrismProps } from "@mantine/prism";
 import { observer } from "mobx-react";
-import { useContext } from "react";
 import { Components } from "react-markdown";
-import { DemoStateContext } from "./DemoMarkdown";
 import { Prism as ReactPrism } from "prism-react-renderer";
 import { toText } from "hast-util-to-text";
 import { Element } from "hast-util-to-text/lib";
@@ -58,8 +56,6 @@ const _DemoCode: Components["code"] = ({
   siblingCount,
   ...props
 }) => {
-  const demoState = useContext(DemoStateContext);
-
   if (node.children.length > 1) {
     // find all children that are code blocks and render them in tabs
     const childCodeBlocks: {
@@ -81,45 +77,28 @@ const _DemoCode: Components["code"] = ({
       });
     }
     return (
-      <Transition
-        mounted={demoState?.portal.showCode ?? false}
-        transition="pop"
-        duration={400}
-        timingFunction="ease"
-      >
-        {(styles) => {
+      <Prism.Tabs defaultValue={childCodeBlocks[0].language}>
+        <Prism.TabsList>
+          {childCodeBlocks.map(({ language }) => {
+            return (
+              <Prism.Tab key={language} value={language}>
+                {langDisplayName[language as keyof typeof langDisplayName].name}
+              </Prism.Tab>
+            );
+          })}
+        </Prism.TabsList>
+        {childCodeBlocks.map(({ language, code }) => {
           return (
-            <div style={styles}>
-              <Prism.Tabs defaultValue={childCodeBlocks[0].language}>
-                <Prism.TabsList>
-                  {childCodeBlocks.map(({ language }) => {
-                    return (
-                      <Prism.Tab key={language} value={language}>
-                        {
-                          langDisplayName[
-                            language as keyof typeof langDisplayName
-                          ].name
-                        }
-                      </Prism.Tab>
-                    );
-                  })}
-                </Prism.TabsList>
-                {childCodeBlocks.map(({ language, code }) => {
-                  return (
-                    <Prism.Panel
-                      key={language}
-                      value={language}
-                      language={language as Language}
-                    >
-                      {String(code).replace(/\n$/, "")}
-                    </Prism.Panel>
-                  );
-                })}
-              </Prism.Tabs>
-            </div>
+            <Prism.Panel
+              key={language}
+              value={language}
+              language={language as Language}
+            >
+              {String(code).replace(/\n$/, "")}
+            </Prism.Panel>
           );
-        }}
-      </Transition>
+        })}
+      </Prism.Tabs>
     );
   }
 
@@ -157,32 +136,16 @@ const _DemoCode: Components["code"] = ({
   }
 
   return (
-    <Transition
-      mounted={demoState?.portal.showCode ?? false}
-      transition="pop"
-      duration={400}
-      timingFunction="ease"
-    >
-      {(styles) => {
-        return (
-          <div style={styles}>
-            <Prism.Tabs value={language}>
-              <Prism.TabsList>
-                <Prism.Tab value={language}>
-                  {
-                    langDisplayName[language as keyof typeof langDisplayName]
-                      .name
-                  }
-                </Prism.Tab>
-              </Prism.TabsList>
-              <Prism.Panel value={language} language={language as Language}>
-                {String(children).replace(/\n$/, "")}
-              </Prism.Panel>
-            </Prism.Tabs>
-          </div>
-        );
-      }}
-    </Transition>
+    <Prism.Tabs value={language}>
+      <Prism.TabsList>
+        <Prism.Tab value={language}>
+          {langDisplayName[language as keyof typeof langDisplayName].name}
+        </Prism.Tab>
+      </Prism.TabsList>
+      <Prism.Panel value={language} language={language as Language}>
+        {String(children).replace(/\n$/, "")}
+      </Prism.Panel>
+    </Prism.Tabs>
   );
 };
 

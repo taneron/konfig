@@ -18,6 +18,7 @@ import { DemoNumberInput } from "./DemoNumberInput";
 import { DemoTitle } from "./DemoTitle";
 import { DemoEnum } from "./DemoEnum";
 import { v4 as uuid } from "uuid";
+import { DemoPre } from "./DemoPre";
 
 export class DemoState {
   id: string;
@@ -92,6 +93,7 @@ const DemoMarkdown = observer(({ state }: { state: DemoState }) => {
             p({ node, children, siblingCount, ...props }) {
               return <Text {...props}>{children}</Text>;
             },
+            pre: DemoPre,
             form: DemoForm,
             input: DemoInput,
             button: DemoButton,
