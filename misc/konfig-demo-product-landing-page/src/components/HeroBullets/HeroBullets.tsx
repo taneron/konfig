@@ -6,6 +6,7 @@ import {
   Text,
   rem,
 } from "@mantine/core";
+import { IconCalendarEvent, IconExternalLink } from "@tabler/icons-react";
 
 const useStyles = createStyles((theme) => ({
   wrapper: {
@@ -123,6 +124,7 @@ export function HeroBullets() {
               target="_blank"
               component="a"
               href="https://calendly.com/dylan-konfig/meet"
+              leftIcon={<IconCalendarEvent />}
             >
               Book a demo
             </Button>
@@ -131,6 +133,7 @@ export function HeroBullets() {
               href="https://demo.konfigthis.com/konfig-dev/konfig-demo-docs"
               target="_blank"
               className={classes.control}
+              leftIcon={<IconExternalLink />}
               size="lg"
             >
               Try it yourself
