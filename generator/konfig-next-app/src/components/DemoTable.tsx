@@ -213,7 +213,7 @@ export function DemoTable({ data, columns }: Props) {
         onChange={handleSearchChange}
       />
       <ScrollArea
-        h={300}
+        mah={300}
         onScrollPositionChange={({ y }) => setScrolled(y !== 0)}
       >
         <Table miw={700}>
