@@ -38,7 +38,7 @@ export const DemoOutput = observer(({ cell }: { cell: CellState }) => {
             <ReactJson
               displayObjectSize
               theme={colorScheme === "dark" ? "tomorrow" : undefined}
-              style={{ fontSize: "0.8rem", padding: "0.75rem" }}
+              style={{ fontSize: "0.85rem", padding: "0.75rem" }}
               src={cell.jsonOutput}
             />
           )}
