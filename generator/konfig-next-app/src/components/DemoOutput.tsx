@@ -22,9 +22,6 @@ export const DemoOutput = observer(({ cell }: { cell: CellState }) => {
           <Tabs.Tab disabled={cell.jsonOutput === null} value="json">
             JSON
           </Tabs.Tab>
-          <Tabs.Tab disabled={cell.tableOutput === null} value="table">
-            Table
-          </Tabs.Tab>
         </Tabs.List>
 
         <Tabs.Panel value="raw" pt="xs">
@@ -37,20 +34,16 @@ export const DemoOutput = observer(({ cell }: { cell: CellState }) => {
           {cell.jsonOutput && (
             <ReactJson
               displayObjectSize
+              displayDataTypes={false}
+              groupArraysAfterLength={10}
               theme={colorScheme === "dark" ? "tomorrow" : undefined}
-              style={{ fontSize: "0.85rem", padding: "0.75rem" }}
+              style={{
+                fontSize: "0.85rem",
+                padding: "0.75rem",
+                maxHeight: "500px",
+                overflowY: "scroll",
+              }}
               src={cell.jsonOutput}
-            />
-          )}
-        </Tabs.Panel>
-
-        <Tabs.Panel value="table" pt="xs">
-          {cell.tableOutput && (
-            <ReactJson
-              displayObjectSize
-              theme={colorScheme === "dark" ? "tomorrow" : undefined}
-              style={{ fontSize: "0.8rem", padding: "0.75rem" }}
-              src={cell.tableOutput}
             />
           )}
         </Tabs.Panel>
