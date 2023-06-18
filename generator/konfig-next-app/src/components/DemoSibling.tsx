@@ -12,6 +12,7 @@ const useStyles = createStyles((theme) => ({
   control: {
     ...theme.fn.focusStyles(),
     display: "flex",
+    cursor: "pointer",
     alignItems: "center",
     textDecoration: "none",
     justifyContent: "space-between",
