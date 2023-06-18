@@ -107,6 +107,27 @@ export class CellState {
       .join("\n");
   }
 
+  get jsonOutput(): object | null {
+    try {
+      const json: unknown = JSON.parse(this.processedOutput);
+      if (typeof json === "object") return json;
+    } catch {}
+    return null;
+  }
+
+  get tableOutput(): object[] | null {
+    try {
+      const json: unknown = JSON.parse(this.processedOutput);
+      if (Array.isArray(json)) {
+        const allElementsAreObjects =
+          json.filter((value: unknown) => typeof value === "object").length ===
+          json.length;
+        if (allElementsAreObjects) return json;
+      }
+    } catch {}
+    return null;
+  }
+
   setSaved({ output }: { output: string }) {
     if (this.demoState === null) return;
     const saved = output

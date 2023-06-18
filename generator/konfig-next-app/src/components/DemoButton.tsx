@@ -1,14 +1,10 @@
 import { observer } from "mobx-react";
 import { Components } from "react-markdown";
-import {
-  Code,
-  Collapse,
-  Button as MantineButton,
-  ScrollArea,
-} from "@mantine/core";
+import { Button as MantineButton } from "@mantine/core";
 import { useContext } from "react";
 import { CellContext } from "./DemoForm";
 import { IconCheck, IconAlertCircle } from "@tabler/icons-react";
+import { DemoOutput } from "./DemoOutput";
 
 const _DemoButton: Components["button"] = ({
   node,
@@ -22,11 +18,7 @@ const _DemoButton: Components["button"] = ({
   }
   return (
     <>
-      <Collapse in={cell.show}>
-        <Code mah={500} sx={{ overflowY: "scroll" }} color="gray" block>
-          {cell.processedOutput}
-        </Code>
-      </Collapse>
+      <DemoOutput cell={cell} />
       <MantineButton
         loading={cell.running}
         color={cell.ranSuccessfully ? "blue" : cell.failed ? "red" : "cyan"}
