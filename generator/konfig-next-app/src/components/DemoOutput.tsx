@@ -50,8 +50,10 @@ export const DemoOutput = observer(({ cell }: { cell: CellState }) => {
         <Tabs.Panel value="json">
           {cell.jsonOutput && (
             <ReactJson
+              collapsed={1}
               displayObjectSize
               displayDataTypes={false}
+              name={false}
               theme={colorScheme === "dark" ? "tomorrow" : undefined}
               style={{
                 fontSize: "0.85rem",
