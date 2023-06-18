@@ -81,7 +81,7 @@ const mockdata = [
   },
   {
     icon: IconDeviceDesktop,
-    title: "Use Live Data",
+    title: "Self-service",
     description:
       "Allow your customers to self-service your API demo with their own inputs",
   },
