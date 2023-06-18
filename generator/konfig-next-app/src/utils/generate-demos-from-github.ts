@@ -20,9 +20,17 @@ const _mappings: {
   },
 };
 
+const socialObjectSchema = z.object({
+  website: z.string().optional(),
+  documentation: z.string().optional(),
+});
+
+export type SocialObject = z.infer<typeof socialObjectSchema>;
+
 export const demoYamlSchema = z.object({
   organizationName: z.string(),
   portalName: z.string(),
+  socials: socialObjectSchema.optional(),
   demos: z
     .object({
       id: z.string(),
@@ -71,6 +79,7 @@ export type FetchResult = {
   organization: Organization;
   portal: Portal;
   demos: Demo[];
+  socials?: SocialObject;
 };
 
 export type GenerationResult =
@@ -98,6 +107,7 @@ export async function generateDemosDataFromGithub({
 }: GenerationInput): Promise<
   | {
       result: "success";
+      socials?: SocialObject;
       organization: Organization;
       portal: Portal;
       demo: Demo;
@@ -113,7 +123,7 @@ export async function generateDemosDataFromGithub({
       : await _fetch({ orgId, portalId });
   if (_cache !== undefined) _cache[cacheKey] = fetchResult;
 
-  const { demos, organization, portal } = fetchResult;
+  const { demos, organization, portal, socials } = fetchResult;
 
   if (demos.length < 1) return { result: "error", reason: "no demos" };
 
@@ -127,6 +137,7 @@ export async function generateDemosDataFromGithub({
 
   return {
     result: "success",
+    socials,
     organization,
     portal,
     demo,
@@ -238,5 +249,5 @@ async function _fetch({
     portals: [portal],
   };
 
-  return { organization, portal, demos };
+  return { organization, portal, demos, socials: parsedDemoYaml.socials };
 }

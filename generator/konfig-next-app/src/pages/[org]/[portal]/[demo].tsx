@@ -4,7 +4,10 @@ import { Organization, Portal, Demo, demos } from "@/utils/demos";
 import Head from "next/head";
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next";
 import { useState } from "react";
-import { generateDemosDataFromGithub } from "@/utils/generate-demos-from-github";
+import {
+  SocialObject,
+  generateDemosDataFromGithub,
+} from "@/utils/generate-demos-from-github";
 
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
@@ -17,6 +20,7 @@ export const getStaticProps: GetStaticProps<{
   organization: Organization;
   portal: Portal;
   demo: Demo;
+  socials?: SocialObject;
 }> = async (ctx) => {
   if (!ctx.params?.org || Array.isArray(ctx.params.org)) {
     return {
@@ -54,6 +58,7 @@ const Snaptrade = observer(
     organization,
     portal,
     demo,
+    socials,
   }: InferGetStaticPropsType<typeof getStaticProps>) => {
     const [state] = useState(
       new PortalState({
@@ -61,6 +66,7 @@ const Snaptrade = observer(
         portalId: portal.id,
         organizationId: organization.id,
         demoId: demo.id,
+        socials,
       })
     );
 

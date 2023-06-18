@@ -10,7 +10,10 @@ import {
 import { Organization, Portal } from "@/utils/demos";
 import { DemoPortal, PortalState } from "@/components/DemoPortal";
 import * as yaml from "js-yaml";
-import { demoYamlSchema } from "@/utils/generate-demos-from-github";
+import {
+  SocialObject,
+  demoYamlSchema,
+} from "@/utils/generate-demos-from-github";
 import { notifications } from "@mantine/notifications";
 
 /**
@@ -51,14 +54,23 @@ class SandboxState {
     this.files = files;
   }
 
-  get demos() {
+  get demoYaml() {
     const demoYamlFile = this.files.find((di) => di.fileName === "demo.yaml");
-    if (demoYamlFile === undefined) return [];
+    if (demoYamlFile === undefined) return undefined;
     const demoYaml = demoYamlSchema.parse(yaml.load(demoYamlFile.content));
+    return demoYaml;
+  }
+
+  get demos() {
+    if (this.demoYaml === undefined) return [];
     return generateDemosFromFilenameAndContent({
       demos: this.files.filter((di) => di.fileName.endsWith(".md")),
-      demoYaml,
+      demoYaml: this.demoYaml,
     });
+  }
+
+  get socials(): SocialObject | undefined {
+    return this.demoYaml?.socials;
   }
 
   get organization(): Organization {
@@ -84,6 +96,7 @@ class SandboxState {
       portalId: "demos",
       organizationId: state.organization.id,
       demoId: state.demos[0].id,
+      socials: this.socials,
     });
     return portalState;
   }

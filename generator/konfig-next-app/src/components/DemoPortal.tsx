@@ -19,6 +19,8 @@ import {
   Box,
   Button,
   Image,
+  Divider,
+  rem,
 } from "@mantine/core";
 import {
   IconBug,
@@ -40,6 +42,8 @@ import { Demo } from "@/utils/demos";
 import { DemoSiblings, Sibling } from "./DemoSiblings";
 import { navigateToDemo } from "@/utils/navigate-to-demo";
 import { useWindowScroll } from "@mantine/hooks";
+import { DemoSocials } from "./DemoSocials";
+import { SocialObject } from "@/utils/generate-demos-from-github";
 
 type DemosInput = Demo[];
 
@@ -55,6 +59,7 @@ export class PortalState {
   organizationId: string;
   portalId: string;
   currentDemo: DemoState;
+  socials?: SocialObject;
 
   constructor({
     demos,
@@ -63,6 +68,7 @@ export class PortalState {
     organizationId,
     portalId,
     demoId,
+    socials,
   }: {
     demos: DemosInput;
     portalName: string;
@@ -70,8 +76,10 @@ export class PortalState {
     organizationId: string;
     portalId: string;
     demoId: string;
+    socials?: SocialObject;
   }) {
     makeAutoObservable(this);
+    this.socials = socials;
     this.id = id;
     this.portalId = portalId;
     this.organizationId = organizationId;
@@ -343,6 +351,10 @@ export const DemoPortal = observer(
               >
                 <DemoMarkdown state={demo} />
                 <DemoSiblings portal={state} previous={previous} next={next} />
+                <Divider mt={rem(60)} />
+                <Box my={rem(20)}>
+                  <DemoSocials socials={state.socials} />
+                </Box>
               </Box>
             );
           })}
