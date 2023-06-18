@@ -43,15 +43,15 @@ const useStyles = createStyles((theme) => ({
 
   title: {
     textAlign: "center",
-    fontWeight: 800,
-    fontSize: rem(40),
+    fontWeight: 900,
+    fontSize: rem(50),
     letterSpacing: -1,
     color: theme.colorScheme === "dark" ? theme.white : theme.black,
     marginBottom: theme.spacing.xs,
     fontFamily: `Greycliff CF, ${theme.fontFamily}`,
 
     [theme.fn.smallerThan("xs")]: {
-      fontSize: rem(28),
+      fontSize: rem(42),
       textAlign: "left",
     },
   },
@@ -63,10 +63,10 @@ const useStyles = createStyles((theme) => ({
 
   description: {
     textAlign: "center",
+    fontSize: rem(18),
 
     [theme.fn.smallerThan("xs")]: {
       textAlign: "left",
-      fontSize: theme.fontSizes.md,
     },
   },
 
