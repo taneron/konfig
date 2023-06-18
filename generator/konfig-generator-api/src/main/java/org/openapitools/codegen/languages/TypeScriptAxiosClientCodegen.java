@@ -31,10 +31,7 @@ import org.openapitools.codegen.model.OperationMap;
 import org.openapitools.codegen.model.OperationsMap;
 import org.openapitools.codegen.utils.ModelUtils;
 
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.TreeSet;
+import java.util.*;
 
 public class TypeScriptAxiosClientCodegen extends AbstractTypeScriptClientCodegen {
 
@@ -263,6 +260,69 @@ public class TypeScriptAxiosClientCodegen extends AbstractTypeScriptClientCodege
                 model.put("hasOneOf", codegenModel.oneOf.size() > 0);
             }
         }
+
+        // allOf with one element and fields means the allOf part should be removed
+        // this happened when generating Suger's TS SDK:
+        //           "setup": {
+        //            "description": "Not original fields. They are populated by other API calls",
+        //            "allOf": [
+        //              {
+        //                "$ref": "#/components/schemas/AzureProductSetup"
+        //              }
+        //            ]
+        //          },
+        // ...
+        // ...
+        // ...
+        //       "AzureProductSetup": {
+        //        "type": "object",
+        //        "properties": {
+        //          "callToAction": {
+        //            "type": "string",
+        //            "enum": [
+        //              "free",
+        //              "free-trial",
+        //              "contact-me"
+        //            ]
+        //          },
+        //          "channelStates": {
+        //            "type": "array",
+        //            "items": {
+        //              "$ref": "#/components/schemas/AzureTypeValue"
+        //            }
+        //          },
+        //          "enableTestDrive": {
+        //            "type": "boolean"
+        //          },
+        //          "resourceType": {
+        //            "type": "string",
+        //            "enum": [
+        //              "AzureProductSetup"
+        //            ]
+        //          },
+        //          "sellingOption": {
+        //            "type": "string",
+        //            "enum": [
+        //              "ListingOnly",
+        //              "ListAndSell"
+        //            ]
+        //          },
+        //          "testDriveType": {
+        //            "type": "string"
+        //          },
+        //          "trialUri": {
+        //            "type": "string"
+        //          }
+        //        }
+        //      },
+        for (Map.Entry<String, ModelsMap> modelMap : objs.entrySet()) {
+            for (ModelMap model : modelMap.getValue().getModels()) {
+                if (model.getModel().allOf.size() == 1 && model.getModel().hasVars) {
+                    model.getModel().allOf.clear();
+                }
+            }
+        }
+
         return result;
     }
 
