@@ -92,6 +92,9 @@ export class PortalState {
     if (this.currentDemoIndex === -1)
       throw Error(`Could not find demo with id ${demoId}`);
     this.currentDemo = this.demos[this.currentDemoIndex];
+
+    if (demos[this.currentDemoIndex].showCode) this.setShowCode(true);
+
     this.portalName = portalName;
 
     // Only start intervals in browser
