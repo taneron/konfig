@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { IconArrowLeft, IconArrowRight } from "@tabler/icons-react";
 
-import { Anchor, Text, createStyles, getStylesRef, rem } from "@mantine/core";
+import { Box, Text, createStyles, getStylesRef, rem } from "@mantine/core";
 import { Sibling } from "./DemoSiblings";
+import { useRouter } from "next/router";
+import { PortalState, SandboxContext } from "./DemoPortal";
+import { navigateToDemo } from "@/utils/navigate-to-demo";
+import { useWindowScroll } from "@mantine/hooks";
 
 const useStyles = createStyles((theme) => ({
   control: {
@@ -45,14 +49,31 @@ interface Props {
   data: Sibling;
   type: "next" | "prev";
   className?: string;
+  portal: PortalState;
 }
 
-export function DemoSibling({ data, type, className }: Props) {
+export function DemoSibling({
+  data: { organizationId, demoId, title, demoIndex },
+  type,
+  className,
+  portal,
+}: Props) {
   const { classes, cx } = useStyles();
+  const router = useRouter();
+  const sandbox = useContext(SandboxContext);
 
   return (
-    <Anchor
-      href="#"
+    <Box
+      onClick={() => {
+        navigateToDemo({
+          demoId,
+          demoIndex,
+          organizationId,
+          portal,
+          router,
+          sandbox,
+        });
+      }}
       className={cx(
         classes.control,
         type === "next" ? classes[type] : undefined,
@@ -70,11 +91,11 @@ export function DemoSibling({ data, type, className }: Props) {
           size="sm"
           align={type === "next" ? "left" : "right"}
         >
-          {data.title}
+          {title}
         </Text>
       </div>
 
       {type === "next" && <IconArrowRight size={rem(22)} stroke={1.5} />}
-    </Anchor>
+    </Box>
   );
 }

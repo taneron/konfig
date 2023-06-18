@@ -37,6 +37,9 @@ import { DemoPortalAside } from "./DemoPortalAside";
 import { api } from "@/utils/api";
 import { v4 as uuid } from "uuid";
 import { Demo } from "@/utils/demos";
+import { DemoSiblings, Sibling } from "./DemoSiblings";
+import { navigateToDemo } from "@/utils/navigate-to-demo";
+import { useWindowScroll } from "@mantine/hooks";
 
 type DemosInput = Demo[];
 
@@ -205,20 +208,14 @@ export const DemoPortal = observer(
                         key={name}
                         onClick={() => {
                           setOpened(false);
-                          state.setCurrentDemoIndex(i);
-                          if (!sandbox) {
-                            router.replace(
-                              `/${state.organizationId}/${state.id}/${state.demos[i].id}`,
-                              undefined,
-                              { shallow: true }
-                            );
-                          } else {
-                            // NOTE: this triggers a re-render so when we
-                            // navigate through demos the page actually changes
-                            router.replace("/sandbox", undefined, {
-                              shallow: true,
-                            });
-                          }
+                          navigateToDemo({
+                            demoId: state.demos[i].id,
+                            demoIndex: i,
+                            organizationId: state.organizationId,
+                            portal: state,
+                            router,
+                            sandbox,
+                          });
                         }}
                         p="xs"
                         variant="filled"
@@ -317,12 +314,35 @@ export const DemoPortal = observer(
         >
           {/* We have to render all demos states at the start so they can each initialize their cells */}
           {state.demos.map((demo, i) => {
+            const previousDemoState: DemoState | undefined =
+              i === 0 ? undefined : state.demos[i - 1];
+            const nextDemoState: DemoState | undefined =
+              i === state.demos.length - 1 ? undefined : state.demos[i + 1];
+            const previous: Sibling | undefined =
+              previousDemoState === undefined
+                ? undefined
+                : {
+                    title: previousDemoState.name,
+                    organizationId: previousDemoState.portal.organizationId,
+                    demoId: previousDemoState.id,
+                    demoIndex: i - 1,
+                  };
+            const next: Sibling | undefined =
+              nextDemoState === undefined
+                ? undefined
+                : {
+                    title: nextDemoState.name,
+                    demoIndex: i + 1,
+                    organizationId: nextDemoState.portal.organizationId,
+                    demoId: nextDemoState.id,
+                  };
             return (
               <Box
                 key={demo.name}
                 display={state.currentDemoIndex !== i ? "none" : undefined}
               >
                 <DemoMarkdown state={demo} />
+                <DemoSiblings portal={state} previous={previous} next={next} />
               </Box>
             );
           })}
