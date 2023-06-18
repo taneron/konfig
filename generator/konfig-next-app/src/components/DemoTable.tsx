@@ -98,26 +98,33 @@ function Th({ children, reversed, sorted, onSort }: ThProps) {
   );
 }
 
-function filterData(data: Record<string, unknown>[], search: string) {
+function filterData(
+  data: Record<string, unknown>[],
+  search: string,
+  columns: string[]
+) {
   const query = search.toLowerCase().trim();
   return data.filter((item) =>
-    keys(data[0]).some((key) => {
+    columns.some((key) => {
       const cell = item[key];
-      return typeof cell === "string"
-        ? cell.toLowerCase().includes(query)
-        : false;
+      if (typeof cell === "string") return cell.toLowerCase().includes(query);
+      if (typeof cell === "object")
+        return JSON.stringify(cell).toLowerCase().includes(query);
+      if (typeof cell === "number") return cell.toString().includes(query);
+      return false;
     })
   );
 }
 
 function sortData(
   data: Record<string, unknown>[],
-  payload: { sortBy: string | null; reversed: boolean; search: string }
+  payload: { sortBy: string | null; reversed: boolean; search: string },
+  columns: string[]
 ) {
   const { sortBy } = payload;
 
   if (!sortBy) {
-    return filterData(data, payload.search);
+    return filterData(data, payload.search, columns);
   }
 
   return filterData(
@@ -132,8 +139,19 @@ function sortData(
 
       return aCell.localeCompare(bCell);
     }),
-    payload.search
+    payload.search,
+    columns
   );
+}
+
+function unquoteString(str: string) {
+  if (
+    (str.length >= 2 && str.startsWith("'") && str.endsWith("'")) ||
+    (str.startsWith('"') && str.endsWith('"'))
+  ) {
+    return str.slice(1, -1);
+  }
+  return str;
 }
 
 interface Props {
@@ -161,22 +179,26 @@ export function DemoTable({ data, columns }: Props) {
     const reversed = field === sortBy ? !reverseSortDirection : false;
     setReverseSortDirection(reversed);
     setSortBy(field);
-    setSortedData(sortData(data, { sortBy: field, reversed, search }));
+    setSortedData(sortData(data, { sortBy: field, reversed, search }, columns));
   };
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = event.currentTarget;
     setSearch(value);
     setSortedData(
-      sortData(data, { sortBy, reversed: reverseSortDirection, search: value })
+      sortData(
+        data,
+        { sortBy, reversed: reverseSortDirection, search: value },
+        columns
+      )
     );
   };
 
   const rows = sortedData.map((row, i) => (
     <tr key={i}>
       {columns.map((column) => {
-        const cell: any = row[column];
-        return <td key={column}>{cell}</td>;
+        const cell = JSON.stringify(row[column], undefined, 2);
+        return <td key={column}>{unquoteString(cell)}</td>;
       })}
     </tr>
   ));
@@ -194,7 +216,7 @@ export function DemoTable({ data, columns }: Props) {
         h={300}
         onScrollPositionChange={({ y }) => setScrolled(y !== 0)}
       >
-        <Table withColumnBorders miw={700}>
+        <Table miw={700}>
           <thead
             className={cx(classes.header, { [classes.scrolled]: scrolled })}
           >
@@ -216,7 +238,7 @@ export function DemoTable({ data, columns }: Props) {
               rows
             ) : (
               <tr>
-                <td colSpan={Object.keys(data[0]).length}>
+                <td colSpan={columns.length}>
                   <Text weight={500} align="center">
                     Nothing found
                   </Text>
