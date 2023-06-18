@@ -35,7 +35,6 @@ export const DemoOutput = observer(({ cell }: { cell: CellState }) => {
             <ReactJson
               displayObjectSize
               displayDataTypes={false}
-              groupArraysAfterLength={10}
               theme={colorScheme === "dark" ? "tomorrow" : undefined}
               style={{
                 fontSize: "0.85rem",
