@@ -137,7 +137,7 @@ export async function generateDemosDataFromGithub({
 
   return {
     result: "success",
-    socials,
+    ...(socials ? { socials } : {}),
     organization,
     portal,
     demo,
@@ -249,5 +249,10 @@ async function _fetch({
     portals: [portal],
   };
 
-  return { organization, portal, demos, socials: parsedDemoYaml.socials };
+  return {
+    organization,
+    portal,
+    demos,
+    ...(parsedDemoYaml.socials ? { socials: parsedDemoYaml.socials } : {}),
+  };
 }

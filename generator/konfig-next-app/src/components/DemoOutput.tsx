@@ -22,15 +22,18 @@ export const DemoOutput = observer(({ cell }: { cell: CellState }) => {
           <Tabs.Tab disabled={cell.jsonOutput === null} value="json">
             JSON
           </Tabs.Tab>
+          <Tabs.Tab disabled={cell.tableOutput === null} value="table">
+            Table
+          </Tabs.Tab>
         </Tabs.List>
 
-        <Tabs.Panel value="raw" pt="xs">
+        <Tabs.Panel value="raw">
           <Code mah={500} sx={{ overflowY: "scroll" }} color="gray" block>
             {cell.processedOutput}
           </Code>
         </Tabs.Panel>
 
-        <Tabs.Panel value="json" pt="xs">
+        <Tabs.Panel value="json">
           {cell.jsonOutput && (
             <ReactJson
               displayObjectSize
@@ -46,6 +49,7 @@ export const DemoOutput = observer(({ cell }: { cell: CellState }) => {
             />
           )}
         </Tabs.Panel>
+        <Tabs.Panel value="table">Table</Tabs.Panel>
       </Tabs>
     </Collapse>
   );
