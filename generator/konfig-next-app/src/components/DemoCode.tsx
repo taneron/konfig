@@ -1,10 +1,12 @@
-import { Code } from "@mantine/core";
+import { Code, Transition } from "@mantine/core";
 import { Prism, PrismProps } from "@mantine/prism";
 import { observer } from "mobx-react";
 import { Components } from "react-markdown";
 import { Prism as ReactPrism } from "prism-react-renderer";
 import { toText } from "hast-util-to-text";
 import { Element } from "hast-util-to-text/lib";
+import { useContext } from "react";
+import { DemoStateContext } from "./DemoMarkdown";
 
 // this is how you add language support to prism according to:
 // https://github.com/FormidableLabs/prism-react-renderer#custom-language-support
@@ -56,6 +58,7 @@ const _DemoCode: Components["code"] = ({
   siblingCount,
   ...props
 }) => {
+  const demoState = useContext(DemoStateContext);
   if (node.children.length > 1) {
     // find all children that are code blocks and render them in tabs
     const childCodeBlocks: {
@@ -76,29 +79,48 @@ const _DemoCode: Components["code"] = ({
         code,
       });
     }
+    const mounted = demoState?.portal.showCode ?? false;
     return (
-      <Prism.Tabs defaultValue={childCodeBlocks[0].language}>
-        <Prism.TabsList>
-          {childCodeBlocks.map(({ language }) => {
-            return (
-              <Prism.Tab key={language} value={language}>
-                {langDisplayName[language as keyof typeof langDisplayName].name}
-              </Prism.Tab>
-            );
-          })}
-        </Prism.TabsList>
-        {childCodeBlocks.map(({ language, code }) => {
+      <Transition
+        mounted={mounted}
+        transition="pop"
+        duration={400}
+        timingFunction="ease"
+      >
+        {(styles) => {
           return (
-            <Prism.Panel
-              key={language}
-              value={language}
-              language={language as Language}
+            <Prism.Tabs
+              style={styles}
+              defaultValue={childCodeBlocks[0].language}
             >
-              {String(code).replace(/\n$/, "")}
-            </Prism.Panel>
+              <Prism.TabsList>
+                {childCodeBlocks.map(({ language }) => {
+                  return (
+                    <Prism.Tab key={language} value={language}>
+                      {
+                        langDisplayName[
+                          language as keyof typeof langDisplayName
+                        ].name
+                      }
+                    </Prism.Tab>
+                  );
+                })}
+              </Prism.TabsList>
+              {childCodeBlocks.map(({ language, code }) => {
+                return (
+                  <Prism.Panel
+                    key={language}
+                    value={language}
+                    language={language as Language}
+                  >
+                    {String(code).replace(/\n$/, "")}
+                  </Prism.Panel>
+                );
+              })}
+            </Prism.Tabs>
           );
-        })}
-      </Prism.Tabs>
+        }}
+      </Transition>
     );
   }
 
