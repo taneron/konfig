@@ -217,6 +217,12 @@ async def close_session(request: SessionCloseRequest):
         )
 
 
+# https://render.com/docs/deploys#health-checks
+@app.get("/healthz")
+async def health_check():
+    return {"status": "OK"}
+
+
 def close_inactive_sessions():
     current_time = time.time()
     inactive_sessions = [
