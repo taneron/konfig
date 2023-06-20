@@ -84,7 +84,6 @@ function getActiveElement(rects: DOMRect[]) {
 
   const closest = rects.reduce(
     (acc, item, index) => {
-      console.log(acc.position, y(item));
       if (Math.abs(acc.position) < y(item)) {
         return acc;
       }
