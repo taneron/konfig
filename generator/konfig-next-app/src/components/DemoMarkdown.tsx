@@ -1,9 +1,9 @@
-import { makeAutoObservable, observable } from "mobx";
+import { makeAutoObservable } from "mobx";
 import ReactMarkdown from "react-markdown";
 import remarkDirective from "remark-directive";
 import remarkDirectiveRehype from "remark-directive-rehype";
 import { Anchor, Stack, Text } from "@mantine/core";
-import { createContext } from "react";
+import { createContext, useEffect, useRef } from "react";
 import { api } from "@/utils/api";
 import { observer } from "mobx-react";
 import { CellState, DemoForm, FormContext } from "./DemoForm";
@@ -19,6 +19,7 @@ import { DemoTitle } from "./DemoTitle";
 import { DemoEnum } from "./DemoEnum";
 import { v4 as uuid } from "uuid";
 import { DemoPre } from "./DemoPre";
+import Slugger from "github-slugger";
 
 export class DemoState {
   id: string;
@@ -29,6 +30,9 @@ export class DemoState {
   uuid = uuid();
   portal: PortalState;
   savedData: Record<string, string[] | undefined> = {};
+  slugger: Slugger = new Slugger();
+  headerIdToHtmlElement: Record<string, HTMLHeadingElement> = {};
+  demoDiv: HTMLDivElement | null = null;
 
   constructor(parameters: {
     markdown: string;
@@ -80,9 +84,13 @@ export class DemoState {
 export const DemoStateContext = createContext<DemoState | null>(null);
 
 const DemoMarkdown = observer(({ state }: { state: DemoState }) => {
+  const demoDiv = useRef<HTMLDivElement | null>(null);
+  useEffect(() => {
+    state.demoDiv = demoDiv.current;
+  }, [state]);
   return (
     <DemoStateContext.Provider value={state}>
-      <Stack spacing="xs">
+      <Stack ref={demoDiv} spacing="xs">
         <ReactMarkdown
           remarkPlugins={[remarkDirective, remarkDirectiveRehype]}
           components={{

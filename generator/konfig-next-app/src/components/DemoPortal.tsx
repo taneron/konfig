@@ -21,6 +21,7 @@ import {
   Image,
   Divider,
   rem,
+  Aside,
 } from "@mantine/core";
 import {
   IconBug,
@@ -44,6 +45,7 @@ import { navigateToDemo } from "@/utils/navigate-to-demo";
 import { useWindowScroll } from "@mantine/hooks";
 import { DemoSocials } from "./DemoSocials";
 import { SocialObject } from "@/utils/generate-demos-from-github";
+import DemoTableOfContents from "./DemoTableOfContents";
 
 type DemosInput = Demo[];
 
@@ -210,7 +212,7 @@ export const DemoPortal = observer(
               width={{ sm: 225, lg: 325 }}
               sx={{ overflowY: "scroll" }}
             >
-              <Navbar.Section mt="xs" mb={rem(30)}>
+              <Navbar.Section mt="xs" mb={rem(35)}>
                 <Stack spacing="xs">
                   {state.demos.map(({ name }, i) => {
                     const isCurrentlySelected = state.currentDemoIndex === i;
@@ -245,7 +247,13 @@ export const DemoPortal = observer(
               </Navbar.Section>
             </Navbar>
           }
-          aside={<DemoPortalAside currentDemo={state.currentDemo} />}
+          aside={
+            <MediaQuery smallerThan="sm" styles={{ display: "none" }}>
+              <Aside p="sm" hiddenBreakpoint="sm" width={{ sm: 200, lg: 300 }}>
+                <DemoTableOfContents demoDiv={state.currentDemo.demoDiv} />
+              </Aside>
+            </MediaQuery>
+          }
           header={
             <Header height={{ base: 50, md: 70 }} p="md">
               <div

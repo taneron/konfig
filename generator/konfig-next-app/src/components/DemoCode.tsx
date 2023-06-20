@@ -142,21 +142,6 @@ const _DemoCode: Components["code"] = ({
     );
   }
 
-  if (language === "markdown" || language === "yaml") {
-    return (
-      <Prism.Tabs value={language}>
-        <Prism.TabsList>
-          <Prism.Tab value={language}>
-            {langDisplayName[language as keyof typeof langDisplayName].name}
-          </Prism.Tab>
-        </Prism.TabsList>
-        <Prism.Panel value={language} language={language as Language}>
-          {String(children).replace(/\n$/, "")}
-        </Prism.Panel>
-      </Prism.Tabs>
-    );
-  }
-
   return (
     <Prism.Tabs value={language}>
       <Prism.TabsList>
