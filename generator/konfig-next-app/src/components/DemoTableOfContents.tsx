@@ -145,6 +145,11 @@ export default function DemoTableOfContents({ demoDiv }: TableOfContentsProps) {
     [filteredHeadings, demoDiv]
   );
 
+  // trigger active element computation when component mounts
+  // this ensures table of contents is highlighting the right section when you navigate to something with a slug like:
+  // https://demo.konfigthis.com/konfig-dev/konfig-demo-docs/demo#demo:create-user
+  useEffect(() => handleScroll(), [handleScroll]);
+
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
