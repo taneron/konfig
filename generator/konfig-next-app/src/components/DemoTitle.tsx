@@ -6,7 +6,7 @@ import { DemoStateContext } from "./DemoMarkdown";
 import { toText } from "hast-util-to-text";
 import Slugger from "github-slugger";
 
-export const TITLE_OFFSET_PX = 75;
+export const TITLE_OFFSET_PX = 70;
 
 const _DemoTitle: Components["h1"] = ({
   children,

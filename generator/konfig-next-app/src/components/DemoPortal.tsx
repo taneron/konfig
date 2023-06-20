@@ -46,6 +46,7 @@ import { useWindowScroll } from "@mantine/hooks";
 import { DemoSocials } from "./DemoSocials";
 import { SocialObject } from "@/utils/generate-demos-from-github";
 import DemoTableOfContents from "./DemoTableOfContents";
+import { TITLE_OFFSET_PX } from "./DemoTitle";
 
 type DemosInput = Demo[];
 
@@ -203,7 +204,7 @@ export const DemoPortal = observer(
             },
           }}
           navbarOffsetBreakpoint="sm"
-          asideOffsetBreakpoint="sm"
+          asideOffsetBreakpoint="md"
           navbar={
             <Navbar
               p="md"
@@ -248,14 +249,14 @@ export const DemoPortal = observer(
             </Navbar>
           }
           aside={
-            <MediaQuery smallerThan="sm" styles={{ display: "none" }}>
-              <Aside p="sm" hiddenBreakpoint="sm" width={{ sm: 200, lg: 300 }}>
+            <MediaQuery smallerThan="md" styles={{ display: "none" }}>
+              <Aside p="sm" hiddenBreakpoint="md" width={{ sm: 200, lg: 300 }}>
                 <DemoTableOfContents demoDiv={state.currentDemo.demoDiv} />
               </Aside>
             </MediaQuery>
           }
           header={
-            <Header height={{ base: 50, md: 70 }} p="md">
+            <Header height={{ base: 50, md: TITLE_OFFSET_PX }} p="md">
               <div
                 style={{
                   display: "flex",
