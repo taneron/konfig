@@ -6,7 +6,7 @@ import { Transition } from "@mantine/core";
 import { extractLanguageFromElement } from "./DemoCode";
 import { Element } from "hast-util-to-text/lib";
 
-const DO_NOT_HIDE_LANGUAGES = ["markdown", "yaml"];
+const DO_NOT_HIDE_LANGUAGES = ["markdown", "yaml", "shell"];
 
 const _DemoPre: Components["pre"] = ({
   node,
