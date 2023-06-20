@@ -7,6 +7,8 @@ import {
   createStyles,
   em,
   getBreakpointValue,
+  Aside,
+  MediaQuery,
 } from "@mantine/core";
 import { IconList } from "@tabler/icons-react";
 import { TITLE_OFFSET_PX } from "./DemoTitle";
@@ -171,23 +173,29 @@ export default function DemoTableOfContents({ demoDiv }: TableOfContentsProps) {
     );
   });
 
+  if (headings.length === 0) return null;
+
   return (
-    <nav className={cx(classes.wrapper)}>
-      <div className={classes.inner}>
-        <div>
-          <div className={classes.header}>
-            <IconList size={20} stroke={1.5} />
-            <Text className={classes.title}>Table of contents</Text>
+    <MediaQuery smallerThan="lg" styles={{ display: "none" }}>
+      <Aside p="sm" hiddenBreakpoint="lg" width={{ base: 300 }}>
+        <nav className={cx(classes.wrapper)}>
+          <div className={classes.inner}>
+            <div>
+              <div className={classes.header}>
+                <IconList size={20} stroke={1.5} />
+                <Text className={classes.title}>Table of contents</Text>
+              </div>
+              <ScrollArea.Autosize
+                mah={`calc(100vh - ${rem(140)})`}
+                type="scroll"
+                offsetScrollbars
+              >
+                <div className={classes.items}>{items}</div>
+              </ScrollArea.Autosize>
+            </div>
           </div>
-          <ScrollArea.Autosize
-            mah={`calc(100vh - ${rem(140)})`}
-            type="scroll"
-            offsetScrollbars
-          >
-            <div className={classes.items}>{items}</div>
-          </ScrollArea.Autosize>
-        </div>
-      </div>
-    </nav>
+        </nav>
+      </Aside>
+    </MediaQuery>
   );
 }

@@ -204,7 +204,7 @@ export const DemoPortal = observer(
             },
           }}
           navbarOffsetBreakpoint="sm"
-          asideOffsetBreakpoint="md"
+          asideOffsetBreakpoint="lg"
           navbar={
             <Navbar
               p="md"
@@ -248,13 +248,7 @@ export const DemoPortal = observer(
               </Navbar.Section>
             </Navbar>
           }
-          aside={
-            <MediaQuery smallerThan="md" styles={{ display: "none" }}>
-              <Aside p="sm" hiddenBreakpoint="md" width={{ sm: 200, lg: 300 }}>
-                <DemoTableOfContents demoDiv={state.currentDemo.demoDiv} />
-              </Aside>
-            </MediaQuery>
-          }
+          aside={<DemoTableOfContents demoDiv={state.currentDemo.demoDiv} />}
           header={
             <Header height={{ base: 50, md: TITLE_OFFSET_PX }} p="md">
               <div
