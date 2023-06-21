@@ -482,6 +482,9 @@ public class {{classname}} {
         private {{{dataType}}} buildBodyParams() {
             {{{dataType}}} {{paramName}} = new {{{dataTypeClass}}}();
             {{#vars}}
+            {{#isEnum}}
+            if (this.{{name}} != null)
+            {{/isEnum}}
             {{#isHashMap}}
             {{paramName}}.put("{{name}}", {{> build_body_param_setter_partial}});
             {{/isHashMap}}
