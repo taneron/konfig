@@ -35,6 +35,7 @@ public class CodegenSecurity {
     public Map<String, Object> vendorExtensions = new HashMap<String, Object>();
     // ApiKey specific
     public String keyParamName;
+    public String keyParamNameCamelCase;
     public String keyParamNameSnakeCase;
     public String keyParamNameSnakeCaseUppercase;
     public Boolean isKeyInQuery, isKeyInHeader, isKeyInCookie;

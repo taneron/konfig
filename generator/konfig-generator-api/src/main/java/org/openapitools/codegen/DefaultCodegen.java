@@ -5450,6 +5450,7 @@ public class DefaultCodegen implements CodegenConfig {
                 cs.isBasic = cs.isOAuth = false;
                 cs.isApiKey = true;
                 cs.keyParamName = securityScheme.getName();
+                cs.keyParamNameCamelCase = camelize(securityScheme.getName());
                 cs.keyParamNameSnakeCase = underscore(securityScheme.getName());
                 cs.keyParamNameSnakeCaseUppercase = cs.keyParamNameSnakeCase.toUpperCase();
                 cs.isKeyInHeader = securityScheme.getIn() == SecurityScheme.In.HEADER;
@@ -7023,6 +7024,12 @@ public class DefaultCodegen implements CodegenConfig {
             }
         }
 
+        // all enum properties are basically inner enum too so want to add that here for clarity
+        // this was helpful when creating Java SDK logic for referencing the inner enum type
+        parameters.forEach(p -> {
+            p.isInnerEnum = p.isEnum;
+        });
+
         return parameters;
     }
 
@@ -7696,6 +7703,14 @@ public class DefaultCodegen implements CodegenConfig {
         // notion id: 89f2890a38c54955b96d66b35369e22c
         // compute isObjectOrComposedObject
         codegenParameter.isObjectOrComposedObject = codegenParameter.isComposedObject || codegenParameter.isObject;
+
+        // For instantiation in Java SDK
+        codegenParameter.dataTypeClass = codegenParameter.dataType.replace("Map<", "HashMap<");
+        codegenParameter.dataTypeClass = codegenParameter.dataTypeClass.replace("List<", "ArrayList<");
+
+        codegenParameter.isHashMap = codegenParameter.dataTypeClass.startsWith("HashMap<");
+        codegenParameter.isList = codegenParameter.dataType.startsWith("List<");
+        codegenParameter.isNotListOrHashMap = !codegenParameter.isHashMap && !codegenParameter.isList;
 
         return codegenParameter;
     }

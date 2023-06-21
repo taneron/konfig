@@ -30,6 +30,7 @@ public class CodegenParameter implements IJsonSchemaValidationProperties {
     public boolean isFormParam, isQueryParam, isPathParam, isHeaderParam,
             isCookieParam, isBodyParam, isContainer,
             isCollectionFormatMulti, isPrimitiveType, isModel, isExplode, isDeepObject, isAllowEmptyValue;
+    public boolean isInnerEnum;
 
     public Schema oasSchema;
 
@@ -50,6 +51,15 @@ public class CodegenParameter implements IJsonSchemaValidationProperties {
     public String baseName, paramName, dataType, datatypeWithEnum, dataFormat, contentType,
             collectionFormat, description, unescapedDescription, baseType, defaultValue, enumDefaultValue, enumName, style;
     public String dataTypeLowerCase;
+
+    // When you need "HashMap" instead of "Map" in Java SDK
+    public String dataTypeClass;
+    public boolean isList;
+    public boolean isHashMap;
+    public boolean isNotListOrHashMap;
+
+    // add / put for List / Map
+    public String dataTypeSetter;
 
     public String nameInLowerCase; // property name in lower case
     public String example; // example value (x-example)
