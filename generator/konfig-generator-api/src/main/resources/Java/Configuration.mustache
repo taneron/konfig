@@ -5,6 +5,14 @@ package {{invokerPackage}};
 {{>generatedAnnotation}}
 public class Configuration {
     private static ApiClient defaultApiClient = new ApiClient();
+    public boolean verifyingSsl = true;
+    public String host = "{{{basePath}}}";
+{{#apiKeyMethods}}
+    public String {{keyParamName}};
+{{/apiKeyMethods}}
+{{#clientState}}
+    public String {{{.}}};
+{{/clientState}}
 
     /**
      * Get the default API client, which would be used when creating API

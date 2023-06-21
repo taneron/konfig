@@ -1,0 +1,26 @@
+package {{invokerPackage}};
+
+{{#apiInfo}}
+{{#apis}}
+import {{invokerPackage}}.api.{{classname}};
+{{/apis}}
+{{/apiInfo}}
+
+public class {{{clientName}}} {
+    private ApiClient apiClient;
+{{#apiInfo}}
+{{#apis}}
+    public final {{classname}} {{classNameCamelCase}};
+{{/apis}}
+{{/apiInfo}}
+
+    public {{clientName}}(Configuration configuration) {
+        this.apiClient = new ApiClient(null, configuration);
+{{#apiInfo}}
+{{#apis}}
+        this.{{classNameCamelCase}} = new {{classname}}(this.apiClient);
+{{/apis}}
+{{/apiInfo}}
+    }
+
+}

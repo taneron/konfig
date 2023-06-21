@@ -93,6 +93,10 @@ public class ApiClient {
 
     private HttpLoggingInterceptor loggingInterceptor;
 
+    {{#clientState}}
+    private String {{.}};
+    {{/clientState}}
+
     {{#dynamicOperations}}
     private Map<String, ApiOperation> operationLookupMap = new HashMap<>();
 
@@ -101,16 +105,7 @@ public class ApiClient {
      * Basic constructor for ApiClient
      */
     public ApiClient() {
-        init();
-        initHttpClient();
-
-        // Setup authentications (key: authentication name, value: authentication).{{#authMethods}}{{#isBasic}}{{#isBasicBasic}}
-        authentications.put("{{name}}", new HttpBasicAuth());{{/isBasicBasic}}{{^isBasicBasic}}
-        authentications.put("{{name}}", new HttpBearerAuth("{{scheme}}"));{{/isBasicBasic}}{{/isBasic}}{{#isApiKey}}
-        authentications.put("{{name}}", new ApiKeyAuth({{#isKeyInHeader}}"header"{{/isKeyInHeader}}{{#isKeyInQuery}}"query"{{/isKeyInQuery}}{{#isKeyInCookie}}"cookie"{{/isKeyInCookie}}, "{{keyParamName}}"));{{/isApiKey}}{{#isOAuth}}
-        authentications.put("{{name}}", new OAuth());{{/isOAuth}}{{/authMethods}}
-        // Prevent the authentications from being modified.
-        authentications = Collections.unmodifiableMap(authentications);
+        this(null, null);
     }
 
     /**
@@ -119,9 +114,16 @@ public class ApiClient {
      * @param client a {@link okhttp3.OkHttpClient} object
      */
     public ApiClient(OkHttpClient client) {
-        init();
+        this(client, null);
+    }
 
-        httpClient = client;
+    public ApiClient(OkHttpClient client, Configuration configuration) {
+        init();
+        if (client == null) {
+            initHttpClient();
+        } else {
+            this.httpClient = client;
+        }
 
         // Setup authentications (key: authentication name, value: authentication).{{#authMethods}}{{#isBasic}}{{#isBasicBasic}}
         authentications.put("{{name}}", new HttpBasicAuth());{{/isBasicBasic}}{{^isBasicBasic}}
@@ -130,8 +132,22 @@ public class ApiClient {
         authentications.put("{{name}}", new OAuth());{{/isOAuth}}{{/authMethods}}
         // Prevent the authentications from being modified.
         authentications = Collections.unmodifiableMap(authentications);
-    }
 
+        if (configuration != null) {
+            {{#apiKeyMethods}}
+            if (configuration.{{keyParamName}} != null) {
+                this.set{{{nameInCamelCase}}}(configuration.{{keyParamName}});
+            }
+            {{/apiKeyMethods}}
+            {{#clientState}}
+            if (configuration.{{.}} != null) {
+                this.{{.}} = configuration.{{.}};
+            }
+            {{/clientState}}
+            setVerifyingSsl(configuration.verifyingSsl);
+            setBasePath(configuration.host);
+        }
+    }
     {{#hasOAuthMethods}}
     {{#oauthMethods}}
     {{#-first}}
@@ -210,15 +226,15 @@ public class ApiClient {
 
 {{#apiKeyMethods}}
     public String get{{{nameInCamelCase}}}() {
-        return ((ApiKeyAuth) this.getAuthentication("{{{keyParamName}}}")).getApiKey();
+        return ((ApiKeyAuth) this.getAuthentication("{{{name}}}")).getApiKey();
     }
 
     public void set{{{nameInCamelCase}}}(String apiKey) {
-        ((ApiKeyAuth) this.getAuthentication("{{{keyParamName}}}")).setApiKey(apiKey);
+        ((ApiKeyAuth) this.getAuthentication("{{{name}}}")).setApiKey(apiKey);
     }
 
     public void set{{{nameInCamelCase}}}Prefix(String prefix) {
-        ((ApiKeyAuth) this.getAuthentication("{{{keyParamName}}}")).setApiKeyPrefix(prefix);
+        ((ApiKeyAuth) this.getAuthentication("{{{name}}}")).setApiKeyPrefix(prefix);
     }
 {{/apiKeyMethods}}
 
@@ -1583,10 +1599,10 @@ public class ApiClient {
     /**
      * Add a Content-Disposition Header for the given key and file to the MultipartBody Builder.
      *
-     * @param mpBuilder MultipartBody.Builder 
+     * @param mpBuilder MultipartBody.Builder
      * @param key The key of the Header element
      * @param file The file to add to the Header
-     */ 
+     */
     private void addPartToMultiPartBuilder(MultipartBody.Builder mpBuilder, String key, File file) {
         Headers partHeaders = Headers.of("Content-Disposition", "form-data; name=\"" + key + "\"; filename=\"" + file.getName() + "\"");
         MediaType mediaType = MediaType.parse(guessContentTypeFromFile(file));
