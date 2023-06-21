@@ -404,6 +404,8 @@ export const myHandler = async (event: APIGatewayEvent, context: Context) => {
           artifactId: generatorConfig.artifactId,
           groupId: generatorConfig.groupId,
           invokerPackage: packageName,
+          clientName: generatorConfig.clientName,
+          clientState: generatorConfig.clientState,
           apiDocumentationAuthenticationPartial:
             generatorConfig.apiDocumentationAuthenticationPartial,
           removeKonfigBranding: generatorConfig.removeKonfigBranding,

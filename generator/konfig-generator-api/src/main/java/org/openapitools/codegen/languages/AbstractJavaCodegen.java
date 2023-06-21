@@ -302,6 +302,10 @@ public abstract class AbstractJavaCodegen extends DefaultCodegen implements Code
     public void processOpts() {
         super.processOpts();
 
+        if (!additionalProperties.containsKey("clientName")) throw new Error("clientName was not provided");
+        final String invokerFolder = (sourceFolder + '/' + additionalProperties.get("invokerPackage")).replace(".", "/");
+        supportingFiles.add(new SupportingFile("client.mustache", invokerFolder, additionalProperties.get("clientName") + ".java"));
+
         if (null != defaultDocumentationProvider()) {
             documentationProvider = DocumentationProvider.ofCliOption(
                     (String) additionalProperties.getOrDefault(DOCUMENTATION_PROVIDER,

@@ -23,6 +23,8 @@ export const javaConfig = z.object({
   packageName: z.string().describe('acme').optional(),
   artifactId: z.string().describe('acme-java-sdk'),
   removeKonfigBranding: z.boolean().optional(),
+  clientName: z.string(),
+  clientState,
   toStringReturnsJson: z
     .boolean()
     .optional()

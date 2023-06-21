@@ -305,6 +305,7 @@ export default class Init extends Command {
           version: '1.0.0',
           groupId: answers.domain.split('.').reverse().join('.'),
           artifactId: `${answers.sdkName.toLowerCase()}-java-sdk`,
+          clientName: camelcase(answers.sdkName, { pascalCase: true }),
           outputDirectory: 'java',
           git: {
             userId: answers.gitUserId,
@@ -338,6 +339,7 @@ export default class Init extends Command {
           version: '1.0.0',
           groupId: answers.domain.split('.').reverse().join('.'),
           artifactId: `${answers.sdkName.toLowerCase()}-android-sdk`,
+          clientName: camelcase(answers.sdkName, { pascalCase: true }),
           outputDirectory: 'android',
           git: {
             userId: answers.gitUserId,
