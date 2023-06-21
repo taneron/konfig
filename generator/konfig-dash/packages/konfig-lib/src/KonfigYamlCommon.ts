@@ -43,6 +43,7 @@ export const KonfigYamlCommon = z
     attachNullabletoAllResponseSchemas: z.boolean().optional(),
     validateRequiredPropertiesAndParametersAreNonEmpty: z.boolean().optional(),
     stripRequiredStringProperties: z.boolean().optional(),
+    doNotValidateGloballyRequiredSecurity: z.boolean().optional(),
     infoContactEmail: z.string().optional(),
     infoContactName: z.string().optional(),
     omitInfoDescription: z.boolean().optional(),

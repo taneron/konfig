@@ -57,6 +57,7 @@ export const transformSpec = async ({
   infoContactName,
   infoContactUrl,
   fixConfig,
+  doNotValidateGloballyRequiredSecurity,
   removeRequiredProperties,
 }: Options): Promise<string> => {
   const spec = await parseSpec(specString)
@@ -289,7 +290,10 @@ export const transformSpec = async ({
 
   // x-konfig-globally-required-security
   const operations = getOperations({ spec: spec.spec })
-  if (spec.spec.components?.securitySchemes) {
+  if (
+    spec.spec.components?.securitySchemes &&
+    !doNotValidateGloballyRequiredSecurity
+  ) {
     const securityCount: Record<string, number> = {}
     for (const { operation } of operations) {
       if (operation.security === undefined) continue
