@@ -4616,7 +4616,7 @@ public class DefaultCodegen implements CodegenConfig {
                 // construct requiresParametersWithRequestBodyProperties
                 // this is specifically useful when merging request properties into SDK methods
                 // (e.g. adding required properties to method parameters in Java SDK)
-                List<CodegenParameter> parametersFromBody = fromRequestBodyToFormParameters(requestBody, imports);
+                List<CodegenParameter> parametersFromBody = fromRequestBodyToFormParameters(requestBody, imports, false);
                 for (CodegenParameter cp : parametersFromBody) {
                     flattenedParamsFromRequestBodyProperties.add(cp);
                     if (cp.required) {
@@ -6982,11 +6982,15 @@ public class DefaultCodegen implements CodegenConfig {
     public String getHelp() {
         return null;
     }
+    public List<CodegenParameter> fromRequestBodyToFormParameters(RequestBody body, Set<String> imports) {
+        return fromRequestBodyToFormParameters(body, imports, true);
+    }
 
     /**
      * Convert request body to list of parameters
+     * @param filterMapParameters can be turned off in case of collecting all request body parameters
      */
-    public List<CodegenParameter> fromRequestBodyToFormParameters(RequestBody body, Set<String> imports) {
+    public List<CodegenParameter> fromRequestBodyToFormParameters(RequestBody body, Set<String> imports, boolean filterMapParameters) {
         List<CodegenParameter> parameters = new ArrayList<>();
         LOGGER.debug("debugging fromRequestBodyToFormParameters= {}", body);
         Schema schema = ModelUtils.getSchemaFromRequestBody(body);
@@ -7008,7 +7012,7 @@ public class DefaultCodegen implements CodegenConfig {
                 // value => property schema
                 String propertyName = entry.getKey();
                 Schema propertySchema = entry.getValue();
-                if (ModelUtils.isMapSchema(propertySchema)) {
+                if (filterMapParameters && ModelUtils.isMapSchema(propertySchema)) {
                     LOGGER.error(
                             "Map of form parameters not supported. Please report the issue to https://github.com/openapitools/openapi-generator if you need help.");
                     continue;
