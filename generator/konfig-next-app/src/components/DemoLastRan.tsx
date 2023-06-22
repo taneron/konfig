@@ -11,7 +11,7 @@ export const DemoLastRan = observer(({ demo }: { demo: DemoState }) => {
     <Group mx={rem(5)} position="right">
       {demo.howLongAgoLastSuccessfulExecution && (
         <Text mt={rem(5)} pos="absolute" color="gray" size={rem(12)}>
-          Last ran {demo.howLongAgoLastSuccessfulExecution}
+          Ran {demo.howLongAgoLastSuccessfulExecution}
         </Text>
       )}
     </Group>
