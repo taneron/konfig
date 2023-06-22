@@ -7,9 +7,29 @@ public class Configuration {
     private static ApiClient defaultApiClient = new ApiClient();
     public boolean verifyingSsl = true;
     public String host = "{{{basePath}}}";
-{{#apiKeyMethods}}
+{{#authMethods}}
+{{#isApiKey}}
     public String {{keyParamName}};
-{{/apiKeyMethods}}
+{{/isApiKey}}
+{{#isOAuth}}
+{{#isApplication}}
+    public String clientId;
+    public String clientSecret;
+{{/isApplication}}
+{{^isApplication}}
+    public String accessToken;
+{{/isApplication}}
+{{/isOAuth}}
+{{#isBasic}}
+{{#isBasicBasic}}
+    public String username;
+    public String password;
+{{/isBasicBasic}}
+{{#isBasicBearer}}
+    public String token;
+{{/isBasicBearer}}
+{{/isBasic}}
+{{/authMethods}}
 {{#clientState}}
     public String {{{.}}};
 {{/clientState}}
