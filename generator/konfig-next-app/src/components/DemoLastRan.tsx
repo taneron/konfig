@@ -8,9 +8,13 @@ export const DemoLastRan = observer(({ demo }: { demo: DemoState }) => {
   const sandbox = useContext(SandboxContext);
   if (sandbox) return null;
   return (
-    <Group mx={rem(5)} position="right">
+    <Group mx={rem(5)} position="apart">
+      <Text weight="bolder" sx={{ color: "gray" }} size={rem(14)}>
+        {demo.portal.portalName}
+      </Text>
+
       {demo.howLongAgoLastSuccessfulExecution && (
-        <Text mt={rem(40)} pos="absolute" sx={{ color: "gray" }} size={rem(12)}>
+        <Text sx={{ color: "gray" }} size={rem(12)}>
           Ran {demo.howLongAgoLastSuccessfulExecution}
         </Text>
       )}
