@@ -227,6 +227,16 @@ components:
                   description: acme-java-sdk
                 removeKonfigBranding:
                   type: boolean
+                clientName:
+                  type: string
+                clientState:
+                  type: array
+                  items:
+                    type: string
+                  description: A list of stateful properties generated into the SDK that can be
+                    used in custom implementation hooks. This is useful when you
+                    need state in the SDK that is not described in the OpenAPI
+                    Specification such as a key used for request signing.
                 toStringReturnsJson:
                   type: boolean
                   description: Modify the behavior of toString() for generated schema classes to
@@ -240,6 +250,7 @@ components:
                 - outputDirectory
                 - groupId
                 - artifactId
+                - clientName
               additionalProperties: false
             ruby:
               type: object
@@ -1386,6 +1397,17 @@ components:
                     description: acme-java-sdk
                   removeKonfigBranding:
                     type: boolean
+                  clientName:
+                    type: string
+                  clientState:
+                    type: array
+                    items:
+                      type: string
+                    description: A list of stateful properties generated into the SDK that can be
+                      used in custom implementation hooks. This is useful when
+                      you need state in the SDK that is not described in the
+                      OpenAPI Specification such as a key used for request
+                      signing.
                   toStringReturnsJson:
                     type: boolean
                     description: Modify the behavior of toString() for generated schema classes to
@@ -1400,6 +1422,7 @@ components:
                   - git
                   - groupId
                   - artifactId
+                  - clientName
                 additionalProperties: false
               - type: object
                 properties:
@@ -2434,6 +2457,8 @@ components:
         validateRequiredPropertiesAndParametersAreNonEmpty:
           type: boolean
         stripRequiredStringProperties:
+          type: boolean
+        doNotValidateGloballyRequiredSecurity:
           type: boolean
         infoContactEmail:
           type: string
