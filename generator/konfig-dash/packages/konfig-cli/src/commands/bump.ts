@@ -20,17 +20,20 @@ export default class Bump extends Command {
 
   static flags = {
     generator: Flags.string({ char: 'g', name: 'generator' }),
+    patch: Flags.boolean({
+      char: 'p',
+      name: 'patch',
+      exclusive: ['minor', 'major'],
+    }),
     major: Flags.boolean({
       char: 'M',
       name: 'major',
-      dependsOn: ['generator'],
-      exclusive: ['minor'],
+      exclusive: ['minor', 'patch'],
     }),
     minor: Flags.boolean({
       char: 'm',
       name: 'minor',
-      dependsOn: ['generator'],
-      exclusive: ['major'],
+      exclusive: ['major', 'patch'],
     }),
   }
 
@@ -44,6 +47,7 @@ export default class Bump extends Command {
     const releaseType = await getReleaseType({
       major: flags.major,
       minor: flags.minor,
+      patch: flags.patch,
       loadedKonfigYaml,
       cwd: this.config.root,
     })
@@ -80,13 +84,16 @@ async function getReleaseType({
   loadedKonfigYaml,
   major,
   minor,
+  patch,
 }: {
   cwd: string
   loadedKonfigYaml: KonfigYamlType
   major: boolean
   minor: boolean
+  patch: boolean
 }): Promise<semver.ReleaseType> {
   if (major) return 'major'
   if (minor) return 'minor'
+  if (patch) return 'patch'
   return await detectReleaseType({ cwd, specPath: loadedKonfigYaml.specPath })
 }
