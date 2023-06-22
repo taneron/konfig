@@ -11,17 +11,24 @@ export const DemoEditThisPage = observer(
     const sandbox = useContext(SandboxContext);
     if (sandbox) return null;
     return (
-      <Anchor
-        target="_blank"
-        className={styles.classes.subtleLink}
-        unstyled
-        href={`https://github.com/${portalState.organizationId}/${portalState.portalId}/tree/${portalState.mainBranch}/demos/${portalState.currentDemo.id}.md`}
-      >
-        <Group spacing={rem(5)}>
-          <IconEdit size={rem(14)} />
-          <Text>Edit this page</Text>
-        </Group>
-      </Anchor>
+      <Group mx={rem(5)} position="apart">
+        <Anchor
+          target="_blank"
+          className={styles.classes.subtleLink}
+          unstyled
+          href={`https://github.com/${portalState.organizationId}/${portalState.portalId}/tree/${portalState.mainBranch}/demos/${portalState.currentDemo.id}.md`}
+        >
+          <Group spacing={rem(5)}>
+            <IconEdit size={rem(14)} />
+            <Text>Edit this page</Text>
+          </Group>
+        </Anchor>
+        {portalState.currentDemo.howLongAgoLastSuccessfulExecution && (
+          <Text color="gray" size={rem(14)}>
+            Last ran {portalState.currentDemo.howLongAgoLastSuccessfulExecution}
+          </Text>
+        )}
+      </Group>
     );
   }
 );

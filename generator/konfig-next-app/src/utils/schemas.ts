@@ -1,12 +1,42 @@
 import { z } from "zod";
 
-export const PingSessionRequest = z.object({ sessionIds: z.string().array() });
+export const PingSessionRequest = z.object({
+  sessions: z
+    .object({
+      sessionId: z.string(),
+      organizationId: z.string(),
+      portalId: z.string(),
+      demoId: z.string(),
+    })
+    .array(),
+});
 
 export const PingSessionResponse = z.object({
   session_infos: z.object({ session_id: z.string() }).array(),
+  lastSuccessfulExecutions: z
+    .object({
+      organizationId: z.string(),
+      portalId: z.string(),
+      demoId: z.string(),
+      when: z.date().optional(),
+    })
+    .array(),
 });
 
-export const StartSessionResponse = z.object({ session_id: z.string() });
+export type PingSessionResponseType = z.infer<typeof PingSessionResponse>;
+
+export const StartSessionRequest = z.object({
+  organizationId: z.string(),
+  portalId: z.string(),
+  demoId: z.string(),
+});
+
+export const StartSessionResponse = z.object({
+  session_id: z.string(),
+  lastSuccessfulExecution: z.object({
+    when: z.date().optional(),
+  }),
+});
 
 export const Point = z.object({
   /**

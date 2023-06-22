@@ -108,11 +108,28 @@ export class PortalState {
     // Only start intervals in browser
     if (typeof window !== "undefined") {
       setInterval(async () => {
-        const sessionIds = this.demos
-          .map((demo) => demo.sessionId as string)
-          .filter((sessionId) => sessionId !== null);
-        if (sessionIds.length === 0) return;
-        await api.pingSessions.query({ sessionIds });
+        const activeSessions = this.demos.filter(
+          ({ sessionId }) => sessionId !== null
+        );
+        if (activeSessions.length === 0) return;
+        const { lastSuccessfulExecutions } = await api.pingSessions.query({
+          sessions: activeSessions.map((demo) => {
+            if (demo.sessionId === null)
+              throw Error("Demo sessions must be active");
+            return {
+              sessionId: demo.sessionId,
+              organizationId: demo.portal.organizationId,
+              portalId: demo.portal.id,
+              demoId: demo.id,
+            };
+          }),
+        });
+        lastSuccessfulExecutions.forEach(({ demoId, when }) => {
+          if (when === undefined) return;
+          this.demos
+            .find((demo) => demo.id === demoId)
+            ?.setLastSuccessfulExecution(new Date(when));
+        });
       }, 30000);
     }
   }
@@ -361,7 +378,7 @@ export const DemoPortal = observer(
                 display={state.currentDemoIndex !== i ? "none" : undefined}
               >
                 <DemoMarkdown state={demo} />
-                <Box ml={rem(5)} my={rem(40)}>
+                <Box my={rem(40)}>
                   <DemoEditThisPage portalState={state} />
                 </Box>
                 <DemoSiblings portal={state} previous={previous} next={next} />

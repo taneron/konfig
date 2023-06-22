@@ -20,6 +20,7 @@ import { DemoEnum } from "./DemoEnum";
 import { v4 as uuid } from "uuid";
 import { DemoPre } from "./DemoPre";
 import Slugger from "github-slugger";
+import { formatTimeAgo } from "@/utils/format-time-ago";
 
 export class DemoState {
   id: string;
@@ -33,6 +34,7 @@ export class DemoState {
   slugger: Slugger = new Slugger();
   headerIdToHtmlElement: Record<string, HTMLHeadingElement> = {};
   demoDiv: HTMLDivElement | null = null;
+  lastSuccessfulExecution: Date | null = null;
 
   constructor(parameters: {
     markdown: string;
@@ -56,6 +58,15 @@ export class DemoState {
     return cell;
   }
 
+  setLastSuccessfulExecution(when: Date) {
+    this.lastSuccessfulExecution = when;
+  }
+
+  get howLongAgoLastSuccessfulExecution() {
+    if (this.lastSuccessfulExecution === null) return null;
+    return formatTimeAgo(this.lastSuccessfulExecution);
+  }
+
   setSavedData({ label, values }: { label: string; values: string[] }) {
     this.savedData[label] = values;
   }
@@ -63,8 +74,18 @@ export class DemoState {
   async init() {
     // Only initialize sessions in browser
     if (typeof window !== "undefined") {
-      const { session_id } = await api.startSession.query();
+      const {
+        session_id,
+        lastSuccessfulExecution: { when },
+      } = await api.startSession.query({
+        organizationId: this.portal.organizationId,
+        portalId: this.portal.id,
+        demoId: this.id,
+      });
       this.setSessionId(session_id);
+      if (when !== undefined) {
+        this.setLastSuccessfulExecution(new Date(when));
+      }
     }
   }
 

@@ -18,6 +18,8 @@ import {
   PingSessionRequest,
   PingSessionResponse,
   ExecuteSandboxCodeRequest,
+  PingSessionResponseType,
+  StartSessionRequest,
 } from "@/utils/schemas";
 import {
   FetchResult,
@@ -29,18 +31,92 @@ export type FetchCache = Record<string, FetchResult>;
 
 export const _cache: FetchCache = {};
 
-export const appRouter = router({
-  startSession: procedure.output(StartSessionResponse).query(async () => {
-    const url = `${urlForPythonRceApi()}/sessions/create`;
+/**
+ * Stores the last time a particular demo had a code execution
+ */
+class LastSuccessfulExecutionStore {
+  static singleton = new LastSuccessfulExecutionStore();
+  _lastSuccessfulExecution: Record<string, Date | undefined> = {};
 
-    const { data } = await axios.post(url);
-    return StartSessionResponse.parse(data);
-  }),
-  pingSessions: procedure.input(PingSessionRequest).query(async ({ input }) => {
-    const url = `${urlForPythonRceApi()}/sessions/ping`;
-    const { data } = await axios.post(url, { session_ids: input.sessionIds });
-    return PingSessionResponse.parse(data);
-  }),
+  private constructor() {}
+
+  save({
+    organizationId,
+    portalId,
+    demoId,
+  }: {
+    organizationId: string;
+    portalId: string;
+    demoId: string;
+  }) {
+    this._lastSuccessfulExecution[
+      this._computeKey({ organizationId, portalId, demoId })
+    ] = new Date();
+  }
+
+  get({
+    organizationId,
+    portalId,
+    demoId,
+  }: {
+    organizationId: string;
+    portalId: string;
+    demoId: string;
+  }) {
+    return this._lastSuccessfulExecution[
+      this._computeKey({ organizationId, portalId, demoId })
+    ];
+  }
+
+  private _computeKey({
+    organizationId,
+    portalId,
+    demoId,
+  }: {
+    organizationId: string;
+    portalId: string;
+    demoId: string;
+  }) {
+    return `${organizationId}-${portalId}-${demoId}`;
+  }
+
+  static get inst() {
+    return this.singleton;
+  }
+}
+
+export const appRouter = router({
+  startSession: procedure
+    .input(StartSessionRequest)
+    .output(StartSessionResponse)
+    .query(async ({ input }) => {
+      const url = `${urlForPythonRceApi()}/sessions/create`;
+
+      const { data } = await axios.post(url);
+      return {
+        ...data,
+        lastSuccessfulExecution: {
+          when: LastSuccessfulExecutionStore.inst.get(input),
+        },
+      };
+    }),
+  pingSessions: procedure
+    .input(PingSessionRequest)
+    .output(PingSessionResponse)
+    .query(async ({ input }) => {
+      const url = `${urlForPythonRceApi()}/sessions/ping`;
+      const { data } = await axios.post(url, {
+        session_ids: input.sessions.map((session) => session.sessionId),
+      });
+      const response: PingSessionResponseType = {
+        ...data,
+        lastSuccessfulExecutions: input.sessions.map((session) => ({
+          ...session,
+          when: LastSuccessfulExecutionStore.inst.get(session),
+        })),
+      };
+      return response;
+    }),
   executeSandboxCode: procedure
     .input(ExecuteSandboxCodeRequest)
     .output(ExecuteCodeResponse)
@@ -57,7 +133,7 @@ export const appRouter = router({
         local_variables: input.localVariables,
       });
 
-      return ExecuteCodeResponse.parse(data);
+      return data;
     }),
   executeCode: procedure
     .input(ExecuteCodeRequest)
@@ -116,7 +192,12 @@ export const appRouter = router({
         local_variables: input.localVariables,
       });
 
-      return ExecuteCodeResponse.parse(data);
+      const response = ExecuteCodeResponse.parse(data);
+
+      if (response.result === "Success")
+        LastSuccessfulExecutionStore.inst.save(input);
+
+      return response;
     }),
 });
 
