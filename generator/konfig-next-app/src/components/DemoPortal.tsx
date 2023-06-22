@@ -63,7 +63,7 @@ export class PortalState {
   organizationId: string;
   portalId: string;
   currentDemo: DemoState;
-  mainBranch: string;
+  mainBranch?: string;
   socials?: SocialObject;
 
   constructor({
@@ -83,7 +83,7 @@ export class PortalState {
     portalId: string;
     demoId: string;
     socials?: SocialObject;
-    mainBranch: string;
+    mainBranch?: string;
   }) {
     makeAutoObservable(this);
     this.socials = socials;
