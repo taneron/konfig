@@ -47,6 +47,7 @@ import { DemoSocials } from "./DemoSocials";
 import { SocialObject } from "@/utils/generate-demos-from-github";
 import DemoTableOfContents from "./DemoTableOfContents";
 import { TITLE_OFFSET_PX } from "./DemoTitle";
+import { DemoEditThisPage } from "./DemoEditThisPage";
 
 type DemosInput = Demo[];
 
@@ -356,6 +357,9 @@ export const DemoPortal = observer(
                 display={state.currentDemoIndex !== i ? "none" : undefined}
               >
                 <DemoMarkdown state={demo} />
+                <Box ml={rem(5)} my={rem(40)}>
+                  <DemoEditThisPage portalState={state} />
+                </Box>
                 <DemoSiblings portal={state} previous={previous} next={next} />
                 <Divider mt={rem(60)} />
                 <Box my={rem(20)}>
