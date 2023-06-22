@@ -240,7 +240,17 @@ export default class Publish extends Command {
 
   static flags = {
     debug: Flags.boolean({ name: 'debug', char: 'd' }),
-    generator: Flags.string({ name: 'generator', char: 'g', required: true }),
+    generator: Flags.string({
+      name: 'generator',
+      char: 'g',
+      exclusive: ['all'],
+    }),
+    all: Flags.boolean({
+      name: 'all',
+      char: 'a',
+      description: 'Specify all generators',
+      exclusive: ['generator'],
+    }),
     test: Flags.boolean({ name: 'test', char: 't' }),
     skipRemoteCheck: Flags.boolean({
       name: 'skipRemoteCheck',
@@ -270,14 +280,21 @@ export default class Publish extends Command {
         'Git remote is out of sync. Make sure all changes are pushed or pulled before publishing.'
       )
 
-    // Run all tests before publishing to ensure everything works
-    if (!flags.skipTests)
-      await executeTestCommand({ filterInput: flags.generator, sequence: true })
-
-    const filter = parseFilterFlag(flags.generator)
     const { generators } = parseKonfigYaml({
       configDir: process.cwd(),
     })
+
+    const filter = parseFilterFlag(flags.generator)
+    if (!flags.all && filter === null)
+      this.error('At least -a or -g must be specified')
+
+    // Run all tests before publishing to ensure everything works
+    if (!flags.skipTests)
+      await executeTestCommand({
+        filterInput: filter !== null ? flags.generator : undefined,
+        sequence: true,
+      })
+
     for (const [generatorName, generatorConfig] of Object.entries(generators)) {
       if ('disabled' in generatorConfig && generatorConfig.disabled) continue
       if (filter !== null && !filter.includes(generatorName)) continue
