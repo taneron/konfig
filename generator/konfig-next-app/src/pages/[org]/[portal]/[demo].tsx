@@ -21,6 +21,7 @@ export const getStaticProps: GetStaticProps<{
   portal: Portal;
   demo: Demo;
   socials?: SocialObject;
+  mainBranch: string;
 }> = async (ctx) => {
   if (!ctx.params?.org || Array.isArray(ctx.params.org)) {
     return {
@@ -58,6 +59,7 @@ const Snaptrade = observer(
     organization,
     portal,
     demo,
+    mainBranch,
     socials,
   }: InferGetStaticPropsType<typeof getStaticProps>) => {
     const [state] = useState(
@@ -66,6 +68,7 @@ const Snaptrade = observer(
         portalId: portal.id,
         organizationId: organization.id,
         demoId: demo.id,
+        mainBranch,
         socials,
       })
     );

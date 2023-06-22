@@ -63,6 +63,7 @@ export class PortalState {
   organizationId: string;
   portalId: string;
   currentDemo: DemoState;
+  mainBranch: string;
   socials?: SocialObject;
 
   constructor({
@@ -73,6 +74,7 @@ export class PortalState {
     portalId,
     demoId,
     socials,
+    mainBranch,
   }: {
     demos: DemosInput;
     portalName: string;
@@ -81,11 +83,13 @@ export class PortalState {
     portalId: string;
     demoId: string;
     socials?: SocialObject;
+    mainBranch: string;
   }) {
     makeAutoObservable(this);
     this.socials = socials;
     this.id = id;
     this.portalId = portalId;
+    this.mainBranch = mainBranch;
     this.organizationId = organizationId;
     this.demos = demos.map(
       ({ name, markdown, id, showCode }) =>
@@ -305,7 +309,7 @@ export const DemoPortal = observer(
                         target="_blank"
                         size="xs"
                         leftIcon={<IconBrandGithub size="1rem" />}
-                        href={`https://github.com/${state.organizationId}/${state.portalId}/tree/HEAD/demos`}
+                        href={`https://github.com/${state.organizationId}/${state.portalId}/tree/${state.mainBranch}/demos`}
                         color="gray"
                         variant="default"
                       >

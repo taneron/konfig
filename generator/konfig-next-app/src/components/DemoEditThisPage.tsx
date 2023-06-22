@@ -15,7 +15,7 @@ export const DemoEditThisPage = observer(
         target="_blank"
         className={styles.classes.subtleLink}
         unstyled
-        href={`https://github.com/${portalState.organizationId}/${portalState.portalId}/tree/HEAD/demos/${portalState.currentDemo.id}.md`}
+        href={`https://github.com/${portalState.organizationId}/${portalState.portalId}/tree/${portalState.mainBranch}/demos/${portalState.currentDemo.id}.md`}
       >
         <Group spacing={rem(5)}>
           <IconEdit size={rem(14)} />

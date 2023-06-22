@@ -80,6 +80,7 @@ export type FetchResult = {
   portal: Portal;
   demos: Demo[];
   socials?: SocialObject;
+  mainBranch: string;
 };
 
 export type GenerationResult =
@@ -110,6 +111,7 @@ export async function generateDemosDataFromGithub({
       socials?: SocialObject;
       organization: Organization;
       portal: Portal;
+      mainBranch: string;
       demo: Demo;
     }
   | { result: "error"; reason: "no demos" }
@@ -123,7 +125,7 @@ export async function generateDemosDataFromGithub({
       : await _fetch({ orgId, portalId });
   if (_cache !== undefined) _cache[cacheKey] = fetchResult;
 
-  const { demos, organization, portal, socials } = fetchResult;
+  const { demos, organization, portal, socials, mainBranch } = fetchResult;
 
   if (demos.length < 1) return { result: "error", reason: "no demos" };
 
@@ -138,6 +140,7 @@ export async function generateDemosDataFromGithub({
   return {
     result: "success",
     ...(socials ? { socials } : {}),
+    mainBranch,
     organization,
     portal,
     demo,
@@ -253,6 +256,7 @@ async function _fetch({
     organization,
     portal,
     demos,
+    mainBranch: repository.repository.default_branch,
     ...(parsedDemoYaml.socials ? { socials: parsedDemoYaml.socials } : {}),
   };
 }
