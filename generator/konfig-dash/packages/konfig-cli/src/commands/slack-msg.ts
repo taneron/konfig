@@ -15,18 +15,32 @@ export default class SlackMsg extends Command {
   static examples = ['<%= config.bin %> <%= command.id %>']
 
   static flags = {
-    generator: Flags.string({ name: 'generator', char: 'g', required: true }),
+    generator: Flags.string({
+      name: 'generator',
+      char: 'g',
+      exclusive: ['all'],
+    }),
+    all: Flags.boolean({
+      name: 'all',
+      char: 'a',
+      description: 'Specify all generators',
+      exclusive: ['generator'],
+    }),
   }
 
   static args = [{ name: 'file' }]
 
   public async run(): Promise<void> {
     const { flags } = await this.parse(SlackMsg)
-    const filter = parseFilterFlag(flags.generator)
-    if (filter === null) this.error('Generator flag is required')
     const { generators, parsedKonfigYaml } = parseKonfigYaml({
       configDir: process.cwd(),
     })
+    if (flags.generator === undefined)
+      flags.generator = Object.keys(generators).join(',')
+    const filter = parseFilterFlag(flags.generator)
+    if (filter === null)
+      this.error('Either -g or -a should have been specified')
+
     const specString = fs.readFileSync(parsedKonfigYaml.specPath, 'utf-8')
     const { spec } = await parseSpec(specString)
     const title = spec.info.title
