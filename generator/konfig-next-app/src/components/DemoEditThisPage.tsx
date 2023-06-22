@@ -11,7 +11,7 @@ export const DemoEditThisPage = observer(
     const sandbox = useContext(SandboxContext);
     if (sandbox) return null;
     return (
-      <Group mx={rem(5)} position="apart">
+      <Group mx={rem(5)} position="left">
         <Anchor
           target="_blank"
           className={styles.classes.subtleLink}
@@ -23,11 +23,6 @@ export const DemoEditThisPage = observer(
             <Text>Edit this page</Text>
           </Group>
         </Anchor>
-        {portalState.currentDemo.howLongAgoLastSuccessfulExecution && (
-          <Text color="gray" size={rem(14)}>
-            Last ran {portalState.currentDemo.howLongAgoLastSuccessfulExecution}
-          </Text>
-        )}
       </Group>
     );
   }

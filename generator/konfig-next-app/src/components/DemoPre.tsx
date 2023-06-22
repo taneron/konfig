@@ -17,7 +17,7 @@ const _DemoPre: Components["pre"] = ({
   const demoState = useContext(DemoStateContext);
   const language = extractLanguageFromElement(node.children[0] as Element);
   const doNotHide =
-    language !== undefined ? DO_NOT_HIDE_LANGUAGES.includes(language) : false;
+    language === undefined || DO_NOT_HIDE_LANGUAGES.includes(language);
   const mounted = doNotHide || (demoState?.portal.showCode ?? false);
   return (
     <Transition
