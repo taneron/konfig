@@ -26,10 +26,6 @@ const sidebars = {
     },
     {
       type: "doc",
-      id: "why-create-sdks",
-    },
-    {
-      type: "doc",
       id: "quickstart-guide",
     },
     {
