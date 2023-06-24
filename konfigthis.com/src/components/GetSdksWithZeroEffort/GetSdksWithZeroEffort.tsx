@@ -250,6 +250,7 @@ export function GetSdksWithZeroEffort() {
               preventScrolling={false}
               elementsSelectable={false}
               zoomOnScroll={false}
+              zoomOnDoubleClick={false}
               nodesConnectable={false}
               draggable={false}
               nodesDraggable={false}

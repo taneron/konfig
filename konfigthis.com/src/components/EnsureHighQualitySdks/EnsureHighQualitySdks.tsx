@@ -9,10 +9,16 @@ import {
   Stack,
   ThemeIcon,
   Paper,
+  Group,
 } from "@mantine/core";
-import { IconCertificate, IconTestPipe } from "@tabler/icons-react";
+import {
+  IconCertificate,
+  IconPackageExport,
+  IconShieldCheck,
+  IconShieldCheckFilled,
+  IconTestPipe,
+} from "@tabler/icons-react";
 import ReactFlow, { Position, Node, Edge } from "reactflow";
-import Image from "next/image";
 
 const initialNodes: Node[] = [
   {
@@ -20,9 +26,10 @@ const initialNodes: Node[] = [
     position: { x: 0, y: 0 },
     data: {
       label: (
-        <>
+        <Group position="center">
           <Title order={6}>Validate</Title>
-        </>
+          <IconShieldCheck />
+        </Group>
       ),
     },
     sourcePosition: Position.Right,
@@ -33,9 +40,10 @@ const initialNodes: Node[] = [
     position: { x: 200, y: 0 },
     data: {
       label: (
-        <>
+        <Group position="center">
           <Title order={6}>Test</Title>
-        </>
+          <IconShieldCheckFilled />
+        </Group>
       ),
     },
     sourcePosition: Position.Right,
@@ -46,9 +54,10 @@ const initialNodes: Node[] = [
     position: { x: 400, y: 0 },
     data: {
       label: (
-        <>
+        <Group position="center">
           <Title order={6}>Publish</Title>
-        </>
+          <IconPackageExport />
+        </Group>
       ),
     },
     sourcePosition: Position.Bottom,
@@ -134,6 +143,7 @@ export function EnsureHighQualitySdks() {
               fitView
               preventScrolling={false}
               elementsSelectable={false}
+              zoomOnDoubleClick={false}
               zoomOnScroll={false}
               nodesConnectable={false}
               draggable={false}
