@@ -29,6 +29,14 @@ services:
     repo: https://github.com/konfig-dev/humanloop-sdks
     startCommand: ./node_modules/.bin/konfig pull && ./node_modules/.bin/konfig push -o konfig-dev -r humanloop-sdks -s openapi.json -x v4-alpha
 
+  - name: konfigthis.com
+    type: web
+    env: static
+    buildCommand: yarn; yarn build; yarn next export
+    staticPublishPath: ./out
+    repo: https://github.com/konfig-dev/konfig
+    rootDir: konfigthis.com
+
   - name: konfig-demo-product-landing-page
     type: web
     env: static
