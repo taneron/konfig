@@ -8,7 +8,7 @@ const config = {
   title: "Konfig",
   tagline: "Build & Scale In-Video Game Stores",
   url: "https://docs.konfigthis.com",
-  baseUrl: "/",
+  baseUrl: "/docs",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
   favicon: "img/favicon.png",
