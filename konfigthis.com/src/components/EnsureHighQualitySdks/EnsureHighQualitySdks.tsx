@@ -1,0 +1,152 @@
+import {
+  Text,
+  Col,
+  Container,
+  Grid,
+  Title,
+  rem,
+  Box,
+  Stack,
+  ThemeIcon,
+  Paper,
+} from "@mantine/core";
+import { IconCertificate, IconTestPipe } from "@tabler/icons-react";
+import ReactFlow, { Position, Node, Edge } from "reactflow";
+import Image from "next/image";
+
+const initialNodes: Node[] = [
+  {
+    id: "validation",
+    position: { x: 0, y: 0 },
+    data: {
+      label: (
+        <>
+          <Title order={6}>Validate</Title>
+        </>
+      ),
+    },
+    sourcePosition: Position.Right,
+    targetPosition: Position.Bottom,
+  },
+  {
+    id: "testing",
+    position: { x: 200, y: 0 },
+    data: {
+      label: (
+        <>
+          <Title order={6}>Test</Title>
+        </>
+      ),
+    },
+    sourcePosition: Position.Right,
+    targetPosition: Position.Left,
+  },
+  {
+    id: "publish",
+    position: { x: 400, y: 0 },
+    data: {
+      label: (
+        <>
+          <Title order={6}>Publish</Title>
+        </>
+      ),
+    },
+    sourcePosition: Position.Bottom,
+    targetPosition: Position.Left,
+  },
+];
+const initialEdges: Edge[] = [
+  {
+    id: "validation-testing",
+    source: "validation",
+    target: "testing",
+    animated: true,
+  },
+  {
+    id: "testing-publish",
+    source: "testing",
+    target: "publish",
+    animated: true,
+  },
+  {
+    id: "publish-validate",
+    source: "publish",
+    target: "validation",
+    animated: true,
+    type: "step",
+  },
+];
+
+export function EnsureHighQualitySdks() {
+  return (
+    <Container my={rem(150)} size="lg">
+      <Grid>
+        <Col span={12} md={5}>
+          <Title mb={rem(10)} order={2}>
+            Ensure high quality SDKs
+          </Title>
+          <Stack>
+            <Box c="dimmed">
+              <ThemeIcon
+                size={35}
+                radius="md"
+                variant="gradient"
+                gradient={{ deg: 133, from: "dark", to: "gray" }}
+              >
+                <IconCertificate size={rem(22)} stroke={1.5} />
+              </ThemeIcon>
+              <Text fz="lg" mt="sm" fw={500}>
+                Validation
+              </Text>
+              <Text c="dimmed" fz="sm">
+                {"Konfig's"} proprietary linter catches errors in your OpenAPI
+                Specification before they can reach your customers and cause
+                confusion
+              </Text>
+            </Box>
+            <Box c="dimmed">
+              <ThemeIcon
+                size={35}
+                radius="md"
+                variant="gradient"
+                gradient={{ deg: 133, from: "dark", to: "gray" }}
+              >
+                <IconTestPipe size={rem(22)} stroke={1.5} />
+              </ThemeIcon>
+              <Text fz="lg" mt="sm" fw={500}>
+                Testing
+              </Text>
+              <Text c="dimmed" fz="sm">
+                Konfig writes test cases for every SDK to ensure any API update
+                {"won't"} break the SDKs your customers are using
+              </Text>
+            </Box>
+          </Stack>
+        </Col>
+        <Col span={12} md={7}>
+          <Paper
+            radius="md"
+            withBorder
+            shadow="lg"
+            h={{ base: rem(300), sm: "100%" }}
+          >
+            <ReactFlow
+              fitView
+              preventScrolling={false}
+              elementsSelectable={false}
+              zoomOnScroll={false}
+              nodesConnectable={false}
+              draggable={false}
+              nodesDraggable={false}
+              panOnDrag={false}
+              zoomOnPinch={false}
+              proOptions={{ hideAttribution: true }}
+              nodes={initialNodes}
+              edges={initialEdges}
+            ></ReactFlow>
+          </Paper>
+        </Col>
+      </Grid>
+    </Container>
+  );
+}
