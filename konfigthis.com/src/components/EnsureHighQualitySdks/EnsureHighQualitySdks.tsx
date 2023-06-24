@@ -24,6 +24,7 @@ const initialNodes: Node[] = [
   {
     id: "validation",
     position: { x: 0, y: 0 },
+    type: "input",
     data: {
       label: (
         <Group position="center">
@@ -33,7 +34,6 @@ const initialNodes: Node[] = [
       ),
     },
     sourcePosition: Position.Right,
-    targetPosition: Position.Bottom,
   },
   {
     id: "testing",
@@ -52,6 +52,7 @@ const initialNodes: Node[] = [
   {
     id: "publish",
     position: { x: 400, y: 0 },
+    type: "output",
     data: {
       label: (
         <Group position="center">
@@ -60,7 +61,6 @@ const initialNodes: Node[] = [
         </Group>
       ),
     },
-    sourcePosition: Position.Bottom,
     targetPosition: Position.Left,
   },
 ];
@@ -76,13 +76,6 @@ const initialEdges: Edge[] = [
     source: "testing",
     target: "publish",
     animated: true,
-  },
-  {
-    id: "publish-validate",
-    source: "publish",
-    target: "validation",
-    animated: true,
-    type: "step",
   },
 ];
 
