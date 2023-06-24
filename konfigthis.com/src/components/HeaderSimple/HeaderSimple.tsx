@@ -78,7 +78,6 @@ export function HeaderSimple() {
             variant="subtle"
             color="dark"
             href="/blog"
-            size="xs"
           >
             Blog
           </Button>
@@ -88,7 +87,6 @@ export function HeaderSimple() {
             variant="subtle"
             color="dark"
             href="/docs"
-            size="xs"
           >
             Documentation
           </Button>
