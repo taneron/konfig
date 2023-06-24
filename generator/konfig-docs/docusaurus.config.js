@@ -8,7 +8,7 @@ const config = {
   title: "Konfig",
   tagline: "Build & Scale In-Video Game Stores",
   url: "https://docs.konfigthis.com",
-  baseUrl: "/docs",
+  baseUrl: "/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
   favicon: "img/favicon.png",
@@ -65,7 +65,7 @@ const config = {
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
-          routeBasePath: "/",
+          routeBasePath: "/docs",
           sidebarPath: require.resolve("./sidebars.js"),
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
