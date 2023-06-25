@@ -97,6 +97,7 @@ const config = {
             label: "Documentation",
           },
           { to: "/blog", label: "Blog", position: "left" },
+          { to: "/schedule-demo", label: "Schedule Demo", position: "right" },
         ],
       },
       api: {
