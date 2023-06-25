@@ -3,12 +3,10 @@ import {
   Header,
   Container,
   rem,
-  Burger,
-  Button,
   Group,
+  Anchor,
 } from "@mantine/core";
 import Image from "next/image";
-import { useDisclosure } from "@mantine/hooks";
 import logo from "./logo.png";
 
 const useStyles = createStyles((theme) => ({
@@ -72,24 +70,18 @@ export function HeaderSimple() {
       <Container size="lg" className={classes.header}>
         <Image height={40} src={logo} alt="Konfig Logo" />
         <Group spacing="xs">
-          <Button
+          <Anchor
             target="_blank"
             component="a"
+            unstyled
             variant="subtle"
-            color="dark"
             href="/blog"
           >
             Blog
-          </Button>
-          <Button
-            target="_blank"
-            component="a"
-            variant="subtle"
-            color="dark"
-            href="/docs"
-          >
+          </Anchor>
+          <Anchor unstyled target="_blank" component="a" href="/docs">
             Documentation
-          </Button>
+          </Anchor>
         </Group>
       </Container>
     </Header>

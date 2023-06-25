@@ -1,3 +1,4 @@
+import { useMdMediaQuery } from "@/utils/use-md-media-query";
 import {
   Text,
   Col,
@@ -11,6 +12,7 @@ import {
   Paper,
   Group,
 } from "@mantine/core";
+import { useViewportSize, useWindowScroll } from "@mantine/hooks";
 import {
   IconCertificate,
   IconPackageExport,
@@ -18,9 +20,16 @@ import {
   IconShieldCheckFilled,
   IconTestPipe,
 } from "@tabler/icons-react";
-import ReactFlow, { Position, Node, Edge } from "reactflow";
+import { useState, useEffect } from "react";
+import ReactFlow, {
+  Position,
+  Node,
+  Edge,
+  ReactFlowInstance,
+  FitViewOptions,
+} from "reactflow";
 
-const initialNodes: Node[] = [
+const desktopNodes: Node[] = [
   {
     id: "validation",
     position: { x: 0, y: 0 },
@@ -64,7 +73,51 @@ const initialNodes: Node[] = [
     targetPosition: Position.Left,
   },
 ];
-const initialEdges: Edge[] = [
+const mobileNodes: Node[] = [
+  {
+    id: "validation",
+    position: { x: 0, y: 0 },
+    type: "input",
+    data: {
+      label: (
+        <Group position="center">
+          <Title order={6}>Validate</Title>
+          <IconShieldCheck />
+        </Group>
+      ),
+    },
+    sourcePosition: Position.Bottom,
+  },
+  {
+    id: "testing",
+    position: { x: 0, y: 100 },
+    data: {
+      label: (
+        <Group position="center">
+          <Title order={6}>Test</Title>
+          <IconShieldCheckFilled />
+        </Group>
+      ),
+    },
+    sourcePosition: Position.Bottom,
+    targetPosition: Position.Top,
+  },
+  {
+    id: "publish",
+    position: { x: 0, y: 200 },
+    type: "output",
+    data: {
+      label: (
+        <Group position="center">
+          <Title order={6}>Publish</Title>
+          <IconPackageExport />
+        </Group>
+      ),
+    },
+    targetPosition: Position.Top,
+  },
+];
+const edges: Edge[] = [
   {
     id: "validation-testing",
     source: "validation",
@@ -80,6 +133,22 @@ const initialEdges: Edge[] = [
 ];
 
 export function EnsureHighQualitySdks() {
+  const matches = useMdMediaQuery();
+  const [nodes, setNodes] = useState(matches ? desktopNodes : mobileNodes);
+
+  useEffect(() => {
+    setNodes(matches ? desktopNodes : mobileNodes);
+  }, [matches]);
+
+  const [inst, setInst] = useState<ReactFlowInstance | null>(null);
+  const { width, height } = useViewportSize();
+  const [{ x, y }] = useWindowScroll();
+  const fitViewOptions: FitViewOptions | undefined = matches
+    ? undefined
+    : { padding: 0.5 };
+  useEffect(() => {
+    inst?.fitView(fitViewOptions);
+  }, [width, height, x, y]);
   return (
     <Container my={rem(150)} size="lg">
       <Grid>
@@ -130,10 +199,12 @@ export function EnsureHighQualitySdks() {
             radius="md"
             withBorder
             shadow="lg"
-            h={{ base: rem(300), sm: "100%" }}
+            h={{ base: rem(500), sm: "100%" }}
           >
             <ReactFlow
+              onInit={setInst}
               fitView
+              fitViewOptions={fitViewOptions}
               preventScrolling={false}
               elementsSelectable={false}
               zoomOnDoubleClick={false}
@@ -144,8 +215,8 @@ export function EnsureHighQualitySdks() {
               panOnDrag={false}
               zoomOnPinch={false}
               proOptions={{ hideAttribution: true }}
-              nodes={initialNodes}
-              edges={initialEdges}
+              nodes={nodes}
+              edges={edges}
             ></ReactFlow>
           </Paper>
         </Col>
