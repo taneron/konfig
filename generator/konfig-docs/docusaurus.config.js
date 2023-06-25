@@ -7,7 +7,7 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 const config = {
   title: "Konfig",
   tagline: "Generate SDKs for your REST API",
-  url: "https://docs.konfigthis.com",
+  url: "https://konfigthis.com/docs",
   baseUrl: "/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
