@@ -40,9 +40,13 @@ const config = {
 
   presets: [
     [
-      "classic",
-      /** @type {import('@docusaurus/preset-classic').Options} */
+      "docusaurus-preset-openapi",
+      /** @type {import('docusaurus-preset-openapi').Options} */
       ({
+        api: {
+          path: "../konfig-dash/packages/konfig-openapi-spec/openapi.yaml",
+          routeBasePath: "/api",
+        },
         docs: {
           routeBasePath: "/docs",
           sidebarPath: require.resolve("./sidebars.js"),
@@ -59,17 +63,12 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
-      docs: {
-        sidebar: {
-          hideable: true,
-        },
-      },
       navbar: {
         title: "Konfig",
         logo: {
           alt: "Konfig Logo",
           src: "img/favicon.png",
-          href: "/docs",
+          href: "https://konfigthis.com",
         },
         items: [
           {
@@ -78,7 +77,16 @@ const config = {
             position: "left",
             label: "Documentation",
           },
+          {
+            label: "REST API",
+            position: "left",
+            to: "/api",
+          },
         ],
+      },
+      api: {
+        authPersistance: "localStorage",
+        serverVariablesPersistance: "localStorage",
       },
 
       footer: {
