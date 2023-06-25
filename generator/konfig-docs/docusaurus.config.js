@@ -67,9 +67,6 @@ const config = {
         docs: {
           routeBasePath: "/docs",
           sidebarPath: require.resolve("./sidebars.js"),
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl: "https://github.com/konfig-dev/konfig-docs/tree/master/",
           docItemComponent: "@theme/ApiItem",
           docLayoutComponent: "@theme/DocPage",
         },
