@@ -5,18 +5,13 @@
 :::
 
 1. Clone the example Konfig configuration repo https://github.com/konfig-dev/getting-started-example
-   <!-- (https://github.com/konfig-dev/getting-started-example). This particular repo
-   contains the configuration for producing Java, TypeScript, CSharp, Swift,
-   Objective C, Kotlin, Go, PHP, and Python SDKs. -->
 
 ```bash
 ❯ git clone https://github.com/konfig-dev/getting-started-example.git
 ❯ cd getting-started-example
 ```
 
-<!-- This repo contains a `konfig.yaml` file, Konfig's linting ruleset, VSCode settings, and logo image for publishing.
-
-```bash
+````bash
 ❯ tree -a
 .
 ├── .git
@@ -31,8 +26,6 @@
 ├── logo.png
 └── petstore.yaml
 ``` -->
-
-<!-- The `konfig.yaml` contains configurations for generating SDKs.
 
 ```bash
 ❯ cat konfig.yaml
@@ -116,7 +109,7 @@ generators:
 
 ```bash
 ❯ npm install -g konfig-cli
-```
+````
 
 3. Signup for an account https://dash.konfigthis.com/signup.
 
@@ -166,8 +159,6 @@ Generating top-level README.md... done
 README.md               build.gradle            docs                    gradle                  gradlew                 pom.xml                 src
 api                     build.sbt               git_push.sh             gradle.properties       gradlew.bat             settings.gradle
 ```
-
-<!-- Every generator is configured to produce a directory named after itself in the example `konfig.yaml`.
 
 :::info
 The example OpenAPI Spec also contains a warning from our lint rules that you can diagnose by running `konfig lint petstore.yaml`:
