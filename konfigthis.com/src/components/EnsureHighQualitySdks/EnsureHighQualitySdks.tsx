@@ -20,7 +20,7 @@ import {
   IconShieldCheckFilled,
   IconTestPipe,
 } from "@tabler/icons-react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import ReactFlow, {
   Position,
   Node,
@@ -143,12 +143,13 @@ export function EnsureHighQualitySdks() {
   const [inst, setInst] = useState<ReactFlowInstance | null>(null);
   const { width, height } = useViewportSize();
   const [{ x, y }] = useWindowScroll();
-  const fitViewOptions: FitViewOptions | undefined = matches
-    ? undefined
-    : { padding: 0.5 };
+  const fitViewOptions: FitViewOptions | undefined = useMemo(
+    () => (matches ? undefined : { padding: 0.5 }),
+    [matches]
+  );
   useEffect(() => {
     inst?.fitView(fitViewOptions);
-  }, [width, height, x, y]);
+  }, [width, height, x, y, inst, fitViewOptions]);
   return (
     <Container my={rem(150)} size="lg">
       <Grid>

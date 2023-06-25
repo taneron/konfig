@@ -17,7 +17,7 @@ import { useViewportSize, useWindowScroll } from "@mantine/hooks";
 import { IconRefresh } from "@tabler/icons-react";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import ReactFlow, {
   Edge,
   FitViewOptions,
@@ -198,9 +198,10 @@ export function GetSdksWithZeroEffort() {
   const matches = useMdMediaQuery();
   const [nodes, setNodes] = useState(matches ? desktopNodes : mobileNodes);
 
-  const fitViewOptions: FitViewOptions | undefined = matches
-    ? undefined
-    : { padding: 0.2 };
+  const fitViewOptions: FitViewOptions | undefined = useMemo(
+    () => (matches ? undefined : { padding: 0.2 }),
+    [matches]
+  );
 
   useEffect(() => {
     setNodes(matches ? desktopNodes : mobileNodes);
@@ -211,7 +212,7 @@ export function GetSdksWithZeroEffort() {
   const [{ x, y }] = useWindowScroll();
   useEffect(() => {
     inst?.fitView(fitViewOptions);
-  }, [width, height, x, y]);
+  }, [width, height, x, y, fitViewOptions, inst]);
   return (
     <Container my={rem(150)} size="lg">
       <Grid>
