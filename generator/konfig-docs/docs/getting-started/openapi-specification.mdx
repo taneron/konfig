@@ -22,25 +22,6 @@ OpenAPI Specification hosted at a fake endpoint.
 ```shell CLI focus=2
 /
 ❯ npm install -g konfig-cli
-npm WARN deprecated @oclif/screen@3.0.4: Deprecated in favor of @oclif/core
-npm WARN deprecated sourcemap-codec@1.4.8: Please use @jridgewell/sourcemap-codec instead
-npm WARN deprecated express-graphql@0.11.0: This package is no longer maintained. We recommend using `graphql-http` instead. Please consult the migration document https://github.com/graphql/graphql-http#migrating-express-grpahql.
-npm WARN deprecated json-schema-ref-parser@6.1.0: Please switch to @apidevtools/json-schema-ref-parser
-
-removed 1 package, changed 982 packages, and audited 983 packages in 22s
-
-181 packages are looking for funding
-  run `npm fund` for details
-
-12 moderate severity vulnerabilities
-
-To address issues that do not require attention, run:
-  npm audit fix
-
-To address all issues (including breaking changes), run:
-  npm audit fix --force
-
-Run `npm audit` for details.
 ```
 
 ---
@@ -72,14 +53,17 @@ HTTP request sent, awaiting response... 200 OK
 Length: 125390 (122K) [application/json]
 Saving to: ‘petstore.yaml’
 
-petstore.yaml                                  100%[=================================================================================================>] 122.45K   408KB/s    in 0.3s
+petstore.yaml 100%[=================================================================================================>] 122.45K 408KB/s in 0.3s
 
 2023-06-25 04:14:37 (408 KB/s) - ‘petstore.yaml’ saved [125390/125390]
+
 ```
 
 ---
 
 ### 4. Execute `konfig init`
+
+<CH.Code>
 
 ```shell CLI focus=2
 /my-sdks
@@ -95,10 +79,18 @@ Setting up VScode settings.json... done
 ? What is the relative path to your spec? (ie. "<CURRENT_DIRECTORY>/path/to/api.yaml") petstore.yaml
 ```
 
+```yaml petstore.yaml
+# from ./assets/petstore.yaml
+```
+
+</CH.Code>
+
 ---
 
 After you complete the onboarding questions, you will
 see should have two files `konfig.yaml` and `petstore.yaml` in your directory.
+
+<CH.Code>
 
 ```shell CLI focus=13:15
 /my-sdks
@@ -118,83 +110,52 @@ Setting up VScode settings.json... done
 konfig.yaml     petstore.yaml
 ```
 
----
-
-The `konfig.yaml` configures what languages to generate SDKs for and how to generate them.
-
-<CH.Code>
 ```yaml konfig.yaml
 # from ./assets/konfig.yaml
 ```
 
-```yaml petstore.yaml
-# from ./assets/petstore.yaml
-```
-
 </CH.Code>
+
+---
+
+The `konfig.yaml` configures what languages to generate SDKs for and how to generate them.
+
+```yaml konfig.yaml
+
+```
 
 ---
 
 Each generator has a `version` field to specify the version of the SDK to
 generate. We recommend using semantic versioning.
 
-<CH.Code>
 ```yaml konfig.yaml focus=7,16
-# from ./assets/konfig.yaml
-```
 
-```yaml petstore.yaml
-# from ./assets/petstore.yaml
 ```
-
-</CH.Code>
 
 ---
 
 An `outputDirectory` to specify the subpath relative to `konfig.yaml` that the SDK should be copied to.
 
-Each generator also has language-specific configurations.
-
-<CH.Code>
 ```yaml konfig.yaml focus=10,18
-# from ./assets/konfig.yaml
-```
 
-```yaml petstore.yaml
-# from ./assets/petstore.yaml
 ```
-
-</CH.Code>
 
 ---
 
 And `git` field to configure the `userId` and `repoId` of where the SDKs will be version controlled on GitHub.
 
-<CH.Code>
 ```yaml konfig.yaml focus=12:14,20:22
-# from ./assets/konfig.yaml
-```
 
-```yaml petstore.yaml
-# from ./assets/petstore.yaml
 ```
-
-</CH.Code>
 
 ---
 
 Other configurations are language-specific that change things like the package
 name or top-level class name to use when generating the SDKs.
 
-<CH.Code>
 ```yaml konfig.yaml focus=8:9,11,17,19
-# from ./assets/konfig.yaml
-```
 
-```yaml petstore.yaml
-# from ./assets/petstore.yaml
 ```
-
-</CH.Code>
 
 </CH.Scrollycoding>
