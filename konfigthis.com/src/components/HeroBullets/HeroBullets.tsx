@@ -147,9 +147,9 @@ export function HeroBullets() {
           <iframe
             src="https://www.youtube.com/embed/_rbFV2RmAc4"
             title="YouTube video player"
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
           />
         </AspectRatio>
       </Container>
