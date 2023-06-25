@@ -51,7 +51,9 @@ const config = {
           routeBasePath: "/docs",
           sidebarPath: require.resolve("./sidebars.js"),
         },
-        blog: false,
+        blog: {
+          showReadingTime: true,
+        },
         gtag: {
           trackingID: "G-S1WP8SMM27",
           anonymizeIP: true,
@@ -82,6 +84,7 @@ const config = {
             position: "left",
             to: "/api",
           },
+          { to: "/blog", label: "Blog", position: "right" },
         ],
       },
       api: {
