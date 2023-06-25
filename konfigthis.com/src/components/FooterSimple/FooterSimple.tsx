@@ -1,7 +1,6 @@
 import { createStyles, Text, Container, rem, Anchor } from "@mantine/core";
 import Image from "next/image";
 import logo from "./logo.png";
-import { useSubtleLinkStyles } from "@/utils/use-subtle-link-styles";
 
 const useStyles = createStyles((theme) => ({
   footer: {

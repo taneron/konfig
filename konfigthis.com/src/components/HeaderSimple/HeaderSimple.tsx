@@ -8,6 +8,7 @@ import {
 } from "@mantine/core";
 import Image from "next/image";
 import logo from "./logo.png";
+import { useSubtleLinkStyles } from "@/utils/use-subtle-link-styles";
 
 const useStyles = createStyles((theme) => ({
   header: {
@@ -64,6 +65,7 @@ const useStyles = createStyles((theme) => ({
 
 export function HeaderSimple() {
   const { classes } = useStyles();
+  const styles = useSubtleLinkStyles();
 
   return (
     <Header height={60}>
@@ -73,13 +75,20 @@ export function HeaderSimple() {
           <Anchor
             target="_blank"
             component="a"
+            className={styles.classes.subtleLink}
             unstyled
             variant="subtle"
             href="/blog"
           >
             Blog
           </Anchor>
-          <Anchor unstyled target="_blank" component="a" href="/docs">
+          <Anchor
+            className={styles.classes.subtleLink}
+            unstyled
+            target="_blank"
+            component="a"
+            href="/docs"
+          >
             Documentation
           </Anchor>
         </Group>

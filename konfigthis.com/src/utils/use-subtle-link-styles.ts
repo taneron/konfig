@@ -5,7 +5,7 @@ export const useSubtleLinkStyles = createStyles((theme) => ({
     fontSize: rem(14),
     color: "gray",
     ":hover": {
-      color: theme.colorScheme === "dark" ? "lightgray" : "unset",
+      color: "black",
     },
   },
 }));
