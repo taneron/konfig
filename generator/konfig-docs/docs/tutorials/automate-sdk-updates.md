@@ -104,4 +104,4 @@ jobs:
 Once an update is detected, Konfig will automatically generate a new version
 following strict semantic versioning based on the diff between your current and
 previous OpenAPI Spec. Upon merge of a PR, Konfig will automatically publish to
-[Package Managers](/reference/supported-package-managers).
+[Package Managers](docs/reference/supported-package-managers).

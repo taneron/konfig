@@ -286,12 +286,12 @@ compile.
 #### Example
 
 ```
-Does not match regex: "/^[a-zA-Z0-9]+\_[a-zA-Z0-9]+$/g". Prefix operation IDs with "Tag_" (https://docs.konfigthis.com/tutorials/naming-operation-ids)
+Does not match regex: "/^[a-zA-Z0-9]+\_[a-zA-Z0-9]+$/g". Prefix operation IDs with "Tag_" (https://konfigthis.com/docs/tutorials/naming-operation-ids)
 ```
 
 #### Explanation
 
-See [how to name your operation IDs](/tutorials/naming-operation-ids)
+See [how to name your operation IDs](docs/tutorials/naming-operation-ids)
 
 ---
 
@@ -307,7 +307,7 @@ Detected use of ">" character. This could be because you are exporting from Post
 
 There could be multiple possible issues:
 
-- `konfig p2o` uses the ">" character to denote folder structure in Tags. You should prefer flat naming structure for better quality SDKs. Use [konfig fix](/tutorials/fix-openapi-spec) to do this.
+- `konfig p2o` uses the ">" character to denote folder structure in Tags. You should prefer flat naming structure for better quality SDKs. Use [konfig fix](docs/tutorials/fix-openapi-spec) to do this.
 - "default" is the tag generated for `konfig p2o` if requests are not structured into folders in Postman. We should rename this to something more meaningful such as entites like "Pet" or concepts like "Authorization"
 
 ---
@@ -431,8 +431,8 @@ Describe schemas to generate native classes in SDKs for response of operations.
 :::note
 Response body can be empty if you export from Postman Collections without
 [saving example
-responses](/tutorials/postman-to-openapi#1-save-example-responses-in-postman).
-Otherwise use [konfig fix](/tutorials/fix-openapi-spec) to easily populate with
+responses](docs/tutorials/postman-to-openapi#1-save-example-responses-in-postman).
+Otherwise use [konfig fix](docs/tutorials/fix-openapi-spec) to easily populate with
 examples and generate the schema field.
 :::
 

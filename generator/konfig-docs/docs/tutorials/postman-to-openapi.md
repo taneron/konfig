@@ -9,13 +9,13 @@ Follow this tutorial if:
 **The output of `konfig p2o` is low quality and should not be used to
 publish SDKs**. To ensure Konfig can generate high quality SDKs you must make
 sure your OAS passes Konfig's linter. Follow directions on [how to run Konfig's
-linter here](/tutorials/setup-linting) and [quickly fix your OAS](/tutorials/fix-openapi-spec)
+linter here](docs/tutorials/setup-linting) and [quickly fix your OAS](docs/tutorials/fix-openapi-spec)
 :::
 
 ## 1. Save Example Responses in Postman
 
 Example responses are needed for automatically generating OpenAPI schemas with
-[konfig fix](/tutorials/fix-openapi-spec). **Do the following 4 steps for all your endpoints before exporting.**
+[konfig fix](docs/tutorials/fix-openapi-spec). **Do the following 4 steps for all your endpoints before exporting.**
 
 :::tip
 The more examples your provide the better quality your OpenAPI Specification will be. Especially if you are running the output through `konfig fix` as we use the examples to determine your schemas.

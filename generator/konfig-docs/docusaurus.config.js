@@ -65,7 +65,7 @@ const config = {
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
-          routeBasePath: "/",
+          routeBasePath: "/docs",
           sidebarPath: require.resolve("./sidebars.js"),
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
@@ -98,6 +98,7 @@ const config = {
         logo: {
           alt: "Konfig Logo",
           src: "img/favicon.png",
+          href: "/docs",
         },
         items: [
           {
