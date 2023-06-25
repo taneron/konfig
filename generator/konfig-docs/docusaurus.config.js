@@ -2,7 +2,7 @@
 // Note: type annotations allow type checking and IDEs autocompletion
 const lightCodeTheme = require("prism-react-renderer/themes/github");
 const darkCodeTheme = require("prism-react-renderer/themes/dracula");
-const { remarkCodeHike } = require("@code-hike/mdx");
+const { remarkCodeHike } = require("konfig-code-hike-mdx");
 
 const beforeRemarkPlugins = [
   [

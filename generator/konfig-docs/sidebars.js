@@ -20,8 +20,9 @@ const sidebars = {
       id: "intro",
     },
     {
-      type: "doc",
-      id: "quickstart-guide",
+      label: "Getting Started",
+      type: "category",
+      items: ["getting-started/openapi-specification"],
     },
     {
       type: "category",
