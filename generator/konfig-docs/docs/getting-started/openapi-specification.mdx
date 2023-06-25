@@ -4,24 +4,26 @@ hide_table_of_contents: true
 ---
 
 import Admonition from "@theme/Admonition";
+import TalkWithUs from "../talk-with-us.md";
 
 # Getting Started with OpenAPI Specification
 
-In this guide we will generate Python, Java, and SDKs from the an example
+In this guide we will generate Python and Java SDKs from an example
 OpenAPI Specification hosted at a fake endpoint.
 
 <Admonition type="info" title="System Requirement">
-  **Konfig's CLI only works with [Node
-  14+](https://nodejs.org/en/blog/release/v14.17.3)**
+  Konfig's CLI requires [Node 14+](https://nodejs.org/en/blog/release/v14.17.3)
+  to be setup on your machine.
 </Admonition>
 
 <CH.Scrollycoding>
 
 ### 1. Install `konfig-cli`
 
-```shell CLI focus=2
-/
-❯ npm install -g konfig-cli
+Run `npm install -g konfig-cli` or `yarn global add konfig-cli` to install Konfig's CLI.
+
+```shell CLI
+npm install -g konfig-cli
 ```
 
 ---
@@ -38,7 +40,7 @@ OpenAPI Specification hosted at a fake endpoint.
 
 ---
 
-### 3. Import your OpenAPI Specification (OAS).
+### 3. Import your OpenAPI Specification (OAS)
 
 In this example our OAS is hosted at `https://api.petstore.com/petstore.yaml`.
 But your OAS could also come from another Git repository.
@@ -61,11 +63,15 @@ petstore.yaml 100%[=============================================================
 
 ---
 
-### 4. Execute `konfig init`
+### 4. Setup your SDK directory
+
+Run [`konfig init`](focus://2) to initialize your directory with the necessary
+files to generate SDKs. It will a series of onboarding questions to bootstrap
+your configuration.
 
 <CH.Code>
 
-```shell CLI focus=2
+```shell CLI
 /my-sdks
 ❯ konfig init
 Downloaded version 1.1.118 of https://www.npmjs.com/package/konfig-spectral-ruleset
@@ -118,6 +124,38 @@ konfig.yaml     petstore.yaml
 
 ---
 
+`konfig init` will also setup other miscellaneous files for linting and VSCode.
+
+```shell CLI focus=17:25
+/my-sdks
+❯ konfig init
+Downloaded version 1.1.118 of https://www.npmjs.com/package/konfig-spectral-ruleset
+Downloading Konfig's lint rules... done
+Setting up Spectral... done
+Setting up VScode settings.json... done
+? Select languages to generate SDKs for: Python, TypeScript
+? What is the SDK package name? Use hyphens to separate words (ex. acme-web) petstore
+? What is your Git user ID? konfig-dev
+? What is your Git repository name? my-sdks
+? What is the relative path to your spec? (ie. "<CURRENT_DIRECTORY>/path/to/api.yaml") petstore.yaml
+
+/my-sdks
+❯ ls
+konfig.yaml     petstore.yaml
+
+/my-sdks
+❯ ls -a -1
+.
+..
+.konfig
+.spectral.yaml
+.vscode
+konfig.yaml
+petstore.yaml
+```
+
+---
+
 The `konfig.yaml` configures what languages to generate SDKs for and how to generate them.
 
 ```yaml konfig.yaml
@@ -152,10 +190,66 @@ And `git` field to configure the `userId` and `repoId` of where the SDKs will be
 ---
 
 Other configurations are language-specific that change things like the package
-name or top-level class name to use when generating the SDKs.
+name or top-level class name used when generating the SDKs.
 
 ```yaml konfig.yaml focus=8:9,11,17,19
 
 ```
 
+---
+
+### 5. Generate SDKs
+
+Run [`konfig generate`](focus://2) to generate SDKs. In the background `konfig`
+will pick up your `konfig.yaml` along with your OAS and make a request to
+generate SDKs (this can take a minute or two).
+
+```shell CLI
+/my-sdks
+❯ konfig generate
+Output directory set to: /tmp/petstore-sdks-out
+Generating python, typescript SDKs... done
+Downloading 2 SDKs... done
+Deleting output directory... done
+Creating output directory... done
+Extracting SDKs... done
+Deleting contents of existing directory "python"... done
+Copying Python SDK to "python"... done
+Deleting contents of existing directory "typescript"... done
+Copying Typescript SDK to "typescript"... done
+Generating top-level README.md...
+Generating top-level README.md... done
+Writing top-level LICENSE... done
+```
+
+---
+
+Once generation is complete, you will see two new directories containing your
+[Python](focus://CLI#11:20) and [TypeScript](focus://CLI#21:40) SDKs.
+
+```shell CLI
+# from ./assets/tree-sdks.sh
+```
+
 </CH.Scrollycoding>
+
+### Congrats 🎉🎉🎉🎉
+
+You have successfully generated your first SDKs. Once you have generated
+SDKs the next steps are to test and publish your SDKs which are made also made
+easy by Konfig.
+
+<Admonition type="info">
+  When doing this on a real API you most likely will need to make modifications
+  to your OAS to generate high quality SDKs. Konfig also makes this easy through
+  its [lint](/docs/tutorials/setup-linting) and
+  [fix](/docs/tutorials/fix-openapi-spec) utilities. Konfig also makes it easy
+  to setup Continuous Deployment through [polling an
+  endpoint](/docs/tutorials/automate-sdk-updates#polling) or [pushing from
+  GitHub repository](/docs/tutorials/automate-sdk-updates#github-action).
+  Sometimes its beneficial to add business logic in the SDKs which is also made
+  easy by konfig through its [native support for
+  customization](/docs/custom-sdks).
+</Admonition>
+
+<TalkWithUs />
