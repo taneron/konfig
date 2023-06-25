@@ -280,7 +280,7 @@ export function GetSdksWithZeroEffort() {
             radius="md"
             withBorder
             shadow="lg"
-            h={{ base: rem(700), md: "100%" }}
+            h={{ base: rem(500), md: "100%" }}
           >
             <ReactFlow
               fitView
