@@ -11,7 +11,7 @@ There are four ways to lint your spec:
 1. [GitHub Action](setup-linting#github-action-setup)
 2. [VSCode Extension](setup-linting#vscode-extension-or-cli-setup)
 3. [CLI](setup-linting#vscode-extension-or-cli-setup)
-4. [REST API](docs/api-reference/linting)
+4. [REST API](#)
 
 ## Required Setup
 

@@ -16,11 +16,6 @@ const sidebars = {
   // By default, Docusaurus generates a sidebar from the docs folder structure
   tutorialSidebar: [
     {
-      type: "html",
-      value: `<p style="color: var(--ifm-color-secondary-darkest)">DOCUMENTATION</p>`,
-      defaultStyle: true,
-    },
-    {
       type: "doc",
       id: "intro",
     },
@@ -85,20 +80,6 @@ const sidebars = {
     {
       type: "doc",
       id: "example-sdks",
-    },
-  ],
-  openApiSidebar: [
-    {
-      type: "category",
-      label: "API reference",
-      link: {
-        type: "generated-index",
-        title: "API Reference",
-        description: "Reference for Konfig's REST API.",
-        slug: "/category/api-reference",
-      },
-      // @ts-ignore
-      items: require("./docs/api-reference/sidebar.js"),
     },
   ],
 

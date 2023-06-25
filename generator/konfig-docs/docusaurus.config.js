@@ -14,7 +14,6 @@ const config = {
   favicon: "img/favicon.png",
   themes: [
     "docusaurus-json-schema-plugin",
-    "docusaurus-theme-openapi-docs",
     [
       require.resolve("@easyops-cn/docusaurus-search-local"),
       {
@@ -24,27 +23,7 @@ const config = {
       },
     ],
   ],
-  plugins: [
-    [
-      "docusaurus-plugin-openapi-docs",
-      {
-        id: "openapi",
-        docsPluginId: "classic", // e.g. "classic" or the plugin-content-docs id
-        config: {
-          konfig: {
-            // "konfig" is considered the <id> that you will reference in the CLI
-            specPath:
-              "../konfig-dash/packages/konfig-openapi-spec/openapi.yaml", // path or URL to the OpenAPI spec
-            outputDir: "docs/api-reference", // output directory for generated *.mdx and sidebar.js files
-            sidebarOptions: {
-              groupPathsBy: "tag",
-              categoryLinkSource: "tag",
-            },
-          },
-        },
-      },
-    ],
-  ],
+  plugins: [],
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
@@ -67,13 +46,8 @@ const config = {
         docs: {
           routeBasePath: "/docs",
           sidebarPath: require.resolve("./sidebars.js"),
-          docItemComponent: "@theme/ApiItem",
-          docLayoutComponent: "@theme/DocPage",
         },
         blog: false,
-        theme: {
-          customCss: require.resolve("./src/css/custom.css"),
-        },
         gtag: {
           trackingID: "G-S1WP8SMM27",
           anonymizeIP: true,
@@ -103,12 +77,6 @@ const config = {
             docId: "intro",
             position: "left",
             label: "Documentation",
-          },
-          {
-            type: "doc",
-            docId: "/category/api-reference",
-            position: "left",
-            label: "API Reference",
           },
         ],
       },
