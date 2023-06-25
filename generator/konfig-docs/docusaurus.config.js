@@ -2,6 +2,18 @@
 // Note: type annotations allow type checking and IDEs autocompletion
 const lightCodeTheme = require("prism-react-renderer/themes/github");
 const darkCodeTheme = require("prism-react-renderer/themes/dracula");
+const { remarkCodeHike } = require("@code-hike/mdx");
+
+const beforeRemarkPlugins = [
+  [
+    remarkCodeHike,
+    {
+      theme: "github-from-css",
+      lineNumbers: true,
+      showCopyButton: true,
+    },
+  ],
+];
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -22,6 +34,7 @@ const config = {
         docsRouteBasePath: "/",
       },
     ],
+    "mdx-v2",
   ],
   plugins: [],
 
@@ -40,18 +53,22 @@ const config = {
 
   presets: [
     [
-      "docusaurus-preset-openapi",
-      /** @type {import('docusaurus-preset-openapi').Options} */
+      "classic",
+      /** @type {import('@docusaurus/preset-classic').Options} */
       ({
-        api: {
-          path: "../konfig-dash/packages/konfig-openapi-spec/openapi.yaml",
-          routeBasePath: "/api",
-        },
         docs: {
+          beforeDefaultRemarkPlugins: beforeRemarkPlugins,
           routeBasePath: "/docs",
           sidebarPath: require.resolve("./sidebars.js"),
         },
+        theme: {
+          customCss: [
+            require.resolve("@code-hike/mdx/styles.css"),
+            require.resolve("./src/css/custom.css"),
+          ],
+        },
         blog: {
+          beforeDefaultRemarkPlugins: beforeRemarkPlugins,
           showReadingTime: true,
         },
         gtag: {
@@ -79,11 +96,6 @@ const config = {
             position: "left",
             label: "Documentation",
           },
-          {
-            label: "REST API",
-            position: "left",
-            to: "/api",
-          },
           { to: "/blog", label: "Blog", position: "right" },
         ],
       },
@@ -91,7 +103,6 @@ const config = {
         authPersistance: "localStorage",
         serverVariablesPersistance: "localStorage",
       },
-
       footer: {
         style: "light",
         links: [
