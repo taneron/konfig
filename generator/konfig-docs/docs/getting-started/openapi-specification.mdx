@@ -43,7 +43,7 @@ npm install -g konfig-cli
 ### 3. Import your OpenAPI Specification (OAS)
 
 In this example our OAS is hosted at `https://api.petstore.com/petstore.yaml`.
-But your OAS could also come from another Git repository.
+But your OAS could be hosted somewhere else or come from a different Git repository.
 
 ```shell CLI focus=2
 /
@@ -65,13 +65,13 @@ petstore.yaml 100%[=============================================================
 
 ### 4. Setup your SDK directory
 
-Run [`konfig init`](focus://2) to initialize your directory with the necessary
+Run `konfig init` to initialize your directory with the necessary
 files to generate SDKs. It will a series of onboarding questions to bootstrap
 your configuration.
 
 <CH.Code>
 
-```shell CLI
+```shell CLI focus=2
 /my-sdks
 ❯ konfig init
 Downloaded version 1.1.118 of https://www.npmjs.com/package/konfig-spectral-ruleset
@@ -198,7 +198,27 @@ name or top-level class name used when generating the SDKs.
 
 ---
 
-### 5. Generate SDKs
+### 5. Login
+
+<Admonition type="info" title="Sign up">
+  Create an account with Konfig at https://dash.konfigthis.com/signup
+</Admonition>
+
+Run `konfig login` to setup credentials on your machine to run `konfig
+generate`. This is necessary to run `konfig generate`.
+
+```shell CLI
+/my-sdks
+❮ konfig login
+Logging into https://api.konfigthis.com. Sign up at https://dash.konfigthis.com/signup
+Email: dylan@konfigthis.com
+Password: **************
+Successfully logged in as dylan@konfigthis.com
+```
+
+---
+
+### 6. Generate SDKs
 
 Run [`konfig generate`](focus://2) to generate SDKs. In the background `konfig`
 will pick up your `konfig.yaml` along with your OAS and make a request to
@@ -235,21 +255,21 @@ Once generation is complete, you will see two new directories containing your
 
 ### Congrats 🎉🎉🎉🎉
 
-You have successfully generated your first SDKs. Once you have generated
-SDKs the next steps are to test and publish your SDKs which are made also made
-easy by Konfig.
+You have successfully generated your first SDKs. Next you can test and publish
+your SDKs which is also made easy by Konfig using [`konfig
+test`](https://www.npmjs.com/package/konfig-cli#konfig-test) and [`konfig
+publish`](/docs/tutorials/publish-sdks).
 
 <Admonition type="info">
   When doing this on a real API you most likely will need to make modifications
   to your OAS to generate high quality SDKs. Konfig also makes this easy through
   its [lint](/docs/tutorials/setup-linting) and
-  [fix](/docs/tutorials/fix-openapi-spec) utilities. Konfig also makes it easy
-  to setup Continuous Deployment through [polling an
-  endpoint](/docs/tutorials/automate-sdk-updates#polling) or [pushing from
-  GitHub repository](/docs/tutorials/automate-sdk-updates#github-action).
-  Sometimes its beneficial to add business logic in the SDKs which is also made
-  easy by konfig through its [native support for
-  customization](/docs/custom-sdks).
+  [fix](/docs/tutorials/fix-openapi-spec) utilities. You also probably want to
+  setup Continuous Deployment through
+  [polling](/docs/tutorials/automate-sdk-updates#polling) or [GitHub
+  Action](/docs/tutorials/automate-sdk-updates#github-action). Sometimes its
+  also necessary to add business logic in the SDKs which are also made easy by
+  konfig through its [native support for customization](/docs/custom-sdks).
 </Admonition>
 
 <TalkWithUs />
