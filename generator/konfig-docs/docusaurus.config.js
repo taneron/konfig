@@ -83,6 +83,7 @@ const config = {
           beforeDefaultRemarkPlugins: beforeRemarkPlugins,
           remarkPlugins: remarkPlugins,
           showReadingTime: true,
+          blogDescription: "Generate SDKs for your REST API",
         },
         gtag: {
           trackingID: "G-S1WP8SMM27",
