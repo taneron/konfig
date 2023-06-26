@@ -2,9 +2,10 @@ import Admonition from "@theme/Admonition";
 
 # Setup linting for your OpenAPI Spec
 
-### Documentation for Lint Rules
-
-See rules and their explanations [here](docs/lint-rules)
+To ensure that your SDKs are free of bugs & ergonomic (i.e. meaningful
+namespaces, succinct method name, and legible class names), Konfig has created
+an comprehensive set of rules that your OAS must pass. All lint rules and their
+explanations are documented [here](docs/lint-rules)
 
 ## Methods
 
@@ -25,21 +26,18 @@ npm install -g konfig-cli
 
 ## GitHub Action Setup
 
-<Admonition type="info">
+To setup GitHub Action copy the following template to `.github/workflows/konfig-lint.yaml` and configure the following values:
 
-No setup is required besides setting up GitHub workflow. The latest [linting ruleset](https://www.npmjs.com/package/konfig-spectral-ruleset) will always be used.
+<CH.Section>
+1. [Target branch](focus://6)
+2. [Path to OAS](focus://25[26:45])
 
-</Admonition>
-
-To setup GitHub Action add the following workflow under `.github/workflows/konfig-lint.yaml` and replace `main` and `path/to/openapi.yaml` with your own values:
-
-```yaml
+```yaml .github/workflows/konfig-lint.yaml
 name: "konfig-lint-openapi-spec"
 on:
   pull_request:
   push:
     branches:
-      # replace "main" with the name of your base branch
       - main
 jobs:
   konfig-lint-openapi-spec:
@@ -59,13 +57,14 @@ jobs:
       - name: Initialize Linting Rules
         run: konfig init -s
       - name: Lint OpenAPI Spec
-        # replace "path/to/openapi.yaml" with the path from root to your OpenAPI Specification file
         run: konfig lint path/to/openapi.yaml
 ```
 
+</CH.Section>
+
 Commit and push the generated file:
 
-```bash
+```bash focus=13,16
 ~/Git/my-repo
 ❯ git status
 On branch master
@@ -87,10 +86,8 @@ nothing added to commit but untracked files present (use "git add" to track)
  create mode 100644 .github/workflows/konfig-lint.yaml
 ```
 
-### Linting with GitHub Action
-
-On every PR or commit to your production branch the following a job will
-fail if any warnings or errors occur when linting your spec:
+On every PR or commit to your target branch the lint workflow will fail if any
+warnings or errors occur when linting your OAS.
 
 ![GitHub Action Lint Error](/img/github-action-lint-error.png)
 
@@ -98,7 +95,7 @@ fail if any warnings or errors occur when linting your spec:
 
 Initialize your target repository (the one that has your OpenAPI spec) with:
 
-```bash
+```bash focus=1
 ❯ konfig init -s
 Downloading Konfig's lint rules... done
 Setting up Spectral... done
@@ -106,7 +103,7 @@ Setting up Spectral... done
 
 Commit the generated files
 
-```bash
+```bash focus=16,19
 ~/Git/my-repo
 ❯ git status
 On branch master
@@ -136,27 +133,13 @@ nothing added to commit but untracked files present (use "git add" to track)
 
 <Admonition type="info">
 
-To update your ruleset to the latest verson simply run:
+To update your ruleset to the latest verson simply run
 
 ```bash
 konfig init -s
 ```
 
-And commit the updated ruleset to share with your team:
-
-```bash
-❯ git status
-On branch master
-Your branch is ahead of 'origin/master' by 2 commits.
-  (use "git push" to publish your local commits)
-
-Changes not staged for commit:
-  (use "git add <file>..." to update what will be committed)
-  (use "git restore <file>..." to discard changes in working directory)
-        modified:   .konfig/ruleset.js
-
-no changes added to commit (use "git add" and/or "git commit -a")
-```
+And commit the updated ruleset.
 
 </Admonition>
 
@@ -166,21 +149,22 @@ When opening VSCode to your repo, you will be prompted to install the [Spectral]
 
 ![VSCode Popup](/img/vscode-popup.png)
 
-Click `Install` to install the Spectral extension.
-
-When viewing any OpenAPI spec, you will see inline errors:
+Click `Install` to install the Spectral extension. When viewing any OAS, you will see inline errors.
 
 ![VSCode Error](/img/vscode-lint-error.png)
 
 ### Linting with CLI
 
-To lint with CLI run `konfig lint`.
+<CH.Section>
+To lint with CLI run `konfig lint` inside the directory that contains your `konfig.yaml` file.
 
-```bash
-❯ konfig lint api.yaml
+```bash focus=1
+❯ konfig lint
 
 /api.yaml
  22:10  warning  operation-operationId  Operation must have "operationId" for generated SDK method names.  paths./pet.post
 
 ✖ 1 problem (0 errors, 1 warning, 0 infos, 0 hints)
 ```
+
+</CH.Section>

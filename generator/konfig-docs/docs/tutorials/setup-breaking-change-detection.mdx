@@ -8,14 +8,17 @@ import Admonition from "@theme/Admonition";
 
 ### Workflow Template
 
-Create a new workflow file under `.github/workflows/konfig-detect-breaking-change.yaml` and replace `main` and `path/to/openapi.yaml` with your own values:
+Copy the following template to `.github/workflows/konfig-detect-breaking-change.yaml` and configure the following values.
 
-```yaml
+<CH.Section>
+1. [Target branch](focus://5)
+2. [Path to OAS](focus://22[71:90])
+
+```yaml .github/workflows/konfig-detect-breaking-change.yaml
 name: "konfig-detect-breaking-change"
 on:
   pull_request:
     branches:
-      # replace "main" with your target branch or add more target branches
       - main
 jobs:
   konfig-lint-openapi-spec:
@@ -33,6 +36,7 @@ jobs:
       - name: Install Konfig CLI
         run: npm install -g konfig-cli@$CLI_VERSION
       - name: Detect breaking change
-        # replace "path/to/openapi.yaml" with the path from root to your OpenAPI Specification file
         run: konfig detect-breaking-change -m ${{github.base_ref}} -s path/to/openapi.yaml
 ```
+
+</CH.Section>
