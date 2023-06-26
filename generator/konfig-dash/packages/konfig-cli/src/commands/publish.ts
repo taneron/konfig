@@ -87,19 +87,17 @@ const publishScripts = {
   },
   mavenCentral: ({
     version,
-    skipTests,
+    skipTag,
   }: {
     version: string
-    skipTests?: boolean
+    skipTag?: boolean
   }) => {
     const gitTagCommands = generateGitTagCommands({
       version,
       generator: 'java',
+      skipTag,
     })
-    return [
-      `mvn clean deploy${skipTests ? ` -Dmaven.test.skip=true` : ''}`,
-      ...gitTagCommands,
-    ]
+    return [`mvn clean deploy -Dmaven.test.skip=true}`, ...gitTagCommands]
   },
   php: async ({
     version,
@@ -371,7 +369,6 @@ export default class Publish extends Command {
         await executePublishScript({
           script: publishScripts['mavenCentral']({
             version: generatorConfig.version,
-            skipTests: flags.skipTests,
           }),
         })
       }
