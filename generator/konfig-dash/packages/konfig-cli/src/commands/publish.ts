@@ -369,6 +369,7 @@ export default class Publish extends Command {
         await executePublishScript({
           script: publishScripts['mavenCentral']({
             version: generatorConfig.version,
+            skipTag: flags.skipTag,
           }),
         })
       }
