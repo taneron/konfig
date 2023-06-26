@@ -3,6 +3,7 @@
 const lightCodeTheme = require("prism-react-renderer/themes/github");
 const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 const { remarkCodeHike } = require("konfig-code-hike-mdx");
+const mermaid = require("@jakxz/mdx-mermaid");
 
 const beforeRemarkPlugins = [
   [
@@ -11,6 +12,16 @@ const beforeRemarkPlugins = [
       theme: "github-from-css",
       lineNumbers: true,
       showCopyButton: true,
+      skipLanguages: ["", "mermaid"],
+    },
+  ],
+];
+
+const remarkPlugins = [
+  [
+    mermaid,
+    {
+      theme: { light: "default", dark: "dark" },
     },
   ],
 ];
@@ -58,6 +69,7 @@ const config = {
       ({
         docs: {
           beforeDefaultRemarkPlugins: beforeRemarkPlugins,
+          remarkPlugins: remarkPlugins,
           routeBasePath: "/docs",
           sidebarPath: require.resolve("./sidebars.js"),
         },
@@ -69,6 +81,7 @@ const config = {
         },
         blog: {
           beforeDefaultRemarkPlugins: beforeRemarkPlugins,
+          remarkPlugins: remarkPlugins,
           showReadingTime: true,
         },
         gtag: {
