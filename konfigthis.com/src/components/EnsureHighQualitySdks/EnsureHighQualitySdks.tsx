@@ -200,7 +200,7 @@ export function EnsureHighQualitySdks() {
             radius="md"
             withBorder
             shadow="lg"
-            h={{ base: rem(500), sm: "100%" }}
+            h={{ base: rem(500), md: "100%" }}
           >
             <ReactFlow
               onInit={setInst}
