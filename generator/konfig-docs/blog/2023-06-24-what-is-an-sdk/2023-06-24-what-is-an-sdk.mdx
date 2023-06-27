@@ -181,44 +181,8 @@ sms_data = retrieve_response.json()
 
 ---
 
-Remove the URL variable as the SDK handles this for us.
-
-```python with-sdk.py
-from twilio.rest import Client
-
-# Twilio account credentials
-account_sid = 'YOUR_ACCOUNT_SID'
-auth_token = 'YOUR_AUTH_TOKEN'
-
-# Set the sender's and recipient's phone numbers
-from_number = '+1234567890'  # Your Twilio phone number
-to_number = '+9876543210'  # Destination phone number
-
-# Set the message content
-message = 'Hello from Twilio!'
-
-# Step 1: Send SMS
-send_data = {
-    'From': from_number,
-    'To': to_number,
-    'Body': message
-}
-
-auth = (account_sid, auth_token)
-send_response = requests.post(url, data=send_data, auth=auth)
-
-sms_sid = send_response.json()['sid']
-
-# Step 2: Retrieve SMS details
-retrieve_url = f'{url}/{sms_sid}.json'
-retrieve_response = requests.get(retrieve_url, auth=auth)
-
-sms_data = retrieve_response.json()
-```
-
----
-
-Get rid of the manually constructed request body.
+Remove the URL and request body variables as the SDK handles the construction of
+both of these.
 
 ```python with-sdk.py
 from twilio.rest import Client
@@ -439,7 +403,7 @@ Making HTTP requests were converted to ergonomic method calls. The construction
 of the request body was handled so we [deleted a
 variable](focus://without-sdk.py#18:22) and [removed any notion of `POST` and
 `GET` requests](focus://without-sdk.py#25[26:29],31[30:32]). The SDK also would
-have easily caught incorrect argument names when calling `create()`.
+have easily caught incorrect argument names when calling `create()` and `fetch()`.
 
 <CH.Code>
 ```python with-sdk.py focus=16:20,25
