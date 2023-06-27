@@ -2,6 +2,7 @@
 slug: what-is-an-sdk
 title: What is an SDK for a REST API?
 authors: dylan
+hide_table_of_contents: true
 ---
 
 <Tooltip tip="Software Development Kit">SDKs</Tooltip> makes the integration of <Tooltip
@@ -37,35 +38,29 @@ REST API with 199 operations, 152 schemas, and 874 parameters.
 The complexity of these APIs can be daunting for developers who are under a time
 pressure to integrate an API and frustrating for API companies because
 onboarding is time consuming. Developers are required to parse tons of
-documentation code while API companies must provide continuous support for a
+documentation and code while API companies must provide continuous support for a
 successful partnership. To make matters worse, developers can be using a
 programming language that nobody at the API company knows. **To alleviate the
 pain, best-in-class API companies publish SDKs to accelerate the integration
-process.** SDKs heavily accelerate the time to complete an integration.
+process.**
 
 ## So how does an SDK actually help?
 
 Lets walkthrough an example in Python integrating Twilio's API without an SDK.
-Then we will follow up with an implementation using their SDK. That way we can
-concretely understand what the actual diff is between no SDK vs. SDK.  Lets
-assume we are sending an SMS and later want to retrieve the SMS details.
+Then we will follow up with an implementation using their SDK. Finally we will
+analyze actual difference between implementations. Lets assume we are sending an
+SMS and later want to retrieve the SMS details.
 
 ### Without an SDK
 
 <CH.Scrollycoding>
 
 Import your favorite request library to make HTTP requests. In this case we are
-using Python's `requests` library.
+using Python's `requests` library. Then lets initialize all our parameters.
 
-```python without-sdk.py focus=1
+
+```python without-sdk.py focus=1,3:12
 # from ./assets/without-sdk.py
-```
-
----
-
-Initialize all our parameters.
-
-```python without-sdk.py focus=3:12
 ```
 
 ---
@@ -85,8 +80,11 @@ Construct our request body using the format from the [documentation](https://www
 
 ---
 
-Construct our authentication credentials according to how Twilio receives credentials and how the `requests` library
-[can send it](https://requests.readthedocs.io/en/latest/user/authentication/#basic-authentication).
+Construct our authentication credentials according to how Twilio receives
+credentials and [how the `requests` library performs basic
+authentication](https://requests.readthedocs.io/en/latest/user/authentication/#basic-authentication)
+which in this case is a tuple where the first item is the username and the
+second item is the password.
 
 ```python without-sdk.py focus=24
 ```
@@ -184,8 +182,6 @@ sms_data = retrieve_response.json()
 
 Remove the URL variable as the SDK handles this for us.
 
-~~_`url = f'https://api.twilio.com/2010-04-01/Accounts/{account_sid}/Messages.json'`_~~
-
 ```python with-sdk.py
 from twilio.rest import Client
 
@@ -222,14 +218,6 @@ sms_data = retrieve_response.json()
 ---
 
 Get rid of the manually constructed request body.
-
-~~_`
-send_data = {
-    'From': from_number,
-    'To': to_number,
-    'Body': message
-}
-`_~~
 
 ```python with-sdk.py
 from twilio.rest import Client
@@ -293,8 +281,7 @@ sms_data = retrieve_response.json()
 ----
 
 Call `client.messages.create` and pass in the `from_`, `to`, and `body`
-parameters. If we make a typo here the SDK will let us know before any HTTP
-requests are made.
+parameters. If we make a typo here the SDK will let us ahead of time.
 
 ```python with-sdk.py focus=16:20
 from twilio.rest import Client
@@ -412,8 +399,7 @@ Lets breakdown through the significant differences that made the SDK code better
 ### Setup
 
 <CH.Section>
-We distilled a couple setup steps into a single line. Most importantly as a
-developer we do not need to [construct the URLs](focus://without-sdk.py#15) and
+We do not need to [construct the URLs](focus://without-sdk.py#15,30) and
 [form the request body](focus://without-sdk.py#18:22) to make an HTTP request.
 
 <CH.Code>
@@ -431,7 +417,7 @@ developer we do not need to [construct the URLs](focus://without-sdk.py#15) and
 
 <CH.Section>
 
-Credentials were passed once and stored as part of the SDK. Notice that [we did not need to pass in an `auth` variable again](focus://without-sdk.py#31[48:56]).
+Credentials were stored once and stored as part of the SDK. Notice that [we did not need to pass in an `auth` variable again](focus://without-sdk.py#24,31[48:56]).
 
 <CH.Code>
 ```python with-sdk.py focus=15,25
@@ -444,13 +430,13 @@ Credentials were passed once and stored as part of the SDK. Notice that [we did 
 </CH.Code>
 </CH.Section>
 
-### Complexity
+### Safety
 
 <CH.Section>
 
 The construction of the request body was handled so we [deleted a
-variable](focus://without-sdk.py#18:22) and typos will be caught by the SDK when
-calling `create()`.
+variable](focus://without-sdk.py#18:22) and the SDK will catch incorrect
+argument names when calling `create()`.
 
 <CH.Code>
 ```python with-sdk.py focus=16:20
