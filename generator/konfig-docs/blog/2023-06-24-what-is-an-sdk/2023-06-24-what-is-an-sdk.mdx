@@ -181,8 +181,7 @@ sms_data = retrieve_response.json()
 
 ---
 
-Remove the URL and request body variables as the SDK handles the construction of
-both of these.
+Remove the URL and request body variables as the SDK handles this for us.
 
 ```python with-sdk.py
 from twilio.rest import Client
@@ -216,6 +215,7 @@ sms_data = retrieve_response.json()
 Insantiate Twilio's client with credentials instead of creating a raw tuple for
 our credentials. If we made a typo or forgot to pass our credentials the SDK
 will let us know ahead of time.
+
 ```python with-sdk.py focus=15
 from twilio.rest import Client
 
@@ -246,7 +246,7 @@ sms_data = retrieve_response.json()
 ----
 
 Call `client.messages.create` and pass in the `from_`, `to`, and `body`
-parameters. If we make a typo here the SDK will let us ahead of time.
+parameters. If we make a typo here the SDK will let us know ahead of time.
 
 ```python with-sdk.py focus=16:20
 from twilio.rest import Client
@@ -316,7 +316,7 @@ sms_data = retrieve_response.json()
 
 ---
 
-Replace our newly constructed URL with a simple method call
+Replace our second request with a simple method call.
 
 ```python with-sdk.py focus=25
 from twilio.rest import Client
@@ -364,8 +364,7 @@ Lets breakdown through the significant differences that made the SDK code better
 ### Setup
 
 <CH.Section>
-We do not need to [construct the URLs](focus://without-sdk.py#15,30) and
-[form the request body](focus://without-sdk.py#18:22) to make an HTTP request.
+We do not need to [manually construct the URLs](focus://without-sdk.py#15,30) to make an HTTP request.
 
 <CH.Code>
 ```python with-sdk.py focus=15
@@ -399,11 +398,11 @@ Credentials were stored once and stored as part of the SDK. Notice that [we did 
 
 <CH.Section>
 
-Making HTTP requests were converted to ergonomic method calls. The construction
-of the request body was handled so we [deleted a
+Making HTTP requests were converted to ergonomic method calls so we [deleted a
 variable](focus://without-sdk.py#18:22) and [removed any notion of `POST` and
 `GET` requests](focus://without-sdk.py#25[26:29],31[30:32]). The SDK also would
-have easily caught incorrect argument names when calling `create()` and `fetch()`.
+have easily caught incorrect argument names when calling `create()` and
+`fetch()`.
 
 <CH.Code>
 ```python with-sdk.py focus=16:20,25
@@ -421,7 +420,7 @@ have easily caught incorrect argument names when calling `create()` and `fetch()
 SDKs are effective in reducing the pain a developer feels when integrating a
 REST API. SDKs throw out manual steps from setup/authentication, reduce the
 cognitive load for the end developer, and reduce the lines of code.
-Furthermore, SDKs catching compilation or runtime errors earlier in the
-development process.
+Furthermore, SDKs catch compilation or runtime errors earlier in the development
+process.
 
 
