@@ -115,7 +115,7 @@ To retrieve the message we construct a URL based on the format described in the 
 
 ---
 
-Make another request with the new URL while remembering to pass in the `auth`
+Make a `GET` request with the new URL while remembering to pass in the `auth`
 variable we assigned earlier.
 
 ```python without-sdk.py focus=31
@@ -431,16 +431,18 @@ Credentials were stored once and stored as part of the SDK. Notice that [we did 
 </CH.Code>
 </CH.Section>
 
-### Safety
+### Complexity
 
 <CH.Section>
 
-The construction of the request body was handled so we [deleted a
-variable](focus://without-sdk.py#18:22) and the SDK will catch incorrect
-argument names when calling `create()`.
+Making HTTP requests were converted to ergonomic method calls. The construction
+of the request body was handled so we [deleted a
+variable](focus://without-sdk.py#18:22) and [removed any notion of `POST` and
+`GET` requests](focus://without-sdk.py#25[26:29],31[30:32]). The SDK also would
+have easily caught incorrect argument names when calling `create()`.
 
 <CH.Code>
-```python with-sdk.py focus=16:20
+```python with-sdk.py focus=16:20,25
 # from ./assets/with-sdk.py
 ```
 
