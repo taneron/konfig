@@ -86,7 +86,7 @@ const config = {
           blogDescription: "Generate SDKs for your REST API",
         },
         gtag: {
-          trackingID: "G-S1WP8SMM27",
+          trackingID: "G-L2Q9WBQN2D",
           anonymizeIP: true,
         },
       }),
