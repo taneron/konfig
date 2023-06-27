@@ -7,9 +7,9 @@ description: SDKs make the integration of APIs easier by packaging boilerplate c
 ---
 
 <Tooltip tip="Software Development Kit">SDKs</Tooltip> makes the integration of <Tooltip
-  tip="Representational state transfer"
-  text="REST"
-/> <Tooltip tip="Application Programming Interface">APIs</Tooltip> easier by packaging
+  tip="Technical term for a server responding to network requests"
+  text="REST APIs"
+/> easier by packaging
 <Tooltip
   tip="Code that is always necessary to integrate with an API."
   text="boilerplate"
@@ -48,11 +48,10 @@ process.**
 ## So how does an SDK actually help?
 
 Lets walkthrough an example in Python integrating Twilio's API without an SDK.
-Then we will follow up with an implementation using their SDK. Finally we will
-analyze the significant difference between implementations.
+Then we will rewrite our implementation using their SDK. Finally we will analyze
+the significant difference between implementations.
 
-For this example we are sending an SMS and later want to retrieve the SMS
-details.
+For this example we send an SMS and retrieve the sent SMS by ID.
 
 ### Without an SDK
 
@@ -401,10 +400,11 @@ Credentials were stored once and stored as part of the SDK. Notice that [we did 
 <CH.Section>
 
 Making HTTP requests were converted to ergonomic method calls so we [deleted a
-variable](focus://without-sdk.py#18:22) and [removed any notion of `POST` and
-`GET` requests](focus://without-sdk.py#25[26:29],31[30:32]). The SDK also would
-have easily caught incorrect argument names when calling `create()` and
-`fetch()`.
+variable](focus://without-sdk.py#18:22), [removed any notion of `POST` and `GET`
+requests](focus://without-sdk.py#25[26:29],31[30:32]), and [removed explicit
+JSON deserialization](focus://without-sdk.py#27[25:30],33[30:36]). The SDK also
+would have [easily caught incorrect argument names when calling `create()` and
+`fetch()`](focus://with-sdk.py#17:19,25[23:30]).
 
 <CH.Code>
 ```python with-sdk.py focus=16:20,25
