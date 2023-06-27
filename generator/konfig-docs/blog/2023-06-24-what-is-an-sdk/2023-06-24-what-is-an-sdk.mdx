@@ -1,0 +1,476 @@
+---
+slug: what-is-an-sdk
+title: What is an SDK for a REST API?
+authors: dylan
+---
+
+<Tooltip tip="Software Development Kit">SDKs</Tooltip> makes the integration of <Tooltip
+  tip="Representational state transfer"
+  text="REST"
+/> <Tooltip tip="Application Programming Interface">APIs</Tooltip> easier by packaging
+<Tooltip
+  tip="Code that is always necessary to integrate with an API."
+  text="boilerplate"
+/> code for developers.
+
+## Why do developers need help integrating APIs?
+
+Lets take a look at the numbers.
+
+[Plaid](https://plaid.com) has a REST API with 215 <Tooltip
+  text="operations"
+  tip='An operation like "create user" or "delete user"'
+/>, 1346 <Tooltip
+  tip='A data model like a "User" table in a database'
+  text="schemas"
+/>, and 215 <Tooltip
+  tip='A parameter like "id" for a "get user by id" operation'
+  text="parameters"
+/>.
+
+[SnapTrade](https://snaptrade.com/) has a
+REST API with 91 operations, 125 schemas, and 183 parameters.
+
+[Twilio](https://twilio.com/) has a
+REST API with 199 operations, 152 schemas, and 874 parameters.
+
+The complexity of these APIs can be daunting for developers who are under a time
+pressure to integrate an API and frustrating for API companies because
+onboarding is time consuming. Developers are required to parse tons of
+documentation code while API companies must provide continuous support for a
+successful partnership. To make matters worse, developers can be using a
+programming language that nobody at the API company knows. **To alleviate the
+pain, best-in-class API companies publish SDKs to accelerate the integration
+process.** SDKs heavily accelerate the time to complete an integration.
+
+## So how does an SDK actually help?
+
+Lets walkthrough an example in Python integrating Twilio's API without an SDK.
+Then we will follow up with an implementation using their SDK. That way we can
+concretely understand what the actual diff is between no SDK vs. SDK.  Lets
+assume we are sending an SMS and later want to retrieve the SMS details.
+
+### Without an SDK
+
+<CH.Scrollycoding>
+
+Import your favorite request library to make HTTP requests. In this case we are
+using Python's `requests` library.
+
+```python without-sdk.py focus=1
+# from ./assets/without-sdk.py
+```
+
+---
+
+Initialize all our parameters.
+
+```python without-sdk.py focus=3:12
+```
+
+---
+
+Construct the target URL for our HTTP request. We found the URL from [Twilio's
+documentation](https://www.twilio.com/docs/sms/api?code-sample=code-send-an-sms-using-the-programmable-sms-api&code-language=curl&code-sdk-version=json).
+
+```python without-sdk.py focus=14:15
+```
+
+---
+
+Construct our request body using the format from the [documentation](https://www.twilio.com/docs/sms/send-messages#send-an-sms-with-twilios-api).
+
+```python without-sdk.py focus=18:22
+```
+
+---
+
+Construct our authentication credentials according to how Twilio receives credentials and how the `requests` library
+[can send it](https://requests.readthedocs.io/en/latest/user/authentication/#basic-authentication).
+
+```python without-sdk.py focus=24
+```
+
+----
+
+Make a `POST` request using the `requests` library and crossing our fingers 🤞 that
+we got all the previous steps right with no typos.
+
+```python without-sdk.py focus=25
+```
+
+---
+
+Deserialize the response from JSON and retrieve the `sid` field as shown in an
+example response from the documentation.
+
+```python without-sdk.py focus=27
+```
+
+---
+
+To retrieve the message we construct a URL based on the format described in the [documentation](https://www.twilio.com/docs/sms/api/message-resource#fetch-a-message-resource).
+
+```python without-sdk.py focus=30
+```
+
+---
+
+Make another request with the new URL while remembering to pass in the `auth`
+variable we assigned earlier.
+
+```python without-sdk.py focus=31
+```
+
+
+</CH.Scrollycoding>
+
+Whew 😪 we did it. It only took 7 trips back and forth from the documentation
+but we finally did it. Now lets take a look at what its like to implement the
+same flow with Twilio's SDK.
+
+### With an SDK
+
+<CH.Scrollycoding>
+
+Take a final look at what it looks like to implement this flow without an SDK
+because you'll never see it again.
+
+```python with-sdk.py
+# from ./assets/without-sdk.py
+```
+
+---
+
+Replace the requests import with Twilio's Python SDK
+
+```python with-sdk.py focus=1
+from twilio.rest import Client
+
+# Twilio account credentials
+account_sid = 'YOUR_ACCOUNT_SID'
+auth_token = 'YOUR_AUTH_TOKEN'
+
+# Set the sender's and recipient's phone numbers
+from_number = '+1234567890'  # Your Twilio phone number
+to_number = '+9876543210'  # Destination phone number
+
+# Set the message content
+message = 'Hello from Twilio!'
+
+# Twilio API endpoint
+url = f'https://api.twilio.com/2010-04-01/Accounts/{account_sid}/Messages.json'
+
+# Step 1: Send SMS
+send_data = {
+    'From': from_number,
+    'To': to_number,
+    'Body': message
+}
+
+auth = (account_sid, auth_token)
+send_response = requests.post(url, data=send_data, auth=auth)
+
+sms_sid = send_response.json()['sid']
+
+# Step 2: Retrieve SMS details
+retrieve_url = f'{url}/{sms_sid}.json'
+retrieve_response = requests.get(retrieve_url, auth=auth)
+
+sms_data = retrieve_response.json()
+```
+
+---
+
+Remove the URL variable as the SDK handles this for us.
+
+~~_`url = f'https://api.twilio.com/2010-04-01/Accounts/{account_sid}/Messages.json'`_~~
+
+```python with-sdk.py
+from twilio.rest import Client
+
+# Twilio account credentials
+account_sid = 'YOUR_ACCOUNT_SID'
+auth_token = 'YOUR_AUTH_TOKEN'
+
+# Set the sender's and recipient's phone numbers
+from_number = '+1234567890'  # Your Twilio phone number
+to_number = '+9876543210'  # Destination phone number
+
+# Set the message content
+message = 'Hello from Twilio!'
+
+# Step 1: Send SMS
+send_data = {
+    'From': from_number,
+    'To': to_number,
+    'Body': message
+}
+
+auth = (account_sid, auth_token)
+send_response = requests.post(url, data=send_data, auth=auth)
+
+sms_sid = send_response.json()['sid']
+
+# Step 2: Retrieve SMS details
+retrieve_url = f'{url}/{sms_sid}.json'
+retrieve_response = requests.get(retrieve_url, auth=auth)
+
+sms_data = retrieve_response.json()
+```
+
+---
+
+Get rid of the manually constructed request body.
+
+~~_`
+send_data = {
+    'From': from_number,
+    'To': to_number,
+    'Body': message
+}
+`_~~
+
+```python with-sdk.py
+from twilio.rest import Client
+
+# Twilio account credentials
+account_sid = 'YOUR_ACCOUNT_SID'
+auth_token = 'YOUR_AUTH_TOKEN'
+
+# Set the sender's and recipient's phone numbers
+from_number = '+1234567890'  # Your Twilio phone number
+to_number = '+9876543210'  # Destination phone number
+
+# Set the message content
+message = 'Hello from Twilio!'
+
+# Step 1: Send SMS
+auth = (account_sid, auth_token)
+send_response = requests.post(url, data=send_data, auth=auth)
+
+sms_sid = send_response.json()['sid']
+
+# Step 2: Retrieve SMS details
+retrieve_url = f'{url}/{sms_sid}.json'
+retrieve_response = requests.get(retrieve_url, auth=auth)
+
+sms_data = retrieve_response.json()
+```
+
+---
+
+Insantiate Twilio's client with credentials instead of creating a raw tuple for
+our credentials. If we made a typo or forgot to pass our credentials the SDK
+will let us know ahead of time.
+```python with-sdk.py focus=15
+from twilio.rest import Client
+
+# Twilio account credentials
+account_sid = 'YOUR_ACCOUNT_SID'
+auth_token = 'YOUR_AUTH_TOKEN'
+
+# Set the sender's and recipient's phone numbers
+from_number = '+1234567890'  # Your Twilio phone number
+to_number = '+9876543210'  # Destination phone number
+
+# Set the message content
+message = 'Hello from Twilio!'
+
+# Step 1: Send SMS
+client = Client(account_sid, auth_token)
+send_response = requests.post(url, data=send_data, auth=auth)
+
+sms_sid = send_response.json()['sid']
+
+# Step 2: Retrieve SMS details
+retrieve_url = f'{url}/{sms_sid}.json'
+retrieve_response = requests.get(retrieve_url, auth=auth)
+
+sms_data = retrieve_response.json()
+```
+
+----
+
+Call `client.messages.create` and pass in the `from_`, `to`, and `body`
+parameters. If we make a typo here the SDK will let us know before any HTTP
+requests are made.
+
+```python with-sdk.py focus=16:20
+from twilio.rest import Client
+
+# Twilio account credentials
+account_sid = 'YOUR_ACCOUNT_SID'
+auth_token = 'YOUR_AUTH_TOKEN'
+
+# Set the sender's and recipient's phone numbers
+from_number = '+1234567890'  # Your Twilio phone number
+to_number = '+9876543210'  # Destination phone number
+
+# Set the message content
+message = 'Hello from Twilio!'
+
+# Step 1: Send SMS
+client = Client(account_sid, auth_token)
+send_response = client.messages.create(
+    from_=from_number,
+    to=to_number,
+    body=message
+)
+
+sms_sid = send_response.json()['sid']
+
+# Step 2: Retrieve SMS details
+retrieve_url = f'{url}/{sms_sid}.json'
+retrieve_response = requests.get(retrieve_url, auth=auth)
+
+sms_data = retrieve_response.json()
+```
+
+---
+
+Retrieve the `sid` value from the response without calling _`.json()`_.
+
+```python with-sdk.py focus=22
+from twilio.rest import Client
+
+# Twilio account credentials
+account_sid = 'YOUR_ACCOUNT_SID'
+auth_token = 'YOUR_AUTH_TOKEN'
+
+# Set the sender's and recipient's phone numbers
+from_number = '+1234567890'  # Your Twilio phone number
+to_number = '+9876543210'  # Destination phone number
+
+# Set the message content
+message = 'Hello from Twilio!'
+
+# Step 1: Send SMS
+client = Client(account_sid, auth_token)
+send_response = client.messages.create(
+    from_=from_number,
+    to=to_number,
+    body=message
+)
+
+sms_sid = send_response.sid
+
+# Step 2: Retrieve SMS details
+retrieve_url = f'{url}/{sms_sid}.json'
+retrieve_response = requests.get(retrieve_url, auth=auth)
+
+sms_data = retrieve_response.json()
+```
+
+---
+
+Replace our newly constructed URL with a simple method call
+
+```python with-sdk.py focus=25
+from twilio.rest import Client
+
+# Twilio account credentials
+account_sid = 'YOUR_ACCOUNT_SID'
+auth_token = 'YOUR_AUTH_TOKEN'
+
+# Set the sender's and recipient's phone numbers
+from_number = '+1234567890'  # Your Twilio phone number
+to_number = '+9876543210'  # Destination phone number
+
+# Set the message content
+message = 'Hello from Twilio!'
+
+# Step 1: Send SMS
+client = Client(account_sid, auth_token)
+send_response = client.messages.create(
+    from_=from_number,
+    to=to_number,
+    body=message
+)
+
+sms_sid = send_response.sid
+
+# Step 2: Retrieve SMS details
+sms = client.messages(sms_sid).fetch()
+```
+
+---
+
+By using the SDK we reduced the lines of code by 24% and removed 31% of the variables 🎉.
+
+```python with-sdk.py
+```
+
+
+</CH.Scrollycoding>
+
+
+## SDK vs. no SDK
+
+Lets breakdown through the significant differences that made the SDK code better.
+
+### Setup
+
+<CH.Section>
+We distilled a couple setup steps into a single line. Most importantly as a
+developer we do not need to [construct the URLs](focus://without-sdk.py#15) and
+[form the request body](focus://without-sdk.py#18:22) to make an HTTP request.
+
+<CH.Code>
+```python with-sdk.py focus=15
+# from ./assets/with-sdk.py
+```
+
+```python without-sdk.py
+# from ./assets/without-sdk.py
+```
+</CH.Code>
+</CH.Section>
+
+### Authentication
+
+<CH.Section>
+
+Credentials were passed once and stored as part of the SDK. Notice that [we did not need to pass in an `auth` variable again](focus://without-sdk.py#31[48:56]).
+
+<CH.Code>
+```python with-sdk.py focus=15,25
+# from ./assets/with-sdk.py
+```
+
+```python without-sdk.py
+# from ./assets/without-sdk.py
+```
+</CH.Code>
+</CH.Section>
+
+### Complexity
+
+<CH.Section>
+
+The construction of the request body was handled so we [deleted a
+variable](focus://without-sdk.py#18:22) and typos will be caught by the SDK when
+calling `create()`.
+
+<CH.Code>
+```python with-sdk.py focus=16:20
+# from ./assets/with-sdk.py
+```
+
+```python without-sdk.py
+# from ./assets/without-sdk.py
+```
+</CH.Code>
+</CH.Section>
+
+### Bonus: IDE Autocompletion
+
+## Conclusion
+
+SDKs are effective in reducing the pain a developer feels when integrating a
+REST API. SDKs throw out manual steps from setup/authentication, reduce the
+cognitive load for the end developer, and reduce the lines of code.
+Furthermore, SDKs integrate nicely with IDEs to reduce the chance of typos by
+catching compilation or runtime errors earlier in the development process.
+
+
