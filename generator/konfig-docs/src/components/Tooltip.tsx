@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { PropsWithChildren } from "react";
 import { v4 as uuid } from "uuid";
 import { Tooltip as ReactTooltip } from "react-tooltip";
@@ -8,7 +8,13 @@ export function Tooltip({
   children,
   text,
 }: PropsWithChildren<{ tip: string; text?: string }>) {
-  const id = uuid();
+  const [id, setId] = useState(null);
+
+  useEffect(() => {
+    if (!id) {
+      setId(uuid());
+    }
+  }, [id]);
   return (
     <span
       style={{ cursor: "pointer", textDecoration: "underline" }}
