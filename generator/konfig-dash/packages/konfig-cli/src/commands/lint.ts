@@ -35,7 +35,7 @@ export default class Lint extends Command {
     } catch {
       console.log(
         boxen(
-          `Reference of lint rules and their explanations: http://docs.konfigthis.com/reference/lint-rules\nUse "konfig fix" to quickly fix errors: http://docs.konfigthis.com/tutorials/fix-openapi-spec`,
+          `Reference of lint rules and their explanations: https://konfigthis.com/docs/lint-rules\nUse "konfig fix" to quickly fix errors: http://konfigthis.com/docs/tutorials/fix-openapi-spec`,
           {
             title: 'What do these errors mean?',
             titleAlignment: 'center',

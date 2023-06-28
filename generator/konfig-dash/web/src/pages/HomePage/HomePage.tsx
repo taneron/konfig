@@ -46,7 +46,7 @@ const HomePage = () => {
             </Prism>
             <Button
               component="a"
-              href="https://docs.konfigthis.com"
+              href="https://konfigthis.com/docs"
               leftIcon={<IconExternalLink size="0.9rem" />}
               color="dark"
             >

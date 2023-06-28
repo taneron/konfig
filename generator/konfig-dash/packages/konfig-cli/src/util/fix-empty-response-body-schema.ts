@@ -73,7 +73,7 @@ export async function fixEmptyResponseBodySchema({
         }
 
         // Detected non-descriptive response body schema object, its likely we should add a schema
-        // https://docs.konfigthis.com/reference/lint-rules#empty-response-body-schema
+        // https://konfigthis.com/docs/lint-rules#empty-response-body-schema
 
         // TODO other media types
         if (media !== 'application/json') {

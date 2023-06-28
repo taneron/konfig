@@ -89,7 +89,7 @@ Successfully logged in as dylan@konfigthis.com
 
 4. Generate SDKs with \`konfig generate\`
 
-### [Documentation](https://docs.konfigthis.com/)
+### [Documentation](https://konfigthis.com/docs)
 `
 }
 

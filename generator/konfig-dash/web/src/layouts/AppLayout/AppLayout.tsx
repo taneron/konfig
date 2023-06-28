@@ -95,7 +95,7 @@ const AppLayout = ({ children }: Props) => {
                 </MediaQuery>
                 <Image width={40} src="/favicon.png" />
               </Group>
-              <Anchor href="https://docs.konfigthis.com" target="_blank">
+              <Anchor href="https://konfigthis.com/docs" target="_blank">
                 Documentation
               </Anchor>
             </div>

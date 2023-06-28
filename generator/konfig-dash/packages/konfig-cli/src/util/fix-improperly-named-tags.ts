@@ -20,7 +20,7 @@ export async function fixImproperlyNamedTags({
     if (parseResult.success) continue
     console.log(
       boxen(
-        `Detected improperly named Tag "${tag.name}"\nhttps://docs.konfigthis.com/reference/lint-rules#tag-naming-convention"`,
+        `Detected improperly named Tag "${tag.name}"\nhttps://konfigthis.com/docs/lint-rules#tag-naming-convention"`,
         {
           title: 'Improper Tag Detected',
           padding: 1,

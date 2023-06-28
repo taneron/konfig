@@ -9,6 +9,6 @@ export const operationIdSchema = z
   .string()
   .regex(
     operationIdRegex,
-    `OperationID should be prefixed with Tag + "_" (https://docs.konfigthis.com/tutorials/naming-operation-ids)`
+    `OperationID should be prefixed with Tag + "_" (https://konfigthis.com/docs/tutorials/naming-operation-ids)`
   )
   .brand<'OperationId'>()
