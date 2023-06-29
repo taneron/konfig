@@ -20,7 +20,6 @@ export function VideoPlayer(props) {
         controls
         {...props}
       />
-      ;
     </div>
   );
 }
