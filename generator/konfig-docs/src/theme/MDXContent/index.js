@@ -5,6 +5,9 @@ import { Mermaid } from "@jakxz/mdx-mermaid/Mermaid";
 import { Tooltip } from "@site/src/components/Tooltip";
 import Admonition from "@theme/Admonition";
 import { VideoPlayer } from "@site/src/components/VideoPlayer";
+import { Slammer } from "@site/src/components/Slammer/Slammer";
+import { Glowing } from "@site/src/components/Glowing/Glowing";
+import { Flame } from "@site/src/components/Flame/Flame";
 
 export default function MDXContent({ children }) {
   return (
@@ -15,6 +18,9 @@ export default function MDXContent({ children }) {
         Tooltip,
         Admonition,
         VideoPlayer,
+        Slammer,
+        Glowing,
+        Flame,
       }}
     >
       {children}

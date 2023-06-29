@@ -5,21 +5,23 @@ authors: dylan
 draft: true
 ---
 
-import createCollectionButton from "./assets/create-collection-button.png"
+import { PlusButton } from "./assets/PlusButton"
 
-Postman is one of the best tools for building APIs. It is widely known as an
-easy way to make HTTP requests but its also a great way to create and automate
-tests for your API. But the documentation and tutorials online are disparate and
-not cohesive. So we created the most comprehensive guide on how to test your API
-using Postman. In this guide we will cover four major patterns for testing your API.
+
+Postman is one of the best tools for building APIs. It is amazing for quickly
+executing HTTP requests but its also great for creating and automating tests for
+your API. So we created the most comprehensive guide on how to use Postman to
+test your API. In this guide we will cover four major patterns for testing your
+API.
 
 1. Single request
 2. Multiple requests
 3. Conditional requests
 4. Postman in CI
 
-We will also include an example API for your to run yourself as a toy example
-throughout the guide.
+We have included included an example API for your to run yourself as a toy
+example throughout the guide. We also propose an optimal workflow for organizing
+your requests.
 
 ## Setup
 
@@ -34,15 +36,19 @@ Download Postman app [here](https://www.postman.com/downloads/).
 </Admonition>
 
 This guide uses an example API written in Python using the
-[FastAPI](https://fastapi.tiangolo.com/) framework. We are simulating an API
-that manages a user database with <Tooltip tip="Create, read, update, and
-delete" text="CRUD"/> operations.
+[FastAPI](https://fastapi.tiangolo.com/) framework so we can easily generate an
+[<Tooltip tip="OpenAPI Specification" text="OAS"/>](https://swagger.io/specification/). The example API simulates
+<Tooltip tip="Create, read, update, and delete" text="CRUD"/> operations on a
+fake User database.
 
 <Admonition type="info" title="System Requirements">
-    [Python](https://www.python.org/downloads/) and [Poetry](https://python-poetry.org/docs/) are required to run the example API
+    [Python 3.7+](https://www.python.org/downloads/) and
+    [Poetry](https://python-poetry.org/docs/) are required to run the example
+    API. Refer to the documentation for installation instructions on your
+    system.
 </Admonition>
 
-To download the code and start the API run the following script.
+To download and starting the example API run the following script.
 
 ```shell
 https://github.com/konfig-dev/fastapi-example
@@ -68,28 +74,35 @@ The example API has 5 operations.
 
 ## Testing
 
-The following sections describe different patterns for testing your API.
+The following sections describes different patterns for testing your API. Lets
+create a
+[Collection](https://learning.postman.com/docs/collections/collections-overview/#:~:text=Postman%20Collections%20are%20a%20group,particular%20request%20in%20your%20history.)
+to get started.
 
 ### Create a Collection
 
-To get started, create a
-[Collection](https://learning.postman.com/docs/collections/collections-overview/#:~:text=Postman%20Collections%20are%20a%20group,particular%20request%20in%20your%20history.)
-in Postman to store our requests and tests. You can either manually create your
-collection or generate one from an [OpenAPI
-Specification](https://swagger.io/specification/).
+We recommend generating your collections from an OAS to save time. If you don't
+have an OAS, you can manually create the collection.
+
+#### Generate From OpenAPI Specification (Recommended <Flame/>)
+
+1. Create an API and give it a name
+2. Import your OAS
+3. Generate a collection from your definition
+
+<VideoPlayer playing loop url="/video/generate-collection.mov"/>
 
 #### Manual
 
-To manually create a Collection click the <img src={createCollectionButton}
-height="15rem"/> in the top-left corner and give your collection a name.
+Click the <PlusButton/> in the top-left corner and give your collection a name.
 
-<VideoPlayer url="/video/create-collection.mov"/>
-
-#### Generate From OpenAPI Specification
+<VideoPlayer playing loop url="/video/create-collection.mov"/>
 
 ### Single Request
 
-Often times you will just want to execute a request to test one operation. Postman makes this extremely easy
+Often times you will just want to execute a request to test one-off operations.
+We suggest that you create a new collection for these one-off operations so they
+are separated from collections used for tests.
 
 ### Multiple Requests
 

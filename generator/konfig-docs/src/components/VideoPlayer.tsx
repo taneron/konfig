@@ -6,7 +6,7 @@ export function VideoPlayer(props) {
     <div
       style={{
         position: "relative",
-        paddingTop: "50%",
+        paddingTop: "56.25%",
       }}
     >
       <ReactPlayer
