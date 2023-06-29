@@ -8,6 +8,7 @@ import { VideoPlayer } from "@site/src/components/VideoPlayer";
 import { Slammer } from "@site/src/components/Slammer/Slammer";
 import { Glowing } from "@site/src/components/Glowing/Glowing";
 import { Flame } from "@site/src/components/Flame/Flame";
+import { VideoSection } from "@site/src/components/VideoSection";
 
 export default function MDXContent({ children }) {
   return (
@@ -21,6 +22,7 @@ export default function MDXContent({ children }) {
         Slammer,
         Glowing,
         Flame,
+        VideoSection,
       }}
     >
       {children}
