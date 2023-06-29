@@ -5,11 +5,12 @@ import { VideoSectionContext } from "@site/src/components/VideoSection";
 export default function MDXA(props) {
   const video = useContext(VideoSectionContext);
   if (props.href === "seek") {
+    const { children, ...aProps } = props;
     return (
       <span
         onClick={async () => {
           const response = await fetch(
-            video.current.props.url.replace("mov", "vtt"),
+            `${video.current.props.url.split(".")[0]}.vtt`,
             { cache: "only-if-cached", mode: "same-origin" }
           );
           const vtt = parseVttContents(await response.text());
@@ -20,8 +21,10 @@ export default function MDXA(props) {
         }}
         style={{ cursor: "pointer" }}
         className="ch-section-link"
-        {...props}
-      />
+        {...aProps}
+      >
+        {children}
+      </span>
     );
   }
   return <Link {...props} />;

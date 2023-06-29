@@ -13,7 +13,7 @@ export const VideoPlayer = forwardRef(
               tracks: [
                 {
                   kind: "captions",
-                  src: props.url.replace("mov", "vtt"),
+                  src: `${props.url.split(".")[0]}.vtt`,
                   srcLang: "en",
                   label: "Captions",
                   default: true,
