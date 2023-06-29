@@ -1,8 +1,7 @@
 ---
 slug: how-to-use-postman-to-test-api
-title: The Ultimate Guide for Using Postman To Test Your API
+title: The Ultimate Guide on Using Postman To Test Your API
 authors: dylan
-draft: true
 ---
 
 import { PlusButton } from "./assets/PlusButton"
@@ -10,18 +9,18 @@ import { PlusButton } from "./assets/PlusButton"
 
 Postman is one of the best tools for building APIs. It is amazing for quickly
 executing HTTP requests but its also great for creating and automating tests for
-your API. So we created the most comprehensive guide on how to use Postman to
-test your API. In this guide we will cover four major patterns for testing your
-API.
+your API. So we created the ultimate guide on how to use Postman to test your
+API. In this guide we will cover four major patterns for testing your API.
 
-1. Single request
+1. One-off request
 2. Multiple requests
 3. Conditional requests
 4. Postman in CI
 
-We have included included an example API for your to run yourself as a toy
-example throughout the guide. We also propose an optimal workflow for organizing
-your requests.
+<Admonition type="note">
+For your convenience, we included a working [example API](#example-api-optional)
+for testing.
+</Admonition>
 
 ## Setup
 
@@ -29,11 +28,9 @@ your requests.
 
 Download Postman app [here](https://www.postman.com/downloads/).
 
-### Example API (Optional)
+### Example API [Optional]
 
-<Admonition type="note" title="Optional">
-    Setting up the Example API is optional. You can follow this guide with your own API.
-</Admonition>
+**Setting up the Example API is optional. You can follow this guide with your own API.**
 
 This guide uses an example API written in Python using the
 [FastAPI](https://fastapi.tiangolo.com/) framework so we can easily generate an
@@ -74,12 +71,10 @@ The example API has 5 operations.
 
 ## Testing
 
-The following sections describes different patterns for testing your API. Lets
-create a
-[Collection](https://learning.postman.com/docs/collections/collections-overview/#:~:text=Postman%20Collections%20are%20a%20group,particular%20request%20in%20your%20history.)
-to get started.
+The following sections describes different tips and workflows for testing your
+API.
 
-### Create a Collection
+### Generate Collection from OAS ℹ️
 
 We recommend generating your collections from an OAS to save time. If you don't
 have an OAS, you can manually create the collection.
@@ -88,19 +83,14 @@ have an OAS, you can manually create the collection.
 
 <VideoSection>
 
-1. [Create an API and give it a name](seek)
-2. [Import your OAS](seek)
-3. [Generate a collection from your definition](seek)
+1. [Make sure the APIs element is visible on the sidebar](seek)
+2. [Create an API and give it a name](seek)
+3. [Import your OAS](seek)
+4. [Generate a collection from your definition](seek)
 
-<VideoPlayer autoplay url="/video/generate-collection.mov"/>
+<VideoPlayer playbackRate={1.2} autoplay url="/video/generate-collection.mov"/>
 
 </VideoSection>
-
-#### Manual
-
-Click the <PlusButton/> in the top-left corner and give your collection a name.
-
-<VideoPlayer autoplay url="/video/create-collection.mov"/>
 
 ### Single Request
 
