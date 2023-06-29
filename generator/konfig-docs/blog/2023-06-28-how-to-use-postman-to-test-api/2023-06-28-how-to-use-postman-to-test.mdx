@@ -1,0 +1,102 @@
+---
+slug: how-to-use-postman-to-test-api
+title: The Ultimate Guide for Using Postman To Test Your API
+authors: dylan
+draft: true
+---
+
+import createCollectionButton from "./assets/create-collection-button.png"
+
+Postman is one of the best tools for building APIs. It is widely known as an
+easy way to make HTTP requests but its also a great way to create and automate
+tests for your API. But the documentation and tutorials online are disparate and
+not cohesive. So we created the most comprehensive guide on how to test your API
+using Postman. In this guide we will cover four major patterns for testing your API.
+
+1. Single request
+2. Multiple requests
+3. Conditional requests
+4. Postman in CI
+
+We will also include an example API for your to run yourself as a toy example
+throughout the guide.
+
+## Setup
+
+### Postman
+
+Download Postman app [here](https://www.postman.com/downloads/).
+
+### Example API (Optional)
+
+<Admonition type="note" title="Optional">
+    Setting up the Example API is optional. You can follow this guide with your own API.
+</Admonition>
+
+This guide uses an example API written in Python using the
+[FastAPI](https://fastapi.tiangolo.com/) framework. We are simulating an API
+that manages a user database with <Tooltip tip="Create, read, update, and
+delete" text="CRUD"/> operations.
+
+<Admonition type="info" title="System Requirements">
+    [Python](https://www.python.org/downloads/) and [Poetry](https://python-poetry.org/docs/) are required to run the example API
+</Admonition>
+
+To download the code and start the API run the following script.
+
+```shell
+https://github.com/konfig-dev/fastapi-example
+cd fastapi-example
+./start.sh
+```
+
+The example API has 5 operations.
+
+<CH.Section>
+1. [`GET` List Users](focus://20:22) - returns a list of users
+2. [`GET` Get User](focus://25:30) - returns the details of a user by ID
+3. [`POST` Create User](focus://33:36) - inserts a user into the database
+4. [`PUT` Update User](focus://39:45) - updates a user in the database
+5. [`DELETE` Delete User](focus://48:54) - removes a user from the database
+
+<CH.Code rows={8}>
+```python main.py
+# from ../../../../misc/fastapi-example/main.py
+```
+</CH.Code>
+</CH.Section>
+
+## Testing
+
+The following sections describe different patterns for testing your API.
+
+### Create a Collection
+
+To get started, create a
+[Collection](https://learning.postman.com/docs/collections/collections-overview/#:~:text=Postman%20Collections%20are%20a%20group,particular%20request%20in%20your%20history.)
+in Postman to store our requests and tests. You can either manually create your
+collection or generate one from an [OpenAPI
+Specification](https://swagger.io/specification/).
+
+#### Manual
+
+To manually create a Collection click the <img src={createCollectionButton}
+height="15rem"/> in the top-left corner and give your collection a name.
+
+<VideoPlayer url="/video/create-collection.mov"/>
+
+#### Generate From OpenAPI Specification
+
+### Single Request
+
+Often times you will just want to execute a request to test one operation. Postman makes this extremely easy
+
+### Multiple Requests
+
+### Test Scripts
+
+## Setup Postman and GitHub Actions
+
+
+
+
