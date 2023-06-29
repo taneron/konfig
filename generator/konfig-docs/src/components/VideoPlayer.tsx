@@ -28,6 +28,7 @@ export const VideoPlayer = forwardRef(
         playing={props.playing || autoplay}
         muted={props.muted || autoplay}
         loop={props.loop || autoplay}
+        playsinline
         width="100%"
         height="100%"
         controls
