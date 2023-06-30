@@ -5,14 +5,21 @@ import { VideoSectionContext } from "@site/src/components/VideoSection";
 export default function MDXA(props) {
   const video = useContext(VideoSectionContext);
   const [error, setError] = useState(false);
+  const [vtt, setVtt] = useState();
+
+  const fetchVtt = async () => {
+    if (video?.current == undefined) return;
+    const response = await fetch(
+      `${video.current.props.url.split(".")[0]}.vtt`,
+      { cache: "force-cache", mode: "same-origin" }
+    );
+    const vtt = parseVttContents(await response.text());
+    setVtt(vtt);
+  };
 
   const getCue = async () => {
     if (video?.current === undefined) return;
-    const response = await fetch(
-      `${video.current.props.url.split(".")[0]}.vtt`,
-      { cache: "only-if-cached", mode: "same-origin" }
-    );
-    const vtt = parseVttContents(await response.text());
+    if (vtt === undefined) return;
     const cue = vtt.filter(({ text }) => text.includes(props.children));
     if (cue.length === 0 || cue.length > 1) {
       setError(true);
@@ -21,11 +28,17 @@ export default function MDXA(props) {
     return cue[0];
   };
 
+  useEffect(() => {
+    if (props.href !== "seek") return;
+    fetchVtt();
+  }, []);
+
   // Validate links to video in dev mode
-  if (process.env.NODE_ENV !== "production")
+  if (process.env.NODE_ENV !== "production") {
     useEffect(() => {
-      setTimeout(getCue, 0);
-    }, []);
+      getCue();
+    }, [vtt]);
+  }
 
   if (props.href === "seek") {
     const { children, ...aProps } = props;
