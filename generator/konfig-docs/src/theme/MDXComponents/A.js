@@ -1,25 +1,43 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Link from "@docusaurus/Link";
 import { VideoSectionContext } from "@site/src/components/VideoSection";
 
 export default function MDXA(props) {
   const video = useContext(VideoSectionContext);
+  const [error, setError] = useState(false);
+
+  const getCue = async () => {
+    if (video?.current === undefined) return;
+    const response = await fetch(
+      `${video.current.props.url.split(".")[0]}.vtt`,
+      { cache: "only-if-cached", mode: "same-origin" }
+    );
+    const vtt = parseVttContents(await response.text());
+    const cue = vtt.filter(({ text }) => text.includes(props.children));
+    if (cue.length === 0 || cue.length > 1) {
+      setError(true);
+      return;
+    }
+    return cue[0];
+  };
+
+  // Validate links to video in dev mode
+  if (process.env.NODE_ENV !== "production")
+    useEffect(() => {
+      setTimeout(getCue, 0);
+    }, []);
+
   if (props.href === "seek") {
     const { children, ...aProps } = props;
     return (
       <span
         onClick={async () => {
-          const response = await fetch(
-            `${video.current.props.url.split(".")[0]}.vtt`,
-            { cache: "only-if-cached", mode: "same-origin" }
-          );
-          const vtt = parseVttContents(await response.text());
-          const cue = vtt.find(({ text }) => text.includes(props.children));
+          const cue = await getCue();
           if (cue === undefined) return;
           const seconds = parseVttTimestamp(cue.startTime);
           video.current.seekTo(seconds, "seconds");
         }}
-        style={{ cursor: "pointer" }}
+        style={{ cursor: "pointer", color: error ? "red" : undefined }}
         className="ch-section-link"
         {...aProps}
       >
