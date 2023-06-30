@@ -8,15 +8,14 @@ draft: true
 import { PlusButton } from "./assets/PlusButton"
 
 Originally started off as a side project, Postman has become one of the best
-tools for collaboratively building APIs. For the longest time I only saw Postman
-as a slick tool for executing one-off HTTP requests. But if you dive deeper into
-Postman's featureset, it provides amazing capabilities for testing all kinds of
-behavior API behavior. Today engineers are using Postman to [run 2,700+ tests on 100's of
-APIs on every deploy](https://www.postman.com/case-studies/youi/).  So we
-created the <Gradient>ultimate</Gradient> guide on how to use Postman to test
-your API. In this guide we will cover optimal workflows and useful features you
-have to know to effectively test your API. By the end of this guide you will be
-the official "Postman expert" on your team 😎.
+tools for collaboratively building APIs and it also provides amazing
+capabilities for testing all kinds of behavior API behavior. Today engineers are
+using Postman to [run 2,700+ tests on 100's of APIs on every
+deploy](https://www.postman.com/case-studies/youi/). So we created the
+<Gradient>ultimate</Gradient> guide on using postman to test your API. In this
+guide we will cover workflows and features you must know to effectively test
+your API. By the end of this guide you will be the official "Postman expert" on
+your team 😎.
 
  **Lets go!**
 
@@ -69,7 +68,9 @@ The example API has 5 operations.
 
 ## The Anatomy of Postman
 
-Postman's data model revolves around the concept of a [Collection](https://learning.postman.com/docs/collections/collections-overview/).
+Lets first understand how Postman is organized. Postman's data model revolves
+around the concept of a
+[Collection](https://learning.postman.com/docs/collections/collections-overview/).
 
 According to Postman:
 
@@ -83,19 +84,23 @@ According to Postman:
 Postman organizes Collections into a
 [Workspace](https://learning.postman.com/docs/collaborating-in-postman/using-workspaces/managing-workspaces/)
 or
-[API](https://learning.postman.com/docs/designing-and-developing-your-api/the-api-workflow/)
-as shown by the following diagram.
+[API](https://learning.postman.com/docs/designing-and-developing-your-api/the-api-workflow/).
+A collection contains requests and a request contains a URL, path parameters,
+query parameters, headers, request body, and method for an HTTP request.
 
 ```mermaid
 flowchart TD
     Workspace --> C((Collection))
     Workspace --> API
+    Workspace --> Environment
+    Workspace --> Variable
+    Environment --> Variable
     API --> C
     C --> Variable
     C --> Request
     C --> Authorization
     Request --> URL
-    Request --> Variable
+    Variable --> Request
     Request --> Body
     Request --> Headers
     Request --> Params
@@ -106,16 +111,22 @@ flowchart TD
     Request --> Examples
 ```
 
-A collection contains requests and requests contains the URL, path parameters,
-query parameters, headers, request body, and method for an HTTP request.
 
 ### Workspace
 
-Workspace in a nutshell.
+At the highest level we have a Workspace where collaboration and all resources
+live. Create your Workspace to get started.
 
-### API
+<VideoSection>
+1. [Create a Workspace](seek)
+1. [Give it a name and summary and click "Create Workspace"](seek)
+1. [Invite a team member](seek) [optional]
+<VideoPlayer playbackRate={1.2} autoplay url="/video/workspace.mov" />
+</VideoSection>
 
-### Collections
+A single Workspace makes sense for a small team that needs to share a Collection
+of requests and APIs. If you have large number of teams then it might make sense
+to have more workspaces to avoid polluting each other's workspace.
 
 ### Create a Collection
 
@@ -123,16 +134,17 @@ Click the <PlusButton/> button in the top-left corner to create a Collection.
 
 <VideoPlayer autoplay url="/video/create-collection.mov" />
 
-Collections don't just save your requests. Collections also contains dynamic
-variables and authorization settings.
-
 ### Using Variables
 
-#### `baseUrl` (Recommended <Flame/>)
+Collections not only save your requests but also stores dynamic values called a
+[Variable](https://learning.postman.com/docs/sending-requests/variables/).
 
-We suggest that you always bootstrap your Collection with a variable named
-`baseUrl`. Using a single `baseUrl` variable allows you to quickly change
-environments and keep your requests <Tooltip tip="Don't Repeat Yourself" text="DRY"/>.
+#### Create `baseUrl` Variable (Recommended <Flame/>)
+
+We suggest that you always bootstrap your Collection with a Variable named
+`baseUrl`. Using a single `baseUrl` variable allows you to quickly configure API
+environments and keep your requests <Tooltip tip="Don't Repeat Yourself"
+text="DRY"/>.
 
 <VideoSection>
 
@@ -148,31 +160,35 @@ environments and keep your requests <Tooltip tip="Don't Repeat Yourself" text="D
 
 #### What is `Initial value` vs. `Current value`?
 
-You'll notice there is a ["Initial value" and "Current value"
-column](https://learning.postman.com/docs/sending-requests/variables/#specifying-variable-detail)
-under the "Variables" tab. Values in the `Initial value` are shared with your
-Collection while `Current value` is not.
+You'll notice there is an `Initial value` and `Current value` column under the
+"Variables" tab.
 
-- Use the `Initial value` when storing helpful examples or commonly shared values.
-- Use the `Current value` to construct ad-hoc requests.
+<Figure src="/img/initial-current-value.png" caption="Initial and Current Value"/>
 
-Sometimes you want to persist
+Values in the `Initial value` are persisted in your Collection while `Current
+value` is kept local to your session. `Initial value` is used to shared a value
+amongst in your workspace.
+
+- Use the `Initial value` when storing helpful examples or commonly shared values
+    - e.g. `baseUrl`
+- Use the `Current value` for providing ad-hoc values
+    - e.g. start date for a date range query
 
 #### Curly Brace Syntax
 
-You can use `{{variable}}` syntax to insert a variable anywhere in your Request.
-This is helpful when you have entity IDs or common values that you want to
-resuse within your Collection. For example you might be referencing the same
-User ID across multiple requests and find yourself continuously copy-pasting it.
+Use the curly brace syntax (i.e. `{{variable}}`) to insert a variable
+**anywhere** in your Request. This is helpful when you have common values
+amongst multiple requests in your Collection. For example you might be
+referencing the same User ID across multiple requests.
 
 #### Scope
 
 Variables have
-["Scope"](https://learning.postman.com/docs/sending-requests/variables/#variable-scopes)
-which also leads us to the concept of an environment.
+[Scope](https://learning.postman.com/docs/sending-requests/variables/#variable-scopes)
+which also leads us to the concept of an
+[Environment](https://learning.postman.com/docs/sending-requests/managing-environments/).
 
 ### Authorization
-
 
 ## Testing
 
@@ -205,13 +221,39 @@ Often times you will just want to execute a request to test one-off operations.
 We suggest that you create a new collection for these one-off operations so they
 are separated from collections used for tests.
 
-### Multiple Requests
+### Random Data
+
+### Console
+
+### Sequence of Requests
+
+#### Request Execution Order
 
 ### Test Scripts
+
+#### `pm.globals.set`
+
+#### `postman.setNextRequest`
+
+#### Looping Requests
 
 ### Idempotency
 
 ## Setup Postman and GitHub Actions
+
+### Postman API
+
+### Export Collection
+
+### Public Link
+
+### Pointing to Preview Environment
+
+### `newman`
+
+### Reporters
+
+### Debugging CI
 
 
 
