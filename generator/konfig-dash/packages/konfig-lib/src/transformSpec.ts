@@ -323,6 +323,23 @@ export const transformSpec = async ({
     }
   }
 
+  // x-konfig-uses-multipart-form-data
+  for (const { operation } of operations) {
+    if (operation.requestBody === undefined) continue
+    const requestBody = resolveRef({
+      refOrObject: operation.requestBody,
+      $ref: spec.$ref,
+    })
+    const mediaTypes = Object.keys(requestBody.content)
+    for (const mediaType of mediaTypes) {
+      if (mediaType === 'multipart/form-data') {
+        Object.assign(spec.spec.info, {
+          'x-konfig-uses-multipart-form-data': true,
+        })
+      }
+    }
+  }
+
   // inherit top-level object example values in property examples
   recurseObject(spec.spec, ({ value: schema }) => {
     // Found object type schema
