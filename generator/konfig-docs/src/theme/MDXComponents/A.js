@@ -1,5 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
+import { renderToStaticMarkup } from "react-dom/server";
 import Link from "@docusaurus/Link";
+import innerText from "react-innertext";
 import { VideoSectionContext } from "@site/src/components/VideoSection";
 
 export default function MDXA(props) {
@@ -20,7 +22,12 @@ export default function MDXA(props) {
   const getCue = async () => {
     if (video?.current === undefined) return;
     if (vtt === undefined) return;
-    const cue = vtt.filter(({ text }) => text.includes(props.children));
+    const childText =
+      typeof props.children === "string"
+        ? props.children
+        : props.children.map(innerText).join("");
+    console.log(childText);
+    const cue = vtt.filter(({ text }) => text.includes(childText));
     if (cue.length === 0 || cue.length > 1) {
       setError(true);
       return;

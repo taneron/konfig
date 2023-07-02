@@ -2,20 +2,18 @@
 slug: how-to-use-postman-to-test-api
 title: The Ultimate Guide on Using Postman to Test Your API in 2023
 authors: dylan
-draft: true
 ---
 
 import { PlusButton } from "./assets/PlusButton"
 
 Originally started off as a side project, Postman has become one of the best
-tools for collaboratively building APIs and it also provides amazing
-capabilities for testing all kinds of behavior API behavior. Today engineers are
-using Postman to [run 2,700+ tests on 100's of APIs on every
-deploy](https://www.postman.com/case-studies/youi/). So we created the
-<Gradient>ultimate</Gradient> guide on using postman to test your API. In this
-guide we will cover workflows and features you must know to effectively test
-your API. By the end of this guide you will be the official "Postman expert" on
-your team 😎.
+tools for collaboratively building APIs and especially provides amazing
+capabilities for testing. Today engineers are using Postman to [run 2,700+ tests
+on 100's of APIs on every deploy](https://www.postman.com/case-studies/youi/).
+So we created the <Gradient>ultimate</Gradient> guide on using postman to test
+your API. In this guide we will cover workflows and features you must know to
+effectively test your API. By the end of this guide you will be the official
+"Postman expert" on your team 😎.
 
  **Lets go!**
 
@@ -68,7 +66,7 @@ The example API has 5 operations.
 
 ## The Anatomy of Postman
 
-Lets first understand how Postman is organized. Postman's data model revolves
+Lets briefly overview how Postman is organized. Postman's data model revolves
 around the concept of a
 [Collection](https://learning.postman.com/docs/collections/collections-overview/).
 
@@ -81,11 +79,11 @@ According to Postman:
 > of scrolling through your history section, you can save all your requests as a
 > group for easier access.
 
-Postman organizes Collections into a
+Collections live under a
 [Workspace](https://learning.postman.com/docs/collaborating-in-postman/using-workspaces/managing-workspaces/)
 or
 [API](https://learning.postman.com/docs/designing-and-developing-your-api/the-api-workflow/).
-A collection contains requests and a request contains a URL, path parameters,
+A Collection contains requests and a request contains a URL, path parameters,
 query parameters, headers, request body, and method for an HTTP request.
 
 ```mermaid
@@ -114,8 +112,8 @@ flowchart TD
 
 ### Workspace
 
-At the highest level we have a Workspace where collaboration and all resources
-live. Create your Workspace to get started.
+At the highest level we have a Workspace where you can invite team members
+and...do your work. Create your Workspace to get started.
 
 <VideoSection>
 1. [Create a Workspace](seek)
@@ -124,26 +122,27 @@ live. Create your Workspace to get started.
 <VideoPlayer playbackRate={1.2} autoplay url="/video/workspace.mov" />
 </VideoSection>
 
-A single Workspace makes sense for a small team that needs to share a Collection
-of requests and APIs. If you have large number of teams then it might make sense
-to have more workspaces to avoid polluting each other's workspace.
+
 
 ### Create a Collection
 
-Click the <PlusButton/> button in the top-left corner to create a Collection.
+Collections are where all the real work gets done. Click the <PlusButton/>
+button in the top-left corner to create a Collection.
 
 <VideoPlayer autoplay url="/video/create-collection.mov" />
 
 ### Using Variables
 
-Collections not only save your requests but also stores dynamic values called a
+Collections not only save your requests but also store dynamic values called a
 [Variable](https://learning.postman.com/docs/sending-requests/variables/).
 
-#### Create `baseUrl` Variable (Recommended <Flame/>)
+#### Create a `baseUrl` Variable (Recommended <Flame/>)
 
-We suggest that you always bootstrap your Collection with a Variable named
-`baseUrl`. Using a single `baseUrl` variable allows you to quickly configure API
-environments and keep your requests <Tooltip tip="Don't Repeat Yourself"
+Lets create our first variable.
+
+We suggest that you always start out with a Variable named `baseUrl`. Using a
+single `baseUrl` variable allows you to quickly configure API environments (e.g.
+staging, prod, etc.) and keep your requests <Tooltip tip="Don't Repeat Yourself"
 text="DRY"/>.
 
 <VideoSection>
@@ -158,43 +157,145 @@ text="DRY"/>.
 
 </VideoSection>
 
-#### What is `Initial value` vs. `Current value`?
+<Admonition type="info" title="Variables in Variables">
+    Sometimes you need to parameterize your `baseUrl` which is possible using
+    the curly brace syntax. For example you might have domains based on a
+    "provider" like `aws` or "region" like `us-east-1`.
 
-You'll notice there is an `Initial value` and `Current value` column under the
+    ![variables in variable](/img/variables-in-variable.png)
+
+    Its not obvious that this works but it does.
+</Admonition>
+
+#### What is "Initial value" vs. "Current value"?
+
+You'll notice there is an "Initial value" and "Current value" column under the
 "Variables" tab.
 
 <Figure src="/img/initial-current-value.png" caption="Initial and Current Value"/>
 
-Values in the `Initial value` are persisted in your Collection while `Current
-value` is kept local to your session. `Initial value` is used to shared a value
-amongst in your workspace.
+The "Initial value" is shared in your Workspace with collaborators while
+"Current value" is kept local to your session.
 
-- Use the `Initial value` when storing helpful examples or commonly shared values
-    - e.g. `baseUrl`
-- Use the `Current value` for providing ad-hoc values
-    - e.g. start date for a date range query
+- Use "Initial value" to store helpful examples (i.e. query example) or commonly
+shared values (`baseUrl`)
+- Edit the "Current value" for configuring temporary values
+
+<VideoSection>
+
+To reset all your current values to initial values, [click the `Reset all` button](seek)
+on the right side. [Click the `Reset` button](seek) to reset a single variable.
+
+<VideoPlayer autoplay url="/video/reset-variables.mov"/>
+
+</VideoSection>
+
+<VideoSection>
+
+To persist your current values to initial values, [click the `Persist all` button](seek)
+on the right side. [Click the `Persist` button](seek) to persist a single variable.
+
+<VideoPlayer autoplay url="/video/persist-variables.mov"/>
+
+</VideoSection>
 
 #### Curly Brace Syntax
 
 Use the curly brace syntax (i.e. `{{variable}}`) to insert a variable
-**anywhere** in your Request. This is helpful when you have common values
-amongst multiple requests in your Collection. For example you might be
-referencing the same User ID across multiple requests.
+**anywhere** in your Request.
+
+In the URL.
+![url variable](/img/url-variable.png)
+
+As a parameter.
+![param variable](/img/param-variable.png)
+
+Variables are crucial when you have common values amongst multiple requests in
+your Collection. For example referencing the same User ID across multiple
+requests.
 
 #### Scope
 
-Variables have
-[Scope](https://learning.postman.com/docs/sending-requests/variables/#variable-scopes)
-which also leads us to the concept of an
-[Environment](https://learning.postman.com/docs/sending-requests/managing-environments/).
+Variables live in a [Scope](https://learning.postman.com/docs/sending-requests/variables/#variable-scopes).
+
+```mermaid
+flowchart TB
+    subgraph global [Global]
+        subgraph environment [Environment]
+            subgraph collection [Collection]
+            end
+        end
+    end
+```
+
+<VideoSection>
+
+1. [**Global** scope variables are available everywhere in your Workspace](seek)
+1. [**Environment** scope variables are available when the environment is active](seek)
+    1. [You can configure your Environment by selecting the menu in the top-right corner](seek)
+1. [**Collection** scope variables are only available to a Collection](seek)
+
+<VideoPlayer playbackRate={1.4} autoplay url="/video/scope.mov"/>
+
+</VideoSection>
+
 
 ### Authorization
 
+If your API needs authorization.
+
+<VideoSection>
+
+1. [Go to the Collection's Authorization tab](seek)
+1. [Configure the Authorization type](seek)
+    1. In this case  we need to provide the `X-API-Key` header
+1. [Create an Environment Variable for your credentials](seek)
+1. [Set the Variable as `secret` so the value is masked on the screen](seek)
+1. [Ensure that your request is set to `Inherit auth from parent` (i.e. Collection)](seek)
+1. [Click `Send` to test your credentials](seek)
+
+<VideoPlayer autoplay url="/video/authorization.mov"/>
+
+</VideoSection>
+
+<Admonition type="info" title="Custom Authorization">
+
+#### Pre-request Script
+
+If Postman does not natively support your Authorization type then you can use
+the "Pre-request Script" tab to programatically set Environment Variables.
+
+For example you can use the following script to add 3 header values from your
+environment variables before any request in your Collection.
+
+![pre-request headers](/img/pre-request-headers.png)
+
+<details>
+<summary>Copy Code</summary>
+```javascript
+pm.request.addHeader({ key: "client_id", value: pm.environment.get("CLIENT_ID") })
+pm.request.addHeader({ key: "client_secret", value: pm.environment.get("CLIENT_SECRET") })
+pm.request.addHeader({ key: "module_secret", value: pm.environment.get("MODULE_SECRET") })
+```
+</details>
+
+</Admonition>
+
+
 ## Testing
 
-### Generate Collection from OAS (Bonus<Flame/>)
+Now that we know the basics lets jump into workflows and features for testing.
 
-We recommend generating your collections from an OAS to save time. Postman will
+### Single Request
+
+Often times you will just want to execute a request to test one-off operations.
+We suggest that you create a new collection for these one-off operations so they
+are separated from collections used for tests as you'll see in the following
+sections.
+
+#### Generate Collection from OAS (Recommended<Flame/>)
+
+Generating your collections from an OAS can save a lot of time. Postman will
 automatically create a `baseUrl` variable and setup Authentication based on your
 OAS. It will also bootstrap requests for every request based on the
 [schemas](https://spec.openapis.org/oas/v3.1.0#schema-object) in your OAS.
@@ -202,10 +303,9 @@ OAS. It will also bootstrap requests for every request based on the
 <VideoSection>
 
 1. [Make sure the APIs element is visible on the sidebar](seek) by configuring your sidebar
-2. [Create an API and give it a name](seek)
-3. [Import your OAS](seek)
-4. [Generate a collection from your definition](seek)
-4. [Done!](seek)
+1. [Create an API and give it a name](seek)
+1. [Import your OAS](seek)
+1. [Generate a collection from your definition](seek)
 
 <VideoPlayer playbackRate={1.2} autoplay url="/video/generate-collection.mov"/>
 
@@ -213,31 +313,44 @@ OAS. It will also bootstrap requests for every request based on the
 
 <Admonition type="note">
 The generated Collection will live in the "APIs" tab under your OAS definition.
+This is slightly confusing as it won't be visible under the "Collections" tab
+but it does help keep your Collections organized by API.
 </Admonition>
 
-### Single Request
+If you don't have an OAS then you can always manually create a Collection and
+add requests to it.
 
-Often times you will just want to execute a request to test one-off operations.
-We suggest that you create a new collection for these one-off operations so they
-are separated from collections used for tests.
+<Admonition type="info" title="Tip">
+#### Console (Helpful<Flame/>)
 
-### Random Data
+<VideoSection>
 
-### Console
+Open the console at the bottom of the window to inspect your requests. This is
+especially helpful for debugging <Tooltip tip="Using scripts to dynamically set
+parameters" text="programmatic"/> or many requests.
 
-### Sequence of Requests
+<VideoPlayer autoplay url="/video/console.mov"/>
+
+</VideoSection>
+</Admonition>
+
+### Sequential Requests
 
 #### Request Execution Order
 
-### Test Scripts
+#### Test Scripts
 
-#### `pm.globals.set`
+##### `pm.globals.set`
 
-#### `postman.setNextRequest`
+##### `postman.setNextRequest`
 
-#### Looping Requests
+##### Looping Requests
 
-### Idempotency
+#### Advanced
+
+##### Idempotency
+
+##### Random Data
 
 ## Setup Postman and GitHub Actions
 
