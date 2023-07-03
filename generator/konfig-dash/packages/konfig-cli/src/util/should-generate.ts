@@ -8,10 +8,10 @@ export const shouldGenerate = <
   generators,
   generatorFilter,
 }: {
-  generators: KonfigYamlInputType['generators']
+  generators: KonfigYamlType['generators']
   generatorFilter: string[] | null
   generatorName: Generator
-}): NonNullable<KonfigYamlInputType['generators'][Generator]> | undefined => {
+}): NonNullable<KonfigYamlType['generators'][Generator]> | undefined => {
   const generatorConfig = generators[generatorName]
   if (
     generatorConfig !== undefined &&

@@ -100,7 +100,9 @@ public interface GenerateApi {
         logger.info(String.valueOf(generateBody.getConfig()));
 
         // Execute generation
-        generator.opts(generateClientOptInput(generateBody, tmpDir));
+        String dirName =
+                Optional.ofNullable(generateBody.getConfig().getOutputDirectoryName()).orElse(generateBody.getConfig().getGeneratorName());
+        generator.opts(generateClientOptInput(generateBody, tmpDir, dirName));
 
         // Don't generate .openapi-generator-ignore and other metadata files
         generator.setGenerateMetadata(false);
@@ -108,7 +110,7 @@ public interface GenerateApi {
         generator.generate();
 
         // Tar the output
-        File tarFile = tarFile(tmpDir, generateBody.getConfig().getGeneratorName());
+        File tarFile = tarFile(tmpDir, dirName);
 
         // Upload to S3 and get signed GetObjectURL
         Region region = Region.US_WEST_1;
@@ -183,7 +185,7 @@ public interface GenerateApi {
         return new File(tmpDir + "/output", generatorName);
     }
 
-    default ClientOptInput generateClientOptInput(GenerateBody body, File tmpDir) throws IOException {
+    default ClientOptInput generateClientOptInput(GenerateBody body, File tmpDir, String dirName) throws IOException {
         CodegenConfigurator configurator = new CodegenConfigurator();
         configurator.setValidateSpec(body.getValidateSpec() == null ? true : body.getValidateSpec());
         configurator.setArtifactVersion(body.getConfig().getArtifactVersion());
@@ -198,7 +200,7 @@ public interface GenerateApi {
                 body.getConfig().getAdditionalProperties(), body.getConfig().getPackageName(), body.getConfig().getGeneratorName()));
 
         // Create folder for output
-        File outputDir = outputDir(tmpDir, body.getConfig().getGeneratorName());
+        File outputDir = outputDir(tmpDir, dirName);
         outputDir.mkdir();
         configurator.setOutputDir(outputDir.getAbsolutePath());
 

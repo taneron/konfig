@@ -21,8 +21,7 @@ export function generateReadme({
       ([_generator, config]) => !('disabled' in config) || !config.disabled
     )
     .map(([generatorName, config]) => {
-      const version =
-        'version' in config ? config.version : config.packageVersion
+      const version = config.version
       const sourceUrl =
         generatorName === 'go'
           ? `https://${config.git.host}/${config.git.userId}/${
@@ -147,7 +146,7 @@ export function getPublishedPackageUrl({
     case 'typescript':
       config = konfigYaml.generators.typescript
       if (config === undefined) throw Error('Config undefined')
-      let version = 'version' in config ? config.version : config.packageVersion
+      let version = config.version
 
       // 0.4.0a1 gets converted to 0.4.0-a1 on npm
       // this edge case was surfaced when publishing for humanloop

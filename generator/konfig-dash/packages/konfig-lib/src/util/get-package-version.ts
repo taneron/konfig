@@ -7,8 +7,5 @@ export const getPackageVersion = ({
     KonfigYamlType['generators'][KonfigYamlGeneratorNames]
   >
 }): string => {
-  if ('packageVersion' in generatorConfig) {
-    return generatorConfig.packageVersion
-  }
   return generatorConfig.version
 }

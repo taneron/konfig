@@ -35,6 +35,9 @@ public class GeneratorConfig {
   @JsonProperty("generatorName")
   private String generatorName;
 
+  @JsonProperty("outputDirectoryName")
+  private String outputDirectoryName;
+
   @JsonProperty("removeOperationIdPrefix")
   private Boolean removeOperationIdPrefix;
 
@@ -109,6 +112,25 @@ public class GeneratorConfig {
 
   public void setGeneratorName(String generatorName) {
     this.generatorName = generatorName;
+  }
+
+  public GeneratorConfig outputDirectoryName(String outputDirectoryName) {
+    this.outputDirectoryName = outputDirectoryName;
+    return this;
+  }
+
+  /**
+   * Get outputDirectoryName
+   * @return outputDirectoryName
+  */
+  
+  @Schema(name = "outputDirectoryName", required = false)
+  public String getOutputDirectoryName() {
+    return outputDirectoryName;
+  }
+
+  public void setOutputDirectoryName(String outputDirectoryName) {
+    this.outputDirectoryName = outputDirectoryName;
   }
 
   public GeneratorConfig removeOperationIdPrefix(Boolean removeOperationIdPrefix) {
@@ -245,6 +267,7 @@ public class GeneratorConfig {
     return Objects.equals(this.artifactVersion, generatorConfig.artifactVersion) &&
         Objects.equals(this.additionalProperties, generatorConfig.additionalProperties) &&
         Objects.equals(this.generatorName, generatorConfig.generatorName) &&
+        Objects.equals(this.outputDirectoryName, generatorConfig.outputDirectoryName) &&
         Objects.equals(this.removeOperationIdPrefix, generatorConfig.removeOperationIdPrefix) &&
         Objects.equals(this.files, generatorConfig.files) &&
         Objects.equals(this.packageName, generatorConfig.packageName) &&
@@ -255,7 +278,7 @@ public class GeneratorConfig {
 
   @Override
   public int hashCode() {
-    return Objects.hash(artifactVersion, additionalProperties, generatorName, removeOperationIdPrefix, files, packageName, gitHost, gitUserId, gitRepoId);
+    return Objects.hash(artifactVersion, additionalProperties, generatorName, outputDirectoryName, removeOperationIdPrefix, files, packageName, gitHost, gitUserId, gitRepoId);
   }
 
   @Override
@@ -265,6 +288,7 @@ public class GeneratorConfig {
     sb.append("    artifactVersion: ").append(toIndentedString(artifactVersion)).append("\n");
     sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("    generatorName: ").append(toIndentedString(generatorName)).append("\n");
+    sb.append("    outputDirectoryName: ").append(toIndentedString(outputDirectoryName)).append("\n");
     sb.append("    removeOperationIdPrefix: ").append(toIndentedString(removeOperationIdPrefix)).append("\n");
     sb.append("    files: ").append(toIndentedString(files)).append("\n");
     sb.append("    packageName: ").append(toIndentedString(packageName)).append("\n");

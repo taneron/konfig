@@ -69,6 +69,7 @@ export const javaGenerateApiRequestBody = z.object({
       gitHost: z.string().optional(),
       gitUserId: z.string().optional(),
       gitRepoId: z.string().optional(),
+      outputDirectoryName: z.string().optional(),
       additionalProperties,
       generatorName: z
         .literal('java')

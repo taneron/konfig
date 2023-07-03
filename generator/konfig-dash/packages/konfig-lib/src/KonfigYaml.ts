@@ -242,40 +242,6 @@ export const konfigGeneratorConfigCommon = z
   })
   .merge(testConfig)
 
-export const konfigCustomTypeScriptGeneratorConfig = z.object({
-  httpClient: httpClient.optional().default(HttpClient.FETCH),
-  useOptions: z.boolean().optional().default(true),
-  useUnionTypes: z.boolean().optional().default(false),
-  clientName: z.string().describe('AcmeClient').optional(),
-  npmDescription: z.string().describe("SDK for Acme's REST API"),
-  npmAuthor: z.string().describe('acme.com'),
-  npmName: z.string().describe('acme-typescript-sdk'),
-  packageVersion: z.string(),
-})
-
-export const konfigTypeScriptGeneratorConfig =
-  konfigCustomTypeScriptGeneratorConfig
-    .merge(konfigGeneratorConfigCommon)
-    .merge(generatorCommonGitRequired)
-
-export const konfigCustomPythonGeneratorConfig = z.object({
-  version: z.string(),
-  packageName: z.string(),
-  projectName: z.string(),
-})
-
-export const konfigPythonGeneratorConfig = konfigCustomPythonGeneratorConfig
-  .merge(konfigGeneratorConfigCommon)
-  .merge(generatorCommonGitRequired)
-
-export const konfigTypeScriptConfig = z
-  .object({
-    outputDirectory: z.string(),
-    generatorVersion: z.literal(2),
-  })
-  .merge(konfigTypeScriptGeneratorConfig)
-  .strict()
-
 const generatorCommonRequired = z.object({
   files: KonfigYamlFiles,
   version: z.string(),
@@ -321,10 +287,6 @@ export const generatorCommonOptional = z
   })
   .merge(testConfig)
 
-export const konfigPythonConfig = generatorCommonOptional
-  .merge(konfigPythonGeneratorConfig)
-  .strict()
-
 export const generatorCommon = generatorCommonRequired
   .merge(generatorCommonOptional)
   .merge(generatorCommonGitRequired)
@@ -333,10 +295,8 @@ export const java = generatorCommon.merge(javaConfig).strict()
 export const android = generatorCommon.merge(androidConfig).strict()
 export const ruby = generatorCommon.merge(rubyConfig).strict()
 export const python = generatorCommon.merge(pythonConfig).strict()
-export const typescript = generatorCommon
-  .merge(typescriptConfig)
-  .strict()
-  .or(konfigTypeScriptConfig)
+export const typescript = generatorCommon.merge(typescriptConfig).strict()
+
 export const csharp = generatorCommon.merge(csharpConfig).strict()
 export const php = generatorCommon.merge(phpConfig).strict()
 export const kotlin = generatorCommon.merge(kotlinConfig).strict()
@@ -348,7 +308,7 @@ export const go = generatorCommonOptional
   .strict()
 export const swift = generatorCommon.merge(swiftConfig).strict()
 
-export const genericGeneratorConfig = z.union([
+const genericGeneratorConfig = z.union([
   z
     .object({
       generator: z.literal('java'),
@@ -368,12 +328,12 @@ export const genericGeneratorConfig = z.union([
     .object({
       generator: z.literal('python'),
     })
-    .merge(konfigPythonConfig),
+    .merge(python),
   z
     .object({
       generator: z.literal('typescript'),
     })
-    .merge(konfigTypeScriptConfig),
+    .merge(typescript),
   z
     .object({
       generator: z.literal('csharp'),
@@ -503,14 +463,8 @@ export type KonfigYamlType = z.output<typeof KonfigYaml>
 export type KonfigYamlGeneratorNames = keyof KonfigYamlType['generators']
 export type JavaConfigType = z.infer<typeof javaConfig>
 export type TypeScriptConfigType = z.infer<typeof typescriptConfig>
+export type TypeScriptGeneratorInputType = z.input<typeof typescript>
 export type CSharpConfigType = z.infer<typeof csharp>
-export type KonfigPythonConfig = z.output<typeof konfigPythonGeneratorConfig>
-export type KonfigTypeScriptConfig = z.output<
-  typeof konfigTypeScriptGeneratorConfig
->
-export type KonfigCustomTypeScriptConfig = z.output<
-  typeof konfigCustomTypeScriptGeneratorConfig
->
 export type KonfigGeneratorCommon = z.infer<typeof konfigGeneratorConfigCommon>
 export type PythonConfigType = z.infer<typeof pythonConfig>
 export type RubyConfigType = z.infer<typeof rubyConfig>

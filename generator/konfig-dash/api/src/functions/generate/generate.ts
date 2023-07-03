@@ -6,7 +6,12 @@ import {
   KonfigYamlGeneratorNames,
   KONFIG_API_TEST_ENVIRONMENT_NAME,
 } from 'konfig-lib'
-import type { JavaGenerateApiRequestBodyType } from 'konfig-lib'
+import type {
+  GenerateRequestBodyInputType,
+  GenerateRequestBodyType,
+  JavaGenerateApiRequestBodyType,
+  TypeScriptGeneratorInputType,
+} from 'konfig-lib'
 import * as fs from 'fs-extra'
 import { sep } from 'path'
 import { tmpdir } from 'os'
@@ -156,6 +161,13 @@ export const myHandler = async (event: APIGatewayEvent, context: Context) => {
         // )
         // const key = await uploadFile(archive)
         // sdkS3SignedGetUrls.push(getSignedGetObjectUrl(key))
+      } else if (generatorConfig.generator === 'typescript') {
+        await queueTypeScriptGeneration({
+          body,
+          queue,
+          typescript: generatorConfig,
+          outputDirectoryName: name,
+        })
       } else {
         throw Error(
           `${generatorConfig.generator} not implemented under additional generators`
@@ -567,97 +579,11 @@ export const myHandler = async (event: APIGatewayEvent, context: Context) => {
   }
 
   if (body.generators.typescript) {
-    if (!('generatorVersion' in body.generators.typescript)) {
-      const generatorConfig = body.generators.typescript
-      const src = (await parseSpec(body.spec)).spec.openapi.startsWith('3.1')
-        ? await transformSpec({
-            specString: body.spec,
-            ...body,
-            convertArrayDataTypesToAny: true,
-            generator: 'typescript',
-            paginationConfig: generatorConfig.pagination,
-            topLevelOperations: generatorConfig.topLevelOperations,
-            removeRequiredProperties: generatorConfig.removeRequiredProperties,
-          })
-        : await transformSpec({
-            specString: body.spec,
-            ...body,
-            generator: 'typescript',
-            paginationConfig: generatorConfig.pagination,
-            topLevelOperations: generatorConfig.topLevelOperations,
-            removeRequiredProperties: generatorConfig.removeRequiredProperties,
-          })
-      if (process.env.NODE_ENV === 'development') {
-        fs.ensureDirSync(DEBUG_TMP_FOLDER)
-        fs.writeFileSync(
-          `${DEBUG_TMP_FOLDER}transformed-typescript-spec.yaml`,
-          src
-        )
-      }
-      const requestBody: JavaGenerateApiRequestBodyType = {
-        spec: {
-          src,
-        },
-        config: {
-          additionalProperties: {
-            omitInfoDescription: body.omitInfoDescription,
-            tagPriority: body.tagPriority,
-            npmName: generatorConfig.npmName,
-            npmVersion: generatorConfig.version,
-            disallowAdditionalPropertiesIfNotPresent: false,
-            readmeSnippet: generatorConfig.readmeSnippet,
-            removeKonfigBranding: generatorConfig.removeKonfigBranding,
-            readmeSupportingDescriptionSnippet:
-              generatorConfig.readmeSupportingDescriptionSnippet,
-            readmeDescriptionSnippet: generatorConfig.readmeDescriptionSnippet,
-            omitApiDocumentation: generatorConfig.omitApiDocumentation,
-            clientName: generatorConfig.clientName,
-            apiPackage: 'api',
-            modelPackage: 'models',
-            useSingleRequestParameter: true,
-            // Only include the top-level operations if it is an array (i.e. ordered)
-            ...(Array.isArray(generatorConfig.topLevelOperations)
-              ? { topLevelOperations: generatorConfig.topLevelOperations }
-              : {}),
-            apiDocumentationAuthenticationPartial:
-              generatorConfig.apiDocumentationAuthenticationPartial,
-            clientState: generatorConfig.clientState,
-            defaultTimeout: generatorConfig.defaultTimeout,
-            userAgent: generatorConfig.userAgent,
-            includeFetchAdapter: generatorConfig.includeFetchAdapter,
-            includeEventSourceParser: generatorConfig.includeEventSourceParser,
-          },
-          gitHost: generatorConfig.git?.host,
-          gitUserId: generatorConfig.git?.userId,
-          gitRepoId: generatorConfig.git?.repoId,
-          generatorName: 'typescript-axios',
-          removeOperationIdPrefix: true,
-          files: generatorConfig.files,
-        },
-        validateSpec: body.validateSpec,
-      }
-      queue(requestBody)
-    } else {
-      throw Error("typescript generator v2 isn't supported yet")
-      // const tmpDir = fs.mkdtempSync(`${tmpdir()}${sep}`)
-      // logger.debug(`tmpDir for typescript v2 generator: ${tmpDir}`)
-      // const input = (
-      //   await parseSpec(
-      //     await transformSpecForGenerator({ generator: 'typescript' })
-      //   )
-      // ).spec
-      // await generate({
-      //   ...body.generators.typescript,
-      //   input,
-      //   generator: {
-      //     typescript: body.generators.typescript,
-      //   },
-      //   output: `${tmpDir}/sdk/typescript`,
-      // })
-      // const archive = await tarDir(`${tmpDir}/sdk/`, `${tmpDir}/archive.tar.gz`)
-      // const key = await uploadFile(archive)
-      // sdkS3SignedGetUrls.push(getSignedGetObjectUrl(key))
-    }
+    await queueTypeScriptGeneration({
+      body,
+      queue,
+      typescript: body.generators.typescript,
+    })
   }
 
   logger.debug("Finished creating requests for Konfig's Generator API")
@@ -737,6 +663,87 @@ function authenticate() {
     return { user, authenticated: true } as const
   }
   return { testing: true } as const
+}
+
+async function queueTypeScriptGeneration({
+  body,
+  typescript,
+  queue,
+  outputDirectoryName,
+}: {
+  body: GenerateRequestBodyType
+  typescript: GenerateRequestBodyType['generators']['typescript']
+  queue: (requestBody: JavaGenerateApiRequestBodyType) => void
+  outputDirectoryName?: string
+}) {
+  if (typescript === undefined) return
+  const generatorConfig = typescript
+  const src = (await parseSpec(body.spec)).spec.openapi.startsWith('3.1')
+    ? await transformSpec({
+        specString: body.spec,
+        ...body,
+        convertArrayDataTypesToAny: true,
+        generator: 'typescript',
+        paginationConfig: generatorConfig.pagination,
+        topLevelOperations: generatorConfig.topLevelOperations,
+        removeRequiredProperties: generatorConfig.removeRequiredProperties,
+      })
+    : await transformSpec({
+        specString: body.spec,
+        ...body,
+        generator: 'typescript',
+        paginationConfig: generatorConfig.pagination,
+        topLevelOperations: generatorConfig.topLevelOperations,
+        removeRequiredProperties: generatorConfig.removeRequiredProperties,
+      })
+  if (process.env.NODE_ENV === 'development') {
+    fs.ensureDirSync(DEBUG_TMP_FOLDER)
+    fs.writeFileSync(`${DEBUG_TMP_FOLDER}transformed-typescript-spec.yaml`, src)
+  }
+  const requestBody: JavaGenerateApiRequestBodyType = {
+    spec: {
+      src,
+    },
+    config: {
+      outputDirectoryName,
+      additionalProperties: {
+        omitInfoDescription: body.omitInfoDescription,
+        tagPriority: body.tagPriority,
+        npmName: generatorConfig.npmName,
+        npmVersion: generatorConfig.version,
+        disallowAdditionalPropertiesIfNotPresent: false,
+        readmeSnippet: generatorConfig.readmeSnippet,
+        removeKonfigBranding: generatorConfig.removeKonfigBranding,
+        readmeSupportingDescriptionSnippet:
+          generatorConfig.readmeSupportingDescriptionSnippet,
+        readmeDescriptionSnippet: generatorConfig.readmeDescriptionSnippet,
+        omitApiDocumentation: generatorConfig.omitApiDocumentation,
+        clientName: generatorConfig.clientName,
+        apiPackage: 'api',
+        modelPackage: 'models',
+        useSingleRequestParameter: true,
+        // Only include the top-level operations if it is an array (i.e. ordered)
+        ...(Array.isArray(generatorConfig.topLevelOperations)
+          ? { topLevelOperations: generatorConfig.topLevelOperations }
+          : {}),
+        apiDocumentationAuthenticationPartial:
+          generatorConfig.apiDocumentationAuthenticationPartial,
+        clientState: generatorConfig.clientState,
+        defaultTimeout: generatorConfig.defaultTimeout,
+        userAgent: generatorConfig.userAgent,
+        includeFetchAdapter: generatorConfig.includeFetchAdapter,
+        includeEventSourceParser: generatorConfig.includeEventSourceParser,
+      },
+      gitHost: generatorConfig.git?.host,
+      gitUserId: generatorConfig.git?.userId,
+      gitRepoId: generatorConfig.git?.repoId,
+      generatorName: 'typescript-axios',
+      removeOperationIdPrefix: true,
+      files: generatorConfig.files,
+    },
+    validateSpec: body.validateSpec,
+  }
+  queue(requestBody)
 }
 
 export const handler = process.env[KONFIG_API_TEST_ENVIRONMENT_NAME]

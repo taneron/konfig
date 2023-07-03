@@ -1,4 +1,3 @@
-/* eslint-disable max-depth */
 /* eslint-disable complexity */
 import { CliUx, Command, Flags } from '@oclif/core'
 import { getSessionToken } from '../util/get-session-token'
@@ -12,6 +11,7 @@ import {
   yamlLanguageServerComment,
   KonfigYamlGeneratorNames,
   CopyFilesType,
+  GenerateRequestBodyType,
 } from 'konfig-lib'
 import globby from 'globby'
 import { Konfig } from 'konfig-typescript-sdk'
@@ -404,33 +404,45 @@ export default class Deploy extends Command {
 
       const typescriptGeneratorConfig = getConfig('typescript')
       if (typescriptGeneratorConfig) {
-        if ('generatorVersion' in typescriptGeneratorConfig) {
-          requestGenerators.typescript = typescriptGeneratorConfig
-        } else if (!typescriptGeneratorConfig.disabled) {
-          const { files, ...restOfConfig } = typescriptGeneratorConfig
-
-          const requestTypescript: GenerateRequestBodyInputType['generators']['typescript'] =
-            {
-              files: createTemplateFilesObject(files, 'typescript', configDir),
-              ...handleReadmeSnippet({ config: restOfConfig }),
-              ...handleReadmeSupportingDescriptionSnippet({
-                config: restOfConfig,
-              }),
-              ...handleapiDocumentationAuthenticationPartialSnippet({
-                config: restOfConfig,
-              }),
-            }
-          initializeFlowsDirectory('typescript')
+        if (!typescriptGeneratorConfig.disabled) {
+          const requestTypescript = constructTypeScriptGenerationRequest({
+            configDir,
+            typescriptGeneratorConfig,
+            initializeFlowsDirectory,
+          })
           requestGenerators.typescript = requestTypescript
         }
       }
+
+      // handle additional generators
+      const generateRequestBodyAdditionalGenerators: GenerateRequestBodyInputType['additionalGenerators'] =
+        {}
+      if (additionalGenerators !== undefined) {
+        for (const configName of Object.keys(additionalGenerators)) {
+          if (generatorFilter !== null && !generatorFilter.includes(configName))
+            continue
+          const config = additionalGenerators[configName]
+          if (config.generator === 'typescript') {
+            generateRequestBodyAdditionalGenerators[configName] = {
+              generator: 'typescript',
+              ...constructTypeScriptGenerationRequest({
+                configDir,
+                typescriptGeneratorConfig: config,
+                initializeFlowsDirectory,
+              }),
+            }
+          }
+        }
+      }
+
       this.debug('after creating language configs')
+      this.debug('additionalGenerators: ', additionalGenerators)
 
       const body: GenerateRequestBodyInputType = {
         spec,
         generators: requestGenerators,
         outputSpec: flags.outputSpec !== undefined,
-        additionalGenerators,
+        additionalGenerators: generateRequestBodyAdditionalGenerators,
         konfigYaml: konfigYamlRaw,
         ...common,
       }
@@ -654,12 +666,7 @@ export default class Deploy extends Command {
             generator,
             outputDirectory,
             generatorConfig,
-          }: {
-            generator: keyof KonfigYamlType['generators'] | string
-            outputDirectory: string
-            generatorConfig: { copyFiles?: CopyFilesType }
-            init?: boolean
-          }) => {
+          }: CopyFilesInput) => {
             if (!topLevelOutputDirectory) return
             const ig = createIgnore(outputDirectory)
             const topLevelSdkOutputDirectory = path.join(
@@ -729,11 +736,21 @@ export default class Deploy extends Command {
               CliUx.ux.action.start(
                 `Copying ${name} SDK to "${config.outputDirectory}"`
               )
-              await copyToOutputDirectory({
-                generator: name,
-                outputDirectory: config.outputDirectory,
-                generatorConfig: {}, // TODO: support this?
-              })
+              if (config.generator === 'typescript') {
+                await copyTypeScriptOutput({
+                  flags,
+                  typescript: config,
+                  sdkDirName: name,
+                  copyToOutputDirectory,
+                })
+              } else {
+                // TODO: use copy logic from blocks of code handling "body.generators" object (see typescript above)
+                await copyToOutputDirectory({
+                  generator: name,
+                  outputDirectory: config.outputDirectory,
+                  generatorConfig: config,
+                })
+              }
               CliUx.ux.action.stop()
             }
           }
@@ -1106,59 +1123,11 @@ export default class Deploy extends Command {
           }
 
           if (body.generators.typescript) {
-            const outputDirectory =
-              flags.copyTypescriptOutputDir ??
-              body.generators.typescript.outputDirectory
-            if ('generatorVersion' in body.generators.typescript) {
-              throw Error(
-                'Unsupported generator. Use generator version 1 instead.'
-              )
-            }
-            if (outputDirectory && !flags.doNotCopy) {
-              CliUx.ux.action.start(
-                `Deleting contents of existing directory "${outputDirectory}"`
-              )
-              await safelyDeleteFiles(outputDirectory)
-              CliUx.ux.action.stop()
-
-              CliUx.ux.action.start(
-                `Copying Typescript SDK to "${outputDirectory}"`
-              )
-              // Copy content of generated SDK to existing directory
-              await copyToOutputDirectory({
-                generator: 'typescript',
-                outputDirectory,
-                generatorConfig: body.generators.typescript,
-              })
-
-              // find all files in outputdirectory that end with .md and use the "globby" package
-              const markdownFiles = await globby([
-                path.join(outputDirectory, '**/*.md'),
-                // write a glob to exclude the node_modules directory
-                `!${path.join(outputDirectory, '**/node_modules/**')}`,
-              ])
-              for (const markdownPath of markdownFiles) {
-                const markdown = fs.readFileSync(markdownPath, 'utf-8')
-                const typescriptSnippetRegex =
-                  // rewrite the following regex to not include "```" in the match
-                  /\`\`\`typescript\n([\s\S]*?)\n\`\`\`/g
-
-                // find all code snippets in the markdown string that matches typescriptSnippetRegex
-                // and format them and replace the code snippets with the formatted code snippets
-                const formattedMarkdown = markdown.replace(
-                  typescriptSnippetRegex,
-                  (_, codeSnippet) => {
-                    const formattedCodeSnippet = prettier.format(codeSnippet, {
-                      parser: 'typescript',
-                    })
-                    return '```typescript\n' + formattedCodeSnippet + '```'
-                  }
-                )
-                fs.writeFileSync(markdownPath, formattedMarkdown)
-              }
-
-              CliUx.ux.action.stop()
-            }
+            await copyTypeScriptOutput({
+              flags,
+              typescript: body.generators.typescript,
+              copyToOutputDirectory,
+            })
           }
 
           CliUx.ux.action.start('Generating top-level README.md')
@@ -1434,6 +1403,96 @@ const safelyDeleteFiles = async (
   return { directoryExists: true }
 }
 
+function constructTypeScriptGenerationRequest({
+  configDir,
+  typescriptGeneratorConfig,
+  initializeFlowsDirectory,
+}: {
+  configDir: string
+  typescriptGeneratorConfig: NonNullable<
+    KonfigYamlType['generators']['typescript']
+  >
+  initializeFlowsDirectory: (generatorName: KonfigYamlGeneratorNames) => void
+}) {
+  const { files, ...restOfConfig } = typescriptGeneratorConfig
+
+  const requestTypescript: GenerateRequestBodyType['generators']['typescript'] =
+    {
+      files: createTemplateFilesObject(files, 'typescript', configDir),
+      ...handleReadmeSnippet({ config: restOfConfig }),
+      ...handleReadmeSupportingDescriptionSnippet({
+        config: restOfConfig,
+      }),
+      ...handleapiDocumentationAuthenticationPartialSnippet({
+        config: restOfConfig,
+      }),
+    }
+  initializeFlowsDirectory('typescript')
+  return requestTypescript
+}
+
+async function copyTypeScriptOutput({
+  flags,
+  typescript,
+  copyToOutputDirectory,
+  sdkDirName,
+}: {
+  flags: { copyTypescriptOutputDir?: string; doNotCopy?: boolean }
+  typescript: GenerateRequestBodyInputType['generators']['typescript']
+  sdkDirName?: string
+  copyToOutputDirectory: (input: CopyFilesInput) => Promise<void>
+}) {
+  if (typescript === undefined) return
+  const outputDirectory =
+    flags.copyTypescriptOutputDir ?? typescript.outputDirectory
+  if ('generatorVersion' in typescript) {
+    throw Error('Unsupported generator. Use generator version 1 instead.')
+  }
+  if (outputDirectory && !flags.doNotCopy) {
+    CliUx.ux.action.start(
+      `Deleting contents of existing directory "${outputDirectory}"`
+    )
+    await safelyDeleteFiles(outputDirectory)
+    CliUx.ux.action.stop()
+
+    CliUx.ux.action.start(`Copying Typescript SDK to "${outputDirectory}"`)
+    // Copy content of generated SDK to existing directory
+    await copyToOutputDirectory({
+      generator: sdkDirName ? sdkDirName : 'typescript',
+      outputDirectory,
+      generatorConfig: typescript,
+    })
+
+    // find all files in outputdirectory that end with .md and use the "globby" package
+    const markdownFiles = await globby([
+      path.join(outputDirectory, '**/*.md'),
+      // write a glob to exclude the node_modules directory
+      `!${path.join(outputDirectory, '**/node_modules/**')}`,
+    ])
+    for (const markdownPath of markdownFiles) {
+      const markdown = fs.readFileSync(markdownPath, 'utf-8')
+      const typescriptSnippetRegex =
+        // rewrite the following regex to not include "```" in the match
+        /\`\`\`typescript\n([\s\S]*?)\n\`\`\`/g
+
+      // find all code snippets in the markdown string that matches typescriptSnippetRegex
+      // and format them and replace the code snippets with the formatted code snippets
+      const formattedMarkdown = markdown.replace(
+        typescriptSnippetRegex,
+        (_, codeSnippet) => {
+          const formattedCodeSnippet = prettier.format(codeSnippet, {
+            parser: 'typescript',
+          })
+          return '```typescript\n' + formattedCodeSnippet + '```'
+        }
+      )
+      fs.writeFileSync(markdownPath, formattedMarkdown)
+    }
+
+    CliUx.ux.action.stop()
+  }
+}
+
 const getFiles = async (
   dir: string,
   options?: { skipHiddenFiles: boolean }
@@ -1452,6 +1511,13 @@ const getFiles = async (
     })
   )
   return files.flat()
+}
+
+type CopyFilesInput = {
+  generator: keyof KonfigYamlType['generators'] | string
+  outputDirectory: string
+  generatorConfig: { copyFiles?: CopyFilesType }
+  init?: boolean
 }
 
 /**
