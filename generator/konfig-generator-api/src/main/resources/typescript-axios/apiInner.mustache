@@ -15,7 +15,11 @@ import FormData from 'form-data'
 {{/withNodeImports}}
 // Some imports not used depending on template conditions
 // @ts-ignore
-import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '{{apiRelativeToRoot}}common';
+import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction, isBrowser } from '{{apiRelativeToRoot}}common';
+{{#infoExtensions.x-konfig-uses-multipart-form-data}}
+import { fromBuffer } from "file-type"
+const FormData = require("form-data")
+{{/infoExtensions.x-konfig-uses-multipart-form-data}}
 {{#hasOAuthMethods}}
 import { setOAuthToObject } from '{{apiRelativeToRoot}}common';
 {{/hasOAuthMethods}}
@@ -69,7 +73,7 @@ export const {{classname}}AxiosParamCreator = function (configuration?: Configur
             }
 
             const localVarRequestOptions: AxiosRequestConfig = { method: '{{httpMethod}}', ...baseOptions, ...options};
-            const localVarHeaderParameter = configuration ? { "User-Agent": configuration.userAgent } : {} as any;
+            const localVarHeaderParameter = configuration && !isBrowser() ? { "User-Agent": configuration.userAgent } : {} as any;
             const localVarQueryParameter = {} as any;{{#vendorExtensions}}{{#hasFormParams}}
             const localVarFormParams = new {{^multipartFormData}}URLSearchParams(){{/multipartFormData}}{{#multipartFormData}}((configuration && configuration.formDataCtor) || FormData)(){{/multipartFormData}};{{/hasFormParams}}{{/vendorExtensions}}
 
@@ -161,8 +165,8 @@ export const {{classname}}AxiosParamCreator = function (configuration?: Configur
                 {{/isString}}
                 {{^isString}}
                 {{! isString is falsy also for $ref that defines a string or enum type}}
-                localVarHeaderParameter['{{baseName}}'] = typeof {{paramName}} === 'string' 
-                    ? {{paramName}} 
+                localVarHeaderParameter['{{baseName}}'] = typeof {{paramName}} === 'string'
+                    ? {{paramName}}
                     : JSON.stringify({{paramName}});
                 {{/isString}}
             }
@@ -184,14 +188,22 @@ export const {{classname}}AxiosParamCreator = function (configuration?: Configur
             }{{/isArray}}
             {{^isArray}}
             if ({{paramName}} !== undefined) { {{^multipartFormData}}
-                localVarFormParams.set('{{baseName}}', {{paramName}} as any);{{/multipartFormData}}{{#multipartFormData}}{{#isPrimitiveType}}
-                localVarFormParams.append('{{baseName}}', {{paramName}} as any);{{/isPrimitiveType}}{{^isPrimitiveType}}
+                localVarFormParams.set('{{baseName}}', {{paramName}} as any);{{/multipartFormData}}{{#multipartFormData}}{{#isPrimitiveType}}{{#isBinary}}
+                if ({{paramName}} instanceof Uint8Array) {
+                    // Node.js
+                    const { ext } = await fromBuffer({{paramName}})
+                    localVarFormParams.append('{{baseName}}', {{paramName}} as any, `{{baseName}}.${ext}`);
+                } else {
+                    // Browser
+                    localVarFormParams.append('{{baseName}}', {{paramName}} as any, {{paramName}}.name);
+                }{{/isBinary}}{{^isBinary}}
+                localVarFormParams.append('{{baseName}}', {{paramName}} as any);{{/isBinary}}{{/isPrimitiveType}}{{^isPrimitiveType}}
                 localVarFormParams.append('{{baseName}}', new Blob([JSON.stringify({{paramName}})], { type: "application/json", }));{{/isPrimitiveType}}{{/multipartFormData}}
             }{{/isArray}}
     {{/formParams}}{{/vendorExtensions}}
     {{#vendorExtensions}}{{#hasFormParams}}{{^multipartFormData}}
             localVarHeaderParameter['Content-Type'] = 'application/x-www-form-urlencoded';{{/multipartFormData}}{{#multipartFormData}}
-            localVarHeaderParameter['Content-Type'] = 'multipart/form-data';{{/multipartFormData}}
+            if (!isBrowser()) Object.assign(localVarHeaderParameter, localVarFormParams.getHeaders());{{/multipartFormData}}
     {{/hasFormParams}}{{/vendorExtensions}}
     {{#bodyParam}}
             {{^consumes}}

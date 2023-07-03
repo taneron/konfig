@@ -174,6 +174,7 @@ export const typescriptConfig = z.object({
   clientName: z.string(),
   npmName: z.string().describe('acme-typescript-sdk'),
   pagination: paginationConfigSchema.optional(),
+  removeKonfigBranding: z.boolean().optional(),
   clientState,
   removeRequiredProperties: removeRequiredPropertiesSchema.optional(),
   topLevelOperations: topLevelOperationsSchema,

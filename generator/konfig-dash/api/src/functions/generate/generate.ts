@@ -606,6 +606,7 @@ export const myHandler = async (event: APIGatewayEvent, context: Context) => {
             npmVersion: generatorConfig.version,
             disallowAdditionalPropertiesIfNotPresent: false,
             readmeSnippet: generatorConfig.readmeSnippet,
+            removeKonfigBranding: generatorConfig.removeKonfigBranding,
             readmeSupportingDescriptionSnippet:
               generatorConfig.readmeSupportingDescriptionSnippet,
             readmeDescriptionSnippet: generatorConfig.readmeDescriptionSnippet,

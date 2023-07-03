@@ -326,6 +326,25 @@ public class TypeScriptAxiosClientCodegen extends AbstractTypeScriptClientCodege
         return result;
     }
 
+    @Override
+    public Map<String, Object> postProcessSupportingFileData(Map<String, Object> objs) {
+        Map<String, Object> bundle = super.postProcessSupportingFileData(objs);
+
+        // construct dependencies as string
+        List<String> dependencies = new ArrayList<>();
+        dependencies.add("    \"axios\": \"^0.26.1\"");
+        if ((Boolean) bundle.getOrDefault("includeEventSourceParser", false))
+            dependencies.add("\"eventsource-parser\": \"^1.0.0\"");
+        if ((Boolean) bundle.getOrDefault("includeFetchAdapter", false))
+            dependencies.add("\"konfig-axios-fetch-adapter\": \"^1.0.6\"");
+        if ((Boolean) ((Map) bundle.getOrDefault("infoExtensions", new HashMap<String, Object>())).getOrDefault("x-konfig-uses-multipart-form-data", false)) {
+            dependencies.add("\"file-type\": \"16.5.4\"");
+            dependencies.add("\"form-data\": \"^4.0.0\"");
+        }
+        bundle.put("dependencies", String.join(",\n    ", dependencies));
+
+        return bundle;
+    }
 
     @Override
     protected void addAdditionPropertiesToCodeGenModel(CodegenModel codegenModel, Schema schema) {

@@ -133,7 +133,7 @@ export class Configuration {
             this.baseOptions["adapter"] = fetchAdapter
         }
 {{/includeFetchAdapter}}
-        this.userAgent = param.userAgent === undefined ? "{{#httpUserAgent}}{{{httpUserAgent}}}{{/httpUserAgent}}{{^httpUserAgent}}Konfig/{{{npmVersion}}}/typescript{{/httpUserAgent}}" : param.userAgent;
+        this.userAgent = param.userAgent === undefined ? "{{#userAgent}}{{{userAgent}}}{{/userAgent}}{{^userAgent}}Konfig{{/userAgent}}/{{{npmVersion}}}/typescript" : param.userAgent;
 {{#hasOAuthMethods}}
         this.oauthClientId = param.oauthClientId;
         this.oauthClientSecret = param.oauthClientSecret;
