@@ -1,6 +1,6 @@
 import { CliUx } from '@oclif/core'
 import execa, { ExecaSyncReturnValue, SyncOptions } from 'execa'
-import { RequiredEnvironmentVariablesConfig } from 'konfig-lib'
+import { RequiredEnvironmentVariablesConfig, TestConfig } from 'konfig-lib'
 import path from 'path'
 import { parseKonfigYaml } from './parse-konfig-yaml'
 import { parseFilterFlag } from './parseFilterFlag'
@@ -26,7 +26,7 @@ export async function executeTestCommand({
 }) {
   const filter = parseFilterFlag(filterInput)
   const configDir = process.cwd()
-  const { generators, common } = parseKonfigYaml({
+  const { generators, common, additionalGenerators } = parseKonfigYaml({
     configDir,
   })
   validateRequiredEnvironmentVariables(common)
@@ -42,17 +42,26 @@ export async function executeTestCommand({
   if (!sequence) CliUx.ux.log('Running tests in parallel')
   else CliUx.ux.log('Running tests sequentially')
 
-  for (const [generatorName, generatorConfig] of Object.entries(generators)) {
-    if (filter !== null && !filter.includes(generatorName)) continue
-    if ('disabled' in generatorConfig && generatorConfig.disabled) continue
-    if (generatorConfig.test === undefined) continue
-    if (generatorConfig.outputDirectory === undefined)
+  function runTest({
+    test,
+    outputDirectory,
+    disabled,
+    generatorName,
+  }: {
+    test?: TestConfig['test']
+    outputDirectory?: string
+    disabled?: boolean
+    generatorName: string
+  }) {
+    if (filter !== null && !filter.includes(generatorName)) return
+    if (disabled) return
+    if (test === undefined) return
+    if (outputDirectory === undefined)
       throw Error(
         `Generator "${generatorName}" must provide "outputDirectory" for "testScript" to work`
       )
     if (sequence)
       CliUx.ux.action.start(`Running tests for ${generatorName} SDK`)
-    const { test, outputDirectory } = generatorConfig
 
     // verify environment variables are set if specified
     validateRequiredEnvironmentVariables(test)
@@ -90,7 +99,35 @@ export async function executeTestCommand({
     if (sequence) CliUx.ux.action.stop()
   }
 
+  if (generators.android)
+    runTest({ ...generators.android, generatorName: 'android' })
+  if (generators.java) runTest({ ...generators.java, generatorName: 'java' })
+  if (generators.python)
+    runTest({ ...generators.python, generatorName: 'python' })
+  if (generators.csharp)
+    runTest({ ...generators.csharp, generatorName: 'csharp' })
+  if (generators.go) runTest({ ...generators.go, generatorName: 'go' })
+  if (generators.php) runTest({ ...generators.php, generatorName: 'php' })
+  if (generators.kotlin)
+    runTest({ ...generators.kotlin, generatorName: 'kotlin' })
+  if (generators.objc) runTest({ ...generators.objc, generatorName: 'objc' })
+  if (generators.ruby) runTest({ ...generators.ruby, generatorName: 'ruby' })
+  if (generators.typescript)
+    runTest({ ...generators.typescript, generatorName: 'typescript' })
+  if (generators.swift) runTest({ ...generators.swift, generatorName: 'swift' })
+  if (additionalGenerators) {
+    for (const [generatorName, generatorConfig] of Object.entries(
+      additionalGenerators
+    )) {
+      runTest({ ...generatorConfig, generatorName })
+    }
+  }
+
   results.push(...(await Promise.all(asyncResults)))
+
+  if (results.length === 0) {
+    CliUx.ux.error('No tests were run')
+  }
 
   let anyFailed: boolean = false
   for (const { result, generatorName } of results) {

@@ -513,247 +513,141 @@ components:
                 - clientName
               additionalProperties: false
             typescript:
-              anyOf:
-                - type: object
+              type: object
+              properties:
+                files:
+                  type: object
+                  additionalProperties:
+                    type: object
+                    properties:
+                      source:
+                        type: string
+                      destinationFilename:
+                        type: string
+                    required:
+                      - source
+                      - destinationFilename
+                version:
+                  type: string
+                git:
+                  type: object
+                  properties: *a1
+                outputDirectory:
+                  type: string
+                readmeSnippet:
+                  type: string
+                readmeSupportingDescriptionSnippet:
+                  type: string
+                readmeDescriptionSnippet:
+                  type: string
+                copyFiles:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      from:
+                        type: string
+                        description: Relative path from directory that contains konfig.yaml to file that
+                          you want to copy
+                      to:
+                        type: string
+                        description: Relative path from directory that contains konfig.yaml to
+                          destination you want to copy to
+                    required:
+                      - from
+                      - to
+                  description: Configure copying a set of files from a source to a destination.
+                    This is useful if you have custom implementations that you
+                    would like duplicated across multiple SDK repos.
+                apiDocumentationAuthenticationPartial:
+                  type: string
+                  description: Filepath to file containing override for the section in generated
+                    documentation for setting up authentication in the SDK.
+                disabled:
+                  type: boolean
+                defaultTimeout:
+                  type: number
+                  default: 0
+                userAgent:
+                  type: string
+                  default: Konfig
+                test:
+                  type: object
                   properties:
-                    files:
-                      type: object
-                      additionalProperties:
-                        type: object
-                        properties:
-                          source:
-                            type: string
-                          destinationFilename:
-                            type: string
-                        required:
-                          - source
-                          - destinationFilename
-                    version:
-                      type: string
-                    git:
-                      type: object
-                      properties: *a1
-                    outputDirectory:
-                      type: string
-                    readmeSnippet:
-                      type: string
-                    readmeSupportingDescriptionSnippet:
-                      type: string
-                    readmeDescriptionSnippet:
-                      type: string
-                    copyFiles:
-                      type: array
-                      items:
-                        type: object
-                        properties:
-                          from:
-                            type: string
-                            description: Relative path from directory that contains konfig.yaml to file that
-                              you want to copy
-                          to:
-                            type: string
-                            description: Relative path from directory that contains konfig.yaml to
-                              destination you want to copy to
-                        required:
-                          - from
-                          - to
-                      description: Configure copying a set of files from a source to a destination.
-                        This is useful if you have custom implementations that
-                        you would like duplicated across multiple SDK repos.
-                    apiDocumentationAuthenticationPartial:
-                      type: string
-                      description: Filepath to file containing override for the section in generated
-                        documentation for setting up authentication in the SDK.
-                    disabled:
-                      type: boolean
-                    defaultTimeout:
-                      type: number
-                      default: 0
-                    userAgent:
-                      type: string
-                      default: Konfig
-                    test:
-                      type: object
-                      properties:
-                        script:
-                          type: array
-                          items:
-                            type: string
-                          description: Series of commands that are sequentially executed to test the SDK
-                        requiredEnvironmentVariables:
-                          type: array
-                          items:
-                            type: string
-                      required:
-                        - script
-                      description: Configuration of "konfig test"
-                    clientName:
-                      type: string
-                    npmName:
-                      type: string
-                      description: acme-typescript-sdk
-                    pagination:
-                      type: object
-                      properties:
-                        parameters:
-                          type: array
-                          items:
-                            type: string
-                        response:
-                          type: array
-                          items:
-                            type: string
-                      required:
-                        - parameters
-                        - response
-                    clientState:
+                    script:
                       type: array
                       items:
                         type: string
-                      description: A list of stateful properties generated into the SDK that can be
-                        used in custom implementation hooks. This is useful when
-                        you need state in the SDK that is not described in the
-                        OpenAPI Specification such as a key used for request
-                        signing.
-                    removeRequiredProperties:
+                      description: Series of commands that are sequentially executed to test the SDK
+                    requiredEnvironmentVariables:
                       type: array
                       items:
                         type: string
-                    topLevelOperations:
-                      anyOf:
-                        - type: object
-                          additionalProperties:
-                            type: string
-                        - type: array
-                          items:
-                            type: object
-                            properties:
-                              operationId:
-                                type: string
-                              methodName:
-                                type: string
-                            required:
-                              - operationId
-                              - methodName
-                    omitApiDocumentation:
-                      type: boolean
-                    includeFetchAdapter:
-                      type: boolean
-                    includeEventSourceParser:
-                      type: boolean
                   required:
-                    - version
-                    - git
-                    - outputDirectory
-                    - clientName
-                    - npmName
-                  additionalProperties: false
-                - type: object
+                    - script
+                  description: Configuration of "konfig test"
+                clientName:
+                  type: string
+                npmName:
+                  type: string
+                  description: acme-typescript-sdk
+                pagination:
+                  type: object
                   properties:
-                    outputDirectory:
-                      type: string
-                    generatorVersion:
-                      type: number
-                      enum:
-                        - 2
-                    httpClient:
-                      type: string
-                      enum:
-                        - fetch
-                        - xhr
-                        - node
-                        - axios
-                        - angular
-                      default: fetch
-                    useOptions:
-                      type: boolean
-                      default: true
-                    useUnionTypes:
-                      type: boolean
-                      default: false
-                    clientName:
-                      type: string
-                      description: AcmeClient
-                    npmDescription:
-                      type: string
-                      description: SDK for Acme's REST API
-                    npmAuthor:
-                      type: string
-                      description: acme.com
-                    npmName:
-                      type: string
-                      description: acme-typescript-sdk
-                    packageVersion:
-                      type: string
-                    parameterState:
+                    parameters:
                       type: array
                       items:
-                        type: object
-                        properties:
-                          name:
-                            type: string
-                          type:
-                            anyOf:
-                              - type: string
-                                enum:
-                                  - string
-                              - type: string
-                                enum:
-                                  - boolean
-                              - type: string
-                                enum:
-                                  - number
-                        required:
-                          - name
-                          - type
-                      minItems: 1
-                    removeTagFromOperationId:
-                      type: boolean
-                    operationIdMapping:
-                      type: object
+                        type: string
+                    response:
+                      type: array
+                      items:
+                        type: string
+                  required:
+                    - parameters
+                    - response
+                removeKonfigBranding:
+                  type: boolean
+                clientState:
+                  type: array
+                  items:
+                    type: string
+                  description: A list of stateful properties generated into the SDK that can be
+                    used in custom implementation hooks. This is useful when you
+                    need state in the SDK that is not described in the OpenAPI
+                    Specification such as a key used for request signing.
+                removeRequiredProperties:
+                  type: array
+                  items:
+                    type: string
+                topLevelOperations:
+                  anyOf:
+                    - type: object
                       additionalProperties:
                         type: string
-                    pagination:
-                      type: object
-                      properties:
-                        parameters:
-                          type: array
-                          items:
+                    - type: array
+                      items:
+                        type: object
+                        properties:
+                          operationId:
                             type: string
-                        response:
-                          type: array
-                          items:
+                          methodName:
                             type: string
-                      required:
-                        - parameters
-                        - response
-                    test:
-                      type: object
-                      properties:
-                        script:
-                          type: array
-                          items:
-                            type: string
-                          description: Series of commands that are sequentially executed to test the SDK
-                        requiredEnvironmentVariables:
-                          type: array
-                          items:
-                            type: string
-                      required:
-                        - script
-                      description: Configuration of "konfig test"
-                    git:
-                      type: object
-                      properties: *a1
-                  required:
-                    - outputDirectory
-                    - generatorVersion
-                    - npmDescription
-                    - npmAuthor
-                    - npmName
-                    - packageVersion
-                    - git
-                  additionalProperties: false
+                        required:
+                          - operationId
+                          - methodName
+                omitApiDocumentation:
+                  type: boolean
+                includeFetchAdapter:
+                  type: boolean
+                includeEventSourceParser:
+                  type: boolean
+              required:
+                - version
+                - git
+                - outputDirectory
+                - clientName
+                - npmName
+              additionalProperties: false
             csharp:
               type: object
               properties:
@@ -1317,12 +1211,18 @@ components:
                     additionalProperties:
                       type: object
                       properties:
+                        source:
+                          type: string
                         destinationFilename:
                           type: string
                       required:
+                        - source
                         - destinationFilename
                   version:
                     type: string
+                  git:
+                    type: object
+                    properties: *a1
                   outputDirectory:
                     type: string
                   readmeSnippet:
@@ -1377,9 +1277,6 @@ components:
                     required:
                       - script
                     description: Configuration of "konfig test"
-                  git:
-                    type: object
-                    properties: *a1
                   groupId:
                     type: string
                     description: Uniquely identifies your JVM-based project (ex. "com.acme"). By
@@ -1418,8 +1315,8 @@ components:
                 required:
                   - generator
                   - version
-                  - outputDirectory
                   - git
+                  - outputDirectory
                   - groupId
                   - artifactId
                   - clientName
@@ -1435,12 +1332,18 @@ components:
                     additionalProperties:
                       type: object
                       properties:
+                        source:
+                          type: string
                         destinationFilename:
                           type: string
                       required:
+                        - source
                         - destinationFilename
                   version:
                     type: string
+                  git:
+                    type: object
+                    properties: *a1
                   outputDirectory:
                     type: string
                   readmeSnippet:
@@ -1495,9 +1398,6 @@ components:
                     required:
                       - script
                     description: Configuration of "konfig test"
-                  git:
-                    type: object
-                    properties: *a1
                   moduleName:
                     type: string
                   gemName:
@@ -1514,8 +1414,8 @@ components:
                 required:
                   - generator
                   - version
-                  - outputDirectory
                   - git
+                  - outputDirectory
                   - moduleName
                   - gemName
                 additionalProperties: false
@@ -1530,12 +1430,18 @@ components:
                     additionalProperties:
                       type: object
                       properties:
+                        source:
+                          type: string
                         destinationFilename:
                           type: string
                       required:
+                        - source
                         - destinationFilename
                   version:
                     type: string
+                  git:
+                    type: object
+                    properties: *a1
                   outputDirectory:
                     type: string
                   readmeSnippet:
@@ -1590,9 +1496,6 @@ components:
                     required:
                       - script
                     description: Configuration of "konfig test"
-                  git:
-                    type: object
-                    properties: *a1
                   groupId:
                     type: string
                     description: Uniquely identifies your JVM-based project (ex. "com.acme"). By
@@ -1611,17 +1514,39 @@ components:
                 required:
                   - generator
                   - version
-                  - outputDirectory
                   - git
+                  - outputDirectory
                   - groupId
                   - artifactId
                 additionalProperties: false
               - type: object
                 properties:
                   generator:
+                    anyOf:
+                      - type: string
+                        enum:
+                          - python-prior
+                      - type: string
+                        enum:
+                          - python
+                    default: python
+                  files:
+                    type: object
+                    additionalProperties:
+                      type: object
+                      properties:
+                        source:
+                          type: string
+                        destinationFilename:
+                          type: string
+                      required:
+                        - source
+                        - destinationFilename
+                  version:
                     type: string
-                    enum:
-                      - python
+                  git:
+                    type: object
+                    properties: *a1
                   outputDirectory:
                     type: string
                   readmeSnippet:
@@ -1676,64 +1601,90 @@ components:
                     required:
                       - script
                     description: Configuration of "konfig test"
-                  version:
-                    type: string
                   packageName:
                     type: string
+                    description: acme_client
                   projectName:
                     type: string
-                  parameterState:
+                    description: acme-python-sdk
+                  removeKonfigBranding:
+                    type: boolean
+                  pypiApiTokenEnvironmentVariable:
+                    type: string
+                  gitlabRepositoryId:
+                    type: string
+                  asyncReadmeSnippet:
+                    type: string
+                  objectPropertyNamingConvention:
+                    anyOf:
+                      - type: string
+                        enum:
+                          - camelCase
+                      - type: string
+                        enum:
+                          - snake_case
+                    default: snake_case
+                  clientName:
+                    type: string
+                  clientState:
                     type: array
                     items:
-                      type: object
-                      properties:
-                        name:
-                          type: string
-                        type:
-                          anyOf:
-                            - type: string
-                              enum:
-                                - string
-                            - type: string
-                              enum:
-                                - boolean
-                            - type: string
-                              enum:
-                                - number
-                      required:
-                        - name
-                        - type
-                    minItems: 1
-                  removeTagFromOperationId:
+                      type: string
+                    description: A list of stateful properties generated into the SDK that can be
+                      used in custom implementation hooks. This is useful when
+                      you need state in the SDK that is not described in the
+                      OpenAPI Specification such as a key used for request
+                      signing.
+                  clientStateIsOptional:
                     type: boolean
-                  operationIdMapping:
+                    description: Whether or not to raise an error if client state is provided
+                  setSkipSerializationToTrueByDefault:
+                    type: boolean
+                  apiKeyAlias:
                     type: object
                     additionalProperties:
                       type: string
-                  pagination:
-                    type: object
-                    properties:
-                      parameters:
-                        type: array
-                        items:
+                  validateRequiredStringsAreNonEmpty:
+                    type: boolean
+                  omitApiDocumentation:
+                    type: boolean
+                  omitModelDocumentation:
+                    type: boolean
+                  packageUrl:
+                    type: string
+                  topLevelOperations:
+                    anyOf:
+                      - type: object
+                        additionalProperties:
                           type: string
-                      response:
-                        type: array
+                      - type: array
                         items:
-                          type: string
-                    required:
-                      - parameters
-                      - response
-                  git:
-                    type: object
-                    properties: *a1
+                          type: object
+                          properties:
+                            operationId:
+                              type: string
+                            methodName:
+                              type: string
+                          required:
+                            - operationId
+                            - methodName
+                  testPyPI:
+                    type: boolean
+                  keepAllParametersOptional:
+                    type: boolean
+                    description: This is a feature flag for ensuring that all parameters stay
+                      optional in the case of Python SDKs that have been
+                      published and distributed to developers already and want
+                      to preserve backwards compatability. Particularly we want
+                      to handle flattened kwargs and "query_params" /
+                      "header_params" form arguments.
                 required:
-                  - generator
-                  - outputDirectory
                   - version
+                  - git
+                  - outputDirectory
                   - packageName
                   - projectName
-                  - git
+                  - clientName
                 additionalProperties: false
               - type: object
                 properties:
@@ -1741,83 +1692,62 @@ components:
                     type: string
                     enum:
                       - typescript
+                  files:
+                    type: object
+                    additionalProperties:
+                      type: object
+                      properties:
+                        source:
+                          type: string
+                        destinationFilename:
+                          type: string
+                      required:
+                        - source
+                        - destinationFilename
+                  version:
+                    type: string
+                  git:
+                    type: object
+                    properties: *a1
                   outputDirectory:
                     type: string
-                  generatorVersion:
-                    type: number
-                    enum:
-                      - 2
-                  httpClient:
+                  readmeSnippet:
                     type: string
-                    enum:
-                      - fetch
-                      - xhr
-                      - node
-                      - axios
-                      - angular
-                    default: fetch
-                  useOptions:
-                    type: boolean
-                    default: true
-                  useUnionTypes:
-                    type: boolean
-                    default: false
-                  clientName:
+                  readmeSupportingDescriptionSnippet:
                     type: string
-                    description: AcmeClient
-                  npmDescription:
+                  readmeDescriptionSnippet:
                     type: string
-                    description: SDK for Acme's REST API
-                  npmAuthor:
-                    type: string
-                    description: acme.com
-                  npmName:
-                    type: string
-                    description: acme-typescript-sdk
-                  packageVersion:
-                    type: string
-                  parameterState:
+                  copyFiles:
                     type: array
                     items:
                       type: object
                       properties:
-                        name:
+                        from:
                           type: string
-                        type:
-                          anyOf:
-                            - type: string
-                              enum:
-                                - string
-                            - type: string
-                              enum:
-                                - boolean
-                            - type: string
-                              enum:
-                                - number
+                          description: Relative path from directory that contains konfig.yaml to file that
+                            you want to copy
+                        to:
+                          type: string
+                          description: Relative path from directory that contains konfig.yaml to
+                            destination you want to copy to
                       required:
-                        - name
-                        - type
-                    minItems: 1
-                  removeTagFromOperationId:
+                        - from
+                        - to
+                    description: Configure copying a set of files from a source to a destination.
+                      This is useful if you have custom implementations that you
+                      would like duplicated across multiple SDK repos.
+                  apiDocumentationAuthenticationPartial:
+                    type: string
+                    description: Filepath to file containing override for the section in generated
+                      documentation for setting up authentication in the SDK.
+                  disabled:
                     type: boolean
-                  operationIdMapping:
-                    type: object
-                    additionalProperties:
-                      type: string
-                  pagination:
-                    type: object
-                    properties:
-                      parameters:
-                        type: array
-                        items:
-                          type: string
-                      response:
-                        type: array
-                        items:
-                          type: string
-                    required:
-                      - parameters
-                      - response
+                  defaultTimeout:
+                    type: number
+                    default: 0
+                  userAgent:
+                    type: string
+                    default: Konfig
                   test:
                     type: object
                     properties:
@@ -1833,18 +1763,69 @@ components:
                     required:
                       - script
                     description: Configuration of "konfig test"
-                  git:
+                  clientName:
+                    type: string
+                  npmName:
+                    type: string
+                    description: acme-typescript-sdk
+                  pagination:
                     type: object
-                    properties: *a1
+                    properties:
+                      parameters:
+                        type: array
+                        items:
+                          type: string
+                      response:
+                        type: array
+                        items:
+                          type: string
+                    required:
+                      - parameters
+                      - response
+                  removeKonfigBranding:
+                    type: boolean
+                  clientState:
+                    type: array
+                    items:
+                      type: string
+                    description: A list of stateful properties generated into the SDK that can be
+                      used in custom implementation hooks. This is useful when
+                      you need state in the SDK that is not described in the
+                      OpenAPI Specification such as a key used for request
+                      signing.
+                  removeRequiredProperties:
+                    type: array
+                    items:
+                      type: string
+                  topLevelOperations:
+                    anyOf:
+                      - type: object
+                        additionalProperties:
+                          type: string
+                      - type: array
+                        items:
+                          type: object
+                          properties:
+                            operationId:
+                              type: string
+                            methodName:
+                              type: string
+                          required:
+                            - operationId
+                            - methodName
+                  omitApiDocumentation:
+                    type: boolean
+                  includeFetchAdapter:
+                    type: boolean
+                  includeEventSourceParser:
+                    type: boolean
                 required:
                   - generator
-                  - outputDirectory
-                  - generatorVersion
-                  - npmDescription
-                  - npmAuthor
-                  - npmName
-                  - packageVersion
+                  - version
                   - git
+                  - outputDirectory
+                  - clientName
+                  - npmName
                 additionalProperties: false
               - type: object
                 properties:
@@ -1857,12 +1838,18 @@ components:
                     additionalProperties:
                       type: object
                       properties:
+                        source:
+                          type: string
                         destinationFilename:
                           type: string
                       required:
+                        - source
                         - destinationFilename
                   version:
                     type: string
+                  git:
+                    type: object
+                    properties: *a1
                   outputDirectory:
                     type: string
                   readmeSnippet:
@@ -1917,9 +1904,6 @@ components:
                     required:
                       - script
                     description: Configuration of "konfig test"
-                  git:
-                    type: object
-                    properties: *a1
                   logoPath:
                     type: string
                     description: The path to a logo image that is copied to the generated C# SDK to
@@ -1941,8 +1925,8 @@ components:
                 required:
                   - generator
                   - version
-                  - outputDirectory
                   - git
+                  - outputDirectory
                   - logoPath
                   - packageName
                 additionalProperties: false
@@ -1957,12 +1941,18 @@ components:
                     additionalProperties:
                       type: object
                       properties:
+                        source:
+                          type: string
                         destinationFilename:
                           type: string
                       required:
+                        - source
                         - destinationFilename
                   version:
                     type: string
+                  git:
+                    type: object
+                    properties: *a1
                   outputDirectory:
                     type: string
                   readmeSnippet:
@@ -2017,9 +2007,6 @@ components:
                     required:
                       - script
                     description: Configuration of "konfig test"
-                  git:
-                    type: object
-                    properties: *a1
                   packageName:
                     type: string
                     description: acme-php
@@ -2041,8 +2028,8 @@ components:
                 required:
                   - generator
                   - version
-                  - outputDirectory
                   - git
+                  - outputDirectory
                   - packageName
                   - invokerPackage
                 additionalProperties: false
@@ -2057,12 +2044,18 @@ components:
                     additionalProperties:
                       type: object
                       properties:
+                        source:
+                          type: string
                         destinationFilename:
                           type: string
                       required:
+                        - source
                         - destinationFilename
                   version:
                     type: string
+                  git:
+                    type: object
+                    properties: *a1
                   outputDirectory:
                     type: string
                   readmeSnippet:
@@ -2117,9 +2110,6 @@ components:
                     required:
                       - script
                     description: Configuration of "konfig test"
-                  git:
-                    type: object
-                    properties: *a1
                   groupId:
                     type: string
                     description: com.acme
@@ -2129,8 +2119,8 @@ components:
                 required:
                   - generator
                   - version
-                  - outputDirectory
                   - git
+                  - outputDirectory
                   - groupId
                   - artifactId
                 additionalProperties: false
@@ -2145,12 +2135,18 @@ components:
                     additionalProperties:
                       type: object
                       properties:
+                        source:
+                          type: string
                         destinationFilename:
                           type: string
                       required:
+                        - source
                         - destinationFilename
                   version:
                     type: string
+                  git:
+                    type: object
+                    properties: *a1
                   outputDirectory:
                     type: string
                   readmeSnippet:
@@ -2205,9 +2201,6 @@ components:
                     required:
                       - script
                     description: Configuration of "konfig test"
-                  git:
-                    type: object
-                    properties: *a1
                   podName:
                     type: string
                     description: AcmeClient
@@ -2223,8 +2216,8 @@ components:
                 required:
                   - generator
                   - version
-                  - outputDirectory
                   - git
+                  - outputDirectory
                   - podName
                   - classPrefix
                   - authorName
@@ -2236,6 +2229,23 @@ components:
                     type: string
                     enum:
                       - go
+                  files:
+                    type: object
+                    additionalProperties:
+                      type: object
+                      properties:
+                        source:
+                          type: string
+                        destinationFilename:
+                          type: string
+                      required:
+                        - source
+                        - destinationFilename
+                  version:
+                    type: string
+                  git:
+                    type: object
+                    properties: *a1
                   outputDirectory:
                     type: string
                   readmeSnippet:
@@ -2290,28 +2300,14 @@ components:
                     required:
                       - script
                     description: Configuration of "konfig test"
-                  files:
-                    type: object
-                    additionalProperties:
-                      type: object
-                      properties:
-                        destinationFilename:
-                          type: string
-                      required:
-                        - destinationFilename
-                  version:
-                    type: string
-                  git:
-                    type: object
-                    properties: *a1
                   packageName:
                     type: string
                     description: acme
                 required:
                   - generator
-                  - outputDirectory
                   - version
                   - git
+                  - outputDirectory
                   - packageName
                 additionalProperties: false
               - type: object
@@ -2325,12 +2321,18 @@ components:
                     additionalProperties:
                       type: object
                       properties:
+                        source:
+                          type: string
                         destinationFilename:
                           type: string
                       required:
+                        - source
                         - destinationFilename
                   version:
                     type: string
+                  git:
+                    type: object
+                    properties: *a1
                   outputDirectory:
                     type: string
                   readmeSnippet:
@@ -2385,9 +2387,6 @@ components:
                     required:
                       - script
                     description: Configuration of "konfig test"
-                  git:
-                    type: object
-                    properties: *a1
                   projectName:
                     type: string
                     description: Acme
@@ -2397,8 +2396,8 @@ components:
                 required:
                   - generator
                   - version
-                  - outputDirectory
                   - git
+                  - outputDirectory
                   - projectName
                   - podAuthors
                 additionalProperties: false

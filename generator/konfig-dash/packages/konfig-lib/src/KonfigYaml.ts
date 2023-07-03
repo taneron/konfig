@@ -308,63 +308,70 @@ export const go = generatorCommonOptional
   .strict()
 export const swift = generatorCommon.merge(swiftConfig).strict()
 
-const genericGeneratorConfig = z.union([
-  z
-    .object({
-      generator: z.literal('java'),
-    })
-    .merge(java),
-  z
-    .object({
-      generator: z.literal('ruby'),
-    })
-    .merge(ruby),
-  z
-    .object({
-      generator: z.literal('android'),
-    })
-    .merge(android),
-  z
-    .object({
-      generator: z.literal('python'),
-    })
-    .merge(python),
-  z
-    .object({
-      generator: z.literal('typescript'),
-    })
-    .merge(typescript),
-  z
-    .object({
-      generator: z.literal('csharp'),
-    })
-    .merge(csharp),
-  z
-    .object({
-      generator: z.literal('php'),
-    })
-    .merge(php),
-  z
-    .object({
-      generator: z.literal('kotlin'),
-    })
-    .merge(kotlin),
-  z
-    .object({
-      generator: z.literal('objc'),
-    })
-    .merge(objc),
-  z
-    .object({
-      generator: z.literal('go'),
-    })
-    .merge(go),
-  z
-    .object({
-      generator: z.literal('swift'),
-    })
-    .merge(swift),
-])
+const genericGeneratorConfig = z
+  .union([
+    z
+      .object({
+        generator: z.literal('java'),
+      })
+      .merge(java),
+    z
+      .object({
+        generator: z.literal('ruby'),
+      })
+      .merge(ruby),
+    z
+      .object({
+        generator: z.literal('android'),
+      })
+      .merge(android),
+    z
+      .object({
+        generator: z.literal('python'),
+      })
+      .merge(python),
+    z
+      .object({
+        generator: z.literal('typescript'),
+      })
+      .merge(typescript),
+    z
+      .object({
+        generator: z.literal('csharp'),
+      })
+      .merge(csharp),
+    z
+      .object({
+        generator: z.literal('php'),
+      })
+      .merge(php),
+    z
+      .object({
+        generator: z.literal('kotlin'),
+      })
+      .merge(kotlin),
+    z
+      .object({
+        generator: z.literal('objc'),
+      })
+      .merge(objc),
+    z
+      .object({
+        generator: z.literal('go'),
+      })
+      .merge(go),
+    z
+      .object({
+        generator: z.literal('swift'),
+      })
+      .merge(swift),
+  ])
+  .transform((config) => {
+    if (config.generator === 'typescript' && config.test === undefined) {
+      config.test = { script: ['yarn', 'yarn test'] }
+    }
+    return config
+  })
 
 export const KonfigYaml = KonfigYamlCommon.merge(
   z

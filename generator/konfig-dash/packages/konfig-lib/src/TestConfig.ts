@@ -20,6 +20,8 @@ export const testConfig = z.object({
     .optional(),
 })
 
+export type TestConfig = z.infer<typeof testConfig>
+
 export type RequiredEnvironmentVariablesConfig = z.infer<
   typeof requiredEnvironmentVariablesConfig
 >
