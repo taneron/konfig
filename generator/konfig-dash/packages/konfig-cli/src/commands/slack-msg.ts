@@ -33,36 +33,52 @@ export default class SlackMsg extends Command {
 
   public async run(): Promise<void> {
     const { flags } = await this.parse(SlackMsg)
-    const { generators, parsedKonfigYaml } = parseKonfigYaml({
-      configDir: process.cwd(),
-    })
+    const { generators, parsedKonfigYaml, additionalGenerators } =
+      parseKonfigYaml({
+        configDir: process.cwd(),
+      })
     if (flags.generator === undefined)
       flags.generator = Object.keys(generators).join(',')
-    const filter = parseFilterFlag(flags.generator)?.filter(
-      (value) =>
-        !(generators[value as KonfigYamlGeneratorNames] as any).disabled
-    )
-    if (filter === undefined)
+    const filteredGenerators = parseFilterFlag(flags.generator)
+    if (filteredGenerators === null)
       this.error('Either -g or -a should have been specified')
 
     const specString = fs.readFileSync(parsedKonfigYaml.specPath, 'utf-8')
     const { spec } = await parseSpec(specString)
     const title = spec.info.title
 
-    const firstLine = `@here ${title}'s ${filter
-      .map((generatorName) => generatorNameAsDisplayName({ generatorName }))
-      .join(', ')} ${filter.length > 1 ? 'SDKs' : 'SDK'} ${
-      filter.length > 1 ? 'have' : 'has'
+    const generatorConfigs = filteredGenerators
+      .map((generator) => {
+        if (additionalGenerators && generator in additionalGenerators)
+          return {
+            generatorName: additionalGenerators[generator].generator,
+            generatorConfig: additionalGenerators[generator],
+          }
+        return {
+          generatorName: generator,
+          generatorConfig: generators[generator as KonfigYamlGeneratorNames],
+        }
+      })
+      .filter(({ generatorConfig }) => {
+        return !generatorConfig?.disabled
+      })
+
+    const firstLine = `@here ${title}'s ${generatorConfigs
+      .map(({ generatorName }) => generatorNameAsDisplayName({ generatorName }))
+      .join(', ')} ${generatorConfigs.length > 1 ? 'SDKs' : 'SDK'} ${
+      generatorConfigs.length > 1 ? 'have' : 'has'
     } been published :tada:`
 
-    const linksToSdks = filter
-      .map((generatorName) => {
+    const linksToSdks = generatorConfigs
+      .map(({ generatorName, generatorConfig }) => {
+        if (generatorConfig === undefined)
+          this.error('Error: generator config undefined')
         const pkg = getPublishedPackageUrl({
           generatorName,
+          generatorConfig,
           konfigYaml: parsedKonfigYaml,
         })
-        const version: string = (generators as any)[generatorName as any]
-          .version
+        const version: string = generatorConfig.version
         return `- ${generatorNameAsDisplayName({
           generatorName,
         })} - ${version} (${pkg.packageManagerName}): ${pkg.url}`

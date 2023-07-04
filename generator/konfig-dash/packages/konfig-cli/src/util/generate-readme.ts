@@ -1,5 +1,5 @@
 import { CliUx } from '@oclif/core'
-import { KonfigYamlType } from 'konfig-lib'
+import { KonfigYamlType, TypeScriptConfigType } from 'konfig-lib'
 import { getDefaultBranch } from './get-default-branch'
 import { getGitRepositoryName } from './get-git-repository-name'
 
@@ -16,7 +16,12 @@ export function generateReadme({
     documentationUrl: string
     sourceUrl: string
     packageManagerUrl: ReturnType<typeof getPublishedPackageUrl>
-  }[] = Object.entries(konfigYaml.generators)
+  }[] = [
+    ...Object.entries(konfigYaml.generators),
+    ...(konfigYaml.additionalGenerators
+      ? Object.entries(konfigYaml.additionalGenerators)
+      : []),
+  ]
     .filter(
       ([_generator, config]) => !('disabled' in config) || !config.disabled
     )
@@ -30,14 +35,17 @@ export function generateReadme({
           : `https://${config.git.host}/${config.git.userId}/${config.git.repoId}`
       return {
         language: generatorNameAsDisplayName({
-          generatorName,
+          generatorName:
+            'generator' in config ? config.generator : generatorName,
         }),
         version,
         documentationUrl:
           generatorName === 'php' ? sourceUrl : `${sourceUrl}/README.md`,
         sourceUrl,
         packageManagerUrl: getPublishedPackageUrl({
-          generatorName,
+          generatorName:
+            'generator' in config ? config.generator : generatorName,
+          generatorConfig: config,
           konfigYaml,
         }),
       }
@@ -94,9 +102,14 @@ Successfully logged in as dylan@konfigthis.com
 
 export function getPublishedPackageUrl({
   generatorName,
+  generatorConfig,
   konfigYaml,
 }: {
   generatorName: string
+  generatorConfig: Omit<
+    NonNullable<KonfigYamlType['additionalGenerators']>[string],
+    'generator'
+  >
   konfigYaml: KonfigYamlType
 }): { packageManagerName: string; url: string } {
   let config
@@ -151,6 +164,12 @@ export function getPublishedPackageUrl({
       // 0.4.0a1 gets converted to 0.4.0-a1 on npm
       // this edge case was surfaced when publishing for humanloop
       if (version.includes('a')) version = version.replace(/a/, '-a')
+
+      if ('gitlab' in generatorConfig && generatorConfig.gitlab !== undefined)
+        return {
+          url: `https://${generatorConfig.git.host}/${generatorConfig.git.userId}/${generatorConfig.git.repoId}`,
+          packageManagerName: 'GitLab',
+        }
 
       return {
         url: `https://www.npmjs.com/package/${config.npmName}/v/${version}`,
