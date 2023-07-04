@@ -726,16 +726,6 @@ export default class Deploy extends Command {
               body.additionalGenerators
             )) {
               if (!config.outputDirectory) continue
-              CliUx.ux.action.start(
-                `Deleting contents of existing directory "${config.outputDirectory}"`
-              )
-              await safelyDeleteFiles(config.outputDirectory)
-              CliUx.ux.action.stop()
-
-              // Copy content of generated SDK to existing directory
-              CliUx.ux.action.start(
-                `Copying ${name} SDK to "${config.outputDirectory}"`
-              )
               if (config.generator === 'typescript') {
                 await copyTypeScriptOutput({
                   flags,
@@ -744,14 +734,24 @@ export default class Deploy extends Command {
                   copyToOutputDirectory,
                 })
               } else {
+                CliUx.ux.action.start(
+                  `Deleting contents of existing directory "${config.outputDirectory}"`
+                )
+                await safelyDeleteFiles(config.outputDirectory)
+                CliUx.ux.action.stop()
+
+                // Copy content of generated SDK to existing directory
+                CliUx.ux.action.start(
+                  `Copying ${name} SDK to "${config.outputDirectory}"`
+                )
                 // TODO: use copy logic from blocks of code handling "body.generators" object (see typescript above)
                 await copyToOutputDirectory({
                   generator: name,
                   outputDirectory: config.outputDirectory,
                   generatorConfig: config,
                 })
+                CliUx.ux.action.stop()
               }
-              CliUx.ux.action.stop()
             }
           }
 
@@ -1487,6 +1487,14 @@ async function copyTypeScriptOutput({
         }
       )
       fs.writeFileSync(markdownPath, formattedMarkdown)
+    }
+
+    // handle gitlab config
+    if (typescript.gitlab) {
+      const npmrc = `registry=https://${typescript.gitlab.domain}/api/v4/projects/${typescript.gitlab.projectId}/packages/npm/
+
+//${typescript.gitlab.domain}/api/v4/projects/${typescript.gitlab.projectId}/packages/npm/:_authToken="\${NPM_TOKEN}"`
+      fs.writeFileSync(path.join(outputDirectory, '.npmrc'), npmrc)
     }
 
     CliUx.ux.action.stop()
