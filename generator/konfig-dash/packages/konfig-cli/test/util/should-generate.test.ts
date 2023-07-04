@@ -20,6 +20,8 @@ describe('shouldGenerate', () => {
       })
     ).to.eql({
       outputDirectory: 'go',
+      defaultTimeout: 0,
+      userAgent: '',
       packageName: 'test',
       version: '1.0.0',
       git: { repoName: '', host: '', userId: '', repoId: '' },
@@ -43,6 +45,8 @@ describe('shouldGenerate', () => {
       })
     ).to.eql({
       outputDirectory: 'go',
+      defaultTimeout: 0,
+      userAgent: '',
       packageName: 'test',
       version: '1.0.0',
       git: { repoName: '', host: '', userId: '', repoId: '' },
