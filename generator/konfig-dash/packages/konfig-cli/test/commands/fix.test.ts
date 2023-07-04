@@ -8,6 +8,7 @@ import yaml from 'js-yaml'
 import * as fs from 'fs-extra'
 import * as os from 'os'
 import * as path from 'path'
+import { randomUUID } from 'crypto'
 
 describe('fix', () => {
   describe('info description must be non-empty in progress.yaml to confirm using existing', () => {
@@ -102,7 +103,7 @@ function setup({
   const testDir = path.join(
     os.tmpdir(),
     'konfig-cli-fix-test-dir',
-    new Date().getTime().toString()
+    randomUUID()
   )
 
   // Reset
