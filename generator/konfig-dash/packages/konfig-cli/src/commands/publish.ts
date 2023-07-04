@@ -5,6 +5,7 @@ import {
   CSharpConfigType,
   GeneratorCommonGitType,
   KonfigYamlGeneratorNames,
+  TypeScriptConfigType,
   csharp,
   python,
 } from 'konfig-lib'
@@ -78,12 +79,27 @@ const publishScripts = {
   go: ({ version }: { version: string }) => {
     return generateGitTagCommands({ version, generator: 'go' })
   },
-  npm: ({ version }: { version: string }) => {
+  npm: ({
+    version,
+    gitlab,
+  }: {
+    version: string
+    gitlab: TypeScriptConfigType['gitlab']
+  }) => {
     const gitTagCommands = generateGitTagCommands({
       version,
       generator: 'typescript',
     })
-    return ['npm publish', ...gitTagCommands]
+    if (gitlab !== undefined && !process.env.GITLAB_TOKEN)
+      throw Error(
+        'GITLAB_TOKEN must be configured for publishing npm to GitLab'
+      )
+    return [
+      `${
+        gitlab !== undefined ? `NPM_TOKEN=${process.env.GITLAB_TOKEN} ` : ''
+      }npm publish`,
+      ...gitTagCommands,
+    ]
   },
   mavenCentral: ({
     version,
@@ -278,7 +294,7 @@ export default class Publish extends Command {
         'Git remote is out of sync. Make sure all changes are pushed or pulled before publishing.'
       )
 
-    const { generators } = parseKonfigYaml({
+    const { generators, additionalGenerators } = parseKonfigYaml({
       configDir: process.cwd(),
     })
 
@@ -293,7 +309,10 @@ export default class Publish extends Command {
         sequence: true,
       })
 
-    for (const [generatorName, generatorConfig] of Object.entries(generators)) {
+    for (const [generatorName, generatorConfig] of [
+      ...Object.entries(generators),
+      ...(additionalGenerators ? Object.entries(additionalGenerators) : []),
+    ]) {
       if ('disabled' in generatorConfig && generatorConfig.disabled) continue
       if (filter !== null && !filter.includes(generatorName)) continue
       if (generatorConfig.outputDirectory === undefined)
@@ -342,7 +361,10 @@ export default class Publish extends Command {
       // NPM config detected
       if ('npmName' in generatorConfig && 'version' in generatorConfig) {
         await executePublishScript({
-          script: publishScripts['npm']({ version: generatorConfig.version }),
+          script: publishScripts['npm']({
+            version: generatorConfig.version,
+            gitlab: generatorConfig.gitlab,
+          }),
         })
       }
 
