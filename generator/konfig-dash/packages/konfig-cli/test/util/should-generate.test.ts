@@ -12,7 +12,7 @@ describe('shouldGenerate', () => {
             outputDirectory: 'go',
             packageName: 'test',
             version: '1.0.0',
-            git: { host: '', userId: '', repoId: '' },
+            git: { repoName: '', host: '', userId: '', repoId: '' },
           },
         },
       })
@@ -20,7 +20,7 @@ describe('shouldGenerate', () => {
       outputDirectory: 'go',
       packageName: 'test',
       version: '1.0.0',
-      git: { host: '', userId: '', repoId: '' },
+      git: { repoName: '', host: '', userId: '', repoId: '' },
     })
   })
   it('included in filter', () => {
@@ -33,7 +33,7 @@ describe('shouldGenerate', () => {
             outputDirectory: 'go',
             packageName: 'test',
             version: '1.0.0',
-            git: { host: '', userId: '', repoId: '' },
+            git: { repoName: '', host: '', userId: '', repoId: '' },
           },
         },
       })
@@ -41,7 +41,7 @@ describe('shouldGenerate', () => {
       outputDirectory: 'go',
       packageName: 'test',
       version: '1.0.0',
-      git: { host: '', userId: '', repoId: '' },
+      git: { repoName: '', host: '', userId: '', repoId: '' },
     })
   })
   it('undefined', () => {
@@ -54,7 +54,7 @@ describe('shouldGenerate', () => {
             outputDirectory: 'go',
             packageName: 'test',
             version: '1.0.0',
-            git: { host: '', userId: '', repoId: '' },
+            git: { repoName: '', host: '', userId: '', repoId: '' },
           },
         },
       })
@@ -68,7 +68,7 @@ describe('shouldGenerate', () => {
             outputDirectory: 'go',
             packageName: 'test',
             version: '1.0.0',
-            git: { host: '', userId: '', repoId: '' },
+            git: { repoName: '', host: '', userId: '', repoId: '' },
           },
         },
       })
