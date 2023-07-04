@@ -178,6 +178,12 @@ export const typescriptConfig = z.object({
   clientState,
   removeRequiredProperties: removeRequiredPropertiesSchema.optional(),
   topLevelOperations: topLevelOperationsSchema,
+  gitlab: z
+    .object({
+      domain: z.string().default('gitlab.com').describe('gitlab.com'),
+      projectId: z.string(),
+    })
+    .optional(),
   omitApiDocumentation: z.boolean().optional(),
   includeFetchAdapter: z.boolean().optional(),
   includeEventSourceParser: z.boolean().optional(),
