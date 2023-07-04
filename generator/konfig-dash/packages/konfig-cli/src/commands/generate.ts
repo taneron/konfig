@@ -716,7 +716,7 @@ export default class Deploy extends Command {
 
             if (generatorConfig.copyFiles) {
               for (const { from, to } of generatorConfig.copyFiles) {
-                fs.copyFileSync(from, to)
+                await copyFiles(from, to)
               }
             }
           }
@@ -1276,6 +1276,45 @@ const renameOpenApiGeneratorNameBackToLanguage = ({
         fs.renameSync(dir, `${outputDir}/csharp`)
       }
     }
+  }
+}
+/**
+ * Copies files from a source path to a destination path.
+ * Supports both glob pattern and exact file path as the source.
+ * Handles both file path and directory path as the destination.
+ * Creates the necessary directory structure for file path destinations.
+ *
+ * @param {string} sourcePath - The source path (can be a glob pattern or an exact file path).
+ * @param {string} destinationPath - The destination path (can be a file path or a directory path).
+ */
+async function copyFiles(sourcePath: string, destinationPath: string) {
+  try {
+    // Check if sourcePath is a glob pattern or an exact file path
+    const isGlob = sourcePath.includes('*')
+    const sourceFiles = isGlob ? await globby(sourcePath) : [sourcePath]
+
+    // Determine if the destination is a file or directory
+    const destinationIsFile = path.extname(destinationPath) !== ''
+
+    // Ensure destination directory exists if it's a file
+    if (destinationIsFile) {
+      await fs.ensureDir(path.dirname(destinationPath))
+    }
+
+    // Iterate over the found source files
+    for (const sourceFile of sourceFiles) {
+      // Determine the destination file path
+      const destinationFile = isGlob
+        ? path.join(destinationPath, path.basename(sourceFile))
+        : destinationPath
+
+      // Copy the file
+      await fs.copyFile(sourceFile, destinationFile)
+      CliUx.ux.info(`Copied file ${sourceFile} to ${destinationFile}`)
+    }
+  } catch (err) {
+    if (err instanceof Error) CliUx.ux.error(err)
+    CliUx.ux.error(`Could not copy files: ${err}`)
   }
 }
 
