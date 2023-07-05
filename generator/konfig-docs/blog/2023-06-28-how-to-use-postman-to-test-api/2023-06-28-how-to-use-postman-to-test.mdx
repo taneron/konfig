@@ -5,6 +5,7 @@ authors: dylan
 ---
 
 import { PlusButton } from "./assets/PlusButton"
+import { DotsButton } from "./assets/DotsButton"
 
 Originally started off as a side project, Postman has become one of the best
 tools for collaboratively building APIs and especially provides amazing
@@ -24,8 +25,8 @@ Goes without being said but you should probably have the Postman app downloaded
 
 ### Example API [Optional]
 
-If you don't have your own API, you can run our toy API implementation to follow
-the guide yourself—your welcome.
+If you don't have your own API, you can run our simple API implementation to
+follow the guide yourself—your welcome.
 
 <details>
 <summary>Setup Instructions for Example API</summary>
@@ -66,7 +67,7 @@ The example API has 5 operations.
 
 ## The Anatomy of Postman
 
-Lets briefly overview how Postman is organized. Postman's data model revolves
+Lets briefly overview how Postman is organized and go over the basics. Postman's data model revolves
 around the concept of a
 [Collection](https://learning.postman.com/docs/collections/collections-overview/).
 
@@ -204,19 +205,19 @@ on the right side. [Click the `Persist` button](seek) to persist a single variab
 Use the curly brace syntax (i.e. `{{variable}}`) to insert a variable
 **anywhere** in your Request.
 
-In the URL.
+For example in the URL.
 ![url variable](/img/url-variable.png)
 
-As a parameter.
+Or as a parameter.
 ![param variable](/img/param-variable.png)
 
-Variables are crucial when you have common values amongst multiple requests in
-your Collection. For example referencing the same User ID across multiple
-requests.
+Variables save a lot of time when you have common values amongst multiple
+requests in your Collection. For example you can quickly change a User ID used
+across multiple requests.
 
 #### Scope
 
-Variables live in a [Scope](https://learning.postman.com/docs/sending-requests/variables/#variable-scopes).
+You should also know that Variables live in a [Scope](https://learning.postman.com/docs/sending-requests/variables/#variable-scopes).
 
 ```mermaid
 flowchart TB
@@ -242,7 +243,13 @@ flowchart TB
 
 ### Authorization
 
-If your API needs authorization.
+If your API needs authorization you can configure it for your Collection by
+going to the "Authorization" tab. We suggest putting authentication credentials
+under an Environment so that others in your workspace can reuse it if necessary.
+If you do not want to share credentials you can still create the variable under
+a environment but leave "Initial value" blank.
+
+Here is a quick demonstration of configuring Authentication for a Collection.
 
 <VideoSection>
 
@@ -263,7 +270,9 @@ If your API needs authorization.
 #### Pre-request Script
 
 If Postman does not natively support your Authorization type then you can use
-the "Pre-request Script" tab to programatically set Environment Variables.
+the ["Pre-request
+Script"](https://learning.postman.com/docs/writing-scripts/pre-request-scripts/)
+tab to programatically set Environment Variables.
 
 For example you can use the following script to add 3 header values from your
 environment variables before any request in your Collection.
@@ -289,15 +298,15 @@ Now that we know the basics lets jump into workflows and features for testing.
 ### Single Request
 
 Often times you will just want to execute a request to test one-off operations.
-We suggest that you create a new collection for these one-off operations so they
-are separated from collections used for tests as you'll see in the following
-sections.
+We suggest that you organize one-off requests into its own collection so they
+are separated from collections used for tests (as you'll see in later sections).
 
 #### Generate Collection from OAS (Recommended<Flame/>)
 
-Generating your collections from an OAS can save a lot of time. Postman will
-automatically create a `baseUrl` variable and setup Authentication based on your
-OAS. It will also bootstrap requests for every request based on the
+Generating your collections from an OAS can save a lot of time to bootstrap your
+Collection of one-off requests. Postman will automatically create a `baseUrl`
+variable and setup Authentication based on your OAS. It will also bootstrap
+requests for every request based on the
 [schemas](https://spec.openapis.org/oas/v3.1.0#schema-object) in your OAS.
 
 <VideoSection>
@@ -305,6 +314,7 @@ OAS. It will also bootstrap requests for every request based on the
 1. [Make sure the APIs element is visible on the sidebar](seek) by configuring your sidebar
 1. [Create an API and give it a name](seek)
 1. [Import your OAS](seek)
+    1. If you are using our example API then import `openapi.json` from the repository
 1. [Generate a collection from your definition](seek)
 
 <VideoPlayer playbackRate={1.2} autoplay url="/video/generate-collection.mov"/>
@@ -315,6 +325,10 @@ OAS. It will also bootstrap requests for every request based on the
 The generated Collection will live in the "APIs" tab under your OAS definition.
 This is slightly confusing as it won't be visible under the "Collections" tab
 but it does help keep your Collections organized by API.
+
+If you want you can copy the Collection from your API tab to the Collections tab
+by clicking the <DotsButton/> button next to your Collection.
+<VideoPlayer playbackRate={1.2} autoplay url="/video/copy-to-collections.mov"/>
 </Admonition>
 
 If you don't have an OAS then you can always manually create a Collection and
@@ -335,6 +349,10 @@ parameters" text="programmatic"/> or many requests.
 </Admonition>
 
 ### Sequential Requests
+
+Postman is amazing for one-off requests but its also amazing for running
+multiple requests at once. Postman makes it extremely simple by organizing
+sequential requests into a Collection.
 
 #### Request Execution Order
 
