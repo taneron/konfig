@@ -35,7 +35,12 @@ if sh ./guard.sh; then
   fi
 
   echo "Running \"dev\" for all packages"
-  yarn workspaces foreach -piv -j unlimited run dev &
+  if [[ $(uname) =~ MINGW|MSYS ]]; then
+    yarn workspaces foreach --exclude api --exclude konfig-dash -piv -j unlimited run dev &
+    yarn workspace api dev-windows &
+  else
+    yarn workspaces foreach -piv -j unlimited run dev &
+  fi
   echo "Running \"web\" server"
   yarn rw dev web
 else
