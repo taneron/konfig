@@ -1,31 +1,33 @@
 ---
 slug: how-to-use-postman-to-test-api
-title: The Ultimate Guide on Using Postman to Test Your API in 2023
+title: The Ultimate Guide to Using Postman to Test Your API in 2023
 authors: dylan
 ---
 
 import { PlusButton } from "./assets/PlusButton"
 import { DotsButton } from "./assets/DotsButton"
 
-Originally started off as a side project, Postman has become one of the best
-tools for collaboratively building APIs and especially provides amazing
-capabilities for testing. If you are an organization with disparate engineering
-teams looking to be API-first, its imperative that you organize your API design
-work into a tool like Postman. Organizing design/testing of your APIs can save
-thousands of engineering hours and unnecessary Slack messages.
+Originally started as a side project, Postman has become one of the best tools
+for collaboratively building APIs and especially provides amazing capabilities
+for testing. [As organizations' investments of time and resources into APIs
+increase](https://www.postman.com/state-of-api/outlook-for-apis-and-more/#api-investments-to-climb),
+API-first organizations must leverage tools like Postman. Adopting an API
+testing tool can save thousands of engineering hours and unnecessary Slack
+messages.
 
 
 <Admonition type="note">
 There are alternatives to Postman like [Insomnia](https://insomnia.rest/) but
-Postman seems to be the the most widely used tool in API-first organizations.
+[Postman is still the most widely used
+tool by a long margin](https://www.postman.com/state-of-api/tooling-for-apis-and-development/#api-platforms-and-tools).
 </Admonition>
 
-Today engineers are using Postman to [run 2,700+ tests
-on 100's of APIs on every deploy](https://www.postman.com/case-studies/youi/).
-So we created the <Gradient>ultimate</Gradient> guide on using postman to test
-your API. In this guide we will cover workflows and features you must know to
-effectively test your API. By the end of this guide you will be the official
-"Postman expert" on your team 😎.
+Today engineers are using Postman to [run 2,700+ tests on 100's of APIs on every
+deployment](https://www.postman.com/case-studies/youi/).  So we created the
+<Gradient>ultimate</Gradient> guide on using Postman to test your API. In this
+guide, we will cover fundamentals and dive into techniques to effectively test
+your API. By the end of this guide, you will be the official "Postman expert" on
+your team 😎.
 
  **Lets go!**
 
@@ -38,10 +40,10 @@ as it feels snappier than the web client.
 
 ### Example API [Optional]
 
-If you don't have your own API, you can locally run our simple API
-implementation to follow the guide yourself. This guide does assume that you
-have an API of basic CRUD complexity (i.e. you can execute read/write operations
-to the API to modify state that is persisted in the backend).
+This guide does assume that you have an API of basic CRUD complexity (i.e. you
+can execute read/write operations to the API to modify the state that is
+persisted in the backend). If you don't have an API, you can locally run our
+simple API implementation to follow the guide yourself.
 
 <details>
 <summary>Setup Instructions for Example API</summary>
@@ -60,7 +62,7 @@ fake User database.
     system.
 </Admonition>
 
-To setup the example API run the following script.
+To set up the example API run the following script.
 
 ```shell
 # link[11:55] https://github.com/konfig-dev/fastapi-example
@@ -80,10 +82,12 @@ The example API has 5 operations.
 
 </details>
 
-## The Anatomy of Postman
+## Postman Fundamentals
 
-Lets briefly overview how Postman is organized and go over the basics of making
-an request to your API. Postman's data model revolves around the concept of a
+Let's briefly overview how Postman is organized and go over the basics of
+testing your API in Postman.
+
+Postman's data model revolves around the concept of a
 [Collection](https://learning.postman.com/docs/collections/collections-overview/).
 
 According to Postman:
@@ -128,11 +132,11 @@ flowchart TD
     Request --> Examples
 ```
 
-Thats enough about Postman's data model, **lets jump into real examples.**
+That's enough about Postman's data model, **let's jump into real examples.**
 
 ### Workspace
 
-At the highest level a Workspace is where you can invite team members and save
+At the highest level, a Workspace is where you can invite team members and save
 your Collections. Create your Workspace to get started.
 
 <VideoSection>
@@ -154,13 +158,17 @@ button in the top-left corner to create a Collection.
 ### Using Variables
 
 Collections not only save your requests but also store dynamic values called a
-[Variable](https://learning.postman.com/docs/sending-requests/variables/).
+[Variable](https://learning.postman.com/docs/sending-requests/variables/). Variables save a lot of time when you have common values amongst multiple
+requests in your Collection (e.g. you can quickly change a User ID used across
+multiple requests). Try to use to using Variables to organize your values into
+one place and allow for easy parameterization of your requests.
+
 
 #### Create a `baseUrl` Variable (Recommended <Flame/>)
 
-Lets create our first variable.
+Let's create our first variable.
 
-We suggest that you always start out with a Variable named `baseUrl`. Using a
+We suggest that you always start with a Variable named `baseUrl`. Using a
 single `baseUrl` variable allows you to quickly configure API environments (e.g.
 development, staging, production, etc.) and keep your requests <Tooltip tip="Don't Repeat Yourself"
 text="DRY"/>.
@@ -179,54 +187,20 @@ text="DRY"/>.
 
 <Admonition type="info" title="Variables in Variables">
     Sometimes you need to parameterize your `baseUrl` which is possible using
-    the curly brace syntax inside of the Variable's value. For example you might
-    have domains based on a "provider" like `aws` or "region" like `us-east-1`.
+    the curly brace syntax inside of the Variable's value. For example, you
+    might have domains based on a "provider" like `aws` or "region" like
+    `us-east-1`.
 
     ![variables in variable](/img/variables-in-variable.png)
 
-    Its not obvious that this works but it does. But it allows for more powerful
-    variables when you need it.
+    It's not obvious that this works but it does. But it allows for more powerful
+    variables when you need them.
 </Admonition>
-
-#### What is "Initial value" vs. "Current value"?
-
-You'll notice there is an "Initial value" and "Current value" column under the
-"Variables" tab. This is a convenient feature from Postman that allows you to
-save variable values for your teammates while allowing you to make ad-hoc
-modifications for your own use-case.
-
-<Figure src="/img/initial-current-value.png" caption="Initial and Current Value"/>
-
-The "Initial value" is shared in your Workspace with collaborators while
-"Current value" is kept local to your session.
-
-- Use "Initial value" to store helpful examples (i.e. query example) or commonly
-shared values (`baseUrl`)
-- Edit the "Current value" for configuring temporary values
-
-<VideoSection>
-
-You can "reset" to set your current values to intial values. To reset all your
-current values to initial values at once, [Click the `Reset all` button](seek)
-on the right side. To reset a single variable, [Click the `Reset` button](seek).
-
-<VideoPlayer autoplay url="/video/reset-variables.mov"/>
-
-</VideoSection>
-
-<VideoSection>
-
-To persist your current values to initial values, [Click the `Persist all` button](seek)
-on the right side. To persist a singel variable, [Click the `Persist` button](seek).
-
-<VideoPlayer autoplay url="/video/persist-variables.mov"/>
-
-</VideoSection>
 
 #### Curly Brace Syntax
 
-To use your variables, Postman provides its own syntax using curly braces. If
-you are familiar with templating engines like
+To use your variables, Postman provides a syntax for inserting variables using
+curly braces. If you are familiar with templating engines like
 [Mustache](https://mustache.github.io/) or
 [Handlebars](https://handlebarsjs.com/), this syntax should feel familiar.  Use
 the curly brace syntax (e.g. `{{variable}}`) to insert a variable
@@ -238,10 +212,41 @@ For example in the URL.
 Or as a parameter.
 ![param variable](/img/param-variable.png)
 
-Variables save a lot of time when you have common values amongst multiple
-requests in your Collection (e.g. you can quickly change a User ID used across
-multiple requests). Try to use to using Variables to organize your values into
-one place and allow for easy parameterization of your requests.
+#### What is "Initial value" vs. "Current value"?
+
+You'll notice there is an "Initial value" and "Current value" column under the
+"Variables" tab. This is a convenient feature from Postman that allows you to
+save variable values for your teammates while allowing you to make ad-hoc
+modifications for your use case.
+
+<Figure src="/img/initial-current-value.png" caption="Initial and Current Value Columns"/>
+
+The "Initial value" is shared in your Workspace with collaborators while
+"Current value" is kept local to your session.
+
+- Use "Initial value" to store helpful examples (i.e. query example) or commonly
+shared values (`baseUrl`)
+- Edit the "Current value" for configuring temporary values
+
+<VideoSection>
+
+You can "reset" to set your current values to initial values. To reset all your
+current values to initial values at once, [Click the `Reset all` button](seek)
+on the right side. To reset a single variable, [Click the `Reset` button](seek).
+
+<VideoPlayer autoplay url="/video/reset-variables.mov"/>
+
+</VideoSection>
+
+<VideoSection>
+
+To persist your current values to initial values, [Click the `Persist all` button](seek)
+on the right side. To persist a single variable, [Click the `Persist` button](seek).
+
+<VideoPlayer autoplay url="/video/persist-variables.mov"/>
+
+</VideoSection>
+
 
 #### Scope
 
@@ -257,16 +262,11 @@ flowchart TB
 
 Variables live in a
 [Scope](https://learning.postman.com/docs/sending-requests/variables/#variable-scopes).
-In the last section we made a variable in the scope of a Collection. But
-variables can also be added to `Global` and `Environment` scopes. Start adding
-variables to the `Global` and `Environment` scope by opening the "Environments"
-tab on the left-hand side.
-
-![Environment Tab](/img/environment-tab.png)
-
-Scopes help define where a Variable is available to use. In general we suggest
-putting values used across Collections in the Global scope, security credentials
-in the Environment scope, and other variables in the Collections scope.
+In the last section, we made a variable in the scope of a Collection. But
+variables can also be added to `Global` and `Environment` scopes.  Scopes help
+define where a Variable is available to use. In general, we suggest putting
+values used across Collections in the Global scope, security credentials in the
+Environment scope, and other variables in the Collections scope.
 
 ```mermaid
 flowchart LR
@@ -275,6 +275,12 @@ flowchart LR
     r["Is the variable used in multiple collections?"] -->|Yes| Global
     r -->|No| o[Collection]
 ```
+ Start adding
+variables to the `Global` and `Environment` scope by opening the "Environments"
+tab on the left-hand side.
+
+![Environment Tab](/img/environment-tab.png)
+
 
 <VideoSection>
 
@@ -328,9 +334,9 @@ Here is a quick demonstration of configuring Authentication for a Collection.
 If Postman does not natively support your Authorization type then you can use
 the ["Pre-request
 Script"](https://learning.postman.com/docs/writing-scripts/pre-request-scripts/)
-tab to programatically set Environment Variables.
+tab to programmatically set Environment Variables.
 
-For example you can use the following script to add 3 header values from your
+For example, you can use the following script to add 3 header values from your
 environment variables before any request in your Collection.
 
 ![pre-request headers](/img/pre-request-headers.png)
@@ -358,29 +364,50 @@ flowchart LR
 ```
 
 We now understand how a Workspace, Collection, Variables, Authorization,
-Pre-request Scripts, and Request are organized in Postman. Without Postman you
+Pre-request Scripts and Request are organized in Postman. Without Postman you
 would be organizing all of this logic in code in ephemeral scripts that are
-bound to get lost in the black hole of a codebase. Instead Postman does a great
-job at prescribing how you organize your Requests and provides intuitive UX for
-convenience. But Postman goes much farther than just prescribing a way to
-organize your requests in the sake of DRYness.
+bound to get lost in the black hole of a codebase. Instead, Postman does a great
+job at prescribing how you organize your Requests and provides an intuitive UX
+for your convenience. But Postman goes much further than just prescribing a way
+to organize your requests for the sake of DRYness.
 
-Now that we know the basics lets jump into helpful workflows and features for
+Now that we know the basics let's jump into helpful workflows and features for
 testing.
 
 ## Testing
 
-Often times you will just want to execute a request to test one-off operations.
-We suggest that you organize one-off requests into its own collection so they
-are separated from collections used for testing. This way you have a place to
-create ephemeral requests without affecting your test suite.
+Postman Collections can be categorized into individual requests or standalone
+tests.  Since Collections are the center of Postman, good hygiene when
+organizing your requests is a good self-investment.
+
+### Individual Requests
+
+Often you will just want to execute a request to test individual operations. We
+suggest that you organize individual requests into a separate collection so they
+are isolated from collections used for testing. This way you have a place to
+create ephemeral requests without affecting your test suite. This Collection of
+individual requests is also a great way Collection for sharing examples with other
+developers who are looking to integrate your API. Most public Collections are
+structured this way with request examples for every operation in the API.
+
+You can follow this flowchart for where to organize your requests.
+
+```mermaid
+flowchart LR
+    Request --> OOR{Individual request?}
+    OOR -->|Yes| OOC[Individual Request Collection]
+    OOR -->|No| TC[Test Collection]
+    OOC --> ER{Existing request?}
+    ER -->|Yes| SAE[<a href='https://learning.postman.com/docs/sending-requests/examples/'>Save as example</a>]
+    ER -->|No| CNR[Create new Request]
+```
 
 #### Generate Collection from OAS (Recommended<Flame/>)
 
 Generating your collections from an OAS can save a lot of time in bootstrapping
-your Collection of one-off requests. Postman will automatically create a
+your Collection of individual requests. Postman will automatically create a
 `baseUrl` variable and setup Authentication based on your OAS. It will also
-bootstrap requests for every request based on the
+bootstrap requests for every operation prepopulating parameters from the
 [schemas](https://spec.openapis.org/oas/v3.1.0#schema-object) in your OAS. This
 is especially helpful if your API is complicated.
 
@@ -410,22 +437,27 @@ add requests to it.
 
 ### Test Script
 
-By running one-off requests you can visually verify that the response returns
+By running individual requests you can visually verify that the response returns
 the expected value. This is super helpful for ad-hoc requests when debugging.
-But it can be tough to verify a lot of requests at once so Postman allows you to
-automate assertions through the use of scripts.
+But it can be tough to verify a lot of requests at once, this is where
+[Scripting](https://learning.postman.com/docs/writing-scripts/intro-to-scripts/)
+comes in.
 
-Say we always expect the `GET /users` endpoint to return an list JSON value
-(i.e. `Array.isArray(response) == true`). We can write a test script for the
-`GET /users` request but going to the `Test` tab and
+Say we want to create two automated assertions:
+
+1. The `GET /users` endpoint returns a list JSON value (i.e. `Array.isArray(response) == true`)
+1. The `POST /users` endpoint returns an object JSON value (i.e. `typeof response === 'object' && !Array.isArray(response)`)
+
+To add these assertions we write test scripts for each Request.
+
 
 ### Collection Runner
 
-Postman is not only amazing for one-off requests but also for running multiple
+Postman is not only amazing for individual requests but also for running multiple
 requests at once (i.e. a "test"). Postman makes it extremely simple by
 organizing sequential requests into a Collection.
 
-Lets create a Collection with sequential requests from scratch.  Using our
+Let's create a Collection with sequential requests from scratch.  Using our
 [example API](#example-api-optional) we can sequentially run `Get users`,
 `Create user`, and `Get users`.
 
@@ -435,7 +467,7 @@ Follow these steps to create your first test suite.
 1. [Create a new collection](seek) (in this case we are copying the generated collection from the API tab)
 1. [Organize requests in the order you want them to be executed by drag and dropping](seek)
 1. [Rename requests to something meaningful if you want](seek)
-1. [Right click your collection and select "Run collection"](seek)
+1. [Right-click your collection and select "Run collection"](seek)
 1. [Enable "Persist responses for a session" to inspect responses](seek)
 1. [Click "Run ..."](seek)
 
