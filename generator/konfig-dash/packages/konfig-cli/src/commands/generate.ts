@@ -1096,13 +1096,14 @@ export default class Deploy extends Command {
 
               // find all files in outputdirectory that end with .md and use the "globby" package
               const markdownFiles = await globby([
-                path.join(outputDirectory, '**/*.md'),
+                // path.join uses platform-specific path separator but globby requires forward slash
+                path.join(outputDirectory, '**/*.md').replace(/\\/g, '/'),
               ])
               for (const markdownPath of markdownFiles) {
                 const markdown = fs.readFileSync(markdownPath, 'utf-8')
                 const pythonSnippetRegex =
                   // rewrite the following regex to not include "```" in the match
-                  /\`\`\`python\n([\s\S]*?)\n\`\`\`/g
+                  /\`\`\`python\r?\n([\s\S]*?)\r?\n\`\`\`/g
 
                 // find all code snippets in the markdown string that matches typescriptSnippetRegex
                 // and format them and replace the code snippets with the formatted code snippets
@@ -1504,15 +1505,16 @@ async function copyTypeScriptOutput({
 
     // find all files in outputdirectory that end with .md and use the "globby" package
     const markdownFiles = await globby([
-      path.join(outputDirectory, '**/*.md'),
+      // path.join uses platform-specific path separator but globby requires forward slash
+      path.join(outputDirectory, '**/*.md').replace(/\\/g, '/'),
       // write a glob to exclude the node_modules directory
-      `!${path.join(outputDirectory, '**/node_modules/**')}`,
+      `!${path.join(outputDirectory, '**/node_modules/**').replace(/\\/g, '/')}`,
     ])
     for (const markdownPath of markdownFiles) {
       const markdown = fs.readFileSync(markdownPath, 'utf-8')
       const typescriptSnippetRegex =
         // rewrite the following regex to not include "```" in the match
-        /\`\`\`typescript\n([\s\S]*?)\n\`\`\`/g
+        /\`\`\`typescript\r?\n([\s\S]*?)\r?\n\`\`\`/g
 
       // find all code snippets in the markdown string that matches typescriptSnippetRegex
       // and format them and replace the code snippets with the formatted code snippets
