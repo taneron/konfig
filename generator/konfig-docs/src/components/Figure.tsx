@@ -1,10 +1,15 @@
-import React from "react";
+import React, { PropsWithChildren } from "react";
 import useBaseUrl from "@docusaurus/useBaseUrl";
 
-export function Figure({ src, caption }) {
+export function Figure({
+  src,
+  caption,
+  children,
+}: PropsWithChildren<{ src?: string; caption: string }>) {
   return (
     <figure>
-      <img src={useBaseUrl(src)} alt={caption} />
+      {src && <img src={useBaseUrl(src)} alt={caption} />}
+      {children}
       <b>
         <figcaption style={{ textAlign: "center" }}>{`${caption}`}</figcaption>
       </b>
