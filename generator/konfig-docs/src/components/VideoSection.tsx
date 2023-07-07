@@ -11,12 +11,12 @@ export const VideoSectionContext =
  */
 export function VideoSection({ children }) {
   const ref = useRef<ReactPlayer | null>(null);
-  // children = mapReactNode(children, (node) => {
-  //   if (typeof node !== "object") return node;
-  //   if (!("type" in node)) return node;
-  //   if (node.type !== VideoPlayer) return node;
-  //   return React.cloneElement(node, { ref: ref });
-  // });
+  children = mapReactNode(children, (node) => {
+    if (typeof node !== "object") return node;
+    if (!("type" in node)) return node;
+    if (node.type !== VideoPlayer) return node;
+    return React.cloneElement(node, { ref: ref });
+  });
   return (
     <>
       <VideoSectionContext.Provider value={ref}>
