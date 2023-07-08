@@ -3,7 +3,53 @@
 const lightCodeTheme = require("prism-react-renderer/themes/github");
 const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 const { remarkCodeHike } = require("konfig-code-hike-mdx");
-const mermaid = require("@jakxz/mdx-mermaid");
+
+/**
+ * mdx-mermaid plugin.
+ *
+ * @param config Config passed in from parser.
+ * @returns Function to transform mdxast.
+ */
+function mermaid(config) {
+  return async function transformer(ast) {
+    const visit = await import("unist-util-visit").then((mod) =>
+      typeof mod.default === "function" ? mod.default : mod.visit
+    );
+
+    // Find all the mermaid diagram code blocks. i.e. ```mermaid
+    const instances = [];
+    visit(ast, { type: "code", lang: "mermaid" }, (node, index, parent) => {
+      instances.push([node, index, parent]);
+    });
+
+    // Replace each Mermaid code block with the Mermaid component
+    for (let i = 0; i < instances.length; i++) {
+      const [node, index, parent] = instances[i];
+      const result = createMermaidNode(
+        node,
+        "Mermaid",
+        i === 0 ? config : undefined
+      );
+      Array.prototype.splice.apply(parent.children, [index, 1, ...result]);
+    }
+    return ast;
+  };
+}
+
+function createMermaidNode(node, hName, config) {
+  return [
+    {
+      type: "mermaidCodeBlock",
+      data: {
+        hName,
+        hProperties: {
+          config: JSON.stringify(config),
+          chart: node.value,
+        },
+      },
+    },
+  ];
+}
 
 const beforeRemarkPlugins = [
   [
