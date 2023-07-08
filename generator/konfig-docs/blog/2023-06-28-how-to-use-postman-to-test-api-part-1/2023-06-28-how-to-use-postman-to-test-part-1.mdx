@@ -1,6 +1,6 @@
 ---
-slug: how-to-use-postman-to-test-api
-title: The Ultimate Guide to Using Postman to Document and Test Your API in 2023
+slug: how-to-use-postman-to-test-api-part-1
+title: The Ultimate Guide to Using Postman to Document and Test Your API in 2023 (Part 1)
 authors: dylan
 ---
 
@@ -93,9 +93,6 @@ The example API has 5 operations.
 </details>
 
 ## Postman Fundamentals
-
-Let's briefly overview how Postman is organized and the basics of testing your
-API in Postman.
 
 Postman's data model revolves around the concept of a
 [Collection](https://learning.postman.com/docs/collections/collections-overview/).
@@ -389,7 +386,7 @@ intuitive UX for your convenience. But Postman goes much further than just
 organizing your requests.
 
 Now that we know the basics let's jump into helpful workflows and features for
-testing.
+documentation and testing.
 
 ## Documentation & Testing
 
@@ -398,14 +395,13 @@ All Collections fall under two categories:
 1. Example requests (for documentation)
 2. Test requests (for testing)
 
-Example requests should all live under the same Collection and should include
-examples for every <Tooltip tip="An operation for an API is a combination of HTTP Method and path, like 'GET /users'" text="operation"/> in an API.
-This Collection is great for documenting your API for integration or as a
-forkable Collection to make ad-hoc requests
+All example requests should all live under the same Collection and should
+include examples for every <Tooltip tip="An operation for an API is a
+combination of HTTP Method and sub-path, like 'GET /users'" text="operation"/>
+in an API.
 
-Test requests live should live under a different Collection than your example
-requests. Test Collections automatically test many requests or request flows at
-the same time.
+Each set of test requests should live under its own Collection. These
+Collections automate assertions for many requests at the same time.
 
 ### Example Requests
 
@@ -413,7 +409,8 @@ We suggest that you organize example requests into a single Collection to
 isolate Collections used for testing. Most public Collections (e.g. [Salesforce
 Platform
 APIs](https://www.postman.com/salesforce-developers/workspace/salesforce-developers/collection/12721794-67cb9baa-e0da-4986-957e-88d8734647e2?action=share&creator=27661652))
-can be categorized under example requests.
+can be categorized as a Collection of example requests since its purely used for
+documentation.
 
 #### Generate Collection from OAS (Recommended<Flame/>)
 
@@ -451,18 +448,18 @@ add requests to it.
 #### Save all the examples!
 
 If you have multiple example requests for a particular operation, you should add
-them. Examples are particularly helpful if your operation is <Tooltip text="polymorphic" tip="accepts different data shapes"/>,
-which can make it hard to document. Examples are not only helpful for how to
- make valid requests, but also common invalid requests.
+them for more documentation. Examples are particularly helpful if your operation
+is <Tooltip text="polymorphic" tip="accepts different data shapes"/>, which can
+make your API hard to document.
 
- Here ish
-
-<VideoSection>
-1.
-Click the **Save as Example** button after making a request
-</VideoSection>
+![Save Example Request](/img/save-example-request.png)
 
 ### Test Requests
+
+Test requests can be used to build a suite of tests that automatically assert
+request-reply for your API. Test requests are like any other request with the
+addition of a script that asserts and drives the behavior of the Collection
+Runner.
 
 #### Test Script
 
@@ -534,24 +531,3 @@ parameters" text="programmatic"/> or many requests.
 
 </VideoSection>
 </Admonition>
-
-
-## Setup Postman and GitHub Actions
-
-### Postman API
-
-### Export Collection
-
-### Public Link
-
-### Pointing to Preview Environment
-
-### `newman`
-
-### Reporters
-
-### Debugging CI
-
-
-
-
