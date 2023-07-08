@@ -1,5 +1,5 @@
 ---
-slug: how-to-use-postman-to-test-api-part-1
+slug: postman-part-1
 title: The Ultimate Guide to Using Postman to Document and Test Your API in 2023 (Part 1)
 authors: dylan
 ---
@@ -46,24 +46,20 @@ Postman in your sea of browser tabs.
 
 ### Access to an API
 
-**This guide is better followed with access to an API of basic CRUD complexity
-(i.e. you can execute read/write operations to the API to modify the state that
-is persisted in the backend).**
+This guide is better followed with access to an API of basic <Tooltip tip="Create, read, update, and delete" text="CRUD"/> complexity.
+
+### Example API [Optional]
 
 If you don't have an API, you can locally run our example API implementation to
 follow the guide yourself.
 
-### Example API [Optional]
-
 <details>
 <summary>Setup Instructions for Example API</summary>
 <div>
-The [example API](https://github.com/konfig-dev/fastapi-example) is
-written in Python using the [FastAPI](https://fastapi.tiangolo.com/) framework
-so we can easily generate an [<Tooltip tip="OpenAPI Specification"
-text="OAS"/>](https://swagger.io/specification/). It includes
-<Tooltip tip="Create, read, update, and delete" text="CRUD"/> operations on a
-fake User database.
+The [example API](https://github.com/konfig-dev/fastapi-example) is written in
+Python using the [FastAPI](https://fastapi.tiangolo.com/) framework so we can
+easily generate an [OpenAPI Specification](https://swagger.io/specification/).
+It includes CRUD operations on a fake User database.
 
 <Admonition type="info" title="System Requirements">
     [Python 3.7+](https://www.python.org/downloads/) and
@@ -95,7 +91,7 @@ The example API has 5 operations.
 ## Postman Fundamentals
 
 Postman's data model revolves around the concept of a
-[Collection](https://learning.postman.com/docs/collections/collections-overview/).
+[tion](https://learning.postman.com/docs/collections/collections-overview/).
 
 According to Postman:
 
@@ -107,9 +103,9 @@ According to Postman:
 > group for easier access.
 
 We feel this description doesn't do justice to Collections. Collections are more
-than just a place to store saved requests and history. Collections are at the
-center of what enables Postman to build all the powerful testing and automation
-features we will cover in this guide, but I digress.
+than just a place to store saved requests and history. Collections enable
+Postman to build all the powerful automation features we will cover in this
+guide, and you'll see why in this guide.
 
 #### Anatomy of Postman
 
@@ -365,7 +361,7 @@ pm.request.addHeader({ key: "module_secret", value: pm.environment.get("MODULE_S
 
 </Admonition>
 
-### Recap
+## Recap
 
 ```mermaid
 flowchart LR
@@ -386,148 +382,4 @@ intuitive UX for your convenience. But Postman goes much further than just
 organizing your requests.
 
 Now that we know the basics let's jump into helpful workflows and features for
-documentation and testing.
-
-## Documentation & Testing
-
-All Collections fall under two categories:
-
-1. Example requests (for documentation)
-2. Test requests (for testing)
-
-All example requests should all live under the same Collection and should
-include examples for every <Tooltip tip="An operation for an API is a
-combination of HTTP Method and sub-path, like 'GET /users'" text="operation"/>
-in an API.
-
-Each set of test requests should live under its own Collection. These
-Collections automate assertions for many requests at the same time.
-
-### Example Requests
-
-We suggest that you organize example requests into a single Collection to
-isolate Collections used for testing. Most public Collections (e.g. [Salesforce
-Platform
-APIs](https://www.postman.com/salesforce-developers/workspace/salesforce-developers/collection/12721794-67cb9baa-e0da-4986-957e-88d8734647e2?action=share&creator=27661652))
-can be categorized as a Collection of example requests since its purely used for
-documentation.
-
-#### Generate Collection from OAS (Recommended<Flame/>)
-
-Generating your collections from an OAS can save a lot of time in bootstrapping
-your Collection of example requests. Postman will automatically create a
-`baseUrl` variable and setup Authentication based on your OAS. It will also
-bootstrap requests for every operation prepopulating parameters from the
-[schemas](https://spec.openapis.org/oas/v3.1.0#schema-object) in your OAS. This
-is especially helpful if your API is complicated.
-
-<VideoSection>
-
-1. [Make sure the APIs element is visible on the sidebar](seek) by configuring your sidebar
-1. [Create an API and give it a name](seek)
-1. [Import your OAS](seek)
-    1. If you are using our example API then import `openapi.json` from the repository
-1. [Generate a collection from your definition](seek)
-
-<VideoPlayer playbackRate={1.2} autoplay url="/video/generate-collection.mov"/>
-
-</VideoSection>
-
-<Admonition type="note">
-The generated Collection will live in the "APIs" tab under your OAS definition.
-This is slightly confusing as it won't be visible under the "Collections" tab.
-
-If you want you can copy the Collection from your API tab to the Collections tab
-by clicking the <DotsButton/> button next to your Collection.
-<VideoPlayer playbackRate={1.2} autoplay url="/video/copy-to-collections.mov"/>
-</Admonition>
-
-If you don't have an OAS then you can always manually create a Collection and
-add requests to it.
-
-#### Save all the examples!
-
-If you have multiple example requests for a particular operation, you should add
-them for more documentation. Examples are particularly helpful if your operation
-is <Tooltip text="polymorphic" tip="accepts different data shapes"/>, which can
-make your API hard to document.
-
-![Save Example Request](/img/save-example-request.png)
-
-### Test Requests
-
-Test requests can be used to build a suite of tests that automatically assert
-request-reply for your API. Test requests are like any other request with the
-addition of a script that asserts and drives the behavior of the Collection
-Runner.
-
-#### Test Script
-
-Running individual requests can be tough when you want to verify a lot of
-requests at once, this is where
-[Scripting](https://learning.postman.com/docs/writing-scripts/intro-to-scripts/)
-comes in.
-
-Say we have a Collection of two requests. to create two automated assertions:
-
-1. The `GET /users` endpoint returns a list JSON value (i.e. `Array.isArray(response) == true`)
-1. The `POST /users` endpoint returns an object JSON value (i.e. `typeof response === 'object' && !Array.isArray(response)`)
-
-To add these assertions we write test scripts for each Request.
-
-#### Collection Runner
-
-Postman is not only amazing for individual requests but also for running multiple
-requests at once (i.e. a "test"). Postman makes it extremely simple by
-organizing sequential requests into a Collection.
-
-Let's create a Collection with sequential requests from scratch.  Using our
-[example API](#example-api-optional) we can sequentially run `Get users`,
-`Create user`, and `Get users`.
-
-Follow these steps to create your first test suite.
-
-<VideoSection>
-1. [Create a new collection](seek) (in this case we are copying the generated collection from the API tab)
-1. [Organize requests in the order you want them to be executed by drag and dropping](seek)
-1. [Rename requests to something meaningful if you want](seek)
-1. [Right-click your collection and select "Run collection"](seek)
-1. [Enable "Persist responses for a session" to inspect responses](seek)
-1. [Click "Run ..."](seek)
-
-<VideoPlayer autoplay playbackRate={1.2} url="/video/test-suite-1.mov"/>
-</VideoSection>
-
-
-##### Adding assertions
-
-Say we want to add an assertion to ensure that after the `Create user` operation is run, the number of users is increased by 1 thereby
-
-To add assertions we will use the "Tests" for a Request. On the right-hand side you will see
-
-`pm.globals.set`
-
-
-##### `postman.setNextRequest`
-
-##### Looping Requests
-
-#### Example Use Cases
-
-##### Idempotency
-
-##### Random Data
-
-<Admonition type="info" title="Tip">
-#### Console (Helpful<Flame/>)
-
-<VideoSection>
-
-Open the console at the bottom of the window to inspect your requests. This is
-especially helpful for debugging <Tooltip tip="Using scripts to dynamically set
-parameters" text="programmatic"/> or many requests.
-
-<VideoPlayer autoplay url="/video/console.mov"/>
-
-</VideoSection>
-</Admonition>
+documentation and testing in <Tooltip tip="Coming soon!" text="part 2"/>.
