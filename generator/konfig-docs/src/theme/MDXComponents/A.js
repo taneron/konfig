@@ -26,7 +26,6 @@ export default function MDXA(props) {
       typeof props.children === "string"
         ? props.children
         : props.children.map(innerText).join("");
-    console.log(childText);
     const cue = vtt.filter(({ text }) => text.includes(childText));
     if (cue.length === 0 || cue.length > 1) {
       setError(true);
