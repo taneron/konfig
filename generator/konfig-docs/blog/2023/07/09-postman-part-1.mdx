@@ -14,7 +14,7 @@ year](https://www.postman.com/state-of-api/api-global-growth/#growing-ecosystem)
 
 [As organizations' investments of time and resources into APIs
 increase](https://www.postman.com/state-of-api/outlook-for-apis-and-more/#api-investments-to-climb),
-API-first organizations must leverage testing tools like Postman.  Adopting an
+API-first organizations must leverage testing tools like Postman. Adopting an
 API tool is an effective way to save thousands of engineering hours.
 
 <Admonition type="note">
@@ -27,7 +27,8 @@ margin](https://www.postman.com/state-of-api/tooling-for-apis-and-development/#a
 Today enterprises like [Salesforce and WhatsApp use Postman to document their
 API](https://www.postman.com/state-of-api/api-global-growth/#most-popular-apis)
 and engineers are using Postman to [run 2,700+ tests on 100's of APIs on every
-deployment](https://www.postman.com/case-studies/youi/).  So we created the
+deployment](https://www.postman.com/case-studies/youi/). At Konfig, we
+frequently use Postman to test APIs and generate SDKs. So we created the
 <Gradient>ultimate</Gradient> guide on using Postman to document and test your
 API. In this 3-part guide, we will cover the fundamentals of Postman and dive
 into techniques to effectively document and test your API.
@@ -47,10 +48,6 @@ web client for Postman but we suggest downloading the desktop application
 because it makes the application easily accessible and keeps you from burying
 Postman in a sea of browser tabs.
 
-### Access to an API
-
-This guide is better followed with access to an API of basic <Tooltip tip="Create, read, update, and delete" text="CRUD"/> complexity.
-
 ### Example API [Optional]
 
 If you don't have an API, you can locally run our example API implementation to
@@ -62,7 +59,7 @@ follow the guide yourself.
 The [example API](https://github.com/konfig-dev/fastapi-example) is written in
 Python using the [FastAPI](https://fastapi.tiangolo.com/) framework so we can
 easily generate an [OpenAPI Specification](https://swagger.io/specification/).
-It includes CRUD operations on a fake User database.
+It includes <Tooltip tip="Create, read, update, and delete" text="CRUD"/> operations on a fake User database.
 
 <Admonition type="info" title="System Requirements">
     [Python 3.7+](https://www.python.org/downloads/) and
@@ -93,7 +90,7 @@ The example API has 5 operations.
 
 ## Postman Fundamentals
 
-Postman's data model revolves around the concept of a
+Postman's functionality revolves around the concept of a
 [Collection](https://learning.postman.com/docs/collections/collections-overview/).
 
 According to Postman:
@@ -108,48 +105,36 @@ According to Postman:
 We feel this description doesn't do justice to Collections. Collections are more
 than just a place to store saved requests and history. Collections enable
 Postman to build all the powerful automation features we will cover in this
-guide, and you'll see why in this guide.
+guide.
 
-#### Anatomy of Postman
 
-Collections live under a
-[Workspace](https://learning.postman.com/docs/collaborating-in-postman/using-workspaces/managing-workspaces/).
-A Collection contains Requests and a Request contains all the details of an HTTP
-Request (e.g. a URL, path parameters, query parameters, headers, request body,
-and HTTP method).
-
-<Figure caption="Collection lives at the center of Postman's Data Model">
+<Figure caption="Collection lives at the center of Postman's Data Model as everything is related to it.">
 ```mermaid
-flowchart TD
-    C:::highlighted-node
-    Workspace --> C((Collection))
-    Workspace --> API
-    Workspace --> Environment
-    Workspace --> Variable
-    Environment --> Variable
-    API --> C
-    C --> Variable
-    C --> Request
-    C --> Authorization
-    C --> Scripts
-    Request --> URL
-    Variable --> Request
-    Request --> Body
-    Request --> Headers
-    Request --> Params
-    Request --> Method[HTTP Method]
-    Request --> PRS[Pre-request Script]
-    Request --> Tests
-    Request --> Authorization
-    Request --> Examples
-    Request --> Scripts
+mindmap
+  root((Collection))
+    Workspace
+    Variables
+    Requests
+    Environments
+    Authorization
+    Testing
+    Documentation
 ```
 </Figure>
 
 ### Workspace
 
-Every Postman Collection lives under a Workspace. You can invite team members to
-a Workspace to collaborate. Create your Workspace to get started.
+Collections live under a
+[Workspace](https://learning.postman.com/docs/collaborating-in-postman/using-workspaces/managing-workspaces/).
+A workspace is a place for your engineering team to collaborate. You can easily
+manage granular permissions and organize all of your API work. Workspaces also
+house other features such as
+[Environments](https://learning.postman.com/docs/sending-requests/managing-environments/)
+and [API
+definitions](https://learning.postman.com/docs/designing-and-developing-your-api/the-api-workflow/)
+like OpenAPI Specification or GraphQL.
+
+To create a Workspace, follow the demonstration below.
 
 <VideoSection>
 1. [Create a Workspace](seek)
@@ -160,14 +145,97 @@ a Workspace to collaborate. Create your Workspace to get started.
 
 
 
-### Create a Collection
+### Collection
 
-To create a Collection, click the <PlusButton/> button in the top-left corner to
-create a Collection.
+On the surface, a Collection is a group of saved HTTP requests that makes it
+easy to navigate and locate example requests for a specific endpoint. But as you
+will see in this guide, Collections are truly at the core of Postman's standout
+feature set.
+
+<Figure caption="Every feature stems from Collections">
+```mermaid
+mindmap
+  root((Collection))
+    Organization
+        Folders
+        Example Requests
+        Variables
+        Authorization
+    Collaboration
+        Private Collections
+        Public Collections
+        Documentation
+    Testing
+        Scripts
+        Collection Runner
+    Tooling
+        Continuous Integration and Deployment
+        SDK Generation
+        API Access
+        Collection Format
+        newman
+```
+</Figure>
+
+#### Organization
+
+Postman brings structure to the chaos of API development by prescribing a robust
+organization model. By containing all the nitty gritty details of API requests
+into neatly structured request templates, grokking an API becomes 10x easier.
+Collections allow you to group related requests into folders and document
+alongside concrete examples.
+
+<Figure src="/img/collections-organization.png" caption="Requests are neatly organized in the sidebar"/>
+
+#### Collaboration
+
+Collections make it easy to collaborate on API development and integration.
+Collections can be shared publicly for third-party developers to integrate your
+API or privately among your teammates to collaborate on internal API
+development. Collections are also forkable and version controlled allowing
+developers to simultaneously make changes while avoiding conflicts. Postman's
+cloud-based architecture supports the permissions and persistence of your
+Collections.
+
+<Figure src="/img/collection-collaboration.png" caption="Sharing a Postman Collection prompts a window to share with people in your organization, publicly for other developers to fork, or via API"/>
+
+#### Testing
+
+Collections can also be used for building test suites ranging from simple
+assertions to multi-step request flows. By leveraging JavaScript to validate
+responses and define complex test suites, you can design advanced test suites
+for your API. Postman Collections can also be integrated with Ci/CD tooling to
+streamline testing and deployment with
+[Newman](https://github.com/postmanlabs/newman) and [Postman
+API](https://www.postman.com/postman/workspace/postman-public-workspace/documentation/12959542-c8142d51-e97c-46b6-bd77-52bb66712c9a).
+
+<Figure src="/img/collection-testing.png" caption="The 'Tests' tab is where you
+write scripts that are executed to design complex test suites"/>
+
+#### Third-party Tooling
+
+Postman Collections follow a standard JSON-based protocol so developers can
+build third-party tools to enhance Postman's capabilities. You can either export
+a Postman Collection directly through the UI or dynamically fetch it from the
+Postman API. This allows tooling like SDK generators and CI/CD pipelines to be
+tightly integrated with your Postman workflow.
+
+<Figure caption="Example JSON of Exported Postman Collection">
+<CH.Code rows={20}>
+```json
+// from ./assets/Requests.postman_collection.json
+```
+</CH.Code>
+</Figure>
+
+
+
+#### How to Create a Collection
+To create a Collection, click the <PlusButton/> button in the top-left corner.
 
 <VideoPlayer autoplay url="/video/create-collection.mov" />
 
-### Using Variables
+### Variables
 
 Collections can store dynamic values called a
 [Variable](https://learning.postman.com/docs/sending-requests/variables/) that
@@ -176,7 +244,10 @@ have common values across multiple requests in your Collection. Try to always
 use Variables to organize your values into one place and allow for easy
 parameterization of your requests.
 
-<Figure src="/img/salesforce-platform-apis-variables.png" caption="The most popular API in the world (Salesforce Platform APIs) has 17 variables configured for convenience (source: https://www.postman.com/state-of-api/api-global-growth/#most-popular-apis)"/>
+<Figure src="/img/salesforce-platform-apis-variables.png" caption={<span style={{fontSize: "13px"}}>The
+most popular API in the world, Salesforce Platform APIs, has 17 variables
+configured for convenience (<a
+href="https://www.postman.com/state-of-api/api-global-growth/#most-popular-apis">source</a>)</span>}/>
 
 
 #### Always Create a `baseUrl` Variable (Recommended <Flame/>)

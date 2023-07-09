@@ -4,10 +4,9 @@ import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import { InlineWidget } from "react-calendly";
 
 export default function Index() {
-  const { siteConfig } = useDocusaurusContext();
   return (
     <Layout
-      title={`Schedule Demo | ${siteConfig.title}`}
+      title={`Schedule Demo`}
       description="Learn more about Konfig through a live Demo"
     >
       <div style={{ height: "700px" }}>

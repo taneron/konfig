@@ -158,6 +158,7 @@ const config = {
           },
           { to: "/blog", label: "Blog", position: "left" },
           { to: "/schedule-demo", label: "Schedule Demo", position: "right" },
+          { to: "/about-us", label: "About Us", position: "right" },
         ],
       },
       api: {
@@ -168,7 +169,7 @@ const config = {
         style: "light",
         links: [
           {
-            title: "About Us",
+            title: "Links",
             items: [
               {
                 label: "Website",
