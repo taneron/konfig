@@ -170,7 +170,7 @@ const config = {
           },
           { to: "/blog", label: "Blog", position: "left" },
           { to: "/schedule-demo", label: "Schedule Demo", position: "right" },
-          { to: "/about-us", label: "About Us", position: "right" },
+          { to: "/about", label: "About", position: "right" },
         ],
       },
       api: {
