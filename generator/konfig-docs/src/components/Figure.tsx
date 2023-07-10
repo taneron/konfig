@@ -8,7 +8,7 @@ export function Figure({
   children,
 }: PropsWithChildren<{ src?: string; caption: ReactNode }>) {
   return (
-    <figure>
+    <figure className="flex gap-2 flex-col">
       {src && (
         <img
           src={useBaseUrl(src)}

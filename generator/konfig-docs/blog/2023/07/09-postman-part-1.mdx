@@ -32,7 +32,7 @@ Today enterprises like [Salesforce and WhatsApp use Postman to document their
 API](https://www.postman.com/state-of-api/api-global-growth/#most-popular-apis)
 and engineers are using Postman to [run 2,700+ tests on 100's of APIs on every
 deployment](https://www.postman.com/case-studies/youi/). At Konfig, we
-frequently use Postman to test APIs and generate SDKs. So we created the
+frequently use Postman to test APIs. So we created the
 <Gradient>ultimate</Gradient> guide on using Postman to document and test your
 API. In this 3-part guide, we will cover the fundamentals of Postman and dive
 into techniques to effectively document and test your API.
@@ -112,7 +112,7 @@ Postman to build all the powerful automation features we will cover in this
 guide.
 
 
-<Figure caption="Collection lives at the center of Postman's Data Model as everything is related to it.">
+<Figure caption="Collections are at the center of Postman's Data Model">
 ```mermaid
 mindmap
   root((Collection))
@@ -130,9 +130,8 @@ mindmap
 
 Collections live under a
 [Workspace](https://learning.postman.com/docs/collaborating-in-postman/using-workspaces/managing-workspaces/).
-A workspace is a place for your engineering team to collaborate. You can easily
-manage granular permissions and organize all of your API work. Workspaces also
-house other features such as
+A workspace is a place for your team to collaborate and easily manage granular
+permissions. Workspaces also house other features such as
 [Environments](https://learning.postman.com/docs/sending-requests/managing-environments/)
 and [API
 definitions](https://learning.postman.com/docs/designing-and-developing-your-api/the-api-workflow/)
@@ -172,6 +171,7 @@ mindmap
     Testing
         Scripts
         Collection Runner
+        CI/CD
     Tooling
         Continuous Integration and Deployment
         SDK Generation
@@ -184,10 +184,11 @@ mindmap
 #### Organization
 
 Postman brings structure to the chaos of API development by prescribing a robust
-organization model. By containing all the nitty gritty details of API requests
-into neatly structured request templates, grokking an API becomes 10x easier.
+data model for organizing requests. By containing all the nitty gritty details
+of API requests into neatly structured request templates, grokking an API
+becomes 10x easier.
 
-<Figure src="/img/collections-organization.png" caption="Requests are neatly organized in the sidebar. Collections also allow you to group related requests into folders."/>
+<Figure src="/img/collection-organization.png" caption="Requests are neatly organized in the sidebar. Collections also allow you to group related requests into folders."/>
 
 #### Collaboration
 
@@ -196,7 +197,7 @@ Collections can be shared publicly for third-party developers to integrate your
 API or privately among your teammates to collaborate on internal API
 development. Collections are also forkable and version controlled allowing
 developers to simultaneously make changes while avoiding conflicts. Postman's
-cloud-based architecture also implements permissioning and persistence of your
+cloud-based architecture also integrates permissions and persistence for your
 Collections.
 
 <Figure src="/img/collection-collaboration.png" caption="Sharing a Postman Collection prompts a window to share with people in your organization, publicly for other developers to fork, or via API"/>
@@ -219,7 +220,7 @@ write scripts that are executed to design complex test suites"/>
 Postman Collections follow a standard JSON-based protocol so developers can
 build third-party tools to enhance Postman's capabilities. You can either export
 a Postman Collection directly through the UI or dynamically fetch it from the
-Postman API. This allows tooling like SDK generators and CI/CD pipelines to be
+Postman API. This allows tooling like SDK generation and CI/CD pipelines to be
 tightly integrated with your Postman workflow.
 
 <Figure caption="Example JSON of Exported Postman Collection">
@@ -314,9 +315,8 @@ shared values (`baseUrl`)
 
 <VideoSection>
 
-You can "reset" to set your current values to initial values. To reset all your
-current values to initial values at once, [Click the `Reset all` button](seek)
-on the right side. To reset a single variable, [Click the `Reset` button](seek).
+To reset all your current values to initial values at once, [Click the `Reset
+all` button](seek) on the right side. To reset a single variable, [Click the `Reset` button](seek).
 
 <VideoPlayer autoplay url="/video/reset-variables.mov"/>
 
@@ -334,6 +334,12 @@ on the right side. To persist a single variable, [Click the `Persist` button](se
 
 ### Variable Scope
 
+Variables live in a
+[Scope](https://learning.postman.com/docs/sending-requests/variables/#variable-scopes).
+In the last section, we made a variable in the scope of a Collection. But
+variables can also be added to `Global` and `Environment` scopes.
+
+<Figure caption="Global, Environment, and Collection Variable Scope Hierarchy">
 ```mermaid
 flowchart TB
     subgraph global [Global]
@@ -343,11 +349,7 @@ flowchart TB
         end
     end
 ```
-
-Variables live in a
-[Scope](https://learning.postman.com/docs/sending-requests/variables/#variable-scopes).
-In the last section, we made a variable in the scope of a Collection. But
-variables can also be added to `Global` and `Environment` scopes.
+</Figure>
 
 <VideoSection>
 
@@ -364,9 +366,9 @@ Scopes help define where a Variable is available to use.
 
 </VideoSection>
 
-Generally, you should organize authorization variables in the Environment Scope
-and API-specific variables in the Collection Scope. The Global Scope is mainly
-used in scripting.
+As a rule of thumb, you should organize authorization variables in the
+Environment Scope and API-specific variables in the Collection Scope. The Global
+Scope is mainly used in scripting.
 
 <Figure caption="Rule of thumb on which scope to organize your Variables">
 ```mermaid
@@ -379,20 +381,14 @@ flowchart LR
 
 ### Authorization
 
-You can configure Authorization by going to the "Authorization" tab. **We
-strongly suggest putting authentication credentials in an Environment Scope so
-your teammates can document authorization requirements and reuse the
-authentication credentials.** Otherwise you will have to tediously add the
-security credentials to the Variables of every Collection.
+Postman includes built-in support for various authorization types, allowing you
+to quickly configure security credentials for all requests within a Collection.
+Postman supports nearly all necessary authorization types from Basic HTTP
+authentication to OAuth. You can also use Variables from your Environment to
+organize security credentials for a workspace.
 
-<Admonition type="note">
-If you want to avoid persisting sensitive credentials, you can leave the
-"Initial value" column blank. This way you always set the variable by
-configuring the "Current value" column.
+<Figure src="/img/collection-authorization.png" caption="Selecting Authorization types under the 'Authorization' tab for a Collection"/>
 
-<Figure src="/img/salesforce-platform-apis-environment-variables.png" caption="Example empty Initial values in the Environment Variables Template for Salesforce Platform APIs"/>
-
-</Admonition>
 
 Here is a quick demonstration of configuring API key Authorization for a Collection.
 
@@ -410,7 +406,25 @@ Here is a quick demonstration of configuring API key Authorization for a Collect
 
 </VideoSection>
 
-<Admonition type="info" title="Postman does not support your authentication scheme?">
+<Admonition type="tip">
+**We strongly suggest putting authentication credentials in an Environment Scope so
+your teammates can document authorization requirements and reuse the
+authentication credentials.** Otherwise you will have to tediously add the
+security credentials to the Variables of every Collection.
+</Admonition>
+
+<Admonition type="tip">
+If you want to avoid persisting sensitive credentials, you can leave the
+"Initial value" column blank. This way you always set the variable by
+configuring the "Current value" column.
+
+<Figure src="/img/salesforce-platform-apis-environment-variables.png" caption="Example empty Initial values in the Environment Variables Template for Salesforce Platform APIs"/>
+
+</Admonition>
+
+<Admonition type="tip">
+
+#### Postman does not support your authentication scheme?
 
 If Postman does not natively support your [Authorization type](https://learning.postman.com/docs/sending-requests/authorization/authorization-types/) then you can use
 the ["Pre-request
@@ -437,22 +451,24 @@ pm.request.addHeader({ key: "module_secret", value: pm.environment.get("MODULE_S
 
 ## Recap
 
+<Figure caption="Overview of the covered concepts and their relationships">
 ```mermaid
 flowchart LR
-    Workspace --> E[Environment Variables]
-    Workspace --> Collection
-    Collection --> CV[Collection Variables]
-    E --> Request
-    CV --> Request
-    Authorization --> Request
-    Collection --> Request
-    Collection --> Authorization
+    Workspace -->|Has many| E[Environment Variables]
+    Workspace -->|Has many| Collection
+    Collection -->|Has many| CV[Collection Variables]
+    E -->|Used by| Request
+    CV -->|Used by| Request
+    Authorization -->|Used by| Request
+    Collection -->|Has many| Request
+    Collection -->|Has| Authorization
 ```
+</Figure>
 
-Want to organize all your API work on your own? You are bound to define your API
-testing work in code in ephemeral scripts that are bound to get lost in the
-black hole of a codebase. Instead, we suggest you use Postman as it provides a
-robust data model and intuitive UX to effectively organize your API work.
+There are a lot of considerations when implementing an API testing strategy.
+Instead of building API testing infrastructure from scratch, we suggest you use
+Postman as it provides a robust data model and intuitive UX to effectively
+organize your API documentation and testing.
 
 But Postman goes much further than just organizing your requests. Let's learn about helpful workflows and features for documentation
 and testing in <Tooltip tip="Coming soon!" text="part 2"/>.
