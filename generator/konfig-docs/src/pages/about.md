@@ -21,7 +21,7 @@ few lines of code as possible.
 
 ## Who are we?
 
-We are a small and passionate team of 3 people.
+We are a passionate team of 3 people.
 
 - [Anh-Tuan](https://www.linkedin.com/in/anhtuanbui2/)
 - [Dylan](https://www.linkedin.com/in/dphuang2/)
