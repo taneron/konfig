@@ -142,6 +142,7 @@ const config = {
           remarkPlugins: remarkPlugins,
           showReadingTime: true,
           blogDescription: "Generate SDKs for your REST API",
+          truncateMarker: /{\/\* TRUNCATE \*\/}/,
         },
         gtag: {
           trackingID: "G-L2Q9WBQN2D",
