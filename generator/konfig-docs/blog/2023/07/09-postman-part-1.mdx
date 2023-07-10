@@ -1,6 +1,6 @@
 ---
 slug: postman-part-1
-title: The Ultimate Guide to Using Postman to Document and Test Your API in 2023 (Part 1)
+title: "Postman, The Ultimate Guide: Fundamentals (Part 1)"
 authors: dylan
 ---
 
@@ -33,7 +33,7 @@ frequently use Postman to test APIs and generate SDKs. So we created the
 API. In this 3-part guide, we will cover the fundamentals of Postman and dive
 into techniques to effectively document and test your API.
 
-- Part 1 (Postman Fundamentals)
+- Part 1 (Fundamentals)
 - <Tooltip tip="Coming soon!" text="Part 2 (Documentation & Testing)"/>
 - <Tooltip tip="Coming soon!" text="Part 3 (Continuous Integration)"/>
 
@@ -182,10 +182,8 @@ mindmap
 Postman brings structure to the chaos of API development by prescribing a robust
 organization model. By containing all the nitty gritty details of API requests
 into neatly structured request templates, grokking an API becomes 10x easier.
-Collections allow you to group related requests into folders and document
-alongside concrete examples.
 
-<Figure src="/img/collections-organization.png" caption="Requests are neatly organized in the sidebar"/>
+<Figure src="/img/collections-organization.png" caption="Requests are neatly organized in the sidebar. Collections also allow you to group related requests into folders."/>
 
 #### Collaboration
 
@@ -194,7 +192,7 @@ Collections can be shared publicly for third-party developers to integrate your
 API or privately among your teammates to collaborate on internal API
 development. Collections are also forkable and version controlled allowing
 developers to simultaneously make changes while avoiding conflicts. Postman's
-cloud-based architecture supports the permissions and persistence of your
+cloud-based architecture also implements permissioning and persistence of your
 Collections.
 
 <Figure src="/img/collection-collaboration.png" caption="Sharing a Postman Collection prompts a window to share with people in your organization, publicly for other developers to fork, or via API"/>
@@ -203,9 +201,9 @@ Collections.
 
 Collections can also be used for building test suites ranging from simple
 assertions to multi-step request flows. By leveraging JavaScript to validate
-responses and define complex test suites, you can design advanced test suites
-for your API. Postman Collections can also be integrated with Ci/CD tooling to
-streamline testing and deployment with
+responses and orchestrate multi-step requests, you can design advanced test
+suites for your API. Postman Collections can also be integrated with Ci/CD
+tooling to streamline testing and deployment with
 [Newman](https://github.com/postmanlabs/newman) and [Postman
 API](https://www.postman.com/postman/workspace/postman-public-workspace/documentation/12959542-c8142d51-e97c-46b6-bd77-52bb66712c9a).
 
@@ -377,11 +375,11 @@ flowchart LR
 
 ### Authorization
 
-If your API needs authorization you can configure it for your Collection by
-going to the "Authorization" tab. **We strongly suggest putting authentication
-credentials in an Environment Scope so your teammates can document authorization
-requirements and reuse the authentication credentials.** Otherwise you will have
-to tediously add the security credentials to the Variables of every Collection.
+You can configure Authorization by going to the "Authorization" tab. **We
+strongly suggest putting authentication credentials in an Environment Scope so
+your teammates can document authorization requirements and reuse the
+authentication credentials.** Otherwise you will have to tediously add the
+security credentials to the Variables of every Collection.
 
 <Admonition type="note">
 If you want to avoid persisting sensitive credentials, you can leave the
@@ -410,7 +408,7 @@ Here is a quick demonstration of configuring API key Authorization for a Collect
 
 <Admonition type="info" title="Postman does not support your authentication scheme?">
 
-If Postman does not natively support your Authorization type then you can use
+If Postman does not natively support your [Authorization type](https://learning.postman.com/docs/sending-requests/authorization/authorization-types/) then you can use
 the ["Pre-request
 Script"](https://learning.postman.com/docs/writing-scripts/pre-request-scripts/)
 tab under your Collection to programmatically set Environment Variables.
@@ -447,11 +445,10 @@ flowchart LR
     Collection --> Authorization
 ```
 
-Want to organize all your API work yourself now? You would be at risk of
-organizing all of this logic in code in ephemeral scripts that are bound to get
-lost in the black hole of a codebase. Instead, we suggest you use Postman as it
-provides a robust data model and intuitive UX to effectively organize your API
-work.
+Want to organize all your API work on your own? You are bound to define your API
+testing work in code in ephemeral scripts that are bound to get lost in the
+black hole of a codebase. Instead, we suggest you use Postman as it provides a
+robust data model and intuitive UX to effectively organize your API work.
 
 But Postman goes much further than just organizing your requests. Let's learn about helpful workflows and features for documentation
 and testing in <Tooltip tip="Coming soon!" text="part 2"/>.
