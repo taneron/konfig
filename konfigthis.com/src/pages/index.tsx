@@ -30,7 +30,58 @@ export default function Home() {
         <GetSdksInAnyLanguage />
         <EnsureHighQualitySdks />
         <Cta />
-        <FooterSimple />
+        <FooterSimple
+          data={[
+            {
+              title: "Company",
+              links: [
+                {
+                  label: "About",
+                  link: "https://konfigthis.com/about",
+                },
+                {
+                  label: "Blog",
+                  link: "https://konfigthis.com/blog",
+                },
+              ],
+            },
+            {
+              title: "Resources",
+              links: [
+                {
+                  label: "Documentation",
+                  link: "https://konfigthis.com/docs/",
+                },
+                {
+                  label: "Tutorials",
+                  link: "https://konfigthis.com/docs/category/tutorials",
+                },
+                {
+                  label: "Getting Started",
+                  link: "https://konfigthis.com/docs/getting-started/openapi-specification",
+                },
+                {
+                  label: "Free OAS Linter",
+                  link: "https://konfigthis.com/docs/tutorials/setup-linting",
+                },
+              ],
+            },
+
+            {
+              title: "Contact",
+              links: [
+                {
+                  label: "Schedule a Demo",
+                  link: "https://konfigthis.com/schedule-demo",
+                },
+                {
+                  label: "founders@konfigthis.com",
+                  link: "mailto:founders@konfigthis.com",
+                },
+              ],
+            },
+          ]}
+        />
       </main>
     </>
   );
