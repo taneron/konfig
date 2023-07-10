@@ -19,7 +19,7 @@ complicated and time-consuming to integrate.
 We generate SDKs for APIs so developers can integrate any API while writing as
 few lines of code as possible.
 
-## Who are we?
+## The Team
 
 We are a passionate team of 3 people.
 
