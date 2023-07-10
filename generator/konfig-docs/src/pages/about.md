@@ -23,6 +23,6 @@ few lines of code as possible.
 
 We are a small and passionate team of 3 people.
 
-- [Anh-Tuan](https://www.linkedin.com/in/anhtuanbui2/): Co-CEO
-- [Dylan](https://www.linkedin.com/in/dphuang2/): Co-CEO
-- [Eddie](https://www.linkedin.com/in/eddie-chayes/): Software Engineer
+- [Anh-Tuan](https://www.linkedin.com/in/anhtuanbui2/)
+- [Dylan](https://www.linkedin.com/in/dphuang2/)
+- [Eddie](https://www.linkedin.com/in/eddie-chayes/)
