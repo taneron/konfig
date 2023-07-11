@@ -9,21 +9,35 @@ tags: [Postman]
 import { PlusButton } from "./assets/PlusButton"
 import { DotsButton } from "./assets/DotsButton"
 
+In [part 1](/blog/postman-fundamentals) we covered the fundamentals of Postman
+by learning about Workspaces, Collections, Variables, and Authorization. In part
+2, we will cover documentation and testing by learning about Collection Runner,
+Scripts, and exact testing use cases.
+
+
+If you want to part 1 or 3 you can navigate to them here:
+
+- [Part 1 (Fundamentals)](/blog/postman-fundamentals)
+- Part 2 (Documentation & Testing)
+- <Tooltip tip="Coming soon!" text="Part 3 (Continuous Integration)"/>
+
+{/* TRUNCATE */}
+
+## Collections as Tests
+
 All Collections fall under two categories:
 
 1. Example requests (for documentation)
 2. Test requests (for testing)
 
 All example requests should all live under the same Collection and should
-include examples for every <Tooltip tip="An operation for an API is a
-combination of HTTP Method and sub-path, like 'GET /users'" text="operation"/>
+include examples for every <Tooltip tip="An operation for an API is a combination of HTTP Method and sub-path, like 'GET /users'" text="operation"/>
 in an API.
 
 Each set of test requests should live under a separate Collection. These
 Collections automate assertions for many requests at the same time.
-{/* TRUNCATE */}
 
-### Example Requests
+## Example Requests
 
 We suggest that you organize example requests into a single Collection to
 isolate Collections used for testing. Most public Collections (e.g. [Salesforce
@@ -74,7 +88,7 @@ make your API hard to document.
 
 ![Save Example Request](/img/save-example-request.png)
 
-### Test Requests
+## Test Requests
 
 Test requests can be used to build a suite of tests that automatically assert
 request-reply for your API. Test requests live in their Collection with the
@@ -126,18 +140,21 @@ To add assertions we will use the "Tests" for a Request. On the right-hand side 
 
 `pm.globals.set`
 
+## Advanced Testing
 
 ### `postman.setNextRequest`
 
 ### Looping Requests
-
-### Example Use Cases
 
 ### Idempotency
 
 ### Random Data
 
 ### Using CSV or JSON Files
+
+### Running Tagged Requests
+
+(https://community.postman.com/t/how-to-run-postman-requests-using-tags/20628/10)
 
 <Admonition type="info" title="Tip">
 #### Console (Helpful<Flame/>)
@@ -153,21 +170,6 @@ parameters" text="programmatic"/> or many requests.
 </VideoSection>
 </Admonition>
 
-## Setup Postman and GitHub Actions
-
-### Postman API
-
-### Export Collection
-
-### Public Link
-
-### Pointing to Preview Environment
-
-### `newman`
-
-### Reporters
-
-### Debugging CI
 
 
 
