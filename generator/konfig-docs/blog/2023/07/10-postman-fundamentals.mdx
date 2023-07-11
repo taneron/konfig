@@ -1,0 +1,511 @@
+---
+slug: postman-fundamentals
+title: "Fundamentals of Documenting and Testing with Postman"
+authors: dylan
+tags: [Postman]
+---
+
+import { PlusButton } from "./assets/PlusButton"
+import { DotsButton } from "./assets/DotsButton"
+
+Originally started as a side project, Postman has become one of the best tools
+for collaboratively building APIs with over [1.29 billion requests created in
+the past
+year](https://www.postman.com/state-of-api/api-global-growth/#growing-ecosystem).
+
+
+[As organizations' investments of time and resources into APIs
+increase](https://www.postman.com/state-of-api/outlook-for-apis-and-more/#api-investments-to-climb),
+API-first organizations must leverage testing tools like Postman. Adopting an
+API tool is an effective way to save thousands of engineering hours.
+
+{/* TRUNCATE */}
+
+<Admonition type="note">
+There are alternatives to Postman like [Insomnia](https://insomnia.rest/) and
+[Paw](https://paw.cloud/) but [Postman is still the most widely used tool by a
+long
+margin](https://www.postman.com/state-of-api/tooling-for-apis-and-development/#api-platforms-and-tools).
+</Admonition>
+
+Today enterprises like [Salesforce and WhatsApp use Postman to document their
+API](https://www.postman.com/state-of-api/api-global-growth/#most-popular-apis)
+and engineers are using Postman to [run 2,700+ tests on 100's of APIs on every
+deployment](https://www.postman.com/case-studies/youi/). At Konfig, we
+frequently use Postman to test APIs. So we created a guide on the fundamentals
+of documenting and testing your API with Postman.
+
+## Setup
+
+Goes without being said but you should probably have the Postman app downloaded
+[here](https://www.postman.com/downloads/) so you can follow along. There is a
+web client for Postman but we suggest downloading the desktop application
+because it makes the application easily accessible and keeps you from burying
+Postman in a sea of browser tabs.
+
+### Example API [Optional]
+
+If you don't have an API, you can locally run our example API implementation to
+follow the guide yourself.
+
+<details>
+<summary>Setup Instructions for Example API</summary>
+<div>
+The [example API](https://github.com/konfig-dev/fastapi-example) is written in
+Python using the [FastAPI](https://fastapi.tiangolo.com/) framework so we can
+easily generate an [OpenAPI Specification](https://swagger.io/specification/).
+It includes <Tooltip tip="Create, read, update, and delete" text="CRUD"/> operations on a fake User database.
+
+<Admonition type="info" title="System Requirements">
+    [Python 3.7+](https://www.python.org/downloads/) and
+    [Poetry](https://python-poetry.org/docs/) are required to run the example
+    API. Refer to the documentation for installation instructions on your
+    system.
+</Admonition>
+
+To set up the example API run the following script.
+
+```shell
+# link[11:55] https://github.com/konfig-dev/fastapi-example
+git clone https://github.com/konfig-dev/fastapi-example
+cd fastapi-example
+./start.sh
+```
+
+The example API has 5 operations.
+
+1. `GET` List Users - returns a list of users
+2. `GET` Get User - returns the details of a user by ID
+3. `POST` Create User - inserts a user into the database
+4. `PUT` Update User - updates a user in the database
+5. `DELETE` Delete User - removes a user from the database
+</div>
+
+</details>
+
+## Postman Fundamentals
+
+Postman's functionality revolves around the concept of a
+[Collection](https://learning.postman.com/docs/collections/collections-overview/).
+
+According to Postman:
+
+> Postman Collections are a group of saved requests. Every request you send in
+> Postman appears under the History tab of the sidebar. On a small scale, reusing
+> requests through the history section is convenient. As your Postman usage grows,
+> it can be time-consuming to find a particular request in your history. Instead
+> of scrolling through your history section, you can save all your requests as a
+> group for easier access.
+
+We feel this description doesn't do justice to Collections. Collections are more
+than just a place to store saved requests and history. Collections enable
+Postman to build all the powerful automation features we will cover in this
+guide.
+
+
+<Figure caption="Collections are at the center of Postman's Data Model">
+```mermaid
+mindmap
+  root((Collection))
+    Workspace
+    Variables
+    Requests
+    Environments
+    Authorization
+    Testing
+    Documentation
+```
+</Figure>
+
+### Workspace
+
+Collections live under a
+[Workspace](https://learning.postman.com/docs/collaborating-in-postman/using-workspaces/managing-workspaces/).
+A workspace is a place for your team to collaborate and easily manage granular
+permissions. Workspaces also house other features such as
+[Environments](https://learning.postman.com/docs/sending-requests/managing-environments/)
+and [API
+definitions](https://learning.postman.com/docs/designing-and-developing-your-api/the-api-workflow/)
+like OpenAPI Specification or GraphQL.
+
+To create a Workspace, follow the demonstration below.
+
+<VideoSection>
+1. [Create a Workspace](seek)
+1. [Give it a name and summary and click "Create Workspace"](seek)
+1. [Invite a team member](seek) [optional]
+<VideoPlayer playbackRate={1.2} autoplay url="/video/workspace.mov" />
+</VideoSection>
+
+
+
+### Collection
+
+On the surface, a Collection is a group of saved HTTP requests that makes it
+easy to navigate and locate example requests for a specific endpoint. But as you
+will see in this guide, Collections are truly at the core of Postman's standout
+feature set.
+
+<Figure caption="Every feature stems from Collections">
+```mermaid
+mindmap
+  root((Collection))
+    Organization
+        Folders
+        Example Requests
+        Variables
+        Authorization
+    Collaboration
+        Private Collections
+        Public Collections
+        Documentation
+    Testing
+        Scripts
+        Collection Runner
+        CI/CD
+    Tooling
+        Continuous Integration and Deployment
+        SDK Generation
+        API Access
+        Collection Format
+        newman
+```
+</Figure>
+
+#### Organization
+
+Postman brings structure to the chaos of API development by prescribing a robust
+data model for organizing requests. By containing all the nitty gritty details
+of API requests into neatly structured request templates, grokking an API
+becomes 10x easier.
+
+<Figure src="/img/collection-organization.png" caption="Requests are neatly organized in the sidebar. Collections also allow you to group related requests into folders."/>
+
+#### Collaboration
+
+Collections make it easy to collaborate on API development and integration.
+Collections can be shared publicly for third-party developers to integrate your
+API or privately among your teammates to collaborate on internal API
+development. Collections are also forkable and version controlled allowing
+developers to simultaneously make changes while avoiding conflicts. Postman's
+cloud-based architecture also integrates permissions and persistence for your
+Collections.
+
+<Figure src="/img/collection-collaboration.png" caption="Sharing a Postman Collection prompts a window to share with people in your organization, publicly for other developers to fork, or via API"/>
+
+#### Testing
+
+Collections can also be used for building test suites ranging from simple
+assertions to multi-step request flows. By leveraging JavaScript to validate
+responses and orchestrate multi-step requests, you can design advanced test
+suites for your API. Postman Collections can also be integrated with CI/CD
+tooling to streamline testing and deployment with
+[Newman](https://github.com/postmanlabs/newman) and [Postman
+API](https://www.postman.com/postman/workspace/postman-public-workspace/documentation/12959542-c8142d51-e97c-46b6-bd77-52bb66712c9a).
+
+<Figure src="/img/collection-testing.png" caption="The 'Tests' tab is where you
+write scripts that are executed to design complex test suites"/>
+
+#### Third-party Tooling
+
+Postman Collections follow a standard JSON-based protocol so developers can
+build third-party tools to enhance Postman's capabilities. You can either export
+a Postman Collection directly through the UI or dynamically fetch it from the
+Postman API. This allows tooling like SDK generation and CI/CD pipelines to be
+tightly integrated with your Postman workflow.
+
+<Figure caption="Example JSON of Exported Postman Collection which includes all the information about a Collection including requests, scripts, authorization, etc.">
+<CH.Code rows={20}>
+```json
+// from ./assets/Requests.postman_collection.json
+```
+</CH.Code>
+</Figure>
+
+
+
+#### How to Create a Collection
+To create a Collection, click the <PlusButton/> button in the top-left corner.
+
+<VideoPlayer autoplay url="/video/create-collection.mov" />
+
+#### Generate Collection from OAS (Hot Tip <Flame/>)
+
+Generating your collections from an OAS can save a lot of time in bootstrapping
+your Collection of example requests. Postman will automatically create a
+`baseUrl` variable and setup Authentication based on your OAS. It will also
+bootstrap requests for every operation prepopulating parameters from the
+[schemas](https://spec.openapis.org/oas/v3.1.0#schema-object) in your OAS. This
+is especially helpful if your API is complicated.
+
+<VideoSection>
+
+1. [Make sure the APIs element is visible on the sidebar](seek) by configuring your sidebar
+1. [Create an API and give it a name](seek)
+1. [Import your OAS](seek)
+    1. If you are using our example API then import `openapi.json` from the repository
+1. [Generate a collection from your definition](seek)
+
+<VideoPlayer playbackRate={1.2} autoplay url="/video/generate-collection.mov"/>
+
+</VideoSection>
+
+<Admonition type="note">
+The generated Collection will live in the "APIs" tab under your OAS definition.
+This is slightly confusing as it won't be visible under the "Collections" tab.
+
+If you want you can copy the Collection from your API tab to the Collections tab
+by clicking the <DotsButton/> button next to your Collection.
+<VideoPlayer playbackRate={1.2} autoplay url="/video/copy-to-collections.mov"/>
+</Admonition>
+
+### Variables
+
+Collections can store dynamic values called a
+[Variable](https://learning.postman.com/docs/sending-requests/variables/) that
+can be used when constructing a Request.  Variables save a lot of time when you
+have common values across multiple requests in your Collection. Try to always
+use Variables to organize your values into one place and allow for easy
+parameterization of your requests.
+
+<Figure src="/img/salesforce-platform-apis-variables.png" caption={<span style={{fontSize: "13px"}}>The
+most popular API in the world, Salesforce Platform APIs, has 17 variables
+configured for convenience (<a
+href="https://www.postman.com/state-of-api/api-global-growth/#most-popular-apis">source</a>)</span>}/>
+
+
+#### Always Create a `baseUrl` Variable (Hot Tip <Flame/>)
+
+We suggest that you always start with a Variable named `baseUrl`. Using a
+single `baseUrl` variable allows you to quickly configure API environments (e.g.
+development, staging, production, etc.) and shorten the URL in your requests.
+
+<VideoSection>
+
+1. [Go to "Variables" tab](seek)
+1. [Create a variable named "baseUrl"](seek)
+1. [Add a request](seek)
+1. [Use the curly brace syntax](seek) to shorten the URL
+1. [Click "Send"](seek)
+
+<VideoPlayer playbackRate={1.2} autoplay url="/video/variables.mov"/>
+
+</VideoSection>
+
+<Admonition type="info" title="Variables in Variables">
+    Sometimes you need to parameterize your `baseUrl` which is possible using
+    the curly brace syntax inside of the Variable's value. For example, you
+    might have domains based on a "provider" like `aws` or "region" like
+    `us-east-1`.
+
+    ![variables in variable](/img/variables-in-variable.png)
+
+    It's not obvious that this works but it does. But it allows for more powerful
+    variables when you need them.
+</Admonition>
+
+#### Curly Brace Syntax
+
+You may have noticed that Postman provides a syntax for inserting variables
+using curly braces. If you are familiar with templating engines like
+[Mustache](https://mustache.github.io/) or
+[Handlebars](https://handlebarsjs.com/), this syntax should feel familiar. You
+can use the the curly brace syntax (e.g. `{{variable}}`) to insert a variable
+**anywhere** in your Request.
+
+For example in the URL.
+![url variable](/img/url-variable.png)
+
+Or as a path parameter.
+![param variable](/img/param-variable.png)
+
+#### What is "Initial value" vs. "Current value"?
+
+You also may have noticed there is an "Initial value" and "Current value" column
+under the "Variables" tab. This is a convenient feature from Postman that allows
+you to save variable values for your teammates.
+
+<Figure src="/img/initial-current-value.png" caption="Initial and Current Value Columns"/>
+
+The "Initial value" is shared in your Workspace with collaborators while
+"Current value" is kept local to your session.
+
+- Use "Initial value" to store helpful examples (i.e. query example) or commonly
+shared values (`baseUrl`)
+- Edit the "Current value" for configuring temporary values
+
+<VideoSection>
+
+To reset all your current values to initial values at once, [Click the `Reset
+all` button](seek) on the right side. To reset a single variable, [Click the `Reset` button](seek).
+
+<VideoPlayer autoplay url="/video/reset-variables.mov"/>
+
+</VideoSection>
+
+<VideoSection>
+
+To persist your current values to initial values, [Click the `Persist all` button](seek)
+on the right side. To persist a single variable, [Click the `Persist` button](seek).
+
+<VideoPlayer autoplay url="/video/persist-variables.mov"/>
+
+</VideoSection>
+
+
+### Variable Scope
+
+Variables live in a
+[Scope](https://learning.postman.com/docs/sending-requests/variables/#variable-scopes).
+In the last section, we made a variable in the scope of a Collection. But
+variables can also be added to `Global` and `Environment` scopes.
+
+<Figure caption="Global, Environment, and Collection Variable Scope Hierarchy">
+```mermaid
+flowchart TB
+    subgraph global [Global]
+        subgraph environment [Environment]
+            subgraph collection [Collection]
+            end
+        end
+    end
+```
+</Figure>
+
+<VideoSection>
+
+Scopes help define where a Variable is available to use.
+
+1. [**Global** scope variables are available everywhere in your Workspace](seek)
+1. [**Environment** scope variables are available when the environment is active](seek)
+    1. [You can configure your Environment by selecting the menu in the top-right corner](seek)
+1. [**Collection** scope variables are only available to a Collection](seek)
+
+<Figure caption="Demonstration of creating Variables in different Scopes">
+    <VideoPlayer playbackRate={1.4} autoplay url="/video/scope.mov"/>
+</Figure>
+
+</VideoSection>
+
+As a rule of thumb, you should organize authorization variables in the
+Environment Scope and API-specific variables in the Collection Scope. The Global
+Scope is mainly used in scripting.
+
+<Figure caption="Rule of thumb on which scope to organize your Variables">
+```mermaid
+flowchart LR
+    Variable --> IA{Is used in Authorization?}
+    IA -->|Yes| E[Environment Scope]
+    IA -->|No| C[Collection Scope]
+```
+</Figure>
+
+### Authorization
+
+Postman includes built-in support for various authorization types, allowing you
+to quickly configure security credentials for all requests within a Collection.
+Postman supports nearly all necessary authorization types from Basic HTTP
+authentication to OAuth. You can also use Variables from your Environment to
+organize security credentials for a workspace.
+
+<Figure src="/img/collection-authorization.png" caption="Selecting Authorization types under the 'Authorization' tab for a Collection"/>
+
+
+Here is a quick demonstration of configuring API key Authorization for a Collection.
+
+<VideoSection>
+
+1. [Go to the Collection's Authorization tab](seek)
+1. [Configure the Authorization type](seek)
+    1. In this case  we need to provide the `X-API-Key` header
+1. [Create an Environment Variable for your credentials](seek)
+1. [Set the Variable as `secret` so the value is masked on the screen](seek). Setting a variable to `secret` simply makes it masked in the UI.
+1. [Ensure that your request is set to `Inherit auth from parent` (i.e. Collection)](seek)
+1. [Click `Send` to test your credentials](seek)
+
+<VideoPlayer autoplay url="/video/authorization.mov"/>
+
+</VideoSection>
+
+### Tips
+
+#### Using Environment Scope
+We strongly suggest putting authentication credentials in an Environment Scope so
+your teammates can document authorization requirements and reuse the
+authentication credentials. Otherwise you will have to tediously add the
+security credentials to the Variables of every Collection.
+
+#### Avoid Persisting Sensitive Credentials
+If you want to avoid persisting sensitive credentials, you can leave the
+"Initial value" column blank. This way you always set the variable by
+configuring the "Current value" column.
+
+<Figure src="/img/salesforce-platform-apis-environment-variables.png" caption="Example empty Initial values in the Environment Variables Template for Salesforce Platform APIs"/>
+
+
+#### Postman does not support your authentication scheme?
+
+If Postman does not natively support your [Authorization type](https://learning.postman.com/docs/sending-requests/authorization/authorization-types/) then you can use
+the ["Pre-request
+Script"](https://learning.postman.com/docs/writing-scripts/pre-request-scripts/)
+tab under your Collection to programmatically set Environment Variables.
+
+For example, you can use the following script to add 3 header values from your
+environment variables. Postman runs the Pre-request script for your Collection
+before every Request so these headers will be conveniently applied for every
+request.
+
+![pre-request headers](/img/pre-request-headers.png)
+
+<details>
+<summary>Copy Code</summary>
+```javascript
+pm.request.addHeader({ key: "client_id", value: pm.environment.get("CLIENT_ID") })
+pm.request.addHeader({ key: "client_secret", value: pm.environment.get("CLIENT_SECRET") })
+pm.request.addHeader({ key: "module_secret", value: pm.environment.get("MODULE_SECRET") })
+```
+</details>
+
+#### Console (Hot Tip <Flame/>)
+
+<VideoSection>
+
+Open the console at the bottom of the window to inspect your requests. This is
+especially helpful for debugging <Tooltip tip="Using scripts to dynamically set
+parameters" text="programmatic"/> collections or many requests.
+
+<VideoPlayer autoplay url="/video/console.mov"/>
+
+</VideoSection>
+
+## Recap
+
+<Figure caption="Overview of the covered concepts and their relationships">
+```mermaid
+flowchart LR
+    Workspace -->|Has many| E[Environment Variables]
+    Workspace -->|Has many| Collection
+    Collection -->|Has many| CV[Collection Variables]
+    E -->|Used by| Request
+    CV -->|Used by| Request
+    Authorization -->|Used by| Request
+    Collection -->|Has many| Request
+    Collection -->|Has| Authorization
+```
+</Figure>
+
+There are a lot of considerations when implementing an API testing strategy.
+Instead of building API testing infrastructure from scratch, we suggest you use
+Postman as it provides a robust data model and intuitive UX to effectively
+organize your documentation and testing for your API. But Postman goes much
+further than just organizing your requests.
+
+### Further Reading
+
+We suggest taking a look at Postman's documentation about [writing
+scripts](https://learning.postman.com/docs/writing-scripts/intro-to-scripts/)
+and [running
+collections](https://learning.postman.com/docs/collections/running-collections/running-collections-overview/)
+to yourself to create advanced test suites with Postman.
+
+
