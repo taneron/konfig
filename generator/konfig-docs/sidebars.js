@@ -22,7 +22,10 @@ const sidebars = {
     {
       label: "Getting Started",
       type: "category",
-      items: ["getting-started/openapi-specification"],
+      items: [
+        "getting-started/openapi-specification",
+        "getting-started/postman-collections",
+      ],
     },
     {
       type: "category",
@@ -36,7 +39,6 @@ const sidebars = {
         "tutorials/fix-openapi-spec",
         "tutorials/automate-sdk-updates",
         "tutorials/publish-sdks",
-        "tutorials/postman-to-openapi",
         "tutorials/naming-operation-ids",
       ],
     },

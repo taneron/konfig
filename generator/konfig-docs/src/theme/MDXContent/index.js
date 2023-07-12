@@ -11,6 +11,7 @@ import { Figure } from "@site/src/components/Figure";
 import { Flame } from "@site/src/components/Flame/Flame";
 import { Gradient } from "@site/src/components/Gradient/Gradient";
 import { VideoSection } from "@site/src/components/VideoSection";
+import "@fortawesome/fontawesome-free/css/all.css";
 
 export default function MDXContent({ children }) {
   return (
