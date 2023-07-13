@@ -682,7 +682,7 @@ public class DefaultGenerator implements Generator {
 
                 addAuthenticationSwitches(operation);
 
-                operation.put("infoExtensions", openAPI.getInfo().getExtensions());
+                operation.put("infoExtensions", Objects.requireNonNullElse(openAPI.getInfo().getExtensions(), new HashMap<>()));
 
                 for (String templateName : config.apiTemplateFiles().keySet()) {
                     String filename = config.apiFilename(templateName, tag);
@@ -908,7 +908,7 @@ public class DefaultGenerator implements Generator {
         bundle.put("hasMultipleApiKeys", ((List) bundle.getOrDefault("apiKeyMethods", new ArrayList())).size() > 1);
 
         // for convenience instead of openAPI.info.extensions.XXXXX
-        bundle.put("infoExtensions", openAPI.getInfo().getExtensions());
+        bundle.put("infoExtensions", Objects.requireNonNullElse(openAPI.getInfo().getExtensions(), new HashMap<>()));
 
         config.postProcessSupportingFileData(bundle);
 
