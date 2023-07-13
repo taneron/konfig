@@ -23,7 +23,7 @@ export async function fixInvalidServerUrlsOas3({
       boxen(
         `Detected invalid server URL "${server.url}"\nhttps://konfigthis.com/docs/lint-rules#tag-naming-convention"`,
         {
-          title: 'Improper Tag Detected',
+          title: 'Invalid Server URL Detected',
           padding: 1,
           borderColor: 'red',
         }
@@ -48,7 +48,10 @@ export async function fixInvalidServerUrlsOas3({
         name: 'newUrl',
         message: `Enter new URL name:`,
         validate(url: string) {
-          return urlRegex.test(url)
+          return (
+            urlRegex.test(url) ||
+            'Please provide valid server URL (e.g. https://api.konfigthis.com)'
+          )
         },
       },
     ])
