@@ -31,11 +31,16 @@ export async function ignoreObjectsWithNoProperties({
   })
   if (objectTypeSchemas.length === 0) return 0
   console.log(
-    boxen(`Detected object type schemas with no properties`, {
-      padding: 1,
-      title: OBJECT_WITH_NO_PROPERTIES_RULE_NAME,
-      titleAlignment: 'center',
-    })
+    boxen(
+      `Detected object type schemas with no properties\nRead more at https://konfigthis.com/docs/lint-rules#object-with-no-properties`,
+      {
+        padding: 1,
+        title: OBJECT_WITH_NO_PROPERTIES_RULE_NAME,
+        titleAlignment: 'center',
+        textAlignment: 'center',
+        borderColor: 'red',
+      }
+    )
   )
   const ignorePotentialIncorrectType = await getIgnoreAnswer({
     progress,

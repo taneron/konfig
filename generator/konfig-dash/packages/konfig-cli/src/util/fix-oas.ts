@@ -150,14 +150,21 @@ export async function fixOas({
   // Dylan: this auto-fix was commented because there is a case where you want a
   // free-form object with no properties so we relaxed this inquiry and made the
   // lint rule a "Hint" as opposed to "Warning"
-  // Ignore potential incorrect type
-  // const numberOfIgnoreObjectsWithNoPropertiesAdded =
-  //   await ignoreObjectsWithNoProperties({
-  //     spec,
-  //     alwaysYes,
-  //     progress,
-  //   })
 
+  // Dylan Update 1: I forgot that the rule has functional implication besides
+  // linting in that its value is used to determine whether or not to generate
+  // properties in the case that you intentionally want a free-form object
+  // schema. I also realize that this fix rule must come before fixing objects
+  // with no properties because a value of "true" means we don't try to fix
+  // those objects with no properties
+
+  // Ignore potential incorrect type
+  const numberOfIgnoreObjectsWithNoPropertiesAdded =
+    await ignoreObjectsWithNoProperties({
+      spec,
+      alwaysYes,
+      progress,
+    })
   // Objects with no properties
   const numberOfObjectsWithNoPropertiesFixed = await fixObjectWithNoProperties({
     spec,
@@ -239,7 +246,7 @@ export async function fixOas({
     numberOfRedundantSecuritySchemesRemoved,
     numberOfUnstructuredRequestBodiesFixed,
     numberOfIgnorePotentialIncorrectTypeAdded,
-    // numberOfIgnoreObjectsWithNoPropertiesAdded,
+    numberOfIgnoreObjectsWithNoPropertiesAdded,
     numberOfEmptyResponseBodySchemasFixed,
     numberOfDuplicateTagNamesFixed,
     numberOfExampleAndExamplesFixed,

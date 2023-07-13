@@ -124,7 +124,7 @@ export default class Fix extends Command {
       numberOfUnstructuredRequestBodiesFixed,
       numberOfIgnorePotentialIncorrectTypeAdded,
       numberOfCustomModifications,
-      // numberOfIgnoreObjectsWithNoPropertiesAdded,
+      numberOfIgnoreObjectsWithNoPropertiesAdded,
       numberOfEmptyResponseBodySchemasFixed,
       numberOfDuplicateTagNamesFixed,
       numberOfInvalidServerUrlsFixed,
@@ -146,11 +146,11 @@ export default class Fix extends Command {
     )
     console.log(
       boxen(
-        // Added ${numberOfIgnoreObjectsWithNoPropertiesAdded} ${OBJECT_WITH_NO_PROPERTIES_RULE_NAME} ignore rule
         `Updated ${numberOfUpdatedOperationIds} operation IDs
 Made ${numberOfCustomModifications} custom modifications
 Renamed ${numberOfImproperlyNamedTags} improperly named tags
 Removed ${numberOfDisallowedHeaderNamesRemoved} disallowed headers removed
+Added ${numberOfIgnoreObjectsWithNoPropertiesAdded} ${OBJECT_WITH_NO_PROPERTIES_RULE_NAME} ignore rule
 Added ${numberOfIgnorePotentialIncorrectTypeAdded} ${POTENTIAL_INCORRECT_DATA_TYPE_RULE_NAME} ignore rule
 Added ${infoDescriptionFixed} missing info description
 Added ${numberOfMissingResponseDescriptionsAdded} missing response descriptions

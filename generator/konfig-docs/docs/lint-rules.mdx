@@ -211,6 +211,8 @@ logging results.
 
 ## object-with-no-properties
 
+Severity: Hint
+
 #### Example
 
 ```
@@ -219,10 +221,27 @@ Schema type of "object" has no properties
 
 #### Explanation
 
-Describing the properties of an "object" type schema is helpful for generating
-typed classes in SDKs. Typed classes allows for better in-line documentation and
+Describing the properties of an "object" type schema helps generate typed
+classes in SDKs. Typed classes allow for better in-line documentation and
 serialization/deserialization. We suggest that you describe the properties of
 the "object" type schema by filling out the "properties" field.
+
+Note that in some cases you intentionally want a free-form object type. In that
+case, you can ignore this rule by adding the following field to your top-level
+info object in your OAS.
+
+```json openapi.json focus=6:8
+{
+  "info": {
+    "title": "My API",
+    "description": "My awesome API",
+    "version": "1.0.0",
+    "x-konfig-ignore": {
+      "object-with-no-properties": true
+    }
+  }
+}
+```
 
 ---
 
