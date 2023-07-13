@@ -1,24 +1,23 @@
 ---
 slug: openapi
-title: What is OpenAPI? An In-Depth Exploration of API Development and Documentation
+title: What is OpenAPI? An In-Depth Exploration of API Development
 authors: dylan
 tags: [OpenAPI]
 draft: true
 ---
 
-## Introduction
-
-- Briefly introduce the topic of OpenAPI and its significance in the world of API development.
+import "./assets/openapi.css"
 
 Are you curious about OpenAPI and its role in building APIs? In this article,
 we'll unravel the mysteries behind OpenAPI and explore its importance in modern
 software architecture.
 
-- Highlight the growing importance of OpenAPI in modern software architecture and its role in facilitating interoperability and collaboration.
-
 As software systems become more interconnected, OpenAPI has emerged as a vital
 tool for promoting collaboration and enabling seamless integration between
-different applications.
+different applications. Today large API-first companies like
+[Stripe](https://github.com/stripe/openapi) and
+[Plaid](https://github.com/plaid/plaid-openapi) use OpenAPI. OpenAPI continues
+to find adoption at API-first companies due to its ubiquity and rich ecosystem.
 
 <Figure caption={"Google Trends on \"openapi\" from 1/1/2017 to 7/10/2023"}>
 ![OpenAPI Google Trends](/img/openapi-google-trends.png)
@@ -28,22 +27,59 @@ different applications.
 
 ## Understanding APIs
 
-- Define APIs (Application Programming Interfaces) and their role in enabling communication between software systems.
-    - APIs act as the communication bridge between software applications, allowing them to interact and share data. They're like messengers that facilitate smooth conversations between different pieces of software.
+Imagine you're building an application and you need to incorporate information
+or services from an external source, such as financial data, social media posts,
+or a payment gateway.
 
-- Explain the benefits of using APIs, such as modularity, scalability, and the ability to integrate diverse applications.
-    - APIs bring a multitude of advantages, such as making software more modular and scalable, enabling seamless integration with third-party applications, and empowering developers to leverage existing functionalities without reinventing the wheel.
+```mermaid
+flowchart LR
+    A[Application] <-.-> W[Weather Data?]
+    A <-.-> S[Financial Data?]
+    A <-.-> P[Payment Gateway?]
+```
+
+How do we get the data we need and process the transactions for our application?
+One option is to build all of this data and payments infrastructure yourself,
+but that could take years. Instead, developers turn to API providers like
+[OpenWeather](https://openweathermap.org/api),
+[SnapTrade](https://docs.snaptrade.com/), and [Stripe](https://stripe.com/)
+to avoid building the infrastructure themselves.
+
+```mermaid
+flowchart LR
+    A[Application] <--> W[OpenWeather]
+    A <--> S[SnapTrade]
+    A <--> P[Stripe]
+```
+
+Suddenly, our application has access to all the data infrastructure and
+payment processing. Developing your application should now take weeks instead of
+years. But not so fast, now you need to integrate the APIs. To do this, you
+start reading the documentation and find that APIs can be complex and hard to
+use.
 
 ## Introducing OpenAPI
 
-- Define OpenAPI and its purpose as a specification for designing, building, and documenting APIs.
-    - OpenAPI is the Swiss Army knife of API development. It's a specification that provides a structured approach for designing, building, and documenting APIs, ensuring clarity and consistency throughout the entire lifecycle.
+OpenAPI standardizes API. It's a specification that provides a structured
+approach for designing, building, and documenting APIs, ensuring clarity and
+consistency throughout the entire lifecycle.
 
-- Discuss the evolution of OpenAPI, from its roots as Swagger to its current version (e.g., OpenAPI 3.0).
-    - OpenAPI has come a long way since its inception as Swagger. With each iteration, it has evolved and refined its features, culminating in the latest version, OpenAPI 3.0, which brings enhanced capabilities and improved support for modern API design.
+```mermaid
+flowchart LR
+    A[Application] <-->|OpenAPI| W[ OpenWeather]
+    A <-->|OpenAPI| S[Twitter]
+    A <-->|OpenAPI| P[Stripe]
+```
 
-- Explain the relationship between OpenAPI and the REST architectural style.
-    - OpenAPI and REST go hand in hand like peanut butter and jelly. OpenAPI aligns seamlessly with the principles of REST, providing a standardized approach to describe, consume, and interact with RESTful APIs.
+[OpenAPI](https://swagger.io/specification/) has come a long way since its
+inception as [Swagger](https://swagger.io/specification/v2/). With each
+iteration, it has evolved and refined its features, culminating in the latest
+version, OpenAPI 3.1, which brings enhanced capabilities and improved support
+for modern API design.
+
+OpenAPI and REST go hand in hand like peanut butter and jelly. OpenAPI
+aligns seamlessly with the principles of REST, providing a standardized
+approach to describe, consume, and interact with RESTful APIs.
 
 ## Key Features and Components of OpenAPI
 
