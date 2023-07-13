@@ -1,0 +1,359 @@
+openapi: 3.0.0
+info:
+  title: Requests
+  description: This API manages a simple User database
+  version: 1.0.0
+servers:
+  - url: http://{{baseurl}}
+components:
+  securitySchemes:
+    apikeyAuth:
+      type: http
+      scheme: apikey
+security:
+  - apikeyAuth: []
+tags:
+  - name: users
+  - name: users > {user_id}
+paths:
+  /users/{user_id}:
+    get:
+      tags:
+        - users > {user_id}
+      summary: Get User
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: user_id
+          in: path
+          schema:
+            type: string
+          required: true
+          example: '{{userId}}'
+      responses:
+        '200':
+          description: OK
+          headers:
+            date:
+              schema:
+                type: string
+                example: Thu, 13 Jul 2023 04:43:44 GMT
+            server:
+              schema:
+                type: string
+                example: uvicorn
+            content-length:
+              schema:
+                type: integer
+                example: '99'
+            content-type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                name: Me
+                email: hello@world.com
+                country: USA
+                id: 2a3d99ee-0369-40a1-a8c2-94f1c2a8348c
+        '422':
+          description: Unprocessable Entity (WebDAV) (RFC 4918)
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                detail:
+                  - loc:
+                      - <string>
+                      - <string>
+                    msg: <string>
+                    type: <string>
+                  - loc:
+                      - <string>
+                      - <string>
+                    msg: <string>
+                    type: <string>
+    put:
+      tags:
+        - users > {user_id}
+      summary: Update User
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: new name
+                email: new@email.com
+                country: USA
+            examples:
+              example-1:
+                value:
+                  name: new name
+                  email: new@email.com
+                  country: USA
+        required: true
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: user_id
+          in: path
+          schema:
+            type: string
+          required: true
+          example: '{{userId}}'
+      responses:
+        '200':
+          description: OK
+          headers:
+            date:
+              schema:
+                type: string
+                example: Thu, 13 Jul 2023 04:44:31 GMT
+            server:
+              schema:
+                type: string
+                example: uvicorn
+            content-length:
+              schema:
+                type: integer
+                example: '39'
+            content-type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                message: User updated successfully
+        '422':
+          description: Unprocessable Entity (WebDAV) (RFC 4918)
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                detail:
+                  - loc:
+                      - <string>
+                      - <string>
+                    msg: <string>
+                    type: <string>
+                  - loc:
+                      - <string>
+                      - <string>
+                    msg: <string>
+                    type: <string>
+    delete:
+      tags:
+        - users > {user_id}
+      summary: Delete User
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: user_id
+          in: path
+          schema:
+            type: string
+          required: true
+          example: '{{userId}}'
+      responses:
+        '200':
+          description: OK
+          headers:
+            date:
+              schema:
+                type: string
+                example: Thu, 13 Jul 2023 04:44:49 GMT
+            server:
+              schema:
+                type: string
+                example: uvicorn
+            content-length:
+              schema:
+                type: integer
+                example: '39'
+            content-type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                message: User deleted successfully
+        '422':
+          description: Unprocessable Entity (WebDAV) (RFC 4918)
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                detail:
+                  - loc:
+                      - <string>
+                      - <string>
+                    msg: <string>
+                    type: <string>
+                  - loc:
+                      - <string>
+                      - <string>
+                    msg: <string>
+                    type: <string>
+  /users:
+    get:
+      tags:
+        - users
+      summary: Get Users
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            date:
+              schema:
+                type: string
+                example: Thu, 13 Jul 2023 04:56:45 GMT
+            server:
+              schema:
+                type: string
+                example: uvicorn
+            content-length:
+              schema:
+                type: integer
+                example: '101'
+            content-type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: array
+              example:
+                - name: Me
+                  email: hello@world.com
+                  country: USA
+                  id: 8aac2554-204a-41b5-a9a6-27ee01d1f182
+    post:
+      tags:
+        - users
+      summary: Create User
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: Me
+                email: hello@world.com
+                country: USA
+            examples:
+              example-1:
+                value:
+                  name: Me
+                  email: hello@world.com
+                  country: USA
+        required: true
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: OK
+          headers:
+            date:
+              schema:
+                type: string
+                example: Wed, 12 Jul 2023 16:57:20 GMT
+            server:
+              schema:
+                type: string
+                example: uvicorn
+            content-length:
+              schema:
+                type: integer
+                example: '83'
+            content-type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: 0fd5d128-daad-4898-bc02-198a49f445c9
+                message: User created successfully
+        '422':
+          description: Unprocessable Entity (WebDAV) (RFC 4918)
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                detail:
+                  - loc:
+                      - <string>
+                      - <string>
+                    msg: <string>
+                    type: <string>
+                  - loc:
+                      - <string>
+                      - <string>
+                    msg: <string>
+                    type: <string>

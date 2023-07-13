@@ -20,6 +20,11 @@ const EXPECTED_BASIC = {
   expectation: readFileSync(path.join(TEST_RESOURCES_PATH, 'output', 'Basic.yml'), 'utf8'),
   path: path.join(TEST_RESOURCES_PATH, 'output', 'Basic.yml'),
 }
+const EXPECTED_ARRAY_TYPE_RETURN = {
+  expectation: () =>
+    readFileSync(path.join(TEST_RESOURCES_PATH, 'output', 'ArrayTypeResponse.yml'), 'utf8'),
+  path: path.join(TEST_RESOURCES_PATH, 'output', 'ArrayTypeResponse.yml'),
+}
 const EXPECTED_DECENTRO_INFER_REQUIRED = {
   expectation: () =>
     readFileSync(path.join(TEST_RESOURCES_PATH, 'output', 'DecentroInferRequired.yml'), 'utf8'),
@@ -502,6 +507,12 @@ describe('Library specs', function () {
       )
 
       if (version === TEST_VERSIONS[1]) {
+        const COLLECTION_ARRAY_TYPE_RESPONSE = path.join(
+          TEST_RESOURCES_PATH,
+          'input',
+          `${version}/ArrayTypeResponse.json`
+        )
+
         const COLLECTION_DECENTRO_NO_BODY_IN_RESPONSE = path.join(
           TEST_RESOURCES_PATH,
           'input',
@@ -513,6 +524,12 @@ describe('Library specs', function () {
           'input',
           `${version}/DecentroInferRequired.json`
         )
+
+        it('array type response', async function () {
+          const result = await postmanToOpenApi(COLLECTION_ARRAY_TYPE_RESPONSE, OUTPUT_PATH, {})
+          equal(result, EXPECTED_ARRAY_TYPE_RETURN)
+          ok(existsSync(OUTPUT_PATH))
+        })
 
         it('should not fail when response does not have body', async function () {
           const result = await postmanToOpenApi(

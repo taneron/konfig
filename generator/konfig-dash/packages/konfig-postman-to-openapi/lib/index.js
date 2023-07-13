@@ -677,9 +677,22 @@ function parseResponseFromExamples(responses, responseHeaders) {
 function parseContent(bodiesByLanguage) {
   const content = Object.entries(bodiesByLanguage).reduce((content, [language, bodies]) => {
     if (language === 'json') {
+      const examples = parseExamples(bodies, 'json')
+
+      // check if all examples are array types
+      const allExamples = [
+        examples.example ? examples.example : [],
+        ...(examples.examples ? Object.values(examples.examples) : []),
+      ]
+      const allExampleAreArrayTypes = allExamples.reduce(
+        (acc, example) => acc && Array.isArray(example),
+        true
+      )
+
+      const type = allExampleAreArrayTypes ? 'array' : 'object'
       content['application/json'] = {
-        schema: { type: 'object' },
-        ...parseExamples(bodies, 'json'),
+        schema: { type },
+        ...examples,
       }
     } else {
       content['text/plain'] = {
