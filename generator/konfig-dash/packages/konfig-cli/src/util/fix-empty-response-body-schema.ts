@@ -172,7 +172,7 @@ async function getExample({
       return savedExample
     }
   }
-  const json = await getOrRequestExampleJson({ mediaObject, spec })
+  const json = await getOrRequestExampleJson({ mediaObject, spec, operation })
 
   progress.saveExample({ path, method, json })
   return json
@@ -181,17 +181,33 @@ async function getExample({
 async function getOrRequestExampleJson({
   mediaObject,
   spec,
+  operation,
 }: {
   mediaObject: MediaObject
   spec: Spec
+  operation: OperationObject
 }): Promise<Json> {
   const example = await getExampleJsonFromMediaObject({ mediaObject, spec })
   if (example !== undefined) return example
+  console.log(
+    boxen(
+      `Action required for ${operation.method.toUpperCase()} ${
+        operation.path
+      }!\nPlease provide a response body example to generate response classes in the SDKs.\nRead for details: https://konfigthis.com/docs/lint-rules#empty-response-body-schema`,
+      {
+        title: 'Missing Response Body Schema',
+        padding: 1,
+        borderColor: 'red',
+      }
+    )
+  )
   const { rawJson } = await inquirer.prompt<{ rawJson: string }>([
     {
       type: 'editor',
       name: 'rawJson',
-      message: 'Missing response body schema detected, paste example JSON here',
+      message: `Missing response body schema detected for "${operation.method.toUpperCase()} ${
+        operation.path
+      }", provide example JSON here`,
       validate(input: string) {
         if (!isJsonString(input)) {
           CliUx.ux.warn('\nProvided invalid JSON string, try again.\n')
