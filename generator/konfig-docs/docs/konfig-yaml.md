@@ -1,6 +1,6 @@
 # konfig.yaml
 
-`konfig.yaml` is a required configuration file that tells `konfig` CLI how to operate. Explore the schema [here](docs/konfig-yaml/schema).
+`konfig.yaml` is a required configuration file that tells `konfig` CLI how to operate. Explore the schema [here](/docs/konfig-yaml/schema).
 
 ## Example
 
