@@ -147,13 +147,16 @@ export async function fixOas({
       alwaysYes,
     })
 
+  // Dylan: this auto-fix was commented because there is a case where you want a
+  // free-form object with no properties so we relaxed this inquiry and made the
+  // lint rule a "Hint" as opposed to "Warning"
   // Ignore potential incorrect type
-  const numberOfIgnoreObjectsWithNoPropertiesAdded =
-    await ignoreObjectsWithNoProperties({
-      spec,
-      alwaysYes,
-      progress,
-    })
+  // const numberOfIgnoreObjectsWithNoPropertiesAdded =
+  //   await ignoreObjectsWithNoProperties({
+  //     spec,
+  //     alwaysYes,
+  //     progress,
+  //   })
 
   // Objects with no properties
   const numberOfObjectsWithNoPropertiesFixed = await fixObjectWithNoProperties({
@@ -236,7 +239,7 @@ export async function fixOas({
     numberOfRedundantSecuritySchemesRemoved,
     numberOfUnstructuredRequestBodiesFixed,
     numberOfIgnorePotentialIncorrectTypeAdded,
-    numberOfIgnoreObjectsWithNoPropertiesAdded,
+    // numberOfIgnoreObjectsWithNoPropertiesAdded,
     numberOfEmptyResponseBodySchemasFixed,
     numberOfDuplicateTagNamesFixed,
     numberOfExampleAndExamplesFixed,

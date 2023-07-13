@@ -130,7 +130,7 @@ testRule('object-with-no-properties', [
           'application/json',
           'schema',
         ],
-        severity: DiagnosticSeverity.Warning,
+        severity: DiagnosticSeverity.Hint,
       },
       {
         code: 'object-with-no-properties',
@@ -145,7 +145,7 @@ testRule('object-with-no-properties', [
           'application/json',
           'schema',
         ],
-        severity: DiagnosticSeverity.Warning,
+        severity: DiagnosticSeverity.Hint,
       },
     ],
   },

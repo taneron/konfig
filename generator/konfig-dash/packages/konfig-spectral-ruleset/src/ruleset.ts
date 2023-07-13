@@ -158,7 +158,7 @@ export default {
         },
       ],
       formats: [oas3],
-      severity: DiagnosticSeverity.Warning,
+      severity: DiagnosticSeverity.Hint,
     },
     'missing-date-format': {
       message: `Schema type of "string" has no format "date" but has example "{{error}}"`,
