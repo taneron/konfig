@@ -42,6 +42,8 @@ export default class Fix extends Command {
     auto: Flags.boolean({
       name: 'auto',
       char: 'a',
+      allowNo: true,
+      default: true,
       description: 'Automatically generate names if asked',
     }),
     konfigDir: Flags.directory({
@@ -53,6 +55,8 @@ export default class Fix extends Command {
     alwaysYes: Flags.boolean({
       name: 'alwaysYes',
       char: 'Y',
+      allowNo: true,
+      default: true,
       description: 'Always confirm with "Yes"("Y") when asked',
     }),
   }
