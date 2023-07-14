@@ -131,6 +131,7 @@ export function HeroBullets() {
             </Button>
             <Button.Group>
               <Button
+                fullWidth
                 component="a"
                 href="https://konfigthis.com/docs/getting-started/openapi-specification"
                 target="_blank"
@@ -143,6 +144,7 @@ export function HeroBullets() {
                 OpenAPI
               </Button>
               <Button
+                fullWidth
                 component="a"
                 href="https://konfigthis.com/docs/getting-started/postman-collections"
                 target="_blank"
