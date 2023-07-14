@@ -129,18 +129,32 @@ export function HeroBullets() {
             >
               Book a demo
             </Button>
-            <Button
-              component="a"
-              href="/docs"
-              target="_blank"
-              className={classes.control}
-              leftIcon={<IconExternalLink />}
-              size="lg"
-              variant="default"
-              color="gray"
-            >
-              Try it yourself
-            </Button>
+            <Button.Group>
+              <Button
+                component="a"
+                href="https://konfigthis.com/docs/getting-started/openapi-specification"
+                target="_blank"
+                className={classes.control}
+                leftIcon={<IconExternalLink />}
+                size="lg"
+                variant="default"
+                color="gray"
+              >
+                OpenAPI
+              </Button>
+              <Button
+                component="a"
+                href="https://konfigthis.com/docs/getting-started/postman-collections"
+                target="_blank"
+                className={classes.control}
+                leftIcon={<IconExternalLink />}
+                size="lg"
+                variant="default"
+                color="gray"
+              >
+                Postman
+              </Button>
+            </Button.Group>
           </div>
         </div>
         <AspectRatio mx="auto" maw={600} mt={rem(30)} ratio={16 / 9}>
