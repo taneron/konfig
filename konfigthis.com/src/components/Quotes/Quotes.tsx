@@ -12,7 +12,7 @@ export const Quotes = () => {
     <Container my={rem(150)} size="lg">
       <div style={{ textAlign: "center" }}>
         <Title order={2}>Loved by growing API teams</Title>
-        <Text c="dimmed">{"Don't just take our word for it."}</Text>
+        <Text c="dimmed">{"Don't take our word for it"}</Text>
       </div>
       <SimpleGrid
         my={rem(50)}

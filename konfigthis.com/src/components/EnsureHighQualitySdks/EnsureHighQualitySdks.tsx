@@ -175,7 +175,7 @@ export function EnsureHighQualitySdks() {
               <Text c="dimmed" fz="sm">
                 {"Konfig's"}{" "}
                 <Anchor href="https://konfigthis.com/docs/lint-rules">
-                  proprietary linter
+                  linter
                 </Anchor>{" "}
                 catches errors in your OpenAPI Specification before they can
                 reach your customers and cause confusion
