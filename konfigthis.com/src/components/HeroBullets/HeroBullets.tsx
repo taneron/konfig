@@ -6,6 +6,7 @@ import {
   Text,
   rem,
   AspectRatio,
+  Box,
 } from "@mantine/core";
 import { IconCalendarEvent, IconExternalLink } from "@tabler/icons-react";
 
@@ -159,15 +160,17 @@ export function HeroBullets() {
             </Button.Group>
           </div>
         </div>
-        <AspectRatio mx="auto" maw={600} mt={rem(30)} ratio={16 / 9}>
-          <iframe
-            src="https://www.youtube.com/embed/_rbFV2RmAc4"
-            title="YouTube video player"
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowFullScreen
-          />
-        </AspectRatio>
+        <Box mt={rem(30)}>
+          <AspectRatio mx="auto" maw={600} ratio={16 / 9}>
+            <iframe
+              src="https://www.youtube.com/embed/_rbFV2RmAc4"
+              title="YouTube video player"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+            />
+          </AspectRatio>
+        </Box>
       </Container>
     </div>
   );
