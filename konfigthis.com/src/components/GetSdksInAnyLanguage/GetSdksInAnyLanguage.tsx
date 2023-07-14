@@ -4,10 +4,10 @@ import {
   Col,
   Container,
   Grid,
-  SimpleGrid,
   Title,
   Group,
   rem,
+  Anchor,
 } from "@mantine/core";
 import Image from "next/image";
 
@@ -20,8 +20,12 @@ export function GetSdksInAnyLanguage() {
             Get SDKs in any language
           </Title>
           <Text c="dimmed" fz="sm">
-            Konfig supports all major languages so your customers can easily
-            integrate with your API no matter the stack they use
+            Konfig{" "}
+            <Anchor href="https://konfigthis.com/docs/reference/language-and-oas-support">
+              supports all major languages
+            </Anchor>{" "}
+            so your customers can easily integrate with your API no matter the
+            stack they use
           </Text>
 
           <Button

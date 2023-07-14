@@ -11,6 +11,7 @@ import {
   ThemeIcon,
   Paper,
   Group,
+  Anchor,
 } from "@mantine/core";
 import { useViewportSize, useWindowScroll } from "@mantine/hooks";
 import {
@@ -20,6 +21,7 @@ import {
   IconShieldCheckFilled,
   IconTestPipe,
 } from "@tabler/icons-react";
+import Link from "next/link";
 import { useState, useEffect, useMemo } from "react";
 import ReactFlow, {
   Position,
@@ -171,9 +173,12 @@ export function EnsureHighQualitySdks() {
                 Validation
               </Text>
               <Text c="dimmed" fz="sm">
-                {"Konfig's"} proprietary linter catches errors in your OpenAPI
-                Specification before they can reach your customers and cause
-                confusion
+                {"Konfig's"}{" "}
+                <Anchor href="https://konfigthis.com/docs/lint-rules">
+                  proprietary linter
+                </Anchor>{" "}
+                catches errors in your OpenAPI Specification before they can
+                reach your customers and cause confusion
               </Text>
             </Box>
             <Box c="dimmed">
@@ -189,7 +194,7 @@ export function EnsureHighQualitySdks() {
                 Testing
               </Text>
               <Text c="dimmed" fz="sm">
-                Konfig writes test cases for every SDK to ensure any API update 
+                Konfig writes test cases for every SDK to ensure any API update
                 {"won't"} break the SDKs your customers are using
               </Text>
             </Box>

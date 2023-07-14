@@ -12,6 +12,7 @@ import {
   rem,
   Stack,
   Paper,
+  Anchor,
 } from "@mantine/core";
 import { useViewportSize, useWindowScroll } from "@mantine/hooks";
 import { IconRefresh } from "@tabler/icons-react";
@@ -240,8 +241,21 @@ export function GetSdksWithZeroEffort() {
                 OpenAPI Specification and Postman Support
               </Text>
               <Text c="dimmed" fz="sm">
-                Easily import an OpenAPI Specification or Postman Collection and
-                Konfig automatically generates and publishes SDKs with no
+                Easily import an{" "}
+                <Anchor
+                  target="_blank"
+                  href="https://konfigthis.com/docs/getting-started/openapi-specification"
+                >
+                  OpenAPI Specification
+                </Anchor>{" "}
+                or{" "}
+                <Anchor
+                  target="_blank"
+                  href="https://konfigthis.com/docs/getting-started/postman-collections"
+                >
+                  Postman Collection
+                </Anchor>{" "}
+                and Konfig automatically generates and publishes SDKs with no
                 further work from you
               </Text>
             </Box>
@@ -258,8 +272,13 @@ export function GetSdksWithZeroEffort() {
                 Automated
               </Text>
               <Text c="dimmed" fz="sm">
-                Any time you publish a change to your spec, we automatically
-                update and republish all of your SDKs
+                Any time you publish a change to your spec, we{" "}
+                <Anchor
+                  target="_blank"
+                  href="https://konfigthis.com/docs/tutorials/automate-sdk-updates"
+                >
+                  automatically update and republish all of your SDKs
+                </Anchor>
               </Text>
             </Box>
           </Stack>
