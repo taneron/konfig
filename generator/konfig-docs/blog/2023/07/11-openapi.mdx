@@ -8,67 +8,64 @@ draft: true
 
 import "./assets/openapi.css"
 
-Are you curious about OpenAPI and its role in building APIs? In this article,
-we'll unravel the mysteries behind OpenAPI and explore its importance in modern
-software architecture.
+What exactly is an OpenAPI? In this article, we'll cover the problem that
+OpenAPI solves and explore its importance in modern software architecture.
 
 As software systems become more interconnected, OpenAPI has emerged as a vital
 tool for promoting collaboration and enabling seamless integration between
 different applications. Today large API-first companies like
 [Stripe](https://github.com/stripe/openapi) and
-[Plaid](https://github.com/plaid/plaid-openapi) use OpenAPI. OpenAPI continues
-to find adoption at API-first companies due to its ubiquity and rich ecosystem.
+[Plaid](https://github.com/plaid/plaid-openapi) use OpenAPI so it's no surprise
+that OpenAPI is finding widespread adoption.
 
-<Figure caption={"Google Trends on \"openapi\" from 1/1/2017 to 7/10/2023"}>
-![OpenAPI Google Trends](/img/openapi-google-trends.png)
-</Figure>
+<Figure src="/img/openapi-google-trends.png" caption={"Google Trend on \"openapi\" from 1/1/2017 to 7/10/2023"}/>
 
 {/* TRUNCATE */}
 
 ## Understanding APIs
 
-Imagine you're building an application and you need to incorporate information
-or services from an external source, such as financial data, social media posts,
-or a payment gateway.
+Imagine you're building an application and you need to incorporate services or
+information from an external source, such as messaging, financial data, and
+payment processing.
 
 ```mermaid
 flowchart LR
-    A[Application] <-.-> W[Weather Data?]
-    A <-.-> S[Financial Data?]
-    A <-.-> P[Payment Gateway?]
+    A[Application] <-.-> W["📱 Messaging?"]
+    A <-.-> S["🏦 Financial data?"]
+    A <-.-> P["💳 Payment processing?"]
 ```
 
 How do we get the data we need and process the transactions for our application?
 One option is to build all of this data and payments infrastructure yourself,
-but that could take years. Instead, developers turn to API providers like
-[OpenWeather](https://openweathermap.org/api),
-[SnapTrade](https://docs.snaptrade.com/), and [Stripe](https://stripe.com/)
-to avoid building the infrastructure themselves.
+but that could take years. Instead, lets leverage API providers like
+[Twilio](https://www.twilio.com/en-us), [Plaid](https://plaid.com/), and
+[Stripe](https://stripe.com/) to avoid building the infrastructure themselves.
 
 ```mermaid
 flowchart LR
-    A[Application] <--> W[OpenWeather]
-    A <--> S[SnapTrade]
-    A <--> P[Stripe]
+    A[Application] <--> W["📱 Twilio"]
+    A <--> S["🏦 Plaid"]
+    A <--> P["💳 Stripe"]
 ```
 
-Suddenly, our application has access to all the data infrastructure and
-payment processing. Developing your application should now take weeks instead of
-years. But not so fast, now you need to integrate the APIs. To do this, you
-start reading the documentation and find that APIs can be complex and hard to
-use.
+Suddenly, our application has access to the necessary data infrastructure and
+payment processing capabilities! Developing our application now takes weeks
+instead of years.  But not so fast, now you need to integrate the APIs 🎉.
+Okay, let's start reading the documentation.
+
+Oh no! The APIs you need to integrate are complex and hard to use.
 
 ## Introducing OpenAPI
 
-OpenAPI standardizes API. It's a specification that provides a structured
+OpenAPI standardizes APIs. It's a specification that provides a structured
 approach for designing, building, and documenting APIs, ensuring clarity and
 consistency throughout the entire lifecycle.
 
 ```mermaid
 flowchart LR
-    A[Application] <-->|OpenAPI| W[ OpenWeather]
-    A <-->|OpenAPI| S[Twitter]
-    A <-->|OpenAPI| P[Stripe]
+    A[Application] <-->|<a href="https://www.twilio.com/docs/openapi">OpenAPI</a>| W[Twilio]
+    A <-->|<a href="https://github.com/plaid/plaid-openapi">OpenAPI</a>| S[Plaid]
+    A <-->|<a href="https://github.com/stripe/openapi">OpenAPI</a>| P[Stripe]
 ```
 
 [OpenAPI](https://swagger.io/specification/) has come a long way since its
@@ -77,64 +74,169 @@ iteration, it has evolved and refined its features, culminating in the latest
 version, OpenAPI 3.1, which brings enhanced capabilities and improved support
 for modern API design.
 
-OpenAPI and REST go hand in hand like peanut butter and jelly. OpenAPI
-aligns seamlessly with the principles of REST, providing a standardized
-approach to describe, consume, and interact with RESTful APIs.
-
 ## Key Features and Components of OpenAPI
 
-- Describe the structure of an OpenAPI document and its YAML or JSON format.
-    - At the core of OpenAPI lies its document structure, typically written in YAML or JSON, which defines the various components and details of an API, allowing developers to understand and interact with it effectively.
+<CH.Section>
 
-- Explain the essential components of an OpenAPI document, including:
-  - Info: General information about the API.
-  - Paths: Describing available API endpoints and their operations.
-  - Parameters: Input parameters for API calls.
-  - Responses: Possible outcomes and corresponding HTTP status codes.
-  - Security: Authentication and authorization mechanisms.
-  - Examples: Sample API requests and responses.
-    - An OpenAPI document comprises these key components, such as providing general information about the API, specifying available endpoints and their operations, defining input parameters and expected responses, securing the API through authentication mechanisms, and including practical examples for better understanding.
+At the core of OpenAPI is a specification that defines the various components
+and details of an API, allowing developers to understand and interact with it
+effectively. For example, the [title](focus://3), [description](focus://4:6),
+[contact information](focus://7:10), [version](focus://11), and [API
+URL](focus://12:13).
+
+<Figure caption={<span>Snippet from <a target="_blank" href="https://github.com/stripe/openapi">Stripe's OpenAPI Specification</a></span>}>
+<CH.Code>
+```yaml stripe.yaml
+# Example OpenAPI from Stripe
+info:
+  title: Stripe API
+  description: >-
+    The Stripe REST API. Please see https://stripe.com/docs/api for more
+    details.
+  contact:
+    email: dev-platform@stripe.com
+    name: Stripe Dev Platform Team
+    url: 'https://stripe.com'
+  version: '2022-11-15'
+servers:
+  - url: 'https://api.stripe.com/'
+```
+</CH.Code>
+</Figure>
+
+</CH.Section>
+
+<CH.Section>
+But most importantly, OpenAPI specifies [available endpoints and their
+operations](focus://1:9), defines [input parameters](focus://10:44) and [expected responses](focus://45:64), includes [practical
+examples for better understanding](focus://65:70), and [security requirements for authentication](focus://71:74).
+<Figure caption={<span>Snippet from <a target="_blank" href="https://github.com/plaid/plaid-openapi">Plaid's OpenAPI Specification</a></span>}>
+<CH.Code rows={25}>
+```yaml plaid.yaml
+# from ./assets/plaid.yaml
+```
+</CH.Code>
+</Figure>
+</CH.Section>
 
 ## Benefits and Use Cases of OpenAPI
 
-- Discuss the advantages of using OpenAPI for API development, such as:
-  - Standardization and documentation: Improved clarity and consistency in API design.
-  - Interoperability: Facilitating integration and collaboration between different systems.
-  - Code generation and automation: Simplifying client-side code generation and testing.
-    - Embracing OpenAPI brings numerous benefits, including standardized and well-documented APIs, seamless integration with diverse systems, and automated code generation, reducing development effort and enhancing collaboration.
 
-- Explore real-world use cases where OpenAPI has proven valuable, such as microservices architectures, third-party integrations, and API marketplaces.
-    - OpenAPI has found its home in a wide range of use cases, including building scalable microservices architectures, enabling seamless integration with third-party services, and fueling the growth of API marketplaces that empower developers with powerful APIs.
+Embracing OpenAPI brings numerous benefits, including standardized and
+well-documented APIs, seamless integration with diverse systems, and automated
+code generation, reducing development efforts, and enhancing collaboration.
+
+<Admonition type="info" title="Checkout our code generation tool!">
+At Konfig, we [code generate SDKs from OpenAPIs](https://konfigthis.com/) to
+help developer integrate APIs even faster.
+</Admonition>
+
+OpenAPI has found its home in a wide range of use cases, including building
+[scalable microservices
+architectures](https://swagger.io/blog/consistent-kubernetes-microservices-with-openapi/),
+enabling [seamless integration with third-party services](https://docs.readme.com/main/docs/openapi), and fueling the growth
+of [API marketplaces](https://enterprise-docs.rapidapi.com/docs/adding-and-updating-openapi-documents) that empower developers with powerful APIs.
 
 ## OpenAPI Tools and Ecosystem
 
-- Highlight popular OpenAPI tools and frameworks, such as Swagger UI, ReDoc, and Insomnia.
-    - The OpenAPI ecosystem is bustling with handy tools and frameworks like Swagger UI, ReDoc, and Insomnia, which provide interactive documentation, API exploration, and code generation capabilities, making API development and consumption a breeze.
+With [over 3.5k repositories on
+GitHub](https://github.com/search?q=topic%3Aopenapi+&type=repositories) under
+the topic `openapi`, the OpenAPI ecosystem is [bustling with handy tools and
+frameworks](https://www.openapis.org/blog/2023/03/08/tools-that-support-openapi-specification)
+like Swagger UI, ReDoc, and Insomnia, which provide interactive documentation,
+API exploration, and code generation capabilities, making API development and
+consumption a breeze.
 
-- Discuss how these tools aid in visualizing and exploring OpenAPI documents and generating interactive documentation.
-    - These tools bring OpenAPI documents to life by offering intuitive interfaces, interactive exploration features, and auto-generated documentation, enabling developers to visualize and interact with APIs effortlessly.
+<Figure caption="Landscape of popular tools for OpenAPI">
+```mermaid
+flowchart TD
+    subgraph Documentation
+        subgraph Microservices
+            Backstage
+            Cortex
+            OpsLevel
+        end
+        subgraph Public APIs
+            Readme
+            ReDocly
+            Swagger
+            APIMatic
+        end
+    end
+    subgraph Integration
+        subgraph Quality Assurance
+            Prism
+            Spectral
+            Optic
+        end
+        subgraph Frameworks
+            FastAPI
+            NSwag
+            Nestjs
+        end
+        subgraph API Gateways
+            Kong
+            Zuplo
+            Tyk
+            AAG[Amazon API Gateway]
+        end
+        subgraph Code Generators
+            Autorest
+            Konfig
+            Speakeasy
+            Fern
+            OSL[Open Source Libraries]
+            OAG[OpenAPI Generator]
+        end
+    end
+    subgraph Collaboration
+        Postman
+        Insomnia
+        Stoplight
+        Paw
+    end
+```
+</Figure>
 
-- Mention other related specifications and standards, such as JSON Schema, that complement OpenAPI.
-    - OpenAPI synergizes with other specifications like JSON Schema, which allows for detailed data validation and modeling, enhancing the capabilities of OpenAPI for building robust and accurate APIs.
+These tools bring OpenAPI documents to life by offering intuitive interfaces,
+interactive exploration features, auto-generated documentation, and
+auto-generated code, enabling developers to visualize and interact with APIs
+effortlessly.
+
+<Figure src="/img/swagger.png" caption="Screenshot of Swagger UI, a visual and interactive API documentation tool"/>
+
+OpenAPI synergizes with other specifications like [JSON
+Schema](https://json-schema.org/), which allows for detailed data validation and
+modeling, enhancing the capabilities of OpenAPI for building robust and accurate
+APIs. At Konfig, we natively support request validation in our generated SDKs
+based to ensure that data errors are caught earlier in the development process.
 
 ## Best Practices for OpenAPI
 
-- Provide guidelines for designing effective and maintainable OpenAPI documents, including:
-  - Consistent naming conventions and versioning strategies.
-  - Properly documenting endpoints, parameters, and responses.
-  - Ensuring the accuracy and completeness of the OpenAPI document.
-  - Leveraging reusable components and schemas.
-  - Applying security best practices.
-    - To make the most of OpenAPI, follow these best practices, such as adopting consistent naming conventions, thoroughly documenting each aspect of your API, ensuring the OpenAPI document's accuracy, leveraging reusable components, and implementing robust security measures.
+To make the most of OpenAPI, follow best practices, such as adopting consistent
+naming conventions, thoroughly documenting each aspect of your API, ensuring the
+OpenAPI document's accuracy, leveraging reusable components, and implementing
+robust security measures. To automatically enforce best practices, open-source
+tools like [Spectral](https://github.com/stoplightio/spectral) allow you to
+define your own rules that [integrates with
+VSCode](https://marketplace.visualstudio.com/items?itemName=stoplight.spectral)
+and [continuous
+integration](https://docs.stoplight.io/docs/spectral/038632fdf0d1a-continuous-integration).
+
+<Admonition type="info" title="Checkout our Linter">
+To ensure your OpenAPI Specification is ready for generating high-quality SDKs,
+we created a spectral-based [linter](https://konfigthis.com/docs/lint-rules)
+with over 30 advanced rules.
+</Admonition>
 
 ## Conclusion
 
-- Summarize the key points discussed in the blog post, emphasizing the importance of OpenAPI in modern API development.
-    - OpenAPI plays a pivotal role in today's API landscape, bringing standardization, clarity, and collaboration to API development, enabling developers to build powerful and interoperable software systems.
+OpenAPI plays a pivotal role in today's API landscape, bringing standardization,
+clarity, and collaboration to API development, enabling developers to build
+powerful and interoperable software systems.
 
-- Encourage readers to explore OpenAPI further and adopt it as a powerful tool for designing and documenting their APIs.
-    - Dive deeper into OpenAPI's world and unleash its potential in your own projects, revolutionizing your API development experience and empowering others to integrate with your APIs seamlessly.
-
-- Provide additional resources for further learning, such as official OpenAPI documentation and community forums.
-    - For more information, check out the official OpenAPI documentation and engage with the vibrant community forums, where developers share their knowledge and experiences, helping you unlock the full potential of OpenAPI.
+For more information, check out the [official OpenAPI
+documentation](https://swagger.io/specification/) and explore the [rich
+ecosystem of
+tools](https://github.com/search?q=topic%3Aopenapi+&type=repositories).
 

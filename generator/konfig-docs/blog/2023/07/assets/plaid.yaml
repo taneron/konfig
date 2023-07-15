@@ -1,0 +1,74 @@
+paths:
+  /asset_report/create:
+    post:
+      summary: Create an Asset Report
+      operationId: assetReportCreate
+      description: |-
+        The `/asset_report/create` endpoint initiates the process of creating an Asset Report, which can then be retrieved by passing the `asset_report_token` return value to the `/asset_report/get` or `/asset_report/pdf/get` endpoints.
+        The Asset Report takes some time to be created and is not available immediately after calling `/asset_report/create`. When the Asset Report is ready to be retrieved using `/asset_report/get` or `/asset_report/pdf/get`, Plaid will fire a `PRODUCT_READY` webhook. For full details of the webhook schema, see [Asset Report webhooks](https://plaid.com/docs/api/products/assets/#webhooks).
+        The `/asset_report/create` endpoint creates an Asset Report at a moment in time. Asset Reports are immutable. To get an updated Asset Report, use the `/asset_report/refresh` endpoint.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: AssetReportCreateRequest defines the request schema for `/asset_report/create`
+              properties:
+                client_id:
+                  $ref: '#/components/schemas/APIClientID'
+                secret:
+                  $ref: '#/components/schemas/APISecret'
+                access_tokens:
+                  type: array
+                  description: An array of access tokens corresponding to the Items that will be included in the report. The `assets` product must have been initialized for the Items during link; the Assets product cannot be added after initialization.
+                  items:
+                    $ref: '#/components/schemas/AccessToken'
+                  minItems: 1
+                  maxItems: 99
+                user_token:
+                  type: string
+                  description: The user token associated with the User for which to create an asset report for. All items associated with the User will be included in the report.
+                  x-hidden-from-docs: true
+                days_requested:
+                  type: integer
+                  maximum: 731
+                  minimum: 0
+                  description: |-
+                    The maximum integer number of days of history to include in the Asset Report. If using Fannie Mae Day 1 Certainty, `days_requested` must be at least 61 for new originations or at least 31 for refinancings.
+
+                    An Asset Report requested with "Additional History" (that is, with more than 61 days of transaction history) will incur an Additional History fee.
+                options:
+                  $ref: '#/components/schemas/AssetReportCreateRequestOptions'
+              required:
+              - days_requested
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+                description: AssetReportCreateResponse defines the response schema for `/asset_report/create`
+                properties:
+                  asset_report_token:
+                    $ref: '#/components/schemas/AssetReportToken'
+                  asset_report_id:
+                    $ref: '#/components/schemas/AssetReportId'
+                  request_id:
+                    $ref: '#/components/schemas/RequestID'
+                required:
+                - asset_report_token
+                - asset_report_id
+                - request_id
+              examples:
+                example-1:
+                  value:
+                    asset_report_token: assets-sandbox-6f12f5bb-22dd-4855-b918-f47ec439198a
+                    asset_report_id: 1f414183-220c-44f5-b0c8-bc0e6d4053bb
+                    request_id: Iam3b
+security:
+- clientId: []
+  secret: []
+  plaidVersion: []
