@@ -2,9 +2,8 @@ import { Trigger } from "deno-slack-sdk/types.ts";
 import { TriggerTypes } from "deno-slack-api/mod.ts";
 import GetKonfigStatisticsScheduledWorkflow from "../workflows/get_konfig_statistics_scheduled_workflow%20.ts";
 
-const tomorrow = new Date();
-tomorrow.setDate(tomorrow.getDate() + 1);
-tomorrow.setHours(17, 0, 0); // Set time to 5 PM (17:00)
+const today = new Date();
+today.setHours(17, 0, 0); // Set time to 5 PM (17:00)
 // const now = new Date(); // Current date and time
 // const fiveSecondsFromNow = new Date(now.getTime() + 5000); // Adding 5000 milliseconds (5 seconds)
 
@@ -23,7 +22,7 @@ const getKonfigStatisticsScheduleTrigger: Trigger<
   workflow:
     `#/workflows/${GetKonfigStatisticsScheduledWorkflow.definition.callback_id}`,
   schedule: {
-    start_time: tomorrow.toISOString(),
+    start_time: today.toISOString(),
     // start_time: fiveSecondsFromNow.toISOString(),
     frequency: {
       type: "hourly",
