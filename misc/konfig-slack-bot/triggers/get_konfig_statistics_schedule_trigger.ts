@@ -21,7 +21,7 @@ const getKonfigStatisticsScheduleTrigger: Trigger<
   workflow:
     `#/workflows/${GetKonfigStatisticsScheduledWorkflow.definition.callback_id}`,
   schedule: {
-    start_time: tomorrow.toString(),
+    start_time: tomorrow.toISOString(),
     frequency: {
       type: "daily",
     },
