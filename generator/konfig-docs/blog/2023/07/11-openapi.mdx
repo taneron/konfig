@@ -18,7 +18,7 @@ different applications. Today large API-first companies like
 [Plaid](https://github.com/plaid/plaid-openapi) use OpenAPI so it's no surprise
 that OpenAPI is finding widespread adoption.
 
-<Figure src="/img/openapi-google-trends.png" caption={"Google Trend on \"openapi\" from 1/1/2017 to 7/10/2023"}/>
+<Figure src="/img/openapi-google-trends.png" caption={"Google trend on \"openapi\" from 1/1/2017 to 7/10/2023"}/>
 
 {/* TRUNCATE */}
 
@@ -35,9 +35,9 @@ flowchart LR
     A <-.-> P["💳 Payment processing?"]
 ```
 
-How do we get the data we need and process the transactions for our application?
-One option is to build all of this data and payments infrastructure yourself,
-but that could take years. Instead, lets leverage API providers like
+How do we integrate these components into our application?  One option is to
+build all of this data and payments infrastructure yourself, but that could take
+years. Instead, let's leverage API providers like
 [Twilio](https://www.twilio.com/en-us), [Plaid](https://plaid.com/), and
 [Stripe](https://stripe.com/) to avoid building the infrastructure themselves.
 
@@ -50,16 +50,17 @@ flowchart LR
 
 Suddenly, our application has access to the necessary data infrastructure and
 payment processing capabilities! Developing our application now takes weeks
-instead of years.  But not so fast, now you need to integrate the APIs 🎉.
-Okay, let's start reading the documentation.
+instead of years 🎉. But not so fast, now we need to integrate the APIs. Okay,
+let's start reading the documentation...
 
-Oh no! The APIs you need to integrate are complex and hard to use.
+Oh no! The APIs you need to integrate are complex and hard to use 😱.
 
 ## Introducing OpenAPI
 
 OpenAPI standardizes APIs. It's a specification that provides a structured
 approach for designing, building, and documenting APIs, ensuring clarity and
-consistency throughout the entire lifecycle.
+consistency throughout the entire lifecycle. Now that Twilio, Plaid, and Stripe
+offer OpenAPI Specifications, developing integrations is a breeze. We are saved 😮‍💨!
 
 ```mermaid
 flowchart LR
@@ -73,6 +74,24 @@ inception as [Swagger](https://swagger.io/specification/v2/). With each
 iteration, it has evolved and refined its features, culminating in the latest
 version, OpenAPI 3.1, which brings enhanced capabilities and improved support
 for modern API design.
+
+<Figure caption="History of versions for Swagger/OpenAPI">
+```mermaid
+graph LR
+    subgraph Swagger
+        A(1.0) -->|2011-08-10| B(1.1)
+        B -->|2012-08-22| C(2.0)
+    end
+
+    subgraph OpenAPI Specification
+        C -->|2017-07-26| D(3.0.0)
+        D -->|2017-12-06| E(3.0.1)
+        E -->|2018-10-08| F(3.0.2)
+        F -->|2020-02-20| G(3.0.3)
+        G -->|2021-02-15| H(3.1.0)
+    end
+```
+</Figure>
 
 ## Key Features and Components of OpenAPI
 
@@ -143,9 +162,8 @@ With [over 3.5k repositories on
 GitHub](https://github.com/search?q=topic%3Aopenapi+&type=repositories) under
 the topic `openapi`, the OpenAPI ecosystem is [bustling with handy tools and
 frameworks](https://www.openapis.org/blog/2023/03/08/tools-that-support-openapi-specification)
-like Swagger UI, ReDoc, and Insomnia, which provide interactive documentation,
-API exploration, and code generation capabilities, making API development and
-consumption a breeze.
+like Swagger UI, ReDoc, and Insomnia, which provide interactive documentation
+and API exploration, making API development and consumption a breeze.
 
 <Figure caption="Landscape of popular tools for OpenAPI">
 ```mermaid
@@ -202,7 +220,7 @@ effortlessly.
 
 <Figure src="/img/swagger.png" caption="Screenshot of Swagger UI, a visual and interactive API documentation tool"/>
 
-OpenAPI synergizes with [JSON Schema](https://json-schema.org/), which allows
+OpenAPI also synergizes with [JSON Schema](https://json-schema.org/), which allows
 for detailed data validation and modeling, enhancing the capabilities of OpenAPI
 for building robust and accurate APIs. At Konfig, we natively support request
 validation in our generated SDKs based to ensure that data errors are caught
