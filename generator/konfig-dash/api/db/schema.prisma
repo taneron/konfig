@@ -24,6 +24,13 @@ model GenerateConfig {
   userId String
 }
 
+model Statistics {
+  id              String   @id @default(uuid())
+  created         DateTime @default(now())
+  userCount       Int
+  generationCount Int
+}
+
 model GenerateExecution {
   id      String   @id @default(uuid())
   created DateTime @default(now())
