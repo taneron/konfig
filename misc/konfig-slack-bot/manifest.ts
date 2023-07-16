@@ -1,6 +1,6 @@
 import { Manifest } from "deno-slack-sdk/mod.ts";
-import SampleWorkflow from "./workflows/sample_workflow.js";
-import SampleObjectDatastore from "./datastores/sample_datastore.js";
+import SampleWorkflow from "./workflows/sample_workflow.ts";
+import SampleObjectDatastore from "./datastores/sample_datastore.ts";
 
 /**
  * The app manifest contains the app's configuration. This
@@ -9,8 +9,8 @@ import SampleObjectDatastore from "./datastores/sample_datastore.js";
  */
 export default Manifest({
   name: "konfig-bot",
-  description: "A template for building Slack apps with Deno",
-  icon: "assets/default_new_app_icon.png",
+  description: "Automation for Konfig",
+  icon: "assets/logo.png",
   workflows: [SampleWorkflow],
   outgoingDomains: [],
   datastores: [SampleObjectDatastore],
