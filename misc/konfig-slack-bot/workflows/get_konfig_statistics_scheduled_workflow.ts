@@ -10,7 +10,7 @@ import { GetKonfigStatisticsFunction } from "../functions/get_konfig_statistics_
  * https://api.slack.com/automation/forms#add-interactivity
  */
 const GetKonfigStatisticsScheduledWorkflow = DefineWorkflow({
-  callback_id: "get_konfig_statistics",
+  callback_id: "get_konfig_statistics_scheduled",
   title: "Get Daily Konfig Statistics",
   description: "Workflow for querying statistics for Konfig everyday",
 });
