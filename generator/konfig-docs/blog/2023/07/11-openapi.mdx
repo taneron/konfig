@@ -63,9 +63,9 @@ consistency throughout the entire lifecycle.
 
 ```mermaid
 flowchart LR
-    A[Application] <-->|<a href="https://www.twilio.com/docs/openapi">OpenAPI</a>| W[Twilio]
-    A <-->|<a href="https://github.com/plaid/plaid-openapi">OpenAPI</a>| S[Plaid]
-    A <-->|<a href="https://github.com/stripe/openapi">OpenAPI</a>| P[Stripe]
+    A[Application] <-->|<a href="https://www.twilio.com/docs/openapi">OpenAPI</a>| W["📱 Twilio"]
+    A <-->|<a href="https://github.com/plaid/plaid-openapi">OpenAPI</a>| S["🏦 Plaid"]
+    A <-->|<a href="https://github.com/stripe/openapi">OpenAPI</a>| P["💳 Stripe"]
 ```
 
 [OpenAPI](https://swagger.io/specification/) has come a long way since its
@@ -134,7 +134,7 @@ help developer integrate APIs even faster.
 OpenAPI has found its home in a wide range of use cases, including building
 [scalable microservices
 architectures](https://swagger.io/blog/consistent-kubernetes-microservices-with-openapi/),
-enabling [seamless integration with third-party services](https://docs.readme.com/main/docs/openapi), and fueling the growth
+enabling [generated API documentation](https://docs.readme.com/main/docs/openapi), and fueling the growth
 of [API marketplaces](https://enterprise-docs.rapidapi.com/docs/adding-and-updating-openapi-documents) that empower developers with powerful APIs.
 
 ## OpenAPI Tools and Ecosystem
@@ -182,10 +182,7 @@ flowchart TD
         end
         subgraph Code Generators
             Autorest
-            Konfig
-            Speakeasy
-            Fern
-            OSL[Open Source Libraries]
+            SG[Swagger Codegen]
             OAG[OpenAPI Generator]
         end
     end
@@ -205,11 +202,11 @@ effortlessly.
 
 <Figure src="/img/swagger.png" caption="Screenshot of Swagger UI, a visual and interactive API documentation tool"/>
 
-OpenAPI synergizes with other specifications like [JSON
-Schema](https://json-schema.org/), which allows for detailed data validation and
-modeling, enhancing the capabilities of OpenAPI for building robust and accurate
-APIs. At Konfig, we natively support request validation in our generated SDKs
-based to ensure that data errors are caught earlier in the development process.
+OpenAPI synergizes with [JSON Schema](https://json-schema.org/), which allows
+for detailed data validation and modeling, enhancing the capabilities of OpenAPI
+for building robust and accurate APIs. At Konfig, we natively support request
+validation in our generated SDKs based to ensure that data errors are caught
+earlier in the development process.
 
 ## Best Practices for OpenAPI
 
