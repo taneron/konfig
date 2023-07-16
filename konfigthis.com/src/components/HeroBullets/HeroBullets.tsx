@@ -125,7 +125,7 @@ export function HeroBullets() {
               target="_blank"
               color="dark"
               component="a"
-              href="https://calendly.com/dylan-konfig/meet"
+              href="https://konfigthis.com/schedule-demo"
               leftIcon={<IconCalendarEvent />}
             >
               Book a demo
