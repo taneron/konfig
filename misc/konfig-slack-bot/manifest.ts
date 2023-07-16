@@ -3,7 +3,7 @@ import SampleWorkflow from "./workflows/sample_workflow.ts";
 import SampleObjectDatastore from "./datastores/sample_datastore.ts";
 import GetKonfigStatisticsWorkflow from "./workflows/get_konfig_statistics_workflow.ts";
 import KonfigStatisticsDatastore from "./datastores/konfig_statistics_datastore.ts";
-import GetKonfigStatisticsScheduledWorkflow from "./workflows/get_konfig_statistics_scheduled_workflow%20.ts";
+import GetKonfigStatisticsScheduledWorkflow from "./workflows/get_konfig_statistics_scheduled_workflow.ts";
 
 /**
  * The app manifest contains the app's configuration. This
