@@ -1,6 +1,6 @@
 import { Trigger } from "deno-slack-sdk/types.ts";
 import { TriggerTypes } from "deno-slack-api/mod.ts";
-import GetKonfigStatisticsScheduledWorkflow from "../workflows/get_konfig_statistics_scheduled_workflow%20.ts";
+import GetKonfigStatisticsScheduledWorkflow from "../workflows/get_konfig_statistics_scheduled_workflow.ts";
 
 const today = new Date();
 today.setHours(17, 0, 0); // Set time to 5 PM (17:00)
