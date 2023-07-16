@@ -5,6 +5,8 @@ import GetKonfigStatisticsScheduledWorkflow from "../workflows/get_konfig_statis
 const tomorrow = new Date();
 tomorrow.setDate(tomorrow.getDate() + 1);
 tomorrow.setHours(17, 0, 0); // Set time to 5 PM (17:00)
+// const now = new Date(); // Current date and time
+// const fiveSecondsFromNow = new Date(now.getTime() + 5000); // Adding 5000 milliseconds (5 seconds)
 
 /**
  * Triggers determine when workflows are executed. A trigger
@@ -22,8 +24,9 @@ const getKonfigStatisticsScheduleTrigger: Trigger<
     `#/workflows/${GetKonfigStatisticsScheduledWorkflow.definition.callback_id}`,
   schedule: {
     start_time: tomorrow.toISOString(),
+    // start_time: fiveSecondsFromNow.toISOString(),
     frequency: {
-      type: "daily",
+      type: "hourly",
     },
   },
 };

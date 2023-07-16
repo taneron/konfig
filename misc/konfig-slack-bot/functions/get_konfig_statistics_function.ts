@@ -52,12 +52,13 @@ export default SlackFunction(
     })).json();
 
     const date = new Date();
-    const formattedDate = date.toLocaleDateString("en-US", {
+    const formattedDate = date.toLocaleString("en-US", {
       month: "2-digit",
       day: "2-digit",
       year: "numeric",
       hour: "2-digit",
       minute: "2-digit",
+      timeZone: "America/Los_Angeles",
     });
     const userDiff: number = statistics.userCountDiffSinceLastQuery;
     const generationDiff: number = statistics.generationCountDiffSinceLastQuery;
