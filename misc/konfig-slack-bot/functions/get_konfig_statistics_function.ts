@@ -64,23 +64,23 @@ export default SlackFunction(
 
     const userChangeEmoji = userDiff > 0
       ? ":smile:"
-      : (userDiff === 0 ? ":neutral_face:" : ":frowning");
+      : (userDiff === 0 ? ":neutral_face:" : ":frowning:");
 
     const generationChangeEmoji = generationDiff > 0
       ? ":smile:"
-      : (generationDiff === 0 ? ":neutral_face:" : ":frowning");
+      : (generationDiff === 0 ? ":neutral_face:" : ":frowning:");
 
     const message = `${
       userDiff > 0
         ? `@here (${userDiff} user${userDiff === 1 ? "" : "s"} signed up)\n`
         : ""
     }*Konfig's progress as of ${formattedDate}*
-- :bust_in_silhouette: Number of users: \`${statistics.userCount}\`
-- :floppy_disk: SDKs generated: \`${statistics.generationCount}\`
-- ${userChangeEmoji} User change: \`${
+:bust_in_silhouette: Number of users: \`${statistics.userCount}\`
+:floppy_disk: SDKs generated: \`${statistics.generationCount}\`
+${userChangeEmoji} User change: \`${
       userDiff > 0 ? "+" : userDiff < 0 ? "-" : ""
     }${userDiff}\`
-- ${generationChangeEmoji} SDKs generated change: \`${
+${generationChangeEmoji} SDKs generated change: \`${
       generationDiff > 0 ? "+" : generationDiff < 0 ? "-" : ""
     }${generationDiff}\`
 
