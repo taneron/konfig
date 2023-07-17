@@ -37,12 +37,14 @@ export async function fixOas({
   alwaysYes,
   auto,
   konfigYaml,
+  skipMissingResponseDescription,
 }: {
   spec: Spec
   konfigYaml?: KonfigYamlType
   progress: Progress
   alwaysYes: boolean
   auto: boolean
+  skipMissingResponseDescription?: boolean
 }) {
   /**
    * ---Start fixing OAS---
@@ -59,11 +61,13 @@ export async function fixOas({
 
   // Missing Operation Response description
   const numberOfMissingResponseDescriptionsAdded =
-    await fixMissingResponseObjectDescription({
-      spec,
-      progress,
-      alwaysYes,
-    })
+    skipMissingResponseDescription
+      ? 0
+      : await fixMissingResponseObjectDescription({
+          spec,
+          progress,
+          alwaysYes,
+        })
 
   // Missing Tags
   const numberOfMissingTags = fixMissingGlobalTags({ spec: spec.spec })

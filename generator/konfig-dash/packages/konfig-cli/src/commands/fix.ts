@@ -52,6 +52,10 @@ export default class Fix extends Command {
       description: 'Directory containing konfig.yaml',
       exists: true,
     }),
+    skipMissingResponseDescriptionFix: Flags.boolean({
+      name: 'skip missing response description fix',
+      description: 'Ignores fixing a missing description in response schema',
+    }),
     alwaysYes: Flags.boolean({
       name: 'alwaysYes',
       char: 'Y',
@@ -138,6 +142,7 @@ export default class Fix extends Command {
       konfigYaml: parsedKonfigYaml,
       alwaysYes: flags.alwaysYes,
       auto: flags.auto,
+      skipMissingResponseDescription: flags.skipMissingResponseDescriptionFix,
     })
 
     fs.writeFileSync(
