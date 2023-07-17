@@ -25,7 +25,7 @@ const getKonfigStatisticsScheduleTrigger: Trigger<
     start_time: today.toISOString(),
     // start_time: fiveSecondsFromNow.toISOString(),
     frequency: {
-      type: "hourly",
+      type: "daily",
     },
   },
 };
