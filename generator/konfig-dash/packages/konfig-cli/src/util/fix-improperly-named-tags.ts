@@ -3,6 +3,7 @@ import * as inquirer from 'inquirer'
 import { getOperations, Spec, TagObject, tagSchema } from 'konfig-lib'
 import { Progress } from './fix-progress'
 import { inquirerConfirm } from './inquirer-confirm'
+import { compareCloseness } from './compare-closeness'
 
 export async function fixImproperlyNamedTags({
   spec,
@@ -60,19 +61,26 @@ export async function fixImproperlyNamedTags({
     }
 
     // if there is an existing valid tag present the option to select it or create a new one
-    const validTags = spec.tags?.filter(
-      (tag) => tagSchema.safeParse(tag.name).success
-    )
+    const validTags = spec.tags
+      ?.filter((tag) => tagSchema.safeParse(tag.name).success)
+      .map(({ name }) => name)
+      // put the closest existing tag first
+      .sort((a, b) => {
+        return compareCloseness(tag.name, a, b)
+      })
     if (validTags && validTags.length > 0) {
       const createNewTagMsg = '➕ Create a new tag'
+      const choices = Array.from(new Set([createNewTagMsg, ...validTags]))
       const { existingName } = await inquirer.prompt<{ existingName: string }>([
         {
           type: 'list',
           name: 'existingName',
           message: `Select existing tag:`,
-          choices: [...validTags, createNewTagMsg],
+          choices,
         },
       ])
+
+      // They did not select the "Create a new tag" option, rename it and move on
       if (existingName !== createNewTagMsg) {
         renameTag({
           oldName: tag.name,

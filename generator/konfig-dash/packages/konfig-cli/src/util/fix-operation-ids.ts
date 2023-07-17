@@ -99,6 +99,10 @@ export async function fixOperationIds({
     const operationsWithId = operations
       .map((o) => o.operation)
       .filter((operation) => operation.operationId !== undefined)
+      .filter(
+        (operation) =>
+          operationIdSchema.safeParse(operation.operationId).success
+      )
     if (operationsWithId.length > 5) {
       console.log(
         boxen(
@@ -134,11 +138,44 @@ export async function fixOperationIds({
         continue
       }
     }
+
+    // compute a default value if possible
+    function computeDefault() {
+      const withMatchingSummaries = operationsWithId.filter(
+        (opWithId) => opWithId.summary === operation.summary
+      )
+
+      if (withMatchingSummaries.length < 2) {
+        return
+      }
+      // looks like there are more than 2 operations with matching summaries
+      // lets see if their operation ID suffixes are also the same
+      const uniqueOperationIds = new Set(
+        withMatchingSummaries.map(
+          (operation) => operation.operationId?.split('_')[1] // suffix
+        )
+      )
+      if (uniqueOperationIds.size > 1) return
+
+      // they all have the same operation id suffixes, we can compute the suffix as a default then
+      const suffix = withMatchingSummaries[0].operationId?.split('_')[1]
+      console.log(
+        boxen(`"${suffix}"`, {
+          title: '🪄 Computed Default Value',
+          textAlignment: 'center',
+          borderColor: 'green',
+        })
+      )
+      return suffix
+    }
+    const dflt = computeDefault()
+
     const { suffix } = await inquirer.prompt<{ suffix: string }>([
       {
         type: 'input',
         name: 'suffix',
         message: `Enter operation ID:`,
+        default: dflt,
         validate(suffix: string) {
           if (suffix === '') return 'Please specify a non-empty string'
           if (suffix.length < 3)
