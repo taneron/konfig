@@ -15,6 +15,7 @@ import {
 } from './fix-progress'
 import { inquirerConfirm } from './inquirer-confirm'
 import { logOperationDetails } from './log-operation-details'
+import boxen from 'boxen'
 
 export async function fixAdvSecuritySchemesDefined({
   spec,
@@ -298,10 +299,17 @@ async function removeParameterForSecurityRequirement({
     ]
   else if (operation.security.length === 1)
     operation.security[0][securityScheme.securityName] = scopes
-  else
-    throw Error(
-      'Only use list of security requirements if you have multiple authorization schemes'
+  else {
+    console.log(
+      boxen(
+        `Detected multiple security schemes. Adding "${securityScheme.securityName}" to all schemes.`,
+        { padding: 1, title: 'Warniing' }
+      )
     )
+    for (const security of operation.security) {
+      security[securityScheme.securityName] = scopes
+    }
+  }
 
   // Remove from parameters
   const parameters = await getOperationParametersDeprecated({

@@ -56,6 +56,12 @@ export default class Fix extends Command {
       name: 'skip missing response description fix',
       description: 'Ignores fixing a missing description in response schema',
     }),
+    skipListUsageSecurity: Flags.boolean({
+      name: 'skip list usage security',
+      description: 'Ignores fixing list usage of security',
+      default: true,
+      allowNo: true,
+    }),
     alwaysYes: Flags.boolean({
       name: 'alwaysYes',
       char: 'Y',
@@ -143,6 +149,7 @@ export default class Fix extends Command {
       alwaysYes: flags.alwaysYes,
       auto: flags.auto,
       skipMissingResponseDescription: flags.skipMissingResponseDescriptionFix,
+      skipFixListUsageSecurity: flags.skipListUsageSecurity,
     })
 
     fs.writeFileSync(

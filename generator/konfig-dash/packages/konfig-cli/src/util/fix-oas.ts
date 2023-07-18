@@ -38,6 +38,7 @@ export async function fixOas({
   auto,
   konfigYaml,
   skipMissingResponseDescription,
+  skipFixListUsageSecurity,
 }: {
   spec: Spec
   konfigYaml?: KonfigYamlType
@@ -45,6 +46,7 @@ export async function fixOas({
   alwaysYes: boolean
   auto: boolean
   skipMissingResponseDescription?: boolean
+  skipFixListUsageSecurity?: boolean
 }) {
   /**
    * ---Start fixing OAS---
@@ -179,9 +181,11 @@ export async function fixOas({
     await fixUnstructuredRequestBody({ spec })
 
   // List usage of security
-  const numberOfListUsagesOfSecurityFixed = fixListUsageOfSecurity({
-    spec: spec.spec,
-  })
+  const numberOfListUsagesOfSecurityFixed = skipFixListUsageSecurity
+    ? 0
+    : fixListUsageOfSecurity({
+        spec: spec.spec,
+      })
 
   // Defining Schemas
   // Important: This should come last to allow for previous passes to define
