@@ -33,6 +33,7 @@ import io.swagger.v3.oas.models.servers.Server;
 import io.swagger.v3.oas.models.tags.Tag;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.text.StringEscapeUtils;
 import org.openapitools.codegen.*;
 import org.openapitools.codegen.CodegenDiscriminator.MappedModel;
 import org.openapitools.codegen.api.TemplatePathLocator;
@@ -2057,7 +2058,7 @@ public class PythonClientCodegen extends AbstractPythonCodegen {
                 // this seed makes it so if we have [a-z] we pick a
                 Random random = new Random(18);
                 if (rgxGen != null) {
-                    example = rgxGen.generate(random);
+                    example = StringEscapeUtils.escapeJava(rgxGen.generate(random));
                 } else {
                     throw new RuntimeException("rgxGen cannot be null. Please open an issue in the openapi-generator github repo.");
                 }
