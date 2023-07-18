@@ -56,6 +56,9 @@ public class AdditionalProperties {
   @JsonProperty("omitApiDocumentation")
   private Boolean omitApiDocumentation;
 
+  @JsonProperty("useSecurityKeyParamNameAsPropertyName")
+  private Boolean useSecurityKeyParamNameAsPropertyName;
+
   @JsonProperty("tagPriority")
   @Valid
   private List<String> tagPriority = null;
@@ -362,6 +365,25 @@ public class AdditionalProperties {
 
   public void setOmitApiDocumentation(Boolean omitApiDocumentation) {
     this.omitApiDocumentation = omitApiDocumentation;
+  }
+
+  public AdditionalProperties useSecurityKeyParamNameAsPropertyName(Boolean useSecurityKeyParamNameAsPropertyName) {
+    this.useSecurityKeyParamNameAsPropertyName = useSecurityKeyParamNameAsPropertyName;
+    return this;
+  }
+
+  /**
+   * Get useSecurityKeyParamNameAsPropertyName
+   * @return useSecurityKeyParamNameAsPropertyName
+  */
+  
+  @Schema(name = "useSecurityKeyParamNameAsPropertyName", required = false)
+  public Boolean getUseSecurityKeyParamNameAsPropertyName() {
+    return useSecurityKeyParamNameAsPropertyName;
+  }
+
+  public void setUseSecurityKeyParamNameAsPropertyName(Boolean useSecurityKeyParamNameAsPropertyName) {
+    this.useSecurityKeyParamNameAsPropertyName = useSecurityKeyParamNameAsPropertyName;
   }
 
   public AdditionalProperties tagPriority(List<String> tagPriority) {
@@ -1204,6 +1226,7 @@ public class AdditionalProperties {
         Objects.equals(this.omitInfoDescription, additionalProperties.omitInfoDescription) &&
         Objects.equals(this.omitModelDocumentation, additionalProperties.omitModelDocumentation) &&
         Objects.equals(this.omitApiDocumentation, additionalProperties.omitApiDocumentation) &&
+        Objects.equals(this.useSecurityKeyParamNameAsPropertyName, additionalProperties.useSecurityKeyParamNameAsPropertyName) &&
         Objects.equals(this.tagPriority, additionalProperties.tagPriority) &&
         Objects.equals(this.setSkipSerializationToTrueByDefault, additionalProperties.setSkipSerializationToTrueByDefault) &&
         Objects.equals(this.includeFetchAdapter, additionalProperties.includeFetchAdapter) &&
@@ -1250,7 +1273,7 @@ public class AdditionalProperties {
 
   @Override
   public int hashCode() {
-    return Objects.hash(objectPropertyNamingConvention, gitRepoName, clientName, moduleName, outputDirectory, topLevelOperations, omitInfoDescription, omitModelDocumentation, omitApiDocumentation, tagPriority, setSkipSerializationToTrueByDefault, includeFetchAdapter, packagistUsername, toStringReturnsJson, includeEventSourceParser, keepAllParametersOptional, apiDocumentationAuthenticationPartial, composerPackageName, defaultTimeout, supportPhp7, useSingleRequestParameter, artifactUrl, artifactId, groupId, invokerPackage, modelPackage, apiPackage, projectName, podVersion, removeKonfigBranding, podName, classPrefix, authorName, authorEmail, podAuthors, swiftPackagePath, disallowAdditionalPropertiesIfNotPresent, packageVersion, packageUrl, npmVersion, gemName, gemVersion, userAgent, npmName, readmeSnippet, asyncReadmeSnippet, readmeSupportingDescriptionSnippet, readmeDescriptionSnippet, apiKeyAlias, clientState, clientStateIsOptional);
+    return Objects.hash(objectPropertyNamingConvention, gitRepoName, clientName, moduleName, outputDirectory, topLevelOperations, omitInfoDescription, omitModelDocumentation, omitApiDocumentation, useSecurityKeyParamNameAsPropertyName, tagPriority, setSkipSerializationToTrueByDefault, includeFetchAdapter, packagistUsername, toStringReturnsJson, includeEventSourceParser, keepAllParametersOptional, apiDocumentationAuthenticationPartial, composerPackageName, defaultTimeout, supportPhp7, useSingleRequestParameter, artifactUrl, artifactId, groupId, invokerPackage, modelPackage, apiPackage, projectName, podVersion, removeKonfigBranding, podName, classPrefix, authorName, authorEmail, podAuthors, swiftPackagePath, disallowAdditionalPropertiesIfNotPresent, packageVersion, packageUrl, npmVersion, gemName, gemVersion, userAgent, npmName, readmeSnippet, asyncReadmeSnippet, readmeSupportingDescriptionSnippet, readmeDescriptionSnippet, apiKeyAlias, clientState, clientStateIsOptional);
   }
 
   @Override
@@ -1266,6 +1289,7 @@ public class AdditionalProperties {
     sb.append("    omitInfoDescription: ").append(toIndentedString(omitInfoDescription)).append("\n");
     sb.append("    omitModelDocumentation: ").append(toIndentedString(omitModelDocumentation)).append("\n");
     sb.append("    omitApiDocumentation: ").append(toIndentedString(omitApiDocumentation)).append("\n");
+    sb.append("    useSecurityKeyParamNameAsPropertyName: ").append(toIndentedString(useSecurityKeyParamNameAsPropertyName)).append("\n");
     sb.append("    tagPriority: ").append(toIndentedString(tagPriority)).append("\n");
     sb.append("    setSkipSerializationToTrueByDefault: ").append(toIndentedString(setSkipSerializationToTrueByDefault)).append("\n");
     sb.append("    includeFetchAdapter: ").append(toIndentedString(includeFetchAdapter)).append("\n");

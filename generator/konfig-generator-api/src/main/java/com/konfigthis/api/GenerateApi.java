@@ -281,6 +281,7 @@ public interface GenerateApi {
         putIfPresent(map, "readmeDescriptionSnippet", additionalProperties.getReadmeDescriptionSnippet());
         putIfPresent(map, "objectPropertyNamingConvention", additionalProperties.getObjectPropertyNamingConvention());
         putIfPresent(map, "useCamelCase", additionalProperties.getObjectPropertyNamingConvention());
+        putIfPresent(map, "useSecurityKeyParamNameAsPropertyName", additionalProperties.getUseSecurityKeyParamNameAsPropertyName());
         if (additionalProperties.getObjectPropertyNamingConvention() != null) {
             putIfPresent(map, "useCamelCase", additionalProperties.getObjectPropertyNamingConvention().equals("camelCase"));
             putIfPresent(map, "useSnakeCase", additionalProperties.getObjectPropertyNamingConvention().equals("snake_case"));

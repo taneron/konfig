@@ -18,7 +18,7 @@ export interface ConfigurationParameters {
 {{/clientState}}
 {{#hasMultipleApiKeys}}
 {{#apiKeyMethods}}
-    {{{keyParamName}}}?: string;
+    {{> securityKeyName}}?: string;
 {{/apiKeyMethods}}
 {{/hasMultipleApiKeys}}
     apiKey?: ApiKey;
@@ -118,8 +118,8 @@ export class Configuration {
             this.apiKey = {}
 {{#hasMultipleApiKeys}}
 {{#apiKeyMethods}}
-            if (param.{{{keyParamName}}} !== undefined)
-                this.apiKey["{{{keyParamName}}}"] = param.{{{keyParamName}}}
+            if (param.{{> securityKeyName}} !== undefined)
+                this.apiKey["{{{keyParamName}}}"] = param.{{> securityKeyName}}
 {{/apiKeyMethods}}
 {{/hasMultipleApiKeys}}
         }

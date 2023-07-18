@@ -6,7 +6,7 @@
     accessToken: 'ACCESS_TOKEN',
 {{/isBasicBearer}}
 {{#isApiKey}}
-    {{#hasMultipleApiKeys}}{{keyParamName}}{{/hasMultipleApiKeys}}{{^hasMultipleApiKeys}}apiKey{{/hasMultipleApiKeys}}: 'API_KEY',
+    {{#hasMultipleApiKeys}}{{> securityKeyName}}{{/hasMultipleApiKeys}}{{^hasMultipleApiKeys}}apiKey{{/hasMultipleApiKeys}}: 'API_KEY',
 {{/isApiKey}}
 {{#isImplicit}}
     accessToken: 'ACCESS_TOKEN',

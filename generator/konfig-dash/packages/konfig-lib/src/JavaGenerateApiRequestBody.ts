@@ -16,6 +16,7 @@ const additionalProperties = z.object({
   outputDirectory: z.string().optional(),
   gitRepoName: z.string().optional(),
   invokerPackage: z.string().optional(),
+  useSecurityKeyParamNameAsPropertyName: z.boolean().optional(),
   objectPropertyNamingConvention: z.string().optional(),
   clientState: z.string().array().optional(),
   clientStateIsOptional: z.boolean().optional(),
