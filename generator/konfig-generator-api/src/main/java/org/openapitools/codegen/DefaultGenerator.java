@@ -682,7 +682,9 @@ public class DefaultGenerator implements Generator {
 
                 addAuthenticationSwitches(operation);
 
-                operation.put("infoExtensions", Objects.requireNonNullElse(openAPI.getInfo().getExtensions(), new HashMap<>()));
+                Map<String, Object> infoExtensions = (openAPI.getInfo().getExtensions() != null) ?
+                        openAPI.getInfo().getExtensions() : new HashMap<>();
+                operation.put("infoExtensions", infoExtensions);
 
                 for (String templateName : config.apiTemplateFiles().keySet()) {
                     String filename = config.apiFilename(templateName, tag);
