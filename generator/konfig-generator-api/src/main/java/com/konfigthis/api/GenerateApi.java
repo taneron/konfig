@@ -328,8 +328,17 @@ public interface GenerateApi {
         if (additionalProperties.getClientName() != null)
             putIfPresent(map, "clientNameLowercase", additionalProperties.getClientName().toLowerCase());
         putIfPresent(map, "clientStateIsOptional", additionalProperties.getClientStateIsOptional());
+
+
         putIfPresent(map, "clientState", additionalProperties.getClientState());
-        if (additionalProperties.getClientState() != null)
+        if (additionalProperties.getClientState() != null) {
+            putIfPresent(map, "clientStateWithUpperSnakeCase",
+                    additionalProperties.getClientState().stream().map(clientState -> {
+                        Map<String, String> object = new HashMap<>();
+                        object.put("upperSnakeCase", StringUtils.underscore(clientState).toUpperCase());
+                        object.put("clientState", clientState);
+                        return object;
+                    }).collect(Collectors.toList()));
             putIfPresent(map, "clientStateSetterGetterCamelCase", additionalProperties.getClientState().stream().map(state -> {
                 Map<String, String> object = new HashMap<>();
                 object.put("state", state);
@@ -337,6 +346,56 @@ public interface GenerateApi {
                 object.put("getter", "get" + StringUtils.camelize(state));
                 return object;
             }).collect(Collectors.toList())); // added for PHP setter in Configuration.php
+            putIfPresent(map, "clientStateSetterGetterPascalCase", additionalProperties.getClientState().stream().map(state -> {
+                Map<String, String> object = new HashMap<>();
+                object.put("stateCamelCase", StringUtils.camelize(state, CamelizeOption.LOWERCASE_FIRST_LETTER));
+                object.put("upperSnakeCase", StringUtils.underscore(state).toUpperCase());
+                object.put("setter", "Set" + StringUtils.camelize(state));
+                object.put("getter", "Get" + StringUtils.camelize(state));
+                // If for some reason have a client state that is "Version" then we have to ensure the additional
+                // property does not have a naming conflict so we suffix everything with "State"
+                // Dylan: I ran into this case with Sportmonks and their "version" path variable that I made into clientState
+                if (additionalProperties.getClientState() != null && generator.equals("csharp-netcore"))
+                    state = state + "State";
+                object.put("state", state);
+                return object;
+            }).collect(Collectors.toList())); // added for CSharp setter in {{clientName}}.cs
+        }
+
+        putIfPresent(map, "clientStateWithExamples", additionalProperties.getClientStateWithExamples());
+        if (additionalProperties.getClientStateWithExamples() != null) {
+            putIfPresent(map, "clientStateWithExamplesWithUpperSnakeCase",
+                    additionalProperties.getClientStateWithExamples().stream().map(clientState -> {
+                        Map<String, String> object = new HashMap<>();
+                        object.put("upperSnakeCase", StringUtils.underscore(clientState.getName()).toUpperCase());
+                        object.put("clientState", clientState.getName());
+                        object.put("example", clientState.getExample());
+                        return object;
+                    }).collect(Collectors.toList()));
+            putIfPresent(map, "clientStateWithExamplesSetterGetterCamelCase", additionalProperties.getClientStateWithExamples().stream().map(state -> {
+                Map<String, String> object = new HashMap<>();
+                object.put("state", state.getName());
+                object.put("setter", "set" + StringUtils.camelize(state.getName()));
+                object.put("getter", "get" + StringUtils.camelize(state.getName()));
+                return object;
+            }).collect(Collectors.toList())); // added for PHP setter in Configuration.php
+            putIfPresent(map, "clientStateWithExamplesSetterGetterPascalCase", additionalProperties.getClientStateWithExamples().stream().map(state -> {
+                Map<String, String> object = new HashMap<>();
+                object.put("stateCamelCase", StringUtils.camelize(state.getName(), CamelizeOption.LOWERCASE_FIRST_LETTER));
+                object.put("upperSnakeCase", StringUtils.underscore(state.getName()).toUpperCase());
+                object.put("setter", "Set" + StringUtils.camelize(state.getName()));
+                object.put("getter", "Get" + StringUtils.camelize(state.getName()));
+                object.put("example", state.getExample());
+                // If for some reason have a client state that is "Version" then we have to ensure the additional
+                // property does not have a naming conflict so we suffix everything with "State"
+                // Dylan: I ran into this case with Sportmonks and their "version" path variable that I made into clientState
+                if (additionalProperties.getClientStateWithExamples() != null && generator.equals("csharp-netcore"))
+                    state.setName(state.getName() + "State");
+                object.put("state", state.getName());
+                return object;
+            }).collect(Collectors.toList())); // added for CSharp setter in {{clientName}}.cs
+        }
+
         putIfPresent(map, "apiKeyAlias", additionalProperties.getApiKeyAlias());
 
         // https://openapi-generator.tech/docs/generators/go

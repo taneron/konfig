@@ -26,8 +26,11 @@ class Client
         {{#clientState}}
         string ${{.}} = null,
         {{/clientState}}
+        {{#clientStateWithExamples}}
+        string ${{name}} = null,
+        {{/clientStateWithExamples}}
         {{#apiKeyMethods}}
-        string ${{{keyParamName}}} = null,
+        string ${{> api_key_name}} = null,
         {{/apiKeyMethods}}
         bool $verifySsl = null,
         string $host = '{{basePath}}',
@@ -39,8 +42,11 @@ class Client
                 {{#clientState}}
                 {{.}}: ${{.}},
                 {{/clientState}}
+                {{#clientStateWithExamples}}
+                {{name}}: ${{name}},
+                {{/clientStateWithExamples}}
                 {{#apiKeyMethods}}
-                {{keyParamName}}: ${{keyParamName}},
+                {{> api_key_name}}: ${{> api_key_name}},
                 {{/apiKeyMethods}}
             );
             if ($host !== null) $config->setHost($host);
