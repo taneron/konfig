@@ -237,6 +237,24 @@ components:
                     used in custom implementation hooks. This is useful when you
                     need state in the SDK that is not described in the OpenAPI
                     Specification such as a key used for request signing.
+                clientStateWithExamples:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                      example:
+                        type: string
+                    required:
+                      - name
+                      - example
+                  description: A list of stateful properties generated into the SDK that can be
+                    used in custom implementation hooks. This is useful when you
+                    need state in the SDK that is not described in the OpenAPI
+                    Specification such as a key used for request signing. This
+                    is different from the "clientState" field in that it also
+                    includes examples for the generated documentation
                 toStringReturnsJson:
                   type: boolean
                   description: Modify the behavior of toString() for generated schema classes to
@@ -338,6 +356,24 @@ components:
                     used in custom implementation hooks. This is useful when you
                     need state in the SDK that is not described in the OpenAPI
                     Specification such as a key used for request signing.
+                clientStateWithExamples:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                      example:
+                        type: string
+                    required:
+                      - name
+                      - example
+                  description: A list of stateful properties generated into the SDK that can be
+                    used in custom implementation hooks. This is useful when you
+                    need state in the SDK that is not described in the OpenAPI
+                    Specification such as a key used for request signing. This
+                    is different from the "clientState" field in that it also
+                    includes examples for the generated documentation
               required:
                 - version
                 - git
@@ -452,6 +488,24 @@ components:
                     used in custom implementation hooks. This is useful when you
                     need state in the SDK that is not described in the OpenAPI
                     Specification such as a key used for request signing.
+                clientStateWithExamples:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                      example:
+                        type: string
+                    required:
+                      - name
+                      - example
+                  description: A list of stateful properties generated into the SDK that can be
+                    used in custom implementation hooks. This is useful when you
+                    need state in the SDK that is not described in the OpenAPI
+                    Specification such as a key used for request signing. This
+                    is different from the "clientState" field in that it also
+                    includes examples for the generated documentation
                 clientStateIsOptional:
                   type: boolean
                   description: Whether or not to raise an error if client state is provided
@@ -626,6 +680,24 @@ components:
                     used in custom implementation hooks. This is useful when you
                     need state in the SDK that is not described in the OpenAPI
                     Specification such as a key used for request signing.
+                clientStateWithExamples:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                      example:
+                        type: string
+                    required:
+                      - name
+                      - example
+                  description: A list of stateful properties generated into the SDK that can be
+                    used in custom implementation hooks. This is useful when you
+                    need state in the SDK that is not described in the OpenAPI
+                    Specification such as a key used for request signing. This
+                    is different from the "clientState" field in that it also
+                    includes examples for the generated documentation
                 removeRequiredProperties:
                   type: array
                   items:
@@ -745,6 +817,8 @@ components:
                   required:
                     - script
                   description: Configuration of "konfig test"
+                clientName:
+                  type: string
                 logoPath:
                   type: string
                   description: The path to a logo image that is copied to the generated C# SDK to
@@ -762,10 +836,29 @@ components:
                     used in custom implementation hooks. This is useful when you
                     need state in the SDK that is not described in the OpenAPI
                     Specification such as a key used for request signing.
+                clientStateWithExamples:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                      example:
+                        type: string
+                    required:
+                      - name
+                      - example
+                  description: A list of stateful properties generated into the SDK that can be
+                    used in custom implementation hooks. This is useful when you
+                    need state in the SDK that is not described in the OpenAPI
+                    Specification such as a key used for request signing. This
+                    is different from the "clientState" field in that it also
+                    includes examples for the generated documentation
               required:
                 - version
                 - git
                 - outputDirectory
+                - clientName
                 - logoPath
                 - packageName
               additionalProperties: false
@@ -854,6 +947,24 @@ components:
                     used in custom implementation hooks. This is useful when you
                     need state in the SDK that is not described in the OpenAPI
                     Specification such as a key used for request signing.
+                clientStateWithExamples:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                      example:
+                        type: string
+                    required:
+                      - name
+                      - example
+                  description: A list of stateful properties generated into the SDK that can be
+                    used in custom implementation hooks. This is useful when you
+                    need state in the SDK that is not described in the OpenAPI
+                    Specification such as a key used for request signing. This
+                    is different from the "clientState" field in that it also
+                    includes examples for the generated documentation
                 supportPhp7:
                   type: boolean
                   default: false
@@ -1331,6 +1442,25 @@ components:
                       you need state in the SDK that is not described in the
                       OpenAPI Specification such as a key used for request
                       signing.
+                  clientStateWithExamples:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                        example:
+                          type: string
+                      required:
+                        - name
+                        - example
+                    description: A list of stateful properties generated into the SDK that can be
+                      used in custom implementation hooks. This is useful when
+                      you need state in the SDK that is not described in the
+                      OpenAPI Specification such as a key used for request
+                      signing. This is different from the "clientState" field in
+                      that it also includes examples for the generated
+                      documentation
                   toStringReturnsJson:
                     type: boolean
                     description: Modify the behavior of toString() for generated schema classes to
@@ -1437,6 +1567,25 @@ components:
                       you need state in the SDK that is not described in the
                       OpenAPI Specification such as a key used for request
                       signing.
+                  clientStateWithExamples:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                        example:
+                          type: string
+                      required:
+                        - name
+                        - example
+                    description: A list of stateful properties generated into the SDK that can be
+                      used in custom implementation hooks. This is useful when
+                      you need state in the SDK that is not described in the
+                      OpenAPI Specification such as a key used for request
+                      signing. This is different from the "clientState" field in
+                      that it also includes examples for the generated
+                      documentation
                 required:
                   - generator
                   - version
@@ -1661,6 +1810,25 @@ components:
                       you need state in the SDK that is not described in the
                       OpenAPI Specification such as a key used for request
                       signing.
+                  clientStateWithExamples:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                        example:
+                          type: string
+                      required:
+                        - name
+                        - example
+                    description: A list of stateful properties generated into the SDK that can be
+                      used in custom implementation hooks. This is useful when
+                      you need state in the SDK that is not described in the
+                      OpenAPI Specification such as a key used for request
+                      signing. This is different from the "clientState" field in
+                      that it also includes examples for the generated
+                      documentation
                   clientStateIsOptional:
                     type: boolean
                     description: Whether or not to raise an error if client state is provided
@@ -1830,6 +1998,25 @@ components:
                       you need state in the SDK that is not described in the
                       OpenAPI Specification such as a key used for request
                       signing.
+                  clientStateWithExamples:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                        example:
+                          type: string
+                      required:
+                        - name
+                        - example
+                    description: A list of stateful properties generated into the SDK that can be
+                      used in custom implementation hooks. This is useful when
+                      you need state in the SDK that is not described in the
+                      OpenAPI Specification such as a key used for request
+                      signing. This is different from the "clientState" field in
+                      that it also includes examples for the generated
+                      documentation
                   removeRequiredProperties:
                     type: array
                     items:
@@ -1953,6 +2140,8 @@ components:
                     required:
                       - script
                     description: Configuration of "konfig test"
+                  clientName:
+                    type: string
                   logoPath:
                     type: string
                     description: The path to a logo image that is copied to the generated C# SDK to
@@ -1971,11 +2160,31 @@ components:
                       you need state in the SDK that is not described in the
                       OpenAPI Specification such as a key used for request
                       signing.
+                  clientStateWithExamples:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                        example:
+                          type: string
+                      required:
+                        - name
+                        - example
+                    description: A list of stateful properties generated into the SDK that can be
+                      used in custom implementation hooks. This is useful when
+                      you need state in the SDK that is not described in the
+                      OpenAPI Specification such as a key used for request
+                      signing. This is different from the "clientState" field in
+                      that it also includes examples for the generated
+                      documentation
                 required:
                   - generator
                   - version
                   - git
                   - outputDirectory
+                  - clientName
                   - logoPath
                   - packageName
                 additionalProperties: false
@@ -2068,6 +2277,25 @@ components:
                       you need state in the SDK that is not described in the
                       OpenAPI Specification such as a key used for request
                       signing.
+                  clientStateWithExamples:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                        example:
+                          type: string
+                      required:
+                        - name
+                        - example
+                    description: A list of stateful properties generated into the SDK that can be
+                      used in custom implementation hooks. This is useful when
+                      you need state in the SDK that is not described in the
+                      OpenAPI Specification such as a key used for request
+                      signing. This is different from the "clientState" field in
+                      that it also includes examples for the generated
+                      documentation
                   supportPhp7:
                     type: boolean
                     default: false

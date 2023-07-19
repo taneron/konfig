@@ -105,6 +105,28 @@
         "stripRequiredStringProperties": {
           "type": "boolean"
         },
+        "optionalParameters": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "\"name\" field of parameter"
+              },
+              "in": {
+                "type": "string",
+                "description": "\"in\" field of parameter"
+              }
+            },
+            "required": [
+              "name",
+              "in"
+            ],
+            "additionalProperties": false
+          },
+          "description": "Can be configured to make specified parameters optional in the\n  SDKs. This can be useful if you have a set of parameters you would rather\n  instantiate on the top-level client to avoid redundant passing of this\n  parameter. For example if you have a \"version\" parameter that you repeatedly\n  pass throughout the operations, you can instead make it optional, add it as a\n  client state, and implement a request hook to attach the \"version\" client\n  state to the operation."
+        },
         "doNotValidateGloballyRequiredSecurity": {
           "type": "boolean"
         },
@@ -332,6 +354,26 @@
                   },
                   "description": "A list of stateful properties generated into the SDK that can be used in custom implementation hooks. This is useful when you need state in the SDK that is not described in the OpenAPI Specification such as a key used for request signing."
                 },
+                "clientStateWithExamples": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "example": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "name",
+                      "example"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "description": "A list of stateful properties generated into the SDK that can be used in custom implementation hooks. This is useful when you need state in the SDK that is not described in the OpenAPI Specification such as a key used for request signing. This is different from the \"clientState\" field in that it also includes examples for the generated documentation"
+                },
                 "toStringReturnsJson": {
                   "type": "boolean",
                   "description": "Modify the behavior of toString() for generated schema classes to return a parsable JSON string as opposed to a string representation of the object's properties. This could be useful when you want to log the contents of a schema class without having to manually serialize it to JSON."
@@ -460,6 +502,9 @@
                 },
                 "clientState": {
                   "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/clientState"
+                },
+                "clientStateWithExamples": {
+                  "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/clientStateWithExamples"
                 }
               },
               "required": [
@@ -546,6 +591,9 @@
                 },
                 "clientState": {
                   "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/clientState"
+                },
+                "clientStateWithExamples": {
+                  "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/clientStateWithExamples"
                 },
                 "clientStateIsOptional": {
                   "type": "boolean",
@@ -711,6 +759,9 @@
                 "clientState": {
                   "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/clientState"
                 },
+                "clientStateWithExamples": {
+                  "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/clientStateWithExamples"
+                },
                 "removeRequiredProperties": {
                   "type": "array",
                   "items": {
@@ -798,6 +849,9 @@
                 "git": {
                   "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/git"
                 },
+                "clientName": {
+                  "type": "string"
+                },
                 "logoPath": {
                   "type": "string",
                   "description": "The path to a logo image that is copied to the generated C# SDK to be used as an image on https://nuget.org. This is required and important for branding your SDK."
@@ -808,12 +862,16 @@
                 },
                 "clientState": {
                   "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/clientState"
+                },
+                "clientStateWithExamples": {
+                  "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/clientStateWithExamples"
                 }
               },
               "required": [
                 "version",
                 "outputDirectory",
                 "git",
+                "clientName",
                 "logoPath",
                 "packageName"
               ],
@@ -867,6 +925,9 @@
                 },
                 "clientState": {
                   "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/clientState"
+                },
+                "clientStateWithExamples": {
+                  "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/clientStateWithExamples"
                 },
                 "supportPhp7": {
                   "type": "boolean",
@@ -1216,6 +1277,9 @@
                   "clientState": {
                     "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/clientState"
                   },
+                  "clientStateWithExamples": {
+                    "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/clientStateWithExamples"
+                  },
                   "toStringReturnsJson": {
                     "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/toStringReturnsJson"
                   }
@@ -1285,6 +1349,9 @@
                   },
                   "clientState": {
                     "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/clientState"
+                  },
+                  "clientStateWithExamples": {
+                    "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/clientStateWithExamples"
                   }
                 },
                 "required": [
@@ -1435,6 +1502,9 @@
                   "clientState": {
                     "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/clientState"
                   },
+                  "clientStateWithExamples": {
+                    "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/clientStateWithExamples"
+                  },
                   "clientStateIsOptional": {
                     "$ref": "#/definitions/konfigYaml/properties/generators/properties/python/properties/clientStateIsOptional"
                   },
@@ -1543,6 +1613,9 @@
                   "clientState": {
                     "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/clientState"
                   },
+                  "clientStateWithExamples": {
+                    "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/clientStateWithExamples"
+                  },
                   "removeRequiredProperties": {
                     "$ref": "#/definitions/konfigYaml/properties/generators/properties/typescript/properties/removeRequiredProperties"
                   },
@@ -1618,6 +1691,9 @@
                   "git": {
                     "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/git"
                   },
+                  "clientName": {
+                    "$ref": "#/definitions/konfigYaml/properties/generators/properties/csharp/properties/clientName"
+                  },
                   "logoPath": {
                     "$ref": "#/definitions/konfigYaml/properties/generators/properties/csharp/properties/logoPath"
                   },
@@ -1626,6 +1702,9 @@
                   },
                   "clientState": {
                     "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/clientState"
+                  },
+                  "clientStateWithExamples": {
+                    "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/clientStateWithExamples"
                   }
                 },
                 "required": [
@@ -1633,6 +1712,7 @@
                   "version",
                   "outputDirectory",
                   "git",
+                  "clientName",
                   "logoPath",
                   "packageName"
                 ],
@@ -1689,6 +1769,9 @@
                   },
                   "clientState": {
                     "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/clientState"
+                  },
+                  "clientStateWithExamples": {
+                    "$ref": "#/definitions/konfigYaml/properties/generators/properties/java/properties/clientStateWithExamples"
                   },
                   "supportPhp7": {
                     "$ref": "#/definitions/konfigYaml/properties/generators/properties/php/properties/supportPhp7"
