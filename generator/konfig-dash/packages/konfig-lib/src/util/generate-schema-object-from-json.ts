@@ -42,15 +42,21 @@ export function generateSchemaObjectFromJson({
   }
 
   if (json === null) {
-    if (version === '3.0.x')
-      return {
-        type: 'string',
-        nullable: true,
-      }
-    else
-      return {
-        type: 'null',
-      }
+    if (version === '3.0.x') {
+      return Object.assign(
+        {
+          type: 'string',
+          nullable: true,
+        },
+        { 'x-konfig-null-placeholder': true }
+      ) as SchemaObject
+    } else
+      return Object.assign(
+        {
+          type: 'null',
+        },
+        { 'x-konfig-null-placeholder': true }
+      ) as SchemaObject
   }
 
   if (Array.isArray(json)) {
@@ -91,6 +97,9 @@ export type SchemaOrReference = SchemaObject | ReferenceObject
 export type NonArraySchemaObject =
   | OpenAPIV3.NonArraySchemaObject
   | OpenAPIV3_1.NonArraySchemaObject
+export type ArraySchemaObject =
+  | OpenAPIV3.ArraySchemaObject
+  | OpenAPIV3_1.ArraySchemaObject
 
 export function reduceSchemaObjects({
   schemaObjects,
@@ -161,13 +170,37 @@ export function unrollOneOf({
 }: {
   schemaObject: SchemaOrReference
 }): SchemaObject | ReferenceObject {
-  if (
-    'oneOf' in schemaObject &&
-    schemaObject.oneOf !== undefined &&
-    schemaObject.oneOf.length === 1
-  ) {
-    return schemaObject.oneOf[0]
+  if ('oneOf' in schemaObject && schemaObject.oneOf !== undefined) {
+    // handle x-konfig-null-placeholder which is essentially a "poison null pill".
+    // if any schemaObject has a schema with the extension, remove it and apply "nullable" to all other schemas
+    let poisoned = false
+    let allPoisoned = true
+    for (const schema of schemaObject.oneOf) {
+      if ('x-konfig-null-placeholder' in schema) poisoned = true
+      else allPoisoned = false
+    }
+    const oneOf: (SchemaObject | ReferenceObject)[] = []
+    for (const schema of schemaObject.oneOf) {
+      if ('x-konfig-null-placeholder' in schema) {
+        continue
+      }
+      if ('$ref' in schema) throw Error('Not Implemented')
+      if (poisoned) {
+        ;(schema as any).nullable = true
+      }
+      oneOf.push(schema)
+    }
+    schemaObject.oneOf = oneOf
+
+    if (schemaObject.oneOf.length === 1) return schemaObject.oneOf[0]
+    if (allPoisoned)
+      return {
+        type: 'string',
+        nullable: true,
+        'x-konfig-null-placeholder': true,
+      } as SchemaObject
   }
+
   return schemaObject
 }
 
@@ -233,11 +266,17 @@ export function mergeOneOfAndSchemaObject({
   if ('$ref' in schemaObject) {
     return oneOf.concat(schemaObject)
   }
+  if ('x-konfig-null-placeholder' in schemaObject) {
+    return oneOf.concat(schemaObject)
+  }
   // if schemaObject is primitive then check if oneOf already has that primitive
   if (typeof schemaObject.type === 'string') {
     if (isTypePrimitive(schemaObject.type)) {
       const existingSchemaObject = oneOf.find(
-        (so) => !('$ref' in so) && so.type === schemaObject.type
+        (so) =>
+          !('$ref' in so) &&
+          so.type === schemaObject.type &&
+          !('x-konfig-null-placeholder' in so)
       )
 
       if (existingSchemaObject !== undefined) {

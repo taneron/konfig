@@ -27,6 +27,7 @@ import { operationIdSchema } from './util/operation-id-schema'
 import equals from 'deep-equal'
 import camelcase from './util/camelcase'
 import { HttpMethods } from './forEachOperation'
+import { transformInnerSchemas } from './util/transform-inner-schemas'
 
 export const doNotGenerateVendorExtension = 'x-do-not-generate'
 
@@ -40,6 +41,7 @@ type Options = {
 export const transformSpec = async ({
   specString,
   filterQueryParams,
+  optionalParameters,
   filterTags,
   allObjectsHaveAdditionalProperties,
   filterModels,
@@ -147,6 +149,14 @@ export const transformSpec = async ({
         value['$ref'] = `#/components/schemas/${name}`
       }
     })
+  }
+
+  if (generator === 'python') {
+    // The Python generator expects explicit component schemas to properly
+    // generate types. For example, if you have an "array" type schema with an
+    // inner-object, the inner-object must be a "$ref" to generate explicit
+    // types for the array items in the Python SDK.
+    transformInnerSchemas({ spec })
   }
 
   // Since "list" is a reserved keyword in PHP lets convert all operation IDs from "list" to "all"
@@ -320,6 +330,21 @@ export const transformSpec = async ({
         'x-konfig-globally-required-security':
           isGloballyRequired || securityCount[security] === operations.length,
       })
+    }
+  }
+
+  // konfig.yaml#optionalParameters
+  if (optionalParameters !== undefined) {
+    for (const { operation } of operations) {
+      const parameters = getOperationParameters({ operation, spec })
+      if (parameters === undefined) continue
+      for (const parameter of parameters) {
+        for (const optional of optionalParameters) {
+          if (parameter.name !== optional.name) continue
+          if (parameter.in !== optional.in) continue
+          delete parameter['required']
+        }
+      }
     }
   }
 

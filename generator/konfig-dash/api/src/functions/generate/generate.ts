@@ -309,6 +309,7 @@ export const myHandler = async (event: APIGatewayEvent, context: Context) => {
           gitRepoName: generatorConfig.git.repoName,
           moduleName: generatorConfig.moduleName,
           clientState: generatorConfig.clientState,
+          clientStateWithExamples: generatorConfig.clientStateWithExamples,
           tagPriority: body.tagPriority,
         },
         artifactVersion: generatorConfig.version,
@@ -345,6 +346,7 @@ export const myHandler = async (event: APIGatewayEvent, context: Context) => {
           userAgent: generatorConfig.userAgent,
           gitRepoName: generatorConfig.git.repoName,
           clientState: generatorConfig.clientState,
+          clientStateWithExamples: generatorConfig.clientStateWithExamples,
           supportPhp7: generatorConfig.supportPhp7,
         },
         packageName: generatorConfig.packageName,
@@ -419,6 +421,7 @@ export const myHandler = async (event: APIGatewayEvent, context: Context) => {
           invokerPackage: packageName,
           clientName: generatorConfig.clientName,
           clientState: generatorConfig.clientState,
+          clientStateWithExamples: generatorConfig.clientStateWithExamples,
           apiDocumentationAuthenticationPartial:
             generatorConfig.apiDocumentationAuthenticationPartial,
           removeKonfigBranding: generatorConfig.removeKonfigBranding,
@@ -497,6 +500,7 @@ export const myHandler = async (event: APIGatewayEvent, context: Context) => {
         additionalProperties: {
           omitInfoDescription: body.omitInfoDescription,
           tagPriority: body.tagPriority,
+          clientName: generatorConfig.clientName,
           packageVersion: generatorConfig.version,
           readmeSnippet: generatorConfig.readmeSnippet,
           readmeSupportingDescriptionSnippet:
@@ -507,6 +511,7 @@ export const myHandler = async (event: APIGatewayEvent, context: Context) => {
           defaultTimeout: generatorConfig.defaultTimeout,
           userAgent: generatorConfig.userAgent,
           clientState: generatorConfig.clientState,
+          clientStateWithExamples: generatorConfig.clientStateWithExamples,
         },
         generatorName: 'csharp-netcore',
         packageName: generatorConfig.packageName,
@@ -554,6 +559,7 @@ export const myHandler = async (event: APIGatewayEvent, context: Context) => {
           keepAllParametersOptional: generatorConfig.keepAllParametersOptional,
           clientName: generatorConfig.clientName,
           clientState: generatorConfig.clientState,
+          clientStateWithExamples: generatorConfig.clientStateWithExamples,
           apiKeyAlias: generatorConfig.apiKeyAlias,
           packageUrl: generatorConfig.packageUrl,
           apiDocumentationAuthenticationPartial:
@@ -734,6 +740,7 @@ async function queueTypeScriptGeneration({
         apiDocumentationAuthenticationPartial:
           generatorConfig.apiDocumentationAuthenticationPartial,
         clientState: generatorConfig.clientState,
+        clientStateWithExamples: generatorConfig.clientStateWithExamples,
         defaultTimeout: generatorConfig.defaultTimeout,
         userAgent: generatorConfig.userAgent,
         includeFetchAdapter: generatorConfig.includeFetchAdapter,

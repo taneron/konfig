@@ -424,6 +424,7 @@ public class PythonClientCodegen extends AbstractPythonCodegen {
         supportingFiles.add(new SupportingFile("client." + templateExtension, packagePath(), "client.pyi"));
         supportingFiles.add(new SupportingFile("request_after_hook." + templateExtension, packagePath(), "request_after_hook.py"));
         supportingFiles.add(new SupportingFile("request_before_hook." + templateExtension, packagePath(), "request_before_hook.py"));
+        supportingFiles.add(new SupportingFile("request_before_url_hook." + templateExtension, packagePath(), "request_before_url_hook.py"));
         supportingFiles.add(new SupportingFile("__init__package." + templateExtension, packagePath(), "__init__.py"));
 
         // If the package name consists of dots(openapi.client), then we need to create the directory structure like openapi/client with __init__ files.
@@ -437,6 +438,7 @@ public class PythonClientCodegen extends AbstractPythonCodegen {
             supportingFiles.add(new SupportingFile("__init__." + templateExtension, currentPackagePath, "__init__.py"));
         }
 
+        supportingFiles.add(new SupportingFile("test_simple." + templateExtension, testFolder, "test_simple.py"));
         supportingFiles.add(new SupportingFile("exceptions." + templateExtension, packagePath(), "exceptions.py"));
 
         if (Boolean.FALSE.equals(excludeTests)) {
@@ -2606,6 +2608,8 @@ public class PythonClientCodegen extends AbstractPythonCodegen {
         });
 
         m.hasPropertyNameConflictingWithReservedWord = m.vars.stream().anyMatch(v -> reservedWords.contains(v.baseName));
+        boolean allVarsAreValidPythonVarOrClassName = m.vars.stream().anyMatch(v -> !isValidPythonVarOrClassName(v.baseName));
+        m.useDictionaryBasedTypedDict = allVarsAreValidPythonVarOrClassName || m.hasPropertyNameConflictingWithReservedWord;
 
         // an object or anyType composed schema that has additionalProperties set
         addAdditionPropertiesToCodeGenModel(m, schema);

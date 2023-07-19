@@ -22,11 +22,16 @@ namespace {{packageName}}.Client
         /// <value>Access token.</value>
         string AccessToken { get; }
 
-{{#clientState}}
+{{#clientStateSetterGetterPascalCase}}
         /// <value>Client state</value>
-        string {{{.}}} { get; }
+        string {{{state}}} { get; }
 
-{{/clientState}}
+{{/clientStateSetterGetterPascalCase}}
+{{#clientStateWithExamplesSetterGetterPascalCase}}
+        /// <value>Client state</value>
+        string {{{state}}} { get; }
+
+{{/clientStateWithExamplesSetterGetterPascalCase}}
         {{#useRestSharp}}
         {{#hasOAuthMethods}}
         /// <summary>
