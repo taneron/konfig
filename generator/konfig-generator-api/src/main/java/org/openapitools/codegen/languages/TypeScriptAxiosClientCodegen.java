@@ -333,7 +333,7 @@ public class TypeScriptAxiosClientCodegen extends AbstractTypeScriptClientCodege
 
         // construct dependencies as string
         List<String> dependencies = new ArrayList<>();
-        dependencies.add("    \"axios\": \"^0.26.1\"");
+        dependencies.add("    \"axios\": \"0.27.2\"");
         if ((Boolean) bundle.getOrDefault("includeEventSourceParser", false))
             dependencies.add("\"eventsource-parser\": \"^1.0.0\"");
         if ((Boolean) bundle.getOrDefault("includeFetchAdapter", false))
