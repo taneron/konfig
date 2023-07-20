@@ -108,7 +108,6 @@ export async function fixOas({
     progress,
   })
 
-  // TODO: 9b43e-Some-methods-in-fixoas-cause-readonly-bug-to-occur
   // Redundant security requirement and parameters
   const numberOfRedundantSecurityAndParametersFixed =
     await fixRedundantSecurityAndParameter({ spec })
@@ -124,7 +123,6 @@ export async function fixOas({
     spec,
   })
 
-  // TODO: 9b43e-Some-methods-in-fixoas-cause-readonly-bug-to-occur
   // Parameters converted to security requirements
   const numberOfParametersConvertedToSecurityRequirements =
     await fixParametersThatShouldBeSecurityRequirements({ spec })
@@ -134,7 +132,6 @@ export async function fixOas({
     spec,
   })
 
-  // TODO: 9b43e-Some-methods-in-fixoas-cause-readonly-bug-to-occur
   // Remove parameters for security
   const numberOfParametersRemovedForNewSecurityScheme =
     await fixAdvSecuritySchemesDefined({
