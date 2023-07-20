@@ -101,6 +101,7 @@ export function HeroBullets() {
           <Title className={classes.title}>
             <Text
               variant="gradient"
+              gradient={{ from: "#223349", to: "#0351b3" }}
               component="span"
               className={classes.highlight}
               inherit
