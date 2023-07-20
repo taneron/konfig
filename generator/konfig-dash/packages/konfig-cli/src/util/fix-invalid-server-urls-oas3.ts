@@ -21,7 +21,7 @@ export async function fixInvalidServerUrlsOas3({
     if (urlRegex.test(server.url)) continue
     console.log(
       boxen(
-        `Detected invalid server URL "${server.url}"\nhttps://konfigthis.com/docs/lint-rules#tag-naming-convention"`,
+        `Detected invalid server URL "${server.url}"\nhttps://konfigthis.com/docs/lint-rules#invalid-server-urls-oas3"`,
         {
           title: 'Invalid Server URL Detected',
           padding: 1,
