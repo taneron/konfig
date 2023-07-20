@@ -3,6 +3,7 @@ ${{invokerPackageLowerCase}} = new \{{invokerPackage}}\Client(
 {{{apiDocumentationAuthenticationPartial}}}
 {{/apiDocumentationAuthenticationPartial}}
 {{^apiDocumentationAuthenticationPartial}}
+{{^supportPhp7}}
 {{#clientStateWithUpperSnakeCase}}
     {{clientState}}: "{{upperSnakeCase}}",
 {{/clientStateWithUpperSnakeCase}}
@@ -18,5 +19,6 @@ ${{invokerPackageLowerCase}} = new \{{invokerPackage}}\Client(
     clientSecret: "YOUR_CLIENT_ID",
 {{/isApplication}}
 {{/authMethods}}
+{{/supportPhp7}}
 {{/apiDocumentationAuthenticationPartial}}
 );
