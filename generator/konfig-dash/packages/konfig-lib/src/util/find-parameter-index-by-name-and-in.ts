@@ -1,26 +1,25 @@
 import { Operation } from '../forEachOperation'
-import { OpenAPIV3_XDocument } from '../parseSpec'
-import { resolveRefStoplight } from './resolve-ref-stoplight'
+import type { Spec } from '../parseSpec'
+import { resolveRef } from '../resolveRef'
 
 export async function findParameterIndexByNameAndIn({
   name,
   parameterIn,
   operation,
-  document,
+  spec,
   caseInsensitive,
 }: {
   name: string
   parameterIn: string
   operation: Operation
-  document: OpenAPIV3_XDocument
+  spec: Spec
   caseInsensitive?: boolean
 }): Promise<number> {
-  const parameterPromises = operation.parameters?.map(
-    async (refOrObject) =>
-      await resolveRefStoplight({
-        refOrObject,
-        source: document,
-      })
+  const parameterPromises = operation.parameters?.map(async (refOrObject) =>
+    resolveRef({
+      refOrObject,
+      $ref: spec.$ref,
+    })
   )
   if (parameterPromises === undefined) return -1
   caseInsensitive = caseInsensitive ?? true

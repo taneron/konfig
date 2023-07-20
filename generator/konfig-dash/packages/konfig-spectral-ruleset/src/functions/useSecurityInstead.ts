@@ -1,6 +1,6 @@
 import { IFunctionResult, RulesetFunction } from '@stoplight/spectral-core'
 import type { Operation } from 'konfig-lib/dist/forEachOperation'
-import { findSecuritySchemesForParameters } from 'konfig-lib/dist/util/find-security-schemes-for-parameters'
+import { findSecuritySchemesForParametersStoplight } from 'konfig-lib/dist/util/find-security-schemes-for-parameters-stoplight'
 import { getSecurityParameterName } from 'konfig-lib/dist/util/get-security-parameter-name'
 import { OAS3Doc } from './util/OAS3Doc'
 export const useSecurityInstead: RulesetFunction<Operation> = async (
@@ -10,7 +10,7 @@ export const useSecurityInstead: RulesetFunction<Operation> = async (
 ): Promise<IFunctionResult[]> => {
   const document = context.document.data as OAS3Doc
   // Find all parameters from security of operation
-  const securitySchemes = await findSecuritySchemesForParameters({
+  const securitySchemes = await findSecuritySchemesForParametersStoplight({
     document,
     operation,
   })

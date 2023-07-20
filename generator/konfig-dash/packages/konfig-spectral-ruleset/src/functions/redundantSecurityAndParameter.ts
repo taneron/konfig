@@ -21,17 +21,18 @@ import { OpenAPI } from 'openapi-types'
  * Use --verbose flag to print the error stack.
  * Error #1: Cannot convert undefined or null to object
  */
-import { findRedundantSecurityRequirementAndParameter } from 'konfig-lib/dist/util/find-redundant-security-requirement-and-parameter'
+import { findRedundantSecurityRequirementAndParameterStoplight } from 'konfig-lib/dist/util/find-redundant-security-requirement-and-parameter-stoplight'
 
 export const redundantSecurityAndParameter: RulesetFunction<
   OpenAPI.Operation
 > = async (operation, _options, context) => {
   const result: IFunctionResult[] = []
   const document = context.document.data as OpenAPI.Document
-  const findResult = await findRedundantSecurityRequirementAndParameter({
-    document,
-    operation,
-  })
+  const findResult =
+    await findRedundantSecurityRequirementAndParameterStoplight({
+      document,
+      operation,
+    })
   if (findResult.found) result.push({ message: findResult.name })
   return result
 }

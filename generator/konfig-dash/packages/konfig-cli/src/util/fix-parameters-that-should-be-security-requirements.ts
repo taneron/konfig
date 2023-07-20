@@ -1,24 +1,24 @@
 import {
   findParameterIndexByNameAndIn,
   findSecuritySchemesForParameters,
-  OpenAPIV3_XDocument,
   getSecurityIn,
   getSecurityParameterName,
   getOperations,
+  Spec,
 } from 'konfig-lib'
 
 export async function fixParametersThatShouldBeSecurityRequirements({
   spec,
 }: {
-  spec: OpenAPIV3_XDocument
+  spec: Spec
 }): Promise<number> {
   let numberOfParametersConvertedToSecurityRequirements = 0
 
-  const operations = getOperations({ spec })
+  const operations = getOperations({ spec: spec.spec })
 
   for (const { operation } of operations) {
     const securitySchemes = await findSecuritySchemesForParameters({
-      document: spec,
+      spec,
       operation,
     })
     if (securitySchemes === undefined) continue
@@ -38,7 +38,7 @@ export async function fixParametersThatShouldBeSecurityRequirements({
         name: securityParameterName,
         parameterIn,
         operation,
-        document: spec,
+        spec,
       })
       if (index === -1) throw Error('Every security should match a parameter')
       operation.parameters.splice(index, 1)

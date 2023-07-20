@@ -2,30 +2,30 @@ import {
   findParameterIndexByNameAndIn,
   findRedundantSecurityRequirementAndParameter,
   getOperations,
-  OpenAPIV3_XDocument,
   Operation,
+  Spec,
 } from 'konfig-lib'
 
 export async function fixRedundantSecurityAndParameter({
   spec,
 }: {
-  spec: OpenAPIV3_XDocument
+  spec: Spec
 }): Promise<number> {
   let numberOfRedundantSecurityAndParametersFixed = 0
-  if (spec.paths === undefined) return 0
-  const operations = getOperations({ spec })
+  if (spec.spec.paths === undefined) return 0
+  const operations = getOperations({ spec: spec.spec })
   for (const { operation } of operations) {
     if (operation.parameters === undefined) continue
     if (operation.security === undefined) continue
 
     let numberOfParametersRemoved = await removeRedundant({
-      document: spec,
+      spec,
       operation,
     })
     while (numberOfParametersRemoved > 0) {
       numberOfRedundantSecurityAndParametersFixed += numberOfParametersRemoved
       numberOfParametersRemoved = await removeRedundant({
-        document: spec,
+        spec,
         operation,
       })
     }
@@ -34,14 +34,15 @@ export async function fixRedundantSecurityAndParameter({
 }
 
 async function removeRedundant({
-  document,
+  spec,
   operation,
 }: {
-  document: OpenAPIV3_XDocument
+  spec: Spec
   operation: Operation
 }) {
   const findResult = await findRedundantSecurityRequirementAndParameter({
-    document,
+    spec: spec.spec,
+    $ref: spec.$ref,
     operation,
   })
   if (!findResult.found) return 0
@@ -51,7 +52,7 @@ async function removeRedundant({
     name: findResult.name,
     parameterIn: findResult.parameter.in,
     operation,
-    document,
+    spec,
   })
   if (index === -1)
     throw Error(

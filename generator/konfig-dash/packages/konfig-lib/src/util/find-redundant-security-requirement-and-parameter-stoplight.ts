@@ -1,21 +1,16 @@
-import {
-  getOperationParametersDeprecated,
-  OperationParameter,
-} from './get-operation-parameters-deprecated'
+import { OpenAPI } from 'openapi-types'
+import { OperationParameter } from './get-operation-parameters-deprecated'
 import { getSecurityParameterName } from './get-security-parameter-name'
-import { getSecuritySchemes } from './get-security-schemes'
 import { hasAny } from './has-any'
-import type { Spec } from '../parseSpec'
-import type { Operation } from '../forEachOperation'
+import { getOperationParametersDeprecatedStoplight } from './get-operation-parameters-deprecated-stoplight'
+import { getSecuritySchemesStoplight } from './get-security-schemes-stoplight'
 
-export async function findRedundantSecurityRequirementAndParameter({
-  spec,
-  $ref,
+export async function findRedundantSecurityRequirementAndParameterStoplight({
+  document,
   operation,
 }: {
-  spec: Spec['spec']
-  $ref: Spec['$ref']
-  operation: Operation
+  document: OpenAPI.Document
+  operation: OpenAPI.Operation
 }): Promise<
   | {
       name: string
@@ -25,13 +20,13 @@ export async function findRedundantSecurityRequirementAndParameter({
     }
   | { found: false }
 > {
-  const securityRequirements = spec.security ?? operation.security
+  const securityRequirements = document.security ?? operation.security
   if (securityRequirements === undefined) return { found: false }
-  const securitySchemes = await getSecuritySchemes({ spec, $ref })
+  const securitySchemes = await getSecuritySchemesStoplight({ document })
   if (securitySchemes === undefined) return { found: false }
-  const parameters = await getOperationParametersDeprecated({
+  const parameters = await getOperationParametersDeprecatedStoplight({
     operation: operation,
-    $ref,
+    document,
   })
   if (parameters === undefined) return { found: false }
 

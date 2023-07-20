@@ -22,17 +22,17 @@ export async function fixAdvSecuritySchemesDefined({
   progress,
   alwaysYes,
 }: {
-  spec: Spec['spec']
+  spec: Spec
   progress: Progress
   alwaysYes: boolean
 }): Promise<number> {
   let numberOfParametersRemovedForSecurityScheme = 0
 
-  const operations = getOperations({ spec })
+  const operations = getOperations({ spec: spec.spec })
   for (const { operation, method, path } of operations) {
     const parameters = await getOperationParametersDeprecated({
       operation,
-      document: spec,
+      $ref: spec.$ref,
     })
     if (parameters === undefined) continue
     for (const parameter of parameters) {
@@ -226,13 +226,13 @@ async function createOauthFlowObject(): Promise<OAuthFlowObject> {
 }
 
 async function removeParameterForSecurityRequirement({
-  spec,
+  spec: { spec, $ref },
   name,
   parameterIn,
   securityScheme,
   operation,
 }: {
-  spec: Spec['spec']
+  spec: Spec
   operation: Operation
   name: string
   parameterIn: string
@@ -314,7 +314,7 @@ async function removeParameterForSecurityRequirement({
   // Remove from parameters
   const parameters = await getOperationParametersDeprecated({
     operation,
-    document: spec,
+    $ref,
   })
   if (parameters === undefined)
     throw Error('We should have had parameters if we found something to remove')

@@ -1,29 +1,26 @@
 import { OpenAPI } from 'openapi-types'
 import { Operation } from '../forEachOperation'
-import { getOperationParametersDeprecated } from './get-operation-parameters-deprecated'
 import { getSecurityIn } from './get-security-in'
 import { getSecurityParameterName } from './get-security-parameter-name'
-import { getSecuritySchemes, SecurityScheme } from './get-security-schemes'
-import type { Spec } from '../parseSpec'
+import { SecurityScheme } from './get-security-schemes'
+import { getOperationParametersDeprecatedStoplight } from './get-operation-parameters-deprecated-stoplight'
+import { getSecuritySchemesStoplight } from './get-security-schemes-stoplight'
 
-export async function findSecuritySchemesForParameters({
-  spec,
+export async function findSecuritySchemesForParametersStoplight({
+  document,
   operation,
   caseInsensitive,
 }: {
-  spec: Spec
+  document: OpenAPI.Document
   operation: Operation
   caseInsensitive?: boolean
 }): Promise<{ name: string; scheme: SecurityScheme }[] | undefined> {
   caseInsensitive = caseInsensitive ?? true
-  const securitySchemes = await getSecuritySchemes({
-    spec: spec.spec,
-    $ref: spec.$ref,
-  })
+  const securitySchemes = await getSecuritySchemesStoplight({ document })
   if (securitySchemes === undefined) return
-  const parameters = await getOperationParametersDeprecated({
+  const parameters = await getOperationParametersDeprecatedStoplight({
     operation,
-    $ref: spec.$ref,
+    document,
   })
   if (parameters === undefined) return
   const matchingSecuritySchemes = Object.entries(securitySchemes).filter(

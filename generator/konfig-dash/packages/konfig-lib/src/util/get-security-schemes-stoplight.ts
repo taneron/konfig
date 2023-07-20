@@ -1,31 +1,31 @@
-import { OpenAPIV2, OpenAPIV3, OpenAPIV3_1 } from 'openapi-types'
-import { Spec } from '../parseSpec'
-import { resolveRef } from '../resolveRef'
+import { OpenAPI, OpenAPIV2, OpenAPIV3, OpenAPIV3_1 } from 'openapi-types'
+import { resolveRefStoplight } from './resolve-ref-stoplight'
 
 export type SecurityScheme =
   | OpenAPIV2.SecuritySchemeObject
   | OpenAPIV3.SecuritySchemeObject
   | OpenAPIV3_1.SecuritySchemeObject
 export type SecuritySchemes = Record<string, SecurityScheme>
-export const getSecuritySchemes = async ({
-  spec,
-  $ref,
+export const getSecuritySchemesStoplight = async ({
+  document,
 }: {
-  spec: Spec['spec']
-  $ref: Spec['$ref']
+  document: OpenAPI.Document
 }): Promise<SecuritySchemes | undefined> => {
-  if ('securityDefinitions' in spec) {
-    throw Error('OAS 2.0 (Swagger) not supported')
+  if ('securityDefinitions' in document) {
+    return document.securityDefinitions
   }
-  if ('components' in spec) {
-    const securitySchemes = spec.components?.securitySchemes
+  if ('components' in document) {
+    const securitySchemes = document.components?.securitySchemes
     if (securitySchemes === undefined) return
     const resolved = await Promise.all(
       Object.entries(securitySchemes).map(
         async ([name, refOrObject]): Promise<
           [string, OpenAPIV3.SecuritySchemeObject]
         > => {
-          return [name, resolveRef({ refOrObject, $ref })]
+          return [
+            name,
+            await resolveRefStoplight({ refOrObject, source: document }),
+          ]
         }
       )
     )
