@@ -17,7 +17,7 @@ import {
 import { useViewportSize, useWindowScroll } from "@mantine/hooks";
 import { IconRefresh } from "@tabler/icons-react";
 
-import Image from "next/image";
+import Image from "next-image-export-optimizer";
 import { useEffect, useMemo, useState } from "react";
 import ReactFlow, {
   Edge,
@@ -26,6 +26,17 @@ import ReactFlow, {
   Position,
   ReactFlowInstance,
 } from "reactflow";
+import oas from "../../../public/oas.png";
+import postman from "../../../public/postman.webp";
+import typescript from "../../../public/typescript.png";
+import python from "../../../public/python.png";
+import go from "../../../public/go.png";
+import java from "../../../public/java.png";
+import csharp from "../../../public/csharp.png";
+import ruby from "../../../public/ruby.png";
+import swift from "../../../public/swift.png";
+import php from "../../../public/php.png";
+import favicon from "../../../public/favicon.png";
 import "reactflow/dist/style.css";
 
 const desktopNodes: Node[] = [
@@ -35,12 +46,7 @@ const desktopNodes: Node[] = [
     data: {
       label: (
         <>
-          <Image
-            src="/oas.png"
-            width={40}
-            height={40}
-            alt="OpenAPI Specification"
-          />
+          <Image src={oas} width={40} height={40} alt="OpenAPI Specification" />
           <Text c="dimmed">OpenAPI Specification</Text>
         </>
       ),
@@ -54,7 +60,7 @@ const desktopNodes: Node[] = [
     data: {
       label: (
         <>
-          <Image src="/postman.webp" width={35} height={35} alt="Postman" />
+          <Image src={postman} width={35} height={35} alt="Postman" />
           <Text c="dimmed">Postman</Text>
         </>
       ),
@@ -70,7 +76,7 @@ const desktopNodes: Node[] = [
     data: {
       label: (
         <>
-          <Image src="/favicon.png" width={40} height={40} alt="Konfig" />
+          <Image src={favicon} width={40} height={40} alt="Konfig" />
           <Text c="dimmed">Konfig</Text>
         </>
       ),
@@ -86,19 +92,14 @@ const desktopNodes: Node[] = [
       label: (
         <>
           <Group position="center" spacing="xs">
-            <Image
-              src="/typescript.png"
-              width={20}
-              height={20}
-              alt="TypeScript"
-            />
-            <Image src="/python.png" width={18} height={20} alt="Python" />
-            <Image src="/go.png" width={25} height={25} alt="Go" />
-            <Image src="/java.png" width={11} height={20} alt="Java" />
-            <Image src="/csharp.png" width={18} height={20} alt="C#" />
-            <Image src="/ruby.png" width={17} height={17} alt="Ruby" />
-            <Image src="/swift.png" width={17} height={17} alt="Swift" />
-            <Image src="/php.png" width={34} height={18} alt="PHP" />
+            <Image src={typescript} width={20} height={20} alt="TypeScript" />
+            <Image src={python} width={18} height={20} alt="Python" />
+            <Image src={go} width={25} height={25} alt="Go" />
+            <Image src={java} width={11} height={20} alt="Java" />
+            <Image src={csharp} width={18} height={20} alt="C#" />
+            <Image src={ruby} width={17} height={17} alt="Ruby" />
+            <Image src={swift} width={17} height={17} alt="Swift" />
+            <Image src={php} width={34} height={18} alt="PHP" />
           </Group>
           <Text mt={rem(2)} c="dimmed">
             SDKs
@@ -116,12 +117,7 @@ const mobileNodes: Node[] = [
     data: {
       label: (
         <>
-          <Image
-            src="/oas.png"
-            width={40}
-            height={40}
-            alt="OpenAPI Specification"
-          />
+          <Image src={oas} width={40} height={40} alt="OpenAPI Specification" />
           <Text c="dimmed">OpenAPI Specification</Text>
         </>
       ),
@@ -135,7 +131,7 @@ const mobileNodes: Node[] = [
     data: {
       label: (
         <>
-          <Image src="/postman.webp" width={35} height={35} alt="Postman" />
+          <Image src={postman} width={35} height={35} alt="Postman" />
           <Text c="dimmed">Postman</Text>
         </>
       ),
@@ -151,7 +147,7 @@ const mobileNodes: Node[] = [
     data: {
       label: (
         <>
-          <Image src="/favicon.png" width={40} height={40} alt="Konfig" />
+          <Image src={favicon} width={40} height={40} alt="Konfig" />
           <Text c="dimmed">Konfig</Text>
         </>
       ),
@@ -167,19 +163,14 @@ const mobileNodes: Node[] = [
       label: (
         <>
           <Group position="center" spacing="xs">
-            <Image
-              src="/typescript.png"
-              width={20}
-              height={20}
-              alt="TypeScript"
-            />
-            <Image src="/python.png" width={18} height={20} alt="Python" />
-            <Image src="/go.png" width={25} height={25} alt="Go" />
-            <Image src="/java.png" width={11} height={20} alt="Java" />
-            <Image src="/csharp.png" width={18} height={20} alt="C#" />
-            <Image src="/ruby.png" width={17} height={17} alt="Ruby" />
-            <Image src="/swift.png" width={17} height={17} alt="Swift" />
-            <Image src="/php.png" width={34} height={18} alt="PHP" />
+            <Image src={typescript} width={20} height={20} alt="TypeScript" />
+            <Image src={python} width={18} height={20} alt="Python" />
+            <Image src={go} width={25} height={25} alt="Go" />
+            <Image src={java} width={11} height={20} alt="Java" />
+            <Image src={csharp} width={18} height={20} alt="C#" />
+            <Image src={ruby} width={17} height={17} alt="Ruby" />
+            <Image src={swift} width={17} height={17} alt="Swift" />
+            <Image src={php} width={34} height={18} alt="PHP" />
           </Group>
           <Text mt={rem(2)} c="dimmed">
             SDKs
@@ -225,17 +216,12 @@ export function GetSdksWithZeroEffort() {
             <Box c="dimmed">
               <Group>
                 <Image
-                  src="/oas.png"
+                  src={oas}
                   width={40}
                   height={40}
                   alt="OpenAPI Specification"
                 />
-                <Image
-                  src="/postman.webp"
-                  width={35}
-                  height={35}
-                  alt="Postman"
-                />
+                <Image src={postman} width={35} height={35} alt="Postman" />
               </Group>
               <Text fz="lg" mt="sm" fw={500}>
                 OpenAPI Specification and Postman Support

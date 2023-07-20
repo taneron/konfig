@@ -9,7 +9,15 @@ import {
   rem,
   Anchor,
 } from "@mantine/core";
-import Image from "next/image";
+import typescript from "../../../public/typescript.png";
+import python from "../../../public/python.png";
+import go from "../../../public/go.png";
+import java from "../../../public/java.png";
+import csharp from "../../../public/csharp.png";
+import ruby from "../../../public/ruby.png";
+import swift from "../../../public/swift.png";
+import php from "../../../public/php.png";
+import Image from "next-image-export-optimizer";
 
 export function GetSdksInAnyLanguage() {
   return (
@@ -42,19 +50,14 @@ export function GetSdksInAnyLanguage() {
         </Col>
         <Col order={2} orderMd={1} span={12} md={7}>
           <Group position="center" spacing="xl" mx={rem(50)}>
-            <Image
-              src="/typescript.png"
-              width={75}
-              height={75}
-              alt="TypeScript"
-            />
-            <Image src="/python.png" width={69} height={75} alt="Python" />
-            <Image src="/go.png" width={100} height={100} alt="Go" />
-            <Image src="/java.png" width={54} height={100} alt="Java" />
-            <Image src="/csharp.png" width={66} height={75} alt="C#" />
-            <Image src="/ruby.png" width={75} height={75} alt="Ruby" />
-            <Image src="/swift.png" width={75} height={75} alt="Swift" />
-            <Image src="/php.png" width={112} height={60} alt="PHP" />
+            <Image src={typescript} width={75} height={75} alt="TypeScript" />
+            <Image src={python} width={69} height={75} alt="Python" />
+            <Image src={go} width={100} height={100} alt="Go" />
+            <Image src={java} width={54} height={100} alt="Java" />
+            <Image src={csharp} width={66} height={75} alt="C#" />
+            <Image src={ruby} width={75} height={75} alt="Ruby" />
+            <Image src={swift} width={75} height={75} alt="Swift" />
+            <Image src={php} width={112} height={60} alt="PHP" />
           </Group>
         </Col>
       </Grid>

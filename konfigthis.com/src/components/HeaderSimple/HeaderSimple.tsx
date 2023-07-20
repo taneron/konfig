@@ -6,7 +6,7 @@ import {
   Group,
   Anchor,
 } from "@mantine/core";
-import Image from "next/image";
+import Image from "next-image-export-optimizer";
 import logo from "./logo.png";
 import { useSubtleLinkStyles } from "@/utils/use-subtle-link-styles";
 
