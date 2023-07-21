@@ -9,8 +9,6 @@ export const handler = async (
   event: APIGatewayProxyEvent,
   context: Context
 ) => {
-  console.log(event)
-  console.log(context)
   const forgotPasswordOptions: DbAuthHandlerOptions['forgotPassword'] = {
     // handler() is invoked after verifying that a user was found with the given
     // username. This is where you can send the user an email with a link to
@@ -199,6 +197,10 @@ export const handler = async (
       // If you need to allow other domains (besides the api side) access to
       // the dbAuth session cookie:
       // Domain: 'example.com',
+    },
+
+    cors: {
+      origin: event.headers['origin'],
     },
 
     forgotPassword: forgotPasswordOptions,

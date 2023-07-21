@@ -57,7 +57,7 @@ export const myHandler = async (event: APIGatewayEvent, context: Context) => {
     return {
       statusCode: 200,
       headers: {
-        ...CORS_HEADERS_ORIGIN_STACKBLITZ,
+        ...CORS_HEADERS_ORIGIN_STACKBLITZ(event),
         ...CORS_HEADERS_METHOD_HEADERS_STACKBLITZ,
       },
     }
@@ -642,7 +642,7 @@ export const myHandler = async (event: APIGatewayEvent, context: Context) => {
       return {
         statusCode: 200,
         headers: {
-          ...CORS_HEADERS_ORIGIN_STACKBLITZ,
+          ...CORS_HEADERS_ORIGIN_STACKBLITZ(event),
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(
