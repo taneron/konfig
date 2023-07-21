@@ -14,11 +14,14 @@ export default class Login extends Command {
 
   static flags = {
     dev: Flags.boolean({ char: 'd', hidden: true }),
+    apiUrl: Flags.url({ char: 'a', name: 'apiUrl', hidden: true }),
   }
 
   public async run(): Promise<void> {
     const { flags } = await this.parse(Login)
-    const origin = getApiUrl({ mode: flags.dev ? 'dev' : 'prod' })
+    const origin = flags.apiUrl
+      ? flags.apiUrl
+      : getApiUrl({ mode: flags.dev ? 'dev' : 'prod' })
     const loginApiUrl = `${origin}/auth`
     this.debug(loginApiUrl)
     this.log(
