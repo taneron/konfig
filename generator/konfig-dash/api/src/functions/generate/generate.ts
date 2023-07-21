@@ -29,6 +29,10 @@ import {
   GenerateResponseBody,
   GenerateResponseBodySchema,
 } from 'konfig-openapi-spec'
+import {
+  CORS_HEADERS_METHOD_HEADERS_STACKBLITZ,
+  CORS_HEADERS_ORIGIN_STACKBLITZ,
+} from 'src/lib/cors-headers'
 const DEBUG_TMP_FOLDER = '/tmp/konfig/'
 
 /**
@@ -49,6 +53,15 @@ const DEBUG_TMP_FOLDER = '/tmp/konfig/'
  */
 export const myHandler = async (event: APIGatewayEvent, context: Context) => {
   const authenticateResult = authenticate()
+  if (event.httpMethod === 'OPTIONS') {
+    return {
+      statusCode: 200,
+      headers: {
+        ...CORS_HEADERS_ORIGIN_STACKBLITZ,
+        ...CORS_HEADERS_METHOD_HEADERS_STACKBLITZ,
+      },
+    }
+  }
   if (authenticateResult.statusCode !== undefined) return authenticateResult
 
   if (event.body === null) {
@@ -629,6 +642,7 @@ export const myHandler = async (event: APIGatewayEvent, context: Context) => {
       return {
         statusCode: 200,
         headers: {
+          ...CORS_HEADERS_ORIGIN_STACKBLITZ,
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(

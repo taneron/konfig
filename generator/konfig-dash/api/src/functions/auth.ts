@@ -199,6 +199,10 @@ export const handler = async (
       // Domain: 'example.com',
     },
 
+    cors: {
+      origin: 'https://stackblitz.com',
+    },
+
     forgotPassword: forgotPasswordOptions,
     login: loginOptions,
     resetPassword: resetPasswordOptions,
