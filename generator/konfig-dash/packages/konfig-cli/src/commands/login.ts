@@ -6,6 +6,7 @@ import * as fs from 'node:fs'
 import { getSessionTokenPath } from '../util/get-session-token-path'
 import { getUserIdPath } from '../util/get-user-id-path'
 import { ensureConfigSetup, HomeDirParams } from '../util/ensure-config-setup'
+import { removeTrailingSlash } from '../util/remove-trailing-slash'
 
 export default class Login extends Command {
   static description = 'Login to api.konfigthis.com'
@@ -20,7 +21,7 @@ export default class Login extends Command {
   public async run(): Promise<void> {
     const { flags } = await this.parse(Login)
     const origin = flags.apiUrl
-      ? flags.apiUrl
+      ? removeTrailingSlash(flags.apiUrl.href)
       : getApiUrl({ mode: flags.dev ? 'dev' : 'prod' })
     const loginApiUrl = `${origin}/auth`
     this.debug(loginApiUrl)

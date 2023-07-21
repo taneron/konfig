@@ -76,5 +76,17 @@ function fixSchemaExampleBoolean(value: any): number {
     value.example = false
     return 1
   }
+  if (value.example === '') {
+    value.example = false
+    return 1
+  }
+  if (value.example === '0') {
+    value.example = false
+    return 1
+  }
+  if (value.example === 0) {
+    value.example = false
+    return 1
+  }
   throw Error(`Could not parse value "${value.example}" for type of boolean`)
 }
