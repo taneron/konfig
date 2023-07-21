@@ -1,6 +1,6 @@
 import { z } from '../zod'
 
-export const operationIdRegex = /^[a-zA-Z0-9]+\_[a-zA-Z0-9]+$/g
+export const operationIdRegex = /^[a-zA-Z0-9]+_(?![0-9]+$)[a-zA-Z0-9]+$/g
 
 /**
  * Set of runtypes for persisting proress

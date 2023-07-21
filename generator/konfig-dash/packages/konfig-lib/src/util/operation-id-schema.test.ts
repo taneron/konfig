@@ -21,4 +21,7 @@ describe('operation-id-schema', () => {
       false
     )
   })
+  it('invalid - numerical method name', () => {
+    expect(operationIdSchema.safeParse('emailReporting_1').success).toBe(false)
+  })
 })
