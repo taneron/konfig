@@ -35,7 +35,7 @@ testRule('operationId-pattern', [
     errors: [
       {
         message:
-          'Does not match regex: "/^[a-zA-Z0-9]+\\_[a-zA-Z0-9]+$/g". Prefix operation IDs with "Tag_" (https://konfigthis.com/docs/tutorials/naming-operation-ids)',
+          'The operation ID "createPet" does not match the regex: "/^[a-zA-Z0-9]+_(?![0-9]+$)[a-zA-Z0-9]+$/g". Prefix operation IDs with "Tag_" (https://konfigthis.com/docs/tutorials/naming-operation-ids)',
         path: ['paths', '/', 'get', 'operationId'],
         severity: DiagnosticSeverity.Warning,
       },
@@ -58,7 +58,7 @@ testRule('operationId-pattern', [
     errors: [
       {
         message:
-          'Does not match regex: "/^[a-zA-Z0-9]+\\_[a-zA-Z0-9]+$/g". Prefix operation IDs with "Tag_" (https://konfigthis.com/docs/tutorials/naming-operation-ids)',
+          'The operation ID "Tag_create_pet" does not match the regex: "/^[a-zA-Z0-9]+_(?![0-9]+$)[a-zA-Z0-9]+$/g". Prefix operation IDs with "Tag_" (https://konfigthis.com/docs/tutorials/naming-operation-ids)',
         path: ['paths', '/', 'get', 'operationId'],
         severity: DiagnosticSeverity.Warning,
       },

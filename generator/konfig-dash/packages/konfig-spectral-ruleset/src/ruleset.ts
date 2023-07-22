@@ -432,7 +432,7 @@ export default {
       severity: DiagnosticSeverity.Warning,
     },
     'operationId-pattern': {
-      message: `Does not match regex: "${operationIdRegex}". Prefix operation IDs with "Tag_" (https://konfigthis.com/docs/tutorials/naming-operation-ids)`,
+      message: `The operation ID "{{value}}" does not match the regex: "${operationIdRegex}". Prefix operation IDs with "Tag_" (https://konfigthis.com/docs/tutorials/naming-operation-ids)`,
       given: '#OperationObject',
       then: [
         {
