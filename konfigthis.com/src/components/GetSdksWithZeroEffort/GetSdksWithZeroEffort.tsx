@@ -17,7 +17,7 @@ import {
 import { useViewportSize, useWindowScroll } from "@mantine/hooks";
 import { IconRefresh } from "@tabler/icons-react";
 
-import Image from "next-image-export-optimizer";
+import Image from "@/components/image";
 import { useEffect, useMemo, useState } from "react";
 import ReactFlow, {
   Edge,

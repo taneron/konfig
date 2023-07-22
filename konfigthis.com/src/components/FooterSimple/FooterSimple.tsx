@@ -8,7 +8,7 @@ import {
 } from "@mantine/core";
 import { IconBrandLinkedin } from "@tabler/icons-react";
 import logo from "./logo.png";
-import Image from "next-image-export-optimizer";
+import Image from "@/components/image";
 
 const useStyles = createStyles((theme) => ({
   footer: {

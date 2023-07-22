@@ -1,5 +1,5 @@
 import { Center, Container, Group, Stack, Title, rem } from "@mantine/core";
-import Image from "next-image-export-optimizer";
+import Image from "@/components/image";
 import snaptrade from "../../../public/snaptrade.png";
 import humanloop from "../../../public/humanloop.png";
 import splitit from "../../../public/splitit.png";

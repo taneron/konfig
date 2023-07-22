@@ -17,7 +17,7 @@ import csharp from "../../../public/csharp.png";
 import ruby from "../../../public/ruby.png";
 import swift from "../../../public/swift.png";
 import php from "../../../public/php.png";
-import Image from "next-image-export-optimizer";
+import Image from "@/components/image";
 
 export function GetSdksInAnyLanguage() {
   return (

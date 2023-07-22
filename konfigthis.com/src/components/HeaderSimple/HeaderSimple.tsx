@@ -6,8 +6,8 @@ import {
   Group,
   Anchor,
 } from "@mantine/core";
-import Image from "next-image-export-optimizer";
 import logo from "./logo.png";
+import Image from "@/components/image";
 import { useSubtleLinkStyles } from "@/utils/use-subtle-link-styles";
 
 const useStyles = createStyles((theme) => ({
@@ -70,7 +70,7 @@ export function HeaderSimple() {
   return (
     <Header height={60}>
       <Container size="lg" className={classes.header}>
-        <Image height={40} src={logo} alt="Konfig Logo" />
+        <Image height={40} src={logo} placeholder="empty" alt="Konfig Logo" />
         <Group spacing="xs">
           <Anchor
             target="_blank"
