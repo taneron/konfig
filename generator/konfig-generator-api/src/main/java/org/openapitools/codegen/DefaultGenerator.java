@@ -911,7 +911,8 @@ public class DefaultGenerator implements Generator {
         bundle.put("hasMultipleApiKeys", ((List) bundle.getOrDefault("apiKeyMethods", new ArrayList())).size() > 1);
 
         // for convenience instead of openAPI.info.extensions.XXXXX
-        bundle.put("infoExtensions", Objects.requireNonNullElse(openAPI.getInfo().getExtensions(), new HashMap<>()));
+        if (openAPI.getInfo() != null)
+            bundle.put("infoExtensions", openAPI.getInfo().getExtensions());
 
         config.postProcessSupportingFileData(bundle);
 

@@ -107,7 +107,13 @@ public interface GenerateApi {
         // Don't generate .openapi-generator-ignore and other metadata files
         generator.setGenerateMetadata(false);
 
+        long startTime = System.nanoTime(); // or System.currentTimeMillis();
+
         generator.generate();
+        long endTime = System.nanoTime(); // or System.currentTimeMillis();
+        long elapsedTime = endTime - startTime;
+        double elapsedTimeInMilliseconds = (double) elapsedTime / 1_000_000.0; // If using milliseconds
+        logger.info("Elapsed Time: " + elapsedTimeInMilliseconds + " milliseconds");
 
         // Tar the output
         File tarFile = tarFile(tmpDir, dirName);

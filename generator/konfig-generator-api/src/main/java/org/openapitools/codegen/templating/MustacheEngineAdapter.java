@@ -15,6 +15,8 @@
  */
 
 package org.openapitools.codegen.templating;
+import com.github.benmanes.caffeine.cache.Cache;
+import com.github.benmanes.caffeine.cache.Caffeine;
 
 import com.samskivert.mustache.Mustache;
 import com.samskivert.mustache.Template;
@@ -32,6 +34,8 @@ import java.util.Map;
 public class MustacheEngineAdapter implements TemplatingEngineAdapter {
 
     private final Logger LOGGER = LoggerFactory.getLogger(TemplatingEngineAdapter.class);
+    private Cache<String, Template> templateCache = Caffeine.newBuilder().build();
+
 
     /**
      * Provides an identifier used to load the adapter. This could be a name, uuid, or any other string.
@@ -57,11 +61,10 @@ public class MustacheEngineAdapter implements TemplatingEngineAdapter {
      */
     @Override
     public String compileTemplate(TemplatingExecutor executor, Map<String, Object> bundle, String templateFile) throws IOException {
-        Template tmpl = compiler
+        Template tmpl = this.templateCache.get(templateFile, (tmplFile) -> compiler
                 .withLoader(name -> findTemplate(executor, name))
                 .defaultValue("")
-                .compile(executor.getFullTemplateContents(templateFile));
-
+                .compile(executor.getFullTemplateContents(tmplFile)));
         return tmpl.execute(bundle);
     }
 
