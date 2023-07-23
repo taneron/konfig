@@ -216,12 +216,13 @@ export default class Deploy extends Command {
       const initializeFlowsDirectory = (
         generatorName: KonfigYamlGeneratorNames
       ) => {
-        const flowsDirectory = path.join(configDir, 'flows')
-        fs.ensureDirSync(flowsDirectory)
-        const generatorFlowsDirectory = path.join(flowsDirectory, generatorName)
-        fs.ensureDirSync(generatorFlowsDirectory)
-        const gitKeepPath = path.join(generatorFlowsDirectory, '.gitkeep')
-        fs.ensureFileSync(gitKeepPath)
+        // Update: for now do nothing
+        // const flowsDirectory = path.join(configDir, 'flows')
+        // fs.ensureDirSync(flowsDirectory)
+        // const generatorFlowsDirectory = path.join(flowsDirectory, generatorName)
+        // fs.ensureDirSync(generatorFlowsDirectory)
+        // const gitKeepPath = path.join(generatorFlowsDirectory, '.gitkeep')
+        // fs.ensureFileSync(gitKeepPath)
       }
 
       this.debug('before creating language configs')
