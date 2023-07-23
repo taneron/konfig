@@ -509,15 +509,10 @@ export default class Deploy extends Command {
             )}`
           )
 
-          const session = getSessionToken(homeParams)
-
-          if (session === null)
-            throw Error('Missing session token for generating SDK')
-
           const konfig = new Konfig({
             basePath: host,
             authorization: `Bearer ${getUserId(homeParams)}`,
-            session,
+            session: '',
           })
           const {
             data: { urls, generateConfigId },
