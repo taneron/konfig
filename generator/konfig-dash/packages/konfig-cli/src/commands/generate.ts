@@ -39,6 +39,7 @@ import simpleGit from 'simple-git'
 import { getUserId } from '../util/get-user-id'
 import prettier from 'prettier'
 import replaceAsync from 'string-replace-async'
+import { removeTrailingSlash } from '../util/remove-trailing-slash'
 
 function getOutputDir(
   outputFlag: string | undefined,
@@ -137,6 +138,7 @@ export default class Deploy extends Command {
       description:
         'Path to Objective-C output directory. Contents of existing directory will be deleted first.',
     }),
+    apiUrl: Flags.url({ char: 'a', name: 'apiUrl', hidden: true }),
     generatorFilter: Flags.string({
       char: 'f',
       description:
@@ -156,6 +158,10 @@ export default class Deploy extends Command {
       const homeParams: HomeDirParams = {
         mode: flags.dev ? 'dev' : flags.test ? 'test' : 'prod',
       }
+
+      const host = flags.apiUrl
+        ? removeTrailingSlash(flags.apiUrl.href)
+        : getApiUrl(homeParams)
 
       this.debug('before getSessionToken')
       const sessionToken = getSessionToken(homeParams)
@@ -451,7 +457,7 @@ export default class Deploy extends Command {
         flags.outputDir,
         common.outputDirectory
       )
-      const url = `${getApiUrl(homeParams)}/generate`
+      const url = `${host}/generate`
       const headers = generateHeaders(homeParams)
       if (flags.outputSpec) {
         try {
@@ -515,7 +521,7 @@ export default class Deploy extends Command {
             throw Error('Missing session token for generating SDK')
 
           const konfig = new Konfig({
-            basePath: getApiUrl(homeParams),
+            basePath: host,
             authorization: `Bearer ${getUserId(homeParams)}`,
             session,
           })
@@ -837,8 +843,11 @@ export default class Deploy extends Command {
               if (fs.existsSync(outputDirectory)) {
                 const phpGitRepo = simpleGit(outputDirectory)
                 // replace backslashes with forward slashes to remain platform-agnostic
-                const fullPath = path.join(configDir, outputDirectory).replace(/\\/g, '/')
-                const isRepo = fullPath === (await phpGitRepo.revparse(['--show-toplevel']))
+                const fullPath = path
+                  .join(configDir, outputDirectory)
+                  .replace(/\\/g, '/')
+                const isRepo =
+                  fullPath === (await phpGitRepo.revparse(['--show-toplevel']))
                 if (!isRepo) {
                   // delete the directory as its probably not important
                   fs.rmSync(outputDirectory, { recursive: true, force: true })
@@ -1508,7 +1517,9 @@ async function copyTypeScriptOutput({
       // path.join uses platform-specific path separator but globby requires forward slash
       path.join(outputDirectory, '**/*.md').replace(/\\/g, '/'),
       // write a glob to exclude the node_modules directory
-      `!${path.join(outputDirectory, '**/node_modules/**').replace(/\\/g, '/')}`,
+      `!${path
+        .join(outputDirectory, '**/node_modules/**')
+        .replace(/\\/g, '/')}`,
     ])
     for (const markdownPath of markdownFiles) {
       const markdown = fs.readFileSync(markdownPath, 'utf-8')
