@@ -52,7 +52,6 @@ const DEBUG_TMP_FOLDER = '/tmp/konfig/'
  * function, and execution environment.
  */
 export const myHandler = async (event: APIGatewayEvent, context: Context) => {
-  const authenticateResult = authenticate()
   if (event.httpMethod === 'OPTIONS') {
     return {
       statusCode: 200,
@@ -62,7 +61,6 @@ export const myHandler = async (event: APIGatewayEvent, context: Context) => {
       },
     }
   }
-  if (authenticateResult.statusCode !== undefined) return authenticateResult
 
   if (event.body === null) {
     logger.error('Invalid request to /generate')
@@ -620,12 +618,10 @@ export const myHandler = async (event: APIGatewayEvent, context: Context) => {
     const urls = await Promise.all(sdkS3SignedGetUrls)
     logger.debug("Konfig's Generator finished pushing S3 Artifacts")
 
-    if (!authenticateResult.testing) {
+    if (!process.env[KONFIG_API_TEST_ENVIRONMENT_NAME]) {
       const generateConfig = await db.generateConfig.create({
         data: {
           konfigyaml: parsed.data.konfigYaml,
-          userId: authenticateResult.user.id,
-          spaceId: authenticateResult.user.currentSpaceId,
           openApiSpecification: body.spec,
         },
       })
@@ -634,9 +630,7 @@ export const myHandler = async (event: APIGatewayEvent, context: Context) => {
         urls.map(({ key }) => {
           return db.generateExecution.create({
             data: {
-              userId: authenticateResult.user.id,
               generateConfigId: generateConfig.id,
-              spaceId: authenticateResult.user.currentSpaceId,
               s3Key: key,
             },
           })
@@ -669,25 +663,6 @@ export const myHandler = async (event: APIGatewayEvent, context: Context) => {
       }
     }
   }
-}
-
-function authenticate() {
-  if (!process.env[KONFIG_API_TEST_ENVIRONMENT_NAME]) {
-    if (!isAuthenticated()) {
-      logger.error('Unauthorized access to /generate')
-      return {
-        statusCode: 401,
-      } as const
-    }
-
-    const user = currentUser()
-    if (user === undefined)
-      return {
-        statusCode: 401,
-      } as const
-    return { user, authenticated: true } as const
-  }
-  return { testing: true } as const
 }
 
 async function queueTypeScriptGeneration({
@@ -776,9 +751,4 @@ async function queueTypeScriptGeneration({
   queue(requestBody)
 }
 
-export const handler = process.env[KONFIG_API_TEST_ENVIRONMENT_NAME]
-  ? myHandler
-  : useRequireAuth({
-      getCurrentUser: getCurrentUser,
-      handlerFn: myHandler,
-    })
+export const handler = myHandler

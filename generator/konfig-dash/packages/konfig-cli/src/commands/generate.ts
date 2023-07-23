@@ -163,14 +163,6 @@ export default class Deploy extends Command {
         ? removeTrailingSlash(flags.apiUrl.href)
         : getApiUrl(homeParams)
 
-      this.debug('before getSessionToken')
-      const sessionToken = getSessionToken(homeParams)
-      this.debug('sessionToken:', sessionToken)
-
-      if (!flags.test && sessionToken === null) {
-        CliUx.ux.error('Login with "konfig login"')
-      }
-
       this.debug('before parseFilterFlag')
       const generatorFilter = parseFilterFlag(flags.generatorFilter)
       this.debug('after parseFilterFlag')
