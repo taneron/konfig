@@ -201,6 +201,7 @@ export const handler = async (
 
     cors: {
       origin: event.headers['origin'],
+      credentials: true,
     },
 
     forgotPassword: forgotPasswordOptions,

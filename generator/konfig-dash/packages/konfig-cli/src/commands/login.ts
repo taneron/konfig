@@ -37,7 +37,12 @@ export default class Login extends Command {
     })
     this.debug(payload)
     try {
-      const { headers, data } = await axios.post(loginApiUrl, payload)
+      const { headers, data } = await axios.post(loginApiUrl, payload, {
+        withCredentials: true,
+      })
+
+      this.debug(headers)
+      this.debug(data)
 
       const cookieString = headers['set-cookie']?.[0]
       if (cookieString === undefined) {
