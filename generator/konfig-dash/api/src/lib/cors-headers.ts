@@ -8,8 +8,9 @@ export const CORS_HEADERS_ORIGIN_STACKBLITZ = (event: APIGatewayEvent) => ({
 })
 
 export const CORS_HEADERS_METHOD_HEADERS_STACKBLITZ = {
-  'Access-Control-Allow-Method': '*',
-  'Access-Control-Allow-Headers': 'Content-Type',
+  'Access-Control-Allow-Method': 'POST',
+  'Access-Control-Allow-Headers': 'Auth-Provider,Authorization,Content-Type',
+  'Access-Control-Allow-Credentials': true,
 }
 
 export const CORS_HEADERS_METHOD_HEADERS = {

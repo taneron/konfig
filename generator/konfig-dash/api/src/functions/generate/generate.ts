@@ -68,6 +68,10 @@ export const myHandler = async (event: APIGatewayEvent, context: Context) => {
     logger.error('Invalid request to /generate')
     return {
       statusCode: 400,
+      headers: {
+        ...CORS_HEADERS_ORIGIN_STACKBLITZ(event),
+        ...CORS_HEADERS_METHOD_HEADERS_STACKBLITZ,
+      },
     }
   }
 

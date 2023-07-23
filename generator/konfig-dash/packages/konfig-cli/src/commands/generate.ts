@@ -467,6 +467,7 @@ export default class Deploy extends Command {
             [generator: string]: string
           }>(url, body, {
             headers,
+            withCredentials: true,
           })
           CliUx.ux.action.stop()
 
@@ -529,6 +530,7 @@ export default class Deploy extends Command {
             data: { urls, generateConfigId },
           } = await konfig.sdk.generate(body as any, {
             headers: { 'auth-provider': 'dbAuth' },
+            withCredentials: true,
           }) // TODO: type mismatch here—whats going on?
           CliUx.ux.action.stop()
 
