@@ -79,6 +79,10 @@ export const myHandler = async (event: APIGatewayEvent, context: Context) => {
     logger.error('Invalid request to /generate')
     return {
       statusCode: 400,
+      headers: {
+        ...CORS_HEADERS_ORIGIN_STACKBLITZ(event),
+        ...CORS_HEADERS_METHOD_HEADERS_STACKBLITZ,
+      },
     }
   }
 
@@ -107,6 +111,10 @@ export const myHandler = async (event: APIGatewayEvent, context: Context) => {
     }
     return {
       statusCode: 200,
+      headers: {
+        ...CORS_HEADERS_ORIGIN_STACKBLITZ(event),
+        ...CORS_HEADERS_METHOD_HEADERS_STACKBLITZ,
+      },
       body: outputSpecs,
     }
   }
@@ -641,6 +649,7 @@ export const myHandler = async (event: APIGatewayEvent, context: Context) => {
         statusCode: 200,
         headers: {
           ...CORS_HEADERS_ORIGIN_STACKBLITZ(event),
+          ...CORS_HEADERS_METHOD_HEADERS_STACKBLITZ,
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(
@@ -659,6 +668,10 @@ export const myHandler = async (event: APIGatewayEvent, context: Context) => {
       logger.error(e.message)
       return {
         statusCode: 500,
+        headers: {
+          ...CORS_HEADERS_ORIGIN_STACKBLITZ(event),
+          ...CORS_HEADERS_METHOD_HEADERS_STACKBLITZ,
+        },
         body: e.message,
       }
     }
