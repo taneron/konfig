@@ -44,13 +44,6 @@ export default class Login extends Command {
       this.debug(headers)
       this.debug(data)
 
-      const cookieString = headers['set-cookie']?.[0]
-      if (cookieString === undefined) {
-        this.error('Did not find cookieString')
-      }
-
-      this.debug('data:', data)
-
       const userId = data.id
       if (userId === undefined) {
         this.error('Unexpected return value')
@@ -65,9 +58,7 @@ export default class Login extends Command {
       this.debug('userId:', userId)
       fs.writeFileSync(getUserIdPath(homeParams), userId.toString())
 
-      const cookies = parse(cookieString)
-
-      const session = cookies.session
+      const session = data.session
       if (session === undefined) {
         this.error('Could not find session cookie')
       }

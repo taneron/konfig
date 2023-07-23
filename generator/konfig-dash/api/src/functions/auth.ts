@@ -2,6 +2,7 @@ import type { APIGatewayProxyEvent, Context } from 'aws-lambda'
 
 import { DbAuthHandler } from '@redwoodjs/api'
 import type { DbAuthHandlerOptions } from '@redwoodjs/api'
+import { parse } from 'cookie'
 
 import { db } from 'src/lib/db'
 
@@ -210,5 +211,17 @@ export const handler = async (
     signup: signupOptions,
   })
 
-  return await authHandler.invoke()
+  /**
+   * If we successfully logged in, also send the session cookie in the response
+   * body so we can use the login from the StackBlitz WebContainer IDE for demoing
+   */
+  const response = await authHandler.invoke()
+  const setCookie = response.headers['set-cookie']
+  if (setCookie !== undefined && response.body) {
+    const session = parse(setCookie).session
+    const body = JSON.parse(response.body)
+    body.session = session
+    response.body = JSON.stringify(body)
+  }
+  return response
 }
