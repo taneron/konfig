@@ -6,10 +6,10 @@ import React, {
   useRef,
   useState,
 } from "react";
-import { yarnLock, apiYaml, readmeMd, makeRequestTs } from "./vm";
-import packageJson from "./vm/package.json";
-import salesPackageJson from "./vm/sales-demo-package.json";
-import tsconfigJson from "./vm/tsconfig.json";
+import { yarnLock, apiYaml, readmeMd, makeRequestTs } from "./_vm";
+import packageJson from "./_vm/package.json";
+import salesPackageJson from "./_vm/sales-demo-package.json";
+import tsconfigJson from "./_vm/tsconfig.json";
 import sdk, { VM } from "@stackblitz/sdk";
 
 // @ts-ignore
