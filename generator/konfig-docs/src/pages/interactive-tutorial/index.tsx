@@ -110,7 +110,7 @@ export default function LiveDemo({ sales }: { sales?: boolean }) {
   return (
     <Layout
       title={sales ? "Sales Demo" : "Interactive Tutorial"}
-      description="Learn more about Konfig through a live Demo"
+      description="Generate SDKs for your REST API with Konfig"
     >
       <div className="flex relative">
         <div className={clsx(sales ? "w-0" : "w-2/5")}>
