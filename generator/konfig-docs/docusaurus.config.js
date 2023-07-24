@@ -131,6 +131,10 @@ const config = {
           routeBasePath: "/docs",
           sidebarPath: require.resolve("./sidebars.js"),
         },
+        pages: {
+          beforeDefaultRemarkPlugins: beforeRemarkPlugins,
+          remarkPlugins: remarkPlugins,
+        },
         theme: {
           customCss: [
             require.resolve("@code-hike/mdx/styles.css"),
@@ -169,8 +173,13 @@ const config = {
             position: "left",
             label: "Documentation",
           },
-          { to: "/blog", label: "Blog", position: "left" },
+          {
+            to: "/interactive-tutorial",
+            label: "Interactive Tutorial",
+            position: "left",
+          },
           { to: "/schedule-demo", label: "Schedule Demo", position: "right" },
+          { to: "/blog", label: "Blog", position: "right" },
           { to: "/about", label: "About", position: "right" },
         ],
       },
