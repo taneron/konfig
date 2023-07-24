@@ -109,7 +109,7 @@ export default function LiveDemo({ sales }: { sales?: boolean }) {
 
   return (
     <Layout
-      title={`Schedule Demo`}
+      title={sales ? "Sales Demo" : "Interactive Tutorial"}
       description="Learn more about Konfig through a live Demo"
     >
       <div className="flex relative">
