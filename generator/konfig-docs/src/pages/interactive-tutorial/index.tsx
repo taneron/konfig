@@ -13,11 +13,11 @@ import tsconfigJson from "./_vm/tsconfig.json";
 import sdk, { VM } from "@stackblitz/sdk";
 
 // @ts-ignore
-import Step1 from "./steps/1.mdx";
+import Step1 from "./_steps/1.mdx";
 // @ts-ignore
-import Step2 from "./steps/2.mdx";
+import Step2 from "./_steps/2.mdx";
 // @ts-ignore
-import Step3 from "./steps/3.mdx";
+import Step3 from "./_steps/3.mdx";
 
 import MDXContent from "@theme/MDXContent";
 import clsx from "clsx";
