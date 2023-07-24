@@ -173,11 +173,11 @@ const config = {
             position: "left",
             label: "Documentation",
           },
-          {
-            to: "/interactive-tutorial",
-            label: "Interactive Tutorial",
-            position: "left",
-          },
+          // {
+          //   to: "/interactive-tutorial",
+          //   label: "Interactive Tutorial",
+          //   position: "left",
+          // },
           { to: "/schedule-demo", label: "Schedule Demo", position: "right" },
           { to: "/blog", label: "Blog", position: "right" },
           { to: "/about", label: "About", position: "right" },
