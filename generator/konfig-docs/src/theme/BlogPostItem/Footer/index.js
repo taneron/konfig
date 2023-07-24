@@ -14,7 +14,6 @@ export default function BlogPostItemFooter() {
     isBlogPostPage,
     metadata: { authors },
   } = useBlogPost();
-  console.log(isBlogPostPage, metadata, authors);
   const { tags, title, editUrl, hasTruncateMarker } = metadata;
   // A post is truncated if it's in the "list view" and it has a truncate marker
   const truncatedPost = !isBlogPostPage && hasTruncateMarker;

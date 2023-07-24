@@ -93,7 +93,6 @@ export const Mermaid = ({
         .querySelectorAll('div.mermaid[data-processed="true"]')
         .forEach((v) => {
           v.removeAttribute("data-processed");
-          console.log(v.innerHTML);
           v.innerHTML = v.getAttribute("data-mermaid-src") as string;
         });
       mermaid.contentLoaded();
