@@ -7,7 +7,9 @@ import {
   rem,
   AspectRatio,
   Box,
+  clsx,
 } from "@mantine/core";
+import { useOs } from "@mantine/hooks";
 import { IconCalendarEvent, IconExternalLink } from "@tabler/icons-react";
 
 const useStyles = createStyles((theme) => ({
@@ -94,6 +96,8 @@ const useStyles = createStyles((theme) => ({
 
 export function HeroBullets() {
   const { classes } = useStyles();
+  const os = useOs();
+  const isDesktop = os === "linux" || os === "windows" || os === "macos";
   return (
     <div>
       <Container className={classes.wrapper} size={1400}>
@@ -131,34 +135,61 @@ export function HeroBullets() {
             >
               Book a demo
             </Button>
-            <Button.Group>
-              <Button
-                fullWidth
-                component="a"
-                href="https://konfigthis.com/docs/getting-started/openapi-specification"
-                target="_blank"
-                className={classes.control}
-                leftIcon={<IconExternalLink />}
-                size="lg"
-                variant="default"
-                color="gray"
-              >
-                OpenAPI
-              </Button>
-              <Button
-                fullWidth
-                component="a"
-                href="https://konfigthis.com/docs/getting-started/postman-collections"
-                target="_blank"
-                className={classes.control}
-                leftIcon={<IconExternalLink />}
-                size="lg"
-                variant="default"
-                color="gray"
-              >
-                Postman
-              </Button>
-            </Button.Group>
+            {isDesktop ? (
+              <div className="relative group">
+                <div
+                  className={clsx(
+                    classes.control,
+                    "absolute w-full -inset-0.5 bg-gradient-to-r from-purple-600 to-yellow-600 rounded-lg blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-tilt"
+                  )}
+                ></div>
+                <Button
+                  fullWidth
+                  component="a"
+                  href="https://konfigthis.com/interactive-tutorial"
+                  target="_blank"
+                  leftIcon={<IconExternalLink />}
+                  size="lg"
+                  variant="default"
+                  color="gray"
+                  className={clsx(
+                    classes.control,
+                    "relative leading-none divide-x"
+                  )}
+                >
+                  Interactive Tutorial
+                </Button>
+              </div>
+            ) : (
+              <Button.Group>
+                <Button
+                  fullWidth
+                  component="a"
+                  href="https://konfigthis.com/docs/getting-started/openapi-specification"
+                  target="_blank"
+                  className={classes.control}
+                  leftIcon={<IconExternalLink />}
+                  size="lg"
+                  variant="default"
+                  color="gray"
+                >
+                  OpenAPI
+                </Button>
+                <Button
+                  fullWidth
+                  component="a"
+                  href="https://konfigthis.com/docs/getting-started/postman-collections"
+                  target="_blank"
+                  className={classes.control}
+                  leftIcon={<IconExternalLink />}
+                  size="lg"
+                  variant="default"
+                  color="gray"
+                >
+                  Postman
+                </Button>
+              </Button.Group>
+            )}
           </div>
         </div>
         <Box mt={rem(30)}>
