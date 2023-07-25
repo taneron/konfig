@@ -6,26 +6,51 @@ import React, {
   useRef,
   useState,
 } from "react";
-import { yarnLock, apiYaml, readmeMd, makeRequestTs } from "./_vm";
+import {
+  yarnLock,
+  apiYaml,
+  readmeMd,
+  makeRequestTs,
+  makeRequestTsRefactored,
+  makeRequestTsFixed,
+} from "./_vm";
 import packageJson from "./_vm/package.json";
 import salesPackageJson from "./_vm/sales-demo-package.json";
 import tsconfigJson from "./_vm/tsconfig.json";
 import sdk, { VM } from "@stackblitz/sdk";
+import party from "party-js";
+import styles from "./index.module.css";
 
+// @ts-ignore
+import Problem from "./_steps/problem.mdx";
 // @ts-ignore
 import Step1 from "./_steps/1.mdx";
 // @ts-ignore
 import Step2 from "./_steps/2.mdx";
 // @ts-ignore
 import Step3 from "./_steps/3.mdx";
+// @ts-ignore
+import Step4 from "./_steps/4.mdx";
+// @ts-ignore
+import Step5 from "./_steps/5.mdx";
+// @ts-ignore
+import Recap from "./_steps/recap.mdx";
+// @ts-ignore
+import Generate from "./_steps/generate.mdx";
+// @ts-ignore
+import GeneratedSdk from "./_steps/generated-sdk.mdx";
+// @ts-ignore
+import Refactoring from "./_steps/refactoring.mdx";
+// @ts-ignore
+import Fixed from "./_steps/fixed.mdx";
 
 import MDXContent from "@theme/MDXContent";
 import clsx from "clsx";
 
-type IsStepComplete = (vm: VM) => Promise<boolean>;
+type CheckIfStepIsComplete = (vm: VM) => Promise<boolean>;
 interface Step {
   content: React.JSX.Element;
-  isStepComplete: IsStepComplete;
+  checkIfStepIsComplete: CheckIfStepIsComplete;
   hint?: string;
   action: string;
 }
@@ -33,22 +58,115 @@ interface Step {
 const steps: Step[] = [
   {
     content: <Step1 />,
-    action: "Lets go!",
-    isStepComplete: async (vm: VM) => {
-      return vm != null;
+    action: "Let the learning begin!",
+    checkIfStepIsComplete: async (vm: VM) => {
+      const files = await vm.getFsSnapshot();
+      for (const file in files) {
+        console.log(file, files[file]);
+      }
+
+      const hasVmStarted = vm != null;
+      if (!hasVmStarted) return false;
+      await vm.editor.openFile("make-request.ts");
+      await vm.editor.setCurrentFile("make-request.ts");
+      return true;
+    },
+  },
+  {
+    action: "So, how do I publish SDKs for my API...",
+    content: <Problem />,
+    checkIfStepIsComplete: async (vm: VM) => {
+      return true;
     },
   },
   {
     action: "Awesome, can't wait to try it!",
     content: <Step2 />,
-    isStepComplete: async (vm: VM) => {
+    checkIfStepIsComplete: async (vm: VM) => {
+      await vm.editor.openFile("api.yaml");
+      await vm.editor.setCurrentFile("api.yaml");
       return true;
     },
   },
   {
-    action: "Awesome, makes sense.",
+    action: `Understood, we are turning an OpenAPI Specification into an SDK`,
     content: <Step3 />,
-    isStepComplete: async (vm: VM) => {
+    checkIfStepIsComplete: async (vm: VM) => {
+      return true;
+    },
+  },
+  {
+    action: `I ran "konfig init" to create a konfig.yaml file`,
+    content: <Step4 />,
+    checkIfStepIsComplete: async (vm: VM) => {
+      const files = await vm.getFsSnapshot();
+      for (const file in files) {
+        if (file !== "konfig.yaml") continue;
+        await vm.editor.openFile("konfig.yaml");
+        await vm.editor.setCurrentFile("konfig.yaml");
+        return true;
+      }
+      return false;
+    },
+    hint: `🤔 A "konfig.yaml" does not exist in your development environment. Did you follow the above directions to run "konfig init" in terminal?`,
+  },
+  {
+    action: `Let's generate a TypeScript SDK!`,
+    content: <Step5 />,
+    checkIfStepIsComplete: async (vm: VM) => {
+      return true;
+    },
+  },
+  {
+    action: `I ran "konfig generate"`,
+    content: <Generate />,
+    checkIfStepIsComplete: async (vm: VM) => {
+      const files = await vm.getFsSnapshot();
+      for (const file in files) {
+        if (file !== "typescript/README.md") continue;
+        await vm.editor.openFile("typescript/README.md");
+        await vm.editor.setCurrentFile("typescript/README.md");
+        return true;
+      }
+      return false;
+    },
+    hint: `Did you run "konfig generate"?`,
+  },
+  {
+    action: `Show me the money 💰`,
+    content: <GeneratedSdk />,
+    checkIfStepIsComplete: async (vm: VM) => {
+      await vm.applyFsDiff({
+        create: { "make-request.ts": makeRequestTsRefactored },
+        destroy: [],
+      });
+      await vm.editor.openFile("make-request.ts");
+      await vm.editor.setCurrentFile("make-request.ts");
+      return true;
+    },
+  },
+  {
+    action: `Fix the compilation error`,
+    content: <Refactoring />,
+    checkIfStepIsComplete: async (vm: VM) => {
+      vm.applyFsDiff({
+        create: { "make-request.ts": makeRequestTsFixed },
+        destroy: [],
+      });
+      return true;
+    },
+  },
+  {
+    action: `Recap`,
+    content: <Fixed />,
+    checkIfStepIsComplete: async (vm: VM) => {
+      return true;
+    },
+  },
+  {
+    action: "N/A",
+    content: <Recap />,
+    checkIfStepIsComplete: async (vm: VM) => {
       return true;
     },
   },
@@ -85,11 +203,10 @@ export default function LiveDemo({ sales }: { sales?: boolean }) {
             ),
             "api.yaml": apiYaml,
             "yarn.lock": yarnLock,
+            "make-request.ts": makeRequestTs,
+            "tsconfig.json": JSON.stringify(tsconfigJson, undefined, 2),
             ...(sales
-              ? {
-                  "make-request.ts": makeRequestTs,
-                  "tsconfig.json": JSON.stringify(tsconfigJson, undefined, 2),
-                }
+              ? {}
               : {
                   "README.md": readmeMd,
                 }),
@@ -97,7 +214,6 @@ export default function LiveDemo({ sales }: { sales?: boolean }) {
         },
         {
           openFile: sales ? "make-request.ts" : "README.md",
-          terminalHeight: 30,
           view: "editor",
         }
       )
@@ -138,7 +254,8 @@ export default function LiveDemo({ sales }: { sales?: boolean }) {
 
 interface StepButtonProps {
   selected: boolean;
-  isStepComplete: IsStepComplete;
+  checkIfStepIsComplete: CheckIfStepIsComplete;
+  isComplete: boolean;
   increment: () => void;
   hint?: string;
 
@@ -167,23 +284,27 @@ function Steps({
 
   useEffect(() => {
     if (currentStep === 0) return;
-    refs[currentStep].current.scrollIntoView({
-      behavior: "smooth", // Use 'auto' for immediate scrolling without smooth animation
-      block: "start", // 'start', 'center', 'end', or 'nearest'
-      inline: "nearest", // 'start', 'center', 'end', or 'nearest'
-    });
+    setTimeout(() => {
+      refs[currentStep].current.scrollIntoView({
+        behavior: "smooth", // Use 'auto' for immediate scrolling without smooth animation
+        block: "start", // 'start', 'center', 'end', or 'nearest'
+        inline: "nearest", // 'start', 'center', 'end', or 'nearest'
+      });
+    }, 300);
   }, [currentStep]);
 
   return steps.map((step, i) => {
     const isNotLastStep = i < steps.length - 1;
     const selected = i === currentStep;
+    const isComplete = i < currentStep;
     return (
       <Step ref={refs[i]} key={i} selected={selected}>
         <div>{step.content}</div>
         {isNotLastStep && (
           <StepButton
+            isComplete={isComplete}
             selected={selected}
-            isStepComplete={step.isStepComplete}
+            checkIfStepIsComplete={step.checkIfStepIsComplete}
             increment={increment}
             hint={step.hint}
             vm={vm}
@@ -196,7 +317,8 @@ function Steps({
 }
 
 function StepButton({
-  isStepComplete,
+  checkIfStepIsComplete,
+  isComplete,
   increment,
   selected,
   hint,
@@ -204,22 +326,43 @@ function StepButton({
   vm,
 }: StepButtonProps) {
   const [showHint, setShowHint] = useState(false);
+  const ref = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    if (!isComplete) return;
+    party.confetti(ref.current, {
+      count: party.variation.range(40, 60),
+      spread: 20,
+    });
+  }, [isComplete]);
+
   return (
-    <div className="flex gap-2 items-end">
+    <div>
       <button
+        ref={ref}
+        className={clsx(
+          selected ? "cursor-pointer" : "cursor-not-allowed",
+          "bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 pl-2 pr-4 border border-solid border-gray-400 rounded shadow flex items-center"
+        )}
         disabled={!selected}
+        data-complete={isComplete}
         onClick={async (e) => {
           e.preventDefault();
           if (!selected) return;
-          if (await isStepComplete(vm)) {
+          if (await checkIfStepIsComplete(vm)) {
             increment();
           } else setShowHint(true);
         }}
       >
+        <input
+          checked={isComplete}
+          type="checkbox"
+          className={styles.taskStatus}
+        />
         {action}
       </button>
-      {showHint && hint && (
-        <span className="text-xs text-green-700">{hint}</span>
+      {!isComplete && showHint && hint && (
+        <div className="text-sm mt-2">{hint}</div>
       )}
     </div>
   );
