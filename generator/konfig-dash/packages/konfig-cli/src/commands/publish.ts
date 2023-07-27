@@ -433,8 +433,9 @@ export default class Publish extends Command {
       // PyPI config detected
       if (
         'generator' in generatorConfig &&
-        (generatorConfig.generator === 'python' ||
-          generatorConfig.generator === 'python-prior')
+        (generatorName === 'python' ||
+          (generatorConfig as KonfigYamlAdditionalGeneratorConfig).generator ===
+            'python')
       ) {
         const pythonConfig = python.parse(generatorConfig)
         const testPyPI = flags.test || pythonConfig.testPyPI
