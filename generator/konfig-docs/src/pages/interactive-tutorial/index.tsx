@@ -50,11 +50,10 @@ import Fixed from "./_steps/fixed.mdx";
 import MDXContent from "@theme/MDXContent";
 import clsx from "clsx";
 
-type CheckIfStepIsComplete = (vm: VM) => Promise<boolean>;
+type CheckIfStepIsComplete = (vm: VM) => Promise<true | string>;
 interface Step {
   content: React.JSX.Element;
   checkIfStepIsComplete: CheckIfStepIsComplete;
-  hint?: string;
   action: string;
 }
 
@@ -69,7 +68,7 @@ const steps: Step[] = [
       }
 
       const hasVmStarted = vm != null;
-      if (!hasVmStarted) return false;
+      if (!hasVmStarted) return "The VM has not started";
       await vm.editor.openFile("make-request.ts");
       await vm.editor.setCurrentFile("make-request.ts");
       return true;
@@ -116,13 +115,16 @@ const steps: Step[] = [
       const files = await vm.getFsSnapshot();
       for (const file in files) {
         if (file !== "konfig.yaml") continue;
+        if (!files[file].includes("clientName: Petstore")) {
+          await vm.applyFsDiff({ create: {}, destroy: ["konfig.yaml"] });
+          return `Did you answer the questions as directed? Make sure to name your package "petstore"`;
+        }
         await vm.editor.openFile("konfig.yaml");
         await vm.editor.setCurrentFile("konfig.yaml");
         return true;
       }
-      return false;
+      return `🤔 A "konfig.yaml" does not exist in your development environment. Did you follow the above directions and run "konfig init" in terminal?`;
     },
-    hint: `🤔 A "konfig.yaml" does not exist in your development environment. Did you follow the above directions to run "konfig init" in terminal?`,
   },
   {
     action: `Let's generate a TypeScript SDK!`,
@@ -140,11 +142,11 @@ const steps: Step[] = [
         if (file !== "typescript/README.md") continue;
         await vm.editor.openFile("typescript/README.md");
         await vm.editor.setCurrentFile("typescript/README.md");
+        await vm.editor.showSidebar(true);
         return true;
       }
-      return false;
+      return `Did you run "konfig generate"?`;
     },
-    hint: `Did you run "konfig generate"?`,
   },
   {
     action: `Show me the money 💰`,
@@ -156,6 +158,7 @@ const steps: Step[] = [
       });
       await vm.editor.openFile("make-request.ts");
       await vm.editor.setCurrentFile("make-request.ts");
+      await vm.editor.showSidebar(false);
       return true;
     },
   },
@@ -163,11 +166,16 @@ const steps: Step[] = [
     action: `Fix the compilation error`,
     content: <Refactoring />,
     checkIfStepIsComplete: async (vm: VM) => {
-      vm.applyFsDiff({
-        create: { "make-request.ts": makeRequestTsRefactoredFixed },
-        destroy: [],
-      });
-      return true;
+      const files = await vm.getFsSnapshot();
+      for (const file in files) {
+        if (file !== "typescript/dist/index.js") continue;
+        vm.applyFsDiff({
+          create: { "make-request.ts": makeRequestTsRefactoredFixed },
+          destroy: [],
+        });
+        return true;
+      }
+      return `Did you run "konfig test"?`;
     },
   },
   {
@@ -270,7 +278,6 @@ interface StepButtonProps {
   checkIfStepIsComplete: CheckIfStepIsComplete;
   isComplete: boolean;
   increment: () => void;
-  hint?: string;
 
   /**
    * Describe the action to go to the next step
@@ -319,7 +326,6 @@ function Steps({
             selected={selected}
             checkIfStepIsComplete={step.checkIfStepIsComplete}
             increment={increment}
-            hint={step.hint}
             vm={vm}
             action={step.action}
           />
@@ -334,11 +340,10 @@ function StepButton({
   isComplete,
   increment,
   selected,
-  hint,
   action,
   vm,
 }: StepButtonProps) {
-  const [showHint, setShowHint] = useState(false);
+  const [hint, setHint] = useState<boolean | string>(false);
   const ref = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
@@ -362,9 +367,10 @@ function StepButton({
         onClick={async (e) => {
           e.preventDefault();
           if (!selected) return;
-          if (await checkIfStepIsComplete(vm)) {
+          const isComplete = await checkIfStepIsComplete(vm);
+          if (isComplete === true) {
             increment();
-          } else setShowHint(true);
+          } else setHint(isComplete);
         }}
       >
         <input
@@ -374,7 +380,7 @@ function StepButton({
         />
         {action}
       </button>
-      {!isComplete && showHint && hint && (
+      {!isComplete && typeof hint === "string" && (
         <div className="text-sm mt-2">{hint}</div>
       )}
     </div>
