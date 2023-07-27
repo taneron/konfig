@@ -68,8 +68,6 @@ const beforeRemarkPluginsForPages = [
     remarkCodeHike,
     {
       theme: "github-from-css",
-      lineNumbers: false,
-      showCopyButton: true,
       skipLanguages: ["", "mermaid"],
     },
   ],
