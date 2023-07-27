@@ -71,19 +71,29 @@ components:
                 copyFiles:
                   type: array
                   items:
-                    type: object
-                    properties:
-                      from:
-                        type: string
-                        description: Relative path from directory that contains konfig.yaml to file that
-                          you want to copy
-                      to:
-                        type: string
-                        description: Relative path from directory that contains konfig.yaml to
-                          destination you want to copy to
-                    required:
-                      - from
-                      - to
+                    anyOf:
+                      - type: object
+                        properties:
+                          from:
+                            type: string
+                            description: Relative path from directory that contains konfig.yaml to file that
+                              you want to copy
+                          to:
+                            type: string
+                            description: Relative path from directory that contains konfig.yaml to
+                              destination you want to copy to
+                        required:
+                          - from
+                          - to
+                      - type: object
+                        properties:
+                          konfigIgnore:
+                            type: string
+                            description: Relative path to a .konfigignore file. If specified, we parse the
+                              .konfigignore file and copy all files that it
+                              matches to the current directory.
+                        required:
+                          - konfigIgnore
                   description: Configure copying a set of files from a source to a destination.
                     This is useful if you have custom implementations that you
                     would like duplicated across multiple SDK repos.
@@ -167,19 +177,29 @@ components:
                 copyFiles:
                   type: array
                   items:
-                    type: object
-                    properties:
-                      from:
-                        type: string
-                        description: Relative path from directory that contains konfig.yaml to file that
-                          you want to copy
-                      to:
-                        type: string
-                        description: Relative path from directory that contains konfig.yaml to
-                          destination you want to copy to
-                    required:
-                      - from
-                      - to
+                    anyOf:
+                      - type: object
+                        properties:
+                          from:
+                            type: string
+                            description: Relative path from directory that contains konfig.yaml to file that
+                              you want to copy
+                          to:
+                            type: string
+                            description: Relative path from directory that contains konfig.yaml to
+                              destination you want to copy to
+                        required:
+                          - from
+                          - to
+                      - type: object
+                        properties:
+                          konfigIgnore:
+                            type: string
+                            description: Relative path to a .konfigignore file. If specified, we parse the
+                              .konfigignore file and copy all files that it
+                              matches to the current directory.
+                        required:
+                          - konfigIgnore
                   description: Configure copying a set of files from a source to a destination.
                     This is useful if you have custom implementations that you
                     would like duplicated across multiple SDK repos.
@@ -227,6 +247,18 @@ components:
                   description: acme-java-sdk
                 removeKonfigBranding:
                   type: boolean
+                gitlab:
+                  type: object
+                  properties:
+                    domain:
+                      type: string
+                      default: gitlab.com
+                      description: gitlab.com
+                    projectId:
+                      type: string
+                  required:
+                    - domain
+                    - projectId
                 clientName:
                   type: string
                 clientState:
@@ -301,19 +333,29 @@ components:
                 copyFiles:
                   type: array
                   items:
-                    type: object
-                    properties:
-                      from:
-                        type: string
-                        description: Relative path from directory that contains konfig.yaml to file that
-                          you want to copy
-                      to:
-                        type: string
-                        description: Relative path from directory that contains konfig.yaml to
-                          destination you want to copy to
-                    required:
-                      - from
-                      - to
+                    anyOf:
+                      - type: object
+                        properties:
+                          from:
+                            type: string
+                            description: Relative path from directory that contains konfig.yaml to file that
+                              you want to copy
+                          to:
+                            type: string
+                            description: Relative path from directory that contains konfig.yaml to
+                              destination you want to copy to
+                        required:
+                          - from
+                          - to
+                      - type: object
+                        properties:
+                          konfigIgnore:
+                            type: string
+                            description: Relative path to a .konfigignore file. If specified, we parse the
+                              .konfigignore file and copy all files that it
+                              matches to the current directory.
+                        required:
+                          - konfigIgnore
                   description: Configure copying a set of files from a source to a destination.
                     This is useful if you have custom implementations that you
                     would like duplicated across multiple SDK repos.
@@ -412,19 +454,29 @@ components:
                 copyFiles:
                   type: array
                   items:
-                    type: object
-                    properties:
-                      from:
-                        type: string
-                        description: Relative path from directory that contains konfig.yaml to file that
-                          you want to copy
-                      to:
-                        type: string
-                        description: Relative path from directory that contains konfig.yaml to
-                          destination you want to copy to
-                    required:
-                      - from
-                      - to
+                    anyOf:
+                      - type: object
+                        properties:
+                          from:
+                            type: string
+                            description: Relative path from directory that contains konfig.yaml to file that
+                              you want to copy
+                          to:
+                            type: string
+                            description: Relative path from directory that contains konfig.yaml to
+                              destination you want to copy to
+                        required:
+                          - from
+                          - to
+                      - type: object
+                        properties:
+                          konfigIgnore:
+                            type: string
+                            description: Relative path to a .konfigignore file. If specified, we parse the
+                              .konfigignore file and copy all files that it
+                              matches to the current directory.
+                        required:
+                          - konfigIgnore
                   description: Configure copying a set of files from a source to a destination.
                     This is useful if you have custom implementations that you
                     would like duplicated across multiple SDK repos.
@@ -549,15 +601,6 @@ components:
                     backwards compatability. Particularly we want to handle
                     flattened kwargs and "query_params" / "header_params" form
                     arguments.
-                generator:
-                  anyOf:
-                    - type: string
-                      enum:
-                        - python-prior
-                    - type: string
-                      enum:
-                        - python
-                  default: python
               required:
                 - version
                 - git
@@ -597,19 +640,29 @@ components:
                 copyFiles:
                   type: array
                   items:
-                    type: object
-                    properties:
-                      from:
-                        type: string
-                        description: Relative path from directory that contains konfig.yaml to file that
-                          you want to copy
-                      to:
-                        type: string
-                        description: Relative path from directory that contains konfig.yaml to
-                          destination you want to copy to
-                    required:
-                      - from
-                      - to
+                    anyOf:
+                      - type: object
+                        properties:
+                          from:
+                            type: string
+                            description: Relative path from directory that contains konfig.yaml to file that
+                              you want to copy
+                          to:
+                            type: string
+                            description: Relative path from directory that contains konfig.yaml to
+                              destination you want to copy to
+                        required:
+                          - from
+                          - to
+                      - type: object
+                        properties:
+                          konfigIgnore:
+                            type: string
+                            description: Relative path to a .konfigignore file. If specified, we parse the
+                              .konfigignore file and copy all files that it
+                              matches to the current directory.
+                        required:
+                          - konfigIgnore
                   description: Configure copying a set of files from a source to a destination.
                     This is useful if you have custom implementations that you
                     would like duplicated across multiple SDK repos.
@@ -774,19 +827,29 @@ components:
                 copyFiles:
                   type: array
                   items:
-                    type: object
-                    properties:
-                      from:
-                        type: string
-                        description: Relative path from directory that contains konfig.yaml to file that
-                          you want to copy
-                      to:
-                        type: string
-                        description: Relative path from directory that contains konfig.yaml to
-                          destination you want to copy to
-                    required:
-                      - from
-                      - to
+                    anyOf:
+                      - type: object
+                        properties:
+                          from:
+                            type: string
+                            description: Relative path from directory that contains konfig.yaml to file that
+                              you want to copy
+                          to:
+                            type: string
+                            description: Relative path from directory that contains konfig.yaml to
+                              destination you want to copy to
+                        required:
+                          - from
+                          - to
+                      - type: object
+                        properties:
+                          konfigIgnore:
+                            type: string
+                            description: Relative path to a .konfigignore file. If specified, we parse the
+                              .konfigignore file and copy all files that it
+                              matches to the current directory.
+                        required:
+                          - konfigIgnore
                   description: Configure copying a set of files from a source to a destination.
                     This is useful if you have custom implementations that you
                     would like duplicated across multiple SDK repos.
@@ -893,19 +956,29 @@ components:
                 copyFiles:
                   type: array
                   items:
-                    type: object
-                    properties:
-                      from:
-                        type: string
-                        description: Relative path from directory that contains konfig.yaml to file that
-                          you want to copy
-                      to:
-                        type: string
-                        description: Relative path from directory that contains konfig.yaml to
-                          destination you want to copy to
-                    required:
-                      - from
-                      - to
+                    anyOf:
+                      - type: object
+                        properties:
+                          from:
+                            type: string
+                            description: Relative path from directory that contains konfig.yaml to file that
+                              you want to copy
+                          to:
+                            type: string
+                            description: Relative path from directory that contains konfig.yaml to
+                              destination you want to copy to
+                        required:
+                          - from
+                          - to
+                      - type: object
+                        properties:
+                          konfigIgnore:
+                            type: string
+                            description: Relative path to a .konfigignore file. If specified, we parse the
+                              .konfigignore file and copy all files that it
+                              matches to the current directory.
+                        required:
+                          - konfigIgnore
                   description: Configure copying a set of files from a source to a destination.
                     This is useful if you have custom implementations that you
                     would like duplicated across multiple SDK repos.
@@ -1012,19 +1085,29 @@ components:
                 copyFiles:
                   type: array
                   items:
-                    type: object
-                    properties:
-                      from:
-                        type: string
-                        description: Relative path from directory that contains konfig.yaml to file that
-                          you want to copy
-                      to:
-                        type: string
-                        description: Relative path from directory that contains konfig.yaml to
-                          destination you want to copy to
-                    required:
-                      - from
-                      - to
+                    anyOf:
+                      - type: object
+                        properties:
+                          from:
+                            type: string
+                            description: Relative path from directory that contains konfig.yaml to file that
+                              you want to copy
+                          to:
+                            type: string
+                            description: Relative path from directory that contains konfig.yaml to
+                              destination you want to copy to
+                        required:
+                          - from
+                          - to
+                      - type: object
+                        properties:
+                          konfigIgnore:
+                            type: string
+                            description: Relative path to a .konfigignore file. If specified, we parse the
+                              .konfigignore file and copy all files that it
+                              matches to the current directory.
+                        required:
+                          - konfigIgnore
                   description: Configure copying a set of files from a source to a destination.
                     This is useful if you have custom implementations that you
                     would like duplicated across multiple SDK repos.
@@ -1099,19 +1182,29 @@ components:
                 copyFiles:
                   type: array
                   items:
-                    type: object
-                    properties:
-                      from:
-                        type: string
-                        description: Relative path from directory that contains konfig.yaml to file that
-                          you want to copy
-                      to:
-                        type: string
-                        description: Relative path from directory that contains konfig.yaml to
-                          destination you want to copy to
-                    required:
-                      - from
-                      - to
+                    anyOf:
+                      - type: object
+                        properties:
+                          from:
+                            type: string
+                            description: Relative path from directory that contains konfig.yaml to file that
+                              you want to copy
+                          to:
+                            type: string
+                            description: Relative path from directory that contains konfig.yaml to
+                              destination you want to copy to
+                        required:
+                          - from
+                          - to
+                      - type: object
+                        properties:
+                          konfigIgnore:
+                            type: string
+                            description: Relative path to a .konfigignore file. If specified, we parse the
+                              .konfigignore file and copy all files that it
+                              matches to the current directory.
+                        required:
+                          - konfigIgnore
                   description: Configure copying a set of files from a source to a destination.
                     This is useful if you have custom implementations that you
                     would like duplicated across multiple SDK repos.
@@ -1194,19 +1287,29 @@ components:
                 copyFiles:
                   type: array
                   items:
-                    type: object
-                    properties:
-                      from:
-                        type: string
-                        description: Relative path from directory that contains konfig.yaml to file that
-                          you want to copy
-                      to:
-                        type: string
-                        description: Relative path from directory that contains konfig.yaml to
-                          destination you want to copy to
-                    required:
-                      - from
-                      - to
+                    anyOf:
+                      - type: object
+                        properties:
+                          from:
+                            type: string
+                            description: Relative path from directory that contains konfig.yaml to file that
+                              you want to copy
+                          to:
+                            type: string
+                            description: Relative path from directory that contains konfig.yaml to
+                              destination you want to copy to
+                        required:
+                          - from
+                          - to
+                      - type: object
+                        properties:
+                          konfigIgnore:
+                            type: string
+                            description: Relative path to a .konfigignore file. If specified, we parse the
+                              .konfigignore file and copy all files that it
+                              matches to the current directory.
+                        required:
+                          - konfigIgnore
                   description: Configure copying a set of files from a source to a destination.
                     This is useful if you have custom implementations that you
                     would like duplicated across multiple SDK repos.
@@ -1277,19 +1380,29 @@ components:
                 copyFiles:
                   type: array
                   items:
-                    type: object
-                    properties:
-                      from:
-                        type: string
-                        description: Relative path from directory that contains konfig.yaml to file that
-                          you want to copy
-                      to:
-                        type: string
-                        description: Relative path from directory that contains konfig.yaml to
-                          destination you want to copy to
-                    required:
-                      - from
-                      - to
+                    anyOf:
+                      - type: object
+                        properties:
+                          from:
+                            type: string
+                            description: Relative path from directory that contains konfig.yaml to file that
+                              you want to copy
+                          to:
+                            type: string
+                            description: Relative path from directory that contains konfig.yaml to
+                              destination you want to copy to
+                        required:
+                          - from
+                          - to
+                      - type: object
+                        properties:
+                          konfigIgnore:
+                            type: string
+                            description: Relative path to a .konfigignore file. If specified, we parse the
+                              .konfigignore file and copy all files that it
+                              matches to the current directory.
+                        required:
+                          - konfigIgnore
                   description: Configure copying a set of files from a source to a destination.
                     This is useful if you have custom implementations that you
                     would like duplicated across multiple SDK repos.
@@ -1371,19 +1484,29 @@ components:
                   copyFiles:
                     type: array
                     items:
-                      type: object
-                      properties:
-                        from:
-                          type: string
-                          description: Relative path from directory that contains konfig.yaml to file that
-                            you want to copy
-                        to:
-                          type: string
-                          description: Relative path from directory that contains konfig.yaml to
-                            destination you want to copy to
-                      required:
-                        - from
-                        - to
+                      anyOf:
+                        - type: object
+                          properties:
+                            from:
+                              type: string
+                              description: Relative path from directory that contains konfig.yaml to file that
+                                you want to copy
+                            to:
+                              type: string
+                              description: Relative path from directory that contains konfig.yaml to
+                                destination you want to copy to
+                          required:
+                            - from
+                            - to
+                        - type: object
+                          properties:
+                            konfigIgnore:
+                              type: string
+                              description: Relative path to a .konfigignore file. If specified, we parse the
+                                .konfigignore file and copy all files that it
+                                matches to the current directory.
+                          required:
+                            - konfigIgnore
                     description: Configure copying a set of files from a source to a destination.
                       This is useful if you have custom implementations that you
                       would like duplicated across multiple SDK repos.
@@ -1431,6 +1554,18 @@ components:
                     description: acme-java-sdk
                   removeKonfigBranding:
                     type: boolean
+                  gitlab:
+                    type: object
+                    properties:
+                      domain:
+                        type: string
+                        default: gitlab.com
+                        description: gitlab.com
+                      projectId:
+                        type: string
+                    required:
+                      - domain
+                      - projectId
                   clientName:
                     type: string
                   clientState:
@@ -1511,19 +1646,29 @@ components:
                   copyFiles:
                     type: array
                     items:
-                      type: object
-                      properties:
-                        from:
-                          type: string
-                          description: Relative path from directory that contains konfig.yaml to file that
-                            you want to copy
-                        to:
-                          type: string
-                          description: Relative path from directory that contains konfig.yaml to
-                            destination you want to copy to
-                      required:
-                        - from
-                        - to
+                      anyOf:
+                        - type: object
+                          properties:
+                            from:
+                              type: string
+                              description: Relative path from directory that contains konfig.yaml to file that
+                                you want to copy
+                            to:
+                              type: string
+                              description: Relative path from directory that contains konfig.yaml to
+                                destination you want to copy to
+                          required:
+                            - from
+                            - to
+                        - type: object
+                          properties:
+                            konfigIgnore:
+                              type: string
+                              description: Relative path to a .konfigignore file. If specified, we parse the
+                                .konfigignore file and copy all files that it
+                                matches to the current directory.
+                          required:
+                            - konfigIgnore
                     description: Configure copying a set of files from a source to a destination.
                       This is useful if you have custom implementations that you
                       would like duplicated across multiple SDK repos.
@@ -1628,19 +1773,29 @@ components:
                   copyFiles:
                     type: array
                     items:
-                      type: object
-                      properties:
-                        from:
-                          type: string
-                          description: Relative path from directory that contains konfig.yaml to file that
-                            you want to copy
-                        to:
-                          type: string
-                          description: Relative path from directory that contains konfig.yaml to
-                            destination you want to copy to
-                      required:
-                        - from
-                        - to
+                      anyOf:
+                        - type: object
+                          properties:
+                            from:
+                              type: string
+                              description: Relative path from directory that contains konfig.yaml to file that
+                                you want to copy
+                            to:
+                              type: string
+                              description: Relative path from directory that contains konfig.yaml to
+                                destination you want to copy to
+                          required:
+                            - from
+                            - to
+                        - type: object
+                          properties:
+                            konfigIgnore:
+                              type: string
+                              description: Relative path to a .konfigignore file. If specified, we parse the
+                                .konfigignore file and copy all files that it
+                                matches to the current directory.
+                          required:
+                            - konfigIgnore
                     description: Configure copying a set of files from a source to a destination.
                       This is useful if you have custom implementations that you
                       would like duplicated across multiple SDK repos.
@@ -1697,14 +1852,9 @@ components:
               - type: object
                 properties:
                   generator:
-                    anyOf:
-                      - type: string
-                        enum:
-                          - python-prior
-                      - type: string
-                        enum:
-                          - python
-                    default: python
+                    type: string
+                    enum:
+                      - python
                   files:
                     type: object
                     additionalProperties:
@@ -1733,19 +1883,29 @@ components:
                   copyFiles:
                     type: array
                     items:
-                      type: object
-                      properties:
-                        from:
-                          type: string
-                          description: Relative path from directory that contains konfig.yaml to file that
-                            you want to copy
-                        to:
-                          type: string
-                          description: Relative path from directory that contains konfig.yaml to
-                            destination you want to copy to
-                      required:
-                        - from
-                        - to
+                      anyOf:
+                        - type: object
+                          properties:
+                            from:
+                              type: string
+                              description: Relative path from directory that contains konfig.yaml to file that
+                                you want to copy
+                            to:
+                              type: string
+                              description: Relative path from directory that contains konfig.yaml to
+                                destination you want to copy to
+                          required:
+                            - from
+                            - to
+                        - type: object
+                          properties:
+                            konfigIgnore:
+                              type: string
+                              description: Relative path to a .konfigignore file. If specified, we parse the
+                                .konfigignore file and copy all files that it
+                                matches to the current directory.
+                          required:
+                            - konfigIgnore
                     description: Configure copying a set of files from a source to a destination.
                       This is useful if you have custom implementations that you
                       would like duplicated across multiple SDK repos.
@@ -1873,6 +2033,7 @@ components:
                       to handle flattened kwargs and "query_params" /
                       "header_params" form arguments.
                 required:
+                  - generator
                   - version
                   - git
                   - outputDirectory
@@ -1914,19 +2075,29 @@ components:
                   copyFiles:
                     type: array
                     items:
-                      type: object
-                      properties:
-                        from:
-                          type: string
-                          description: Relative path from directory that contains konfig.yaml to file that
-                            you want to copy
-                        to:
-                          type: string
-                          description: Relative path from directory that contains konfig.yaml to
-                            destination you want to copy to
-                      required:
-                        - from
-                        - to
+                      anyOf:
+                        - type: object
+                          properties:
+                            from:
+                              type: string
+                              description: Relative path from directory that contains konfig.yaml to file that
+                                you want to copy
+                            to:
+                              type: string
+                              description: Relative path from directory that contains konfig.yaml to
+                                destination you want to copy to
+                          required:
+                            - from
+                            - to
+                        - type: object
+                          properties:
+                            konfigIgnore:
+                              type: string
+                              description: Relative path to a .konfigignore file. If specified, we parse the
+                                .konfigignore file and copy all files that it
+                                matches to the current directory.
+                          required:
+                            - konfigIgnore
                     description: Configure copying a set of files from a source to a destination.
                       This is useful if you have custom implementations that you
                       would like duplicated across multiple SDK repos.
@@ -2097,19 +2268,29 @@ components:
                   copyFiles:
                     type: array
                     items:
-                      type: object
-                      properties:
-                        from:
-                          type: string
-                          description: Relative path from directory that contains konfig.yaml to file that
-                            you want to copy
-                        to:
-                          type: string
-                          description: Relative path from directory that contains konfig.yaml to
-                            destination you want to copy to
-                      required:
-                        - from
-                        - to
+                      anyOf:
+                        - type: object
+                          properties:
+                            from:
+                              type: string
+                              description: Relative path from directory that contains konfig.yaml to file that
+                                you want to copy
+                            to:
+                              type: string
+                              description: Relative path from directory that contains konfig.yaml to
+                                destination you want to copy to
+                          required:
+                            - from
+                            - to
+                        - type: object
+                          properties:
+                            konfigIgnore:
+                              type: string
+                              description: Relative path to a .konfigignore file. If specified, we parse the
+                                .konfigignore file and copy all files that it
+                                matches to the current directory.
+                          required:
+                            - konfigIgnore
                     description: Configure copying a set of files from a source to a destination.
                       This is useful if you have custom implementations that you
                       would like duplicated across multiple SDK repos.
@@ -2222,19 +2403,29 @@ components:
                   copyFiles:
                     type: array
                     items:
-                      type: object
-                      properties:
-                        from:
-                          type: string
-                          description: Relative path from directory that contains konfig.yaml to file that
-                            you want to copy
-                        to:
-                          type: string
-                          description: Relative path from directory that contains konfig.yaml to
-                            destination you want to copy to
-                      required:
-                        - from
-                        - to
+                      anyOf:
+                        - type: object
+                          properties:
+                            from:
+                              type: string
+                              description: Relative path from directory that contains konfig.yaml to file that
+                                you want to copy
+                            to:
+                              type: string
+                              description: Relative path from directory that contains konfig.yaml to
+                                destination you want to copy to
+                          required:
+                            - from
+                            - to
+                        - type: object
+                          properties:
+                            konfigIgnore:
+                              type: string
+                              description: Relative path to a .konfigignore file. If specified, we parse the
+                                .konfigignore file and copy all files that it
+                                matches to the current directory.
+                          required:
+                            - konfigIgnore
                     description: Configure copying a set of files from a source to a destination.
                       This is useful if you have custom implementations that you
                       would like duplicated across multiple SDK repos.
@@ -2347,19 +2538,29 @@ components:
                   copyFiles:
                     type: array
                     items:
-                      type: object
-                      properties:
-                        from:
-                          type: string
-                          description: Relative path from directory that contains konfig.yaml to file that
-                            you want to copy
-                        to:
-                          type: string
-                          description: Relative path from directory that contains konfig.yaml to
-                            destination you want to copy to
-                      required:
-                        - from
-                        - to
+                      anyOf:
+                        - type: object
+                          properties:
+                            from:
+                              type: string
+                              description: Relative path from directory that contains konfig.yaml to file that
+                                you want to copy
+                            to:
+                              type: string
+                              description: Relative path from directory that contains konfig.yaml to
+                                destination you want to copy to
+                          required:
+                            - from
+                            - to
+                        - type: object
+                          properties:
+                            konfigIgnore:
+                              type: string
+                              description: Relative path to a .konfigignore file. If specified, we parse the
+                                .konfigignore file and copy all files that it
+                                matches to the current directory.
+                          required:
+                            - konfigIgnore
                     description: Configure copying a set of files from a source to a destination.
                       This is useful if you have custom implementations that you
                       would like duplicated across multiple SDK repos.
@@ -2438,19 +2639,29 @@ components:
                   copyFiles:
                     type: array
                     items:
-                      type: object
-                      properties:
-                        from:
-                          type: string
-                          description: Relative path from directory that contains konfig.yaml to file that
-                            you want to copy
-                        to:
-                          type: string
-                          description: Relative path from directory that contains konfig.yaml to
-                            destination you want to copy to
-                      required:
-                        - from
-                        - to
+                      anyOf:
+                        - type: object
+                          properties:
+                            from:
+                              type: string
+                              description: Relative path from directory that contains konfig.yaml to file that
+                                you want to copy
+                            to:
+                              type: string
+                              description: Relative path from directory that contains konfig.yaml to
+                                destination you want to copy to
+                          required:
+                            - from
+                            - to
+                        - type: object
+                          properties:
+                            konfigIgnore:
+                              type: string
+                              description: Relative path to a .konfigignore file. If specified, we parse the
+                                .konfigignore file and copy all files that it
+                                matches to the current directory.
+                          required:
+                            - konfigIgnore
                     description: Configure copying a set of files from a source to a destination.
                       This is useful if you have custom implementations that you
                       would like duplicated across multiple SDK repos.
@@ -2537,19 +2748,29 @@ components:
                   copyFiles:
                     type: array
                     items:
-                      type: object
-                      properties:
-                        from:
-                          type: string
-                          description: Relative path from directory that contains konfig.yaml to file that
-                            you want to copy
-                        to:
-                          type: string
-                          description: Relative path from directory that contains konfig.yaml to
-                            destination you want to copy to
-                      required:
-                        - from
-                        - to
+                      anyOf:
+                        - type: object
+                          properties:
+                            from:
+                              type: string
+                              description: Relative path from directory that contains konfig.yaml to file that
+                                you want to copy
+                            to:
+                              type: string
+                              description: Relative path from directory that contains konfig.yaml to
+                                destination you want to copy to
+                          required:
+                            - from
+                            - to
+                        - type: object
+                          properties:
+                            konfigIgnore:
+                              type: string
+                              description: Relative path to a .konfigignore file. If specified, we parse the
+                                .konfigignore file and copy all files that it
+                                matches to the current directory.
+                          required:
+                            - konfigIgnore
                     description: Configure copying a set of files from a source to a destination.
                       This is useful if you have custom implementations that you
                       would like duplicated across multiple SDK repos.
@@ -2624,19 +2845,29 @@ components:
                   copyFiles:
                     type: array
                     items:
-                      type: object
-                      properties:
-                        from:
-                          type: string
-                          description: Relative path from directory that contains konfig.yaml to file that
-                            you want to copy
-                        to:
-                          type: string
-                          description: Relative path from directory that contains konfig.yaml to
-                            destination you want to copy to
-                      required:
-                        - from
-                        - to
+                      anyOf:
+                        - type: object
+                          properties:
+                            from:
+                              type: string
+                              description: Relative path from directory that contains konfig.yaml to file that
+                                you want to copy
+                            to:
+                              type: string
+                              description: Relative path from directory that contains konfig.yaml to
+                                destination you want to copy to
+                          required:
+                            - from
+                            - to
+                        - type: object
+                          properties:
+                            konfigIgnore:
+                              type: string
+                              description: Relative path to a .konfigignore file. If specified, we parse the
+                                .konfigignore file and copy all files that it
+                                matches to the current directory.
+                          required:
+                            - konfigIgnore
                     description: Configure copying a set of files from a source to a destination.
                       This is useful if you have custom implementations that you
                       would like duplicated across multiple SDK repos.
