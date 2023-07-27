@@ -7,7 +7,7 @@ hide_table_of_contents: true
 # About
 
 Konfig is a developer tools company; we build API tooling based off the [OpenAPI
-Specification](https://swagger.io/specification/) and [Postman Collection Format](https://schema.postman.com/collection/json/v2.1.0/draft-07/collection.json) standards.
+Specification](https://swagger.io/specification/) and [Postman Collection Format](https://learning.postman.com/collection-format/getting-started/overview/) standards.
 
 ## The Problem
 
