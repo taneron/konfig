@@ -50,6 +50,7 @@ import org.openapitools.codegen.api.TemplatingEngineAdapter;
 import org.openapitools.codegen.config.GlobalSettings;
 import org.openapitools.codegen.examples.ExampleGenerator;
 import org.openapitools.codegen.languages.JavaClientCodegen;
+import org.openapitools.codegen.languages.PythonClientCodegen;
 import org.openapitools.codegen.languages.PythonPriorClientCodegen;
 import org.openapitools.codegen.languages.RustServerCodegen;
 import org.openapitools.codegen.meta.FeatureSet;
@@ -2001,9 +2002,9 @@ public class DefaultCodegen implements CodegenConfig {
         } else if (Boolean.TRUE.equals(codegenParameter.isDateTime)) {
             codegenParameter.example = "2013-10-20T19:20:30+01:00";
         } else if (Boolean.TRUE.equals(codegenParameter.isUuid)) {
-            codegenParameter.example = "38400000-8cf0-11bd-b23e-10b96e4ef00d";
+            codegenParameter.example = "\"38400000-8cf0-11bd-b23e-10b96e4ef00d\"";
         } else if (Boolean.TRUE.equals(codegenParameter.isUri)) {
-            codegenParameter.example = "https://openapi-generator.tech";
+            codegenParameter.example = "\"https://konfigthis.com\"";
         } else if (Boolean.TRUE.equals(codegenParameter.isString)) {
             codegenParameter.example = codegenParameter.paramName + "_example";
         } else if (Boolean.TRUE.equals(codegenParameter.isFreeFormObject)) {
@@ -2020,7 +2021,10 @@ public class DefaultCodegen implements CodegenConfig {
      */
     public void setParameterExampleValue(CodegenParameter codegenParameter, Parameter parameter) {
         if (parameter.getExample() != null) {
-            codegenParameter.example = parameter.getExample().toString();
+            if (parameter.getExample() instanceof String)
+                codegenParameter.example = PythonClientCodegen.ensureQuotes(parameter.getExample().toString());
+            else
+                codegenParameter.example = parameter.getExample().toString();
             return;
         }
 
@@ -2034,7 +2038,10 @@ public class DefaultCodegen implements CodegenConfig {
 
         Schema schema = parameter.getSchema();
         if (schema != null && schema.getExample() != null) {
-            codegenParameter.example = schema.getExample().toString();
+            if (schema.getExample() instanceof String)
+                codegenParameter.example = PythonClientCodegen.ensureQuotes(schema.getExample().toString());
+            else
+                codegenParameter.example = schema.getExample().toString();
             return;
         }
 
