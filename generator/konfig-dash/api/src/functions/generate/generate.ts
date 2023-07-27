@@ -567,7 +567,7 @@ export const myHandler = async (event: APIGatewayEvent, context: Context) => {
         gitHost: generatorConfig.git?.host,
         gitUserId: generatorConfig.git?.userId,
         gitRepoId: generatorConfig.git?.repoId,
-        generatorName: generatorConfig.generator,
+        generatorName: 'python',
         packageName: generatorConfig.packageName,
         removeOperationIdPrefix: true,
         files: generatorConfig.files,
