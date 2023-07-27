@@ -86,7 +86,7 @@ const steps: Step[] = [
     },
   },
   {
-    action: "So, how do I publish SDKs for my API...",
+    action: "So, how do I publish SDKs for my API?",
     content: <Problem2 />,
     checkIfStepIsComplete: async (vm: VM) => {
       return true;
@@ -115,12 +115,13 @@ const steps: Step[] = [
       const files = await vm.getFsSnapshot();
       for (const file in files) {
         if (file !== "konfig.yaml") continue;
-        if (!files[file].includes("clientName: Petstore")) {
+        if (!files[file].includes("clientName: Petstore\n")) {
           await vm.applyFsDiff({ create: {}, destroy: ["konfig.yaml"] });
-          return `Did you answer the questions as directed? Make sure to name your package "petstore"`;
+          return `Did you answer the questions as directed? Make sure to name your package "petstore".`;
         }
         await vm.editor.openFile("konfig.yaml");
         await vm.editor.setCurrentFile("konfig.yaml");
+        await vm.editor.showSidebar(true);
         return true;
       }
       return `🤔 A "konfig.yaml" does not exist in your development environment. Did you follow the above directions and run "konfig init" in terminal?`;
