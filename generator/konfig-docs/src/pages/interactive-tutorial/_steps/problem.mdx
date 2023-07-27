@@ -36,7 +36,7 @@ Run the following command in the terminal to execute the code to make a request.
 
 <CH.Code lineNumbers={false}>
 ```shell Terminal
-yarn make-request
+ts-node make-request.ts
 ```
 </CH.Code>
 
@@ -51,13 +51,12 @@ Oh shoot! It didn't even work, and we got an ambiguous error.
     data: { code: 500, type: 'unknown', message: 'something bad happened' }
   }
 }
-✨  Done in 1.14s.
 ```
 </CH.Code>
 
-Turns out the problem is that we are passing in the string of `"1,000"` for
-`quantity`, but the expected type is a number. Debugging these sorts of issues
-can be exceedingly frustrating and increase time to value or flat out
+After hours of debugging, we discover that we need to pass the number `1000`
+instead of the string `"1,000"`.  Debugging these sorts of issues is frustrating
+and leads to a longer time to value and ultimately lower conversions 😤.
 
 <CH.Code lineNumbers={false}>
 ```typescript make-request.ts
@@ -69,37 +68,3 @@ let data = JSON.stringify({
 });
 ```
 </CH.Code>
-
-Apply the above fix and run the code again.
-
-<CH.Code lineNumbers={false}>
-```shell Terminal
-yarn make-request
-```
-</CH.Code>
-
-Now we get the expected output.
-
-```shell Terminal
-❯ yarn make-request
-yarn run v1.22.19
-$ ts-node make-request.ts
-Place Order Response: {"id":9223372036854776000,"petId":0,"quantity":1000,"complete":false}
-✨  Done in 1.52s.
-```
-
-#### The New Way
-
-Instead, your customers should be using an SDK.
-
-```typescript make-request.ts
-import { Petstore } from "petstore";
-
-new Petstore().store.placeOrder({
-    quantity: 1000
-}).then(response => {
-    console.log("Place Order Response:", response.data);
-})
-```
-
-This is 10x better, but SDKs are time-consuming to create and maintain.

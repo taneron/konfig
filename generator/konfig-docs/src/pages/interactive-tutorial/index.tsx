@@ -11,8 +11,9 @@ import {
   apiYaml,
   readmeMd,
   makeRequestTs,
-  makeRequestTsRefactored,
   makeRequestTsFixed,
+  makeRequestTsRefactored,
+  makeRequestTsRefactoredFixed,
 } from "./_vm";
 import packageJson from "./_vm/package.json";
 import salesPackageJson from "./_vm/sales-demo-package.json";
@@ -23,6 +24,8 @@ import styles from "./index.module.css";
 
 // @ts-ignore
 import Problem from "./_steps/problem.mdx";
+// @ts-ignore
+import Problem2 from "./_steps/problem-2.mdx";
 // @ts-ignore
 import Step1 from "./_steps/1.mdx";
 // @ts-ignore
@@ -73,8 +76,19 @@ const steps: Step[] = [
     },
   },
   {
-    action: "So, how do I publish SDKs for my API...",
+    action: "Apply the above fix",
     content: <Problem />,
+    checkIfStepIsComplete: async (vm: VM) => {
+      await vm.applyFsDiff({
+        create: { "make-request.ts": makeRequestTsFixed },
+        destroy: [],
+      });
+      return true;
+    },
+  },
+  {
+    action: "So, how do I publish SDKs for my API...",
+    content: <Problem2 />,
     checkIfStepIsComplete: async (vm: VM) => {
       return true;
     },
@@ -150,7 +164,7 @@ const steps: Step[] = [
     content: <Refactoring />,
     checkIfStepIsComplete: async (vm: VM) => {
       vm.applyFsDiff({
-        create: { "make-request.ts": makeRequestTsFixed },
+        create: { "make-request.ts": makeRequestTsRefactoredFixed },
         destroy: [],
       });
       return true;
@@ -195,7 +209,6 @@ export default function LiveDemo({ sales }: { sales?: boolean }) {
           description: "How to generate SDKs for your REST API",
           template: "node",
           files: {
-            "setup.sh": `alias konfig="cd ../; yarn konfig"`,
             "package.json": JSON.stringify(
               sales ? salesPackageJson : packageJson,
               undefined,

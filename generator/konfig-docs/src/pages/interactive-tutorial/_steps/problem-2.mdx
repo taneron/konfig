@@ -1,0 +1,28 @@
+<CH.Code lineNumbers={false}>
+```shell Terminal
+ts-node make-request.ts
+```
+</CH.Code>
+
+Now we should get the expected output.
+
+```shell Terminal
+❯ ts-node make-request.ts
+Place Order Response: {"id":12,"petId":0,"quantity":1000,"complete":false}
+```
+
+#### The New Way
+
+Instead, your customers should be using an SDK.
+
+```typescript make-request.ts
+import { Petstore } from "petstore";
+
+new Petstore().store.placeOrder({
+    quantity: 1000
+}).then(response => {
+    console.log("Place Order Response:", response.data);
+})
+```
+
+This is 10x better, but SDKs are time-consuming to create and maintain.
