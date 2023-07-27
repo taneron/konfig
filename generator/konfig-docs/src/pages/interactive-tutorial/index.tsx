@@ -115,6 +115,10 @@ const steps: Step[] = [
       const files = await vm.getFsSnapshot();
       for (const file in files) {
         if (file !== "konfig.yaml") continue;
+        if (!files[file].includes("typescript:\n")) {
+          await vm.applyFsDiff({ create: {}, destroy: ["konfig.yaml"] });
+          return `Did you answer the questions as directed? Make sure select "TypeScript" when asked what languages to generate SDKs in.`;
+        }
         if (!files[file].includes("clientName: Petstore\n")) {
           await vm.applyFsDiff({ create: {}, destroy: ["konfig.yaml"] });
           return `Did you answer the questions as directed? Make sure to name your package "petstore".`;
