@@ -1,7 +1,7 @@
 import type { IFunctionResult, RulesetFunction } from '@stoplight/spectral-core'
 import type { ParameterObject } from '../parseSpec'
 
-export const disallowedHeadersRegex = /^(Content-Type|Authorization|Accept)$/
+export const disallowedHeadersRegex = /^(Content-Type|Accept)$/
 
 export async function isParameterDisallowed({
   parameter,

@@ -4,6 +4,7 @@ import {
   getOperations,
   Operation,
   OperationParameter,
+  resolveRef,
   Spec,
 } from 'konfig-lib'
 import {
@@ -71,6 +72,44 @@ export async function fixAdvSecuritySchemesDefined({
           continue
         }
       }
+
+      const existingSecurity =
+      spec.spec.components?.securitySchemes !== undefined
+        ? Object.entries(spec.spec.components.securitySchemes).find(
+            ([securityName, s]) => {
+              const resolved = resolveRef({ refOrObject: s, $ref: spec.$ref })
+              if (resolved.type !== 'apiKey') return
+              return (
+                resolved.name.toLowerCase() === parameter.name.toLowerCase()
+              )
+            }
+          )
+        : undefined
+    if (existingSecurity !== undefined) {
+      const securitySchemeObject = resolveRef({
+        refOrObject: existingSecurity[1],
+        $ref: spec.$ref,
+      })
+      if (securitySchemeObject.type !== 'apiKey')
+        throw Error(
+          'unexpected security scheme type when replacing case in-sensitive parameter'
+        )
+      const securityScheme: SecuritySchemeObject = {
+        in: securitySchemeObject.in as any,
+        name: securitySchemeObject.name,
+        type: 'apiKey',
+        securityName: existingSecurity[0],
+      }
+      await removeParameterForSecurityRequirement({
+        spec,
+        name: parameter.name,
+        parameterIn: parameter.in,
+        securityScheme,
+        operation,
+      })
+      continue;
+    }
+
       const { securityName, isSecurity } = await inquirer.prompt<{
         securityName: string
         isSecurity: boolean

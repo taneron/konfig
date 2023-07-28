@@ -459,7 +459,7 @@ function generateSecurityScheme(auth) {
   const name = auth.apikey.find((obj) => obj.key === 'key')?.value
   return {
     type: 'apiKey',
-    in: where === undefined ? 'Header' : where,
+    in: where === undefined ? 'header' : where,
     name,
   }
 }
@@ -467,7 +467,7 @@ function generateSecurityScheme(auth) {
 /* Parse a postman auth definition */
 function parsePostmanAuth(postmanAuth = {}, securitySchemes) {
   const { type } = postmanAuth
-  if (type != null) {
+  if (type != null && type !== "noauth") {
     securitySchemes[`${type}Auth`] = generateSecurityScheme(postmanAuth)
     return {
       components: { securitySchemes },
@@ -483,7 +483,7 @@ function parsePostmanAuth(postmanAuth = {}, securitySchemes) {
 
 /* Parse Auth at operation/request level */
 function parseOperationAuth(auth, securitySchemes, optsAuth) {
-  if (auth == null || optsAuth != null) {
+  if (auth == null || optsAuth != null || auth.type === "noauth") {
     // In case of config auth operation auth is disabled
     return {}
   } else {
