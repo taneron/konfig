@@ -37,7 +37,12 @@ exports[`fix-oas disallowed-header-names request 1`] = `
     "/": {
       "get": {
         "operationId": "Tag_get",
-        "parameters": [],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+          },
+        ],
         "responses": {
           "200": {
             "content": {
@@ -81,7 +86,9 @@ exports[`fix-oas disallowed-header-names response 1`] = `
         "responses": {
           "200": {
             "description": "OK",
-            "headers": {},
+            "headers": {
+              "Authorization": {},
+            },
           },
         },
         "tags": [
@@ -419,7 +426,9 @@ exports[`fix-oas oas3-valid-media-example fix-number-example 1`] = `
         "responses": {
           "200": {
             "description": "OK",
-            "headers": {},
+            "headers": {
+              "Authorization": {},
+            },
           },
         },
         "tags": [
