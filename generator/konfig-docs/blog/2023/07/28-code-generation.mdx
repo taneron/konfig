@@ -118,9 +118,9 @@ public class HelloWorld {
 
 After comparing the "Hello, World!" program in assembly to the ones written in
 higher-level programming languages, it's clear that code generation empowers
-developers to be 100x more productive when building applications. If you think
-about it, software engineering is simply operating code generators to produce
-performant machine code 🤯.
+developers to be 100x more productive. If you think about it, software
+engineering is simply operating code generators to produce performant machine
+code 🤯.
 
 [Compilers](https://en.wikipedia.org/wiki/Compiler) are the code generators that power programming languages. Compilers turn a source
 language into a target language. In practice, most computer languages target
@@ -189,15 +189,15 @@ migration queries in SQL and type-safe clients to interact with the database.
 
 <Figure src="/img/prisma.png" caption={<div>Source: <a href="https://www.prisma.io/">prisma.io</a></div>}/>
 
-Take for example a TypeScript function that makes two simple queries and returns
-the data. With Prisma, we can convert plain-text SQL statements to typed
-function calls and delete over 50% of the code.
+Take for example a TypeScript function that makes two simple queries. With
+Prisma, we can convert plain-text SQL statements to typed function calls and
+delete over 50% of the code.
 
 <Figure src="/img/with-prisma.png" caption="The same function for querying a database in TypeScript using plain-text SQL statements (Left) and Prisma (Right)"/>
 
-Prisma is relatively new but its superior developer experience allows developers
-to move fast without breaking things. Unsurprisingly, Prisma has found itself as
-a fan favorite amongst Node.js developers, quickly beating out existing ORMs.
+Prisma's superior developer experience allows developers to move fast without
+breaking things. Unsurprisingly, Prisma has found itself as a fan favorite
+amongst Node.js developers, quickly beating out existing ORMs.
 
 <Figure src="/img/prisma-vs-sequelize.png" caption={<div>Despite only appearing
 in 2019, Prisma is rapidly beating out <a href="https://github.com/sequelize/sequelize">Sequelize</a>, a much older ORM for Node.js (Source: <a
@@ -336,9 +336,9 @@ functionality.
 
 <Figure src="/img/svelte-compiler.png" caption={<div>The <a href="https://svelte.dev/repl/hello-world?version=4.1.2">Svelte REPL</a> showing the input file (left) and the compiled JavaScript output (right)</div>}/>
 
-### API Code Generation
+### Web API Code Generation
 
-Adjacent to web applications are APIs, which [can be
+Adjacent to web applications are Web APIs, which [can be
 really
 complex](/blog/what-is-an-sdk#why-do-developers-need-help-integrating-apis).
 But code generation drastically simplifies API integrations by generating boilerplate code and
@@ -550,7 +550,7 @@ In all three examples, generated client SDKs [remove unnecessary code to
 construct an HTTP request or handle serialization and deserialization](/blog/what-is-an-sdk#sdk-vs-no-sdk).
 Furthermore, any unexpected data errors are caught during development time.  As
 the number of operations and data models grows, the same code generation tooling
-can be used to ensure consistency throughout any API integrations.
+can be used to ensure consistency throughout API integrations.
 
 ### When Not To Use Code Generation?
 
@@ -572,13 +572,13 @@ already come prepared with the typing functionality.  Instead, we should re-use
 the typing functionality to create our data validation library. Popular examples
 of non-code-generation-based data validation libraries include
 [zod](https://github.com/colinhacks/zod) for TypeScript and
-[pydantic](https://github.com/pydantic/pydantic) for Python.
+[pydantic](https://github.com/pydantic/pydantic) for Python. No compilation step
+is necessary which means they can be imported at any time and used in any
+runtime.
 
-To use these libraries, no compilation step is necessary which means they can be
-imported at any time and used in any runtime. But when process boundaries are
-crossed such as HTTP APIs, data validation is not possible to achieve without
-code generation; hence the use of code generation in network protocols like
-GraphQL, gRPC, and OpenAPI.
+But when process boundaries are crossed such as HTTP APIs, data validation is
+not possible to achieve without code generation; hence the use of code
+generation in network protocols like GraphQL, gRPC, and OpenAPI.
 
 ### AI Assistants
 
@@ -595,14 +595,11 @@ What do I mean by contextual code? This time, instead of providing a standard
 input format such as a programming language or API specification, the input
 format is simply the surrounding code in the open files. A suggested completion
 is predicted based on the context and offered as a tab-completion in the IDE.
-Since LLMs are [probability-based
-models](https://en.wikipedia.org/wiki/Large_language_model#Output), its
-usefulness revolves entirely around prediction accuracy.
-
-A probability model works out great in IDEs because the generated code can be
-assessed by a human and there is virtually no risk when the suggestion is wrong.
-And it truly feels like your development workflow is being "augmented" as
-opposed to being replaced.
+Since [LLMs](https://en.wikipedia.org/wiki/Large_language_model) are
+probability-based models, its usefulness revolves entirely around prediction
+accuracy. A probability model works out great in IDEs because the generated code
+can easily be assessed by a human and there is virtually no risk when the
+suggestion is wrong.
 
 #### The Cons of AI Assistants
 
@@ -614,21 +611,26 @@ to wrangle the complexity of prompting the AI while using Copilot. One tip from
 the video is to write an explanatory comment at the top of a file to give
 Copilot more context. For example, you could write the following comment at the top of a Python file.
 
+<Figure caption="Putting more context in the file as a comment increases the accuracy of Copilot">
 ```python main.py
+# mark
 # Description: The file processes a JSON
 
 def process_json(json):
     # ...
 ```
+</Figure>
 
 Since everything is probability-based, providing enough context for the AI is
 crucial to improve its accuracy. But sometimes prompt engineering can take more
-time and effort than simply writing the intended code. And it doesn't help that AI is a
-black box, blurring the feedback loop between prompt experimentation and quality of code generation. When lots of context is required, which is often the case in
-larger codebases, the accuracy of the AI drops which can then lead to misleading
-or incorrect suggestions.  [Magic](https://magic.dev/), a company building a
-software engineer inside your computer, recognizes this limitation and is on a
-mission to solve it.
+time and effort than simply writing the intended code. And it doesn't help that
+AI is a black box, making experimentation a dark art.
+
+When lots of context is required, which is often the case in larger codebases,
+the accuracy of the AI drops which can then lead to misleading or incorrect
+suggestions.  [Magic](https://magic.dev/), a company building a software
+engineer inside your computer, recognizes this limitation and is on a mission to
+solve it.
 
 <Figure src="/img/magic.png" caption={<div>Source: <a href="https://magic.dev/">magic.dev</a></div>}/>
 
@@ -636,8 +638,8 @@ mission to solve it.
 
 Over time, we have engineered ourselves into higher and higher levels of
 abstraction to build performant software. [Mojo](https://www.modular.com/mojo),
-a Python-compatible language for programming bare metal that abstracts the
-complexity of systems and GPU programming, is an interesting and recent example.
+a new programming language for writing performant low-level code in plain
+Python, is an interesting and recent example.
 
 <Figure src="/img/mojo.png" caption={<div>Source: <a href="https://www.modular.com/mojo">modular.com/mojo</a></div>}/>
 
@@ -660,10 +662,10 @@ problem.
 
 ### Looking Into the Future
 
-Code generation is a testament to the remarkable power of automation in the
-world of software engineering. From its early days in assembly language to the
-modern AI assistants, code generation has continuously evolved, unlocking new
-levels of productivity and efficiency for developers.
+Code generation is a testament to the remarkable power of automation in
+software. From its early days in assembly language to the modern AI assistants,
+code generation has continuously evolved, unlocking new levels of productivity
+and efficiency for developers.
 
 As we move forward, code generation will continue to be a vital tool, aiding
 developers in their pursuit of faster, more maintainable, and error-free
