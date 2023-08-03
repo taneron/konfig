@@ -62,6 +62,7 @@ async function getLineCountForGenerator({
       directory,
       'debug-line-counts.json'
     )
+    console.log('debugFilePath', debugFilePath)
     fs.ensureDirSync(path.dirname(debugFilePath))
     fs.writeFileSync(debugFilePath, JSON.stringify(debugLineCounts, null, 2))
   }
@@ -102,7 +103,6 @@ async function readGitTrackedFiles(directory: string, root: string) {
     const relativePathFromRoot = path.relative(root, file)
     const relativePathFromDirectory = path.relative(directory, file)
     // if file is ignored by the "ig" .gitignore object then continue
-    if (ig.ignores(relativePathFromRoot)) continue
     if (ig.ignores(relativePathFromDirectory)) continue
 
     const content = await fs.readFile(file, 'utf-8')
