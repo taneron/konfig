@@ -15,20 +15,14 @@
 /**
  * 
  * @export
- * @interface LintResponseBodyDiagnosisInnerLinePosition
+ * @interface LintResponseBodyDiagnosisInnerRangeStart
  */
-export interface LintResponseBodyDiagnosisInnerLinePosition {
+export interface LintResponseBodyDiagnosisInnerRangeStart {
     /**
      * 
      * @type {number}
-     * @memberof LintResponseBodyDiagnosisInnerLinePosition
+     * @memberof LintResponseBodyDiagnosisInnerRangeStart
      */
-    'start': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof LintResponseBodyDiagnosisInnerLinePosition
-     */
-    'end': number;
+    'line': number;
 }
 

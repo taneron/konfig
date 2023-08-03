@@ -4602,13 +4602,23 @@ components:
                   - paths
                   - /pet
                   - post
-              linePosition:
+              range:
                 type: object
                 properties:
                   start:
-                    type: number
+                    type: object
+                    properties:
+                      line:
+                        type: number
+                    required:
+                      - line
                   end:
-                    type: number
+                    type: object
+                    properties:
+                      line:
+                        type: number
+                    required:
+                      - line
                 required:
                   - start
                   - end
@@ -4653,7 +4663,7 @@ components:
                   Hint = 3
             required:
               - path
-              - linePosition
+              - range
               - code
               - message
               - severity

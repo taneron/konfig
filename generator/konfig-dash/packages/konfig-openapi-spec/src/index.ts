@@ -98,9 +98,9 @@ const SpectralDiagnostic = z
       description: 'JsonPath',
       example: ['paths', '/pet', 'post'],
     }),
-    linePosition: z.object({
-      start: z.number(),
-      end: z.number(),
+    range: z.object({
+      start: z.object({ line: z.number() }),
+      end: z.object({ line: z.number() }),
     }),
     code: z.string().or(z.number()).openapi({
       description: 'ID of linting rule',

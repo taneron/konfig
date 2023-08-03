@@ -16,10 +16,10 @@
 import { LintResponseBodyDiagnosisInnerCode } from './lint-response-body-diagnosis-inner-code';
 // May contain unused imports in some cases
 // @ts-ignore
-import { LintResponseBodyDiagnosisInnerLinePosition } from './lint-response-body-diagnosis-inner-line-position';
+import { LintResponseBodyDiagnosisInnerPathInner } from './lint-response-body-diagnosis-inner-path-inner';
 // May contain unused imports in some cases
 // @ts-ignore
-import { LintResponseBodyDiagnosisInnerPathInner } from './lint-response-body-diagnosis-inner-path-inner';
+import { LintResponseBodyDiagnosisInnerRange } from './lint-response-body-diagnosis-inner-range';
 
 /**
  * Information regarding an error or warning found in your OpenAPI Spec.
@@ -35,10 +35,10 @@ export interface LintResponseBodyDiagnosisInner {
     'path': Array<LintResponseBodyDiagnosisInnerPathInner>;
     /**
      * 
-     * @type {LintResponseBodyDiagnosisInnerLinePosition}
+     * @type {LintResponseBodyDiagnosisInnerRange}
      * @memberof LintResponseBodyDiagnosisInner
      */
-    'linePosition': LintResponseBodyDiagnosisInnerLinePosition;
+    'range': LintResponseBodyDiagnosisInnerRange;
     /**
      * 
      * @type {LintResponseBodyDiagnosisInnerCode}
