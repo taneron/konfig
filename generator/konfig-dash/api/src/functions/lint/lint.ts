@@ -8,8 +8,8 @@ import {
 import ruleset from 'konfig-spectral-ruleset'
 import { Spectral } from '@stoplight/spectral-core'
 import {
-  CORS_HEADERS_METHOD_HEADERS,
-  CORS_HEADERS_ORIGIN,
+  CORS_HEADERS_METHOD_HEADERS_LINT,
+  CORS_HEADERS_ORIGIN_LINT,
 } from 'src/lib/cors-headers'
 
 /**
@@ -32,7 +32,10 @@ export const handler = async (event: APIGatewayEvent, context: Context) => {
   if (event.httpMethod === 'OPTIONS') {
     return {
       statusCode: 200,
-      headers: { ...CORS_HEADERS_METHOD_HEADERS, ...CORS_HEADERS_ORIGIN },
+      headers: {
+        ...CORS_HEADERS_METHOD_HEADERS_LINT,
+        ...CORS_HEADERS_ORIGIN_LINT,
+      },
     }
   }
   if (event.body === null) {
@@ -64,7 +67,7 @@ export const handler = async (event: APIGatewayEvent, context: Context) => {
   return {
     statusCode: 200,
     headers: {
-      ...CORS_HEADERS_ORIGIN,
+      ...CORS_HEADERS_ORIGIN_LINT,
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(LintResponseBody.parse(responseBody)),
