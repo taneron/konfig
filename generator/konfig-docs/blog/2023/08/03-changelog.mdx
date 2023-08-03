@@ -1,0 +1,96 @@
+---
+slug: changelog-08-03
+title: "Changelog #1"
+authors: dylan
+tags: [Changelog]
+image: /img/logo-with-name.png
+---
+
+![Logo](/img/logo-with-name.png)
+
+### STATISTICS.md
+
+Now `konfig generate` will generate a file named `STATISTICS.md` that contains
+`Lines of Code` for each SDK for your API. This file is generated in the same
+directory as your `konfig.yaml` file. In the future, we would also like to add
+more data such as weekly downloads.
+
+```markdown STATISTICS.md
+# SDK Statistics
+
+| SDK Name   | Lines of Code |
+|------------|---------------|
+| java       | 89900         |
+| ruby       | 47516         |
+| python     | 104319        |
+| typescript | 18063         |
+| csharp     | 58322         |
+| php        | 99705         |
+| **Total**  | 417825        |
+```
+
+### Interactive Tutorial
+
+Our [interactive tutorial](/interactive-tutorial) is now live! Learn how to
+generate SDKs with a guided interface. This is a great way to get started with
+Konfig if you would like to generate SDKs yourself.
+
+![Interactive Tutorial](/img/interactive-tutorial.png)
+
+### Improved TypeScript SDK Error
+
+Instead of just throwing the error from the underlying request library,
+[axios](https://www.npmjs.com/package/axios), we now generate a file called
+`error.ts` that contains a custom `Error` class. The name of the class is based
+off the client name in your `konfig.yaml` file.  The new custom error message
+has a cleaner interface and better inline documentation. In a
+[Next.js](https://nextjs.org/) API environment, the logged errors now exclude a
+lot of the garbage that was not helpful when debugging.
+
+```typescript error.ts
+/**
+ * This class provides a wrapper for network errors when making requests to OpenAPI Petstore
+ */
+export class AcmeError extends Error {
+  /**
+   * The response body
+   */
+  readonly responseBody: unknown;
+
+  /**
+   * The error code provided from the underlying "axios" library which can be
+   * more descriptive than the HTTP status descriptions.
+   */
+  readonly code?: string;
+
+  /**
+   * The status code from the response.
+   * For explanations, refer to https://developer.mozilla.org/en-US/docs/Web/HTTP/Status
+   */
+  readonly status?: number;
+
+  /**
+   * The status text from the response.
+   * For explanations, refer to https://developer.mozilla.org/en-US/docs/Web/HTTP/Status
+   */
+  readonly statusText?: string;
+
+  /**
+   * The URL that the original request was sent to
+   */
+  readonly url?: string;
+
+  /**
+   * HTTP request method (see https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods)
+   */
+  readonly method?: string;
+```
+
+<details>
+<summary>Improvements and Fixes</summary>
+ - GitLab support for Java SDK
+ - Streaming support in TypeScript SDK for Node.js environments
+ - Improved class hierarchy in TypeScript SDK to allow for custom classes to call generated methods
+ - Improved class hierarchy in Java SDK to allow for custom classes to call generated methods
+ - Fixed bug in Python SDK when circular dependency was present in OpenAPI spec
+</details>
