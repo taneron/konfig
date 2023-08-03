@@ -1,4 +1,4 @@
-# konfig-typescript-sdk@1.0.0
+# konfig-typescript-sdk@1.1.0
 
 To help you generate SDKs with Konfig
 ## Installing
@@ -13,7 +13,7 @@ npm install konfig-typescript-sdk --save
 yarn add konfig-typescript-sdk
 ```
 
-**Important note: this library is can be used in both the client-side or server-side, but using it
+**Important note: this library can be used in both the client-side or server-side, but using it
 in client-side browser code is not recommended as you would expose security credentials.**
 
 

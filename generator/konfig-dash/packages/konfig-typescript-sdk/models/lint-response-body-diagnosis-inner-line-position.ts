@@ -15,20 +15,20 @@
 /**
  * 
  * @export
- * @interface GenerateResponseBodyUrlsInner
+ * @interface LintResponseBodyDiagnosisInnerLinePosition
  */
-export interface GenerateResponseBodyUrlsInner {
+export interface LintResponseBodyDiagnosisInnerLinePosition {
     /**
      * 
-     * @type {string}
-     * @memberof GenerateResponseBodyUrlsInner
+     * @type {number}
+     * @memberof LintResponseBodyDiagnosisInnerLinePosition
      */
-    'url': string;
+    'start': number;
     /**
      * 
-     * @type {string}
-     * @memberof GenerateResponseBodyUrlsInner
+     * @type {number}
+     * @memberof LintResponseBodyDiagnosisInnerLinePosition
      */
-    'key': string;
+    'end': number;
 }
 

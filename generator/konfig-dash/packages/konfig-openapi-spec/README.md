@@ -1,9 +1,8 @@
-# konfig-openapi-spec
-
+# konfig
 
 |Language|Version|Package Manager|Documentation|Source|
 |-|-|-|-|-|
-|TypeScript|1.0.0|[npm](https://www.npmjs.com/package/konfig-typescript-sdk/v/1.0.0)|[Documentation](https://github.com/konfig-dev/konfig-typescript-sdk/README.md)|[Source](https://github.com/konfig-dev/konfig-typescript-sdk)|
+|TypeScript|1.1.0|[npm](https://www.npmjs.com/package/konfig-typescript-sdk/v/1.1.0)|[Documentation](https://github.com/konfig-dev/konfig-typescript-sdk/README.md)|[Source](https://github.com/konfig-dev/konfig-typescript-sdk)|
 
 
 ## How to regenerate SDKs
@@ -28,4 +27,4 @@ Successfully logged in as dylan@konfigthis.com
 
 4. Generate SDKs with `konfig generate`
 
-### [Documentation](https://docs.konfigthis.com/)
+### [Documentation](https://konfigthis.com/docs)

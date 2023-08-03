@@ -98,13 +98,14 @@ const SpectralDiagnostic = z
       description: 'JsonPath',
       example: ['paths', '/pet', 'post'],
     }),
-    code: z
-      .string()
-      .openapi({
-        description: 'ID of linting rule',
-        example: 'operation-operationId',
-      })
-      .or(z.number()),
+    linePosition: z.object({
+      start: z.number(),
+      end: z.number(),
+    }),
+    code: z.string().or(z.number()).openapi({
+      description: 'ID of linting rule',
+      example: 'operation-operationId',
+    }),
     message: z.string().openapi({
       example:
         'Assign Operation#operationId to create better SDK method names.',

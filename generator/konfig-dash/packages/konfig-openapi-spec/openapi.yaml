@@ -4602,12 +4602,22 @@ components:
                   - paths
                   - /pet
                   - post
+              linePosition:
+                type: object
+                properties:
+                  start:
+                    type: number
+                  end:
+                    type: number
+                required:
+                  - start
+                  - end
               code:
                 anyOf:
                   - type: string
-                    description: ID of linting rule
-                    example: operation-operationId
                   - type: number
+                description: ID of linting rule
+                example: operation-operationId
               message:
                 type: string
                 example: Assign Operation#operationId to create better SDK method names.
@@ -4643,6 +4653,7 @@ components:
                   Hint = 3
             required:
               - path
+              - linePosition
               - code
               - message
               - severity

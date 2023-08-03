@@ -15,20 +15,20 @@
 /**
  * 
  * @export
- * @interface GenerateResponseBodyUrlsInner
+ * @interface GenerateRequestBodyOptionalParametersInner
  */
-export interface GenerateResponseBodyUrlsInner {
+export interface GenerateRequestBodyOptionalParametersInner {
     /**
-     * 
+     * \"name\" field of parameter
      * @type {string}
-     * @memberof GenerateResponseBodyUrlsInner
+     * @memberof GenerateRequestBodyOptionalParametersInner
      */
-    'url': string;
+    'name': string;
     /**
-     * 
+     * \"in\" field of parameter
      * @type {string}
-     * @memberof GenerateResponseBodyUrlsInner
+     * @memberof GenerateRequestBodyOptionalParametersInner
      */
-    'key': string;
+    'in': string;
 }
 
