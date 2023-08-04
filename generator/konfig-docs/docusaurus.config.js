@@ -165,6 +165,7 @@ const config = {
         },
         blog: {
           beforeDefaultRemarkPlugins: beforeRemarkPluginsForBlogs,
+          blogSidebarCount: "ALL",
           remarkPlugins: remarkPlugins,
           showReadingTime: true,
           blogDescription: "Generate SDKs for your REST API",
