@@ -1,24 +1,22 @@
 import React, { PropsWithChildren, ReactNode } from "react";
-import useBaseUrl from "@docusaurus/useBaseUrl";
-import innerText from "react-innertext";
 
 export function Figure({
-  src,
-  caption,
   children,
-}: PropsWithChildren<{ src?: string; caption: ReactNode }>) {
+  caption,
+}: PropsWithChildren<{ caption: ReactNode }>) {
+  const child = getChildImage(children);
   return (
     <figure className="flex flex-col">
-      {src && (
-        <img
-          src={useBaseUrl(src)}
-          alt={typeof caption === "string" ? caption : innerText(caption)}
-        />
-      )}
-      {children && <div className="mb-[-5px]">{children}</div>}
+      {<div className="mb-[-5px]">{child ? child : children}</div>}
       <b>
         <figcaption style={{ textAlign: "center" }}>{caption}</figcaption>
       </b>
     </figure>
   );
+}
+
+function getChildImage(children: ReactNode): ReactNode | undefined {
+  if (!React.isValidElement(children)) return;
+  if (children.props.type === "p") return;
+  return children.props.children;
 }
