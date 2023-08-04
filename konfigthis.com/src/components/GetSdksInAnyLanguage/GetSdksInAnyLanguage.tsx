@@ -21,7 +21,7 @@ import Image from "@/components/image";
 
 export function GetSdksInAnyLanguage() {
   return (
-    <Container my={rem(150)} size="xl">
+    <Container my={rem(150)} size="lg">
       <Grid>
         <Col order={1} orderMd={2} span={12} md={5}>
           <Title mb={rem(10)} order={2}>
