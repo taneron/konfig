@@ -45,6 +45,10 @@ export default function Home() {
                   label: "Blog",
                   link: "https://konfigthis.com/blog",
                 },
+                {
+                  label: "Newsletter",
+                  link: "https://konfig.substack.com",
+                },
               ],
             },
             {
@@ -55,16 +59,12 @@ export default function Home() {
                   link: "https://konfigthis.com/docs/",
                 },
                 {
-                  label: "Tutorials",
-                  link: "https://konfigthis.com/docs/category/tutorials",
+                  label: "Changelog",
+                  link: "https://konfigthis.com/blog/tags/changelog",
                 },
                 {
-                  label: "Getting Started",
-                  link: "https://konfigthis.com/docs/getting-started/openapi-specification",
-                },
-                {
-                  label: "Free OAS Linter",
-                  link: "https://konfigthis.com/docs/tutorials/setup-linting",
+                  label: "Case Studies",
+                  link: "https://konfigthis.com/blog/tags/case-studies",
                 },
               ],
             },
