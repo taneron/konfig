@@ -272,7 +272,7 @@ export function GetSdksWithZeroEffort() {
           <Button
             component="a"
             target="_blank"
-            href="https://calendly.com/dylan-konfig/meet"
+            href="https://konfigthis.com/schedule-demo"
             color="dark"
             size="lg"
             radius="md"

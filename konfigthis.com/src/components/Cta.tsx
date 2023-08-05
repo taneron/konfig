@@ -2,9 +2,7 @@ import {
   createStyles,
   Text,
   Title,
-  TextInput,
   Button,
-  Image,
   rem,
   Container,
 } from "@mantine/core";
@@ -77,9 +75,9 @@ export function Cta() {
     <Container>
       <div className={classes.wrapper}>
         <div className={classes.body}>
-          <Title className={classes.title}>Generate SDKs today.</Title>
+          <Title className={classes.title}>Generate SDKs today</Title>
           <Text fz="sm" c="dimmed">
-            Impress your customers with high quality SDKs today.
+            Impress your customers with an amazing onboarding experience
           </Text>
 
           <div className={classes.controls}>

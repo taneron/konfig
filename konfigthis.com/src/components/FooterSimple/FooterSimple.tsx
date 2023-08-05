@@ -5,10 +5,13 @@ import {
   ActionIcon,
   Group,
   rem,
+  Title,
 } from "@mantine/core";
 import { IconBrandLinkedin } from "@tabler/icons-react";
 import logo from "./logo.png";
 import Image from "@/components/image";
+import { useEffect } from "react";
+import Script from "next/script";
 
 const useStyles = createStyles((theme) => ({
   footer: {
@@ -25,8 +28,6 @@ const useStyles = createStyles((theme) => ({
   },
 
   logo: {
-    maxWidth: rem(200),
-
     [theme.fn.smallerThan("sm")]: {
       display: "flex",
       flexDirection: "column",
@@ -92,6 +93,12 @@ const useStyles = createStyles((theme) => ({
     color: theme.colorScheme === "dark" ? theme.white : theme.black,
   },
 
+  footerLogo: {
+    [theme.fn.smallerThan("sm")]: {
+      textAlign: "center",
+    },
+  },
+
   afterFooter: {
     display: "flex",
     justifyContent: "space-between",
@@ -146,30 +153,56 @@ export function FooterSimple({ data }: FooterLinksProps) {
     );
   });
 
-  return (
-    <footer className={classes.footer}>
-      <Container className={classes.inner}>
-        <div className={classes.logo}>
-          <Image src={logo} height={25} alt="Konfig Logo" />
-          <Text size="xs" color="dimmed" className={classes.description}>
-            Generate SDKs for your REST API
-          </Text>
-        </div>
-        <div className={classes.groups}>{groups}</div>
-      </Container>
-      <Container className={classes.afterFooter}>
-        <Text color="dimmed" size="sm">
-          Copyright © Konfig Inc.
-        </Text>
+  useEffect(() => {
+    window.CustomSubstackWidget = {
+      substackUrl: "konfig.substack.com",
+      placeholder: "Email",
+      buttonText: "Subscribe",
+      theme: "custom",
+      colors: {
+        primary: "#1d344e",
+        input: "#FFFFFF",
+        email: "#000000",
+        text: "#FFFFFF",
+      },
+    };
+  }, []);
 
-        <Group spacing={0} className={classes.social} position="right" noWrap>
-          <a target="_blank" href="https://www.linkedin.com/company/konfig">
-            <ActionIcon size="lg">
-              <IconBrandLinkedin size="1.05rem" stroke={1.5} />
-            </ActionIcon>
-          </a>
-        </Group>
-      </Container>
-    </footer>
+  return (
+    <>
+      <Script src="https://substackapi.com/widget.js" async />
+      <footer className={classes.footer}>
+        <Container className={classes.inner}>
+          <div className={classes.logo}>
+            <div style={{ marginBottom: rem(20) }}>
+              <Title order={5}>Subscribe to our newsletter</Title>
+              <Text size="sm" style={{ marginBottom: "10px" }} color="dimmed">
+                Only product updates
+              </Text>
+              <div style={{ width: "100%" }}>
+                <div id="custom-substack-embed" />
+              </div>
+            </div>
+          </div>
+          <div className={classes.groups}>{groups}</div>
+        </Container>
+        <Container className={classes.afterFooter}>
+          <div className={classes.footerLogo}>
+            <Image src={logo} height={25} alt="Konfig Logo" />
+            <Text color="dimmed" size="xs" className={classes.description}>
+              Copyright © Konfig Inc.
+            </Text>
+          </div>
+
+          <Group spacing={0} className={classes.social} position="right" noWrap>
+            <a target="_blank" href="https://www.linkedin.com/company/konfig">
+              <ActionIcon size="lg">
+                <IconBrandLinkedin size="1.05rem" stroke={1.5} />
+              </ActionIcon>
+            </a>
+          </Group>
+        </Container>
+      </footer>
+    </>
   );
 }
