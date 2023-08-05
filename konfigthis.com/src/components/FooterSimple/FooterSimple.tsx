@@ -154,6 +154,7 @@ export function FooterSimple({ data }: FooterLinksProps) {
   });
 
   useEffect(() => {
+    // @ts-ignore
     window.CustomSubstackWidget = {
       substackUrl: "konfig.substack.com",
       placeholder: "Email",
