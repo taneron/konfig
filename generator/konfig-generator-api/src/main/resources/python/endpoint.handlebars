@@ -8,9 +8,7 @@ import urllib3
 from {{packageName}}.request_before_hook import request_before_hook
 import json
 {{#with operation}}
-{{#or headerParams bodyParam produces}}
 from urllib3._collections import HTTPHeaderDict
-{{/or}}
 {{/with}}
 
 from {{packageName}}.api_response import AsyncGeneratorResponse
