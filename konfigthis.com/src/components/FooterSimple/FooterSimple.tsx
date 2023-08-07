@@ -178,7 +178,7 @@ export function FooterSimple({ data }: FooterLinksProps) {
             <div style={{ marginBottom: rem(20) }}>
               <Title order={5}>Subscribe to our newsletter</Title>
               <Text size="sm" style={{ marginBottom: "10px" }} color="dimmed">
-                Only product updates
+                APIs, SDKs, and all things Konfig
               </Text>
               <div style={{ width: "100%" }}>
                 <div id="custom-substack-embed" />
