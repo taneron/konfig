@@ -4,6 +4,7 @@ import MDXComponents from "@theme/MDXComponents";
 import { Mermaid } from "@site/src/components/Mermaid/Mermaid";
 import { Tooltip } from "@site/src/components/Tooltip";
 import { Stats } from "@site/src/components/Stats/Stats";
+import { Carousel } from "@site/src/components/Carousel";
 import Admonition from "@theme/Admonition";
 import { VideoPlayer } from "@site/src/components/VideoPlayer";
 import { Slammer } from "@site/src/components/Slammer/Slammer";
@@ -30,6 +31,7 @@ export default function MDXContent({ children }) {
         Flame,
         VideoSection,
         Gradient,
+        Carousel,
       }}
     >
       {children}

@@ -15,7 +15,7 @@ export function Figure({
   );
 }
 
-function getChildImage(children: ReactNode): ReactNode | undefined {
+export function getChildImage(children: ReactNode): ReactNode | undefined {
   if (!React.isValidElement(children)) return;
   if (children.props.type === "p") return;
   return children.props.children;

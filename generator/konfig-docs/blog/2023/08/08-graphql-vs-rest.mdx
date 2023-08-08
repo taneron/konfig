@@ -1,30 +1,120 @@
 ---
-slug: thousands-of-graphql-vs-rest-discussions
+slug: graphql-vs-rest
 title: "I reviewed thousands of GraphQL vs. REST discussions"
+authors: dylan
 tags: [API]
-image: /img/graphql-vs-rest.jpg
+image: ./graphql-vs-rest-assets/discussion-funnel.png
 ---
 
-<Figure caption={<div>Source: <a href="https://www.youtube.com/watch?v=eIQh02xuVw4">YouTube</a></div>}>
+{/* <Admonition type="danger" title="Strong Opinions incoming!">
 
-</Figure>
+This post highlights opinions with heavy vulgar 😳
 
-If you ask any developer, do you prefer GraphQL or REST? It will likely spark an
-opinionated conversation which can often devolve into opinions instead of matter
-of facts. Developers often find themselves entangled in discussions about
-the merits of each approach, but like any engineering decision, there are no
-one-size-fits-all solutions. This post aims to dissect the coexistence of
+</Admonition>
+
+Ask any developer, do you prefer GraphQL or REST? It will likely spark an
+opinionated conversation which can often devolve into vulgar opinions instead of
+matter-of-facts. Developers often find themselves entangled in discussions about
+the merits of each approach, but like any engineering decision, **there are no
+one-size-fits-all solutions**. This post aims to dissect the coexistence of
 GraphQL and REST, highlighting the practical tradeoffs that shape this dynamic
 landscape.
 
-### Our Experience
+To be "sciency", I reviewed thousands of discussions on YouTube, Reddit, Hacker
+News, and Blog Posts. I then collected, categorized, and analyzed the top
+discussions.  Here are my findings.
 
-At Konfig, we inherited the GraphQL architecture from RedwoodJS in our internal
-code path from the frontend to the backend. In my time, I spent a month
-researching GraphQL as a specification to build a company for. I had
-conversations with Propel Data, Yuzu, and colleagues of mine who are proficient
-in GraphQL. I have also built a [Mint](https://mint.intuit.com/) + Spreadsheet
-[toy
-application](https://github.com/dphuang2/finpad/blob/main/apps/backend/schema.graphql)
-using GraphQL.
+<Admonition type="note">
+**For this post, I wanted to make 100% sure that the tone of this article
+is neutral and unbiased. I am not trying to promote one over the other. At
+Konfig, we use GraphQL in our internal APIs but also build on the REST-focused
+OpenAPI and standards.**
+</Admonition>
 
+
+## Briefly about GraphQL and REST
+
+[GraphQL](https://graphql.org/) and
+[REST](https://en.wikipedia.org/wiki/Representational_state_transfer) are two
+different approaches to building APIs. GraphQL is a query language for APIs and
+a runtime for fulfilling those queries with your existing data. REST is an
+architectural style for building APIs. REST is not a standard, but rather a set
+of constraints that define how the server and client should communicate. REST is
+often implemented using HTTP.
+
+*/}
+
+To understand the GraphQL vs. REST debate, I went to the places where developers
+like to discuss these sorts of topics: YouTube, Reddit, Twitter, and Hacker
+News. I parsed thousands of discussions and organized my findings in this
+article. I did my best to make sure only to curate thought-provoking
+discussions.
+
+<Figure caption='Funnel for gathering through-provoking discussions'>
+![Discussion funnel](./graphql-vs-rest-assets/discussion-funnel.png)
+</Figure>
+
+I then took the discussions to a whiteboard, categorized them into "Pro GraphQL", "Pro REST", or "Neutral", and clustered them into perspectives. Each
+section in this post will highlight a perspective along with the relevant
+discussions. Finally, I chose to highlight blog posts from GitHub and Shopify
+that serve as useful case studies in this debate.
+
+<Figure caption={<div><a href="https://www.figma.com/figjam/">FigJam</a> I used to organize my discussion. Blue is "GraphQL", yellow is "REST", and green is "Neutral".</div>}>
+![FigJam](./graphql-vs-rest-assets/figma-board.png)
+</Figure>
+
+## Neutral
+
+To start, I think it's important to highlight the neutral discussions. In my
+opinion, these are the ones that hold the most truth in that they acknowledge
+the tradeoffs of each approach. They are also the rarest opinions to find since
+most developers are stubborn in their ways.
+
+{/* TRUNCATE */}
+
+### GraphQL is great for some use cases, but not all
+
+<Carousel.Wrapper>
+    <Carousel.Slide>
+        <Figure caption={<span>Source: <a href="https://www.reddit.com/r/webdev/comments/128xzeg/graphql_trending_down/">Reddit</a></span>}>
+            ![neutral 1](./graphql-vs-rest-assets/neutral-1.png)
+        </Figure>
+    </Carousel.Slide>
+    <Carousel.Slide>
+        <Figure caption={<span>Source: <a href="https://www.reddit.com/r/webdev/comments/128xzeg/graphql_trending_down/">Reddit</a></span>}>
+            ![neutral 1](./graphql-vs-rest-assets/neutral-1.png)
+        </Figure>
+    </Carousel.Slide>
+</Carousel.Wrapper>
+
+<Admonition type="info" title="Key Takeaway">
+
+GraphQL was [born out of the need to solve a specific problem at
+Facebook](https://engineering.fb.com/2015/09/14/core-data/graphql-a-data-query-language/).
+Specifically the migration from the web to mobile. GraphQL is great for highly
+relational data models and large teams with enormous scaling problems. But it's
+not a silver bullet.
+
+</Admonition>
+
+### The benefits of GraphQL are great, but difficult to implement in practice
+
+## Pro REST
+
+### GraphQL can be amazing, but usually, it's not worth the complication
+
+### GraphQL is not performant without a lot of investment in infrastructure
+
+## Pro GraphQL
+
+### GraphQL has an amazing developer experience
+
+### The benefits of GraphQL only start to appear in the largest organizations
+
+## The Takeaway?
+
+In most cases, for GraphQL to be solving your problems, the number of developers
+on your team and the traffic of your API should be unicorn scale. But unless you
+are building a unicorn right now, you probably should not worry about that level
+of scale because the complexity is not worth it. Take giants like Twilio and
+Stripe, for example, they have yet to introduce GraphQL into their public APIs.
