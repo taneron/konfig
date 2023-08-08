@@ -92,17 +92,17 @@ most developers are stubborn in their ways.
     </Carousel.Slide>
 </Carousel.Wrapper>
 
-#### Key Takeaway
+#### Key Takeaway 🔑
 
-GraphQL was born out of the need to solve a specific problem at
-Facebook.
-Specifically [the migration of Facebook's newsfeed functionality from the web to
-mobile](https://engineering.fb.com/2015/09/14/core-data/graphql-a-data-query-language/). GraphQL is great for highly relational data models and large teams with
-enormous scaling problems, but it's not a silver bullet. Because Facebook has
-contributed [so many great projects to open source](https://opensource.fb.com/),
-it's easy for engineers to blindly adopt the latest and greatest from Facebook
-in hopes it will help you preemptively solve scaling problems.  But you have to
-understand the problem it's solving to make the right technical decision.
+GraphQL is great for highly relational data models and large teams with enormous scaling problems, but it's not a silver bullet. GraphQL was born out of the
+need to solve a specific problem at Facebook.  Specifically [the migration of
+Facebook's newsfeed functionality from the web to
+mobile](https://engineering.fb.com/2015/09/14/core-data/graphql-a-data-query-language/).
+Because Facebook has contributed [so many great projects to open
+source](https://opensource.fb.com/), it's easy for engineers to blindly adopt
+the latest and greatest from Facebook in hopes it will help you preemptively
+solve scaling problems.  But you have to understand the problem it's solving to
+make the right technical decision or you risk over-engineering your solution.
 
 ### The benefits of GraphQL are great, but difficult to implement in practice
 
@@ -112,7 +112,55 @@ understand the problem it's solving to make the right technical decision.
             ![neutral everyone faster](./graphql-vs-rest-assets/slides/after/neutral-everyone-faster.png)
         </Figure>
     </Carousel.Slide>
+    <Carousel.Slide>
+        <Figure caption={<span>Source: <a href="https://news.ycombinator.com/item?id=25014582">Hacker News</a></span>}>
+            ![neutral-joy-querying-rest-deterministic](./graphql-vs-rest-assets/slides/after/neutral-joy-querying-rest-deterministic.png)
+        </Figure>
+    </Carousel.Slide>
+    <Carousel.Slide>
+        <Figure caption={<span>Source: <a href="https://news.ycombinator.com/item?id=32366759">Hacker News</a></span>}>
+            ![neutral-high-skill](./graphql-vs-rest-assets/slides/after/neutral-high-skill.png)
+        </Figure>
+    </Carousel.Slide>
+    <Carousel.Slide>
+        <Figure caption={<span>Source: <a href="https://twitter.com/mattknox/status/1522641060341579776">Twitter</a></span>}>
+            ![neutral-misunderstood](./graphql-vs-rest-assets/slides/after/neutral-misunderstood.png)
+        </Figure>
+    </Carousel.Slide>
+    <Carousel.Slide>
+        <Figure caption={<span>Source: <a href="https://www.reddit.com/r/webdev/comments/128xzeg/graphql_trending_down/">Reddit</a></span>}>
+            ![neutral-persisted-queries](./graphql-vs-rest-assets/slides/after/neutral-persisted-queries.png)
+        </Figure>
+    </Carousel.Slide>
 </Carousel.Wrapper>
+
+#### Key Takeaway 🔑
+
+To successfully implement GraphQL at scale, a high level of skill is required
+to ensure optimal performance. In practice, GraphQL provides an exceptional
+interface for frontend and API consumers, enabling them to query and explore the
+API efficiently. However, it does shift a significant portion of complexity to
+the backend. For instance, in the absence of [persisted
+queries](https://www.apollographql.com/docs/apollo-server/performance/apq/),
+GraphQL exposes an interface that can be potentially hazardous, allowing
+unbounded query requests to your API. Without access to skilled engineers and
+the resources for substantial infrastructure investment, GraphQL can become a
+recipe for disaster when it comes to scalability.
+
+Nonetheless, when executed correctly, GraphQL can bring immense benefits to
+client-heavy applications, offering tools like
+[GraphiQL](https://github.com/graphql/graphiql) for interactive query
+exploration, [cache normalization with
+urql](https://formidable.com/open-source/urql/docs/) for efficient data
+management, and the ability to create granular queries without much hassle.
+Without GraphQL, incorporating these features would demand a significant amount
+of effort.
+
+On the other hand, REST doesn't share these scalability challenges to the same
+extent, as backend developers can pinpoint performance issues to specific
+endpoints. Developers can also rely on the mature and well-defined HTTP
+specification that existing infrastructure is already equipped to handle.
+
 
 ## Pro REST
 

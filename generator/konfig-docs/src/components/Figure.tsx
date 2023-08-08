@@ -9,7 +9,9 @@ export function Figure({
     <figure className="flex flex-col">
       {<div className="mb-[-5px]">{child ? child : children}</div>}
       <b>
-        <figcaption style={{ textAlign: "center" }}>{caption}</figcaption>
+        <figcaption className="text-center font-light text-sm">
+          {caption}
+        </figcaption>
       </b>
     </figure>
   );

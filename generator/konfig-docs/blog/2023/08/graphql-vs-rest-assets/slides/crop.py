@@ -86,6 +86,6 @@ def process_images_in_folder(input_folder, output_folder, padding):
 if __name__ == "__main__":
     input_folder_path = "./before"  # Specify the input folder path
     output_folder_path = "./after"  # Specify the output folder path
-    padding_amount = 50  # Specify the padding amount in pixels
+    padding_amount = 20  # Specify the padding amount in pixels
 
     process_images_in_folder(input_folder_path, output_folder_path, padding_amount)
