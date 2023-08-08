@@ -61,11 +61,7 @@ const sidebars = {
       link: {
         type: "generated-index",
       },
-      items: [
-        "reference/supported-package-managers",
-        "reference/faq",
-        "reference/language-and-oas-support",
-      ],
+      items: ["reference/language-and-oas-support", "reference/faq"],
     },
     {
       type: "doc",
