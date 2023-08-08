@@ -6,6 +6,7 @@ We currently support the following languages:
 - Python
 - Typescript
 - C#
+- Ruby
 - Kotlin
 - Swift
 - Go
