@@ -10,6 +10,7 @@ import { VideoPlayer } from "@site/src/components/VideoPlayer";
 import { Slammer } from "@site/src/components/Slammer/Slammer";
 import { Glowing } from "@site/src/components/Glowing/Glowing";
 import { Figure } from "@site/src/components/Figure";
+import { YouTube } from "@site/src/components/YouTube";
 import { Flame } from "@site/src/components/Flame/Flame";
 import { Gradient } from "@site/src/components/Gradient/Gradient";
 import { VideoSection } from "@site/src/components/VideoSection";
@@ -30,6 +31,7 @@ export default function MDXContent({ children }) {
         Glowing,
         Flame,
         VideoSection,
+        YouTube,
         Gradient,
         Carousel,
       }}
