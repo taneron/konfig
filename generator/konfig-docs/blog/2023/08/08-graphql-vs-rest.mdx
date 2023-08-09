@@ -48,9 +48,9 @@ To understand the GraphQL vs. REST debate, I went to the places where developers
 like to discuss these sorts of topics: YouTube, Reddit, Twitter, and Hacker
 News. I parsed thousands of discussions and organized my findings in this
 article. I did my best to make sure only to curate thought-provoking
-discussions.
+perspectives.
 
-<Figure caption='Funnel for gathering through-provoking discussions'>
+<Figure caption='Funnel for gathering through-provoking perspectives'>
 ![Discussion funnel](./graphql-vs-rest-assets/discussion-funnel.png)
 </Figure>
 
@@ -59,7 +59,7 @@ section in this post will highlight a perspective along with the relevant
 discussions. Finally, I chose to highlight blog posts from GitHub and Shopify
 that serve as useful case studies in this debate.
 
-<Figure caption={<div><a href="https://www.figma.com/figjam/">FigJam</a> I used to organize my discussion. Blue is "GraphQL", yellow is "REST", and green is "Neutral".</div>}>
+<Figure caption={<div><a href="https://www.figma.com/figjam/">FigJam</a> I used to organize perspectives</div>}>
 ![FigJam](./graphql-vs-rest-assets/figma-board.png)
 </Figure>
 
@@ -400,14 +400,55 @@ overlook the tradeoffs.
 ### Perspective: GraphQL has proven itself in the largest organizations
 
 <Carousel.Wrapper>
+    <Carousel.Slide>
+    <Figure caption={<span>Source: <a href="https://github.blog/2016-09-14-the-github-graphql-api/">github.blog</a></span>}>
+    ![graphql-github](./graphql-vs-rest-assets/slides/after/graphql-github.png)
+    </Figure>
+    </Carousel.Slide>
+    <Carousel.Slide>
+    <Figure caption={<span>Source: <a href="https://news.ycombinator.com/item?id=32366759">Hacker News</a></span>}>
+    ![graphql-organizational-problem](./graphql-vs-rest-assets/slides/after/graphql-organizational-problem.png)
+    </Figure>
+    </Carousel.Slide>
+    <Carousel.Slide>
+    <Figure caption={<span>Source: <a href="https://www.reddit.com/r/webdev/comments/1509p4m/im_not_impressed_by_graphql_and_i_still_prefer/">Reddit</a></span>}>
+    ![graphql-payload-size](./graphql-vs-rest-assets/slides/after/graphql-payload-size.png)
+    </Figure>
+    </Carousel.Slide>
+    <Carousel.Slide>
+    <Figure caption={<span>Source: <a href="https://www.shopify.com/partners/blog/graphql-vs-rest">shopify.com</a></span>}>
+    ![graphql-shopify-partner](./graphql-vs-rest-assets/slides/after/graphql-shopify-partner.png)
+    </Figure>
+    </Carousel.Slide>
+    <Carousel.Slide>
+    <Figure caption={<span>Source: <a href="https://thenewstack.io/why-shopify-favors-graphql-over-rest-for-its-apis/#:~:text=This%20meant%20that%20when%20Shopify,it%20comes%20to%20mapping%20data.">thenewstack.io</a></span>}>
+    ![graphql-shopify](./graphql-vs-rest-assets/slides/after/graphql-shopify.png)
+    </Figure>
+    </Carousel.Slide>
 </Carousel.Wrapper>
 
 You can't ignore the use of GraphQL in hyper-scale organizations like Facebook,
 GitHub, and Shopify.
 
-There are clear case studies for GraphQL in some of the largest engineering organizations in the world.
+There are compelling case studies for the performance of GraphQL in some of the
+largest engineering organizations in the world. But it's important to note that
+these organizations have the resources to invest in the infrastructure and
+engineering talent required to make GraphQL work at scale.
+
+For most organizations, those resources are not available and important to the
+immediate business goals. In these cases, GraphQL is not the right choice if you
+are purely looking for an optimization.
+
+That being said, I still feel developer experience is a compelling reason to
+adopt GraphQL if your team is willing to invest in the learning curve.
 
 ## Conclusion
+
+After reading 1,000s of perspectives, I would start with REST to avoid the
+complications of GraphQL. If I am lucky enough to be making technical decisions
+at "unicorn scale", I would consider looking at GraphQL to optimize the query
+interface. Meanwhile, I will take advantage of the [growing OpenAPI
+ecosystem](/blog/openapi#openapi-tools-and-ecosystem).
 
 In most cases, for GraphQL to effectively address the problems it was originally
 designed to solve, a team should ideally possess a considerable number of
@@ -421,6 +462,3 @@ Nevertheless, if you have a workflow that takes advantage of the remarkable
 developer experience offered by GraphQL, then by all means, embrace it! Just
 ensure that you are fully aware of the tradeoffs involved. Ultimately, the most
 suitable choice for most teams is whatever enables faster development.
-
-I would avoid the complications of GraphQL and take advantage of the
-[growing OpenAPI ecosystem](/blog/openapi#openapi-tools-and-ecosystem).
