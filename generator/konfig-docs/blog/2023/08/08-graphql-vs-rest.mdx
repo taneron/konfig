@@ -1,6 +1,6 @@
 ---
 slug: graphql-vs-rest
-title: "I reviewed 1,000s of GraphQL vs. REST discussions"
+title: "I reviewed 1,000s of GraphQL vs. REST perspectives"
 authors: dylan
 tags: [API]
 image: ./graphql-vs-rest-assets/discussion-funnel.png
@@ -44,28 +44,9 @@ often implemented using HTTP.
 
 */}
 
-To understand the GraphQL vs. REST debate, I went to the places where developers
-like to discuss these sorts of topics: YouTube, Reddit, Twitter, and Hacker
-News. I parsed thousands of discussions and organized my findings in this
-article. I did my best to make sure only to curate thought-provoking
-discussions.
+## Neutral Perspectives
 
-<Figure caption='Funnel for gathering through-provoking discussions'>
-![Discussion funnel](./graphql-vs-rest-assets/discussion-funnel.png)
-</Figure>
-
-I then took the discussions to a whiteboard, categorized them into "Pro GraphQL", "Pro REST", or "Neutral", and clustered them into perspectives. Each
-section in this post will highlight a perspective along with the relevant
-discussions. Finally, I chose to highlight blog posts from GitHub and Shopify
-that serve as useful case studies in this debate.
-
-<Figure caption={<div><a href="https://www.figma.com/figjam/">FigJam</a> I used to organize my discussion. Blue is "GraphQL", yellow is "REST", and green is "Neutral".</div>}>
-![FigJam](./graphql-vs-rest-assets/figma-board.png)
-</Figure>
-
-## Neutral
-
-To start, I think it's important to highlight the neutral discussions. In my
+To start, I think it's important to highlight the neutral perspectives. In my
 opinion, these are the ones that hold the most truth in that they acknowledge
 the tradeoffs of each approach. They are also the rarest opinions to find since
 most developers are stubborn in their ways.
@@ -165,12 +146,12 @@ management, and the ability to create granular queries without much hassle.
 Without GraphQL, incorporating these features would demand a significant amount
 of effort.
 
-On the other hand, REST doesn't share these scalability challenges to the same
+REST doesn't share these scalability challenges to the same
 extent, as backend developers can pinpoint performance issues to specific
 endpoints. Developers can also rely on the mature and well-defined HTTP
 specification that existing infrastructure is already equipped to handle.
 
-## Pro REST
+## Pro REST Perspectives
 
 REST APIs have been around for decades. Much of the world's networking
 infrastructure is built on the HTTP standard, so it's no surprise that REST
@@ -189,11 +170,6 @@ will always be those who express skepticism.
     </Figure>
     </Carousel.Slide>
     <Carousel.Slide>
-    <Figure caption={<span>Source: <a href="https://news.ycombinator.com/item?id=32366759">Hacker News</a></span>}>
-    ![rest-access-control](./graphql-vs-rest-assets/slides/after/rest-access-control.png)
-    </Figure>
-    </Carousel.Slide>
-    <Carousel.Slide>
     <Figure caption={<span>Source: <a href="https://www.youtube.com/watch?v=PTfZcN20fro">YouTube</a></span>}>
     ![rest-difficult-to-maintain](./graphql-vs-rest-assets/slides/after/rest-difficult-to-maintain.png)
     </Figure>
@@ -204,8 +180,8 @@ will always be those who express skepticism.
     </Figure>
     </Carousel.Slide>
     <Carousel.Slide>
-    <Figure caption={<span>Source: <a href="https://twitter.com/jmhodges/status/1522385068974432256">Twitter</a></span>}>
-    ![rest-sky-high-maintenance](./graphql-vs-rest-assets/slides/after/rest-sky-high-maintenance.png)
+    <Figure caption={<span>Source: <a href="https://twitter.com/jmhodges/status/1522387231033335808">Twitter</a></span>}>
+    ![rest-works-for-facebook](./graphql-vs-rest-assets/slides/after/rest-works-for-facebook.png)
     </Figure>
     </Carousel.Slide>
     <Carousel.Slide>
@@ -252,39 +228,83 @@ will always be those who express skepticism.
 
 #### Key Takeaway 🔑
 
-GraphQL is over-complicated.
+GraphQL is complicated.
 
-The complexity that you inherit by adopting GraphQL makes its benefits simply
-not worth it for most engineering teams. Does your organization have millions of
-dollars of engineers on payroll? Is your data model extremely relational? Is
-your API reaching millions of users? If not, you probably shouldn't be adopting
-GraphQL for its flexible query language.
-
-Features that are simple to implement with REST instantly become a huge pain with GraphQL:
+A few features that are simple to implement with REST instantly become a huge
+pain with GraphQL:
 
 - Access control
 - Rate limiting
 - Caching
-- Knowledge sharing
 - [DOS](https://en.wikipedia.org/wiki/Denial-of-service_attack) protection
 - Using Maps/Tables/Dictionaries
 - [N + 1 Problem](https://stackoverflow.com/questions/97197/what-is-the-n1-selects-problem-in-orm-object-relational-mapping)
 
-Not to mention the fact that GraphQL is a new technology you need to educate your team about.
+The complexity that arises from adopting GraphQL can sometimes outweigh its benefits for most engineering teams.
+Does your organization have a substantial budget allocated for engineers?
+Is your data model extremely relational? Is
+your API catering to a vast user base? Do all your engineers possess a proficient understanding of GraphQL? If not, you probably shouldn't be adopting
+GraphQL for its flexible query language.
 
-### Perspective: GraphQL is not performant
+Entire companies like [Stellate](https://stellate.co/) and
+[Apollo](https://www.apollographql.com/) were born out of the need to solve these arguably over-complicated characteristics of GraphQL.
 
-## Pro GraphQL
+### Perspective: GraphQL is not an optimization
+
+<Carousel.Wrapper>
+    <Carousel.Slide>
+    <Figure caption={<span>Source: <a href="https://betterprogramming.pub/graphql-from-excitement-to-deception-f81f7c95b7cf">betterprogramming.hub</a></span>}>
+    ![rest-lower-quality-images](./graphql-vs-rest-assets/slides/after/rest-lower-quality-images.png)
+    </Figure>
+    </Carousel.Slide>
+    <Carousel.Slide>
+    <Figure caption={<span>Source: <a href="https://news.ycombinator.com/item?id=32366759">Hacker News</a></span>}>
+    ![rest-overhead-to-server](./graphql-vs-rest-assets/slides/after/rest-overhead-to-server.png)
+    </Figure>
+    </Carousel.Slide>
+    <Carousel.Slide>
+    <Figure caption={<span>Source: <a href="https://twitter.com/jmhodges/status/1522385068974432256">Twitter</a></span>}>
+    ![rest-infinite-performance-work](./graphql-vs-rest-assets/slides/after/rest-infinite-performance-work.png)
+    </Figure>
+    </Carousel.Slide>
+    <Carousel.Slide>
+    <Figure caption={<span>Source: <a href="https://www.youtube.com/watch?v=yWzKJPw_VzM">YouTube</a></span>}>
+    ![rest-caching-is-automatic](./graphql-vs-rest-assets/slides/after/rest-caching-is-automatic.png)
+    </Figure>
+    </Carousel.Slide>
+</Carousel.Wrapper>
+
+#### Key Takeaway 🔑
+
+GraphQL does not provide automatic performance optimization.
+
+If your team faces similar challenges as Facebook, feel free to focus on
+optimizing your API layer. Otherwise, there are likely other optimizations you
+can implement for your application beyond the query layer.
+
+Despite its flexible query language, GraphQL can become a performance
+bottleneck. Writing a query that slows down your API is quite easy. Even
+seemingly simple tasks like batched queries, precise access control, query complexity analysis, and HTTP-level caching are not only complex to implement but also
+introduce additional overhead to your server.
+
+GraphQL does not inherently enhance the speed of your API. The responsibility to
+optimize your API performance still rests on your shoulders.
+
+## Pro GraphQL Perspectives
+
+Despite the naysayers, GraphQL has still captured the workflows of thousands of
+developers. The experiences of using GraphQL are undeniable, and it's easy to
+see why so many developers are excited about it.
 
 ### Perspective: GraphQL has an amazing developer experience
 
-### Perspective: GraphQL benefits only appear in the largest organizations
+### Perspective: GraphQL has proven itself in the largest organizations
 
 This is admittedly more an observation than a perspective shared in discussions,
 but I think it's worth noting. You can't ignore the use of GraphQL in hyper-scale
 organizations like Facebook, GitHub, and Shopify.
 
-## My Perspective
+{/* ## My Perspective
 
 In most cases, for GraphQL to effectively address the problems it was originally
 designed to solve, a team should ideally possess a considerable number of
@@ -298,4 +318,25 @@ despite being well beyond unicorn status.
 Nevertheless, if you have a workflow that takes advantage of the remarkable
 developer experience offered by GraphQL, then by all means, embrace it! Just
 ensure that you are fully aware of the tradeoffs involved. Ultimately, the most
-suitable choice for smaller companies is whatever enables faster development.
+suitable choice for smaller companies is whatever enables faster development. */}
+
+## Survey Method
+
+To understand the GraphQL vs. REST debate, I went to the places where developers
+like to discuss these sorts of topics: YouTube, Reddit, Twitter, and Hacker
+News. I parsed thousands of discussions and organized my findings in this
+article. I did my best to make sure only to curate thought-provoking
+discussions.
+
+<Figure caption='Funnel for gathering through-provoking discussions'>
+![Discussion funnel](./graphql-vs-rest-assets/discussion-funnel.png)
+</Figure>
+
+I then took the discussions to a whiteboard, categorized them into "Pro GraphQL", "Pro REST", or "Neutral", and clustered them into perspectives. Each
+section in this post will highlight a perspective along with the relevant
+discussions. Finally, I chose to highlight blog posts from GitHub and Shopify
+that serve as useful case studies in this debate.
+
+<Figure caption={<div><a href="https://www.figma.com/figjam/">FigJam</a> I used to organize my discussion. Blue is "GraphQL", yellow is "REST", and green is "Neutral".</div>}>
+![FigJam](./graphql-vs-rest-assets/figma-board.png)
+</Figure>
