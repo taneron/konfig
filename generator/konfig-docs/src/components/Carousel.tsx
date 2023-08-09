@@ -15,8 +15,6 @@ function Wrapper({ children }: PropsWithChildren<{}>) {
 }
 `,
           ],
-          pagination: true,
-          loop: true,
         });
       });
       els.forEach((el) => {
@@ -26,7 +24,9 @@ function Wrapper({ children }: PropsWithChildren<{}>) {
   }, []);
   return (
     <swiper-container
+      loop
       navigation
+      pagination
       pagination-clickable
       autoplay-delay="70000"
       init={false}
