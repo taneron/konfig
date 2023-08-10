@@ -10,8 +10,15 @@ function Wrapper({ children }: PropsWithChildren<{}>) {
           injectStyles: [
             `.swiper-button-prev, .swiper-button-next {
   padding: 5px;
-  width: unset;
-  height: unset;
+}
+:host {
+  --swiper-navigation-size: 25px;
+}
+
+@media (max-width: 640px) {
+  :host {
+    --swiper-navigation-size: 0px;
+  }
 }
 `,
           ],
