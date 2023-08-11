@@ -164,13 +164,21 @@ export const createRequestFunction = function (axiosArgs: RequestArgs, globalAxi
             return await axios.request<T, R>({ ...axiosArgs.options, url });
         } catch (e) {
             if (e instanceof AxiosError && e.isAxiosError) {
-              const responseBody =
-              e.response?.data instanceof ReadableStream
-                ? await readableStreamToString(e.response.data)
-                : e.response?.data;
-              throw new KonfigError(e, parseIfJson(responseBody))
-            }
-            throw e
+                try {
+                    const responseBody =
+                        e.response?.data instanceof ReadableStream
+                        ? await readableStreamToString(e.response.data)
+                        : e.response?.data
+                    throw new KonfigError(e, parseIfJson(responseBody))
+                } catch (innerError) {
+                    if (innerError instanceof ReferenceError) {
+                        // Got: "ReferenceError: ReadableStream is not defined"
+                        // This means we are in a Node environment so just throw the original error
+                        throw new KonfigError(e, e.response?.data)
+                    }
+                    // Something unexpected happened: propagate the error
+                    throw e
+                }
         }
     };
 }
