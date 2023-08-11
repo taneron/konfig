@@ -35,6 +35,7 @@ const gitlab = z
   .optional()
 
 export const javaConfig = z.object({
+  language: z.literal('java').default('java'),
   groupId: javaGroupId,
   packageName: z.string().describe('acme').optional(),
   artifactId: z.string().describe('acme-java-sdk'),
@@ -52,17 +53,24 @@ export const javaConfig = z.object({
 })
 
 export const androidConfig = z.object({
+  language: z.literal('android').default('android'),
   groupId: javaGroupId,
   packageName: z.string().describe('acme').optional(),
   artifactId: z.string().describe('ascme-java-sdk'),
 })
 
 export const kotlinConfig = z.object({
+  language: z.literal('kotlin').default('kotlin'),
   groupId: z.string().describe('com.acme'),
   artifactId: z.string().describe('acme-kotlin-sdk'),
 })
 
 export const rubyConfig = z.object({
+  // The field allows consumers of konfig.yaml to disambiguate the type of
+  // generator config by checking the value of this field. We use the field name
+  // "language" because "generator" is used by "additionalGenerators"
+  language: z.literal('ruby').default('ruby'),
+
   moduleName: z.string(),
   gemName: z.string(),
   clientState,
@@ -70,6 +78,7 @@ export const rubyConfig = z.object({
 })
 
 export const goConfig = z.object({
+  language: z.literal('go').default('go'),
   packageName: z
     .string()
     .describe('acme')
@@ -85,6 +94,7 @@ export const goConfig = z.object({
 })
 
 export const objcConfig = z.object({
+  language: z.literal('objc').default('objc'),
   podName: z.string().describe('AcmeClient'),
   classPrefix: z.string().describe('A'),
   authorName: z.string().describe('acme.com'),
@@ -92,6 +102,7 @@ export const objcConfig = z.object({
 })
 
 export const csharpConfig = z.object({
+  language: z.literal('csharp').default('csharp'),
   clientName: z
     .string()
     .refine(
@@ -136,6 +147,7 @@ const objectPropertyNamingConvention = z
   .optional()
 
 export const pythonConfig = z.object({
+  language: z.literal('python').default('python'),
   packageName: z.string().describe('acme_client'),
   projectName: z.string().describe('acme-python-sdk'),
   removeKonfigBranding: z.boolean().optional(),
@@ -168,11 +180,13 @@ export const pythonConfig = z.object({
 })
 
 export const swiftConfig = z.object({
+  language: z.literal('swift').default('swift'),
   projectName: z.string().describe('Acme'),
   podAuthors: z.string().describe('acme.com'),
 })
 
 export const phpConfig = z.object({
+  language: z.literal('php').default('php'),
   packageName: z.string().describe('acme-php'),
   clientState,
   clientStateWithExamples,
@@ -198,6 +212,7 @@ export type RemoveRequiredProperties = z.infer<
 >
 
 export const typescriptConfig = z.object({
+  language: z.literal('typescript').default('typescript'),
   clientName: z.string(),
   npmName: z.string().describe('acme-typescript-sdk'),
   pagination: paginationConfigSchema.optional(),

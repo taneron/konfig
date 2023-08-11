@@ -16,7 +16,7 @@ export const parseKonfigYaml = ({ configDir }: { configDir: string }) => {
   const { generators, additionalGenerators, ...common } = parsedKonfigYaml
   const allGenerators = [
     ...Object.entries(generators),
-    ...Object.entries(additionalGenerators ? additionalGenerators : []),
+    ...(additionalGenerators ? Object.entries(additionalGenerators) : []),
   ]
   return {
     allGenerators,
