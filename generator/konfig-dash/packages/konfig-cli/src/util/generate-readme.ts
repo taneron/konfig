@@ -44,7 +44,7 @@ export function generateReadme({
           : `https://${config.git.host}/${config.git.userId}/${config.git.repoId}`
       return {
         language: generatorNameAsDisplayName({
-          generatorName: generator,
+          generatorConfig: config,
         }),
         version,
         documentationUrl:
@@ -217,10 +217,13 @@ export function getPublishedPackageUrl({
 }
 
 export function generatorNameAsDisplayName({
-  generatorName,
+  generatorConfig,
 }: {
-  generatorName: string
+  generatorConfig:
+    | KonfigYamlGeneratorConfig
+    | KonfigYamlAdditionalGeneratorConfig
 }) {
+  const generatorName = generatorConfig.language
   switch (generatorName) {
     case 'csharp':
       return 'C#'
@@ -233,7 +236,8 @@ export function generatorNameAsDisplayName({
     case 'python':
       return 'Python'
     case 'php':
-      return 'PHP'
+      if (generatorConfig.supportPhp7) return 'PHP (7.0+)'
+      return 'PHP (8.0+)'
     case 'ruby':
       return 'Ruby'
     case 'swift':

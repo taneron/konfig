@@ -51,14 +51,23 @@ export default class SlackMsg extends Command {
 
     const generatorConfigs = filteredGenerators
       .map((generator) => {
-        if (additionalGenerators && generator in additionalGenerators)
+        if (additionalGenerators && generator in additionalGenerators) {
+          const generatorConfig = additionalGenerators[generator]
+          if (generatorConfig === undefined)
+            throw Error('Generator config undefined')
           return {
             generatorName: additionalGenerators[generator].generator,
-            generatorConfig: additionalGenerators[generator],
+            generatorConfig,
           }
+        }
+
+        const generatorConfig =
+          generators[generator as KonfigYamlGeneratorNames]
+        if (generatorConfig === undefined)
+          throw Error('Generator config undefined')
         return {
           generatorName: generator,
-          generatorConfig: generators[generator as KonfigYamlGeneratorNames],
+          generatorConfig,
         }
       })
       .filter(({ generatorConfig }) => {
@@ -66,7 +75,11 @@ export default class SlackMsg extends Command {
       })
 
     const firstLine = `@here ${title}'s ${generatorConfigs
-      .map(({ generatorName }) => generatorNameAsDisplayName({ generatorName }))
+      .map(({ generatorConfig }) =>
+        generatorNameAsDisplayName({
+          generatorConfig,
+        })
+      )
       .join(', ')} ${generatorConfigs.length > 1 ? 'SDKs' : 'SDK'} ${
       generatorConfigs.length > 1 ? 'have' : 'has'
     } been published :tada:`
@@ -82,7 +95,7 @@ export default class SlackMsg extends Command {
         })
         const version: string = generatorConfig.version
         return `- ${generatorNameAsDisplayName({
-          generatorName,
+          generatorConfig,
         })} - ${version} (${pkg.packageManagerName}): ${pkg.url}`
       })
       .join('\n')
