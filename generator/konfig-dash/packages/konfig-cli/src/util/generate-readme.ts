@@ -48,8 +48,8 @@ export function generateReadme({
         }),
         version,
         documentationUrl:
-          generatorName === 'php' || config.git.host === 'gitlab.com'
-            ? sourceUrl
+          config.language === 'php' || config.git.host === 'gitlab.com'
+            ? `${sourceUrl}/blob/${defaultBranch}/README.md`
             : `${sourceUrl}/README.md`,
         sourceUrl,
         packageManagerUrl: getPublishedPackageUrl({
