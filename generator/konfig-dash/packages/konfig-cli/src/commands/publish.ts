@@ -412,7 +412,10 @@ export default class Publish extends Command {
         })
       }
 
-      if ('packageName' in generatorConfig && generatorName === 'php') {
+      if (
+        'invokerPackage' in generatorConfig &&
+        'packageName' in generatorConfig
+      ) {
         if (!process.env.PACKAGIST_API_TOKEN)
           CliUx.ux.error(
             'Set PACKAGIST_API_TOKEN environment variable to publish to Packagist'
@@ -427,6 +430,7 @@ export default class Publish extends Command {
             packageName: generatorConfig.packageName,
             outputDirectory,
           }),
+          cwd: generatorConfig.outputDirectory,
         })
       }
 

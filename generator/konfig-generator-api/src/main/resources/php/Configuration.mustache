@@ -146,7 +146,7 @@ class Configuration
     /**
      * {{state}} - client state from konfig.yaml
      */
-    protected ?string ${{state}} = '';
+    protected {{^supportPhp7}}?string {{/supportPhp7}}${{state}} = '';
 
 
     /**
@@ -171,7 +171,7 @@ class Configuration
     /**
      * {{state}} - client state from konfig.yaml
      */
-    protected ?string ${{state}} = '';
+    protected {{^supportPhp7}}?string {{/supportPhp7}}${{state}} = '';
 
 
     /**
@@ -205,8 +205,10 @@ class Configuration
         {{#apiKeyMethods}}
         string ${{> api_key_name}} = null,
         {{/apiKeyMethods}}
+        string $host = '{{basePath}}'
     )
     {
+        $this->host = $host;
         $this->tempFolderPath = sys_get_temp_dir();
         {{#clientStateSetterGetterCamelCase}}
         $this->{{setter}}(${{state}});
