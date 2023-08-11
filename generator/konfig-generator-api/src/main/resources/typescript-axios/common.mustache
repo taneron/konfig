@@ -203,6 +203,10 @@ export const createRequestFunction = function (axiosArgs: RequestArgs, globalAxi
                         // This means we are in a Node environment so just throw the original error
                         throw new {{clientName}}Error(e, e.response?.data)
                     }
+                    if (innerError instanceof {{clientName}}Error) {
+                        // Got "{{clientName}}Error" from the above try block
+                        throw innerError;
+                    }
                     // Something unexpected happened: propagate the error
                     throw e
                 }
