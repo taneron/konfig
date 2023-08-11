@@ -8,6 +8,7 @@ import {
 import { tagPrioritySchema } from './KonfigYamlCommon'
 
 const additionalProperties = z.object({
+  useDescriptionInOperationTableDocumentation: z.boolean().optional(),
   apiPackage: z.string().optional(),
   artifactId: z.string().optional(),
   artifactUrl: z.string().optional(),

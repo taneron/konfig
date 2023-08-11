@@ -510,6 +510,8 @@ export const myHandler = async (event: APIGatewayEvent, context: Context) => {
 
       config: {
         additionalProperties: {
+          useDescriptionInOperationTableDocumentation:
+            generatorConfig.useDescriptionInOperationTableDocumentation,
           omitInfoDescription: body.omitInfoDescription,
           tagPriority: body.tagPriority,
           projectName: generatorConfig.projectName,
@@ -795,6 +797,8 @@ async function queueTypeScriptGeneration({
         tagPriority: body.tagPriority,
         npmName: generatorConfig.npmName,
         npmVersion: generatorConfig.version,
+        useDescriptionInOperationTableDocumentation:
+          generatorConfig.useDescriptionInOperationTableDocumentation,
         disallowAdditionalPropertiesIfNotPresent: false,
         readmeSnippet: generatorConfig.readmeSnippet,
         removeKonfigBranding: generatorConfig.removeKonfigBranding,

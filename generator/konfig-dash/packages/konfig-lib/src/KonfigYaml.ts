@@ -146,7 +146,15 @@ const objectPropertyNamingConvention = z
   .union([z.literal('camelCase'), z.literal('snake_case')])
   .optional()
 
+const useDescriptionInOperationTableDocumentation = z
+  .boolean()
+  .optional()
+  .describe(
+    "Whether or not to use the operation's description in the operation table documentation. By default the summary is used."
+  )
+
 export const pythonConfig = z.object({
+  useDescriptionInOperationTableDocumentation,
   language: z.literal('python').default('python'),
   packageName: z.string().describe('acme_client'),
   projectName: z.string().describe('acme-python-sdk'),
@@ -212,6 +220,7 @@ export type RemoveRequiredProperties = z.infer<
 >
 
 export const typescriptConfig = z.object({
+  useDescriptionInOperationTableDocumentation,
   language: z.literal('typescript').default('typescript'),
   clientName: z.string(),
   npmName: z.string().describe('acme-typescript-sdk'),

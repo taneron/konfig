@@ -65,8 +65,8 @@ export default async function handler(req: Request): Promise<Response> {
 
 All URIs are relative to *{{basePath}}*
 
-Class | Method | HTTP request | Description
+Tag | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-{{#apiInfo}}{{#apis}}{{#operations}}{{#operation}}*{{classname}}* | [**{{operationId}}**]({{apiDocPath}}{{classname}}.md#{{operationId}}) | **{{httpMethod}}** {{path}} | {{#summary}}{{summary}}{{/summary}}
+{{#apiInfo}}{{#apis}}{{#operations}}{{#operation}}*{{originalTag}}* | [**{{operationId}}**]({{apiDocPath}}{{classname}}.md#{{operationId}}) | **{{httpMethod}}** {{path}} | {{#useDescriptionInOperationTableDocumentation}}{{#notes}}{{notes}}{{/notes}}{{/useDescriptionInOperationTableDocumentation}}{{^useDescriptionInOperationTableDocumentation}}{{#summary}}{{summary}}{{/summary}}{{/useDescriptionInOperationTableDocumentation}}
 {{/operation}}{{/operations}}{{/apis}}{{/apiInfo}}
 {{/omitApiDocumentation}}
