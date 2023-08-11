@@ -9,6 +9,7 @@ describe('shouldGenerate', () => {
         generatorFilter: null,
         generators: {
           go: {
+            language: 'go',
             outputDirectory: 'go',
             defaultTimeout: 0,
             userAgent: '',
@@ -19,6 +20,7 @@ describe('shouldGenerate', () => {
         },
       })
     ).to.eql({
+      language: 'go',
       outputDirectory: 'go',
       defaultTimeout: 0,
       userAgent: '',
@@ -34,6 +36,7 @@ describe('shouldGenerate', () => {
         generatorFilter: ['go'],
         generators: {
           go: {
+            language: 'go',
             outputDirectory: 'go',
             defaultTimeout: 0,
             userAgent: '',
@@ -44,6 +47,7 @@ describe('shouldGenerate', () => {
         },
       })
     ).to.eql({
+      language: 'go',
       outputDirectory: 'go',
       defaultTimeout: 0,
       userAgent: '',
@@ -59,6 +63,7 @@ describe('shouldGenerate', () => {
         generatorFilter: [],
         generators: {
           go: {
+            language: 'go',
             outputDirectory: 'go',
             defaultTimeout: 0,
             userAgent: '',
@@ -75,6 +80,7 @@ describe('shouldGenerate', () => {
         generatorFilter: ['python'],
         generators: {
           go: {
+            language: 'go',
             outputDirectory: 'go',
             defaultTimeout: 0,
             userAgent: '',

@@ -179,6 +179,7 @@ export const createRequestFunction = function (axiosArgs: RequestArgs, globalAxi
                     // Something unexpected happened: propagate the error
                     throw e
                 }
+            }
         }
     };
 }
