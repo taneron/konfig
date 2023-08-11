@@ -14,7 +14,12 @@ export const parseKonfigYaml = ({ configDir }: { configDir: string }) => {
   const loadedKonfigYaml: KonfigYamlType = load(konfigYamlRaw) as KonfigYamlType
   const parsedKonfigYaml = KonfigYaml.parse(loadedKonfigYaml)
   const { generators, additionalGenerators, ...common } = parsedKonfigYaml
+  const allGenerators = [
+    ...Object.entries(generators),
+    ...Object.entries(additionalGenerators ? additionalGenerators : []),
+  ]
   return {
+    allGenerators,
     generators,
     additionalGenerators,
     common,

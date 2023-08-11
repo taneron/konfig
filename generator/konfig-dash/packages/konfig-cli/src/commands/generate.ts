@@ -12,6 +12,8 @@ import {
   KonfigYamlGeneratorNames,
   CopyFilesType,
   GenerateRequestBodyType,
+  parseSpec,
+  getOperations,
 } from 'konfig-lib'
 import globby from 'globby'
 import { Konfig } from 'konfig-typescript-sdk'
@@ -176,6 +178,7 @@ export default class Deploy extends Command {
         konfigYamlRaw,
         konfigYamlPath,
         parsedKonfigYaml,
+        allGenerators,
       } = parseKonfigYaml({
         configDir,
       })
@@ -194,6 +197,33 @@ export default class Deploy extends Command {
           `Must provide path to OpenAPI Spec. Either provide the '-i' flag or assign 'specPath' in ${KONFIG_YAML_NAME}`
         )
       const spec = fs.readFileSync(inputSpecPath, 'utf-8')
+
+      const parsedSpec = await parseSpec(spec)
+      // check if topLevelOperations from any configs refer to non-existent operationId
+      // throw an error if non-existent operationId is referenced
+      for (const [_name, config] of allGenerators) {
+        if (
+          !('topLevelOperations' in config) ||
+          config.topLevelOperations === undefined
+        )
+          continue
+        if (!Array.isArray(config.topLevelOperations)) {
+          this.warn('topLevelOperations check for object not implemented')
+          continue
+        }
+        for (const operation of config.topLevelOperations) {
+          const foundMatch = getOperations(parsedSpec).find(
+            ({ operation: op }) => {
+              return op.operationId === operation.operationId
+            }
+          )
+          if (foundMatch === undefined)
+            this.error(
+              `Operation ID specified top "topLevelOperations": "${operation.operationId}" not found in spec`
+            )
+          else this.debug(`Found match for ${operation.operationId}`)
+        }
+      }
 
       const generateConfigs = Object.entries(generators)
       if (generateConfigs.length === 0)
