@@ -200,10 +200,11 @@ export function getPublishedPackageUrl({
         packageManagerName: 'Maven Central',
       }
     case 'php':
-      config = konfigYaml.generators.php
-      if (config === undefined) throw Error('Config undefined')
+      if (!('packageName' in generatorConfig))
+        throw Error(`Unexpected value for PHP configuration`)
+      if (generatorConfig === undefined) throw Error('Config undefined')
       return {
-        url: `https://packagist.org/packages/konfig/${config.packageName}#${config.version}`,
+        url: `https://packagist.org/packages/konfig/${generatorConfig.packageName}#${generatorConfig.version}`,
         packageManagerName: 'Packagist',
       }
     case 'swift':
