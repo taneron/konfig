@@ -14,6 +14,7 @@ import {
   GenerateRequestBodyType,
   parseSpec,
   getOperations,
+  KonfigYamlAdditionalGeneratorConfig,
 } from 'konfig-lib'
 import globby from 'globby'
 import { Konfig } from 'konfig-typescript-sdk'
@@ -310,17 +311,12 @@ export default class Deploy extends Command {
 
       const phpGeneratorConfig = getConfig('php')
       if (phpGeneratorConfig && !phpGeneratorConfig.disabled) {
-        const { files, ...restOfConfig } = phpGeneratorConfig
-        const requestJava: GenerateRequestBodyInputType['generators']['php'] = {
-          files: createTemplateFilesObject(files, 'php', configDir),
-          ...handleReadmeSnippet({ config: restOfConfig }),
-          ...handleReadmeSupportingDescriptionSnippet({ config: restOfConfig }),
-          ...handleapiDocumentationAuthenticationPartialSnippet({
-            config: restOfConfig,
-          }),
-        }
-        initializeFlowsDirectory('php')
-        requestGenerators.php = requestJava
+        const requestPhp = constructPhpGenerationRequest({
+          configDir,
+          phpGeneratorConfig,
+          initializeFlowsDirectory,
+        })
+        requestGenerators.php = requestPhp
       }
 
       const swiftGeneratorConfig = getConfig('swift')
@@ -441,7 +437,8 @@ export default class Deploy extends Command {
         for (const configName of Object.keys(additionalGenerators)) {
           if (generatorFilter !== null && !generatorFilter.includes(configName))
             continue
-          const config = additionalGenerators[configName]
+          const config: KonfigYamlAdditionalGeneratorConfig =
+            additionalGenerators[configName]
           if (config.generator === 'typescript') {
             generateRequestBodyAdditionalGenerators[configName] = {
               generator: 'typescript',
@@ -460,6 +457,19 @@ export default class Deploy extends Command {
                 initializeFlowsDirectory,
               }),
             }
+          } else if (config.generator === 'php') {
+            generateRequestBodyAdditionalGenerators[configName] = {
+              generator: 'php',
+              ...constructPhpGenerationRequest({
+                configDir,
+                phpGeneratorConfig: config,
+                initializeFlowsDirectory,
+              }),
+            }
+          } else {
+            this.error(
+              `Unsupported generator: ${config.generator} under additionalGenerators`
+            )
           }
         }
       }
@@ -779,7 +789,7 @@ export default class Deploy extends Command {
                       sourcePath: path.join(sourceSdkDir, line),
                       destinationPath: outputDirectory,
                       forKonfigIgnore: {
-                        sourceSdkDirName: path.basename(sourceSdkDir),
+                        sourceSdkDirName: sourceSdkDir,
                       },
                     })
                   }
@@ -811,6 +821,14 @@ export default class Deploy extends Command {
                   java: config,
                   sdkDirName: name,
                   copyToOutputDirectory,
+                })
+              } else if (config.generator === 'php') {
+                await copyPhpOutput({
+                  flags,
+                  php: config,
+                  sdkDirName: name,
+                  copyToOutputDirectory,
+                  configDir,
                 })
               } else {
                 CliUx.ux.action.start(
@@ -909,113 +927,12 @@ export default class Deploy extends Command {
           }
 
           if (body.generators.php) {
-            const outputDirectory =
-              flags.copyPHPOutputDir ?? body.generators.php.outputDirectory
-            if (outputDirectory && !flags.doNotCopy) {
-              const topLevelGitRepo = simpleGit()
-              if (fs.existsSync(outputDirectory)) {
-                const phpGitRepo = simpleGit(outputDirectory)
-                // replace backslashes with forward slashes to remain platform-agnostic
-                const fullPath = path
-                  .join(configDir, outputDirectory)
-                  .replace(/\\/g, '/')
-                const isRepo =
-                  fullPath === (await phpGitRepo.revparse(['--show-toplevel']))
-                if (!isRepo) {
-                  // delete the directory as its probably not important
-                  fs.rmSync(outputDirectory, { recursive: true, force: true })
-
-                  CliUx.ux.action.start(
-                    `Adding git submodule at ${outputDirectory}`
-                  )
-                  await topLevelGitRepo.submoduleAdd(
-                    `https://github.com/${body.generators.php.git.userId}/${body.generators.php.git.repoId}.git`,
-                    outputDirectory
-                  )
-                  await topLevelGitRepo.commit(
-                    'Initialized git submodule for PHP SDK'
-                  )
-                  CliUx.ux.action.stop()
-                }
-              } else {
-                CliUx.ux.action.start(
-                  `Adding git submodule at ${outputDirectory}`
-                )
-                await topLevelGitRepo.submoduleAdd(
-                  `https://github.com/${body.generators.php.git.userId}/${body.generators.php.git.repoId}.git`,
-                  outputDirectory
-                )
-                await topLevelGitRepo.commit(
-                  'Initialized git submodule for PHP SDK'
-                )
-                CliUx.ux.action.stop()
-              }
-              CliUx.ux.action.start(
-                `Deleting contents of existing directory "${outputDirectory}"`
-              )
-              await safelyDeleteFiles(outputDirectory)
-              CliUx.ux.action.stop()
-              // Copy content of generated SDK to existing directory
-              CliUx.ux.action.start(`Copying PHP SDK to "${outputDirectory}"`)
-              await copyToOutputDirectory({
-                generator: 'php',
-                outputDirectory,
-                generatorConfig: body.generators.php,
-              })
-              // const phpGitRepo = simpleGit(outputDirectory)
-              // await phpGitRepo.add('.')
-              // await phpGitRepo.commit(generateConfigId)
-              // await phpGitRepo.push()
-              // await topLevelGitRepo.add(outputDirectory)
-              // await topLevelGitRepo.commit('Generated PHP SDK', outputDirectory)
-
-              // Copy composer.json to top-level of SDK directory since Packagist
-              // see "Creating a composer.json file" here
-              // https://packagist.org/about
-              // CliUx.ux.info(
-              //   'Copying composer.json to root directory for Packagist (see explanation https://packagist.org/about)'
-              // )
-              // const packageKey = `${body.generators.php.invokerPackage}\\`
-              // const packageTestKey = `${body.generators.php.invokerPackage}\\Test\\`
-              // const composerJsonSchema = z
-              //   .object({
-              //     autoload: z.object({
-              //       'psr-4': z.object({
-              //         [packageKey]: z.string(),
-              //       }),
-              //     }),
-              //     'autoload-dev': z.object({
-              //       'psr-4': z.object({ [packageTestKey]: z.string() }),
-              //     }),
-              //     readme: z.string().optional(),
-              //   })
-              //   .passthrough()
-              // const composerJson = composerJsonSchema.parse(
-              //   JSON.parse(
-              //     fs.readFileSync(
-              //       path.join(
-              //         body.generators.php.outputDirectory,
-              //         'composer.json'
-              //       ),
-              //       'utf-8'
-              //     )
-              //   )
-              // )
-              // composerJson.readme = `${body.generators.php.outputDirectory}/README.md`
-              // composerJson.autoload['psr-4'][
-              //   packageKey
-              // ] = `${body.generators.php.outputDirectory}/${composerJson.autoload['psr-4'][packageKey]}`
-              // composerJson['autoload-dev']['psr-4'][
-              //   packageTestKey
-              // ] = `${body.generators.php.outputDirectory}/${composerJson['autoload-dev']['psr-4'][packageTestKey]}`
-
-              // fs.writeFileSync(
-              //   path.join(configDir, 'composer.json'),
-              //   JSON.stringify(composerJson, undefined, 2)
-              // )
-
-              CliUx.ux.action.stop()
-            }
+            await copyPhpOutput({
+              flags,
+              php: body.generators.php,
+              copyToOutputDirectory,
+              configDir,
+            })
           }
 
           if (body.generators.ruby) {
@@ -1538,6 +1455,28 @@ const safelyDeleteFiles = async (
   return { directoryExists: true }
 }
 
+function constructPhpGenerationRequest({
+  configDir,
+  phpGeneratorConfig,
+  initializeFlowsDirectory,
+}: {
+  configDir: string
+  phpGeneratorConfig: NonNullable<KonfigYamlType['generators']['php']>
+  initializeFlowsDirectory: (generatorName: KonfigYamlGeneratorNames) => void
+}) {
+  const { files, ...restOfConfig } = phpGeneratorConfig
+  const requestPhp: GenerateRequestBodyInputType['generators']['php'] = {
+    files: createTemplateFilesObject(files, 'php', configDir),
+    ...handleReadmeSnippet({ config: restOfConfig }),
+    ...handleReadmeSupportingDescriptionSnippet({ config: restOfConfig }),
+    ...handleapiDocumentationAuthenticationPartialSnippet({
+      config: restOfConfig,
+    }),
+  }
+  initializeFlowsDirectory('php')
+  return requestPhp
+}
+
 function constructJavaGenerationRequest({
   configDir,
   javaGeneratorConfig: javaGeneratorConfig,
@@ -1589,6 +1528,119 @@ function constructTypeScriptGenerationRequest({
     }
   initializeFlowsDirectory('typescript')
   return requestTypescript
+}
+
+async function copyPhpOutput({
+  flags,
+  php,
+  copyToOutputDirectory,
+  sdkDirName,
+  configDir,
+}: {
+  flags: { copyPHPOutputDir?: string; doNotCopy?: boolean }
+  php: GenerateRequestBodyInputType['generators']['php']
+  sdkDirName?: string
+  copyToOutputDirectory: (input: CopyFilesInput) => Promise<void>
+  configDir: string
+}) {
+  if (php === undefined) return
+  const outputDirectory = flags.copyPHPOutputDir ?? php.outputDirectory
+  if (outputDirectory && !flags.doNotCopy) {
+    const topLevelGitRepo = simpleGit()
+    if (fs.existsSync(outputDirectory)) {
+      const phpGitRepo = simpleGit(outputDirectory)
+      // replace backslashes with forward slashes to remain platform-agnostic
+      const fullPath = path.join(configDir, outputDirectory).replace(/\\/g, '/')
+      const isRepo =
+        fullPath === (await phpGitRepo.revparse(['--show-toplevel']))
+      if (!isRepo) {
+        // delete the directory as its probably not important
+        fs.rmSync(outputDirectory, { recursive: true, force: true })
+
+        CliUx.ux.action.start(`Adding git submodule at ${outputDirectory}`)
+        await topLevelGitRepo.submoduleAdd(
+          `https://github.com/${php.git.userId}/${php.git.repoId}.git`,
+          outputDirectory
+        )
+        await topLevelGitRepo.commit('Initialized git submodule for PHP SDK')
+        CliUx.ux.action.stop()
+      }
+    } else {
+      CliUx.ux.action.start(`Adding git submodule at ${outputDirectory}`)
+      await topLevelGitRepo.submoduleAdd(
+        `https://github.com/${php.git.userId}/${php.git.repoId}.git`,
+        outputDirectory
+      )
+      await topLevelGitRepo.commit('Initialized git submodule for PHP SDK')
+      CliUx.ux.action.stop()
+    }
+    CliUx.ux.action.start(
+      `Deleting contents of existing directory "${outputDirectory}"`
+    )
+    await safelyDeleteFiles(outputDirectory)
+    CliUx.ux.action.stop()
+    // Copy content of generated SDK to existing directory
+    CliUx.ux.action.start(`Copying PHP SDK to "${outputDirectory}"`)
+    await copyToOutputDirectory({
+      generator: sdkDirName ? sdkDirName : 'php',
+      outputDirectory,
+      generatorConfig: php,
+    })
+
+    // const phpGitRepo = simpleGit(outputDirectory)
+    // await phpGitRepo.add('.')
+    // await phpGitRepo.commit(generateConfigId)
+    // await phpGitRepo.push()
+    // await topLevelGitRepo.add(outputDirectory)
+    // await topLevelGitRepo.commit('Generated PHP SDK', outputDirectory)
+
+    // Copy composer.json to top-level of SDK directory since Packagist
+    // see "Creating a composer.json file" here
+    // https://packagist.org/about
+    // CliUx.ux.info(
+    //   'Copying composer.json to root directory for Packagist (see explanation https://packagist.org/about)'
+    // )
+    // const packageKey = `${body.generators.php.invokerPackage}\\`
+    // const packageTestKey = `${body.generators.php.invokerPackage}\\Test\\`
+    // const composerJsonSchema = z
+    //   .object({
+    //     autoload: z.object({
+    //       'psr-4': z.object({
+    //         [packageKey]: z.string(),
+    //       }),
+    //     }),
+    //     'autoload-dev': z.object({
+    //       'psr-4': z.object({ [packageTestKey]: z.string() }),
+    //     }),
+    //     readme: z.string().optional(),
+    //   })
+    //   .passthrough()
+    // const composerJson = composerJsonSchema.parse(
+    //   JSON.parse(
+    //     fs.readFileSync(
+    //       path.join(
+    //         body.generators.php.outputDirectory,
+    //         'composer.json'
+    //       ),
+    //       'utf-8'
+    //     )
+    //   )
+    // )
+    // composerJson.readme = `${body.generators.php.outputDirectory}/README.md`
+    // composerJson.autoload['psr-4'][
+    //   packageKey
+    // ] = `${body.generators.php.outputDirectory}/${composerJson.autoload['psr-4'][packageKey]}`
+    // composerJson['autoload-dev']['psr-4'][
+    //   packageTestKey
+    // ] = `${body.generators.php.outputDirectory}/${composerJson['autoload-dev']['psr-4'][packageTestKey]}`
+
+    // fs.writeFileSync(
+    //   path.join(configDir, 'composer.json'),
+    //   JSON.stringify(composerJson, undefined, 2)
+    // )
+
+    CliUx.ux.action.stop()
+  }
 }
 
 async function copyJavaOutput({

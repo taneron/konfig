@@ -199,6 +199,14 @@ export const myHandler = async (event: APIGatewayEvent, context: Context) => {
           transformSpecForGenerator,
           outputDirectoryName: name,
         })
+      } else if (generatorConfig.generator === 'php') {
+        await queuePhpGeneration({
+          body,
+          queue,
+          transformSpecForGenerator,
+          php: generatorConfig,
+          outputDirectoryName: name,
+        })
       } else {
         throw Error(
           `${generatorConfig.generator} not implemented under additional generators`
@@ -356,41 +364,12 @@ export const myHandler = async (event: APIGatewayEvent, context: Context) => {
   }
 
   if (body.generators.php) {
-    const generatorConfig = body.generators.php
-    const requestBody: JavaGenerateApiRequestBodyType = {
-      spec: {
-        src: await transformSpecForGenerator({ generator: 'php' }),
-      },
-      config: {
-        additionalProperties: {
-          omitInfoDescription: body.omitInfoDescription,
-          tagPriority: body.tagPriority,
-          invokerPackage: generatorConfig.invokerPackage,
-          readmeSnippet: generatorConfig.readmeSnippet,
-          readmeSupportingDescriptionSnippet:
-            generatorConfig.readmeSupportingDescriptionSnippet,
-          readmeDescriptionSnippet: generatorConfig.readmeDescriptionSnippet,
-          packagistUsername: generatorConfig.packagistUsername,
-          apiDocumentationAuthenticationPartial:
-            generatorConfig.apiDocumentationAuthenticationPartial,
-          defaultTimeout: generatorConfig.defaultTimeout,
-          userAgent: generatorConfig.userAgent,
-          gitRepoName: generatorConfig.git.repoName,
-          clientState: generatorConfig.clientState,
-          clientStateWithExamples: generatorConfig.clientStateWithExamples,
-          supportPhp7: generatorConfig.supportPhp7,
-        },
-        packageName: generatorConfig.packageName,
-        artifactVersion: generatorConfig.version,
-        generatorName: 'php',
-        gitHost: generatorConfig.git?.host,
-        gitUserId: generatorConfig.git?.userId,
-        gitRepoId: generatorConfig.git?.repoId,
-        removeOperationIdPrefix: true,
-        files: generatorConfig.files,
-      },
-    }
-    queue(requestBody)
+    await queuePhpGeneration({
+      body,
+      queue,
+      transformSpecForGenerator,
+      php: body.generators.php,
+    })
   }
 
   if (body.generators.android) {
@@ -644,6 +623,62 @@ export const myHandler = async (event: APIGatewayEvent, context: Context) => {
       }
     }
   }
+}
+
+async function queuePhpGeneration({
+  body,
+  php,
+  queue,
+  transformSpecForGenerator,
+  outputDirectoryName,
+}: {
+  body: GenerateRequestBodyType
+  php: GenerateRequestBodyType['generators']['php']
+  queue: (requestBody: JavaGenerateApiRequestBodyType) => void
+  transformSpecForGenerator: ({
+    generator,
+  }: {
+    generator: KonfigYamlGeneratorNames
+  }) => ReturnType<typeof transformSpec>
+  outputDirectoryName?: string
+}) {
+  if (php === undefined) return
+  const generatorConfig = php
+  const requestBody: JavaGenerateApiRequestBodyType = {
+    spec: {
+      src: await transformSpecForGenerator({ generator: 'php' }),
+    },
+    config: {
+      outputDirectoryName,
+      additionalProperties: {
+        omitInfoDescription: body.omitInfoDescription,
+        tagPriority: body.tagPriority,
+        invokerPackage: generatorConfig.invokerPackage,
+        readmeSnippet: generatorConfig.readmeSnippet,
+        readmeSupportingDescriptionSnippet:
+          generatorConfig.readmeSupportingDescriptionSnippet,
+        readmeDescriptionSnippet: generatorConfig.readmeDescriptionSnippet,
+        packagistUsername: generatorConfig.packagistUsername,
+        apiDocumentationAuthenticationPartial:
+          generatorConfig.apiDocumentationAuthenticationPartial,
+        defaultTimeout: generatorConfig.defaultTimeout,
+        userAgent: generatorConfig.userAgent,
+        gitRepoName: generatorConfig.git.repoName,
+        clientState: generatorConfig.clientState,
+        clientStateWithExamples: generatorConfig.clientStateWithExamples,
+        supportPhp7: generatorConfig.supportPhp7,
+      },
+      packageName: generatorConfig.packageName,
+      artifactVersion: generatorConfig.version,
+      generatorName: 'php',
+      gitHost: generatorConfig.git?.host,
+      gitUserId: generatorConfig.git?.userId,
+      gitRepoId: generatorConfig.git?.repoId,
+      removeOperationIdPrefix: true,
+      files: generatorConfig.files,
+    },
+  }
+  queue(requestBody)
 }
 
 async function queueJavaGeneration({
