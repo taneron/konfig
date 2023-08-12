@@ -118,6 +118,18 @@ export interface GenerateRequestBodyGeneratorsPython {
      */
     'test'?: GenerateRequestBodyGeneratorsAndroidTest;
     /**
+     * Whether or not to use the operation\'s description in the operation table documentation. By default the summary is used.
+     * @type {boolean}
+     * @memberof GenerateRequestBodyGeneratorsPython
+     */
+    'useDescriptionInOperationTableDocumentation'?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof GenerateRequestBodyGeneratorsPython
+     */
+    'language': GenerateRequestBodyGeneratorsPythonLanguageEnum;
+    /**
      * acme_client
      * @type {string}
      * @memberof GenerateRequestBodyGeneratorsPython
@@ -238,4 +250,7 @@ export interface GenerateRequestBodyGeneratorsPython {
      */
     'keepAllParametersOptional'?: boolean;
 }
+
+type GenerateRequestBodyGeneratorsPythonLanguageEnum = 'python'
+
 

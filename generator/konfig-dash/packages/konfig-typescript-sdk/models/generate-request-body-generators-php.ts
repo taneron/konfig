@@ -112,6 +112,12 @@ export interface GenerateRequestBodyGeneratorsPhp {
      */
     'test'?: GenerateRequestBodyGeneratorsAndroidTest;
     /**
+     * 
+     * @type {string}
+     * @memberof GenerateRequestBodyGeneratorsPhp
+     */
+    'language': GenerateRequestBodyGeneratorsPhpLanguageEnum;
+    /**
      * acme-php
      * @type {string}
      * @memberof GenerateRequestBodyGeneratorsPhp
@@ -148,4 +154,7 @@ export interface GenerateRequestBodyGeneratorsPhp {
      */
     'invokerPackage': string;
 }
+
+type GenerateRequestBodyGeneratorsPhpLanguageEnum = 'php'
+
 

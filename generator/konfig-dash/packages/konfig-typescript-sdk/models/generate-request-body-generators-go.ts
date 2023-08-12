@@ -109,10 +109,19 @@ export interface GenerateRequestBodyGeneratorsGo {
      */
     'test'?: GenerateRequestBodyGeneratorsAndroidTest;
     /**
+     * 
+     * @type {string}
+     * @memberof GenerateRequestBodyGeneratorsGo
+     */
+    'language': GenerateRequestBodyGeneratorsGoLanguageEnum;
+    /**
      * acme
      * @type {string}
      * @memberof GenerateRequestBodyGeneratorsGo
      */
     'packageName': string;
 }
+
+type GenerateRequestBodyGeneratorsGoLanguageEnum = 'go'
+
 

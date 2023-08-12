@@ -122,6 +122,12 @@ export interface GenerateRequestBodyAdditionalGeneratorsValueAnyOf5 {
      * @type {string}
      * @memberof GenerateRequestBodyAdditionalGeneratorsValueAnyOf5
      */
+    'language': GenerateRequestBodyAdditionalGeneratorsValueAnyOf5LanguageEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof GenerateRequestBodyAdditionalGeneratorsValueAnyOf5
+     */
     'clientName': string;
     /**
      * The path to a logo image that is copied to the generated C# SDK to be used as an image on https://nuget.org. This is required and important for branding your SDK.
@@ -150,5 +156,6 @@ export interface GenerateRequestBodyAdditionalGeneratorsValueAnyOf5 {
 }
 
 type GenerateRequestBodyAdditionalGeneratorsValueAnyOf5GeneratorEnum = 'csharp'
+type GenerateRequestBodyAdditionalGeneratorsValueAnyOf5LanguageEnum = 'csharp'
 
 

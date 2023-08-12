@@ -130,6 +130,18 @@ export interface GenerateRequestBodyAdditionalGeneratorsValueAnyOf4 {
      */
     'test'?: GenerateRequestBodyGeneratorsAndroidTest;
     /**
+     * Whether or not to use the operation\'s description in the operation table documentation. By default the summary is used.
+     * @type {boolean}
+     * @memberof GenerateRequestBodyAdditionalGeneratorsValueAnyOf4
+     */
+    'useDescriptionInOperationTableDocumentation'?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof GenerateRequestBodyAdditionalGeneratorsValueAnyOf4
+     */
+    'language': GenerateRequestBodyAdditionalGeneratorsValueAnyOf4LanguageEnum;
+    /**
      * 
      * @type {string}
      * @memberof GenerateRequestBodyAdditionalGeneratorsValueAnyOf4
@@ -216,5 +228,6 @@ export interface GenerateRequestBodyAdditionalGeneratorsValueAnyOf4 {
 }
 
 type GenerateRequestBodyAdditionalGeneratorsValueAnyOf4GeneratorEnum = 'typescript'
+type GenerateRequestBodyAdditionalGeneratorsValueAnyOf4LanguageEnum = 'typescript'
 
 

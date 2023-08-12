@@ -116,6 +116,12 @@ export interface GenerateRequestBodyGeneratorsCsharp {
      * @type {string}
      * @memberof GenerateRequestBodyGeneratorsCsharp
      */
+    'language': GenerateRequestBodyGeneratorsCsharpLanguageEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof GenerateRequestBodyGeneratorsCsharp
+     */
     'clientName': string;
     /**
      * The path to a logo image that is copied to the generated C# SDK to be used as an image on https://nuget.org. This is required and important for branding your SDK.
@@ -142,4 +148,7 @@ export interface GenerateRequestBodyGeneratorsCsharp {
      */
     'clientStateWithExamples'?: Array<GenerateRequestBodyGeneratorsJavaClientStateWithExamplesInner>;
 }
+
+type GenerateRequestBodyGeneratorsCsharpLanguageEnum = 'csharp'
+
 

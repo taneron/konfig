@@ -124,6 +124,18 @@ export interface GenerateRequestBodyGeneratorsTypescript {
      */
     'test'?: GenerateRequestBodyGeneratorsAndroidTest;
     /**
+     * Whether or not to use the operation\'s description in the operation table documentation. By default the summary is used.
+     * @type {boolean}
+     * @memberof GenerateRequestBodyGeneratorsTypescript
+     */
+    'useDescriptionInOperationTableDocumentation'?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof GenerateRequestBodyGeneratorsTypescript
+     */
+    'language': GenerateRequestBodyGeneratorsTypescriptLanguageEnum;
+    /**
      * 
      * @type {string}
      * @memberof GenerateRequestBodyGeneratorsTypescript
@@ -208,4 +220,7 @@ export interface GenerateRequestBodyGeneratorsTypescript {
      */
     'includeEventSourceParser'?: boolean;
 }
+
+type GenerateRequestBodyGeneratorsTypescriptLanguageEnum = 'typescript'
+
 

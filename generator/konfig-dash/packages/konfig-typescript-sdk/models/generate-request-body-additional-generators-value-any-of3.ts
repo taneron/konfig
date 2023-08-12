@@ -124,6 +124,18 @@ export interface GenerateRequestBodyAdditionalGeneratorsValueAnyOf3 {
      */
     'test'?: GenerateRequestBodyGeneratorsAndroidTest;
     /**
+     * Whether or not to use the operation\'s description in the operation table documentation. By default the summary is used.
+     * @type {boolean}
+     * @memberof GenerateRequestBodyAdditionalGeneratorsValueAnyOf3
+     */
+    'useDescriptionInOperationTableDocumentation'?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof GenerateRequestBodyAdditionalGeneratorsValueAnyOf3
+     */
+    'language': GenerateRequestBodyAdditionalGeneratorsValueAnyOf3LanguageEnum;
+    /**
      * acme_client
      * @type {string}
      * @memberof GenerateRequestBodyAdditionalGeneratorsValueAnyOf3
@@ -246,5 +258,6 @@ export interface GenerateRequestBodyAdditionalGeneratorsValueAnyOf3 {
 }
 
 type GenerateRequestBodyAdditionalGeneratorsValueAnyOf3GeneratorEnum = 'python'
+type GenerateRequestBodyAdditionalGeneratorsValueAnyOf3LanguageEnum = 'python'
 
 

@@ -109,6 +109,12 @@ export interface GenerateRequestBodyGeneratorsKotlin {
      */
     'test'?: GenerateRequestBodyGeneratorsAndroidTest;
     /**
+     * 
+     * @type {string}
+     * @memberof GenerateRequestBodyGeneratorsKotlin
+     */
+    'language': GenerateRequestBodyGeneratorsKotlinLanguageEnum;
+    /**
      * com.acme
      * @type {string}
      * @memberof GenerateRequestBodyGeneratorsKotlin
@@ -121,4 +127,7 @@ export interface GenerateRequestBodyGeneratorsKotlin {
      */
     'artifactId': string;
 }
+
+type GenerateRequestBodyGeneratorsKotlinLanguageEnum = 'kotlin'
+
 

@@ -109,6 +109,12 @@ export interface GenerateRequestBodyGeneratorsSwift {
      */
     'test'?: GenerateRequestBodyGeneratorsAndroidTest;
     /**
+     * 
+     * @type {string}
+     * @memberof GenerateRequestBodyGeneratorsSwift
+     */
+    'language': GenerateRequestBodyGeneratorsSwiftLanguageEnum;
+    /**
      * Acme
      * @type {string}
      * @memberof GenerateRequestBodyGeneratorsSwift
@@ -121,4 +127,7 @@ export interface GenerateRequestBodyGeneratorsSwift {
      */
     'podAuthors': string;
 }
+
+type GenerateRequestBodyGeneratorsSwiftLanguageEnum = 'swift'
+
 

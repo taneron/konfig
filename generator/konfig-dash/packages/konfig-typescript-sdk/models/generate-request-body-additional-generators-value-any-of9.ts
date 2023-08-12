@@ -115,6 +115,12 @@ export interface GenerateRequestBodyAdditionalGeneratorsValueAnyOf9 {
      */
     'test'?: GenerateRequestBodyGeneratorsAndroidTest;
     /**
+     * 
+     * @type {string}
+     * @memberof GenerateRequestBodyAdditionalGeneratorsValueAnyOf9
+     */
+    'language': GenerateRequestBodyAdditionalGeneratorsValueAnyOf9LanguageEnum;
+    /**
      * acme
      * @type {string}
      * @memberof GenerateRequestBodyAdditionalGeneratorsValueAnyOf9
@@ -123,5 +129,6 @@ export interface GenerateRequestBodyAdditionalGeneratorsValueAnyOf9 {
 }
 
 type GenerateRequestBodyAdditionalGeneratorsValueAnyOf9GeneratorEnum = 'go'
+type GenerateRequestBodyAdditionalGeneratorsValueAnyOf9LanguageEnum = 'go'
 
 

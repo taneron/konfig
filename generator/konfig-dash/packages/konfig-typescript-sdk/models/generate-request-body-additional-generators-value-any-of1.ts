@@ -122,6 +122,12 @@ export interface GenerateRequestBodyAdditionalGeneratorsValueAnyOf1 {
      * @type {string}
      * @memberof GenerateRequestBodyAdditionalGeneratorsValueAnyOf1
      */
+    'language': GenerateRequestBodyAdditionalGeneratorsValueAnyOf1LanguageEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof GenerateRequestBodyAdditionalGeneratorsValueAnyOf1
+     */
     'moduleName': string;
     /**
      * 
@@ -144,5 +150,6 @@ export interface GenerateRequestBodyAdditionalGeneratorsValueAnyOf1 {
 }
 
 type GenerateRequestBodyAdditionalGeneratorsValueAnyOf1GeneratorEnum = 'ruby'
+type GenerateRequestBodyAdditionalGeneratorsValueAnyOf1LanguageEnum = 'ruby'
 
 

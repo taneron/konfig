@@ -118,6 +118,12 @@ export interface GenerateRequestBodyAdditionalGeneratorsValueAnyOf6 {
      */
     'test'?: GenerateRequestBodyGeneratorsAndroidTest;
     /**
+     * 
+     * @type {string}
+     * @memberof GenerateRequestBodyAdditionalGeneratorsValueAnyOf6
+     */
+    'language': GenerateRequestBodyAdditionalGeneratorsValueAnyOf6LanguageEnum;
+    /**
      * acme-php
      * @type {string}
      * @memberof GenerateRequestBodyAdditionalGeneratorsValueAnyOf6
@@ -156,5 +162,6 @@ export interface GenerateRequestBodyAdditionalGeneratorsValueAnyOf6 {
 }
 
 type GenerateRequestBodyAdditionalGeneratorsValueAnyOf6GeneratorEnum = 'php'
+type GenerateRequestBodyAdditionalGeneratorsValueAnyOf6LanguageEnum = 'php'
 
 

@@ -176,6 +176,10 @@ export const createRequestFunction = function (axiosArgs: RequestArgs, globalAxi
                         // This means we are in a Node environment so just throw the original error
                         throw new KonfigError(e, e.response?.data)
                     }
+                    if (innerError instanceof KonfigError) {
+                        // Got "KonfigError" from the above try block
+                        throw innerError;
+                    }
                     // Something unexpected happened: propagate the error
                     throw e
                 }

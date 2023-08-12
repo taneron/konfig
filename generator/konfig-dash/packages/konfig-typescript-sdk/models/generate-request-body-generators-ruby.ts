@@ -116,6 +116,12 @@ export interface GenerateRequestBodyGeneratorsRuby {
      * @type {string}
      * @memberof GenerateRequestBodyGeneratorsRuby
      */
+    'language': GenerateRequestBodyGeneratorsRubyLanguageEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof GenerateRequestBodyGeneratorsRuby
+     */
     'moduleName': string;
     /**
      * 
@@ -136,4 +142,7 @@ export interface GenerateRequestBodyGeneratorsRuby {
      */
     'clientStateWithExamples'?: Array<GenerateRequestBodyGeneratorsJavaClientStateWithExamplesInner>;
 }
+
+type GenerateRequestBodyGeneratorsRubyLanguageEnum = 'ruby'
+
 

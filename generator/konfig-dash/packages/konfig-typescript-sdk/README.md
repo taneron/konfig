@@ -41,10 +41,10 @@ console.log(lintResponse);
 
 All URIs are relative to *https://api.konfigthis.com*
 
-Class | Method | HTTP request | Description
+Tag | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*LintingApi* | [**lint**](docs/LintingApi.md#lint) | **POST** /lint | Lint your OpenAPI Specification
-*SdkApi* | [**formatPython**](docs/SdkApi.md#formatPython) | **POST** /formatPython | Format Python Code
-*SdkApi* | [**generate**](docs/SdkApi.md#generate) | **POST** /generate | Generate SDKs
-*SpecificationsApi* | [**push**](docs/SpecificationsApi.md#push) | **POST** /push | Push your OpenAPI Specification to Konfig
+*Linting* | [**lint**](docs/LintingApi.md#lint) | **POST** /lint | Lint your OpenAPI Specification
+*SDK* | [**formatPython**](docs/SdkApi.md#formatPython) | **POST** /formatPython | Format Python Code
+*SDK* | [**generate**](docs/SdkApi.md#generate) | **POST** /generate | Generate SDKs
+*Specifications* | [**push**](docs/SpecificationsApi.md#push) | **POST** /push | Push your OpenAPI Specification to Konfig
 

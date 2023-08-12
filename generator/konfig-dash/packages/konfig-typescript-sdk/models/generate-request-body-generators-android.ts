@@ -109,6 +109,12 @@ export interface GenerateRequestBodyGeneratorsAndroid {
      */
     'test'?: GenerateRequestBodyGeneratorsAndroidTest;
     /**
+     * 
+     * @type {string}
+     * @memberof GenerateRequestBodyGeneratorsAndroid
+     */
+    'language': GenerateRequestBodyGeneratorsAndroidLanguageEnum;
+    /**
      * Uniquely identifies your JVM-based project (ex. \"com.acme\"). By default we publish packages under Konfig\'s group id of \"com.konfigthis\". If you would like to publish to your own group ID then create a Sonatype account (https://central.sonatype.org/publish/publish-guide/#initial-setup) and claim your group ID and add \"dphuang2\" to the list of users that can publish to your group ID.
      * @type {string}
      * @memberof GenerateRequestBodyGeneratorsAndroid
@@ -127,4 +133,7 @@ export interface GenerateRequestBodyGeneratorsAndroid {
      */
     'artifactId': string;
 }
+
+type GenerateRequestBodyGeneratorsAndroidLanguageEnum = 'android'
+
 

@@ -109,6 +109,12 @@ export interface GenerateRequestBodyGeneratorsObjc {
      */
     'test'?: GenerateRequestBodyGeneratorsAndroidTest;
     /**
+     * 
+     * @type {string}
+     * @memberof GenerateRequestBodyGeneratorsObjc
+     */
+    'language': GenerateRequestBodyGeneratorsObjcLanguageEnum;
+    /**
      * AcmeClient
      * @type {string}
      * @memberof GenerateRequestBodyGeneratorsObjc
@@ -133,4 +139,7 @@ export interface GenerateRequestBodyGeneratorsObjc {
      */
     'authorEmail': string;
 }
+
+type GenerateRequestBodyGeneratorsObjcLanguageEnum = 'objc'
+
 

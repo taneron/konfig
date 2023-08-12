@@ -115,6 +115,12 @@ export interface GenerateRequestBodyAdditionalGeneratorsValueAnyOf7 {
      */
     'test'?: GenerateRequestBodyGeneratorsAndroidTest;
     /**
+     * 
+     * @type {string}
+     * @memberof GenerateRequestBodyAdditionalGeneratorsValueAnyOf7
+     */
+    'language': GenerateRequestBodyAdditionalGeneratorsValueAnyOf7LanguageEnum;
+    /**
      * com.acme
      * @type {string}
      * @memberof GenerateRequestBodyAdditionalGeneratorsValueAnyOf7
@@ -129,5 +135,6 @@ export interface GenerateRequestBodyAdditionalGeneratorsValueAnyOf7 {
 }
 
 type GenerateRequestBodyAdditionalGeneratorsValueAnyOf7GeneratorEnum = 'kotlin'
+type GenerateRequestBodyAdditionalGeneratorsValueAnyOf7LanguageEnum = 'kotlin'
 
 

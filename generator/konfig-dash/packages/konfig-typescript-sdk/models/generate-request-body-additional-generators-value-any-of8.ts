@@ -115,6 +115,12 @@ export interface GenerateRequestBodyAdditionalGeneratorsValueAnyOf8 {
      */
     'test'?: GenerateRequestBodyGeneratorsAndroidTest;
     /**
+     * 
+     * @type {string}
+     * @memberof GenerateRequestBodyAdditionalGeneratorsValueAnyOf8
+     */
+    'language': GenerateRequestBodyAdditionalGeneratorsValueAnyOf8LanguageEnum;
+    /**
      * AcmeClient
      * @type {string}
      * @memberof GenerateRequestBodyAdditionalGeneratorsValueAnyOf8
@@ -141,5 +147,6 @@ export interface GenerateRequestBodyAdditionalGeneratorsValueAnyOf8 {
 }
 
 type GenerateRequestBodyAdditionalGeneratorsValueAnyOf8GeneratorEnum = 'objc'
+type GenerateRequestBodyAdditionalGeneratorsValueAnyOf8LanguageEnum = 'objc'
 
 
