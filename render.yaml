@@ -9,25 +9,25 @@ services:
     type: cron
     env: node
     schedule: "*/30 * * * *"
-    buildCommand: npm init -y; npm install konfig-cli
+    buildCommand: npm init -y
     repo: https://github.com/konfig-dev/splitit-web-sdks
-    startCommand: ./node_modules/.bin/konfig pull && ./node_modules/.bin/konfig push -o konfig-dev -r splitit-web-sdks -s swagger.json
+    startCommand: npm install konfig-cli && ./node_modules/.bin/konfig pull && ./node_modules/.bin/konfig push -o konfig-dev -r splitit-web-sdks -s swagger.json
   - name: humanloop-polling-v4
     type: cron
     schedule: "*/30 * * * *"
-    buildCommand: npm init -y; npm install konfig-cli
+    buildCommand: npm init -y
     env: node
     rootDir: v4
     repo: https://github.com/konfig-dev/humanloop-sdks
-    startCommand: ./node_modules/.bin/konfig pull && ./node_modules/.bin/konfig push -o konfig-dev -r humanloop-sdks -s openapi.json -x v4
+    startCommand: npm install konfig-cli && ./node_modules/.bin/konfig pull && ./node_modules/.bin/konfig push -o konfig-dev -r humanloop-sdks -s openapi.json -x v4
   - name: humanloop-polling-v4-alpha
     type: cron
     env: node
     schedule: "*/30 * * * *"
-    buildCommand: npm init -y; npm install konfig-cli
+    buildCommand: npm init -y
     rootDir: v4-alpha
     repo: https://github.com/konfig-dev/humanloop-sdks
-    startCommand: ./node_modules/.bin/konfig pull && ./node_modules/.bin/konfig push -o konfig-dev -r humanloop-sdks -s openapi.json -x v4-alpha
+    startCommand: npm install konfig-cli && ./node_modules/.bin/konfig pull && ./node_modules/.bin/konfig push -o konfig-dev -r humanloop-sdks -s openapi.json -x v4-alpha
 
   - name: konfigthis.com
     type: web
