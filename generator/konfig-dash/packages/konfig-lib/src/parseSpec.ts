@@ -1,4 +1,4 @@
-import * as fs from 'fs'
+import * as fs from 'fs-extra'
 import * as path from 'path'
 import * as os from 'os'
 import * as yaml from 'js-yaml'
@@ -84,7 +84,7 @@ export const parseSpec = async (rawSpecString: string): Promise<Spec> => {
   } catch (e) {
     // Let pass
   }
-  fs.rmSync(tmpDir, { recursive: true, force: true })
+  fs.removeSync(tmpDir)
   return {
     spec,
     $ref: parser.$refs,
