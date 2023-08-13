@@ -38,7 +38,11 @@ export const javaConfig = z.object({
   language: z.literal('java').default('java'),
   groupId: javaGroupId,
   packageName: z.string().describe('acme').optional(),
-  artifactId: z.string().describe('acme-java-sdk'),
+  artifactId: z
+    .string()
+    .describe(
+      `Example: "acme-java-sdk" (see https://maven.apache.org/guides/mini/guide-naming-conventions.html)`
+    ),
   removeKonfigBranding: z.boolean().optional(),
   gitlab,
   clientName: z.string(),
