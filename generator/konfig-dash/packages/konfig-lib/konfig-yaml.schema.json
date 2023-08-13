@@ -775,8 +775,16 @@
                   "const": "typescript",
                   "default": "typescript"
                 },
+                "packageJsonScripts": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "string"
+                  },
+                  "description": "A map of scripts to add to the generated package.json. This is useful for adding custom scripts that run tests or build the SDK."
+                },
                 "clientName": {
-                  "type": "string"
+                  "type": "string",
+                  "description": "The top-level client's name. (e.g. \"Acme\" in \"import { Acme } from 'acme-typescript-sdk'\")"
                 },
                 "npmName": {
                   "type": "string",
@@ -1691,6 +1699,9 @@
                   },
                   "language": {
                     "$ref": "#/definitions/konfigYaml/properties/generators/properties/typescript/properties/language"
+                  },
+                  "packageJsonScripts": {
+                    "$ref": "#/definitions/konfigYaml/properties/generators/properties/typescript/properties/packageJsonScripts"
                   },
                   "clientName": {
                     "$ref": "#/definitions/konfigYaml/properties/generators/properties/typescript/properties/clientName"
