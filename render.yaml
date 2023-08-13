@@ -84,6 +84,7 @@ services:
         value: 16
       - key: SKIP_INSTALL_DEPS
         value: true
+      - fromGroup: npm
     routes:
       - type: rewrite
         source: /.redwood/functions/*
@@ -109,6 +110,7 @@ services:
     buildCommand: yarn && yarn build && yarn rw build api
     startCommand: yarn rw deploy render api --prisma=false --data-migrate=false
     envVars:
+      - fromGroup: npm
       - fromGroup: aws
       - fromGroup: github
       - key: SESSION_SECRET
@@ -184,6 +186,10 @@ databases:
     plan: starter
 
 envVarGroups:
+  - name: npm
+    envVars:
+      - key: NPM_TOKEN
+        sync: false
   - name: aws
     envVars:
       - key: AWS_ACCESS_KEY_ID
