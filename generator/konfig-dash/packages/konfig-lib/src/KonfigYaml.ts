@@ -244,7 +244,12 @@ export const typescriptConfig = z.object({
     ),
   pagination: paginationConfigSchema.optional(),
   removeKonfigBranding: z.boolean().optional(),
-  useSecurityKeyParamNameAsPropertyName: z.boolean().optional(),
+  useSecurityKeyParamNameAsPropertyName: z
+    .boolean()
+    .optional()
+    .describe(
+      `Whether to use the security requirement's key as the property name. For example, if the security requirement is called "apiKey" but the "Header" key is "X-Api-Key" then setting this to true will make the parameter name "xApiKey".`
+    ),
   objectPropertyNamingConvention:
     objectPropertyNamingConvention.default('camelCase'),
   clientState,
