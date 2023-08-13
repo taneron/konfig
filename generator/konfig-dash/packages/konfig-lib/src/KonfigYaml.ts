@@ -228,7 +228,11 @@ export const typescriptConfig = z.object({
     .describe(
       'A map of scripts to add to the generated package.json. This is useful for adding custom scripts that run tests or build the SDK.'
     ),
-  clientName: z.string(),
+  clientName: z
+    .string()
+    .describe(
+      `The top-level client's name. (e.g. "Acme" in "import { Acme } from 'acme-typescript-sdk'")`
+    ),
   npmName: z.string().describe('acme-typescript-sdk'),
   pagination: paginationConfigSchema.optional(),
   removeKonfigBranding: z.boolean().optional(),
