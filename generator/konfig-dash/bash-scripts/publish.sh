@@ -5,7 +5,7 @@ PACKAGE_NAME=$(node -p "require('./package.json').name")
 PACKAGE_VERSION=$(node -p "require('./package.json').version")
 
 # Check if the version exists on npm using curl and extract HTTP status code
-RESPONSE=$(curl -sL -w '"%{http_code}"' "https://registry.npmjs.org/$PACKAGE_NAME/$PACKAGE_VERSION")
+RESPONSE=$(curl -sL -w "%{http_code}" -o /dev/null "https://registry.npmjs.org/$PACKAGE_NAME/$PACKAGE_VERSION")
 
 echo "RESPONSE: \"$RESPONSE\""
 
