@@ -13,6 +13,8 @@ jobs:
         node_version: [lts/-1, lts/*, latest]
       fail-fast: false
     runs-on: ${{ matrix.os }}
+    env:
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
     defaults:
       run:
         working-directory: generator/konfig-dash
