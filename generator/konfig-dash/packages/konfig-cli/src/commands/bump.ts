@@ -14,7 +14,7 @@ import { detectReleaseType } from '../util/detect-release-type'
 
 export default class Bump extends Command {
   static description =
-    'Automatically bump semantic version of SDKs. If a breaking change is detected then the major version will be bumped. Otherwise a minor verison will be bumped.'
+    'Automatically bump semantic version of SDKs. If a breaking change is detected then the major version will be bumped. Otherwise a minor version will be bumped.'
 
   static examples = ['<%= config.bin %> <%= command.id %>']
 
