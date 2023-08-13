@@ -55,7 +55,8 @@ function getOutputDir(
 }
 
 export default class Deploy extends Command {
-  static description = 'Generate SDKs'
+  static description =
+    'Generate SDKs. Expects a konfig.yaml file in the current directory.'
 
   static examples = ['<%= config.bin %> <%= command.id %>']
 
