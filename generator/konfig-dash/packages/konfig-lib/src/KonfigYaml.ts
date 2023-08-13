@@ -235,9 +235,13 @@ export const typescriptConfig = z.object({
   clientName: z
     .string()
     .describe(
-      `The top-level client's name. (e.g. "Acme" in "import { Acme } from 'acme-typescript-sdk'")`
+      `The top-level client's name. (e.g. 'Acme' in "import { Acme } from 'acme-typescript-sdk'")`
     ),
-  npmName: z.string().describe('acme-typescript-sdk'),
+  npmName: z
+    .string()
+    .describe(
+      `The name of the npm package (e.g. "acme-typescript-sdk" in "import { Acme } from 'acme-typescript-sdk'")`
+    ),
   pagination: paginationConfigSchema.optional(),
   removeKonfigBranding: z.boolean().optional(),
   useSecurityKeyParamNameAsPropertyName: z.boolean().optional(),
