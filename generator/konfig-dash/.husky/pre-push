@@ -6,9 +6,9 @@ while read local_ref local_sha remote_ref remote_sha
 do
     branch_name=$(echo $remote_ref | sed -E 's/^refs\/heads\///')
     if [ "$branch_name" != "main" ]; then
-        # Replace with your specific URL
-        curl -X GET "https://changeset-bot.konfigthis.com/api/webhook"
+        curl -X GET "https://changeset-bot.konfigthis.com/api/webhook" || {
+            echo "Failed to send HTTP GET request. Please check your connection to the internet."
+            exit 1
+        }
     fi
 done
-
-exit 1
