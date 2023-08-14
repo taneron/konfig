@@ -118,9 +118,9 @@ const getCommentId = (
   context.octokit.issues.listComments(params).then((comments) => {
     const changesetBotComment = comments.data.find(
       // TODO: find what the current user is in some way or something
-      (comment) =>
-        comment.user?.login === "changeset-bot[bot]" ||
-        comment.user?.login === "changesets-test-bot[bot]"
+      (comment) => {
+        return comment.user?.login.includes("changeset-bot[bot]")
+      }
     );
     return changesetBotComment ? changesetBotComment.id : null;
   });
