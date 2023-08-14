@@ -2,7 +2,7 @@
 import humanId from "human-id";
 import { Probot, Context } from "probot";
 import { EmitterWebhookEvent } from "@octokit/webhooks";
-import { getChangedPackages } from "./get-changed-packages";
+import { CHANGESET_FOLDER_LOCATION, getChangedPackages } from "./get-changed-packages";
 import {
   ReleasePlan,
   ComprehensiveRelease,
@@ -121,10 +121,11 @@ const hasChangesetBeenAdded = (
 ) =>
   changedFilesPromise.then((files) =>
     files.data.some(
-      (file) =>
-        file.status === "added" &&
-        /^\.changeset\/.+\.md$/.test(file.filename) &&
-        file.filename !== ".changeset/README.md"
+      (file) => {
+        return file.status === "added" &&
+        /\.changeset\/.+\.md$/.test(file.filename) &&
+        !file.filename.includes(".changeset/README.md")
+      }
     )
   );
 
@@ -200,7 +201,7 @@ export default (app: Probot) => {
           context.payload.pull_request.head.repo.html_url
         }/new/${
           context.payload.pull_request.head.ref
-        }?filename=.changeset/${humanId({
+        }?filename=${CHANGESET_FOLDER_LOCATION}/${humanId({
           separator: "-",
           capitalize: false,
         })}.md&value=${getNewChangesetTemplate(

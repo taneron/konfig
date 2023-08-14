@@ -9,6 +9,9 @@ import { parse as parseConfig } from "@changesets/config";
 import { PreState, NewChangeset } from "@changesets/types";
 import parseChangeset from "@changesets/parse";
 
+export const ROOT_PACKAGE_DIRECTORY = "generator/konfig-dash"
+export const CHANGESET_FOLDER_LOCATION = `${ROOT_PACKAGE_DIRECTORY}/.changeset`
+
 export let getChangedPackages = async ({
   owner,
   repo,
@@ -68,8 +71,8 @@ export let getChangedPackages = async ({
     };
   }
 
-  let rootPackageJsonContentsPromise = fetchJsonFile("package.json");
-  let configPromise: Promise<any> = fetchJsonFile(".changeset/config.json");
+  let rootPackageJsonContentsPromise = fetchJsonFile(`${ROOT_PACKAGE_DIRECTORY}/package.json`);
+  let configPromise: Promise<any> = fetchJsonFile(`${CHANGESET_FOLDER_LOCATION}/config.json`);
 
   let tree = await octokit.git.getTree({
     owner,
@@ -91,11 +94,11 @@ export let getChangedPackages = async ({
       potentialWorkspaceDirectories.push(dirPath);
     } else if (item.path === "pnpm-workspace.yaml") {
       isPnpm = true;
-    } else if (item.path === ".changeset/pre.json") {
-      preStatePromise = fetchJsonFile(".changeset/pre.json");
+    } else if (item.path.includes(".changeset/pre.json")) {
+      preStatePromise = fetchJsonFile(`${CHANGESET_FOLDER_LOCATION}/pre.json`);
     } else if (
-      item.path !== ".changeset/README.md" &&
-      item.path.startsWith(".changeset") &&
+      !item.path.includes(".changeset/README.md") &&
+      item.path.includes(".changeset") &&
       item.path.endsWith(".md") &&
       changedFiles.includes(item.path)
     ) {
@@ -167,7 +170,7 @@ export let getChangedPackages = async ({
     ) {
       throw new Error("globs are not valid: " + JSON.stringify(tool.globs));
     }
-    let matches = micromatch(potentialWorkspaceDirectories, tool.globs);
+    let matches = micromatch(potentialWorkspaceDirectories, tool.globs.map((glob) => `${ROOT_PACKAGE_DIRECTORY}/${glob}`));
 
     packages.packages = await Promise.all(
       matches.map((dir) => getPackage(dir))
