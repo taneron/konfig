@@ -63,6 +63,15 @@ Latest commit: ${commitSha}
 
 Merging this PR will not cause a version bump for any packages. If these changes should not result in a new version, you're good to go. **If these changes should result in a version bump, you need to add a changeset.**
 
+How to add a changeset:
+
+\`\`\`bash
+# Change CWD to konfig-dash because it is the root of NPM packages
+cd generator/konfig-dash
+# Add a changeset
+yarn changeset
+\`\`\`
+
 ${getReleasePlanMessage(releasePlan)}
 
 [Click here to learn what changesets are, and how to add one](https://github.com/changesets/changesets/blob/main/docs/adding-a-changeset.md).
