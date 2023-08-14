@@ -98,6 +98,20 @@ services:
         source: /*
         destination: /index.html
 
+  - name: konfig-changeset-bot
+    type: web
+    plan: free
+    env: node
+    region: oregon
+    repo: https://github.com/konfig-dev/konfig
+    rootDir: generator/konfig-changeset-bot
+    domains:
+      - changeset-bot.konfigthis.com
+    buildCommand: yarn; yarn build
+    startCommand: yarn start
+    envVars:
+      - fromGroup: konfig-changeset-bot
+
   - name: konfig-api
     type: web
     plan: starter
@@ -186,6 +200,18 @@ databases:
     plan: starter
 
 envVarGroups:
+  - name: konfig-changeset-bot
+    envVars:
+      - key: APP_ID
+        sync: false
+      - key: GITHUB_CLIENT_ID
+        sync: false
+      - key: GITHUB_CLIENT_SECRET
+        sync: false
+      - key: PRIVATE_KEY
+        sync: false
+      - key: WEBHOOK_SECRET
+        sync: false
   - name: npm
     envVars:
       - key: NPM_TOKEN
