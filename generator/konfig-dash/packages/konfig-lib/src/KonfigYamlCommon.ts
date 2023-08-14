@@ -52,7 +52,12 @@ export const KonfigYamlCommon = z
     fixConfig: fixConfig.optional(),
     filterQueryParams: z.string().array().optional(),
     filterTags: z.array(z.string()).optional(),
-    filterModels: z.array(z.string()).optional(),
+    filterModels: z
+      .array(z.string())
+      .optional()
+      .describe(
+        "List of model names to filter out. This is useful if you don't want to generate a model for a specific schema."
+      ),
     filterRequestBodies: z.array(z.string()).optional(),
     attachNullabletoAllResponseSchemas: z.boolean().optional(),
     validateRequiredPropertiesAndParametersAreNonEmpty: z.boolean().optional(),
