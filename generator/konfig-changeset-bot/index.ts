@@ -75,7 +75,7 @@ const getApproveMessage = (
   commitSha: string,
   addChangesetUrl: string,
   releasePlan: ReleasePlan | null
-) => `###  🦋  Changeset detected
+) => `###  ✅  Changeset detected
 
 Latest commit: ${commitSha}
 
