@@ -8,7 +8,7 @@ import {
   KonfigYamlAdditionalGeneratorConfig,
 } from 'konfig-lib'
 import waiton from 'wait-on'
-import kill from 'kill-port'
+import kill from 'konfig-kill-port'
 import path from 'path'
 import { parseKonfigYaml } from './parse-konfig-yaml'
 import { parseFilterFlag } from './parseFilterFlag'
