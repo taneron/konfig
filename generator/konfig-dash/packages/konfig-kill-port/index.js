@@ -37,7 +37,7 @@ module.exports = function (port, method = 'tcp') {
 		})
 	}
 
-	return sh(`lsof -i${port} -P`).then((res) => {
+	return sh(`lsof -i:${port} -P`).then((res) => {
 		const { stdout } = res
 		if (!stdout) return res
 		const lines = stdout.split('\n')
