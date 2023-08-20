@@ -1,6 +1,7 @@
 import { z } from './zod'
 import { requiredEnvironmentVariablesConfig } from './TestConfig'
 import { jsonSchema } from './util/json-schema'
+import chroma from 'chroma-js'
 
 const propertyName = z.string().min(1)
 const typeName = z.string().min(1)
@@ -47,8 +48,31 @@ export const optionalParameters = z
   client state, and implement a request hook to attach the "version" client
   state to the operation.`)
 
+export const primaryColor = z
+  .string()
+  .refine(
+    (value) => {
+      try {
+        chroma(value)
+        return true
+      } catch (e) {
+        return false
+      }
+    },
+    {
+      message: `"primaryColor" must be a valid color string representation (as supported in CSS)`,
+    }
+  )
+  .optional()
+  .describe("Primary color to be used in Konfig's API Portal")
+
 export const KonfigYamlCommon = z
   .object({
+    primaryColor,
+    portalTitle: z
+      .string()
+      .optional()
+      .describe("Title to be used in Konfig's API Portal"),
     defaultChangesetBumpType: z
       .enum(['major', 'minor', 'patch', 'prerelease'])
       .optional()
