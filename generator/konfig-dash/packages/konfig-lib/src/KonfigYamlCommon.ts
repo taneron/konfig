@@ -69,6 +69,10 @@ export const primaryColor = z
 export const KonfigYamlCommon = z
   .object({
     primaryColor,
+    portalTitle: z
+      .string()
+      .optional()
+      .describe("Title to be used in Konfig's API Portal"),
     defaultChangesetBumpType: z
       .enum(['major', 'minor', 'patch', 'prerelease'])
       .optional()
