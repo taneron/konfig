@@ -14,17 +14,17 @@ new Petstore().store.placeOrder({
 ```
 
 <CH.Section>
-To [build the SDK](focus://1[1:11]) and [run the refactored implementation](focus://1[16:32]), execute the following command.
+To [build the SDK](focus://1[19:36]) and [run the refactored implementation](focus://1[51:73]), execute the following command.
 
 <CH.Code showCopyButton>
 ```shell Terminal
-konfig test && ts-node make-request.ts
+cd typescript/ && yarn && yarn build && cd ../ && ts-node make-request.ts
 ```
 </CH.Code>
 </CH.Section>
 
 <Admonition type="note">
-We need to run `konfig test` to compile the TypeScript SDK to JavaScript.
+We need to run `yarn && yarn build` to compile the TypeScript SDK to JavaScript.
 </Admonition>
 
 This time, we caught an error at compile time that tells us `quantity` should be a number.

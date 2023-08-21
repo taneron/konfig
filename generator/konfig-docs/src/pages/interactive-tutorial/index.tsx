@@ -180,7 +180,7 @@ const steps: Step[] = [
         });
         return true;
       }
-      return `Did you run "konfig test"?`;
+      return `Did you run "yarn && yarn build" inside the "typescript/" directory?`;
     },
   },
   {
