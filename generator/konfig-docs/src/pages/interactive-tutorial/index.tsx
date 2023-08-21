@@ -268,7 +268,7 @@ export default function LiveDemo({ sales }: { sales?: boolean }) {
         <div
           className={clsx(
             sales ? "w-full" : "w-3/5",
-            "sticky h-[calc(100vh-60px)] top-[60px]"
+            "sticky h-[calc(100vh-var(--ifm-navbar-height))] top-[var(--ifm-navbar-height)]"
           )}
         >
           <div id="ide" className="w-full h-full bg-[#14181f]" />
