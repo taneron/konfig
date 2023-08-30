@@ -7,7 +7,7 @@
     "dev:next": "next dev",
     "dev:prce": "cd ../konfig-python-remote-code-executor && ./dev.sh",
     "dev": "concurrently \"yarn:redis\" \"yarn:dev:next\" \"yarn:dev:prce\"",
-    "build": "next build",
+    "build": "cd ../konfig-dash && yarn && cd packages/konfig-lib && yarn; yarn build && cd ../../../konfig-next-app && next build",
     "start:next": "next start",
     "start": "concurrently \"yarn:redis\" \"yarn:start:next\" \"yarn:dev:prce\"",
     "lint": "next lint"
