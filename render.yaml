@@ -90,33 +90,33 @@ services:
       - key: PORT
         value: 10000
 
-  - name: konfig-dash
-    type: web
-    env: static
-    buildCommand: yarn install && yarn build && yarn rw deploy render web
-    staticPublishPath: ./web/dist
-    repo: https://github.com/konfig-dev/konfig
-    rootDir: generator/konfig-dash
-    domains:
-      - dash.konfigthis.com
-    envVars:
-      - key: NODE_VERSION
-        value: 16
-      - key: SKIP_INSTALL_DEPS
-        value: true
-      - fromGroup: npm
-    routes:
-      - type: rewrite
-        source: /.redwood/functions/*
-        #####
-        # NOTE: replace destination api url after first deploy to Render
-        # example:
-        #   destination: https://myredwoodproject-api.onrender.com/*
-        #####
-        destination: https://api.konfigthis.com/*
-      - type: rewrite
-        source: /*
-        destination: /index.html
+  # - name: konfig-dash
+  #   type: web
+  #   env: static
+  #   buildCommand: yarn install && yarn build && yarn rw deploy render web
+  #   staticPublishPath: ./web/dist
+  #   repo: https://github.com/konfig-dev/konfig
+  #   rootDir: generator/konfig-dash
+  #   domains:
+  #     - dash.konfigthis.com
+  #   envVars:
+  #     - key: NODE_VERSION
+  #       value: 16
+  #     - key: SKIP_INSTALL_DEPS
+  #       value: true
+  #     - fromGroup: npm
+  #   routes:
+  #     - type: rewrite
+  #       source: /.redwood/functions/*
+  #       #####
+  #       # NOTE: replace destination api url after first deploy to Render
+  #       # example:
+  #       #   destination: https://myredwoodproject-api.onrender.com/*
+  #       #####
+  #       destination: https://api.konfigthis.com/*
+  #     - type: rewrite
+  #       source: /*
+  #       destination: /index.html
 
   - name: konfig-changeset-bot
     type: web
