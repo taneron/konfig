@@ -99,9 +99,9 @@ export function LinksGroup({
       inline: 'nearest',
     })
   }, [])
-  const items = (hasLinks ? links : []).map((link) => {
+  const items = (hasLinks ? links : []).map((link, i) => {
     return (
-      <Box className={classes.linkWrapper} key={link.label}>
+      <Box className={classes.linkWrapper} key={`${link.label}:${i}`}>
         <NavLink<typeof Link>
           onClick={() => setNavbarOpen(false)}
           ref={ref}
