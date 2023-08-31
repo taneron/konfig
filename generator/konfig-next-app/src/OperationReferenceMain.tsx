@@ -12,6 +12,7 @@ import {
   useMantineColorScheme,
   Paper,
   MediaQuery,
+  Alert,
 } from '@mantine/core'
 import { HttpMethodBadge } from './components/HttpMethodBadge'
 import { OperationForm } from './components/OperationForm'
@@ -36,7 +37,7 @@ import { CodeGeneratorTypeScript } from './utils/code-generator-typescript'
 import { ExecuteOutput } from './components/ExecuteOutput'
 import { tryJsonOutput } from './utils/try-json-output'
 import { tryTableOutput } from './utils/try-table-output'
-import { IconTerminal } from '@tabler/icons-react'
+import { IconAlertCircle, IconTerminal } from '@tabler/icons-react'
 import { deepmerge } from './utils/deepmerge'
 import { useMediaQuery } from '@mantine/hooks'
 
@@ -195,6 +196,17 @@ export function OperationReferenceMain({
               <Title order={2}>
                 {operation.operation.summary ?? operation.path}
               </Title>
+              {operation.operation.deprecated && (
+                <Alert
+                  p="xs"
+                  radius="xs"
+                  icon={<IconAlertCircle size="1rem" />}
+                  title="Deprecated"
+                  color="red"
+                >
+                  Refrain from usage of this operation
+                </Alert>
+              )}
               <Group>
                 <HttpMethodBadge httpMethod={operation.method} />
                 <Code>{operation.path}</Code>
