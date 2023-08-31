@@ -25,7 +25,7 @@ export const handler = async (event: APIGatewayEvent, context: Context) => {
     : null
 
   const generateConfigs = await db.generateConfig.findMany({
-    take: 500,
+    take: 200,
     orderBy: { created: 'desc' },
     select: {
       openApiSpecification: true,
