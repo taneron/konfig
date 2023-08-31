@@ -49,9 +49,11 @@ const useStyles = createStyles((theme) => ({
 export function ReferenceNavbar({
   navbarData,
   setOpened,
+  basePath,
 }: {
   navbarData: NavbarDataItem[]
   setOpened: Dispatch<SetStateAction<boolean>>
+  basePath: string
 }) {
   const { classes } = useStyles()
   const links = navbarData.map((item) => (

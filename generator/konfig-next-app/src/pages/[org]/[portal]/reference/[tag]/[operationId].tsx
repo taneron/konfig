@@ -319,7 +319,11 @@ const Operation = ({
             width={{ lg: 350 }}
             sx={{ overflowY: 'scroll' }}
           >
-            <ReferenceNavbar setOpened={setOpened} navbarData={navbarData} />
+            <ReferenceNavbar
+              basePath={basePath}
+              setOpened={setOpened}
+              navbarData={navbarData}
+            />
           </Navbar>
         }
         header={
