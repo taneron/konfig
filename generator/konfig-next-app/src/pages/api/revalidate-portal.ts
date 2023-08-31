@@ -44,12 +44,12 @@ export default async function handler(
 
   for (const path of toRevalidate) {
     try {
-      await res.revalidate(path)
+      await res.revalidate(path, { unstable_onlyGenerated: true })
       revalidated.push(path)
     } catch (e) {
       if (e instanceof Error) {
         if (e.message.includes('404')) {
-          console.warn(`Tried to revalidate ${path} but got 404`)
+          console.log(`Tried to revalidate ${path} but got 404`)
           continue
         }
       }
