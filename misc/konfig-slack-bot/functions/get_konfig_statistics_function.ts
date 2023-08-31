@@ -47,9 +47,11 @@ export default SlackFunction(
       ? "http://dev.konfigthis.com:8911/statistics"
       : "https://api.konfigthis.com/statistics";
 
-    const statistics = await (await fetch(apiUrl, {
-      headers: { "secret": env["SECRET"] },
-    })).json();
+    const statistics = await (
+      await fetch(apiUrl, {
+        headers: { secret: env["SECRET"] },
+      })
+    ).json();
 
     const date = new Date();
     const formattedDate = date.toLocaleString("en-US", {
@@ -63,13 +65,19 @@ export default SlackFunction(
     const userDiff: number = statistics.userCountDiffSinceLastQuery;
     const generationDiff: number = statistics.generationCountDiffSinceLastQuery;
 
-    const userChangeEmoji = userDiff > 0
-      ? ":smile:"
-      : (userDiff === 0 ? ":neutral_face:" : ":frowning:");
+    const userChangeEmoji =
+      userDiff > 0
+        ? ":smile:"
+        : userDiff === 0
+        ? ":neutral_face:"
+        : ":frowning:";
 
-    const generationChangeEmoji = generationDiff > 0
-      ? ":smile:"
-      : (generationDiff === 0 ? ":neutral_face:" : ":frowning:");
+    const generationChangeEmoji =
+      generationDiff > 0
+        ? ":smile:"
+        : generationDiff === 0
+        ? ":neutral_face:"
+        : ":frowning:";
 
     const message = `${
       userDiff > 0
@@ -84,18 +92,26 @@ ${userChangeEmoji} User change: \`${
 ${generationChangeEmoji} SDKs generated change: \`${
       generationDiff > 0 ? "+" : generationDiff < 0 ? "-" : ""
     }${generationDiff}\`
-
-Last 5 users to sign up:
+Last 5 distinct APIs to generate SDKs:
 \`\`\`
-${JSON.stringify(statistics.last5UsersSignedUp, undefined, 2)}
-\`\`\`
-
-Last 5 users to generate SDKs:
-\`\`\`
-${JSON.stringify(statistics.last5UsersToGenerate, undefined, 2)}
+${JSON.stringify(
+  statistics.last5ApisGeneratedForWithServerUrlDistinct,
+  undefined,
+  2
+)}
 \`\`\`
 `;
 
+    // Last 5 users to sign up:
+    // \`\`\`
+    // ${JSON.stringify(statistics.last5UsersSignedUp, undefined, 2)}
+    // \`\`\`
+
+    // Last 5 users to generate SDKs:
+    // \`\`\`
+    // ${JSON.stringify(statistics.last5UsersToGenerate, undefined, 2)}
+    // \`\`\`
+
     return { outputs: { message } };
-  },
+  }
 );

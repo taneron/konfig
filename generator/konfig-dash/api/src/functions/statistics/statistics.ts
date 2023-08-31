@@ -1,6 +1,7 @@
 import type { APIGatewayEvent, Context } from 'aws-lambda'
 import { logger } from 'src/lib/logger'
 import { db } from 'src/lib/db'
+import * as yaml from 'js-yaml'
 
 const SECRET = '2b2013c9-8d52-48ac-a917-d0ec539768ca'
 
@@ -22,6 +23,48 @@ export const handler = async (event: APIGatewayEvent, context: Context) => {
   const userCountDiffSinceLastQuery = lastQuery
     ? userCount - lastQuery?.userCount
     : null
+
+  const generateConfigs = await db.generateConfig.findMany({
+    orderBy: { created: 'desc' },
+    select: {
+      openApiSpecification: true,
+      created: true,
+    },
+  })
+
+  const openapis = generateConfigs.map(({ openApiSpecification }) =>
+    yaml.load(openApiSpecification)
+  )
+
+  // map openapis to first server url in OAS
+  const last5ApisGeneratedForWithServerUrl = openapis
+    .map((api, i) => {
+      if (typeof api !== 'object') return null
+      if (api === null) return null
+      if (!('servers' in api)) return null
+      const servers = api['servers'] as unknown[]
+      if (servers.length === 0) return null
+      const server = servers[0]
+      if (typeof server !== 'object') return null
+      if (server === null) return null
+      if (!('url' in server)) return null
+      const serverUrl = server.url
+      if (typeof serverUrl !== 'string') return null
+      return {
+        serverUrl,
+        created: generateConfigs[i].created,
+      }
+    })
+    .filter((value) => value !== null)
+
+  // find first 5 distinct values in last5ApisGeneratedForWithServerUrl by serverUrl
+  const last5ApisGeneratedForWithServerUrlDistinct =
+    last5ApisGeneratedForWithServerUrl
+      .filter(
+        (value, index, self) =>
+          self.findIndex((v) => v?.serverUrl === value?.serverUrl) === index
+      )
+      .slice(0, 5)
 
   const last5UsersSignedUp = await db.user.findMany({
     take: 5,
@@ -64,6 +107,7 @@ export const handler = async (event: APIGatewayEvent, context: Context) => {
       generationCount,
       userCountDiffSinceLastQuery,
       generationCountDiffSinceLastQuery,
+      last5ApisGeneratedForWithServerUrlDistinct,
       last5UsersSignedUp,
       last5UsersToGenerate,
     }),
