@@ -53,12 +53,16 @@ export function OperationReferenceMain({
   operation,
   konfigYaml,
   basePath,
+  owner,
+  repo,
 }: Pick<
   StaticProps,
   | 'pathParameters'
   | 'queryParameters'
   | 'headerParameters'
   | 'cookieParameters'
+  | 'owner'
+  | 'repo'
   | 'requestBodyProperties'
   | 'requestBodyRequired'
   | 'responses'
@@ -94,6 +98,8 @@ export function OperationReferenceMain({
     parameters: parameters,
     securitySchemes,
     clientState,
+    owner,
+    repo,
     hideSecurity,
   })
 
@@ -161,6 +167,7 @@ export function OperationReferenceMain({
             const result = await eval(wrapped)
             setResult(result)
           } catch (e) {
+            console.error(e)
             if (
               typeof e === 'object' &&
               e !== null &&
@@ -179,7 +186,7 @@ export function OperationReferenceMain({
           } finally {
             if (typeof window !== 'undefined') {
               window.localStorage.setItem(
-                FORM_VALUES_LOCAL_STORAGE_KEY,
+                FORM_VALUES_LOCAL_STORAGE_KEY({ owner, repo }),
                 JSON.stringify(values)
               )
             }

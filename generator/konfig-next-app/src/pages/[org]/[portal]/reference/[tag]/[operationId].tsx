@@ -14,7 +14,7 @@ import {
 } from '@mantine/core'
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next'
 import { useState } from 'react'
-import { ReferenceNavbar } from '@/components/ReferenceNavbar'
+import { NAVBAR_WIDTH, ReferenceNavbar } from '@/components/ReferenceNavbar'
 import {
   GithubResources,
   githubGetReferenceResources,
@@ -34,6 +34,7 @@ import { NavbarDataItem } from '@/components/LinksGroup'
 import { OperationReferenceMain } from '@/OperationReferenceMain'
 import Script from 'next/script'
 import Head from 'next/head'
+import { generateDemosDataFromGithub } from '@/utils/generate-demos-from-github'
 
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
@@ -57,6 +58,8 @@ export type StaticProps = Omit<GithubResources, 'spec'> & {
   operation: OperationObject
   basePath: string
   title: string
+  owner: string
+  repo: string
   pathParameters: Parameter[]
   queryParameters: Parameter[]
   headerParameters: Parameter[]
@@ -66,6 +69,7 @@ export type StaticProps = Omit<GithubResources, 'spec'> & {
   responses: Record<string, ResponseObject>
   securityRequirements: Record<string, string[]> | null
   securitySchemes: Record<string, SecurityScheme> | null
+  hideDemoTab: boolean
 }
 
 export const getStaticProps: GetStaticProps<StaticProps> = async (ctx) => {
@@ -87,6 +91,11 @@ export const getStaticProps: GetStaticProps<StaticProps> = async (ctx) => {
     throw Error('Got unexpected array type for parameters')
 
   const { spec, ...props } = await githubGetReferenceResources({ owner, repo })
+
+  const demos = await generateDemosDataFromGithub({
+    orgId: owner,
+    portalId: repo,
+  })
 
   if (spec.specDereferenced === null) throw Error('specDereferenced is null')
 
@@ -249,9 +258,17 @@ export const getStaticProps: GetStaticProps<StaticProps> = async (ctx) => {
       requestBody,
       pathParameters,
       queryParameters,
+      owner,
+      repo,
       headerParameters,
       cookieParameters,
       requestBodyProperties,
+      hideDemoTab:
+        demos.result === 'error'
+          ? true
+          : demos.portal.demos.length === 0
+          ? true
+          : false,
       requestBodyRequired,
       securityRequirements,
       securitySchemes,
@@ -271,9 +288,12 @@ const Operation = ({
   requestBodyProperties,
   requestBodyRequired,
   securityRequirements,
+  hideDemoTab,
   securitySchemes,
   basePath,
   operation,
+  owner,
+  repo,
   responses,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
   const { colors } = useMantineTheme()
@@ -312,11 +332,9 @@ const Operation = ({
         asideOffsetBreakpoint="lg"
         navbar={
           <Navbar
-            p="md"
-            pb={0}
             hiddenBreakpoint="lg"
             hidden={!opened}
-            width={{ lg: 350 }}
+            width={{ lg: NAVBAR_WIDTH }}
             sx={{ overflowY: 'scroll' }}
           >
             <ReferenceNavbar
@@ -342,13 +360,18 @@ const Operation = ({
                 height: '45%',
               }}
             >
-              <HeaderTabs currentTab={TABS.reference} />
+              <HeaderTabs
+                hideDemoTab={hideDemoTab}
+                currentTab={TABS.reference}
+              />
               <Group h="100%"></Group>
             </Box>
           </Header>
         }
       >
         <OperationReferenceMain
+          owner={owner}
+          repo={repo}
           konfigYaml={konfigYaml}
           pathParameters={pathParameters}
           queryParameters={queryParameters}

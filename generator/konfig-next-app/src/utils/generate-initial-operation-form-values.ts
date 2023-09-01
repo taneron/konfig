@@ -5,13 +5,21 @@ import { StaticProps } from '@/pages/[org]/[portal]/reference/[tag]/[operationId
 import { getInputPlaceholder } from '@/components/OperationSecuritySchemeForm'
 import { deepmerge } from './deepmerge'
 
-export const FORM_VALUES_LOCAL_STORAGE_KEY = 'form-values'
+export const FORM_VALUES_LOCAL_STORAGE_KEY = ({
+  owner,
+  repo,
+}: {
+  owner: string
+  repo: string
+}) => `form-values-${owner}-${repo}`
 export const PARAMETER_FORM_NAME_PREFIX = `parameters` as const
 export const SECURITY_FORM_NAME_PREFIX = `security` as const
 export const SECURITY_FORM_VALUE_SUFFIX = 'value' as const
 export const SECURITY_TYPE_PROPERTY = 'type'
 export const API_KEY_IN_PROPERTY = 'in'
 export const API_KEY_NAME_PROPERTY = 'key'
+export const OAUTH2_CLIENT_ID_PROPERTY = 'clientId'
+export const OAUTH2_CLIENT_SECRET_PROPERTY = 'clientSecret'
 export const API_KEY_VALUE_PROPERTY = 'value'
 export const CLIENT_STATE_VALUE_PROPERTY = 'value'
 export const CLIENT_STATE_NAME_PROPERTY = 'name'
@@ -29,6 +37,11 @@ export type FormDataType = {
   [PARAMETER_FORM_NAME_PREFIX]: FormInputValues
   [SECURITY_FORM_NAME_PREFIX]: Record<
     string,
+    | {
+        [SECURITY_TYPE_PROPERTY]: 'oauth2-client-credentials'
+        [OAUTH2_CLIENT_ID_PROPERTY]: string
+        [OAUTH2_CLIENT_SECRET_PROPERTY]: string
+      }
     | {
         [SECURITY_TYPE_PROPERTY]: 'apiKey'
         [API_KEY_IN_PROPERTY]: string
@@ -53,12 +66,16 @@ export function generateInitialFormValues({
   clientState,
   hideSecurity,
   doNotRestoreFromStorage,
+  owner,
+  repo,
 }: {
   parameters: Parameter[]
   securitySchemes: StaticProps['securitySchemes']
   clientState: string[]
   hideSecurity: { name: string }[]
   doNotRestoreFromStorage?: boolean
+  owner: string
+  repo: string
 }): FormValues {
   let initialValues: FormValues['initialValues'] = {
     parameters: {},
@@ -104,6 +121,29 @@ export function generateInitialFormValues({
           },
         }
         validate = deepmerge(validation, validate)
+      } else if (
+        securityScheme.type === 'oauth2' &&
+        'flows' in securityScheme &&
+        securityScheme.flows.clientCredentials !== undefined
+      ) {
+        initialValues.security[name] = {
+          [SECURITY_TYPE_PROPERTY]: 'oauth2-client-credentials',
+          [OAUTH2_CLIENT_ID_PROPERTY]: '',
+          [OAUTH2_CLIENT_SECRET_PROPERTY]: '',
+        }
+        const validation: FormValues['validate'] = {
+          [SECURITY_FORM_NAME_PREFIX]: {
+            [name]: {
+              [OAUTH2_CLIENT_SECRET_PROPERTY]: (value) => {
+                return isNotEmpty(`OAuth Client Secret is required`)(value)
+              },
+              [OAUTH2_CLIENT_ID_PROPERTY]: (value) => {
+                return isNotEmpty(`OAuth Client ID is required`)(value)
+              },
+            },
+          },
+        }
+        validate = deepmerge(validation, validate)
       }
     }
     for (const state of clientState) {
@@ -126,7 +166,7 @@ export function generateInitialFormValues({
   }
   if (typeof window !== 'undefined' && doNotRestoreFromStorage !== true) {
     const storedValue = window.localStorage.getItem(
-      FORM_VALUES_LOCAL_STORAGE_KEY
+      FORM_VALUES_LOCAL_STORAGE_KEY({ owner, repo })
     )
     if (storedValue) {
       try {
