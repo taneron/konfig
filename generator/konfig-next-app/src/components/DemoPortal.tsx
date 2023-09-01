@@ -15,7 +15,7 @@ import {
 } from '@mantine/core'
 import { IconBug, IconChevronRight } from '@tabler/icons-react'
 import { observer } from 'mobx-react'
-import { useState, createContext } from 'react'
+import { useState, createContext, Fragment } from 'react'
 import DemoMarkdown, { DemoState } from './DemoMarkdown'
 import { makeAutoObservable } from 'mobx'
 import { useRouter } from 'next/router'
@@ -268,7 +268,7 @@ export const DemoPortal = observer(
                     demoId: nextDemoState.id,
                   }
             return (
-              <>
+              <Fragment key={i}>
                 {state.currentDemoIndex === i && (
                   <Head>
                     <title>{demo.name}</title>
@@ -293,7 +293,7 @@ export const DemoPortal = observer(
                     <DemoSocials socials={state.socials} />
                   </Box>
                 </Box>
-              </>
+              </Fragment>
             )
           })}
         </AppShell>
