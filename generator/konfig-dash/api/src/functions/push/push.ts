@@ -242,7 +242,7 @@ export const handler = async (event: APIGatewayEvent, context: Context) => {
   await repo.octokit.rest.pulls.requestReviewers({
     ...repo,
     pull_number: pullRequest.data.number,
-    reviewers: ['dphuang2'],
+    reviewers: ['konfig-publisher'],
   })
 
   const response: PushResponseBodyType = {
