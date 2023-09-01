@@ -248,8 +248,6 @@ export const getStaticProps: GetStaticProps<StaticProps> = async (ctx) => {
       notFound: true,
     }
 
-  console.log(demos)
-
   return {
     props: {
       ...props,
