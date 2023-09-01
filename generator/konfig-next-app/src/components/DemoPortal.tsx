@@ -194,7 +194,11 @@ export const DemoPortal = observer(
               hiddenBreakpoint="sm"
               hidden={!opened}
               width={{ sm: 225, lg: 325 }}
-              sx={{ overflowY: 'scroll' }}
+              sx={{
+                overflowY: 'scroll',
+                height:
+                  'calc(100% - var(--mantine-header-height, 0rem) - var(--mantine-footer-height, 0rem));',
+              }}
             >
               <Navbar.Section>
                 <Stack spacing="xs">

@@ -336,7 +336,11 @@ const Operation = ({
             hiddenBreakpoint="lg"
             hidden={!opened}
             width={{ lg: NAVBAR_WIDTH }}
-            sx={{ overflowY: 'scroll' }}
+            sx={{
+              overflowY: 'scroll',
+              height:
+                'calc(100% - var(--mantine-header-height, 0rem) - var(--mantine-footer-height, 0rem));',
+            }}
           >
             <ReferenceNavbar
               basePath={basePath}
