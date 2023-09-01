@@ -27,6 +27,7 @@ import {
   SchemaObject,
   ResponseObject,
   SecurityScheme,
+  Demo,
 } from 'konfig-lib'
 import { Parameter } from '@/components/OperationParameter'
 import { sortParametersByRequired } from '@/utils/sort-parameters-by-required'
@@ -59,6 +60,7 @@ export type StaticProps = Omit<GithubResources, 'spec'> & {
   basePath: string
   title: string
   owner: string
+  demos: string[] // demo ids
   repo: string
   pathParameters: Parameter[]
   queryParameters: Parameter[]
@@ -69,7 +71,6 @@ export type StaticProps = Omit<GithubResources, 'spec'> & {
   responses: Record<string, ResponseObject>
   securityRequirements: Record<string, string[]> | null
   securitySchemes: Record<string, SecurityScheme> | null
-  hideDemoTab: boolean
 }
 
 export const getStaticProps: GetStaticProps<StaticProps> = async (ctx) => {
@@ -247,6 +248,8 @@ export const getStaticProps: GetStaticProps<StaticProps> = async (ctx) => {
       notFound: true,
     }
 
+  console.log(demos)
+
   return {
     props: {
       ...props,
@@ -263,12 +266,10 @@ export const getStaticProps: GetStaticProps<StaticProps> = async (ctx) => {
       headerParameters,
       cookieParameters,
       requestBodyProperties,
-      hideDemoTab:
+      demos:
         demos.result === 'error'
-          ? true
-          : demos.portal.demos.length === 0
-          ? true
-          : false,
+          ? []
+          : demos.portal.demos.map((demo) => demo.id),
       requestBodyRequired,
       securityRequirements,
       securitySchemes,
@@ -286,9 +287,9 @@ const Operation = ({
   cookieParameters,
   title,
   requestBodyProperties,
+  demos,
   requestBodyRequired,
   securityRequirements,
-  hideDemoTab,
   securitySchemes,
   basePath,
   operation,
@@ -360,10 +361,7 @@ const Operation = ({
                 height: '45%',
               }}
             >
-              <HeaderTabs
-                hideDemoTab={hideDemoTab}
-                currentTab={TABS.reference}
-              />
+              <HeaderTabs demos={demos} currentTab={TABS.reference} />
               <Group h="100%"></Group>
             </Box>
           </Header>

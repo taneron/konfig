@@ -14,12 +14,14 @@ export const DemoHeader = observer(
     state,
     refreshSandbox,
     sandbox,
+    demos,
   }: {
     opened: boolean
     setOpened: Dispatch<SetStateAction<boolean>>
     state: PortalState
     refreshSandbox?: () => void
     sandbox?: boolean
+    demos: string[]
   }) => {
     return (
       <Header height={TITLE_OFFSET_PX}>
@@ -37,7 +39,11 @@ export const DemoHeader = observer(
             height: '45%',
           }}
         >
-          <HeaderTabs currentTab={TABS.demos} isSandbox={sandbox} />
+          <HeaderTabs
+            demos={demos}
+            currentTab={TABS.demos}
+            isSandbox={sandbox}
+          />
           <Group h="100%">
             <SegmentedControl
               size="xs"
