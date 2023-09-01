@@ -7,8 +7,12 @@ import { ReactNode } from 'react'
 export function OperationParameterArrayForm({
   param,
   prefix,
+  owner,
+  repo,
 }: {
   param: Parameter
+  owner: string
+  repo: string
   prefix?: string // for nested forms
 }) {
   const form = useFormContext()
@@ -28,6 +32,8 @@ export function OperationParameterArrayForm({
         if ('$ref' in property) continue
         reactNodes.push(
           <OperationParameter
+            owner={owner}
+            repo={repo}
             key={name}
             prefix={`${formInputName}.${index}`}
             param={{

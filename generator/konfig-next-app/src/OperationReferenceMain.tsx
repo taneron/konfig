@@ -225,6 +225,8 @@ export function OperationReferenceMain({
               )}
             </Stack>
             <OperationForm
+              owner={owner}
+              repo={repo}
               pathParameters={pathParameters}
               queryParameters={queryParameters}
               headerParameters={headerParameters}

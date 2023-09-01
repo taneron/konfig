@@ -26,9 +26,13 @@ import type { SchemaObject } from 'konfig-lib'
 export function ParameterInput({
   parameter,
   prefix,
+  owner,
+  repo,
 }: {
   parameter: Parameter
   prefix?: string
+  owner: string
+  repo: string
 }) {
   const form = useFormContext()
   const formInputName = generateParameterInputName(parameter, prefix)
@@ -71,6 +75,8 @@ export function ParameterInput({
                 hideSecurity: [],
                 clientState: [],
                 doNotRestoreFromStorage: true,
+                owner,
+                repo,
               })
               const initialValues = formValues.initialValues
               if (initialValues === undefined) return

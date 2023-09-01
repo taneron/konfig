@@ -26,9 +26,13 @@ export type Parameter = Omit<ParameterObject, 'schema'> & {
 export function OperationParameter({
   param,
   prefix,
+  owner,
+  repo,
 }: {
   param: Parameter
   prefix?: string
+  owner: string
+  repo: string
 }) {
   const description = getDescription(param)
   return (
@@ -51,10 +55,20 @@ export function OperationParameter({
           )}
         </Box>
         <Box ta="right" w="35%">
-          <ParameterInput prefix={prefix} parameter={param} />
+          <ParameterInput
+            owner={owner}
+            repo={repo}
+            prefix={prefix}
+            parameter={param}
+          />
         </Box>
       </Flex>
-      <OperationParameterArrayForm prefix={prefix} param={param} />
+      <OperationParameterArrayForm
+        owner={owner}
+        repo={repo}
+        prefix={prefix}
+        param={param}
+      />
     </Stack>
   )
 }

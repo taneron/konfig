@@ -10,6 +10,8 @@ export function OperationForm({
   cookieParameters,
   requestBodyProperties,
   requestBodyRequired,
+  owner,
+  repo,
 }: {
   pathParameters: Parameter[]
   queryParameters: Parameter[]
@@ -17,6 +19,8 @@ export function OperationForm({
   cookieParameters: Parameter[]
   requestBodyProperties: Record<string, SchemaObject> | null
   requestBodyRequired: string[] | null
+  owner: string
+  repo: string
 }) {
   return (
     <>
@@ -26,7 +30,12 @@ export function OperationForm({
           <Divider my="sm" />
           <Stack>
             {pathParameters.map((param) => (
-              <OperationParameter key={param.name} param={param} />
+              <OperationParameter
+                owner={owner}
+                repo={repo}
+                key={param.name}
+                param={param}
+              />
             ))}
           </Stack>
         </Box>
@@ -37,7 +46,12 @@ export function OperationForm({
           <Divider my="sm" />
           <Stack>
             {queryParameters.map((param) => (
-              <OperationParameter key={param.name} param={param} />
+              <OperationParameter
+                owner={owner}
+                repo={repo}
+                key={param.name}
+                param={param}
+              />
             ))}
           </Stack>
         </Box>
@@ -48,7 +62,12 @@ export function OperationForm({
           <Divider my="sm" />
           <Stack>
             {headerParameters.map((param) => (
-              <OperationParameter key={param.name} param={param} />
+              <OperationParameter
+                owner={owner}
+                repo={repo}
+                key={param.name}
+                param={param}
+              />
             ))}
           </Stack>
         </Box>
@@ -59,7 +78,12 @@ export function OperationForm({
           <Divider my="sm" />
           <Stack>
             {cookieParameters.map((param) => (
-              <OperationParameter key={param.name} param={param} />
+              <OperationParameter
+                owner={owner}
+                repo={repo}
+                key={param.name}
+                param={param}
+              />
             ))}
           </Stack>
         </Box>
@@ -73,7 +97,12 @@ export function OperationForm({
               requestBodyProperties,
               requestBodyRequired,
             }).map((param) => (
-              <OperationParameter key={param.name} param={param} />
+              <OperationParameter
+                owner={owner}
+                repo={repo}
+                key={param.name}
+                param={param}
+              />
             ))}
           </Stack>
         </Box>
