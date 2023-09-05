@@ -36,15 +36,19 @@ export function ExecuteOutput({
         let text = (e.target as HTMLTextAreaElement)?.value
 
         // Check if text is a URL
-        try {
-          new URL(JSON.parse(text)) // Will throw if not a valid URL
+        // try {
+        //   new URL(JSON.parse(text)) // Will throw if not a valid URL
 
-          // Remove quotes if they are present
-          if (text.startsWith('"') && text.endsWith('"')) {
-            text = text.slice(1, -1)
-          }
-        } catch (error) {
-          // Not a URL, do nothing special
+        //   // Remove quotes if they are present
+        //   if (text.startsWith('"') && text.endsWith('"')) {
+        //     text = text.slice(1, -1)
+        //   }
+        // } catch (error) {
+        //   // Not a URL, do nothing special
+        // }
+
+        if (text.startsWith('"') && text.endsWith('"') && text.length > 1) {
+          text = text.slice(1, -1)
         }
 
         e.clipboardData?.setData('text/plain', text)
