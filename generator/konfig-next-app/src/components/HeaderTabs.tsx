@@ -1,4 +1,4 @@
-import { Group } from '@mantine/core'
+import { Group, useMantineTheme } from '@mantine/core'
 import { HeaderTab } from './HeaderTab'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
@@ -23,10 +23,19 @@ export function HeaderTabs({
   const referencePath = useReferencePath()
   const basePath = useBasePath()
   const githubUrl = useGithubUrl()
+  const theme = useMantineTheme()
   return (
     <Group
       h="100%"
-      style={{ display: 'flex', alignItems: 'flex-end' }}
+      style={{
+        color: theme.white,
+        background:
+          theme.colorScheme === 'dark'
+            ? theme.colors.brand[9]
+            : theme.colors.brand[7],
+        display: 'flex',
+        alignItems: 'flex-end',
+      }}
       spacing={0}
     >
       <HeaderTab

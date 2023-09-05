@@ -1,4 +1,12 @@
-import { Header, Group, SegmentedControl, ActionIcon, Box } from '@mantine/core'
+import {
+  Header,
+  Group,
+  SegmentedControl,
+  ActionIcon,
+  Box,
+  useMantineTheme,
+  rem,
+} from '@mantine/core'
 import { IconRefresh } from '@tabler/icons-react'
 import { TITLE_OFFSET_PX } from './DemoTitle'
 import { Dispatch, SetStateAction } from 'react'
@@ -23,8 +31,18 @@ export const DemoHeader = observer(
     sandbox?: boolean
     demos: string[]
   }) => {
+    const theme = useMantineTheme()
     return (
-      <Header height={TITLE_OFFSET_PX}>
+      <Header
+        style={{
+          color: 'white',
+          background:
+            theme.colorScheme === 'dark'
+              ? theme.colors.brand[9]
+              : theme.colors.brand[7],
+        }}
+        height={TITLE_OFFSET_PX}
+      >
         <LayoutHeader
           breakpoint="sm"
           opened={opened}
@@ -49,6 +67,11 @@ export const DemoHeader = observer(
               size="xs"
               color="brand"
               value={state.showCode ? 'show-code' : 'hide-code'}
+              styles={{
+                label: {
+                  fontSize: `${rem(11)} !important`,
+                },
+              }}
               data={[
                 { label: 'Show Code', value: 'show-code' },
                 { label: 'Hide Code', value: 'hide-code' },
@@ -76,7 +99,7 @@ export const DemoHeader = observer(
               <ActionIcon
                 onClick={refreshSandbox}
                 color="green"
-                variant="light"
+                variant="filled"
               >
                 <IconRefresh size="1rem" />
               </ActionIcon>

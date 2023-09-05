@@ -5,17 +5,14 @@ import { useRouter } from 'next/router'
 const useStyles = createStyles((theme) => ({
   tab: {
     fontSize: rem(13),
-    color:
-      theme.colorScheme === 'dark'
-        ? theme.colors.dark[1]
-        : theme.colors.gray[6],
+    color: theme.colors.gray[5],
     padding: `${rem(7)} ${theme.spacing.sm}`,
     fontWeight: 700,
     borderBottom: `${rem(2)} solid transparent`,
     transition: 'border-color 100ms ease, color 100ms ease',
 
     '&:hover': {
-      color: theme.colorScheme === 'dark' ? theme.white : theme.black,
+      color: theme.white,
       textDecoration: 'none',
     },
   },
@@ -33,9 +30,9 @@ const useStyles = createStyles((theme) => ({
   },
 
   tabActive: {
-    color: theme.colorScheme === 'dark' ? theme.white : theme.black,
+    color: `${theme.white} !important`,
     borderBottomColor:
-      theme.colors[theme.primaryColor][theme.colorScheme === 'dark' ? 5 : 6],
+      theme.colors[theme.primaryColor][theme.colorScheme === 'dark' ? 5 : 3],
   },
 }))
 export function HeaderTab({
