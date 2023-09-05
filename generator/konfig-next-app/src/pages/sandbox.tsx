@@ -127,6 +127,10 @@ class SandboxState {
     }
   }
 
+  get brandColor(): string {
+    return this.konfigYaml?.portal?.primaryColor ?? '#1d344e'
+  }
+
   get portalState() {
     if (state.demos.length === 0) return null
     const portalState = new PortalState({
@@ -154,7 +158,7 @@ const DemoPortalWrapper = observer(() => {
     <MantineProvider
       theme={{
         colorScheme,
-        colors: { brand: generateShadePalette('#1d344e') },
+        colors: { brand: generateShadePalette(state.brandColor) },
         primaryColor: 'brand',
       }}
     >
