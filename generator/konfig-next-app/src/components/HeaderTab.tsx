@@ -5,7 +5,10 @@ import { useRouter } from 'next/router'
 const useStyles = createStyles((theme) => ({
   tab: {
     fontSize: rem(13),
-    color: theme.colors.gray[5],
+    color:
+      theme.colorScheme === 'dark'
+        ? theme.colors.gray[5]
+        : theme.colors.gray[4],
     padding: `${rem(7)} ${theme.spacing.sm}`,
     fontWeight: 700,
     borderBottom: `${rem(2)} solid transparent`,

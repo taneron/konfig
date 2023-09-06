@@ -1,6 +1,3 @@
-import { TITLE_OFFSET_PX } from '@/components/DemoTitle'
-import { HeaderTabs, TABS } from '@/components/HeaderTabs'
-import { LayoutHeader } from '@/components/LayoutHeader'
 import { generateShadePalette } from '@/utils/generate-shade-palette'
 import {
   AppShell,
@@ -36,6 +33,7 @@ import { OperationReferenceMain } from '@/OperationReferenceMain'
 import Script from 'next/script'
 import Head from 'next/head'
 import { generateDemosDataFromGithub } from '@/utils/generate-demos-from-github'
+import { ReferenceHeader } from '@/components/ReferenceHeader'
 
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
@@ -299,6 +297,7 @@ const Operation = ({
   const { colorScheme } = useMantineColorScheme()
 
   const [opened, setOpened] = useState(false)
+  const theme = useMantineTheme()
   return (
     <MantineProvider
       theme={{
@@ -348,25 +347,12 @@ const Operation = ({
           </Navbar>
         }
         header={
-          <Header height={TITLE_OFFSET_PX}>
-            <LayoutHeader
-              breakpoint="lg"
-              opened={opened}
-              setOpened={setOpened}
-              title={title}
-            />
-            <Box
-              px="md"
-              style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                height: '45%',
-              }}
-            >
-              <HeaderTabs demos={demos} currentTab={TABS.reference} />
-              <Group h="100%"></Group>
-            </Box>
-          </Header>
+          <ReferenceHeader
+            opened={opened}
+            setOpened={setOpened}
+            title={title}
+            demos={demos}
+          />
         }
       >
         <OperationReferenceMain
