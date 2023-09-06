@@ -203,6 +203,10 @@ export function OperationReferenceMain({
               <Title order={2}>
                 {operation.operation.summary ?? operation.path}
               </Title>
+              <Group>
+                <HttpMethodBadge httpMethod={operation.method} />
+                <Code>{operation.path}</Code>
+              </Group>
               {operation.operation.deprecated && (
                 <Alert
                   p="xs"
@@ -214,10 +218,6 @@ export function OperationReferenceMain({
                   Refrain from usage of this operation
                 </Alert>
               )}
-              <Group>
-                <HttpMethodBadge httpMethod={operation.method} />
-                <Code>{operation.path}</Code>
-              </Group>
               {operation.operation.description && (
                 <Text c="dimmed" fz="sm">
                   {operation.operation.description}
