@@ -1,4 +1,4 @@
-import { Box, Code, Flex, Group, Stack, Text } from '@mantine/core'
+import { Box, Code, Flex, Group, Stack, Text, rem } from '@mantine/core'
 import type {
   OperationParameter,
   ParameterObject,
@@ -7,6 +7,7 @@ import type {
 import { ParameterInput } from './ParameterInput'
 import { schemaTypeLabel } from '@/utils/schema-type-label'
 import dynamic from 'next/dynamic'
+import { OperationParameterObjectForm } from './OperationParameterObjectForm'
 
 /**
  * dynamic import to avoid SSR hydration errors where server-rendered HTML does not match client-rendered HTML
@@ -39,22 +40,24 @@ export function OperationParameter({
     <Stack>
       <Flex justify="space-between">
         <Box maw="50%" key={param.name}>
-          <Group spacing={'xs'}>
+          <Flex align="center" wrap="wrap">
             <Code>{param.name}</Code>
-            <Text fz="sm">{schemaTypeLabel({ schema: param.schema })}</Text>
+            <Text ml={rem(5)} fz="sm">
+              {schemaTypeLabel({ schema: param.schema })}
+            </Text>
             {param.required && (
-              <Text fz="xs" color="red">
+              <Text ml={rem(5)} fz="xs" color="red">
                 {'required'}
               </Text>
             )}
-          </Group>
+          </Flex>
           {description && (
             <Text c="dimmed" fz="sm">
               {description}
             </Text>
           )}
         </Box>
-        <Box ta="right" w="35%">
+        <Box ta="right" w="40%">
           <ParameterInput
             owner={owner}
             repo={repo}
@@ -68,6 +71,12 @@ export function OperationParameter({
         repo={repo}
         prefix={prefix}
         param={param}
+      />
+      <OperationParameterObjectForm
+        param={param}
+        owner={owner}
+        repo={repo}
+        prefix={prefix}
       />
     </Stack>
   )
