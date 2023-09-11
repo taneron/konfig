@@ -1,6 +1,7 @@
 import { Parameter } from '@/components/OperationParameter'
 import {
   API_KEY_VALUE_PROPERTY,
+  BEARER_VALUE_PROPERTY,
   CLIENT_STATE_VALUE_PROPERTY,
   FormDataType,
   OAUTH2_CLIENT_ID_PROPERTY,
@@ -115,6 +116,8 @@ export abstract class CodeGenerator {
         return (
           parameter !== '' &&
           parameter !== undefined &&
+          Array.isArray(parameter) &&
+          parameter.length > 0 &&
           this._parameters.find((p) => p.name === name)
         )
       }
@@ -136,6 +139,11 @@ export abstract class CodeGenerator {
           return (
             security[CLIENT_STATE_VALUE_PROPERTY] !== '' &&
             security[CLIENT_STATE_VALUE_PROPERTY] !== undefined
+          )
+        } else if (security.type === 'bearer') {
+          return (
+            security[BEARER_VALUE_PROPERTY] !== '' &&
+            security[BEARER_VALUE_PROPERTY] !== undefined
           )
         } else if (security.type === 'oauth2-client-credentials') {
           return (
