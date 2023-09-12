@@ -55,11 +55,12 @@ export type StaticProps = Omit<GithubResources, 'spec'> & {
   spec: Spec['spec']
   operationId: string
   operation: OperationObject
-  basePath: string
+  servers: string[]
   title: string
   owner: string
   demos: string[] // demo ids
   repo: string
+  oauthTokenUrl: string | null
   pathParameters: Parameter[]
   queryParameters: Parameter[]
   headerParameters: Parameter[]
@@ -97,6 +98,22 @@ export const getStaticProps: GetStaticProps<StaticProps> = async (ctx) => {
   })
 
   if (spec.specDereferenced === null) throw Error('specDereferenced is null')
+
+  // find any tokenUrl in the spec from the oauth2 security scheme
+  // if found then set oauthTokenUrl to that value
+  // if not found then set oauthTokenUrl to null
+  let oauthTokenUrl: string | null = null
+  if (spec.specDereferenced.components?.securitySchemes) {
+    for (const securityScheme of Object.values(
+      spec.specDereferenced.components.securitySchemes
+    )) {
+      if ('$ref' in securityScheme) throw Error('Spec should be dereferenced')
+      if (securityScheme.type === 'oauth2') {
+        oauthTokenUrl =
+          securityScheme.flows?.clientCredentials?.tokenUrl ?? null
+      }
+    }
+  }
 
   let operation: OperationObject | null = null
   const operations = getOperations({ spec: spec.specDereferenced })
@@ -238,8 +255,9 @@ export const getStaticProps: GetStaticProps<StaticProps> = async (ctx) => {
   //   securitySchemes = null
   // }
 
-  const basePath = spec.spec.servers?.[0].url
-  if (basePath === undefined) throw Error('No servers found in spec')
+  const servers = spec.spec.servers?.map((server) => server.url)
+  if (servers === undefined) throw Error('No servers found in spec')
+  if (servers.length === 0) throw Error('No servers found in spec')
 
   // return a 404 if "portal" property is not configured
   if (props.konfigYaml.portal === undefined)
@@ -254,13 +272,14 @@ export const getStaticProps: GetStaticProps<StaticProps> = async (ctx) => {
       operationId,
       operation,
       spec: spec.spec,
-      basePath,
+      servers,
       requestBody,
       pathParameters,
       queryParameters,
       owner,
       repo,
       headerParameters,
+      oauthTokenUrl,
       cookieParameters,
       requestBodyProperties,
       demos:
@@ -288,14 +307,22 @@ const Operation = ({
   requestBodyRequired,
   securityRequirements,
   securitySchemes,
-  basePath,
+  servers: initialServers,
   operation,
   owner,
   repo,
+  oauthTokenUrl: originalOauthTokenUrl,
   responses,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
   const { colors } = useMantineTheme()
   const { colorScheme } = useMantineColorScheme()
+
+  const [basePath, setBasePath] = useState<string | null>(initialServers[0])
+  const [servers, setServers] = useState(initialServers)
+  const [oauthTokenUrl, setOauthTokenUrl] = useState(originalOauthTokenUrl)
+  const [oauthTokenUrls, setOauthTokenUrls] = useState<string[]>(
+    originalOauthTokenUrl ? [originalOauthTokenUrl] : []
+  )
 
   const [opened, setOpened] = useState(false)
   const theme = useMantineTheme()
@@ -341,9 +368,20 @@ const Operation = ({
             }}
           >
             <ReferenceNavbar
+              setOauthTokenUrl={setOauthTokenUrl}
+              oauthTokenUrls={oauthTokenUrls}
+              originalOauthTokenUrl={originalOauthTokenUrl}
+              setOauthTokenUrls={setOauthTokenUrls}
+              servers={servers}
+              setServers={setServers}
+              owner={owner}
+              repo={repo}
               basePath={basePath}
+              setBasePath={setBasePath}
+              oauthTokenUrl={oauthTokenUrl}
               setOpened={setOpened}
               navbarData={navbarData}
+              originalServers={initialServers}
             />
           </Navbar>
         }
@@ -357,9 +395,12 @@ const Operation = ({
         }
       >
         <OperationReferenceMain
+          originalOauthTokenUrl={originalOauthTokenUrl}
           owner={owner}
+          servers={servers}
           repo={repo}
           konfigYaml={konfigYaml}
+          oauthTokenUrl={oauthTokenUrl}
           pathParameters={pathParameters}
           queryParameters={queryParameters}
           headerParameters={headerParameters}
@@ -369,7 +410,7 @@ const Operation = ({
           responses={responses}
           securitySchemes={securitySchemes}
           operation={operation}
-          basePath={basePath}
+          basePath={basePath ?? servers[0]}
         />
       </AppShell>
     </MantineProvider>

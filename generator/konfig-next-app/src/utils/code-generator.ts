@@ -13,6 +13,7 @@ import {
 
 export type CodeGeneratorConstructorArgs = {
   basePath: string
+  servers: string[]
   formData: FormDataType
   parameters: Parameter[]
   clientName: string
@@ -20,6 +21,8 @@ export type CodeGeneratorConstructorArgs = {
   tag: string
   operationId: string
   requestBodyRequired: boolean
+  originalOauthTokenUrl: string | null
+  oauthTokenUrl: string | null
 
   /**
    *  Sandbox is for executing the code in a sandboxed environment while
@@ -28,6 +31,10 @@ export type CodeGeneratorConstructorArgs = {
   mode?: 'sandbox' | 'production'
 }
 
+export type NonEmptyParameters = [
+  { name: string; parameter: Parameter },
+  FormInputValues[string],
+][]
 export abstract class CodeGenerator {
   mode: CodeGeneratorConstructorArgs['mode']
 
@@ -67,6 +74,21 @@ export abstract class CodeGenerator {
   basePath: string
 
   /**
+   * The OAuth token URL
+   */
+  oauthTokenUrl: string | null
+
+  /**
+   * The original OAuth token URL
+   */
+  originalOauthTokenUrl: string | null
+
+  /**
+   * The servers of the API
+   */
+  servers: string[]
+
+  /**
    * Whether or not the request body is required
    */
   requestBodyRequired: boolean
@@ -81,8 +103,14 @@ export abstract class CodeGenerator {
     basePath,
     requestBodyRequired,
     mode = 'production',
+    servers,
+    oauthTokenUrl,
+    originalOauthTokenUrl,
   }: CodeGeneratorConstructorArgs) {
     this.basePath = basePath
+    this.oauthTokenUrl = oauthTokenUrl
+    this.originalOauthTokenUrl = originalOauthTokenUrl
+    this.servers = servers
     this._formData = formData
     this._parameters = parameters
     this.mode = mode
@@ -104,6 +132,14 @@ export abstract class CodeGenerator {
     return await this.format(this.gen())
   }
 
+  get isUsingCustomBasePath(): boolean {
+    return this.basePath !== this.servers[0]
+  }
+
+  get isUsingCustomOAuthTokenUrl(): boolean {
+    return this.originalOauthTokenUrl !== this.oauthTokenUrl
+  }
+
   get clientNameLowercase(): string {
     return this.clientName.toLowerCase()
   }
@@ -111,7 +147,7 @@ export abstract class CodeGenerator {
   /**
    * Returns the setup values that are non-empty and exist as part of passed parameters
    */
-  get nonEmptyParameters(): [string, FormInputValues[string]][] {
+  get nonEmptyParameters(): NonEmptyParameters {
     const parameters = Object.entries(
       this._formData[PARAMETER_FORM_NAME_PREFIX]
     )
@@ -122,25 +158,49 @@ export abstract class CodeGenerator {
       })
       .filter(([_name, value]) => this.isNonEmpty(value))
       .map(([name, value]) => {
-        console.log(name, value)
-        return [name, this.recursivelyRemoveEmptyValuesFromObject(value)]
+        return [
+          { name, parameter: this.parameterStrict(name) },
+          this.recursivelyRemoveEmptyValues(value),
+        ]
       })
   }
 
-  isInThisOperation(name: string): boolean {
-    return this._parameters.find((p) => p.name === name) !== undefined
+  parameterStrict(name: string) {
+    const parameter = this.parameter(name)
+    if (parameter === undefined) throw Error("Parameter doesn't exist")
+    return parameter
   }
 
-  recursivelyRemoveEmptyValuesFromObject(
+  parameter(name: string) {
+    const parameter = this._parameters.find((p) => p.name === name)
+    return parameter
+  }
+
+  isInThisOperation(name: string): boolean {
+    return this.parameter(name) !== undefined
+  }
+
+  /**
+   * Useful for pruning tree of argument values to only those that are
+   * significant when constructing the SDK method call
+   * @param object  The object to recursively remove empty values from
+   * @returns The object with empty values removed
+   */
+  recursivelyRemoveEmptyValues(
     object: FormInputValues[string]
   ): FormInputValues[string] {
     if (typeof object !== 'object') return object
-    if (Array.isArray(object)) return object
+
+    if (Array.isArray(object)) {
+      // remove all empty values from array and return
+      const filtered = (object as any).filter((p: any) => this.isNonEmpty(p))
+      return filtered
+    }
 
     const clone = { ...object }
     Object.entries(object).forEach(([key, value]) => {
       if (typeof value === 'object') {
-        clone[key] = this.recursivelyRemoveEmptyValuesFromObject(value)
+        clone[key] = this.recursivelyRemoveEmptyValues(value)
         if (!this.isNonEmpty(clone[key])) delete clone[key]
       } else if (!this.isNonEmpty(value)) {
         delete clone[key]
@@ -165,7 +225,13 @@ export abstract class CodeGenerator {
       }
       return parameter !== ''
     }
-    return parameter.length > 0
+    // filter parameter for non-empty filters
+    const filtered: FormInputValues[string][] = []
+    for (const p of parameter) {
+      if (this.isNonEmpty(p)) filtered.push(p)
+    }
+
+    return filtered.length > 0
   }
 
   /**

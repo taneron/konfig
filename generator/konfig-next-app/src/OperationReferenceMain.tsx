@@ -54,7 +54,10 @@ export function OperationReferenceMain({
   konfigYaml,
   basePath,
   owner,
+  oauthTokenUrl,
   repo,
+  servers,
+  originalOauthTokenUrl,
 }: Pick<
   StaticProps,
   | 'pathParameters'
@@ -66,11 +69,12 @@ export function OperationReferenceMain({
   | 'requestBodyProperties'
   | 'requestBodyRequired'
   | 'responses'
-  | 'basePath'
   | 'securitySchemes'
+  | 'servers'
   | 'operation'
+  | 'oauthTokenUrl'
   | 'konfigYaml'
->) {
+> & { basePath: string; originalOauthTokenUrl: string | null }) {
   const parameters = [
     ...pathParameters,
     ...queryParameters,
@@ -101,11 +105,35 @@ export function OperationReferenceMain({
     owner,
     repo,
     hideSecurity,
+    doNotRestoreFromStorage: true,
   })
 
   const form = useForm(formValues)
 
   const router = useRouter()
+
+  /**
+   * In an effort to ensure that there are no React hydration issues (e.g.
+   * server rendering does not match client rendering), we delay the setting of
+   * the form values until the next tick. We do this by using setTimeout with a
+   * timeout of 0.
+   */
+  useEffect(() => {
+    setTimeout(() => {
+      const { initialValues } = generateInitialFormValues({
+        parameters: parameters,
+        securitySchemes,
+        clientState,
+        owner,
+        repo,
+        hideSecurity,
+      })
+      if (initialValues) {
+        form.setValues(initialValues)
+      }
+    }, 0)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   useEffect(() => {
     if (formValues.initialValues) {
@@ -135,10 +163,13 @@ export function OperationReferenceMain({
     parameters: parameters,
     formData: form.values,
     clientName: typecriptConfig.clientName,
+    servers,
     packageName: typecriptConfig.npmName,
     operationId: operation.operation.operationId,
     tag: tag,
     basePath,
+    oauthTokenUrl,
+    originalOauthTokenUrl,
     requestBodyRequired:
       (operation.operation.requestBody as RequestBodyObject)?.required ?? false,
   }
