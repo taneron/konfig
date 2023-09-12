@@ -52,7 +52,11 @@ async function updateOperationTag({
 function generatePrefix({ operation }: { operation: Operation }) {
   if (operation.tags === undefined) throw Error('Tags is empty')
   const tag = operation.tags[0]
-  const prefix = `${camelcase(tag, { pascalCase: true })}_`
+
+  // remove any non-alphanumeric characters except spaces from tag
+  const filtered = tag.replace(/[^a-zA-Z0-9 ]/g, '')
+
+  const prefix = `${camelcase(filtered, { pascalCase: true })}_`
   return {
     prefix,
     generateOperationId: (suffix: string) => `${prefix}${suffix}`,
