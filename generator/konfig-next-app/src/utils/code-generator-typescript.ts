@@ -74,12 +74,11 @@ ${this.nonEmptySecurity
       this.mode === 'sandbox' ? securityValue : securityValue.replace(/./g, 'X')
     return `  ${securityKey}: '${securityValueMasked}',`
   })
-  .join('\n')}
-  ${
-    this.oauthTokenUrl !== null && this.isUsingCustomOAuthTokenUrl
-      ? `oauthTokenUrl: "${this.oauthTokenUrl}",`
-      : ''
-  }
+  .join('\n')}${
+          this.oauthTokenUrl !== null && this.isUsingCustomOAuthTokenUrl
+            ? `oauthTokenUrl: "${this.oauthTokenUrl}",`
+            : ''
+        }
   ${
     this.mode === 'production'
       ? this.isUsingCustomBasePath
@@ -151,7 +150,6 @@ ${this.nonEmptySecurity
       }
       return ''
     }
-    console.log(this.nonEmptyParameters)
     const nonBodyParameters = this.nonEmptyParameters
       .filter(([{ parameter }]) => {
         return parameter.in !== 'body'
@@ -170,32 +168,6 @@ ${this.nonEmptySecurity
       bodyParameters,
       true
     )}}`
-    return this.object(
-      this.nonEmptyParameters.map(([{ name }, vaue]) => {
-        return [name, vaue]
-      })
-    )
-    // return `{${this.innerObject(
-    //   this.nonEmptyParameters
-    //     .filter(([{ parameter }]) => {
-    //       return parameter.in === 'body'
-    //     })
-    //     .map(([{ name }, value]) => {
-    //       return [name, value]
-    //     })
-    // )}
-    // ${
-    //   (this.innerObject(
-    //     this.nonEmptyParameters
-    //       .filter(([{ parameter }]) => {
-    //         return parameter.in !== 'body'
-    //       })
-    //       .map(([{ name }, value]) => {
-    //         return [name, value]
-    //       })
-    //   ),
-    //   true)
-    // }}`
   }
 
   get namespace() {
