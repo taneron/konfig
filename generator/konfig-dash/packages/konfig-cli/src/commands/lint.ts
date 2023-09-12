@@ -4,6 +4,8 @@ import execa from 'execa'
 import { findNodeModulesBinPath } from '../util/find-node-modules-bin-path'
 import { getSpecPath } from '../util/get-spec-path'
 import * as fs from 'fs'
+import { parseKonfigYaml } from '../util/parse-konfig-yaml'
+import { executeFixCommand } from '../util/execute-fix-command'
 
 export default class Lint extends Command {
   static description = 'Lint your OpenAPI Spec'
@@ -18,14 +20,18 @@ export default class Lint extends Command {
       name: 'spectral',
       cwd: this.config.root,
     })
-
+    const { parsedKonfigYaml } = parseKonfigYaml({ configDir: process.cwd() })
     // Support passing nothing and inferring spec path from konfig.yaml
-    if (argv.length === 0) {
-      const specPath = getSpecPath({})
-      if (specPath) argv.push(specPath)
-    } else {
-      // Just validate if argv[0] points to a file that exists using "fs"
-      if (!fs.existsSync(argv[0])) throw new Error(`File not found: ${argv[0]}`)
+    if (argv.length === 0)
+      argv.push(parsedKonfigYaml.specPath)
+    if (!fs.existsSync(argv[0])) throw new Error(`File not found: ${argv[0]}`)
+
+    // First run fix if konfig.yaml has specInputPath and we're linting the specPath
+    if (parsedKonfigYaml.specInputPath !== undefined && argv[0] === parsedKonfigYaml.specPath) {
+      await executeFixCommand({
+        spec: parsedKonfigYaml.specPath,
+        specInputPath: parsedKonfigYaml.specInputPath,
+      })
     }
 
     try {
