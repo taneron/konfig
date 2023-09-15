@@ -117,9 +117,15 @@ guide](https://www.markdownguide.org/basic-syntax/).
 
 Konfig supports a few extensions to markdown to make it easier to write better documentation.
 
-#### API Endpoint Directive
+#### API Endpoint Links
 
 Konfig easily allows you to link to API endpoints.
+
+<Figure caption="API Endpoint Link Example">
+![API Endpoint Links](/img/api-endpoint-links.png)
+</Figure>
+
+##### Syntax
 
 To do this, use the `:api[OPERATION_ID]` directive. For example if I have an
 operation with an `operationId` of `Authentication_login` I can reference it
@@ -129,9 +135,55 @@ like so:
 :api[Authentication_login]
 ```
 
+#### Callouts
+
+Konfig supports callouts. To use them, simply use the `callout` directive for the respective callout.
+
+<Figure caption="Callout Examples">
+![Callouts](/img/callouts.png)
+</Figure>
+
+##### Syntax
+
+```markdown doc.md
+
+:::info{title="Optional Title"}
+This is an informational callout
+:::
+
+:::info
+Without a title
+:::
+
+:::note{title="With a title"}
+This is an noteworthy callout
+:::
+
+:::note
+Without a title
+:::
+
+:::warn{title="With a title"}
+This is an warning callout
+:::
+
+:::warn
+Without a title
+:::
+
+```
+
 #### Code Tabs
 
-Konfig supports code tabs. To use them, simply use the `code` directive and add snippets in adjacent code blocks.
+Konfig supports code tabs.
+
+<Figure caption="Code Tabs Example">
+![Code Tabs](/img/code-tabs.png)
+</Figure>
+
+##### Syntax
+
+To use them, simply use the `code` directive and add snippets in adjacent code blocks.
 
 ````markdown doc.md
 :::code
