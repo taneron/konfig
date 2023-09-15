@@ -12,8 +12,11 @@ import {
   Box,
   Divider,
   rem,
+  ActionIcon,
+  Group,
+  SegmentedControl,
 } from '@mantine/core'
-import { IconBug, IconChevronRight } from '@tabler/icons-react'
+import { IconBug, IconChevronRight, IconRefresh } from '@tabler/icons-react'
 import { observer } from 'mobx-react'
 import { useState, createContext, Fragment } from 'react'
 import DemoMarkdown, { DemoState } from './DemoMarkdown'
@@ -25,7 +28,7 @@ import { Demo } from '@/utils/demos'
 import { DemoSiblings, Sibling } from './DemoSiblings'
 import { navigateToDemo } from '@/utils/navigate-to-demo'
 import { DemoSocials } from './DemoSocials'
-import DemoTableOfContents from './DemoTableOfContents'
+import { DemoTableOfContents } from './DemoTableOfContents'
 import { DemoEditThisPage } from './DemoEditThisPage'
 import { DemoLastRan } from './DemoLastRan'
 import { DemoHeader } from './DemoHeader'
@@ -86,6 +89,8 @@ export class PortalState {
           portal: this,
           id,
           showCode: showCode ?? undefined,
+          owner: organizationId,
+          repo: portalId,
         })
     )
 
@@ -109,6 +114,7 @@ export class PortalState {
           sessions: activeSessions.map((demo) => {
             if (demo.sessionId === null)
               throw Error('Demo sessions must be active')
+            if (demo.portal === undefined) throw Error("Demo's portal missing")
             return {
               sessionId: demo.sessionId,
               organizationId: demo.portal.organizationId,
@@ -144,10 +150,12 @@ export const DemoPortal = observer(
     state,
     sandbox,
     refreshSandbox,
+    hasDocumentation,
   }: {
     state: PortalState
     sandbox?: boolean
     refreshSandbox?: () => void
+    hasDocumentation: boolean
   }) => {
     const theme = useMantineTheme()
     const { colorScheme, toggleColorScheme } = useMantineColorScheme()
@@ -190,7 +198,6 @@ export const DemoPortal = observer(
           asideOffsetBreakpoint="lg"
           navbar={
             <Navbar
-              p="md"
               hiddenBreakpoint="sm"
               hidden={!opened}
               width={{ sm: 225, lg: 325 }}
@@ -200,7 +207,61 @@ export const DemoPortal = observer(
                   'calc(100% - var(--mantine-header-height, 0rem) - var(--mantine-footer-height, 0rem));',
               }}
             >
-              <Navbar.Section>
+              <Navbar.Section
+                p="md"
+                style={{
+                  borderBottom: `${rem(1)} solid ${
+                    theme.colorScheme === 'dark'
+                      ? theme.colors.dark[4]
+                      : theme.colors.gray[3]
+                  }`,
+                }}
+              >
+                <Group h="100%">
+                  <SegmentedControl
+                    size="xs"
+                    color="brand"
+                    value={state.showCode ? 'show-code' : 'hide-code'}
+                    styles={{
+                      label: {
+                        fontSize: `${rem(11)} !important`,
+                      },
+                    }}
+                    data={[
+                      { label: 'Hide Code', value: 'hide-code' },
+                      { label: 'Show Code', value: 'show-code' },
+                    ]}
+                    onChange={(value) => {
+                      state.setShowCode(value === 'show-code')
+                    }}
+                  />
+                  {/* {!sandbox && (
+              <MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
+                <Button
+                  component="a"
+                  target="_blank"
+                  size="xs"
+                  leftIcon={<IconBrandGithub size="1rem" />}
+                  href={`https://github.com/${state.organizationId}/${state.portalId}/tree/${state.mainBranch}/demos`}
+                  color="gray"
+                  variant="default"
+                >
+                  Source
+                </Button>
+              </MediaQuery>
+            )} */}
+                  {refreshSandbox && (
+                    <ActionIcon
+                      onClick={refreshSandbox}
+                      color="green"
+                      variant="filled"
+                    >
+                      <IconRefresh size="1rem" />
+                    </ActionIcon>
+                  )}
+                </Group>
+              </Navbar.Section>
+              <Navbar.Section pt="md" grow>
                 <Stack spacing="xs">
                   {state.demos.map(({ name }, i) => {
                     const isCurrentlySelected = state.currentDemoIndex === i
@@ -238,8 +299,8 @@ export const DemoPortal = observer(
           aside={<DemoTableOfContents demoDiv={state.currentDemo.demoDiv} />}
           header={
             <DemoHeader
+              hasDocumentation={hasDocumentation}
               demos={state.demos.map((demo) => demo.id)}
-              refreshSandbox={refreshSandbox}
               opened={opened}
               setOpened={setOpened}
               state={state}
@@ -253,8 +314,10 @@ export const DemoPortal = observer(
               i === 0 ? undefined : state.demos[i - 1]
             const nextDemoState: DemoState | undefined =
               i === state.demos.length - 1 ? undefined : state.demos[i + 1]
+
             const previous: Sibling | undefined =
-              previousDemoState === undefined
+              previousDemoState === undefined ||
+              previousDemoState.portal === undefined
                 ? undefined
                 : {
                     title: previousDemoState.name,
@@ -263,7 +326,7 @@ export const DemoPortal = observer(
                     demoIndex: i - 1,
                   }
             const next: Sibling | undefined =
-              nextDemoState === undefined
+              nextDemoState === undefined || nextDemoState.portal === undefined
                 ? undefined
                 : {
                     title: nextDemoState.name,

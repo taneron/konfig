@@ -18,7 +18,6 @@ export const NAVBAR_WIDTH = 350
 
 const useStyles = createStyles((theme) => ({
   header: {
-    color: theme.colorScheme === 'dark' ? theme.white : theme.black,
     borderBottom: `${rem(1)} solid ${
       theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[3]
     }`,
@@ -217,7 +216,6 @@ export function ReferenceNavbar({
         <Select
           size="xs"
           icon={<IconLink size="1rem" />}
-          label="Base path"
           value={basePath}
           error={form.getInputProps('url').error}
           data={servers}

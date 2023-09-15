@@ -2,6 +2,7 @@ import { makeAutoObservable } from 'mobx'
 import ReactMarkdown from 'react-markdown'
 import remarkDirective from 'remark-directive'
 import remarkDirectiveRehype from 'remark-directive-rehype'
+import remarkGfm from 'remark-gfm'
 import {
   Anchor,
   Stack,
@@ -27,6 +28,11 @@ import { v4 as uuid } from 'uuid'
 import { DemoPre } from './DemoPre'
 import Slugger from 'github-slugger'
 import { formatTimeAgo } from '@/utils/format-time-ago'
+import { DemoNote } from './DemoNote'
+import { DemoWarn } from './DemoWarn'
+import { DemoDivider } from './DemoDivider'
+import { DemoAnchor } from './DemoAnchor'
+import { DemoApi } from './DemoApi'
 
 export class DemoState {
   id: string
@@ -35,21 +41,29 @@ export class DemoState {
   cells: CellState[] = []
   markdown: string = ''
   uuid = uuid()
-  portal: PortalState
+  portal?: PortalState
   savedData: Record<string, string[] | undefined> = {}
   slugger: Slugger = new Slugger()
   headerIdToHtmlElement: Record<string, HTMLHeadingElement> = {}
   demoDiv: HTMLDivElement | null = null
   lastSuccessfulExecution: Date | null = null
+  showCode = false
+  owner: string
+  repo: string
 
   constructor(parameters: {
     markdown: string
     name: string
-    portal: PortalState
+    portal?: PortalState
     id: string
     showCode?: boolean
+    owner: string
+    repo: string
   }) {
     makeAutoObservable(this)
+    this.showCode = parameters.showCode ?? false
+    this.owner = parameters.owner
+    this.repo = parameters.repo
     if (parameters && parameters.markdown !== undefined) {
       this.markdown = parameters.markdown
     }
@@ -83,7 +97,7 @@ export class DemoState {
 
   async init() {
     // Only initialize sessions in browser
-    if (typeof window !== 'undefined') {
+    if (typeof window !== 'undefined' && this.portal !== undefined) {
       const {
         session_id,
         lastSuccessfulExecution: { when },
@@ -124,15 +138,9 @@ const DemoMarkdown = observer(({ state }: { state: DemoState }) => {
     <DemoStateContext.Provider value={state}>
       <Stack ref={demoDiv} spacing="xs">
         <ReactMarkdown
-          remarkPlugins={[remarkDirective, remarkDirectiveRehype]}
+          remarkPlugins={[remarkGfm, remarkDirective, remarkDirectiveRehype]}
           components={{
-            a({ children, node, siblingCount, ...props }) {
-              return (
-                <Anchor color={colors.brand[7]} {...props}>
-                  {children}
-                </Anchor>
-              )
-            },
+            a: DemoAnchor,
             p({ node, children, siblingCount, ...props }) {
               return <Text {...props}>{children}</Text>
             },
@@ -141,6 +149,7 @@ const DemoMarkdown = observer(({ state }: { state: DemoState }) => {
             input: DemoInput,
             button: DemoButton,
             code: DemoCode,
+            hr: DemoDivider,
             h1: DemoTitle,
             h2: DemoTitle,
             h3: DemoTitle,
@@ -150,7 +159,10 @@ const DemoMarkdown = observer(({ state }: { state: DemoState }) => {
             // Make TypeScript happy by moving this into its own object
             ...{
               info: DemoInfo,
+              note: DemoNote,
+              warn: DemoWarn,
               date: DemoDateInput,
+              api: DemoApi,
               number: DemoNumberInput,
               enum: DemoEnum,
             },

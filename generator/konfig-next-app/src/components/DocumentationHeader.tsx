@@ -4,15 +4,13 @@ import { HeaderTabs, TABS } from './HeaderTabs'
 import { LayoutHeader } from './LayoutHeader'
 import { Dispatch, SetStateAction } from 'react'
 
-export function ReferenceHeader({
+export function DocumentationHeader({
   opened,
   setOpened,
   demos,
   title,
-  hasDocumentation,
 }: {
   opened: boolean
-  hasDocumentation: boolean
   setOpened: Dispatch<SetStateAction<boolean>>
   demos: string[]
   title: string
@@ -36,9 +34,9 @@ export function ReferenceHeader({
         title={title}
       />
       <HeaderTabs
-        hasDocumentation={hasDocumentation}
+        hasDocumentation={true}
         demos={demos}
-        currentTab={TABS.reference}
+        currentTab={TABS.documentation}
       />
     </Header>
   )
