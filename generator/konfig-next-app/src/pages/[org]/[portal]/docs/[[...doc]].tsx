@@ -286,36 +286,38 @@ const DocumentationPage = observer(
                   'calc(100% - var(--mantine-header-height, 0rem) - var(--mantine-footer-height, 0rem));',
               }}
             >
-              {docConfig.sidebar.sections.map((section, i) => {
-                return (
-                  <Box key={`${section.label}-${i}`}>
-                    <Title pb="xs" px="md" order={5}>
-                      {section.label}
-                    </Title>
-                    <Stack spacing={rem(3)}>
-                      {section.links.map((link) => {
-                        if (link.type === 'link') {
-                          const label = idToLabel[link.id]
-                          if (label === undefined)
-                            throw Error(
-                              `Couldn't find label for link with ID: ${link.id}`
+              <Stack>
+                {docConfig.sidebar.sections.map((section, i) => {
+                  return (
+                    <Box key={`${section.label}-${i}`}>
+                      <Title pb="xs" px="md" order={5}>
+                        {section.label}
+                      </Title>
+                      <Stack spacing={rem(3)}>
+                        {section.links.map((link) => {
+                          if (link.type === 'link') {
+                            const label = idToLabel[link.id]
+                            if (label === undefined)
+                              throw Error(
+                                `Couldn't find label for link with ID: ${link.id}`
+                              )
+                            return (
+                              <DocNavLink
+                                key={link.id}
+                                id={link.id}
+                                label={link.label ?? label}
+                                docId={docId}
+                                setOpened={setOpened}
+                              />
                             )
-                          return (
-                            <DocNavLink
-                              key={link.id}
-                              id={link.id}
-                              label={link.label ?? label}
-                              docId={docId}
-                              setOpened={setOpened}
-                            />
-                          )
-                        }
-                        throw Error(`Not implemented link type ${link.type}`)
-                      })}
-                    </Stack>
-                  </Box>
-                )
-              })}
+                          }
+                          throw Error(`Not implemented link type ${link.type}`)
+                        })}
+                      </Stack>
+                    </Box>
+                  )
+                })}
+              </Stack>
             </Navbar>
           }
           header={
