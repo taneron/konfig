@@ -9,6 +9,7 @@ import {
 } from '@/utils/generate-demos-from-github'
 import { MantineProvider, useMantineTheme } from '@mantine/core'
 import { generateShadePalette } from '@/utils/generate-shade-palette'
+import { generatePropsForDemoPage } from '@/utils/generate-props-for-demo-page'
 
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
@@ -38,17 +39,12 @@ export const getStaticProps: GetStaticProps<GenerationSuccess> = async (
     }
   }
 
-  const props = await generateDemosDataFromGithub({
-    orgId: ctx.params.org,
-    portalId: ctx.params.portal,
+  return generatePropsForDemoPage({
+    omitOwnerAndRepo: false,
+    org: ctx.params.org,
+    repo: ctx.params.portal,
     demoId: ctx.params.demo,
   })
-
-  if (props.result === 'error') return { notFound: true }
-
-  return {
-    props,
-  }
 }
 
 const DemoPage = observer(
@@ -60,7 +56,10 @@ const DemoPage = observer(
     socials,
     portalTitle,
     primaryColor,
+    omitOwnerAndRepo,
     hasDocumentation,
+    owner,
+    repo,
   }: InferGetStaticPropsType<typeof getStaticProps>) => {
     const state = useMemo(
       () =>
@@ -72,8 +71,17 @@ const DemoPage = observer(
           mainBranch,
           socials,
           portalTitle,
+          omitOwnerAndRepo,
         }),
-      [demo.id, mainBranch, organization.id, portal, socials, portalTitle]
+      [
+        demo.id,
+        mainBranch,
+        organization.id,
+        portal,
+        socials,
+        portalTitle,
+        omitOwnerAndRepo,
+      ]
     )
     const { colorScheme, colors } = useMantineTheme()
 
@@ -90,7 +98,13 @@ const DemoPage = observer(
           primaryColor: 'brand',
         }}
       >
-        <DemoPortal hasDocumentation={hasDocumentation} state={state} />
+        <DemoPortal
+          omitOwnerAndRepo={omitOwnerAndRepo}
+          hasDocumentation={hasDocumentation}
+          state={state}
+          owner={owner}
+          repo={repo}
+        />
       </MantineProvider>
     )
   }

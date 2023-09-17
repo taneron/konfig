@@ -53,6 +53,8 @@ export class PortalState {
   mainBranch?: string
   socials?: SocialObject
 
+  dummyState = false
+
   constructor({
     demos,
     portalName,
@@ -63,6 +65,7 @@ export class PortalState {
     socials,
     mainBranch,
     portalTitle,
+    omitOwnerAndRepo,
   }: {
     demos: DemosInput
     portalName: string
@@ -73,6 +76,7 @@ export class PortalState {
     socials?: SocialObject
     mainBranch?: string
     portalTitle: string | null
+    omitOwnerAndRepo: boolean
   }) {
     makeAutoObservable(this)
     this.socials = socials
@@ -91,6 +95,7 @@ export class PortalState {
           showCode: showCode ?? undefined,
           owner: organizationId,
           repo: portalId,
+          omitOwnerAndRepo,
         })
     )
 
@@ -133,6 +138,10 @@ export class PortalState {
     }
   }
 
+  forceRender() {
+    this.dummyState = !this.dummyState
+  }
+
   setShowCode(value: boolean) {
     this.showCode = value
   }
@@ -151,16 +160,26 @@ export const DemoPortal = observer(
     sandbox,
     refreshSandbox,
     hasDocumentation,
+    omitOwnerAndRepo,
+    owner,
+    repo,
   }: {
     state: PortalState
     sandbox?: boolean
     refreshSandbox?: () => void
     hasDocumentation: boolean
+    omitOwnerAndRepo: boolean
+    owner: string
+    repo: string
   }) => {
     const theme = useMantineTheme()
     const { colorScheme, toggleColorScheme } = useMantineColorScheme()
     const [opened, setOpened] = useState(false)
     const router = useRouter()
+
+    // This is a hack to force a re-render when the demo state changes
+    // We need to access dummyState to tell MobX to track it
+    state.dummyState
 
     return (
       <SandboxContext.Provider value={!!sandbox}>
@@ -271,6 +290,7 @@ export const DemoPortal = observer(
                         onClick={() => {
                           setOpened(false)
                           navigateToDemo({
+                            omitOwnerAndRepo,
                             demoId: state.demos[i].id,
                             demoIndex: i,
                             organizationId: state.organizationId,
@@ -299,6 +319,9 @@ export const DemoPortal = observer(
           aside={<DemoTableOfContents demoDiv={state.currentDemo.demoDiv} />}
           header={
             <DemoHeader
+              owner={owner}
+              repo={repo}
+              omitOwnerAndRepo={omitOwnerAndRepo}
               hasDocumentation={hasDocumentation}
               demos={state.demos.map((demo) => demo.id)}
               opened={opened}
@@ -351,6 +374,7 @@ export const DemoPortal = observer(
                     <DemoEditThisPage portalState={state} />
                   </Box>
                   <DemoSiblings
+                    omitOwnerAndRepo={omitOwnerAndRepo}
                     portal={state}
                     previous={previous}
                     next={next}
