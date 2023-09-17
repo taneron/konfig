@@ -2,6 +2,10 @@ export const domainToRepoMappings: Record<
   string,
   { owner: string; repo: string } | undefined
 > = {
+  'snaptrade.konfigthis.com': {
+    owner: 'passiv',
+    repo: 'snaptrade-sdks',
+  },
   'snaptrade.onkonfig.com': {
     owner: 'passiv',
     repo: 'snaptrade-sdks',
