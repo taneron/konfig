@@ -20,32 +20,26 @@ export default function Home({}: InferGetServerSidePropsType<
         <Paper withBorder shadow="lg" p="lg">
           <Stack>
             <NavLink
-              onClick={() => router.push('/snaptrade/snaptrade-demos')}
+              component="a"
+              href="http://snaptrade.localhost:3000"
               label="SnapTrade"
               description="https://snaptrade.com"
             />
             <NavLink
-              onClick={() => router.push('/konfig-dev/splitit-web-sdks')}
+              component="a"
+              href="http://splitit.localhost:3000"
               label="Splitit"
               description="https://splitit.com"
             />
             <NavLink
-              onClick={() => router.push('/leap-ai/leap-sdks')}
+              component="a"
+              href="http://leap.localhost:3000"
               label="Leap"
               description="https://tryleap.ai"
             />
             <NavLink
-              onClick={() => router.push('/konfig-dev/konfig-demo-docs')}
-              label="Konfig"
-              description="https://apidemo.konfigthis.com"
-            />
-            <NavLink
-              onClick={() => router.push('/konfig-dev/drdroid-sdks')}
-              label="Dr. Droid"
-              description="https://drdroid.io"
-            />
-            <NavLink
-              onClick={() => router.push('/konfig-dev/acme-sdks')}
+              component="a"
+              href="http://acme.localhost:3000"
               label="Acme"
             />
             <NavLink
