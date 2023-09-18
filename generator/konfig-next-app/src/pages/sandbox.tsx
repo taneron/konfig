@@ -168,6 +168,7 @@ const DemoPortalWrapper = observer(() => {
         repo="sandbox"
         omitOwnerAndRepo={true}
         hasDocumentation={false}
+        logo={null}
         refreshSandbox={async () => {
           const files = await rescursivelyReadAllFiles({ showPicker: false })
           if (files === undefined) return
