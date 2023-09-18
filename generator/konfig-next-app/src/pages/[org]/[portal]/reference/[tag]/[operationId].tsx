@@ -73,11 +73,13 @@ const Operation = ({
   servers: initialServers,
   operation,
   owner,
+  faviconLink,
   hasDocumentation,
   repo,
   oauthTokenUrl: originalOauthTokenUrl,
   omitOwnerAndRepo,
   responses,
+  logo,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
   const { colors } = useMantineTheme()
   const { colorScheme } = useMantineColorScheme()
@@ -109,6 +111,11 @@ const Operation = ({
           {operation.operation.summary ??
             `${operation.method} ${operation.path}`}
         </title>
+        {faviconLink ? (
+          <link rel="icon" href={faviconLink} />
+        ) : (
+          <link rel="icon" href="/favicon.png" />
+        )}
       </Head>
       <Script
         src={`https://unpkg.com/${konfigYaml.generators.typescript?.npmName}@${konfigYaml.generators.typescript?.version}/dist/browser.js`}
@@ -159,6 +166,7 @@ const Operation = ({
             setOpened={setOpened}
             title={title}
             demos={demos}
+            logo={logo}
             omitOwnerAndRepo={omitOwnerAndRepo}
           />
         }

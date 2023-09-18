@@ -18,6 +18,8 @@ import { githubGetRepository } from './github-get-repository'
 import { createOctokitInstance } from './octokit'
 import { transformImageLinks } from './transform-image-links'
 import { transformInternalLinks } from './transform-internal-links'
+import { generateFaviconLink } from './generate-favicon-link'
+import { generateLogoLink } from './generate-logo-link'
 
 export type MarkdownPageProps = {
   konfigYaml: KonfigYamlType
@@ -34,6 +36,8 @@ export type MarkdownPageProps = {
   defaultBranch: string
   idToLabel: Record<string, string | undefined>
   omitOwnerAndRepo: boolean
+  faviconLink: string | null
+  logo: string | null
 }
 
 export async function generatePropsForMarkdownPage({
@@ -66,6 +70,22 @@ export async function generatePropsForMarkdownPage({
   const konfigYaml = konfigYamls?.[0]
 
   if (konfigYaml === undefined) throw Error("Couldn't find konfig.yaml")
+
+  const faviconLink = generateFaviconLink({
+    konfigYaml: konfigYaml.content,
+    defaultBranch,
+    konfigYamlPath: konfigYaml.info.path,
+    owner,
+    repo,
+  })
+
+  const logoLink = generateLogoLink({
+    konfigYaml: konfigYaml.content,
+    defaultBranch,
+    konfigYamlPath: konfigYaml.info.path,
+    owner,
+    repo,
+  })
 
   const documentationConfig = konfigYaml?.content.portal?.documentation
   if (documentationConfig === undefined)
@@ -158,7 +178,9 @@ export async function generatePropsForMarkdownPage({
       title: konfigYaml.content.portal?.title,
       konfigYaml: konfigYaml.content,
       markdown,
+      faviconLink,
       docTitle,
+      logo: logoLink,
       docId: documentId,
       docPath: doc.path,
       docConfig: documentationConfig,
