@@ -25,7 +25,7 @@ services:
     buildCommand: npm init -y
     env: node
     rootDir: v4
-    repo: https://github.com/konfig-dev/humanloop-sdks
+    repo: https://github.com/humanloop/humanloop-sdks
     startCommand: npm install konfig-cli && ./node_modules/.bin/konfig pull && ./node_modules/.bin/konfig push -o konfig-dev -r humanloop-sdks -s openapi.json -x v4
   - name: humanloop-polling-v4-alpha
     type: cron
@@ -33,7 +33,7 @@ services:
     schedule: "*/30 * * * *"
     buildCommand: npm init -y
     rootDir: v4-alpha
-    repo: https://github.com/konfig-dev/humanloop-sdks
+    repo: https://github.com/humanloop/humanloop-sdks
     startCommand: npm install konfig-cli && ./node_modules/.bin/konfig pull && ./node_modules/.bin/konfig push -o konfig-dev -r humanloop-sdks -s openapi.json -x v4-alpha
 
   - name: konfigthis.com
