@@ -16,13 +16,21 @@ export type CodeGeneratorConstructorArgs = {
   servers: string[]
   formData: FormDataType
   parameters: Parameter[]
-  clientName: string
-  packageName: string
   tag: string
   operationId: string
   requestBodyRequired: boolean
   originalOauthTokenUrl: string | null
   oauthTokenUrl: string | null
+  languageConfigurations: {
+    typescript: {
+      clientName: string
+      packageName: string
+    }
+    python?: {
+      clientName: string
+      packageName: string
+    }
+  }
 
   /**
    *  Sandbox is for executing the code in a sandboxed environment while
@@ -47,16 +55,6 @@ export abstract class CodeGenerator {
    * Contains the schema of inputs for the request
    */
   _parameters: Parameter[]
-
-  /**
-   * The top-level client name in the SDK
-   */
-  clientName: string
-
-  /**
-   * The package name of the SDK (i.e. "konfig-js" for TypeScript in npm)
-   */
-  packageName: string
 
   /**
    *  The tag of the operation
@@ -93,13 +91,17 @@ export abstract class CodeGenerator {
    */
   requestBodyRequired: boolean
 
+  /**
+   * The language configurations for the SDK (i.e. clientName and packageName)
+   */
+  languageConfigurations: CodeGeneratorConstructorArgs['languageConfigurations']
+
   constructor({
     formData,
     parameters,
-    clientName,
-    packageName,
     tag,
     operationId,
+    languageConfigurations,
     basePath,
     requestBodyRequired,
     mode = 'production',
@@ -107,6 +109,24 @@ export abstract class CodeGenerator {
     oauthTokenUrl,
     originalOauthTokenUrl,
   }: CodeGeneratorConstructorArgs) {
+    console.debug(
+      JSON.stringify(
+        {
+          formData,
+          parameters,
+          languageConfigurations,
+          tag,
+          operationId,
+          basePath,
+          requestBodyRequired,
+          servers,
+          oauthTokenUrl,
+          originalOauthTokenUrl,
+        },
+        null,
+        2
+      )
+    )
     this.basePath = basePath
     this.oauthTokenUrl = oauthTokenUrl
     this.originalOauthTokenUrl = originalOauthTokenUrl
@@ -114,8 +134,7 @@ export abstract class CodeGenerator {
     this._formData = formData
     this._parameters = parameters
     this.mode = mode
-    this.clientName = clientName
-    this.packageName = packageName
+    this.languageConfigurations = languageConfigurations
     this.tag = tag
     this.operationId = operationId
     this.requestBodyRequired = requestBodyRequired
@@ -128,6 +147,15 @@ export abstract class CodeGenerator {
    */
   protected abstract gen(): string
 
+  /**
+   * Masks a value by replacing each character with an "X"
+   * @param value - The value to mask
+   * @returns The masked value
+   */
+  mask(value: string) {
+    return value.replace(/./g, 'X')
+  }
+
   async snippet(): Promise<string> {
     return await this.format(this.gen())
   }
@@ -138,10 +166,6 @@ export abstract class CodeGenerator {
 
   get isUsingCustomOAuthTokenUrl(): boolean {
     return this.originalOauthTokenUrl !== this.oauthTokenUrl
-  }
-
-  get clientNameLowercase(): string {
-    return this.clientName.toLowerCase()
   }
 
   /**
