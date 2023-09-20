@@ -437,3 +437,42 @@ it('example with no setup', async () => {
   }).snippet()
   expect(code).toMatchSnapshot()
 })
+
+it('example with no form data but > 1 parameters', async () => {
+  const code = await new CodeGeneratorPython({
+    formData: {
+      parameters: {},
+      security: {},
+    },
+    parameters: [
+      {
+        in: 'path',
+        name: 'accountId',
+        required: true,
+        description: 'The ID of the account get positions.',
+        schema: {
+          type: 'string',
+          format: 'uuid',
+        },
+      },
+    ],
+    languageConfigurations: {
+      typescript: {
+        clientName: 'Test',
+        packageName: 'test',
+      },
+      python: {
+        clientName: 'SnapTrade',
+        packageName: 'snaptrade_client',
+      },
+    },
+    tag: 'Options',
+    operationId: 'Options_getOptionStrategy',
+    basePath: 'https://api.snaptrade.com/api/v1',
+    requestBodyRequired: true,
+    servers: ['https://api.snaptrade.com/api/v1'],
+    oauthTokenUrl: null,
+    originalOauthTokenUrl: null,
+  }).snippet()
+  expect(code).toMatchSnapshot()
+})
