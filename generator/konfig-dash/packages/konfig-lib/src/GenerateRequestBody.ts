@@ -38,7 +38,7 @@ const objc = generatorCommon.merge(objcConfig).strict()
 const go = generatorCommon.merge(goConfig).strict()
 const swift = generatorCommon.merge(swiftConfig).strict()
 
-const genericGeneratorConfig = z.union([
+const javaGenericGeneratorConfig = z.union([
   z
     .object({
       generator: z.literal('java'),
@@ -114,7 +114,7 @@ export const GenerateRequestBody = z
       go: go.optional(),
       swift: swift.optional(),
     }),
-    additionalGenerators: z.record(genericGeneratorConfig).optional(),
+    additionalGenerators: z.record(javaGenericGeneratorConfig).optional(),
   })
   .merge(KonfigYamlCommon)
 
