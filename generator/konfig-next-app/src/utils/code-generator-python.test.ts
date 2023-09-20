@@ -19,8 +19,16 @@ test('simple example', async () => {
       },
     },
     parameters: [],
-    clientName: 'SnapTrade',
-    packageName: 'snaptrade_client',
+    languageConfigurations: {
+      typescript: {
+        clientName: 'Test',
+        packageName: 'test',
+      },
+      python: {
+        clientName: 'SnapTrade',
+        packageName: 'snaptrade_client',
+      },
+    },
     tag: 'API Status',
     operationId: 'ApiStatus_check',
     basePath: 'https://api.snaptrade.com/api/v1',
@@ -76,8 +84,16 @@ test('simple parameters example', async () => {
         required: false,
       },
     ],
-    clientName: 'SnapTrade',
-    packageName: 'snaptrade_client',
+    languageConfigurations: {
+      typescript: {
+        clientName: 'Test',
+        packageName: 'test',
+      },
+      python: {
+        clientName: 'SnapTrade',
+        packageName: 'snaptrade_client',
+      },
+    },
     tag: 'Authentication',
     operationId: 'Authentication_registerSnapTradeUser',
     basePath: 'https://api.snaptrade.com/api/v1',
@@ -198,8 +214,16 @@ it('example with boolean', async () => {
         required: false,
       },
     ],
-    clientName: 'SnapTrade',
-    packageName: 'snaptrade_client',
+    languageConfigurations: {
+      typescript: {
+        clientName: 'Test',
+        packageName: 'test',
+      },
+      python: {
+        clientName: 'SnapTrade',
+        packageName: 'snaptrade_client',
+      },
+    },
     tag: 'Authentication',
     operationId: 'Authentication_loginSnapTradeUser',
     basePath: 'https://api.snaptrade.com/api/v1',
@@ -365,8 +389,44 @@ it('example with inner object', async () => {
         required: true,
       },
     ],
-    clientName: 'SnapTrade',
-    packageName: 'snaptrade_client',
+    languageConfigurations: {
+      typescript: {
+        clientName: 'Test',
+        packageName: 'test',
+      },
+      python: {
+        clientName: 'SnapTrade',
+        packageName: 'snaptrade_client',
+      },
+    },
+    tag: 'Options',
+    operationId: 'Options_getOptionStrategy',
+    basePath: 'https://api.snaptrade.com/api/v1',
+    requestBodyRequired: true,
+    servers: ['https://api.snaptrade.com/api/v1'],
+    oauthTokenUrl: null,
+    originalOauthTokenUrl: null,
+  }).snippet()
+  expect(code).toMatchSnapshot()
+})
+
+it('example with no setup', async () => {
+  const code = await new CodeGeneratorPython({
+    formData: {
+      parameters: {},
+      security: {},
+    },
+    parameters: [],
+    languageConfigurations: {
+      typescript: {
+        clientName: 'Test',
+        packageName: 'test',
+      },
+      python: {
+        clientName: 'SnapTrade',
+        packageName: 'snaptrade_client',
+      },
+    },
     tag: 'Options',
     operationId: 'Options_getOptionStrategy',
     basePath: 'https://api.snaptrade.com/api/v1',
