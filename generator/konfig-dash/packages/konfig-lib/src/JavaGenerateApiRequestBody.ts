@@ -34,6 +34,15 @@ const additionalProperties = z.object({
   setSkipSerializationToTrueByDefault: z.boolean().optional(),
   toStringReturnsJson: z.boolean().optional(),
   includeFetchAdapter: z.boolean().optional(),
+  pubName: z.string().optional(),
+  pubLibrary: z.string().optional(),
+  pubDescription: z.string().optional(),
+  pubAuthor: z.string().optional(),
+  pubAuthorEmail: z.string().optional(),
+  pubHomepage: z.string().optional(),
+  pubPublishTo: z.string().optional(),
+  pubRepository: z.string().optional(),
+  pubVersion: z.string().optional(),
   includeEventSourceParser: z.boolean().optional(),
   repoName: z.string().optional(),
   packageUrl: z.string().optional(),
@@ -96,6 +105,7 @@ export const javaGenerateApiRequestBody = z.object({
         .or(z.literal('ruby'))
         .or(z.literal('objc'))
         .or(z.literal('go'))
+        .or(z.literal('dart'))
         .or(z.literal('typescript-axios')),
       removeOperationIdPrefix: z.boolean(),
       files: TemplateFiles,

@@ -39,6 +39,33 @@ public class AdditionalProperties {
   @JsonProperty("clientName")
   private String clientName;
 
+  @JsonProperty("pubName")
+  private String pubName;
+
+  @JsonProperty("pubLibrary")
+  private String pubLibrary;
+
+  @JsonProperty("pubDescription")
+  private String pubDescription;
+
+  @JsonProperty("pubAuthor")
+  private String pubAuthor;
+
+  @JsonProperty("pubAuthorEmail")
+  private String pubAuthorEmail;
+
+  @JsonProperty("pubHomepage")
+  private String pubHomepage;
+
+  @JsonProperty("pubPublishTo")
+  private String pubPublishTo;
+
+  @JsonProperty("pubRepository")
+  private String pubRepository;
+
+  @JsonProperty("pubVersion")
+  private String pubVersion;
+
   @JsonProperty("readmeOperation")
   private AdditionalPropertiesReadmeOperation readmeOperation;
 
@@ -258,6 +285,177 @@ public class AdditionalProperties {
 
   public void setClientName(String clientName) {
     this.clientName = clientName;
+  }
+
+  public AdditionalProperties pubName(String pubName) {
+    this.pubName = pubName;
+    return this;
+  }
+
+  /**
+   * Get pubName
+   * @return pubName
+  */
+  
+  @Schema(name = "pubName", required = false)
+  public String getPubName() {
+    return pubName;
+  }
+
+  public void setPubName(String pubName) {
+    this.pubName = pubName;
+  }
+
+  public AdditionalProperties pubLibrary(String pubLibrary) {
+    this.pubLibrary = pubLibrary;
+    return this;
+  }
+
+  /**
+   * Get pubLibrary
+   * @return pubLibrary
+  */
+  
+  @Schema(name = "pubLibrary", required = false)
+  public String getPubLibrary() {
+    return pubLibrary;
+  }
+
+  public void setPubLibrary(String pubLibrary) {
+    this.pubLibrary = pubLibrary;
+  }
+
+  public AdditionalProperties pubDescription(String pubDescription) {
+    this.pubDescription = pubDescription;
+    return this;
+  }
+
+  /**
+   * Get pubDescription
+   * @return pubDescription
+  */
+  
+  @Schema(name = "pubDescription", required = false)
+  public String getPubDescription() {
+    return pubDescription;
+  }
+
+  public void setPubDescription(String pubDescription) {
+    this.pubDescription = pubDescription;
+  }
+
+  public AdditionalProperties pubAuthor(String pubAuthor) {
+    this.pubAuthor = pubAuthor;
+    return this;
+  }
+
+  /**
+   * Get pubAuthor
+   * @return pubAuthor
+  */
+  
+  @Schema(name = "pubAuthor", required = false)
+  public String getPubAuthor() {
+    return pubAuthor;
+  }
+
+  public void setPubAuthor(String pubAuthor) {
+    this.pubAuthor = pubAuthor;
+  }
+
+  public AdditionalProperties pubAuthorEmail(String pubAuthorEmail) {
+    this.pubAuthorEmail = pubAuthorEmail;
+    return this;
+  }
+
+  /**
+   * Get pubAuthorEmail
+   * @return pubAuthorEmail
+  */
+  
+  @Schema(name = "pubAuthorEmail", required = false)
+  public String getPubAuthorEmail() {
+    return pubAuthorEmail;
+  }
+
+  public void setPubAuthorEmail(String pubAuthorEmail) {
+    this.pubAuthorEmail = pubAuthorEmail;
+  }
+
+  public AdditionalProperties pubHomepage(String pubHomepage) {
+    this.pubHomepage = pubHomepage;
+    return this;
+  }
+
+  /**
+   * Get pubHomepage
+   * @return pubHomepage
+  */
+  
+  @Schema(name = "pubHomepage", required = false)
+  public String getPubHomepage() {
+    return pubHomepage;
+  }
+
+  public void setPubHomepage(String pubHomepage) {
+    this.pubHomepage = pubHomepage;
+  }
+
+  public AdditionalProperties pubPublishTo(String pubPublishTo) {
+    this.pubPublishTo = pubPublishTo;
+    return this;
+  }
+
+  /**
+   * Get pubPublishTo
+   * @return pubPublishTo
+  */
+  
+  @Schema(name = "pubPublishTo", required = false)
+  public String getPubPublishTo() {
+    return pubPublishTo;
+  }
+
+  public void setPubPublishTo(String pubPublishTo) {
+    this.pubPublishTo = pubPublishTo;
+  }
+
+  public AdditionalProperties pubRepository(String pubRepository) {
+    this.pubRepository = pubRepository;
+    return this;
+  }
+
+  /**
+   * Get pubRepository
+   * @return pubRepository
+  */
+  
+  @Schema(name = "pubRepository", required = false)
+  public String getPubRepository() {
+    return pubRepository;
+  }
+
+  public void setPubRepository(String pubRepository) {
+    this.pubRepository = pubRepository;
+  }
+
+  public AdditionalProperties pubVersion(String pubVersion) {
+    this.pubVersion = pubVersion;
+    return this;
+  }
+
+  /**
+   * Get pubVersion
+   * @return pubVersion
+  */
+  
+  @Schema(name = "pubVersion", required = false)
+  public String getPubVersion() {
+    return pubVersion;
+  }
+
+  public void setPubVersion(String pubVersion) {
+    this.pubVersion = pubVersion;
   }
 
   public AdditionalProperties readmeOperation(AdditionalPropertiesReadmeOperation readmeOperation) {
@@ -1319,6 +1517,15 @@ public class AdditionalProperties {
     return Objects.equals(this.objectPropertyNamingConvention, additionalProperties.objectPropertyNamingConvention) &&
         Objects.equals(this.gitRepoName, additionalProperties.gitRepoName) &&
         Objects.equals(this.clientName, additionalProperties.clientName) &&
+        Objects.equals(this.pubName, additionalProperties.pubName) &&
+        Objects.equals(this.pubLibrary, additionalProperties.pubLibrary) &&
+        Objects.equals(this.pubDescription, additionalProperties.pubDescription) &&
+        Objects.equals(this.pubAuthor, additionalProperties.pubAuthor) &&
+        Objects.equals(this.pubAuthorEmail, additionalProperties.pubAuthorEmail) &&
+        Objects.equals(this.pubHomepage, additionalProperties.pubHomepage) &&
+        Objects.equals(this.pubPublishTo, additionalProperties.pubPublishTo) &&
+        Objects.equals(this.pubRepository, additionalProperties.pubRepository) &&
+        Objects.equals(this.pubVersion, additionalProperties.pubVersion) &&
         Objects.equals(this.readmeOperation, additionalProperties.readmeOperation) &&
         Objects.equals(this.moduleName, additionalProperties.moduleName) &&
         Objects.equals(this.gitLabProjectId, additionalProperties.gitLabProjectId) &&
@@ -1376,7 +1583,7 @@ public class AdditionalProperties {
 
   @Override
   public int hashCode() {
-    return Objects.hash(objectPropertyNamingConvention, gitRepoName, clientName, readmeOperation, moduleName, gitLabProjectId, outputDirectory, topLevelOperations, omitInfoDescription, omitModelDocumentation, omitApiDocumentation, useSecurityKeyParamNameAsPropertyName, tagPriority, useDescriptionInOperationTableDocumentation, setSkipSerializationToTrueByDefault, includeFetchAdapter, packagistUsername, toStringReturnsJson, includeEventSourceParser, keepAllParametersOptional, apiDocumentationAuthenticationPartial, composerPackageName, defaultTimeout, supportPhp7, useSingleRequestParameter, artifactUrl, artifactId, groupId, invokerPackage, modelPackage, apiPackage, projectName, podVersion, removeKonfigBranding, podName, classPrefix, authorName, authorEmail, podAuthors, swiftPackagePath, disallowAdditionalPropertiesIfNotPresent, packageVersion, packageUrl, npmVersion, gemName, gemVersion, userAgent, npmName, readmeSnippet, asyncReadmeSnippet, readmeSupportingDescriptionSnippet, readmeDescriptionSnippet, apiKeyAlias, clientState, clientStateWithExamples, clientStateIsOptional);
+    return Objects.hash(objectPropertyNamingConvention, gitRepoName, clientName, pubName, pubLibrary, pubDescription, pubAuthor, pubAuthorEmail, pubHomepage, pubPublishTo, pubRepository, pubVersion, readmeOperation, moduleName, gitLabProjectId, outputDirectory, topLevelOperations, omitInfoDescription, omitModelDocumentation, omitApiDocumentation, useSecurityKeyParamNameAsPropertyName, tagPriority, useDescriptionInOperationTableDocumentation, setSkipSerializationToTrueByDefault, includeFetchAdapter, packagistUsername, toStringReturnsJson, includeEventSourceParser, keepAllParametersOptional, apiDocumentationAuthenticationPartial, composerPackageName, defaultTimeout, supportPhp7, useSingleRequestParameter, artifactUrl, artifactId, groupId, invokerPackage, modelPackage, apiPackage, projectName, podVersion, removeKonfigBranding, podName, classPrefix, authorName, authorEmail, podAuthors, swiftPackagePath, disallowAdditionalPropertiesIfNotPresent, packageVersion, packageUrl, npmVersion, gemName, gemVersion, userAgent, npmName, readmeSnippet, asyncReadmeSnippet, readmeSupportingDescriptionSnippet, readmeDescriptionSnippet, apiKeyAlias, clientState, clientStateWithExamples, clientStateIsOptional);
   }
 
   @Override
@@ -1386,6 +1593,15 @@ public class AdditionalProperties {
     sb.append("    objectPropertyNamingConvention: ").append(toIndentedString(objectPropertyNamingConvention)).append("\n");
     sb.append("    gitRepoName: ").append(toIndentedString(gitRepoName)).append("\n");
     sb.append("    clientName: ").append(toIndentedString(clientName)).append("\n");
+    sb.append("    pubName: ").append(toIndentedString(pubName)).append("\n");
+    sb.append("    pubLibrary: ").append(toIndentedString(pubLibrary)).append("\n");
+    sb.append("    pubDescription: ").append(toIndentedString(pubDescription)).append("\n");
+    sb.append("    pubAuthor: ").append(toIndentedString(pubAuthor)).append("\n");
+    sb.append("    pubAuthorEmail: ").append(toIndentedString(pubAuthorEmail)).append("\n");
+    sb.append("    pubHomepage: ").append(toIndentedString(pubHomepage)).append("\n");
+    sb.append("    pubPublishTo: ").append(toIndentedString(pubPublishTo)).append("\n");
+    sb.append("    pubRepository: ").append(toIndentedString(pubRepository)).append("\n");
+    sb.append("    pubVersion: ").append(toIndentedString(pubVersion)).append("\n");
     sb.append("    readmeOperation: ").append(toIndentedString(readmeOperation)).append("\n");
     sb.append("    moduleName: ").append(toIndentedString(moduleName)).append("\n");
     sb.append("    gitLabProjectId: ").append(toIndentedString(gitLabProjectId)).append("\n");

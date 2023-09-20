@@ -14,6 +14,7 @@ import {
   generatorCommonOptional,
   generatorCommonGitRequired,
   androidConfig,
+  dartConfig,
 } from './KonfigYaml'
 import { KonfigYamlCommon } from './KonfigYamlCommon'
 import { TemplateFiles } from './TemplateFiles'
@@ -37,6 +38,7 @@ const kotlin = generatorCommon.merge(kotlinConfig).strict()
 const objc = generatorCommon.merge(objcConfig).strict()
 const go = generatorCommon.merge(goConfig).strict()
 const swift = generatorCommon.merge(swiftConfig).strict()
+const dart = generatorCommon.merge(dartConfig).strict()
 
 const javaGenericGeneratorConfig = z.union([
   z
@@ -76,6 +78,11 @@ const javaGenericGeneratorConfig = z.union([
     .merge(php),
   z
     .object({
+      generator: z.literal('dart'),
+    })
+    .merge(dart),
+  z
+    .object({
       generator: z.literal('kotlin'),
     })
     .merge(kotlin),
@@ -107,6 +114,7 @@ export const GenerateRequestBody = z
       ruby: ruby.optional(),
       python: python.optional(),
       typescript: typescript.optional(),
+      dart: dart.optional(),
       csharp: csharp.optional(),
       php: php.optional(),
       kotlin: kotlin.optional(),

@@ -215,6 +215,20 @@ export const swiftConfig = z.object({
   podAuthors: z.string().describe('acme.com'),
 })
 
+export const dartConfig = z.object({
+  language: z.literal('dart').default('dart'),
+  pubName: z
+    .string()
+    .regex(/^[a-z][a-z\_]*$/)
+    .optional()
+    .describe(`"a" in import 'package:a/b.dart';`),
+  pubLibrary: z
+    .string()
+    .regex(/^[a-z][a-z\_]*$/)
+    .optional()
+    .describe(`"b" in import 'package:a/b.dart';`),
+})
+
 export const phpConfig = z.object({
   language: z.literal('php').default('php'),
   packageName: z.string().describe('acme-php'),
@@ -413,6 +427,7 @@ export const go = generatorCommonOptional
   .merge(goConfig)
 
 export const swift = generatorCommon.merge(swiftConfig)
+export const dart = generatorCommon.merge(dartConfig)
 
 const genericGeneratorConfig = z.union([
   z
@@ -452,6 +467,11 @@ const genericGeneratorConfig = z.union([
     .merge(php),
   z
     .object({
+      generator: z.literal('dart'),
+    })
+    .merge(dart),
+  z
+    .object({
       generator: z.literal('kotlin'),
     })
     .merge(kotlin),
@@ -487,6 +507,7 @@ export const KonfigYaml = KonfigYamlCommon.merge(
       objc: objc.optional(),
       go: go.optional(),
       swift: swift.optional(),
+      dart: dart.optional(),
     }),
     specPath: z.string(),
     specInputPath: z

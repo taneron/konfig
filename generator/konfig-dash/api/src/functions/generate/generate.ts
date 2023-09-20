@@ -427,6 +427,15 @@ export const myHandler = async (event: APIGatewayEvent, context: Context) => {
     })
   }
 
+  if (body.generators.dart) {
+    await queueDartGeneration({
+      body,
+      queue,
+      transformSpecForGenerator,
+      dart: body.generators.dart,
+    })
+  }
+
   if (body.generators.swift) {
     const generatorConfig = body.generators.swift
     const requestBody: JavaGenerateApiRequestBodyType = {
@@ -686,6 +695,70 @@ async function queuePhpGeneration({
       gitUserId: generatorConfig.git?.userId,
       gitRepoId: generatorConfig.git?.repoId,
       removeOperationIdPrefix: true,
+      files: generatorConfig.files,
+    },
+  }
+  queue(requestBody)
+}
+
+async function queueDartGeneration({
+  body,
+  dart,
+  queue,
+  transformSpecForGenerator,
+  outputDirectoryName,
+}: {
+  body: GenerateRequestBodyType
+  dart: GenerateRequestBodyType['generators']['dart']
+  queue: (requestBody: JavaGenerateApiRequestBodyType) => void
+  transformSpecForGenerator: ({
+    generator,
+  }: {
+    generator: KonfigYamlGeneratorNames
+  }) => ReturnType<typeof transformSpec>
+  outputDirectoryName?: string
+}) {
+  if (dart === undefined) return
+  const generatorConfig = dart
+  // const packageName = generatorConfig.packageName
+  //   ? `${generatorConfig.groupId}.${generatorConfig.packageName}.client`
+  //   : `${generatorConfig.groupId}.client`
+  const requestBody: JavaGenerateApiRequestBodyType = {
+    spec: {
+      src: await transformSpecForGenerator({ generator: 'dart' }),
+    },
+    config: {
+      outputDirectoryName,
+      additionalProperties: {
+        omitInfoDescription: body.omitInfoDescription,
+        tagPriority: body.tagPriority,
+        readmeOperation: body.readmeOperation,
+        pubAuthor: body.infoContactName ?? 'Konfig',
+        pubAuthorEmail: body.infoContactEmail ?? 'engineering@konfigthis.com',
+        pubHomepage: body.infoContactUrl ?? 'https://konfigthis.com',
+        pubVersion: generatorConfig.version,
+        pubRepository: generatorConfig.git
+          ? `https://${generatorConfig.git.host}/${generatorConfig.git.userId}/${generatorConfig.git.repoId}`
+          : 'https://github.com/USER_ID/REPO_ID',
+        // invokerPackage: packageName,
+        // clientName: generatorConfig.clientName,
+        // gitLabProjectId: generatorConfig.gitlab?.projectId,
+        apiDocumentationAuthenticationPartial:
+          generatorConfig.apiDocumentationAuthenticationPartial,
+        readmeSnippet: generatorConfig.readmeSnippet,
+        readmeSupportingDescriptionSnippet:
+          generatorConfig.readmeSupportingDescriptionSnippet,
+        readmeDescriptionSnippet: generatorConfig.readmeDescriptionSnippet,
+        disallowAdditionalPropertiesIfNotPresent: false,
+        defaultTimeout: generatorConfig.defaultTimeout,
+        userAgent: generatorConfig.userAgent,
+      },
+      artifactVersion: generatorConfig.version,
+      generatorName: 'dart',
+      removeOperationIdPrefix: true,
+      gitHost: generatorConfig.git?.host,
+      gitUserId: generatorConfig.git?.userId,
+      gitRepoId: generatorConfig.git?.repoId,
       files: generatorConfig.files,
     },
   }

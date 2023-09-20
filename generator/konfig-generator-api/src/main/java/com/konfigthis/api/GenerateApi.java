@@ -262,6 +262,15 @@ public interface GenerateApi {
         putIfPresent(map, "artifactId", additionalProperties.getArtifactId());
         putIfPresent(map, "artifactUrl", additionalProperties.getArtifactUrl());
         putIfPresent(map, "groupId", additionalProperties.getGroupId());
+        putIfPresent(map, "pubName", additionalProperties.getPubName());
+        putIfPresent(map, "pubLibrary", additionalProperties.getPubLibrary());
+        putIfPresent(map, "pubDescription", additionalProperties.getPubDescription());
+        putIfPresent(map, "pubAuthor", additionalProperties.getPubAuthor());
+        putIfPresent(map, "pubAuthorEmail", additionalProperties.getPubAuthorEmail());
+        putIfPresent(map, "pubHomepage", additionalProperties.getPubHomepage());
+        putIfPresent(map, "pubPublishTo", additionalProperties.getPubPublishTo());
+        putIfPresent(map, "pubRepository", additionalProperties.getPubRepository());
+        putIfPresent(map, "pubVersion", additionalProperties.getPubVersion());
         putIfPresent(map, "supportPhp7", additionalProperties.getSupportPhp7());
         putIfPresent(map, "projectName", additionalProperties.getProjectName());
         putIfPresent(map, "disallowAdditionalPropertiesIfNotPresent",

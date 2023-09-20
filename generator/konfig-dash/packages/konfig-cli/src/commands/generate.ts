@@ -412,6 +412,16 @@ export default class Deploy extends Command {
         requestGenerators.java = requestJava
       }
 
+      const dartGeneratorConfig = getConfig('dart')
+      if (dartGeneratorConfig && !dartGeneratorConfig.disabled) {
+        const requestDart = constructDartGenerationRequest({
+          configDir,
+          dartGeneratorConfig,
+          initializeFlowsDirectory,
+        })
+        requestGenerators.dart = requestDart
+      }
+
       const pythonGeneratorConfig = getConfig('python')
       if (pythonGeneratorConfig && !pythonGeneratorConfig.disabled) {
         const { files, ...restOfConfig } = pythonGeneratorConfig
@@ -465,6 +475,15 @@ export default class Deploy extends Command {
               ...constructJavaGenerationRequest({
                 configDir,
                 javaGeneratorConfig: config,
+                initializeFlowsDirectory,
+              }),
+            }
+          } else if (config.generator === 'dart') {
+            generateRequestBodyAdditionalGenerators[configName] = {
+              generator: 'dart',
+              ...constructDartGenerationRequest({
+                configDir,
+                dartGeneratorConfig: config,
                 initializeFlowsDirectory,
               }),
             }
@@ -833,6 +852,13 @@ export default class Deploy extends Command {
                   sdkDirName: name,
                   copyToOutputDirectory,
                 })
+              } else if (config.generator === 'dart') {
+                await copyDartOutput({
+                  flags,
+                  dart: config,
+                  sdkDirName: name,
+                  copyToOutputDirectory,
+                })
               } else if (config.generator === 'php') {
                 await copyPhpOutput({
                   flags,
@@ -1062,6 +1088,14 @@ export default class Deploy extends Command {
             await copyJavaOutput({
               flags,
               java: body.generators.java,
+              copyToOutputDirectory,
+            })
+          }
+
+          if (body.generators.dart) {
+            await copyDartOutput({
+              flags,
+              dart: body.generators.dart,
               copyToOutputDirectory,
             })
           }
@@ -1492,6 +1526,31 @@ function constructPhpGenerationRequest({
   return requestPhp
 }
 
+function constructDartGenerationRequest({
+  configDir,
+  dartGeneratorConfig,
+  initializeFlowsDirectory,
+}: {
+  configDir: string
+  dartGeneratorConfig: NonNullable<KonfigYamlType['generators']['dart']>
+  initializeFlowsDirectory: (generatorName: KonfigYamlGeneratorNames) => void
+}) {
+  const { files, ...restOfConfig } = dartGeneratorConfig
+
+  const requestDart: GenerateRequestBodyType['generators']['dart'] = {
+    files: createTemplateFilesObject(files, 'dart', configDir),
+    ...handleReadmeSnippet({ config: restOfConfig }),
+    ...handleReadmeSupportingDescriptionSnippet({
+      config: restOfConfig,
+    }),
+    ...handleapiDocumentationAuthenticationPartialSnippet({
+      config: restOfConfig,
+    }),
+  }
+  initializeFlowsDirectory('dart')
+  return requestDart
+}
+
 function constructJavaGenerationRequest({
   configDir,
   javaGeneratorConfig: javaGeneratorConfig,
@@ -1654,6 +1713,37 @@ async function copyPhpOutput({
     //   JSON.stringify(composerJson, undefined, 2)
     // )
 
+    CliUx.ux.action.stop()
+  }
+}
+
+async function copyDartOutput({
+  flags,
+  dart,
+  copyToOutputDirectory,
+  sdkDirName,
+}: {
+  flags: { copyJavaOutputDir?: string; doNotCopy?: boolean }
+  dart: GenerateRequestBodyInputType['generators']['dart']
+  sdkDirName?: string
+  copyToOutputDirectory: (input: CopyFilesInput) => Promise<void>
+}) {
+  if (dart === undefined) return
+  const outputDirectory = dart.outputDirectory
+  if (outputDirectory && !flags.doNotCopy) {
+    CliUx.ux.action.start(
+      `Deleting contents of existing directory "${outputDirectory}"`
+    )
+    await safelyDeleteFiles(outputDirectory)
+    CliUx.ux.action.stop()
+
+    // Copy content of generated SDK to existing directory
+    CliUx.ux.action.start(`Copying Dart SDK to "${outputDirectory}"`)
+    await copyToOutputDirectory({
+      generator: sdkDirName ? sdkDirName : 'dart',
+      outputDirectory,
+      generatorConfig: dart,
+    })
     CliUx.ux.action.stop()
   }
 }
