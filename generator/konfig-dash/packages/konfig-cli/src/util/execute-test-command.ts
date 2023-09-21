@@ -63,7 +63,7 @@ export async function executeTestCommand({
     CliUx.ux.log('🛑 Killing mock server')
     await kill(port)
     process.exit()
-  };
+  }
 
   process.on('exit', handleTermination)
   process.on('SIGINT', handleTermination)
@@ -189,6 +189,7 @@ const defaultTestScripts: Record<
   KonfigYamlGeneratorNames,
   ((config: KonfigYamlGeneratorConfig) => string[]) | undefined
 > = {
+  dart: () => ['dart test'],
   typescript: () => ['yarn', 'yarn test', 'yarn build'],
   csharp: () => ['dotnet test'],
   java: () => ['mvn test'],
