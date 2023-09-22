@@ -1,0 +1,40 @@
+# {{{pubName}}}.api.{{{classname}}}
+{{#description}}
+{{{.}}}
+{{/description}}
+
+All URIs are relative to *{{{basePath}}}*
+
+Method | HTTP request | Description
+------------- | ------------- | -------------
+{{#operations}}{{#operation}}[**{{{operationId}}}**]({{{classname}}}.md#{{{operationIdLowerCase}}}) | **{{{httpMethod}}}** {{{path}}} | {{{summary}}}
+{{/operation}}{{/operations}}
+
+{{#operations}}
+{{#operation}}
+# **{{{operationId}}}**
+
+{{{summary}}}{{#notes}}
+
+{{{.}}}{{/notes}}
+
+### Example
+```dart
+{{> api_doc_example}}
+```
+
+### Parameters
+{{^allParams}}This endpoint does not need any parameter.{{/allParams}}{{#allParams}}{{#-last}}
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------{{/-last}}{{/allParams}}
+{{#allParams}} **{{{paramName}}}** | {{#isPrimitiveType}}**{{{dataType}}}**{{/isPrimitiveType}}{{^isPrimitiveType}}[**{{{dataType}}}**]({{{baseType}}}.md){{/isPrimitiveType}}| {{{description}}} | {{^required}}[optional] {{/required}}{{#defaultValue}}[default to {{{.}}}]{{/defaultValue}}
+{{/allParams}}
+
+### Return type
+
+{{#returnType}}{{#returnTypeIsPrimitive}}**{{{returnType}}}**{{/returnTypeIsPrimitive}}{{^returnTypeIsPrimitive}}[**{{{returnType}}}**]({{{returnBaseType}}}.md){{/returnTypeIsPrimitive}}{{/returnType}}{{^returnType}}void (empty response body){{/returnType}}
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+{{/operation}}
+{{/operations}}

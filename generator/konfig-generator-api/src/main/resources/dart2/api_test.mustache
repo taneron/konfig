@@ -1,0 +1,34 @@
+{{>header}}
+{{> package_import}}
+import 'package:test/test.dart';
+import 'package:http/http.dart';
+
+{{#operations}}
+
+/// tests for {{{classname}}}
+void main() {
+  final {{clientNameLowercase}} = {{{clientName}}}(
+  basePath: "http://127.0.0.1:4010",
+  {{> api_doc_example_setup_params}});
+
+  group('tests for {{{classname}}}', () {
+    {{#operation}}
+    {{#summary}}
+    // {{{.}}}
+    //
+    {{/summary}}
+    {{#notes}}
+    // {{{.}}}
+    //
+    {{/notes}}
+    //{{#returnType}}Future<{{{.}}}> {{/returnType}}{{^returnType}}Future {{/returnType}}{{{operationId}}}({{#allParams}}{{#required}}{{{dataType}}} {{{paramName}}}{{^-last}}, {{/-last}}{{/required}}{{/allParams}}{{#hasOptionalParams}}{ {{#allParams}}{{^required}}{{{dataType}}} {{{paramName}}}{{^-last}}, {{/-last}}{{/required}}{{/allParams}} }{{/hasOptionalParams}}) async
+    test('test {{{operationId}}}', () async {
+        {{> api_doc_example_execute_params}}
+        {{> api_doc_example_execute}}
+        expect(result, isNotNull);
+    });
+
+    {{/operation}}
+  });
+}
+{{/operations}}

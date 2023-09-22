@@ -1,0 +1,15 @@
+{{> package_import}}
+
+final {{clientNameLowercase}} = {{{clientName}}}(
+{{> api_doc_example_setup_params}});
+
+{{> api_doc_example_execute_params}}
+
+try {
+    {{> api_doc_example_execute}}
+    {{#returnType}}
+    print(result);
+    {{/returnType}}
+} catch (e) {
+    print('Exception when calling {{{classNameCamelCase}}}.{{{operationId}}}: $e\n');
+}

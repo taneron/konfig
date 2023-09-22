@@ -18,6 +18,11 @@ const clientState = z
     'A list of stateful properties generated into the SDK that can be used in custom implementation hooks. This is useful when you need state in the SDK that is not described in the OpenAPI Specification such as a key used for request signing.'
   )
 
+const removeKonfigBranding = z
+  .boolean()
+  .optional()
+  .describe("Don't add Konfig branding to generated SDK")
+
 export const clientStateWithExamples = z
   .object({
     name: z.string(),
@@ -57,7 +62,7 @@ export const javaConfig = z.object({
     .describe(
       `Example: "acme-java-sdk" (see https://maven.apache.org/guides/mini/guide-naming-conventions.html)`
     ),
-  removeKonfigBranding: z.boolean().optional(),
+  removeKonfigBranding,
   gitlab,
   clientName: z.string(),
   clientState,
@@ -180,7 +185,7 @@ export const pythonConfig = z.object({
   language: z.literal('python').default('python'),
   packageName: z.string().describe('acme_client'),
   projectName: z.string().describe('acme-python-sdk'),
-  removeKonfigBranding: z.boolean().optional(),
+  removeKonfigBranding,
   pypiApiTokenEnvironmentVariable: z.string().optional(),
   gitlabRepositoryId: z.string().optional(),
   asyncReadmeSnippet: z.string().optional(),
@@ -217,16 +222,16 @@ export const swiftConfig = z.object({
 
 export const dartConfig = z.object({
   language: z.literal('dart').default('dart'),
+  removeKonfigBranding,
+  clientName: z
+    .string()
+    .describe(
+      `The top-level client's name. (e.g. 'Acme' in "final acme = Acme();")`
+    ),
   pubName: z
     .string()
     .regex(/^[a-z][a-z\_]*$/)
-    .optional()
     .describe(`"a" in import 'package:a/b.dart';`),
-  pubLibrary: z
-    .string()
-    .regex(/^[a-z][a-z\_]*$/)
-    .optional()
-    .describe(`"b" in import 'package:a/b.dart';`),
 })
 
 export const phpConfig = z.object({
@@ -275,7 +280,7 @@ export const typescriptConfig = z.object({
       `The name of the npm package (e.g. "acme-typescript-sdk" in "import { Acme } from 'acme-typescript-sdk'")`
     ),
   pagination: paginationConfigSchema.optional(),
-  removeKonfigBranding: z.boolean().optional(),
+  removeKonfigBranding,
   useSecurityKeyParamNameAsPropertyName: z
     .boolean()
     .optional()
@@ -537,5 +542,6 @@ export type CSharpConfigType = z.infer<typeof csharp>
 export type KonfigGeneratorCommon = z.infer<typeof konfigGeneratorConfigCommon>
 export type PythonConfigType = z.infer<typeof pythonConfig>
 export type RubyConfigType = z.infer<typeof rubyConfig>
+export type DartConfigType = z.infer<typeof dart>
 export type GeneratorCommonGitType = z.infer<typeof generatorCommonGitRequired>
 export type ParameterStateConfig = z.infer<typeof parameterStateConfig>
