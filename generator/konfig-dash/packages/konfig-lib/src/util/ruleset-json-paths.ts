@@ -8,15 +8,19 @@ export const rulesetJsonPaths = {
   OperationObject: ['#PathItem[get,put,post,delete,options,head,patch,trace]'],
   ParameterObjects: ['#OperationObject.parameters.*'],
   ParameterObjectNames: ['#ParameterObjects.name'],
-  ParameterSchemaObject: ['#ParameterObjects.schema'],
+  ParameterSchemaObject: ['#ParameterObjects..schema'],
   RequestContentObject: ['#OperationObject.requestBody.content'],
-  RequestSchemaObject: ['#RequestContentObject.*.schema'],
+  RequestSchemaObject: ['#RequestContentObject..schema'],
   ResponsesObjects: ['#OperationObject.responses'],
   ResponsesObjectHeaderNames: ['#ResponsesObjects.*.headers.*~'],
   ResponsesObjectsKeys: ['#ResponsesObjects.*~'],
   ResponseContentObject: ['#ResponsesObjects.*.content.*'],
-  ResponseSchemaObject: ['#ResponseContentObject.schema'],
-  AllSchemaObjects: ['#RequestSchemaObject', '#ResponseSchemaObject'],
+  ResponseSchemaObject: ['#ResponseContentObject..schema'],
+  AllSchemaObjects: [
+    '#RequestSchemaObject',
+    '#ResponseSchemaObject',
+    '#ParameterSchemaObject',
+  ],
 }
 
 export const givenPaths = {

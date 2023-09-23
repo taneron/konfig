@@ -39,6 +39,7 @@ import { booleanQueryParameter } from './functions/booleanQueryParameter'
 import { noParameterNamedRequestBody } from './functions/noParameterNamedRequestBody'
 import { missingDataTimeFormat } from './functions/missingDateTimeFormat'
 import { missingDateFormat } from './functions/missingDateFormat '
+import { invalidRequiredPropertySyntax } from './functions/invalidRequiredPropertySyntax'
 
 export default {
   extends: oas,
@@ -159,6 +160,16 @@ export default {
       ],
       formats: [oas3],
       severity: DiagnosticSeverity.Hint,
+    },
+    'invalid-required-property-syntax': {
+      message: `{{error}}`,
+      given: rulesetJsonPaths.AllSchemaObjects.map((path) => `${path}..`),
+      then: [
+        {
+          function: invalidRequiredPropertySyntax,
+        },
+      ],
+      severity: DiagnosticSeverity.Warning,
     },
     'missing-date-format': {
       message: `Schema type of "string" has no format "date" but has example "{{error}}"`,
