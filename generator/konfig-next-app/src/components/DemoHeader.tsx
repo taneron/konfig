@@ -1,19 +1,9 @@
-import {
-  Header,
-  Group,
-  SegmentedControl,
-  ActionIcon,
-  Box,
-  useMantineTheme,
-  rem,
-} from '@mantine/core'
-import { IconRefresh } from '@tabler/icons-react'
-import { TITLE_OFFSET_PX } from './DemoTitle'
 import { Dispatch, SetStateAction } from 'react'
 import { PortalState } from './DemoPortal'
 import { observer } from 'mobx-react'
 import { LayoutHeader } from './LayoutHeader'
 import { HeaderTabs, TABS } from './HeaderTabs'
+import { HeaderWrapper } from './HeaderWrapper'
 
 export const DemoHeader = observer(
   ({
@@ -39,18 +29,8 @@ export const DemoHeader = observer(
     repo: string
     logo: string | null
   }) => {
-    const theme = useMantineTheme()
     return (
-      <Header
-        style={{
-          color: 'white',
-          background:
-            theme.colorScheme === 'dark'
-              ? theme.colors.brand[9]
-              : theme.colors.brand[7],
-        }}
-        height={TITLE_OFFSET_PX}
-      >
+      <HeaderWrapper>
         <LayoutHeader
           logo={logo}
           breakpoint="sm"
@@ -67,7 +47,7 @@ export const DemoHeader = observer(
           isSandbox={sandbox}
           omitOwnerAndRepo={omitOwnerAndRepo}
         />
-      </Header>
+      </HeaderWrapper>
     )
   }
 )

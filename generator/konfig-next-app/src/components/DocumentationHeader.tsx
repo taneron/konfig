@@ -1,8 +1,7 @@
-import { Header, Box, Group, useMantineTheme } from '@mantine/core'
-import { TITLE_OFFSET_PX } from './DemoTitle'
 import { HeaderTabs, TABS } from './HeaderTabs'
 import { LayoutHeader } from './LayoutHeader'
 import { Dispatch, SetStateAction } from 'react'
+import { HeaderWrapper } from './HeaderWrapper'
 
 export function DocumentationHeader({
   opened,
@@ -23,18 +22,8 @@ export function DocumentationHeader({
   repo: string
   logo: string | null
 }) {
-  const theme = useMantineTheme()
   return (
-    <Header
-      style={{
-        color: theme.white,
-        background:
-          theme.colorScheme === 'dark'
-            ? theme.colors.brand[9]
-            : theme.colors.brand[7],
-      }}
-      height={TITLE_OFFSET_PX}
-    >
+    <HeaderWrapper>
       <LayoutHeader
         breakpoint="lg"
         opened={opened}
@@ -50,6 +39,6 @@ export function DocumentationHeader({
         currentTab={TABS.documentation}
         omitOwnerAndRepo={omitOwnerAndRepo}
       />
-    </Header>
+    </HeaderWrapper>
   )
 }

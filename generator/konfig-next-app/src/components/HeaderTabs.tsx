@@ -41,10 +41,6 @@ export function HeaderTabs({
       h="45%"
       style={{
         color: theme.white,
-        background:
-          theme.colorScheme === 'dark'
-            ? theme.colors.brand[9]
-            : theme.colors.brand[7],
         alignItems: 'flex-end',
         overflowX: 'scroll',
       }}

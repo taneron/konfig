@@ -1,8 +1,8 @@
-import { Header, Box, Group, useMantineTheme } from '@mantine/core'
-import { TITLE_OFFSET_PX } from './DemoTitle'
+import { Header } from '@mantine/core'
 import { HeaderTabs, TABS } from './HeaderTabs'
 import { LayoutHeader } from './LayoutHeader'
 import { Dispatch, SetStateAction } from 'react'
+import { HeaderWrapper } from './HeaderWrapper'
 
 export function ReferenceHeader({
   opened,
@@ -25,18 +25,8 @@ export function ReferenceHeader({
   repo: string
   logo: string | null
 }) {
-  const theme = useMantineTheme()
   return (
-    <Header
-      style={{
-        color: theme.white,
-        background:
-          theme.colorScheme === 'dark'
-            ? theme.colors.brand[9]
-            : theme.colors.brand[7],
-      }}
-      height={TITLE_OFFSET_PX}
-    >
+    <HeaderWrapper>
       <LayoutHeader
         breakpoint="lg"
         opened={opened}
@@ -52,6 +42,6 @@ export function ReferenceHeader({
         currentTab={TABS.reference}
         omitOwnerAndRepo={omitOwnerAndRepo}
       />
-    </Header>
+    </HeaderWrapper>
   )
 }
