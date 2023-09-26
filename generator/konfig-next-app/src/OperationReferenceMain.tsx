@@ -130,7 +130,7 @@ export function OperationReferenceMain({
         repo,
         hideSecurity,
       })
-      console.log(initialValues)
+      console.debug(initialValues)
       if (initialValues) {
         form.setValues(initialValues)
       }
@@ -187,7 +187,7 @@ export function OperationReferenceMain({
       (operation.operation.requestBody as RequestBodyObject)?.required ?? false,
   }
 
-  console.log(codegenArgs)
+  console.debug(codegenArgs)
 
   const [requestInProgress, setRequestInProgress] = useState(false)
 
