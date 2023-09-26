@@ -13,6 +13,7 @@ export function HeaderWrapper({ children }: PropsWithChildren<{}>) {
             ? `${theme.colors.brand[9]}e6`
             : `${theme.colors.brand[7]}e6`,
         backdropFilter: 'blur(4px)',
+        WebkitBackdropFilter: 'blur(4px)',
       }}
       height={TITLE_OFFSET_PX}
     >
