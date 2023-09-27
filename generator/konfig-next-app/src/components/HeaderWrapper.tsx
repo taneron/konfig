@@ -10,10 +10,10 @@ export function HeaderWrapper({ children }: PropsWithChildren<{}>) {
         color: theme.white,
         background:
           theme.colorScheme === 'dark'
-            ? `${theme.colors.brand[9]}e6`
-            : `${theme.colors.brand[7]}e6`,
-        backdropFilter: 'blur(4px)',
-        WebkitBackdropFilter: 'blur(4px)',
+            ? `${theme.colors.brand[9]}`
+            : `${theme.colors.brand[7]}`,
+        // backdropFilter: 'blur(4px)',
+        // WebkitBackdropFilter: 'blur(4px)',
       }}
       height={TITLE_OFFSET_PX}
     >
