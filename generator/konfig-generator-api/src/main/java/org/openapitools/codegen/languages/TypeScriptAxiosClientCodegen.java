@@ -332,6 +332,7 @@ public class TypeScriptAxiosClientCodegen extends AbstractTypeScriptClientCodege
     public Map<String, Object> postProcessSupportingFileData(Map<String, Object> objs) {
         Map<String, Object> bundle = super.postProcessSupportingFileData(objs);
 
+
         // construct dependencies as string
         List<String> dependencies = new ArrayList<>();
         dependencies.add("    \"axios\": \"0.27.2\"");
@@ -345,6 +346,15 @@ public class TypeScriptAxiosClientCodegen extends AbstractTypeScriptClientCodege
             dependencies.add("\"file-type\": \"16.5.4\"");
             dependencies.add("\"form-data\": \"^4.0.0\"");
         }
+
+        if (additionalProperties.containsKey("dependencies")) {
+            Map<String, String> additionalDependencies = (Map<String, String>) additionalProperties.get("dependencies");
+            for (Map.Entry<String, String> entry : additionalDependencies.entrySet()) {
+                String dependency = "\"" + entry.getKey() + "\"" + ": \"" + entry.getValue() + "\"";
+                dependencies.add(dependency);
+            }
+        }
+
         bundle.put("dependencies", String.join(",\n    ", dependencies));
 
         return bundle;
