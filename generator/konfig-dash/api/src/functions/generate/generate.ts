@@ -920,6 +920,7 @@ async function queueTypeScriptGeneration({
         readmeOperation: body.readmeOperation,
         npmName: generatorConfig.npmName,
         npmVersion: generatorConfig.version,
+        dependencies: generatorConfig.dependencies,
         useDescriptionInOperationTableDocumentation:
           generatorConfig.useDescriptionInOperationTableDocumentation,
         disallowAdditionalPropertiesIfNotPresent: false,

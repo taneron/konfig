@@ -22,6 +22,7 @@ const additionalProperties = z.object({
   gitLabProjectId: z.string().optional(),
   invokerPackage: z.string().optional(),
   useSecurityKeyParamNameAsPropertyName: z.boolean().optional(),
+  dependencies: z.record(z.string(), z.string()).optional(),
   objectPropertyNamingConvention: z.string().optional(),
   clientState: z.string().array().optional(),
   clientStateWithExamples,

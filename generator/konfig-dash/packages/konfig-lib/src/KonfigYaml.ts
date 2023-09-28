@@ -263,6 +263,12 @@ export type RemoveRequiredProperties = z.infer<
 export const typescriptConfig = z.object({
   useDescriptionInOperationTableDocumentation,
   language: z.literal('typescript').default('typescript'),
+  dependencies: z
+    .record(z.string(), z.string())
+    .optional()
+    .describe(
+      'A map of dependencies to add to the generated package.json. This is useful for adding dependencies that are required for the SDK to work.'
+    ),
   packageJsonScripts: z
     .record(z.string(), z.string())
     .optional()

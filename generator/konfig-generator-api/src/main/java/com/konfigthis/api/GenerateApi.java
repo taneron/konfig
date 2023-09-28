@@ -273,6 +273,7 @@ public interface GenerateApi {
         putIfPresent(map, "pubVersion", additionalProperties.getPubVersion());
         putIfPresent(map, "supportPhp7", additionalProperties.getSupportPhp7());
         putIfPresent(map, "projectName", additionalProperties.getProjectName());
+        putIfPresent(map, "dependencies", additionalProperties.getDependencies());
         putIfPresent(map, "disallowAdditionalPropertiesIfNotPresent",
                 additionalProperties.getDisallowAdditionalPropertiesIfNotPresent());
         putIfPresent(map, "packageVersion", additionalProperties.getPackageVersion());
