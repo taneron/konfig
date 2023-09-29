@@ -139,6 +139,11 @@ const useStyles = createStyles((theme) => ({
       marginTop: 0,
     },
   },
+  text: {
+    img: {
+      maxWidth: '100%',
+    },
+  },
 }))
 
 const DemoMarkdown = observer(({ state }: { state: DemoState }) => {
@@ -158,7 +163,7 @@ const DemoMarkdown = observer(({ state }: { state: DemoState }) => {
             a: DemoAnchor,
             p({ node, children, siblingCount, ...props }) {
               return (
-                <Text mt="md" mb="xl" {...props}>
+                <Text className={classes.text} mt="md" mb="xl" {...props}>
                   {children}
                 </Text>
               )
