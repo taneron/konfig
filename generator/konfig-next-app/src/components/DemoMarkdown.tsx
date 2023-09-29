@@ -5,8 +5,10 @@ import remarkDirectiveRehype from 'remark-directive-rehype'
 import remarkGfm from 'remark-gfm'
 import {
   Anchor,
+  Box,
   Stack,
   Text,
+  createStyles,
   useMantineColorScheme,
   useMantineTheme,
 } from '@mantine/core'
@@ -131,9 +133,18 @@ export class DemoState {
 
 export const DemoStateContext = createContext<DemoState | null>(null)
 
+const useStyles = createStyles((theme) => ({
+  markdown: {
+    'h1:first-of-type': {
+      marginTop: 0,
+    },
+  },
+}))
+
 const DemoMarkdown = observer(({ state }: { state: DemoState }) => {
   const demoDiv = useRef<HTMLDivElement | null>(null)
   const { colors } = useMantineTheme()
+  const { classes } = useStyles()
   useEffect(() => {
     state.setDemoDiv(demoDiv.current)
   }, [state])
@@ -141,11 +152,16 @@ const DemoMarkdown = observer(({ state }: { state: DemoState }) => {
     <DemoStateContext.Provider value={state}>
       <Stack ref={demoDiv} spacing="xs">
         <ReactMarkdown
+          className={classes.markdown}
           remarkPlugins={[remarkGfm, remarkDirective, remarkDirectiveRehype]}
           components={{
             a: DemoAnchor,
             p({ node, children, siblingCount, ...props }) {
-              return <Text {...props}>{children}</Text>
+              return (
+                <Text mt="md" mb="xl" {...props}>
+                  {children}
+                </Text>
+              )
             },
             pre: DemoPre,
             form: DemoForm,
@@ -153,12 +169,12 @@ const DemoMarkdown = observer(({ state }: { state: DemoState }) => {
             button: DemoButton,
             code: DemoCode,
             hr: DemoDivider,
-            h1: DemoTitle,
-            h2: DemoTitle,
-            h3: DemoTitle,
-            h4: DemoTitle,
-            h5: DemoTitle,
-            h6: DemoTitle,
+            h1: (props) => <DemoTitle {...props} />,
+            h2: (props) => <DemoTitle {...props} />,
+            h3: (props) => <DemoTitle {...props} />,
+            h4: (props) => <DemoTitle {...props} />,
+            h5: (props) => <DemoTitle {...props} />,
+            h6: (props) => <DemoTitle {...props} />,
             // Make TypeScript happy by moving this into its own object
             ...{
               info: DemoInfo,

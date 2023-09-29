@@ -1,5 +1,4 @@
 import DemoMarkdown, { DemoState } from '@/components/DemoMarkdown'
-import { DemoSocials } from '@/components/DemoSocials'
 import { DemoTableOfContents } from '@/components/DemoTableOfContents'
 import { DocEditThisPage } from '@/components/DocEditThisPage'
 import { DocNavLink } from '@/components/DocNavLink'
@@ -17,6 +16,9 @@ import {
   Title,
   rem,
   Divider,
+  Flex,
+  Text,
+  createStyles,
 } from '@mantine/core'
 import { OperationObject } from 'konfig-lib'
 import { observer } from 'mobx-react'
@@ -62,6 +64,14 @@ export const getStaticProps: GetStaticProps<MarkdownPageProps> = async (
 
 export const OperationsContext = createContext<OperationObject[]>([])
 
+const useStyles = createStyles((theme) => ({
+  markdown: {
+    '.mantine-Tabs-root': {
+      marginBottom: theme.spacing.xl,
+    },
+  },
+}))
+
 const DocumentationPage = observer(
   ({
     konfigYaml,
@@ -85,6 +95,8 @@ const DocumentationPage = observer(
     const { colorScheme } = useMantineColorScheme()
 
     const [opened, setOpened] = useState(false)
+
+    const { classes } = useStyles()
 
     const [state, setState] = useState(() => {
       return new DemoState({
@@ -162,9 +174,16 @@ const DocumentationPage = observer(
                   {docConfig.sidebar.sections.map((section, i) => {
                     return (
                       <Box key={`${section.label}-${i}`}>
-                        <Title pb="xs" px="md" order={5}>
+                        <Text
+                          pb={2}
+                          px="md"
+                          weight="bold"
+                          fz="xs"
+                          style={{ textTransform: 'uppercase' }}
+                          color="dimmed"
+                        >
                           {section.label}
-                        </Title>
+                        </Text>
                         <Stack spacing={rem(3)}>
                           {section.links.map((link) => {
                             if (link.type === 'link') {
@@ -209,7 +228,11 @@ const DocumentationPage = observer(
             }
           >
             <OperationsContext.Provider value={operations}>
-              <DemoMarkdown state={state} />
+              <Flex justify="center">
+                <Box className={classes.markdown} w="100%" maw={700}>
+                  <DemoMarkdown state={state} />
+                </Box>
+              </Flex>
               <Box my={rem(40)}>
                 <DocEditThisPage
                   owner={owner}

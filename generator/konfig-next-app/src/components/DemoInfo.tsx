@@ -1,7 +1,15 @@
 import { observer } from 'mobx-react'
 import { Components } from 'react-markdown'
-import { Alert } from '@mantine/core'
+import { Alert, createStyles } from '@mantine/core'
 import { IconInfoCircleFilled } from '@tabler/icons-react'
+
+const useStyles = createStyles((theme) => ({
+  alert: {
+    '.mantine-Text-root': {
+      margin: 0,
+    },
+  },
+}))
 
 const _DemoInfo: Components['div'] = ({
   node,
@@ -10,8 +18,16 @@ const _DemoInfo: Components['div'] = ({
   siblingCount,
   ...props
 }) => {
+  const { classes } = useStyles()
   return (
-    <Alert title={props.title} icon={<IconInfoCircleFilled size="1rem" />}>
+    <Alert
+      className={classes.alert}
+      color="blue"
+      title={props.title}
+      mb="xl"
+      radius="md"
+      icon={<IconInfoCircleFilled size="1rem" />}
+    >
       {children}
     </Alert>
   )

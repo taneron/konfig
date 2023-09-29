@@ -1,4 +1,11 @@
-import { Anchor, Title, TitleOrder, rem } from '@mantine/core'
+import {
+  Anchor,
+  SpacingValue,
+  SystemProp,
+  Title,
+  TitleOrder,
+  rem,
+} from '@mantine/core'
 import { observer } from 'mobx-react'
 import { useContext, useEffect, useRef, useState } from 'react'
 import { Components } from 'react-markdown/lib/ast-to-react'
@@ -37,12 +44,22 @@ const _DemoTitle: Components['h1'] = ({
       ref={ref}
       id={slug}
       order={level as TitleOrder}
+      mt={mt(level as TitleOrder)}
     >
       <Anchor href={`#${slug}`} unstyled>
         {children}
       </Anchor>
     </Title>
   )
+}
+
+function mt(level: TitleOrder): SystemProp<SpacingValue> {
+  if (level === 1) return 'xl'
+  if (level === 2) return 'xl'
+  if (level === 3) return 'lg'
+  if (level === 4) return 'md'
+  if (level === 5) return 'sm'
+  return 'xs'
 }
 
 export function generateHeaderTitle({

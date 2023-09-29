@@ -43,7 +43,7 @@ const useStyles = createStyles((theme) => ({
         ? theme.colors.dark[1]
         : theme.colors.gray[7],
     borderLeft: `${rem(1)} solid transparent`,
-    padding: `${rem(8)} ${theme.spacing.md}`,
+    padding: `${rem(6)} ${theme.spacing.md}`,
     marginLeft: -1,
   },
 
@@ -67,6 +67,7 @@ const useStyles = createStyles((theme) => ({
 
   title: {
     marginLeft: theme.spacing.md,
+    fontSize: theme.fontSizes.xs,
   },
 }))
 
@@ -103,15 +104,19 @@ function getActiveElement(rects: DOMRect[]) {
 function getHeadingElementsFromDiv(div: HTMLDivElement): HTMLHeadingElement[] {
   const headingElements: HTMLHeadingElement[] = []
 
+  const innerDiv = div.children[0]
+
   // Iterate over the children of the div
-  for (let i = 0; i < div.children.length; i++) {
-    const child = div.children[i]
+  for (let i = 0; i < innerDiv.children.length; i++) {
+    const child = innerDiv.children[i]
 
     // Check if the child is an HTMLHeadingElement
     if (child instanceof HTMLHeadingElement) {
       headingElements.push(child)
     }
   }
+
+  console.log('headingElements', headingElements)
 
   return headingElements
 }
@@ -174,7 +179,7 @@ export const DemoTableOfContents = observer(
           href={`#${heading.id}`}
           sx={{
             paddingLeft: `calc(${getHeadingOrder(heading) - 1} * ${
-              theme.spacing.lg
+              theme.spacing.sm
             })`,
           }}
         >
@@ -203,7 +208,7 @@ export const DemoTableOfContents = observer(
                 {items.length !== 0 && (
                   <div className={classes.header}>
                     <IconList size={20} stroke={1.5} />
-                    <Text className={classes.title}>Table of contents</Text>
+                    <Text className={classes.title}>On this page</Text>
                   </div>
                 )}
                 <ScrollArea.Autosize
