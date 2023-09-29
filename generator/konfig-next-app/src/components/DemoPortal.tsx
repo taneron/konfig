@@ -34,6 +34,7 @@ import { DemoLastRan } from './DemoLastRan'
 import { DemoHeader } from './DemoHeader'
 import type { SocialObject } from 'konfig-lib/dist/KonfigYamlCommon'
 import Head from 'next/head'
+import { NAVBAR_WIDTH } from './ReferenceNavbar'
 
 type DemosInput = Demo[]
 
@@ -221,7 +222,7 @@ export const DemoPortal = observer(
             <Navbar
               hiddenBreakpoint="sm"
               hidden={!opened}
-              width={{ sm: 225, lg: 325 }}
+              width={{ lg: NAVBAR_WIDTH }}
               sx={{
                 overflowY: 'scroll',
                 height:
@@ -282,8 +283,8 @@ export const DemoPortal = observer(
                   )}
                 </Group>
               </Navbar.Section>
-              <Navbar.Section pt="md" grow>
-                <Stack spacing="xs">
+              <Navbar.Section px="sm" pt="md" grow>
+                <Stack spacing={0}>
                   {state.demos.map(({ name }, i) => {
                     const isCurrentlySelected = state.currentDemoIndex === i
                     return (
@@ -302,14 +303,23 @@ export const DemoPortal = observer(
                           })
                         }}
                         p="xs"
-                        variant={colorScheme === 'dark' ? 'light' : 'filled'}
-                        sx={(theme) => ({ borderRadius: theme.radius.xs })}
-                        rightSection={
-                          isCurrentlySelected ? (
-                            <IconChevronRight size="0.8rem" stroke={1.5} />
-                          ) : undefined
-                        }
+                        py={8}
+                        styles={{
+                          root: {
+                            borderRadius: theme.radius.sm,
+                          },
+                          label: {
+                            color: isCurrentlySelected
+                              ? theme.colorScheme === 'dark'
+                                ? theme.colors.brand[2]
+                                : theme.colors.brand[8]
+                              : undefined,
+                            fontSize: theme.fontSizes.sm,
+                          },
+                        }}
+                        sx={(theme) => ({ borderRadius: theme.radius.sm })}
                         label={name}
+                        fw={isCurrentlySelected ? 'bold' : undefined}
                         active={isCurrentlySelected}
                       />
                     )

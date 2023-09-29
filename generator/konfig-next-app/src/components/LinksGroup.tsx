@@ -49,9 +49,6 @@ const useStyles = createStyles((theme) => ({
   link: {
     fontWeight: 500,
     fontSize: theme.fontSizes.sm,
-    borderLeft: `${rem(1)} solid ${
-      theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[3]
-    }`,
   },
 
   chevron: {
@@ -104,13 +101,27 @@ export function LinksGroup({
       <Box className={classes.linkWrapper} key={`${link.label}:${i}`}>
         <NavLink<typeof Link>
           onClick={() => setNavbarOpen(false)}
+          py={6}
+          styles={{
+            root: {
+              borderRadius: theme.radius.sm,
+            },
+            label: {
+              color: link.active
+                ? theme.colorScheme === 'dark'
+                  ? theme.colors.brand[3]
+                  : theme.colors.brand[8]
+                : undefined,
+              fontSize: theme.fontSizes.sm,
+            },
+          }}
           ref={ref}
           component={Link}
-          variant={theme.colorScheme === 'dark' ? 'light' : 'filled'}
           className={classes.link}
           href={link.link}
           label={link.label}
           active={link.active}
+          fw={link.active ? 'bold' : undefined}
           rightSection={
             <HttpMethodBadge size="xs" httpMethod={link.httpMethod} />
           }
@@ -124,6 +135,7 @@ export function LinksGroup({
       <UnstyledButton
         onClick={() => setOpened((o) => !o)}
         className={classes.control}
+        py={8}
       >
         <Group position="apart" spacing={0}>
           <Box>{label}</Box>

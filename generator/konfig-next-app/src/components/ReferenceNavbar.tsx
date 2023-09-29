@@ -14,7 +14,7 @@ import { IconLink } from '@tabler/icons-react'
 import { useForm } from '@mantine/form'
 import { notifications } from '@mantine/notifications'
 
-export const NAVBAR_WIDTH = 350
+export const NAVBAR_WIDTH = 280
 
 const useStyles = createStyles((theme) => ({
   header: {
@@ -303,7 +303,7 @@ export function ReferenceNavbar({
         )}
       </Navbar.Section>
 
-      <Navbar.Section py="md" grow>
+      <Navbar.Section px="sm" py="md" grow>
         {links}
       </Navbar.Section>
     </>

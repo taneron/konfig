@@ -46,13 +46,6 @@ function App(props: AppProps) {
         <MantineProvider
           theme={{
             colorScheme,
-            fontSizes: {
-              xs: '0.6rem',
-              sm: '0.75rem',
-              md: '0.95rem',
-              lg: '1rem',
-              xl: '1.2rem',
-            },
           }}
           withGlobalStyles
           withNormalizeCSS

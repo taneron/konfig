@@ -164,6 +164,7 @@ const DocumentationPage = observer(
                 hidden={!opened}
                 width={{ lg: NAVBAR_WIDTH }}
                 py="md"
+                px="sm"
                 sx={{
                   overflowY: 'scroll',
                   height:
@@ -184,7 +185,7 @@ const DocumentationPage = observer(
                         >
                           {section.label}
                         </Text>
-                        <Stack spacing={rem(3)}>
+                        <Stack spacing={0}>
                           {section.links.map((link) => {
                             if (link.type === 'link') {
                               const label = idToLabel[link.id]

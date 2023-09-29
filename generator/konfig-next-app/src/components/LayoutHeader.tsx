@@ -38,6 +38,11 @@ export const LayoutHeader = observer(
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
+          borderBottom: `1px solid ${
+            theme.colorScheme === 'dark'
+              ? theme.colors.brand[8]
+              : theme.colors.brand[6]
+          }`,
         }}
       >
         <Group spacing="xs">
