@@ -3,6 +3,8 @@ import { logger } from 'src/lib/logger'
 import { App } from 'octokit'
 
 import { findRepository } from 'konfig-lib'
+import { validateApiKey } from 'src/lib/api-keys'
+import { API_KEY_HEADER_NAME } from 'konfig-lib'
 import { CORS_HEADERS_ORIGIN } from 'src/lib/cors-headers'
 import {
   PrMergeResponseBodyType,
@@ -34,6 +36,11 @@ export const handler = async (event: APIGatewayEvent, context: Context) => {
   const privateKey = process.env.GITHUB_APP_PRIVATE_KEY
   if (privateKey === undefined)
     throw Error('Missing GITHUB_APP_PRIVATE_KEY Environment Variable')
+
+  validateApiKey({
+    key: event.headers[API_KEY_HEADER_NAME],
+    owner: requestBodyParseResult.data.owner,
+  })
 
   const { eachRepository } = new App({
     appId: 276014,

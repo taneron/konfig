@@ -4,6 +4,7 @@ import {
   PrMergeRequestBodyType,
   PrMergeResponseBody,
 } from 'konfig-openapi-spec'
+import { API_KEY_HEADER_NAME } from 'konfig-lib'
 
 export default class PrMerge extends Command {
   static description = 'Merges a github pull request'
@@ -40,6 +41,10 @@ export default class PrMerge extends Command {
   public async run(): Promise<void> {
     const { flags } = await this.parse(PrMerge)
 
+    const apiKey = process.env.KONFIG_API_KEY
+    if (apiKey === undefined)
+      throw Error('Missing KONFIG_API_KEY Environment Variable')
+
     const url = flags.dev
       ? 'http://localhost:8911/prMerge'
       : 'https://api.konfigthis.com/prMerge'
@@ -57,7 +62,9 @@ export default class PrMerge extends Command {
     const suffix = `PR from ${flags.head} to ${baseStr} in repository ${flags.owner}/${flags.repo}`
 
     CliUx.ux.action.start(`Merging ${suffix}`)
-    const result = await axios.post(url, body)
+    const result = await axios.post(url, body, {
+      headers: { [API_KEY_HEADER_NAME]: apiKey },
+    })
     CliUx.ux.action.stop()
 
     if (result.status === 200) {
