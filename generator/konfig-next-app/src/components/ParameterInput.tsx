@@ -53,7 +53,6 @@ export function ParameterInput({
           else onChange(file)
         }}
         {...rest}
-        radius="xs"
         clearable
         placeholder="File"
         icon={<IconUpload size={rem(14)} />}
@@ -65,7 +64,6 @@ export function ParameterInput({
       <Input.Wrapper {...inputProps}>
         <Button
           mb="calc(0.625rem / 2);" // taken from Input.Wrapper source code
-          radius="xs"
           size="xs"
           leftIcon={<IconPlus size={'1rem'} />}
           onClick={() => {
@@ -128,7 +126,6 @@ export function ParameterInput({
     return (
       <NumberInput
         {...inputProps}
-        radius="xs"
         placeholder={example(parameter.schema.example)}
       />
     )
@@ -147,7 +144,6 @@ export function ParameterInput({
           return onChange(value === null ? '' : value)
         }}
         clearable={!parameter.required}
-        radius="xs"
         data={parameter.schema.enum}
       />
     )
@@ -156,7 +152,6 @@ export function ParameterInput({
     return (
       <NumberInput
         {...inputProps}
-        radius="xs"
         precision={2}
         placeholder={example(parameter.schema.example)}
       />
@@ -170,7 +165,6 @@ export function ParameterInput({
     return (
       <DatePickerInput
         icon={<IconCalendar size="1.1rem" stroke={1.5} />}
-        radius="xs"
         clearable
         value={parseDateString(value)}
         onChange={(date) => {
@@ -195,7 +189,6 @@ export function ParameterInput({
     return (
       <DateTimePicker
         icon={<IconCalendar size="1.1rem" stroke={1.5} />}
-        radius="xs"
         clearable
         value={parseDateString(value)}
         onChange={(date) => {
@@ -256,7 +249,6 @@ export function ParameterInput({
       // between using a controlled or uncontrolled input element for the lifetime of
       // the component. More info: https://reactjs.org/link/controlled-components"
       value={value ?? ''}
-      radius="xs"
       placeholder={example(parameter.schema.example)}
     />
   )
