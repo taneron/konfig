@@ -231,17 +231,17 @@ const DocumentationPage = observer(
               <Flex justify="center">
                 <Box className={classes.markdown} w="100%" maw={700}>
                   <DemoMarkdown state={state} />
+                  <Box my={rem(40)}>
+                    <DocEditThisPage
+                      owner={owner}
+                      repo={repo}
+                      path={docPath}
+                      defaultBranch={defaultBranch}
+                    />
+                  </Box>
+                  <SocialFooter konfigYaml={konfigYaml} />
                 </Box>
               </Flex>
-              <Box my={rem(40)}>
-                <DocEditThisPage
-                  owner={owner}
-                  repo={repo}
-                  path={docPath}
-                  defaultBranch={defaultBranch}
-                />
-              </Box>
-              <SocialFooter konfigYaml={konfigYaml} />
             </OperationsContext.Provider>
           </AppShell>
         </MantineProvider>
