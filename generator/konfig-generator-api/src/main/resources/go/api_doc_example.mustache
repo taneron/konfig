@@ -1,7 +1,6 @@
 package main
 
 import (
-    "context"
     "fmt"
     "os"
 {{#vendorExtensions.x-go-import}}
@@ -18,10 +17,15 @@ func main() {
 
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `{{classname}}.{{operationId}}``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", httpRes)
     }
     {{#returnType}}
     // response from `{{operationId}}`: {{{.}}}
     fmt.Fprintf(os.Stdout, "Response from `{{classname}}.{{operationId}}`: %v\n", resp)
     {{/returnType}}
+    {{#returnModel}}
+    {{#vars}}
+    fmt.Fprintf(os.Stdout, "Response from `{{classname}}.{{operationId}}.{{name}}`: %v\n", {{^required}}*{{/required}}resp.{{name}})
+    {{/vars}}
+    {{/returnModel}}
 }
