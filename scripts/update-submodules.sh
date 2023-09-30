@@ -11,7 +11,7 @@ git submodule foreach '
 '
 
 # Commit and push the updates
-git config user.name "GitHub Action"
-git config user.email "action@github.com"
+git config user.name "konfig-bot"
+git config user.email "bot@konfigthis.com"
 git commit -am "Update submodules"
 git push
