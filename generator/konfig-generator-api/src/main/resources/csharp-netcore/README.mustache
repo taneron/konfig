@@ -1,4 +1,4 @@
-# {{packageName}} - the C# library for the {{appName}}
+# {{packageName}} - C#
 
 [![NuGet](https://img.shields.io/badge/NuGet-{{packageVersionWithoutDashes}}-blue.svg)](https://www.nuget.org/packages/{{packageName}}/{{packageVersion}})
 {{#infoUrl}}
@@ -16,99 +16,34 @@
 - Mono/Xamarin >=vNext
 {{/netStandard}}
 
-## Dependencies
-
-{{#useRestSharp}}
-- [RestSharp](https://www.nuget.org/packages/RestSharp) - 106.13.0 or later
-{{/useRestSharp}}
-- [Json.NET](https://www.nuget.org/packages/Newtonsoft.Json/) - 13.0.1 or later
-- [JsonSubTypes](https://www.nuget.org/packages/JsonSubTypes/) - 1.8.0 or later
-{{#useCompareNetObjects}}
-- [CompareNETObjects](https://www.nuget.org/packages/CompareNETObjects) - 4.61.0 or later
-{{/useCompareNetObjects}}
-{{#validatable}}
-- [System.ComponentModel.Annotations](https://www.nuget.org/packages/System.ComponentModel.Annotations) - 5.0.0 or later
-{{/validatable}}
-
-The DLLs included in the package may not be the latest version. We recommend using [NuGet](https://docs.nuget.org/consume/installing-nuget) to obtain the latest version of the packages:
-```
-{{#useRestSharp}}
-Install-Package RestSharp
-{{/useRestSharp}}
-Install-Package Newtonsoft.Json
-Install-Package JsonSubTypes
-{{#validatable}}
-Install-Package System.ComponentModel.Annotations
-{{/validatable}}
-{{#useCompareNetObjects}}
-Install-Package CompareNETObjects
-{{/useCompareNetObjects}}
-```
-{{#useRestSharp}}
-
-NOTE: RestSharp versions greater than 105.1.0 have a bug which causes file uploads to fail. See [RestSharp#742](https://github.com/restsharp/RestSharp/issues/742).
-NOTE: RestSharp for .Net Core creates a new socket for each api call, which can lead to a socket exhaustion problem. See [RestSharp#1406](https://github.com/restsharp/RestSharp/issues/1406).
-
-{{/useRestSharp}}
 ## Installation
-{{#netStandard}}
-Generate the DLL using your preferred tool (e.g. `dotnet build`)
-{{/netStandard}}
-{{^netStandard}}
-Run the following command to generate the DLL
-- [Mac/Linux] `/bin/sh build.sh`
-- [Windows] `build.bat`
-{{/netStandard}}
 
-Then include the DLL (under the `bin` folder) in the C# project, and use the namespaces:
-```csharp
-using {{packageName}}.{{apiPackage}};
-using {{packageName}}.Client;
-using {{packageName}}.{{modelPackage}};
-```
-{{^netStandard}}
-## Packaging
+Using the [.NET Core command-line interface (CLI) tools][dotnet-core-cli-tools]:
 
-A `.nuspec` is included with the project. You can follow the Nuget quickstart to [create](https://docs.microsoft.com/en-us/nuget/quickstart/create-and-publish-a-package#create-the-package) and [publish](https://docs.microsoft.com/en-us/nuget/quickstart/create-and-publish-a-package#publish-the-package) packages.
-
-This `.nuspec` uses placeholders from the `.csproj`, so build the `.csproj` directly:
-
-```
-nuget pack -Build -OutputDirectory out {{packageName}}.csproj
+```sh
+dotnet add package {{{packageName}}}
 ```
 
-Then, publish to a [local feed](https://docs.microsoft.com/en-us/nuget/hosting-packages/local-feeds) or [other host](https://docs.microsoft.com/en-us/nuget/hosting-packages/overview) and consume the new package via Nuget as usual.
+Using the [NuGet Command Line Interface (CLI)][nuget-cli]:
 
-{{/netStandard}}
-{{#useHttpClient}}
-
-### Connections
-Each ApiClass (properly the ApiClient inside it) will create an instance of HttpClient. It will use that for the entire lifecycle and dispose it when called the Dispose method.
-
-To better manager the connections it's a common practice to reuse the HttpClient and HttpClientHandler (see [here](https://docs.microsoft.com/en-us/dotnet/architecture/microservices/implement-resilient-applications/use-httpclientfactory-to-implement-resilient-http-requests#issues-with-the-original-httpclient-class-available-in-net) for details). To use your own HttpClient instance just pass it to the ApiClass constructor.
-
-```csharp
-HttpClientHandler yourHandler = new HttpClientHandler();
-HttpClient yourHttpClient = new HttpClient(yourHandler);
-var api = new YourApiClass(yourHttpClient, yourHandler);
+```sh
+nuget install {{{packageName}}}
 ```
 
-If you want to use an HttpClient and don't have access to the handler, for example in a DI context in Asp.net Core when using IHttpClientFactory.
+Using the [Package Manager Console][package-manager-console]:
 
-```csharp
-HttpClient yourHttpClient = new HttpClient();
-var api = new YourApiClass(yourHttpClient);
-```
-You'll loose some configuration settings, the features affected are: Setting and Retrieving Cookies, Client Certificates, Proxy settings. You need to either manually handle those in your setup of the HttpClient or they won't be available.
-
-Here an example of DI setup in a sample web project:
-
-```csharp
-services.AddHttpClient<YourApiClass>(httpClient =>
-   new PetApi(httpClient));
+```powershell
+Install-Package {{{packageName}}}
 ```
 
-{{/useHttpClient}}
+From within Visual Studio:
+
+1. Open the Solution Explorer.
+2. Right-click on a project within your solution.
+3. Click on *Manage NuGet Packages...*
+4. Click on the *Browse* tab and search for "{{{packageName}}}".
+5. Click on the "{{{packageName}}}" package, select the appropriate version in the
+   right-tab and click *Install*.
 
 ## Getting Started
 
@@ -147,7 +82,25 @@ Class | Method | HTTP request | Description
 No model defined in this package
 {{/modelPackage}}
 
+## Dependencies
+
+{{#useRestSharp}}
+- [RestSharp](https://www.nuget.org/packages/RestSharp) - 106.13.0 or later
+{{/useRestSharp}}
+- [Json.NET](https://www.nuget.org/packages/Newtonsoft.Json/) - 13.0.1 or later
+- [JsonSubTypes](https://www.nuget.org/packages/JsonSubTypes/) - 1.8.0 or later
+{{#useCompareNetObjects}}
+- [CompareNETObjects](https://www.nuget.org/packages/CompareNETObjects) - 4.61.0 or later
+{{/useCompareNetObjects}}
+{{#validatable}}
+- [System.ComponentModel.Annotations](https://www.nuget.org/packages/System.ComponentModel.Annotations) - 5.0.0 or later
+{{/validatable}}
+
 {{^removeKonfigBranding}}
 ## Author
 This C# package is automatically generated by [Konfig](https://konfigthis.com)
 {{/removeKonfigBranding}}
+
+[dotnet-core-cli-tools]: https://docs.microsoft.com/en-us/dotnet/core/tools/
+[nuget-cli]: https://docs.microsoft.com/en-us/nuget/tools/nuget-exe-cli-reference
+[package-manager-console]: https://docs.microsoft.com/en-us/nuget/tools/package-manager-console
