@@ -212,7 +212,7 @@ export function ReferenceNavbar({
 
   return (
     <>
-      <Navbar.Section p="md" className={classes.header}>
+      <Navbar.Section px="md" py="lg" className={classes.header}>
         <Select
           size="xs"
           icon={<IconLink size="1rem" />}
@@ -303,7 +303,7 @@ export function ReferenceNavbar({
         )}
       </Navbar.Section>
 
-      <Navbar.Section px="sm" py="md" grow>
+      <Navbar.Section px="xs" py="lg" grow>
         {links}
       </Navbar.Section>
     </>
