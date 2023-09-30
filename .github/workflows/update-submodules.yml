@@ -17,6 +17,7 @@ jobs:
       with:
         submodules: 'recursive'
         token: ${{ secrets.SUBMODULES_ACCESS_TOKEN }}
+      continue-on-error: true
 
     - name: Update submodules
       run: ./update-submodules.sh
