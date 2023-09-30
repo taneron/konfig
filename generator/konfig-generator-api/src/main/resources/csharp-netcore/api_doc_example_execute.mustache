@@ -1,0 +1,44 @@
+{{#allParams}}
+{{#isPrimitiveType}}
+var {{paramName}} = {{{example}}};  // {{{description}}}{{^required}} (optional) {{/required}}{{#defaultValue}} (default to {{{.}}}){{/defaultValue}}
+{{/isPrimitiveType}}
+{{^isPrimitiveType}}
+{{#isBodyParam}}
+{{> api_doc_example_execute_setup_body_param}}
+{{/isBodyParam}}
+{{#description}}
+// {{{description}}}{{^required}} (optional) {{/required}}{{#defaultValue}} (default to {{{.}}}){{/defaultValue}}
+{{/description}}
+{{#isArray}}
+var {{paramName}} = new {{{dataType}}}();
+{{/isArray}}
+{{^isArray}}
+var {{paramName}} = new {{{dataType}}}(
+{{#vars}}
+    {{nameInCamelCaseLowerFirst}}{{^-last}},{{/-last}}
+{{/vars}}
+);
+{{/isArray}}
+{{/isPrimitiveType}}
+{{/allParams}}
+
+try
+{
+    {{#summary}}
+    // {{{.}}}
+    {{/summary}}
+    {{#returnType}}{{{.}}} result = {{/returnType}}client.{{classNamePascalCase}}.{{{operationId}}}{{> api_doc_example_execute_pass_params}};{{#returnType}}
+    Console.WriteLine(result);{{/returnType}}
+}
+catch (ApiException e)
+{
+    Console.WriteLine("Exception when calling {{classname}}.{{operationId}}: " + e.Message);
+    Console.WriteLine("Status Code: "+ e.ErrorCode);
+    Console.WriteLine(e.StackTrace);
+}
+catch (ClientException e)
+{
+    Console.WriteLine(e.Response.StatusCode);
+    Console.WriteLine(e.Response.RawContent);
+    Console.WriteLine(e.InnerException);
+}
