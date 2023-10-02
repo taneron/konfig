@@ -135,6 +135,57 @@ services:
     envVars:
       - fromGroup: konfig-changeset-bot
 
+  - name: konfig-api-sales
+    type: web
+    plan: starter
+    env: node
+    region: oregon
+    repo: https://github.com/konfig-dev/konfig
+    rootDir: generator/konfig-dash
+    buildCommand: yarn && yarn build && yarn rw build api
+    startCommand: yarn rw deploy render api --prisma=false --data-migrate=false
+    autodeploy: false
+    envVars:
+      - fromGroup: npm
+      - fromGroup: aws
+      - fromGroup: github
+      - key: SESSION_SECRET
+        generateValue: true
+      - key: SKIP_INSTALL_DEPS
+        value: true
+      - key: NODE_VERSION
+        value: 16
+      - key: DATABASE_URL
+        fromDatabase:
+          name: konfig-db
+          property: connectionString
+      - key: GENERATOR_API_HOST_PORT
+        fromService:
+          name: konfig-openapi-generator-api-sales
+          type: pserv
+          property: hostport
+      - key: BLACKD_API_HOST_PORT
+        fromService:
+          name: konfig-python-formatter
+          type: pserv
+          property: hostport
+      - key: PYTHON_RCE_API_HOST_PORT
+        fromService:
+          name: konfig-python-remote-code-executor
+          type: pserv
+          property: hostport
+
+  - type: pserv
+    name: konfig-openapi-generator-api-sales
+    env: docker
+    rootDir: generator/konfig-generator-api
+    repo: https://github.com/konfig-dev/konfig
+    autodeploy: false
+    envVars:
+      - fromGroup: aws
+      - key: PORT
+        value: 8080
+
   - name: konfig-api
     type: web
     plan: starter
