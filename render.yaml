@@ -142,7 +142,7 @@ services:
     rootDir: generator/konfig-dash
     buildCommand: yarn && yarn build && yarn rw build api
     startCommand: yarn rw deploy render api --prisma=false --data-migrate=false
-    autodeploy: false
+    autoDeploy: false
     envVars:
       - fromGroup: npm
       - fromGroup: aws
@@ -178,7 +178,7 @@ services:
     env: docker
     rootDir: generator/konfig-generator-api
     repo: https://github.com/konfig-dev/konfig
-    autodeploy: false
+    autoDeploy: false
     envVars:
       - fromGroup: aws
       - key: PORT
