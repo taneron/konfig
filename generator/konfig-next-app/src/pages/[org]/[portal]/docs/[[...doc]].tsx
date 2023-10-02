@@ -35,6 +35,7 @@ import {
 } from '@/utils/generate-props-for-markdown-page'
 import Head from 'next/head'
 import { SocialFooter } from '@/components/SocialFooter'
+import { Breadcrumbs } from '@/components/Breadcrumbs'
 
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
@@ -85,6 +86,7 @@ const DocumentationPage = observer(
     defaultBranch,
     idToLabel,
     docPath,
+    breadcrumb,
     repo,
     omitOwnerAndRepo,
     demos,
@@ -163,7 +165,7 @@ const DocumentationPage = observer(
                 hiddenBreakpoint="lg"
                 hidden={!opened}
                 width={{ lg: NAVBAR_WIDTH }}
-                py="md"
+                py="xl"
                 px="sm"
                 sx={{
                   overflowY: 'scroll',
@@ -229,8 +231,10 @@ const DocumentationPage = observer(
             }
           >
             <OperationsContext.Provider value={operations}>
-              <Flex justify="center">
+              {/* for centering Box */}
+              <Flex pt="sm" justify="center">
                 <Box className={classes.markdown} w="100%" maw={700}>
+                  <Breadcrumbs breadcrumbs={breadcrumb} />
                   <DemoMarkdown state={state} />
                   <Box my={rem(40)}>
                     <DocEditThisPage

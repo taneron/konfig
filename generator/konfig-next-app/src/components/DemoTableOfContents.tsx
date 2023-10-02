@@ -199,6 +199,8 @@ export const DemoTableOfContents = observer(
             border: 'none',
           }}
           p="sm"
+          pr="xl"
+          pt="xl"
           hiddenBreakpoint="lg"
           width={{ base: 300 }}
         >

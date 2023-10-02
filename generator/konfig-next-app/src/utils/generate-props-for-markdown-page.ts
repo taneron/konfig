@@ -34,7 +34,18 @@ export type MarkdownPageProps = {
   operations: OperationObject[]
   markdown: string
   defaultBranch: string
+
+  /**
+   * Mapping of document id from konfig.yaml and the first heading text of the document.
+   * This is used to render the navigation links in the sidebar navigation.
+   */
   idToLabel: Record<string, string | undefined>
+
+  /**
+   * This is used to render the breadcrumb above the page. (e.g. [Guides, Getting Started])
+   */
+  breadcrumb: string[]
+
   omitOwnerAndRepo: boolean
   faviconLink: string | null
   logo: string | null
@@ -173,6 +184,43 @@ export async function generatePropsForMarkdownPage({
     idToLabel[id] = docTitle
   }
 
+  const idToBreadcrumbs: Record<string, string[] | undefined> = {}
+  for (const { id } of docs) {
+    // compute breadcrumb for every document in the documentation config
+    // the breadcrumb for a document consists of [section, group, document]
+    // group is optional if the document is not nested in a group
+    const breadcrumb: string[] = []
+    for (const section of documentationConfig.sidebar.sections) {
+      for (const link of section.links) {
+        if (link.type === 'group') {
+          for (const innerLink of link.links) {
+            if (innerLink.id === id) {
+              breadcrumb.push(section.label)
+              breadcrumb.push(link.label)
+              const docLabel = idToLabel[id]
+              if (docLabel === undefined)
+                throw Error(`Couldn't find document label for id: ${id}`)
+              breadcrumb.push(docLabel)
+              break
+            }
+          }
+        } else if (link.id === id) {
+          breadcrumb.push(section.label)
+          const docLabel = idToLabel[id]
+          if (docLabel === undefined)
+            throw Error(`Couldn't find document label for id: ${id}`)
+          breadcrumb.push(docLabel)
+          break
+        }
+      }
+    }
+    idToBreadcrumbs[id] = breadcrumb
+  }
+
+  const breadcrumb = idToBreadcrumbs[documentId]
+  if (breadcrumb === undefined)
+    throw Error(`Couldn't find breadcrumb for document id: ${documentId}`)
+
   return {
     props: {
       title: konfigYaml.content.portal?.title,
@@ -187,6 +235,7 @@ export async function generatePropsForMarkdownPage({
       omitOwnerAndRepo: omitOwnerAndRepo ?? false,
       owner,
       repo,
+      breadcrumb,
       operations,
       defaultBranch,
       idToLabel,

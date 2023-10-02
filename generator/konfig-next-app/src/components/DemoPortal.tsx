@@ -230,7 +230,8 @@ export const DemoPortal = observer(
               }}
             >
               <Navbar.Section
-                p="md"
+                px="md"
+                py="xl"
                 style={{
                   borderBottom: `${rem(1)} solid ${
                     theme.colorScheme === 'dark'
@@ -283,7 +284,7 @@ export const DemoPortal = observer(
                   )}
                 </Group>
               </Navbar.Section>
-              <Navbar.Section px="sm" pt="md" grow>
+              <Navbar.Section px="sm" pt="xl" grow>
                 <Stack spacing={0}>
                   {state.demos.map(({ name }, i) => {
                     const isCurrentlySelected = state.currentDemoIndex === i

@@ -19,7 +19,6 @@ export function DocNavLink({
   const { colorScheme } = useMantineColorScheme()
   const basePath = useBasePath({ omitOwnerAndRepo })
   const theme = useMantineTheme()
-  console.log(theme.fontSizes)
   const active = id === docId
   return (
     <NavLink<typeof Link>

@@ -110,6 +110,7 @@ export const documentation = z.object({
               linkSchema,
               z.object({
                 type: z.literal('group').default('group'),
+                label: z.string(),
                 links: linkSchema.array(),
               }),
             ])

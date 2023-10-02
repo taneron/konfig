@@ -155,7 +155,7 @@ const DemoMarkdown = observer(({ state }: { state: DemoState }) => {
   }, [state])
   return (
     <DemoStateContext.Provider value={state}>
-      <Stack ref={demoDiv} spacing="xs">
+      <Box ref={demoDiv}>
         <ReactMarkdown
           className={classes.markdown}
           remarkPlugins={[remarkGfm, remarkDirective, remarkDirectiveRehype]}
@@ -163,7 +163,13 @@ const DemoMarkdown = observer(({ state }: { state: DemoState }) => {
             a: DemoAnchor,
             p({ node, children, siblingCount, ...props }) {
               return (
-                <Text className={classes.text} mt="md" mb="xl" {...props}>
+                <Text
+                  component="p"
+                  className={classes.text}
+                  mt="md"
+                  mb="xl"
+                  {...props}
+                >
                   {children}
                 </Text>
               )
@@ -194,7 +200,7 @@ const DemoMarkdown = observer(({ state }: { state: DemoState }) => {
         >
           {state.markdown}
         </ReactMarkdown>
-      </Stack>
+      </Box>
     </DemoStateContext.Provider>
   )
 })

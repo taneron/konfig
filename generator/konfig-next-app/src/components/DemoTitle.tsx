@@ -12,6 +12,7 @@ import { Components } from 'react-markdown/lib/ast-to-react'
 import { DemoStateContext } from './DemoMarkdown'
 import { toText } from 'hast-util-to-text'
 import Slugger from 'github-slugger'
+import { TitleSize } from '@mantine/core/lib/Title/Title'
 
 export const TITLE_OFFSET_PX = 100
 
@@ -45,6 +46,7 @@ const _DemoTitle: Components['h1'] = ({
       id={slug}
       order={level as TitleOrder}
       mt={mt(level as TitleOrder)}
+      size={size(level as TitleOrder)}
     >
       <Anchor href={`#${slug}`} unstyled>
         {children}
@@ -53,13 +55,22 @@ const _DemoTitle: Components['h1'] = ({
   )
 }
 
+function size(level: TitleOrder): TitleSize {
+  if (level === 1) return 'h1'
+  if (level === 2) return 'h4'
+  if (level === 3) return 'h5'
+  if (level === 4) return 'h5'
+  if (level === 5) return 'h6'
+  return 'h6'
+}
+
 function mt(level: TitleOrder): SystemProp<SpacingValue> {
-  if (level === 1) return 'xl'
-  if (level === 2) return 'xl'
-  if (level === 3) return 'lg'
-  if (level === 4) return 'md'
-  if (level === 5) return 'sm'
-  return 'xs'
+  if (level === 1) return 80
+  if (level === 2) return 72
+  if (level === 3) return 48
+  if (level === 4) return 48
+  if (level === 5) return 48
+  return 48
 }
 
 export function generateHeaderTitle({
