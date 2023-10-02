@@ -5,6 +5,7 @@ import {
   Title,
   TitleOrder,
   rem,
+  useMantineTheme,
 } from '@mantine/core'
 import { observer } from 'mobx-react'
 import { useContext, useEffect, useRef, useState } from 'react'
@@ -32,6 +33,7 @@ const _DemoTitle: Components['h1'] = ({
     })
   )
   const ref = useRef<HTMLHeadingElement | null>(null)
+  const theme = useMantineTheme()
 
   useEffect(() => {
     if (demoState === null) return
@@ -47,6 +49,7 @@ const _DemoTitle: Components['h1'] = ({
       order={level as TitleOrder}
       mt={mt(level as TitleOrder)}
       size={size(level as TitleOrder)}
+      color={theme.colorScheme === 'dark' ? theme.white : 'black'}
     >
       <Anchor href={`#${slug}`} unstyled>
         {children}
@@ -57,8 +60,8 @@ const _DemoTitle: Components['h1'] = ({
 
 function size(level: TitleOrder): TitleSize {
   if (level === 1) return 'h1'
-  if (level === 2) return 'h4'
-  if (level === 3) return 'h5'
+  if (level === 2) return 'h3'
+  if (level === 3) return 'h4'
   if (level === 4) return 'h5'
   if (level === 5) return 'h6'
   return 'h6'

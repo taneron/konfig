@@ -148,7 +148,7 @@ const useStyles = createStyles((theme) => ({
 
 const DemoMarkdown = observer(({ state }: { state: DemoState }) => {
   const demoDiv = useRef<HTMLDivElement | null>(null)
-  const { colors } = useMantineTheme()
+  const { colors, colorScheme } = useMantineTheme()
   const { classes } = useStyles()
   useEffect(() => {
     state.setDemoDiv(demoDiv.current)
@@ -165,6 +165,9 @@ const DemoMarkdown = observer(({ state }: { state: DemoState }) => {
               return (
                 <Text
                   component="p"
+                  color={
+                    colorScheme === 'dark' ? colors.gray[5] : colors.gray[7]
+                  }
                   className={classes.text}
                   mt="md"
                   mb="xl"

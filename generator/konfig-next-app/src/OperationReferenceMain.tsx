@@ -13,6 +13,7 @@ import {
   Paper,
   MediaQuery,
   Alert,
+  useMantineTheme,
 } from '@mantine/core'
 import { HttpMethodBadge } from './components/HttpMethodBadge'
 import { OperationForm } from './components/OperationForm'
@@ -88,6 +89,8 @@ export function OperationReferenceMain({
       requestBodyRequired,
     }),
   ]
+
+  const theme = useMantineTheme()
 
   const typecriptConfig = konfigYaml.generators.typescript
   if (!typecriptConfig) {
@@ -256,7 +259,10 @@ export function OperationReferenceMain({
         >
           <Stack w={{ base: '100%', sm: '55%' }} spacing="xl">
             <Stack spacing="xs">
-              <Title order={2}>
+              <Title
+                color={colorScheme === 'dark' ? theme.white : undefined}
+                order={2}
+              >
                 {operation.operation.summary ?? operation.path}
               </Title>
               <Group>
