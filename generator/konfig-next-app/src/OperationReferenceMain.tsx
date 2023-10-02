@@ -187,7 +187,7 @@ export function OperationReferenceMain({
       (operation.operation.requestBody as RequestBodyObject)?.required ?? false,
   }
 
-  console.debug(codegenArgs)
+  console.debug('codegenArgs:', codegenArgs)
 
   const [requestInProgress, setRequestInProgress] = useState(false)
 

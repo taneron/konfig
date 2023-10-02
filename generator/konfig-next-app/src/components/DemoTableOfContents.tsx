@@ -116,8 +116,6 @@ function getHeadingElementsFromDiv(div: HTMLDivElement): HTMLHeadingElement[] {
     }
   }
 
-  console.log('headingElements', headingElements)
-
   return headingElements
 }
 
