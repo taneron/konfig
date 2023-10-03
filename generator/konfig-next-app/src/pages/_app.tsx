@@ -10,6 +10,7 @@ import { trpc } from '../utils/trpc'
 import '@/styles/globals.css'
 import { Notifications } from '@mantine/notifications'
 import { Tuple, DefaultMantineColor } from '@mantine/core'
+import { getClickableStyles } from '@/utils/get-clickable-styles'
 
 type ExtendedCustomColors = 'brand' | DefaultMantineColor
 
@@ -24,7 +25,7 @@ function App(props: AppProps) {
 
   const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({
     key: 'mantine-color-scheme',
-    defaultValue: 'light',
+    defaultValue: 'dark',
     getInitialValueInEffect: true,
   })
   const toggleColorScheme = (value?: ColorScheme) =>
@@ -46,6 +47,33 @@ function App(props: AppProps) {
         <MantineProvider
           theme={{
             colorScheme,
+            components: {
+              NavLink: {
+                styles: (theme) => ({
+                  label: {
+                    fontSize: theme.fontSizes.sm,
+                    fontWeight: 500,
+                  },
+                }),
+              },
+              Input: {
+                styles: (theme) => ({
+                  input: getClickableStyles(theme),
+                }),
+              },
+              Badge: {
+                styles: (theme) => ({
+                  root: {
+                    borderRadius: theme.radius.xs,
+                  },
+                }),
+                defaultProps: (theme) => ({
+                  variant: theme.colorScheme === 'dark' ? 'light' : 'filled',
+                  size: 'xs',
+                }),
+                // <Badge radius="xs" color="blue" size="xs">
+              },
+            },
           }}
           withGlobalStyles
           withNormalizeCSS

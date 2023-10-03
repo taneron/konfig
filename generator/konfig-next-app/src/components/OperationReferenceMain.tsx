@@ -15,36 +15,37 @@ import {
   Alert,
   useMantineTheme,
 } from '@mantine/core'
-import { HttpMethodBadge } from './components/HttpMethodBadge'
-import { OperationForm } from './components/OperationForm'
-import { OperationFormGeneratedCode } from './components/OperationFormGeneratedCode'
-import { httpResponseCodeMeaning } from './utils/http-response-code-meaning'
+import { HttpMethodBadge } from './HttpMethodBadge'
+import { OperationForm } from './OperationForm'
+import { OperationFormGeneratedCode } from './OperationFormGeneratedCode'
+import { httpResponseCodeMeaning } from '../utils/http-response-code-meaning'
 import {
   FORM_VALUES_LOCAL_STORAGE_KEY,
   generateInitialFormValues,
   generateInitialFormValuesWithStorage,
-} from './utils/generate-initial-operation-form-values'
+} from '../utils/generate-initial-operation-form-values'
 import {
   OperationClientStateForm,
   OperationSecuritySchemeForm,
-} from './components/OperationSecuritySchemeForm'
+} from './OperationSecuritySchemeForm'
 import type { SecurityScheme, RequestBodyObject } from 'konfig-lib'
-import { generateParametersFromRequestBodyProperties } from './utils/generate-parameters-from-request-body-properties'
+import { generateParametersFromRequestBodyProperties } from '../utils/generate-parameters-from-request-body-properties'
 import { useEffect, useMemo, useState } from 'react'
-import { FormProvider, useForm } from './utils/operation-form-context'
+import { FormProvider, useForm } from '../utils/operation-form-context'
 import { useRouter } from 'next/router'
-import { CodeGeneratorConstructorArgs } from './utils/code-generator'
-import { CodeGeneratorTypeScript } from './utils/code-generator-typescript'
-import { ExecuteOutput } from './components/ExecuteOutput'
-import { tryJsonOutput } from './utils/try-json-output'
-import { tryTableOutput } from './utils/try-table-output'
+import { CodeGeneratorConstructorArgs } from '../utils/code-generator'
+import { CodeGeneratorTypeScript } from '../utils/code-generator-typescript'
+import { ExecuteOutput } from './ExecuteOutput'
+import { tryJsonOutput } from '../utils/try-json-output'
+import { tryTableOutput } from '../utils/try-table-output'
 import { IconAlertCircle, IconTerminal } from '@tabler/icons-react'
-import { deepmerge } from './utils/deepmerge'
+import { deepmerge } from '../utils/deepmerge'
 import { notifications } from '@mantine/notifications'
 import localforage from 'localforage'
-import { ReferencePageProps } from './utils/generate-props-for-reference-page'
-import { SocialFooter } from './components/SocialFooter'
-import { Breadcrumbs } from './components/Breadcrumbs'
+import { ReferencePageProps } from '../utils/generate-props-for-reference-page'
+import { SocialFooter } from './SocialFooter'
+import { Breadcrumbs } from './Breadcrumbs'
+import { OperationReferenceResponses } from './OperationReferenceResponses'
 
 export function OperationReferenceMain({
   pathParameters,
@@ -301,57 +302,7 @@ export function OperationReferenceMain({
               requestBodyProperties={requestBodyProperties}
               requestBodyRequired={requestBodyRequired}
             />
-            {responses && (
-              <Box my="lg">
-                <Title order={4}>Responses</Title>
-                <Divider my="sm" />
-                <Stack>
-                  {Object.entries(responses).map(([responseCode, response]) => (
-                    <Box key={responseCode}>
-                      {/* 1. Render response code
-                          2. Render meaning of response code like "OK" for 200 and "Not Found" for 404 in same text box as (1)
-                          3. Render green "Success" badge next to 2xx codes and red "Error" badge next to 4xx and 5xx codes
-                          4. Render response description if it exists under the response code + badge
-                       */}
-
-                      <Flex gap="xs" align="center">
-                        <Title order={6}>
-                          {responseCode} {httpResponseCodeMeaning(responseCode)}
-                        </Title>
-                        {responseCode.startsWith('2') ? (
-                          <Badge
-                            variant={
-                              colorScheme === 'dark' ? 'light' : 'filled'
-                            }
-                            radius="xs"
-                            color="blue"
-                            size="xs"
-                          >
-                            Success
-                          </Badge>
-                        ) : (
-                          <Badge
-                            variant={
-                              colorScheme === 'dark' ? 'light' : 'filled'
-                            }
-                            radius="xs"
-                            color="red"
-                            size="xs"
-                          >
-                            Error
-                          </Badge>
-                        )}
-                      </Flex>
-                      {response.description && (
-                        <Text c="dimmed" fz="sm">
-                          {response.description}
-                        </Text>
-                      )}
-                    </Box>
-                  ))}
-                </Stack>
-              </Box>
-            )}
+            {responses && <OperationReferenceResponses responses={responses} />}
             <MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
               <Box>
                 <SocialFooter konfigYaml={konfigYaml} />
@@ -406,7 +357,6 @@ export function OperationReferenceMain({
                   <Box p="sm">
                     {/* if status is not successful (e.g. 4xx or 5xx), the badge is red */}
                     <Badge
-                      variant={colorScheme === 'dark' ? 'light' : 'filled'}
                       color={result.status >= 300 ? 'red' : 'blue'}
                     >{`${result.status} ${result.statusText}`}</Badge>
                   </Box>

@@ -49,11 +49,6 @@ const useStyles = createStyles((theme) => ({
     paddingLeft: rem(20),
   },
 
-  link: {
-    fontWeight: 500,
-    fontSize: theme.fontSizes.sm,
-  },
-
   chevron: {
     transition: 'transform 200ms ease',
   },
@@ -116,13 +111,10 @@ export function LinksGroup({
           }}
           ref={ref}
           component={Link}
-          className={classes.link}
           href={link.link}
           label={link.label}
           active={link.active}
-          rightSection={
-            <HttpMethodBadge size="xs" httpMethod={link.httpMethod} />
-          }
+          rightSection={<HttpMethodBadge httpMethod={link.httpMethod} />}
         />
       </Box>
     )

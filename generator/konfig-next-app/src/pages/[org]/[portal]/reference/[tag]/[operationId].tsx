@@ -9,7 +9,7 @@ import {
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next'
 import { useState } from 'react'
 import { NAVBAR_WIDTH, ReferenceNavbar } from '@/components/ReferenceNavbar'
-import { OperationReferenceMain } from '@/OperationReferenceMain'
+import { OperationReferenceMain } from '@/components/OperationReferenceMain'
 import Script from 'next/script'
 import Head from 'next/head'
 import { ReferenceHeader } from '@/components/ReferenceHeader'
@@ -95,6 +95,7 @@ const Operation = ({
   const theme = useMantineTheme()
   return (
     <MantineProvider
+      inherit
       theme={{
         colorScheme,
         colors: {
