@@ -44,6 +44,7 @@ import { notifications } from '@mantine/notifications'
 import localforage from 'localforage'
 import { ReferencePageProps } from './utils/generate-props-for-reference-page'
 import { SocialFooter } from './components/SocialFooter'
+import { Breadcrumbs } from './components/Breadcrumbs'
 
 export function OperationReferenceMain({
   pathParameters,
@@ -206,6 +207,8 @@ export function OperationReferenceMain({
     }
   }
 
+  const header = operation.operation.summary ?? operation.path
+
   return (
     <FormProvider form={form}>
       <form
@@ -258,13 +261,14 @@ export function OperationReferenceMain({
           justify={{ base: undefined, sm: 'space-around' }}
           pt="sm"
         >
-          <Stack px="sm" w={{ base: '100%', sm: '55%' }} spacing="xl">
-            <Stack spacing="xs">
+          <Stack px="sm" w={{ base: '100%', sm: '55%' }} spacing="md">
+            <Stack mb="lg" spacing="xs">
+              <Breadcrumbs breadcrumbs={[tag, header]} />
               <Title
                 color={colorScheme === 'dark' ? theme.white : undefined}
                 order={2}
               >
-                {operation.operation.summary ?? operation.path}
+                {header}
               </Title>
               <Group>
                 <HttpMethodBadge httpMethod={operation.method} />
@@ -298,7 +302,7 @@ export function OperationReferenceMain({
               requestBodyRequired={requestBodyRequired}
             />
             {responses && (
-              <Box>
+              <Box my="lg">
                 <Title order={4}>Responses</Title>
                 <Divider my="sm" />
                 <Stack>

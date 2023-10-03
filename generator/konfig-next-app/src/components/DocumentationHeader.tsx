@@ -2,6 +2,7 @@ import { HeaderTabs, TABS } from './HeaderTabs'
 import { LayoutHeader } from './LayoutHeader'
 import { Dispatch, SetStateAction } from 'react'
 import { HeaderWrapper } from './HeaderWrapper'
+import { navbarOffsetBreakpoint } from '@/utils/navbar-offset-breakpoint'
 
 export function DocumentationHeader({
   opened,
@@ -25,7 +26,7 @@ export function DocumentationHeader({
   return (
     <HeaderWrapper>
       <LayoutHeader
-        breakpoint="lg"
+        breakpoint={navbarOffsetBreakpoint}
         opened={opened}
         setOpened={setOpened}
         title={title}

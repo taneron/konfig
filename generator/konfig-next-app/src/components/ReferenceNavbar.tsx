@@ -220,7 +220,6 @@ export function ReferenceNavbar({
           error={form.getInputProps('url').error}
           data={servers}
           itemComponent={SelectItem}
-          radius="xs"
           hoverOnSearchChange
           nothingFound="Nothing found"
           searchable

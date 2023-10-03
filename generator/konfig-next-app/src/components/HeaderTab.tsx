@@ -1,21 +1,25 @@
-import { Anchor, Group, createStyles, rem } from '@mantine/core'
+import { linkColor } from '@/utils/link-color'
+import { navLinkColor } from '@/utils/nav-link-color'
+import {
+  Anchor,
+  Group,
+  createStyles,
+  rem,
+  useMantineTheme,
+} from '@mantine/core'
 import { IconExternalLink } from '@tabler/icons-react'
 import { useRouter } from 'next/router'
 
 const useStyles = createStyles((theme) => ({
   tab: {
     fontSize: rem(13),
-    color:
-      theme.colorScheme === 'dark'
-        ? theme.colors.gray[5]
-        : theme.colors.gray[4],
-    padding: `${rem(7)} ${theme.spacing.sm}`,
+    padding: `${rem(10)} ${theme.spacing.sm}`,
     fontWeight: 700,
     borderBottom: `${rem(2)} solid transparent`,
     transition: 'border-color 100ms ease, color 100ms ease',
 
     '&:hover': {
-      color: theme.white,
+      color: linkColor({ theme }),
       textDecoration: 'none',
     },
   },
@@ -33,7 +37,6 @@ const useStyles = createStyles((theme) => ({
   },
 
   tabActive: {
-    color: `${theme.white} !important`,
     borderBottomColor:
       theme.colors[theme.primaryColor][theme.colorScheme === 'dark' ? 5 : 3],
   },
@@ -68,6 +71,8 @@ export function HeaderTab({
     router.push(link, undefined)
   }
 
+  const theme = useMantineTheme()
+
   return (
     <Anchor<'a'>
       key={label}
@@ -75,6 +80,7 @@ export function HeaderTab({
       target="_blank"
       aria-disabled={disabled}
       onClick={handleClick}
+      color={navLinkColor({ active, theme })}
       className={cx(classes.tab, {
         [classes.tabActive]: active,
         [classes.tabDisabled]: disabled,

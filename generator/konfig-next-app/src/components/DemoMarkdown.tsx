@@ -137,11 +137,17 @@ const useStyles = createStyles((theme) => ({
   markdown: {
     'h1:first-of-type': {
       marginTop: 0,
+      '::after': {
+        display: 'none',
+      },
     },
   },
   text: {
     img: {
       maxWidth: '100%',
+      display: 'block',
+      margin: 'auto',
+      borderRadius: theme.radius.md,
     },
   },
 }))

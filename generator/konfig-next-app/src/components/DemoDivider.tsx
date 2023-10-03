@@ -8,7 +8,7 @@ const _DemoDivider: Components['hr'] = ({
   children,
   siblingCount,
 }) => {
-  return <Divider mt="sm" mb="xl" />
+  return <Divider my="xl" />
 }
 
 export const DemoDivider = observer(_DemoDivider)
