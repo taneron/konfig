@@ -19,7 +19,7 @@ const useStyles = createStyles((theme) => ({
     transition: 'border-color 100ms ease, color 100ms ease',
 
     '&:hover': {
-      color: linkColor({ theme }),
+      color: linkColor({ theme: { ...theme, colorScheme: 'dark' } }),
       textDecoration: 'none',
     },
   },
@@ -73,6 +73,13 @@ export function HeaderTab({
 
   const theme = useMantineTheme()
 
+  const labelColor =
+    theme.colorScheme === 'dark'
+      ? navLinkColor({ active, theme: { ...theme, colorScheme: 'dark' } })
+      : active
+      ? theme.colors.gray[2]
+      : theme.colors.gray[4]
+
   return (
     <Anchor<'a'>
       key={label}
@@ -80,7 +87,7 @@ export function HeaderTab({
       target="_blank"
       aria-disabled={disabled}
       onClick={handleClick}
-      color={navLinkColor({ active, theme })}
+      color={labelColor}
       className={cx(classes.tab, {
         [classes.tabActive]: active,
         [classes.tabDisabled]: disabled,
