@@ -14,6 +14,7 @@ import { DemoStateContext } from './DemoMarkdown'
 import { toText } from 'hast-util-to-text'
 import Slugger from 'github-slugger'
 import { TitleSize } from '@mantine/core/lib/Title/Title'
+import { linkColor } from '@/utils/link-color'
 
 export const TITLE_OFFSET_PX = 100
 
@@ -49,7 +50,7 @@ const _DemoTitle: Components['h1'] = ({
       order={level as TitleOrder}
       mt={mt(level as TitleOrder)}
       size={size(level as TitleOrder)}
-      color={theme.colorScheme === 'dark' ? theme.white : 'black'}
+      color={linkColor({ theme })}
     >
       <Anchor href={`#${slug}`} unstyled>
         {children}

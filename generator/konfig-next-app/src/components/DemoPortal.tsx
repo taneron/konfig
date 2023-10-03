@@ -284,7 +284,7 @@ export const DemoPortal = observer(
                   )}
                 </Group>
               </Navbar.Section>
-              <Navbar.Section px="sm" pt="xl" grow>
+              <Navbar.Section px="sm" py="xl" grow>
                 <Stack spacing={0}>
                   {state.demos.map(({ name }, i) => {
                     const isCurrentlySelected = state.currentDemoIndex === i

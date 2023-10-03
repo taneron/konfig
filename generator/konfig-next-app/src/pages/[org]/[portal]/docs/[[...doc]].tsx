@@ -36,6 +36,7 @@ import {
 import Head from 'next/head'
 import { SocialFooter } from '@/components/SocialFooter'
 import { Breadcrumbs } from '@/components/Breadcrumbs'
+import { generateMantineThemeColors } from '@/utils/generate-mantine-theme-colors'
 
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
@@ -142,12 +143,10 @@ const DocumentationPage = observer(
         <MantineProvider
           theme={{
             colorScheme,
-            colors: {
-              brand:
-                konfigYaml.portal?.primaryColor !== undefined
-                  ? generateShadePalette(konfigYaml.portal?.primaryColor)
-                  : colors.blue,
-            },
+            ...generateMantineThemeColors({
+              primaryColor: konfigYaml.portal?.primaryColor,
+              colors,
+            }),
             primaryColor: 'brand',
           }}
         >

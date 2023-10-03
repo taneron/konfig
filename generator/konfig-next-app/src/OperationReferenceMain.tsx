@@ -255,9 +255,10 @@ export function OperationReferenceMain({
       >
         <Flex
           direction={{ base: 'column', sm: 'row' }}
-          justify={{ base: undefined, sm: 'space-between' }}
+          justify={{ base: undefined, sm: 'space-around' }}
+          pt="sm"
         >
-          <Stack w={{ base: '100%', sm: '55%' }} spacing="xl">
+          <Stack px="sm" w={{ base: '100%', sm: '55%' }} spacing="xl">
             <Stack spacing="xs">
               <Title
                 color={colorScheme === 'dark' ? theme.white : undefined}
@@ -354,9 +355,9 @@ export function OperationReferenceMain({
             </MediaQuery>
           </Stack>
           <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
-            <Divider my="sm" />
+            <Divider my="xl" />
           </MediaQuery>
-          <Box w={{ base: '100%', sm: '40%' }}>
+          <Box px="sm" w={{ base: '100%', sm: '40%' }}>
             <Stack
               pos="sticky"
               top="calc(var(--mantine-header-height, 0px) + 1rem)"

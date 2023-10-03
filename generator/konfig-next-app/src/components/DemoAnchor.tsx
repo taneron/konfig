@@ -4,10 +4,11 @@ import { Text, rem, createStyles } from '@mantine/core'
 import Link from 'next/link'
 import { IconCode, IconTerminal } from '@tabler/icons-react'
 import { DemoInlineLinkButton } from './DemoInlineLinkButton'
+import { linkColor } from '@/utils/link-color'
 
 const useStyles = createStyles((theme) => ({
   link: {
-    color: theme.colorScheme === 'dark' ? 'white' : 'black',
+    color: linkColor({ theme }),
     fontWeight: 600,
     textDecoration: 'none',
     borderBottom: `1px solid ${theme.colors.brand[6]}`,
