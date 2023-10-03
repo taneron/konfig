@@ -41,7 +41,7 @@ const _DemoApi: Components['a'] = ({
   const suffix = `/reference/${tag}/${id}`
   return (
     <DemoInlineLinkButton
-      rightIcon={<HttpMethodBadge size="xs" httpMethod={operation.method} />}
+      rightIcon={<HttpMethodBadge httpMethod={operation.method} />}
       label={label}
       href={
         demoState.omitOwnerAndRepo
