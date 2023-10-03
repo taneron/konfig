@@ -35,6 +35,11 @@ import { DemoHeader } from './DemoHeader'
 import type { SocialObject } from 'konfig-lib/dist/KonfigYamlCommon'
 import Head from 'next/head'
 import { NAVBAR_WIDTH } from './ReferenceNavbar'
+import { proseContainerWidthStyles } from '@/utils/prose-container-width-styles'
+import { FlexCenter } from '@/components/FlexCenter'
+import { navLinkColor } from '@/utils/nav-link-color'
+import { asideOffsetBreakpoint } from '@/utils/aside-offset-breakpoint'
+import { navbarOffsetBreakpoint } from '@/utils/navbar-offset-breakpoint'
 
 type DemosInput = Demo[]
 
@@ -184,6 +189,8 @@ export const DemoPortal = observer(
     // We need to access dummyState to tell MobX to track it
     state.dummyState
 
+    console.log(!opened)
+
     return (
       <SandboxContext.Provider value={!!sandbox}>
         {sandbox && (
@@ -210,27 +217,28 @@ export const DemoPortal = observer(
           </Affix>
         )}
         <AppShell
+          asideOffsetBreakpoint={asideOffsetBreakpoint}
+          navbarOffsetBreakpoint={navbarOffsetBreakpoint}
           styles={{
             main: {
               background:
                 colorScheme === 'dark' ? theme.colors.dark[8] : undefined,
             },
           }}
-          navbarOffsetBreakpoint="sm"
-          asideOffsetBreakpoint="lg"
           navbar={
             <Navbar
-              hiddenBreakpoint="sm"
+              hiddenBreakpoint={navbarOffsetBreakpoint}
               hidden={!opened}
-              width={{ lg: NAVBAR_WIDTH }}
+              width={{ [navbarOffsetBreakpoint]: NAVBAR_WIDTH }}
               sx={{
                 overflowY: 'scroll',
-                height:
-                  'calc(100% - var(--mantine-header-height, 0rem) - var(--mantine-footer-height, 0rem));',
+                // height:
+                //   'calc(100% - var(--mantine-header-height, 0rem) - var(--mantine-footer-height, 0rem));',
               }}
             >
               <Navbar.Section
-                p="md"
+                px="md"
+                py="xl"
                 style={{
                   borderBottom: `${rem(1)} solid ${
                     theme.colorScheme === 'dark'
@@ -283,7 +291,7 @@ export const DemoPortal = observer(
                   )}
                 </Group>
               </Navbar.Section>
-              <Navbar.Section px="sm" pt="md" grow>
+              <Navbar.Section px="sm" py="xl" grow>
                 <Stack spacing={0}>
                   {state.demos.map(({ name }, i) => {
                     const isCurrentlySelected = state.currentDemoIndex === i
@@ -309,17 +317,15 @@ export const DemoPortal = observer(
                             borderRadius: theme.radius.sm,
                           },
                           label: {
-                            color: isCurrentlySelected
-                              ? theme.colorScheme === 'dark'
-                                ? theme.colors.brand[2]
-                                : theme.colors.brand[8]
-                              : undefined,
+                            color: navLinkColor({
+                              active: isCurrentlySelected,
+                              theme,
+                            }),
                             fontSize: theme.fontSizes.sm,
                           },
                         }}
                         sx={(theme) => ({ borderRadius: theme.radius.sm })}
                         label={name}
-                        fw={isCurrentlySelected ? 'bold' : undefined}
                         active={isCurrentlySelected}
                       />
                     )
@@ -344,62 +350,67 @@ export const DemoPortal = observer(
             />
           }
         >
-          {/* We have to render all demos states at the start so they can each initialize their cells */}
-          {state.demos.map((demo, i) => {
-            const previousDemoState: DemoState | undefined =
-              i === 0 ? undefined : state.demos[i - 1]
-            const nextDemoState: DemoState | undefined =
-              i === state.demos.length - 1 ? undefined : state.demos[i + 1]
+          <FlexCenter>
+            {/* We have to render all demos states at the start so they can each initialize their cells */}
+            {state.demos.map((demo, i) => {
+              const previousDemoState: DemoState | undefined =
+                i === 0 ? undefined : state.demos[i - 1]
+              const nextDemoState: DemoState | undefined =
+                i === state.demos.length - 1 ? undefined : state.demos[i + 1]
 
-            const previous: Sibling | undefined =
-              previousDemoState === undefined ||
-              previousDemoState.portal === undefined
-                ? undefined
-                : {
-                    title: previousDemoState.name,
-                    organizationId: previousDemoState.portal.organizationId,
-                    demoId: previousDemoState.id,
-                    demoIndex: i - 1,
-                  }
-            const next: Sibling | undefined =
-              nextDemoState === undefined || nextDemoState.portal === undefined
-                ? undefined
-                : {
-                    title: nextDemoState.name,
-                    demoIndex: i + 1,
-                    organizationId: nextDemoState.portal.organizationId,
-                    demoId: nextDemoState.id,
-                  }
-            return (
-              <Fragment key={i}>
-                {state.currentDemoIndex === i && (
-                  <Head>
-                    <title>{demo.name}</title>
-                  </Head>
-                )}
-                <Box
-                  key={demo.name}
-                  display={state.currentDemoIndex !== i ? 'none' : undefined}
-                >
-                  <DemoLastRan demo={demo} />
-                  <DemoMarkdown state={demo} />
-                  <Box my={rem(40)}>
-                    <DemoEditThisPage portalState={state} />
+              const previous: Sibling | undefined =
+                previousDemoState === undefined ||
+                previousDemoState.portal === undefined
+                  ? undefined
+                  : {
+                      title: previousDemoState.name,
+                      organizationId: previousDemoState.portal.organizationId,
+                      demoId: previousDemoState.id,
+                      demoIndex: i - 1,
+                    }
+              const next: Sibling | undefined =
+                nextDemoState === undefined ||
+                nextDemoState.portal === undefined
+                  ? undefined
+                  : {
+                      title: nextDemoState.name,
+                      demoIndex: i + 1,
+                      organizationId: nextDemoState.portal.organizationId,
+                      demoId: nextDemoState.id,
+                    }
+              return (
+                <Fragment key={i}>
+                  {state.currentDemoIndex === i && (
+                    <Head>
+                      <title>{demo.name}</title>
+                    </Head>
+                  )}
+                  <Box
+                    display={state.currentDemoIndex !== i ? 'none' : undefined}
+                    mt="sm"
+                    key={demo.name}
+                    {...proseContainerWidthStyles}
+                  >
+                    <DemoLastRan demo={demo} />
+                    <DemoMarkdown state={demo} />
+                    <Box my={rem(40)}>
+                      <DemoEditThisPage portalState={state} />
+                    </Box>
+                    <DemoSiblings
+                      omitOwnerAndRepo={omitOwnerAndRepo}
+                      portal={state}
+                      previous={previous}
+                      next={next}
+                    />
+                    <Divider mt={rem(60)} />
+                    <Box my={rem(20)}>
+                      <DemoSocials socials={state.socials} />
+                    </Box>
                   </Box>
-                  <DemoSiblings
-                    omitOwnerAndRepo={omitOwnerAndRepo}
-                    portal={state}
-                    previous={previous}
-                    next={next}
-                  />
-                  <Divider mt={rem(60)} />
-                  <Box my={rem(20)}>
-                    <DemoSocials socials={state.socials} />
-                  </Box>
-                </Box>
-              </Fragment>
-            )
-          })}
+                </Fragment>
+              )
+            })}
+          </FlexCenter>
         </AppShell>
       </SandboxContext.Provider>
     )

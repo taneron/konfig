@@ -35,6 +35,12 @@ import {
 } from '@/utils/generate-props-for-markdown-page'
 import Head from 'next/head'
 import { SocialFooter } from '@/components/SocialFooter'
+import { Breadcrumbs } from '@/components/Breadcrumbs'
+import { generateMantineThemeColors } from '@/utils/generate-mantine-theme-colors'
+import { proseContainerWidthStyles } from '@/utils/prose-container-width-styles'
+import { FlexCenter } from '@/components/FlexCenter'
+import { asideOffsetBreakpoint } from '@/utils/aside-offset-breakpoint'
+import { navbarOffsetBreakpoint } from '@/utils/navbar-offset-breakpoint'
 
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
@@ -66,6 +72,8 @@ export const OperationsContext = createContext<OperationObject[]>([])
 
 const useStyles = createStyles((theme) => ({
   markdown: {
+    // this lives in [[...doc]].tsx as opposed to DemoMarkdown because we want
+    // buttons to be close to code in the demos
     '.mantine-Tabs-root': {
       marginBottom: theme.spacing.xl,
     },
@@ -85,6 +93,7 @@ const DocumentationPage = observer(
     defaultBranch,
     idToLabel,
     docPath,
+    breadcrumb,
     repo,
     omitOwnerAndRepo,
     demos,
@@ -140,12 +149,10 @@ const DocumentationPage = observer(
         <MantineProvider
           theme={{
             colorScheme,
-            colors: {
-              brand:
-                konfigYaml.portal?.primaryColor !== undefined
-                  ? generateShadePalette(konfigYaml.portal?.primaryColor)
-                  : colors.blue,
-            },
+            ...generateMantineThemeColors({
+              primaryColor: konfigYaml.portal?.primaryColor,
+              colors,
+            }),
             primaryColor: 'brand',
           }}
         >
@@ -155,15 +162,15 @@ const DocumentationPage = observer(
                 background: colorScheme === 'dark' ? colors.dark[8] : undefined,
               },
             }}
-            navbarOffsetBreakpoint="lg"
-            asideOffsetBreakpoint="lg"
+            navbarOffsetBreakpoint={navbarOffsetBreakpoint}
+            asideOffsetBreakpoint={asideOffsetBreakpoint}
             aside={<DemoTableOfContents demoDiv={state.demoDiv} />}
             navbar={
               <Navbar
-                hiddenBreakpoint="lg"
+                hiddenBreakpoint={navbarOffsetBreakpoint}
                 hidden={!opened}
-                width={{ lg: NAVBAR_WIDTH }}
-                py="md"
+                width={{ [navbarOffsetBreakpoint]: NAVBAR_WIDTH }}
+                py="xl"
                 px="sm"
                 sx={{
                   overflowY: 'scroll',
@@ -229,8 +236,13 @@ const DocumentationPage = observer(
             }
           >
             <OperationsContext.Provider value={operations}>
-              <Flex justify="center">
-                <Box className={classes.markdown} w="100%" maw={700}>
+              {/* for centering Box */}
+              <FlexCenter pt="sm">
+                <Box
+                  className={classes.markdown}
+                  {...proseContainerWidthStyles}
+                >
+                  <Breadcrumbs breadcrumbs={breadcrumb} />
                   <DemoMarkdown state={state} />
                   <Box my={rem(40)}>
                     <DocEditThisPage
@@ -242,7 +254,7 @@ const DocumentationPage = observer(
                   </Box>
                   <SocialFooter konfigYaml={konfigYaml} />
                 </Box>
-              </Flex>
+              </FlexCenter>
             </OperationsContext.Provider>
           </AppShell>
         </MantineProvider>

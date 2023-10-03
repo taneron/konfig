@@ -212,7 +212,7 @@ export function ReferenceNavbar({
 
   return (
     <>
-      <Navbar.Section p="md" className={classes.header}>
+      <Navbar.Section px="md" py="xl" className={classes.header}>
         <Select
           size="xs"
           icon={<IconLink size="1rem" />}
@@ -220,7 +220,6 @@ export function ReferenceNavbar({
           error={form.getInputProps('url').error}
           data={servers}
           itemComponent={SelectItem}
-          radius="xs"
           hoverOnSearchChange
           nothingFound="Nothing found"
           searchable
@@ -303,7 +302,7 @@ export function ReferenceNavbar({
         )}
       </Navbar.Section>
 
-      <Navbar.Section px="sm" py="md" grow>
+      <Navbar.Section px="sm" py="xl" grow>
         {links}
       </Navbar.Section>
     </>

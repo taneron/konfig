@@ -13,6 +13,7 @@ import {
 import { IconList } from '@tabler/icons-react'
 import { TITLE_OFFSET_PX } from './DemoTitle'
 import { observer } from 'mobx-react'
+import { asideOffsetBreakpoint } from '@/utils/aside-offset-breakpoint'
 
 const useStyles = createStyles((theme) => ({
   wrapper: {
@@ -116,8 +117,6 @@ function getHeadingElementsFromDiv(div: HTMLDivElement): HTMLHeadingElement[] {
     }
   }
 
-  console.log('headingElements', headingElements)
-
   return headingElements
 }
 
@@ -191,7 +190,10 @@ export const DemoTableOfContents = observer(
     // if (headings.length === 0) return null
 
     return (
-      <MediaQuery smallerThan="lg" styles={{ display: 'none' }}>
+      <MediaQuery
+        smallerThan={asideOffsetBreakpoint}
+        styles={{ display: 'none' }}
+      >
         <Aside
           style={{
             backgroundColor:
@@ -199,7 +201,8 @@ export const DemoTableOfContents = observer(
             border: 'none',
           }}
           p="sm"
-          hiddenBreakpoint="lg"
+          pr="xl"
+          pt="xl"
           width={{ base: 300 }}
         >
           <nav className={cx(classes.wrapper)}>

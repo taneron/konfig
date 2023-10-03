@@ -15,6 +15,7 @@ import {
   createStyles,
   rem,
   NavLink,
+  MantineTheme,
 } from '@mantine/core'
 import {
   IconCalendarStats,
@@ -23,23 +24,25 @@ import {
 } from '@tabler/icons-react'
 import Link from 'next/link'
 import { HttpMethodBadge } from './HttpMethodBadge'
+import { linkColor } from '@/utils/link-color'
+import { navLinkColor } from '@/utils/nav-link-color'
 
 const useStyles = createStyles((theme) => ({
   control: {
     fontWeight: 500,
+    borderRadius: theme.radius.sm,
     display: 'block',
     width: '100%',
     padding: `${theme.spacing.xs} ${theme.spacing.md}`,
-    color: theme.colorScheme === 'dark' ? theme.colors.dark[0] : theme.black,
     fontSize: theme.fontSizes.sm,
 
-    '&:hover': {
+    // https://github.com/mantinedev/mantine/blob/6.0.13/src/mantine-core/src/NavLink/NavLink.styles.ts#L52
+    ...theme.fn.hover({
       backgroundColor:
         theme.colorScheme === 'dark'
-          ? theme.colors.dark[7]
+          ? theme.colors.dark[6]
           : theme.colors.gray[0],
-      color: theme.colorScheme === 'dark' ? theme.white : theme.black,
-    },
+    }),
   },
 
   linkWrapper: {
@@ -107,11 +110,7 @@ export function LinksGroup({
               borderRadius: theme.radius.sm,
             },
             label: {
-              color: link.active
-                ? theme.colorScheme === 'dark'
-                  ? theme.colors.brand[3]
-                  : theme.colors.brand[8]
-                : undefined,
+              color: navLinkColor({ active: link.active, theme }),
               fontSize: theme.fontSizes.sm,
             },
           }}
@@ -121,7 +120,6 @@ export function LinksGroup({
           href={link.link}
           label={link.label}
           active={link.active}
-          fw={link.active ? 'bold' : undefined}
           rightSection={
             <HttpMethodBadge size="xs" httpMethod={link.httpMethod} />
           }
@@ -130,11 +128,16 @@ export function LinksGroup({
     )
   })
 
+  const anyActiveLinks = links?.find((link) => link.active) !== undefined
+
   return (
     <>
       <UnstyledButton
         onClick={() => setOpened((o) => !o)}
         className={classes.control}
+        style={{
+          color: navLinkColor({ active: anyActiveLinks, theme }),
+        }}
         py={8}
       >
         <Group position="apart" spacing={0}>

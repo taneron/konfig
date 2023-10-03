@@ -137,25 +137,31 @@ const useStyles = createStyles((theme) => ({
   markdown: {
     'h1:first-of-type': {
       marginTop: 0,
+      '::after': {
+        display: 'none',
+      },
     },
   },
   text: {
     img: {
       maxWidth: '100%',
+      display: 'block',
+      margin: 'auto',
+      borderRadius: theme.radius.md,
     },
   },
 }))
 
 const DemoMarkdown = observer(({ state }: { state: DemoState }) => {
   const demoDiv = useRef<HTMLDivElement | null>(null)
-  const { colors } = useMantineTheme()
+  const { colors, colorScheme } = useMantineTheme()
   const { classes } = useStyles()
   useEffect(() => {
     state.setDemoDiv(demoDiv.current)
   }, [state])
   return (
     <DemoStateContext.Provider value={state}>
-      <Stack ref={demoDiv} spacing="xs">
+      <Box ref={demoDiv}>
         <ReactMarkdown
           className={classes.markdown}
           remarkPlugins={[remarkGfm, remarkDirective, remarkDirectiveRehype]}
@@ -163,7 +169,16 @@ const DemoMarkdown = observer(({ state }: { state: DemoState }) => {
             a: DemoAnchor,
             p({ node, children, siblingCount, ...props }) {
               return (
-                <Text className={classes.text} mt="md" mb="xl" {...props}>
+                <Text
+                  component="p"
+                  color={
+                    colorScheme === 'dark' ? colors.gray[5] : colors.gray[7]
+                  }
+                  className={classes.text}
+                  mt="md"
+                  mb="xl"
+                  {...props}
+                >
                   {children}
                 </Text>
               )
@@ -194,7 +209,7 @@ const DemoMarkdown = observer(({ state }: { state: DemoState }) => {
         >
           {state.markdown}
         </ReactMarkdown>
-      </Stack>
+      </Box>
     </DemoStateContext.Provider>
   )
 })

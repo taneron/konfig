@@ -13,6 +13,7 @@ import {
   Paper,
   MediaQuery,
   Alert,
+  useMantineTheme,
 } from '@mantine/core'
 import { HttpMethodBadge } from './components/HttpMethodBadge'
 import { OperationForm } from './components/OperationForm'
@@ -43,6 +44,7 @@ import { notifications } from '@mantine/notifications'
 import localforage from 'localforage'
 import { ReferencePageProps } from './utils/generate-props-for-reference-page'
 import { SocialFooter } from './components/SocialFooter'
+import { Breadcrumbs } from './components/Breadcrumbs'
 
 export function OperationReferenceMain({
   pathParameters,
@@ -88,6 +90,8 @@ export function OperationReferenceMain({
       requestBodyRequired,
     }),
   ]
+
+  const theme = useMantineTheme()
 
   const typecriptConfig = konfigYaml.generators.typescript
   if (!typecriptConfig) {
@@ -187,7 +191,7 @@ export function OperationReferenceMain({
       (operation.operation.requestBody as RequestBodyObject)?.required ?? false,
   }
 
-  console.debug(codegenArgs)
+  console.debug('codegenArgs:', codegenArgs)
 
   const [requestInProgress, setRequestInProgress] = useState(false)
 
@@ -202,6 +206,8 @@ export function OperationReferenceMain({
       notifications.show({ message, color: 'red', id })
     }
   }
+
+  const header = operation.operation.summary ?? operation.path
 
   return (
     <FormProvider form={form}>
@@ -252,12 +258,17 @@ export function OperationReferenceMain({
       >
         <Flex
           direction={{ base: 'column', sm: 'row' }}
-          justify={{ base: undefined, sm: 'space-between' }}
+          justify={{ base: undefined, sm: 'space-around' }}
+          pt="sm"
         >
-          <Stack w={{ base: '100%', sm: '55%' }} spacing="xl">
-            <Stack spacing="xs">
-              <Title order={2}>
-                {operation.operation.summary ?? operation.path}
+          <Stack px="sm" w={{ base: '100%', sm: '55%' }} spacing="md">
+            <Stack mb="lg" spacing="xs">
+              <Breadcrumbs breadcrumbs={[tag, header]} />
+              <Title
+                color={colorScheme === 'dark' ? theme.white : undefined}
+                order={2}
+              >
+                {header}
               </Title>
               <Group>
                 <HttpMethodBadge httpMethod={operation.method} />
@@ -291,7 +302,7 @@ export function OperationReferenceMain({
               requestBodyRequired={requestBodyRequired}
             />
             {responses && (
-              <Box>
+              <Box my="lg">
                 <Title order={4}>Responses</Title>
                 <Divider my="sm" />
                 <Stack>
@@ -348,9 +359,9 @@ export function OperationReferenceMain({
             </MediaQuery>
           </Stack>
           <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
-            <Divider my="sm" />
+            <Divider my="xl" />
           </MediaQuery>
-          <Box w={{ base: '100%', sm: '40%' }}>
+          <Box px="sm" w={{ base: '100%', sm: '40%' }}>
             <Stack
               pos="sticky"
               top="calc(var(--mantine-header-height, 0px) + 1rem)"

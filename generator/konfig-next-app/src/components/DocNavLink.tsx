@@ -1,3 +1,4 @@
+import { navLinkColor } from '@/utils/nav-link-color'
 import { useBasePath } from '@/utils/use-base-path'
 import { NavLink, useMantineColorScheme, useMantineTheme } from '@mantine/core'
 import Link from 'next/link'
@@ -19,7 +20,6 @@ export function DocNavLink({
   const { colorScheme } = useMantineColorScheme()
   const basePath = useBasePath({ omitOwnerAndRepo })
   const theme = useMantineTheme()
-  console.log(theme.fontSizes)
   const active = id === docId
   return (
     <NavLink<typeof Link>
@@ -28,18 +28,13 @@ export function DocNavLink({
       onClick={() => setOpened(false)}
       key={id}
       py={8}
-      fw={active ? 'bold' : undefined}
       styles={{
         root: {
           borderRadius: theme.radius.sm,
         },
         label: {
           fontSize: theme.fontSizes.sm,
-          color: active
-            ? theme.colorScheme === 'dark'
-              ? theme.colors.brand[3]
-              : theme.colors.brand[8]
-            : undefined,
+          color: navLinkColor({ active, theme }),
         },
       }}
       component={Link}
