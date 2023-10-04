@@ -35,7 +35,8 @@ const useStyles = createStyles((theme) => ({
 
 export function OperationReferenceResponses({
   responses,
-}: Pick<ReferencePageProps, 'responses'>) {
+  operation,
+}: Pick<ReferencePageProps, 'responses' | 'operation'>) {
   const { classes, cx } = useStyles()
   const [value, setValue] = useState<string | null>(null)
   const theme = useMantineTheme()
@@ -49,12 +50,13 @@ export function OperationReferenceResponses({
         value={value}
         onChange={(value) => {
           if (value === null) return setValue(value)
+          const responseCode = value.split('-')[2]
           // if schema does not exist for this response, don't allow it to be opened
-          if (responses[value] === undefined) return
-          if (responses[value].content === undefined) {
+          if (responses[responseCode] === undefined) return
+          if (responses[responseCode].content === undefined) {
             return
           }
-          const contentObject = responses[value].content
+          const contentObject = responses[responseCode].content
           if (contentObject === undefined) return
 
           if (contentObject[Object.keys(contentObject)[0]].schema === undefined)
@@ -77,7 +79,7 @@ export function OperationReferenceResponses({
           return (
             <Accordion.Item
               className={classes.item}
-              value={responseCode}
+              value={`${operation.path}-${operation.method}-${responseCode}`}
               key={responseCode}
             >
               {/* 1. Render response code

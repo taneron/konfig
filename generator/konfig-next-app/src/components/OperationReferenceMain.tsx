@@ -302,7 +302,12 @@ export function OperationReferenceMain({
               requestBodyProperties={requestBodyProperties}
               requestBodyRequired={requestBodyRequired}
             />
-            {responses && <OperationReferenceResponses responses={responses} />}
+            {responses && (
+              <OperationReferenceResponses
+                operation={operation}
+                responses={responses}
+              />
+            )}
             <MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
               <Box>
                 <SocialFooter konfigYaml={konfigYaml} />
