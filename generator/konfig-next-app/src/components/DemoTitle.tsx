@@ -13,7 +13,7 @@ import { useContext, useEffect, useRef, useState } from 'react'
 import { Components } from 'react-markdown/lib/ast-to-react'
 import { DemoStateContext } from './DemoMarkdown'
 import { toText } from 'hast-util-to-text'
-import Slugger from 'github-slugger'
+import Slugger, { slug } from 'github-slugger'
 import { TitleSize } from '@mantine/core/lib/Title/Title'
 import { linkColor } from '@/utils/link-color'
 import { useClipboard } from '@mantine/hooks'
@@ -79,19 +79,19 @@ const _DemoTitle: Components['h1'] = ({
 
   // get current url and subpath without slug
   const currentUrl = typeof window !== 'undefined' ? window.location.href : ''
+  const currentUrlWithoutSlug = currentUrl.split('#')[0]
 
   return (
     <Title
-      sx={{ ':target': { scrollMarginTop: rem(TITLE_OFFSET_PX + 16) } }}
+      sx={{ scrollMarginTop: rem(TITLE_OFFSET_PX + 16) }}
       ref={ref}
       id={slug}
       order={level as TitleOrder}
       mt={mt(level as TitleOrder)}
       size={size(level as TitleOrder)}
       color={linkColor({ theme })}
-      className={classes.anchor}
       onClick={() => {
-        clipboard.copy(`${currentUrl}`)
+        clipboard.copy(`${currentUrlWithoutSlug}#${slug}`)
         notifications.show({
           id: 'url-copied-to-your-clipboard',
           radius: 'md',
@@ -109,7 +109,7 @@ const _DemoTitle: Components['h1'] = ({
         })
       }}
     >
-      <Anchor href={`#${slug}`} unstyled>
+      <Anchor className={classes.anchor} href={`#${slug}`} unstyled>
         {children}
       </Anchor>
     </Title>
@@ -143,7 +143,8 @@ export function generateHeaderTitle({
   title: string
   slugger?: Slugger
 }) {
-  const id = `${demoId}:${slugger?.slug(title)}`
+  // const id = `${demoId}:${slugger?.slug(title)}`
+  const id = slug(`${demoId}-${title}`)
   return id
 }
 
