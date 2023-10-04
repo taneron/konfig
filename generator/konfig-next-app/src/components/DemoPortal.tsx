@@ -189,8 +189,6 @@ export const DemoPortal = observer(
     // We need to access dummyState to tell MobX to track it
     state.dummyState
 
-    console.log(!opened)
-
     return (
       <SandboxContext.Provider value={!!sandbox}>
         {sandbox && (
