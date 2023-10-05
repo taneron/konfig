@@ -358,10 +358,7 @@ public class Template {
             }
             // if we have a name left, resolve it in the context we found
             if (!curr.isEmpty()) {
-                if (curr.equals(DEBUG_NAME)) {
-                    return generateDebugReport(ctx.data);
-                }
-                return getValueIn(ctx.data, curr, line);
+                return getValue(ctx, curr, line, missingIsNull);
             } else {
                 return ctx.data;
             }
