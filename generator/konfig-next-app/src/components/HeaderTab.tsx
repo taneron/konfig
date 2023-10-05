@@ -1,7 +1,6 @@
-import { linkColor } from '@/utils/link-color'
 import { Anchor, createStyles, rem, useMantineTheme } from '@mantine/core'
 import { useRouter } from 'next/router'
-import { HeaderButton, Tab } from './HeaderButton'
+import { HeaderButton, Tab, useColorStyles } from './HeaderButton'
 
 const useStyles = createStyles((theme) => ({
   tab: {
@@ -14,7 +13,6 @@ const useStyles = createStyles((theme) => ({
     transition: 'border-color 100ms ease, color 100ms ease',
 
     '&:hover': {
-      color: linkColor({ theme: { ...theme, colorScheme: 'dark' } }),
       textDecoration: 'none',
     },
   },
@@ -51,6 +49,7 @@ export function HeaderTab({
 }) {
   const { classes, cx } = useStyles()
   const router = useRouter()
+  const colorStyles = useColorStyles()
 
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     if (disabled) {
@@ -69,14 +68,15 @@ export function HeaderTab({
       key={label}
       href={external ? link : undefined}
       target="_blank"
+      data-active={active}
       aria-disabled={disabled}
       onClick={handleClick}
-      className={cx(classes.tab, {
+      className={cx(classes.tab, colorStyles.classes.color, {
         [classes.tabActive]: active,
         [classes.tabDisabled]: disabled,
       })}
     >
-      <HeaderButton active={active} tab={label} />
+      <HeaderButton noColor active={active} tab={label} />
     </Anchor>
   )
 }

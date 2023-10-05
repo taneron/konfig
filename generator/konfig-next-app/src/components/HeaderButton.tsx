@@ -1,6 +1,7 @@
 import { IconBook, IconCode, IconTerminal, IconBox } from '@tabler/icons-react'
-import { Group, rem, useMantineTheme } from '@mantine/core'
-import { navLinkColor } from '@/utils/nav-link-color'
+import { Group, createStyles, rem } from '@mantine/core'
+import { linkColor } from '@/utils/link-color'
+import { inactiveColor } from '@/utils/inactive-color'
 
 export const TABS = {
   documentation: 'Documentation',
@@ -18,6 +19,28 @@ const ICONS = {
   [TABS.sdks]: IconBox,
 } as const
 
+export const useColorStyles = createStyles((theme) => ({
+  color: {
+    // transition color
+    transition: 'color 200ms ease',
+    '&[data-active="true"]': {
+      color:
+        theme.colorScheme === 'dark'
+          ? linkColor({ theme })
+          : theme.colors.gray[0],
+    },
+    '&[data-active="false"]': {
+      color:
+        theme.colorScheme === 'dark'
+          ? inactiveColor(theme)
+          : theme.colors.gray[4],
+    },
+    '&:hover': {
+      color: linkColor({ theme: { ...theme, colorScheme: 'dark' } }),
+    },
+  },
+}))
+
 export function HeaderButton({
   tab,
   active,
@@ -28,21 +51,16 @@ export function HeaderButton({
   noColor?: boolean
 }) {
   const Icon = ICONS[tab]
-  const theme = useMantineTheme()
+  const { classes } = useColorStyles()
   active = active === undefined ? true : active
-  const labelColor =
-    theme.colorScheme === 'dark'
-      ? navLinkColor({ active, theme: { ...theme, colorScheme: 'dark' } })
-      : active || active === undefined
-      ? theme.colors.gray[0]
-      : theme.colors.gray[4]
   return (
     <Group
-      style={{ color: noColor ? undefined : labelColor }}
       fz={rem(13)}
       fw={700}
+      data-active={noColor ? undefined : active || active === undefined}
       noWrap
       spacing={5}
+      className={noColor ? undefined : classes.color}
     >
       <Icon size="1rem" />
       <span style={{ whiteSpace: 'nowrap' }}>{tab}</span>
