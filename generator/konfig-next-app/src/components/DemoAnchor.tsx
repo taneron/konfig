@@ -40,27 +40,28 @@ const _DemoAnchor: Components['a'] = ({
       </Text>
     )
 
-  if (href?.includes('/demo/')) {
-    return (
-      <DemoInlineLinkButton
-        label={children}
-        leftIcon={<IconTerminal size={rem(12)} />}
-        href={href ?? '#'}
-        {...props}
-      />
-    )
-  }
+  // if (href?.includes('/demo/')) {
+  //   return (
+  //     <DemoInlineLinkButton
+  //       label={children}
+  //       leftIcon={<IconTerminal size={rem(12)} />}
+  //       href={href ?? '#'}
+  //       {...props}
+  //     />
+  //   )
+  // }
 
-  if (href?.includes('/reference/')) {
-    return (
-      <DemoInlineLinkButton
-        label={children}
-        leftIcon={<IconCode size={rem(12)} />}
-        href={href ?? '#'}
-        {...props}
-      />
-    )
-  }
+  // if (href?.includes('/reference/')) {
+  //   return (
+  //     <DemoInlineLinkButton
+  //       label={children}
+  //       leftIcon={<IconCode size={rem(12)} />}
+  //       href={href ?? '#'}
+  //       {...props}
+  //     />
+  //   )
+  // }
+
   return (
     <Link href={href ?? '#'} className={classes.link} {...props}>
       {children}
