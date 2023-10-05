@@ -1,9 +1,17 @@
-import { Box, Flex, Group, MediaQuery, Menu } from '@mantine/core'
+import {
+  Box,
+  Flex,
+  Group,
+  MediaQuery,
+  Menu,
+  useMantineTheme,
+} from '@mantine/core'
 import { HeaderTab } from './HeaderTab'
 import { useBasePath } from '@/utils/use-base-path'
 import { HeaderButton, TABS, Tab } from './HeaderButton'
 import { IconMenu } from '@tabler/icons-react'
 import Link from 'next/link'
+import { getClickableStyles } from '@/utils/get-clickable-styles'
 
 export function HeaderTabs({
   currentTab,
@@ -38,11 +46,24 @@ export function HeaderTabs({
         return githubUrl ?? '#'
     }
   }
+  const theme = useMantineTheme()
   return (
     <Box h="45%">
       <MediaQuery largerThan="xs" styles={{ display: 'none' }}>
         <Box w="100%" h="100%">
-          <Menu withinPortal={true} offset={0} width="target" radius={0}>
+          <Menu
+            shadow="xl"
+            // opened={true}
+            withinPortal={true}
+            styles={{
+              dropdown: {
+                ...getClickableStyles(theme),
+              },
+            }}
+            offset={5}
+            width="95%"
+            radius="sm"
+          >
             <Menu.Target>
               <Flex
                 px="lg"
