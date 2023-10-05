@@ -201,7 +201,12 @@ export const {{classname}}AxiosParamCreator = function (configuration?: Configur
 }
             {{/isCollectionFormatMulti}}
             {{^isCollectionFormatMulti}}
+            {{#items.isModel}}
+            localVarFormParams.{{#multipartFormData}}append{{/multipartFormData}}{{^multipartFormData}}set{{/multipartFormData}}('{{baseName}}', JSON.stringify({{> requestPropertyName}}));
+            {{/items.isModel}}
+            {{^items.isModel}}
             localVarFormParams.{{#multipartFormData}}append{{/multipartFormData}}{{^multipartFormData}}set{{/multipartFormData}}('{{baseName}}', {{> requestPropertyName}}.join(COLLECTION_FORMATS.{{collectionFormat}}));
+            {{/items.isModel}}
             {{/isCollectionFormatMulti}}
             }{{/isArray}}
             {{^isArray}}
