@@ -1,6 +1,8 @@
-# {{classname}}{{#description}}
+# {{{clientName}}}.{{> apiClassName}}
+{{#description}}
 
-{{description}}{{/description}}
+{{description}}
+{{/description}}
 
 All URIs are relative to *{{basePath}}*
 
@@ -11,22 +13,17 @@ Method | HTTP request | Description
 
 {{#operations}}
 {{#operation}}
-# **{{{operationId}}}**
-
-#### **{{httpMethod}}** {{path}}
+# **{{clientName}}.{{>apiClassName}}.{{{operationId}}}**
 
 {{#unescapedNotes}}
-### Description
 {{{unescapedNotes}}}
 {{/unescapedNotes}}
 
 ### Example
 
-
 ```typescript
 {{> api_doc_example}}
 ```
-
 
 ### Parameters
 {{^hasParams}}
