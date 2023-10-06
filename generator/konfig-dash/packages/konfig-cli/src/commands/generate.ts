@@ -50,6 +50,7 @@ import { generateStatisticsFileForSdks } from '../util/generate-statistics-file-
 import { generateChangelog } from '../util/generate-changelog'
 import { isSubmodule } from '../util/is-submodule'
 import { getHostForGenerateApi } from '../util/get-host-for-generate-api'
+import { getSdkDefaultBranch } from '../util/get-sdk-default-branch'
 
 function getOutputDir(
   outputFlag: string | undefined,
@@ -514,6 +515,24 @@ export default class Deploy extends Command {
       this.debug('after creating language configs')
       this.debug('additionalGenerators: ', additionalGenerators)
 
+      // go through requestGenerators and generateRequestBodyAdditionalGenerators and
+      // compute git default branch and assign "defaultBranch" value to git config
+      for (const [_, config] of Object.entries({
+        ...requestGenerators,
+        ...generateRequestBodyAdditionalGenerators,
+      })) {
+        if (config.git === undefined) continue
+        const defaultBranch = await getSdkDefaultBranch({
+          git: config.git,
+          outputDirectory: config.outputDirectory,
+        })
+        const isGitSubmodule = await isSubmodule({
+          git: config.git,
+          configDir,
+        })
+        Object.assign(config.git, { defaultBranch, isGitSubmodule })
+      }
+
       const body: GenerateRequestBodyInputType = {
         spec,
         generators: requestGenerators,
@@ -746,6 +765,14 @@ export default class Deploy extends Command {
               topLevelOutputDirectory,
               generator
             )
+
+            if (parsedKonfigYaml.readmeHeader) {
+              fs.copyFileSync(
+                path.join(configDir, parsedKonfigYaml.readmeHeader.image),
+                path.join(configDir, outputDirectory, 'header.png')
+              )
+            }
+
             this.debug(
               `Copying from ${topLevelSdkOutputDirectory} to ${outputDirectory}`
             )
@@ -1956,6 +1983,18 @@ async function copyTypeScriptOutput({
       )
       fs.writeFileSync(markdownPath, formattedMarkdown)
     }
+
+    // use markdown-toc to insert table of contents into markdown
+    const toc = require('markdown-toc')
+    const readmePath = path.join(outputDirectory, 'README.md')
+    const readme = fs.readFileSync(readmePath, 'utf-8')
+    const withToc = toc.insert(readme, {
+      filter: (str: string) => {
+        return !str.startsWith('[Author]')
+      },
+      maxdepth: 3,
+    })
+    fs.writeFileSync(readmePath, withToc)
 
     // write .npmrc file
     let npmrcContents: string
