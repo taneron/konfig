@@ -24,7 +24,6 @@ import {
 } from '@tabler/icons-react'
 import Link from 'next/link'
 import { HttpMethodBadge } from './HttpMethodBadge'
-import { linkColor } from '@/utils/link-color'
 import { navLinkColor } from '@/utils/nav-link-color'
 
 const useStyles = createStyles((theme) => ({
@@ -33,7 +32,7 @@ const useStyles = createStyles((theme) => ({
     borderRadius: theme.radius.sm,
     display: 'block',
     width: '100%',
-    padding: `${theme.spacing.xs} ${theme.spacing.md}`,
+    padding: `8px ${theme.spacing.sm}`,
     fontSize: theme.fontSizes.sm,
 
     // https://github.com/mantinedev/mantine/blob/6.0.13/src/mantine-core/src/NavLink/NavLink.styles.ts#L52
@@ -46,7 +45,7 @@ const useStyles = createStyles((theme) => ({
   },
 
   linkWrapper: {
-    paddingLeft: rem(20),
+    paddingLeft: rem(12),
   },
 
   chevron: {
@@ -99,14 +98,9 @@ export function LinksGroup({
       <Box className={classes.linkWrapper} key={`${link.label}:${i}`}>
         <NavLink<typeof Link>
           onClick={() => setNavbarOpen(false)}
-          py={6}
           styles={{
-            root: {
-              borderRadius: theme.radius.sm,
-            },
             label: {
               color: navLinkColor({ active: link.active, theme }),
-              fontSize: theme.fontSizes.sm,
             },
           }}
           ref={ref}
@@ -127,10 +121,10 @@ export function LinksGroup({
       <UnstyledButton
         onClick={() => setOpened((o) => !o)}
         className={classes.control}
+        lh={theme.lineHeight}
         style={{
           color: navLinkColor({ active: anyActiveLinks, theme }),
         }}
-        py={8}
       >
         <Group position="apart" spacing={0}>
           <Box>{label}</Box>

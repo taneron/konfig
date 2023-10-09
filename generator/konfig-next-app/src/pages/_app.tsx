@@ -50,8 +50,11 @@ function App(props: AppProps) {
             components: {
               NavLink: {
                 styles: (theme) => ({
-                  label: {
+                  root: {
+                    borderRadius: theme.radius.sm,
                     fontSize: theme.fontSizes.sm,
+                  },
+                  label: {
                     fontWeight: 500,
                   },
                 }),
@@ -59,6 +62,13 @@ function App(props: AppProps) {
               Input: {
                 styles: (theme) => ({
                   input: getClickableStyles(theme),
+                }),
+              },
+              Paper: {
+                styles: (theme) => ({
+                  root: {
+                    borderRadius: theme.radius.sm,
+                  },
                 }),
               },
               Badge: {
