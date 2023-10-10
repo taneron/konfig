@@ -24,6 +24,18 @@ $ yarn build
 
 This command generates static content into the `build` directory and can be served using any static contents hosting service.
 
+
+### How to make a new page
+
+1. Create an `.mdx` file inside [`docs/`](./docs) *(`.mdx` is just markdown with some extra support for interactivity)*
+1. Modify [`sidebars.js`](./sidebars.js) to include your new documentation
+1. Push changes
+
+### How to modify a page
+
+1. Modify the target `.mdx` file inside [`docs/`](./docs) *(`.mdx` is just markdown with some extra support for interactivity)*
+1. Push changes
+
 ### Deployment
 
 Using SSH:
