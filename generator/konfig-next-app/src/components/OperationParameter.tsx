@@ -63,6 +63,7 @@ export function OperationParameter({
                     theme.colorScheme === 'dark'
                       ? theme.colors.gray[9]
                       : theme.colors.gray[0],
+                  borderRadius: theme.radius.md,
                   border: `1px solid ${
                     theme.colorScheme === 'dark'
                       ? theme.colors.gray[8]

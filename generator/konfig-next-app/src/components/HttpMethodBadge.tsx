@@ -1,14 +1,8 @@
-import {
-  Badge,
-  MantineColor,
-  MantineSize,
-  useMantineTheme,
-} from '@mantine/core'
+import { Badge, MantineColor } from '@mantine/core'
 import type { HttpMethods } from 'konfig-lib'
 import { HttpMethodsEnum } from 'konfig-lib/dist/forEachOperation'
 
 export function HttpMethodBadge({ httpMethod }: { httpMethod: HttpMethods }) {
-  const theme = useMantineTheme()
   return <Badge color={httpMethodColor(httpMethod)}>{httpMethod}</Badge>
 }
 

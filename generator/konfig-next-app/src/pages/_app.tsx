@@ -74,7 +74,7 @@ function App(props: AppProps) {
               Badge: {
                 styles: (theme) => ({
                   root: {
-                    borderRadius: theme.radius.xs,
+                    borderRadius: theme.radius.md,
                   },
                 }),
                 defaultProps: (theme) => ({
