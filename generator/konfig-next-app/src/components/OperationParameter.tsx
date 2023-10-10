@@ -1,4 +1,12 @@
-import { Box, Code, Flex, Group, Stack, Text, rem } from '@mantine/core'
+import {
+  Box,
+  Code,
+  Flex,
+  Stack,
+  Text,
+  rem,
+  useMantineTheme,
+} from '@mantine/core'
 import type { ParameterObject, SchemaObject } from 'konfig-lib'
 import { ParameterInput } from './ParameterInput'
 import { schemaTypeLabel } from '@/utils/schema-type-label'
@@ -34,8 +42,9 @@ export function OperationParameter({
   noLabel?: boolean
 }) {
   const description = getDescription(param)
+  const theme = useMantineTheme()
   return (
-    <Stack>
+    <Stack pb="lg">
       {noLabel ? (
         <ParameterInput
           owner={owner}
@@ -47,18 +56,48 @@ export function OperationParameter({
         <Flex justify="space-between">
           <Box maw="50%" key={param.name}>
             <Flex align="center" wrap="wrap">
-              <Code>{param.name}</Code>
-              <Text ml={rem(5)} fz="sm">
+              <Code
+                style={{
+                  color: theme.colorScheme === 'dark' ? 'white' : 'black',
+                  backgroundColor:
+                    theme.colorScheme === 'dark'
+                      ? theme.colors.gray[9]
+                      : theme.colors.gray[0],
+                  border: `1px solid ${
+                    theme.colorScheme === 'dark'
+                      ? theme.colors.gray[8]
+                      : theme.colors.gray[4]
+                  }`,
+                }}
+              >
+                {param.name}
+              </Code>
+              <Code
+                style={{
+                  color: theme.colors.gray[6],
+                }}
+                ml={rem(5)}
+                bg="unset"
+                fz={12}
+              >
                 {schemaTypeLabel({ schema: param.schema })}
-              </Text>
+              </Code>
               {param.required && (
-                <Text ml={rem(5)} fz="xs" color="red">
+                <Code style={{ color: 'red' }} bg="unset" ml={rem(5)} fz={12}>
                   {'required'}
-                </Text>
+                </Code>
               )}
             </Flex>
             {description && (
-              <Text c="dimmed" fz="sm">
+              <Text
+                mt="xs"
+                c={
+                  theme.colorScheme === 'dark'
+                    ? theme.colors.gray[5]
+                    : theme.colors.gray[7]
+                }
+                fz="sm"
+              >
                 {description}
               </Text>
             )}
