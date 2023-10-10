@@ -4667,6 +4667,7 @@ public class DefaultCodegen implements CodegenConfig {
                 // (e.g. adding required properties to method parameters in Java SDK)
                 List<CodegenParameter> parametersFromBody = fromRequestBodyToFormParameters(requestBody, imports, false);
                 for (CodegenParameter cp : parametersFromBody) {
+                    cp.isFromBodyParam = true;
                     flattenedParamsFromRequestBodyProperties.add(cp);
                     if (cp.required) {
                         requiredParamsWithRequestBodyProperties.add(cp);
@@ -4771,6 +4772,9 @@ public class DefaultCodegen implements CodegenConfig {
                 cp.modelFilename = toModelFilename(cp.dataType);
             }
         }
+
+        if (bodyParam != null && bodyParam.dataType != null)
+            bodyParam.modelFilename = toModelFilename(bodyParam.dataType);
 
         op.hasOneRequiredParamIncludingRequestBodyProperties = requiredParamsWithRequestBodyProperties.size() == 1;
 
@@ -7187,6 +7191,7 @@ public class DefaultCodegen implements CodegenConfig {
             if (ModelUtils.isFreeFormObject(openAPI, ps)) {
                 codegenParameter.isFreeFormObject = true;
             }
+            codegenParameter.items = codegenProperty.items;
         } else if (ModelUtils.isNullType(ps)) {
             ;
         } else if (ModelUtils.isAnyType(ps)) {

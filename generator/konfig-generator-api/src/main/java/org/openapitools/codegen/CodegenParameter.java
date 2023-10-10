@@ -32,6 +32,7 @@ public class CodegenParameter implements IJsonSchemaValidationProperties {
     public boolean isFormParam, isQueryParam, isPathParam, isHeaderParam,
             isCookieParam, isBodyParam, isContainer,
             isCollectionFormatMulti, isPrimitiveType, isModel, isExplode, isDeepObject, isAllowEmptyValue;
+    public boolean isFromBodyParam;
     public boolean isInnerEnum;
 
     public String modelFilename;
@@ -81,7 +82,8 @@ public class CodegenParameter implements IJsonSchemaValidationProperties {
     public String jsonSchema;
     public boolean isString, isNumeric, isInteger, isLong, isNumber, isFloat, isDouble, isDecimal, isByteArray, isBinary,
             isBoolean, isDate, isDateTime, isUuid, isUri, isEmail, isFreeFormObject, isAnyType, isShort, isUnboundedInteger;
-    public boolean isArray, isMap;
+    public boolean isArray;
+    public boolean isMap;
     public boolean isFile;
     public boolean isEnum;
     private boolean additionalPropertiesIsAnyType;
