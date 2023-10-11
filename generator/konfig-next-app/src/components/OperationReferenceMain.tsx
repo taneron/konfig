@@ -271,9 +271,22 @@ export function OperationReferenceMain({
               >
                 {header}
               </Title>
-              <Group>
+              <Group spacing="xs">
                 <HttpMethodBadge httpMethod={operation.method} />
-                <Code>{operation.path}</Code>
+                <Box
+                  h={2}
+                  w={2}
+                  style={{
+                    backgroundColor:
+                      theme.colorScheme === 'dark'
+                        ? theme.colors.dark[4]
+                        : theme.colors.gray[4],
+                    borderRadius: theme.radius.xl,
+                  }}
+                />
+                <Code style={{ backgroundColor: 'unset' }}>
+                  {operation.path}
+                </Code>
               </Group>
               {operation.operation.deprecated && (
                 <Alert
