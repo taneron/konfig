@@ -1,5 +1,11 @@
 # konfig-lib
 
+## 1.24.0
+
+### Minor Changes
+
+- [#271](https://github.com/konfig-dev/konfig/pull/271) [`128b79c1`](https://github.com/konfig-dev/konfig/commit/128b79c1770661b787a17c17571ad447cd134567) Thanks [@dphuang2](https://github.com/dphuang2)! - support globally required security in TypeScript SDK
+
 ## 1.23.0
 
 ### Minor Changes
