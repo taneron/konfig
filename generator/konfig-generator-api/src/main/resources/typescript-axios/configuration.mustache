@@ -24,7 +24,7 @@ export interface ConfigurationParameters {
     {{> securityKeyName}}?: string;
 {{/apiKeyMethods}}
 {{/hasMultipleApiKeys}}
-    apiKey?: ApiKey;
+    {{> configuration_api_key}}
     username?: string;
     password?: string;
     accessToken?: string | Promise<string> | ((name?: string, scopes?: string[]) => string) | ((name?: string, scopes?: string[]) => Promise<string>);
@@ -55,12 +55,7 @@ export class Configuration {
     */
     {{{name}}}?: string;
 {{/clientStateWithExamples}}
-    /**
-     * parameter for apiKey security
-     * @param name security name
-     * @memberof Configuration
-     */
-    apiKey?: ApiKey;
+    {{> configuration_api_key}}
     /**
      * parameter for basic security
      *
@@ -123,7 +118,7 @@ export class Configuration {
      */
     userAgent: string;
 
-    constructor(param: ConfigurationParameters = {}) {
+    constructor(param: ConfigurationParameters{{> configuration_default}}) {
 {{#clientState}}
         this.{{{.}}} = param.{{{.}}}
 {{/clientState}}

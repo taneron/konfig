@@ -359,10 +359,15 @@ export const transformSpec = async ({
             return security in requirements
           })
         : false
+      const isRequired =
+        isGloballyRequired || securityCount[security] === operations.length
       Object.assign(spec.spec.components.securitySchemes[security], {
-        'x-konfig-globally-required-security':
-          isGloballyRequired || securityCount[security] === operations.length,
+        'x-konfig-globally-required-security': isRequired,
       })
+      if (isRequired)
+        Object.assign(spec.spec.info, {
+          'x-konfig-has-globally-required-security': isRequired,
+        })
     }
   }
 
