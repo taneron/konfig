@@ -141,7 +141,7 @@ export class Configuration {
         this.basePath = param.basePath;
         this.baseOptions = param.baseOptions ?? {};
 {{#includeFetchAdapter}}
-        if (param.useFetch) {
+        if (param.useFetch ?? true) {
             this.baseOptions["adapter"] = fetchAdapter
         }
 {{/includeFetchAdapter}}
