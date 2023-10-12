@@ -148,6 +148,11 @@ const useStyles = createStyles((theme) => ({
       display: 'block',
       margin: 'auto',
       borderRadius: theme.radius.md,
+      ...(theme.colorScheme === 'dark'
+        ? {}
+        : {
+            boxShadow: theme.shadows.xs,
+          }),
     },
   },
 }))
