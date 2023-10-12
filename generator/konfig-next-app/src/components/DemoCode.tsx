@@ -22,6 +22,15 @@ type Language = PrismProps['language']
 const langDisplayName = {
   python: { name: 'Python' },
   typescript: { name: 'TypeScript' },
+  tsx: { name: 'TypeScript' },
+  jsx: { name: 'JavaScript' },
+  git: { name: 'Git' },
+  graphql: { name: 'GraphQL' },
+  handlebars: { name: 'Handlebars' },
+  makefile: { name: 'Makefile' },
+  ocaml: { name: 'OCaml' },
+  sql: { name: 'SQL' },
+  wasm: { name: 'WebAssembly' },
   markdown: { name: 'Markdown' },
   ruby: { name: 'Ruby' },
   csharp: { name: 'C#' },
@@ -31,10 +40,17 @@ const langDisplayName = {
   go: { name: 'Go' },
   java: { name: 'Java' },
   json: { name: 'JSON' },
+  c: { name: 'C' },
+  cpp: { name: 'C++' },
+  css: { name: 'CSS' },
+  objectivec: { name: 'Objective-C' },
+  scss: { name: 'SCSS' },
+  JSON: { name: 'JSON' },
   javascript: { name: 'JavaScript' },
   js: { name: 'JavaScript' },
+  bash: { name: 'Bash' },
 } as Record<
-  Language | 'ruby' | 'csharp' | 'php' | 'shell' | 'java' | 'js',
+  Language | 'ruby' | 'csharp' | 'php' | 'shell' | 'java' | 'js' | 'JSON',
   { name: string }
 >
 
