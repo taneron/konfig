@@ -4024,6 +4024,7 @@ public class DefaultCodegen implements CodegenConfig {
         }
 
         property.dataType = getTypeDeclaration(p);
+        property.dataTypeForDocs = property.dataType.replace("typing.", "");
         property.dataFormat = p.getFormat();
         property.baseType = getSchemaType(p);
 
@@ -4126,12 +4127,12 @@ public class DefaultCodegen implements CodegenConfig {
             property.schemaName = property.complexType + "Schema";
         }
 
-        LOGGER.debug("debugging from property return: {}", property);
-        schemaCodegenPropertyCache.put(ns, property);
-
-        if (property.dataType != null && property.isModel) {
+        if (property.dataType != null) {
             property.modelFilename = toModelFilename((property.dataType));
         }
+
+        LOGGER.debug("debugging from property return: {}", property);
+        schemaCodegenPropertyCache.put(ns, property);
 
         return property;
     }
@@ -5099,6 +5100,8 @@ public class DefaultCodegen implements CodegenConfig {
 
         // Compute lower-case of dataType which is specifically helpful when we want lowercase version of boxed Java type
         codegenParameter.dataTypeLowerCase = codegenParameter.dataType != null ? codegenParameter.dataType.toLowerCase(Locale.ROOT) : null;
+
+        codegenParameter.dataTypeForDocs = codegenParameter.dataType != null ? codegenParameter.dataType.replace("typing.", "") : null;
 
         // set the parameter example value
         // should be overridden by lang codegen
@@ -7123,6 +7126,7 @@ public class DefaultCodegen implements CodegenConfig {
 
         codegenParameter.baseType = codegenProperty.baseType;
         codegenParameter.dataType = codegenProperty.dataType;
+        codegenParameter.dataTypeForDocs = codegenProperty.dataType.replace("typing.", "");
         codegenParameter.dataTypeLowerCase = codegenProperty.dataType.toLowerCase();
         codegenParameter.defaultValue = toDefaultParameterValue(propertySchema);
         codegenParameter.baseName = codegenProperty.baseName;
@@ -7133,6 +7137,9 @@ public class DefaultCodegen implements CodegenConfig {
         codegenParameter.isEnum = codegenProperty.isEnum;
         codegenParameter._enum = codegenProperty._enum;
         codegenParameter.allowableValues = codegenProperty.allowableValues;
+        codegenParameter.isComposed = ModelUtils.isComposedSchema(ps);
+        codegenParameter.isComposedObject = isComposedObject(ps);
+        codegenParameter.isStrictlyObject = isStrictlyObject(ps);
 
         if (ModelUtils.isFileSchema(ps) && !ModelUtils.isStringSchema(ps)) {
             // swagger v2 only, type file
@@ -7282,6 +7289,11 @@ public class DefaultCodegen implements CodegenConfig {
         // for every property we find?? So I uncommented the if statement.
         if (codegenProperty.complexType != null) {
             imports.add(codegenProperty.complexType);
+        }
+
+        // compute modelFilename if dataType is not null
+        if (codegenParameter.dataType != null) {
+            codegenParameter.modelFilename = toModelFilename(codegenParameter.dataType);
         }
 
         setParameterExampleValue(codegenParameter);
@@ -7783,6 +7795,7 @@ public class DefaultCodegen implements CodegenConfig {
         // For instantiation in Java SDK
         codegenParameter.dataTypeClass = codegenParameter.dataType.replace("Map<", "HashMap<");
         codegenParameter.dataTypeClass = codegenParameter.dataTypeClass.replace("List<", "ArrayList<");
+        codegenParameter.dataTypeForDocs = codegenParameter.dataType.replace("typing.", "");
 
         codegenParameter.isHashMap = codegenParameter.dataTypeClass.startsWith("HashMap<");
         codegenParameter.isList = codegenParameter.dataType.startsWith("List<");
