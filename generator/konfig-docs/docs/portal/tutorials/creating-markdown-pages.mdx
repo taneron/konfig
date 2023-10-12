@@ -125,11 +125,30 @@ guide](https://www.markdownguide.org/basic-syntax/).
 To add images, simply add them to your repository and reference them in your markdown.
 
 For example if `doc.md` lives in the same directory as `image.png` you can
-reference it with a relative path like so:
+reference it with a **relative path** like so:
 
 ```markdown doc.md
 ![Image Alt Text](./image.png)
 ```
+
+If you wanted to refer to images in a subfolder, you could do so like this:
+
+```markdown doc.md
+![Image Alt Text](./images/image.png)
+```
+
+If you wanted to refer to images in a parent folder, you could do so like this:
+
+```markdown doc.md
+![Image Alt Text](../image.png)
+```
+
+<Admonition type="warning">
+
+Image paths are not relative to the repository root or `konfig.yaml` file. They are
+relative to the markdown file they are referenced in.
+
+</Admonition>
 
 ## Markdown Extensions
 
