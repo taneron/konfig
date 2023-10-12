@@ -1,7 +1,15 @@
-import { Box, Title, Divider, Stack, Button } from '@mantine/core'
+import { Box, Title, Stack, createStyles } from '@mantine/core'
 import { OperationParameter, Parameter } from './OperationParameter'
 import { type SchemaObject } from 'konfig-lib'
 import { generateParametersFromRequestBodyProperties } from '@/utils/generate-parameters-from-request-body-properties'
+
+const useStyles = createStyles((theme) => ({
+  borderBottom: {
+    borderBottom: `1px solid ${
+      theme.colorScheme === 'dark' ? theme.colors.gray[9] : theme.colors.gray[1]
+    }`,
+  },
+}))
 
 export function OperationForm({
   pathParameters,
@@ -23,90 +31,75 @@ export function OperationForm({
   repo: string
 }) {
   return (
-    <>
-      {pathParameters.length > 0 && (
-        <Box>
-          <Title order={4}>Path Parameters</Title>
-          <Divider my="sm" />
-          <Stack>
-            {pathParameters.map((param) => (
-              <OperationParameter
-                owner={owner}
-                repo={repo}
-                key={param.name}
-                param={param}
-              />
-            ))}
-          </Stack>
-        </Box>
-      )}
-      {queryParameters.length > 0 && (
-        <Box>
-          <Title order={4}>Query Parameters</Title>
-          <Divider my="sm" />
-          <Stack>
-            {queryParameters.map((param) => (
-              <OperationParameter
-                owner={owner}
-                repo={repo}
-                key={param.name}
-                param={param}
-              />
-            ))}
-          </Stack>
-        </Box>
-      )}
-      {headerParameters.length > 0 && (
-        <Box>
-          <Title order={4}>Header Parameters</Title>
-          <Divider my="sm" />
-          <Stack>
-            {headerParameters.map((param) => (
-              <OperationParameter
-                owner={owner}
-                repo={repo}
-                key={param.name}
-                param={param}
-              />
-            ))}
-          </Stack>
-        </Box>
-      )}
-      {cookieParameters.length > 0 && (
-        <Box>
-          <Title order={4}>Cookie Parameters</Title>
-          <Divider my="sm" />
-          <Stack>
-            {cookieParameters.map((param) => (
-              <OperationParameter
-                owner={owner}
-                repo={repo}
-                key={param.name}
-                param={param}
-              />
-            ))}
-          </Stack>
-        </Box>
-      )}
-      {requestBodyProperties && (
-        <Box>
-          <Title order={4}>Request Body Parameters</Title>
-          <Divider my="sm" />
-          <Stack>
-            {generateParametersFromRequestBodyProperties({
-              requestBodyProperties,
-              requestBodyRequired,
-            }).map((param) => (
-              <OperationParameter
-                owner={owner}
-                repo={repo}
-                key={param.name}
-                param={param}
-              />
-            ))}
-          </Stack>
-        </Box>
-      )}
-    </>
+    <Stack spacing="xl">
+      <ParameterGroup
+        title="Path"
+        parameters={pathParameters}
+        owner={owner}
+        repo={repo}
+      />
+      <ParameterGroup
+        title="Query"
+        parameters={queryParameters}
+        owner={owner}
+        repo={repo}
+      />
+      <ParameterGroup
+        title="Header"
+        parameters={headerParameters}
+        owner={owner}
+        repo={repo}
+      />
+      <ParameterGroup
+        title="Cookie"
+        parameters={cookieParameters}
+        owner={owner}
+        repo={repo}
+      />
+      <ParameterGroup
+        title="Request Body"
+        parameters={generateParametersFromRequestBodyProperties({
+          requestBodyProperties,
+          requestBodyRequired,
+        })}
+        owner={owner}
+        repo={repo}
+      />
+    </Stack>
+  )
+}
+
+function ParameterGroup({
+  parameters,
+  title,
+  owner,
+  repo,
+}: {
+  parameters: Parameter[]
+  title: string
+  owner: string
+  repo: string
+}) {
+  const { classes, cx } = useStyles()
+  return (
+    parameters.length > 0 && (
+      <Box>
+        <Title mb="xl" order={6}>
+          {title}
+        </Title>
+        <Stack spacing="xl">
+          {parameters.map((param, i) => (
+            <Box
+              key={param.name}
+              className={cx({
+                [classes.borderBottom]: i < parameters.length - 1,
+              })}
+            >
+              <OperationParameter owner={owner} repo={repo} param={param} />
+            </Box>
+          ))}
+        </Stack>
+      </Box>
+    )
   )
 }

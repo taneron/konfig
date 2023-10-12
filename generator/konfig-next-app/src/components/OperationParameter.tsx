@@ -57,6 +57,7 @@ export function OperationParameter({
           <Box maw="50%" key={param.name}>
             <Flex align="center" wrap="wrap">
               <Code
+                mr={rem(5)}
                 style={{
                   color: theme.colorScheme === 'dark' ? 'white' : 'black',
                   backgroundColor:
@@ -77,7 +78,6 @@ export function OperationParameter({
                 style={{
                   color: theme.colors.gray[6],
                 }}
-                ml={rem(5)}
                 bg="unset"
                 fz={12}
               >

@@ -21,6 +21,9 @@ const OpenAPISampler = require('openapi-sampler')
 const useStyles = createStyles((theme) => ({
   item: {
     border: getClickableStyles(theme).border,
+    '&[data-active="true"]': {
+      boxShadow: theme.shadows.sm,
+    },
   },
   noSchema: {
     // set pointer so it doesn't look clickable
