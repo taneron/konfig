@@ -1,0 +1,35 @@
+name: konfig-api-portaltests
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  unit-tests:
+    strategy:
+      matrix:
+        os: ['ubuntu-latest']
+        node_version: [lts/*]
+      fail-fast: false
+    runs-on: ${{ matrix.os }}
+    env:
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.SUBMODULES_ACCESS_TOKEN }}
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node_version }}
+          cache: yarn
+          cache-dependency-path: generator/konfig-dash/yarn.lock
+          working-directory: generator/konfig-dash
+      - run: yarn install --network-timeout 600000
+        working-directory: generator/konfig-dash
+      - run: yarn build
+        working-directory: generator/konfig-dash
+      - run: yarn
+        working-directory: generator/konfig-next-app
+      - run: yarn test
+        working-directory: generator/konfig-next-app

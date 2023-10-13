@@ -4,24 +4,27 @@ import {
   BEARER_VALUE_PROPERTY,
   CLIENT_STATE_VALUE_PROPERTY,
   FormDataType,
+  FormInputValue,
   FormInputValues,
   OAUTH2_CLIENT_ID_PROPERTY,
   OAUTH2_CLIENT_SECRET_PROPERTY,
   PARAMETER_FORM_NAME_PREFIX,
   SECURITY_FORM_NAME_PREFIX,
-  SECURITY_TYPE_PROPERTY,
 } from './generate-initial-operation-form-values'
+import { ReferencePageProps } from './generate-props-for-reference-page'
 
 export type CodeGeneratorConstructorArgs = {
   basePath: string
   servers: string[]
   formData: FormDataType
+  requestBody: Parameter | null
   parameters: Parameter[]
   tag: string
   operationId: string
   requestBodyRequired: boolean
   originalOauthTokenUrl: string | null
   oauthTokenUrl: string | null
+  securitySchemes: ReferencePageProps['securitySchemes']
   languageConfigurations: {
     typescript: {
       clientName: string
@@ -97,37 +100,24 @@ export abstract class CodeGenerator {
    */
   languageConfigurations: CodeGeneratorConstructorArgs['languageConfigurations']
 
-  constructor({
-    formData,
-    parameters,
-    tag,
-    operationId,
-    languageConfigurations,
-    basePath,
-    requestBodyRequired,
-    mode = 'production',
-    servers,
-    oauthTokenUrl,
-    originalOauthTokenUrl,
-  }: CodeGeneratorConstructorArgs) {
-    console.debug(
-      JSON.stringify(
-        {
-          formData,
-          parameters,
-          languageConfigurations,
-          tag,
-          operationId,
-          basePath,
-          requestBodyRequired,
-          servers,
-          oauthTokenUrl,
-          originalOauthTokenUrl,
-        },
-        null,
-        2
-      )
-    )
+  configuration: CodeGeneratorConstructorArgs
+
+  constructor(args: CodeGeneratorConstructorArgs) {
+    this.configuration = args
+    const {
+      formData,
+      parameters,
+      tag,
+      operationId,
+      languageConfigurations,
+      basePath,
+      requestBodyRequired,
+      mode = 'production',
+      servers,
+      oauthTokenUrl,
+      originalOauthTokenUrl,
+    } = args
+    console.debug(JSON.stringify(args, null, 2))
     this.basePath = basePath
     this.oauthTokenUrl = oauthTokenUrl
     this.originalOauthTokenUrl = originalOauthTokenUrl
@@ -170,11 +160,20 @@ export abstract class CodeGenerator {
   }
 
   get hasMultipleApiKeys(): boolean {
+    if (this.configuration.securitySchemes === null) return false
     const hasMultipleApiKeys =
-      this.nonEmptySecurity.filter(
-        (value) => value[1][SECURITY_TYPE_PROPERTY] === 'apiKey'
+      Object.values(this.configuration.securitySchemes).filter(
+        (value) => value.type === 'apiKey'
       ).length > 1
     return hasMultipleApiKeys
+  }
+
+  get isArrayRequestBody(): boolean {
+    return this.configuration.requestBody?.schema?.type === 'array'
+  }
+
+  get requestBodyValue(): FormInputValue {
+    return this._formData['requestBody']
   }
 
   /**

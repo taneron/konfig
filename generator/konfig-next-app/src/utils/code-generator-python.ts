@@ -85,6 +85,12 @@ from ${this.packageName} import ${this.clientName}`
     const indent = '    ' // 4 spaces
     const currentIndent = indent.repeat(indentLevel)
     const nextIndent = indent.repeat(indentLevel + 1)
+    if (obj instanceof File) {
+      if (obj.name !== '') {
+        return `open("${obj.name}", "rb")`
+      }
+      return `open("FILE_PATH", "rb")`
+    }
 
     if (typeof obj === 'boolean') {
       return obj ? 'True' : 'False'
@@ -112,6 +118,15 @@ from ${this.packageName} import ${this.clientName}`
   }
 
   get args(): string {
+    if (this.isArrayRequestBody) {
+      const arrayValue = this.requestBodyValue
+      if (Array.isArray(arrayValue)) {
+        return `[${arrayValue
+          .map((v) => this.toPythonLiteralString(v))
+          .join(', ')}]`
+      }
+      if (arrayValue === '') return ''
+    }
     const args: string[] = []
     for (const [parameter, value] of this.nonEmptyParameters) {
       args.push(
