@@ -1,5 +1,11 @@
 # konfig-cli
 
+## 1.23.0
+
+### Minor Changes
+
+- [#286](https://github.com/konfig-dev/konfig/pull/286) [`359e8f49`](https://github.com/konfig-dev/konfig/commit/359e8f491dbb76f1bfee2239af36783f4f29fb68) Thanks [@dphuang2](https://github.com/dphuang2)! - add noMockServer flag for running tests
+
 ## 1.22.0
 
 ### Minor Changes
