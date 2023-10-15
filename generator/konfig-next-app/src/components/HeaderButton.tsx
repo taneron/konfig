@@ -24,23 +24,25 @@ export const useColorStyles = createStyles((theme) => ({
     // transition color
     transition: 'color 200ms ease',
     '&[data-active="true"]': {
-      color:
-        theme.colorScheme === 'dark'
-          ? linkColor({ theme })
-          : theme.colors.gray[0],
+      color: theme.white,
     },
     '&[data-active="false"]': {
       color:
         theme.colorScheme === 'dark'
-          ? inactiveColor(theme)
-          : theme.colors.gray[4],
+          ? theme.colors.brand[6]
+          : theme.colors.brand[4],
     },
     '&:hover': {
-      color: linkColor({ theme: { ...theme, colorScheme: 'dark' } }),
+      color: theme.white,
     },
   },
 }))
 
+/**
+ * This is a special color style for when the user provides light/dark mode versions of their logo. In this case,
+ * we are using a dark/light background to contrast the logo so we need to use different text colors to accomodate
+ * the dark/light background.
+ */
 export const useLightDarkModeColorStyles = createStyles((theme) => ({
   color: {
     // transition color
