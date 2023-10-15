@@ -29,7 +29,8 @@ const _DemoAnchor: Components['a'] = ({
   const { classes } = useStyles()
   // compute _target to be _blank if the link is external
   const baseUrl = useBaseUrl()
-  const target = href?.startsWith(baseUrl) ? undefined : '_blank'
+  const target =
+    href?.startsWith(baseUrl) || href?.startsWith('/') ? undefined : '_blank'
   /**
    * This happens when we have a link that uses Konfig's custom syntax but is
    * not valid Konfig syntax. I forget exactly what case this happens in though
