@@ -78,7 +78,16 @@ export function HeaderTabs({
                   hasLightDarkMode={hasLightAndDarkLogo}
                   tab={currentTab}
                 />
-                <IconMenu size="0.9rem" />
+                <IconMenu
+                  color={
+                    hasLightAndDarkLogo
+                      ? theme.colorScheme === 'dark'
+                        ? theme.white
+                        : theme.black
+                      : theme.white
+                  }
+                  size="0.9rem"
+                />
               </Flex>
             </Menu.Target>
             <MediaQuery largerThan="xs" styles={{ display: 'none' }}>
