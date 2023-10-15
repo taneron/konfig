@@ -11,12 +11,13 @@ export function HeaderWrapper({
     <Header
       style={{
         background: hasLightAndDarkLogo
-          ? undefined
+          ? theme.colorScheme === 'dark'
+            ? theme.colors.dark[8]
+            : theme.white
           : theme.colorScheme === 'dark'
           ? `${theme.colors.brand[9]}`
           : `${theme.colors.brand[7]}`,
-        // backdropFilter: 'blur(4px)',
-        // WebkitBackdropFilter: 'blur(4px)',
+        borderBottom: hasLightAndDarkLogo ? undefined : 'none',
       }}
       height={TITLE_OFFSET_PX}
     >

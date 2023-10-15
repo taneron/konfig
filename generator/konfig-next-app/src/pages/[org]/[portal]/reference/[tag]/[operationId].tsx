@@ -17,6 +17,7 @@ import {
   ReferencePageProps,
   generatePropsForReferencePage,
 } from '@/utils/generate-props-for-reference-page'
+import { useNavbarStyles } from '@/utils/use-navbar-styles'
 
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
@@ -94,6 +95,7 @@ const Operation = ({
 
   const [opened, setOpened] = useState(false)
   const theme = useMantineTheme()
+  const navbarClasses = useNavbarStyles()
   return (
     <MantineProvider
       inherit
@@ -132,6 +134,7 @@ const Operation = ({
         asideOffsetBreakpoint="lg"
         navbar={
           <Navbar
+            className={navbarClasses.classes.navbar}
             hiddenBreakpoint="lg"
             hidden={!opened}
             width={{ lg: NAVBAR_WIDTH }}

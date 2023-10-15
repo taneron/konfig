@@ -12,11 +12,9 @@ import {
   Box,
   Divider,
   rem,
-  ActionIcon,
-  Group,
   SegmentedControl,
 } from '@mantine/core'
-import { IconBug, IconChevronRight, IconRefresh } from '@tabler/icons-react'
+import { IconBug, IconSettings2 } from '@tabler/icons-react'
 import { observer } from 'mobx-react'
 import { useState, createContext, Fragment } from 'react'
 import DemoMarkdown, { DemoState } from './DemoMarkdown'
@@ -41,6 +39,8 @@ import { navLinkColor } from '@/utils/nav-link-color'
 import { asideOffsetBreakpoint } from '@/utils/aside-offset-breakpoint'
 import { navbarOffsetBreakpoint } from '@/utils/navbar-offset-breakpoint'
 import type { generateLogoLink } from '@/utils/generate-logo-link'
+import { useNavbarStyles } from '@/utils/use-navbar-styles'
+import { NavbarSectionLabel } from './NavbarSectionLabel'
 
 type DemosInput = Demo[]
 
@@ -190,6 +190,8 @@ export const DemoPortal = observer(
     // We need to access dummyState to tell MobX to track it
     state.dummyState
 
+    const navbar = useNavbarStyles()
+
     return (
       <SandboxContext.Provider value={!!sandbox}>
         {sandbox && (
@@ -229,66 +231,45 @@ export const DemoPortal = observer(
               hiddenBreakpoint={navbarOffsetBreakpoint}
               hidden={!opened}
               width={{ [navbarOffsetBreakpoint]: NAVBAR_WIDTH }}
+              className={navbar.classes.navbar}
               sx={{
                 overflowY: 'scroll',
                 // height:
                 //   'calc(100% - var(--mantine-header-height, 0rem) - var(--mantine-footer-height, 0rem));',
               }}
             >
-              <Navbar.Section
-                px="md"
-                py="xl"
-                style={{
-                  borderBottom: `${rem(1)} solid ${
-                    theme.colorScheme === 'dark'
-                      ? theme.colors.dark[4]
-                      : theme.colors.gray[3]
-                  }`,
-                }}
-              >
-                <Group h="100%">
-                  <SegmentedControl
-                    size="xs"
-                    color="brand"
-                    value={state.showCode ? 'show-code' : 'hide-code'}
-                    styles={{
-                      label: {
-                        fontSize: `${rem(11)} !important`,
-                      },
-                    }}
-                    data={[
-                      { label: 'Hide Code', value: 'hide-code' },
-                      { label: 'Show Code', value: 'show-code' },
-                    ]}
-                    onChange={(value) => {
-                      state.setShowCode(value === 'show-code')
-                    }}
-                  />
-                  {/* {!sandbox && (
-              <MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
-                <Button
-                  component="a"
-                  target="_blank"
-                  size="xs"
-                  leftIcon={<IconBrandGithub size="1rem" />}
-                  href={`https://github.com/${state.organizationId}/${state.portalId}/tree/${state.mainBranch}/demos`}
-                  color="gray"
-                  variant="default"
-                >
-                  Source
-                </Button>
-              </MediaQuery>
-            )} */}
-                  {refreshSandbox && (
-                    <ActionIcon
-                      onClick={refreshSandbox}
-                      color="green"
-                      variant="filled"
-                    >
-                      <IconRefresh size="1rem" />
-                    </ActionIcon>
-                  )}
-                </Group>
+              <Navbar.Section pt="xl">
+                <Box px="sm">
+                  <NavbarSectionLabel Logo={IconSettings2}>
+                    Settings
+                  </NavbarSectionLabel>
+                  <Box px="sm">
+                    <SegmentedControl
+                      size="xs"
+                      color="brand"
+                      value={state.showCode ? 'show-code' : 'hide-code'}
+                      w="100%"
+                      bg={
+                        theme.colorScheme === 'dark'
+                          ? theme.colors.gray[9]
+                          : theme.colors.gray[3]
+                      }
+                      styles={{
+                        label: {
+                          fontSize: `${rem(11)} !important`,
+                        },
+                      }}
+                      data={[
+                        { label: 'Hide Code', value: 'hide-code' },
+                        { label: 'Show Code', value: 'show-code' },
+                      ]}
+                      onChange={(value) => {
+                        state.setShowCode(value === 'show-code')
+                      }}
+                    />
+                  </Box>
+                </Box>
+                <Divider mt="xl" mx="xs" />
               </Navbar.Section>
               <Navbar.Section px="md" py="xl" grow>
                 <Stack spacing={0}>

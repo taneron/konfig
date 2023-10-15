@@ -37,7 +37,8 @@ import { proseContainerWidthStyles } from '@/utils/prose-container-width-styles'
 import { FlexCenter } from '@/components/FlexCenter'
 import { asideOffsetBreakpoint } from '@/utils/aside-offset-breakpoint'
 import { navbarOffsetBreakpoint } from '@/utils/navbar-offset-breakpoint'
-import { linkColor } from '@/utils/link-color'
+import { useNavbarStyles } from '@/utils/use-navbar-styles'
+import { NavbarSectionLabel } from '@/components/NavbarSectionLabel'
 
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
@@ -118,6 +119,8 @@ const DocumentationPage = observer(
 
     const router = useRouter()
 
+    const navbarClasses = useNavbarStyles()
+
     useEffect(() => {
       setState(
         new DemoState({
@@ -169,6 +172,7 @@ const DocumentationPage = observer(
                 hiddenBreakpoint={navbarOffsetBreakpoint}
                 hidden={!opened}
                 width={{ [navbarOffsetBreakpoint]: NAVBAR_WIDTH }}
+                className={navbarClasses.classes.navbar}
                 py="xl"
                 px="md"
                 sx={{
@@ -181,15 +185,7 @@ const DocumentationPage = observer(
                   {docConfig.sidebar.sections.map((section, i) => {
                     return (
                       <Box key={`${section.label}-${i}`}>
-                        <Text
-                          px="sm"
-                          weight="bold"
-                          fz="0.7rem"
-                          style={{ textTransform: 'uppercase' }}
-                          color={linkColor({ theme })}
-                        >
-                          {section.label}
-                        </Text>
+                        <NavbarSectionLabel>{section.label}</NavbarSectionLabel>
                         <Stack spacing={0}>
                           {section.links.map((link) => {
                             if (link.type === 'link') {

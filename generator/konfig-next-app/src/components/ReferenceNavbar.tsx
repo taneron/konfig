@@ -10,7 +10,6 @@ import {
 } from '@mantine/core'
 import { LinksGroup, NavbarDataItem } from './LinksGroup'
 import { Dispatch, SetStateAction, forwardRef, useEffect } from 'react'
-import { IconLink } from '@tabler/icons-react'
 import { useForm } from '@mantine/form'
 import { notifications } from '@mantine/notifications'
 
@@ -212,7 +211,7 @@ export function ReferenceNavbar({
 
   return (
     <>
-      <Navbar.Section px="md" py="xl" className={classes.header}>
+      {/* <Navbar.Section px="md" py="xl" className={classes.header}>
         <Select
           size="xs"
           icon={<IconLink size="1rem" />}
@@ -300,7 +299,7 @@ export function ReferenceNavbar({
             }}
           />
         )}
-      </Navbar.Section>
+      </Navbar.Section> */}
 
       <Navbar.Section px="md" py="xl" grow>
         {links}
