@@ -459,7 +459,11 @@ export class Progress {
       this.progress.examples_3[path][method] = {}
     if (this.progress.examples_3[path][method][responseCode] === undefined)
       this.progress.examples_3[path][method][responseCode] = {}
-    this.progress.examples_3[path][method][responseCode][mediaType] = json
+
+    // Dylan: I think zod has a bug that makes this not compile so we have to add "as any"
+    this.progress.examples_3[path][method][responseCode][mediaType] =
+      json as any
+
     this.save()
   }
 
@@ -477,8 +481,12 @@ export class Progress {
       this.progress.operationTags[operationPath] ?? {}
     const operationTags = this.progress.operationTags[operationPath]
     if (operationTags === undefined) throw Error("This shouldn't happen")
-    operationTags[httpMethodSchema.parse(method)] =
-      tagSchema.parse(operationTag)
+
+    // Dylan: I think zod has a bug that makes this not compile so we have to add "as any"
+    operationTags[httpMethodSchema.parse(method)] = tagSchema.parse(
+      operationTag
+    ) as any
+
     this.save()
   }
 
@@ -498,7 +506,10 @@ export class Progress {
     const operationIds = this.progress.operationIds[operationPath]
     if (operationIds === undefined) throw Error("This shouldn't happen")
     const httpMethod = httpMethodSchema.parse(method)
-    operationIds[httpMethod] = operationIdSchema.parse(operationId)
+
+    // Dylan: I think zod has a bug that makes this not compile so we have to add "as any"
+    operationIds[httpMethod] = operationIdSchema.parse(operationId) as any
+
     this.save()
   }
 
