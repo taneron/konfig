@@ -5,6 +5,7 @@ import {
   MantineNumberSize,
   MediaQuery,
   Title,
+  createStyles,
   rem,
   useMantineTheme,
 } from '@mantine/core'
@@ -16,6 +17,12 @@ import { useBaseUrl } from '@/utils/use-base-url'
 import Link from 'next/link'
 import type { generateLogoLink } from '@/utils/generate-logo-link'
 import { useHeaderColor } from '@/utils/use-header-color'
+
+const useLogoStyles = createStyles(() => ({
+  logo: {
+    position: 'relative !important' as any,
+  },
+}))
 
 export const LayoutHeader = observer(
   ({
@@ -35,6 +42,7 @@ export const LayoutHeader = observer(
     const baseUrl = useBaseUrl()
     const hasLightAndDarkLogo = typeof logo !== 'string'
     const color = useHeaderColor({ hasLightAndDarkLogo })
+    const { classes } = useLogoStyles()
     return (
       <Box
         h="55%"
@@ -61,9 +69,17 @@ export const LayoutHeader = observer(
           </MediaQuery>
           {logo !== null ? (
             // <MantineImage height={24} mx="auto" src={logo} alt="Random image" />
-            <div style={{ position: 'relative', height: 64, width: rem(140) }}>
+            <div
+              style={{
+                display: 'flex',
+                position: 'relative',
+                height: 35,
+                width: rem(140),
+              }}
+            >
               <Link href={baseUrl}>
                 <Image
+                  className={classes.logo}
                   style={{
                     objectFit: 'contain',
                   }}
