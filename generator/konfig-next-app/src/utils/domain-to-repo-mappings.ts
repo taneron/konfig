@@ -29,6 +29,10 @@ export const domainToRepoMappings: Record<
   },
 
   // *.onkonfig.com
+  'acme.onkonfig.com': {
+    owner: 'konfig-dev',
+    repo: 'acme-sdks',
+  },
   'leap.onkonfig.com': {
     owner: 'leap-ai',
     repo: 'leap-sdks',
