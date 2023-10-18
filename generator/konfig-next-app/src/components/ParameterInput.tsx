@@ -45,12 +45,7 @@ export function ParameterInput({
   const { colorScheme, colors } = useMantineTheme()
   const [jsonInputValue, setJsonInputValue] = useState('')
   if (parameter.schema.type === 'object') {
-    if (
-      parameter.schema.properties !== undefined ||
-      parameter.schema.additionalProperties !== undefined
-    )
-      return null
-    console.log(parameter.schema)
+    if (parameter.schema.properties !== undefined) return null
     const { onChange, value, ...rest } = inputProps
     return (
       <JsonInput
