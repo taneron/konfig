@@ -73,7 +73,7 @@ export const LayoutHeader = observer(
               style={{
                 display: 'flex',
                 position: 'relative',
-                height: 35,
+                height: 24,
                 width: rem(140),
               }}
             >
