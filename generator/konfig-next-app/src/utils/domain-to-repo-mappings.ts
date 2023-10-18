@@ -13,7 +13,7 @@ export const domainToRepoMappings: Record<
   },
   'leap.localhost:3000': {
     owner: 'leap-ai',
-    repo: 'leap-sdks',
+    repo: 'workflows-sdks',
   },
   'snaptrade.localhost:3000': {
     owner: 'passiv',
@@ -35,7 +35,7 @@ export const domainToRepoMappings: Record<
   },
   'leap.onkonfig.com': {
     owner: 'leap-ai',
-    repo: 'leap-sdks',
+    repo: 'workflows-sdks',
   },
   'splitit.onkonfig.com': {
     owner: 'konfig-dev',
