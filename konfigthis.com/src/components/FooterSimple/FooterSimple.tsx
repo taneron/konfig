@@ -6,10 +6,11 @@ import {
   Group,
   rem,
   Title,
+  Box,
 } from "@mantine/core";
 import { IconBrandLinkedin } from "@tabler/icons-react";
 import logo from "./logo.png";
-import Image from "@/components/image";
+import Image from "@/components/Image";
 import { useEffect } from "react";
 import Script from "next/script";
 
@@ -22,9 +23,6 @@ const useStyles = createStyles((theme) => ({
       theme.colorScheme === "dark"
         ? theme.colors.dark[6]
         : theme.colors.gray[0],
-    borderTop: `${rem(1)} solid ${
-      theme.colorScheme === "dark" ? theme.colors.dark[5] : theme.colors.gray[2]
-    }`,
   },
 
   logo: {
@@ -109,10 +107,6 @@ const useStyles = createStyles((theme) => ({
     borderTop: `${rem(1)} solid ${
       theme.colorScheme === "dark" ? theme.colors.dark[4] : theme.colors.gray[2]
     }`,
-
-    [theme.fn.smallerThan("sm")]: {
-      flexDirection: "column",
-    },
   },
 
   social: {
@@ -130,7 +124,7 @@ interface FooterLinksProps {
 }
 
 export function FooterSimple({ data }: FooterLinksProps) {
-  const { classes } = useStyles();
+  const { classes, cx } = useStyles();
 
   const groups = data.map((group) => {
     const links = group.links.map((link, index) => (
@@ -146,7 +140,7 @@ export function FooterSimple({ data }: FooterLinksProps) {
     ));
 
     return (
-      <div className={classes.wrapper} key={group.title}>
+      <div className={cx(classes.wrapper, "mb-8")} key={group.title}>
         <Text className={classes.title}>{group.title}</Text>
         {links}
       </div>
@@ -187,9 +181,14 @@ export function FooterSimple({ data }: FooterLinksProps) {
           </div>
           <div className={classes.groups}>{groups}</div>
         </Container>
-        <Container className={classes.afterFooter}>
+        <Container className={cx(classes.afterFooter, "flex-col sm:flex-row")}>
           <div className={classes.footerLogo}>
-            <Image src={logo} height={25} alt="Konfig Logo" />
+            <Image
+              className="m-auto sm:m-0"
+              src={logo}
+              height={25}
+              alt="Konfig Logo"
+            />
             <Text color="dimmed" size="xs" className={classes.description}>
               Copyright © Konfig Inc.
             </Text>

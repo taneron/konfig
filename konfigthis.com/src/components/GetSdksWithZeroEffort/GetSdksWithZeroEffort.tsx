@@ -1,31 +1,17 @@
-import { useMdMediaQuery } from "@/utils/use-md-media-query";
 import {
   Text,
-  Button,
-  Col,
-  Container,
-  Grid,
   Title,
   Group,
   Box,
-  ThemeIcon,
   rem,
   Stack,
-  Paper,
   Anchor,
+  createStyles,
+  Flex,
 } from "@mantine/core";
-import { useViewportSize, useWindowScroll } from "@mantine/hooks";
-import { IconRefresh } from "@tabler/icons-react";
 
-import Image from "@/components/image";
-import { useEffect, useMemo, useState } from "react";
-import ReactFlow, {
-  Edge,
-  FitViewOptions,
-  Node,
-  Position,
-  ReactFlowInstance,
-} from "reactflow";
+import Image from "@/components/Image";
+import ReactFlow, { Edge, Node, Position } from "reactflow";
 import oas from "../../../public/oas.png";
 import postman from "../../../public/postman.webp";
 import typescript from "../../../public/typescript.png";
@@ -38,6 +24,9 @@ import swift from "../../../public/swift.png";
 import php from "../../../public/php.png";
 import favicon from "../../../public/favicon.png";
 import "reactflow/dist/style.css";
+import { useReactFlow } from "@/utils/use-react-flow";
+import { useGraphicStyles } from "@/utils/use-graphic-styles";
+import { TitleHighlight } from "../TitleHighlight";
 
 const desktopNodes: Node[] = [
   {
@@ -46,7 +35,13 @@ const desktopNodes: Node[] = [
     data: {
       label: (
         <>
-          <Image src={oas} width={40} height={40} alt="OpenAPI Specification" />
+          <Image
+            className="m-auto"
+            src={oas}
+            width={40}
+            height={40}
+            alt="OpenAPI Specification"
+          />
           <Text c="dimmed">OpenAPI Specification</Text>
         </>
       ),
@@ -60,7 +55,13 @@ const desktopNodes: Node[] = [
     data: {
       label: (
         <>
-          <Image src={postman} width={35} height={35} alt="Postman" />
+          <Image
+            className="m-auto"
+            src={postman}
+            width={35}
+            height={35}
+            alt="Postman"
+          />
           <Text c="dimmed">Postman</Text>
         </>
       ),
@@ -76,7 +77,13 @@ const desktopNodes: Node[] = [
     data: {
       label: (
         <>
-          <Image src={favicon} width={40} height={40} alt="Konfig" />
+          <Image
+            className="m-auto"
+            src={favicon}
+            width={40}
+            height={40}
+            alt="Konfig"
+          />
           <Text c="dimmed">Konfig</Text>
         </>
       ),
@@ -116,10 +123,10 @@ const mobileNodes: Node[] = [
     position: { x: -100, y: 0 },
     data: {
       label: (
-        <>
+        <div className="flex flex-col items-center">
           <Image src={oas} width={40} height={40} alt="OpenAPI Specification" />
           <Text c="dimmed">OpenAPI Specification</Text>
-        </>
+        </div>
       ),
     },
     sourcePosition: Position.Bottom,
@@ -130,10 +137,10 @@ const mobileNodes: Node[] = [
     position: { x: 100, y: 0 },
     data: {
       label: (
-        <>
+        <div className="flex flex-col items-center">
           <Image src={postman} width={35} height={35} alt="Postman" />
           <Text c="dimmed">Postman</Text>
-        </>
+        </div>
       ),
     },
     sourcePosition: Position.Bottom,
@@ -146,10 +153,10 @@ const mobileNodes: Node[] = [
     sourcePosition: Position.Bottom,
     data: {
       label: (
-        <>
+        <div className="flex flex-col items-center">
           <Image src={favicon} width={40} height={40} alt="Konfig" />
           <Text c="dimmed">Konfig</Text>
-        </>
+        </div>
       ),
     },
   },
@@ -186,108 +193,165 @@ const edges: Edge[] = [
   { id: "konfig-sdks", source: "konfig", target: "sdks", animated: true },
 ];
 
+export const useSectionStyles = createStyles((theme) => ({
+  sectionInner: {
+    maxWidth: 1100,
+    position: "relative",
+    margin: "auto",
+  },
+  diagram: {
+    maxWidth: "100%",
+    backgroundColor: theme.colors.gray[1],
+    width: 1500,
+    borderRadius: theme.radius.lg,
+    boxShadow: theme.shadows.lg,
+    height: 300,
+    [theme.fn.smallerThan("sm")]: {
+      height: 500,
+    },
+  },
+  title: {
+    fontSize: 36,
+    fontWeight: "normal",
+    marginBottom: 50,
+    order: 1,
+  },
+  titleHighlight: {
+    fontWeight: "bolder",
+    color: "white",
+    borderBottom: "4px solid hsl(214 36% 58% / 1)",
+  },
+  textColor: {
+    color: theme.colors.gray[3],
+  },
+  textSize: {
+    fontSize: theme.fontSizes.lg,
+  },
+  textSection: {
+    position: "relative",
+    marginBottom: 70,
+  },
+  textLayer: {
+    position: "relative",
+    zIndex: 2,
+  },
+  content: {},
+  triangle: {
+    position: "absolute",
+    zIndex: 1,
+    width: 200,
+    height: 200,
+  },
+  triangle1: {
+    right: 0,
+    top: -50,
+  },
+  triangle2: {
+    right: 0,
+    bottom: -50,
+  },
+  triangleTopRight: {
+    clipPath: "polygon(100% 0%, 0% 0%, 100% 100%)",
+  },
+  triangleBottomRight: {
+    clipPath: "polygon(100% 0%, 100% 100%, 0% 100%)",
+  },
+  triangleBottomLeft: {
+    clipPath: "polygon(0% 100%, 0% 0%, 100% 100%)",
+  },
+  link: {
+    color: theme.white,
+    fontWeight: 600,
+    textDecoration: "none !important",
+    borderBottom: `1px solid ${theme.colors.yellow[6]}`,
+    wordWrap: "break-word",
+    ":hover": {
+      borderBottomWidth: "2px",
+    },
+  },
+}));
+
 export function GetSdksWithZeroEffort() {
-  const matches = useMdMediaQuery();
-  const [nodes, setNodes] = useState(matches ? desktopNodes : mobileNodes);
+  const { classes, cx } = useSectionStyles();
 
-  const fitViewOptions: FitViewOptions | undefined = useMemo(
-    () => (matches ? undefined : { padding: 0.2 }),
-    [matches]
-  );
+  const { setInst, fitViewOptions, nodes } = useReactFlow({
+    padding: 0.2,
+    desktopNodes,
+    mobileNodes,
+  });
+  const {
+    classes: { texture },
+  } = useGraphicStyles({})();
 
-  useEffect(() => {
-    setNodes(matches ? desktopNodes : mobileNodes);
-  }, [matches]);
-
-  const [inst, setInst] = useState<ReactFlowInstance | null>(null);
-  const { width, height } = useViewportSize();
-  const [{ x, y }] = useWindowScroll();
-  useEffect(() => {
-    inst?.fitView(fitViewOptions);
-  }, [width, height, x, y, fitViewOptions, inst]);
   return (
-    <Container my={rem(150)} size="lg">
-      <Grid>
-        <Col span={12} md={5}>
-          <Title mb={rem(10)} order={2}>
-            Get SDKs with zero effort
-          </Title>
-          <Stack>
-            <Box c="dimmed">
-              <Group>
-                <Image
-                  src={oas}
-                  width={40}
-                  height={40}
-                  alt="OpenAPI Specification"
-                />
-                <Image src={postman} width={35} height={35} alt="Postman" />
-              </Group>
-              <Text fz="lg" mt="sm" fw={500}>
-                OpenAPI Specification and Postman Support
-              </Text>
-              <Text c="dimmed" fz="sm">
-                Easily import an{" "}
-                <Anchor
-                  target="_blank"
-                  href="https://konfigthis.com/docs/getting-started/openapi-specification"
-                >
-                  OpenAPI Specification
-                </Anchor>{" "}
-                or{" "}
-                <Anchor
-                  target="_blank"
-                  href="https://konfigthis.com/docs/getting-started/postman-collections"
-                >
-                  Postman Collection
-                </Anchor>{" "}
-                and Konfig automatically generates and publishes SDKs with no
-                further work from you
-              </Text>
+    <Box className={"my-[200px]"}>
+      <Box className={classes.sectionInner}>
+        <Flex
+          className={classes.content}
+          gap="xl"
+          direction={{ base: "column", sm: "row" }}
+        >
+          <Box className={cx(classes.textColor, classes.textSection)}>
+            <div
+              className={cx(
+                classes.triangle,
+                classes.triangle1,
+                classes.triangleTopRight,
+                texture
+              )}
+            />
+            <Box className={classes.textLayer}>
+              <Title c="hsl(214 36% 58% / 1)" order={6}>
+                SDKs
+              </Title>
+              <Title className={classes.title}>
+                Get <TitleHighlight>SDKs</TitleHighlight> with zero effort
+              </Title>
+              <Stack className={classes.textSize} spacing="xs">
+                {/* <Group my="xl">
+                  <Image
+                    src={oas}
+                    width={40}
+                    height={40}
+                    alt="OpenAPI Specification"
+                  />
+                  <Image src={postman} width={35} height={35} alt="Postman" />
+                </Group> */}
+                <Text>
+                  Easily import an{" "}
+                  <Anchor
+                    className={classes.link}
+                    target="_blank"
+                    href="https://konfigthis.com/docs/getting-started/openapi-specification"
+                  >
+                    OpenAPI Specification
+                  </Anchor>{" "}
+                  or{" "}
+                  <Anchor
+                    className={classes.link}
+                    target="_blank"
+                    href="https://konfigthis.com/docs/getting-started/postman-collections"
+                  >
+                    Postman Collection
+                  </Anchor>{" "}
+                  and Konfig automatically generates and publishes SDKs in the
+                  most popular languages with no further work from you.
+                </Text>
+                <Text>
+                  Whenever you update your spec, Konfig{" "}
+                  <Anchor
+                    className={classes.link}
+                    target="_blank"
+                    href="https://konfigthis.com/docs/tutorials/automate-sdk-updates"
+                  >
+                    instantly republishes all your SDKs—keeping them current
+                  </Anchor>
+                  .
+                </Text>
+              </Stack>
             </Box>
-            <Box c="dimmed">
-              <ThemeIcon
-                size={35}
-                radius="md"
-                variant="gradient"
-                gradient={{ deg: 133, from: "dark", to: "gray" }}
-              >
-                <IconRefresh size={rem(22)} stroke={1.5} />
-              </ThemeIcon>
-              <Text fz="lg" mt="sm" fw={500}>
-                Automated
-              </Text>
-              <Text c="dimmed" fz="sm">
-                Any time you publish a change to your spec, we{" "}
-                <Anchor
-                  target="_blank"
-                  href="https://konfigthis.com/docs/tutorials/automate-sdk-updates"
-                >
-                  automatically update and republish all of your SDKs
-                </Anchor>
-              </Text>
-            </Box>
-          </Stack>
-
-          <Button
-            component="a"
-            target="_blank"
-            href="https://konfigthis.com/schedule-demo"
-            color="dark"
-            size="lg"
-            radius="md"
-            mt="xl"
-          >
-            See how
-          </Button>
-        </Col>
-        <Col span={12} md={7}>
-          <Paper
-            radius="md"
-            withBorder
-            shadow="lg"
-            h={{ base: rem(500), md: "100%" }}
-          >
+          </Box>
+          <Box className={classes.diagram}>
             <ReactFlow
               fitView
               fitViewOptions={fitViewOptions}
@@ -304,10 +368,10 @@ export function GetSdksWithZeroEffort() {
               proOptions={{ hideAttribution: true }}
               nodes={nodes}
               edges={edges}
-            ></ReactFlow>
-          </Paper>
-        </Col>
-      </Grid>
-    </Container>
+            />
+          </Box>
+        </Flex>
+      </Box>
+    </Box>
   );
 }

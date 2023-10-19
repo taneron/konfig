@@ -1,19 +1,23 @@
 import { Cta } from "@/components/Cta";
 import { EnsureHighQualitySdks } from "@/components/EnsureHighQualitySdks/EnsureHighQualitySdks";
 import { FooterSimple } from "@/components/FooterSimple/FooterSimple";
-import { GetSdksInAnyLanguage } from "@/components/GetSdksInAnyLanguage/GetSdksInAnyLanguage";
+import { GeneratedSdkSnippets } from "@/components/GeneratedSdkSnippets";
 import { GetSdksWithZeroEffort } from "@/components/GetSdksWithZeroEffort/GetSdksWithZeroEffort";
 import { HeaderSimple } from "@/components/HeaderSimple/HeaderSimple";
 import { HeroBullets } from "@/components/HeroBullets/HeroBullets";
 import { Quotes } from "@/components/Quotes/Quotes";
+import { SdkFeatures } from "@/components/SdkFeatures";
 import { TrustedBy } from "@/components/TrustedBy/TrustedBy";
+import { UpdatingDocs } from "@/components/UpdatingDocs";
+import { Box, useMantineTheme } from "@mantine/core";
 import Head from "next/head";
 
 export default function Home() {
+  const theme = useMantineTheme();
   return (
     <>
       <Head>
-        <title>Konfig | Generate SDKs for your REST API</title>
+        <title>Konfig | Generate SDKs, Docs, and Demos for your REST API</title>
         <meta
           name="description"
           content="Konfig makes it easy for you to onboard external developers.
@@ -25,11 +29,25 @@ export default function Home() {
       </Head>
       <main>
         <HeaderSimple />
-        <HeroBullets />
-        <TrustedBy />
-        <GetSdksWithZeroEffort />
-        <GetSdksInAnyLanguage />
-        <EnsureHighQualitySdks />
+        <Box pb={100}>
+          <HeroBullets />
+          <TrustedBy />
+        </Box>
+        <Box
+          className={`px-16 bg-gradient-to-br from-[rgb(8,17,25)] to-[rgb(9,7,48)] overflow-hidden`}
+          sx={(theme) => ({ backgroundColor: theme.colors.dark[8] })}
+        >
+          <GetSdksWithZeroEffort />
+          <EnsureHighQualitySdks />
+          <SdkFeatures />
+        </Box>
+        <div
+          //  className="px-16 bg-gradient-to-b from-[rgb(255,255,255)] to-[rgb(255,255,255)] overflow-hidden"
+          className="px-16 bg-gray-50 overflow-hidden"
+        >
+          <UpdatingDocs />
+          <GeneratedSdkSnippets />
+        </div>
         <Quotes />
         <Cta />
         <FooterSimple
