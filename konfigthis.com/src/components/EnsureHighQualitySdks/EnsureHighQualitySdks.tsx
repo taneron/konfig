@@ -153,8 +153,7 @@ export function EnsureHighQualitySdks() {
               </Title>
               <Stack className={classes.textSize} spacing="xs">
                 <Text>
-                  Before any errors reaches your customers,
-                  {"Konfig's"}{" "}
+                  Before any errors reaches your customers, Konfig's{" "}
                   <Anchor
                     className={classes.link}
                     target="_blank"

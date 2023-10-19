@@ -344,9 +344,9 @@ export function GetSdksWithZeroEffort() {
                     target="_blank"
                     href="https://konfigthis.com/docs/tutorials/automate-sdk-updates"
                   >
-                    instantly republishes all your SDKs—keeping them current
+                    instantly republishes all your SDKs
                   </Anchor>
-                  .
+                  —keeping them current.
                 </Text>
               </Stack>
             </Box>
