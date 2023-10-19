@@ -34,7 +34,7 @@ export default function Home() {
           <TrustedBy />
         </Box>
         <Box
-          className={`px-16 bg-gradient-to-br from-[rgb(8,17,25)] to-[rgb(9,7,48)] overflow-hidden`}
+          className={`px-4 bg-gradient-to-br from-[rgb(8,17,25)] to-[rgb(9,7,48)] overflow-hidden`}
           sx={(theme) => ({ backgroundColor: theme.colors.dark[8] })}
         >
           <GetSdksWithZeroEffort />
@@ -43,7 +43,7 @@ export default function Home() {
         </Box>
         <div
           //  className="px-16 bg-gradient-to-b from-[rgb(255,255,255)] to-[rgb(255,255,255)] overflow-hidden"
-          className="px-16 bg-gray-50 overflow-hidden"
+          className="px-4 bg-gray-50 overflow-hidden"
         >
           <UpdatingDocs />
           <GeneratedSdkSnippets />

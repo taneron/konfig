@@ -23,7 +23,8 @@ export function GeneratedSdkSnippets() {
       )}
       Visual={() => (
         <video
-          className="rounded-xl bg-video-bg shadow-xl w-full lg:w-1/2 p-2"
+          className="rounded-xl bg-video-bg shadow-xl w-full lg:w-3/5 p-2"
+          playsInline
           autoPlay
           muted
           loop

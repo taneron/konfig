@@ -55,7 +55,7 @@ const useStyles = createStyles((theme) => ({
     marginBottom: theme.spacing.xl,
     fontFamily: `Greycliff CF, ${theme.fontFamily}`,
     lineHeight: 1,
-    maxWidth: "40rem",
+    maxWidth: "45rem",
     marginLeft: "auto",
     marginRight: "auto",
 

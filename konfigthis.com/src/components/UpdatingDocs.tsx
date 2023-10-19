@@ -1,9 +1,7 @@
-import docs from "../../public/docs.png";
-import Image from "./Image";
 import { ProductSection } from "./ProductSection";
 import { LightSectionAnchor } from "./LightSectionAnchor";
 import { LightSectionTitleHighlight } from "./LightSectionTitleHighlight";
-import { useIntersection, useWindowScroll } from "@mantine/hooks";
+import { useWindowScroll } from "@mantine/hooks";
 import { clsx } from "@mantine/core";
 import { useRef } from "react";
 
@@ -39,19 +37,31 @@ function Visual() {
   const ref = useRef<HTMLImageElement>(null);
   const inView = useIsInView({ ref });
   return (
-    // eslint-disable-next-line @next/next/no-img-element
-    <img
-      ref={ref}
+    <div
       className={clsx(
         {
           ["!opacity-100 !translate-x-0 !blur-0"]: inView,
         },
-        "w-full lg:w-3/5 h-[325px] sm:h-auto  rounded-xl shadow-xl transition duration-700 ease-in-out opacity-0 blur-md translate-x-[200%]"
+        "opacity-0 blur-md translate-x-[200%] transition duration-700 ease-in-out"
       )}
-      style={{ objectFit: "cover" }}
-      alt="API Documentation"
-      src="/docs.png"
-    />
+    >
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        ref={ref}
+        className={clsx("object-cover rounded-xl shadow-xl")}
+        alt="API Documentation"
+        src="/docs-light.webp"
+      />
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        ref={ref}
+        className={clsx(
+          "object-cover absolute top-[20%] left-[2%] sm:top-[20%] sm:left-[15%] rounded-xl shadow-xl"
+        )}
+        alt="API Documentation"
+        src="/docs-dark.webp"
+      />
+    </div>
   );
 }
 
