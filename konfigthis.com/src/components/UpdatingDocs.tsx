@@ -24,7 +24,7 @@ export function UpdatingDocs() {
         <>
           Maintain seamless consistency between your docs and SDKs, anchored by
           a source of truth. Any time you publish a change to your spec, Konfig{" "}
-          <LightSectionAnchor href="https://konfigthis.com/docs/tutorials/automate-sdk-updates">
+          <LightSectionAnchor href="https://konfigthis.com/docs/portal/tutorials/configuring-your-github-repository">
             automatically updates your docs
           </LightSectionAnchor>
           .
