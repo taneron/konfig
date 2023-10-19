@@ -113,6 +113,11 @@ const sidebars = {
           items: [
             {
               type: "doc",
+              label: "Configuring Your GitHub Repository",
+              id: "portal/tutorials/configuring-your-github-repository",
+            },
+            {
+              type: "doc",
               label: "Styling Your Portal",
               id: "portal/tutorials/styling-your-portal",
             },
