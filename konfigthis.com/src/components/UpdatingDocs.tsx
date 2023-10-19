@@ -44,9 +44,9 @@ function Visual() {
       ref={ref}
       className={clsx(
         {
-          ["opacity-100 translate-x-0 blur-0"]: inView,
+          ["!opacity-100 !translate-x-0 !blur-0"]: inView,
         },
-        "w-full lg:w-3/5 h-[325px] sm:h-auto  rounded-xl shadow-xl transition duration-700 ease-in-out opacity-0 blur-md translate-x-full"
+        "w-full lg:w-3/5 h-[325px] sm:h-auto  rounded-xl shadow-xl transition duration-700 ease-in-out opacity-0 blur-md translate-x-[200%]"
       )}
       style={{ objectFit: "cover" }}
       alt="API Documentation"
@@ -61,7 +61,5 @@ function useIsInView({ ref }: { ref: React.RefObject<HTMLElement> }): boolean {
   if (!ref.current) return false;
   const windowBottom = (window.innerHeight * 2) / 3;
   const { top, bottom } = ref.current.getBoundingClientRect();
-  console.log("windowBottom", windowBottom);
-  console.log("top", top);
   return top < windowBottom && bottom > 0;
 }
