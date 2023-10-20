@@ -1,27 +1,31 @@
 import { Cta } from "@/components/Cta";
+import { CustomFlowsDemo } from "@/components/CustomFlowsDemo";
+import { DarkSectionWrapper } from "@/components/DarkSectionWrapper";
 import { EnsureHighQualitySdks } from "@/components/EnsureHighQualitySdks/EnsureHighQualitySdks";
 import { FooterSimple } from "@/components/FooterSimple/FooterSimple";
 import { GeneratedSdkSnippets } from "@/components/GeneratedSdkSnippets";
 import { GetSdksWithZeroEffort } from "@/components/GetSdksWithZeroEffort/GetSdksWithZeroEffort";
 import { HeaderSimple } from "@/components/HeaderSimple/HeaderSimple";
 import { HeroBullets } from "@/components/HeroBullets/HeroBullets";
+import { OurProducts } from "@/components/OurProducts";
 import { Quotes } from "@/components/Quotes/Quotes";
 import { SdkFeatures } from "@/components/SdkFeatures";
 import { TrustedBy } from "@/components/TrustedBy/TrustedBy";
 import { UpdatingDocs } from "@/components/UpdatingDocs";
-import { Box, useMantineTheme } from "@mantine/core";
+import { Box } from "@mantine/core";
 import Head from "next/head";
 
 export default function Home() {
-  const theme = useMantineTheme();
   return (
     <>
       <Head>
-        <title>Konfig | Generate SDKs, Docs, and Demos for your REST API</title>
+        <title>
+          Konfig | Generate SDKs, Docs, Demos, and Tutorials for your REST API
+        </title>
         <meta
           name="description"
           content="Konfig makes it easy for you to onboard external developers.
-          Easily publish SDKs in all major languages so your customers can
+          Easily generate SDKs, Docs, Demos, and Tutorials in all major languages so your customers can
           quickly integrate your API."
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -33,23 +37,27 @@ export default function Home() {
           <HeroBullets />
           <TrustedBy />
         </Box>
-        <Box
-          className={`px-4 bg-gradient-to-br from-[rgb(8,17,25)] to-[rgb(9,7,48)] overflow-hidden`}
-          sx={(theme) => ({ backgroundColor: theme.colors.dark[8] })}
-        >
+        <OurProducts />
+        <DarkSectionWrapper id="sdks">
           <GetSdksWithZeroEffort />
           <EnsureHighQualitySdks />
           <SdkFeatures />
-        </Box>
+        </DarkSectionWrapper>
         <div
+          id="docs"
           //  className="px-16 bg-gradient-to-b from-[rgb(255,255,255)] to-[rgb(255,255,255)] overflow-hidden"
-          className="px-4 bg-gray-50 overflow-hidden"
+          className="px-4 sm:px-12 md:px-24 bg-gray-50 overflow-hidden"
         >
           <UpdatingDocs />
           <GeneratedSdkSnippets />
         </div>
-        <Quotes />
-        <Cta />
+        <DarkSectionWrapper id="demos" direction="bl">
+          <CustomFlowsDemo />
+        </DarkSectionWrapper>
+        <div className="bg-gray-50 py-52">
+          <Quotes />
+          <Cta />
+        </div>
         <FooterSimple
           data={[
             {
