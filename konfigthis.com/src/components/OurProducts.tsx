@@ -25,7 +25,7 @@ export function OurProducts() {
           product="Docs"
           description="Generate beautiful documentation for your API"
           className="bg-gradient-to-b hover:bg-gradient-to-br"
-          graphicClassName="xl:-top-10 xl:right-1/2 xl:left-auto xl:translate-x-1/2  -bottom-5 -left-5"
+          graphicClassName="xl:-top-10 xl:right-1/2 xl:left-auto xl:translate-x-1/2  -bottom-8 -left-5"
           Icon={IconBook2}
           scrollTo="docs"
         />
@@ -33,7 +33,7 @@ export function OurProducts() {
           product="Demos & Tutorials"
           description="Build engaging demos and tutorials for your API"
           className="bg-gradient-to-bl hover:bg-gradient-to-br"
-          graphicClassName="-bottom-5 -right-3 xl:-top-10 rounded-full"
+          graphicClassName="-bottom-8 -right-3 xl:-top-10 rounded-full"
           Icon={IconTerminal2}
           scrollTo="demos"
         />
@@ -66,7 +66,7 @@ function Product({
         onClick={() => scrollIntoView(scrollTo)}
         className={clsx(
           className,
-          "shadow-lg hover:shadow-xl",
+          "shadow-lg hover:shadow-xl border",
           "z-10 relative from-white to-gray-50 hover:to-gray-100 p-8 w-full xl:w-80 group rounded-xl border-solid border-gray-100 transition-all hover:scale-[1.01] bg-white"
         )}
       >
