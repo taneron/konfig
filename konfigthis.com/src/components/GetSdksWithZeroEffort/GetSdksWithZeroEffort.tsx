@@ -315,7 +315,7 @@ export function GetSdksWithZeroEffort() {
                   />
                   <Image src={postman} width={35} height={35} alt="Postman" />
                 </Group> */}
-                <ul className="list-decimal list-inside space-y-2">
+                <ul className="list-disc list-inside space-y-2">
                   <li>
                     Easily import an{" "}
                     <Anchor
