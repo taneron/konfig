@@ -1,18 +1,15 @@
 import {
   createStyles,
-  Header,
   Container,
   rem,
   Group,
-  Anchor,
   Button,
-  UnstyledButton,
   Menu,
   Burger,
+  MediaQuery,
 } from "@mantine/core";
 import logo from "../../../public/portal-logo-light.png";
 import Image from "@/components/Image";
-import { useSubtleLinkStyles } from "@/utils/use-subtle-link-styles";
 import { IconCalendar, IconCalendarEvent } from "@tabler/icons-react";
 import { useState } from "react";
 
@@ -84,9 +81,11 @@ export function HeaderSimple() {
           shadow="md"
           width={200}
         >
-          <Menu.Target>
-            <Burger className="sm:hidden" opened={opened} />
-          </Menu.Target>
+          <MediaQuery largerThan="sm" styles={{ display: "none" }}>
+            <Menu.Target>
+              <Burger opened={opened} />
+            </Menu.Target>
+          </MediaQuery>
           <Menu.Dropdown>
             <a target="_blank" href="https://konfigthis.com/schedule-demo">
               <Menu.Item
@@ -104,32 +103,36 @@ export function HeaderSimple() {
             </a>
           </Menu.Dropdown>
         </Menu>
-        <Group className="hidden sm:flex" spacing="md">
-          <a
-            className="text-gray-600 hover:text-black"
-            target="_blank"
-            href="/blog"
-          >
-            Blog
-          </a>
-          <a
-            className="text-gray-600 hover:text-black"
-            target="_blank"
-            href="/docs"
-          >
-            Documentation
-          </a>
-          <Button
-            color="dark"
-            component="a"
-            radius="lg"
-            target="_blank"
-            href="https://konfigthis.com/schedule-demo"
-            leftIcon={<IconCalendarEvent size="0.9rem" />}
-          >
-            Book a demo
-          </Button>
-        </Group>
+        <MediaQuery smallerThan="sm" styles={{ display: "none" }}>
+          <div>
+            <Group className="flex" spacing="md">
+              <a
+                className="text-gray-600 hover:text-black"
+                target="_blank"
+                href="/blog"
+              >
+                Blog
+              </a>
+              <a
+                className="text-gray-600 hover:text-black"
+                target="_blank"
+                href="/docs"
+              >
+                Documentation
+              </a>
+              <Button
+                color="dark"
+                component="a"
+                radius="lg"
+                target="_blank"
+                href="https://konfigthis.com/schedule-demo"
+                leftIcon={<IconCalendarEvent size="0.9rem" />}
+              >
+                Book a demo
+              </Button>
+            </Group>
+          </div>
+        </MediaQuery>
       </Container>
     </div>
   );
