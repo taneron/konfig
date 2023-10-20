@@ -67,7 +67,7 @@ export function CustomFlowsDemo() {
               autoPlay
               muted
               loop
-              src="/video/demo-quick.webm"
+              src="/video/demo-quick-improved.mov"
             />
           </div>
         </div>
