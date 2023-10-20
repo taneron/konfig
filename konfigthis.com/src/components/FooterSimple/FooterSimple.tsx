@@ -41,7 +41,7 @@ const useStyles = createStyles((theme) => ({
     display: "flex",
     justifyContent: "space-between",
 
-    [theme.fn.smallerThan("sm")]: {
+    [theme.fn.smallerThan("md")]: {
       paddingInline: rem(25),
       flexDirection: "column",
       alignItems: "start",
@@ -52,7 +52,7 @@ const useStyles = createStyles((theme) => ({
     display: "flex",
     flexWrap: "wrap",
 
-    [theme.fn.smallerThan("sm")]: {
+    [theme.fn.smallerThan("md")]: {
       display: "grid",
       grid: "auto/repeat(2,1fr)",
       marginTop: rem(20),
@@ -131,7 +131,7 @@ export function FooterSimple({ data }: FooterLinksProps) {
     ));
 
     return (
-      <div className={cx("mb-8")} key={group.title}>
+      <div className={cx("sm:w-40 mb-8")} key={group.title}>
         <Text className={classes.title}>{group.title}</Text>
         {links}
       </div>
