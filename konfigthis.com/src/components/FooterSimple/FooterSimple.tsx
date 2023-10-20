@@ -6,7 +6,6 @@ import {
   Group,
   rem,
   Title,
-  Box,
   clsx,
 } from "@mantine/core";
 import { IconBrandLinkedin } from "@tabler/icons-react";
@@ -59,10 +58,6 @@ const useStyles = createStyles((theme) => ({
       marginTop: rem(20),
       width: "100%",
     },
-  },
-
-  wrapper: {
-    width: rem(160),
   },
 
   link: {
@@ -136,7 +131,7 @@ export function FooterSimple({ data }: FooterLinksProps) {
     ));
 
     return (
-      <div className={cx(classes.wrapper, "mb-8")} key={group.title}>
+      <div className={cx("mb-8")} key={group.title}>
         <Text className={classes.title}>{group.title}</Text>
         {links}
       </div>
