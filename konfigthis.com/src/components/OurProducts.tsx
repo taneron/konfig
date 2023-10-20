@@ -17,7 +17,7 @@ export function OurProducts() {
           product="SDKs"
           description="Publish SDKs in the most popular languages"
           className="bg-gradient-to-br hover:bg-gradient-to-bl"
-          graphicClassName="-top-10 -right-5 xl:-left-5 [clip-path:polygon(0%_0%,_100%_0%,_0%_100%)]"
+          graphicClassName="-top-10 -right-3 xl:-left-5 [clip-path:polygon(100%_0%,_0%_0%,_100%_100%)] xl:[clip-path:polygon(0%_0%,_100%_0%,_0%_100%)]"
           Icon={IconCode}
           scrollTo="sdks"
         />
@@ -33,7 +33,7 @@ export function OurProducts() {
           product="Demos & Tutorials"
           description="Build engaging demos and tutorials for your API"
           className="bg-gradient-to-bl hover:bg-gradient-to-br"
-          graphicClassName="-bottom-5 -right-5 xl:-top-10 rounded-full"
+          graphicClassName="-bottom-5 -right-3 xl:-top-10 rounded-full"
           Icon={IconTerminal2}
           scrollTo="demos"
         />
