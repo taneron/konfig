@@ -258,6 +258,9 @@ export const useSectionStyles = createStyles((theme) => ({
   triangleBottomLeft: {
     clipPath: "polygon(0% 100%, 0% 0%, 100% 100%)",
   },
+  triangleTopLeft: {
+    clipPath: "polygon(0% 0%, 100% 0%, 0% 100%)",
+  },
   link: {
     color: theme.white,
     fontWeight: 600,
