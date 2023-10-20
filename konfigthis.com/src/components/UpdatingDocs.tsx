@@ -1,7 +1,7 @@
 import { ProductSection } from "./ProductSection";
 import { LightSectionAnchor } from "./LightSectionAnchor";
 import { LightSectionTitleHighlight } from "./LightSectionTitleHighlight";
-import { useWindowScroll } from "@mantine/hooks";
+import { useOs, useWindowScroll } from "@mantine/hooks";
 import { Mark, clsx } from "@mantine/core";
 import { useRef } from "react";
 
@@ -40,12 +40,15 @@ export function UpdatingDocs() {
 
 function Visual() {
   const ref = useRef<HTMLImageElement>(null);
+  const os = useOs();
+  const isDesktop = os === "linux" || os === "windows" || os === "macos";
+  const isMobile = !isDesktop;
   const inView = useIsInView({ ref });
   return (
     <div
       className={clsx(
         {
-          ["!opacity-100 !translate-x-0 !blur-0"]: inView,
+          ["!opacity-100 !translate-x-0 !blur-0"]: inView || isMobile,
         },
         "opacity-0 blur-md translate-x-[200%] transition duration-700 ease-in-out lg:max-w-[60%]"
       )}
