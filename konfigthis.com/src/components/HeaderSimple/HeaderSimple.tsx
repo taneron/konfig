@@ -3,19 +3,14 @@ import {
   Button,
   Burger,
   MediaQuery,
-  clsx,
   NavLink,
   Transition,
   MantineTransition,
 } from "@mantine/core";
 import logo from "../../../public/portal-logo-light.png";
 import Image from "@/components/Image";
-import {
-  IconCalendarEvent,
-  IconChevronDown,
-  IconExternalLink,
-} from "@tabler/icons-react";
-import { useDisclosure } from "@mantine/hooks";
+import { IconCalendarEvent, IconExternalLink } from "@tabler/icons-react";
+import { useDisclosure, useWindowScroll } from "@mantine/hooks";
 import { scrollIntoView } from "@/utils/scroll-into-view";
 import { useSmMediaQuery } from "@/utils/use-sm-media-query";
 import { useCallback, useEffect } from "react";
@@ -48,6 +43,8 @@ export function HeaderSimple() {
     handlers.open();
     document.body && document.body.classList.add("overflow-hidden");
   };
+
+  const [_, scrollTo] = useWindowScroll();
 
   const greaterThanSm = useSmMediaQuery();
 
@@ -146,7 +143,14 @@ export function HeaderSimple() {
         </Transition>
       </MediaQuery>
       <div className="flex justify-between items-center h-full px-4 mx-auto max-w-5xl">
-        <Image height={35} src={logo} placeholder="empty" alt="Konfig Logo" />
+        <Image
+          className="cursor-pointer"
+          onClick={() => scrollTo({ y: 0 })}
+          height={35}
+          src={logo}
+          placeholder="empty"
+          alt="Konfig Logo"
+        />
         <MediaQuery largerThan="sm" styles={{ display: "none" }}>
           <Burger
             size="md"

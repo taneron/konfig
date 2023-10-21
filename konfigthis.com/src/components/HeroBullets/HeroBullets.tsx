@@ -165,8 +165,8 @@ export function HeroBullets() {
                 target="_blank"
                 leftIcon={<IconExternalLink />}
                 size="lg"
-                variant="outline"
-                color="dark"
+                color="gray"
+                variant="default"
                 radius="xl"
                 className={clsx(
                   classes.control,
