@@ -10,9 +10,15 @@ import {
 } from "@mantine/core";
 import logo from "../../../public/portal-logo-light.png";
 import Image from "@/components/Image";
-import { IconCalendarEvent, IconExternalLink } from "@tabler/icons-react";
+import {
+  IconCalendarEvent,
+  IconChevronDown,
+  IconExternalLink,
+} from "@tabler/icons-react";
 import { useDisclosure } from "@mantine/hooks";
 import { scrollIntoView } from "@/utils/scroll-into-view";
+import { useSmMediaQuery } from "@/utils/use-sm-media-query";
+import { useCallback, useEffect } from "react";
 
 const scaleY: MantineTransition = {
   in: {
@@ -33,15 +39,21 @@ const scaleY: MantineTransition = {
 export function HeaderSimple() {
   const [opened, handlers] = useDisclosure(false);
 
-  const close = () => {
+  const close = useCallback(() => {
     handlers.close();
     document.body && document.body.classList.remove("overflow-hidden");
-  };
+  }, [handlers]);
 
   const open = () => {
     handlers.open();
     document.body && document.body.classList.add("overflow-hidden");
   };
+
+  const greaterThanSm = useSmMediaQuery();
+
+  useEffect(() => {
+    if (greaterThanSm) close();
+  }, [greaterThanSm, close]);
 
   return (
     <div className="h-16 fixed w-full bg-white/95 backdrop-blur-md  z-50">
@@ -59,52 +71,71 @@ export function HeaderSimple() {
                 "bg-white absolute top-full w-full h-[calc(100vh-theme(spacing.16))]"
               }
             >
-              <div className="ml-3 my-2 text-sm text-gray-500 font-semibold">
-                Products
-              </div>
+              <div className="ml-3 my-2 text-lg text-gray-500">Products</div>
               <NavLink
-                className="pl-5 text-gray-600 border-t border-solid border-gray-100"
+                className="pl-5 py-4 text-gray-600 border-t border-solid border-gray-100"
                 label="SDKs"
+                description="Publish SDKs in the most popular languages"
+                classNames={{
+                  label: "text-lg",
+                }}
                 onClick={() => {
                   close();
                   scrollIntoView("sdks");
                 }}
               />
               <NavLink
-                className="pl-5 text-gray-600 border-t border-solid border-gray-100"
+                className="pl-5 py-4 text-gray-600 border-t border-solid border-gray-100"
+                classNames={{
+                  label: "text-lg",
+                }}
                 label="Docs"
+                description="Create beautiful documentation sites for your API"
                 onClick={() => {
                   close();
                   scrollIntoView("docs");
                 }}
               />
               <NavLink
-                className="pl-5 text-gray-600 border-t border-solid border-gray-100"
+                className="pl-5 py-4 text-gray-600 border-t border-solid border-gray-100"
                 label="Demos & Tutorials"
+                classNames={{
+                  label: "text-lg",
+                }}
+                description="Build engaging demos and tutorials for your API"
                 onClick={() => {
                   close();
                   scrollIntoView("demos");
                 }}
               />
               <NavLink
-                className="text-gray-600 border-t border-solid border-gray-100"
+                className="py-4 text-gray-600 border-t border-solid border-gray-100"
                 label="Documentation"
+                classNames={{
+                  label: "text-lg",
+                }}
                 target="_blank"
                 href="/docs"
                 rightSection={<IconExternalLink stroke={1.5} />}
                 component="a"
               />
               <NavLink
-                className="text-gray-600 border-t border-solid border-gray-100"
+                className="py-4 text-gray-600 border-t border-solid border-gray-100"
                 label="Blog"
+                classNames={{
+                  label: "text-lg",
+                }}
                 rightSection={<IconExternalLink stroke={1.5} />}
                 target="_blank"
                 href="/blog"
                 component="a"
               />
               <NavLink
-                className="font-bold border-t border-solid border-gray-100"
+                className="py-4 font-bold border-t border-solid border-gray-100"
                 label="Book a Demo"
+                classNames={{
+                  label: "text-lg",
+                }}
                 component="a"
                 href="/schedule-demo"
                 target="_blank"
@@ -115,9 +146,10 @@ export function HeaderSimple() {
         </Transition>
       </MediaQuery>
       <div className="flex justify-between items-center h-full px-4 mx-auto max-w-5xl">
-        <Image height={40} src={logo} placeholder="empty" alt="Konfig Logo" />
+        <Image height={35} src={logo} placeholder="empty" alt="Konfig Logo" />
         <MediaQuery largerThan="sm" styles={{ display: "none" }}>
           <Burger
+            size="md"
             onClick={() => {
               if (opened) {
                 close();
