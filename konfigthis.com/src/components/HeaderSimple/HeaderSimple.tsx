@@ -59,8 +59,11 @@ export function HeaderSimple() {
                 "bg-white absolute top-full w-full h-[calc(100vh-theme(spacing.16))]"
               }
             >
+              <div className="ml-3 my-2 text-sm text-gray-500 font-semibold">
+                Products
+              </div>
               <NavLink
-                className="text-gray-600 border-t border-solid border-gray-100"
+                className="pl-5 text-gray-600 border-t border-solid border-gray-100"
                 label="SDKs"
                 onClick={() => {
                   close();
@@ -68,7 +71,7 @@ export function HeaderSimple() {
                 }}
               />
               <NavLink
-                className="text-gray-600 border-t border-solid border-gray-100"
+                className="pl-5 text-gray-600 border-t border-solid border-gray-100"
                 label="Docs"
                 onClick={() => {
                   close();
@@ -76,7 +79,7 @@ export function HeaderSimple() {
                 }}
               />
               <NavLink
-                className="text-gray-600 border-t border-solid border-gray-100"
+                className="pl-5 text-gray-600 border-t border-solid border-gray-100"
                 label="Demos & Tutorials"
                 onClick={() => {
                   close();
@@ -85,7 +88,7 @@ export function HeaderSimple() {
               />
               <NavLink
                 className="text-gray-600 border-t border-solid border-gray-100"
-                label="Konfig Documentation"
+                label="Documentation"
                 target="_blank"
                 href="/docs"
                 rightSection={<IconExternalLink stroke={1.5} />}
