@@ -57,6 +57,10 @@ export const domainToRepoMappings: Record<
   },
 
   // custom domain
+  'docs.workflows.tryleap.ai': {
+    owner: 'leap-ai',
+    repo: 'workflows-sdks',
+  },
   'docs.snaptrade.com': {
     owner: 'passiv',
     repo: 'snaptrade-sdks',
