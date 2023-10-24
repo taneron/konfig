@@ -12,7 +12,7 @@ export const JsonViewer: typeof ReactJson = (props) => {
         fontSize: '0.85rem',
         padding: '0.75rem',
         maxHeight: '500px',
-        overflowY: 'scroll',
+        overflowY: 'auto',
       }}
       {...props}
     />

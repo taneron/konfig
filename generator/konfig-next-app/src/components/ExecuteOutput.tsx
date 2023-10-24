@@ -104,7 +104,7 @@ export function ExecuteOutput({
           </Tabs.List>
 
           <Tabs.Panel value="raw">
-            <Code mah={500} sx={{ overflowY: 'scroll' }} color="gray" block>
+            <Code mah={500} sx={{ overflowY: 'auto' }} color="gray" block>
               {processedOutput}
             </Code>
           </Tabs.Panel>

@@ -139,7 +139,7 @@ const Operation = ({
             hidden={!opened}
             width={{ lg: NAVBAR_WIDTH }}
             sx={{
-              overflowY: 'scroll',
+              overflowY: 'auto',
               height:
                 'calc(100% - var(--mantine-header-height, 0rem) - var(--mantine-footer-height, 0rem));',
             }}

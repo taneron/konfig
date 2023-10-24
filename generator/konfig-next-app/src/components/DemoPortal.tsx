@@ -234,7 +234,7 @@ export const DemoPortal = observer(
               width={{ [navbarOffsetBreakpoint]: NAVBAR_WIDTH }}
               className={navbar.classes.navbar}
               sx={{
-                overflowY: 'scroll',
+                overflowY: 'auto',
                 // height:
                 //   'calc(100% - var(--mantine-header-height, 0rem) - var(--mantine-footer-height, 0rem));',
               }}
