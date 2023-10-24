@@ -25,6 +25,7 @@ import {
 import Link from 'next/link'
 import { HttpMethodBadge } from './HttpMethodBadge'
 import { navLinkColor } from '@/utils/nav-link-color'
+import { NavbarLink, navbarLinkColor } from './NavbarLink'
 
 const useStyles = createStyles((theme) => ({
   control: {
@@ -96,15 +97,9 @@ export function LinksGroup({
   const items = (hasLinks ? links : []).map((link, i) => {
     return (
       <Box className={classes.linkWrapper} key={`${link.label}:${i}`}>
-        <NavLink<typeof Link>
+        <NavbarLink
           onClick={() => setNavbarOpen(false)}
-          styles={{
-            label: {
-              color: navLinkColor({ active: link.active, theme }),
-            },
-          }}
           ref={ref}
-          component={Link}
           href={link.link}
           label={link.label}
           active={link.active}
@@ -123,7 +118,7 @@ export function LinksGroup({
         className={classes.control}
         lh={theme.lineHeight}
         style={{
-          color: navLinkColor({ active: anyActiveLinks, theme }),
+          color: navbarLinkColor({ theme, active: anyActiveLinks }),
         }}
       >
         <Group position="apart" spacing={0}>

@@ -78,136 +78,136 @@ export function ReferenceNavbar({
   setOauthTokenUrls: Dispatch<SetStateAction<string[]>>
   originalOauthTokenUrl: string | null
 }) {
-  const { classes } = useStyles()
+  // const { classes } = useStyles()
   const links = navbarData.map((item) => (
     <LinksGroup setOpened={setOpened} {...item} key={item.label} />
   ))
 
-  const form = useForm({
-    initialValues: {
-      url: basePath ?? servers[0],
-      oauthTokenUrl: oauthTokenUrl ?? '',
-    },
+  // const form = useForm({
+  //   initialValues: {
+  //     url: basePath ?? servers[0],
+  //     oauthTokenUrl: oauthTokenUrl ?? '',
+  //   },
 
-    validate: {
-      url: (value) =>
-        /^(https?:\/\/)([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/.test(
-          value
-        )
-          ? null
-          : 'Invalid URL',
-      oauthTokenUrl: (value) =>
-        /^(https?:\/\/)([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/.test(
-          value
-        )
-          ? null
-          : 'Invalid URL',
-    },
-  })
+  //   validate: {
+  //     url: (value) =>
+  //       /^(https?:\/\/)([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/.test(
+  //         value
+  //       )
+  //         ? null
+  //         : 'Invalid URL',
+  //     oauthTokenUrl: (value) =>
+  //       /^(https?:\/\/)([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/.test(
+  //         value
+  //       )
+  //         ? null
+  //         : 'Invalid URL',
+  //   },
+  // })
 
   // When CloseButton is clicked then remove item from servers that matches value
-  const SelectItem = forwardRef<HTMLDivElement, ItemProps>(
-    ({ value, ...others }: ItemProps, ref) => {
-      const { classes } = useStyles()
-      const isOriginalServer = originalServers.includes(value)
-      return (
-        <Group spacing={2} noWrap>
-          <div className={classes.selectItem} ref={ref} {...others}>
-            <Text size="xs">{value}</Text>
-          </div>
-          {!isOriginalServer && (
-            <CloseButton
-              radius="xs"
-              onClick={() => {
-                setServers((current) =>
-                  current.filter((item) => item !== value)
-                )
-                localStorage.setItem(
-                  `${owner}-${repo}-servers`,
-                  JSON.stringify(servers.filter((item) => item !== value))
-                )
-                if (basePath === value) {
-                  setBasePath(servers[0])
-                  localStorage.setItem(`${owner}-${repo}-basepath`, servers[0])
-                }
-              }}
-              size="sm"
-            />
-          )}
-        </Group>
-      )
-    }
-  )
+  // const SelectItem = forwardRef<HTMLDivElement, ItemProps>(
+  //   ({ value, ...others }: ItemProps, ref) => {
+  //     const { classes } = useStyles()
+  //     const isOriginalServer = originalServers.includes(value)
+  //     return (
+  //       <Group spacing={2} noWrap>
+  //         <div className={classes.selectItem} ref={ref} {...others}>
+  //           <Text size="xs">{value}</Text>
+  //         </div>
+  //         {!isOriginalServer && (
+  //           <CloseButton
+  //             radius="xs"
+  //             onClick={() => {
+  //               setServers((current) =>
+  //                 current.filter((item) => item !== value)
+  //               )
+  //               localStorage.setItem(
+  //                 `${owner}-${repo}-servers`,
+  //                 JSON.stringify(servers.filter((item) => item !== value))
+  //               )
+  //               if (basePath === value) {
+  //                 setBasePath(servers[0])
+  //                 localStorage.setItem(`${owner}-${repo}-basepath`, servers[0])
+  //               }
+  //             }}
+  //             size="sm"
+  //           />
+  //         )}
+  //       </Group>
+  //     )
+  //   }
+  // )
 
-  SelectItem.displayName = 'SelectItem'
+  // SelectItem.displayName = 'SelectItem'
 
-  const SelectOAuthItem = forwardRef<HTMLDivElement, ItemProps>(
-    ({ value, ...others }: ItemProps, ref) => {
-      const { classes } = useStyles()
-      const isOriginalOauthTokenUrl = originalOauthTokenUrl === value
-      return (
-        <Group spacing={2} noWrap>
-          <div className={classes.selectItem} ref={ref} {...others}>
-            <Text size="xs">{value}</Text>
-          </div>
-          {!isOriginalOauthTokenUrl && (
-            <CloseButton
-              radius="xs"
-              onClick={() => {
-                setOauthTokenUrls((current) =>
-                  current.filter((item) => item !== value)
-                )
-                localStorage.setItem(
-                  `${owner}-${repo}-oauthTokenUrls`,
-                  JSON.stringify(
-                    oauthTokenUrls.filter((item) => item !== value)
-                  )
-                )
-                if (oauthTokenUrl === value) {
-                  if (originalOauthTokenUrl !== null) {
-                    setOauthTokenUrl(originalOauthTokenUrl)
-                    localStorage.setItem(
-                      `${owner}-${repo}-oauthTokenUrl`,
-                      originalOauthTokenUrl
-                    )
-                  }
-                }
-              }}
-              size="sm"
-            />
-          )}
-        </Group>
-      )
-    }
-  )
+  // const SelectOAuthItem = forwardRef<HTMLDivElement, ItemProps>(
+  //   ({ value, ...others }: ItemProps, ref) => {
+  //     const { classes } = useStyles()
+  //     const isOriginalOauthTokenUrl = originalOauthTokenUrl === value
+  //     return (
+  //       <Group spacing={2} noWrap>
+  //         <div className={classes.selectItem} ref={ref} {...others}>
+  //           <Text size="xs">{value}</Text>
+  //         </div>
+  //         {!isOriginalOauthTokenUrl && (
+  //           <CloseButton
+  //             radius="xs"
+  //             onClick={() => {
+  //               setOauthTokenUrls((current) =>
+  //                 current.filter((item) => item !== value)
+  //               )
+  //               localStorage.setItem(
+  //                 `${owner}-${repo}-oauthTokenUrls`,
+  //                 JSON.stringify(
+  //                   oauthTokenUrls.filter((item) => item !== value)
+  //                 )
+  //               )
+  //               if (oauthTokenUrl === value) {
+  //                 if (originalOauthTokenUrl !== null) {
+  //                   setOauthTokenUrl(originalOauthTokenUrl)
+  //                   localStorage.setItem(
+  //                     `${owner}-${repo}-oauthTokenUrl`,
+  //                     originalOauthTokenUrl
+  //                   )
+  //                 }
+  //               }
+  //             }}
+  //             size="sm"
+  //           />
+  //         )}
+  //       </Group>
+  //     )
+  //   }
+  // )
 
-  SelectOAuthItem.displayName = 'SelectOAuthItem'
+  // SelectOAuthItem.displayName = 'SelectOAuthItem'
 
-  useEffect(() => {
-    setTimeout(() => {
-      const savedBasePath = localStorage.getItem(`${owner}-${repo}-basepath`)
-      if (savedBasePath) {
-        setBasePath(savedBasePath)
-      }
-      const savedServers = localStorage.getItem(`${owner}-${repo}-servers`)
-      if (savedServers) {
-        setServers(JSON.parse(savedServers))
-      }
-      const savedOauthTokenUrl = localStorage.getItem(
-        `${owner}-${repo}-oauthTokenUrl`
-      )
-      if (savedOauthTokenUrl) {
-        setOauthTokenUrl(savedOauthTokenUrl)
-      }
-      const savedOauthTokenUrls = localStorage.getItem(
-        `${owner}-${repo}-oauthTokenUrls`
-      )
-      if (savedOauthTokenUrls) {
-        setOauthTokenUrls(JSON.parse(savedOauthTokenUrls))
-      }
-    }, 0)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     const savedBasePath = localStorage.getItem(`${owner}-${repo}-basepath`)
+  //     if (savedBasePath) {
+  //       setBasePath(savedBasePath)
+  //     }
+  //     const savedServers = localStorage.getItem(`${owner}-${repo}-servers`)
+  //     if (savedServers) {
+  //       setServers(JSON.parse(savedServers))
+  //     }
+  //     const savedOauthTokenUrl = localStorage.getItem(
+  //       `${owner}-${repo}-oauthTokenUrl`
+  //     )
+  //     if (savedOauthTokenUrl) {
+  //       setOauthTokenUrl(savedOauthTokenUrl)
+  //     }
+  //     const savedOauthTokenUrls = localStorage.getItem(
+  //       `${owner}-${repo}-oauthTokenUrls`
+  //     )
+  //     if (savedOauthTokenUrls) {
+  //       setOauthTokenUrls(JSON.parse(savedOauthTokenUrls))
+  //     }
+  //   }, 0)
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [])
 
   return (
     <>
@@ -308,6 +308,6 @@ export function ReferenceNavbar({
   )
 }
 
-interface ItemProps extends React.ComponentPropsWithoutRef<'div'> {
-  value: string
-}
+// interface ItemProps extends React.ComponentPropsWithoutRef<'div'> {
+//   value: string
+// }

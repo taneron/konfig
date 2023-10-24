@@ -14,6 +14,7 @@ import { IconList } from '@tabler/icons-react'
 import { TITLE_OFFSET_PX } from './DemoTitle'
 import { observer } from 'mobx-react'
 import { asideOffsetBreakpoint } from '@/utils/aside-offset-breakpoint'
+import { navbarLinkColor } from './NavbarLink'
 
 const useStyles = createStyles((theme) => ({
   wrapper: {
@@ -39,10 +40,7 @@ const useStyles = createStyles((theme) => ({
 
   link: {
     display: 'block',
-    color:
-      theme.colorScheme === 'dark'
-        ? theme.colors.dark[1]
-        : theme.colors.gray[7],
+    color: navbarLinkColor({ theme, active: false }),
     borderLeft: `${rem(1)} solid transparent`,
     padding: `${rem(4)} ${theme.spacing.md}`,
     marginLeft: -1,
@@ -54,10 +52,7 @@ const useStyles = createStyles((theme) => ({
       theme.colorScheme === 'dark'
         ? theme.fn.rgba(theme.colors.brand[8], 0.2)
         : theme.colors.brand[1],
-    color:
-      theme.colorScheme === 'dark'
-        ? theme.colors.brand[1]
-        : theme.colors.brand[9],
+    color: navbarLinkColor({ theme, active: true }),
   },
 
   header: {

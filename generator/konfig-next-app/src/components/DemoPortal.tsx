@@ -41,6 +41,7 @@ import { navbarOffsetBreakpoint } from '@/utils/navbar-offset-breakpoint'
 import type { generateLogoLink } from '@/utils/generate-logo-link'
 import { useNavbarStyles } from '@/utils/use-navbar-styles'
 import { NavbarSectionLabel } from './NavbarSectionLabel'
+import { navbarLinkColor } from './NavbarLink'
 
 type DemosInput = Demo[]
 
@@ -292,7 +293,7 @@ export const DemoPortal = observer(
                         }}
                         styles={{
                           label: {
-                            color: navLinkColor({
+                            color: navbarLinkColor({
                               active: isCurrentlySelected,
                               theme,
                             }),
