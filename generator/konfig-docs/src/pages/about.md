@@ -4,6 +4,8 @@ description: Generating SDKs for REST APIs
 hide_table_of_contents: true
 ---
 
+<div class="markdown">
+
 # About
 
 Konfig is a developer tools company; we build API tooling based off the [OpenAPI
@@ -16,7 +18,7 @@ complicated and time-consuming to integrate.
 
 ## The Solution
 
-We generate SDKs for APIs so developers can integrate any API while writing as
+We generate SDKs, Docs, and Demos/Tutorials for APIs so developers can integrate any API while writing as
 few lines of code as possible.
 
 ## The Team
@@ -33,3 +35,5 @@ We are a passionate team of 3 people.
 - Eddie (Founding Engineer) [LinkedIn](https://www.linkedin.com/in/eddie-chayes)
   - Eddie built a [next-gen SDK for data
     scientists to explore data and deploy enterprise AI applications](https://developer.c3.ai/blog/data-science/enterprise-grade-pandas-interface-data-exploration-and-rapid-productionization) at C3.ai
+
+</div>
