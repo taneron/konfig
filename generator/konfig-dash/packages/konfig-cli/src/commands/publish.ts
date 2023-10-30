@@ -256,15 +256,18 @@ const publishScripts = {
     version,
     gitlabRepositoryId,
     skipTag,
+    useTwine,
   }: {
     test?: boolean
     token?: string
     version: string
     gitlabRepositoryId?: string
     skipTag?: boolean
+    useTwine?: boolean
   }) => {
     const repository = test ? '-r testpypi ' : ''
-    const credentials = token !== undefined ? `-u __token__ -p ${token} ` : ''
+    const credentials =
+      token !== undefined && !useTwine ? `-u __token__ -p ${token} ` : ''
     const gitTagCommands = generateGitTagCommands({
       version,
       generator: 'python',
@@ -322,6 +325,11 @@ export default class Publish extends Command {
       char: 'a',
       description: 'Specify all generators',
       exclusive: ['generator'],
+    }),
+    useTwine: Flags.boolean({
+      name: 'twine',
+      char: 'T',
+      description: 'Force use TWINE_USERNAME and TWINE_PASSWORD for publishing',
     }),
     test: Flags.boolean({ name: 'test', char: 't' }),
     skipRemoteCheck: Flags.boolean({
@@ -557,7 +565,8 @@ export default class Publish extends Command {
       ) {
         const pythonConfig = python.parse(generatorConfig)
         const usesToken =
-          pythonConfig.pypiApiTokenEnvironmentVariable !== undefined
+          pythonConfig.pypiApiTokenEnvironmentVariable !== undefined &&
+          !flags.useTwine
         const testPyPI = flags.test || pythonConfig.testPyPI
         if (testPyPI && !usesToken) {
           if (!process.env.TEST_TWINE_USERNAME)
@@ -588,7 +597,6 @@ export default class Publish extends Command {
           throw Error(
             `Set ${pythonConfig.pypiApiTokenEnvironmentVariable} environment variable to publish to PyPI`
           )
-
         if (pythonConfig.gitlabRepositoryId !== undefined) {
           if (!process.env.GITLAB_USERNAME)
             CliUx.ux.error(
@@ -603,6 +611,7 @@ export default class Publish extends Command {
           script: publishScripts['pypi']({
             test: !!testPyPI,
             token,
+            useTwine: flags.useTwine,
             version: pythonConfig.version,
             gitlabRepositoryId: pythonConfig.gitlabRepositoryId,
             skipTag: flags.skipTag,
