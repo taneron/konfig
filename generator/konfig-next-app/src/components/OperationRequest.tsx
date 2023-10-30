@@ -53,7 +53,7 @@ const languages: { value: LanguageExtended; isSdk?: boolean; label: string }[] =
       value: 'swift',
       label: 'Swift',
     },
-  ] as const
+  ]
 
 export function OperationRequest({
   codegenArgs,
