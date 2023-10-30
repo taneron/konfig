@@ -7,6 +7,7 @@ import {
   SecurityScheme,
   RequestBodyObject,
   getOperations,
+  HttpMethods,
 } from 'konfig-lib'
 import { GetStaticPropsResult } from 'next'
 import {
@@ -28,10 +29,14 @@ export type ReferencePageProps = Omit<GithubResources, 'spec'> & {
   demos: string[] // demo ids
   hasDocumentation: boolean
   repo: string
+  httpMethod: HttpMethods
+  contentType: string | null
+  path: string
   oauthTokenUrl: string | null
   requestBodyParameter: Parameter | null
   pathParameters: Parameter[]
   queryParameters: Parameter[]
+  hideNonSdkSnippets: boolean
   headerParameters: Parameter[]
   cookieParameters: Parameter[]
   requestBodyProperties: Record<string, SchemaObject> | null
@@ -132,12 +137,14 @@ export async function generatePropsForReferencePage({
   }
 
   let requestBodyParameter: Parameter | null = null
+  let contentType: string | null = null
   if (requestBody?.content) {
     for (const mediaType in requestBody.content) {
       const mediaTypeObject = requestBody.content[mediaType]
       if (mediaTypeObject.schema === undefined) continue
       if ('$ref' in mediaTypeObject.schema)
         throw Error('Spec should be dereferenced')
+      contentType = mediaType
       requestBodyParameter = {
         name: '',
         in: 'body',
@@ -255,6 +262,10 @@ export async function generatePropsForReferencePage({
     props: {
       ...props,
       title: props.konfigYaml.portal.title,
+      contentType,
+      hideNonSdkSnippets: props.konfigYaml.portal.hideNonSdkSnippets ?? false,
+      httpMethod: operation.method,
+      path: operation.path,
       operationId,
       operation,
       spec: spec.spec,

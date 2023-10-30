@@ -1,4 +1,5 @@
 import { Parameter } from '@/components/OperationParameter'
+import clone from 'clone'
 import {
   API_KEY_VALUE_PROPERTY,
   BEARER_VALUE_PROPERTY,
@@ -12,16 +13,20 @@ import {
   SECURITY_FORM_NAME_PREFIX,
 } from './generate-initial-operation-form-values'
 import { ReferencePageProps } from './generate-props-for-reference-page'
+import { HttpMethods } from 'konfig-lib'
 
 export type CodeGeneratorConstructorArgs = {
   basePath: string
   servers: string[]
   formData: FormDataType
+  httpMethod: HttpMethods
+  path: string
   requestBody: Parameter | null
   parameters: Parameter[]
   tag: string
   operationId: string
   requestBodyRequired: boolean
+  contentType: string | null
   originalOauthTokenUrl: string | null
   oauthTokenUrl: string | null
   securitySchemes: ReferencePageProps['securitySchemes']
@@ -37,10 +42,11 @@ export type CodeGeneratorConstructorArgs = {
   }
 
   /**
-   *  Sandbox is for executing the code in a sandboxed environment while
-   *  production is meant to be copy-pasted into a project.
+   *  'execution' is for executing the code in the browser
+   *  'ui' is meant to be displayed to the user in the browser
+   *  'copy' is meant to be copied to the clipboard
    */
-  mode?: 'sandbox' | 'production'
+  mode?: 'execution' | 'ui' | 'copy'
 }
 
 export type NonEmptyParameters = [
@@ -112,7 +118,7 @@ export abstract class CodeGenerator {
       languageConfigurations,
       basePath,
       requestBodyRequired,
-      mode = 'production',
+      mode = 'ui',
       servers,
       oauthTokenUrl,
       originalOauthTokenUrl,
@@ -144,6 +150,9 @@ export abstract class CodeGenerator {
    * @returns The masked value
    */
   mask(value: string) {
+    // Don't mask if in copy mode
+    if (this.isCopyMode()) return value
+
     return value.replace(/./g, 'X')
   }
 
@@ -151,15 +160,15 @@ export abstract class CodeGenerator {
     return await this.format(this.gen())
   }
 
-  get isUsingCustomBasePath(): boolean {
+  isUsingCustomBasePath(): boolean {
     return this.basePath !== this.servers[0]
   }
 
-  get isUsingCustomOAuthTokenUrl(): boolean {
+  isUsingCustomOAuthTokenUrl(): boolean {
     return this.originalOauthTokenUrl !== this.oauthTokenUrl
   }
 
-  get hasMultipleApiKeys(): boolean {
+  hasMultipleApiKeys(): boolean {
     if (this.configuration.securitySchemes === null) return false
     const hasMultipleApiKeys =
       Object.values(this.configuration.securitySchemes).filter(
@@ -168,18 +177,26 @@ export abstract class CodeGenerator {
     return hasMultipleApiKeys
   }
 
-  get isArrayRequestBody(): boolean {
+  isArrayRequestBody(): boolean {
     return this.configuration.requestBody?.schema?.type === 'array'
   }
 
-  get requestBodyValue(): FormInputValue {
-    return this._formData['requestBody']
+  /**
+   * This is different than parameter with "in" === "body".  In the case where
+   * the request body is a scalar object or array, then this value will be
+   * non-empty. The reason why this is a different case is because SDKs are
+   * ergonomic in that request bodies are flattened if possible. In the case of
+   * a scalar or array request body, the request body cannot be flattened so it
+   * is passed as a separate argument.
+   */
+  requestBodyValue(): FormInputValue {
+    return this.recursivelyRemoveEmptyValues(this._formData['requestBody'])
   }
 
   /**
    * Returns the setup values that are non-empty and exist as part of passed parameters
    */
-  get nonEmptyParameters(): NonEmptyParameters {
+  nonEmptyParameters(): NonEmptyParameters {
     const parameters = Object.entries(
       this._formData[PARAMETER_FORM_NAME_PREFIX]
     )
@@ -227,9 +244,13 @@ export abstract class CodeGenerator {
 
     if (Array.isArray(object)) {
       // remove all empty values from array and return
-      const filtered = (object as any).filter((p: any) => this.isNonEmpty(p))
+      const filtered = (object as any)
+        .filter((p: any) => this.isNonEmpty(p))
+        .map((p: any) => this.recursivelyRemoveEmptyValues(p))
       return filtered
     }
+
+    if (object instanceof File) return object
 
     const clone = { ...object }
     Object.entries(object).forEach(([key, value]) => {
@@ -269,10 +290,40 @@ export abstract class CodeGenerator {
     return filtered.length > 0
   }
 
+  nonEmptySecurityMasked(): NonEmptySecurity {
+    return clone(this.nonEmptySecurity()).map(([name, security]) => {
+      if (security.type === 'apiKey') {
+        security[API_KEY_VALUE_PROPERTY] = this.mask(
+          security[API_KEY_VALUE_PROPERTY]
+        )
+      } else if (security.type === 'bearer') {
+        security[BEARER_VALUE_PROPERTY] = this.mask(
+          security[BEARER_VALUE_PROPERTY]
+        )
+      } else if (security.type === 'oauth2-client-credentials') {
+        security[OAUTH2_CLIENT_ID_PROPERTY] = this.mask(
+          security[OAUTH2_CLIENT_ID_PROPERTY]
+        )
+        security[OAUTH2_CLIENT_SECRET_PROPERTY] = this.mask(
+          security[OAUTH2_CLIENT_SECRET_PROPERTY]
+        )
+      }
+      return [name, security]
+    })
+  }
+
+  isUiOrCopyMode(): boolean {
+    return this.mode === 'ui' || this.mode === 'copy'
+  }
+
+  isCopyMode(): boolean {
+    return this.mode === 'copy'
+  }
+
   /**
    * Returns the security schemes that are non-empty
    */
-  get nonEmptySecurity() {
+  nonEmptySecurity() {
     return Object.entries(this._formData[SECURITY_FORM_NAME_PREFIX]).filter(
       ([_name, security]) => {
         if (security.type === 'apiKey') {
@@ -302,3 +353,5 @@ export abstract class CodeGenerator {
     )
   }
 }
+
+export type NonEmptySecurity = ReturnType<CodeGenerator['nonEmptySecurity']>

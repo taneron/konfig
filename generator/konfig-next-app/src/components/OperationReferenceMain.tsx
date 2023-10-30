@@ -7,7 +7,6 @@ import {
   Box,
   Divider,
   Badge,
-  Button,
   Text,
   useMantineColorScheme,
   Paper,
@@ -17,8 +16,6 @@ import {
 } from '@mantine/core'
 import { HttpMethodBadge } from './HttpMethodBadge'
 import { OperationForm } from './OperationForm'
-import { OperationFormGeneratedCode } from './OperationFormGeneratedCode'
-import { httpResponseCodeMeaning } from '../utils/http-response-code-meaning'
 import {
   FORM_VALUES_LOCAL_STORAGE_KEY,
   generateInitialFormValues,
@@ -38,7 +35,7 @@ import { CodeGeneratorTypeScript } from '../utils/code-generator-typescript'
 import { ExecuteOutput } from './ExecuteOutput'
 import { tryJsonOutput } from '../utils/try-json-output'
 import { tryTableOutput } from '../utils/try-table-output'
-import { IconAlertCircle, IconTerminal } from '@tabler/icons-react'
+import { IconAlertCircle } from '@tabler/icons-react'
 import { deepmerge } from '../utils/deepmerge'
 import { notifications } from '@mantine/notifications'
 import localforage from 'localforage'
@@ -46,6 +43,7 @@ import { ReferencePageProps } from '../utils/generate-props-for-reference-page'
 import { SocialFooter } from './SocialFooter'
 import { Breadcrumbs } from './Breadcrumbs'
 import { OperationReferenceResponses } from './OperationReferenceResponses'
+import { OperationRequest } from './OperationRequest'
 
 export function OperationReferenceMain({
   pathParameters,
@@ -60,18 +58,26 @@ export function OperationReferenceMain({
   konfigYaml,
   basePath,
   owner,
+  path,
   oauthTokenUrl,
   repo,
   servers,
   originalOauthTokenUrl,
   requestBodyParameter,
+  httpMethod,
+  contentType,
+  hideNonSdkSnippets,
 }: Pick<
   ReferencePageProps,
   | 'pathParameters'
   | 'queryParameters'
+  | 'contentType'
+  | 'hideNonSdkSnippets'
+  | 'httpMethod'
   | 'headerParameters'
   | 'cookieParameters'
   | 'requestBodyParameter'
+  | 'path'
   | 'owner'
   | 'repo'
   | 'requestBodyProperties'
@@ -170,6 +176,9 @@ export function OperationReferenceMain({
     : []
 
   const codegenArgs: CodeGeneratorConstructorArgs = {
+    contentType,
+    httpMethod,
+    path,
     parameters: parameters,
     requestBody: requestBodyParameter,
     securitySchemes,
@@ -213,7 +222,6 @@ export function OperationReferenceMain({
   }
 
   const header = operation.operation.summary ?? operation.path
-
   return (
     <FormProvider form={form}>
       <form
@@ -226,7 +234,7 @@ export function OperationReferenceMain({
             const files = CodeGeneratorTypeScript.setupFiles(values)
 
             const snippet = await new CodeGeneratorTypeScript({
-              mode: 'sandbox',
+              mode: 'execution',
               ...codegenArgs,
             }).snippet()
 
@@ -337,46 +345,38 @@ export function OperationReferenceMain({
           <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
             <Divider my="xl" />
           </MediaQuery>
-          <Box px="sm" w={{ base: '100%', sm: '40%' }}>
-            <Stack
-              pos="sticky"
-              top="calc(var(--mantine-header-height, 0px) + 1rem)"
-              w="100%"
-              spacing="sm"
-            >
-              {authorization.length > 0 && (
-                <>
-                  <Title order={5}> Authorization </Title>
-
-                  {authorization
-                    .filter(([name]) => {
-                      return !hideSecurity
-                        .map(({ name }) => name)
-                        .includes(name)
-                    })
-                    .map(([name, scheme]) => {
-                      return (
-                        <OperationSecuritySchemeForm
-                          key={name}
-                          name={name}
-                          scheme={scheme}
-                        />
-                      )
-                    })}
-                  {clientState.map((name) => {
-                    return <OperationClientStateForm key={name} name={name} />
+          <Box
+            className="flex flex-col gap-6"
+            px="sm"
+            w={{ base: '100%', sm: '40%' }}
+          >
+            {authorization.length > 0 && (
+              <div className="space-y-2">
+                <Title order={6}>Authorization</Title>
+                {authorization
+                  .filter(([name]) => {
+                    return !hideSecurity.map(({ name }) => name).includes(name)
+                  })
+                  .map(([name, scheme]) => {
+                    return (
+                      <OperationSecuritySchemeForm
+                        key={name}
+                        name={name}
+                        scheme={scheme}
+                      />
+                    )
                   })}
-                </>
-              )}
-              <OperationFormGeneratedCode {...codegenArgs} />
-              <Button
-                variant={colorScheme === 'dark' ? 'light' : 'filled'}
-                type="submit"
-                loading={requestInProgress}
-                leftIcon={<IconTerminal size="1rem" />}
-              >
-                Request API
-              </Button>
+                {clientState.map((name) => {
+                  return <OperationClientStateForm key={name} name={name} />
+                })}
+              </div>
+            )}
+            <div className="sticky top-[calc(var(--mantine-header-height,0px)+1rem)] space-y-4">
+              <OperationRequest
+                hideNonSdkSnippets={hideNonSdkSnippets}
+                codegenArgs={codegenArgs}
+                requestInProgress={requestInProgress}
+              />
               {result?.data != null && (
                 <Paper shadow="sm" radius="xs" p={0} withBorder>
                   <Box p="sm">
@@ -394,12 +394,12 @@ export function OperationReferenceMain({
                   />
                 </Paper>
               )}
-              <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
-                <Box>
-                  <SocialFooter konfigYaml={konfigYaml} />
-                </Box>
-              </MediaQuery>
-            </Stack>
+            </div>
+            <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
+              <Box>
+                <SocialFooter konfigYaml={konfigYaml} />
+              </Box>
+            </MediaQuery>
           </Box>
         </Flex>
       </form>

@@ -1,9 +1,291 @@
+import { HttpMethodsEnum } from 'konfig-lib'
 import { CodeGeneratorConstructorArgs } from './code-generator'
 import { CodeGeneratorPython } from './code-generator-python'
+
+test('deeply nested objects with file', async () => {
+  const args: CodeGeneratorConstructorArgs = {
+    httpMethod: HttpMethodsEnum.POST,
+    contentType: 'application/json',
+    path: '/v1/ingest/documents/local',
+    parameters: [],
+    requestBody: {
+      name: '',
+      in: 'body',
+      schema: {
+        type: 'array',
+        items: {
+          type: 'object',
+          required: ['blob', 'metadata'],
+          properties: {
+            blob: {
+              description: 'The actual file being uploaded.',
+              type: 'string',
+              format: 'binary',
+            },
+            metadata: {
+              type: 'object',
+              required: ['bucketId', 'fileName', 'fileType'],
+              properties: {
+                bucketId: {
+                  type: 'integer',
+                  example: 1234,
+                },
+                fileName: {
+                  type: 'string',
+                  example: 'my_file.txt',
+                },
+                fileType: {
+                  type: 'string',
+                  enum: ['txt', 'docx', 'pptx', 'xlsx', 'pdf', 'png', 'jpg'],
+                },
+                metadata: {
+                  type: 'object',
+                  example: {
+                    key: 'value',
+                  },
+                },
+                callbackData: {
+                  type: 'string',
+                  example: 'my_callback_data',
+                },
+                callbackUrl: {
+                  type: 'string',
+                  example: 'https://my.callback.url.com',
+                },
+              },
+            },
+          },
+        },
+      },
+      isRequestBody: true,
+    },
+    securitySchemes: {
+      ApiKeyAuth: {
+        type: 'apiKey',
+        in: 'header',
+        name: 'X-API-Key',
+      },
+    },
+    formData: {
+      parameters: {
+        documentId: '',
+      },
+      security: {
+        ApiKeyAuth: {
+          type: 'apiKey',
+          in: 'header',
+          key: 'X-API-Key',
+          value: 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX',
+        },
+      },
+      requestBody: [
+        {
+          blob: new File([], 'file.txt'),
+          metadata: {
+            bucketId: 321,
+            fileName: '321',
+            fileType: 'docx',
+            metadata: '',
+            callbackData: '',
+            callbackUrl: '',
+          },
+        },
+      ],
+    },
+    languageConfigurations: {
+      typescript: {
+        clientName: 'Groundx',
+        packageName: 'groundx-typescript-sdk',
+      },
+      python: {
+        clientName: 'Groundx',
+        packageName: 'groundx',
+      },
+    },
+    servers: ['https://api.groundx.ai/api'],
+    operationId: 'Document_uploadLocal',
+    tag: 'Documents',
+    basePath: 'https://api.groundx.ai/api',
+    oauthTokenUrl: null,
+    originalOauthTokenUrl: null,
+    requestBodyRequired: false,
+  }
+  const code = await new CodeGeneratorPython(args).snippet()
+  expect(code).toMatchSnapshot()
+})
+
+test('nested objects does not have empty properties', async () => {
+  const args: CodeGeneratorConstructorArgs = {
+    contentType: 'application/json',
+    httpMethod: HttpMethodsEnum.POST,
+    path: '/',
+    parameters: [
+      {
+        name: 'documents',
+        in: 'body',
+        schema: {
+          type: 'array',
+          items: {
+            type: 'object',
+            required: ['bucketId', 'sourceUrl'],
+            properties: {
+              bucketId: {
+                type: 'integer',
+                example: 1234,
+              },
+              sourceUrl: {
+                type: 'string',
+                example: 'https://my.source.url.com/file.txt',
+              },
+              callbackData: {
+                type: 'string',
+                example: 'my_callback_data',
+              },
+              callbackUrl: {
+                type: 'string',
+                example: 'https://my.callback.url.com',
+              },
+              metadata: {
+                type: 'object',
+                example: {
+                  key: 'value',
+                },
+              },
+              type: {
+                type: 'string',
+                enum: ['txt', 'docx', 'pptx', 'xlsx', 'pdf', 'png', 'jpg'],
+              },
+            },
+          },
+        },
+        required: true,
+      },
+    ],
+    requestBody: {
+      name: '',
+      in: 'body',
+      schema: {
+        type: 'object',
+        required: ['documents'],
+        properties: {
+          documents: {
+            type: 'array',
+            items: {
+              type: 'object',
+              required: ['bucketId', 'sourceUrl'],
+              properties: {
+                bucketId: {
+                  type: 'integer',
+                  example: 1234,
+                },
+                sourceUrl: {
+                  type: 'string',
+                  example: 'https://my.source.url.com/file.txt',
+                },
+                callbackData: {
+                  type: 'string',
+                  example: 'my_callback_data',
+                },
+                callbackUrl: {
+                  type: 'string',
+                  example: 'https://my.callback.url.com',
+                },
+                metadata: {
+                  type: 'object',
+                  example: {
+                    key: 'value',
+                  },
+                },
+                type: {
+                  type: 'string',
+                  enum: ['txt', 'docx', 'pptx', 'xlsx', 'pdf', 'png', 'jpg'],
+                },
+              },
+            },
+          },
+        },
+      },
+      isRequestBody: true,
+    },
+    securitySchemes: {
+      ApiKeyAuth: {
+        type: 'apiKey',
+        in: 'header',
+        name: 'X-API-Key',
+      },
+    },
+    formData: {
+      parameters: {
+        documents: [
+          {
+            bucketId: 1,
+            sourceUrl: '',
+            callbackData: '',
+            callbackUrl: '',
+            metadata: '',
+            type: '',
+          },
+        ],
+        bucketId: '',
+        bucket: {
+          name: '',
+        },
+        documentId: '',
+        n: '',
+        nextToken: '',
+        id: '',
+        processId: '2fe69d3d-badf-43df-a665-0a49d00ba206',
+      },
+      security: {
+        ApiKeyAuth: {
+          type: 'apiKey',
+          in: 'header',
+          key: 'X-API-Key',
+          value: 'mykey',
+        },
+      },
+      requestBody: [
+        {
+          blob: {},
+          metadata: {
+            bucketId: 6124,
+            fileName: 'file.txt',
+            fileType: 'txt',
+            metadata: '',
+            callbackData: '',
+            callbackUrl: '',
+          },
+        },
+      ],
+    },
+    languageConfigurations: {
+      typescript: {
+        clientName: 'Groundx',
+        packageName: 'groundx-typescript-sdk',
+      },
+      python: {
+        clientName: 'Groundx',
+        packageName: 'groundx',
+      },
+    },
+    servers: ['https://api.groundx.ai/api'],
+    operationId: 'Document_uploadRemote',
+    tag: 'Documents',
+    basePath: 'https://api.groundx.ai/api',
+    oauthTokenUrl: null,
+    originalOauthTokenUrl: null,
+    requestBodyRequired: false,
+  }
+  const code = await new CodeGeneratorPython(args).snippet()
+  expect(code).toMatchSnapshot()
+})
 
 test('request body with blob values', async () => {
   const args: CodeGeneratorConstructorArgs = {
     parameters: [],
+    path: '',
+    contentType: 'application/json',
+    httpMethod: HttpMethodsEnum.POST,
     requestBody: {
       name: '',
       in: 'body',
@@ -123,6 +405,9 @@ test('request body with blob values', async () => {
 
 test('simple example', async () => {
   const code = await new CodeGeneratorPython({
+    path: '',
+    contentType: 'application/json',
+    httpMethod: HttpMethodsEnum.POST,
     securitySchemes: {
       PartnerSignature: {
         type: 'apiKey',
@@ -182,6 +467,9 @@ test('simple example', async () => {
 
 test('simple parameters example', async () => {
   const code = await new CodeGeneratorPython({
+    path: '',
+    contentType: 'application/json',
+    httpMethod: HttpMethodsEnum.POST,
     securitySchemes: {
       PartnerSignature: {
         type: 'apiKey',
@@ -266,6 +554,9 @@ test('simple parameters example', async () => {
 
 it('example with boolean', async () => {
   const code = await new CodeGeneratorPython({
+    path: '',
+    contentType: 'application/json',
+    httpMethod: HttpMethodsEnum.POST,
     securitySchemes: {
       PartnerSignature: {
         type: 'apiKey',
@@ -415,6 +706,9 @@ it('example with boolean', async () => {
 
 it('example with inner object', async () => {
   const code = await new CodeGeneratorPython({
+    path: '',
+    contentType: 'application/json',
+    httpMethod: HttpMethodsEnum.POST,
     formData: {
       requestBody: '',
       parameters: {
@@ -609,6 +903,9 @@ it('example with inner object', async () => {
 
 it('example with no setup', async () => {
   const code = await new CodeGeneratorPython({
+    path: '',
+    contentType: 'application/json',
+    httpMethod: HttpMethodsEnum.POST,
     securitySchemes: {
       PartnerSignature: {
         type: 'apiKey',
@@ -656,6 +953,9 @@ it('example with no setup', async () => {
 
 it('example with no form data but > 1 parameters', async () => {
   const code = await new CodeGeneratorPython({
+    path: '',
+    contentType: 'application/json',
+    httpMethod: HttpMethodsEnum.POST,
     securitySchemes: {
       PartnerSignature: {
         type: 'apiKey',

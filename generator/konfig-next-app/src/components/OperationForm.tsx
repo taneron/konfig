@@ -3,11 +3,15 @@ import { OperationParameter, Parameter } from './OperationParameter'
 import { type SchemaObject } from 'konfig-lib'
 import { generateParametersFromRequestBodyProperties } from '@/utils/generate-parameters-from-request-body-properties'
 
-const useStyles = createStyles((theme) => ({
+export const useBorderStyles = createStyles((theme) => ({
   borderBottom: {
-    borderBottom: `1px solid ${
-      theme.colorScheme === 'dark' ? theme.colors.gray[9] : theme.colors.gray[1]
-    }`,
+    borderBottom: `1px solid`,
+  },
+  borderColor: {
+    borderColor:
+      theme.colorScheme === 'dark'
+        ? theme.colors.gray[9]
+        : theme.colors.gray[1],
   },
 }))
 
@@ -95,20 +99,23 @@ function ParameterGroup({
   owner: string
   repo: string
 }) {
-  const { classes, cx } = useStyles()
+  const { classes, cx } = useBorderStyles()
   return (
     parameters.length > 0 && (
       <Box>
-        <Title mb="xl" order={6}>
+        <div className="text-xs text-mantine-gray-600 mb-6 font-semibold">
           {title}
-        </Title>
+        </div>
         <Stack spacing="xl">
           {parameters.map((param, i) => (
             <Box
               key={param.name}
-              className={cx({
-                [classes.borderBottom]: i < parameters.length - 1,
-              })}
+              className={cx(
+                {
+                  [classes.borderBottom]: i < parameters.length - 1,
+                },
+                classes.borderColor
+              )}
             >
               <OperationParameter owner={owner} repo={repo} param={param} />
             </Box>
