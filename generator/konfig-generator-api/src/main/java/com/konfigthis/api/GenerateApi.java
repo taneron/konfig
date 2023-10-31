@@ -283,6 +283,7 @@ public interface GenerateApi {
         putIfPresent(map, "artifactId", additionalProperties.getArtifactId());
         putIfPresent(map, "artifactUrl", additionalProperties.getArtifactUrl());
         putIfPresent(map, "groupId", additionalProperties.getGroupId());
+        // non-Python SDKs will throw NPE is no null check is added
         if (additionalProperties.getPythonResponseTypeVersion() != null) {
             putIfPresent(map, "prstv1", additionalProperties.getPythonResponseTypeVersion().equals("1"));
             putIfPresent(map, "prstv2", additionalProperties.getPythonResponseTypeVersion().equals("2"));
