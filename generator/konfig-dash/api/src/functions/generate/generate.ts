@@ -534,6 +534,7 @@ export const myHandler = async (event: APIGatewayEvent, context: Context) => {
       topLevelOperations: generatorConfig.topLevelOperations,
       ...body,
     })
+    console.log(generatorConfig)
     const requestBody: JavaGenerateApiRequestBodyType = {
       spec: {
         src,
