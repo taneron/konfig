@@ -3,8 +3,9 @@ FROM maven:3.8.6-jdk-11-slim
 WORKDIR /konfig-generator-api
 
 build-generator:
-  COPY src src
   COPY pom.xml .
+  RUN mvn -B dependency:go-offline
+  COPY src src
   RUN mvn -f pom.xml clean package
   SAVE ARTIFACT target/openapi-generator-api-1.0.0.jar
 
