@@ -4,9 +4,14 @@ WORKDIR /konfig-generator-api
 
 build-generator:
   COPY pom.xml .
-  RUN mvn -B dependency:go-offline
+  # Go offline, ensuring all necessary dependencies are cached
+  RUN mvn --no-transfer-progress -B de.qaware.maven:go-offline-maven-plugin:resolve-dependencies
+
+  # Run 'clean' to ensure its dependencies are downloaded
+  RUN mvn --no-transfer-progress -B clean
+
   COPY src src
-  RUN mvn -f pom.xml clean package
+  RUN mvn --offline clean package
   SAVE ARTIFACT target/openapi-generator-api-1.0.0.jar
 
 run-generator:
