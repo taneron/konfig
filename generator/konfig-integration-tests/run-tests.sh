@@ -1,1 +1,3 @@
+#!/bin/bash
+
 earthly -c earthly-config.yaml -P +test
