@@ -5,10 +5,10 @@ WORKDIR /konfig-python-formatter-server-blackd
 run-python-formatter:
   COPY pyproject.toml .
   COPY README.md . # Required because pyproject.toml references it
-  COPY main.py .
   COPY python_formatter_server_blackd python_formatter_server_blackd
   COPY build.sh .
   RUN ./build.sh
+  COPY main.py .
   COPY start-ci.sh .
   EXPOSE 10000
   ENTRYPOINT ["./start-ci.sh"]
