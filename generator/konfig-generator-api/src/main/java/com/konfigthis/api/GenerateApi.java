@@ -365,7 +365,7 @@ public interface GenerateApi {
         putIfPresent(map, "hideGenerationTimestamp", true);
         putIfPresent(map, "goImportAlias", packageName);
 
-        // For typescript-axios
+        // Good defaults for the typescript-axios generator
         putIfPresent(map, "withSeparateModelsAndApi", true);
         putIfPresent(map, "useSingleRequestParameter", additionalProperties.getUseSingleRequestParameter());
 
