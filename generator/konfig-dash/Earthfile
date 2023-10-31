@@ -4,7 +4,21 @@ WORKDIR /konfig-dash
 
 build-konfig-dash:
   RUN apt-get update
-  RUN apt-get install -y openssl # not present in node:16-slim but required by prisma
+
+  ### PYTHON
+  ENV PYTHONDONTWRITEBYTECODE=1 # Don't write .pyc files, which are not needed in a container
+  ENV PIP_DEFAULT_TIMEOUT=100
+
+  # lsof required for killing mock server after test
+  RUN apt-get install -y lsof python3 python3-pip
+  RUN pip3 install --upgrade pip
+  RUN pip3 install poetry
+  # Clean up python installations
+  RUN apt-get clean && rm -rf /var/lib/apt/lists/*
+
+  # not present in node:16-slim but required by prisma
+  RUN apt-get install -y openssl
+
   # Copy everything we need to run `yarn` without copying the source code so that dependencies are cached
   COPY package.json yarn.lock .yarnrc.yml redwood.toml .
   COPY .yarn .yarn
