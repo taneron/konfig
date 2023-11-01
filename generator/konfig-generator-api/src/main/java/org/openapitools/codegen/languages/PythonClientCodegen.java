@@ -33,6 +33,8 @@ import io.swagger.v3.oas.models.servers.Server;
 import io.swagger.v3.oas.models.tags.Tag;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.tuple.Pair;
+import org.apache.commons.lang3.tuple.Triple;
 import org.apache.commons.text.StringEscapeUtils;
 import org.openapitools.codegen.*;
 import org.openapitools.codegen.CodegenDiscriminator.MappedModel;
@@ -43,10 +45,7 @@ import org.openapitools.codegen.ignore.CodegenIgnoreProcessor;
 import org.openapitools.codegen.meta.GeneratorMetadata;
 import org.openapitools.codegen.meta.Stability;
 import org.openapitools.codegen.meta.features.*;
-import org.openapitools.codegen.model.ModelMap;
-import org.openapitools.codegen.model.ModelsMap;
-import org.openapitools.codegen.model.OperationMap;
-import org.openapitools.codegen.model.OperationsMap;
+import org.openapitools.codegen.model.*;
 import org.openapitools.codegen.templating.CommonTemplateContentLocator;
 import org.openapitools.codegen.templating.GeneratorTemplateContentLocator;
 import org.openapitools.codegen.templating.HandlebarsEngineAdapter;
@@ -172,6 +171,7 @@ public class PythonClientCodegen extends AbstractPythonCodegen {
 
         modelPackage = "model";
         typePackage = "type";
+        additionalModelPackage = "pydantic";
         apiPackage = "apis";
         outputFolder = "generated-code" + File.separatorChar + "python";
 
@@ -181,6 +181,25 @@ public class PythonClientCodegen extends AbstractPythonCodegen {
 
         // default HIDE_GENERATION_TIMESTAMP to true
         hideGenerationTimestamp = Boolean.TRUE;
+
+        ArrayList<PythonDependency> dependencies = new ArrayList<>();
+        dependencies.add(new PythonDependency("certifi", "2023.7.22", ">=", ">="));
+        dependencies.add(new PythonDependency("python-dateutil", "2.8.2", "~=", "^"));
+        dependencies.add(new PythonDependency("typing_extensions", "4.3.0", "~=", "^"));
+        dependencies.add(new PythonDependency("urllib3", "1.26.18", "~=", "^"));
+        dependencies.add(new PythonDependency("frozendict", "2.3.4", "~=", "^"));
+        dependencies.add(new PythonDependency("aiohttp", "3.8.4", "~=", "^"));
+        dependencies.add(new PythonDependency("pydantic", "2.4.2", "~=", "^"));
+        ArrayList<PythonDependency> poetryDependencies = new ArrayList<>();
+        poetryDependencies.add(new PythonDependency("python", "3.7", "N/A", "^"));
+        poetryDependencies.addAll(dependencies);
+
+
+        // join dependencies with newline
+        additionalProperties.put("poetryDependencies", String.join("\n", poetryDependencies.stream().map(PythonDependency::poetry).collect(Collectors.toList())));
+
+        // join dependencies with ",\n"
+        additionalProperties.put("setupRequirements", String.join(",\n    ", dependencies.stream().map(PythonDependency::setupPy).collect(Collectors.toList())));
 
         // from https://docs.python.org/3/reference/lexical_analysis.html#keywords
         setReservedWordsLowerCase(
@@ -313,6 +332,10 @@ public class PythonClientCodegen extends AbstractPythonCodegen {
         typeTemplateFiles.put("type." + templateExtension, ".py");
 
         apiTemplateFiles.put("api." + templateExtension, ".py");
+        if (additionalProperties.get("prstv2") != null && additionalProperties.get("prstv2").equals(true)) {
+            additionalModelTemplateFiles.put("pydantic." + templateExtension, ".py");
+            apiTemplateFiles.put("api_raw." + templateExtension, ".py");
+        }
         modelTestTemplateFiles.put("model_test." + templateExtension, ".py");
 
         // Commented these out as we now generate all docs in the top-level Python SDK's README.md
@@ -469,6 +492,7 @@ public class PythonClientCodegen extends AbstractPythonCodegen {
         supportingFiles.add(new SupportingFile("__init__models." + templateExtension, packagePath() + File.separatorChar + "models", "__init__.py"));
         supportingFiles.add(new SupportingFile("__init__model." + templateExtension, packagePath() + File.separatorChar + modelPackage, "__init__.py"));
         supportingFiles.add(new SupportingFile("__init__type." + templateExtension, packagePath() + File.separatorChar + typePackage, "__init__.py"));
+        supportingFiles.add(new SupportingFile("__init__pydantic." + templateExtension, packagePath() + File.separatorChar + additionalModelPackage, "__init__.py"));
         supportingFiles.add(new SupportingFile("__init__apis." + templateExtension, packagePath() + File.separatorChar + apiPackage, "__init__.py"));
         // Generate the 'signing.py' module, but only if the 'HTTP signature' security scheme is specified in the OAS.
         Map<String, SecurityScheme> securitySchemeMap = openAPI != null ?
@@ -524,7 +548,8 @@ public class PythonClientCodegen extends AbstractPythonCodegen {
     @Override
     public String apiFilename(String templateName, String tag) {
         String suffix = apiTemplateFiles().get(templateName);
-        return apiFileFolder() + File.separator + toApiFilename(tag) + suffix;
+        String filename = templateName.contains("_raw") ? toApiFilenameRaw(tag) : toApiFilename(tag);
+        return apiFileFolder() + File.separator + filename + suffix;
     }
 
     private void generateFiles(List<List<Object>> processTemplateToFileInfos, boolean shouldGenerate, String skippedByOption) {
@@ -609,6 +634,7 @@ public class PythonClientCodegen extends AbstractPythonCodegen {
             endpointMap.put("imports", co.imports);
             endpointMap.put("schemaImports", co.schemaImports);
             endpointMap.put("typeImports", co.typeImports);
+            endpointMap.put("additionalModelImports", co.additionalModelImports);
             endpointMap.put("packageName", packageName);
             endpointMap.put("operations", operations);
             ((HashMap<String, Object>) operations.get("additionalProperties")).entrySet().forEach((entry) -> {
@@ -951,6 +977,14 @@ public class PythonClientCodegen extends AbstractPythonCodegen {
         return "from " + packagePath() + "." +  typePackage() + "." + toModelFilename(name) + " import " + toModelName(name);
     }
 
+    public String toPydanticImport(String name) {
+        return toPydanticImportBase(name) + " as " + toModelName(name) + "Pydantic";
+    }
+
+    public String toPydanticImportBase(String name) {
+        return "from " + packagePath() + "." +  "pydantic" + "." + toModelFilename(name) + " import " + toModelName(name);
+    }
+
     @Override
     @SuppressWarnings("static-method")
     public OperationsMap postProcessOperationsWithModels(OperationsMap objs, List<ModelMap> allModels) {
@@ -974,6 +1008,9 @@ public class PythonClientCodegen extends AbstractPythonCodegen {
             }
             for (String modelName : modelNames) {
                 operation.typeImports.add(toTypeImport(modelName));
+            }
+            for (String modelName : modelNames) {
+                operation.additionalModelImports.add(toPydanticImport(modelName));
             }
         }
         generateEndpoints(objs);
@@ -1018,6 +1055,10 @@ public class PythonClientCodegen extends AbstractPythonCodegen {
                 }
                 for (String importModelName : importModelNames) {
                     cm.typeImports.add(toTypeImport(importModelName));
+                }
+                for (String importModelName : importModelNames) {
+                    cm.additionalModelImports.add(toPydanticImport(importModelName));
+                    cm.additionalModelImportsModified.add(toPydanticImportBase(importModelName));
                 }
             }
         }
@@ -1121,6 +1162,7 @@ public class PythonClientCodegen extends AbstractPythonCodegen {
         // templates use its presence to handle these badly named variables / keys
         if ((isReservedWord(cp.baseName) || !isValidPythonVarOrClassName(cp.baseName)) && !cp.baseName.equals(cp.name)) {
             cp.nameInSnakeCase = cp.name;
+            cp.hasProblematicName = true;
         } else {
             cp.nameInSnakeCase = null;
         }
@@ -2826,6 +2868,11 @@ public class PythonClientCodegen extends AbstractPythonCodegen {
     @Override
     public String typeFileFolder() {
         return outputFolder + File.separatorChar + packagePath() + File.separatorChar +  typePackage();
+    }
+
+    @Override
+    public String additionalModelFileFolder() {
+        return outputFolder + File.separatorChar + packagePath() + File.separatorChar +  additionalModelPackage();
     }
 
     @Override
