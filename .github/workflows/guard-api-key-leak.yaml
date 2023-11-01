@@ -1,5 +1,7 @@
 name: Guard API Key Leak
-on: push
+on:
+  schedule:
+    - cron: '0 0 * * *'  # Runs every day at 00:00 UTC
 
 jobs:
   detect-key-leak:
