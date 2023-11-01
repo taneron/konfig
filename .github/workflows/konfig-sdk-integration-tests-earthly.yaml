@@ -30,9 +30,6 @@ jobs:
           echo "AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}" >> ./compose/.env
         working-directory: ./generator/konfig-integration-tests
 
-      - name: Configure cache limit for earthly
-        run: earthly config global.cache_size_mb 25000
-
       - name: Build and run integration tests
         run: earthly --ci --sat integration-tester -P +test
         working-directory: ./generator/konfig-integration-tests
