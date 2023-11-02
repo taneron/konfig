@@ -7,3 +7,4 @@ import enum
 
 class TagValues(str, enum.Enum):
     TEST = "Test"
+    TEST_RESPONSE = "TestResponse"

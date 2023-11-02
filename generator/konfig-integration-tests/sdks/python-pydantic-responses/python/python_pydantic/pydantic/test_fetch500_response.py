@@ -14,8 +14,8 @@ from datetime import datetime, date
 import typing
 from enum import Enum
 from typing_extensions import TypedDict, Literal
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, RootModel
 
 
 class TestFetch500Response(BaseModel):
-        error: str = Field(None, alias='error')
+    error: str = Field(None, alias='error')

@@ -13,6 +13,7 @@
 from dataclasses import dataclass
 import typing_extensions
 import urllib3
+from pydantic import RootModel
 from python_pydantic.request_before_hook import request_before_hook
 import json
 from urllib3._collections import HTTPHeaderDict
@@ -36,6 +37,7 @@ from python_pydantic.model.test_reserved_word import TestReservedWord as TestRes
 
 from python_pydantic.type.test_reserved_word import TestReservedWord
 
+from ...api_client import Dictionary
 from python_pydantic.pydantic.test_reserved_word import TestReservedWord as TestReservedWordPydantic
 
 from . import path
@@ -273,7 +275,8 @@ class ReservedWord(BaseApi):
         )
         if validate:
             return TestReservedWordPydantic(**raw_response.body)
-        return TestReservedWordPydantic.model_construct(**raw_response.body)
+        return api_client.construct_model_instance(TestReservedWordPydantic, raw_response.body)
+    
     
     def reserved_word(
         self,
@@ -283,7 +286,7 @@ class ReservedWord(BaseApi):
         )
         if validate:
             return TestReservedWordPydantic(**raw_response.body)
-        return TestReservedWordPydantic.model_construct(**raw_response.body)
+        return api_client.construct_model_instance(TestReservedWordPydantic, raw_response.body)
 
 
 class ApiForget(BaseApi):

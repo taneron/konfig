@@ -1,19 +1,23 @@
 {{#if hasVars}}
 class {{classname}}(BaseModel):
     {{#each requiredVars}}
-        {{#if description}}
+    {{#if description}}
     # {{{description}}}
-        {{/if}}
-    {{> pydantic_templates/type_property_name}}: {{{dataType}}} = Field(alias='{{baseName}}')
+    {{/if}}
+  {{> pydantic_templates/type_property_name}}: {{{dataType}}} = Field(alias='{{baseName}}')
+    {{#unless optionalVars}}
     {{#unless @last}}
+
+    {{/unless}}
+    {{else}}
 
     {{/unless}}
     {{/each}}
     {{#each optionalVars}}
-        {{#if description}}
+    {{#if description}}
     # {{{description}}}
-        {{/if}}
-    {{> pydantic_templates/type_property_name}}: {{{dataType}}} = Field(None, alias='{{baseName}}')
+    {{/if}}
+  {{> pydantic_templates/type_property_name}}: {{{dataType}}} = Field(None, alias='{{baseName}}')
     {{#unless @last}}
 
     {{/unless}}
