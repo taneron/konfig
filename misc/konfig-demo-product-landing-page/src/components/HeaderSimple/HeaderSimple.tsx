@@ -73,7 +73,7 @@ export function HeaderSimple() {
         <Button
           target="_blank"
           component="a"
-          href="https://calendly.com/dylan-konfig/meet"
+          href="https://calendly.com/anhtuan-2/30min"
           size="xs"
         >
           Schedule a Demo

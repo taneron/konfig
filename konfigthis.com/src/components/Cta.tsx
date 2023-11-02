@@ -83,7 +83,7 @@ export function Cta() {
               target="_blank"
               color="dark"
               component="a"
-              href="https://calendly.com/dylan-konfig/meet"
+              href="https://calendly.com/anhtuan-2/30min"
               leftIcon={<IconCalendarEvent />}
             >
               Book a demo

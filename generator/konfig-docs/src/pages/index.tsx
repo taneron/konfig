@@ -12,7 +12,7 @@ export default function Index() {
       <div style={{ height: "700px" }}>
         <InlineWidget
           styles={{ height: "100%" }}
-          url="https://calendly.com/dylan-konfig/meet"
+          url="https://calendly.com/anhtuan-2/30min"
         />
       </div>
     </Layout>

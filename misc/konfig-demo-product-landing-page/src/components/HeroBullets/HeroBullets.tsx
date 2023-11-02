@@ -123,7 +123,7 @@ export function HeroBullets() {
               color="gray"
               target="_blank"
               component="a"
-              href="https://calendly.com/dylan-konfig/meet"
+              href="https://calendly.com/anhtuan-2/30min"
               leftIcon={<IconCalendarEvent />}
             >
               Book a demo
