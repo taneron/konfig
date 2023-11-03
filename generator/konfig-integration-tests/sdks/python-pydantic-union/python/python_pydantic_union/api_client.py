@@ -1,8 +1,8 @@
 # coding: utf-8
 """
-    python-pydantic-reserved-namespace-model API
+    python-pydantic-union API
 
-    A simple API based for testing python-pydantic-reserved-namespace-model.
+    A simple API based for testing python-pydantic-union.
 
     The version of the OpenAPI document: 1.0.0
     Contact: support@example.com
@@ -33,14 +33,14 @@ from urllib3.fields import guess_content_type
 
 import frozendict
 
-from python_pydantic_reserved_namespace_model import rest
-from python_pydantic_reserved_namespace_model.api_response import ApiResponse, AsyncApiResponse
-from python_pydantic_reserved_namespace_model.rest import AsyncResponseWrapper, ResponseWrapper
-from python_pydantic_reserved_namespace_model.configuration import Configuration
-from python_pydantic_reserved_namespace_model.exceptions import ApiTypeError, ApiValueError, MissingRequiredParametersError
-from python_pydantic_reserved_namespace_model.request_after_hook import request_after_hook
-from python_pydantic_reserved_namespace_model.request_before_url_hook import request_before_url_hook
-from python_pydantic_reserved_namespace_model.schemas import (
+from python_pydantic_union import rest
+from python_pydantic_union.api_response import ApiResponse, AsyncApiResponse
+from python_pydantic_union.rest import AsyncResponseWrapper, ResponseWrapper
+from python_pydantic_union.configuration import Configuration
+from python_pydantic_union.exceptions import ApiTypeError, ApiValueError, MissingRequiredParametersError
+from python_pydantic_union.request_after_hook import request_after_hook
+from python_pydantic_union.request_before_url_hook import request_before_url_hook
+from python_pydantic_union.schemas import (
     NoneClass,
     BoolClass,
     Schema,
