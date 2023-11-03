@@ -195,6 +195,15 @@ public class CodegenModel implements IJsonSchemaValidationProperties {
         this.additionalPropertiesType = additionalPropertiesType;
     }
 
+    public boolean isArrayOrPolymorphic() {
+        return isArray || this.isPolymorphic();
+    }
+
+    public boolean isPolymorphic() {
+        if (this.composedSchemas == null) return false;
+        return this.composedSchemas.getAllOf() != null || this.composedSchemas.getAnyOf() != null || this.composedSchemas.getOneOf() != null;
+    }
+
     @Override
     public CodegenProperty getContains() {
         return contains;
