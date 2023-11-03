@@ -4,7 +4,6 @@ A simple API based for testing python-pydantic-recursively-convert-to-models.
 
 
 [![PyPI](https://img.shields.io/badge/PyPI-v1.0.0-blue)](https://pypi.org/project/python-pydantic-recursively-convert-to-models/1.0.0)
-[![GitHub last commit](https://img.shields.io/github/last-commit/konfig-dev/konfig.svg)](https://github.com/konfig-dev/konfig/commits)
 [![README.md](https://img.shields.io/badge/README-Click%20Here-green)](https://github.com/konfig-dev/konfig/tree/main/python#readme)
 [![More Info](https://img.shields.io/badge/More%20Info-Click%20Here-orange)](http://example.com/support)
 
@@ -16,6 +15,7 @@ A simple API based for testing python-pydantic-recursively-convert-to-models.
 - [Installing](#installing)
 - [Getting Started](#getting-started)
 - [Async](#async)
+- [Raw HTTP Response](#raw-http-response)
 - [Reference](#reference)
   * [`pythonpydanticrecursivelyconverttomodels.test.fetch`](#pythonpydanticrecursivelyconverttomodelstestfetch)
   * [`pythonpydanticrecursivelyconverttomodels.test.list`](#pythonpydanticrecursivelyconverttomodelstestlist)
@@ -48,12 +48,7 @@ pythonpydanticrecursivelyconverttomodels = PythonPydanticRecursivelyConvertToMod
 try:
     # Fetches a JSON value based on input parameter
     fetch_response = pythonpydanticrecursivelyconverttomodels.test.fetch()
-    pprint(fetch_response.body)
-    pprint(fetch_response.body["a"])
-    pprint(fetch_response.body["b"])
-    pprint(fetch_response.headers)
-    pprint(fetch_response.status)
-    pprint(fetch_response.round_trip_time)
+    print(fetch_response)
 except ApiException as e:
     print("Exception when calling TestApi.fetch: %s\n" % e)
     pprint(e.body)
@@ -84,12 +79,7 @@ async def main():
     try:
         # Fetches a JSON value based on input parameter
         fetch_response = await pythonpydanticrecursivelyconverttomodels.test.afetch()
-        pprint(fetch_response.body)
-        pprint(fetch_response.body["a"])
-        pprint(fetch_response.body["b"])
-        pprint(fetch_response.headers)
-        pprint(fetch_response.status)
-        pprint(fetch_response.round_trip_time)
+        print(fetch_response)
     except ApiException as e:
         print("Exception when calling TestApi.fetch: %s\n" % e)
         pprint(e.body)
@@ -100,6 +90,39 @@ async def main():
 
 
 asyncio.run(main())
+```
+
+## Raw HTTP Response
+
+To access raw HTTP response values, use the `.raw` namespace.
+
+```python
+from pprint import pprint
+from python_pydantic_recursively_convert_to_models import (
+    PythonPydanticRecursivelyConvertToModels,
+    ApiException,
+)
+
+pythonpydanticrecursivelyconverttomodels = PythonPydanticRecursivelyConvertToModels(
+    api_key="YOUR_API_KEY",
+)
+
+try:
+    # Fetches a JSON value based on input parameter
+    fetch_response = pythonpydanticrecursivelyconverttomodels.test.raw.fetch()
+    pprint(fetch_response.body)
+    pprint(fetch_response.body["a"])
+    pprint(fetch_response.body["b"])
+    pprint(fetch_response.headers)
+    pprint(fetch_response.status)
+    pprint(fetch_response.round_trip_time)
+except ApiException as e:
+    print("Exception when calling TestApi.fetch: %s\n" % e)
+    pprint(e.body)
+    pprint(e.headers)
+    pprint(e.status)
+    pprint(e.reason)
+    pprint(e.round_trip_time)
 ```
 
 
@@ -116,7 +139,7 @@ fetch_response = pythonpydanticrecursivelyconverttomodels.test.fetch()
 
 #### 🔄 Return
 
-[TestFetchResponse](./python_pydantic_recursively_convert_to_models/type/test_fetch_response.py)
+[TestFetchResponse](./python_pydantic_recursively_convert_to_models/pydantic/test_fetch_response.py)
 
 #### 🌐 Endpoint
 
@@ -138,7 +161,7 @@ list_response = pythonpydanticrecursivelyconverttomodels.test.list()
 
 #### 🔄 Return
 
-[ListInner](./python_pydantic_recursively_convert_to_models/type/list_inner.py)
+[ListInner](./python_pydantic_recursively_convert_to_models/pydantic/list_inner.py)
 
 #### 🌐 Endpoint
 

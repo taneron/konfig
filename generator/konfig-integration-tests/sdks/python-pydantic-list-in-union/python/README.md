@@ -4,7 +4,6 @@ A simple API based for testing python-pydantic-list-in-union.
 
 
 [![PyPI](https://img.shields.io/badge/PyPI-v1.0.0-blue)](https://pypi.org/project/python-pydantic-list-in-union/1.0.0)
-[![GitHub last commit](https://img.shields.io/github/last-commit/konfig-dev/konfig.svg)](https://github.com/konfig-dev/konfig/commits)
 [![README.md](https://img.shields.io/badge/README-Click%20Here-green)](https://github.com/konfig-dev/konfig/tree/main/python#readme)
 [![More Info](https://img.shields.io/badge/More%20Info-Click%20Here-orange)](http://example.com/support)
 
@@ -16,6 +15,7 @@ A simple API based for testing python-pydantic-list-in-union.
 - [Installing](#installing)
 - [Getting Started](#getting-started)
 - [Async](#async)
+- [Raw HTTP Response](#raw-http-response)
 - [Reference](#reference)
   * [`pythonpydanticlistinunion.test.fetch`](#pythonpydanticlistinuniontestfetch)
 
@@ -44,10 +44,7 @@ pythonpydanticlistinunion = PythonPydanticListInUnion(
 try:
     # Fetches a JSON value based on input parameter
     fetch_response = pythonpydanticlistinunion.test.fetch()
-    pprint(fetch_response.body)
-    pprint(fetch_response.headers)
-    pprint(fetch_response.status)
-    pprint(fetch_response.round_trip_time)
+    print(fetch_response)
 except ApiException as e:
     print("Exception when calling TestApi.fetch: %s\n" % e)
     pprint(e.body)
@@ -75,10 +72,7 @@ async def main():
     try:
         # Fetches a JSON value based on input parameter
         fetch_response = await pythonpydanticlistinunion.test.afetch()
-        pprint(fetch_response.body)
-        pprint(fetch_response.headers)
-        pprint(fetch_response.status)
-        pprint(fetch_response.round_trip_time)
+        print(fetch_response)
     except ApiException as e:
         print("Exception when calling TestApi.fetch: %s\n" % e)
         pprint(e.body)
@@ -89,6 +83,34 @@ async def main():
 
 
 asyncio.run(main())
+```
+
+## Raw HTTP Response
+
+To access raw HTTP response values, use the `.raw` namespace.
+
+```python
+from pprint import pprint
+from python_pydantic_list_in_union import PythonPydanticListInUnion, ApiException
+
+pythonpydanticlistinunion = PythonPydanticListInUnion(
+    api_key="YOUR_API_KEY",
+)
+
+try:
+    # Fetches a JSON value based on input parameter
+    fetch_response = pythonpydanticlistinunion.test.raw.fetch()
+    pprint(fetch_response.body)
+    pprint(fetch_response.headers)
+    pprint(fetch_response.status)
+    pprint(fetch_response.round_trip_time)
+except ApiException as e:
+    print("Exception when calling TestApi.fetch: %s\n" % e)
+    pprint(e.body)
+    pprint(e.headers)
+    pprint(e.status)
+    pprint(e.reason)
+    pprint(e.round_trip_time)
 ```
 
 
@@ -105,7 +127,7 @@ fetch_response = pythonpydanticlistinunion.test.fetch()
 
 #### 🔄 Return
 
-[Response](./python_pydantic_list_in_union/type/response.py)
+[Response](./python_pydantic_list_in_union/pydantic/response.py)
 
 #### 🌐 Endpoint
 
