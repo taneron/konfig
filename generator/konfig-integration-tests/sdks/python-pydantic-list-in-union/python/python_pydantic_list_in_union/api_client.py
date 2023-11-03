@@ -1,8 +1,8 @@
 # coding: utf-8
 """
-    Python Pydantic Responses API
+    python-pydantic-list-in-union API
 
-    A simple API based on python pydantic responses.
+    A simple API based for testing python-pydantic-list-in-union.
 
     The version of the OpenAPI document: 1.0.0
     Contact: support@example.com
@@ -33,14 +33,14 @@ from urllib3.fields import guess_content_type
 
 import frozendict
 
-from python_pydantic import rest
-from python_pydantic.api_response import ApiResponse, AsyncApiResponse
-from python_pydantic.rest import AsyncResponseWrapper, ResponseWrapper
-from python_pydantic.configuration import Configuration
-from python_pydantic.exceptions import ApiTypeError, ApiValueError, MissingRequiredParametersError
-from python_pydantic.request_after_hook import request_after_hook
-from python_pydantic.request_before_url_hook import request_before_url_hook
-from python_pydantic.schemas import (
+from python_pydantic_list_in_union import rest
+from python_pydantic_list_in_union.api_response import ApiResponse, AsyncApiResponse
+from python_pydantic_list_in_union.rest import AsyncResponseWrapper, ResponseWrapper
+from python_pydantic_list_in_union.configuration import Configuration
+from python_pydantic_list_in_union.exceptions import ApiTypeError, ApiValueError, MissingRequiredParametersError
+from python_pydantic_list_in_union.request_after_hook import request_after_hook
+from python_pydantic_list_in_union.request_before_url_hook import request_before_url_hook
+from python_pydantic_list_in_union.schemas import (
     NoneClass,
     BoolClass,
     Schema,
