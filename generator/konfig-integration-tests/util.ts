@@ -12,6 +12,8 @@ import {
 
 const IS_GITHUB = process.env.GITHUB_ACTIONS === "true";
 
+console.log("IS_GITHUB", IS_GITHUB);
+
 // relative path from this file to: ""../konfig-dash/packages/konfig-cli/bin/dev""
 // use nodejs __dirname to get the current directory of this file
 const KONFIG_CLI_PATH = path.join(
