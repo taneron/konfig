@@ -33,7 +33,6 @@ export async function e2e(mockServerPort: number, customAssertions?: () => void)
       // This ensure oclif doesn't bug out
       // See: https://github.com/oclif/oclif/issues/1161#issuecomment-1661372245
       "NODE_ENV": "",
-      "KONFIG_API_URL": process.env.KONFIG_API_URL
     }
 
   // run "konfig generate -d" inside the path
