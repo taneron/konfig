@@ -14,6 +14,10 @@ const IS_GITHUB = process.env.GITHUB_ACTIONS;
 
 console.log("IS_GITHUB", IS_GITHUB);
 
+// This ensure oclif doesn't bug out
+// See: https://github.com/oclif/oclif/issues/1161#issuecomment-1661372245
+delete process.env.NODE_ENV;
+
 // relative path from this file to: ""../konfig-dash/packages/konfig-cli/bin/dev""
 // use nodejs __dirname to get the current directory of this file
 const KONFIG_CLI_PATH = path.join(
