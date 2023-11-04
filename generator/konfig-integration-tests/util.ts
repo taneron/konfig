@@ -10,7 +10,7 @@ import {
   KonfigYamlType,
 } from "konfig-lib";
 
-const IS_GITHUB = process.env.GITHUB_ACTIONS;
+const IS_GITHUB = process.env.GITHUB_ACTIONS === 'true';
 
 console.log("IS_GITHUB", IS_GITHUB);
 
