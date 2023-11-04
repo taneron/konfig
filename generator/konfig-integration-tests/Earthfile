@@ -12,8 +12,7 @@ integration-tests:
   COPY tsconfig.json jest.config.ts util.ts .
   COPY sdks sdks
   COPY tests tests
-  COPY run-tests-ci.sh .
-  ENTRYPOINT ["./run-tests-ci.sh"] # TODO: see if we can speed this up more
+  ENTRYPOINT ["yarn", "test"]
   SAVE IMAGE konfig-integration-tests:latest
 
 test:
