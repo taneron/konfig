@@ -178,7 +178,7 @@ const config: Config = {
       "ts-jest",
       {
         tsconfig: "./tsconfig.json",
-        isolatedModules: true,
+        isolatedModules: true, // should make it faster
       },
     ],
   },
