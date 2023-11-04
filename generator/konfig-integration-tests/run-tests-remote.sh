@@ -1,3 +1,3 @@
 #!/bin/bash
 
-earthly --sat med-boy --org konfig-publisher --config earthly-config.yaml --secret GITHUB_ACTIONS=true -P +test
+earthly --sat med-boy --org konfig-publisher --secret GITHUB_ACTIONS=true -P +test
