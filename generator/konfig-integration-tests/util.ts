@@ -30,9 +30,11 @@ export async function e2e(mockServerPort: number, customAssertions?: () => void)
   }
   const sdkDir = path.join(__dirname, "sdks", currentTestName);
 
+  const apiUrl = process.env.KONFIG_API_URL ?? "http://127.0.0.1:8911"
+
   // wait until KONFIG_API_URL/healthz is available
   await waitOn({
-    resources: [`${process.env.KONFIG_API_URL}/healthz`],
+    resources: [`${apiUrl}/healthz`],
     timeout: 100000,
   });
 
