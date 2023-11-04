@@ -49,6 +49,7 @@ jobs:
       - name: Write .env file for earthly
         run: |
           echo "NPM_TOKEN=${{ secrets.NPM_TOKEN }}" >> ./compose/.env
+          echo "GITHUB_ACTIONS=${{ env.GITHUB_ACTIONS }}" >> ./compose/.env
           echo "SESSION_SECRET=${{ secrets.SESSION_SECRET }}" >> ./compose/.env
           echo "AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }}" >> ./compose/.env
           echo "AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}" >> ./compose/.env
