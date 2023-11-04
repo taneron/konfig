@@ -9,6 +9,7 @@ import {
   KonfigYamlGeneratorConfig,
   KonfigYamlType,
 } from "konfig-lib";
+import waitOn from "wait-on"
 
 const IS_GITHUB = process.env.GITHUB_ACTIONS === 'true';
 
@@ -28,6 +29,12 @@ export async function e2e(mockServerPort: number, customAssertions?: () => void)
     throw new Error("Unable to get current test name");
   }
   const sdkDir = path.join(__dirname, "sdks", currentTestName);
+
+  // wait until KONFIG_API_URL/healthz is available
+  await waitOn({
+    resources: [`${process.env.KONFIG_API_URL}/healthz`],
+    timeout: 100000,
+  });
 
   const env = {
       // This ensure oclif doesn't bug out
