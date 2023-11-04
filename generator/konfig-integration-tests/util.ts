@@ -29,26 +29,25 @@ export async function e2e(mockServerPort: number, customAssertions?: () => void)
   }
   const sdkDir = path.join(__dirname, "sdks", currentTestName);
 
+  const env = {
+      // This ensure oclif doesn't bug out
+      // See: https://github.com/oclif/oclif/issues/1161#issuecomment-1661372245
+      "NODE_ENV": "",
+      "KONFIG_API_URL": process.env.KONFIG_API_URL
+    }
+
   // run "konfig generate -d" inside the path
   await execa(KONFIG_CLI_PATH, ["generate", "-d"], {
     cwd: sdkDir,
     stdio: "inherit",
-    // This ensure oclif doesn't bug out
-    // See: https://github.com/oclif/oclif/issues/1161#issuecomment-1661372245
-    env: {
-      "NODE_ENV": ""
-    }
+    env
   });
 
   // run "konfig test" inside the path
   await execa(KONFIG_CLI_PATH, ["test", "-p", mockServerPort.toString()], {
     cwd: sdkDir,
     stdio: "inherit",
-    // This ensure oclif doesn't bug out
-    // See: https://github.com/oclif/oclif/issues/1161#issuecomment-1661372245
-    env: {
-      "NODE_ENV": ""
-    }
+    env
   });
 
   // validate top-level README.md
