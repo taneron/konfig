@@ -10,11 +10,13 @@ import {
   KonfigYamlType,
 } from "konfig-lib";
 
+const IS_GITHUB = process.env.GITHUB_ACTIONS === "true";
+
 // relative path from this file to: ""../konfig-dash/packages/konfig-cli/bin/dev""
 // use nodejs __dirname to get the current directory of this file
 const KONFIG_CLI_PATH = path.join(
   __dirname,
-  "../konfig-dash/packages/konfig-cli/bin/dev"
+  `../konfig-dash/packages/konfig-cli/bin/${IS_GITHUB ? "run" : "dev"}`
 );
 
 export async function e2e(mockServerPort: number, customAssertions?: () => void) {
