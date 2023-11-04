@@ -14,9 +14,6 @@ const IS_GITHUB = process.env.GITHUB_ACTIONS === 'true';
 
 console.log("IS_GITHUB", IS_GITHUB);
 
-// This ensure oclif doesn't bug out
-// See: https://github.com/oclif/oclif/issues/1161#issuecomment-1661372245
-delete process.env.NODE_ENV;
 
 // relative path from this file to: ""../konfig-dash/packages/konfig-cli/bin/dev""
 // use nodejs __dirname to get the current directory of this file
@@ -36,12 +33,22 @@ export async function e2e(mockServerPort: number, customAssertions?: () => void)
   await execa(KONFIG_CLI_PATH, ["generate", "-d"], {
     cwd: sdkDir,
     stdio: "inherit",
+    // This ensure oclif doesn't bug out
+    // See: https://github.com/oclif/oclif/issues/1161#issuecomment-1661372245
+    env: {
+      "NODE_ENV": ""
+    }
   });
 
   // run "konfig test" inside the path
   await execa(KONFIG_CLI_PATH, ["test", "-p", mockServerPort.toString()], {
     cwd: sdkDir,
     stdio: "inherit",
+    // This ensure oclif doesn't bug out
+    // See: https://github.com/oclif/oclif/issues/1161#issuecomment-1661372245
+    env: {
+      "NODE_ENV": ""
+    }
   });
 
   // validate top-level README.md
