@@ -1,10 +1,37 @@
 name: konfig-api-portaltests
 on:
-  schedule:
-    - cron: '0 0 * * *'  # Runs every day at 00:00 UTC
+  push:
+    branches:
+      - main
+      - 'ENG-*' # https://github.com/jitterbit/get-changed-files/issues/10#issuecomment-1012312507
+  pull_request:
+
+jobs:
+  check_for_relevant_changes:
+    runs-on: ubuntu-latest
+    outputs:
+      shouldRun: ${{ steps.check_changes.outputs.shouldRun }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Get changed files
+        id: get_changed_files
+        uses: Ana06/get-changed-files@v2.2.0
+
+      - name: Check for changes in specific paths
+        id: check_changes
+        run: |
+          for file in ${{ steps.get_changed_files.outputs.all }}; do
+            if [[ $file =~ ^generator/konfig-(next-app|dash)/ && ! $file =~ \.md$ ]]; then
+              echo "shouldRun=true" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+          done
 
 jobs:
   unit-tests:
+    if: needs.check_for_relevant_changes.outputs.shouldRun == 'true'
     strategy:
       matrix:
         os: ['ubuntu-latest']
