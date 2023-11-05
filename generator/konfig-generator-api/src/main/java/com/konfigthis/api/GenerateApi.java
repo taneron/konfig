@@ -245,6 +245,9 @@ public interface GenerateApi {
         return clientOptInput;
     }
 
+    /**
+     * Constructs a map of additional properties to be passed to the generator.
+     */
     default Map<String, Object> transformAdditionalPropertiesToMap(AdditionalProperties additionalProperties,
                                                                    String packageName, String generator) {
         Map<String, Object> map = new HashMap<>();
