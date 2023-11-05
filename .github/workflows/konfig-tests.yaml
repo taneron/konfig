@@ -3,7 +3,6 @@ on:
   push:
     branches:
       - main
-      - 'ENG-*' # https://github.com/jitterbit/get-changed-files/issues/10#issuecomment-1012312507
   pull_request:
 
 jobs:
@@ -29,6 +28,7 @@ jobs:
             fi
           done
   unit-tests:
+    needs: check_for_relevant_changes
     if: needs.check_for_relevant_changes.outputs.shouldRun == 'true'
     strategy:
       matrix:

@@ -1,7 +1,7 @@
 import { HttpMethodsEnum } from 'konfig-lib'
 import { CodeGeneratorConstructorArgs } from './code-generator'
-import { CodeGeneratorPython } from './code-generator-python'
-import {test, expect, it} from "vitest"
+import { test, expect, it } from 'vitest'
+import { CodeGeneratorTypeScript } from './code-generator-typescript'
 
 test('deeply nested objects with file', async () => {
   const args: CodeGeneratorConstructorArgs = {
@@ -111,7 +111,7 @@ test('deeply nested objects with file', async () => {
     originalOauthTokenUrl: null,
     requestBodyRequired: false,
   }
-  const code = await new CodeGeneratorPython(args).snippet()
+  const code = await new CodeGeneratorTypeScript(args).snippet()
   expect(code).toMatchSnapshot()
 })
 
@@ -277,7 +277,7 @@ test('nested objects does not have empty properties', async () => {
     originalOauthTokenUrl: null,
     requestBodyRequired: false,
   }
-  const code = await new CodeGeneratorPython(args).snippet()
+  const code = await new CodeGeneratorTypeScript(args).snippet()
   expect(code).toMatchSnapshot()
 })
 
@@ -400,12 +400,12 @@ test('request body with blob values', async () => {
     originalOauthTokenUrl: null,
     requestBodyRequired: false,
   }
-  const code = await new CodeGeneratorPython(args).snippet()
+  const code = await new CodeGeneratorTypeScript(args).snippet()
   expect(code).toMatchSnapshot()
 })
 
 test('simple example', async () => {
-  const code = await new CodeGeneratorPython({
+  const code = await new CodeGeneratorTypeScript({
     path: '',
     contentType: 'application/json',
     httpMethod: HttpMethodsEnum.POST,
@@ -467,7 +467,7 @@ test('simple example', async () => {
 })
 
 test('simple parameters example', async () => {
-  const code = await new CodeGeneratorPython({
+  const code = await new CodeGeneratorTypeScript({
     path: '',
     contentType: 'application/json',
     httpMethod: HttpMethodsEnum.POST,
@@ -554,7 +554,7 @@ test('simple parameters example', async () => {
 })
 
 it('example with boolean', async () => {
-  const code = await new CodeGeneratorPython({
+  const code = await new CodeGeneratorTypeScript({
     path: '',
     contentType: 'application/json',
     httpMethod: HttpMethodsEnum.POST,
@@ -706,7 +706,7 @@ it('example with boolean', async () => {
 })
 
 it('example with inner object', async () => {
-  const code = await new CodeGeneratorPython({
+  const code = await new CodeGeneratorTypeScript({
     path: '',
     contentType: 'application/json',
     httpMethod: HttpMethodsEnum.POST,
@@ -903,7 +903,7 @@ it('example with inner object', async () => {
 })
 
 it('example with no setup', async () => {
-  const code = await new CodeGeneratorPython({
+  const code = await new CodeGeneratorTypeScript({
     path: '',
     contentType: 'application/json',
     httpMethod: HttpMethodsEnum.POST,
@@ -953,7 +953,7 @@ it('example with no setup', async () => {
 })
 
 it('example with no form data but > 1 parameters', async () => {
-  const code = await new CodeGeneratorPython({
+  const code = await new CodeGeneratorTypeScript({
     path: '',
     contentType: 'application/json',
     httpMethod: HttpMethodsEnum.POST,
