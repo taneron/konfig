@@ -20,7 +20,7 @@ import {
   GeneratorGitConfig,
 } from 'konfig-lib'
 import globby from 'globby'
-import { Konfig } from 'konfig-typescript-sdk'
+import { Konfig, KonfigError } from 'konfig-typescript-sdk'
 import * as fs from 'fs-extra'
 import axios, { AxiosError } from 'axios'
 import * as os from 'os'
@@ -52,6 +52,7 @@ import { isSubmodule } from '../util/is-submodule'
 import { getHostForGenerateApi } from '../util/get-host-for-generate-api'
 import { getSdkDefaultBranch } from '../util/get-sdk-default-branch'
 import { insertTableOfContents } from '../util/insert-table-of-contents'
+import boxen from 'boxen'
 
 function getOutputDir(
   outputFlag: string | undefined,
@@ -1166,22 +1167,7 @@ export default class Deploy extends Command {
               ])
               for (const markdownPath of markdownFiles) {
                 const markdown = fs.readFileSync(markdownPath, 'utf-8')
-                const pythonSnippetRegex =
-                  // rewrite the following regex to not include "```" in the match
-                  /\`\`\`python\r?\n([\s\S]*?)\r?\n\`\`\`/g
-
-                // find all code snippets in the markdown string that matches typescriptSnippetRegex
-                // and format them and replace the code snippets with the formatted code snippets
-                const formattedMarkdown = await replaceAsync(
-                  markdown,
-                  pythonSnippetRegex,
-                  async (_, codeSnippet) => {
-                    const { data: formattedCodeSnippet } =
-                      await konfig.sdk.formatPython(codeSnippet)
-                    return '```python\n' + formattedCodeSnippet + '```'
-                  }
-                )
-                fs.writeFileSync(markdownPath, formattedMarkdown)
+                await formatPythonSnippet({ markdown, markdownPath, konfig })
               }
 
               CliUx.ux.action.stop()
@@ -1415,11 +1401,17 @@ function handleReadmeSnippet<
   C extends object & {
     readmeSnippet?: string
     asyncReadmeSnippet?: string
+    readmeHeaderSnippet?: string
     readmeDescriptionSnippet?: string
   }
 >({ config }: { config: C }): C {
   if (config.readmeSnippet !== undefined)
     config.readmeSnippet = fs.readFileSync(config.readmeSnippet, 'utf-8')
+  if (config.readmeHeaderSnippet !== undefined)
+    config.readmeHeaderSnippet = fs.readFileSync(
+      config.readmeHeaderSnippet,
+      'utf-8'
+    )
   if (config.asyncReadmeSnippet !== undefined)
     config.asyncReadmeSnippet = fs.readFileSync(
       config.asyncReadmeSnippet,
@@ -1562,6 +1554,60 @@ function constructGoGenerationRequest({
   }
   initializeFlowsDirectory('go')
   return requestGo
+}
+
+async function formatPythonSnippet({
+  markdown,
+  markdownPath,
+  konfig,
+}: {
+  konfig: Konfig
+  markdownPath: string
+  markdown: string
+}) {
+  const pythonSnippetRegex = /\`\`\`python\r?\n([\s\S]*?)\r?\n\`\`\`/g
+
+  // find all code snippets in the markdown string that matches typescriptSnippetRegex
+  // and format them and replace the code snippets with the formatted code snippets
+  try {
+    const formattedMarkdown = await replaceAsync(
+      markdown,
+      pythonSnippetRegex,
+      async (match, codeSnippet, offset) => {
+        // Check if the block is preceded by a line ending with '>'
+        const blockStartIndex = offset - 1
+        const startOfLineIndex =
+          markdown.lastIndexOf('\n', blockStartIndex - 1) + 1
+        const lineBeforeBlock = markdown.substring(
+          startOfLineIndex,
+          blockStartIndex
+        )
+
+        if (lineBeforeBlock.endsWith('>')) {
+          // If it is, we leave the match unaltered
+          return match
+        } else {
+          // If it's not, proceed with formatting
+          const { data: formattedCodeSnippet } = await konfig.sdk.formatPython(
+            codeSnippet
+          )
+          return '```python\n' + formattedCodeSnippet + '```'
+        }
+      }
+    )
+    fs.writeFileSync(markdownPath, formattedMarkdown)
+  } catch (e) {
+    if (e instanceof KonfigError)
+      if (typeof e.responseBody === 'string') {
+        console.log(
+          boxen(e.responseBody, {
+            title: "Warning: Couldn't format Python code snippet",
+            titleAlignment: 'center',
+            borderColor: 'yellow',
+          })
+        )
+      }
+  }
 }
 
 function constructPhpGenerationRequest({
