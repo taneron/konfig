@@ -8,7 +8,7 @@ import { useRef } from "react";
 export function UpdatingDocs() {
   return (
     <ProductSection
-      parent="Documentation"
+      parent="Docs"
       Section={() => (
         <>
           Beautiful{" "}

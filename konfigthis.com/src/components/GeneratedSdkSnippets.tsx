@@ -7,7 +7,7 @@ export function GeneratedSdkSnippets() {
     <ProductSection
       reverse
       graphicBottom
-      parent="Documentation"
+      parent="Docs"
       Section={() => (
         <>
           User Generated{" "}
