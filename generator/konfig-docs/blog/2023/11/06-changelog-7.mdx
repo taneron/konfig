@@ -1,25 +1,26 @@
 ---
 slug: changelog-7
-title: "Changelog #7 - Python Refactor and non-SDK Snippets in API Portal"
-description: "Python Refactor and non-SDK Snippets in API Portal"
+title: "Changelog #7 - Python SDK Ergonomic Improvement and non-SDK Snippets in API Portal"
+description: "Python SDK Ergonomic Improvement and non-SDK Snippets in API Portal"
 tags: [Changelog, Konfig]
 image: ./changelog-7-assets/banner.png
 ---
 
 ![Banner](./changelog-7-assets/banner.png)
 
-## Python SDK Refactor
+## Python SDK Ergonomic Improvement
 
-We've refactored the Python SDK to return Pydantic-based response values which
+We improved the Python SDK to return Pydantic-based response values which
 allows for using the
-[__getattr__](https://docs.python.org/3/reference/datamodel.html#object.__getattr__).
+[`__getattr__`](https://docs.python.org/3/reference/datamodel.html#object.__getattr__).
 This is slightly more concise than the previous version, which used the
 [`__getitem__`](https://docs.python.org/3/reference/datamodel.html#object.__getitem__)
 syntax to access response values.
 
 ### Before
 
-Previously, you had to use the `[]` syntax to access response values
+Previously, you had to use the `[]` syntax to access response values. This
+required a little more code for every property access.
 
 ```python
 response = client.store.place_order(quantity=1000)
@@ -28,7 +29,8 @@ print(response.body["order_id"])
 
 ### After
 
-With Pydantic-based response values, you can use the `.` syntax to access
+With Pydantic-based response values, you can use the `.` syntax to access. This
+is slightly less verbose and looks more Pythonic.
 
 ```python
 response = client.store.place_order(quantity=1000)
@@ -47,16 +49,16 @@ to ensure backwards compatibility.
 ![Non-SDK Snippets](./changelog-7-assets/non-sdk-snippets.png)
 </Figure>
 
-The API Reference page now generates non-SDK code snippets such as cURL or
-languages that do not have an SDK. This allows you to quickly copy and paste
-code snippets regardless of whether or not there is an SDK for your language.
+The API Reference page now generates non-SDK code snippets for cURL and other
+languages that do not have an SDK. This allows developers to quickly generate,
+copy, and paste code snippets regardless of whether or not there is an SDK for
+your language.
 
 {/* TRUNCATE */}
 
 <details>
 <summary>Improvements and Fixes</summary>
 - Redesigned our landing page https://konfigthis.com
-- Fix bug in TypeScript SDK
 - Add `filterPaths` configuration which allows you to automatically filter out paths from the generated SDKs
 - Allowed configuration of port for mock server
 - Restyled our documentation to be more consistent with our website
