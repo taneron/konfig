@@ -221,7 +221,7 @@ const defaultTestScripts: Record<
     if (!('packageName' in config))
       throw Error('Got unexpected config for Python SDK')
     return [
-      'poetry install',
+      'poetry install || (echo "poetry install failed, running poetry lock --no-update" && poetry lock --no-update && poetry install)',
       `poetry run pytest --cov=${config.packageName} -o cache_dir='.pytest_cache'`,
     ]
   },
