@@ -360,10 +360,14 @@ export default class Publish extends Command {
   public async run(): Promise<void> {
     const { flags } = await this.parse(Publish)
 
-    if (!isGitDirectoryClean())
+    if (!isGitDirectoryClean()) {
+      // use git status --porcelain to print list of changes
+      CliUx.ux.log('Git status:')
+      CliUx.ux.log(shell.exec('git status --porcelain').stdout)
       CliUx.ux.error(
         'Git directory must be clean. Make sure there are no unstaged changes.'
       )
+    }
 
     if (!flags.skipRemoteCheck && !(await isGitRemoteInSync()))
       CliUx.ux.error(
