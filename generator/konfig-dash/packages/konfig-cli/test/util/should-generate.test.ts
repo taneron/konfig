@@ -23,6 +23,7 @@ describe('shouldGenerate', () => {
     ).to.eql({
       language: 'go',
       outputDirectory: 'go',
+      defaultChangesetBumpType: 'patch',
       defaultTimeout: 0,
       userAgent: '',
       packageName: 'test',
@@ -50,6 +51,7 @@ describe('shouldGenerate', () => {
       })
     ).to.eql({
       language: 'go',
+      defaultChangesetBumpType: 'patch',
       outputDirectory: 'go',
       defaultTimeout: 0,
       userAgent: '',
