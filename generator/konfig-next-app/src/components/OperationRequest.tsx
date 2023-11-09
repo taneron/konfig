@@ -71,16 +71,12 @@ export function OperationRequest({
   return (
     <div className="border rounded-md border-mantine-gray-400 dark:border-mantine-gray-800 overflow-hidden">
       <Tab.Group>
-        <div className="flex pl-4 flex-wrap items-start gap-x-4 bg-gray-50 dark:bg-mantine-gray-900 border-b dark:border-b-mantine-gray-800">
-          <div className="mr-auto pt-3 text-black dark:text-white text-sm font-semibold">
+        <div className="flex flex-wrap items-start gap-x-4 bg-gray-50 dark:bg-mantine-gray-900 border-b dark:border-b-mantine-gray-800">
+          <div className="mr-auto pt-3 text-black dark:text-white text-sm font-semibold pl-4">
             Request
           </div>
-          <ScrollArea
-            type="scroll"
-            scrollbarSize={7}
-            className="-mb-px max-w-xs"
-          >
-            <Tab.List className="flex gap-4 text-xs font-medium pr-4">
+          <ScrollArea type="never" scrollbarSize={4} className="-mb-px">
+            <Tab.List className="flex text-sm font-medium px-4">
               {languagesFiltered.map(({ label }) => {
                 return (
                   <Tab as={Fragment} key={label}>
@@ -94,7 +90,7 @@ export function OperationRequest({
                             ['border-transparent text-mantine-gray-600 hover:text-mantine-gray-800 dark:hover:text-mantine-gray-100']:
                               !selected,
                           },
-                          'border-b py-4 transition ui-not-focus-visible:outline-none ui-focus-visible:outline-brand-500 ui-focus-visible:dark:outline-brand-600 whitespace-nowrap'
+                          'border-b-2 py-5 px-3 transition ui-not-focus-visible:outline-none ui-focus-visible:outline-brand-500 ui-focus-visible:dark:outline-brand-600 whitespace-nowrap'
                         )}
                       >
                         {label}
