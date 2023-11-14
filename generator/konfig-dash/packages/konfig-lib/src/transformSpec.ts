@@ -24,6 +24,7 @@ import { recurseObjectTypeSchemaWithRequiredProperties } from './recurse-object-
 import { fixCustomModifications } from './util/fix-custom-modifications'
 import { defaultOr200RangeStatusCodeRegex } from './util/default-or-200-range-status-code-regex'
 import { operationIdSchema } from './util/operation-id-schema'
+import { filterSpecPaths } from './util/filter-spec-paths'
 import equals from 'deep-equal'
 import camelcase from './util/camelcase'
 import { HttpMethods } from './forEachOperation'
@@ -802,15 +803,7 @@ export const transformSpec = async ({
   }
 
   if (filterPaths !== undefined) {
-    if (spec.spec.paths) {
-      for (const filter of filterPaths) {
-        if (filter.method === undefined) {
-          delete spec.spec.paths[filter.path]
-        } else if (spec.spec.paths[filter.path]) {
-          delete (spec.spec.paths[filter.path] as any)[filter.method]
-        }
-      }
-    }
+    filterSpecPaths({ spec: spec.spec, filter: filterPaths })
   }
 
   if (filterModels !== undefined) {

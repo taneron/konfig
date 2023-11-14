@@ -3,16 +3,15 @@ import {
   isJsonString,
   OBJECT_WITH_NO_PROPERTIES_RULE_NAME,
   parseSpec,
+  filterSpecPaths,
   POTENTIAL_INCORRECT_DATA_TYPE_RULE_NAME,
 } from 'konfig-lib'
 import boxen from 'boxen'
 import { Progress } from './fix-progress'
 import { oasYamlDump } from './oas-yaml-dump'
-import { getSpecPath } from './get-spec-path'
 import { fixOas } from './fix-oas'
 import path from 'path'
 import { oasJsonDump } from './oas-json-dump'
-import { getSpecInputPath } from './get-spec-input-path'
 import { parseKonfigYaml } from './parse-konfig-yaml'
 
 interface FixOptions {
@@ -39,11 +38,11 @@ export async function executeFixCommand(options: FixOptions): Promise<void> {
     configDir: flags.konfigDir ?? process.cwd(),
   })
 
-   // We only want to run fix in CI if the konfig.yaml has a specInputPath
-   if (flags.ci && parsedKonfigYaml.specInputPath === undefined) {
+  // We only want to run fix in CI if the konfig.yaml has a specInputPath
+  if (flags.ci && parsedKonfigYaml.specInputPath === undefined) {
     console.log(`No specInputPath found in konfig.yaml, skipping fix`)
     return
-   }
+  }
 
   if (flags.spec === undefined) {
     flags.spec = parsedKonfigYaml.specPath
@@ -51,7 +50,9 @@ export async function executeFixCommand(options: FixOptions): Promise<void> {
   }
 
   if (flags.spec === undefined)
-    throw Error(`Either specify path to OAS with -s flag or assign "specPath" field in "konfig.yaml"`)
+    throw Error(
+      `Either specify path to OAS with -s flag or assign "specPath" field in "konfig.yaml"`
+    )
 
   if (flags.specInputPath === undefined) throw Error(`This shouldn't happen`)
 
@@ -65,6 +66,11 @@ export async function executeFixCommand(options: FixOptions): Promise<void> {
   const specOutputPath = prependKonfigDir({ specPath: flags.spec })
   const rawSpec = fs.readFileSync(specInputPath, 'utf-8')
   let spec = await parseSpec(rawSpec)
+
+  // if konfig yaml filters any paths from the spec, remove them now
+  if (parsedKonfigYaml.filterPaths) {
+    filterSpecPaths({ spec: spec.spec, filter: parsedKonfigYaml.filterPaths })
+  }
 
   if (flags.format) {
     fs.writeFileSync(flags.spec, oasYamlDump(spec))
