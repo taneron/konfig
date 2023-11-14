@@ -27,6 +27,8 @@ export const NavbarLink = forwardRef<
   )
 })
 
+NavbarLink.displayName = 'NavbarLink'
+
 export function navbarLinkColor({
   theme,
   active,
