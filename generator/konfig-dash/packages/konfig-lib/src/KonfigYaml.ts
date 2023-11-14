@@ -274,10 +274,15 @@ export const phpConfig = z.object({
   invokerPackage: z.string(),
 })
 
-export const paginationConfigSchema = z.object({
-  parameters: z.string().array(),
-  response: z.string().array(),
-})
+export const paginationConfigSchema = z
+  .object({
+    parameters: z.string().array(),
+    response: z.string().array(),
+  })
+  .describe(
+    "Enable pagination for operations in which the parameters are a superset of the 'parameters' array and \
+    the response fields are a superset of the 'response' array."
+  )
 
 export type PaginationConfig = z.infer<typeof paginationConfigSchema>
 
