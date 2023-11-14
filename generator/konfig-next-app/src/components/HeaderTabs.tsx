@@ -1,17 +1,12 @@
-import {
-  Box,
-  Flex,
-  Group,
-  MediaQuery,
-  Menu,
-  useMantineTheme,
-} from '@mantine/core'
+import { Box, Flex, Group, Menu, clsx, useMantineTheme } from '@mantine/core'
 import { HeaderTab } from './HeaderTab'
 import { useBasePath } from '@/utils/use-base-path'
 import { HeaderButton, TABS, Tab } from './HeaderButton'
 import { IconMenu } from '@tabler/icons-react'
 import Link from 'next/link'
 import { getClickableStyles } from '@/utils/get-clickable-styles'
+import { Search } from './Search'
+import { MarkdownPageProps } from '@/utils/generate-props-for-markdown-page'
 
 export function HeaderTabs({
   currentTab,
@@ -20,6 +15,7 @@ export function HeaderTabs({
   hasDocumentation,
   omitOwnerAndRepo,
   owner,
+  allMarkdown,
   repo,
   hasLightAndDarkLogo,
 }: {
@@ -31,6 +27,7 @@ export function HeaderTabs({
   repo: string
   hasLightAndDarkLogo: boolean
   omitOwnerAndRepo?: boolean
+  allMarkdown: MarkdownPageProps['allMarkdown']
 }) {
   const docsPath = useDocsPath({ omitOwnerAndRepo })
   const referencePath = useReferencePath({ omitOwnerAndRepo })
@@ -51,84 +48,83 @@ export function HeaderTabs({
   const theme = useMantineTheme()
   return (
     <Box h="45%">
-      <MediaQuery largerThan="xs" styles={{ display: 'none' }}>
-        <Box w="100%" h="100%">
-          <Menu
-            shadow="xl"
-            // opened={true}
-            withinPortal={true}
-            styles={{
-              dropdown: {
-                ...getClickableStyles(theme),
-              },
-            }}
-            offset={5}
-            width="95%"
-            radius="sm"
-          >
-            <Menu.Target>
-              <Flex
-                px="lg"
-                style={{ cursor: 'pointer' }}
-                h="100%"
-                align="center"
-                justify="space-between"
-              >
-                <HeaderButton
-                  hasLightDarkMode={hasLightAndDarkLogo}
-                  tab={currentTab}
-                />
-                <IconMenu
-                  color={
-                    hasLightAndDarkLogo
-                      ? theme.colorScheme === 'dark'
-                        ? theme.white
-                        : theme.black
-                      : theme.white
-                  }
-                  size="0.9rem"
-                />
-              </Flex>
-            </Menu.Target>
-            <MediaQuery largerThan="xs" styles={{ display: 'none' }}>
-              <Menu.Dropdown>
-                {Object.values(TABS)
-                  .filter((tab) => tab !== currentTab)
-                  .map((tab) => {
-                    if (tab === TABS.documentation && !hasDocumentation) {
-                      return null
-                    }
-                    if (tab === TABS.demos && demos.length === 0) {
-                      return null
-                    }
-                    return (
-                      <Menu.Item key={tab}>
-                        <Link
-                          style={{ textDecoration: 'none', color: 'inherit' }}
-                          target={tab === TABS.sdks ? '_blank' : undefined}
-                          href={linkForTab(tab)}
-                        >
-                          <HeaderButton
-                            hasLightDarkMode={hasLightAndDarkLogo}
-                            noColor
-                            tab={tab}
-                          />
-                        </Link>
-                      </Menu.Item>
-                    )
-                  })}
-              </Menu.Dropdown>
-            </MediaQuery>
-          </Menu>
-        </Box>
-      </MediaQuery>
-      <MediaQuery smallerThan="xs" styles={{ display: 'none' }}>
+      <Box className="sm:hidden" w="100%" h="100%">
+        <Menu
+          shadow="xl"
+          // opened={true}
+          withinPortal={true}
+          styles={{
+            dropdown: {
+              ...getClickableStyles(theme),
+            },
+          }}
+          offset={5}
+          width="95%"
+          radius="sm"
+        >
+          <Menu.Target>
+            <Flex
+              px="lg"
+              style={{ cursor: 'pointer' }}
+              h="100%"
+              align="center"
+              justify="space-between"
+            >
+              <HeaderButton
+                hasLightDarkMode={hasLightAndDarkLogo}
+                tab={currentTab}
+              />
+              <IconMenu
+                color={
+                  hasLightAndDarkLogo
+                    ? theme.colorScheme === 'dark'
+                      ? theme.white
+                      : theme.black
+                    : theme.white
+                }
+                size="0.9rem"
+              />
+            </Flex>
+          </Menu.Target>
+          <Menu.Dropdown className="sm:hidden">
+            {Object.values(TABS)
+              .filter((tab) => tab !== currentTab)
+              .map((tab) => {
+                if (tab === TABS.documentation && !hasDocumentation) {
+                  return null
+                }
+                if (tab === TABS.demos && demos.length === 0) {
+                  return null
+                }
+                return (
+                  <Menu.Item key={tab}>
+                    <Link
+                      style={{ textDecoration: 'none', color: 'inherit' }}
+                      target={tab === TABS.sdks ? '_blank' : undefined}
+                      href={linkForTab(tab)}
+                    >
+                      <HeaderButton
+                        hasLightDarkMode={hasLightAndDarkLogo}
+                        noColor
+                        tab={tab}
+                      />
+                    </Link>
+                  </Menu.Item>
+                )
+              })}
+          </Menu.Dropdown>
+        </Menu>
+      </Box>
+      <div
+        className={clsx(
+          'h-full hidden sm:flex items-center justify-between px-3'
+        )}
+      >
         <Group
           h="100%"
           style={{
             alignItems: 'flex-end',
           }}
-          px="sm"
           noWrap
           spacing={0}
         >
@@ -166,7 +162,8 @@ export function HeaderTabs({
             link={linkForTab(TABS.sdks)}
           />
         </Group>
-      </MediaQuery>
+        <Search />
+      </div>
     </Box>
   )
 }

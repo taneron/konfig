@@ -4,6 +4,7 @@ import { HeaderWrapper } from './HeaderWrapper'
 import { TABS } from './HeaderButton'
 import { HeaderTabs } from './HeaderTabs'
 import type { generateLogoLink } from '@/utils/generate-logo-link'
+import { MarkdownPageProps } from '@/utils/generate-props-for-markdown-page'
 
 export function ReferenceHeader({
   opened,
@@ -15,6 +16,7 @@ export function ReferenceHeader({
   owner,
   repo,
   logo,
+  allMarkdown,
 }: {
   opened: boolean
   hasDocumentation: boolean
@@ -23,12 +25,17 @@ export function ReferenceHeader({
   title: string
   omitOwnerAndRepo?: boolean
   owner: string
+  allMarkdown: MarkdownPageProps['allMarkdown']
   repo: string
   logo: ReturnType<typeof generateLogoLink>
 }) {
   return (
-    <HeaderWrapper hasLightAndDarkLogo={typeof logo !== 'string'}>
+    <HeaderWrapper
+      allMarkdown={allMarkdown}
+      hasLightAndDarkLogo={typeof logo !== 'string'}
+    >
       <LayoutHeader
+        allMarkdown={allMarkdown}
         breakpoint="lg"
         opened={opened}
         setOpened={setOpened}
@@ -40,6 +47,7 @@ export function ReferenceHeader({
         owner={owner}
         repo={repo}
         hasDocumentation={hasDocumentation}
+        allMarkdown={allMarkdown}
         demos={demos}
         currentTab={TABS.reference}
         omitOwnerAndRepo={omitOwnerAndRepo}

@@ -4,6 +4,7 @@ import { DocEditThisPage } from '@/components/DocEditThisPage'
 import { DocNavLink } from '@/components/DocNavLink'
 import { DocumentationHeader } from '@/components/DocumentationHeader'
 import { NAVBAR_WIDTH } from '@/components/ReferenceNavbar'
+import Fuse from 'fuse.js'
 import {
   useMantineTheme,
   useMantineColorScheme,
@@ -92,6 +93,7 @@ const DocumentationPage = observer(
     owner,
     defaultBranch,
     idToLabel,
+    allMarkdown,
     docPath,
     breadcrumb,
     repo,
@@ -225,6 +227,7 @@ const DocumentationPage = observer(
                 omitOwnerAndRepo={omitOwnerAndRepo}
                 opened={opened}
                 setOpened={setOpened}
+                allMarkdown={allMarkdown}
                 title={title}
                 demos={demos}
                 logo={logo}
