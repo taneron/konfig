@@ -36,8 +36,7 @@ public class Example {
     configuration.host = "https://api.snaptrade.com/api/v1";
     configuration.clientId = System.getenv("SNAPTRADE_CLIENT_ID");
     configuration.consumerKey = System.getenv("SNAPTRADE_CONSUMER_KEY");
-
-
+    
     Snaptrade client = new Snaptrade(configuration);
     String userId = "userId_example";
     String userSecret = "userSecret_example";
@@ -152,8 +151,7 @@ public class Example {
     configuration.host = "https://api.snaptrade.com/api/v1";
     configuration.clientId = System.getenv("SNAPTRADE_CLIENT_ID");
     configuration.consumerKey = System.getenv("SNAPTRADE_CONSUMER_KEY");
-
-
+    
     Snaptrade client = new Snaptrade(configuration);
     LocalDate startDate = LocalDate.now();
     LocalDate endDate = LocalDate.now();
