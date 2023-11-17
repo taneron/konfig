@@ -1,8 +1,8 @@
 # coding: utf-8
 """
-    python-pydantic-raw-http-doc-with-top-level-configuration API
+    python-async-timeout-with-top-level-operation API
 
-    A simple API based for testing python-pydantic-raw-http-doc-with-top-level-configuration.
+    A simple API based for testing python-async-timeout-with-top-level-operation.
 
     The version of the OpenAPI document: 1.0.0
     Contact: support@example.com
@@ -12,15 +12,15 @@
 import typing
 import inspect
 from datetime import date, datetime
-from python_pydantic_raw_http_doc_with_top_level_configuration.client_custom import ClientCustom
-from python_pydantic_raw_http_doc_with_top_level_configuration.configuration import Configuration
-from python_pydantic_raw_http_doc_with_top_level_configuration.api_client import ApiClient
-from python_pydantic_raw_http_doc_with_top_level_configuration.type_util import copy_signature
-from python_pydantic_raw_http_doc_with_top_level_configuration.apis.tags.test_api import TestApi
+from python_async_timeout_with_top_level_operation.client_custom import ClientCustom
+from python_async_timeout_with_top_level_operation.configuration import Configuration
+from python_async_timeout_with_top_level_operation.api_client import ApiClient
+from python_async_timeout_with_top_level_operation.type_util import copy_signature
+from python_async_timeout_with_top_level_operation.apis.tags.test_api import TestApi
 
 
 
-class PythonPydanticRawHttpDocWithTopLevelConfiguration(ClientCustom):
+class PythonAsyncTimeoutWithTopLevelOperationClient(ClientCustom):
 
     def __init__(self, configuration: typing.Union[Configuration, None] = None, **kwargs):
         super().__init__(configuration, **kwargs)
