@@ -22,9 +22,7 @@ export const LanguageInstallationCommand: React.FC<
   return (
     <div className="px-4 py-6 text-xs border-b border-b-mantine-gray-200 dark:border-b-zinc-800">
       <div className="mb-3 flex justify-between">
-        <div className="select-none text-mantine-gray-700 dark:text-mantine-gray-600">
-          Installation
-        </div>
+        <div className="select-none text-mantine-gray-600">Installation</div>
         <div className="flex gap-2 text-mantine-gray-700 dark:text-mantine-gray-600">
           <Links codegenArgs={codegenArgs} language={language} />
         </div>
@@ -88,14 +86,14 @@ function Links({
       <a
         target="_blank"
         href={githubLink({ codegenArgs, language })}
-        className="hover:text-black dark:hover:text-mantine-gray-400 font-semibold"
+        className="hover:text-black text-mantine-gray-600 dark:hover:text-mantine-gray-400 font-semibold"
       >
         GitHub
       </a>
       {pkg && (
         <a
           target="_blank"
-          className="hover:text-black dark:hover:text-mantine-gray-400 font-semibold"
+          className="hover:text-black text-mantine-gray-600 dark:hover:text-mantine-gray-400 font-semibold"
           href={pkg.link}
         >
           {pkg.packageManager}
