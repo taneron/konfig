@@ -17,7 +17,7 @@ class {{classname}}(BaseModel):
     {{#if description}}
     # {{{description}}}
     {{/if}}
-  {{> pydantic_templates/type_property_name}}: {{> pydantic_templates/type_property_data_type}} = Field(None, alias='{{baseName}}')
+  {{> pydantic_templates/type_property_name}}: typing.Optional[{{> pydantic_templates/type_property_data_type}}] = Field(None, alias='{{baseName}}')
     {{#unless @last}}
 
     {{/unless}}
