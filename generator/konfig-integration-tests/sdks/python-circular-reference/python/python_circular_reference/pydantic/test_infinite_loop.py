@@ -22,4 +22,4 @@ if TYPE_CHECKING:
 class TestInfiniteLoop(BaseModel):
     required: 'TestFetchResponse' = Field(alias='required')
 
-    value: 'TestFetchResponse' = Field(None, alias='value')
+    value: typing.Optional['TestFetchResponse'] = Field(None, alias='value')

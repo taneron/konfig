@@ -18,4 +18,4 @@ from pydantic import BaseModel, Field, RootModel
 
 
 class Inner(BaseModel):
-    id: int = Field(None, alias='id')
+    id: typing.Optional[int] = Field(None, alias='id')

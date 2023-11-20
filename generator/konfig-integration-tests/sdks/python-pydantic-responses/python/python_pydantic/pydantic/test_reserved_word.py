@@ -19,4 +19,4 @@ from pydantic import BaseModel, Field, RootModel
 
 class TestReservedWord(BaseModel):
     # Reserved word in Python
-    class_: str = Field(None, alias='class')
+    class_: typing.Optional[str] = Field(None, alias='class')

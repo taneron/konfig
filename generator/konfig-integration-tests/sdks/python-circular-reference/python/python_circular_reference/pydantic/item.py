@@ -18,4 +18,4 @@ from pydantic import BaseModel, Field, RootModel
 
 
 class Item(BaseModel):
-    value: str = Field(None, alias='value')
+    value: typing.Optional[str] = Field(None, alias='value')

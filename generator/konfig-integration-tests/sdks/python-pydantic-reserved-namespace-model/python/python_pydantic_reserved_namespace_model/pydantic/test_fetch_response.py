@@ -19,4 +19,4 @@ from pydantic import BaseModel, Field, RootModel
 from python_pydantic_reserved_namespace_model.pydantic.inner import Inner
 
 class TestFetchResponse(BaseModel):
-    model_config_: Inner = Field(None, alias='model_config')
+    model_config_: typing.Optional[Inner] = Field(None, alias='model_config')

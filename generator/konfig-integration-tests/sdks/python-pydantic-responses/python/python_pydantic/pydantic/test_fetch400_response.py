@@ -18,4 +18,4 @@ from pydantic import BaseModel, Field, RootModel
 
 
 class TestFetch400Response(BaseModel):
-    error: str = Field(None, alias='error')
+    error: typing.Optional[str] = Field(None, alias='error')

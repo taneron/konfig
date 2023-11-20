@@ -20,6 +20,6 @@ from python_pydantic_recursively_convert_to_models.pydantic.inner import Inner
 from python_pydantic_recursively_convert_to_models.pydantic.list_inner import ListInner
 
 class TestFetchResponse(BaseModel):
-    a: Inner = Field(None, alias='a')
+    a: typing.Optional[Inner] = Field(None, alias='a')
 
-    b: ListInner = Field(None, alias='b')
+    b: typing.Optional[ListInner] = Field(None, alias='b')

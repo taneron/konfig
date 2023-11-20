@@ -23,6 +23,6 @@ if TYPE_CHECKING:
 class TestFetchResponse(BaseModel):
     required: 'TestInfiniteLoop' = Field(alias='required')
 
-    value: 'TestInfiniteLoop' = Field(None, alias='value')
+    value: typing.Optional['TestInfiniteLoop'] = Field(None, alias='value')
 
-    array: typing.List[Item] = Field(None, alias='array')
+    array: typing.Optional[typing.List[Item]] = Field(None, alias='array')
