@@ -179,7 +179,7 @@ function installCommand({
       return { cmd: '' }
     }
     return {
-      cmd: `pip install ${codegenArgs.languageConfigurations.python?.packageName}`,
+      cmd: `pip install ${codegenArgs.languageConfigurations.python?.projectName}`,
     }
   }
   return null
