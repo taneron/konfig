@@ -75,6 +75,7 @@ import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentSkipListSet;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -554,7 +555,35 @@ public class DefaultCodegen implements CodegenConfig {
             }
         }
 
+        /**
+         * Populdate *CodegenImports for all models
+         */
+        for (ModelsMap modelsAttrs : objs.values()) {
+            List<Map<String, String>> modelsImports = modelsAttrs.getImportsOrEmpty();
+            for (ModelMap mo : modelsAttrs.getModels()) {
+                CodegenModel cm = mo.getModel();
+                populateCodegenImports(cm);
+            }
+        }
+
         return objs;
+    }
+
+    protected void populateCodegenImports(CodegenModel m) {
+        populateCodegenImports(m.typeImports, m.typeCodegenImports, m.allVars);
+        populateCodegenImports(m.additionalModelImports, m.additionalModelCodegenImports, m.allVars);
+        populateCodegenImports(m.additionalModelImportsModified, m.additionalModelCodegenImportsModified, m.allVars);
+    }
+
+    private void populateCodegenImports(Set<String> imports, List<CodegenImport> codegenImports, List<CodegenProperty> properties) {
+        imports.forEach(i -> {
+            // compute whether import is circular import based on allVars
+            boolean isCircularImport = properties.stream().anyMatch(p -> {
+                if (!i.contains(p.dataType)) return false;
+                return p.isCircularReference;
+            });
+            codegenImports.add(new CodegenImport(i, isCircularImport));
+        });
     }
 
     /**
@@ -675,14 +704,24 @@ public class DefaultCodegen implements CodegenConfig {
     }
 
     public void setCircularReferences(Map<String, CodegenModel> models) {
+        setCircularReferences(models, CodegenModel::getVars);
+        setCircularReferences(models, CodegenModel::getAllVars);
+        setCircularReferences(models, CodegenModel::getOptionalVars);
+        setCircularReferences(models, CodegenModel::getRequiredVars);
+        setCircularReferences(models, CodegenModel::getReadOnlyVars);
+        setCircularReferences(models, CodegenModel::getReadWriteVars);
+        setCircularReferences(models, CodegenModel::getNonNullableVars);
+    }
+
+    public void setCircularReferences(Map<String, CodegenModel> models, Function<CodegenModel, List<CodegenProperty>> properties) {
         final Map<String, List<CodegenProperty>> dependencyMap = models.entrySet().stream()
-                .collect(Collectors.toMap(Entry::getKey, entry -> getModelDependencies(entry.getValue())));
+                .collect(Collectors.toMap(Entry::getKey, entry -> getModelDependencies(properties.apply(entry.getValue()))));
 
         models.keySet().forEach(name -> setCircularReferencesOnProperties(name, dependencyMap));
     }
 
-    private List<CodegenProperty> getModelDependencies(CodegenModel model) {
-        return model.getAllVars().stream()
+    private List<CodegenProperty> getModelDependencies(List<CodegenProperty> properties) {
+        return properties.stream()
                 .map(prop -> {
                     if (prop.isContainer) {
                         return prop.items.dataType == null ? null : prop;
@@ -4108,13 +4147,15 @@ public class DefaultCodegen implements CodegenConfig {
             updatePropertyForObject(property, p);
         } else if (ModelUtils.isAnyType(p)) {
             updatePropertyForAnyType(property, p);
-        } else if (ModelUtils.isTypeObjectSchema(pDeref)) {
-            // I keep going back and forth between p / pDeref for second argument here
-            // we really need tests so I can make changes to fix customer bugs and be confident I didn't break
-            // something else. Or else we could be going in circles / making backward progress when fixing bugs for
-            // customers.
-            updatePropertyForObject(property, pDeref);
-        } else if (!ModelUtils.isNullType(p)) {
+        }
+//        else if (ModelUtils.isTypeObjectSchema(pDeref)) {
+//            // I keep going back and forth between p / pDeref for second argument here
+//            // we really need tests so I can make changes to fix customer bugs and be confident I didn't break
+//            // something else. Or else we could be going in circles / making backward progress when fixing bugs for
+//            // customers.
+//            updatePropertyForObject(property, pDeref);
+//        }
+        else if (!ModelUtils.isNullType(p)) {
             // referenced model
             ;
         }
