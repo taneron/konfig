@@ -28,7 +28,7 @@ export const LanguageInstallationCommand: React.FC<
         </div>
       </div>
       <div className="font-mono flex whitespace-nowrap">
-        <div className="mr-2 text-mantine-gray-600 dark:text-mantine-gray-700">
+        <div className="mr-2 select-none text-mantine-gray-600 dark:text-mantine-gray-700">
           {'$ '}
         </div>
         <Tooltip
