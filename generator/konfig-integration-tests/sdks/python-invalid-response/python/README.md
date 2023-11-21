@@ -1,0 +1,283 @@
+# python-invalid-response<a id="python-invalid-response"></a>
+
+A simple API based for testing python-invalid-response.
+
+
+[![PyPI](https://img.shields.io/badge/PyPI-v1.0.0-blue)](https://pypi.org/project/python-invalid-response/1.0.0)
+[![README.md](https://img.shields.io/badge/README-Click%20Here-green)](https://github.com/konfig-dev/konfig/tree/main/python#readme)
+[![More Info](https://img.shields.io/badge/More%20Info-Click%20Here-orange)](http://example.com/support)
+
+## Table of Contents<a id="table-of-contents"></a>
+
+<!-- toc -->
+
+- [Requirements](#requirements)
+- [Installing](#installing)
+- [Getting Started](#getting-started)
+- [Async](#async)
+- [Raw HTTP Response](#raw-http-response)
+- [Reference](#reference)
+  * [`pythoninvalidresponseclient.test.dict_instead_of_list_or_scalar`](#pythoninvalidresponseclienttestdict_instead_of_list_or_scalar)
+  * [`pythoninvalidresponseclient.test.invalid_array`](#pythoninvalidresponseclienttestinvalid_array)
+  * [`pythoninvalidresponseclient.test.invalid_object`](#pythoninvalidresponseclienttestinvalid_object)
+  * [`pythoninvalidresponseclient.test.invalid_scalar`](#pythoninvalidresponseclienttestinvalid_scalar)
+  * [`pythoninvalidresponseclient.test.list_instead_of_scalar`](#pythoninvalidresponseclienttestlist_instead_of_scalar)
+  * [`pythoninvalidresponseclient.test.object_instead_of_scalar`](#pythoninvalidresponseclienttestobject_instead_of_scalar)
+  * [`pythoninvalidresponseclient.test.only_one_property_is_invalid`](#pythoninvalidresponseclienttestonly_one_property_is_invalid)
+
+<!-- tocstop -->
+
+## Requirements<a id="requirements"></a>
+
+Python >=3.7
+
+## Installing<a id="installing"></a>
+
+```sh
+pip install python-invalid-response==1.0.0
+```
+
+## Getting Started<a id="getting-started"></a>
+
+```python
+from pprint import pprint
+from python_invalid_response import PythonInvalidResponseClient, ApiException
+
+pythoninvalidresponseclient = PythonInvalidResponseClient(
+    api_key="YOUR_API_KEY",
+)
+
+try:
+    dict_instead_of_list_or_scalar_response = (
+        pythoninvalidresponseclient.test.dict_instead_of_list_or_scalar()
+    )
+    print(dict_instead_of_list_or_scalar_response)
+except ApiException as e:
+    print("Exception when calling TestApi.dict_instead_of_list_or_scalar: %s\n" % e)
+    pprint(e.body)
+    pprint(e.headers)
+    pprint(e.status)
+    pprint(e.reason)
+    pprint(e.round_trip_time)
+```
+
+## Async<a id="async"></a>
+
+`async` support is available by prepending `a` to any method.
+
+```python
+import asyncio
+from pprint import pprint
+from python_invalid_response import PythonInvalidResponseClient, ApiException
+
+pythoninvalidresponseclient = PythonInvalidResponseClient(
+    api_key="YOUR_API_KEY",
+)
+
+
+async def main():
+    try:
+        dict_instead_of_list_or_scalar_response = (
+            await pythoninvalidresponseclient.test.adict_instead_of_list_or_scalar()
+        )
+        print(dict_instead_of_list_or_scalar_response)
+    except ApiException as e:
+        print("Exception when calling TestApi.dict_instead_of_list_or_scalar: %s\n" % e)
+        pprint(e.body)
+        pprint(e.headers)
+        pprint(e.status)
+        pprint(e.reason)
+        pprint(e.round_trip_time)
+
+
+asyncio.run(main())
+```
+
+## Raw HTTP Response<a id="raw-http-response"></a>
+
+To access raw HTTP response values, use the `.raw` namespace.
+
+```python
+from pprint import pprint
+from python_invalid_response import PythonInvalidResponseClient, ApiException
+
+pythoninvalidresponseclient = PythonInvalidResponseClient(
+    api_key="YOUR_API_KEY",
+)
+
+try:
+    dict_instead_of_list_or_scalar_response = (
+        pythoninvalidresponseclient.test.raw.dict_instead_of_list_or_scalar()
+    )
+    pprint(dict_instead_of_list_or_scalar_response.body)
+    pprint(dict_instead_of_list_or_scalar_response.headers)
+    pprint(dict_instead_of_list_or_scalar_response.status)
+    pprint(dict_instead_of_list_or_scalar_response.round_trip_time)
+except ApiException as e:
+    print("Exception when calling TestApi.dict_instead_of_list_or_scalar: %s\n" % e)
+    pprint(e.body)
+    pprint(e.headers)
+    pprint(e.status)
+    pprint(e.reason)
+    pprint(e.round_trip_time)
+```
+
+
+## Reference<a id="reference"></a>
+### `pythoninvalidresponseclient.test.dict_instead_of_list_or_scalar`<a id="pythoninvalidresponseclienttestdict_instead_of_list_or_scalar"></a>
+
+
+
+#### 🛠️ Usage<a id="🛠️-usage"></a>
+
+```python
+dict_instead_of_list_or_scalar_response = (
+    pythoninvalidresponseclient.test.dict_instead_of_list_or_scalar()
+)
+```
+
+#### 🔄 Return<a id="🔄-return"></a>
+
+[`DictInsteadOfListOrScalar`](./python_invalid_response/pydantic/dict_instead_of_list_or_scalar.py)
+
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
+
+`/dict-instead-of-list-or-scalar` `get`
+
+[🔙 **Back to Table of Contents**](#table-of-contents)
+
+---
+
+### `pythoninvalidresponseclient.test.invalid_array`<a id="pythoninvalidresponseclienttestinvalid_array"></a>
+
+
+
+#### 🛠️ Usage<a id="🛠️-usage"></a>
+
+```python
+invalid_array_response = pythoninvalidresponseclient.test.invalid_array()
+```
+
+#### 🔄 Return<a id="🔄-return"></a>
+
+[`InvalidArray`](./python_invalid_response/pydantic/invalid_array.py)
+
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
+
+`/invalid-array` `get`
+
+[🔙 **Back to Table of Contents**](#table-of-contents)
+
+---
+
+### `pythoninvalidresponseclient.test.invalid_object`<a id="pythoninvalidresponseclienttestinvalid_object"></a>
+
+
+
+#### 🛠️ Usage<a id="🛠️-usage"></a>
+
+```python
+invalid_object_response = pythoninvalidresponseclient.test.invalid_object()
+```
+
+#### 🔄 Return<a id="🔄-return"></a>
+
+[`InvalidObject`](./python_invalid_response/pydantic/invalid_object.py)
+
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
+
+`/invalid-object` `get`
+
+[🔙 **Back to Table of Contents**](#table-of-contents)
+
+---
+
+### `pythoninvalidresponseclient.test.invalid_scalar`<a id="pythoninvalidresponseclienttestinvalid_scalar"></a>
+
+
+
+#### 🛠️ Usage<a id="🛠️-usage"></a>
+
+```python
+invalid_scalar_response = pythoninvalidresponseclient.test.invalid_scalar()
+```
+
+#### 🔄 Return<a id="🔄-return"></a>
+
+[`InvalidScalar`](./python_invalid_response/pydantic/invalid_scalar.py)
+
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
+
+`/invalid-scalar` `get`
+
+[🔙 **Back to Table of Contents**](#table-of-contents)
+
+---
+
+### `pythoninvalidresponseclient.test.list_instead_of_scalar`<a id="pythoninvalidresponseclienttestlist_instead_of_scalar"></a>
+
+
+
+#### 🛠️ Usage<a id="🛠️-usage"></a>
+
+```python
+list_instead_of_scalar_response = (
+    pythoninvalidresponseclient.test.list_instead_of_scalar()
+)
+```
+
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
+
+`/list-instead-of-scalar` `get`
+
+[🔙 **Back to Table of Contents**](#table-of-contents)
+
+---
+
+### `pythoninvalidresponseclient.test.object_instead_of_scalar`<a id="pythoninvalidresponseclienttestobject_instead_of_scalar"></a>
+
+
+
+#### 🛠️ Usage<a id="🛠️-usage"></a>
+
+```python
+object_instead_of_scalar_response = (
+    pythoninvalidresponseclient.test.object_instead_of_scalar()
+)
+```
+
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
+
+`/object-instead-of-scalar` `get`
+
+[🔙 **Back to Table of Contents**](#table-of-contents)
+
+---
+
+### `pythoninvalidresponseclient.test.only_one_property_is_invalid`<a id="pythoninvalidresponseclienttestonly_one_property_is_invalid"></a>
+
+
+
+#### 🛠️ Usage<a id="🛠️-usage"></a>
+
+```python
+only_one_property_is_invalid_response = (
+    pythoninvalidresponseclient.test.only_one_property_is_invalid()
+)
+```
+
+#### 🔄 Return<a id="🔄-return"></a>
+
+[`OnlyOnePropertyIsInvalid`](./python_invalid_response/pydantic/only_one_property_is_invalid.py)
+
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
+
+`/only-one-property-is-invalid` `get`
+
+[🔙 **Back to Table of Contents**](#table-of-contents)
+
+---
+
+
+## Author<a id="author"></a>
+This Python package is automatically generated by [Konfig](https://konfigthis.com)

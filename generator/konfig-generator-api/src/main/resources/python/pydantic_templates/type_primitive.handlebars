@@ -1,5 +1,11 @@
-{{#if isPrimitiveType}}
+{{#unless isModel}}
+{{#unless isArray}}
 {{#unless isEnum}}
-{{classname}} = {{dataType}}
+{{#unless composedSchemas}}
+{{#unless isMap}}
+{{classname}} = RootModel[{{dataType}}]
 {{/unless}}
-{{/if}}
+{{/unless}}
+{{/unless}}
+{{/unless}}
+{{/unless}}

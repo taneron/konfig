@@ -24,6 +24,13 @@ const toCamelCase = (str) => {
     .join("");
 };
 
+/**
+ * converts "python-pydantic-test" to "python_pydantic_test"
+ */
+function toSnakeCase(str) {
+  return str.replace(/-/g, "_");
+}
+
 function generateKonfigYamlString(language, testName) {
   const languageSpecificFields = generateKonfigYamlFieldsForLanguage(
     language,
@@ -42,30 +49,67 @@ generators:
       repoId: konfig/tree/main/${language}`;
 }
 
+function generatePythonTest({ testName, port }) {
+  const test = `import unittest
+
+import os
+from pprint import pprint
+from ${toSnakeCase(testName)} import ${toCamelCase(testName)}Client
+
+class Test${toCamelCase(testName)}(unittest.TestCase):
+    def setUp(self):
+        pass
+
+    def test_${toSnakeCase(testName)}(self):
+        client = ${toCamelCase(testName)}Client(
+            host="http://127.0.0.1:${port}",
+            api_key='YOUR_API_KEY',
+        )
+        resp = client.test.fetch()
+        self.assertIsNotNone(resp)
+
+    def tearDown(self):
+        pass
+
+
+if __name__ == "__main__":
+    unittest.main()
+`;
+  return {
+    test,
+    path: `python/test/test_${toSnakeCase(testName)}.py`,
+    konfigIgnore: `test/test_${toSnakeCase(testName)}.py`,
+  };
+}
+
 function generateKonfigYamlFieldsForLanguage(language, testName) {
-  if (language == 'python') {
-    return `packageName: ${testName.replace(/-/g, '_')}
-    projectName: ${testName}`
-  } else if (language == 'typescript') {
-    return `npmName: ${testName}`
-  } else if (language == 'csharp') {
+  if (language == "python") {
+    return `packageName: ${testName.replace(/-/g, "_")}
+    projectName: ${testName}`;
+  } else if (language == "typescript") {
+    return `npmName: ${testName}`;
+  } else if (language == "csharp") {
     return `packageName: ${toCamelCase(testName)}.Net
-    logoPath: ../../logo.png`
-  } else if (language == 'java') {
+    logoPath: ../../logo.png`;
+  } else if (language == "java") {
     return `groupId: com.konfigthis
     packageName: ${toCamelCase(testName)}
-    artifactId: ${test}`
+    artifactId: ${test}`;
   }
 }
 
-const supportedLanguages = ['python', 'typescript', 'csharp', 'java'];
+const supportedLanguages = ["python", "typescript", "csharp", "java"];
 // Prompt for language
-rl.question(`Which language would you like to create a test for? (${supportedLanguages.join("/")}) `, (languageInput) => {
-  const language = languageInput.toLowerCase();
-  if (!supportedLanguages.includes(language)) {
-    console.error(`Language ${language} is not supported.`);
-    process.exit(1);
-  }
+rl.question(
+  `Which language would you like to create a test for? (${supportedLanguages.join(
+    "/"
+  )}) `,
+  (languageInput) => {
+    const language = languageInput.toLowerCase();
+    if (!supportedLanguages.includes(language)) {
+      console.error(`Language ${language} is not supported.`);
+      process.exit(1);
+    }
 
     // Prompt for test name
     rl.question("What would you like to name your test? ", (testName) => {
@@ -89,7 +133,8 @@ rl.question(`Which language would you like to create a test for? (${supportedLan
       ports = ports.sort((a, b) => a - b);
       let unusedPort = 4000;
       while (ports.includes(unusedPort)) {
-        unusedPort++;
+        // add random number between 1 and 50
+        unusedPort += Math.floor(Math.random() * 50) + 1;
       }
 
       // Create test file
@@ -100,6 +145,29 @@ test("${testName}", async () => {
   await e2e(${unusedPort});
 });`;
       fs.writeFileSync(`tests/${testName}.test.ts`, testContent);
+
+      // if language is python, bootstrap a test
+      if (language === "python") {
+        const { test, path, konfigIgnore } = generatePythonTest({
+          testName,
+          port: unusedPort,
+        });
+        // ensure directories exist
+        const directories = path.split("/");
+        directories.pop();
+        // push testName to beginning of directories
+        directories.unshift(testName);
+        directories.reduce((prev, curr) => {
+          const directory = `${prev}/${curr}`;
+          if (!fs.existsSync(directory)) {
+            fs.mkdirSync(directory);
+          }
+          return directory;
+        }, `sdks`);
+
+        fs.writeFileSync(`sdks/${testName}/${path}`, test);
+        fs.writeFileSync(`sdks/${testName}/python/.konfigignore`, konfigIgnore);
+      }
 
       // Create directory and konfig.yaml file
       const sdkPath = `sdks/${testName}`;

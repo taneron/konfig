@@ -1,8 +1,9 @@
-import { execa } from "execa";
+import { ExecaChildProcess, execa } from "execa";
 import * as path from "path";
 import yaml from "js-yaml";
 import { expect } from "vitest";
 import * as fs from "fs";
+import killPort from "konfig-kill-port";
 import {
   KONFIG_YAML_NAME,
   KonfigYaml,
@@ -44,7 +45,10 @@ function getCurrentTestName(): string {
 
 export async function e2e(
   mockServerPort: number,
-  customAssertions?: () => void
+  options?: {
+    customAssertions?: () => void;
+    customServer?: ServerConfig;
+  }
 ) {
   if (!getCurrentTestName()) {
     throw new Error("Unable to get current test name");
@@ -72,14 +76,33 @@ export async function e2e(
   });
 
   // run "konfig test" inside the path
-  await callAndLogExeca(
-    KONFIG_CLI_PATH,
-    ["test", "-p", mockServerPort.toString()],
-    {
+  const testArgs = options?.customServer
+    ? ["-x"]
+    : ["-p", mockServerPort.toString()];
+  let pid: number | null = null;
+  console.log("Killing port", mockServerPort);
+  if (options?.customServer) {
+    await killPort(mockServerPort);
+    pid = spawnServer({ port: mockServerPort, ...options.customServer });
+    console.log("Waiting for server to start");
+    await waitOn({
+      resources: [`http://127.0.0.1:${mockServerPort}/healthz`],
+      timeout: 100000,
+    });
+  }
+
+  try {
+    await callAndLogExeca(KONFIG_CLI_PATH, ["test", ...testArgs], {
       cwd: sdkDir,
       env,
+    });
+  } finally {
+    if (pid !== null) {
+      // kill the server
+      console.log("Killing server with pid", pid);
+      process.kill(pid);
     }
-  );
+  }
 
   // validate top-level README.md
   const konfigYamlPath = path.join(sdkDir, KONFIG_YAML_NAME);
@@ -113,10 +136,53 @@ export async function e2e(
     ).toMatchSnapshot();
   }
 
-  if (customAssertions) {
-    customAssertions();
+  if (options?.customAssertions) {
+    options.customAssertions();
   }
 }
+
+interface RouteConfig {
+  path: string;
+  method: "get" | "post" | "put" | "delet"; // Extend as needed
+  response: object;
+}
+
+type ServerConfigWithPort = ServerConfig & {
+  port: number;
+};
+
+type ServerConfig = {
+  routes: RouteConfig[];
+};
+
+const spawnServer = (config: ServerConfigWithPort): number => {
+  const serverPath = path.resolve(__dirname, "apiServer.js");
+
+  // escape the quotes in the config
+  console.log("Copy the following command to run the server:");
+  console.log(
+    `node ${serverPath} '${JSON.stringify(config).replace(/'/g, "\\'")}'`
+  );
+
+  const serverProcess = execa("node", [serverPath, JSON.stringify(config)]);
+
+  console.log(`Server spawned with PID: ${serverProcess.pid}`);
+
+  // Pipe the output to the parent process
+  serverProcess.stdout?.pipe(process.stdout);
+  serverProcess.stderr?.pipe(process.stderr);
+
+  // Handling potential errors
+  serverProcess.catch((error) => {
+    console.error("Failed to spawn server process:", error);
+  });
+
+  const pid = serverProcess.pid;
+  if (!pid) {
+    throw new Error("Unable to get server process pid");
+  }
+  return pid;
+};
 
 async function callAndLogExeca(command: string, args: string[], options: any) {
   console.log(`Running: ${command} ${args.join(" ")}`);

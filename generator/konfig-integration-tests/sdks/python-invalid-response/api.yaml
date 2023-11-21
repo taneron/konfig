@@ -1,0 +1,157 @@
+openapi: 3.0.3
+info:
+  title: python-invalid-response API
+  description: A simple API based for testing python-invalid-response.
+  version: 1.0.0
+  termsOfService: http://example.com/terms/
+  contact:
+    name: API Support
+    url: http://example.com/support
+    email: support@example.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+servers:
+  - description: Live API server
+    url: https://python-invalid-response.konfigthis.com
+tags:
+  - name: Test
+paths:
+  /invalid-scalar:
+    get:
+      tags:
+        - Test
+      operationId: Test_invalidScalar
+      description: ''
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvalidScalar'
+  /invalid-array:
+    get:
+      tags:
+        - Test
+      operationId: Test_invalidArray
+      description: ''
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvalidArray'
+  /invalid-object:
+    get:
+      tags:
+        - Test
+      operationId: Test_invalidObject
+      description: ''
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvalidObject'
+  /only-one-property-is-invalid:
+    get:
+      tags:
+        - Test
+      operationId: Test_onlyOnePropertyIsInvalid
+      description: ''
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OnlyOnePropertyIsInvalid'
+  /object-instead-of-scalar:
+    get:
+      tags:
+        - Test
+      operationId: Test_objectInsteadOfScalar
+      description: ''
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ObjectInsteadOfScalar'
+  /list-instead-of-scalar:
+    get:
+      tags:
+        - Test
+      operationId: Test_listInsteadOfScalar
+      description: ''
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListInsteadOfScalar'
+  /dict-instead-of-list-or-scalar:
+    get:
+      tags:
+        - Test
+      operationId: Test_dictInsteadOfListOrScalar
+      description: ''
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DictInsteadOfListOrScalar'
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-KEY
+  schemas:
+    InvalidScalar:
+      type: object
+      properties:
+        str:
+          type: string
+          description: The value of the JSON response
+    InvalidArray:
+      type: object
+      properties:
+        array:
+          type: array
+          items:
+            type: string
+    InvalidObject:
+      type: object
+      properties:
+        object:
+          type: object
+          properties:
+            str:
+              type: string
+    OnlyOnePropertyIsInvalid:
+      type: object
+      properties:
+        string:
+          type: string
+        number:
+          type: number
+    ObjectInsteadOfScalar:
+      type: string
+    ListInsteadOfScalar:
+      type: string
+    DictInsteadOfListOrScalar:
+      anyOf:
+        - type: string
+        - type: array
+          items:
+            type: string
+security:
+  - ApiKeyAuth: []
