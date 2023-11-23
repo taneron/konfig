@@ -1,5 +1,5 @@
 import { OpenAPIV3, OpenAPIV3_1 } from 'openapi-types'
-import { SchemaObject } from '../parseSpec'
+import { SchemaObject, Spec } from '../parseSpec'
 import { ReferenceObject, resolveRef } from '../resolveRef'
 import { OpenApiVersion } from './get-oas-version'
 import { Json } from './json-schema'
@@ -167,8 +167,10 @@ export function mergeOneOfsInOneOf({
  */
 export function unrollOneOf({
   schemaObject,
+  $ref,
 }: {
   schemaObject: SchemaOrReference
+  $ref?: Spec['$ref']
 }): SchemaObject | ReferenceObject {
   if ('oneOf' in schemaObject && schemaObject.oneOf !== undefined) {
     // handle x-konfig-null-placeholder which is essentially a "poison null pill".
@@ -184,11 +186,18 @@ export function unrollOneOf({
       if ('x-konfig-null-placeholder' in schema) {
         continue
       }
-      if ('$ref' in schema) throw Error('Not Implemented')
-      if (poisoned) {
-        ;(schema as any).nullable = true
+      let resolvedSchema = schema
+      if ('$ref' in schema) {
+        if ($ref === undefined) {
+          throw Error('Not implemented')
+        }
+        resolvedSchema = resolveRef({ $ref, refOrObject: schema })
       }
-      oneOf.push(schema)
+
+      if (poisoned) {
+        ;(resolvedSchema as any).nullable = true
+      }
+      oneOf.push(resolvedSchema)
     }
     schemaObject.oneOf = oneOf
 
@@ -207,13 +216,17 @@ export function unrollOneOf({
 export function mergeSchemaObject({
   a,
   b,
+  $ref,
 }: {
   a: SchemaOrReference
   b: SchemaOrReference
+  $ref?: Spec['$ref']
 }): SchemaOrReference {
   function merge() {
     if (a === undefined) return b
     if (b === undefined) return a
+    a = $ref !== undefined ? resolveRef({ $ref, refOrObject: a }) : a
+    b = $ref !== undefined ? resolveRef({ $ref, refOrObject: b }) : b
     if ('oneOf' in a) {
       if ('oneOf' in b) {
         if (a.oneOf !== undefined && b.oneOf !== undefined) {
@@ -226,13 +239,18 @@ export function mergeSchemaObject({
             oneOf: mergeOneOfAndSchemaObject({
               oneOf: b.oneOf,
               schemaObject: a,
+              $ref,
             }),
           }
         }
       }
       if (a.oneOf !== undefined) {
         return {
-          oneOf: mergeOneOfAndSchemaObject({ oneOf: a.oneOf, schemaObject: b }),
+          oneOf: mergeOneOfAndSchemaObject({
+            oneOf: a.oneOf,
+            schemaObject: b,
+            $ref,
+          }),
         }
       }
     }
@@ -240,12 +258,14 @@ export function mergeSchemaObject({
       oneOf: mergeOneOfAndSchemaObject({
         oneOf: [a],
         schemaObject: b,
+        $ref,
       }),
       ...('example' in b ? { example: b.example } : {}),
     }
   }
   return unrollOneOf({
     schemaObject: mergeOneOfsInOneOf({ schemaObject: merge() }),
+    $ref,
   })
 }
 
@@ -259,9 +279,11 @@ export function mergeOneOfs({ a, b }: { a: OneOf; b: OneOf }): OneOf {
 export function mergeOneOfAndSchemaObject({
   oneOf,
   schemaObject,
+  $ref,
 }: {
   oneOf: OneOf
   schemaObject: SchemaOrReference
+  $ref?: Spec['$ref']
 }): OneOf {
   if ('$ref' in schemaObject) {
     return oneOf.concat(schemaObject)
@@ -272,12 +294,19 @@ export function mergeOneOfAndSchemaObject({
   // if schemaObject is primitive then check if oneOf already has that primitive
   if (typeof schemaObject.type === 'string') {
     if (isTypePrimitive(schemaObject.type)) {
-      const existingSchemaObject = oneOf.find(
-        (so) =>
-          !('$ref' in so) &&
-          so.type === schemaObject.type &&
-          !('x-konfig-null-placeholder' in so)
-      )
+      const existingSchemaObject = oneOf
+        .map((so) => {
+          const resolvedSchemaObject =
+            $ref !== undefined ? resolveRef({ $ref, refOrObject: so }) : so
+          return resolvedSchemaObject
+        })
+        .find((so) => {
+          return (
+            !('$ref' in so) &&
+            so.type === schemaObject.type &&
+            !('x-konfig-null-placeholder' in so)
+          )
+        })
 
       if (existingSchemaObject !== undefined) {
         // Carry nullable over
@@ -319,15 +348,23 @@ export function mergeOneOfAndSchemaObject({
       existingArraySchemaObject.items = mergeSchemaObject({
         a: existingArraySchemaObject.items,
         b: schemaObject.items,
+        $ref,
       })
       return oneOf
     }
     // if schemaObject is object then merge the object schemas
     if (schemaObject.type === 'object') {
       if (schemaObject.properties === undefined) return oneOf
-      const existingSchemaObject = oneOf.find(
-        (so) => !('$ref' in so) && so.type === 'object'
-      )
+      const existingSchemaObject = oneOf
+        .map((so) => {
+          const resolvedSchemaObject = $ref
+            ? resolveRef({ $ref, refOrObject: so })
+            : so
+          return resolvedSchemaObject
+        })
+        .find((so) => {
+          return !('$ref' in so) && so.type === 'object'
+        })
       if (existingSchemaObject === undefined) return oneOf.concat(schemaObject)
       if ('$ref' in existingSchemaObject) return oneOf.concat(schemaObject)
       if (schemaObject.properties === undefined) return oneOf
@@ -342,9 +379,33 @@ export function mergeOneOfAndSchemaObject({
         const mergedSchemaObject = mergeSchemaObject({
           a: existingFieldSchema,
           b: newFieldSchema,
+          $ref,
         })
         existingSchemaObject.properties[key] = mergedSchemaObject
+
+        // if schemaObject does not have required field then remove it from
+        // existingSchemaObject
+        if (
+          existingSchemaObject.required !== undefined &&
+          !schemaObject.required?.includes(key)
+        ) {
+          existingSchemaObject.required = existingSchemaObject.required.filter(
+            (requiredField) => requiredField !== key
+          )
+        }
       }
+
+      // remove required field from existingSchemaObject if it is not in
+      // schemaObject properties
+      if (existingSchemaObject.required !== undefined) {
+        existingSchemaObject.required = existingSchemaObject.required.filter(
+          (requiredField) => {
+            if (schemaObject.properties === undefined) return true
+            return requiredField in schemaObject.properties
+          }
+        )
+      }
+
       return oneOf
     }
   }

@@ -1,0 +1,162 @@
+openapi: 3.0.3
+info:
+  contact:
+    email: support@example.com
+    name: API Support
+    url: http://example.com/support
+  description: A simple API based for testing java-merge-anyof-object-schemas.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://example.com/terms/
+  title: java-merge-anyof-object-schemas API
+  version: 1.0.0
+  x-konfig-has-globally-required-security: true
+servers:
+- description: Live API server
+  url: https://java-merge-anyof-object-schemas.konfigthis.com
+security:
+- ApiKey: []
+tags:
+- name: Test
+paths:
+  /merge-different:
+    get:
+      description: merge different
+      operationId: Test_mergeDifferent
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MergeDifferent'
+          description: Successful response
+      summary: merge different
+      tags:
+      - Test
+      x-konfig-operation-can-have-single-parameter: true
+      x-konfig-single-parameter-schema: konfig-generated-schema-single-parameter-schema-get--merge-different
+      x-accepts: application/json
+  /merge-same:
+    get:
+      description: merge same
+      operationId: Test_mergeSame
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MergeSame'
+          description: Successful response
+      summary: merge same
+      tags:
+      - Test
+      x-konfig-operation-can-have-single-parameter: true
+      x-konfig-single-parameter-schema: konfig-generated-schema-single-parameter-schema-get--merge-same
+      x-accepts: application/json
+  /simple-endpoint:
+    get:
+      description: Provide an input parameter to receive a JSON value with properties.
+      operationId: Test_fetch
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TestFetchResponse'
+          description: Successful response
+      summary: Fetches a JSON value based on input parameter
+      tags:
+      - Test
+      x-konfig-operation-can-have-single-parameter: true
+      x-konfig-single-parameter-schema: konfig-generated-schema-single-parameter-schema-get--simple-endpoint
+      x-accepts: application/json
+components:
+  schemas:
+    TestFetchResponse:
+      $ref: '#/components/schemas/ABC'
+    MergeDifferent:
+      $ref: '#/components/schemas/A1'
+    MergeSame:
+      $ref: '#/components/schemas/B1'
+    A:
+      properties:
+        a: {}
+        b:
+          type: string
+        c:
+          type: string
+      type: object
+    AA:
+      properties:
+        a:
+          type: number
+      type: object
+    B:
+      properties:
+        b:
+          type: string
+      type: object
+    BB:
+      properties:
+        b:
+          type: string
+      type: object
+    C:
+      properties:
+        c:
+          type: string
+      type: object
+    konfig-generated-schema-single-parameter-schema-get--merge-different:
+      properties: {}
+      type: object
+      x-do-not-generate: true
+      x-konfig-is-parameter: []
+    konfig-generated-schema-single-parameter-schema-get--merge-same:
+      properties: {}
+      type: object
+      x-do-not-generate: true
+      x-konfig-is-parameter: []
+    konfig-generated-schema-single-parameter-schema-get--simple-endpoint:
+      properties: {}
+      type: object
+      x-do-not-generate: true
+      x-konfig-is-parameter: []
+    ABC:
+      example:
+        a: ""
+        b: b
+        c: c
+      properties:
+        a: {}
+        b:
+          type: string
+        c:
+          type: string
+      type: object
+    A1:
+      example:
+        a: ""
+        b: b
+        c: c
+      properties:
+        a: {}
+        b:
+          type: string
+        c:
+          type: string
+      type: object
+    B1:
+      example:
+        b: b
+      properties:
+        b:
+          type: string
+      type: object
+  securitySchemes:
+    ApiKey:
+      in: header
+      name: X-API-KEY
+      type: apiKey
+      x-konfig-globally-required-security: true
+
