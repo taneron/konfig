@@ -27,13 +27,21 @@ var {{nameInCamelCaseLowerFirst}} = {{{../dataType}}}.{{{enumName}}}.{{> api_doc
 {{#isBoolean}}
 var {{nameInCamelCaseLowerFirst}} = false;{{#description}} // {{{.}}}{{/description}}
 {{/isBoolean}}
+{{#isInteger}}
+var {{nameInCamelCaseLowerFirst}} = default({{{dataType}}});{{#description}} // {{{.}}}{{/description}}
+{{/isInteger}}
 {{#isAnyType}}
 var {{nameInCamelCaseLowerFirst}} = "{{{nameInCamelCaseLowerFirst}}}_example";{{#description}} // {{{.}}}{{/description}}
 {{/isAnyType}}
 {{/example}}
 {{/isPrimitiveType}}
 {{^isPrimitiveType}}
+{{#exampleComposed}}
+var {{nameInCamelCaseLowerFirst}} = {{{exampleComposed}}};{{#description}} // {{{.}}}{{/description}}
+{{/exampleComposed}}
+{{^exampleComposed}}
 var {{nameInCamelCaseLowerFirst}} = new {{{dataType}}}();{{#description}} // {{{.}}}{{/description}}
+{{/exampleComposed}}
 {{/isPrimitiveType}}
 {{/isEnumRef}}
 {{/vars}}

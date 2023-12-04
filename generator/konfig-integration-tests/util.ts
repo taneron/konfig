@@ -116,6 +116,14 @@ export async function e2e(
   ) as KonfigYamlType;
   const parsedKonfigYaml = KonfigYaml.parse(loadedKonfigYaml);
 
+  // Tests will just timeout if you have requiredEnvironmentVariables,
+  // so we throw an error here so you don't waste time debugging
+  if (parsedKonfigYaml.requiredEnvironmentVariables !== undefined) {
+    throw new Error(
+      "requiredEnvironmentVariables is not supported in e2e tests"
+    );
+  }
+
   const generators: (
     | KonfigYamlGeneratorConfig
     | KonfigYamlAdditionalGeneratorConfig
@@ -186,10 +194,16 @@ const spawnServer = (config: ServerConfigWithPort): number => {
 
 async function callAndLogExeca(command: string, args: string[], options: any) {
   console.log(`Running: ${command} ${args.join(" ")}`);
-  await execa(command, args, {
+
+  // Stream that simply console.logs everything from the child process
+
+  const p = execa(command, args, {
     ...options,
-    stdio: "inherit",
   });
+  p.stdout?.pipe(process.stdout);
+  p.stderr?.pipe(process.stderr);
+
+  await p;
 }
 
 // Removes the [GitHub last commit] line from the README
