@@ -801,6 +801,26 @@ export const transformSpec = async ({
     convertOneOfSchemasToAny({ spec: spec.spec })
   }
 
+  if (generator === 'go') {
+    recurseObject(spec.spec, ({ value: schema }) => {
+      if (schema === null) return
+      if (typeof schema !== 'object') return
+      if (schema['anyOf'] === undefined) return
+      if (!Array.isArray(schema['anyOf'])) return
+
+      // remove default if it is {} or []
+      if (
+        schema['default'] !== undefined &&
+        schema['default'] !== null &&
+        ((typeof schema['default'] === 'object' &&
+          Object.keys(schema['default']).length === 0) ||
+          (Array.isArray(schema['default']) && schema['default'].length === 0))
+      ) {
+        delete schema['default']
+      }
+    })
+  }
+
   // remove invalid escape sequence "\*" for Python from any descriptions in a schema component in the spec
   if (spec.spec.components?.schemas) {
     for (const schema of Object.values(spec.spec.components.schemas)) {
