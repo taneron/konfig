@@ -1,5 +1,11 @@
 # konfig-lib
 
+## 1.34.1
+
+### Patch Changes
+
+- [#404](https://github.com/konfig-dev/konfig/pull/404) [`816adff9`](https://github.com/konfig-dev/konfig/commit/816adff9500ccb56ba35c68152a02b3e8ec022d7) Thanks [@eddiechayes](https://github.com/eddiechayes)! - Remove empty defaults in transformSpec for go generator
+
 ## 1.34.0
 
 ### Minor Changes
