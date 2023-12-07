@@ -1,5 +1,20 @@
 # konfig-cli
 
+## 1.35.0
+
+### Minor Changes
+
+- [`dc29d6e5`](https://github.com/konfig-dev/konfig/commit/dc29d6e5607fe88e73616529dd2babf9c32c9144) Thanks [@dphuang2](https://github.com/dphuang2)! - upgrade @stoplight/prism-cli dependency
+
+- [#409](https://github.com/konfig-dev/konfig/pull/409) [`ab52fae1`](https://github.com/konfig-dev/konfig/commit/ab52fae196256319657ff20dbc2b52024e127ffc) Thanks [@dphuang2](https://github.com/dphuang2)! - print error for "konfig mock" if caught
+
+### Patch Changes
+
+- Updated dependencies [[`816adff9`](https://github.com/konfig-dev/konfig/commit/816adff9500ccb56ba35c68152a02b3e8ec022d7)]:
+  - konfig-lib@1.34.1
+  - konfig-openapi-spec@1.8.1
+  - konfig-postman-to-openapi@3.1.1
+
 ## 1.34.0
 
 ### Minor Changes
