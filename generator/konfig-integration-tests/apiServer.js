@@ -1,4 +1,7 @@
 const express = require("express");
+const multer = require("multer");
+
+const upload = multer(); // Initializes multer
 
 const startServer = (port, routes) => {
   const app = express();
@@ -11,9 +14,28 @@ const startServer = (port, routes) => {
   });
 
   routes.forEach((route) => {
-    app[route.method](route.path, (req, res) => {
-      res.status(200).json(route.response);
-    });
+    if (route.isMultipartFormData) {
+      app[route.method](route.path, upload.any(), (req, res) => {
+        if (route.response === "echo") {
+          const response = {
+            files: req.files,
+            params: req.params,
+            query: req.query,
+            headers: req.headers,
+            body: req.body,
+            url: req.url,
+            hostname: req.hostname,
+          };
+          res.status(200).json(response);
+        } else {
+          res.status(200).json(route.response);
+        }
+      });
+    } else {
+      app[route.method](route.path, (req, res) => {
+        res.status(200).json(route.response);
+      });
+    }
   });
 
   // /healthz GET endpoint
