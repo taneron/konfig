@@ -173,7 +173,7 @@ const DemoMarkdown = observer(({ state }: { state: DemoState }) => {
         <ReactMarkdown
           className={classes.markdown}
           remarkPlugins={[remarkGfm, remarkDirective, remarkDirectiveRehype]}
-          rehypePlugins={[rehypeRaw]}
+          rehypePlugins={[rehypeRaw as any]}
           components={{
             a: DemoAnchor,
             p({ node, children, siblingCount, ...props }) {
