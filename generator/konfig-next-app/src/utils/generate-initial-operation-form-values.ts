@@ -7,6 +7,7 @@ import localforage from 'localforage'
 import { ReferencePageProps } from './generate-props-for-reference-page'
 import { isUUID } from './is-uuid'
 import { NonArraySchemaObject } from 'konfig-lib'
+import { recursivelyRemoveEmptyValues } from './recursively-remove-empty-values'
 
 export const FORM_VALUES_LOCAL_STORAGE_KEY = ({
   owner,
@@ -106,9 +107,13 @@ export async function generateInitialFormValuesWithStorage(
     const storedValue = await localforage.getItem(
       FORM_VALUES_LOCAL_STORAGE_KEY({ owner, repo })
     )
+    const pruned =
+      storedValue !== null && storedValue !== undefined
+        ? recursivelyRemoveEmptyValues(storedValue as any)
+        : storedValue
     if (storedValue) {
       try {
-        initialValues = deepmerge(initialValues, storedValue)
+        initialValues = deepmerge(initialValues, pruned as any)
       } catch (e) {
         console.log('Failed to parse stored value')
       }
@@ -181,6 +186,11 @@ function generateFormInputValues({
       initialValues.parameters[parameter.name] = [
         innerInitialValues.initialValues.parameters,
       ]
+      if (parameter.isRequestBody) {
+        initialValues.requestBody = [
+          innerInitialValues.initialValues.parameters,
+        ]
+      }
       const validation: FormValues['validate'] = {
         parameters: {
           [parameter.name]: (innerInitialValues.validate as any).parameters,
