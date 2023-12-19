@@ -1567,6 +1567,23 @@ function constructGoGenerationRequest({
 }) {
   const { files, ...restOfConfig } = goGeneratorConfig
 
+  // Make sure that repoId is correct
+  if (
+    restOfConfig.git.repoId.includes('tree') ||
+    restOfConfig.git.repoId.includes('blob')
+  ) {
+    CliUx.ux.error(
+      `Detected go.git.repoId containing "tree" or "blob": "${restOfConfig.git.repoId}". The repoId should either point to a submodule or only includes subpath (e.g. no "tree/master" or "tree/main" in repoId). For example, if your repo is located at https://github.com/username/repo, then your repoId should be "repo" and not "repo/tree/main/subpath".`
+    )
+  }
+
+  // Make sure the version does not include a "v"
+  if (restOfConfig.version.startsWith('v')) {
+    CliUx.ux.error(
+      `go.git.version "${restOfConfig.version}" cannot start with a "v".`
+    )
+  }
+
   const requestGo: GenerateRequestBodyType['generators']['go'] = {
     files: createTemplateFilesObject(files, 'go', configDir),
     ...handleReadmeSnippet({ config: restOfConfig }),
