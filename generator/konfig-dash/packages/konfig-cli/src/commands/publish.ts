@@ -498,7 +498,7 @@ export default class Publish extends Command {
             isSubmodule: goIsInSubmodule,
             gitHost: generatorConfig.git.host,
             owner: generatorConfig.git.userId,
-            repo: generatorConfig.git.repoName,
+            repo: generatorConfig.git.repoId,
             skipTag: flags.skipTag,
           }),
           cwd: goIsInSubmodule ? generatorConfig.outputDirectory : undefined,
