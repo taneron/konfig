@@ -1,10 +1,11 @@
-outputDirectory: /tmp/{{name}}-out
+outputDirectory: /tmp/{{repoName}}-out
 specPath: openapi.yaml
 generators:
   {{lang}}:
     version: 1.0.0
+    npmName: {{repoName}}
     outputDirectory: {{lang}}
     clientName: {{clientName}}
     git:
       userId: konfig-sdks
-      repoId: {{name}}/tree/main/{{lang}}
+      repoId: {{repoName}}/tree/main/{{lang}}

@@ -1,3 +1,1 @@
-import { createRepository, writeKonfigYaml } from "./util";
-
-console.log("hello world");
+console.log("Creating SDKs...");
