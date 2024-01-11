@@ -266,8 +266,9 @@ services:
   - type: web
     env: static
     name: konfig-docs
-    buildCommand: cd generator/konfig-docs; yarn install; yarn build
-    staticPublishPath: generator/konfig-docs/build
+    rootDir: generator/konfig-docs
+    buildCommand: yarn install; yarn build
+    staticPublishPath: ./build
     repo: https://github.com/konfig-dev/konfig
     domains:
       - docs.konfigthis.com
