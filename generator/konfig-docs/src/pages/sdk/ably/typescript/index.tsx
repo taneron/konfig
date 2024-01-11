@@ -39,11 +39,12 @@ export default function AblyTypeScriptSdk() {
               <img
                 className="h-6 mb-4"
                 src="https://voltaire.ably.com/static/ably-logo-46433d9937b94509fc62ef6dd6d94ff1.png"
+                alt="Ably Logo"
               />
-              <h3 className="flex gap-2 mb-2">
+              <h1 className="flex gap-2 text-2xl lg:text-3xl mb-2">
                 <span>ably-typescript-sdk</span>
                 <TsIcon className="h-5 w-5" />
-              </h3>
+              </h1>
               <div className="flex flex-wrap gap-x-3 gap-y-1 items-center text-xs sm:text-sm md:text-base">
                 <div className="font-mono text-slate-500">1.0.0</div>
                 <Dot />
@@ -70,14 +71,14 @@ export default function AblyTypeScriptSdk() {
           <div className="flex flex-col pt-24 pb-10 lg:flex-row lg:gap-10 items-start justify-between">
             <div className="grow w-full">
               <SignupForm />
-              <div className="text-slate-400 mb-1 text-sm font-bold">
+              <div className="text-slate-500 mb-1 text-sm font-bold">
                 What is Ably?
               </div>
               <AboutSection>
                 <AboutContentSection>
                   <AboutTitle>
                     <div className="flex items-center gap-2">
-                      <IconInfoCircle size="1rem" className="text-slate-300" />
+                      <IconInfoCircle size="1rem" className="text-slate-400" />
                       <div>About Ably</div>
                     </div>
                   </AboutTitle>
@@ -85,13 +86,13 @@ export default function AblyTypeScriptSdk() {
                 </AboutContentSection>
                 <AboutTitle>
                   <div className="flex items-center gap-2">
-                    <IconApi size="1rem" className="text-slate-300" />
+                    <IconApi size="1rem" className="text-slate-400" />
                     <div>About Ably's API</div>
                   </div>
                 </AboutTitle>
                 <Description />
               </AboutSection>
-              <div className="text-slate-400 mb-1 text-sm font-bold">
+              <div className="text-slate-500 mb-1 text-sm font-bold">
                 Integrating Ably's TypeScript SDK
               </div>
               <AboutSection>
@@ -159,19 +160,19 @@ function SdkMethod({
   return (
     <div
       className={clsx(
-        "border rounded-md block w-full overflow-x-auto px-6 py-4",
+        "ring-1 rounded-md block w-full overflow-x-auto px-3 py-2",
         {
-          "border-green-100 bg-green-50/20": color === "green",
-          "border-blue-100 bg-blue-50/20": color === "blue",
-          "border-red-100 bg-red-50/20": color === "red",
-          "border-yellow-100 bg-yellow-50/20": color === "yellow",
-          "border-slate-100 bg-slate-50/20": color === "slate",
+          "ring-green-100 bg-green-50/20": color === "green",
+          "ring-blue-100 bg-blue-50/20": color === "blue",
+          "ring-red-100 bg-red-50/20": color === "red",
+          "ring-yellow-100 bg-yellow-50/20": color === "yellow",
+          "ring-slate-100 bg-slate-50/20": color === "slate",
         }
       )}
     >
-      <div className="flex w-fit gap-4">
+      <div className="flex w-fit gap-2">
         <IconBraces
-          className={clsx("shrink-0 mt-1 h-4", {
+          className={clsx("shrink-0 h-4", {
             "text-green-400": color === "green",
             "text-blue-400": color === "blue",
             "text-red-400": color === "red",
@@ -240,7 +241,7 @@ function AboutSection({ children }: PropsWithChildren<{}>) {
 }
 
 function AboutTitle({ children }: PropsWithChildren<{}>) {
-  return <h4 className="text-slate-400 uppercase text-xs mb-2">{children}</h4>;
+  return <h3 className="text-slate-500 uppercase text-xs mb-2">{children}</h3>;
 }
 
 function SignupForm() {
@@ -250,9 +251,9 @@ function SignupForm() {
       className="p-8 rounded-md bg-emerald-50 ring-1 ring-emerald-300 transition-all hover:scale-[1.01] hover:shadow-lg shadow-md mb-8"
     >
       <div className="flex flex-col">
-        <div className="text-lg text-emerald-900 font-bold mb-3">
+        <h2 className="text-xl text-emerald-900 font-bold mb-3">
           Need a TypeScript SDK for Ably's API?
-        </div>
+        </h2>
         <input
           type="email"
           pattern="[^@\s]+@[^@\s]+"
@@ -280,8 +281,8 @@ function Sidebar() {
   return (
     <div className="top-20 sticky w-full lg:w-fit">
       <div className="flex gap-1 items-center mb-1">
-        <IconInfoCircle className="h-4 shrink-0 text-slate-300" />
-        <div className="text-slate-400 text-sm font-bold">More Info</div>
+        <IconInfoCircle className="h-4 shrink-0 text-slate-400" />
+        <div className="text-slate-500 text-sm font-bold">More Info</div>
       </div>
       <div className="bg-white ring-1 ring-slate-200 shadow-md p-8 lg:py-4 lg:px-6 rounded-md">
         <SidebarSection>
@@ -391,13 +392,13 @@ function SidebarSectionTitle({
   large,
 }: PropsWithChildren<{ large?: boolean }>) {
   return (
-    <h5
-      className={clsx("mb-1 text-slate-400 uppercase text-xs", {
+    <h3
+      className={clsx("mb-1 text-slate-500 uppercase text-xs", {
         "text-lg text-black": large,
       })}
     >
       {children}
-    </h5>
+    </h3>
   );
 }
 
