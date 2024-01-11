@@ -17,13 +17,19 @@ import {
 } from "@tabler/icons-react";
 
 export default function AblyTypeScriptSdk() {
+  const metaDescription = `Ably provides a suite of APIs to build, extend, and deliver powerful digital experiences in realtime. Organizations like Toyota, Bloomberg, HubSpot, and Hopin depend on Ably’s platform to offload the growing complexity of business-critical realtime data synchronization at global scale.`;
   return (
     <Layout
       title="Ably API - TypeScript SDK and OpenAPI Specification"
-      description="Ably API TypeScript SDK, Documentation, and OpenAPI Specification"
+      description={`Ably API TypeScript SDK, Documentation, and OpenAPI Specification - ${metaDescription}}`}
     >
       <Head>
         <link rel="icon" href="https://ably.com/favicon.ico" />
+        <meta
+          property="og:image"
+          content="https://voltaire.ably.com/static/ably-generic@2x-53a7dd8e38ba16fd0190ec91150dad0a.jpeg"
+        />
+        <meta property="og:description" content={metaDescription} />
       </Head>
       <div className="bg-slate-100 border-b">
         <div className="py-8 bg-gradient-to-tl from-[var(--ifm-color-primary-darkest)] to-[var(--ifm-color-primary)]">
@@ -70,14 +76,7 @@ export default function AblyTypeScriptSdk() {
                     <div>About Ably</div>
                   </div>
                 </AboutTitle>
-                <p>
-                  Ably provides a suite of APIs to build, extend, and deliver
-                  powerful digital experiences in realtime. Organizations like
-                  Toyota, Bloomberg, HubSpot, and Hopin depend on Ably’s
-                  platform to offload the growing complexity of
-                  business-critical realtime data synchronization at global
-                  scale.
-                </p>
+                <p>{metaDescription}</p>
                 <AboutTitle>
                   <div className="flex items-center gap-2">
                     <IconFile size="1rem" className="text-slate-300" />
