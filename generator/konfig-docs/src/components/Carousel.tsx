@@ -15,6 +15,10 @@ function Wrapper({ children }: PropsWithChildren<{}>) {
   --swiper-navigation-size: 25px;
 }
 
+.swiper {
+  padding-bottom: 20px;
+}
+
 @media (max-width: 640px) {
   :host {
     --swiper-navigation-size: 0px;

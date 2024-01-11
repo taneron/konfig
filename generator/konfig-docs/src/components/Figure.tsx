@@ -7,7 +7,7 @@ export function Figure({
   const child = getChildImage(children);
   return (
     <figure className="flex flex-col items-center">
-      {<div className="mb-[-5px] w-full">{child ? child : children}</div>}
+      {<div>{child ? child : children}</div>}
       <b>
         <figcaption className="text-center font-light text-sm">
           {caption}
