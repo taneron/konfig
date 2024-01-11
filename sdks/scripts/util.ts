@@ -1,6 +1,7 @@
 import * as execa from "execa";
 import * as fs from "fs";
 import * as path from "path";
+import * as mustache from "mustache";
 
 export function generateSdkRepository(
   companyName: string,
@@ -79,15 +80,18 @@ function deleteRepository(name: string) {
 // TODO: maybe move the template to a mustache file in order to better handle the language-specific fields
 function writeKonfigYaml(companyName: string, language: string) {
   const template = fs.readFileSync(
-    path.join(__dirname, "..", "templates", "konfig.yaml.template"),
+    path.join(__dirname, "..", "templates", "konfig.yaml.mustache"),
     "utf-8"
   );
   companyName = companyName.toLowerCase();
   const repoName = generateRepoName(companyName, language);
-  const konfigYaml = template
-    .replace(/{{repoName}}/g, repoName)
-    .replace(/{{lang}}/g, language)
-    .replace(/{{clientName}}/g, generateClientName(companyName, language));
+  const konfigYaml = mustache.render(template, {
+    repoName,
+    lang: language,
+    clientName: generateClientName(companyName, language),
+    packageName: repoName.replace(/-/g, "_"),
+    ...generateTemplateLanguageData(language),
+  });
 
   fs.writeFileSync(
     path.join(__dirname, "..", "sdks", repoName, "konfig.yaml"),
@@ -108,6 +112,16 @@ function repositoryExists(name: string): boolean {
     }
     throw error;
   }
+}
+
+function generateTemplateLanguageData(language: string) {
+  const data: Record<string, any> = {
+    typescript: false,
+    java: false,
+    python: false,
+  };
+  data[language] = true;
+  return data;
 }
 
 function generateRepositoryDescription(companyName: string, language: string) {
