@@ -246,7 +246,7 @@ function SignupForm() {
 
 function Sidebar() {
   return (
-    <div className="bg-white sticky top-20 border border-slate-200 w-full lg:w-fit shadow-md py-4 px-6 rounded-md">
+    <div className="bg-white sticky top-20 border border-slate-200 w-full lg:w-fit shadow-md p-8 lg:py-4 lg:px-6 rounded-md">
       <div>
         <SidebarSection>
           <SidebarSectionTitle>API Title</SidebarSectionTitle>
