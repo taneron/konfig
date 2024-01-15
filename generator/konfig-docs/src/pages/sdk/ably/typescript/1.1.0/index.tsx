@@ -1,4 +1,4 @@
-import React, { PropsWithChildren } from "react";
+import React, { FormEventHandler, PropsWithChildren, useState } from "react";
 import Layout from "@theme/Layout";
 import type { HttpMethods } from "konfig-lib";
 import { HttpMethodsEnum } from "konfig-lib/dist/forEachOperation";
@@ -42,11 +42,11 @@ export default function AblyTypeScriptSdk() {
                 alt="Ably Logo"
               />
               <h1 className="flex gap-2 text-2xl lg:text-3xl mb-2">
-                <span>ably-typescript-sdk</span>
+                <span>ably-platform-typescript-sdk</span>
                 <TsIcon className="h-5 w-5" />
               </h1>
               <div className="flex flex-wrap gap-x-3 gap-y-1 items-center text-xs sm:text-sm md:text-base">
-                <div className="font-mono text-slate-500">1.0.0</div>
+                <div className="font-mono text-slate-500">1.1.0</div>
                 <Dot />
                 <div className="font-mono">
                   <a href="https://konfigthis.com" target="_blank">
@@ -245,35 +245,128 @@ function AboutTitle({ children }: PropsWithChildren<{}>) {
 }
 
 function SignupForm() {
+  const [email, setEmail] = useState("");
+  const [signedUp, setSignedUp] = useState(false);
+  const [signedUpEmail, setSignedUpEmail] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit: FormEventHandler = async (event) => {
+    event.preventDefault();
+    setLoading(true);
+
+    const url =
+      process.env.NODE_ENV === "development"
+        ? "http://localhost:8911/sdkSignupForm"
+        : "https://api.konfigthis.com/sdkSignupForm";
+
+    try {
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: email,
+          company: "Ably",
+          service: "platform",
+          language: "TypeScript",
+        }),
+      });
+
+      setLoading(false);
+
+      if (!response.ok) {
+        // handle error
+      }
+
+      setSignedUp(true);
+      setSignedUpEmail(email);
+    } catch (e) {
+      // if error when calling fetch, set loading to false
+      setLoading(false);
+    }
+  };
+
   return (
     <form
+      onSubmit={handleSubmit}
       id="signup"
       className="p-8 rounded-md bg-emerald-50 ring-1 ring-emerald-300 transition-all hover:scale-[1.01] hover:shadow-lg shadow-md mb-8"
     >
       <div className="flex flex-col">
-        <h2 className="text-xl text-emerald-900 font-bold mb-3">
-          Need a TypeScript SDK for Ably's API?
-        </h2>
-        <input
-          type="email"
-          pattern="[^@\s]+@[^@\s]+"
-          name="email"
-          autoFocus
-          className="border rounded-md px-2 py-1 w-full mb-2"
-          placeholder="Email"
-        />
-        <button
-          type="submit"
-          className="font-medium group flex gap-3 hover:gap-2 items-center transition-all bg-gradient-to-br text-white w-fit text-center px-3 py-2 from-emerald-600 to-emerald-800 rounded-md text-sm"
+        <h2
+          className={clsx("text-lg lg:text-xl text-emerald-900 font-bold", {
+            "mb-3": !signedUp,
+          })}
         >
-          <div>Sign up for access to Ably's TypeScript SDK</div>
-          <IconPencil
-            size="1rem"
-            className="transition-all group-hover:text-emerald-50 text-emerald-300"
+          {signedUp
+            ? "Thanks for signing up for access to Ably's TypeScript SDK!"
+            : "Need a TypeScript SDK for Ably's API?"}
+        </h2>
+        {signedUp ? (
+          <>
+            <p>{`Your email, ${signedUpEmail}, has been successfully registered for access to the TypeScript SDK. We will notify you as soon as it is available.`}</p>
+            <p className="mb-0">
+              For inquiries or support, please contact us at{" "}
+              <a href="mailto:sdks@konfigthis.com">sdks@konfigthis.com</a>
+            </p>
+          </>
+        ) : null}
+        {signedUp ? null : (
+          <input
+            type="email"
+            name="email"
+            autoFocus
+            className="border rounded-md px-2 py-1 w-full mb-2"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
-        </button>
+        )}
+        {signedUp ? null : (
+          <button
+            type="submit"
+            className="font-medium group flex gap-3 hover:gap-2 items-center transition-all bg-gradient-to-br text-white w-fit text-center px-3 py-2 from-emerald-600 to-emerald-800 rounded-md text-sm"
+          >
+            {loading ? (
+              <LoadingIcon />
+            ) : (
+              <>
+                <div>Sign up for access to Ably's TypeScript SDK</div>
+                <IconPencil
+                  size="1rem"
+                  className="transition-all group-hover:text-emerald-50 text-emerald-300"
+                />
+              </>
+            )}
+          </button>
+        )}
       </div>
     </form>
+  );
+}
+
+function LoadingIcon() {
+  return (
+    <div role="status">
+      <svg
+        aria-hidden="true"
+        className="w-4 h-4 text-gray-200 animate-spin dark:text-gray-600 fill-green-600"
+        viewBox="0 0 100 101"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
+          fill="currentColor"
+        />
+        <path
+          d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
+          fill="currentFill"
+        />
+      </svg>
+      <span className="sr-only">Loading...</span>
+    </div>
   );
 }
 
@@ -285,6 +378,10 @@ function Sidebar() {
         <div className="text-slate-500 text-sm font-bold">More Info</div>
       </div>
       <div className="bg-white ring-1 ring-slate-200 shadow-md p-8 lg:py-4 lg:px-6 rounded-md">
+        <SidebarSection>
+          <SidebarSectionTitle>Service Name</SidebarSectionTitle>
+          <SidebarSectionContent>platform</SidebarSectionContent>
+        </SidebarSection>
         <SidebarSection>
           <SidebarSectionTitle>API Title</SidebarSectionTitle>
           <SidebarSectionContent>Platform API</SidebarSectionContent>
@@ -299,7 +396,7 @@ function Sidebar() {
         </SidebarSection>
         <SidebarSection>
           <SidebarSectionTitle>API Version</SidebarSectionTitle>
-          <SidebarSectionContent>1.1.14</SidebarSectionContent>
+          <SidebarSectionContent>1.1.0</SidebarSectionContent>
         </SidebarSection>
         <SidebarSection>
           <div className="flex justify-between">
