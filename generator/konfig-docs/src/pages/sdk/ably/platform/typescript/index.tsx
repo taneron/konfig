@@ -9,12 +9,16 @@ import GettingStarted from "./_getting-started.mdx";
 import clsx from "clsx";
 import Head from "@docusaurus/Head";
 import {
+  IconAdjustments,
   IconApi,
-  IconBraces,
+  IconChevronDown,
   IconCodeDots,
+  IconCube,
   IconInfoCircle,
+  IconLink,
   IconPencil,
   IconPlayerPlay,
+  TablerIconsProps,
 } from "@tabler/icons-react";
 
 export default function AblyTypeScriptSdk() {
@@ -31,6 +35,11 @@ export default function AblyTypeScriptSdk() {
           content="https://voltaire.ably.com/static/ably-generic@2x-53a7dd8e38ba16fd0190ec91150dad0a.jpeg"
         />
         <meta property="og:description" content={metaDescription} />
+        <style>
+          {`p {
+            margin-bottom: 0px;
+          }`}
+        </style>
       </Head>
       <div className="bg-slate-100 border-b">
         <div className="py-8 bg-gradient-to-tl from-[var(--ifm-color-primary-darkest)] to-[var(--ifm-color-primary)]">
@@ -156,73 +165,187 @@ function SdkMethod({
   httpMethod: HttpMethods;
   description: string;
 }) {
-  const color = httpMethodColor(httpMethod);
+  const [expanded, setExpanded] = useState(false);
   return (
     <div
       className={clsx(
-        "ring-1 rounded-md block w-full overflow-x-auto px-3 py-2",
+        "text-slate-700 ring-1 ring-slate-200  rounded-md block w-full overflow-x-auto px-3 py-2 transition-all text-xs lg:text-sm bg-slate-100 hover:bg-slate-50/50",
         {
-          "ring-green-100 bg-green-50/20": color === "green",
-          "ring-blue-100 bg-blue-50/20": color === "blue",
-          "ring-red-100 bg-red-50/20": color === "red",
-          "ring-yellow-100 bg-yellow-50/20": color === "yellow",
-          "ring-slate-100 bg-slate-50/20": color === "slate",
+          "bg-slate-50/50": expanded,
+        },
+        {
+          "scale-[1.01] shadow-xl": expanded,
         }
       )}
     >
-      <div className="flex w-fit gap-2">
-        <IconBraces
-          className={clsx("shrink-0 h-4", {
-            "text-green-400": color === "green",
-            "text-blue-400": color === "blue",
-            "text-red-400": color === "red",
-            "text-yellow-400": color === "yellow",
-            "text-slate-400": color === "slate",
+      <button
+        className="w-full flex items-center"
+        onClick={() => {
+          setExpanded(!expanded);
+        }}
+      >
+        <div className="grow">
+          <div className="flex flex-col items-start">
+            <h4
+              className={clsx(
+                "font-bold whitespace-nowrap mb-1 text-xs lg:text-sm font-mono text-slate-800"
+              )}
+            >
+              {`${method}()`}
+            </h4>
+            <p className={clsx("mb-0")}>{description}</p>
+          </div>
+        </div>
+        <IconChevronDown
+          className={clsx("h-4 transition-transform", {
+            "rotate-180": expanded,
           })}
         />
-        <div>
-          <div
-            className={clsx(
-              "font-bold whitespace-nowrap mb-1 text-xs lg:text-sm font-mono",
-              {
-                "text-green-800": color === "green",
-                "text-blue-800": color === "blue",
-                "text-red-800": color === "red",
-                "text-yellow-800": color === "yellow",
-                "text-slate-800": color === "slate",
-              }
-            )}
-          >
-            {`${method}()`}
+      </button>
+      <div
+        className={clsx("text-left w-full", {
+          "h-0 overflow-hidden": !expanded,
+          "h-auto": expanded,
+        })}
+      >
+        <SdkMethodSection Icon={IconAdjustments} header="Parameter">
+          <div className="space-y-2">
+            <SdkMethodParameter
+              name="prefix"
+              schema="string"
+              required
+              description="Optionally limits the query to only those channels whose name starts with the given prefix"
+            />
+            <SdkMethodParameter
+              name="by"
+              schema="string"
+              description="optionally specifies whether to return just channel names (by=id) or ChannelDetails (by=value)"
+            />
           </div>
+        </SdkMethodSection>
+        <SdkMethodSection header="Response" Icon={IconCube}>
+          <div className="space-y-2 w-full">
+            <SdkMethodResponse statusCode="2XX" />
+            <SdkMethodResponse
+              statusCode="default"
+              description="Returned error from failed REST."
+            />
+          </div>
+        </SdkMethodSection>
+        <SdkMethodSection header="Endpoint" Icon={IconLink}>
           <div className="flex items-center gap-2 mb-3">
-            <div
-              className={clsx("font-medium font-mono text-xs", {
-                "text-green-500": color === "green",
-                "text-blue-500": color === "blue",
-                "text-red-500": color === "red",
-                "text-yellow-500": color === "yellow",
-                "text-slate-500": color === "slate",
-              })}
-            >
-              {url}
-            </div>
             <HttpMethodBadge httpMethod={httpMethod} />
+            <div className={clsx("font-mono")}>{url}</div>
           </div>
-          <p
-            className={clsx("text-xs lg:text-sm mb-0", {
-              "text-green-700": color === "green",
-              "text-blue-700": color === "blue",
-              "text-red-700": color === "red",
-              "text-yellow-700": color === "yellow",
-              "text-slate-700": color === "slate",
-            })}
-          >
-            {description}
-          </p>
-        </div>
+        </SdkMethodSection>
       </div>
     </div>
+  );
+}
+
+function SdkMethodResponse({
+  statusCode,
+  description,
+}: {
+  statusCode: string;
+  description?: string;
+}) {
+  return (
+    <div
+      className={clsx("p-2 w-full border rounded-md", {
+        "bg-blue-50 border-blue-100 text-blue-600": statusCode.startsWith("2"),
+        "bg-red-50 border-red-100 text-red-600": !statusCode.startsWith("2"),
+      })}
+    >
+      <span className="font-semibold">{statusCode}</span>
+      {description && <p className="mb-1">{description}</p>}
+    </div>
+  );
+}
+
+function SdkMethodParameter({
+  name,
+  schema,
+  required,
+  description,
+}: PropsWithChildren<{
+  name: string;
+  schema: string;
+  required?: boolean;
+  description: string;
+}>) {
+  return (
+    <div>
+      <div className="flex flex-wrap gap-x-2 items-center">
+        <SdkMethodParameterName>{name}</SdkMethodParameterName>
+        <SdkMethodParameterSchema>{schema}</SdkMethodParameterSchema>
+        {required && <SdkMethodParameterRequired />}
+      </div>
+      <p className="mt-1">{description}</p>
+    </div>
+  );
+}
+
+function SdkMethodParameterRequired() {
+  return (
+    <span className="font-mono text-red-600 p-1 rounded-md border-red-300 bg-red-100">
+      required
+    </span>
+  );
+}
+
+function SdkMethodParameterName({ children }: PropsWithChildren<{}>) {
+  return (
+    <span
+      className={clsx(
+        "font-semibold p-1 rounded-md border font-mono bg-slate-200 text-slate-700 border-slate-400"
+      )}
+    >
+      {children}
+    </span>
+  );
+}
+
+function SdkMethodParameterSchema({ children }: PropsWithChildren<{}>) {
+  return <span className="font-mono">{children}</span>;
+}
+
+function SdkMethodSection({
+  header,
+  children,
+  Icon,
+}: PropsWithChildren<{
+  header: string;
+  Icon: (props: TablerIconsProps) => JSX.Element;
+}>) {
+  return (
+    <div className="flex w-full gap-2 mt-6">
+      <Icon className={clsx("shrink-0 h-4 text-slate-500")} />
+      <div className="flex flex-col grow items-start">
+        <SdkMethodHeader className="font-semibold font-sans mb-2 uppercase">
+          {header}
+        </SdkMethodHeader>
+        <div className="text-xs w-full">{children}</div>
+      </div>
+    </div>
+  );
+}
+
+function SdkMethodHeader({
+  children,
+  className,
+}: PropsWithChildren<{
+  className?: string;
+}>) {
+  return (
+    <h5
+      className={clsx(
+        "font-bold whitespace-nowrap mb-1 text-xs font-mono text-slate-600",
+        className
+      )}
+    >
+      {children}
+    </h5>
   );
 }
 
@@ -316,7 +439,6 @@ function SignupForm() {
           <input
             type="email"
             name="email"
-            autoFocus
             className="border rounded-md px-2 py-1 w-full mb-2"
             placeholder="Email"
             value={email}
@@ -465,10 +587,17 @@ function Sidebar() {
           <SidebarSectionTitle>OpenAPI Specification</SidebarSectionTitle>
           <SidebarSectionContent>
             <a
+              href={`https://raw.githubusercontent.com/ably/open-specs/main/definitions/platform-v1.yaml`}
+              className="pr-4 mr-4 border-r-2"
+              target="_blank"
+            >
+              Raw
+            </a>
+            <a
               href={`https://elements-demo.stoplight.io/?spec=https://raw.githubusercontent.com/ably/open-specs/main/definitions/platform-v1.yaml`}
               target="_blank"
             >
-              Link
+              UI
             </a>
           </SidebarSectionContent>
         </SidebarSection>
