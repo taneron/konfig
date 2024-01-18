@@ -1,5 +1,5 @@
 import * as path from "path";
-import { Spec, getOperations, parseSpec } from "konfig-lib";
+import { Spec, getOperations, parseSpec, resolveRef } from "konfig-lib";
 import * as fs from "fs";
 import * as glob from "glob";
 import * as math from "mathjs";
@@ -10,7 +10,10 @@ import type {
 
 type Paths = { oasPath: string }[];
 
-const specFolder = path.join(path.dirname(__dirname), "db", "spec-data");
+const dbFolder = path.join(path.dirname(__dirname), "db");
+
+const specFolder = path.join(dbFolder, "spec-data");
+
 const apiDirectory = path.join(
   path.dirname(__dirname),
   "openapi-directory",
@@ -84,7 +87,10 @@ function getKey(spec: Spec): string {
   const serviceName = getServiceName(spec);
   if (serviceName === undefined)
     return `${getProviderName(spec)}-${getVersion(spec)}`;
-  return `${getProviderName(spec)}-${serviceName}-${getVersion(spec)}`;
+  return `${getProviderName(spec)}-${serviceName}-${getVersion(spec)}`
+    .replace("/", "-")
+    .replace("&", "")
+    .replace("--", "-");
 }
 
 function getNumberOfEndpoints(spec: Spec): number {
@@ -123,14 +129,35 @@ function getOpenApiRaw(spec: Spec): string {
 }
 
 function getNumberOfParameters(spec: Spec): number {
-  if (spec.spec.components === undefined) return 0;
-  if (spec.spec.components.parameters === undefined) return 0;
-
   // iterate over all operations and count parameters
   let numberOfParameters = 0;
   getOperations(spec).forEach(({ operation }) => {
-    if (operation.parameters === undefined) return;
-    numberOfParameters += operation.parameters.length;
+    numberOfParameters += operation.parameters
+      ? operation.parameters.length
+      : 0;
+
+    // Also add properties from an object type schema as parameters
+    let requestBody = operation.requestBody;
+    if (requestBody === undefined) return;
+    if ("$ref" in requestBody) {
+      requestBody = resolveRef({ refOrObject: requestBody, $ref: spec.$ref });
+    }
+    if ("$ref" in requestBody) {
+      throw Error("Expect requestBody to be dereferenced");
+    }
+    const mediaTypes = Object.keys(requestBody.content);
+    const mediaType = mediaTypes[0];
+    if (mediaType === undefined) return;
+    let schema = requestBody.content[mediaType].schema;
+    if (schema === undefined) return;
+    if ("$ref" in schema) {
+      schema = resolveRef({ refOrObject: schema, $ref: spec.$ref });
+    }
+    if ("$ref" in schema) {
+      throw Error("Expect schema to be dereferenced");
+    }
+    if (schema.properties === undefined) return;
+    numberOfParameters += Object.keys(schema.properties).length;
   });
 
   return numberOfParameters;
@@ -142,6 +169,7 @@ type SdkPagePropsWithPropertiesOmitted = Omit<
   | "previewLinkImage" // DONE IN SEPARATE SCRIPT
   | "metaDescription" // DONE IN SEPARATE SCRIPT
   | "favicon" // DONE IN SEPARATE SCRIPT
+  | "lastUpdated" // PICK UP FROM DIFFERENT FILE
   | "logo" // DONE IN SEPARATE SCRIPT
   | "sdkName" // DO MANUALLY
   | "company" // DO MANUALLY
@@ -165,8 +193,11 @@ function writeData(db: Db) {
   }
 }
 
-const filter = [
+const doNotProcess = [
   "googleapis.com",
+  "google.home",
+  "google.com",
+  "goog.io",
   "azure.com",
   "amazonaws.com",
   "microsoft.com",
@@ -174,6 +205,7 @@ const filter = [
   "twilio.com",
   "github.com",
   "plaid.com",
+  "apisetu.gov.in", // gets 403 forbidden
   "codat.io", // speakeasy customer
 ];
 
@@ -182,7 +214,7 @@ async function collectFilterAndSave(): Promise<void> {
 
   const filteredPaths = paths.filter(
     ({ oasPath }) =>
-      !filter.some((f) => oasPath.includes(f)) &&
+      !doNotProcess.some((f) => oasPath.includes(f)) &&
       skip.every((s) => !oasPath.includes(s))
   );
 
@@ -252,11 +284,22 @@ async function processFiltered(): Promise<Db> {
     .split("\n");
 
   const db: Db = { specifications: {} };
+  const select = process.env.SELECT;
 
-  const now = new Date();
   let i = 0;
   for (const oasPath of filtered) {
     const cleanPath = path.relative(apiDirectory, oasPath);
+
+    // skip paths from doNotProcess
+    if (doNotProcess.some((f) => oasPath.includes(f))) {
+      console.log(`❌ Skipping ${cleanPath} due to doNotProcess.`);
+      continue;
+    }
+
+    if (select !== undefined && !oasPath.includes(select)) {
+      console.log(`❌ Skipping ${cleanPath} due to select.`);
+      continue;
+    }
 
     const spec = await parseSpec(fs.readFileSync(oasPath, "utf-8"));
 
@@ -277,7 +320,6 @@ async function processFiltered(): Promise<Db> {
       homepage: getProviderName(spec),
       serviceName: getServiceName(spec),
       apiVersion: getVersion(spec),
-      lastUpdated: now,
       apiBaseUrl: apiBaseUrl,
       apiDescription: spec.spec.info.description,
       apiTitle: spec.spec.info.title,
@@ -317,15 +359,23 @@ async function addDifficulty(db: Db): Promise<Db> {
 }
 
 async function main() {
-  if (process.env.FILTER !== "") {
+  if (process.env.FILTER !== undefined && process.env.FILTER !== "") {
     await collectFilterAndSave();
     return;
   }
+  console.log("Processing filtered specs");
   let db = await processFiltered();
   console.log("Adding difficulty scores");
   db = await addDifficulty(db);
+  // delete specFolder if it exists
+  fs.rmdirSync(specFolder, { recursive: true });
+  // ensure specFolder exists
+  fs.mkdirSync(specFolder, { recursive: true });
   console.log("Writing data to disk");
   writeData(db);
+  console.log("Writing last-updated.txt");
+  const lastUpdated = new Date().toISOString();
+  fs.writeFileSync(path.join(dbFolder, "last-updated.txt"), lastUpdated);
   console.log("Done!");
 }
 
