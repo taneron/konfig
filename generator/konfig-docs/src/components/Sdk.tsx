@@ -1,6 +1,5 @@
 import React, { FormEventHandler, PropsWithChildren, useState } from "react";
 import Layout from "@theme/Layout";
-import type { HttpMethods } from "konfig-lib";
 import { HttpMethodsEnum } from "konfig-lib/dist/forEachOperation";
 import moment from "moment";
 import clsx from "clsx";
@@ -18,17 +17,16 @@ import {
   TablerIconsProps,
 } from "@tabler/icons-react";
 import { Markdown } from "./Markdown";
+import type {
+  SdkPageProps,
+  Parameter,
+  Method,
+  HttpMethods,
+} from "./SdkComponentProps";
 
-type Parameter = {
-  name: string;
-  schema: string;
-  required?: boolean;
-  description: string;
-};
-
-type Response = {
-  statusCode: string;
-  description?: string;
+type ReactProps = {
+  GettingStarted: React.ComponentType;
+  Description: React.ComponentType;
 };
 
 export function Sdk({
@@ -56,40 +54,7 @@ export function Sdk({
   sdkName,
   GettingStarted,
   Description,
-}: {
-  metaDescription: string;
-  company: string;
-  favicon: string;
-  logo: string;
-  homepage: string;
-  lastUpdated: Date;
-  methods: {
-    tag: string;
-    method: string;
-    description: string;
-    parameters: Parameter[];
-    responses: Response[];
-    url: string;
-    httpMethod: HttpMethods;
-  }[];
-  serviceName: string;
-  apiTitle: string;
-  apiBaseUrl: string;
-  apiVersion: string;
-  endpoints: number;
-  sdkMethods: number;
-  schemas: number;
-  parameters: number;
-  difficulty: string;
-  contactUrl: string;
-  contactEmail: string;
-  openApiRaw: string;
-  openApiUi: string;
-  previewLinkImage: string;
-  sdkName: string;
-  GettingStarted: React.ComponentType;
-  Description: React.ComponentType;
-}) {
+}: Omit<SdkPageProps, "difficultyScore" | "providerName"> & ReactProps) {
   return (
     <Layout
       title={`${company} API - TypeScript SDK and OpenAPI Specification`}
@@ -189,15 +154,18 @@ export function Sdk({
                       httpMethod,
                       parameters,
                       responses,
+                      tag,
                     }) => {
                       return (
                         <SdkMethod
+                          tag={tag}
                           method={method}
                           url={url}
                           description={description}
                           httpMethod={httpMethod}
                           parameters={parameters}
                           responses={responses}
+                          company={company}
                         />
                       );
                     }
@@ -238,14 +206,11 @@ function SdkMethod({
   httpMethod,
   description,
   parameters,
+  tag,
   responses,
-}: {
-  method: string;
-  url: string;
-  httpMethod: HttpMethods;
-  description: string;
-  parameters: Parameter[];
-  responses: Response[];
+  company,
+}: Method & {
+  company: string;
 }) {
   const [expanded, setExpanded] = useState(false);
   return (
@@ -273,7 +238,9 @@ function SdkMethod({
                 "font-bold whitespace-nowrap mb-1 text-xs lg:text-sm font-mono text-slate-800"
               )}
             >
-              {`${method}()`}
+              {tag !== undefined
+                ? `${company.toLowerCase()}.${tag}.${method}()`
+                : `${company.toLowerCase()}.${method}()`}
             </h4>
             <p className={clsx("mb-0")}>
               {<Markdown markdownText={description} />}
