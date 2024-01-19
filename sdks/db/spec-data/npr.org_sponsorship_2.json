@@ -1,0 +1,116 @@
+{
+  "providerName": "npr.org",
+  "openApiRaw": "https://sponsorship.api.npr.org/v2/swagger.json",
+  "securitySchemes": {
+    "oauth2": {
+      "type": "oauth2",
+      "flows": {
+        "authorizationCode": {
+          "authorizationUrl": "https://authorization.api.npr.org/v2/authorize",
+          "tokenUrl": "https://authorization.api.npr.org/v2/token",
+          "scopes": {
+            "identity.readonly": "See your personal information, such as your first name, last name, and favorite station.",
+            "identity.write": "Update your personal information, such as your favorite station(s) or program(s) you follow, on your behalf.",
+            "listening.readonly": "See your NPR One listening history and get audio recommendations.",
+            "listening.write": "Record that you have heard, marked as interesting, and/or skipped NPR One stories in order to personalize future audio recommendations.",
+            "localactivation": "Connect you with your local NPR member station for communication purposes."
+          }
+        }
+      }
+    }
+  },
+  "homepage": "npr.org",
+  "serviceName": "sponsorship",
+  "apiVersion": "2",
+  "methods": [
+    {
+      "url": "/v2/ads",
+      "method": "getAds",
+      "httpMethod": "get",
+      "tag": "sponsorship",
+      "description": "Request VAST sponsorship units",
+      "parameters": [
+        {
+          "name": "authorization",
+          "schema": "string",
+          "required": true,
+          "description": "Your access token from the Authorization Service. Should start with `Bearer`, followed by a space, followed by the token."
+        },
+        {
+          "name": "xAdvertisingId",
+          "schema": "string",
+          "required": false,
+          "description": "A device-specific advertising identifier, if possible. Apple's IDFA is an example."
+        },
+        {
+          "name": "forceResult",
+          "schema": "boolean",
+          "required": false,
+          "description": "Whether to force a synchronous call to our external sponsorship provider; the default behavior is asynchronous."
+        },
+        {
+          "name": "adCount",
+          "schema": "integer",
+          "required": false,
+          "description": "How many sponsorship units to request in one call; if left unspecified, the default behavior is to return only 1."
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": "Please visit <a href='https://www.iab.com/guidelines/digital-video-ad-serving-template-vast/' target='_blank'>https://www.iab.com/guidelines/digital-video-ad-serving-template-vast/</a> for more information on the VAST XML specification."
+        },
+        {
+          "statusCode": "400",
+          "description": "One or more errors represented in a VAST XML document"
+        },
+        {
+          "statusCode": "500",
+          "description": "One or more errors represented in a VAST XML document"
+        }
+      ]
+    },
+    {
+      "url": "/v2/ads",
+      "method": "receiveAdTracking",
+      "httpMethod": "post",
+      "tag": "sponsorship",
+      "description": "Record tracking data for VAST sponsorship units",
+      "parameters": [
+        {
+          "name": "authorization",
+          "schema": "string",
+          "required": true,
+          "description": "Your access token from the Authorization Service. Should start with `Bearer`, followed by a space, followed by the token."
+        },
+        {
+          "name": "xAdvertisingId",
+          "schema": "string",
+          "required": false,
+          "description": "A device-specific advertising identifier, if possible. Apple's IDFA is an example."
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "400",
+          "description": "A serialized version of any error encountered when processing this request"
+        },
+        {
+          "statusCode": "500",
+          "description": "A serialized version of any error encountered when processing this request"
+        }
+      ]
+    }
+  ],
+  "apiBaseUrl": "https://sponsorship.api.npr.org",
+  "apiDescription": "Sponsorship for non-NPR One client applications",
+  "apiTitle": "NPR Sponsorship Service",
+  "endpoints": 1,
+  "sdkMethods": 2,
+  "schemas": 21,
+  "parameters": 6,
+  "contactUrl": "https://dev.npr.org",
+  "contactEmail": "NPROneEnterprise@npr.org",
+  "difficultyScore": 14,
+  "difficulty": "Easy"
+}

@@ -1,0 +1,50 @@
+{
+  "providerName": "airport-web.appspot.com",
+  "openApiRaw": "https://airport-web.appspot.com/api/docs/swagger.json",
+  "securitySchemes": {
+    "google_id_token": {
+      "type": "oauth2",
+      "x-google-issuer": "accounts.google.com",
+      "x-google-jwks_uri": "https://www.googleapis.com/oauth2/v1/certs",
+      "flows": {
+        "implicit": {
+          "authorizationUrl": "/",
+          "scopes": {}
+        }
+      }
+    }
+  },
+  "homepage": "airport-web.appspot.com",
+  "apiVersion": "v1",
+  "methods": [
+    {
+      "url": "/airportsapi/v1/airports/{icao_code}",
+      "method": "airportApiGetAirport",
+      "httpMethod": "get",
+      "description": "",
+      "parameters": [
+        {
+          "name": "icaoCode",
+          "schema": "string",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "apiBaseUrl": "https://airport-web.appspot.com/_ah/api",
+  "apiDescription": "Get name and website-URL for airports by ICAO code. Covered airports are mostly in Germany.",
+  "apiTitle": "airportsapi",
+  "endpoints": 1,
+  "sdkMethods": 1,
+  "schemas": 1,
+  "parameters": 1,
+  "difficultyScore": 1.75,
+  "difficulty": "Very Easy"
+}

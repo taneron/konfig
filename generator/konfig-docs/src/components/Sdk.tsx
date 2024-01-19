@@ -32,7 +32,6 @@ type ReactProps = {
 export function Sdk({
   metaDescription,
   company,
-  favicon,
   logo,
   homepage,
   lastUpdated,
@@ -60,7 +59,10 @@ export function Sdk({
       description={`${company} API TypeScript SDK, Documentation, and OpenAPI Specification - ${metaDescription}}`}
     >
       <Head>
-        <link rel="icon" href={favicon} />
+        <link
+          rel="icon"
+          href={`https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=${homepage}&size=128`}
+        />
         <meta property="og:image" content={previewLinkImage} />
         <meta property="og:description" content={metaDescription} />
         <style>
@@ -214,9 +216,9 @@ function SdkMethod({
   return (
     <div
       className={clsx(
-        "text-slate-700 ring-1 ring-slate-200  rounded-md block w-full overflow-x-auto px-3 py-2 transition-all text-xs lg:text-sm bg-slate-100 hover:bg-slate-50/50",
+        "text-slate-700 ring-1 ring-slate-200  rounded-md block w-full overflow-x-auto px-3 py-2 transition-all text-xs lg:text-sm bg-slate-100 hover:bg-slate-50",
         {
-          "bg-slate-50/50": expanded,
+          "bg-slate-50": expanded,
         },
         {
           "scale-[1.01] shadow-xl": expanded,
