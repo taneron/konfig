@@ -16,17 +16,18 @@ const publishJsonSchema = z.object({
   publish: z.record(
     z.object({
       company: z.string(),
-      service: z.string(),
+      serviceName: z.string(),
       sdkName: z.string(),
       clientName: z.string(),
       previewLinkImage: z.string().optional(),
       metaDescription: z.string().optional(),
+      homepage: z.string().optional(),
       logo: z.string().optional(),
     })
   ),
 });
 
-type SdkPagePropsWithoutScrapedProperties = SdkPageProps & {
+export type Published = SdkPageProps & {
   sdkUsageCode: string;
 };
 
@@ -61,12 +62,13 @@ function main() {
       continue;
     }
 
-    const merged: SdkPagePropsWithoutScrapedProperties = {
+    const merged: Published = {
       ...specData,
       ...publishData,
       logo: publishData.logo,
       metaDescription: publishData.metaDescription,
       previewLinkImage: publishData.previewLinkImage,
+      clientNameCamelCase: camelcase(publishData.clientName),
       lastUpdated: now,
       sdkUsageCode,
     };
@@ -133,7 +135,14 @@ function generateSdkUsageCode({
 
     // Comment out all but the first security scheme
     if (i++ > 0) {
-      newLines = newLines.map((line) => `    // ${line}`);
+      newLines = newLines.map((line) => {
+        // strip spaces at beginning of line
+        line = line.replace(/^ +/, "");
+
+        // if line starts with comment already, don't add another comment
+        if (line.startsWith("//")) return `    ${line}`;
+        return `    // ${line}`;
+      });
     }
     setupLines.push(...newLines);
   }

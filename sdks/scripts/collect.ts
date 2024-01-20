@@ -152,11 +152,12 @@ function getMethodObjects(spec: Spec): Method[] {
 
     const method = camelcase(operation.operationId ?? `${path}-${httpMethod}`);
 
+    const tag = operation.tags?.[0];
     methods.push({
       url: path,
       method,
       httpMethod,
-      tag: operation.tags?.[0],
+      ...(tag ? { tag, typeScriptTag: camelcase(tag) } : {}),
       description: operation.summary ?? operation.description ?? "",
       parameters,
       responses,
@@ -195,14 +196,24 @@ function computeDifficultyScore(
 const KEY_DELIMITER = "_";
 function getKey(spec: Spec): string {
   const serviceName = getServiceName(spec);
-  if (serviceName === undefined)
-    return [getProviderName(spec), getVersion(spec)].join(KEY_DELIMITER);
-  return [getProviderName(spec), serviceName, getVersion(spec)]
-    .join(KEY_DELIMITER)
-    .replaceAll(" ", "-")
-    .replaceAll("/", "-")
-    .replaceAll("&", "")
-    .replaceAll("--", "-");
+  const parts =
+    serviceName === undefined
+      ? [getProviderName(spec), getVersion(spec)]
+      : [getProviderName(spec), serviceName, getVersion(spec)];
+  return (
+    parts
+      .join(KEY_DELIMITER)
+      // remove any special characters that shell doesn't like
+      // keep dot ".", "-", "_"
+      .replace(/[^a-zA-Z0-9\.\-_]/g, "")
+      // remove any double "-" characters
+      .replaceAll("--", "-")
+      .replaceAll("--", "-")
+      .replaceAll("--", "-")
+      .replaceAll("--", "-")
+      // remove any trailing "-"
+      .replaceAll(/-$/g, "")
+  );
 }
 
 function getNumberOfEndpoints(spec: Spec): number {
@@ -299,6 +310,8 @@ export type SdkPagePropsWithPropertiesOmitted = Omit<
   | "lastUpdated" // PICK UP FROM DIFFERENT FILE
   | "logo" // DONE IN SEPARATE SCRIPT
   | "sdkName" // DO MANUALLY
+  | "clientName" // DO MANUALLY
+  | "clientNameCamelCase" // DO MANUALLY
   | "company" // DO MANUALLY
 > & { securitySchemes: SecuritySchemes };
 
