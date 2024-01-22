@@ -30,6 +30,9 @@ import { fixUnstructuredRequestBody } from './fix-unstructured-request-body'
 import { ignoreObjectsWithNoProperties } from './ignore-objects-with-no-properties'
 import { ignorePotentialIncorrectTypeIfConfirmed } from './ignore-potential-incorrect-type-if-confirmed'
 import { fixInvalidServerUrlsOas3 } from './fix-invalid-server-urls-oas3'
+import { fixOas31Usage } from './fix-oas-3-1-usage'
+import { fixAnyOfTypeNullUsage } from './fix-any-of-type-null-usage'
+import { fixExamplesUsage } from './fix-examples-usage'
 
 export async function fixOas({
   spec,
@@ -55,6 +58,14 @@ export async function fixOas({
    * Order matters here! Do not mess with order unless you know what you are
    * doing.
    */
+
+  const numberOfOas31UsagesFixed = await fixOas31Usage({ spec })
+
+  const numberOfAnyOfTypeNullUsagesReverted = await fixAnyOfTypeNullUsage({
+    spec,
+  })
+
+  const numberOfExamplesUsageRemoved = await fixExamplesUsage({ spec })
 
   // Missing OpenAPI description
   const infoDescriptionFixed = await fixMissingInfoDescription({
@@ -262,6 +273,9 @@ export async function fixOas({
     numberOfExampleAndExamplesFixed,
     numberOfInvalidServerUrlsFixed,
     numberOfNewTagNames,
+    numberOfOas31UsagesFixed,
+    numberOfAnyOfTypeNullUsagesReverted,
+    numberOfExamplesUsageRemoved,
   }
   const issuesFixed = Object.values(result).reduce((a, b) => a + b)
   return {
