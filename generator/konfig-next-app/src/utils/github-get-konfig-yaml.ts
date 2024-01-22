@@ -1,17 +1,22 @@
 import { Octokit } from '@octokit/rest'
 import { githubGetKonfigYamlsSafe } from './github-get-konfig-yamls-safe'
+import { githubGetRepository } from './github-get-repository'
 
 export async function githubGetKonfigYaml({
   owner,
   repo,
   octokit,
-  defaultBranch,
 }: {
   owner: string
   repo: string
   octokit: Octokit
-  defaultBranch: string
 }) {
+  const { data: repoData } = await githubGetRepository({
+    owner,
+    repo,
+    octokit,
+  })
+  const defaultBranch = repoData.default_branch
   const konfigYamls = await githubGetKonfigYamlsSafe({
     owner,
     repo,

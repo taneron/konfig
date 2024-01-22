@@ -77,7 +77,12 @@ export async function computeDocumentProps({
     }
   )
 
-  const konfigYaml = await githubGetKonfigYaml({ owner, repo, octokit })
+  const konfigYaml = await githubGetKonfigYaml({
+    owner,
+    repo,
+    octokit,
+  })
+
   const spec = await githubGetOpenApiSpec({
     owner,
     repo,
