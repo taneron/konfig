@@ -4,8 +4,16 @@ import * as path from "path";
 import * as mustache from "mustache";
 import { Published } from "./util";
 
+function generateSdkRepositories(key: string, debug: boolean = false) {
+  const languages = ["typescript", "java", "python"];
+
+  languages.forEach((language) => {
+    generateSdkRepository(key, language, debug);
+  });
+}
+
 // In debug mode, repository is not created and code is not pushed to remote
-export function generateSdkRepository(
+function generateSdkRepository(
   key: string,
   language: string,
   debug: boolean = false
@@ -206,7 +214,4 @@ function capitalize(str: string): string {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
-const languages = ["typescript", "java", "python"];
-
-// example usage:
-generateSdkRepository("wikimedia.org_1.0.0", "typescript", true);
+generateSdkRepositories("wikimedia.org_1.0.0");
