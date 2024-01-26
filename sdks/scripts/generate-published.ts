@@ -21,7 +21,7 @@ const publishJsonSchema = z.object({
   publish: z.record(
     z.object({
       company: z.string(),
-      serviceName: z.string(),
+      serviceName: z.string().optional(),
       language: z.string(),
       sdkName: z.string(),
       clientName: z.string(),
