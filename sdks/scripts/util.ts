@@ -6,6 +6,7 @@ export const specFolder = path.join(dbFolder, "spec-data");
 
 export type Published = SdkPageProps & {
   typescriptSdkUsageCode: string;
+  originalSpecUrl: string;
 };
 
 export type HtmlData = {

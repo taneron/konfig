@@ -73,6 +73,7 @@ function main() {
       ...specData,
       ...publishData,
       metaDescription: publishData.metaDescription,
+      originalSpecUrl: specData.openApiRaw,
       logo: `https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/${dynamicPath}/logo.png`,
       openApiRaw: `https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/${dynamicPath}/api.yaml`,
       previewLinkImage: `https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/${dynamicPath}/imagePreview.png`,
