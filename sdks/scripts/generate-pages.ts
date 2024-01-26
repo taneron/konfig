@@ -104,9 +104,11 @@ function addToRedirectsJson({
   }
 }
 
-function generateGettingStartedMdx({ sdkUsageCode }: Published): string {
+function generateGettingStartedMdx({
+  typescriptSdkUsageCode,
+}: Published): string {
   return `\`\`\`typescript index.ts
-${sdkUsageCode}`;
+${typescriptSdkUsageCode}`;
 }
 
 function generateDescriptionMdx({ apiDescription }: Published): string {
