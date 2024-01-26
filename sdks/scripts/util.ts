@@ -5,7 +5,7 @@ export const dbFolder = path.join(path.dirname(__dirname), "db");
 export const specFolder = path.join(dbFolder, "spec-data");
 
 export type Published = SdkPageProps & {
-  sdkUsageCode: string;
+  typescriptSdkUsageCode: string;
 };
 
 export type HtmlData = {

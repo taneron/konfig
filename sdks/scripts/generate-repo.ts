@@ -5,26 +5,31 @@ import * as mustache from "mustache";
 import { Published } from "./util";
 
 // In debug mode, repository is not created and code is not pushed to remote
-export function generateSdkRepository(key: string, debug: boolean = false) {
+export function generateSdkRepository(
+  key: string,
+  language: string,
+  debug: boolean = false
+) {
   const data: Published = JSON.parse(
     fs.readFileSync(
       path.join(path.dirname(__dirname), "db", "published", `${key}.json`),
       "utf-8"
     )
   );
-  const repoDescription = generateRepositoryDescription(data);
+  const sdkName = data.sdkName.replace("{language}", language);
+  const repoDescription = generateRepositoryDescription(data, language);
   const sdksDir = path.join(__dirname, "..", "sdks");
-  const repoDir = path.join(sdksDir, data.sdkName);
+  const repoDir = path.join(sdksDir, sdkName);
   const pathToOas = oasFullPathFromKey(key);
 
-  if (!debug && repositoryExists(data.sdkName)) {
-    console.log(`Repository ${data.sdkName} already exists. Aborting...`);
+  if (!debug && repositoryExists(sdkName)) {
+    console.log(`Repository ${sdkName} already exists. Aborting...`);
     return;
   }
 
   // Create and clone repository. If debug mode, create local directory.
   if (!fs.existsSync(sdksDir)) fs.mkdirSync(sdksDir);
-  if (!debug) createRepository(data.sdkName, repoDescription, sdksDir);
+  if (!debug) createRepository(sdkName, repoDescription, sdksDir);
   else if (!fs.existsSync(repoDir)) fs.mkdirSync(repoDir);
 
   // Copy the OAS into the cloned repository
@@ -36,7 +41,7 @@ export function generateSdkRepository(key: string, debug: boolean = false) {
     path.join(repoDir, "header.png")
   );
 
-  writeKonfigYaml(data, pathToOas);
+  writeKonfigYaml(data, sdkName, language, pathToOas);
 
   // Run konfig generate. If any errors occur, delete the repository and abort.
   try {
@@ -48,23 +53,23 @@ export function generateSdkRepository(key: string, debug: boolean = false) {
     console.log("Error occurred during konfig generate.");
     console.log("Aborting process and deleting repository...");
     if (!debug) {
-      execa.sync("rm", ["-rf", data.sdkName], {
+      execa.sync("rm", ["-rf", sdkName], {
         cwd: path.join(__dirname, "..", "sdks"),
         stdio: "inherit",
       });
-      deleteRepository(data.sdkName);
+      deleteRepository(sdkName);
     }
     console.log("Repository deleted.");
     return;
   }
-  addSignupLinkToReadmes(repoDir, data);
+  addSignupLinkToReadmes(repoDir, language, data);
 
   // Commit and push to remote
   if (!debug) {
     execa.sync("git", ["add", "-A"], { cwd: repoDir, stdio: "inherit" });
     execa.sync(
       "git",
-      ["commit", "-m", `Generate ${data.company} ${data.language} SDK`],
+      ["commit", "-m", `Generate ${data.company} ${language} SDK`],
       { cwd: repoDir, stdio: "inherit" }
     );
     execa.sync("git", ["push", "origin", "HEAD"], {
@@ -72,17 +77,21 @@ export function generateSdkRepository(key: string, debug: boolean = false) {
       stdio: "inherit",
     });
     // Remove local directory
-    execa.sync("rm", ["-rf", data.sdkName], {
+    execa.sync("rm", ["-rf", sdkName], {
       cwd: path.join(__dirname, "..", "sdks"),
       stdio: "inherit",
     });
   }
 }
 
-function addSignupLinkToReadmes(repoDir: string, data: Published) {
+function addSignupLinkToReadmes(
+  repoDir: string,
+  language: string,
+  data: Published
+) {
   const serviceName = data.serviceName ? data.serviceName : "N/A";
-  const signupLink = `https://docs.google.com/forms/d/e/1FAIpQLSedvSvvlpgoeI1BBjTyra7nC-SgMyKjugu2j4_dZNIGZ6Ul1Q/viewform?usp=pp_url&entry.1993275387=${data.company}&entry.2022822177=${serviceName}&entry.2109629584=${data.language}`;
-  const sdkReadmeFilepath = path.join(repoDir, data.language, "README.md");
+  const signupLink = `https://docs.google.com/forms/d/e/1FAIpQLSedvSvvlpgoeI1BBjTyra7nC-SgMyKjugu2j4_dZNIGZ6Ul1Q/viewform?usp=pp_url&entry.1993275387=${data.company}&entry.2022822177=${serviceName}&entry.2109629584=${language}`;
+  const sdkReadmeFilepath = path.join(repoDir, language, "README.md");
   const sdkReadme = fs.readFileSync(sdkReadmeFilepath, "utf-8");
   const installationSectionRegex = /^## Installation([\s\S]*?)(?=\n##)/im;
   const replacementText = `## Installation<a id="installation"></a>\n\nTo install, please sign up for the SDK [here](${signupLink}).\n`;
@@ -119,7 +128,12 @@ function deleteRepository(name: string) {
   execa.sync("gh", ["repo", "delete", `konfig-sdks/${name}`, "--yes"]);
 }
 
-function writeKonfigYaml(data: Published, pathToOas: string) {
+function writeKonfigYaml(
+  data: Published,
+  sdkName: string,
+  language: string,
+  pathToOas: string
+) {
   const template = fs.readFileSync(
     path.join(__dirname, "..", "templates", "konfig.yaml.mustache"),
     "utf-8"
@@ -128,16 +142,16 @@ function writeKonfigYaml(data: Published, pathToOas: string) {
   const konfigYaml = mustache.render(template, {
     companyName: capitalize(companyName),
     homepage: data.homepage.replace("https://", ""),
-    repoName: data.sdkName,
-    lang: data.language,
+    repoName: sdkName,
+    lang: language,
     clientName: capitalize(data.clientNameCamelCase),
-    packageName: data.sdkName.replace(/-/g, "_"),
+    packageName: sdkName.replace(/-/g, "_"),
     oasFileName: path.basename(pathToOas),
-    ...generateTemplateLanguageData(data.language),
+    ...generateTemplateLanguageData(language),
   });
 
   fs.writeFileSync(
-    path.join(__dirname, "..", "sdks", data.sdkName, "konfig.yaml"),
+    path.join(__dirname, "..", "sdks", sdkName, "konfig.yaml"),
     konfigYaml
   );
 }
@@ -167,11 +181,11 @@ function generateTemplateLanguageData(language: string) {
   return data;
 }
 
-function generateRepositoryDescription(data: Published) {
+function generateRepositoryDescription(data: Published, language: string) {
   const serviceNameSuffix = data.serviceName
     ? `for ${data.serviceName} API `
     : "";
-  const description = `${data.company}'s ${data.language} SDK ${serviceNameSuffix}generated by Konfig (https://konfigthis.com/). `;
+  const description = `${data.company}'s ${language} SDK ${serviceNameSuffix}generated by Konfig (https://konfigthis.com/). `;
   return description + data.metaDescription;
 }
 
@@ -191,5 +205,8 @@ function oasFullPathFromKey(key: string): string {
 function capitalize(str: string): string {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
+
+const languages = ["typescript", "java", "python"];
+
 // example usage:
-generateSdkRepository("wikimedia.org_1.0.0", true);
+generateSdkRepository("wikimedia.org_1.0.0", "typescript", true);

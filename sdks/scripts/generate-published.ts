@@ -22,7 +22,6 @@ const publishJsonSchema = z.object({
     z.object({
       company: z.string(),
       serviceName: z.string().optional(),
-      language: z.string(),
       sdkName: z.string(),
       clientName: z.string(),
       metaDescription: z.string().optional(),
@@ -48,7 +47,10 @@ function main() {
     const specData: SdkPagePropsWithPropertiesOmitted = JSON.parse(
       fs.readFileSync(`${specDataPath}.json`, "utf-8")
     );
-    const sdkUsageCode = generateSdkUsageCode({ ...publishData, ...specData });
+    const typescriptSdkUsageCode = generateTypescriptSdkUsageCode({
+      ...publishData,
+      ...specData,
+    });
 
     if (publishData.metaDescription === undefined) {
       publishData.metaDescription = dataFromHtml[spec]?.description;
@@ -77,7 +79,7 @@ function main() {
       faviconUrl: `https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/${dynamicPath}/favicon.png`,
       clientNameCamelCase: camelcase(publishData.clientName),
       lastUpdated: now,
-      sdkUsageCode,
+      typescriptSdkUsageCode,
     };
 
     // write to "published/" directory
@@ -86,7 +88,7 @@ function main() {
   }
 }
 
-function generateSdkUsageCode({
+function generateTypescriptSdkUsageCode({
   sdkName,
   clientName,
   securitySchemes,
@@ -95,6 +97,7 @@ function generateSdkUsageCode({
   clientName: string;
   securitySchemes: SecuritySchemes;
 }): string {
+  sdkName = sdkName.replace("{language}", "typescript");
   const setupLines: string[] = [];
   let i = 0;
   for (const key in securitySchemes) {
