@@ -13,13 +13,13 @@ export default function AblyPlatformTypeScriptSdk() {
       metaDescription="Ably provides a suite of APIs to build, extend, and deliver powerful digital experiences in realtime. Organizations like Toyota, Bloomberg, HubSpot, and Hopin depend on Ably’s platform to offload the growing complexity of business-critical realtime data synchronization at global scale."
       company="Ably"
       serviceName="Platform"
-      logo="https://voltaire.ably.com/static/ably-logo-46433d9937b94509fc62ef6dd6d94ff1.png"
+      logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/ably/platform/logo.png"
       clientNameCamelCase="ably"
       homepage="ably.com"
-      lastUpdated={new Date("2024-01-25T00:39:41.208Z")}
+      lastUpdated={new Date("2024-01-26T22:43:07.113Z")}
       contactUrl="https://www.ably.io/contact"
       contactEmail="support@ably.io"
-      previewLinkImage="https://voltaire.ably.com/static/ably-generic-53a7dd8e38ba16fd0190ec91150dad0a.jpeg"
+      previewLinkImage="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/ably/platform/imagePreview.png"
       GettingStarted={GettingStarted}
       Description={Description}
       methods={[
@@ -840,7 +840,7 @@ export default function AblyPlatformTypeScriptSdk() {
       schemas={14}
       parameters={76}
       difficulty="Easy"
-      openApiRaw="https://raw.githubusercontent.com/ably/open-specs/main/definitions/platform-v1.yaml"
+      openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/ably/platform/api.yaml"
     />
   );
 }

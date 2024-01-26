@@ -154,7 +154,7 @@ export default function ${camelcase(company, { pascalCase: true })}${
   }TypeScriptSdk() {
   return (
     <Sdk
-      sdkName="${sdkName}"
+      sdkName="${sdkName.replace("{language}", "typescript")}"
       metaDescription="${metaDescription}"
       company="${company}"
       serviceName="${serviceName}"

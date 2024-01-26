@@ -13,13 +13,13 @@ export default function OpenBankingAccountAndTransactionTypeScriptSdk() {
       metaDescription="The trusted technology that connects banks, fintechs & technical providers - technology that's helping 6m users take control of their money."
       company="Open Banking"
       serviceName="Account and Transaction"
-      logo="https://www.openbanking.org.uk/wp-content/uploads/2021/03/open-banking-logo.svg"
+      logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/open-banking/account-and-transaction/logo.png"
       clientNameCamelCase="openBanking"
       homepage="openbanking.org.uk"
-      lastUpdated={new Date("2024-01-25T00:39:41.208Z")}
+      lastUpdated={new Date("2024-01-26T22:43:07.113Z")}
       // Missing contactUrl
       contactEmail="ServiceDesk@openbanking.org.uk"
-      previewLinkImage="https://www.openbanking.org.uk/wp-content/uploads/Circit-quote-carousel-banner.png"
+      previewLinkImage="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/open-banking/account-and-transaction/imagePreview.png"
       GettingStarted={GettingStarted}
       Description={Description}
       methods={[
@@ -1884,7 +1884,7 @@ export default function OpenBankingAccountAndTransactionTypeScriptSdk() {
       schemas={209}
       parameters={175}
       difficulty="Hard"
-      openApiRaw="https://raw.githubusercontent.com/OpenBankingUK/read-write-api-specs/master/dist/openapi/account-info-openapi.yaml"
+      openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/open-banking/account-and-transaction/api.yaml"
     />
   );
 }
