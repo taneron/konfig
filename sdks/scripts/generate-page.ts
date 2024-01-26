@@ -1,6 +1,6 @@
 import * as path from "path";
 import * as fs from "fs";
-import { Published } from "./generate-published";
+import { Published } from "./util";
 import kebabcase from "lodash.kebabcase";
 import camelcase from "konfig-lib/dist/util/camelcase";
 

@@ -23,7 +23,7 @@ export function generateSdkRepository(key: string, debug: boolean = false) {
   }
 
   // Create and clone repository. If debug mode, create local directory.
-  fs.mkdirSync(sdksDir);
+  if (!fs.existsSync(sdksDir)) fs.mkdirSync(sdksDir);
   if (!debug) createRepository(data.sdkName, repoDescription, sdksDir);
   else if (!fs.existsSync(repoDir)) fs.mkdirSync(repoDir);
 

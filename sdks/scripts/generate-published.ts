@@ -6,11 +6,11 @@ import { SdkPagePropsWithPropertiesOmitted } from "./collect";
 import { SecuritySchemes } from "konfig-lib";
 import camelcase from "konfig-lib/dist/util/camelcase";
 import { Published } from "./util";
+import kebabcase from "lodash.kebabcase";
 
 const publishJsonPath = path.join(path.dirname(__dirname), "publish.json");
 const specDataDirPath = path.join(path.dirname(__dirname), "db", "spec-data");
 const publishedDirPath = path.join(path.dirname(__dirname), "db", "published");
-const logosCsvPath = path.join(path.dirname(__dirname), "db", "logos.csv");
 const dataFromHtmlPath = path.join(
   path.dirname(__dirname),
   "db",
@@ -25,10 +25,8 @@ const publishJsonSchema = z.object({
       language: z.string(),
       sdkName: z.string(),
       clientName: z.string(),
-      previewLinkImage: z.string().optional(),
       metaDescription: z.string().optional(),
       homepage: z.string().optional(),
-      logo: z.string().optional(),
     })
   ),
 });
@@ -38,7 +36,6 @@ function main() {
     JSON.parse(fs.readFileSync(publishJsonPath, "utf-8"))
   );
   const dataFromHtml = JSON.parse(fs.readFileSync(dataFromHtmlPath, "utf-8"));
-  const logos = readLogosCsv();
   // delete and recreate "published/" directory
   fs.rmSync(publishedDirPath, { recursive: true, force: true });
   fs.mkdirSync(publishedDirPath, { recursive: true });
@@ -53,13 +50,6 @@ function main() {
     );
     const sdkUsageCode = generateSdkUsageCode({ ...publishData, ...specData });
 
-    if (publishData.previewLinkImage === undefined) {
-      publishData.previewLinkImage = dataFromHtml[spec]?.imagePreview;
-      if (publishData.previewLinkImage === undefined) {
-        console.log("❌ ERROR: No previewLinkImage for", spec);
-        continue;
-      }
-    }
     if (publishData.metaDescription === undefined) {
       publishData.metaDescription = dataFromHtml[spec]?.description;
       if (publishData.metaDescription === undefined) {
@@ -67,22 +57,15 @@ function main() {
         continue;
       }
     }
-    if (publishData.logo === undefined) {
-      publishData.logo =
-        dataFromHtml[spec]?.logo ??
-        logos[specData.homepage.replace("https://", "")];
-      if (publishData.logo === undefined) {
-        console.log("❌ ERROR: No logo for", spec);
-        continue;
-      }
-    }
+
+    const companyKebabCase = kebabcase(publishData.company.toLowerCase());
 
     const merged: Published = {
       ...specData,
       ...publishData,
-      logo: publishData.logo,
       metaDescription: publishData.metaDescription,
-      previewLinkImage: publishData.previewLinkImage,
+      logo: `https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/${companyKebabCase}/logo.png`,
+      previewLinkImage: `https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/${companyKebabCase}/imagePreview.png`,
       clientNameCamelCase: camelcase(publishData.clientName),
       lastUpdated: now,
       sdkUsageCode,
@@ -92,19 +75,6 @@ function main() {
     const publishedPath = path.join(publishedDirPath, spec);
     fs.writeFileSync(`${publishedPath}.json`, JSON.stringify(merged, null, 2));
   }
-}
-
-function readLogosCsv(): Record<string, string> {
-  const logosCsv = fs.readFileSync(logosCsvPath, "utf-8");
-  const logos: Record<string, string> = {};
-  for (const line of logosCsv.split("\n")) {
-    const row = line.split(",");
-    // slice to unquote the strings
-    const site = row[1].trim().slice(1, -1);
-    const logo = row[3].trim().slice(1, -1);
-    logos[site] = logo;
-  }
-  return logos;
 }
 
 function generateSdkUsageCode({
