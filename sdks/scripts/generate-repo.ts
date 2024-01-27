@@ -1,5 +1,5 @@
 import * as execa from "execa";
-import * as fs from "fs";
+import * as fs from "fs-extra";
 import * as path from "path";
 import * as mustache from "mustache";
 import { Published } from "./util";
@@ -32,8 +32,9 @@ function generateSdkRepository(
   );
   const sdkName = data.sdkName.replace("{language}", language);
   const repoDescription = generateRepositoryDescription(data, language);
-  const sdksDir = path.join(__dirname, "..", "sdks");
+  const sdksDir = path.join(path.dirname(__dirname), "sdks");
   const repoDir = path.join(sdksDir, sdkName);
+  const tmpSdkDir = path.join(path.dirname(__dirname), "tmp", sdkName);
   const pathToOas = oasFullPathFromKey(key);
 
   if (!debug && repositoryExists(sdkName)) {
@@ -41,15 +42,18 @@ function generateSdkRepository(
     return;
   }
 
-  // Create and clone repository. If debug mode, create local directory.
+  // Create tmp directory where sdk will be generated
+  if (!fs.existsSync(tmpSdkDir)) fs.mkdirSync(tmpSdkDir, { recursive: true });
+
+  // Create and clone repository
   if (!fs.existsSync(sdksDir)) fs.mkdirSync(sdksDir);
   if (!debug) createRepository(sdkName, repoDescription, sdksDir);
   else if (!fs.existsSync(repoDir)) fs.mkdirSync(repoDir);
 
-  // Copy the OAS into the cloned repository
-  fs.copyFileSync(pathToOas, path.join(repoDir, path.basename(pathToOas)));
+  // Copy the OAS into the tmp sdk directory
+  fs.copyFileSync(pathToOas, path.join(tmpSdkDir, path.basename(pathToOas)));
 
-  // Copy the header image into the cloned repository
+  // Copy the header image into the tmp sdk directory
   fs.copyFileSync(
     path.join(
       path.dirname(__dirname),
@@ -57,31 +61,28 @@ function generateSdkRepository(
       data.company.toLowerCase(),
       "header.png"
     ),
-    path.join(repoDir, "header.png")
+    path.join(tmpSdkDir, "header.png")
   );
 
-  writeKonfigYaml(data, sdkName, language, pathToOas);
+  writeKonfigYaml(data, sdkName, language, pathToOas, tmpSdkDir);
 
   // Run konfig generate. If any errors occur, delete the repository and abort.
   try {
     execa.sync("konfig", ["generate"], {
-      cwd: repoDir,
+      cwd: tmpSdkDir,
       stdio: "inherit",
     });
   } catch (error: any) {
     console.log("Error occurred during konfig generate.");
     console.log("Aborting process and deleting repository...");
-    if (!debug) {
-      execa.sync("rm", ["-rf", sdkName], {
-        cwd: path.join(__dirname, "..", "sdks"),
-        stdio: "inherit",
-      });
-      deleteRepository(sdkName);
-    }
+    if (!debug) deleteRepository(sdkName);
     console.log("Repository deleted.");
     return;
   }
-  addSignupLinkToReadmes(repoDir, language, data);
+  addSignupLinkToReadme(tmpSdkDir, language, data);
+
+  // Copy generated sdk into cloned repository
+  copySdkToRepository(tmpSdkDir, repoDir, language);
 
   // Commit and push to remote
   if (!debug) {
@@ -95,23 +96,24 @@ function generateSdkRepository(
       cwd: repoDir,
       stdio: "inherit",
     });
-    // Remove local directory
-    execa.sync("rm", ["-rf", sdkName], {
-      cwd: path.join(__dirname, "..", "sdks"),
-      stdio: "inherit",
-    });
   }
+
+  // Remove local directory
+  execa.sync("rm", ["-rf", sdkName], {
+    cwd: sdksDir,
+    stdio: "inherit",
+  });
 }
 
-function addSignupLinkToReadmes(
-  repoDir: string,
+function addSignupLinkToReadme(
+  sdkDir: string,
   language: string,
   data: Published
 ) {
   language = capitalizedLanguage[language];
   const serviceName = data.serviceName ? data.serviceName : "N/A";
   const signupLink = `https://docs.google.com/forms/d/e/1FAIpQLSedvSvvlpgoeI1BBjTyra7nC-SgMyKjugu2j4_dZNIGZ6Ul1Q/viewform?usp=pp_url&entry.1993275387=${data.company}&entry.2022822177=${serviceName}&entry.2109629584=${language}`;
-  const sdkReadmeFilepath = path.join(repoDir, language, "README.md");
+  const sdkReadmeFilepath = path.join(sdkDir, language, "README.md");
   const sdkReadme = fs.readFileSync(sdkReadmeFilepath, "utf-8");
   const installationSectionRegex = /^## Installation([\s\S]*?)(?=\n##)/im;
   const replacementText = `## Installation<a id="installation"></a>\n\nTo install, please sign up for the SDK [here](${signupLink}).\n`;
@@ -120,11 +122,6 @@ function addSignupLinkToReadmes(
     replacementText
   );
   fs.writeFileSync(sdkReadmeFilepath, newReadme);
-
-  const rootReadmeFilepath = path.join(repoDir, "README.md");
-  const rootReadme = fs.readFileSync(rootReadmeFilepath, "utf-8");
-  const rootSignupMessage = `\nTo install, please sign up for the SDK [here](${signupLink}).`;
-  fs.writeFileSync(rootReadmeFilepath, rootReadme + rootSignupMessage);
 }
 
 function createRepository(name: string, description: string, dir: string) {
@@ -148,11 +145,24 @@ function deleteRepository(name: string) {
   execa.sync("gh", ["repo", "delete", `konfig-sdks/${name}`, "--yes"]);
 }
 
+function copySdkToRepository(
+  tmpSdkDir: string,
+  repoDir: string,
+  language: string
+) {
+  console.log(`Copying SDK to repository...`);
+  const sdkDir = path.join(tmpSdkDir, language);
+  fs.readdirSync(sdkDir).forEach((fileOrDir) => {
+    fs.copySync(path.join(sdkDir, fileOrDir), path.join(repoDir, fileOrDir));
+  });
+}
+
 function writeKonfigYaml(
   data: Published,
   sdkName: string,
   language: string,
-  pathToOas: string
+  pathToOas: string,
+  tmpSdkDir: string
 ) {
   const template = fs.readFileSync(
     path.join(__dirname, "..", "templates", "konfig.yaml.mustache"),
@@ -170,10 +180,7 @@ function writeKonfigYaml(
     ...generateTemplateLanguageData(language),
   });
 
-  fs.writeFileSync(
-    path.join(__dirname, "..", "sdks", sdkName, "konfig.yaml"),
-    konfigYaml
-  );
+  fs.writeFileSync(path.join(tmpSdkDir, "konfig.yaml"), konfigYaml);
 }
 
 function repositoryExists(name: string): boolean {
@@ -230,4 +237,4 @@ function capitalize(str: string): string {
 }
 
 //generateSdkRepositories("wikimedia.org_1.0.0");
-generateSdkRepository("wikimedia.org_1.0.0", "typescript", true);
+//generateSdkRepository("wikimedia.org_1.0.0", "java", true);
