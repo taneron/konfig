@@ -51,7 +51,12 @@ function generateSdkRepository(
 
   // Copy the header image into the cloned repository
   fs.copyFileSync(
-    path.join(__dirname, "..", "headers", `${data.company}.png`),
+    path.join(
+      path.dirname(__dirname),
+      "openapi-examples",
+      data.company.toLowerCase(),
+      "header.png"
+    ),
     path.join(repoDir, "header.png")
   );
 
@@ -224,4 +229,5 @@ function capitalize(str: string): string {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
-generateSdkRepositories("wikimedia.org_1.0.0");
+//generateSdkRepositories("wikimedia.org_1.0.0");
+generateSdkRepository("wikimedia.org_1.0.0", "typescript", true);
