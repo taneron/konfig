@@ -120,7 +120,7 @@ function getParameters(): {
     const company = urlParams.get("company") ?? "";
     const serviceName = urlParams.get("serviceName") ?? "";
     const language = urlParams.get("language") ?? "";
-    return { company, serviceName: serviceName, language };
+    return { company, serviceName, language };
   }
   return { company: "", serviceName: "", language: "" };
 }
