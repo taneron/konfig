@@ -4,13 +4,11 @@ import { useSdkSignup } from "../util/use-sdk-signup";
 import clsx from "clsx";
 import { LoadingIcon } from "../components/LoadingIcon";
 import { IconMailFilled } from "@tabler/icons-react";
+import ExecutionEnvironment from "@docusaurus/ExecutionEnvironment";
 
 export default function SdkSignUp() {
   // get query parameters
-  const urlParams = new URLSearchParams(window.location.search);
-  const company = urlParams.get("company");
-  const serviceName = urlParams.get("serviceName");
-  const language = urlParams.get("language");
+  const { company, serviceName, language } = getParameters();
   const { handleSubmit, signedUp, email, setEmail, loading } = useSdkSignup({
     company,
     serviceName,
@@ -90,4 +88,19 @@ export default function SdkSignUp() {
       </div>
     </Layout>
   );
+}
+
+function getParameters(): {
+  company: string;
+  serviceName: string;
+  language: string;
+} {
+  if (ExecutionEnvironment.canUseDOM) {
+    const urlParams = new URLSearchParams(window.location.search);
+    const company = urlParams.get("company");
+    const serviceName = urlParams.get("serviceName");
+    const language = urlParams.get("language");
+    return { company, serviceName, language };
+  }
+  return { company: "", serviceName: "", language: "" };
 }
