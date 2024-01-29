@@ -1,5 +1,5 @@
 import Layout from "@theme/Layout";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useSdkSignup } from "../util/use-sdk-signup";
 import clsx from "clsx";
 import { LoadingIcon } from "../components/LoadingIcon";
@@ -14,14 +14,34 @@ export default function SdkSignUp() {
     serviceName,
     language,
   });
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    // Change the visibility after a delay (e.g., 500ms)
+    const timer = setTimeout(() => {
+      setIsVisible(true);
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <Layout
       title={`${company} ${serviceName} API ${language} SDK`}
       description={`SDK Signup Form for ${company} ${serviceName} API ${language} SDK`}
     >
-      <div className="bg-gradient-to-bl py-56 from-blue-950 to-blue-700">
-        <div className="text-blue-300 text-center mx-auto max-w-3xl px-2">
+      <div
+        className={clsx("bg-gradient-to-bl py-56 from-blue-950 to-blue-700")}
+      >
+        <div
+          className={clsx(
+            "transitio-all duration-500 text-blue-300 text-center mx-auto max-w-3xl px-2",
+            {
+              "opacity-1": isVisible,
+              "opacity-0 translate-y-40": !isVisible,
+            }
+          )}
+        >
           <h1
             className={clsx(
               "mx-auto text-4xl mb-4 font-bold max-w-sm sm:max-w-3xl text-blue-50"
@@ -97,10 +117,10 @@ function getParameters(): {
 } {
   if (ExecutionEnvironment.canUseDOM) {
     const urlParams = new URLSearchParams(window.location.search);
-    const company = urlParams.get("company");
-    const serviceName = urlParams.get("serviceName");
-    const language = urlParams.get("language");
-    return { company, serviceName, language };
+    const company = urlParams.get("company") ?? "";
+    const serviceName = urlParams.get("serviceName") ?? "";
+    const language = urlParams.get("language") ?? "";
+    return { company, serviceName: serviceName, language };
   }
   return { company: "", serviceName: "", language: "" };
 }
