@@ -30,6 +30,7 @@ const publishJsonSchema = z.object({
       clientName: z.string(),
       metaDescription: z.string().optional(),
       homepage: z.string().optional(),
+      categories: z.string().array().optional(),
     })
   ),
 });
@@ -48,9 +49,8 @@ function main() {
 
     const specDataPath = path.join(specDataDirPath, spec);
     const publishData = publishJson.publish[spec];
-    const specData: SdkPagePropsWithPropertiesOmitted = JSON.parse(
-      fs.readFileSync(`${specDataPath}.json`, "utf-8")
-    );
+    const { categories, ...specData }: SdkPagePropsWithPropertiesOmitted =
+      JSON.parse(fs.readFileSync(`${specDataPath}.json`, "utf-8"));
     const typescriptSdkUsageCode = generateTypescriptSdkUsageCode({
       ...publishData,
       ...specData,
@@ -115,11 +115,22 @@ function main() {
         `❌ ERROR: openapi does not exist at ${openapiExamplesDirPath}`
       );
     }
+
+    if (publishData.categories === undefined) {
+      throw Error(`❌ ERROR: No categories for ${openapiExamplesDirPath}`);
+    }
+
     const githubUrlPrefix = `https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/${dynamicPath}/`;
+
+    const nonEmptyCategories = publishData.categories ?? categories;
+    if (nonEmptyCategories.length === undefined) {
+      throw Error(`❌ ERROR: No categories for ${openapiExamplesDirPath}`);
+    }
 
     const merged: Published = {
       ...specData,
       ...publishData,
+      categories: nonEmptyCategories,
       metaDescription: publishData.metaDescription,
       originalSpecUrl: specData.openApiRaw,
       logo: `${githubUrlPrefix}${logoPath}`,

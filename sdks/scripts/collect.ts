@@ -310,7 +310,7 @@ function getNumberOfParameters(spec: Spec): number {
 
 export type AdditionalSpecDataProps = {
   securitySchemes: SecuritySchemes;
-  categories: string[];
+  categories?: string[];
 };
 
 export type SdkPagePropsWithPropertiesOmitted = Omit<
