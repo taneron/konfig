@@ -12,6 +12,7 @@ type SdkLinks = {
   homepage: string;
   categories: string[];
   favicon: string;
+  apiVersion: string;
 }[];
 
 /**
@@ -65,6 +66,7 @@ function main() {
       homepage: json.homepage,
       categories: json.categories,
       favicon: json.faviconUrl,
+      apiVersion: json.apiVersion,
     });
 
     fs.mkdirSync(dirPath, { recursive: true });
@@ -104,6 +106,7 @@ function addToSdkLinks({
   homepage,
   categories,
   favicon,
+  apiVersion,
 }: {
   company: string;
   service?: string;
@@ -111,6 +114,7 @@ function addToSdkLinks({
   homepage: string;
   favicon: string;
   sdkLinks: SdkLinks;
+  apiVersion: string;
 }) {
   const link = `/sdk/${company}/${service ? `${service}/` : ""}typescript`;
   const index = `${company}/${service ? `${service}/` : ""}typescript`;
@@ -120,6 +124,7 @@ function addToSdkLinks({
     homepage,
     categories,
     favicon,
+    apiVersion,
   });
 }
 
@@ -210,7 +215,11 @@ export default function ${camelcase(company, { pascalCase: true })}${
       sdkName="${sdkName.replace("{language}", "typescript")}"
       metaDescription="${metaDescription}"
       company="${company}"
-      serviceName="${serviceName}"
+      ${
+        serviceName !== undefined
+          ? `serviceName="${serviceName}"`
+          : "// Missing serviceName"
+      }
       logo="${logo}"
       clientNameCamelCase="${clientNameCamelCase}"
       homepage="${homepage}"

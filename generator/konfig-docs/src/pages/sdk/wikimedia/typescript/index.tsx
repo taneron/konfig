@@ -12,11 +12,11 @@ export default function WikimediaTypeScriptSdk() {
       sdkName="wikimedia-typescript-sdk"
       metaDescription="Wikimedia is a global movement whose mission is to bring free educational content to the world."
       company="Wikimedia"
-      serviceName="undefined"
+      // Missing serviceName
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/wikimedia/logo.png"
       clientNameCamelCase="wikimedia"
       homepage="wikimedia.org"
-      lastUpdated={new Date("2024-01-28T00:04:56.300Z")}
+      lastUpdated={new Date("2024-01-29T23:27:20.789Z")}
       contactUrl="http://mediawiki.org/wiki/REST_API"
       // Missing contactEmail
       previewLinkImage="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/wikimedia/imagePreview.png"
