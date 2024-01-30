@@ -10,7 +10,7 @@ import * as fs from "fs";
 import * as glob from "glob";
 import * as math from "mathjs";
 import type { SdkPageProps } from "../../generator/konfig-docs/src/components/SdkComponentProps";
-import { specFolder } from "./util";
+import { postRequestSpecsDir, specFolder } from "./util";
 
 type Paths = { oasPath: string }[];
 
@@ -122,9 +122,12 @@ function getNumberOfSchemas(spec: Spec): number {
   return numberOfSchemas;
 }
 
-function getSecuritySchemes(spec: Spec): SecuritySchemes {
+function getSecuritySchemes(
+  spec: Spec,
+  dflt?: SecuritySchemes
+): SecuritySchemes {
   const securitySchemeOrRefs = spec.spec.components?.securitySchemes;
-  if (securitySchemeOrRefs === undefined) return {};
+  if (securitySchemeOrRefs === undefined) return dflt ? dflt : {};
   const securitySchemesKeys = Object.keys(securitySchemeOrRefs);
   const securitySchemes: SecuritySchemes = {};
   for (const key of securitySchemesKeys) {
@@ -139,9 +142,10 @@ function getSecuritySchemes(spec: Spec): SecuritySchemes {
   return securitySchemes;
 }
 
-function getOpenApiRaw(spec: Spec): string {
+function getOpenApiRaw(spec: Spec): string | undefined {
   const info = spec.spec.info as any;
   const origin = info["x-origin"];
+  if (origin === undefined) return;
   const url = origin[0].url;
 
   // remove duplicate h at beginning of https if detected
@@ -186,10 +190,20 @@ function getNumberOfParameters(spec: Spec): number {
   return numberOfParameters;
 }
 
+/**
+ * Extra or overwrite properties for SdkPageProps
+ */
 export type AdditionalSpecDataProps = {
   securitySchemes: SecuritySchemes;
   categories?: string[];
-  openapiDirectoryPath: string;
+  // null means it was not originally from openapi-directory repo
+  openapiDirectoryPath?: string;
+  postRequestSpecFilename?: string;
+  originalSpecPostRequest?: {
+    url: string;
+    body: string;
+  };
+  originalSpecUrl?: string;
 };
 
 export type SdkPagePropsWithPropertiesOmitted = Omit<
@@ -206,11 +220,23 @@ export type SdkPagePropsWithPropertiesOmitted = Omit<
 > &
   AdditionalSpecDataProps;
 
+export type SdkPagePropsWithPropertiesOmittedWithoutDifficulty = Omit<
+  SdkPagePropsWithPropertiesOmitted,
+  "difficulty"
+>;
+
 export type Db = {
+  specifications: Record<
+    string,
+    SdkPagePropsWithPropertiesOmittedWithoutDifficulty
+  >;
+};
+
+export type DbWithDifficulty = {
   specifications: Record<string, SdkPagePropsWithPropertiesOmitted>;
 };
 
-function writeData(db: Db) {
+function writeData(db: DbWithDifficulty) {
   let i = 0;
   for (const key in db.specifications) {
     console.log(
@@ -281,6 +307,10 @@ async function collectFilterAndSave(): Promise<void> {
       }`
     );
     const openApiRaw = getOpenApiRaw(spec);
+    if (openApiRaw === undefined) {
+      console.log(`❌ Skipping ${cleanPath} due to missing openApiRaw.`);
+      continue;
+    }
 
     // check if origin url is working
     try {
@@ -375,21 +405,144 @@ async function processFiltered(): Promise<Db> {
   return db;
 }
 
-async function addDifficulty(db: Db): Promise<Db> {
+async function addDifficulty(db: Db): Promise<DbWithDifficulty> {
   const difficultyScores = Object.values(db.specifications).map(
     (specification) => specification.difficultyScore
   );
   const zScores = calculateZScores(difficultyScores);
   let i = 0;
-  for (const spec of Object.values(db.specifications)) {
+  const dbWithDifficulty: DbWithDifficulty = { specifications: {} };
+  for (const key in db.specifications) {
+    const spec = db.specifications[key];
     const z = zScores[i];
-    if (z > 1) spec.difficulty = "Very Hard";
-    else if (z > 0.1) spec.difficulty = "Hard";
-    else if (z > -0.1) spec.difficulty = "Medium";
-    else if (z > -0.3) spec.difficulty = "Easy";
-    else spec.difficulty = "Very Easy";
+    const difficulty = getDifficulty(z);
+    dbWithDifficulty.specifications[key] = {
+      ...spec,
+      difficulty,
+    };
     i++;
   }
+  return dbWithDifficulty;
+}
+
+function getDifficulty(difficultyScore: number): string {
+  if (difficultyScore > 1) return "Very Hard";
+  else if (difficultyScore > 0.1) return "Hard";
+  else if (difficultyScore > -0.1) return "Medium";
+  else if (difficultyScore > -0.3) return "Easy";
+  else return "Very Easy";
+}
+
+const postRequests: Record<
+  string,
+  AdditionalSpecDataProps["originalSpecPostRequest"] & {
+    securitySchemes?: SecuritySchemes;
+    apiBaseUrl?: string;
+  }
+> = {
+  /**
+   * Got this from inspecting network tab when going to API Reference page at:
+   * https://developer.walmart.com/api/us/cp/feeds
+   */
+  "walmart.com_content": {
+    url: "https://developer.walmart.com/api/detail",
+    body: `{"params":{"country":"us","category":"cp","apiName":"feeds"}}`,
+    securitySchemes: {
+      clientId: {
+        type: "apiKey",
+        in: "header",
+        name: "clientId",
+      },
+      privateKey: {
+        type: "apiKey",
+        in: "header",
+        name: "privateKey",
+      },
+    },
+    apiBaseUrl: "https://marketplace.walmartapis.com/v3/feeds",
+  },
+};
+
+async function collectFromPostRequests(): Promise<Db> {
+  const db: Db = { specifications: {} };
+
+  for (const key in postRequests) {
+    const postRequest = postRequests[key];
+    if (postRequest === undefined)
+      throw Error("Expect postRequest to be defined");
+    const { url, body } = postRequest;
+    console.log(`Processing post request for ${key}`);
+
+    const rawSpecString = await fetch(url, {
+      method: "POST",
+      body,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }).then((res) => res.text());
+
+    const spec = await parseSpec(rawSpecString);
+    const numberOfEndpoints = getNumberOfEndpoints(spec);
+    const numberOfOperations = getNumberOfOperations(spec);
+    const numberOfSchemas = getNumberOfSchemas(spec);
+    const numberOfParameters = getNumberOfParameters(spec);
+    // if postRequest.securitySchemes then also apply to spec
+    if (postRequest.securitySchemes !== undefined) {
+      if (spec.spec.components === undefined) spec.spec.components = {};
+      spec.spec.components.securitySchemes = postRequest.securitySchemes as any;
+      spec.spec.security = [
+        Object.fromEntries(
+          Object.keys(postRequest.securitySchemes).map((key) => [key, []])
+        ),
+      ];
+    }
+
+    let apiBaseUrl = spec.spec.servers?.[0]?.url;
+    if (apiBaseUrl === undefined) {
+      if (postRequest.apiBaseUrl !== undefined) {
+        apiBaseUrl = postRequest.apiBaseUrl;
+      } else {
+        console.log(`❌ Skipping ${key} due to missing apiBaseUrl.`);
+        continue;
+      }
+    }
+    const specFilename = `${key}.yaml`;
+    db.specifications[`from-post-request_${key}`] = {
+      providerName: getProviderName(spec),
+      openApiRaw: getOpenApiRaw(spec),
+      securitySchemes: getSecuritySchemes(spec, postRequest.securitySchemes),
+      categories: getCategories(spec),
+      homepage: getProviderName(spec),
+      serviceName: getServiceName(spec),
+      apiVersion: getVersion(spec),
+      apiBaseUrl,
+      apiDescription: spec.spec.info.description,
+      apiTitle: spec.spec.info.title,
+      endpoints: numberOfEndpoints,
+      sdkMethods: numberOfOperations,
+      schemas: numberOfSchemas,
+      parameters: numberOfParameters,
+      contactUrl: getInfoContactUrl(spec),
+      contactEmail: getInfoContactEmail(spec),
+      postRequestSpecFilename: specFilename,
+      originalSpecPostRequest: {
+        url,
+        body,
+      },
+      difficultyScore: computeDifficultyScore(
+        numberOfEndpoints,
+        numberOfOperations,
+        numberOfSchemas,
+        numberOfParameters
+      ),
+    };
+    console.log(`Writing post request spec to disk for ${key}`);
+    fs.writeFileSync(
+      path.join(postRequestSpecsDir, specFilename),
+      JSON.stringify(spec.spec, null, 2)
+    );
+  }
+
   return db;
 }
 
@@ -398,10 +551,18 @@ async function main() {
     await collectFilterAndSave();
     return;
   }
+  console.log("Processing post requests");
+  let postRequestDb = await collectFromPostRequests();
   console.log("Processing filtered specs");
-  let db = await processFiltered();
+  const openapiDirectoryDb = await processFiltered();
+  const mergedDb = {
+    specifications: {
+      ...openapiDirectoryDb.specifications,
+      ...postRequestDb.specifications,
+    },
+  };
   console.log("Adding difficulty scores");
-  db = await addDifficulty(db);
+  const db = await addDifficulty(mergedDb);
   // delete specFolder if it exists
   fs.rmSync(specFolder, { recursive: true });
   // ensure specFolder exists
