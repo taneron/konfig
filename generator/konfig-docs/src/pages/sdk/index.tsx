@@ -78,7 +78,7 @@ export default function Sdks() {
               setShowAllCategories={setShowAllCategories}
               setFilteredCategories={setFilteredCategories}
             />
-            {allCategories.map((category) => {
+            {Array.from(new Set(allCategories)).map((category) => {
               return (
                 <CategoryFilter
                   category={category}
