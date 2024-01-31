@@ -118,7 +118,7 @@ export function Sdk({
                 </div>
                 <Dot />
                 <div className="font-mono text-slate-500">
-                  Last updated {moment(lastUpdated).fromNow()}
+                  Updated {moment(lastUpdated).format("MMMM Do, YYYY")}
                 </div>
               </div>
             </div>
