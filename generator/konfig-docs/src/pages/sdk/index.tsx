@@ -45,10 +45,10 @@ export default function Sdks() {
       >
         <div className="py-44 pb-56 bg-gradient-to-br from-blue-950 to-blue-700">
           <div className="text-center ">
-            <h1 className="text-blue-200 text-2xl sm:text-3xl md:text-4xl lg:text-5xl">
+            <h1 className="text-blue-200 text-3xl md:text-4xl lg:text-5xl">
               Explore <span className="text-white">{sdkLinksJson.length}</span>{" "}
               SDKs for <br />
-              <span className="">
+              <span className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl">
                 <span className="italic">up-to-date</span> and{" "}
                 <span className="italic">relevant</span> public APIs
               </span>
