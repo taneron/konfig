@@ -31,6 +31,7 @@ type ReactProps = {
   GettingStarted: React.ComponentType;
   Description: React.ComponentType;
   language?: string;
+  doesNotHaveApiDescription?: boolean;
 };
 
 export function Sdk({
@@ -59,6 +60,7 @@ export function Sdk({
   GettingStarted,
   Description,
   language = "TypeScript",
+  doesNotHaveApiDescription,
 }: Omit<SdkPageProps, "difficultyScore" | "providerName"> & ReactProps) {
   return (
     <Layout
@@ -136,7 +138,7 @@ export function Sdk({
                 What is {company}?
               </div>
               <AboutSection>
-                <AboutContentSection>
+                <AboutContentSection noBottomMargin={doesNotHaveApiDescription}>
                   <AboutTitle>
                     <div className="flex items-center gap-2">
                       <IconInfoCircle size="1rem" className="text-slate-400" />
@@ -145,15 +147,19 @@ export function Sdk({
                   </AboutTitle>
                   <p>{metaDescription}</p>
                 </AboutContentSection>
-                <AboutTitle>
-                  <div className="flex items-center gap-2">
-                    <IconApi size="1rem" className="text-slate-400" />
-                    <div>About {company}'s API</div>
-                  </div>
-                </AboutTitle>
-                <div className="[&_p]:mb-6">
-                  <Description />
-                </div>
+                {!doesNotHaveApiDescription && (
+                  <>
+                    <AboutTitle>
+                      <div className="flex items-center gap-2">
+                        <IconApi size="1rem" className="text-slate-400" />
+                        <div>About {company}'s API</div>
+                      </div>
+                    </AboutTitle>
+                    <div className="[&_p]:mb-6">
+                      <Description />
+                    </div>
+                  </>
+                )}
               </AboutSection>
               <div className="text-slate-500 mb-1 text-sm font-bold">
                 Integrating {company}'s {language} SDK
@@ -230,8 +236,11 @@ export function Sdk({
   );
 }
 
-function AboutContentSection({ children }: PropsWithChildren<{}>) {
-  return <div className="mb-10">{children}</div>;
+function AboutContentSection({
+  children,
+  noBottomMargin,
+}: PropsWithChildren<{ noBottomMargin?: boolean }>) {
+  return <div className={clsx({ "mb-10": !noBottomMargin })}>{children}</div>;
 }
 
 function SdkMethod({

@@ -12,6 +12,7 @@ export default function SoundCloudTypeScriptSdk() {
       sdkName="soundcloud-typescript-sdk"
       metaDescription="Discover and play over 320 million music tracks. Join the world’s largest online community of artists, bands, DJs, and audio creators."
       company="SoundCloud"
+      doesNotHaveApiDescription={true}
       // Missing serviceName
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/soundcloud/logo.jpg"
       clientNameCamelCase="soundCloud"

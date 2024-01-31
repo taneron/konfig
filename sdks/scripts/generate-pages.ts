@@ -198,6 +198,7 @@ function generateIndexTsx({
   clientNameCamelCase,
   openApiRaw,
   parameters,
+  apiDescription,
 }: Published): string {
   return `import React from "react";
 import { HttpMethodsEnum } from "konfig-lib/dist/forEachOperation";
@@ -214,7 +215,12 @@ export default function ${camelcase(company, { pascalCase: true })}${
     <Sdk
       sdkName="${sdkName.replace("{language}", "typescript")}"
       metaDescription="${metaDescription}"
-      company="${company}"
+      company="${company}"${
+    apiDescription === "" || apiDescription === undefined
+      ? `
+      doesNotHaveApiDescription={true}`
+      : ""
+  }
       ${
         serviceName !== undefined
           ? `serviceName="${serviceName}"`
