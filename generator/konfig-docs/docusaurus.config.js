@@ -103,6 +103,7 @@ async function createConfig() {
     tagline: "Generate SDKs for your REST API",
     url: "https://konfigthis.com",
     baseUrl: "/",
+    trailingSlash: false,
     onBrokenLinks: "throw",
     onBrokenMarkdownLinks: "warn",
     favicon: "img/favicon.png",
