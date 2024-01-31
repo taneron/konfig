@@ -153,7 +153,7 @@ function addToRedirectsJson({
     redirectsJson[serviceRedirectPath] = `${serviceRedirectPath}/typescript/`;
     redirectsJson[
       serviceRedirectPath + "/"
-    ] = `${serviceRedirectPath}/typescript`;
+    ] = `${serviceRedirectPath}/typescript/`;
   } else {
     const redirectPath = `/sdk/${company}`;
     const redirectTarget = `${redirectPath}/typescript/`;
