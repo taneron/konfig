@@ -116,7 +116,7 @@ function addToSdkLinks({
   sdkLinks: SdkLinks;
   apiVersion?: string;
 }) {
-  const link = `/sdk/${company}/${service ? `${service}/` : ""}typescript`;
+  const link = `/sdk/${company}/${service ? `${service}/` : ""}typescript/`;
   const index = `${company}/${service ? `${service}/` : ""}typescript`;
   sdkLinks.push({
     index,
