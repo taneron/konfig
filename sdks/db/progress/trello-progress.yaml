@@ -418,10 +418,432 @@ operationIds:
     put: Member_updatePrefsLocaleByIdMember
   /members/{idMember}/prefs/minutesBetweenSummaries:
     put: Member_updatePrefsMinutesBetweenSummariesById
+  /members/{idMember}/savedSearches:
+    get: Member_getSavedSearchesByIdMember
+    post: Member_createSavedSearch
+  /members/{idMember}/savedSearches/{idSavedSearch}:
+    delete: Member_removeSavedSearchByIds
+    get: Member_getSavedSearchByIds
+    put: Member_updateSavedSearchesByIdMemberByIdSavedSearch
+  /members/{idMember}/savedSearches/{idSavedSearch}/name:
+    put: Member_updateSavedSearchesNameByIdMemberByIdSavedSearch
+  /members/{idMember}/savedSearches/{idSavedSearch}/pos:
+    put: Member_updateSavedSearchesPosByIdMemberByIdSavedSearch
+  /members/{idMember}/savedSearches/{idSavedSearch}/query:
+    put: Member_updateSavedSearchQueryByIdMemberByIdSavedSearch
+  /members/{idMember}/tokens:
+    get: Member_getTokensByIdMember
+  /members/{idMember}/username:
+    put: Member_updateUsernameById
+  /members/{idMember}/{field}:
+    get: Member_getByField
+  /notifications/all/read:
+    post: Notification_markAllAsRead
+  /notifications/{idNotification}:
+    get: Notification_getById
+    put: Notification_updateByIdNotification
+  /notifications/{idNotification}/board:
+    get: Notification_getBoardById
+  /notifications/{idNotification}/board/{field}:
+    get: Notification_getBoardByField
+  /notifications/{idNotification}/card:
+    get: Notification_getCardById
+  /notifications/{idNotification}/card/{field}:
+    get: Notification_getCardByIdNotificationByField
+  /notifications/{idNotification}/display:
+    get: Notification_getDisplayByIdNotification
+  /notifications/{idNotification}/entities:
+    get: Notification_getEntitiesByIdNotification
+  /notifications/{idNotification}/list:
+    get: Notification_getListByIdNotification
+  /notifications/{idNotification}/list/{field}:
+    get: Notification_getListByIdNotificationByField
+  /notifications/{idNotification}/member:
+    get: Notification_getMemberByNotification
+  /notifications/{idNotification}/member/{field}:
+    get: Notification_getMemberByIdField
+  /notifications/{idNotification}/memberCreator:
+    get: Notification_getMemberCreatorById
+  /notifications/{idNotification}/memberCreator/{field}:
+    get: Notification_getMemberByIdNotificationByField
+  /notifications/{idNotification}/organization:
+    get: Notification_getOrganizationByIdNotification
+  /notifications/{idNotification}/organization/{field}:
+    get: Notification_getOrganizationByIdNotificationByField
+  /notifications/{idNotification}/unread:
+    put: Notification_updateUnreadByIdNotification
+  /notifications/{idNotification}/{field}:
+    get: Notification_getByIdField
+  /organizations:
+    post: Organization_create
+  /organizations/{idOrg}:
+    delete: Organization_removeByIdOrg
+    get: Organization_getByIdOrg
+    put: Organization_updateByIdOrg
+  /organizations/{idOrg}/actions:
+    get: Organization_getActionsByIdOrg
+  /organizations/{idOrg}/boards:
+    get: Organization_getBoardsByOrgId
+  /organizations/{idOrg}/boards/{filter}:
+    get: Organization_getBoardsByIdOrgByFilter
+  /organizations/{idOrg}/deltas:
+    get: Organization_getOrganizationDeltas
+  /organizations/{idOrg}/desc:
+    put: Organization_updateDescriptionByIdOrg
+  /organizations/{idOrg}/displayName:
+    put: Organization_updateDisplayNameByIdOrg
+  /organizations/{idOrg}/logo:
+    delete: Organization_removeLogoByIdOrg
+    post: Organization_uploadLogoByIdOrg
+  /organizations/{idOrg}/members:
+    get: Organization_getMembersByIdOrg
+    put: Organization_updateMembersByIdOrg
+  /organizations/{idOrg}/members/{filter}:
+    get: Organization_listMembersByIdOrgByFilter
+  /organizations/{idOrg}/members/{idMember}:
+    delete: Organization_removeMemberByIdOrgByIdMember
+    put: Organization_updateMembersByIdOrgByIdMember
+  /organizations/{idOrg}/members/{idMember}/all:
+    delete: Organization_removeMemberAll
+  /organizations/{idOrg}/members/{idMember}/cards:
+    get: Organization_listMembersCardsByIdOrgByIdMember
+  /organizations/{idOrg}/members/{idMember}/deactivated:
+    put: Organization_updateMembersDeactivatedByIdOrgByIdMember
+  /organizations/{idOrg}/membersInvited:
+    get: Organization_getMembersInvitedByIdOrg
+  /organizations/{idOrg}/membersInvited/{field}:
+    get: Organization_getMembersInvitedByIdOrgByField
+  /organizations/{idOrg}/memberships:
+    get: Organization_listMembershipsByIdOrg
+  /organizations/{idOrg}/memberships/{idMembership}:
+    get: Organization_getMembershipsByIdOrgByIdMembership
+    put: Organization_updateMembershipByIdOrgByIdMembership
+  /organizations/{idOrg}/name:
+    put: Organization_updateNameByIdOrg
+  /organizations/{idOrg}/prefs/associatedDomain:
+    delete: Organization_deletePrefsAssociatedDomainByIdOrg
+    put: Organization_updatePrefsAssociatedDomainByIdOrg
+  /organizations/{idOrg}/prefs/boardVisibilityRestrict/org:
+    put: Organization_updatePrefsBoardVisibilityRestrictByIdOrg
+  /organizations/{idOrg}/prefs/boardVisibilityRestrict/private:
+    put: Organization_updatePrefsVisibilityByIdOrg
+  /organizations/{idOrg}/prefs/boardVisibilityRestrict/public:
+    put: Organization_updatePrefsBoardVisibilityRestrictPublicByIdOrg
+  /organizations/{idOrg}/prefs/externalMembersDisabled:
+    put: Organization_updatePrefsExternalMembersDisabledByIdOrg
+  /organizations/{idOrg}/prefs/googleAppsVersion:
+    put: Organization_updatePrefsGoogleAppsVersionByIdOrg
+  /organizations/{idOrg}/prefs/orgInviteRestrict:
+    delete: Organization_removeInviteRestrictByIdOrg
+    put: Organization_updatePrefsOrgInviteRestrictByIdOrg
+  /organizations/{idOrg}/prefs/permissionLevel:
+    put: Organization_updatePrefsPermissionLevelByIdOrg
+  /organizations/{idOrg}/website:
+    put: Organization_updateWebsiteByIdOrg
+  /organizations/{idOrg}/{field}:
+    get: Organization_getByIdAndField
+  /search:
+    get: Search_getResults
+  /search/members:
+    get: Search_findMembers
+  /sessions:
+    post: Session_createAndUpdate
+  /sessions/socket:
+    get: Session_getSocketSessions
+  /sessions/{idSession}:
+    put: Session_updateStatusByIdSession
+  /sessions/{idSession}/status:
+    put: Session_updateStatusByIdSession
+  /tokens/{token}:
+    delete: Token_deleteByToken
+    get: Token_getByToken
+  /tokens/{token}/member:
+    get: Token_getMemberByToken
+  /tokens/{token}/member/{field}:
+    get: Token_getMemberByField
+  /tokens/{token}/webhooks:
+    get: Token_getWebhooks
+    post: Token_registerWebhook
+    put: Token_updateWebhooksByToken
+  /tokens/{token}/webhooks/{idWebhook}:
+    delete: Token_removeByTokenByIdWebhook
+    get: Token_getWebhookById
+  /tokens/{token}/{field}:
+    get: Token_getByTokenByField
+  /types/{id}:
+    get: Type_getById
+  /webhooks:
+    post: Webhook_createAndUpdate
+  /webhooks/:
+    put: Webhook_update
+  /webhooks/{idWebhook}:
+    delete: Webhook_removeById
+    get: Webhook_getById
+    put: Webhook_updateByIdWebhook
+  /webhooks/{idWebhook}/active:
+    put: Webhook_updateActiveById
+  /webhooks/{idWebhook}/callbackURL:
+    put: Webhook_updateCallbackUrlById
+  /webhooks/{idWebhook}/description:
+    put: Webhook_updateDescriptionByIdWebhook
+  /webhooks/{idWebhook}/idModel:
+    put: Webhook_updateModelById
+  /webhooks/{idWebhook}/{field}:
+    get: Webhook_getByIdField
 operationTags: {}
 renameTags: {}
 requestSchemaNames: {}
 responseDescriptions: {}
 responseSchemaNames: {}
-securityParameters: {}
+securityParameters:
+  action_before:
+    query: false
+  action_fields:
+    query: false
+  action_member:
+    query: false
+  action_memberCreator:
+    query: false
+  action_memberCreator_fields:
+    query: false
+  action_member_fields:
+    query: false
+  action_since:
+    query: false
+  actions:
+    query: false
+  actions_display:
+    query: false
+  actions_entities:
+    query: false
+  actions_format:
+    query: false
+  actions_limit:
+    query: false
+  actions_since:
+    query: false
+  activity:
+    query: false
+  attachment_fields:
+    query: false
+  attachments:
+    query: false
+  before:
+    query: false
+  board:
+    query: false
+  boardBackgrounds:
+    query: false
+  boardStars:
+    query: false
+  board_action_fields:
+    query: false
+  board_actions:
+    query: false
+  board_actions_display:
+    query: false
+  board_actions_entities:
+    query: false
+  board_actions_format:
+    query: false
+  board_actions_limit:
+    query: false
+  board_actions_since:
+    query: false
+  board_fields:
+    query: false
+  board_lists:
+    query: false
+  board_memberships:
+    query: false
+  board_organization:
+    query: false
+  board_organization_fields:
+    query: false
+  boards:
+    query: false
+  boardsInvited:
+    query: false
+  boardsInvited_fields:
+    query: false
+  boards_limit:
+    query: false
+  card:
+    query: false
+  card_attachment_fields:
+    query: false
+  card_attachments:
+    query: false
+  card_board:
+    query: false
+  card_checklists:
+    query: false
+  card_fields:
+    query: false
+  card_list:
+    query: false
+  card_member_fields:
+    query: false
+  card_members:
+    query: false
+  card_stickers:
+    query: false
+  cards:
+    query: false
+  cards_limit:
+    query: false
+  cards_page:
+    query: false
+  checkItemState_fields:
+    query: false
+  checkItemStates:
+    query: false
+  checkItem_fields:
+    query: false
+  checkItems:
+    query: false
+  checklist_fields:
+    query: false
+  checklists:
+    query: false
+  customBoardBackgrounds:
+    query: false
+  customEmoji:
+    query: false
+  customStickers:
+    query: false
+  display:
+    query: false
+  entities:
+    query: false
+  fields:
+    query: false
+  filter:
+    query: false
+  format:
+    query: false
+  idBoard:
+    query: false
+  idBoards:
+    query: false
+  idCards:
+    query: false
+  idModels:
+    query: false
+  idOrganization:
+    query: false
+  idOrganizations:
+    query: false
+  ixLastUpdate:
+    query: false
+  label_fields:
+    query: false
+  labels:
+    query: false
+  labels_limit:
+    query: false
+  limit:
+    query: false
+  list:
+    query: false
+  list_fields:
+    query: false
+  lists:
+    query: false
+  member:
+    query: false
+  memberCreator:
+    query: false
+  memberCreator_fields:
+    query: false
+  memberVoted_fields:
+    query: false
+  member_activity:
+    query: false
+  member_fields:
+    query: false
+  members:
+    query: false
+  membersInvited:
+    query: false
+  membersInvited_fields:
+    query: false
+  membersVoted:
+    query: false
+  members_limit:
+    query: false
+  memberships:
+    query: false
+  memberships_member:
+    query: false
+  memberships_member_fields:
+    query: false
+  modelTypes:
+    query: false
+  myPrefs:
+    query: false
+  notification_before:
+    query: false
+  notification_fields:
+    query: false
+  notification_memberCreator:
+    query: false
+  notification_memberCreator_fields:
+    query: false
+  notification_since:
+    query: false
+  notifications:
+    query: false
+  notifications_display:
+    query: false
+  notifications_entities:
+    query: false
+  notifications_limit:
+    query: false
+  onlyOrgMembers:
+    query: false
+  organization:
+    query: false
+  organization_fields:
+    query: false
+  organization_memberships:
+    query: false
+  organization_paid_account:
+    query: false
+  organizations:
+    query: false
+  organizationsInvited:
+    query: false
+  organizationsInvited_fields:
+    query: false
+  organizations_limit:
+    query: false
+  page:
+    query: false
+  paid_account:
+    query: false
+  partial:
+    query: false
+  query:
+    query: false
+  read_filter:
+    query: false
+  savedSearches:
+    query: false
+  since:
+    query: false
+  sticker_fields:
+    query: false
+  stickers:
+    query: false
+  tags:
+    query: false
+  tokens:
+    query: false
+  urls:
+    query: false
+  value:
+    query: false
+  webhooks:
+    query: false
 validServerUrls: {}
