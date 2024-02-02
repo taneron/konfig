@@ -2,7 +2,13 @@
   "openapiDirectoryPath": "postmarkapp.com/server/1.0.0/swagger.yaml",
   "providerName": "postmarkapp.com",
   "openApiRaw": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/postmark/openapi.yaml",
-  "securitySchemes": {},
+  "securitySchemes": {
+    "serverToken": {
+      "type": "apiKey",
+      "in": "header",
+      "name": "X-Postmark-Server-Token"
+    }
+  },
   "homepage": "postmarkapp.com",
   "serviceName": "server",
   "apiVersion": "1.0.0",
@@ -2082,6 +2088,6 @@
   "previewLinkImage": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/postmark/imagePreview.png",
   "faviconUrl": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/postmark/favicon.png",
   "clientNameCamelCase": "postmark",
-  "lastUpdated": "2024-02-02T01:23:17.967Z",
-  "typescriptSdkUsageCode": "import { Postmark } from 'postmark-typescript-sdk';\n\nconst postmark = new Postmark({\n})"
+  "lastUpdated": "2024-02-02T01:43:27.628Z",
+  "typescriptSdkUsageCode": "import { Postmark } from 'postmark-typescript-sdk';\n\nconst postmark = new Postmark({\n    xPostmarkServerToken: \"X_POSTMARK_SERVER_TOKEN\",\n})"
 }
