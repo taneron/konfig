@@ -2,6 +2,7 @@ import { SecuritySchemes, parseSpec } from "konfig-lib";
 import path from "path";
 import { Db } from "../scripts/collect";
 import * as fs from "fs";
+import deepmerge from "deepmerge";
 import yaml from "js-yaml";
 import {
   computeDifficultyScore,
@@ -85,21 +86,118 @@ async function executeCustomRequest(key: string, customRequest: CustomRequest) {
 }
 
 const customRequests: Record<string, CustomRequest> = {
-  "paylocity.com_weblink": {
+  "nytimes.com_books": {
+    lambda: async () => {
+      const rawSpecString = await (
+        await fetch(
+          "https://developer.nytimes.com/portals/api/sites/nyt-devportal/liveportal/apis/books-product/download_spec",
+          { redirect: "follow" }
+        )
+      ).text();
+      const fromYaml = yaml.load(rawSpecString);
+      return JSON.stringify(fromYaml);
+    },
+  },
+  "notion.com": {
     lambda: async () => {
       const urls = [
-        "https://developer.paylocity.com/integrations/reference/deduction-1?json=on",
-        "https://developer.paylocity.com/integrations/reference/get-all-local-taxes?json=on",
+        "https://developers.notion.com/reference/create-a-token?json=on",
+        "https://developers.notion.com/reference/patch-block-children?json=on",
+        "https://developers.notion.com/reference/retrieve-a-block?json=on",
+        "https://developers.notion.com/reference/get-block-children?json=on",
+        "https://developers.notion.com/reference/update-a-block?json=on",
+        "https://developers.notion.com/reference/delete-a-block?json=on",
+        "https://developers.notion.com/reference/post-page?json=on",
+        "https://developers.notion.com/reference/retrieve-a-page?json=on",
+        "https://developers.notion.com/reference/retrieve-a-page-property?json=on",
+        "https://developers.notion.com/reference/patch-page?json=on",
+        "https://developers.notion.com/reference/create-a-database?json=on",
+        "https://developers.notion.com/reference/post-database-query?json=on",
+        "https://developers.notion.com/reference/retrieve-a-database?json=on",
+        "https://developers.notion.com/reference/update-a-database?json=on",
+        "https://developers.notion.com/reference/get-users?json=on",
+        "https://developers.notion.com/reference/get-user?json=on",
+        "https://developers.notion.com/reference/get-self?json=on",
+        "https://developers.notion.com/reference/create-a-comment?json=on",
+        "https://developers.notion.com/reference/retrieve-a-comment?json=on",
+        "https://developers.notion.com/reference/post-search?json=on",
       ];
-      // try URLs until one has a JSON with "oasDefinition" property defined
+      const specs: object[] = [];
       for (const url of urls) {
-        const rawSpecString = await fetch(url).then((res) => res.text());
+        const rawSpecString = await fetch(url, {
+          headers: {
+            accept: "*/*",
+            "accept-language": "en-US,en;q=0.9",
+            "cache-control": "no-cache",
+            pragma: "no-cache",
+            "sec-ch-ua": '"Not_A Brand";v="8", "Chromium";v="120"',
+            "sec-ch-ua-mobile": "?0",
+            "sec-ch-ua-platform": '"macOS"',
+            "sec-fetch-dest": "empty",
+            "sec-fetch-mode": "cors",
+            "sec-fetch-site": "same-origin",
+            "sentry-trace":
+              "dce4d3ea8da447b7962c4e50a0a2eccb-a9cb60f78dd7f21a-0",
+            "x-requested-with": "XMLHttpRequest",
+            cookie:
+              "XSRF-TOKEN=RTVFxI7GO63fcVw91fitervD; intercom-id-gpfdrxfd=a7e56783-d834-4130-a3ce-9b4cc750ecc8; intercom-device-id-gpfdrxfd=1ec4b6a8-ed93-4c7b-b85c-88a6a336068f; ekfls=0ddebe53-2d38-438c-839a-8d6bb1f6aa6d; intercom-session-gpfdrxfd=",
+            Referer: "https://developers.notion.com/reference/update-a-block",
+            "Referrer-Policy": "strict-origin-when-cross-origin",
+          },
+          body: null,
+          method: "GET",
+        }).then((response) => response.text());
         const rawSpec = JSON.parse(rawSpecString);
         if (rawSpec.oasDefinition !== undefined) {
-          return JSON.stringify(rawSpec.oasDefinition);
+          console.log(`Got oasDefinition for ${url}`);
+          specs.push(rawSpec.oasDefinition);
+        } else {
+          throw Error("Expecting oasDefinition to be defined");
         }
       }
-      throw Error("No URL had a JSON with 'oasDefinition' property defined");
+
+      // deepmerge all specs but don't append arrays
+      // instead, just use the source array
+      const mergedSpec = deepmerge.all(specs, {
+        arrayMerge: (destination, source) => source,
+      });
+      return JSON.stringify(mergedSpec);
+    },
+  },
+  "paylocity.com_weblink": {
+    lambda: async () => {
+      const rawSpecString = await fetch(
+        "https://developer.paylocity.com/integrations/reference/add-employee?json=on",
+        {
+          headers: {
+            accept: "*/*",
+            "accept-language": "en-US,en;q=0.9",
+            "cache-control": "no-cache",
+            pragma: "no-cache",
+            "sec-ch-ua": '"Not_A Brand";v="8", "Chromium";v="120"',
+            "sec-ch-ua-mobile": "?0",
+            "sec-ch-ua-platform": '"macOS"',
+            "sec-fetch-dest": "empty",
+            "sec-fetch-mode": "cors",
+            "sec-fetch-site": "same-origin",
+            "sentry-trace":
+              "881ac93cc8ba4055af185bdbe9b03eb1-a843912c87ed9d39-0",
+            "x-requested-with": "XMLHttpRequest",
+            cookie:
+              "ekfls=a6ff2e0e-b152-46a9-8ba7-87e557e92053; cf_clearance=bvqKh8aSTOy54p2_IpW3KHRIhZLWXq9N8pIkhY9NvUk-1706916425-1-Aaui19FSzqSBA0o6+swFR+abGo9XudzgfMEfuewJti4sUgY3ahKx8XbGGYssdIHQ9LRMUF3t5PeDnDVnkqqDtf4=; ARRAffinity=63995d25f48e1ae329d94d56f78f963bebcfdec0bf2164c5175c25d1a9b15940; ARRAffinitySameSite=63995d25f48e1ae329d94d56f78f963bebcfdec0bf2164c5175c25d1a9b15940; at_check=true; mbox=session#d18d2ec1a2274b17ace7470fd5b08297#1706918653|PC#d18d2ec1a2274b17ace7470fd5b08297.35_0#1770161593",
+            Referer:
+              "https://developer.paylocity.com/integrations/reference/add-employee",
+            "Referrer-Policy": "strict-origin-when-cross-origin",
+          },
+          body: null,
+          method: "GET",
+        }
+      ).then((response) => response.text());
+      const rawSpec = JSON.parse(rawSpecString);
+      if (rawSpec.oasDefinition !== undefined) {
+        return JSON.stringify(rawSpec.oasDefinition);
+      }
+      throw Error("Expecting oasDefinition to be defined");
     },
   },
   "soundcloud.com": {
