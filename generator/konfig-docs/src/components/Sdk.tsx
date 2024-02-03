@@ -574,7 +574,7 @@ function Sidebar({
         </SidebarSection>
         <SidebarSection>
           <SidebarSectionTitle>API Base URL</SidebarSectionTitle>
-          <SidebarSectionContent>
+          <SidebarSectionContent className="whitespace-nowrap max-w-xs overflow-x-scroll">
             <a href={apiBaseUrl} target="_blank">
               {apiBaseUrl}
             </a>
@@ -705,8 +705,13 @@ function SidebarSectionTitle({
   );
 }
 
-function SidebarSectionContent({ children }: PropsWithChildren<{}>) {
-  return <div className="text font-semibold">{children}</div>;
+function SidebarSectionContent({
+  children,
+  className,
+}: PropsWithChildren<{ className?: string }>) {
+  return (
+    <div className={clsx("text font-semibold", className)}>{children}</div>
+  );
 }
 
 function Dot() {
