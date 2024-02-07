@@ -1,5 +1,11 @@
 # konfig-lib
 
+## 1.36.2
+
+### Patch Changes
+
+- [#540](https://github.com/konfig-dev/konfig/pull/540) [`757280c8`](https://github.com/konfig-dev/konfig/commit/757280c823b7af70219fb34b65f36473280c2959) Thanks [@eddiechayes](https://github.com/eddiechayes)! - add securitySchemeOverride to konfig.yaml
+
 ## 1.36.1
 
 ### Patch Changes
