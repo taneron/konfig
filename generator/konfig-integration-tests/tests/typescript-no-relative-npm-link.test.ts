@@ -1,8 +1,7 @@
 import { e2e } from "../util";
-import { test } from "vitest";
+import { test, expect } from "vitest";
 import * as fs from "fs";
 import * as path from "path";
-import { expect } from "vitest";
 
 test("typescript-no-relative-npm-link", async () => {
   await e2e(4093, {
