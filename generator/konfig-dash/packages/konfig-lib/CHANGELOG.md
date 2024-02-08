@@ -1,5 +1,11 @@
 # konfig-lib
 
+## 1.36.3
+
+### Patch Changes
+
+- [#545](https://github.com/konfig-dev/konfig/pull/545) [`b8be7bad`](https://github.com/konfig-dev/konfig/commit/b8be7bad5e32511f1876fde9f26d8ca65503bdae) Thanks [@dphuang2](https://github.com/dphuang2)! - Make implementation of isSubmodule more robust
+
 ## 1.36.2
 
 ### Patch Changes

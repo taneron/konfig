@@ -1,5 +1,16 @@
 # konfig-cli
 
+## 1.38.7
+
+### Patch Changes
+
+- [#545](https://github.com/konfig-dev/konfig/pull/545) [`b8be7bad`](https://github.com/konfig-dev/konfig/commit/b8be7bad5e32511f1876fde9f26d8ca65503bdae) Thanks [@dphuang2](https://github.com/dphuang2)! - Make implementation of isSubmodule more robust
+
+- Updated dependencies [[`b8be7bad`](https://github.com/konfig-dev/konfig/commit/b8be7bad5e32511f1876fde9f26d8ca65503bdae)]:
+  - konfig-lib@1.36.3
+  - konfig-openapi-spec@1.8.8
+  - konfig-postman-to-openapi@3.1.8
+
 ## 1.38.6
 
 ### Patch Changes
