@@ -12,6 +12,12 @@ import AnyCodable
 
 open class ReferenceDataAPI {
 
+    let client: SnapTradeClient
+
+    public init(client: SnapTradeClient) {
+        self.client = client
+    }
+
     /**
      Return the exchange rate of a currency pair
      
@@ -20,7 +26,7 @@ open class ReferenceDataAPI {
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func getCurrencyExchangeRatePair(currencyPair: String, apiResponseQueue: DispatchQueue = SnapTradeAPI.apiResponseQueue, completion: @escaping ((_ data: ExchangeRatePairs?, _ error: Error?) -> Void)) -> RequestTask {
+    open class func getCurrencyExchangeRatePairSync(currencyPair: String, apiResponseQueue: DispatchQueue = SnapTradeAPI.apiResponseQueue, completion: @escaping ((_ data: ExchangeRatePairs?, _ error: Error?) -> Void)) -> RequestTask {
         return getCurrencyExchangeRatePairWithRequestBuilder(currencyPair: currencyPair).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -29,6 +35,123 @@ open class ReferenceDataAPI {
                 completion(nil, error)
             }
         }
+    }
+
+    /**
+     Return the exchange rate of a currency pair
+     
+     - parameter currencyPair: (path) A currency pair based on currency code for example, {CAD-USD} 
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    private class func getCurrencyExchangeRatePairAsyncMappedParams(currencyPair: String) async throws -> ExchangeRatePairs {
+        return try await withCheckedThrowingContinuation { continuation in
+            getCurrencyExchangeRatePairWithRequestBuilder(currencyPair: currencyPair).execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+    /**
+     Return the exchange rate of a currency pair
+     
+     - parameter currencyPair: (path) A currency pair based on currency code for example, {CAD-USD} 
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    open class func getCurrencyExchangeRatePair(
+        currencyPair: String
+    ) async throws -> ExchangeRatePairs {
+        return try await withCheckedThrowingContinuation { continuation in
+            getCurrencyExchangeRatePairWithRequestBuilder(currencyPair: currencyPair).execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+
+    /**
+     Return the exchange rate of a currency pair
+     
+     - parameter currencyPair: (path) A currency pair based on currency code for example, {CAD-USD} 
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    open func getCurrencyExchangeRatePair(
+        currencyPair: String
+    ) async throws -> ExchangeRatePairs {
+        return try await withCheckedThrowingContinuation { continuation in
+            getCurrencyExchangeRatePairWithRequestBuilder(currencyPair: currencyPair).execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+
+
+    /**
+     Return the exchange rate of a currency pair
+     - GET /currencies/rates/{currencyPair}
+     - API Key:
+       - type: apiKey clientId (QUERY)
+       - name: PartnerClientId
+     - API Key:
+       - type: apiKey Signature 
+       - name: PartnerSignature
+     - API Key:
+       - type: apiKey timestamp (QUERY)
+       - name: PartnerTimestamp
+     - parameter currencyPair: (path) A currency pair based on currency code for example, {CAD-USD} 
+     - returns: RequestBuilder<ExchangeRatePairs> 
+     */
+    open class func getCurrencyExchangeRatePairWithRequestBuilder(
+            currencyPair: String
+    ) -> RequestBuilder<ExchangeRatePairs> {
+        let basePath = SnapTradeAPI.basePath;
+        var localVariablePath = "/currencies/rates/{currencyPair}"
+        let currencyPairPreEscape = "\(APIHelper.mapValueToPathItem(currencyPair))"
+        let currencyPairPostEscape = currencyPairPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{currencyPair}", with: currencyPairPostEscape, options: .literal, range: nil)
+        let localVariableURLString = basePath + localVariablePath
+        let localVariableParameters: [String: Any]? = nil
+
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        var localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        do {
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "query", name: "clientId", value: SnapTradeAPI.partnerClientId)
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "Signature", value: SnapTradeAPI.partnerSignature)
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "query", name: "timestamp", value: SnapTradeAPI.partnerTimestamp)
+            let localVariableRequestBuilder: RequestBuilder<ExchangeRatePairs>.Type = SnapTradeAPI.requestBuilderFactory.getBuilder()
+            let URLString = localVariableUrlComponents?.string ?? localVariableURLString
+            return localVariableRequestBuilder.init(method: "GET", URLString: URLString, parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        } catch {
+            print("Error: \(error)")
+        }
+        fatalError("Error: Unable to send request to GET /currencies/rates/{currencyPair}")
     }
 
     /**
@@ -46,26 +169,38 @@ open class ReferenceDataAPI {
      - parameter currencyPair: (path) A currency pair based on currency code for example, {CAD-USD} 
      - returns: RequestBuilder<ExchangeRatePairs> 
      */
-    open class func getCurrencyExchangeRatePairWithRequestBuilder(currencyPair: String) -> RequestBuilder<ExchangeRatePairs> {
+    open func getCurrencyExchangeRatePairWithRequestBuilder(
+            currencyPair: String
+    ) -> RequestBuilder<ExchangeRatePairs> {
+        let basePath = self.client.basePath;
         var localVariablePath = "/currencies/rates/{currencyPair}"
         let currencyPairPreEscape = "\(APIHelper.mapValueToPathItem(currencyPair))"
         let currencyPairPostEscape = currencyPairPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{currencyPair}", with: currencyPairPostEscape, options: .literal, range: nil)
-        let localVariableURLString = SnapTradeAPI.basePath + localVariablePath
+        let localVariableURLString = basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
-        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
-        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+        var localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<ExchangeRatePairs>.Type = SnapTradeAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        do {
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "query", name: "clientId", value: self.client.partnerClientId)
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "Signature", value: self.client.partnerSignature)
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "query", name: "timestamp", value: self.client.partnerTimestamp)
+            let localVariableRequestBuilder: RequestBuilder<ExchangeRatePairs>.Type = SnapTradeAPI.requestBuilderFactory.getBuilder()
+            let URLString = localVariableUrlComponents?.string ?? localVariableURLString
+            return localVariableRequestBuilder.init(method: "GET", URLString: URLString, parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        } catch {
+            print("Error: \(error)")
+        }
+        fatalError("Error: Unable to send request to GET /currencies/rates/{currencyPair}")
     }
+
 
     /**
      Get metadata related to Snaptrade partner
@@ -74,7 +209,7 @@ open class ReferenceDataAPI {
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func getPartnerInfo(apiResponseQueue: DispatchQueue = SnapTradeAPI.apiResponseQueue, completion: @escaping ((_ data: PartnerData?, _ error: Error?) -> Void)) -> RequestTask {
+    open class func getPartnerInfoSync(apiResponseQueue: DispatchQueue = SnapTradeAPI.apiResponseQueue, completion: @escaping ((_ data: PartnerData?, _ error: Error?) -> Void)) -> RequestTask {
         return getPartnerInfoWithRequestBuilder().execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -83,6 +218,113 @@ open class ReferenceDataAPI {
                 completion(nil, error)
             }
         }
+    }
+
+    /**
+     Get metadata related to Snaptrade partner
+     
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    private class func getPartnerInfoAsyncMappedParams() async throws -> PartnerData {
+        return try await withCheckedThrowingContinuation { continuation in
+            getPartnerInfoWithRequestBuilder().execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+    /**
+     Get metadata related to Snaptrade partner
+     
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    open class func getPartnerInfo(
+    ) async throws -> PartnerData {
+        return try await withCheckedThrowingContinuation { continuation in
+            getPartnerInfoWithRequestBuilder().execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+
+    /**
+     Get metadata related to Snaptrade partner
+     
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    open func getPartnerInfo(
+    ) async throws -> PartnerData {
+        return try await withCheckedThrowingContinuation { continuation in
+            getPartnerInfoWithRequestBuilder().execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+
+
+    /**
+     Get metadata related to Snaptrade partner
+     - GET /snapTrade/partners
+     - API Key:
+       - type: apiKey clientId (QUERY)
+       - name: PartnerClientId
+     - API Key:
+       - type: apiKey Signature 
+       - name: PartnerSignature
+     - API Key:
+       - type: apiKey timestamp (QUERY)
+       - name: PartnerTimestamp
+     - returns: RequestBuilder<PartnerData> 
+     */
+    open class func getPartnerInfoWithRequestBuilder(
+    ) -> RequestBuilder<PartnerData> {
+        let basePath = SnapTradeAPI.basePath;
+        let localVariablePath = "/snapTrade/partners"
+        let localVariableURLString = basePath + localVariablePath
+        let localVariableParameters: [String: Any]? = nil
+
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        var localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        do {
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "query", name: "clientId", value: SnapTradeAPI.partnerClientId)
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "Signature", value: SnapTradeAPI.partnerSignature)
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "query", name: "timestamp", value: SnapTradeAPI.partnerTimestamp)
+            let localVariableRequestBuilder: RequestBuilder<PartnerData>.Type = SnapTradeAPI.requestBuilderFactory.getBuilder()
+            let URLString = localVariableUrlComponents?.string ?? localVariableURLString
+            return localVariableRequestBuilder.init(method: "GET", URLString: URLString, parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        } catch {
+            print("Error: \(error)")
+        }
+        fatalError("Error: Unable to send request to GET /snapTrade/partners")
     }
 
     /**
@@ -99,23 +341,34 @@ open class ReferenceDataAPI {
        - name: PartnerTimestamp
      - returns: RequestBuilder<PartnerData> 
      */
-    open class func getPartnerInfoWithRequestBuilder() -> RequestBuilder<PartnerData> {
+    open func getPartnerInfoWithRequestBuilder(
+    ) -> RequestBuilder<PartnerData> {
+        let basePath = self.client.basePath;
         let localVariablePath = "/snapTrade/partners"
-        let localVariableURLString = SnapTradeAPI.basePath + localVariablePath
+        let localVariableURLString = basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
-        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
-        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+        var localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<PartnerData>.Type = SnapTradeAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        do {
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "query", name: "clientId", value: self.client.partnerClientId)
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "Signature", value: self.client.partnerSignature)
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "query", name: "timestamp", value: self.client.partnerTimestamp)
+            let localVariableRequestBuilder: RequestBuilder<PartnerData>.Type = SnapTradeAPI.requestBuilderFactory.getBuilder()
+            let URLString = localVariableUrlComponents?.string ?? localVariableURLString
+            return localVariableRequestBuilder.init(method: "GET", URLString: URLString, parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        } catch {
+            print("Error: \(error)")
+        }
+        fatalError("Error: Unable to send request to GET /snapTrade/partners")
     }
+
 
     /**
      List of all security types
@@ -124,7 +377,7 @@ open class ReferenceDataAPI {
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func getSecurityTypes(apiResponseQueue: DispatchQueue = SnapTradeAPI.apiResponseQueue, completion: @escaping ((_ data: [SecurityType]?, _ error: Error?) -> Void)) -> RequestTask {
+    open class func getSecurityTypesSync(apiResponseQueue: DispatchQueue = SnapTradeAPI.apiResponseQueue, completion: @escaping ((_ data: [SecurityType]?, _ error: Error?) -> Void)) -> RequestTask {
         return getSecurityTypesWithRequestBuilder().execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -133,6 +386,114 @@ open class ReferenceDataAPI {
                 completion(nil, error)
             }
         }
+    }
+
+    /**
+     List of all security types
+     
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    private class func getSecurityTypesAsyncMappedParams() async throws -> [SecurityType] {
+        return try await withCheckedThrowingContinuation { continuation in
+            getSecurityTypesWithRequestBuilder().execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+    /**
+     List of all security types
+     
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    open class func getSecurityTypes(
+    ) async throws -> [SecurityType] {
+        return try await withCheckedThrowingContinuation { continuation in
+            getSecurityTypesWithRequestBuilder().execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+
+    /**
+     List of all security types
+     
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    open func getSecurityTypes(
+    ) async throws -> [SecurityType] {
+        return try await withCheckedThrowingContinuation { continuation in
+            getSecurityTypesWithRequestBuilder().execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+
+
+    /**
+     List of all security types
+     - GET /securityTypes
+     - List security types available on SnapTrade.
+     - API Key:
+       - type: apiKey clientId (QUERY)
+       - name: PartnerClientId
+     - API Key:
+       - type: apiKey Signature 
+       - name: PartnerSignature
+     - API Key:
+       - type: apiKey timestamp (QUERY)
+       - name: PartnerTimestamp
+     - returns: RequestBuilder<[SecurityType]> 
+     */
+    open class func getSecurityTypesWithRequestBuilder(
+    ) -> RequestBuilder<[SecurityType]> {
+        let basePath = SnapTradeAPI.basePath;
+        let localVariablePath = "/securityTypes"
+        let localVariableURLString = basePath + localVariablePath
+        let localVariableParameters: [String: Any]? = nil
+
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        var localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        do {
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "query", name: "clientId", value: SnapTradeAPI.partnerClientId)
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "Signature", value: SnapTradeAPI.partnerSignature)
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "query", name: "timestamp", value: SnapTradeAPI.partnerTimestamp)
+            let localVariableRequestBuilder: RequestBuilder<[SecurityType]>.Type = SnapTradeAPI.requestBuilderFactory.getBuilder()
+            let URLString = localVariableUrlComponents?.string ?? localVariableURLString
+            return localVariableRequestBuilder.init(method: "GET", URLString: URLString, parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        } catch {
+            print("Error: \(error)")
+        }
+        fatalError("Error: Unable to send request to GET /securityTypes")
     }
 
     /**
@@ -150,23 +511,34 @@ open class ReferenceDataAPI {
        - name: PartnerTimestamp
      - returns: RequestBuilder<[SecurityType]> 
      */
-    open class func getSecurityTypesWithRequestBuilder() -> RequestBuilder<[SecurityType]> {
+    open func getSecurityTypesWithRequestBuilder(
+    ) -> RequestBuilder<[SecurityType]> {
+        let basePath = self.client.basePath;
         let localVariablePath = "/securityTypes"
-        let localVariableURLString = SnapTradeAPI.basePath + localVariablePath
+        let localVariableURLString = basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
-        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
-        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+        var localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<[SecurityType]>.Type = SnapTradeAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        do {
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "query", name: "clientId", value: self.client.partnerClientId)
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "Signature", value: self.client.partnerSignature)
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "query", name: "timestamp", value: self.client.partnerTimestamp)
+            let localVariableRequestBuilder: RequestBuilder<[SecurityType]>.Type = SnapTradeAPI.requestBuilderFactory.getBuilder()
+            let URLString = localVariableUrlComponents?.string ?? localVariableURLString
+            return localVariableRequestBuilder.init(method: "GET", URLString: URLString, parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        } catch {
+            print("Error: \(error)")
+        }
+        fatalError("Error: Unable to send request to GET /securityTypes")
     }
+
 
     /**
      List exchanges
@@ -175,7 +547,7 @@ open class ReferenceDataAPI {
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func getStockExchanges(apiResponseQueue: DispatchQueue = SnapTradeAPI.apiResponseQueue, completion: @escaping ((_ data: [Exchange]?, _ error: Error?) -> Void)) -> RequestTask {
+    open class func getStockExchangesSync(apiResponseQueue: DispatchQueue = SnapTradeAPI.apiResponseQueue, completion: @escaping ((_ data: [Exchange]?, _ error: Error?) -> Void)) -> RequestTask {
         return getStockExchangesWithRequestBuilder().execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -184,6 +556,113 @@ open class ReferenceDataAPI {
                 completion(nil, error)
             }
         }
+    }
+
+    /**
+     List exchanges
+     
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    private class func getStockExchangesAsyncMappedParams() async throws -> [Exchange] {
+        return try await withCheckedThrowingContinuation { continuation in
+            getStockExchangesWithRequestBuilder().execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+    /**
+     List exchanges
+     
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    open class func getStockExchanges(
+    ) async throws -> [Exchange] {
+        return try await withCheckedThrowingContinuation { continuation in
+            getStockExchangesWithRequestBuilder().execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+
+    /**
+     List exchanges
+     
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    open func getStockExchanges(
+    ) async throws -> [Exchange] {
+        return try await withCheckedThrowingContinuation { continuation in
+            getStockExchangesWithRequestBuilder().execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+
+
+    /**
+     List exchanges
+     - GET /exchanges
+     - API Key:
+       - type: apiKey clientId (QUERY)
+       - name: PartnerClientId
+     - API Key:
+       - type: apiKey Signature 
+       - name: PartnerSignature
+     - API Key:
+       - type: apiKey timestamp (QUERY)
+       - name: PartnerTimestamp
+     - returns: RequestBuilder<[Exchange]> 
+     */
+    open class func getStockExchangesWithRequestBuilder(
+    ) -> RequestBuilder<[Exchange]> {
+        let basePath = SnapTradeAPI.basePath;
+        let localVariablePath = "/exchanges"
+        let localVariableURLString = basePath + localVariablePath
+        let localVariableParameters: [String: Any]? = nil
+
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        var localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        do {
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "query", name: "clientId", value: SnapTradeAPI.partnerClientId)
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "Signature", value: SnapTradeAPI.partnerSignature)
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "query", name: "timestamp", value: SnapTradeAPI.partnerTimestamp)
+            let localVariableRequestBuilder: RequestBuilder<[Exchange]>.Type = SnapTradeAPI.requestBuilderFactory.getBuilder()
+            let URLString = localVariableUrlComponents?.string ?? localVariableURLString
+            return localVariableRequestBuilder.init(method: "GET", URLString: URLString, parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        } catch {
+            print("Error: \(error)")
+        }
+        fatalError("Error: Unable to send request to GET /exchanges")
     }
 
     /**
@@ -200,23 +679,34 @@ open class ReferenceDataAPI {
        - name: PartnerTimestamp
      - returns: RequestBuilder<[Exchange]> 
      */
-    open class func getStockExchangesWithRequestBuilder() -> RequestBuilder<[Exchange]> {
+    open func getStockExchangesWithRequestBuilder(
+    ) -> RequestBuilder<[Exchange]> {
+        let basePath = self.client.basePath;
         let localVariablePath = "/exchanges"
-        let localVariableURLString = SnapTradeAPI.basePath + localVariablePath
+        let localVariableURLString = basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
-        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
-        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+        var localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<[Exchange]>.Type = SnapTradeAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        do {
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "query", name: "clientId", value: self.client.partnerClientId)
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "Signature", value: self.client.partnerSignature)
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "query", name: "timestamp", value: self.client.partnerTimestamp)
+            let localVariableRequestBuilder: RequestBuilder<[Exchange]>.Type = SnapTradeAPI.requestBuilderFactory.getBuilder()
+            let URLString = localVariableUrlComponents?.string ?? localVariableURLString
+            return localVariableRequestBuilder.init(method: "GET", URLString: URLString, parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        } catch {
+            print("Error: \(error)")
+        }
+        fatalError("Error: Unable to send request to GET /exchanges")
     }
+
 
     /**
      Search for symbols
@@ -226,7 +716,7 @@ open class ReferenceDataAPI {
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func getSymbols(symbolQuery: SymbolQuery? = nil, apiResponseQueue: DispatchQueue = SnapTradeAPI.apiResponseQueue, completion: @escaping ((_ data: [UniversalSymbol]?, _ error: Error?) -> Void)) -> RequestTask {
+    open class func getSymbolsSync(symbolQuery: SymbolQuery? = nil, apiResponseQueue: DispatchQueue = SnapTradeAPI.apiResponseQueue, completion: @escaping ((_ data: [UniversalSymbol]?, _ error: Error?) -> Void)) -> RequestTask {
         return getSymbolsWithRequestBuilder(symbolQuery: symbolQuery).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -235,6 +725,126 @@ open class ReferenceDataAPI {
                 completion(nil, error)
             }
         }
+    }
+
+    /**
+     Search for symbols
+     
+     - parameter symbolQuery: (body)  (optional)
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    private class func getSymbolsAsyncMappedParams(symbolQuery: SymbolQuery? = nil) async throws -> [UniversalSymbol] {
+        return try await withCheckedThrowingContinuation { continuation in
+            getSymbolsWithRequestBuilder(symbolQuery: symbolQuery).execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+    /**
+     Search for symbols
+     
+     - parameter symbolQuery: (body)  (optional)
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    open class func getSymbols(
+        substring: String? = nil
+    ) async throws -> [UniversalSymbol] {
+        let symbolQuery = SymbolQuery(
+            substring: substring
+        )
+        return try await withCheckedThrowingContinuation { continuation in
+            getSymbolsWithRequestBuilder(symbolQuery: symbolQuery).execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+
+    /**
+     Search for symbols
+     
+     - parameter symbolQuery: (body)  (optional)
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    open func getSymbols(
+        substring: String? = nil
+    ) async throws -> [UniversalSymbol] {
+        let symbolQuery = SymbolQuery(
+            substring: substring
+        )
+        return try await withCheckedThrowingContinuation { continuation in
+            getSymbolsWithRequestBuilder(symbolQuery: symbolQuery).execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+
+
+    /**
+     Search for symbols
+     - POST /symbols
+     - API Key:
+       - type: apiKey clientId (QUERY)
+       - name: PartnerClientId
+     - API Key:
+       - type: apiKey Signature 
+       - name: PartnerSignature
+     - API Key:
+       - type: apiKey timestamp (QUERY)
+       - name: PartnerTimestamp
+     - parameter symbolQuery: (body)  (optional)
+     - returns: RequestBuilder<[UniversalSymbol]> 
+     */
+    open class func getSymbolsWithRequestBuilder(
+            symbolQuery: SymbolQuery? = nil
+    ) -> RequestBuilder<[UniversalSymbol]> {
+        let basePath = SnapTradeAPI.basePath;
+        let localVariablePath = "/symbols"
+        let localVariableURLString = basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: symbolQuery)
+
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        var localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        do {
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "query", name: "clientId", value: SnapTradeAPI.partnerClientId)
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "Signature", value: SnapTradeAPI.partnerSignature)
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "query", name: "timestamp", value: SnapTradeAPI.partnerTimestamp)
+            let localVariableRequestBuilder: RequestBuilder<[UniversalSymbol]>.Type = SnapTradeAPI.requestBuilderFactory.getBuilder()
+            let URLString = localVariableUrlComponents?.string ?? localVariableURLString
+            return localVariableRequestBuilder.init(method: "POST", URLString: URLString, parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        } catch {
+            print("Error: \(error)")
+        }
+        fatalError("Error: Unable to send request to POST /symbols")
     }
 
     /**
@@ -252,23 +862,35 @@ open class ReferenceDataAPI {
      - parameter symbolQuery: (body)  (optional)
      - returns: RequestBuilder<[UniversalSymbol]> 
      */
-    open class func getSymbolsWithRequestBuilder(symbolQuery: SymbolQuery? = nil) -> RequestBuilder<[UniversalSymbol]> {
+    open func getSymbolsWithRequestBuilder(
+            symbolQuery: SymbolQuery? = nil
+    ) -> RequestBuilder<[UniversalSymbol]> {
+        let basePath = self.client.basePath;
         let localVariablePath = "/symbols"
-        let localVariableURLString = SnapTradeAPI.basePath + localVariablePath
+        let localVariableURLString = basePath + localVariablePath
         let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: symbolQuery)
 
-        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
-        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+        var localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<[UniversalSymbol]>.Type = SnapTradeAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        do {
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "query", name: "clientId", value: self.client.partnerClientId)
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "Signature", value: self.client.partnerSignature)
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "query", name: "timestamp", value: self.client.partnerTimestamp)
+            let localVariableRequestBuilder: RequestBuilder<[UniversalSymbol]>.Type = SnapTradeAPI.requestBuilderFactory.getBuilder()
+            let URLString = localVariableUrlComponents?.string ?? localVariableURLString
+            return localVariableRequestBuilder.init(method: "POST", URLString: URLString, parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        } catch {
+            print("Error: \(error)")
+        }
+        fatalError("Error: Unable to send request to POST /symbols")
     }
+
 
     /**
      Get details of a symbol by the ticker or the universal_symbol_id
@@ -278,7 +900,7 @@ open class ReferenceDataAPI {
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func getSymbolsByTicker(query: String, apiResponseQueue: DispatchQueue = SnapTradeAPI.apiResponseQueue, completion: @escaping ((_ data: UniversalSymbol?, _ error: Error?) -> Void)) -> RequestTask {
+    open class func getSymbolsByTickerSync(query: String, apiResponseQueue: DispatchQueue = SnapTradeAPI.apiResponseQueue, completion: @escaping ((_ data: UniversalSymbol?, _ error: Error?) -> Void)) -> RequestTask {
         return getSymbolsByTickerWithRequestBuilder(query: query).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -287,6 +909,123 @@ open class ReferenceDataAPI {
                 completion(nil, error)
             }
         }
+    }
+
+    /**
+     Get details of a symbol by the ticker or the universal_symbol_id
+     
+     - parameter query: (path) The ticker or universal_symbol_id of the UniversalSymbol to get. 
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    private class func getSymbolsByTickerAsyncMappedParams(query: String) async throws -> UniversalSymbol {
+        return try await withCheckedThrowingContinuation { continuation in
+            getSymbolsByTickerWithRequestBuilder(query: query).execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+    /**
+     Get details of a symbol by the ticker or the universal_symbol_id
+     
+     - parameter query: (path) The ticker or universal_symbol_id of the UniversalSymbol to get. 
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    open class func getSymbolsByTicker(
+        query: String
+    ) async throws -> UniversalSymbol {
+        return try await withCheckedThrowingContinuation { continuation in
+            getSymbolsByTickerWithRequestBuilder(query: query).execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+
+    /**
+     Get details of a symbol by the ticker or the universal_symbol_id
+     
+     - parameter query: (path) The ticker or universal_symbol_id of the UniversalSymbol to get. 
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    open func getSymbolsByTicker(
+        query: String
+    ) async throws -> UniversalSymbol {
+        return try await withCheckedThrowingContinuation { continuation in
+            getSymbolsByTickerWithRequestBuilder(query: query).execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+
+
+    /**
+     Get details of a symbol by the ticker or the universal_symbol_id
+     - GET /symbols/{query}
+     - API Key:
+       - type: apiKey clientId (QUERY)
+       - name: PartnerClientId
+     - API Key:
+       - type: apiKey Signature 
+       - name: PartnerSignature
+     - API Key:
+       - type: apiKey timestamp (QUERY)
+       - name: PartnerTimestamp
+     - parameter query: (path) The ticker or universal_symbol_id of the UniversalSymbol to get. 
+     - returns: RequestBuilder<UniversalSymbol> 
+     */
+    open class func getSymbolsByTickerWithRequestBuilder(
+            query: String
+    ) -> RequestBuilder<UniversalSymbol> {
+        let basePath = SnapTradeAPI.basePath;
+        var localVariablePath = "/symbols/{query}"
+        let queryPreEscape = "\(APIHelper.mapValueToPathItem(query))"
+        let queryPostEscape = queryPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{query}", with: queryPostEscape, options: .literal, range: nil)
+        let localVariableURLString = basePath + localVariablePath
+        let localVariableParameters: [String: Any]? = nil
+
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        var localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        do {
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "query", name: "clientId", value: SnapTradeAPI.partnerClientId)
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "Signature", value: SnapTradeAPI.partnerSignature)
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "query", name: "timestamp", value: SnapTradeAPI.partnerTimestamp)
+            let localVariableRequestBuilder: RequestBuilder<UniversalSymbol>.Type = SnapTradeAPI.requestBuilderFactory.getBuilder()
+            let URLString = localVariableUrlComponents?.string ?? localVariableURLString
+            return localVariableRequestBuilder.init(method: "GET", URLString: URLString, parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        } catch {
+            print("Error: \(error)")
+        }
+        fatalError("Error: Unable to send request to GET /symbols/{query}")
     }
 
     /**
@@ -304,26 +1043,38 @@ open class ReferenceDataAPI {
      - parameter query: (path) The ticker or universal_symbol_id of the UniversalSymbol to get. 
      - returns: RequestBuilder<UniversalSymbol> 
      */
-    open class func getSymbolsByTickerWithRequestBuilder(query: String) -> RequestBuilder<UniversalSymbol> {
+    open func getSymbolsByTickerWithRequestBuilder(
+            query: String
+    ) -> RequestBuilder<UniversalSymbol> {
+        let basePath = self.client.basePath;
         var localVariablePath = "/symbols/{query}"
         let queryPreEscape = "\(APIHelper.mapValueToPathItem(query))"
         let queryPostEscape = queryPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{query}", with: queryPostEscape, options: .literal, range: nil)
-        let localVariableURLString = SnapTradeAPI.basePath + localVariablePath
+        let localVariableURLString = basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
-        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
-        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+        var localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<UniversalSymbol>.Type = SnapTradeAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        do {
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "query", name: "clientId", value: self.client.partnerClientId)
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "Signature", value: self.client.partnerSignature)
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "query", name: "timestamp", value: self.client.partnerTimestamp)
+            let localVariableRequestBuilder: RequestBuilder<UniversalSymbol>.Type = SnapTradeAPI.requestBuilderFactory.getBuilder()
+            let URLString = localVariableUrlComponents?.string ?? localVariableURLString
+            return localVariableRequestBuilder.init(method: "GET", URLString: URLString, parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        } catch {
+            print("Error: \(error)")
+        }
+        fatalError("Error: Unable to send request to GET /symbols/{query}")
     }
+
 
     /**
      List of all brokerage authorization types
@@ -333,7 +1084,7 @@ open class ReferenceDataAPI {
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func listAllBrokerageAuthorizationType(brokerage: String? = nil, apiResponseQueue: DispatchQueue = SnapTradeAPI.apiResponseQueue, completion: @escaping ((_ data: [BrokerageAuthorizationTypeReadOnly]?, _ error: Error?) -> Void)) -> RequestTask {
+    open class func listAllBrokerageAuthorizationTypeSync(brokerage: String? = nil, apiResponseQueue: DispatchQueue = SnapTradeAPI.apiResponseQueue, completion: @escaping ((_ data: [BrokerageAuthorizationTypeReadOnly]?, _ error: Error?) -> Void)) -> RequestTask {
         return listAllBrokerageAuthorizationTypeWithRequestBuilder(brokerage: brokerage).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -342,6 +1093,123 @@ open class ReferenceDataAPI {
                 completion(nil, error)
             }
         }
+    }
+
+    /**
+     List of all brokerage authorization types
+     
+     - parameter brokerage: (query) Comma separated value of brokerage slugs (optional)
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    private class func listAllBrokerageAuthorizationTypeAsyncMappedParams(brokerage: String? = nil) async throws -> [BrokerageAuthorizationTypeReadOnly] {
+        return try await withCheckedThrowingContinuation { continuation in
+            listAllBrokerageAuthorizationTypeWithRequestBuilder(brokerage: brokerage).execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+    /**
+     List of all brokerage authorization types
+     
+     - parameter brokerage: (query) Comma separated value of brokerage slugs (optional)
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    open class func listAllBrokerageAuthorizationType(
+        brokerage: String? = nil
+    ) async throws -> [BrokerageAuthorizationTypeReadOnly] {
+        return try await withCheckedThrowingContinuation { continuation in
+            listAllBrokerageAuthorizationTypeWithRequestBuilder(brokerage: brokerage).execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+
+    /**
+     List of all brokerage authorization types
+     
+     - parameter brokerage: (query) Comma separated value of brokerage slugs (optional)
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    open func listAllBrokerageAuthorizationType(
+        brokerage: String? = nil
+    ) async throws -> [BrokerageAuthorizationTypeReadOnly] {
+        return try await withCheckedThrowingContinuation { continuation in
+            listAllBrokerageAuthorizationTypeWithRequestBuilder(brokerage: brokerage).execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+
+
+    /**
+     List of all brokerage authorization types
+     - GET /brokerageAuthorizationTypes
+     - API Key:
+       - type: apiKey clientId (QUERY)
+       - name: PartnerClientId
+     - API Key:
+       - type: apiKey Signature 
+       - name: PartnerSignature
+     - API Key:
+       - type: apiKey timestamp (QUERY)
+       - name: PartnerTimestamp
+     - parameter brokerage: (query) Comma separated value of brokerage slugs (optional)
+     - returns: RequestBuilder<[BrokerageAuthorizationTypeReadOnly]> 
+     */
+    open class func listAllBrokerageAuthorizationTypeWithRequestBuilder(
+            brokerage: String? = nil
+    ) -> RequestBuilder<[BrokerageAuthorizationTypeReadOnly]> {
+        let basePath = SnapTradeAPI.basePath;
+        let localVariablePath = "/brokerageAuthorizationTypes"
+        let localVariableURLString = basePath + localVariablePath
+        let localVariableParameters: [String: Any]? = nil
+
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+            "brokerage": (wrappedValue: brokerage?.encodeToJSON(), isExplode: true),
+        ])
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        var localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        do {
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "query", name: "clientId", value: SnapTradeAPI.partnerClientId)
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "Signature", value: SnapTradeAPI.partnerSignature)
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "query", name: "timestamp", value: SnapTradeAPI.partnerTimestamp)
+            let localVariableRequestBuilder: RequestBuilder<[BrokerageAuthorizationTypeReadOnly]>.Type = SnapTradeAPI.requestBuilderFactory.getBuilder()
+            let URLString = localVariableUrlComponents?.string ?? localVariableURLString
+            return localVariableRequestBuilder.init(method: "GET", URLString: URLString, parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        } catch {
+            print("Error: \(error)")
+        }
+        fatalError("Error: Unable to send request to GET /brokerageAuthorizationTypes")
     }
 
     /**
@@ -359,9 +1227,12 @@ open class ReferenceDataAPI {
      - parameter brokerage: (query) Comma separated value of brokerage slugs (optional)
      - returns: RequestBuilder<[BrokerageAuthorizationTypeReadOnly]> 
      */
-    open class func listAllBrokerageAuthorizationTypeWithRequestBuilder(brokerage: String? = nil) -> RequestBuilder<[BrokerageAuthorizationTypeReadOnly]> {
+    open func listAllBrokerageAuthorizationTypeWithRequestBuilder(
+            brokerage: String? = nil
+    ) -> RequestBuilder<[BrokerageAuthorizationTypeReadOnly]> {
+        let basePath = self.client.basePath;
         let localVariablePath = "/brokerageAuthorizationTypes"
-        let localVariableURLString = SnapTradeAPI.basePath + localVariablePath
+        let localVariableURLString = basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
@@ -373,12 +1244,21 @@ open class ReferenceDataAPI {
             :
         ]
 
-        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+        var localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<[BrokerageAuthorizationTypeReadOnly]>.Type = SnapTradeAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        do {
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "query", name: "clientId", value: self.client.partnerClientId)
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "Signature", value: self.client.partnerSignature)
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "query", name: "timestamp", value: self.client.partnerTimestamp)
+            let localVariableRequestBuilder: RequestBuilder<[BrokerageAuthorizationTypeReadOnly]>.Type = SnapTradeAPI.requestBuilderFactory.getBuilder()
+            let URLString = localVariableUrlComponents?.string ?? localVariableURLString
+            return localVariableRequestBuilder.init(method: "GET", URLString: URLString, parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        } catch {
+            print("Error: \(error)")
+        }
+        fatalError("Error: Unable to send request to GET /brokerageAuthorizationTypes")
     }
+
 
     /**
      List brokerages
@@ -387,7 +1267,7 @@ open class ReferenceDataAPI {
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func listAllBrokerages(apiResponseQueue: DispatchQueue = SnapTradeAPI.apiResponseQueue, completion: @escaping ((_ data: [Brokerage]?, _ error: Error?) -> Void)) -> RequestTask {
+    open class func listAllBrokeragesSync(apiResponseQueue: DispatchQueue = SnapTradeAPI.apiResponseQueue, completion: @escaping ((_ data: [Brokerage]?, _ error: Error?) -> Void)) -> RequestTask {
         return listAllBrokeragesWithRequestBuilder().execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -396,6 +1276,113 @@ open class ReferenceDataAPI {
                 completion(nil, error)
             }
         }
+    }
+
+    /**
+     List brokerages
+     
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    private class func listAllBrokeragesAsyncMappedParams() async throws -> [Brokerage] {
+        return try await withCheckedThrowingContinuation { continuation in
+            listAllBrokeragesWithRequestBuilder().execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+    /**
+     List brokerages
+     
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    open class func listAllBrokerages(
+    ) async throws -> [Brokerage] {
+        return try await withCheckedThrowingContinuation { continuation in
+            listAllBrokeragesWithRequestBuilder().execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+
+    /**
+     List brokerages
+     
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    open func listAllBrokerages(
+    ) async throws -> [Brokerage] {
+        return try await withCheckedThrowingContinuation { continuation in
+            listAllBrokeragesWithRequestBuilder().execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+
+
+    /**
+     List brokerages
+     - GET /brokerages
+     - API Key:
+       - type: apiKey clientId (QUERY)
+       - name: PartnerClientId
+     - API Key:
+       - type: apiKey Signature 
+       - name: PartnerSignature
+     - API Key:
+       - type: apiKey timestamp (QUERY)
+       - name: PartnerTimestamp
+     - returns: RequestBuilder<[Brokerage]> 
+     */
+    open class func listAllBrokeragesWithRequestBuilder(
+    ) -> RequestBuilder<[Brokerage]> {
+        let basePath = SnapTradeAPI.basePath;
+        let localVariablePath = "/brokerages"
+        let localVariableURLString = basePath + localVariablePath
+        let localVariableParameters: [String: Any]? = nil
+
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        var localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        do {
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "query", name: "clientId", value: SnapTradeAPI.partnerClientId)
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "Signature", value: SnapTradeAPI.partnerSignature)
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "query", name: "timestamp", value: SnapTradeAPI.partnerTimestamp)
+            let localVariableRequestBuilder: RequestBuilder<[Brokerage]>.Type = SnapTradeAPI.requestBuilderFactory.getBuilder()
+            let URLString = localVariableUrlComponents?.string ?? localVariableURLString
+            return localVariableRequestBuilder.init(method: "GET", URLString: URLString, parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        } catch {
+            print("Error: \(error)")
+        }
+        fatalError("Error: Unable to send request to GET /brokerages")
     }
 
     /**
@@ -412,23 +1399,34 @@ open class ReferenceDataAPI {
        - name: PartnerTimestamp
      - returns: RequestBuilder<[Brokerage]> 
      */
-    open class func listAllBrokeragesWithRequestBuilder() -> RequestBuilder<[Brokerage]> {
+    open func listAllBrokeragesWithRequestBuilder(
+    ) -> RequestBuilder<[Brokerage]> {
+        let basePath = self.client.basePath;
         let localVariablePath = "/brokerages"
-        let localVariableURLString = SnapTradeAPI.basePath + localVariablePath
+        let localVariableURLString = basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
-        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
-        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+        var localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<[Brokerage]>.Type = SnapTradeAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        do {
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "query", name: "clientId", value: self.client.partnerClientId)
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "Signature", value: self.client.partnerSignature)
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "query", name: "timestamp", value: self.client.partnerTimestamp)
+            let localVariableRequestBuilder: RequestBuilder<[Brokerage]>.Type = SnapTradeAPI.requestBuilderFactory.getBuilder()
+            let URLString = localVariableUrlComponents?.string ?? localVariableURLString
+            return localVariableRequestBuilder.init(method: "GET", URLString: URLString, parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        } catch {
+            print("Error: \(error)")
+        }
+        fatalError("Error: Unable to send request to GET /brokerages")
     }
+
 
     /**
      List currencies
@@ -437,7 +1435,7 @@ open class ReferenceDataAPI {
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func listAllCurrencies(apiResponseQueue: DispatchQueue = SnapTradeAPI.apiResponseQueue, completion: @escaping ((_ data: [Currency]?, _ error: Error?) -> Void)) -> RequestTask {
+    open class func listAllCurrenciesSync(apiResponseQueue: DispatchQueue = SnapTradeAPI.apiResponseQueue, completion: @escaping ((_ data: [Currency]?, _ error: Error?) -> Void)) -> RequestTask {
         return listAllCurrenciesWithRequestBuilder().execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -446,6 +1444,113 @@ open class ReferenceDataAPI {
                 completion(nil, error)
             }
         }
+    }
+
+    /**
+     List currencies
+     
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    private class func listAllCurrenciesAsyncMappedParams() async throws -> [Currency] {
+        return try await withCheckedThrowingContinuation { continuation in
+            listAllCurrenciesWithRequestBuilder().execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+    /**
+     List currencies
+     
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    open class func listAllCurrencies(
+    ) async throws -> [Currency] {
+        return try await withCheckedThrowingContinuation { continuation in
+            listAllCurrenciesWithRequestBuilder().execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+
+    /**
+     List currencies
+     
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    open func listAllCurrencies(
+    ) async throws -> [Currency] {
+        return try await withCheckedThrowingContinuation { continuation in
+            listAllCurrenciesWithRequestBuilder().execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+
+
+    /**
+     List currencies
+     - GET /currencies
+     - API Key:
+       - type: apiKey clientId (QUERY)
+       - name: PartnerClientId
+     - API Key:
+       - type: apiKey Signature 
+       - name: PartnerSignature
+     - API Key:
+       - type: apiKey timestamp (QUERY)
+       - name: PartnerTimestamp
+     - returns: RequestBuilder<[Currency]> 
+     */
+    open class func listAllCurrenciesWithRequestBuilder(
+    ) -> RequestBuilder<[Currency]> {
+        let basePath = SnapTradeAPI.basePath;
+        let localVariablePath = "/currencies"
+        let localVariableURLString = basePath + localVariablePath
+        let localVariableParameters: [String: Any]? = nil
+
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        var localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        do {
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "query", name: "clientId", value: SnapTradeAPI.partnerClientId)
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "Signature", value: SnapTradeAPI.partnerSignature)
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "query", name: "timestamp", value: SnapTradeAPI.partnerTimestamp)
+            let localVariableRequestBuilder: RequestBuilder<[Currency]>.Type = SnapTradeAPI.requestBuilderFactory.getBuilder()
+            let URLString = localVariableUrlComponents?.string ?? localVariableURLString
+            return localVariableRequestBuilder.init(method: "GET", URLString: URLString, parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        } catch {
+            print("Error: \(error)")
+        }
+        fatalError("Error: Unable to send request to GET /currencies")
     }
 
     /**
@@ -462,23 +1567,34 @@ open class ReferenceDataAPI {
        - name: PartnerTimestamp
      - returns: RequestBuilder<[Currency]> 
      */
-    open class func listAllCurrenciesWithRequestBuilder() -> RequestBuilder<[Currency]> {
+    open func listAllCurrenciesWithRequestBuilder(
+    ) -> RequestBuilder<[Currency]> {
+        let basePath = self.client.basePath;
         let localVariablePath = "/currencies"
-        let localVariableURLString = SnapTradeAPI.basePath + localVariablePath
+        let localVariableURLString = basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
-        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
-        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+        var localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<[Currency]>.Type = SnapTradeAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        do {
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "query", name: "clientId", value: self.client.partnerClientId)
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "Signature", value: self.client.partnerSignature)
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "query", name: "timestamp", value: self.client.partnerTimestamp)
+            let localVariableRequestBuilder: RequestBuilder<[Currency]>.Type = SnapTradeAPI.requestBuilderFactory.getBuilder()
+            let URLString = localVariableUrlComponents?.string ?? localVariableURLString
+            return localVariableRequestBuilder.init(method: "GET", URLString: URLString, parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        } catch {
+            print("Error: \(error)")
+        }
+        fatalError("Error: Unable to send request to GET /currencies")
     }
+
 
     /**
      List currency exchange rates
@@ -487,7 +1603,7 @@ open class ReferenceDataAPI {
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func listAllCurrenciesRates(apiResponseQueue: DispatchQueue = SnapTradeAPI.apiResponseQueue, completion: @escaping ((_ data: [ExchangeRatePairs]?, _ error: Error?) -> Void)) -> RequestTask {
+    open class func listAllCurrenciesRatesSync(apiResponseQueue: DispatchQueue = SnapTradeAPI.apiResponseQueue, completion: @escaping ((_ data: [ExchangeRatePairs]?, _ error: Error?) -> Void)) -> RequestTask {
         return listAllCurrenciesRatesWithRequestBuilder().execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -496,6 +1612,113 @@ open class ReferenceDataAPI {
                 completion(nil, error)
             }
         }
+    }
+
+    /**
+     List currency exchange rates
+     
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    private class func listAllCurrenciesRatesAsyncMappedParams() async throws -> [ExchangeRatePairs] {
+        return try await withCheckedThrowingContinuation { continuation in
+            listAllCurrenciesRatesWithRequestBuilder().execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+    /**
+     List currency exchange rates
+     
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    open class func listAllCurrenciesRates(
+    ) async throws -> [ExchangeRatePairs] {
+        return try await withCheckedThrowingContinuation { continuation in
+            listAllCurrenciesRatesWithRequestBuilder().execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+
+    /**
+     List currency exchange rates
+     
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    open func listAllCurrenciesRates(
+    ) async throws -> [ExchangeRatePairs] {
+        return try await withCheckedThrowingContinuation { continuation in
+            listAllCurrenciesRatesWithRequestBuilder().execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+
+
+    /**
+     List currency exchange rates
+     - GET /currencies/rates
+     - API Key:
+       - type: apiKey clientId (QUERY)
+       - name: PartnerClientId
+     - API Key:
+       - type: apiKey Signature 
+       - name: PartnerSignature
+     - API Key:
+       - type: apiKey timestamp (QUERY)
+       - name: PartnerTimestamp
+     - returns: RequestBuilder<[ExchangeRatePairs]> 
+     */
+    open class func listAllCurrenciesRatesWithRequestBuilder(
+    ) -> RequestBuilder<[ExchangeRatePairs]> {
+        let basePath = SnapTradeAPI.basePath;
+        let localVariablePath = "/currencies/rates"
+        let localVariableURLString = basePath + localVariablePath
+        let localVariableParameters: [String: Any]? = nil
+
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        var localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        do {
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "query", name: "clientId", value: SnapTradeAPI.partnerClientId)
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "Signature", value: SnapTradeAPI.partnerSignature)
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "query", name: "timestamp", value: SnapTradeAPI.partnerTimestamp)
+            let localVariableRequestBuilder: RequestBuilder<[ExchangeRatePairs]>.Type = SnapTradeAPI.requestBuilderFactory.getBuilder()
+            let URLString = localVariableUrlComponents?.string ?? localVariableURLString
+            return localVariableRequestBuilder.init(method: "GET", URLString: URLString, parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        } catch {
+            print("Error: \(error)")
+        }
+        fatalError("Error: Unable to send request to GET /currencies/rates")
     }
 
     /**
@@ -512,23 +1735,34 @@ open class ReferenceDataAPI {
        - name: PartnerTimestamp
      - returns: RequestBuilder<[ExchangeRatePairs]> 
      */
-    open class func listAllCurrenciesRatesWithRequestBuilder() -> RequestBuilder<[ExchangeRatePairs]> {
+    open func listAllCurrenciesRatesWithRequestBuilder(
+    ) -> RequestBuilder<[ExchangeRatePairs]> {
+        let basePath = self.client.basePath;
         let localVariablePath = "/currencies/rates"
-        let localVariableURLString = SnapTradeAPI.basePath + localVariablePath
+        let localVariableURLString = basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
-        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
-        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+        var localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<[ExchangeRatePairs]>.Type = SnapTradeAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        do {
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "query", name: "clientId", value: self.client.partnerClientId)
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "Signature", value: self.client.partnerSignature)
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "query", name: "timestamp", value: self.client.partnerTimestamp)
+            let localVariableRequestBuilder: RequestBuilder<[ExchangeRatePairs]>.Type = SnapTradeAPI.requestBuilderFactory.getBuilder()
+            let URLString = localVariableUrlComponents?.string ?? localVariableURLString
+            return localVariableRequestBuilder.init(method: "GET", URLString: URLString, parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        } catch {
+            print("Error: \(error)")
+        }
+        fatalError("Error: Unable to send request to GET /currencies/rates")
     }
+
 
     /**
      Search for symbols available in an account
@@ -541,7 +1775,7 @@ open class ReferenceDataAPI {
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func symbolSearchUserAccount(userId: String, userSecret: String, accountId: UUID, symbolQuery: SymbolQuery? = nil, apiResponseQueue: DispatchQueue = SnapTradeAPI.apiResponseQueue, completion: @escaping ((_ data: [UniversalSymbol]?, _ error: Error?) -> Void)) -> RequestTask {
+    open class func symbolSearchUserAccountSync(userId: String, userSecret: String, accountId: UUID, symbolQuery: SymbolQuery? = nil, apiResponseQueue: DispatchQueue = SnapTradeAPI.apiResponseQueue, completion: @escaping ((_ data: [UniversalSymbol]?, _ error: Error?) -> Void)) -> RequestTask {
         return symbolSearchUserAccountWithRequestBuilder(userId: userId, userSecret: userSecret, accountId: accountId, symbolQuery: symbolQuery).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -550,6 +1784,154 @@ open class ReferenceDataAPI {
                 completion(nil, error)
             }
         }
+    }
+
+    /**
+     Search for symbols available in an account
+     
+     - parameter userId: (query)  
+     - parameter userSecret: (query)  
+     - parameter accountId: (path) The ID of the account to search for symbols within. 
+     - parameter symbolQuery: (body)  (optional)
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    private class func symbolSearchUserAccountAsyncMappedParams(userId: String, userSecret: String, accountId: UUID, symbolQuery: SymbolQuery? = nil) async throws -> [UniversalSymbol] {
+        return try await withCheckedThrowingContinuation { continuation in
+            symbolSearchUserAccountWithRequestBuilder(userId: userId, userSecret: userSecret, accountId: accountId, symbolQuery: symbolQuery).execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+    /**
+     Search for symbols available in an account
+     
+     - parameter userId: (query)  
+     - parameter userSecret: (query)  
+     - parameter accountId: (path) The ID of the account to search for symbols within. 
+     - parameter symbolQuery: (body)  (optional)
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    open class func symbolSearchUserAccount(
+        userId: String,
+        userSecret: String,
+        accountId: UUID,
+        substring: String? = nil
+    ) async throws -> [UniversalSymbol] {
+        let symbolQuery = SymbolQuery(
+            substring: substring
+        )
+        return try await withCheckedThrowingContinuation { continuation in
+            symbolSearchUserAccountWithRequestBuilder(userId: userId, userSecret: userSecret, accountId: accountId, symbolQuery: symbolQuery).execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+
+    /**
+     Search for symbols available in an account
+     
+     - parameter userId: (query)  
+     - parameter userSecret: (query)  
+     - parameter accountId: (path) The ID of the account to search for symbols within. 
+     - parameter symbolQuery: (body)  (optional)
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    open func symbolSearchUserAccount(
+        userId: String,
+        userSecret: String,
+        accountId: UUID,
+        substring: String? = nil
+    ) async throws -> [UniversalSymbol] {
+        let symbolQuery = SymbolQuery(
+            substring: substring
+        )
+        return try await withCheckedThrowingContinuation { continuation in
+            symbolSearchUserAccountWithRequestBuilder(userId: userId, userSecret: userSecret, accountId: accountId, symbolQuery: symbolQuery).execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+
+
+    /**
+     Search for symbols available in an account
+     - POST /accounts/{accountId}/symbols
+     - API Key:
+       - type: apiKey clientId (QUERY)
+       - name: PartnerClientId
+     - API Key:
+       - type: apiKey Signature 
+       - name: PartnerSignature
+     - API Key:
+       - type: apiKey timestamp (QUERY)
+       - name: PartnerTimestamp
+     - parameter userId: (query)  
+     - parameter userSecret: (query)  
+     - parameter accountId: (path) The ID of the account to search for symbols within. 
+     - parameter symbolQuery: (body)  (optional)
+     - returns: RequestBuilder<[UniversalSymbol]> 
+     */
+    open class func symbolSearchUserAccountWithRequestBuilder(
+            userId: String,
+            userSecret: String,
+            accountId: UUID,
+            symbolQuery: SymbolQuery? = nil
+    ) -> RequestBuilder<[UniversalSymbol]> {
+        let basePath = SnapTradeAPI.basePath;
+        var localVariablePath = "/accounts/{accountId}/symbols"
+        let accountIdPreEscape = "\(APIHelper.mapValueToPathItem(accountId))"
+        let accountIdPostEscape = accountIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{accountId}", with: accountIdPostEscape, options: .literal, range: nil)
+        let localVariableURLString = basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: symbolQuery)
+
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+            "userId": (wrappedValue: userId.encodeToJSON(), isExplode: true),
+            "userSecret": (wrappedValue: userSecret.encodeToJSON(), isExplode: true),
+        ])
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        var localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        do {
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "query", name: "clientId", value: SnapTradeAPI.partnerClientId)
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "Signature", value: SnapTradeAPI.partnerSignature)
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "query", name: "timestamp", value: SnapTradeAPI.partnerTimestamp)
+            let localVariableRequestBuilder: RequestBuilder<[UniversalSymbol]>.Type = SnapTradeAPI.requestBuilderFactory.getBuilder()
+            let URLString = localVariableUrlComponents?.string ?? localVariableURLString
+            return localVariableRequestBuilder.init(method: "POST", URLString: URLString, parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        } catch {
+            print("Error: \(error)")
+        }
+        fatalError("Error: Unable to send request to POST /accounts/{accountId}/symbols")
     }
 
     /**
@@ -570,12 +1952,18 @@ open class ReferenceDataAPI {
      - parameter symbolQuery: (body)  (optional)
      - returns: RequestBuilder<[UniversalSymbol]> 
      */
-    open class func symbolSearchUserAccountWithRequestBuilder(userId: String, userSecret: String, accountId: UUID, symbolQuery: SymbolQuery? = nil) -> RequestBuilder<[UniversalSymbol]> {
+    open func symbolSearchUserAccountWithRequestBuilder(
+            userId: String,
+            userSecret: String,
+            accountId: UUID,
+            symbolQuery: SymbolQuery? = nil
+    ) -> RequestBuilder<[UniversalSymbol]> {
+        let basePath = self.client.basePath;
         var localVariablePath = "/accounts/{accountId}/symbols"
         let accountIdPreEscape = "\(APIHelper.mapValueToPathItem(accountId))"
         let accountIdPostEscape = accountIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{accountId}", with: accountIdPostEscape, options: .literal, range: nil)
-        let localVariableURLString = SnapTradeAPI.basePath + localVariablePath
+        let localVariableURLString = basePath + localVariablePath
         let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: symbolQuery)
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
@@ -588,10 +1976,19 @@ open class ReferenceDataAPI {
             :
         ]
 
-        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+        var localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<[UniversalSymbol]>.Type = SnapTradeAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        do {
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "query", name: "clientId", value: self.client.partnerClientId)
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "Signature", value: self.client.partnerSignature)
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "query", name: "timestamp", value: self.client.partnerTimestamp)
+            let localVariableRequestBuilder: RequestBuilder<[UniversalSymbol]>.Type = SnapTradeAPI.requestBuilderFactory.getBuilder()
+            let URLString = localVariableUrlComponents?.string ?? localVariableURLString
+            return localVariableRequestBuilder.init(method: "POST", URLString: URLString, parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        } catch {
+            print("Error: \(error)")
+        }
+        fatalError("Error: Unable to send request to POST /accounts/{accountId}/symbols")
     }
+
 }

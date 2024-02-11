@@ -12,6 +12,12 @@ import AnyCodable
 
 open class OptionsAPI {
 
+    let client: SnapTradeClient
+
+    public init(client: SnapTradeClient) {
+        self.client = client
+    }
+
     /**
      Creates an option strategy object that will be used to place an option strategy order
      
@@ -23,7 +29,7 @@ open class OptionsAPI {
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func getOptionStrategy(userId: String, userSecret: String, accountId: UUID, optionsGetOptionStrategyRequest: OptionsGetOptionStrategyRequest, apiResponseQueue: DispatchQueue = SnapTradeAPI.apiResponseQueue, completion: @escaping ((_ data: StrategyQuotes?, _ error: Error?) -> Void)) -> RequestTask {
+    open class func getOptionStrategySync(userId: String, userSecret: String, accountId: UUID, optionsGetOptionStrategyRequest: OptionsGetOptionStrategyRequest, apiResponseQueue: DispatchQueue = SnapTradeAPI.apiResponseQueue, completion: @escaping ((_ data: StrategyQuotes?, _ error: Error?) -> Void)) -> RequestTask {
         return getOptionStrategyWithRequestBuilder(userId: userId, userSecret: userSecret, accountId: accountId, optionsGetOptionStrategyRequest: optionsGetOptionStrategyRequest).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -32,6 +38,162 @@ open class OptionsAPI {
                 completion(nil, error)
             }
         }
+    }
+
+    /**
+     Creates an option strategy object that will be used to place an option strategy order
+     
+     - parameter userId: (query)  
+     - parameter userSecret: (query)  
+     - parameter accountId: (path) The ID of the account to create the option strategy object in. 
+     - parameter optionsGetOptionStrategyRequest: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    private class func getOptionStrategyAsyncMappedParams(userId: String, userSecret: String, accountId: UUID, optionsGetOptionStrategyRequest: OptionsGetOptionStrategyRequest) async throws -> StrategyQuotes {
+        return try await withCheckedThrowingContinuation { continuation in
+            getOptionStrategyWithRequestBuilder(userId: userId, userSecret: userSecret, accountId: accountId, optionsGetOptionStrategyRequest: optionsGetOptionStrategyRequest).execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+    /**
+     Creates an option strategy object that will be used to place an option strategy order
+     
+     - parameter userId: (query)  
+     - parameter userSecret: (query)  
+     - parameter accountId: (path) The ID of the account to create the option strategy object in. 
+     - parameter optionsGetOptionStrategyRequest: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    open class func getOptionStrategy(
+        underlyingSymbolId: UUID,
+        legs: [OptionLeg],
+        strategyType: OptionsGetOptionStrategyRequest.StrategyType,
+        userId: String,
+        userSecret: String,
+        accountId: UUID
+    ) async throws -> StrategyQuotes {
+        let optionsGetOptionStrategyRequest = OptionsGetOptionStrategyRequest(
+            underlyingSymbolId: underlyingSymbolId,
+            legs: legs,
+            strategyType: strategyType
+        )
+        return try await withCheckedThrowingContinuation { continuation in
+            getOptionStrategyWithRequestBuilder(userId: userId, userSecret: userSecret, accountId: accountId, optionsGetOptionStrategyRequest: optionsGetOptionStrategyRequest).execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+
+    /**
+     Creates an option strategy object that will be used to place an option strategy order
+     
+     - parameter userId: (query)  
+     - parameter userSecret: (query)  
+     - parameter accountId: (path) The ID of the account to create the option strategy object in. 
+     - parameter optionsGetOptionStrategyRequest: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    open func getOptionStrategy(
+        underlyingSymbolId: UUID,
+        legs: [OptionLeg],
+        strategyType: OptionsGetOptionStrategyRequest.StrategyType,
+        userId: String,
+        userSecret: String,
+        accountId: UUID
+    ) async throws -> StrategyQuotes {
+        let optionsGetOptionStrategyRequest = OptionsGetOptionStrategyRequest(
+            underlyingSymbolId: underlyingSymbolId,
+            legs: legs,
+            strategyType: strategyType
+        )
+        return try await withCheckedThrowingContinuation { continuation in
+            getOptionStrategyWithRequestBuilder(userId: userId, userSecret: userSecret, accountId: accountId, optionsGetOptionStrategyRequest: optionsGetOptionStrategyRequest).execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+
+
+    /**
+     Creates an option strategy object that will be used to place an option strategy order
+     - POST /accounts/{accountId}/optionStrategy
+     - API Key:
+       - type: apiKey clientId (QUERY)
+       - name: PartnerClientId
+     - API Key:
+       - type: apiKey Signature 
+       - name: PartnerSignature
+     - API Key:
+       - type: apiKey timestamp (QUERY)
+       - name: PartnerTimestamp
+     - parameter userId: (query)  
+     - parameter userSecret: (query)  
+     - parameter accountId: (path) The ID of the account to create the option strategy object in. 
+     - parameter optionsGetOptionStrategyRequest: (body)  
+     - returns: RequestBuilder<StrategyQuotes> 
+     */
+    open class func getOptionStrategyWithRequestBuilder(
+            userId: String,
+            userSecret: String,
+            accountId: UUID,
+            optionsGetOptionStrategyRequest: OptionsGetOptionStrategyRequest
+    ) -> RequestBuilder<StrategyQuotes> {
+        let basePath = SnapTradeAPI.basePath;
+        var localVariablePath = "/accounts/{accountId}/optionStrategy"
+        let accountIdPreEscape = "\(APIHelper.mapValueToPathItem(accountId))"
+        let accountIdPostEscape = accountIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{accountId}", with: accountIdPostEscape, options: .literal, range: nil)
+        let localVariableURLString = basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: optionsGetOptionStrategyRequest)
+
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+            "userId": (wrappedValue: userId.encodeToJSON(), isExplode: true),
+            "userSecret": (wrappedValue: userSecret.encodeToJSON(), isExplode: true),
+        ])
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        var localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        do {
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "query", name: "clientId", value: SnapTradeAPI.partnerClientId)
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "Signature", value: SnapTradeAPI.partnerSignature)
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "query", name: "timestamp", value: SnapTradeAPI.partnerTimestamp)
+            let localVariableRequestBuilder: RequestBuilder<StrategyQuotes>.Type = SnapTradeAPI.requestBuilderFactory.getBuilder()
+            let URLString = localVariableUrlComponents?.string ?? localVariableURLString
+            return localVariableRequestBuilder.init(method: "POST", URLString: URLString, parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        } catch {
+            print("Error: \(error)")
+        }
+        fatalError("Error: Unable to send request to POST /accounts/{accountId}/optionStrategy")
     }
 
     /**
@@ -52,12 +214,18 @@ open class OptionsAPI {
      - parameter optionsGetOptionStrategyRequest: (body)  
      - returns: RequestBuilder<StrategyQuotes> 
      */
-    open class func getOptionStrategyWithRequestBuilder(userId: String, userSecret: String, accountId: UUID, optionsGetOptionStrategyRequest: OptionsGetOptionStrategyRequest) -> RequestBuilder<StrategyQuotes> {
+    open func getOptionStrategyWithRequestBuilder(
+            userId: String,
+            userSecret: String,
+            accountId: UUID,
+            optionsGetOptionStrategyRequest: OptionsGetOptionStrategyRequest
+    ) -> RequestBuilder<StrategyQuotes> {
+        let basePath = self.client.basePath;
         var localVariablePath = "/accounts/{accountId}/optionStrategy"
         let accountIdPreEscape = "\(APIHelper.mapValueToPathItem(accountId))"
         let accountIdPostEscape = accountIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{accountId}", with: accountIdPostEscape, options: .literal, range: nil)
-        let localVariableURLString = SnapTradeAPI.basePath + localVariablePath
+        let localVariableURLString = basePath + localVariablePath
         let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: optionsGetOptionStrategyRequest)
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
@@ -70,12 +238,21 @@ open class OptionsAPI {
             :
         ]
 
-        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+        var localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<StrategyQuotes>.Type = SnapTradeAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        do {
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "query", name: "clientId", value: self.client.partnerClientId)
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "Signature", value: self.client.partnerSignature)
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "query", name: "timestamp", value: self.client.partnerTimestamp)
+            let localVariableRequestBuilder: RequestBuilder<StrategyQuotes>.Type = SnapTradeAPI.requestBuilderFactory.getBuilder()
+            let URLString = localVariableUrlComponents?.string ?? localVariableURLString
+            return localVariableRequestBuilder.init(method: "POST", URLString: URLString, parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        } catch {
+            print("Error: \(error)")
+        }
+        fatalError("Error: Unable to send request to POST /accounts/{accountId}/optionStrategy")
     }
+
 
     /**
      Get the options chain
@@ -88,7 +265,7 @@ open class OptionsAPI {
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func getOptionsChain(userId: String, userSecret: String, accountId: UUID, symbol: UUID, apiResponseQueue: DispatchQueue = SnapTradeAPI.apiResponseQueue, completion: @escaping ((_ data: [OptionChainInner]?, _ error: Error?) -> Void)) -> RequestTask {
+    open class func getOptionsChainSync(userId: String, userSecret: String, accountId: UUID, symbol: UUID, apiResponseQueue: DispatchQueue = SnapTradeAPI.apiResponseQueue, completion: @escaping ((_ data: [OptionChainInner]?, _ error: Error?) -> Void)) -> RequestTask {
         return getOptionsChainWithRequestBuilder(userId: userId, userSecret: userSecret, accountId: accountId, symbol: symbol).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -97,6 +274,149 @@ open class OptionsAPI {
                 completion(nil, error)
             }
         }
+    }
+
+    /**
+     Get the options chain
+     
+     - parameter userId: (query)  
+     - parameter userSecret: (query)  
+     - parameter accountId: (path) The ID of the account to get the options chain from. 
+     - parameter symbol: (query) Universal symbol ID if symbol 
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    private class func getOptionsChainAsyncMappedParams(userId: String, userSecret: String, accountId: UUID, symbol: UUID) async throws -> [OptionChainInner] {
+        return try await withCheckedThrowingContinuation { continuation in
+            getOptionsChainWithRequestBuilder(userId: userId, userSecret: userSecret, accountId: accountId, symbol: symbol).execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+    /**
+     Get the options chain
+     
+     - parameter userId: (query)  
+     - parameter userSecret: (query)  
+     - parameter accountId: (path) The ID of the account to get the options chain from. 
+     - parameter symbol: (query) Universal symbol ID if symbol 
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    open class func getOptionsChain(
+        userId: String,
+        userSecret: String,
+        accountId: UUID,
+        symbol: UUID
+    ) async throws -> [OptionChainInner] {
+        return try await withCheckedThrowingContinuation { continuation in
+            getOptionsChainWithRequestBuilder(userId: userId, userSecret: userSecret, accountId: accountId, symbol: symbol).execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+
+    /**
+     Get the options chain
+     
+     - parameter userId: (query)  
+     - parameter userSecret: (query)  
+     - parameter accountId: (path) The ID of the account to get the options chain from. 
+     - parameter symbol: (query) Universal symbol ID if symbol 
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    open func getOptionsChain(
+        userId: String,
+        userSecret: String,
+        accountId: UUID,
+        symbol: UUID
+    ) async throws -> [OptionChainInner] {
+        return try await withCheckedThrowingContinuation { continuation in
+            getOptionsChainWithRequestBuilder(userId: userId, userSecret: userSecret, accountId: accountId, symbol: symbol).execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+
+
+    /**
+     Get the options chain
+     - GET /accounts/{accountId}/optionsChain
+     - API Key:
+       - type: apiKey clientId (QUERY)
+       - name: PartnerClientId
+     - API Key:
+       - type: apiKey Signature 
+       - name: PartnerSignature
+     - API Key:
+       - type: apiKey timestamp (QUERY)
+       - name: PartnerTimestamp
+     - parameter userId: (query)  
+     - parameter userSecret: (query)  
+     - parameter accountId: (path) The ID of the account to get the options chain from. 
+     - parameter symbol: (query) Universal symbol ID if symbol 
+     - returns: RequestBuilder<[OptionChainInner]> 
+     */
+    open class func getOptionsChainWithRequestBuilder(
+            userId: String,
+            userSecret: String,
+            accountId: UUID,
+            symbol: UUID
+    ) -> RequestBuilder<[OptionChainInner]> {
+        let basePath = SnapTradeAPI.basePath;
+        var localVariablePath = "/accounts/{accountId}/optionsChain"
+        let accountIdPreEscape = "\(APIHelper.mapValueToPathItem(accountId))"
+        let accountIdPostEscape = accountIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{accountId}", with: accountIdPostEscape, options: .literal, range: nil)
+        let localVariableURLString = basePath + localVariablePath
+        let localVariableParameters: [String: Any]? = nil
+
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+            "userId": (wrappedValue: userId.encodeToJSON(), isExplode: true),
+            "userSecret": (wrappedValue: userSecret.encodeToJSON(), isExplode: true),
+            "symbol": (wrappedValue: symbol.encodeToJSON(), isExplode: true),
+        ])
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        var localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        do {
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "query", name: "clientId", value: SnapTradeAPI.partnerClientId)
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "Signature", value: SnapTradeAPI.partnerSignature)
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "query", name: "timestamp", value: SnapTradeAPI.partnerTimestamp)
+            let localVariableRequestBuilder: RequestBuilder<[OptionChainInner]>.Type = SnapTradeAPI.requestBuilderFactory.getBuilder()
+            let URLString = localVariableUrlComponents?.string ?? localVariableURLString
+            return localVariableRequestBuilder.init(method: "GET", URLString: URLString, parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        } catch {
+            print("Error: \(error)")
+        }
+        fatalError("Error: Unable to send request to GET /accounts/{accountId}/optionsChain")
     }
 
     /**
@@ -117,12 +437,18 @@ open class OptionsAPI {
      - parameter symbol: (query) Universal symbol ID if symbol 
      - returns: RequestBuilder<[OptionChainInner]> 
      */
-    open class func getOptionsChainWithRequestBuilder(userId: String, userSecret: String, accountId: UUID, symbol: UUID) -> RequestBuilder<[OptionChainInner]> {
+    open func getOptionsChainWithRequestBuilder(
+            userId: String,
+            userSecret: String,
+            accountId: UUID,
+            symbol: UUID
+    ) -> RequestBuilder<[OptionChainInner]> {
+        let basePath = self.client.basePath;
         var localVariablePath = "/accounts/{accountId}/optionsChain"
         let accountIdPreEscape = "\(APIHelper.mapValueToPathItem(accountId))"
         let accountIdPostEscape = accountIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{accountId}", with: accountIdPostEscape, options: .literal, range: nil)
-        let localVariableURLString = SnapTradeAPI.basePath + localVariablePath
+        let localVariableURLString = basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
@@ -136,12 +462,21 @@ open class OptionsAPI {
             :
         ]
 
-        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+        var localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<[OptionChainInner]>.Type = SnapTradeAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        do {
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "query", name: "clientId", value: self.client.partnerClientId)
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "Signature", value: self.client.partnerSignature)
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "query", name: "timestamp", value: self.client.partnerTimestamp)
+            let localVariableRequestBuilder: RequestBuilder<[OptionChainInner]>.Type = SnapTradeAPI.requestBuilderFactory.getBuilder()
+            let URLString = localVariableUrlComponents?.string ?? localVariableURLString
+            return localVariableRequestBuilder.init(method: "GET", URLString: URLString, parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        } catch {
+            print("Error: \(error)")
+        }
+        fatalError("Error: Unable to send request to GET /accounts/{accountId}/optionsChain")
     }
+
 
     /**
      Get latest market data of option strategy
@@ -154,7 +489,7 @@ open class OptionsAPI {
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func getOptionsStrategyQuote(userId: String, userSecret: String, accountId: UUID, optionStrategyId: UUID, apiResponseQueue: DispatchQueue = SnapTradeAPI.apiResponseQueue, completion: @escaping ((_ data: StrategyQuotes?, _ error: Error?) -> Void)) -> RequestTask {
+    open class func getOptionsStrategyQuoteSync(userId: String, userSecret: String, accountId: UUID, optionStrategyId: UUID, apiResponseQueue: DispatchQueue = SnapTradeAPI.apiResponseQueue, completion: @escaping ((_ data: StrategyQuotes?, _ error: Error?) -> Void)) -> RequestTask {
         return getOptionsStrategyQuoteWithRequestBuilder(userId: userId, userSecret: userSecret, accountId: accountId, optionStrategyId: optionStrategyId).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -163,6 +498,151 @@ open class OptionsAPI {
                 completion(nil, error)
             }
         }
+    }
+
+    /**
+     Get latest market data of option strategy
+     
+     - parameter userId: (query)  
+     - parameter userSecret: (query)  
+     - parameter accountId: (path) The ID of the account the strategy will be placed in. 
+     - parameter optionStrategyId: (path) Option strategy id obtained from response when creating option strategy object 
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    private class func getOptionsStrategyQuoteAsyncMappedParams(userId: String, userSecret: String, accountId: UUID, optionStrategyId: UUID) async throws -> StrategyQuotes {
+        return try await withCheckedThrowingContinuation { continuation in
+            getOptionsStrategyQuoteWithRequestBuilder(userId: userId, userSecret: userSecret, accountId: accountId, optionStrategyId: optionStrategyId).execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+    /**
+     Get latest market data of option strategy
+     
+     - parameter userId: (query)  
+     - parameter userSecret: (query)  
+     - parameter accountId: (path) The ID of the account the strategy will be placed in. 
+     - parameter optionStrategyId: (path) Option strategy id obtained from response when creating option strategy object 
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    open class func getOptionsStrategyQuote(
+        userId: String,
+        userSecret: String,
+        accountId: UUID,
+        optionStrategyId: UUID
+    ) async throws -> StrategyQuotes {
+        return try await withCheckedThrowingContinuation { continuation in
+            getOptionsStrategyQuoteWithRequestBuilder(userId: userId, userSecret: userSecret, accountId: accountId, optionStrategyId: optionStrategyId).execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+
+    /**
+     Get latest market data of option strategy
+     
+     - parameter userId: (query)  
+     - parameter userSecret: (query)  
+     - parameter accountId: (path) The ID of the account the strategy will be placed in. 
+     - parameter optionStrategyId: (path) Option strategy id obtained from response when creating option strategy object 
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    open func getOptionsStrategyQuote(
+        userId: String,
+        userSecret: String,
+        accountId: UUID,
+        optionStrategyId: UUID
+    ) async throws -> StrategyQuotes {
+        return try await withCheckedThrowingContinuation { continuation in
+            getOptionsStrategyQuoteWithRequestBuilder(userId: userId, userSecret: userSecret, accountId: accountId, optionStrategyId: optionStrategyId).execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+
+
+    /**
+     Get latest market data of option strategy
+     - GET /accounts/{accountId}/optionStrategy/{optionStrategyId}
+     - API Key:
+       - type: apiKey clientId (QUERY)
+       - name: PartnerClientId
+     - API Key:
+       - type: apiKey Signature 
+       - name: PartnerSignature
+     - API Key:
+       - type: apiKey timestamp (QUERY)
+       - name: PartnerTimestamp
+     - parameter userId: (query)  
+     - parameter userSecret: (query)  
+     - parameter accountId: (path) The ID of the account the strategy will be placed in. 
+     - parameter optionStrategyId: (path) Option strategy id obtained from response when creating option strategy object 
+     - returns: RequestBuilder<StrategyQuotes> 
+     */
+    open class func getOptionsStrategyQuoteWithRequestBuilder(
+            userId: String,
+            userSecret: String,
+            accountId: UUID,
+            optionStrategyId: UUID
+    ) -> RequestBuilder<StrategyQuotes> {
+        let basePath = SnapTradeAPI.basePath;
+        var localVariablePath = "/accounts/{accountId}/optionStrategy/{optionStrategyId}"
+        let accountIdPreEscape = "\(APIHelper.mapValueToPathItem(accountId))"
+        let accountIdPostEscape = accountIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{accountId}", with: accountIdPostEscape, options: .literal, range: nil)
+        let optionStrategyIdPreEscape = "\(APIHelper.mapValueToPathItem(optionStrategyId))"
+        let optionStrategyIdPostEscape = optionStrategyIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{optionStrategyId}", with: optionStrategyIdPostEscape, options: .literal, range: nil)
+        let localVariableURLString = basePath + localVariablePath
+        let localVariableParameters: [String: Any]? = nil
+
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+            "userId": (wrappedValue: userId.encodeToJSON(), isExplode: true),
+            "userSecret": (wrappedValue: userSecret.encodeToJSON(), isExplode: true),
+        ])
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        var localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        do {
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "query", name: "clientId", value: SnapTradeAPI.partnerClientId)
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "Signature", value: SnapTradeAPI.partnerSignature)
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "query", name: "timestamp", value: SnapTradeAPI.partnerTimestamp)
+            let localVariableRequestBuilder: RequestBuilder<StrategyQuotes>.Type = SnapTradeAPI.requestBuilderFactory.getBuilder()
+            let URLString = localVariableUrlComponents?.string ?? localVariableURLString
+            return localVariableRequestBuilder.init(method: "GET", URLString: URLString, parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        } catch {
+            print("Error: \(error)")
+        }
+        fatalError("Error: Unable to send request to GET /accounts/{accountId}/optionStrategy/{optionStrategyId}")
     }
 
     /**
@@ -183,7 +663,13 @@ open class OptionsAPI {
      - parameter optionStrategyId: (path) Option strategy id obtained from response when creating option strategy object 
      - returns: RequestBuilder<StrategyQuotes> 
      */
-    open class func getOptionsStrategyQuoteWithRequestBuilder(userId: String, userSecret: String, accountId: UUID, optionStrategyId: UUID) -> RequestBuilder<StrategyQuotes> {
+    open func getOptionsStrategyQuoteWithRequestBuilder(
+            userId: String,
+            userSecret: String,
+            accountId: UUID,
+            optionStrategyId: UUID
+    ) -> RequestBuilder<StrategyQuotes> {
+        let basePath = self.client.basePath;
         var localVariablePath = "/accounts/{accountId}/optionStrategy/{optionStrategyId}"
         let accountIdPreEscape = "\(APIHelper.mapValueToPathItem(accountId))"
         let accountIdPostEscape = accountIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -191,7 +677,7 @@ open class OptionsAPI {
         let optionStrategyIdPreEscape = "\(APIHelper.mapValueToPathItem(optionStrategyId))"
         let optionStrategyIdPostEscape = optionStrategyIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{optionStrategyId}", with: optionStrategyIdPostEscape, options: .literal, range: nil)
-        let localVariableURLString = SnapTradeAPI.basePath + localVariablePath
+        let localVariableURLString = basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
@@ -204,12 +690,21 @@ open class OptionsAPI {
             :
         ]
 
-        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+        var localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<StrategyQuotes>.Type = SnapTradeAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        do {
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "query", name: "clientId", value: self.client.partnerClientId)
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "Signature", value: self.client.partnerSignature)
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "query", name: "timestamp", value: self.client.partnerTimestamp)
+            let localVariableRequestBuilder: RequestBuilder<StrategyQuotes>.Type = SnapTradeAPI.requestBuilderFactory.getBuilder()
+            let URLString = localVariableUrlComponents?.string ?? localVariableURLString
+            return localVariableRequestBuilder.init(method: "GET", URLString: URLString, parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        } catch {
+            print("Error: \(error)")
+        }
+        fatalError("Error: Unable to send request to GET /accounts/{accountId}/optionStrategy/{optionStrategyId}")
     }
+
 
     /**
      Get the options holdings in the account
@@ -221,7 +716,7 @@ open class OptionsAPI {
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func listOptionHoldings(userId: String, userSecret: String, accountId: UUID, apiResponseQueue: DispatchQueue = SnapTradeAPI.apiResponseQueue, completion: @escaping ((_ data: [OptionsPosition]?, _ error: Error?) -> Void)) -> RequestTask {
+    open class func listOptionHoldingsSync(userId: String, userSecret: String, accountId: UUID, apiResponseQueue: DispatchQueue = SnapTradeAPI.apiResponseQueue, completion: @escaping ((_ data: [OptionsPosition]?, _ error: Error?) -> Void)) -> RequestTask {
         return listOptionHoldingsWithRequestBuilder(userId: userId, userSecret: userSecret, accountId: accountId).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -230,6 +725,141 @@ open class OptionsAPI {
                 completion(nil, error)
             }
         }
+    }
+
+    /**
+     Get the options holdings in the account
+     
+     - parameter userId: (query)  
+     - parameter userSecret: (query)  
+     - parameter accountId: (path) The ID of the account to fetch options holdings for. 
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    private class func listOptionHoldingsAsyncMappedParams(userId: String, userSecret: String, accountId: UUID) async throws -> [OptionsPosition] {
+        return try await withCheckedThrowingContinuation { continuation in
+            listOptionHoldingsWithRequestBuilder(userId: userId, userSecret: userSecret, accountId: accountId).execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+    /**
+     Get the options holdings in the account
+     
+     - parameter userId: (query)  
+     - parameter userSecret: (query)  
+     - parameter accountId: (path) The ID of the account to fetch options holdings for. 
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    open class func listOptionHoldings(
+        userId: String,
+        userSecret: String,
+        accountId: UUID
+    ) async throws -> [OptionsPosition] {
+        return try await withCheckedThrowingContinuation { continuation in
+            listOptionHoldingsWithRequestBuilder(userId: userId, userSecret: userSecret, accountId: accountId).execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+
+    /**
+     Get the options holdings in the account
+     
+     - parameter userId: (query)  
+     - parameter userSecret: (query)  
+     - parameter accountId: (path) The ID of the account to fetch options holdings for. 
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    open func listOptionHoldings(
+        userId: String,
+        userSecret: String,
+        accountId: UUID
+    ) async throws -> [OptionsPosition] {
+        return try await withCheckedThrowingContinuation { continuation in
+            listOptionHoldingsWithRequestBuilder(userId: userId, userSecret: userSecret, accountId: accountId).execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+
+
+    /**
+     Get the options holdings in the account
+     - GET /accounts/{accountId}/options
+     - API Key:
+       - type: apiKey clientId (QUERY)
+       - name: PartnerClientId
+     - API Key:
+       - type: apiKey Signature 
+       - name: PartnerSignature
+     - API Key:
+       - type: apiKey timestamp (QUERY)
+       - name: PartnerTimestamp
+     - parameter userId: (query)  
+     - parameter userSecret: (query)  
+     - parameter accountId: (path) The ID of the account to fetch options holdings for. 
+     - returns: RequestBuilder<[OptionsPosition]> 
+     */
+    open class func listOptionHoldingsWithRequestBuilder(
+            userId: String,
+            userSecret: String,
+            accountId: UUID
+    ) -> RequestBuilder<[OptionsPosition]> {
+        let basePath = SnapTradeAPI.basePath;
+        var localVariablePath = "/accounts/{accountId}/options"
+        let accountIdPreEscape = "\(APIHelper.mapValueToPathItem(accountId))"
+        let accountIdPostEscape = accountIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{accountId}", with: accountIdPostEscape, options: .literal, range: nil)
+        let localVariableURLString = basePath + localVariablePath
+        let localVariableParameters: [String: Any]? = nil
+
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+            "userId": (wrappedValue: userId.encodeToJSON(), isExplode: true),
+            "userSecret": (wrappedValue: userSecret.encodeToJSON(), isExplode: true),
+        ])
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        var localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        do {
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "query", name: "clientId", value: SnapTradeAPI.partnerClientId)
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "Signature", value: SnapTradeAPI.partnerSignature)
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "query", name: "timestamp", value: SnapTradeAPI.partnerTimestamp)
+            let localVariableRequestBuilder: RequestBuilder<[OptionsPosition]>.Type = SnapTradeAPI.requestBuilderFactory.getBuilder()
+            let URLString = localVariableUrlComponents?.string ?? localVariableURLString
+            return localVariableRequestBuilder.init(method: "GET", URLString: URLString, parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        } catch {
+            print("Error: \(error)")
+        }
+        fatalError("Error: Unable to send request to GET /accounts/{accountId}/options")
     }
 
     /**
@@ -249,12 +879,17 @@ open class OptionsAPI {
      - parameter accountId: (path) The ID of the account to fetch options holdings for. 
      - returns: RequestBuilder<[OptionsPosition]> 
      */
-    open class func listOptionHoldingsWithRequestBuilder(userId: String, userSecret: String, accountId: UUID) -> RequestBuilder<[OptionsPosition]> {
+    open func listOptionHoldingsWithRequestBuilder(
+            userId: String,
+            userSecret: String,
+            accountId: UUID
+    ) -> RequestBuilder<[OptionsPosition]> {
+        let basePath = self.client.basePath;
         var localVariablePath = "/accounts/{accountId}/options"
         let accountIdPreEscape = "\(APIHelper.mapValueToPathItem(accountId))"
         let accountIdPostEscape = accountIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{accountId}", with: accountIdPostEscape, options: .literal, range: nil)
-        let localVariableURLString = SnapTradeAPI.basePath + localVariablePath
+        let localVariableURLString = basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
@@ -267,12 +902,21 @@ open class OptionsAPI {
             :
         ]
 
-        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+        var localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<[OptionsPosition]>.Type = SnapTradeAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        do {
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "query", name: "clientId", value: self.client.partnerClientId)
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "Signature", value: self.client.partnerSignature)
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "query", name: "timestamp", value: self.client.partnerTimestamp)
+            let localVariableRequestBuilder: RequestBuilder<[OptionsPosition]>.Type = SnapTradeAPI.requestBuilderFactory.getBuilder()
+            let URLString = localVariableUrlComponents?.string ?? localVariableURLString
+            return localVariableRequestBuilder.init(method: "GET", URLString: URLString, parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        } catch {
+            print("Error: \(error)")
+        }
+        fatalError("Error: Unable to send request to GET /accounts/{accountId}/options")
     }
+
 
     /**
      Place an option strategy order on the brokerage
@@ -286,7 +930,7 @@ open class OptionsAPI {
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func placeOptionStrategy(userId: String, userSecret: String, accountId: UUID, optionStrategyId: UUID, optionsPlaceOptionStrategyRequest: OptionsPlaceOptionStrategyRequest, apiResponseQueue: DispatchQueue = SnapTradeAPI.apiResponseQueue, completion: @escaping ((_ data: StrategyOrderRecord?, _ error: Error?) -> Void)) -> RequestTask {
+    open class func placeOptionStrategySync(userId: String, userSecret: String, accountId: UUID, optionStrategyId: UUID, optionsPlaceOptionStrategyRequest: OptionsPlaceOptionStrategyRequest, apiResponseQueue: DispatchQueue = SnapTradeAPI.apiResponseQueue, completion: @escaping ((_ data: StrategyOrderRecord?, _ error: Error?) -> Void)) -> RequestTask {
         return placeOptionStrategyWithRequestBuilder(userId: userId, userSecret: userSecret, accountId: accountId, optionStrategyId: optionStrategyId, optionsPlaceOptionStrategyRequest: optionsPlaceOptionStrategyRequest).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -295,6 +939,172 @@ open class OptionsAPI {
                 completion(nil, error)
             }
         }
+    }
+
+    /**
+     Place an option strategy order on the brokerage
+     
+     - parameter userId: (query)  
+     - parameter userSecret: (query)  
+     - parameter accountId: (path) The ID of the account to execute the strategy in. 
+     - parameter optionStrategyId: (path) Option strategy id obtained from response when creating option strategy object 
+     - parameter optionsPlaceOptionStrategyRequest: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    private class func placeOptionStrategyAsyncMappedParams(userId: String, userSecret: String, accountId: UUID, optionStrategyId: UUID, optionsPlaceOptionStrategyRequest: OptionsPlaceOptionStrategyRequest) async throws -> StrategyOrderRecord {
+        return try await withCheckedThrowingContinuation { continuation in
+            placeOptionStrategyWithRequestBuilder(userId: userId, userSecret: userSecret, accountId: accountId, optionStrategyId: optionStrategyId, optionsPlaceOptionStrategyRequest: optionsPlaceOptionStrategyRequest).execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+    /**
+     Place an option strategy order on the brokerage
+     
+     - parameter userId: (query)  
+     - parameter userSecret: (query)  
+     - parameter accountId: (path) The ID of the account to execute the strategy in. 
+     - parameter optionStrategyId: (path) Option strategy id obtained from response when creating option strategy object 
+     - parameter optionsPlaceOptionStrategyRequest: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    open class func placeOptionStrategy(
+        orderType: OrderType,
+        timeInForce: TimeInForceStrict,
+        userId: String,
+        userSecret: String,
+        accountId: UUID,
+        optionStrategyId: UUID,
+        price: Double? = nil
+    ) async throws -> StrategyOrderRecord {
+        let optionsPlaceOptionStrategyRequest = OptionsPlaceOptionStrategyRequest(
+            orderType: orderType,
+            timeInForce: timeInForce,
+            price: price
+        )
+        return try await withCheckedThrowingContinuation { continuation in
+            placeOptionStrategyWithRequestBuilder(userId: userId, userSecret: userSecret, accountId: accountId, optionStrategyId: optionStrategyId, optionsPlaceOptionStrategyRequest: optionsPlaceOptionStrategyRequest).execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+
+    /**
+     Place an option strategy order on the brokerage
+     
+     - parameter userId: (query)  
+     - parameter userSecret: (query)  
+     - parameter accountId: (path) The ID of the account to execute the strategy in. 
+     - parameter optionStrategyId: (path) Option strategy id obtained from response when creating option strategy object 
+     - parameter optionsPlaceOptionStrategyRequest: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    open func placeOptionStrategy(
+        orderType: OrderType,
+        timeInForce: TimeInForceStrict,
+        userId: String,
+        userSecret: String,
+        accountId: UUID,
+        optionStrategyId: UUID,
+        price: Double? = nil
+    ) async throws -> StrategyOrderRecord {
+        let optionsPlaceOptionStrategyRequest = OptionsPlaceOptionStrategyRequest(
+            orderType: orderType,
+            timeInForce: timeInForce,
+            price: price
+        )
+        return try await withCheckedThrowingContinuation { continuation in
+            placeOptionStrategyWithRequestBuilder(userId: userId, userSecret: userSecret, accountId: accountId, optionStrategyId: optionStrategyId, optionsPlaceOptionStrategyRequest: optionsPlaceOptionStrategyRequest).execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+
+
+    /**
+     Place an option strategy order on the brokerage
+     - POST /accounts/{accountId}/optionStrategy/{optionStrategyId}/execute
+     - API Key:
+       - type: apiKey clientId (QUERY)
+       - name: PartnerClientId
+     - API Key:
+       - type: apiKey Signature 
+       - name: PartnerSignature
+     - API Key:
+       - type: apiKey timestamp (QUERY)
+       - name: PartnerTimestamp
+     - parameter userId: (query)  
+     - parameter userSecret: (query)  
+     - parameter accountId: (path) The ID of the account to execute the strategy in. 
+     - parameter optionStrategyId: (path) Option strategy id obtained from response when creating option strategy object 
+     - parameter optionsPlaceOptionStrategyRequest: (body)  
+     - returns: RequestBuilder<StrategyOrderRecord> 
+     */
+    open class func placeOptionStrategyWithRequestBuilder(
+            userId: String,
+            userSecret: String,
+            accountId: UUID,
+            optionStrategyId: UUID,
+            optionsPlaceOptionStrategyRequest: OptionsPlaceOptionStrategyRequest
+    ) -> RequestBuilder<StrategyOrderRecord> {
+        let basePath = SnapTradeAPI.basePath;
+        var localVariablePath = "/accounts/{accountId}/optionStrategy/{optionStrategyId}/execute"
+        let accountIdPreEscape = "\(APIHelper.mapValueToPathItem(accountId))"
+        let accountIdPostEscape = accountIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{accountId}", with: accountIdPostEscape, options: .literal, range: nil)
+        let optionStrategyIdPreEscape = "\(APIHelper.mapValueToPathItem(optionStrategyId))"
+        let optionStrategyIdPostEscape = optionStrategyIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{optionStrategyId}", with: optionStrategyIdPostEscape, options: .literal, range: nil)
+        let localVariableURLString = basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: optionsPlaceOptionStrategyRequest)
+
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+            "userId": (wrappedValue: userId.encodeToJSON(), isExplode: true),
+            "userSecret": (wrappedValue: userSecret.encodeToJSON(), isExplode: true),
+        ])
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        var localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        do {
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "query", name: "clientId", value: SnapTradeAPI.partnerClientId)
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "Signature", value: SnapTradeAPI.partnerSignature)
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "query", name: "timestamp", value: SnapTradeAPI.partnerTimestamp)
+            let localVariableRequestBuilder: RequestBuilder<StrategyOrderRecord>.Type = SnapTradeAPI.requestBuilderFactory.getBuilder()
+            let URLString = localVariableUrlComponents?.string ?? localVariableURLString
+            return localVariableRequestBuilder.init(method: "POST", URLString: URLString, parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        } catch {
+            print("Error: \(error)")
+        }
+        fatalError("Error: Unable to send request to POST /accounts/{accountId}/optionStrategy/{optionStrategyId}/execute")
     }
 
     /**
@@ -316,7 +1126,14 @@ open class OptionsAPI {
      - parameter optionsPlaceOptionStrategyRequest: (body)  
      - returns: RequestBuilder<StrategyOrderRecord> 
      */
-    open class func placeOptionStrategyWithRequestBuilder(userId: String, userSecret: String, accountId: UUID, optionStrategyId: UUID, optionsPlaceOptionStrategyRequest: OptionsPlaceOptionStrategyRequest) -> RequestBuilder<StrategyOrderRecord> {
+    open func placeOptionStrategyWithRequestBuilder(
+            userId: String,
+            userSecret: String,
+            accountId: UUID,
+            optionStrategyId: UUID,
+            optionsPlaceOptionStrategyRequest: OptionsPlaceOptionStrategyRequest
+    ) -> RequestBuilder<StrategyOrderRecord> {
+        let basePath = self.client.basePath;
         var localVariablePath = "/accounts/{accountId}/optionStrategy/{optionStrategyId}/execute"
         let accountIdPreEscape = "\(APIHelper.mapValueToPathItem(accountId))"
         let accountIdPostEscape = accountIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -324,7 +1141,7 @@ open class OptionsAPI {
         let optionStrategyIdPreEscape = "\(APIHelper.mapValueToPathItem(optionStrategyId))"
         let optionStrategyIdPostEscape = optionStrategyIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{optionStrategyId}", with: optionStrategyIdPostEscape, options: .literal, range: nil)
-        let localVariableURLString = SnapTradeAPI.basePath + localVariablePath
+        let localVariableURLString = basePath + localVariablePath
         let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: optionsPlaceOptionStrategyRequest)
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
@@ -337,10 +1154,19 @@ open class OptionsAPI {
             :
         ]
 
-        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+        var localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<StrategyOrderRecord>.Type = SnapTradeAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        do {
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "query", name: "clientId", value: self.client.partnerClientId)
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "Signature", value: self.client.partnerSignature)
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "query", name: "timestamp", value: self.client.partnerTimestamp)
+            let localVariableRequestBuilder: RequestBuilder<StrategyOrderRecord>.Type = SnapTradeAPI.requestBuilderFactory.getBuilder()
+            let URLString = localVariableUrlComponents?.string ?? localVariableURLString
+            return localVariableRequestBuilder.init(method: "POST", URLString: URLString, parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        } catch {
+            print("Error: \(error)")
+        }
+        fatalError("Error: Unable to send request to POST /accounts/{accountId}/optionStrategy/{optionStrategyId}/execute")
     }
+
 }
