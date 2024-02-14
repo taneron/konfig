@@ -4,14 +4,6 @@ import * as path from "path";
 import * as mustache from "mustache";
 import { Published, generateSdkDynamicPath } from "./util";
 
-function generateSdkRepositories(key: string, debug: boolean = false) {
-  const languages = ["typescript", "java", "python"];
-
-  languages.forEach((language) => {
-    generateSdkRepository(key, language, debug);
-  });
-}
-
 const capitalizedLanguage: Record<string, string> = {
   typescript: "TypeScript",
   java: "Java",
@@ -19,26 +11,48 @@ const capitalizedLanguage: Record<string, string> = {
 };
 
 const OAS_FILE_NAME = "openapi.yaml";
+const publishedDir = path.join(path.dirname(__dirname), "db", "published");
+
+type GenerateSdkResult = {
+  key: string;
+  language: string;
+  result: "success" | "fail" | "skip";
+  reason?: string;
+};
+
+async function generateSdkRepositories(
+  key: string,
+  debug: boolean = false
+): Promise<GenerateSdkResult[]> {
+  const languages = ["typescript", "java", "python"];
+  const result: GenerateSdkResult[] = [];
+
+  languages.forEach((language) => {
+    console.log(`Generating ${language} SDK for ${key}...`);
+    result.push(generateSdkRepository(key, language, debug));
+  });
+  return result;
+}
 
 // In debug mode, repository is not created and code is not pushed to remote
 function generateSdkRepository(
   key: string,
   language: string,
   debug: boolean = false
-) {
+): GenerateSdkResult {
+  const result: GenerateSdkResult = { key, language, result: "fail" };
   const data: Published = JSON.parse(
-    fs.readFileSync(
-      path.join(path.dirname(__dirname), "db", "published", `${key}.json`),
-      "utf-8"
-    )
+    fs.readFileSync(path.join(publishedDir, `${key}.json`), "utf-8")
   );
   const sdkName = data.sdkName.replace("{language}", language);
   const repoDescription = generateRepositoryDescription(data, language);
   const sdksDir = path.join(path.dirname(__dirname), "sdks");
   const repoDir = path.join(sdksDir, sdkName);
   const tmpSdkDir = path.join(path.dirname(__dirname), "tmp", sdkName);
-  if (data.fixedSpecFileName === undefined)
-    throw new Error(`Fixed spec file name not found for ${key}`);
+  if (data.fixedSpecFileName === undefined) {
+    result.reason = "Fixed spec not found.";
+    return result;
+  }
   const pathToOas = path.join(
     path.dirname(__dirname),
     "db",
@@ -47,8 +61,9 @@ function generateSdkRepository(
   );
 
   if (!debug && repositoryExists(sdkName)) {
-    console.log(`Repository ${sdkName} already exists. Aborting...`);
-    return;
+    result.result = "skip";
+    result.reason = "Repository already exists.";
+    return result;
   }
 
   // Create tmp directory where sdk will be generated
@@ -68,10 +83,17 @@ function generateSdkRepository(
     "openapi-examples",
     generateSdkDynamicPath(data.company, data.serviceName)
   );
+  if (!fs.existsSync(openapiExamplesDir)) {
+    result.reason = `openapi-examples directory not found: ${openapiExamplesDir}`;
+    return result;
+  }
   const imagePreviewFile = fs
     .readdirSync(openapiExamplesDir)
     .find((file) => file.match(/imagePreview\.(jpg|png)/));
-  if (!imagePreviewFile) throw new Error(`Image preview not found for ${key}`);
+  if (!imagePreviewFile) {
+    result.reason = "Image preview not found";
+    return result;
+  }
   const headerFileExt = path.extname(imagePreviewFile);
   fs.copyFileSync(
     path.join(openapiExamplesDir, imagePreviewFile),
@@ -89,16 +111,11 @@ function generateSdkRepository(
 
   // Run konfig generate. If any errors occur, delete the repository and abort.
   try {
-    execa.sync("konfig", ["generate"], {
-      cwd: tmpSdkDir,
-      stdio: "inherit",
-    });
+    execa.sync("konfig", ["generate"], { cwd: tmpSdkDir });
   } catch (error: any) {
-    console.log("Error occurred during konfig generate.");
-    console.log("Aborting process and deleting repository...");
     if (!debug) deleteRepository(sdkName);
-    console.log("Repository deleted.");
-    return;
+    result.reason = `Error occurred during generate: ${error.message}`;
+    return result;
   }
   addSignupToReadme(tmpSdkDir, language, data);
 
@@ -107,23 +124,19 @@ function generateSdkRepository(
 
   // Commit and push to remote
   if (!debug) {
-    execa.sync("git", ["add", "-A"], { cwd: repoDir, stdio: "inherit" });
+    execa.sync("git", ["add", "-A"], { cwd: repoDir });
     execa.sync(
       "git",
       ["commit", "-m", `Generate ${data.company} ${language} SDK`],
-      { cwd: repoDir, stdio: "inherit" }
+      { cwd: repoDir }
     );
-    execa.sync("git", ["push", "origin", "HEAD"], {
-      cwd: repoDir,
-      stdio: "inherit",
-    });
+    execa.sync("git", ["push", "origin", "HEAD"], { cwd: repoDir });
   }
 
   // Remove local directory
-  execa.sync("rm", ["-rf", sdkName], {
-    cwd: sdksDir,
-    stdio: "inherit",
-  });
+  execa.sync("rm", ["-rf", sdkName], { cwd: sdksDir });
+  result.result = "success";
+  return result;
 }
 
 function addSignupToReadme(sdkDir: string, language: string, data: Published) {
@@ -167,7 +180,7 @@ function createRepository(name: string, description: string, dir: string) {
       "-d",
       description,
     ],
-    { cwd: dir, stdio: "inherit" }
+    { cwd: dir }
   );
 }
 
@@ -256,10 +269,35 @@ function capitalize(str: string): string {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
-generateSdkRepositories("openbanking.org.uk_account-info-openapi_3.1.7", true);
-// generateSdkRepository("wikimedia.org_1.0.0", "typescript", true);
-// generateSdkRepository(
-//   "openbanking.org.uk_account-info-openapi_3.1.7",
-//   "typescript",
-//   true
-// );
+function displayResults(results: GenerateSdkResult[]) {
+  const success: GenerateSdkResult[] = results.filter(
+    (r) => r.result === "success"
+  );
+  const fail: GenerateSdkResult[] = results.filter((r) => r.result === "fail");
+  const skip: GenerateSdkResult[] = results.filter((r) => r.result === "skip");
+  console.log(
+    `Generated ${results.length} SDKs: ${success.length} successful, ${fail.length} failed, ${skip.length} skipped`
+  );
+  success.forEach((r) => console.log(`- ✅ SUCCESS: ${r.key} ${r.language}`));
+  skip.forEach((r) =>
+    console.log(`- ⏭️ SKIPPED: ${r.key} ${r.language}: ${r.reason}`)
+  );
+  fail.forEach((r) =>
+    console.log(`- ❌ FAILED: ${r.key} ${r.language}: ${r.reason}`)
+  );
+}
+
+async function main() {
+  const publishedJsons = fs.readdirSync(publishedDir);
+  const result: GenerateSdkResult[] = [];
+  await Promise.all(
+    publishedJsons.map(async (file) => {
+      const key = file.replace(".json", "");
+      const res = await generateSdkRepositories(key, true);
+      result.push(...res);
+    })
+  );
+  displayResults(result);
+}
+
+main().then(() => console.log("Done!"));
