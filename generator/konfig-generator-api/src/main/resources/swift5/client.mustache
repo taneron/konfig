@@ -1,15 +1,15 @@
-public class  {{projectName}}Client {
+public class {{projectName}}Client {
 {{#authMethods}}
-    var {{nameInPascalCase}}: String?;
+    public var {{nameInPascalCase}}: String?;
 {{/authMethods}}
-    var basePath: String
+    public var basePath: String
 {{#apiInfo}}
 {{#apis}}
-    lazy var {{classNameCamelCase}}: {{classname}} = { return {{classname}}(client: self) }()
+    public lazy var {{classNameCamelCase}}: {{classname}} = { return {{classname}}(client: self) }()
 {{/apis}}
 {{/apiInfo}}
 
-    init(
+    public init(
 {{#authMethods}}
         {{nameInPascalCase}}: String?,
 {{/authMethods}}

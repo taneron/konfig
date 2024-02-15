@@ -15,11 +15,11 @@ let package = Package(
         .tvOS(.v10),
         {{/useAlamofire}}
         {{^useAlamofire}}
-        .iOS(.v9),
-        .macOS(.v10_11),
-        .tvOS(.v9),
+        .iOS(.v12),
+        .macOS(.v10_13),
+        .tvOS(.v12),
         {{/useAlamofire}}
-        .watchOS(.v3),
+        .watchOS(.v4),
         {{/useVapor}}
     ],
     products: [
@@ -31,7 +31,7 @@ let package = Package(
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
-        .package(url: "https://github.com/Flight-School/AnyCodable", from: "0.6.1"),
+        .package(url: "https://github.com/konfig-dev/AnyCodable", from: "0.6.9"),
         {{#useAlamofire}}
         .package(url: "https://github.com/Alamofire/Alamofire", from: "5.4.3"),
         {{/useAlamofire}}
