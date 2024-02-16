@@ -89,7 +89,7 @@ function generateSdkRepository(
   }
   const imagePreviewFile = fs
     .readdirSync(openapiExamplesDir)
-    .find((file) => file.match(/imagePreview\.(jpg|png)/));
+    .find((file) => file.match(/imagePreview\.(jpg|png|jpeg)/));
   if (!imagePreviewFile) {
     result.reason = "Image preview not found";
     return result;
@@ -288,13 +288,16 @@ function displayResults(results: GenerateSdkResult[]) {
 }
 
 async function main() {
+  const arg = process.argv[2];
   const publishedJsons = fs.readdirSync(publishedDir);
   const result: GenerateSdkResult[] = [];
   await Promise.all(
     publishedJsons.map(async (file) => {
       const key = file.replace(".json", "");
-      const res = await generateSdkRepositories(key, true);
-      result.push(...res);
+      if (!arg || key.includes(arg)) {
+        const res = await generateSdkRepositories(key, true);
+        result.push(...res);
+      }
     })
   );
   displayResults(result);
