@@ -81,6 +81,7 @@ export function getMethodObjects(spec: Spec): Method[] {
     const responses: Response[] = [];
     for (const statusCode in operation.responses) {
       const mediaObjectOrRef = operation.responses[statusCode];
+      if (mediaObjectOrRef === null) console.log(operation);
       const mediaObject = resolveRef({
         refOrObject: mediaObjectOrRef,
         $ref: spec.$ref,
@@ -129,7 +130,9 @@ export function getMethodObjects(spec: Spec): Method[] {
 function getTypescriptTag(tag: string) {
   // remove parentheses characters ("(" & ")") from tag
   const withoutParentheses = tag.replace(/[()]/g, "");
-  return camelcase(withoutParentheses);
+  // remove backslashes ("\"") from tag
+  const withoutBackslashes = withoutParentheses.replace(/\\/g, "");
+  return camelcase(withoutBackslashes);
 }
 
 function getMethodName({

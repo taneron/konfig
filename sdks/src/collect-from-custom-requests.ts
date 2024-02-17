@@ -97,6 +97,20 @@ async function executeCustomRequest(key: string, customRequest: CustomRequest) {
 }
 
 const customRequests: Record<string, CustomRequest> = {
+  "lob.com": {
+    type: "GET",
+    url: "https://raw.githubusercontent.com/lob/lob-openapi/main/dist/lob-api-bundled.yml",
+  },
+  "vimeo.com": {
+    lambda: async () => {
+      const response = await fetch("https://api.vimeo.com/?openapi=1", {
+        headers: {
+          Authorization: "bearer 428c282ac3d7bf40265e8700904bb85b",
+        },
+      });
+      return response.text();
+    },
+  },
   "ynab.com": {
     type: "GET",
     url: "https://api.ynab.com/papi/open_api_spec.yaml",
