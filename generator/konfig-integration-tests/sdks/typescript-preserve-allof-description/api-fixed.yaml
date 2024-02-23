@@ -1,0 +1,81 @@
+openapi: 3.0.3
+info:
+  title: typescript-preserve-allof-description API
+  description: A simple API based for testing typescript-preserve-allof-description.
+  version: 1.0.0
+  termsOfService: http://example.com/terms/
+  contact:
+    name: API Support
+    url: http://example.com/support
+    email: support@example.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+servers:
+  - description: Live API server
+    url: https://typescript-preserve-allof-description.konfigthis.com
+tags:
+  - name: Test
+paths:
+  /simple-endpoint:
+    get:
+      tags:
+        - Test
+      summary: Fetches a JSON value based on input parameter
+      operationId: Test_fetch
+      description: Provide an input parameter to receive a JSON value with properties.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TestFetchRequest'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseChild'
+components:
+  securitySchemes:
+    ApiKey:
+      type: apiKey
+      in: header
+      name: X-API-KEY
+  schemas:
+    RequestBody:
+      type: object
+      properties:
+        input:
+          $ref: '#/components/schemas/Child'
+      required:
+        - input
+      x-konfig-properties:
+        input:
+          description: Description of input Property in RequestBody schema
+    ResponseChild:
+      type: object
+      properties:
+        input:
+          $ref: '#/components/schemas/Child'
+      x-konfig-properties:
+        input:
+          description: Description of input Property in ResponseChild schema
+    Child:
+      description: Description of Child
+      type: object
+      properties:
+        name:
+          type: string
+      required:
+        - name
+    TestFetchRequest:
+      type: object
+      properties:
+        input:
+          $ref: '#/components/schemas/RequestBody'
+      x-konfig-properties:
+        input:
+          description: Description of input property in RequestBody in Operation
+security:
+  - ApiKey: []
