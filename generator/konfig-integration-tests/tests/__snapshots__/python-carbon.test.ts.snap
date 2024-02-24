@@ -1,11 +1,11 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`python-carbon 1`] = `
-"<div align=\\"center\\">
+"<div align="center">
 
 [![Visit Carbon](https://raw.githubusercontent.com/Carbon-for-Developers/carbon-sdks/HEAD/python/header.png)](https://carbon.ai)
 
-# Carbon<a id=\\"carbon\\"></a>
+# Carbon<a id="carbon"></a>
 
 Connect external data to LLMs, no matter the source.
 
@@ -15,7 +15,7 @@ Connect external data to LLMs, no matter the source.
 
 </div>
 
-## Table of Contents<a id=\\"table-of-contents\\"></a>
+## Table of Contents<a id="table-of-contents"></a>
 
 <!-- toc -->
 
@@ -74,17 +74,17 @@ Connect external data to LLMs, no matter the source.
 
 <!-- tocstop -->
 
-## Requirements<a id=\\"requirements\\"></a>
+## Requirements<a id="requirements"></a>
 
 Python >=3.7
 
-## Installation<a id=\\"installation\\"></a>
+## Installation<a id="installation"></a>
 
 \`\`\`sh
 pip install carbon-python-sdk==0.1.0
 \`\`\`
 
-## Getting Started<a id=\\"getting-started\\"></a>
+## Getting Started<a id="getting-started"></a>
 
 \`\`\`python
 from carbon import Carbon
@@ -92,8 +92,8 @@ from carbon import Carbon
 # Generally this is done in the backend to avoid exposing API key to the client
 
 carbon = Carbon(
-    api_key=\\"YOUR_API_KEY\\",
-    customer_id=\\"YOUR_CUSTOMER_ID\\",
+    api_key="YOUR_API_KEY",
+    customer_id="YOUR_CUSTOMER_ID",
 )
 
 token = carbon.auth.get_access_token()
@@ -108,7 +108,7 @@ white_labeling = carbon.auth.get_white_labeling()
 # etc.
 \`\`\`
 
-## Async<a id=\\"async\\"></a>
+## Async<a id="async"></a>
 
 \`async\` support is available by prepending \`a\` to any method.
 
@@ -118,9 +118,9 @@ from pprint import pprint
 from carbon import Carbon, ApiException
 
 carbon = Carbon(
-    access_token=\\"YOUR_API_KEY\\",
-    api_key=\\"YOUR_API_KEY\\",
-    customer_id=\\"YOUR_API_KEY\\",
+    access_token="YOUR_API_KEY",
+    api_key="YOUR_API_KEY",
+    customer_id="YOUR_API_KEY",
 )
 
 
@@ -130,10 +130,10 @@ async def main():
         get_access_token_response = await carbon.auth.aget_access_token()
         print(get_access_token_response)
     except ApiException as e:
-        print(\\"Exception when calling AuthApi.get_access_token: %s\\\\n\\" % e)
+        print("Exception when calling AuthApi.get_access_token: %s\\n" % e)
         pprint(e.body)
         if e.status == 422:
-            pprint(e.body[\\"detail\\"])
+            pprint(e.body["detail"])
         pprint(e.headers)
         pprint(e.status)
         pprint(e.reason)
@@ -143,7 +143,7 @@ async def main():
 asyncio.run(main())
 \`\`\`
 
-## Raw HTTP Response<a id=\\"raw-http-response\\"></a>
+## Raw HTTP Response<a id="raw-http-response"></a>
 
 To access raw HTTP response values, use the \`.raw\` namespace.
 
@@ -152,25 +152,25 @@ from pprint import pprint
 from carbon import Carbon, ApiException
 
 carbon = Carbon(
-    access_token=\\"YOUR_API_KEY\\",
-    api_key=\\"YOUR_API_KEY\\",
-    customer_id=\\"YOUR_API_KEY\\",
+    access_token="YOUR_API_KEY",
+    api_key="YOUR_API_KEY",
+    customer_id="YOUR_API_KEY",
 )
 
 try:
     # Get Access Token
     get_access_token_response = carbon.auth.raw.get_access_token()
     pprint(get_access_token_response.body)
-    pprint(get_access_token_response.body[\\"access_token\\"])
-    pprint(get_access_token_response.body[\\"refresh_token\\"])
+    pprint(get_access_token_response.body["access_token"])
+    pprint(get_access_token_response.body["refresh_token"])
     pprint(get_access_token_response.headers)
     pprint(get_access_token_response.status)
     pprint(get_access_token_response.round_trip_time)
 except ApiException as e:
-    print(\\"Exception when calling AuthApi.get_access_token: %s\\\\n\\" % e)
+    print("Exception when calling AuthApi.get_access_token: %s\\n" % e)
     pprint(e.body)
     if e.status == 422:
-        pprint(e.body[\\"detail\\"])
+        pprint(e.body["detail"])
     pprint(e.headers)
     pprint(e.status)
     pprint(e.reason)
@@ -178,22 +178,22 @@ except ApiException as e:
 \`\`\`
 
 
-## Reference<a id=\\"reference\\"></a>
-### \`carbon.auth.get_access_token\`<a id=\\"carbonauthget_access_token\\"></a>
+## Reference<a id="reference"></a>
+### \`carbon.auth.get_access_token\`<a id="carbonauthget_access_token"></a>
 
 Get Access Token
 
-#### 🛠️ Usage<a id=\\"🛠️-usage\\"></a>
+#### 🛠️ Usage<a id="🛠️-usage"></a>
 
 \`\`\`python
 get_access_token_response = carbon.auth.get_access_token()
 \`\`\`
 
-#### 🔄 Return<a id=\\"🔄-return\\"></a>
+#### 🔄 Return<a id="🔄-return"></a>
 
 [\`TokenResponse\`](./carbon/pydantic/token_response.py)
 
-#### 🌐 Endpoint<a id=\\"🌐-endpoint\\"></a>
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
 \`/auth/v1/access_token\` \`get\`
 
@@ -201,7 +201,7 @@ get_access_token_response = carbon.auth.get_access_token()
 
 ---
 
-### \`carbon.auth.get_white_labeling\`<a id=\\"carbonauthget_white_labeling\\"></a>
+### \`carbon.auth.get_white_labeling\`<a id="carbonauthget_white_labeling"></a>
 
 Returns whether or not the organization is white labeled and which integrations are white labeled
 
@@ -209,17 +209,17 @@ Returns whether or not the organization is white labeled and which integrations 
 :param db: the database session
 :return: a WhiteLabelingResponse
 
-#### 🛠️ Usage<a id=\\"🛠️-usage\\"></a>
+#### 🛠️ Usage<a id="🛠️-usage"></a>
 
 \`\`\`python
 get_white_labeling_response = carbon.auth.get_white_labeling()
 \`\`\`
 
-#### 🔄 Return<a id=\\"🔄-return\\"></a>
+#### 🔄 Return<a id="🔄-return"></a>
 
 [\`WhiteLabelingResponse\`](./carbon/pydantic/white_labeling_response.py)
 
-#### 🌐 Endpoint<a id=\\"🌐-endpoint\\"></a>
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
 \`/auth/v1/white_labeling\` \`get\`
 
@@ -227,46 +227,46 @@ get_white_labeling_response = carbon.auth.get_white_labeling()
 
 ---
 
-### \`carbon.data_sources.query_user_data_sources\`<a id=\\"carbondata_sourcesquery_user_data_sources\\"></a>
+### \`carbon.data_sources.query_user_data_sources\`<a id="carbondata_sourcesquery_user_data_sources"></a>
 
 User Data Sources
 
-#### 🛠️ Usage<a id=\\"🛠️-usage\\"></a>
+#### 🛠️ Usage<a id="🛠️-usage"></a>
 
 \`\`\`python
 query_user_data_sources_response = carbon.data_sources.query_user_data_sources(
     pagination={
-        \\"limit\\": 10,
-        \\"offset\\": 0,
+        "limit": 10,
+        "offset": 0,
     },
-    order_by=\\"created_at\\",
-    order_dir=\\"desc\\",
+    order_by="created_at",
+    order_dir="desc",
     filters={
-        \\"source\\": \\"GOOGLE_DRIVE\\",
+        "source": "GOOGLE_DRIVE",
     },
 )
 \`\`\`
 
-#### ⚙️ Parameters<a id=\\"⚙️-parameters\\"></a>
+#### ⚙️ Parameters<a id="⚙️-parameters"></a>
 
-##### pagination: [\`Pagination\`](./carbon/type/pagination.py)<a id=\\"pagination-paginationcarbontypepaginationpy\\"></a>
-
-
-##### order_by: [\`OrganizationUserDataSourceOrderByColumns\`](./carbon/type/organization_user_data_source_order_by_columns.py)<a id=\\"order_by-organizationuserdatasourceorderbycolumnscarbontypeorganization_user_data_source_order_by_columnspy\\"></a>
-
-##### order_dir: [\`OrderDir\`](./carbon/type/order_dir.py)<a id=\\"order_dir-orderdircarbontypeorder_dirpy\\"></a>
-
-##### filters: [\`OrganizationUserDataSourceFilters\`](./carbon/type/organization_user_data_source_filters.py)<a id=\\"filters-organizationuserdatasourcefilterscarbontypeorganization_user_data_source_filterspy\\"></a>
+##### pagination: [\`Pagination\`](./carbon/type/pagination.py)<a id="pagination-paginationcarbontypepaginationpy"></a>
 
 
-#### ⚙️ Request Body<a id=\\"⚙️-request-body\\"></a>
+##### order_by: [\`OrganizationUserDataSourceOrderByColumns\`](./carbon/type/organization_user_data_source_order_by_columns.py)<a id="order_by-organizationuserdatasourceorderbycolumnscarbontypeorganization_user_data_source_order_by_columnspy"></a>
+
+##### order_dir: [\`OrderDir\`](./carbon/type/order_dir.py)<a id="order_dir-orderdircarbontypeorder_dirpy"></a>
+
+##### filters: [\`OrganizationUserDataSourceFilters\`](./carbon/type/organization_user_data_source_filters.py)<a id="filters-organizationuserdatasourcefilterscarbontypeorganization_user_data_source_filterspy"></a>
+
+
+#### ⚙️ Request Body<a id="⚙️-request-body"></a>
 
 [\`OrganizationUserDataSourceQueryInput\`](./carbon/type/organization_user_data_source_query_input.py)
-#### 🔄 Return<a id=\\"🔄-return\\"></a>
+#### 🔄 Return<a id="🔄-return"></a>
 
 [\`OrganizationUserDataSourceResponse\`](./carbon/pydantic/organization_user_data_source_response.py)
 
-#### 🌐 Endpoint<a id=\\"🌐-endpoint\\"></a>
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
 \`/user_data_sources\` \`post\`
 
@@ -274,11 +274,11 @@ query_user_data_sources_response = carbon.data_sources.query_user_data_sources(
 
 ---
 
-### \`carbon.data_sources.revoke_access_token\`<a id=\\"carbondata_sourcesrevoke_access_token\\"></a>
+### \`carbon.data_sources.revoke_access_token\`<a id="carbondata_sourcesrevoke_access_token"></a>
 
 Revoke Access Token
 
-#### 🛠️ Usage<a id=\\"🛠️-usage\\"></a>
+#### 🛠️ Usage<a id="🛠️-usage"></a>
 
 \`\`\`python
 revoke_access_token_response = carbon.data_sources.revoke_access_token(
@@ -286,18 +286,18 @@ revoke_access_token_response = carbon.data_sources.revoke_access_token(
 )
 \`\`\`
 
-#### ⚙️ Parameters<a id=\\"⚙️-parameters\\"></a>
+#### ⚙️ Parameters<a id="⚙️-parameters"></a>
 
-##### data_source_id: \`int\`<a id=\\"data_source_id-int\\"></a>
+##### data_source_id: \`int\`<a id="data_source_id-int"></a>
 
-#### ⚙️ Request Body<a id=\\"⚙️-request-body\\"></a>
+#### ⚙️ Request Body<a id="⚙️-request-body"></a>
 
 [\`RevokeAccessTokenInput\`](./carbon/type/revoke_access_token_input.py)
-#### 🔄 Return<a id=\\"🔄-return\\"></a>
+#### 🔄 Return<a id="🔄-return"></a>
 
 [\`GenericSuccessResponse\`](./carbon/pydantic/generic_success_response.py)
 
-#### 🌐 Endpoint<a id=\\"🌐-endpoint\\"></a>
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
 \`/revoke_access_token\` \`post\`
 
@@ -305,40 +305,40 @@ revoke_access_token_response = carbon.data_sources.revoke_access_token(
 
 ---
 
-### \`carbon.embeddings.get_documents\`<a id=\\"carbonembeddingsget_documents\\"></a>
+### \`carbon.embeddings.get_documents\`<a id="carbonembeddingsget_documents"></a>
 
 For pre-filtering documents, using \`tags_v2\` is preferred to using \`tags\` (which is now deprecated). If both \`tags_v2\`
 and \`tags\` are specified, \`tags\` is ignored. \`tags_v2\` enables
-building complex filters through the use of \\"AND\\", \\"OR\\", and negation logic. Take the below input as an example:
+building complex filters through the use of "AND", "OR", and negation logic. Take the below input as an example:
 \`\`\`json
 {
-    \\"OR\\": [
+    "OR": [
         {
-            \\"key\\": \\"subject\\",
-            \\"value\\": \\"holy-bible\\",
-            \\"negate\\": false
+            "key": "subject",
+            "value": "holy-bible",
+            "negate": false
         },
         {
-            \\"key\\": \\"person-of-interest\\",
-            \\"value\\": \\"jesus christ\\",
-            \\"negate\\": false
+            "key": "person-of-interest",
+            "value": "jesus christ",
+            "negate": false
         },
         {
-            \\"key\\": \\"genre\\",
-            \\"value\\": \\"religion\\",
-            \\"negate\\": true
+            "key": "genre",
+            "value": "religion",
+            "negate": true
         }
         {
-            \\"AND\\": [
+            "AND": [
                 {
-                    \\"key\\": \\"subject\\",
-                    \\"value\\": \\"tao-te-ching\\",
-                    \\"negate\\": false
+                    "key": "subject",
+                    "value": "tao-te-ching",
+                    "negate": false
                 },
                 {
-                    \\"key\\": \\"author\\",
-                    \\"value\\": \\"lao-tzu\\",
-                    \\"negate\\": false
+                    "key": "author",
+                    "value": "lao-tzu",
+                    "negate": false
                 }
             ]
         }
@@ -346,29 +346,29 @@ building complex filters through the use of \\"AND\\", \\"OR\\", and negation lo
 }
 \`\`\`
 In this case, files will be filtered such that:
-1. \\"subject\\" = \\"holy-bible\\" OR
-2. \\"person-of-interest\\" = \\"jesus christ\\" OR
-3. \\"genre\\" != \\"religion\\" OR
-4. \\"subject\\" = \\"tao-te-ching\\" AND \\"author\\" = \\"lao-tzu\\"
+1. "subject" = "holy-bible" OR
+2. "person-of-interest" = "jesus christ" OR
+3. "genre" != "religion" OR
+4. "subject" = "tao-te-ching" AND "author" = "lao-tzu"
 
-Note that the top level of the query must be either an \\"OR\\" or \\"AND\\" array. Currently, nesting is limited to 3.
-For tag blocks (those with \\"key\\", \\"value\\", and \\"negate\\" keys), the following typing rules apply:
-1. \\"key\\" isn't optional and must be a \`string\`
-2. \\"value\\" isn't optional and can be \`any\` or list[\`any\`]
-3. \\"negate\\" is optional and must be \`true\` or \`false\`. If present and \`true\`, then the filter block is negated in
+Note that the top level of the query must be either an "OR" or "AND" array. Currently, nesting is limited to 3.
+For tag blocks (those with "key", "value", and "negate" keys), the following typing rules apply:
+1. "key" isn't optional and must be a \`string\`
+2. "value" isn't optional and can be \`any\` or list[\`any\`]
+3. "negate" is optional and must be \`true\` or \`false\`. If present and \`true\`, then the filter block is negated in
 the resulting query. It is \`false\` by default.
 
 
 When querying embeddings, you can optionally specify the \`media_type\` parameter in your request. By default (if
-not set), it is equal to \\"TEXT\\". This means that the query will be performed over files that have
-been parsed as text (for now, this covers all files except image files). If it is equal to \\"IMAGE\\",
+not set), it is equal to "TEXT". This means that the query will be performed over files that have
+been parsed as text (for now, this covers all files except image files). If it is equal to "IMAGE",
 the query will be performed over image files (for now, \`.jpg\` and \`.png\` files). You can think of this
 field as an additional filter on top of any filters set in \`file_ids\` and
 
 
 When \`hybrid_search\` is set to true, a combination of keyword search and semantic search are used to rank
 and select candidate embeddings during information retrieval. By default, these search methods are weighted
-equally during the ranking process. To adjust the weight (or \\"importance\\") of each search method, you can use
+equally during the ranking process. To adjust the weight (or "importance") of each search method, you can use
 the \`hybrid_search_tuning_parameters\` property. The description for the different tuning parameters are:
 - \`weight_a\`: weight to assign to semantic search
 - \`weight_b\`: weight to assign to keyword search
@@ -381,9 +381,9 @@ In order to use hybrid search for a customer across a set of documents, two flag
 body for this request is below:
 \`\`\`
 {
-  \\"configuration_key_name\\": \\"sparse_vectors\\",
-  \\"value\\": {
-    \\"enabled\\": true
+  "configuration_key_name": "sparse_vectors",
+  "value": {
+    "enabled": true
   }
 }
 \`\`\`
@@ -402,14 +402,14 @@ specified as the \`embedding_model\` in \`/embeddings\`, then only files C and D
 the set of all files you want considered for a query have embeddings generated via the same model. For now, **do not**
 set \`VERTEX_MULTIMODAL\` as an \`embedding_model\`. This model is used automatically by Carbon when it detects an image file.
 
-#### 🛠️ Usage<a id=\\"🛠️-usage\\"></a>
+#### 🛠️ Usage<a id="🛠️-usage"></a>
 
 \`\`\`python
 get_documents_response = carbon.embeddings.get_documents(
-    query=\\"a\\",
+    query="a",
     k=1,
     tags={
-        \\"key\\": \\"string_example\\",
+        "key": "string_example",
     },
     query_vector=[3.14],
     file_ids=[1],
@@ -420,67 +420,67 @@ get_documents_response = carbon.embeddings.get_documents(
     include_raw_file=True,
     hybrid_search=True,
     hybrid_search_tuning_parameters={
-        \\"weight_a\\": 0.5,
-        \\"weight_b\\": 0.5,
+        "weight_a": 0.5,
+        "weight_b": 0.5,
     },
-    media_type=\\"TEXT\\",
-    embedding_model=\\"OPENAI\\",
+    media_type="TEXT",
+    embedding_model="OPENAI",
 )
 \`\`\`
 
-#### ⚙️ Parameters<a id=\\"⚙️-parameters\\"></a>
+#### ⚙️ Parameters<a id="⚙️-parameters"></a>
 
-##### query: \`str\`<a id=\\"query-str\\"></a>
+##### query: \`str\`<a id="query-str"></a>
 
 Query for which to get related chunks and embeddings.
 
-##### k: \`int\`<a id=\\"k-int\\"></a>
+##### k: \`int\`<a id="k-int"></a>
 
 Number of related chunks to return.
 
-##### tags: [\`GetEmbeddingDocumentsBodyTags\`](./carbon/type/get_embedding_documents_body_tags.py)<a id=\\"tags-getembeddingdocumentsbodytagscarbontypeget_embedding_documents_body_tagspy\\"></a>
+##### tags: [\`GetEmbeddingDocumentsBodyTags\`](./carbon/type/get_embedding_documents_body_tags.py)<a id="tags-getembeddingdocumentsbodytagscarbontypeget_embedding_documents_body_tagspy"></a>
 
-##### query_vector: [\`GetEmbeddingDocumentsBodyQueryVector\`](./carbon/type/get_embedding_documents_body_query_vector.py)<a id=\\"query_vector-getembeddingdocumentsbodyqueryvectorcarbontypeget_embedding_documents_body_query_vectorpy\\"></a>
+##### query_vector: [\`GetEmbeddingDocumentsBodyQueryVector\`](./carbon/type/get_embedding_documents_body_query_vector.py)<a id="query_vector-getembeddingdocumentsbodyqueryvectorcarbontypeget_embedding_documents_body_query_vectorpy"></a>
 
-##### file_ids: [\`GetEmbeddingDocumentsBodyFileIds\`](./carbon/type/get_embedding_documents_body_file_ids.py)<a id=\\"file_ids-getembeddingdocumentsbodyfileidscarbontypeget_embedding_documents_body_file_idspy\\"></a>
+##### file_ids: [\`GetEmbeddingDocumentsBodyFileIds\`](./carbon/type/get_embedding_documents_body_file_ids.py)<a id="file_ids-getembeddingdocumentsbodyfileidscarbontypeget_embedding_documents_body_file_idspy"></a>
 
-##### parent_file_ids: [\`GetEmbeddingDocumentsBodyParentFileIds\`](./carbon/type/get_embedding_documents_body_parent_file_ids.py)<a id=\\"parent_file_ids-getembeddingdocumentsbodyparentfileidscarbontypeget_embedding_documents_body_parent_file_idspy\\"></a>
+##### parent_file_ids: [\`GetEmbeddingDocumentsBodyParentFileIds\`](./carbon/type/get_embedding_documents_body_parent_file_ids.py)<a id="parent_file_ids-getembeddingdocumentsbodyparentfileidscarbontypeget_embedding_documents_body_parent_file_idspy"></a>
 
-##### tags_v2: \`Optional[Dict[str, Union[bool, date, datetime, dict, float, int, list, str, None]]]\`<a id=\\"tags_v2-optionaldictstr-unionbool-date-datetime-dict-float-int-list-str-none\\"></a>
+##### tags_v2: \`Optional[Dict[str, Union[bool, date, datetime, dict, float, int, list, str, None]]]\`<a id="tags_v2-optionaldictstr-unionbool-date-datetime-dict-float-int-list-str-none"></a>
 
 A set of tags to limit the search to. Use this instead of \`tags\`, which is deprecated.
 
-##### include_tags: \`Optional[bool]\`<a id=\\"include_tags-optionalbool\\"></a>
+##### include_tags: \`Optional[bool]\`<a id="include_tags-optionalbool"></a>
 
 Flag to control whether or not to include tags for each chunk in the response.
 
-##### include_vectors: \`Optional[bool]\`<a id=\\"include_vectors-optionalbool\\"></a>
+##### include_vectors: \`Optional[bool]\`<a id="include_vectors-optionalbool"></a>
 
 Flag to control whether or not to include embedding vectors in the response.
 
-##### include_raw_file: \`Optional[bool]\`<a id=\\"include_raw_file-optionalbool\\"></a>
+##### include_raw_file: \`Optional[bool]\`<a id="include_raw_file-optionalbool"></a>
 
 Flag to control whether or not to include a signed URL to the raw file containing each chunk         in the response.
 
-##### hybrid_search: \`Optional[bool]\`<a id=\\"hybrid_search-optionalbool\\"></a>
+##### hybrid_search: \`Optional[bool]\`<a id="hybrid_search-optionalbool"></a>
 
 Flag to control whether or not to perform hybrid search.
 
-##### hybrid_search_tuning_parameters: [\`HybridSearchTuningParamsNullable\`](./carbon/type/hybrid_search_tuning_params_nullable.py)<a id=\\"hybrid_search_tuning_parameters-hybridsearchtuningparamsnullablecarbontypehybrid_search_tuning_params_nullablepy\\"></a>
+##### hybrid_search_tuning_parameters: [\`HybridSearchTuningParamsNullable\`](./carbon/type/hybrid_search_tuning_params_nullable.py)<a id="hybrid_search_tuning_parameters-hybridsearchtuningparamsnullablecarbontypehybrid_search_tuning_params_nullablepy"></a>
 
 
-##### media_type: [\`FileContentTypesNullable\`](./carbon/type/file_content_types_nullable.py)<a id=\\"media_type-filecontenttypesnullablecarbontypefile_content_types_nullablepy\\"></a>
+##### media_type: [\`FileContentTypesNullable\`](./carbon/type/file_content_types_nullable.py)<a id="media_type-filecontenttypesnullablecarbontypefile_content_types_nullablepy"></a>
 
-##### embedding_model: [\`EmbeddingGeneratorsNullable\`](./carbon/type/embedding_generators_nullable.py)<a id=\\"embedding_model-embeddinggeneratorsnullablecarbontypeembedding_generators_nullablepy\\"></a>
+##### embedding_model: [\`EmbeddingGeneratorsNullable\`](./carbon/type/embedding_generators_nullable.py)<a id="embedding_model-embeddinggeneratorsnullablecarbontypeembedding_generators_nullablepy"></a>
 
-#### ⚙️ Request Body<a id=\\"⚙️-request-body\\"></a>
+#### ⚙️ Request Body<a id="⚙️-request-body"></a>
 
 [\`GetEmbeddingDocumentsBody\`](./carbon/type/get_embedding_documents_body.py)
-#### 🔄 Return<a id=\\"🔄-return\\"></a>
+#### 🔄 Return<a id="🔄-return"></a>
 
 [\`DocumentResponseList\`](./carbon/pydantic/document_response_list.py)
 
-#### 🌐 Endpoint<a id=\\"🌐-endpoint\\"></a>
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
 \`/embeddings\` \`post\`
 
@@ -488,50 +488,50 @@ Flag to control whether or not to perform hybrid search.
 
 ---
 
-### \`carbon.embeddings.get_embeddings_and_chunks\`<a id=\\"carbonembeddingsget_embeddings_and_chunks\\"></a>
+### \`carbon.embeddings.get_embeddings_and_chunks\`<a id="carbonembeddingsget_embeddings_and_chunks"></a>
 
 Retrieve Embeddings And Content
 
-#### 🛠️ Usage<a id=\\"🛠️-usage\\"></a>
+#### 🛠️ Usage<a id="🛠️-usage"></a>
 
 \`\`\`python
 get_embeddings_and_chunks_response = carbon.embeddings.get_embeddings_and_chunks(
     filters={
-        \\"user_file_id\\": 1,
-        \\"embedding_model\\": \\"OPENAI\\",
+        "user_file_id": 1,
+        "embedding_model": "OPENAI",
     },
     pagination={
-        \\"limit\\": 10,
-        \\"offset\\": 0,
+        "limit": 10,
+        "offset": 0,
     },
-    order_by=\\"created_at\\",
-    order_dir=\\"desc\\",
+    order_by="created_at",
+    order_dir="desc",
     include_vectors=False,
 )
 \`\`\`
 
-#### ⚙️ Parameters<a id=\\"⚙️-parameters\\"></a>
+#### ⚙️ Parameters<a id="⚙️-parameters"></a>
 
-##### filters: [\`EmbeddingsAndChunksFilters\`](./carbon/type/embeddings_and_chunks_filters.py)<a id=\\"filters-embeddingsandchunksfilterscarbontypeembeddings_and_chunks_filterspy\\"></a>
-
-
-##### pagination: [\`Pagination\`](./carbon/type/pagination.py)<a id=\\"pagination-paginationcarbontypepaginationpy\\"></a>
+##### filters: [\`EmbeddingsAndChunksFilters\`](./carbon/type/embeddings_and_chunks_filters.py)<a id="filters-embeddingsandchunksfilterscarbontypeembeddings_and_chunks_filterspy"></a>
 
 
-##### order_by: [\`EmbeddingsAndChunksOrderByColumns\`](./carbon/type/embeddings_and_chunks_order_by_columns.py)<a id=\\"order_by-embeddingsandchunksorderbycolumnscarbontypeembeddings_and_chunks_order_by_columnspy\\"></a>
+##### pagination: [\`Pagination\`](./carbon/type/pagination.py)<a id="pagination-paginationcarbontypepaginationpy"></a>
 
-##### order_dir: [\`OrderDir\`](./carbon/type/order_dir.py)<a id=\\"order_dir-orderdircarbontypeorder_dirpy\\"></a>
 
-##### include_vectors: \`bool\`<a id=\\"include_vectors-bool\\"></a>
+##### order_by: [\`EmbeddingsAndChunksOrderByColumns\`](./carbon/type/embeddings_and_chunks_order_by_columns.py)<a id="order_by-embeddingsandchunksorderbycolumnscarbontypeembeddings_and_chunks_order_by_columnspy"></a>
 
-#### ⚙️ Request Body<a id=\\"⚙️-request-body\\"></a>
+##### order_dir: [\`OrderDir\`](./carbon/type/order_dir.py)<a id="order_dir-orderdircarbontypeorder_dirpy"></a>
+
+##### include_vectors: \`bool\`<a id="include_vectors-bool"></a>
+
+#### ⚙️ Request Body<a id="⚙️-request-body"></a>
 
 [\`EmbeddingsAndChunksQueryInput\`](./carbon/type/embeddings_and_chunks_query_input.py)
-#### 🔄 Return<a id=\\"🔄-return\\"></a>
+#### 🔄 Return<a id="🔄-return"></a>
 
 [\`EmbeddingsAndChunksResponse\`](./carbon/pydantic/embeddings_and_chunks_response.py)
 
-#### 🌐 Endpoint<a id=\\"🌐-endpoint\\"></a>
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
 \`/text_chunks\` \`post\`
 
@@ -539,23 +539,23 @@ get_embeddings_and_chunks_response = carbon.embeddings.get_embeddings_and_chunks
 
 ---
 
-### \`carbon.embeddings.upload_chunks_and_embeddings\`<a id=\\"carbonembeddingsupload_chunks_and_embeddings\\"></a>
+### \`carbon.embeddings.upload_chunks_and_embeddings\`<a id="carbonembeddingsupload_chunks_and_embeddings"></a>
 
 Upload Chunks And Embeddings
 
-#### 🛠️ Usage<a id=\\"🛠️-usage\\"></a>
+#### 🛠️ Usage<a id="🛠️-usage"></a>
 
 \`\`\`python
 upload_chunks_and_embeddings_response = carbon.embeddings.upload_chunks_and_embeddings(
-    embedding_model=\\"OPENAI\\",
+    embedding_model="OPENAI",
     chunks_and_embeddings=[
         {
-            \\"file_id\\": 1,
-            \\"chunks_and_embeddings\\": [
+            "file_id": 1,
+            "chunks_and_embeddings": [
                 {
-                    \\"chunk_number\\": 1,
-                    \\"chunk\\": \\"chunk_example\\",
-                    \\"embedding\\": [3.14],
+                    "chunk_number": 1,
+                    "chunk": "chunk_example",
+                    "embedding": [3.14],
                 }
             ],
         }
@@ -564,22 +564,22 @@ upload_chunks_and_embeddings_response = carbon.embeddings.upload_chunks_and_embe
 )
 \`\`\`
 
-#### ⚙️ Parameters<a id=\\"⚙️-parameters\\"></a>
+#### ⚙️ Parameters<a id="⚙️-parameters"></a>
 
-##### embedding_model: [\`EmbeddingGenerators\`](./carbon/type/embedding_generators.py)<a id=\\"embedding_model-embeddinggeneratorscarbontypeembedding_generatorspy\\"></a>
+##### embedding_model: [\`EmbeddingGenerators\`](./carbon/type/embedding_generators.py)<a id="embedding_model-embeddinggeneratorscarbontypeembedding_generatorspy"></a>
 
-##### chunks_and_embeddings: List[\`SingleChunksAndEmbeddingsUploadInput\`]<a id=\\"chunks_and_embeddings-listsinglechunksandembeddingsuploadinput\\"></a>
+##### chunks_and_embeddings: List[\`SingleChunksAndEmbeddingsUploadInput\`]<a id="chunks_and_embeddings-listsinglechunksandembeddingsuploadinput"></a>
 
-##### overwrite_existing: \`bool\`<a id=\\"overwrite_existing-bool\\"></a>
+##### overwrite_existing: \`bool\`<a id="overwrite_existing-bool"></a>
 
-#### ⚙️ Request Body<a id=\\"⚙️-request-body\\"></a>
+#### ⚙️ Request Body<a id="⚙️-request-body"></a>
 
 [\`ChunksAndEmbeddingsUploadInput\`](./carbon/type/chunks_and_embeddings_upload_input.py)
-#### 🔄 Return<a id=\\"🔄-return\\"></a>
+#### 🔄 Return<a id="🔄-return"></a>
 
 [\`GenericSuccessResponse\`](./carbon/pydantic/generic_success_response.py)
 
-#### 🌐 Endpoint<a id=\\"🌐-endpoint\\"></a>
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
 \`/upload_chunks_and_embeddings\` \`post\`
 
@@ -587,7 +587,7 @@ upload_chunks_and_embeddings_response = carbon.embeddings.upload_chunks_and_embe
 
 ---
 
-### \`carbon.files.create_user_file_tags\`<a id=\\"carbonfilescreate_user_file_tags\\"></a>
+### \`carbon.files.create_user_file_tags\`<a id="carbonfilescreate_user_file_tags"></a>
 
 A tag is a key-value pair that can be added to a file. This pair can then be used
 for searches (e.g. embedding searches) in order to narrow down the scope of the search.
@@ -599,33 +599,33 @@ A file can have any number of tags. The following are reserved keys that cannot 
 
 Carbon currently supports two data types for tag values - \`string\` and \`list<string>\`.
 Keys can only be \`string\`. If values other than \`string\` and \`list<string>\` are used,
-they're automatically converted to strings (e.g. 4 will become \\"4\\").
+they're automatically converted to strings (e.g. 4 will become "4").
 
-#### 🛠️ Usage<a id=\\"🛠️-usage\\"></a>
+#### 🛠️ Usage<a id="🛠️-usage"></a>
 
 \`\`\`python
 create_user_file_tags_response = carbon.files.create_user_file_tags(
     tags={
-        \\"key\\": \\"string_example\\",
+        "key": "string_example",
     },
     organization_user_file_id=1,
 )
 \`\`\`
 
-#### ⚙️ Parameters<a id=\\"⚙️-parameters\\"></a>
+#### ⚙️ Parameters<a id="⚙️-parameters"></a>
 
-##### tags: [\`OrganizationUserFileTagCreateTags\`](./carbon/type/organization_user_file_tag_create_tags.py)<a id=\\"tags-organizationuserfiletagcreatetagscarbontypeorganization_user_file_tag_create_tagspy\\"></a>
+##### tags: [\`OrganizationUserFileTagCreateTags\`](./carbon/type/organization_user_file_tag_create_tags.py)<a id="tags-organizationuserfiletagcreatetagscarbontypeorganization_user_file_tag_create_tagspy"></a>
 
-##### organization_user_file_id: \`int\`<a id=\\"organization_user_file_id-int\\"></a>
+##### organization_user_file_id: \`int\`<a id="organization_user_file_id-int"></a>
 
-#### ⚙️ Request Body<a id=\\"⚙️-request-body\\"></a>
+#### ⚙️ Request Body<a id="⚙️-request-body"></a>
 
 [\`OrganizationUserFileTagCreate\`](./carbon/type/organization_user_file_tag_create.py)
-#### 🔄 Return<a id=\\"🔄-return\\"></a>
+#### 🔄 Return<a id="🔄-return"></a>
 
 [\`UserFile\`](./carbon/pydantic/user_file.py)
 
-#### 🌐 Endpoint<a id=\\"🌐-endpoint\\"></a>
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
 \`/create_user_file_tags\` \`post\`
 
@@ -633,11 +633,11 @@ create_user_file_tags_response = carbon.files.create_user_file_tags(
 
 ---
 
-### \`carbon.files.delete\`<a id=\\"carbonfilesdelete\\"></a>
+### \`carbon.files.delete\`<a id="carbonfilesdelete"></a>
 
 Delete File Endpoint
 
-#### 🛠️ Usage<a id=\\"🛠️-usage\\"></a>
+#### 🛠️ Usage<a id="🛠️-usage"></a>
 
 \`\`\`python
 delete_response = carbon.files.delete(
@@ -645,15 +645,15 @@ delete_response = carbon.files.delete(
 )
 \`\`\`
 
-#### ⚙️ Parameters<a id=\\"⚙️-parameters\\"></a>
+#### ⚙️ Parameters<a id="⚙️-parameters"></a>
 
-##### file_id: \`int\`<a id=\\"file_id-int\\"></a>
+##### file_id: \`int\`<a id="file_id-int"></a>
 
-#### 🔄 Return<a id=\\"🔄-return\\"></a>
+#### 🔄 Return<a id="🔄-return"></a>
 
 [\`GenericSuccessResponse\`](./carbon/pydantic/generic_success_response.py)
 
-#### 🌐 Endpoint<a id=\\"🌐-endpoint\\"></a>
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
 \`/deletefile/{file_id}\` \`delete\`
 
@@ -661,33 +661,33 @@ delete_response = carbon.files.delete(
 
 ---
 
-### \`carbon.files.delete_file_tags\`<a id=\\"carbonfilesdelete_file_tags\\"></a>
+### \`carbon.files.delete_file_tags\`<a id="carbonfilesdelete_file_tags"></a>
 
 Delete File Tags
 
-#### 🛠️ Usage<a id=\\"🛠️-usage\\"></a>
+#### 🛠️ Usage<a id="🛠️-usage"></a>
 
 \`\`\`python
 delete_file_tags_response = carbon.files.delete_file_tags(
-    tags=[\\"string_example\\"],
+    tags=["string_example"],
     organization_user_file_id=1,
 )
 \`\`\`
 
-#### ⚙️ Parameters<a id=\\"⚙️-parameters\\"></a>
+#### ⚙️ Parameters<a id="⚙️-parameters"></a>
 
-##### tags: [\`OrganizationUserFileTagsRemoveTags\`](./carbon/type/organization_user_file_tags_remove_tags.py)<a id=\\"tags-organizationuserfiletagsremovetagscarbontypeorganization_user_file_tags_remove_tagspy\\"></a>
+##### tags: [\`OrganizationUserFileTagsRemoveTags\`](./carbon/type/organization_user_file_tags_remove_tags.py)<a id="tags-organizationuserfiletagsremovetagscarbontypeorganization_user_file_tags_remove_tagspy"></a>
 
-##### organization_user_file_id: \`int\`<a id=\\"organization_user_file_id-int\\"></a>
+##### organization_user_file_id: \`int\`<a id="organization_user_file_id-int"></a>
 
-#### ⚙️ Request Body<a id=\\"⚙️-request-body\\"></a>
+#### ⚙️ Request Body<a id="⚙️-request-body"></a>
 
 [\`OrganizationUserFileTagsRemove\`](./carbon/type/organization_user_file_tags_remove.py)
-#### 🔄 Return<a id=\\"🔄-return\\"></a>
+#### 🔄 Return<a id="🔄-return"></a>
 
 [\`UserFile\`](./carbon/pydantic/user_file.py)
 
-#### 🌐 Endpoint<a id=\\"🌐-endpoint\\"></a>
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
 \`/delete_user_file_tags\` \`post\`
 
@@ -695,36 +695,36 @@ delete_file_tags_response = carbon.files.delete_file_tags(
 
 ---
 
-### \`carbon.files.delete_many\`<a id=\\"carbonfilesdelete_many\\"></a>
+### \`carbon.files.delete_many\`<a id="carbonfilesdelete_many"></a>
 
 Delete Files Endpoint
 
-#### 🛠️ Usage<a id=\\"🛠️-usage\\"></a>
+#### 🛠️ Usage<a id="🛠️-usage"></a>
 
 \`\`\`python
 delete_many_response = carbon.files.delete_many(
     file_ids=[1],
-    sync_statuses=[\\"string_example\\"],
+    sync_statuses=["string_example"],
     delete_non_synced_only=False,
 )
 \`\`\`
 
-#### ⚙️ Parameters<a id=\\"⚙️-parameters\\"></a>
+#### ⚙️ Parameters<a id="⚙️-parameters"></a>
 
-##### file_ids: [\`DeleteFilesQueryInputFileIds\`](./carbon/type/delete_files_query_input_file_ids.py)<a id=\\"file_ids-deletefilesqueryinputfileidscarbontypedelete_files_query_input_file_idspy\\"></a>
+##### file_ids: [\`DeleteFilesQueryInputFileIds\`](./carbon/type/delete_files_query_input_file_ids.py)<a id="file_ids-deletefilesqueryinputfileidscarbontypedelete_files_query_input_file_idspy"></a>
 
-##### sync_statuses: List[[\`ExternalFileSyncStatuses\`](./carbon/type/external_file_sync_statuses.py)]<a id=\\"sync_statuses-listexternalfilesyncstatusescarbontypeexternal_file_sync_statusespy\\"></a>
+##### sync_statuses: List[[\`ExternalFileSyncStatuses\`](./carbon/type/external_file_sync_statuses.py)]<a id="sync_statuses-listexternalfilesyncstatusescarbontypeexternal_file_sync_statusespy"></a>
 
-##### delete_non_synced_only: \`bool\`<a id=\\"delete_non_synced_only-bool\\"></a>
+##### delete_non_synced_only: \`bool\`<a id="delete_non_synced_only-bool"></a>
 
-#### ⚙️ Request Body<a id=\\"⚙️-request-body\\"></a>
+#### ⚙️ Request Body<a id="⚙️-request-body"></a>
 
 [\`DeleteFilesQueryInput\`](./carbon/type/delete_files_query_input.py)
-#### 🔄 Return<a id=\\"🔄-return\\"></a>
+#### 🔄 Return<a id="🔄-return"></a>
 
 [\`GenericSuccessResponse\`](./carbon/pydantic/generic_success_response.py)
 
-#### 🌐 Endpoint<a id=\\"🌐-endpoint\\"></a>
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
 \`/delete_files\` \`post\`
 
@@ -732,11 +732,11 @@ delete_many_response = carbon.files.delete_many(
 
 ---
 
-### \`carbon.files.get_parsed_file\`<a id=\\"carbonfilesget_parsed_file\\"></a>
+### \`carbon.files.get_parsed_file\`<a id="carbonfilesget_parsed_file"></a>
 
 This route is deprecated. Use \`/user_files_v2\` instead.
 
-#### 🛠️ Usage<a id=\\"🛠️-usage\\"></a>
+#### 🛠️ Usage<a id="🛠️-usage"></a>
 
 \`\`\`python
 get_parsed_file_response = carbon.files.get_parsed_file(
@@ -744,15 +744,15 @@ get_parsed_file_response = carbon.files.get_parsed_file(
 )
 \`\`\`
 
-#### ⚙️ Parameters<a id=\\"⚙️-parameters\\"></a>
+#### ⚙️ Parameters<a id="⚙️-parameters"></a>
 
-##### file_id: \`int\`<a id=\\"file_id-int\\"></a>
+##### file_id: \`int\`<a id="file_id-int"></a>
 
-#### 🔄 Return<a id=\\"🔄-return\\"></a>
+#### 🔄 Return<a id="🔄-return"></a>
 
 [\`PresignedURLResponse\`](./carbon/pydantic/presigned_url_response.py)
 
-#### 🌐 Endpoint<a id=\\"🌐-endpoint\\"></a>
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
 \`/parsed_file/{file_id}\` \`get\`
 
@@ -760,11 +760,11 @@ get_parsed_file_response = carbon.files.get_parsed_file(
 
 ---
 
-### \`carbon.files.get_raw_file\`<a id=\\"carbonfilesget_raw_file\\"></a>
+### \`carbon.files.get_raw_file\`<a id="carbonfilesget_raw_file"></a>
 
 This route is deprecated. Use \`/user_files_v2\` instead.
 
-#### 🛠️ Usage<a id=\\"🛠️-usage\\"></a>
+#### 🛠️ Usage<a id="🛠️-usage"></a>
 
 \`\`\`python
 get_raw_file_response = carbon.files.get_raw_file(
@@ -772,15 +772,15 @@ get_raw_file_response = carbon.files.get_raw_file(
 )
 \`\`\`
 
-#### ⚙️ Parameters<a id=\\"⚙️-parameters\\"></a>
+#### ⚙️ Parameters<a id="⚙️-parameters"></a>
 
-##### file_id: \`int\`<a id=\\"file_id-int\\"></a>
+##### file_id: \`int\`<a id="file_id-int"></a>
 
-#### 🔄 Return<a id=\\"🔄-return\\"></a>
+#### 🔄 Return<a id="🔄-return"></a>
 
 [\`PresignedURLResponse\`](./carbon/pydantic/presigned_url_response.py)
 
-#### 🌐 Endpoint<a id=\\"🌐-endpoint\\"></a>
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
 \`/raw_file/{file_id}\` \`get\`
 
@@ -788,40 +788,40 @@ get_raw_file_response = carbon.files.get_raw_file(
 
 ---
 
-### \`carbon.files.query_user_files\`<a id=\\"carbonfilesquery_user_files\\"></a>
+### \`carbon.files.query_user_files\`<a id="carbonfilesquery_user_files"></a>
 
 For pre-filtering documents, using \`tags_v2\` is preferred to using \`tags\` (which is now deprecated). If both \`tags_v2\`
 and \`tags\` are specified, \`tags\` is ignored. \`tags_v2\` enables
-building complex filters through the use of \\"AND\\", \\"OR\\", and negation logic. Take the below input as an example:
+building complex filters through the use of "AND", "OR", and negation logic. Take the below input as an example:
 \`\`\`json
 {
-    \\"OR\\": [
+    "OR": [
         {
-            \\"key\\": \\"subject\\",
-            \\"value\\": \\"holy-bible\\",
-            \\"negate\\": false
+            "key": "subject",
+            "value": "holy-bible",
+            "negate": false
         },
         {
-            \\"key\\": \\"person-of-interest\\",
-            \\"value\\": \\"jesus christ\\",
-            \\"negate\\": false
+            "key": "person-of-interest",
+            "value": "jesus christ",
+            "negate": false
         },
         {
-            \\"key\\": \\"genre\\",
-            \\"value\\": \\"religion\\",
-            \\"negate\\": true
+            "key": "genre",
+            "value": "religion",
+            "negate": true
         }
         {
-            \\"AND\\": [
+            "AND": [
                 {
-                    \\"key\\": \\"subject\\",
-                    \\"value\\": \\"tao-te-ching\\",
-                    \\"negate\\": false
+                    "key": "subject",
+                    "value": "tao-te-ching",
+                    "negate": false
                 },
                 {
-                    \\"key\\": \\"author\\",
-                    \\"value\\": \\"lao-tzu\\",
-                    \\"negate\\": false
+                    "key": "author",
+                    "value": "lao-tzu",
+                    "negate": false
                 }
             ]
         }
@@ -829,28 +829,28 @@ building complex filters through the use of \\"AND\\", \\"OR\\", and negation lo
 }
 \`\`\`
 In this case, files will be filtered such that:
-1. \\"subject\\" = \\"holy-bible\\" OR
-2. \\"person-of-interest\\" = \\"jesus christ\\" OR
-3. \\"genre\\" != \\"religion\\" OR
-4. \\"subject\\" = \\"tao-te-ching\\" AND \\"author\\" = \\"lao-tzu\\"
+1. "subject" = "holy-bible" OR
+2. "person-of-interest" = "jesus christ" OR
+3. "genre" != "religion" OR
+4. "subject" = "tao-te-ching" AND "author" = "lao-tzu"
 
-Note that the top level of the query must be either an \\"OR\\" or \\"AND\\" array. Currently, nesting is limited to 3.
-For tag blocks (those with \\"key\\", \\"value\\", and \\"negate\\" keys), the following typing rules apply:
-1. \\"key\\" isn't optional and must be a \`string\`
-2. \\"value\\" isn't optional and can be \`any\` or list[\`any\`]
-3. \\"negate\\" is optional and must be \`true\` or \`false\`. If present and \`true\`, then the filter block is negated in
+Note that the top level of the query must be either an "OR" or "AND" array. Currently, nesting is limited to 3.
+For tag blocks (those with "key", "value", and "negate" keys), the following typing rules apply:
+1. "key" isn't optional and must be a \`string\`
+2. "value" isn't optional and can be \`any\` or list[\`any\`]
+3. "negate" is optional and must be \`true\` or \`false\`. If present and \`true\`, then the filter block is negated in
 the resulting query. It is \`false\` by default.
 
-#### 🛠️ Usage<a id=\\"🛠️-usage\\"></a>
+#### 🛠️ Usage<a id="🛠️-usage"></a>
 
 \`\`\`python
 query_user_files_response = carbon.files.query_user_files(
     pagination={
-        \\"limit\\": 10,
-        \\"offset\\": 0,
+        "limit": 10,
+        "offset": 0,
     },
-    order_by=\\"created_at\\",
-    order_dir=\\"desc\\",
+    order_by="created_at",
+    order_dir="desc",
     filters={},
     include_raw_file=True,
     include_parsed_text_file=True,
@@ -858,32 +858,32 @@ query_user_files_response = carbon.files.query_user_files(
 )
 \`\`\`
 
-#### ⚙️ Parameters<a id=\\"⚙️-parameters\\"></a>
+#### ⚙️ Parameters<a id="⚙️-parameters"></a>
 
-##### pagination: [\`Pagination\`](./carbon/type/pagination.py)<a id=\\"pagination-paginationcarbontypepaginationpy\\"></a>
-
-
-##### order_by: [\`OrganizationUserFilesToSyncOrderByTypes\`](./carbon/type/organization_user_files_to_sync_order_by_types.py)<a id=\\"order_by-organizationuserfilestosyncorderbytypescarbontypeorganization_user_files_to_sync_order_by_typespy\\"></a>
-
-##### order_dir: [\`OrderDir\`](./carbon/type/order_dir.py)<a id=\\"order_dir-orderdircarbontypeorder_dirpy\\"></a>
-
-##### filters: [\`OrganizationUserFilesToSyncFilters\`](./carbon/type/organization_user_files_to_sync_filters.py)<a id=\\"filters-organizationuserfilestosyncfilterscarbontypeorganization_user_files_to_sync_filterspy\\"></a>
+##### pagination: [\`Pagination\`](./carbon/type/pagination.py)<a id="pagination-paginationcarbontypepaginationpy"></a>
 
 
-##### include_raw_file: \`Optional[bool]\`<a id=\\"include_raw_file-optionalbool\\"></a>
+##### order_by: [\`OrganizationUserFilesToSyncOrderByTypes\`](./carbon/type/organization_user_files_to_sync_order_by_types.py)<a id="order_by-organizationuserfilestosyncorderbytypescarbontypeorganization_user_files_to_sync_order_by_typespy"></a>
 
-##### include_parsed_text_file: \`Optional[bool]\`<a id=\\"include_parsed_text_file-optionalbool\\"></a>
+##### order_dir: [\`OrderDir\`](./carbon/type/order_dir.py)<a id="order_dir-orderdircarbontypeorder_dirpy"></a>
 
-##### include_additional_files: \`Optional[bool]\`<a id=\\"include_additional_files-optionalbool\\"></a>
+##### filters: [\`OrganizationUserFilesToSyncFilters\`](./carbon/type/organization_user_files_to_sync_filters.py)<a id="filters-organizationuserfilestosyncfilterscarbontypeorganization_user_files_to_sync_filterspy"></a>
 
-#### ⚙️ Request Body<a id=\\"⚙️-request-body\\"></a>
+
+##### include_raw_file: \`Optional[bool]\`<a id="include_raw_file-optionalbool"></a>
+
+##### include_parsed_text_file: \`Optional[bool]\`<a id="include_parsed_text_file-optionalbool"></a>
+
+##### include_additional_files: \`Optional[bool]\`<a id="include_additional_files-optionalbool"></a>
+
+#### ⚙️ Request Body<a id="⚙️-request-body"></a>
 
 [\`OrganizationUserFilesToSyncQueryInput\`](./carbon/type/organization_user_files_to_sync_query_input.py)
-#### 🔄 Return<a id=\\"🔄-return\\"></a>
+#### 🔄 Return<a id="🔄-return"></a>
 
 [\`UserFilesV2\`](./carbon/pydantic/user_files_v2.py)
 
-#### 🌐 Endpoint<a id=\\"🌐-endpoint\\"></a>
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
 \`/user_files_v2\` \`post\`
 
@@ -891,20 +891,20 @@ query_user_files_response = carbon.files.query_user_files(
 
 ---
 
-### \`carbon.files.query_user_files_deprecated\`<a id=\\"carbonfilesquery_user_files_deprecated\\"></a>
+### \`carbon.files.query_user_files_deprecated\`<a id="carbonfilesquery_user_files_deprecated"></a>
 
 This route is deprecated. Use \`/user_files_v2\` instead.
 
-#### 🛠️ Usage<a id=\\"🛠️-usage\\"></a>
+#### 🛠️ Usage<a id="🛠️-usage"></a>
 
 \`\`\`python
 query_user_files_deprecated_response = carbon.files.query_user_files_deprecated(
     pagination={
-        \\"limit\\": 10,
-        \\"offset\\": 0,
+        "limit": 10,
+        "offset": 0,
     },
-    order_by=\\"created_at\\",
-    order_dir=\\"desc\\",
+    order_by="created_at",
+    order_dir="desc",
     filters={},
     include_raw_file=True,
     include_parsed_text_file=True,
@@ -912,32 +912,32 @@ query_user_files_deprecated_response = carbon.files.query_user_files_deprecated(
 )
 \`\`\`
 
-#### ⚙️ Parameters<a id=\\"⚙️-parameters\\"></a>
+#### ⚙️ Parameters<a id="⚙️-parameters"></a>
 
-##### pagination: [\`Pagination\`](./carbon/type/pagination.py)<a id=\\"pagination-paginationcarbontypepaginationpy\\"></a>
-
-
-##### order_by: [\`OrganizationUserFilesToSyncOrderByTypes\`](./carbon/type/organization_user_files_to_sync_order_by_types.py)<a id=\\"order_by-organizationuserfilestosyncorderbytypescarbontypeorganization_user_files_to_sync_order_by_typespy\\"></a>
-
-##### order_dir: [\`OrderDir\`](./carbon/type/order_dir.py)<a id=\\"order_dir-orderdircarbontypeorder_dirpy\\"></a>
-
-##### filters: [\`OrganizationUserFilesToSyncFilters\`](./carbon/type/organization_user_files_to_sync_filters.py)<a id=\\"filters-organizationuserfilestosyncfilterscarbontypeorganization_user_files_to_sync_filterspy\\"></a>
+##### pagination: [\`Pagination\`](./carbon/type/pagination.py)<a id="pagination-paginationcarbontypepaginationpy"></a>
 
 
-##### include_raw_file: \`Optional[bool]\`<a id=\\"include_raw_file-optionalbool\\"></a>
+##### order_by: [\`OrganizationUserFilesToSyncOrderByTypes\`](./carbon/type/organization_user_files_to_sync_order_by_types.py)<a id="order_by-organizationuserfilestosyncorderbytypescarbontypeorganization_user_files_to_sync_order_by_typespy"></a>
 
-##### include_parsed_text_file: \`Optional[bool]\`<a id=\\"include_parsed_text_file-optionalbool\\"></a>
+##### order_dir: [\`OrderDir\`](./carbon/type/order_dir.py)<a id="order_dir-orderdircarbontypeorder_dirpy"></a>
 
-##### include_additional_files: \`Optional[bool]\`<a id=\\"include_additional_files-optionalbool\\"></a>
+##### filters: [\`OrganizationUserFilesToSyncFilters\`](./carbon/type/organization_user_files_to_sync_filters.py)<a id="filters-organizationuserfilestosyncfilterscarbontypeorganization_user_files_to_sync_filterspy"></a>
 
-#### ⚙️ Request Body<a id=\\"⚙️-request-body\\"></a>
+
+##### include_raw_file: \`Optional[bool]\`<a id="include_raw_file-optionalbool"></a>
+
+##### include_parsed_text_file: \`Optional[bool]\`<a id="include_parsed_text_file-optionalbool"></a>
+
+##### include_additional_files: \`Optional[bool]\`<a id="include_additional_files-optionalbool"></a>
+
+#### ⚙️ Request Body<a id="⚙️-request-body"></a>
 
 [\`OrganizationUserFilesToSyncQueryInput\`](./carbon/type/organization_user_files_to_sync_query_input.py)
-#### 🔄 Return<a id=\\"🔄-return\\"></a>
+#### 🔄 Return<a id="🔄-return"></a>
 
 [\`FilesQueryUserFilesDeprecatedResponse\`](./carbon/pydantic/files_query_user_files_deprecated_response.py)
 
-#### 🌐 Endpoint<a id=\\"🌐-endpoint\\"></a>
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
 \`/user_files\` \`post\`
 
@@ -945,11 +945,11 @@ query_user_files_deprecated_response = carbon.files.query_user_files_deprecated(
 
 ---
 
-### \`carbon.files.resync\`<a id=\\"carbonfilesresync\\"></a>
+### \`carbon.files.resync\`<a id="carbonfilesresync"></a>
 
 Resync File
 
-#### 🛠️ Usage<a id=\\"🛠️-usage\\"></a>
+#### 🛠️ Usage<a id="🛠️-usage"></a>
 
 \`\`\`python
 resync_response = carbon.files.resync(
@@ -959,22 +959,22 @@ resync_response = carbon.files.resync(
 )
 \`\`\`
 
-#### ⚙️ Parameters<a id=\\"⚙️-parameters\\"></a>
+#### ⚙️ Parameters<a id="⚙️-parameters"></a>
 
-##### file_id: \`int\`<a id=\\"file_id-int\\"></a>
+##### file_id: \`int\`<a id="file_id-int"></a>
 
-##### chunk_size: \`Optional[int]\`<a id=\\"chunk_size-optionalint\\"></a>
+##### chunk_size: \`Optional[int]\`<a id="chunk_size-optionalint"></a>
 
-##### chunk_overlap: \`Optional[int]\`<a id=\\"chunk_overlap-optionalint\\"></a>
+##### chunk_overlap: \`Optional[int]\`<a id="chunk_overlap-optionalint"></a>
 
-#### ⚙️ Request Body<a id=\\"⚙️-request-body\\"></a>
+#### ⚙️ Request Body<a id="⚙️-request-body"></a>
 
 [\`ResyncFileQueryInput\`](./carbon/type/resync_file_query_input.py)
-#### 🔄 Return<a id=\\"🔄-return\\"></a>
+#### 🔄 Return<a id="🔄-return"></a>
 
 [\`UserFile\`](./carbon/pydantic/user_file.py)
 
-#### 🌐 Endpoint<a id=\\"🌐-endpoint\\"></a>
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
 \`/resync_file\` \`post\`
 
@@ -982,7 +982,7 @@ resync_response = carbon.files.resync(
 
 ---
 
-### \`carbon.files.upload\`<a id=\\"carbonfilesupload\\"></a>
+### \`carbon.files.upload\`<a id="carbonfilesupload"></a>
 
 This endpoint is used to directly upload local files to Carbon. The \`POST\` request should be a multipart form request.
 Note that the \`set_page_as_boundary\` query parameter is applicable only to PDFs for now. When this value is set,
@@ -1010,16 +1010,16 @@ specified as the \`embedding_model\` in \`/embeddings\`, then only files C and D
 the set of all files you want considered for a query have embeddings generated via the same model. For now, **do not**
 set \`VERTEX_MULTIMODAL\` as an \`embedding_model\`. This model is used automatically by Carbon when it detects an image file.
 
-#### 🛠️ Usage<a id=\\"🛠️-usage\\"></a>
+#### 🛠️ Usage<a id="🛠️-usage"></a>
 
 \`\`\`python
 upload_response = carbon.files.upload(
-    file=open(\\"/path/to/file\\", \\"rb\\"),
+    file=open("/path/to/file", "rb"),
     chunk_size=1,
     chunk_overlap=1,
     skip_embedding_generation=False,
     set_page_as_boundary=False,
-    embedding_model=\\"OPENAI\\",
+    embedding_model="OPENAI",
     use_ocr=False,
     generate_sparse_vectors=False,
     prepend_filename_to_chunks=False,
@@ -1027,54 +1027,54 @@ upload_response = carbon.files.upload(
 )
 \`\`\`
 
-#### ⚙️ Parameters<a id=\\"⚙️-parameters\\"></a>
+#### ⚙️ Parameters<a id="⚙️-parameters"></a>
 
-##### file: \`IO\`<a id=\\"file-io\\"></a>
+##### file: \`IO\`<a id="file-io"></a>
 
-##### chunk_size: \`Optional[int]\`<a id=\\"chunk_size-optionalint\\"></a>
+##### chunk_size: \`Optional[int]\`<a id="chunk_size-optionalint"></a>
 
 Chunk size in tiktoken tokens to be used when processing file.
 
-##### chunk_overlap: \`Optional[int]\`<a id=\\"chunk_overlap-optionalint\\"></a>
+##### chunk_overlap: \`Optional[int]\`<a id="chunk_overlap-optionalint"></a>
 
 Chunk overlap in tiktoken tokens to be used when processing file.
 
-##### skip_embedding_generation: \`bool\`<a id=\\"skip_embedding_generation-bool\\"></a>
+##### skip_embedding_generation: \`bool\`<a id="skip_embedding_generation-bool"></a>
 
 Flag to control whether or not embeddings should be generated and stored             when processing file.
 
-##### set_page_as_boundary: \`bool\`<a id=\\"set_page_as_boundary-bool\\"></a>
+##### set_page_as_boundary: \`bool\`<a id="set_page_as_boundary-bool"></a>
 
 Flag to control whether or not to set the a page's worth of content as the maximum             amount of content that can appear in a chunk. Only valid for PDFs. See description route description for             more information.
 
-##### embedding_model: [\`TextEmbeddingGenerators\`](./carbon/type/.py)<a id=\\"embedding_model-textembeddinggeneratorscarbontypepy\\"></a>
+##### embedding_model: [\`TextEmbeddingGenerators\`](./carbon/type/.py)<a id="embedding_model-textembeddinggeneratorscarbontypepy"></a>
 
 Embedding model that will be used to embed file chunks.
 
-##### use_ocr: \`bool\`<a id=\\"use_ocr-bool\\"></a>
+##### use_ocr: \`bool\`<a id="use_ocr-bool"></a>
 
 Whether or not to use OCR when processing files. Only valid for PDFs. Useful for documents with             tables, images, and/or scanned text.
 
-##### generate_sparse_vectors: \`bool\`<a id=\\"generate_sparse_vectors-bool\\"></a>
+##### generate_sparse_vectors: \`bool\`<a id="generate_sparse_vectors-bool"></a>
 
 Whether or not to generate sparse vectors for the file. This is *required* for the file to be a             candidate for hybrid search.
 
-##### prepend_filename_to_chunks: \`bool\`<a id=\\"prepend_filename_to_chunks-bool\\"></a>
+##### prepend_filename_to_chunks: \`bool\`<a id="prepend_filename_to_chunks-bool"></a>
 
 Whether or not to prepend the file's name to chunks.
 
-##### max_items_per_chunk: \`Optional[int]\`<a id=\\"max_items_per_chunk-optionalint\\"></a>
+##### max_items_per_chunk: \`Optional[int]\`<a id="max_items_per_chunk-optionalint"></a>
 
 Number of objects per chunk. For json files only.
 
-#### ⚙️ Request Body<a id=\\"⚙️-request-body\\"></a>
+#### ⚙️ Request Body<a id="⚙️-request-body"></a>
 
 [\`BodyCreateUploadFileUploadfilePost\`](./carbon/type/body_create_upload_file_uploadfile_post.py)
-#### 🔄 Return<a id=\\"🔄-return\\"></a>
+#### 🔄 Return<a id="🔄-return"></a>
 
 [\`UserFile\`](./carbon/pydantic/user_file.py)
 
-#### 🌐 Endpoint<a id=\\"🌐-endpoint\\"></a>
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
 \`/uploadfile\` \`post\`
 
@@ -1082,21 +1082,21 @@ Number of objects per chunk. For json files only.
 
 ---
 
-### \`carbon.files.upload_from_url\`<a id=\\"carbonfilesupload_from_url\\"></a>
+### \`carbon.files.upload_from_url\`<a id="carbonfilesupload_from_url"></a>
 
 Create Upload File From Url
 
-#### 🛠️ Usage<a id=\\"🛠️-usage\\"></a>
+#### 🛠️ Usage<a id="🛠️-usage"></a>
 
 \`\`\`python
 upload_from_url_response = carbon.files.upload_from_url(
-    url=\\"string_example\\",
-    file_name=\\"string_example\\",
+    url="string_example",
+    file_name="string_example",
     chunk_size=1,
     chunk_overlap=1,
     skip_embedding_generation=False,
     set_page_as_boundary=False,
-    embedding_model=\\"OPENAI\\",
+    embedding_model="OPENAI",
     generate_sparse_vectors=False,
     use_textract=False,
     prepend_filename_to_chunks=False,
@@ -1104,38 +1104,38 @@ upload_from_url_response = carbon.files.upload_from_url(
 )
 \`\`\`
 
-#### ⚙️ Parameters<a id=\\"⚙️-parameters\\"></a>
+#### ⚙️ Parameters<a id="⚙️-parameters"></a>
 
-##### url: \`str\`<a id=\\"url-str\\"></a>
+##### url: \`str\`<a id="url-str"></a>
 
-##### file_name: \`Optional[str]\`<a id=\\"file_name-optionalstr\\"></a>
+##### file_name: \`Optional[str]\`<a id="file_name-optionalstr"></a>
 
-##### chunk_size: \`Optional[int]\`<a id=\\"chunk_size-optionalint\\"></a>
+##### chunk_size: \`Optional[int]\`<a id="chunk_size-optionalint"></a>
 
-##### chunk_overlap: \`Optional[int]\`<a id=\\"chunk_overlap-optionalint\\"></a>
+##### chunk_overlap: \`Optional[int]\`<a id="chunk_overlap-optionalint"></a>
 
-##### skip_embedding_generation: \`bool\`<a id=\\"skip_embedding_generation-bool\\"></a>
+##### skip_embedding_generation: \`bool\`<a id="skip_embedding_generation-bool"></a>
 
-##### set_page_as_boundary: \`bool\`<a id=\\"set_page_as_boundary-bool\\"></a>
+##### set_page_as_boundary: \`bool\`<a id="set_page_as_boundary-bool"></a>
 
-##### embedding_model: [\`EmbeddingGenerators\`](./carbon/type/embedding_generators.py)<a id=\\"embedding_model-embeddinggeneratorscarbontypeembedding_generatorspy\\"></a>
+##### embedding_model: [\`EmbeddingGenerators\`](./carbon/type/embedding_generators.py)<a id="embedding_model-embeddinggeneratorscarbontypeembedding_generatorspy"></a>
 
-##### generate_sparse_vectors: \`bool\`<a id=\\"generate_sparse_vectors-bool\\"></a>
+##### generate_sparse_vectors: \`bool\`<a id="generate_sparse_vectors-bool"></a>
 
-##### use_textract: \`bool\`<a id=\\"use_textract-bool\\"></a>
+##### use_textract: \`bool\`<a id="use_textract-bool"></a>
 
-##### prepend_filename_to_chunks: \`bool\`<a id=\\"prepend_filename_to_chunks-bool\\"></a>
+##### prepend_filename_to_chunks: \`bool\`<a id="prepend_filename_to_chunks-bool"></a>
 
-##### max_items_per_chunk: \`Optional[int]\`<a id=\\"max_items_per_chunk-optionalint\\"></a>
+##### max_items_per_chunk: \`Optional[int]\`<a id="max_items_per_chunk-optionalint"></a>
 
-#### ⚙️ Request Body<a id=\\"⚙️-request-body\\"></a>
+#### ⚙️ Request Body<a id="⚙️-request-body"></a>
 
 [\`UploadFileFromUrlInput\`](./carbon/type/upload_file_from_url_input.py)
-#### 🔄 Return<a id=\\"🔄-return\\"></a>
+#### 🔄 Return<a id="🔄-return"></a>
 
 [\`UserFile\`](./carbon/pydantic/user_file.py)
 
-#### 🌐 Endpoint<a id=\\"🌐-endpoint\\"></a>
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
 \`/upload_file_from_url\` \`post\`
 
@@ -1143,7 +1143,7 @@ upload_from_url_response = carbon.files.upload_from_url(
 
 ---
 
-### \`carbon.files.upload_text\`<a id=\\"carbonfilesupload_text\\"></a>
+### \`carbon.files.upload_text\`<a id="carbonfilesupload_text"></a>
 
 Carbon supports multiple models for use in generating embeddings for files. For images, we support Vertex AI's
 multimodal model; for text, we support OpenAI's \`text-embedding-ada-002\` and Cohere's embed-multilingual-v3.0.
@@ -1156,47 +1156,47 @@ specified as the \`embedding_model\` in \`/embeddings\`, then only files C and D
 the set of all files you want considered for a query have embeddings generated via the same model. For now, **do not**
 set \`VERTEX_MULTIMODAL\` as an \`embedding_model\`. This model is used automatically by Carbon when it detects an image file.
 
-#### 🛠️ Usage<a id=\\"🛠️-usage\\"></a>
+#### 🛠️ Usage<a id="🛠️-usage"></a>
 
 \`\`\`python
 upload_text_response = carbon.files.upload_text(
-    contents=\\"string_example\\",
-    name=\\"string_example\\",
+    contents="string_example",
+    name="string_example",
     chunk_size=1,
     chunk_overlap=1,
     skip_embedding_generation=False,
     overwrite_file_id=1,
-    embedding_model=\\"OPENAI\\",
+    embedding_model="OPENAI",
     generate_sparse_vectors=False,
 )
 \`\`\`
 
-#### ⚙️ Parameters<a id=\\"⚙️-parameters\\"></a>
+#### ⚙️ Parameters<a id="⚙️-parameters"></a>
 
-##### contents: \`str\`<a id=\\"contents-str\\"></a>
+##### contents: \`str\`<a id="contents-str"></a>
 
-##### name: \`Optional[str]\`<a id=\\"name-optionalstr\\"></a>
+##### name: \`Optional[str]\`<a id="name-optionalstr"></a>
 
-##### chunk_size: \`Optional[int]\`<a id=\\"chunk_size-optionalint\\"></a>
+##### chunk_size: \`Optional[int]\`<a id="chunk_size-optionalint"></a>
 
-##### chunk_overlap: \`Optional[int]\`<a id=\\"chunk_overlap-optionalint\\"></a>
+##### chunk_overlap: \`Optional[int]\`<a id="chunk_overlap-optionalint"></a>
 
-##### skip_embedding_generation: \`bool\`<a id=\\"skip_embedding_generation-bool\\"></a>
+##### skip_embedding_generation: \`bool\`<a id="skip_embedding_generation-bool"></a>
 
-##### overwrite_file_id: \`Optional[int]\`<a id=\\"overwrite_file_id-optionalint\\"></a>
+##### overwrite_file_id: \`Optional[int]\`<a id="overwrite_file_id-optionalint"></a>
 
-##### embedding_model: [\`EmbeddingGeneratorsNullable\`](./carbon/type/embedding_generators_nullable.py)<a id=\\"embedding_model-embeddinggeneratorsnullablecarbontypeembedding_generators_nullablepy\\"></a>
+##### embedding_model: [\`EmbeddingGeneratorsNullable\`](./carbon/type/embedding_generators_nullable.py)<a id="embedding_model-embeddinggeneratorsnullablecarbontypeembedding_generators_nullablepy"></a>
 
-##### generate_sparse_vectors: \`Optional[bool]\`<a id=\\"generate_sparse_vectors-optionalbool\\"></a>
+##### generate_sparse_vectors: \`Optional[bool]\`<a id="generate_sparse_vectors-optionalbool"></a>
 
-#### ⚙️ Request Body<a id=\\"⚙️-request-body\\"></a>
+#### ⚙️ Request Body<a id="⚙️-request-body"></a>
 
 [\`RawTextInput\`](./carbon/type/raw_text_input.py)
-#### 🔄 Return<a id=\\"🔄-return\\"></a>
+#### 🔄 Return<a id="🔄-return"></a>
 
 [\`UserFile\`](./carbon/pydantic/user_file.py)
 
-#### 🌐 Endpoint<a id=\\"🌐-endpoint\\"></a>
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
 \`/upload_text\` \`post\`
 
@@ -1204,17 +1204,17 @@ upload_text_response = carbon.files.upload_text(
 
 ---
 
-### \`carbon.health.check\`<a id=\\"carbonhealthcheck\\"></a>
+### \`carbon.health.check\`<a id="carbonhealthcheck"></a>
 
 Health
 
-#### 🛠️ Usage<a id=\\"🛠️-usage\\"></a>
+#### 🛠️ Usage<a id="🛠️-usage"></a>
 
 \`\`\`python
 check_response = carbon.health.check()
 \`\`\`
 
-#### 🌐 Endpoint<a id=\\"🌐-endpoint\\"></a>
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
 \`/health\` \`get\`
 
@@ -1222,58 +1222,58 @@ check_response = carbon.health.check()
 
 ---
 
-### \`carbon.integrations.connect_freshdesk\`<a id=\\"carbonintegrationsconnect_freshdesk\\"></a>
+### \`carbon.integrations.connect_freshdesk\`<a id="carbonintegrationsconnect_freshdesk"></a>
 
 Refer this article to obtain an API key https://support.freshdesk.com/en/support/solutions/articles/215517.
 Make sure that your API key has the permission to read solutions from your account and you are on a <b>paid</b> plan.
 Once you have an API key, you can make a request to this endpoint along with your freshdesk domain. This will 
-trigger an automatic sync of the articles in your \\"solutions\\" tab. Additional parameters below can be used to associate 
+trigger an automatic sync of the articles in your "solutions" tab. Additional parameters below can be used to associate 
 data with the synced articles or modify the sync behavior.
 
-#### 🛠️ Usage<a id=\\"🛠️-usage\\"></a>
+#### 🛠️ Usage<a id="🛠️-usage"></a>
 
 \`\`\`python
 connect_freshdesk_response = carbon.integrations.connect_freshdesk(
-    domain=\\"string_example\\",
-    api_key=\\"string_example\\",
+    domain="string_example",
+    api_key="string_example",
     tags={},
     chunk_size=1500,
     chunk_overlap=20,
     skip_embedding_generation=False,
-    embedding_model=\\"OPENAI\\",
+    embedding_model="OPENAI",
     generate_sparse_vectors=False,
     prepend_filename_to_chunks=False,
 )
 \`\`\`
 
-#### ⚙️ Parameters<a id=\\"⚙️-parameters\\"></a>
+#### ⚙️ Parameters<a id="⚙️-parameters"></a>
 
-##### domain: \`str\`<a id=\\"domain-str\\"></a>
+##### domain: \`str\`<a id="domain-str"></a>
 
-##### api_key: \`str\`<a id=\\"api_key-str\\"></a>
+##### api_key: \`str\`<a id="api_key-str"></a>
 
-##### tags: \`Optional[Dict[str, Union[bool, date, datetime, dict, float, int, list, str, None]]]\`<a id=\\"tags-optionaldictstr-unionbool-date-datetime-dict-float-int-list-str-none\\"></a>
+##### tags: \`Optional[Dict[str, Union[bool, date, datetime, dict, float, int, list, str, None]]]\`<a id="tags-optionaldictstr-unionbool-date-datetime-dict-float-int-list-str-none"></a>
 
-##### chunk_size: \`Optional[int]\`<a id=\\"chunk_size-optionalint\\"></a>
+##### chunk_size: \`Optional[int]\`<a id="chunk_size-optionalint"></a>
 
-##### chunk_overlap: \`Optional[int]\`<a id=\\"chunk_overlap-optionalint\\"></a>
+##### chunk_overlap: \`Optional[int]\`<a id="chunk_overlap-optionalint"></a>
 
-##### skip_embedding_generation: \`Optional[bool]\`<a id=\\"skip_embedding_generation-optionalbool\\"></a>
+##### skip_embedding_generation: \`Optional[bool]\`<a id="skip_embedding_generation-optionalbool"></a>
 
-##### embedding_model: [\`EmbeddingGeneratorsNullable\`](./carbon/type/embedding_generators_nullable.py)<a id=\\"embedding_model-embeddinggeneratorsnullablecarbontypeembedding_generators_nullablepy\\"></a>
+##### embedding_model: [\`EmbeddingGeneratorsNullable\`](./carbon/type/embedding_generators_nullable.py)<a id="embedding_model-embeddinggeneratorsnullablecarbontypeembedding_generators_nullablepy"></a>
 
-##### generate_sparse_vectors: \`Optional[bool]\`<a id=\\"generate_sparse_vectors-optionalbool\\"></a>
+##### generate_sparse_vectors: \`Optional[bool]\`<a id="generate_sparse_vectors-optionalbool"></a>
 
-##### prepend_filename_to_chunks: \`Optional[bool]\`<a id=\\"prepend_filename_to_chunks-optionalbool\\"></a>
+##### prepend_filename_to_chunks: \`Optional[bool]\`<a id="prepend_filename_to_chunks-optionalbool"></a>
 
-#### ⚙️ Request Body<a id=\\"⚙️-request-body\\"></a>
+#### ⚙️ Request Body<a id="⚙️-request-body"></a>
 
 [\`FreshDeskConnectRequest\`](./carbon/type/fresh_desk_connect_request.py)
-#### 🔄 Return<a id=\\"🔄-return\\"></a>
+#### 🔄 Return<a id="🔄-return"></a>
 
 [\`GenericSuccessResponse\`](./carbon/pydantic/generic_success_response.py)
 
-#### 🌐 Endpoint<a id=\\"🌐-endpoint\\"></a>
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
 \`/integrations/freshdesk\` \`post\`
 
@@ -1281,7 +1281,7 @@ connect_freshdesk_response = carbon.integrations.connect_freshdesk(
 
 ---
 
-### \`carbon.integrations.create_aws_iam_user\`<a id=\\"carbonintegrationscreate_aws_iam_user\\"></a>
+### \`carbon.integrations.create_aws_iam_user\`<a id="carbonintegrationscreate_aws_iam_user"></a>
 
 Create a new IAM user with permissions to:
 <ol>
@@ -1291,29 +1291,29 @@ the same permissions.</li>
 </ol>
 Once created, generate an access key for this user and share the credentials with us. We recommend testing this key beforehand.
 
-#### 🛠️ Usage<a id=\\"🛠️-usage\\"></a>
+#### 🛠️ Usage<a id="🛠️-usage"></a>
 
 \`\`\`python
 create_aws_iam_user_response = carbon.integrations.create_aws_iam_user(
-    access_key=\\"string_example\\",
-    access_key_secret=\\"string_example\\",
+    access_key="string_example",
+    access_key_secret="string_example",
 )
 \`\`\`
 
-#### ⚙️ Parameters<a id=\\"⚙️-parameters\\"></a>
+#### ⚙️ Parameters<a id="⚙️-parameters"></a>
 
-##### access_key: \`str\`<a id=\\"access_key-str\\"></a>
+##### access_key: \`str\`<a id="access_key-str"></a>
 
-##### access_key_secret: \`str\`<a id=\\"access_key_secret-str\\"></a>
+##### access_key_secret: \`str\`<a id="access_key_secret-str"></a>
 
-#### ⚙️ Request Body<a id=\\"⚙️-request-body\\"></a>
+#### ⚙️ Request Body<a id="⚙️-request-body"></a>
 
 [\`S3AuthRequest\`](./carbon/type/s3_auth_request.py)
-#### 🔄 Return<a id=\\"🔄-return\\"></a>
+#### 🔄 Return<a id="🔄-return"></a>
 
 [\`OrganizationUserDataSourceAPI\`](./carbon/pydantic/organization_user_data_source_api.py)
 
-#### 🌐 Endpoint<a id=\\"🌐-endpoint\\"></a>
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
 \`/integrations/s3\` \`post\`
 
@@ -1321,65 +1321,65 @@ create_aws_iam_user_response = carbon.integrations.create_aws_iam_user(
 
 ---
 
-### \`carbon.integrations.get_oauth_url\`<a id=\\"carbonintegrationsget_oauth_url\\"></a>
+### \`carbon.integrations.get_oauth_url\`<a id="carbonintegrationsget_oauth_url"></a>
 
 Get Oauth Url
 
-#### 🛠️ Usage<a id=\\"🛠️-usage\\"></a>
+#### 🛠️ Usage<a id="🛠️-usage"></a>
 
 \`\`\`python
 get_oauth_url_response = carbon.integrations.get_oauth_url(
-    service=\\"GOOGLE_DRIVE\\",
+    service="GOOGLE_DRIVE",
     tags=None,
-    scope=\\"string_example\\",
+    scope="string_example",
     chunk_size=1500,
     chunk_overlap=20,
     skip_embedding_generation=False,
-    embedding_model=\\"OPENAI\\",
-    zendesk_subdomain=\\"string_example\\",
-    microsoft_tenant=\\"string_example\\",
-    sharepoint_site_name=\\"string_example\\",
-    confluence_subdomain=\\"string_example\\",
+    embedding_model="OPENAI",
+    zendesk_subdomain="string_example",
+    microsoft_tenant="string_example",
+    sharepoint_site_name="string_example",
+    confluence_subdomain="string_example",
     generate_sparse_vectors=False,
     prepend_filename_to_chunks=False,
     max_items_per_chunk=1,
 )
 \`\`\`
 
-#### ⚙️ Parameters<a id=\\"⚙️-parameters\\"></a>
+#### ⚙️ Parameters<a id="⚙️-parameters"></a>
 
-##### service: [\`DataSourceType\`](./carbon/type/data_source_type.py)<a id=\\"service-datasourcetypecarbontypedata_source_typepy\\"></a>
+##### service: [\`DataSourceType\`](./carbon/type/data_source_type.py)<a id="service-datasourcetypecarbontypedata_source_typepy"></a>
 
-##### tags: [\`Union[bool, date, datetime, dict, float, int, list, str, None]\`](./carbon/type/typing_union_bool_date_datetime_dict_float_int_list_str_none.py)<a id=\\"tags-unionbool-date-datetime-dict-float-int-list-str-nonecarbontypetyping_union_bool_date_datetime_dict_float_int_list_str_nonepy\\"></a>
+##### tags: [\`Union[bool, date, datetime, dict, float, int, list, str, None]\`](./carbon/type/typing_union_bool_date_datetime_dict_float_int_list_str_none.py)<a id="tags-unionbool-date-datetime-dict-float-int-list-str-nonecarbontypetyping_union_bool_date_datetime_dict_float_int_list_str_nonepy"></a>
 
-##### scope: \`Optional[str]\`<a id=\\"scope-optionalstr\\"></a>
+##### scope: \`Optional[str]\`<a id="scope-optionalstr"></a>
 
-##### chunk_size: \`Optional[int]\`<a id=\\"chunk_size-optionalint\\"></a>
+##### chunk_size: \`Optional[int]\`<a id="chunk_size-optionalint"></a>
 
-##### chunk_overlap: \`Optional[int]\`<a id=\\"chunk_overlap-optionalint\\"></a>
+##### chunk_overlap: \`Optional[int]\`<a id="chunk_overlap-optionalint"></a>
 
-##### skip_embedding_generation: \`Optional[bool]\`<a id=\\"skip_embedding_generation-optionalbool\\"></a>
+##### skip_embedding_generation: \`Optional[bool]\`<a id="skip_embedding_generation-optionalbool"></a>
 
-##### embedding_model: [\`EmbeddingGeneratorsNullable\`](./carbon/type/embedding_generators_nullable.py)<a id=\\"embedding_model-embeddinggeneratorsnullablecarbontypeembedding_generators_nullablepy\\"></a>
+##### embedding_model: [\`EmbeddingGeneratorsNullable\`](./carbon/type/embedding_generators_nullable.py)<a id="embedding_model-embeddinggeneratorsnullablecarbontypeembedding_generators_nullablepy"></a>
 
-##### zendesk_subdomain: \`Optional[str]\`<a id=\\"zendesk_subdomain-optionalstr\\"></a>
+##### zendesk_subdomain: \`Optional[str]\`<a id="zendesk_subdomain-optionalstr"></a>
 
-##### microsoft_tenant: \`Optional[str]\`<a id=\\"microsoft_tenant-optionalstr\\"></a>
+##### microsoft_tenant: \`Optional[str]\`<a id="microsoft_tenant-optionalstr"></a>
 
-##### sharepoint_site_name: \`Optional[str]\`<a id=\\"sharepoint_site_name-optionalstr\\"></a>
+##### sharepoint_site_name: \`Optional[str]\`<a id="sharepoint_site_name-optionalstr"></a>
 
-##### confluence_subdomain: \`Optional[str]\`<a id=\\"confluence_subdomain-optionalstr\\"></a>
+##### confluence_subdomain: \`Optional[str]\`<a id="confluence_subdomain-optionalstr"></a>
 
-##### generate_sparse_vectors: \`Optional[bool]\`<a id=\\"generate_sparse_vectors-optionalbool\\"></a>
+##### generate_sparse_vectors: \`Optional[bool]\`<a id="generate_sparse_vectors-optionalbool"></a>
 
-##### prepend_filename_to_chunks: \`Optional[bool]\`<a id=\\"prepend_filename_to_chunks-optionalbool\\"></a>
+##### prepend_filename_to_chunks: \`Optional[bool]\`<a id="prepend_filename_to_chunks-optionalbool"></a>
 
-##### max_items_per_chunk: \`Optional[int]\`<a id=\\"max_items_per_chunk-optionalint\\"></a>
+##### max_items_per_chunk: \`Optional[int]\`<a id="max_items_per_chunk-optionalint"></a>
 
-#### ⚙️ Request Body<a id=\\"⚙️-request-body\\"></a>
+#### ⚙️ Request Body<a id="⚙️-request-body"></a>
 
 [\`OAuthURLRequest\`](./carbon/type/o_auth_url_request.py)
-#### 🌐 Endpoint<a id=\\"🌐-endpoint\\"></a>
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
 \`/integrations/oauth_url\` \`post\`
 
@@ -1387,7 +1387,7 @@ get_oauth_url_response = carbon.integrations.get_oauth_url(
 
 ---
 
-### \`carbon.integrations.list_confluence_pages\`<a id=\\"carbonintegrationslist_confluence_pages\\"></a>
+### \`carbon.integrations.list_confluence_pages\`<a id="carbonintegrationslist_confluence_pages"></a>
 
 To begin listing a user's Confluence pages, at least a \`data_source_id\` of a connected
 Confluence account must be specified. This base request returns a list of root pages for
@@ -1397,29 +1397,29 @@ the user's page directory, additional requests to this endpoint can be made with
 convenience, the \`has_children\` property in each directory item in the response list will
 flag which pages will return non-empty lists of pages when set as the \`parent_id\`.
 
-#### 🛠️ Usage<a id=\\"🛠️-usage\\"></a>
+#### 🛠️ Usage<a id="🛠️-usage"></a>
 
 \`\`\`python
 list_confluence_pages_response = carbon.integrations.list_confluence_pages(
     data_source_id=1,
-    parent_id=\\"string_example\\",
+    parent_id="string_example",
 )
 \`\`\`
 
-#### ⚙️ Parameters<a id=\\"⚙️-parameters\\"></a>
+#### ⚙️ Parameters<a id="⚙️-parameters"></a>
 
-##### data_source_id: \`int\`<a id=\\"data_source_id-int\\"></a>
+##### data_source_id: \`int\`<a id="data_source_id-int"></a>
 
-##### parent_id: \`Optional[str]\`<a id=\\"parent_id-optionalstr\\"></a>
+##### parent_id: \`Optional[str]\`<a id="parent_id-optionalstr"></a>
 
-#### ⚙️ Request Body<a id=\\"⚙️-request-body\\"></a>
+#### ⚙️ Request Body<a id="⚙️-request-body"></a>
 
 [\`ListRequest\`](./carbon/type/list_request.py)
-#### 🔄 Return<a id=\\"🔄-return\\"></a>
+#### 🔄 Return<a id="🔄-return"></a>
 
 [\`ListResponse\`](./carbon/pydantic/list_response.py)
 
-#### 🌐 Endpoint<a id=\\"🌐-endpoint\\"></a>
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
 \`/integrations/confluence/list\` \`post\`
 
@@ -1427,40 +1427,40 @@ list_confluence_pages_response = carbon.integrations.list_confluence_pages(
 
 ---
 
-### \`carbon.integrations.list_data_source_items\`<a id=\\"carbonintegrationslist_data_source_items\\"></a>
+### \`carbon.integrations.list_data_source_items\`<a id="carbonintegrationslist_data_source_items"></a>
 
 List Data Source Items
 
-#### 🛠️ Usage<a id=\\"🛠️-usage\\"></a>
+#### 🛠️ Usage<a id="🛠️-usage"></a>
 
 \`\`\`python
 list_data_source_items_response = carbon.integrations.list_data_source_items(
     data_source_id=1,
-    parent_id=\\"string_example\\",
+    parent_id="string_example",
     pagination={
-        \\"limit\\": 10,
-        \\"offset\\": 0,
+        "limit": 10,
+        "offset": 0,
     },
 )
 \`\`\`
 
-#### ⚙️ Parameters<a id=\\"⚙️-parameters\\"></a>
+#### ⚙️ Parameters<a id="⚙️-parameters"></a>
 
-##### data_source_id: \`int\`<a id=\\"data_source_id-int\\"></a>
+##### data_source_id: \`int\`<a id="data_source_id-int"></a>
 
-##### parent_id: \`Optional[str]\`<a id=\\"parent_id-optionalstr\\"></a>
+##### parent_id: \`Optional[str]\`<a id="parent_id-optionalstr"></a>
 
-##### pagination: [\`Pagination\`](./carbon/type/pagination.py)<a id=\\"pagination-paginationcarbontypepaginationpy\\"></a>
+##### pagination: [\`Pagination\`](./carbon/type/pagination.py)<a id="pagination-paginationcarbontypepaginationpy"></a>
 
 
-#### ⚙️ Request Body<a id=\\"⚙️-request-body\\"></a>
+#### ⚙️ Request Body<a id="⚙️-request-body"></a>
 
 [\`ListDataSourceItemsRequest\`](./carbon/type/list_data_source_items_request.py)
-#### 🔄 Return<a id=\\"🔄-return\\"></a>
+#### 🔄 Return<a id="🔄-return"></a>
 
 [\`ListDataSourceItemsResponse\`](./carbon/pydantic/list_data_source_items_response.py)
 
-#### 🌐 Endpoint<a id=\\"🌐-endpoint\\"></a>
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
 \`/integrations/items/list\` \`post\`
 
@@ -1468,18 +1468,18 @@ list_data_source_items_response = carbon.integrations.list_data_source_items(
 
 ---
 
-### \`carbon.integrations.list_folders\`<a id=\\"carbonintegrationslist_folders\\"></a>
+### \`carbon.integrations.list_folders\`<a id="carbonintegrationslist_folders"></a>
 
 After connecting your Outlook account, you can use this endpoint to list all of your folders on outlook. This includes 
-both system folders like \\"inbox\\" and user created folders.
+both system folders like "inbox" and user created folders.
 
-#### 🛠️ Usage<a id=\\"🛠️-usage\\"></a>
+#### 🛠️ Usage<a id="🛠️-usage"></a>
 
 \`\`\`python
 list_folders_response = carbon.integrations.list_folders()
 \`\`\`
 
-#### 🌐 Endpoint<a id=\\"🌐-endpoint\\"></a>
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
 \`/integrations/outlook/user_folders\` \`get\`
 
@@ -1487,18 +1487,18 @@ list_folders_response = carbon.integrations.list_folders()
 
 ---
 
-### \`carbon.integrations.list_labels\`<a id=\\"carbonintegrationslist_labels\\"></a>
+### \`carbon.integrations.list_labels\`<a id="carbonintegrationslist_labels"></a>
 
 After connecting your Gmail account, you can use this endpoint to list all of your labels. User created labels
-will have the type \\"user\\" and Gmail's default labels will have the type \\"system\\"
+will have the type "user" and Gmail's default labels will have the type "system"
 
-#### 🛠️ Usage<a id=\\"🛠️-usage\\"></a>
+#### 🛠️ Usage<a id="🛠️-usage"></a>
 
 \`\`\`python
 list_labels_response = carbon.integrations.list_labels()
 \`\`\`
 
-#### 🌐 Endpoint<a id=\\"🌐-endpoint\\"></a>
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
 \`/integrations/gmail/user_labels\` \`get\`
 
@@ -1506,60 +1506,60 @@ list_labels_response = carbon.integrations.list_labels()
 
 ---
 
-### \`carbon.integrations.sync_confluence\`<a id=\\"carbonintegrationssync_confluence\\"></a>
+### \`carbon.integrations.sync_confluence\`<a id="carbonintegrationssync_confluence"></a>
 
 After listing pages in a user's Confluence account, the set of selected page \`ids\` and the
 connected account's \`data_source_id\` can be passed into this endpoint to sync them into
 Carbon. Additional parameters listed below can be used to associate data to the selected
 pages or alter the behavior of the sync.
 
-#### 🛠️ Usage<a id=\\"🛠️-usage\\"></a>
+#### 🛠️ Usage<a id="🛠️-usage"></a>
 
 \`\`\`python
 sync_confluence_response = carbon.integrations.sync_confluence(
     data_source_id=1,
-    ids=[\\"string_example\\"],
+    ids=["string_example"],
     tags={},
     chunk_size=1500,
     chunk_overlap=20,
     skip_embedding_generation=False,
-    embedding_model=\\"OPENAI\\",
+    embedding_model="OPENAI",
     generate_sparse_vectors=False,
     prepend_filename_to_chunks=False,
     max_items_per_chunk=1,
 )
 \`\`\`
 
-#### ⚙️ Parameters<a id=\\"⚙️-parameters\\"></a>
+#### ⚙️ Parameters<a id="⚙️-parameters"></a>
 
-##### data_source_id: \`int\`<a id=\\"data_source_id-int\\"></a>
+##### data_source_id: \`int\`<a id="data_source_id-int"></a>
 
-##### ids: [\`SyncFilesRequestIds\`](./carbon/type/sync_files_request_ids.py)<a id=\\"ids-syncfilesrequestidscarbontypesync_files_request_idspy\\"></a>
+##### ids: [\`SyncFilesRequestIds\`](./carbon/type/sync_files_request_ids.py)<a id="ids-syncfilesrequestidscarbontypesync_files_request_idspy"></a>
 
-##### tags: \`Optional[Dict[str, Union[bool, date, datetime, dict, float, int, list, str, None]]]\`<a id=\\"tags-optionaldictstr-unionbool-date-datetime-dict-float-int-list-str-none\\"></a>
+##### tags: \`Optional[Dict[str, Union[bool, date, datetime, dict, float, int, list, str, None]]]\`<a id="tags-optionaldictstr-unionbool-date-datetime-dict-float-int-list-str-none"></a>
 
-##### chunk_size: \`Optional[int]\`<a id=\\"chunk_size-optionalint\\"></a>
+##### chunk_size: \`Optional[int]\`<a id="chunk_size-optionalint"></a>
 
-##### chunk_overlap: \`Optional[int]\`<a id=\\"chunk_overlap-optionalint\\"></a>
+##### chunk_overlap: \`Optional[int]\`<a id="chunk_overlap-optionalint"></a>
 
-##### skip_embedding_generation: \`Optional[bool]\`<a id=\\"skip_embedding_generation-optionalbool\\"></a>
+##### skip_embedding_generation: \`Optional[bool]\`<a id="skip_embedding_generation-optionalbool"></a>
 
-##### embedding_model: [\`EmbeddingGeneratorsNullable\`](./carbon/type/embedding_generators_nullable.py)<a id=\\"embedding_model-embeddinggeneratorsnullablecarbontypeembedding_generators_nullablepy\\"></a>
+##### embedding_model: [\`EmbeddingGeneratorsNullable\`](./carbon/type/embedding_generators_nullable.py)<a id="embedding_model-embeddinggeneratorsnullablecarbontypeembedding_generators_nullablepy"></a>
 
-##### generate_sparse_vectors: \`Optional[bool]\`<a id=\\"generate_sparse_vectors-optionalbool\\"></a>
+##### generate_sparse_vectors: \`Optional[bool]\`<a id="generate_sparse_vectors-optionalbool"></a>
 
-##### prepend_filename_to_chunks: \`Optional[bool]\`<a id=\\"prepend_filename_to_chunks-optionalbool\\"></a>
+##### prepend_filename_to_chunks: \`Optional[bool]\`<a id="prepend_filename_to_chunks-optionalbool"></a>
 
-##### max_items_per_chunk: \`Optional[int]\`<a id=\\"max_items_per_chunk-optionalint\\"></a>
+##### max_items_per_chunk: \`Optional[int]\`<a id="max_items_per_chunk-optionalint"></a>
 
-#### ⚙️ Request Body<a id=\\"⚙️-request-body\\"></a>
+#### ⚙️ Request Body<a id="⚙️-request-body"></a>
 
 [\`SyncFilesRequest\`](./carbon/type/sync_files_request.py)
-#### 🔄 Return<a id=\\"🔄-return\\"></a>
+#### 🔄 Return<a id="🔄-return"></a>
 
 [\`GenericSuccessResponse\`](./carbon/pydantic/generic_success_response.py)
 
-#### 🌐 Endpoint<a id=\\"🌐-endpoint\\"></a>
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
 \`/integrations/confluence/sync\` \`post\`
 
@@ -1567,11 +1567,11 @@ sync_confluence_response = carbon.integrations.sync_confluence(
 
 ---
 
-### \`carbon.integrations.sync_data_source_items\`<a id=\\"carbonintegrationssync_data_source_items\\"></a>
+### \`carbon.integrations.sync_data_source_items\`<a id="carbonintegrationssync_data_source_items"></a>
 
 Sync Data Source Items
 
-#### 🛠️ Usage<a id=\\"🛠️-usage\\"></a>
+#### 🛠️ Usage<a id="🛠️-usage"></a>
 
 \`\`\`python
 sync_data_source_items_response = carbon.integrations.sync_data_source_items(
@@ -1579,18 +1579,18 @@ sync_data_source_items_response = carbon.integrations.sync_data_source_items(
 )
 \`\`\`
 
-#### ⚙️ Parameters<a id=\\"⚙️-parameters\\"></a>
+#### ⚙️ Parameters<a id="⚙️-parameters"></a>
 
-##### data_source_id: \`int\`<a id=\\"data_source_id-int\\"></a>
+##### data_source_id: \`int\`<a id="data_source_id-int"></a>
 
-#### ⚙️ Request Body<a id=\\"⚙️-request-body\\"></a>
+#### ⚙️ Request Body<a id="⚙️-request-body"></a>
 
 [\`SyncDirectoryRequest\`](./carbon/type/sync_directory_request.py)
-#### 🔄 Return<a id=\\"🔄-return\\"></a>
+#### 🔄 Return<a id="🔄-return"></a>
 
 [\`OrganizationUserDataSourceAPI\`](./carbon/pydantic/organization_user_data_source_api.py)
 
-#### 🌐 Endpoint<a id=\\"🌐-endpoint\\"></a>
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
 \`/integrations/items/sync\` \`post\`
 
@@ -1598,57 +1598,57 @@ sync_data_source_items_response = carbon.integrations.sync_data_source_items(
 
 ---
 
-### \`carbon.integrations.sync_files\`<a id=\\"carbonintegrationssync_files\\"></a>
+### \`carbon.integrations.sync_files\`<a id="carbonintegrationssync_files"></a>
 
 Sync Files
 
-#### 🛠️ Usage<a id=\\"🛠️-usage\\"></a>
+#### 🛠️ Usage<a id="🛠️-usage"></a>
 
 \`\`\`python
 sync_files_response = carbon.integrations.sync_files(
     data_source_id=1,
-    ids=[\\"string_example\\"],
+    ids=["string_example"],
     tags={},
     chunk_size=1500,
     chunk_overlap=20,
     skip_embedding_generation=False,
-    embedding_model=\\"OPENAI\\",
+    embedding_model="OPENAI",
     generate_sparse_vectors=False,
     prepend_filename_to_chunks=False,
     max_items_per_chunk=1,
 )
 \`\`\`
 
-#### ⚙️ Parameters<a id=\\"⚙️-parameters\\"></a>
+#### ⚙️ Parameters<a id="⚙️-parameters"></a>
 
-##### data_source_id: \`int\`<a id=\\"data_source_id-int\\"></a>
+##### data_source_id: \`int\`<a id="data_source_id-int"></a>
 
-##### ids: [\`SyncFilesRequestIds\`](./carbon/type/sync_files_request_ids.py)<a id=\\"ids-syncfilesrequestidscarbontypesync_files_request_idspy\\"></a>
+##### ids: [\`SyncFilesRequestIds\`](./carbon/type/sync_files_request_ids.py)<a id="ids-syncfilesrequestidscarbontypesync_files_request_idspy"></a>
 
-##### tags: \`Optional[Dict[str, Union[bool, date, datetime, dict, float, int, list, str, None]]]\`<a id=\\"tags-optionaldictstr-unionbool-date-datetime-dict-float-int-list-str-none\\"></a>
+##### tags: \`Optional[Dict[str, Union[bool, date, datetime, dict, float, int, list, str, None]]]\`<a id="tags-optionaldictstr-unionbool-date-datetime-dict-float-int-list-str-none"></a>
 
-##### chunk_size: \`Optional[int]\`<a id=\\"chunk_size-optionalint\\"></a>
+##### chunk_size: \`Optional[int]\`<a id="chunk_size-optionalint"></a>
 
-##### chunk_overlap: \`Optional[int]\`<a id=\\"chunk_overlap-optionalint\\"></a>
+##### chunk_overlap: \`Optional[int]\`<a id="chunk_overlap-optionalint"></a>
 
-##### skip_embedding_generation: \`Optional[bool]\`<a id=\\"skip_embedding_generation-optionalbool\\"></a>
+##### skip_embedding_generation: \`Optional[bool]\`<a id="skip_embedding_generation-optionalbool"></a>
 
-##### embedding_model: [\`EmbeddingGeneratorsNullable\`](./carbon/type/embedding_generators_nullable.py)<a id=\\"embedding_model-embeddinggeneratorsnullablecarbontypeembedding_generators_nullablepy\\"></a>
+##### embedding_model: [\`EmbeddingGeneratorsNullable\`](./carbon/type/embedding_generators_nullable.py)<a id="embedding_model-embeddinggeneratorsnullablecarbontypeembedding_generators_nullablepy"></a>
 
-##### generate_sparse_vectors: \`Optional[bool]\`<a id=\\"generate_sparse_vectors-optionalbool\\"></a>
+##### generate_sparse_vectors: \`Optional[bool]\`<a id="generate_sparse_vectors-optionalbool"></a>
 
-##### prepend_filename_to_chunks: \`Optional[bool]\`<a id=\\"prepend_filename_to_chunks-optionalbool\\"></a>
+##### prepend_filename_to_chunks: \`Optional[bool]\`<a id="prepend_filename_to_chunks-optionalbool"></a>
 
-##### max_items_per_chunk: \`Optional[int]\`<a id=\\"max_items_per_chunk-optionalint\\"></a>
+##### max_items_per_chunk: \`Optional[int]\`<a id="max_items_per_chunk-optionalint"></a>
 
-#### ⚙️ Request Body<a id=\\"⚙️-request-body\\"></a>
+#### ⚙️ Request Body<a id="⚙️-request-body"></a>
 
 [\`SyncFilesRequest\`](./carbon/type/sync_files_request.py)
-#### 🔄 Return<a id=\\"🔄-return\\"></a>
+#### 🔄 Return<a id="🔄-return"></a>
 
 [\`GenericSuccessResponse\`](./carbon/pydantic/generic_success_response.py)
 
-#### 🌐 Endpoint<a id=\\"🌐-endpoint\\"></a>
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
 \`/integrations/files/sync\` \`post\`
 
@@ -1656,13 +1656,13 @@ sync_files_response = carbon.integrations.sync_files(
 
 ---
 
-### \`carbon.integrations.sync_gmail\`<a id=\\"carbonintegrationssync_gmail\\"></a>
+### \`carbon.integrations.sync_gmail\`<a id="carbonintegrationssync_gmail"></a>
 
 Once you have successfully connected your gmail account, you can choose which emails to sync with us
 using the filters parameter. Filters is a JSON object with key value pairs. It also supports AND and OR operations.
 For now, we support a limited set of keys listed below.
 
-<b>label</b>: Inbuilt Gmail labels, for example \\"Important\\" or a custom label you created.  
+<b>label</b>: Inbuilt Gmail labels, for example "Important" or a custom label you created.  
 <b>after</b> or <b>before</b>: A date in YYYY/mm/dd format (example 2023/12/31). Gets emails after/before a certain date.
 You can also use them in combination to get emails from a certain period.  
 <b>is</b>: Can have the following values - starred, important, snoozed, and unread  
@@ -1672,32 +1672,32 @@ Using keys or values outside of the specified values can lead to unexpected beha
 An example of a basic query with filters can be
 \`\`\`json
 {
-    \\"filters\\": {
-            \\"key\\": \\"label\\",
-            \\"value\\": \\"Test\\"
+    "filters": {
+            "key": "label",
+            "value": "Test"
         }
 }
 \`\`\`
-Which will list all emails that have the label \\"Test\\".
+Which will list all emails that have the label "Test".
 
 You can use AND and OR operation in the following way:
 \`\`\`json
 {
-    \\"filters\\": {
-        \\"AND\\": [
+    "filters": {
+        "AND": [
             {
-                \\"key\\": \\"after\\",
-                \\"value\\": \\"2024/01/07\\"
+                "key": "after",
+                "value": "2024/01/07"
             },
             {
-                \\"OR\\": [
+                "OR": [
                     {
-                        \\"key\\": \\"label\\",
-                        \\"value\\": \\"Personal\\"
+                        "key": "label",
+                        "value": "Personal"
                     },
                     {
-                        \\"key\\": \\"is\\",
-                        \\"value\\": \\"starred\\"
+                        "key": "is",
+                        "value": "starred"
                     }
                 ]
             }
@@ -1705,11 +1705,11 @@ You can use AND and OR operation in the following way:
     }
 }
 \`\`\`
-This will return emails after 7th of Jan that are either starred or have the label \\"Personal\\". 
+This will return emails after 7th of Jan that are either starred or have the label "Personal". 
 Note that this is the highest level of nesting we support, i.e. you can't add more AND/OR filters within the OR filter
 in the above example.
 
-#### 🛠️ Usage<a id=\\"🛠️-usage\\"></a>
+#### 🛠️ Usage<a id="🛠️-usage"></a>
 
 \`\`\`python
 sync_gmail_response = carbon.integrations.sync_gmail(
@@ -1718,38 +1718,38 @@ sync_gmail_response = carbon.integrations.sync_gmail(
     chunk_size=1500,
     chunk_overlap=20,
     skip_embedding_generation=False,
-    embedding_model=\\"OPENAI\\",
+    embedding_model="OPENAI",
     generate_sparse_vectors=False,
     prepend_filename_to_chunks=False,
 )
 \`\`\`
 
-#### ⚙️ Parameters<a id=\\"⚙️-parameters\\"></a>
+#### ⚙️ Parameters<a id="⚙️-parameters"></a>
 
-##### filters: \`Dict[str, Union[bool, date, datetime, dict, float, int, list, str, None]]\`<a id=\\"filters-dictstr-unionbool-date-datetime-dict-float-int-list-str-none\\"></a>
+##### filters: \`Dict[str, Union[bool, date, datetime, dict, float, int, list, str, None]]\`<a id="filters-dictstr-unionbool-date-datetime-dict-float-int-list-str-none"></a>
 
-##### tags: \`Optional[Dict[str, Union[bool, date, datetime, dict, float, int, list, str, None]]]\`<a id=\\"tags-optionaldictstr-unionbool-date-datetime-dict-float-int-list-str-none\\"></a>
+##### tags: \`Optional[Dict[str, Union[bool, date, datetime, dict, float, int, list, str, None]]]\`<a id="tags-optionaldictstr-unionbool-date-datetime-dict-float-int-list-str-none"></a>
 
-##### chunk_size: \`Optional[int]\`<a id=\\"chunk_size-optionalint\\"></a>
+##### chunk_size: \`Optional[int]\`<a id="chunk_size-optionalint"></a>
 
-##### chunk_overlap: \`Optional[int]\`<a id=\\"chunk_overlap-optionalint\\"></a>
+##### chunk_overlap: \`Optional[int]\`<a id="chunk_overlap-optionalint"></a>
 
-##### skip_embedding_generation: \`Optional[bool]\`<a id=\\"skip_embedding_generation-optionalbool\\"></a>
+##### skip_embedding_generation: \`Optional[bool]\`<a id="skip_embedding_generation-optionalbool"></a>
 
-##### embedding_model: [\`EmbeddingGenerators\`](./carbon/type/embedding_generators.py)<a id=\\"embedding_model-embeddinggeneratorscarbontypeembedding_generatorspy\\"></a>
+##### embedding_model: [\`EmbeddingGenerators\`](./carbon/type/embedding_generators.py)<a id="embedding_model-embeddinggeneratorscarbontypeembedding_generatorspy"></a>
 
-##### generate_sparse_vectors: \`Optional[bool]\`<a id=\\"generate_sparse_vectors-optionalbool\\"></a>
+##### generate_sparse_vectors: \`Optional[bool]\`<a id="generate_sparse_vectors-optionalbool"></a>
 
-##### prepend_filename_to_chunks: \`Optional[bool]\`<a id=\\"prepend_filename_to_chunks-optionalbool\\"></a>
+##### prepend_filename_to_chunks: \`Optional[bool]\`<a id="prepend_filename_to_chunks-optionalbool"></a>
 
-#### ⚙️ Request Body<a id=\\"⚙️-request-body\\"></a>
+#### ⚙️ Request Body<a id="⚙️-request-body"></a>
 
 [\`GmailSyncInput\`](./carbon/type/gmail_sync_input.py)
-#### 🔄 Return<a id=\\"🔄-return\\"></a>
+#### 🔄 Return<a id="🔄-return"></a>
 
 [\`GenericSuccessResponse\`](./carbon/pydantic/generic_success_response.py)
 
-#### 🌐 Endpoint<a id=\\"🌐-endpoint\\"></a>
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
 \`/integrations/gmail/sync\` \`post\`
 
@@ -1757,10 +1757,10 @@ sync_gmail_response = carbon.integrations.sync_gmail(
 
 ---
 
-### \`carbon.integrations.sync_outlook\`<a id=\\"carbonintegrationssync_outlook\\"></a>
+### \`carbon.integrations.sync_outlook\`<a id="carbonintegrationssync_outlook"></a>
 
 Once you have successfully connected your Outlook account, you can choose which emails to sync with us
-using the filters and folder parameter. \\"folder\\" should be the folder you want to sync from Outlook. By default
+using the filters and folder parameter. "folder" should be the folder you want to sync from Outlook. By default
 we get messages from your inbox folder.  
 Filters is a JSON object with key value pairs. It also supports AND and OR operations.
 For now, we support a limited set of keys listed below.
@@ -1772,21 +1772,21 @@ For now, we support a limited set of keys listed below.
 An example of a basic query with filters can be
 \`\`\`json
 {
-    \\"filters\\": {
-            \\"key\\": \\"category\\",
-            \\"value\\": \\"Test\\"
+    "filters": {
+            "key": "category",
+            "value": "Test"
         }
 }
 \`\`\`
-Which will list all emails that have the category \\"Test\\".  
+Which will list all emails that have the category "Test".  
 
 Specifying a custom folder in the same query
 \`\`\`json
 {
-    \\"folder\\": \\"Folder Name\\",
-    \\"filters\\": {
-            \\"key\\": \\"category\\",
-            \\"value\\": \\"Test\\"
+    "folder": "Folder Name",
+    "filters": {
+            "key": "category",
+            "value": "Test"
         }
 }
 \`\`\`
@@ -1794,21 +1794,21 @@ Specifying a custom folder in the same query
 You can use AND and OR operation in the following way:
 \`\`\`json
 {
-    \\"filters\\": {
-        \\"AND\\": [
+    "filters": {
+        "AND": [
             {
-                \\"key\\": \\"after\\",
-                \\"value\\": \\"2024/01/07\\"
+                "key": "after",
+                "value": "2024/01/07"
             },
             {
-                \\"OR\\": [
+                "OR": [
                     {
-                        \\"key\\": \\"category\\",
-                        \\"value\\": \\"Personal\\"
+                        "key": "category",
+                        "value": "Personal"
                     },
                     {
-                        \\"key\\": \\"category\\",
-                        \\"value\\": \\"Test\\"
+                        "key": "category",
+                        "value": "Test"
                     },
                 ]
             }
@@ -1820,50 +1820,50 @@ This will return emails after 7th of Jan that have either Personal or Test as ca
 Note that this is the highest level of nesting we support, i.e. you can't add more AND/OR filters within the OR filter
 in the above example.
 
-#### 🛠️ Usage<a id=\\"🛠️-usage\\"></a>
+#### 🛠️ Usage<a id="🛠️-usage"></a>
 
 \`\`\`python
 sync_outlook_response = carbon.integrations.sync_outlook(
     filters={},
     tags={},
-    folder=\\"Inbox\\",
+    folder="Inbox",
     chunk_size=1500,
     chunk_overlap=20,
     skip_embedding_generation=False,
-    embedding_model=\\"OPENAI\\",
+    embedding_model="OPENAI",
     generate_sparse_vectors=False,
     prepend_filename_to_chunks=False,
 )
 \`\`\`
 
-#### ⚙️ Parameters<a id=\\"⚙️-parameters\\"></a>
+#### ⚙️ Parameters<a id="⚙️-parameters"></a>
 
-##### filters: \`Dict[str, Union[bool, date, datetime, dict, float, int, list, str, None]]\`<a id=\\"filters-dictstr-unionbool-date-datetime-dict-float-int-list-str-none\\"></a>
+##### filters: \`Dict[str, Union[bool, date, datetime, dict, float, int, list, str, None]]\`<a id="filters-dictstr-unionbool-date-datetime-dict-float-int-list-str-none"></a>
 
-##### tags: \`Optional[Dict[str, Union[bool, date, datetime, dict, float, int, list, str, None]]]\`<a id=\\"tags-optionaldictstr-unionbool-date-datetime-dict-float-int-list-str-none\\"></a>
+##### tags: \`Optional[Dict[str, Union[bool, date, datetime, dict, float, int, list, str, None]]]\`<a id="tags-optionaldictstr-unionbool-date-datetime-dict-float-int-list-str-none"></a>
 
-##### folder: \`Optional[str]\`<a id=\\"folder-optionalstr\\"></a>
+##### folder: \`Optional[str]\`<a id="folder-optionalstr"></a>
 
-##### chunk_size: \`Optional[int]\`<a id=\\"chunk_size-optionalint\\"></a>
+##### chunk_size: \`Optional[int]\`<a id="chunk_size-optionalint"></a>
 
-##### chunk_overlap: \`Optional[int]\`<a id=\\"chunk_overlap-optionalint\\"></a>
+##### chunk_overlap: \`Optional[int]\`<a id="chunk_overlap-optionalint"></a>
 
-##### skip_embedding_generation: \`Optional[bool]\`<a id=\\"skip_embedding_generation-optionalbool\\"></a>
+##### skip_embedding_generation: \`Optional[bool]\`<a id="skip_embedding_generation-optionalbool"></a>
 
-##### embedding_model: [\`EmbeddingGenerators\`](./carbon/type/embedding_generators.py)<a id=\\"embedding_model-embeddinggeneratorscarbontypeembedding_generatorspy\\"></a>
+##### embedding_model: [\`EmbeddingGenerators\`](./carbon/type/embedding_generators.py)<a id="embedding_model-embeddinggeneratorscarbontypeembedding_generatorspy"></a>
 
-##### generate_sparse_vectors: \`Optional[bool]\`<a id=\\"generate_sparse_vectors-optionalbool\\"></a>
+##### generate_sparse_vectors: \`Optional[bool]\`<a id="generate_sparse_vectors-optionalbool"></a>
 
-##### prepend_filename_to_chunks: \`Optional[bool]\`<a id=\\"prepend_filename_to_chunks-optionalbool\\"></a>
+##### prepend_filename_to_chunks: \`Optional[bool]\`<a id="prepend_filename_to_chunks-optionalbool"></a>
 
-#### ⚙️ Request Body<a id=\\"⚙️-request-body\\"></a>
+#### ⚙️ Request Body<a id="⚙️-request-body"></a>
 
 [\`OutlookSyncInput\`](./carbon/type/outlook_sync_input.py)
-#### 🔄 Return<a id=\\"🔄-return\\"></a>
+#### 🔄 Return<a id="🔄-return"></a>
 
 [\`GenericSuccessResponse\`](./carbon/pydantic/generic_success_response.py)
 
-#### 🌐 Endpoint<a id=\\"🌐-endpoint\\"></a>
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
 \`/integrations/outlook/sync\` \`post\`
 
@@ -1871,51 +1871,51 @@ sync_outlook_response = carbon.integrations.sync_outlook(
 
 ---
 
-### \`carbon.integrations.sync_rss_feed\`<a id=\\"carbonintegrationssync_rss_feed\\"></a>
+### \`carbon.integrations.sync_rss_feed\`<a id="carbonintegrationssync_rss_feed"></a>
 
 Rss Feed
 
-#### 🛠️ Usage<a id=\\"🛠️-usage\\"></a>
+#### 🛠️ Usage<a id="🛠️-usage"></a>
 
 \`\`\`python
 sync_rss_feed_response = carbon.integrations.sync_rss_feed(
-    url=\\"string_example\\",
+    url="string_example",
     tags={},
     chunk_size=1500,
     chunk_overlap=20,
     skip_embedding_generation=False,
-    embedding_model=\\"OPENAI\\",
+    embedding_model="OPENAI",
     generate_sparse_vectors=False,
     prepend_filename_to_chunks=False,
 )
 \`\`\`
 
-#### ⚙️ Parameters<a id=\\"⚙️-parameters\\"></a>
+#### ⚙️ Parameters<a id="⚙️-parameters"></a>
 
-##### url: \`str\`<a id=\\"url-str\\"></a>
+##### url: \`str\`<a id="url-str"></a>
 
-##### tags: \`Optional[Dict[str, Union[bool, date, datetime, dict, float, int, list, str, None]]]\`<a id=\\"tags-optionaldictstr-unionbool-date-datetime-dict-float-int-list-str-none\\"></a>
+##### tags: \`Optional[Dict[str, Union[bool, date, datetime, dict, float, int, list, str, None]]]\`<a id="tags-optionaldictstr-unionbool-date-datetime-dict-float-int-list-str-none"></a>
 
-##### chunk_size: \`Optional[int]\`<a id=\\"chunk_size-optionalint\\"></a>
+##### chunk_size: \`Optional[int]\`<a id="chunk_size-optionalint"></a>
 
-##### chunk_overlap: \`Optional[int]\`<a id=\\"chunk_overlap-optionalint\\"></a>
+##### chunk_overlap: \`Optional[int]\`<a id="chunk_overlap-optionalint"></a>
 
-##### skip_embedding_generation: \`Optional[bool]\`<a id=\\"skip_embedding_generation-optionalbool\\"></a>
+##### skip_embedding_generation: \`Optional[bool]\`<a id="skip_embedding_generation-optionalbool"></a>
 
-##### embedding_model: [\`EmbeddingGenerators\`](./carbon/type/embedding_generators.py)<a id=\\"embedding_model-embeddinggeneratorscarbontypeembedding_generatorspy\\"></a>
+##### embedding_model: [\`EmbeddingGenerators\`](./carbon/type/embedding_generators.py)<a id="embedding_model-embeddinggeneratorscarbontypeembedding_generatorspy"></a>
 
-##### generate_sparse_vectors: \`Optional[bool]\`<a id=\\"generate_sparse_vectors-optionalbool\\"></a>
+##### generate_sparse_vectors: \`Optional[bool]\`<a id="generate_sparse_vectors-optionalbool"></a>
 
-##### prepend_filename_to_chunks: \`Optional[bool]\`<a id=\\"prepend_filename_to_chunks-optionalbool\\"></a>
+##### prepend_filename_to_chunks: \`Optional[bool]\`<a id="prepend_filename_to_chunks-optionalbool"></a>
 
-#### ⚙️ Request Body<a id=\\"⚙️-request-body\\"></a>
+#### ⚙️ Request Body<a id="⚙️-request-body"></a>
 
 [\`RSSFeedInput\`](./carbon/type/rss_feed_input.py)
-#### 🔄 Return<a id=\\"🔄-return\\"></a>
+#### 🔄 Return<a id="🔄-return"></a>
 
 [\`GenericSuccessResponse\`](./carbon/pydantic/generic_success_response.py)
 
-#### 🌐 Endpoint<a id=\\"🌐-endpoint\\"></a>
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
 \`/integrations/rss_feed\` \`post\`
 
@@ -1923,13 +1923,13 @@ sync_rss_feed_response = carbon.integrations.sync_rss_feed(
 
 ---
 
-### \`carbon.integrations.sync_s3_files\`<a id=\\"carbonintegrationssync_s3_files\\"></a>
+### \`carbon.integrations.sync_s3_files\`<a id="carbonintegrationssync_s3_files"></a>
 
 After optionally loading the items via /integrations/items/sync and integrations/items/list, use the bucket name 
 and object key as the ID in this endpoint to sync them into Carbon. Additional parameters below can associate 
 data with the selected items or modify the sync behavior
 
-#### 🛠️ Usage<a id=\\"🛠️-usage\\"></a>
+#### 🛠️ Usage<a id="🛠️-usage"></a>
 
 \`\`\`python
 sync_s3_files_response = carbon.integrations.sync_s3_files(
@@ -1938,41 +1938,41 @@ sync_s3_files_response = carbon.integrations.sync_s3_files(
     chunk_size=1500,
     chunk_overlap=20,
     skip_embedding_generation=False,
-    embedding_model=\\"OPENAI\\",
+    embedding_model="OPENAI",
     generate_sparse_vectors=False,
     prepend_filename_to_chunks=False,
     max_items_per_chunk=1,
 )
 \`\`\`
 
-#### ⚙️ Parameters<a id=\\"⚙️-parameters\\"></a>
+#### ⚙️ Parameters<a id="⚙️-parameters"></a>
 
-##### ids: List[\`S3GetFileInput\`]<a id=\\"ids-lists3getfileinput\\"></a>
+##### ids: List[\`S3GetFileInput\`]<a id="ids-lists3getfileinput"></a>
 
-##### tags: \`Optional[Dict[str, Union[bool, date, datetime, dict, float, int, list, str, None]]]\`<a id=\\"tags-optionaldictstr-unionbool-date-datetime-dict-float-int-list-str-none\\"></a>
+##### tags: \`Optional[Dict[str, Union[bool, date, datetime, dict, float, int, list, str, None]]]\`<a id="tags-optionaldictstr-unionbool-date-datetime-dict-float-int-list-str-none"></a>
 
-##### chunk_size: \`Optional[int]\`<a id=\\"chunk_size-optionalint\\"></a>
+##### chunk_size: \`Optional[int]\`<a id="chunk_size-optionalint"></a>
 
-##### chunk_overlap: \`Optional[int]\`<a id=\\"chunk_overlap-optionalint\\"></a>
+##### chunk_overlap: \`Optional[int]\`<a id="chunk_overlap-optionalint"></a>
 
-##### skip_embedding_generation: \`Optional[bool]\`<a id=\\"skip_embedding_generation-optionalbool\\"></a>
+##### skip_embedding_generation: \`Optional[bool]\`<a id="skip_embedding_generation-optionalbool"></a>
 
-##### embedding_model: [\`EmbeddingGenerators\`](./carbon/type/embedding_generators.py)<a id=\\"embedding_model-embeddinggeneratorscarbontypeembedding_generatorspy\\"></a>
+##### embedding_model: [\`EmbeddingGenerators\`](./carbon/type/embedding_generators.py)<a id="embedding_model-embeddinggeneratorscarbontypeembedding_generatorspy"></a>
 
-##### generate_sparse_vectors: \`Optional[bool]\`<a id=\\"generate_sparse_vectors-optionalbool\\"></a>
+##### generate_sparse_vectors: \`Optional[bool]\`<a id="generate_sparse_vectors-optionalbool"></a>
 
-##### prepend_filename_to_chunks: \`Optional[bool]\`<a id=\\"prepend_filename_to_chunks-optionalbool\\"></a>
+##### prepend_filename_to_chunks: \`Optional[bool]\`<a id="prepend_filename_to_chunks-optionalbool"></a>
 
-##### max_items_per_chunk: \`Optional[int]\`<a id=\\"max_items_per_chunk-optionalint\\"></a>
+##### max_items_per_chunk: \`Optional[int]\`<a id="max_items_per_chunk-optionalint"></a>
 
-#### ⚙️ Request Body<a id=\\"⚙️-request-body\\"></a>
+#### ⚙️ Request Body<a id="⚙️-request-body"></a>
 
 [\`S3FileSyncInput\`](./carbon/type/s3_file_sync_input.py)
-#### 🔄 Return<a id=\\"🔄-return\\"></a>
+#### 🔄 Return<a id="🔄-return"></a>
 
 [\`GenericSuccessResponse\`](./carbon/pydantic/generic_success_response.py)
 
-#### 🌐 Endpoint<a id=\\"🌐-endpoint\\"></a>
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
 \`/integrations/s3/files\` \`post\`
 
@@ -1980,21 +1980,21 @@ sync_s3_files_response = carbon.integrations.sync_s3_files(
 
 ---
 
-### \`carbon.organizations.get\`<a id=\\"carbonorganizationsget\\"></a>
+### \`carbon.organizations.get\`<a id="carbonorganizationsget"></a>
 
 Get Organization
 
-#### 🛠️ Usage<a id=\\"🛠️-usage\\"></a>
+#### 🛠️ Usage<a id="🛠️-usage"></a>
 
 \`\`\`python
 get_response = carbon.organizations.get()
 \`\`\`
 
-#### 🔄 Return<a id=\\"🔄-return\\"></a>
+#### 🔄 Return<a id="🔄-return"></a>
 
 [\`OrganizationResponse\`](./carbon/pydantic/organization_response.py)
 
-#### 🌐 Endpoint<a id=\\"🌐-endpoint\\"></a>
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
 \`/organization\` \`get\`
 
@@ -2002,30 +2002,30 @@ get_response = carbon.organizations.get()
 
 ---
 
-### \`carbon.users.get\`<a id=\\"carbonusersget\\"></a>
+### \`carbon.users.get\`<a id="carbonusersget"></a>
 
 User Endpoint
 
-#### 🛠️ Usage<a id=\\"🛠️-usage\\"></a>
+#### 🛠️ Usage<a id="🛠️-usage"></a>
 
 \`\`\`python
 get_response = carbon.users.get(
-    customer_id=\\"string_example\\",
+    customer_id="string_example",
 )
 \`\`\`
 
-#### ⚙️ Parameters<a id=\\"⚙️-parameters\\"></a>
+#### ⚙️ Parameters<a id="⚙️-parameters"></a>
 
-##### customer_id: \`str\`<a id=\\"customer_id-str\\"></a>
+##### customer_id: \`str\`<a id="customer_id-str"></a>
 
-#### ⚙️ Request Body<a id=\\"⚙️-request-body\\"></a>
+#### ⚙️ Request Body<a id="⚙️-request-body"></a>
 
 [\`UserRequestContent\`](./carbon/type/user_request_content.py)
-#### 🔄 Return<a id=\\"🔄-return\\"></a>
+#### 🔄 Return<a id="🔄-return"></a>
 
 [\`UserResponse\`](./carbon/pydantic/user_response.py)
 
-#### 🌐 Endpoint<a id=\\"🌐-endpoint\\"></a>
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
 \`/user\` \`post\`
 
@@ -2033,33 +2033,33 @@ get_response = carbon.users.get(
 
 ---
 
-### \`carbon.users.toggle_user_features\`<a id=\\"carbonuserstoggle_user_features\\"></a>
+### \`carbon.users.toggle_user_features\`<a id="carbonuserstoggle_user_features"></a>
 
 Toggle User Features
 
-#### 🛠️ Usage<a id=\\"🛠️-usage\\"></a>
+#### 🛠️ Usage<a id="🛠️-usage"></a>
 
 \`\`\`python
 toggle_user_features_response = carbon.users.toggle_user_features(
-    configuration_key_name=\\"string_example\\",
+    configuration_key_name="string_example",
     value={},
 )
 \`\`\`
 
-#### ⚙️ Parameters<a id=\\"⚙️-parameters\\"></a>
+#### ⚙️ Parameters<a id="⚙️-parameters"></a>
 
-##### configuration_key_name: \`str\`<a id=\\"configuration_key_name-str\\"></a>
+##### configuration_key_name: \`str\`<a id="configuration_key_name-str"></a>
 
-##### value: \`Dict[str, Union[bool, date, datetime, dict, float, int, list, str, None]]\`<a id=\\"value-dictstr-unionbool-date-datetime-dict-float-int-list-str-none\\"></a>
+##### value: \`Dict[str, Union[bool, date, datetime, dict, float, int, list, str, None]]\`<a id="value-dictstr-unionbool-date-datetime-dict-float-int-list-str-none"></a>
 
-#### ⚙️ Request Body<a id=\\"⚙️-request-body\\"></a>
+#### ⚙️ Request Body<a id="⚙️-request-body"></a>
 
 [\`ModifyUserConfigurationInput\`](./carbon/type/modify_user_configuration_input.py)
-#### 🔄 Return<a id=\\"🔄-return\\"></a>
+#### 🔄 Return<a id="🔄-return"></a>
 
 [\`GenericSuccessResponse\`](./carbon/pydantic/generic_success_response.py)
 
-#### 🌐 Endpoint<a id=\\"🌐-endpoint\\"></a>
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
 \`/modify_user_configuration\` \`post\`
 
@@ -2067,7 +2067,7 @@ toggle_user_features_response = carbon.users.toggle_user_features(
 
 ---
 
-### \`carbon.utilities.fetch_urls\`<a id=\\"carbonutilitiesfetch_urls\\"></a>
+### \`carbon.utilities.fetch_urls\`<a id="carbonutilitiesfetch_urls"></a>
 
 Extracts all URLs from a webpage. 
 
@@ -2077,23 +2077,23 @@ Args:
 Returns:
     FetchURLsResponse: A response object with a list of URLs extracted from the webpage and the webpage content.
 
-#### 🛠️ Usage<a id=\\"🛠️-usage\\"></a>
+#### 🛠️ Usage<a id="🛠️-usage"></a>
 
 \`\`\`python
 fetch_urls_response = carbon.utilities.fetch_urls(
-    url=\\"url_example\\",
+    url="url_example",
 )
 \`\`\`
 
-#### ⚙️ Parameters<a id=\\"⚙️-parameters\\"></a>
+#### ⚙️ Parameters<a id="⚙️-parameters"></a>
 
-##### url: \`str\`<a id=\\"url-str\\"></a>
+##### url: \`str\`<a id="url-str"></a>
 
-#### 🔄 Return<a id=\\"🔄-return\\"></a>
+#### 🔄 Return<a id="🔄-return"></a>
 
 [\`FetchURLsResponse\`](./carbon/pydantic/fetch_urls_response.py)
 
-#### 🌐 Endpoint<a id=\\"🌐-endpoint\\"></a>
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
 \`/fetch_urls\` \`get\`
 
@@ -2101,7 +2101,7 @@ fetch_urls_response = carbon.utilities.fetch_urls(
 
 ---
 
-### \`carbon.utilities.fetch_youtube_transcripts\`<a id=\\"carbonutilitiesfetch_youtube_transcripts\\"></a>
+### \`carbon.utilities.fetch_youtube_transcripts\`<a id="carbonutilitiesfetch_youtube_transcripts"></a>
 
 Fetches english transcripts from YouTube videos.
 
@@ -2112,26 +2112,26 @@ Args:
 Returns:
     dict: A dictionary with the transcript of the YouTube video.
 
-#### 🛠️ Usage<a id=\\"🛠️-usage\\"></a>
+#### 🛠️ Usage<a id="🛠️-usage"></a>
 
 \`\`\`python
 fetch_youtube_transcripts_response = carbon.utilities.fetch_youtube_transcripts(
-    id=\\"id_example\\",
+    id="id_example",
     raw=False,
 )
 \`\`\`
 
-#### ⚙️ Parameters<a id=\\"⚙️-parameters\\"></a>
+#### ⚙️ Parameters<a id="⚙️-parameters"></a>
 
-##### id: \`str\`<a id=\\"id-str\\"></a>
+##### id: \`str\`<a id="id-str"></a>
 
-##### raw: \`bool\`<a id=\\"raw-bool\\"></a>
+##### raw: \`bool\`<a id="raw-bool"></a>
 
-#### 🔄 Return<a id=\\"🔄-return\\"></a>
+#### 🔄 Return<a id="🔄-return"></a>
 
 [\`YoutubeTranscriptResponse\`](./carbon/pydantic/youtube_transcript_response.py)
 
-#### 🌐 Endpoint<a id=\\"🌐-endpoint\\"></a>
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
 \`/fetch_youtube_transcript\` \`get\`
 
@@ -2139,7 +2139,7 @@ fetch_youtube_transcripts_response = carbon.utilities.fetch_youtube_transcripts(
 
 ---
 
-### \`carbon.utilities.process_sitemap\`<a id=\\"carbonutilitiesprocess_sitemap\\"></a>
+### \`carbon.utilities.process_sitemap\`<a id="carbonutilitiesprocess_sitemap"></a>
 
 Retrieves all URLs from a sitemap, which can subsequently be utilized with our \`web_scrape\` endpoint.
 
@@ -2149,19 +2149,19 @@ Retrieves all URLs from a sitemap, which can subsequently be utilized with our \
 Returns:
     dict: A dictionary with a list of URLs extracted from the sitemap.-->
 
-#### 🛠️ Usage<a id=\\"🛠️-usage\\"></a>
+#### 🛠️ Usage<a id="🛠️-usage"></a>
 
 \`\`\`python
 process_sitemap_response = carbon.utilities.process_sitemap(
-    url=\\"url_example\\",
+    url="url_example",
 )
 \`\`\`
 
-#### ⚙️ Parameters<a id=\\"⚙️-parameters\\"></a>
+#### ⚙️ Parameters<a id="⚙️-parameters"></a>
 
-##### url: \`str\`<a id=\\"url-str\\"></a>
+##### url: \`str\`<a id="url-str"></a>
 
-#### 🌐 Endpoint<a id=\\"🌐-endpoint\\"></a>
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
 \`/process_sitemap\` \`get\`
 
@@ -2169,7 +2169,7 @@ process_sitemap_response = carbon.utilities.process_sitemap(
 
 ---
 
-### \`carbon.utilities.scrape_sitemap\`<a id=\\"carbonutilitiesscrape_sitemap\\"></a>
+### \`carbon.utilities.scrape_sitemap\`<a id="carbonutilitiesscrape_sitemap"></a>
 
 Extracts all URLs from a sitemap and performs a web scrape on each of them.
 
@@ -2179,13 +2179,13 @@ Args:
 Returns:
     dict: A response object with the status of the scraping job message.-->
 
-#### 🛠️ Usage<a id=\\"🛠️-usage\\"></a>
+#### 🛠️ Usage<a id="🛠️-usage"></a>
 
 \`\`\`python
 scrape_sitemap_response = carbon.utilities.scrape_sitemap(
-    url=\\"string_example\\",
+    url="string_example",
     tags={
-        \\"key\\": \\"string_example\\",
+        "key": "string_example",
     },
     max_pages_to_scrape=100,
     chunk_size=1500,
@@ -2200,36 +2200,36 @@ scrape_sitemap_response = carbon.utilities.scrape_sitemap(
 )
 \`\`\`
 
-#### ⚙️ Parameters<a id=\\"⚙️-parameters\\"></a>
+#### ⚙️ Parameters<a id="⚙️-parameters"></a>
 
-##### url: \`str\`<a id=\\"url-str\\"></a>
+##### url: \`str\`<a id="url-str"></a>
 
-##### tags: [\`SitemapScrapeRequestTags\`](./carbon/type/sitemap_scrape_request_tags.py)<a id=\\"tags-sitemapscraperequesttagscarbontypesitemap_scrape_request_tagspy\\"></a>
+##### tags: [\`SitemapScrapeRequestTags\`](./carbon/type/sitemap_scrape_request_tags.py)<a id="tags-sitemapscraperequesttagscarbontypesitemap_scrape_request_tagspy"></a>
 
-##### max_pages_to_scrape: \`Optional[int]\`<a id=\\"max_pages_to_scrape-optionalint\\"></a>
+##### max_pages_to_scrape: \`Optional[int]\`<a id="max_pages_to_scrape-optionalint"></a>
 
-##### chunk_size: \`Optional[int]\`<a id=\\"chunk_size-optionalint\\"></a>
+##### chunk_size: \`Optional[int]\`<a id="chunk_size-optionalint"></a>
 
-##### chunk_overlap: \`Optional[int]\`<a id=\\"chunk_overlap-optionalint\\"></a>
+##### chunk_overlap: \`Optional[int]\`<a id="chunk_overlap-optionalint"></a>
 
-##### skip_embedding_generation: \`Optional[bool]\`<a id=\\"skip_embedding_generation-optionalbool\\"></a>
+##### skip_embedding_generation: \`Optional[bool]\`<a id="skip_embedding_generation-optionalbool"></a>
 
-##### enable_auto_sync: \`Optional[bool]\`<a id=\\"enable_auto_sync-optionalbool\\"></a>
+##### enable_auto_sync: \`Optional[bool]\`<a id="enable_auto_sync-optionalbool"></a>
 
-##### generate_sparse_vectors: \`Optional[bool]\`<a id=\\"generate_sparse_vectors-optionalbool\\"></a>
+##### generate_sparse_vectors: \`Optional[bool]\`<a id="generate_sparse_vectors-optionalbool"></a>
 
-##### prepend_filename_to_chunks: \`Optional[bool]\`<a id=\\"prepend_filename_to_chunks-optionalbool\\"></a>
+##### prepend_filename_to_chunks: \`Optional[bool]\`<a id="prepend_filename_to_chunks-optionalbool"></a>
 
-##### html_tags_to_skip: [\`SitemapScrapeRequestHtmlTagsToSkip\`](./carbon/type/sitemap_scrape_request_html_tags_to_skip.py)<a id=\\"html_tags_to_skip-sitemapscraperequesthtmltagstoskipcarbontypesitemap_scrape_request_html_tags_to_skippy\\"></a>
+##### html_tags_to_skip: [\`SitemapScrapeRequestHtmlTagsToSkip\`](./carbon/type/sitemap_scrape_request_html_tags_to_skip.py)<a id="html_tags_to_skip-sitemapscraperequesthtmltagstoskipcarbontypesitemap_scrape_request_html_tags_to_skippy"></a>
 
-##### css_classes_to_skip: [\`SitemapScrapeRequestCssClassesToSkip\`](./carbon/type/sitemap_scrape_request_css_classes_to_skip.py)<a id=\\"css_classes_to_skip-sitemapscraperequestcssclassestoskipcarbontypesitemap_scrape_request_css_classes_to_skippy\\"></a>
+##### css_classes_to_skip: [\`SitemapScrapeRequestCssClassesToSkip\`](./carbon/type/sitemap_scrape_request_css_classes_to_skip.py)<a id="css_classes_to_skip-sitemapscraperequestcssclassestoskipcarbontypesitemap_scrape_request_css_classes_to_skippy"></a>
 
-##### css_selectors_to_skip: [\`SitemapScrapeRequestCssSelectorsToSkip\`](./carbon/type/sitemap_scrape_request_css_selectors_to_skip.py)<a id=\\"css_selectors_to_skip-sitemapscraperequestcssselectorstoskipcarbontypesitemap_scrape_request_css_selectors_to_skippy\\"></a>
+##### css_selectors_to_skip: [\`SitemapScrapeRequestCssSelectorsToSkip\`](./carbon/type/sitemap_scrape_request_css_selectors_to_skip.py)<a id="css_selectors_to_skip-sitemapscraperequestcssselectorstoskipcarbontypesitemap_scrape_request_css_selectors_to_skippy"></a>
 
-#### ⚙️ Request Body<a id=\\"⚙️-request-body\\"></a>
+#### ⚙️ Request Body<a id="⚙️-request-body"></a>
 
 [\`SitemapScrapeRequest\`](./carbon/type/sitemap_scrape_request.py)
-#### 🌐 Endpoint<a id=\\"🌐-endpoint\\"></a>
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
 \`/scrape_sitemap\` \`post\`
 
@@ -2237,7 +2237,7 @@ scrape_sitemap_response = carbon.utilities.scrape_sitemap(
 
 ---
 
-### \`carbon.utilities.scrape_web\`<a id=\\"carbonutilitiesscrape_web\\"></a>
+### \`carbon.utilities.scrape_web\`<a id="carbonutilitiesscrape_web"></a>
 
 Conduct a web scrape on a given webpage URL. Our web scraper is fully compatible with JavaScript and supports recursion depth, enabling you to efficiently extract all content from the target website.
 
@@ -2248,33 +2248,33 @@ Conduct a web scrape on a given webpage URL. Our web scraper is fully compatible
 Returns:
     dict: A response object with the status of the scraping job message.-->
 
-#### 🛠️ Usage<a id=\\"🛠️-usage\\"></a>
+#### 🛠️ Usage<a id="🛠️-usage"></a>
 
 \`\`\`python
 scrape_web_response = carbon.utilities.scrape_web(
     body=[
         {
-            \\"url\\": \\"url_example\\",
-            \\"recursion_depth\\": 3,
-            \\"max_pages_to_scrape\\": 100,
-            \\"chunk_size\\": 1500,
-            \\"chunk_overlap\\": 20,
-            \\"skip_embedding_generation\\": False,
-            \\"enable_auto_sync\\": False,
-            \\"generate_sparse_vectors\\": False,
-            \\"prepend_filename_to_chunks\\": False,
-            \\"html_tags_to_skip\\": [],
-            \\"css_classes_to_skip\\": [],
-            \\"css_selectors_to_skip\\": [],
+            "url": "url_example",
+            "recursion_depth": 3,
+            "max_pages_to_scrape": 100,
+            "chunk_size": 1500,
+            "chunk_overlap": 20,
+            "skip_embedding_generation": False,
+            "enable_auto_sync": False,
+            "generate_sparse_vectors": False,
+            "prepend_filename_to_chunks": False,
+            "html_tags_to_skip": [],
+            "css_classes_to_skip": [],
+            "css_selectors_to_skip": [],
         }
     ],
 )
 \`\`\`
 
-#### ⚙️ Request Body<a id=\\"⚙️-request-body\\"></a>
+#### ⚙️ Request Body<a id="⚙️-request-body"></a>
 
 [\`UtilitiesScrapeWebRequest\`](./carbon/type/utilities_scrape_web_request.py)
-#### 🌐 Endpoint<a id=\\"🌐-endpoint\\"></a>
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
 \`/web_scrape\` \`post\`
 
@@ -2282,7 +2282,7 @@ scrape_web_response = carbon.utilities.scrape_web(
 
 ---
 
-### \`carbon.utilities.search_urls\`<a id=\\"carbonutilitiessearch_urls\\"></a>
+### \`carbon.utilities.search_urls\`<a id="carbonutilitiessearch_urls"></a>
 
 Perform a web search and obtain a list of relevant URLs.
 
@@ -2304,23 +2304,23 @@ Args:
 Returns:
     FetchURLsResponse: A response object with a list of URLs for a given search query.
 
-#### 🛠️ Usage<a id=\\"🛠️-usage\\"></a>
+#### 🛠️ Usage<a id="🛠️-usage"></a>
 
 \`\`\`python
 search_urls_response = carbon.utilities.search_urls(
-    query=\\"query_example\\",
+    query="query_example",
 )
 \`\`\`
 
-#### ⚙️ Parameters<a id=\\"⚙️-parameters\\"></a>
+#### ⚙️ Parameters<a id="⚙️-parameters"></a>
 
-##### query: \`str\`<a id=\\"query-str\\"></a>
+##### query: \`str\`<a id="query-str"></a>
 
-#### 🔄 Return<a id=\\"🔄-return\\"></a>
+#### 🔄 Return<a id="🔄-return"></a>
 
 [\`FetchURLsResponse\`](./carbon/pydantic/fetch_urls_response.py)
 
-#### 🌐 Endpoint<a id=\\"🌐-endpoint\\"></a>
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
 \`/search_urls\` \`get\`
 
@@ -2328,30 +2328,30 @@ search_urls_response = carbon.utilities.search_urls(
 
 ---
 
-### \`carbon.webhooks.add_url\`<a id=\\"carbonwebhooksadd_url\\"></a>
+### \`carbon.webhooks.add_url\`<a id="carbonwebhooksadd_url"></a>
 
 Add Webhook Url
 
-#### 🛠️ Usage<a id=\\"🛠️-usage\\"></a>
+#### 🛠️ Usage<a id="🛠️-usage"></a>
 
 \`\`\`python
 add_url_response = carbon.webhooks.add_url(
-    url=\\"string_example\\",
+    url="string_example",
 )
 \`\`\`
 
-#### ⚙️ Parameters<a id=\\"⚙️-parameters\\"></a>
+#### ⚙️ Parameters<a id="⚙️-parameters"></a>
 
-##### url: \`str\`<a id=\\"url-str\\"></a>
+##### url: \`str\`<a id="url-str"></a>
 
-#### ⚙️ Request Body<a id=\\"⚙️-request-body\\"></a>
+#### ⚙️ Request Body<a id="⚙️-request-body"></a>
 
 [\`AddWebhookProps\`](./carbon/type/add_webhook_props.py)
-#### 🔄 Return<a id=\\"🔄-return\\"></a>
+#### 🔄 Return<a id="🔄-return"></a>
 
 [\`Webhook\`](./carbon/pydantic/webhook.py)
 
-#### 🌐 Endpoint<a id=\\"🌐-endpoint\\"></a>
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
 \`/add_webhook\` \`post\`
 
@@ -2359,11 +2359,11 @@ add_url_response = carbon.webhooks.add_url(
 
 ---
 
-### \`carbon.webhooks.delete_url\`<a id=\\"carbonwebhooksdelete_url\\"></a>
+### \`carbon.webhooks.delete_url\`<a id="carbonwebhooksdelete_url"></a>
 
 Delete Webhook Url
 
-#### 🛠️ Usage<a id=\\"🛠️-usage\\"></a>
+#### 🛠️ Usage<a id="🛠️-usage"></a>
 
 \`\`\`python
 delete_url_response = carbon.webhooks.delete_url(
@@ -2371,15 +2371,15 @@ delete_url_response = carbon.webhooks.delete_url(
 )
 \`\`\`
 
-#### ⚙️ Parameters<a id=\\"⚙️-parameters\\"></a>
+#### ⚙️ Parameters<a id="⚙️-parameters"></a>
 
-##### webhook_id: \`int\`<a id=\\"webhook_id-int\\"></a>
+##### webhook_id: \`int\`<a id="webhook_id-int"></a>
 
-#### 🔄 Return<a id=\\"🔄-return\\"></a>
+#### 🔄 Return<a id="🔄-return"></a>
 
 [\`GenericSuccessResponse\`](./carbon/pydantic/generic_success_response.py)
 
-#### 🌐 Endpoint<a id=\\"🌐-endpoint\\"></a>
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
 \`/delete_webhook/{webhook_id}\` \`delete\`
 
@@ -2387,46 +2387,46 @@ delete_url_response = carbon.webhooks.delete_url(
 
 ---
 
-### \`carbon.webhooks.urls\`<a id=\\"carbonwebhooksurls\\"></a>
+### \`carbon.webhooks.urls\`<a id="carbonwebhooksurls"></a>
 
 Webhook Urls
 
-#### 🛠️ Usage<a id=\\"🛠️-usage\\"></a>
+#### 🛠️ Usage<a id="🛠️-usage"></a>
 
 \`\`\`python
 urls_response = carbon.webhooks.urls(
     pagination={
-        \\"limit\\": 10,
-        \\"offset\\": 0,
+        "limit": 10,
+        "offset": 0,
     },
-    order_by=\\"created_at\\",
-    order_dir=\\"desc\\",
+    order_by="created_at",
+    order_dir="desc",
     filters={
-        \\"ids\\": [],
+        "ids": [],
     },
 )
 \`\`\`
 
-#### ⚙️ Parameters<a id=\\"⚙️-parameters\\"></a>
+#### ⚙️ Parameters<a id="⚙️-parameters"></a>
 
-##### pagination: [\`Pagination\`](./carbon/type/pagination.py)<a id=\\"pagination-paginationcarbontypepaginationpy\\"></a>
-
-
-##### order_by: [\`WebhookOrderByColumns\`](./carbon/type/webhook_order_by_columns.py)<a id=\\"order_by-webhookorderbycolumnscarbontypewebhook_order_by_columnspy\\"></a>
-
-##### order_dir: [\`OrderDir\`](./carbon/type/order_dir.py)<a id=\\"order_dir-orderdircarbontypeorder_dirpy\\"></a>
-
-##### filters: [\`WebhookFilters\`](./carbon/type/webhook_filters.py)<a id=\\"filters-webhookfilterscarbontypewebhook_filterspy\\"></a>
+##### pagination: [\`Pagination\`](./carbon/type/pagination.py)<a id="pagination-paginationcarbontypepaginationpy"></a>
 
 
-#### ⚙️ Request Body<a id=\\"⚙️-request-body\\"></a>
+##### order_by: [\`WebhookOrderByColumns\`](./carbon/type/webhook_order_by_columns.py)<a id="order_by-webhookorderbycolumnscarbontypewebhook_order_by_columnspy"></a>
+
+##### order_dir: [\`OrderDir\`](./carbon/type/order_dir.py)<a id="order_dir-orderdircarbontypeorder_dirpy"></a>
+
+##### filters: [\`WebhookFilters\`](./carbon/type/webhook_filters.py)<a id="filters-webhookfilterscarbontypewebhook_filterspy"></a>
+
+
+#### ⚙️ Request Body<a id="⚙️-request-body"></a>
 
 [\`WebhookQueryInput\`](./carbon/type/webhook_query_input.py)
-#### 🔄 Return<a id=\\"🔄-return\\"></a>
+#### 🔄 Return<a id="🔄-return"></a>
 
 [\`WebhookQueryResponse\`](./carbon/pydantic/webhook_query_response.py)
 
-#### 🌐 Endpoint<a id=\\"🌐-endpoint\\"></a>
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
 \`/webhooks\` \`post\`
 
@@ -2435,7 +2435,7 @@ urls_response = carbon.webhooks.urls(
 ---
 
 
-## Author<a id=\\"author\\"></a>
+## Author<a id="author"></a>
 This Python package is automatically generated by [Konfig](https://konfigthis.com)
 "
 `;

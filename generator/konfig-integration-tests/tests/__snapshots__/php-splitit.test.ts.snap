@@ -18,14 +18,14 @@ To install the bindings via [Composer](https://getcomposer.org/), add the follow
 
 \`\`\`json
 {
-  \\"repositories\\": [
+  "repositories": [
     {
-      \\"type\\": \\"vcs\\",
-      \\"url\\": \\"https://github.com/konfig-dev/konfig/tree/main/php.git\\"
+      "type": "vcs",
+      "url": "https://github.com/konfig-dev/konfig/tree/main/php.git"
     }
   ],
-  \\"require\\": {
-    \\"konfig/konfig/tree/main/php\\": \\"2.3.0\\"
+  "require": {
+    "konfig/konfig/tree/main/php": "2.3.0"
   }
 }
 \`\`\`
@@ -49,14 +49,14 @@ Please follow the [installation procedure](#installation--usage) and then run th
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$splitit = new \\\\Splitit\\\\Client(
-    getenv(\\"SPLITIT_CLIENT_ID\\"),
-    getenv(\\"SPLITIT_CLIENT_SECRET\\")
+$splitit = new \\Splitit\\Client(
+    getenv("SPLITIT_CLIENT_ID"),
+    getenv("SPLITIT_CLIENT_SECRET")
 );
 
-$installment_plan_number = \\"installmentPlanNumber_example\\";
-$x_splitit_idempotency_key = \\"X-Splitit-IdempotencyKey_example\\";
-$x_splitit_touch_point = \\"\\"; // TouchPoint
+$installment_plan_number = "installmentPlanNumber_example";
+$x_splitit_idempotency_key = "X-Splitit-IdempotencyKey_example";
+$x_splitit_touch_point = ""; // TouchPoint
 
 try {
     $result = $splitit->installmentPlan->cancel(
@@ -65,7 +65,7 @@ try {
         $x_splitit_touch_point
     );
     print_r($result->$getInstallmentPlanNumber());
-} catch (\\\\Exception $e) {
+} catch (\\Exception $e) {
     echo 'Exception when calling InstallmentPlanApi->cancel: ', $e->getMessage(), PHP_EOL;
 }
 \`\`\`

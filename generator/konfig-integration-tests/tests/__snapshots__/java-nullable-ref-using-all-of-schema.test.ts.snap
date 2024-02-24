@@ -59,7 +59,7 @@ repositories {
 }
 
 dependencies {
-   implementation \\"com.konfigthis:java-nullable-ref-using-all-of-schema:1.0.0\\"
+   implementation "com.konfigthis:java-nullable-ref-using-all-of-schema:1.0.0"
 }
 \`\`\`
 
@@ -79,10 +79,10 @@ Also make sure your library or application has internet permissions in your \`An
 
 \`\`\`xml
 <!--AndroidManifest.xml-->
-<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
-<manifest xmlns:android=\\"http://schemas.android.com/apk/res/android\\"
-    xmlns:tools=\\"http://schemas.android.com/tools\\">
-    <uses-permission android:name=\\"android.permission.INTERNET\\"/>
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <uses-permission android:name="android.permission.INTERNET"/>
 </manifest>
 \`\`\`
 
@@ -119,9 +119,9 @@ import java.util.UUID;
 public class Example {
   public static void main(String[] args) {
     Configuration configuration = new Configuration();
-    configuration.host = \\"https://java-nullable-ref-using-all-of-schema.konfigthis.com\\";
+    configuration.host = "https://java-nullable-ref-using-all-of-schema.konfigthis.com";
     
-    configuration.apiKey  = \\"YOUR API KEY\\";
+    configuration.apiKey  = "YOUR API KEY";
     JavaNullableRefUsingAllOfSchemaClient client = new JavaNullableRefUsingAllOfSchemaClient(configuration);
     Double input = 3.4D;
     try {
@@ -131,10 +131,10 @@ public class Example {
               .input(input)
               .execute();
     } catch (ApiException e) {
-      System.err.println(\\"Exception when calling TestApi#fetch\\");
-      System.err.println(\\"Status code: \\" + e.getStatusCode());
-      System.err.println(\\"Reason: \\" + e.getResponseBody());
-      System.err.println(\\"Response headers: \\" + e.getResponseHeaders());
+      System.err.println("Exception when calling TestApi#fetch");
+      System.err.println("Status code: " + e.getStatusCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
       e.printStackTrace();
     }
 
@@ -151,10 +151,10 @@ public class Example {
       System.out.println(response.getRoundTripTime());
       System.out.println(response.getRequest());
     } catch (ApiException e) {
-      System.err.println(\\"Exception when calling TestApi#fetch\\");
-      System.err.println(\\"Status code: \\" + e.getStatusCode());
-      System.err.println(\\"Reason: \\" + e.getResponseBody());
-      System.err.println(\\"Response headers: \\" + e.getResponseHeaders());
+      System.err.println("Exception when calling TestApi#fetch");
+      System.err.println("Status code: " + e.getStatusCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
       e.printStackTrace();
     }
   }

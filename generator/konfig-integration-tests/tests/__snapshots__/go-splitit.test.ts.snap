@@ -20,9 +20,9 @@ go get github.com/konfig-dev/splitit-go-sdk/go
 package main
 
 import (
-    \\"fmt\\"
-    \\"os\\"
-    splitit \\"github.com/konfig-dev/splitit-go-sdk/go\\"
+    "fmt"
+    "os"
+    splitit "github.com/konfig-dev/splitit-go-sdk/go"
 )
 
 func main() {
@@ -30,20 +30,20 @@ func main() {
     client := splitit.NewAPIClient(configuration)
 
     request := client.InstallmentPlanApi.Cancel(
-        \\"installmentPlanNumber_example\\",
-        \\"xSplititIdempotencyKey_example\\",
-        \\"\\"\\"\\",
+        "installmentPlanNumber_example",
+        "xSplititIdempotencyKey_example",
+        """",
     )
     
     resp, httpRes, err := request.Execute()
 
     if err != nil {
-        fmt.Fprintf(os.Stderr, \\"Error when calling \`InstallmentPlanApi.Cancel\`\`: %v\\\\n\\", err)
-        fmt.Fprintf(os.Stderr, \\"Full HTTP response: %v\\\\n\\", httpRes)
+        fmt.Fprintf(os.Stderr, "Error when calling \`InstallmentPlanApi.Cancel\`\`: %v\\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\\n", httpRes)
     }
     // response from \`Cancel\`: InstallmentPlanCancelResponse
-    fmt.Fprintf(os.Stdout, \\"Response from \`InstallmentPlanApi.Cancel\`: %v\\\\n\\", resp)
-    fmt.Fprintf(os.Stdout, \\"Response from \`InstallmentPlanCancelResponse.Cancel.InstallmentPlanNumber\`: %v\\\\n\\", *resp.InstallmentPlanNumber)
+    fmt.Fprintf(os.Stdout, "Response from \`InstallmentPlanApi.Cancel\`: %v\\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from \`InstallmentPlanCancelResponse.Cancel.InstallmentPlanNumber\`: %v\\n", *resp.InstallmentPlanNumber)
 }
 
 \`\`\`

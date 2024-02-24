@@ -21,25 +21,25 @@ go get github.com/decentro-in/decentro-in-collections-sdk/go
 package main
 
 import (
-    \\"fmt\\"
-    \\"os\\"
-    decentro_in_collections \\"github.com/decentro-in/decentro-in-collections-sdk/go\\"
+    "fmt"
+    "os"
+    decentro_in_collections "github.com/decentro-in/decentro-in-collections-sdk/go"
 )
 
 func main() {
     configuration := decentro_in_collections.NewConfiguration()
-    configuration.SetClientId(\\"CLIENT_ID\\")
-    configuration.SetClientSecret(\\"CLIENT_SECRET\\")
-    configuration.SetModuleSecret(\\"MODULE_SECRET\\")
-    configuration.SetProviderSecret(\\"PROVIDER_SECRET\\")
+    configuration.SetClientId("CLIENT_ID")
+    configuration.SetClientSecret("CLIENT_SECRET")
+    configuration.SetModuleSecret("MODULE_SECRET")
+    configuration.SetProviderSecret("PROVIDER_SECRET")
     client := decentro_in_collections.NewAPIClient(configuration)
 
     
     generatePaymentLinkRequest := *decentro_in_collections.NewGeneratePaymentLinkRequest(
-        \\"ABCDEF12345\\",
-        \\"00000000000000000\\",
+        "ABCDEF12345",
+        "00000000000000000",
         4,
-        \\"Welcome to Decentro\\",
+        "Welcome to Decentro",
         0,
     )
     generatePaymentLinkRequest.SetExpiryTime(10)
@@ -53,17 +53,17 @@ func main() {
     resp, httpRes, err := request.Execute()
 
     if err != nil {
-        fmt.Fprintf(os.Stderr, \\"Error when calling \`CollectionsApi.GeneratePaymentLink\`\`: %v\\\\n\\", err)
-        fmt.Fprintf(os.Stderr, \\"Full HTTP response: %v\\\\n\\", httpRes)
+        fmt.Fprintf(os.Stderr, "Error when calling \`CollectionsApi.GeneratePaymentLink\`\`: %v\\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\\n", httpRes)
     }
     // response from \`GeneratePaymentLink\`: GeneratePaymentLinkResponse
-    fmt.Fprintf(os.Stdout, \\"Response from \`CollectionsApi.GeneratePaymentLink\`: %v\\\\n\\", resp)
-    fmt.Fprintf(os.Stdout, \\"Response from \`GeneratePaymentLinkResponse.GeneratePaymentLink.DecentroTxnId\`: %v\\\\n\\", *resp.DecentroTxnId)
-    fmt.Fprintf(os.Stdout, \\"Response from \`GeneratePaymentLinkResponse.GeneratePaymentLink.Status\`: %v\\\\n\\", *resp.Status)
-    fmt.Fprintf(os.Stdout, \\"Response from \`GeneratePaymentLinkResponse.GeneratePaymentLink.ResponseCode\`: %v\\\\n\\", *resp.ResponseCode)
-    fmt.Fprintf(os.Stdout, \\"Response from \`GeneratePaymentLinkResponse.GeneratePaymentLink.Message\`: %v\\\\n\\", *resp.Message)
-    fmt.Fprintf(os.Stdout, \\"Response from \`GeneratePaymentLinkResponse.GeneratePaymentLink.Data\`: %v\\\\n\\", *resp.Data)
-    fmt.Fprintf(os.Stdout, \\"Response from \`GeneratePaymentLinkResponse.GeneratePaymentLink.ResponseKey\`: %v\\\\n\\", *resp.ResponseKey)
+    fmt.Fprintf(os.Stdout, "Response from \`CollectionsApi.GeneratePaymentLink\`: %v\\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from \`GeneratePaymentLinkResponse.GeneratePaymentLink.DecentroTxnId\`: %v\\n", *resp.DecentroTxnId)
+    fmt.Fprintf(os.Stdout, "Response from \`GeneratePaymentLinkResponse.GeneratePaymentLink.Status\`: %v\\n", *resp.Status)
+    fmt.Fprintf(os.Stdout, "Response from \`GeneratePaymentLinkResponse.GeneratePaymentLink.ResponseCode\`: %v\\n", *resp.ResponseCode)
+    fmt.Fprintf(os.Stdout, "Response from \`GeneratePaymentLinkResponse.GeneratePaymentLink.Message\`: %v\\n", *resp.Message)
+    fmt.Fprintf(os.Stdout, "Response from \`GeneratePaymentLinkResponse.GeneratePaymentLink.Data\`: %v\\n", *resp.Data)
+    fmt.Fprintf(os.Stdout, "Response from \`GeneratePaymentLinkResponse.GeneratePaymentLink.ResponseKey\`: %v\\n", *resp.ResponseKey)
 }
 
 \`\`\`

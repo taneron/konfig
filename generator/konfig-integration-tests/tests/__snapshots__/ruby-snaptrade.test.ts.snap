@@ -20,12 +20,12 @@ gem 'snaptrade', '~> 2.0.4'
 \`\`\`ruby
 require 'snaptrade'
 
-SnapTrade.client_id = \\"YOUR_CLIENT_ID\\"
-SnapTrade.consumer_key = \\"YOUR_CONSUMER_KEY\\"
+SnapTrade.client_id = "YOUR_CLIENT_ID"
+SnapTrade.consumer_key = "YOUR_CONSUMER_KEY"
 
-user_id = \\"John.doe@snaptrade.com\\"
-user_secret = \\"USERSECRET123\\"
-brokerage_authorizations = \\"917c8734-8470-4a3e-a18f-57c3f2ee6631\\"
+user_id = "John.doe@snaptrade.com"
+user_secret = "USERSECRET123"
+brokerage_authorizations = "917c8734-8470-4a3e-a18f-57c3f2ee6631"
 
 begin
   # List all accounts for the user, plus balances, positions, and orders for each account.
@@ -36,7 +36,7 @@ begin
                                                                 )
   p result
 rescue SnapTrade::ApiError => e
-  puts \\"Exception when calling SnapTrade::AccountInformation.get_all_user_holdings: #{e}\\"
+  puts "Exception when calling SnapTrade::AccountInformation.get_all_user_holdings: #{e}"
 end
 \`\`\`
 

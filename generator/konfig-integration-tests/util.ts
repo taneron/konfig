@@ -174,7 +174,7 @@ type ServerConfig = {
 };
 
 const spawnServer = (config: ServerConfigWithPort): number => {
-  const serverPath = path.resolve(__dirname, "apiServer.js");
+  const serverPath = path.resolve(__dirname, "apiServer.cjs");
 
   // escape the quotes in the config
   console.log("Copy the following command to run the server:");

@@ -1,7 +1,7 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`java-snaptrade 1`] = `
-"<div align=\\"center\\">
+"<div align="center">
 
 [![Visit SnapTrade](https://raw.githubusercontent.com/konfig-dev/konfig/HEAD/sdks/java/header.png)](https://snaptrade.com)
 
@@ -65,7 +65,7 @@ repositories {
 }
 
 dependencies {
-   implementation \\"com.konfigthis:snaptrade-java-sdk:4.13.3\\"
+   implementation "com.konfigthis:snaptrade-java-sdk:4.13.3"
 }
 \`\`\`
 
@@ -85,10 +85,10 @@ Also make sure your library or application has internet permissions in your \`An
 
 \`\`\`xml
 <!--AndroidManifest.xml-->
-<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
-<manifest xmlns:android=\\"http://schemas.android.com/apk/res/android\\"
-    xmlns:tools=\\"http://schemas.android.com/tools\\">
-    <uses-permission android:name=\\"android.permission.INTERNET\\"/>
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <uses-permission android:name="android.permission.INTERNET"/>
 </manifest>
 \`\`\`
 
@@ -123,13 +123,13 @@ public class Example {
         public static void main(String[] args) {
                 // 1) Initialize default client with clientID and consumerKey
                 Configuration configuration = new Configuration();
-                configuration.clientId = System.getenv(\\"SNAPTRADE_CLIENT_ID\\");
-                configuration.consumerKey = System.getenv(\\"SNAPTRADE_CONSUMER_KEY\\");
+                configuration.clientId = System.getenv("SNAPTRADE_CLIENT_ID");
+                configuration.consumerKey = System.getenv("SNAPTRADE_CONSUMER_KEY");
                 Snaptrade snaptrade = new Snaptrade(configuration);
 
                 // 2) Check that the client is able to make a request to the API server
                 Status status = snaptrade.apiStatus.check().execute();
-                System.out.printf(\\"SnapTrade is online: %s\\\\n\\", status.getOnline());
+                System.out.printf("SnapTrade is online: %s\\n", status.getOnline());
 
                 // 3) Create a new user on SnapTrade
                 // The userId should be provided by you and refer to permanent value such as a
@@ -141,7 +141,7 @@ public class Example {
                 new SnapTradeRegisterUserRequestBody().userId(userId.toString());
                 // Note: A user secret is only generated once. It's required to access resources
                 // for certain endpoints
-                System.out.printf(\\"userID: %s, userSecret: %s\\\\n\\", userIDandSecret.getUserId(),
+                System.out.printf("userID: %s, userSecret: %s\\n", userIDandSecret.getUserId(),
                                 userIDandSecret.getUserSecret());
 
                 // 4) Get a redirect URI. Users will need this to connect their brokerage to the
@@ -150,12 +150,12 @@ public class Example {
                                 .loginSnapTradeUser(userIDandSecret.getUserId(),
                                                 userIDandSecret.getUserSecret())
                                 .execute();
-                System.out.println(response.get(\\"redirectURI\\"));
+                System.out.println(response.get("redirectURI"));
 
                 // 5) Make a portfolio group and query
                 List<PortfolioGroup> portfolioGroupsFromPost = snaptrade.portfolioManagement.create(
                                 userIDandSecret.getUserId(), userIDandSecret.getUserSecret()).id(UUID.randomUUID())
-                                .name(\\"MyPortfolio\\").execute();
+                                .name("MyPortfolio").execute();
                 System.out.println(portfolioGroupsFromPost);
                 List<PortfolioGroup> portfolioGroups = snaptrade.portfolioManagement.list(userIDandSecret.getUserId(),
                                 userIDandSecret.getUserSecret()).execute();

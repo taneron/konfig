@@ -20,47 +20,47 @@ go get github.com/konfig-dev/newscatcher-go-sdk/go
 package main
 
 import (
-    \\"fmt\\"
-    \\"os\\"
-    newscatcherapi \\"github.com/konfig-dev/newscatcher-go-sdk/go\\"
+    "fmt"
+    "os"
+    newscatcherapi "github.com/konfig-dev/newscatcher-go-sdk/go"
 )
 
 func main() {
     configuration := newscatcherapi.NewConfiguration()
-    configuration.SetApiKey(\\"X_API_TOKEN\\")
+    configuration.SetApiKey("X_API_TOKEN")
     client := newscatcherapi.NewAPIClient(configuration)
 
     request := client.AuthorsApi.Get(
-        \\"authorName_example\\",
+        "authorName_example",
     )
-    request.Sources(\\"sources_example\\")
-    request.PredefinedSources(\\"predefinedSources_example\\")
-    request.NotSources(\\"notSources_example\\")
-    request.Lang(\\"lang_example\\")
-    request.NotLang(\\"notLang_example\\")
-    request.Countries(\\"countries_example\\")
-    request.NotCountries(\\"notCountries_example\\")
+    request.Sources("sources_example")
+    request.PredefinedSources("predefinedSources_example")
+    request.NotSources("notSources_example")
+    request.Lang("lang_example")
+    request.NotLang("notLang_example")
+    request.Countries("countries_example")
+    request.NotCountries("notCountries_example")
     request.From(from)
     request.To(to)
-    request.PublishedDatePrecision(\\"publishedDatePrecision_example\\")
+    request.PublishedDatePrecision("publishedDatePrecision_example")
     request.ByParseDate(false)
-    request.SortBy(\\"\\"relevancy\\"\\")
-    request.RankedOnly(\\"rankedOnly_example\\")
+    request.SortBy(""relevancy"")
+    request.RankedOnly("rankedOnly_example")
     request.FromRank(56)
     request.ToRank(56)
     request.IsHeadline(true)
     request.IsPaidContent(true)
-    request.ParentUrl(\\"parentUrl_example\\")
-    request.AllLinks(\\"allLinks_example\\")
-    request.AllDomainLinks(\\"allDomainLinks_example\\")
+    request.ParentUrl("parentUrl_example")
+    request.AllLinks("allLinks_example")
+    request.AllDomainLinks("allDomainLinks_example")
     request.WordCountMin(56)
     request.WordCountMax(56)
     request.Page(1)
     request.PageSize(100)
     request.IncludeNlpData(true)
     request.HasNlp(true)
-    request.Theme(\\"theme_example\\")
-    request.NerName(\\"nerName_example\\")
+    request.Theme("theme_example")
+    request.NerName("nerName_example")
     request.TitleSentimentMin(8.14)
     request.TitleSentimentMax(8.14)
     request.ContentSentimentMin(8.14)
@@ -69,18 +69,18 @@ func main() {
     resp, httpRes, err := request.Execute()
 
     if err != nil {
-        fmt.Fprintf(os.Stderr, \\"Error when calling \`AuthorsApi.Get\`\`: %v\\\\n\\", err)
-        fmt.Fprintf(os.Stderr, \\"Full HTTP response: %v\\\\n\\", httpRes)
+        fmt.Fprintf(os.Stderr, "Error when calling \`AuthorsApi.Get\`\`: %v\\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\\n", httpRes)
     }
     // response from \`Get\`: AuthorsGetResponse
-    fmt.Fprintf(os.Stdout, \\"Response from \`AuthorsApi.Get\`: %v\\\\n\\", resp)
-    fmt.Fprintf(os.Stdout, \\"Response from \`AuthorsGetResponse.Get.Status\`: %v\\\\n\\", *resp.Status)
-    fmt.Fprintf(os.Stdout, \\"Response from \`AuthorsGetResponse.Get.TotalHits\`: %v\\\\n\\", resp.TotalHits)
-    fmt.Fprintf(os.Stdout, \\"Response from \`AuthorsGetResponse.Get.Page\`: %v\\\\n\\", resp.Page)
-    fmt.Fprintf(os.Stdout, \\"Response from \`AuthorsGetResponse.Get.TotalPages\`: %v\\\\n\\", resp.TotalPages)
-    fmt.Fprintf(os.Stdout, \\"Response from \`AuthorsGetResponse.Get.PageSize\`: %v\\\\n\\", resp.PageSize)
-    fmt.Fprintf(os.Stdout, \\"Response from \`AuthorsGetResponse.Get.Articles\`: %v\\\\n\\", resp.Articles)
-    fmt.Fprintf(os.Stdout, \\"Response from \`AuthorsGetResponse.Get.UserInput\`: %v\\\\n\\", resp.UserInput)
+    fmt.Fprintf(os.Stdout, "Response from \`AuthorsApi.Get\`: %v\\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from \`AuthorsGetResponse.Get.Status\`: %v\\n", *resp.Status)
+    fmt.Fprintf(os.Stdout, "Response from \`AuthorsGetResponse.Get.TotalHits\`: %v\\n", resp.TotalHits)
+    fmt.Fprintf(os.Stdout, "Response from \`AuthorsGetResponse.Get.Page\`: %v\\n", resp.Page)
+    fmt.Fprintf(os.Stdout, "Response from \`AuthorsGetResponse.Get.TotalPages\`: %v\\n", resp.TotalPages)
+    fmt.Fprintf(os.Stdout, "Response from \`AuthorsGetResponse.Get.PageSize\`: %v\\n", resp.PageSize)
+    fmt.Fprintf(os.Stdout, "Response from \`AuthorsGetResponse.Get.Articles\`: %v\\n", resp.Articles)
+    fmt.Fprintf(os.Stdout, "Response from \`AuthorsGetResponse.Get.UserInput\`: %v\\n", resp.UserInput)
 }
 
 \`\`\`

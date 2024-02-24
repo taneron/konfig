@@ -8,7 +8,7 @@ integration-tests:
   COPY tsconfig.json vitest.config.ts util.ts .
   COPY sdks sdks
   COPY tests tests
-  COPY apiServer.js .
+  COPY apiServer.cjs .
   COPY scripts scripts
   RUN --secret AWS_ACCESS_KEY_ID --secret AWS_SECRET_ACCESS_KEY ./scripts/install-aws-cli.sh
   # can be overridden at runtime (e.g. "docker run konfig-integration-tests:latest --testName=TestName")
