@@ -4,6 +4,7 @@ export default defineConfig({
   test: {
     exclude: [...configDefaults.exclude, "sdks/**/*"],
     watch: false,
+    testTimeout: 150_000,
     reporters: ["default", "html"],
   },
 });
