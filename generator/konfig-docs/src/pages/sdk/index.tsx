@@ -24,6 +24,8 @@ export default function Sdks() {
   });
   const [isCardVisible, setIsCardVisible] = useState(false);
   const [isCTAVisible, setIsCTAVisible] = useState(false);
+  const [isSearchInstructionsVisible, setIsSearchInstructionsVisible] =
+    useState(false);
 
   useEffect(() => {
     // Change the visibility after a delay
@@ -33,10 +35,14 @@ export default function Sdks() {
     const ctaVisibilityTimer = setTimeout(() => {
       setIsCTAVisible(true);
     }, 1500);
+    const searchInstructionsVisibilityTimer = setTimeout(() => {
+      setIsSearchInstructionsVisible(true);
+    }, 2500);
 
     return () => {
       clearTimeout(cardVisibilityTimer);
       clearTimeout(ctaVisibilityTimer);
+      clearTimeout(searchInstructionsVisibilityTimer);
     };
   }, []);
   return (
@@ -72,7 +78,12 @@ export default function Sdks() {
                 <span className="italic">relevant</span> public APIs
               </span>
             </h1>
-            <div className="text-blue-300">
+            <div
+              className={clsx("text-blue-300 transition-all duration-700", {
+                "opacity-1": isSearchInstructionsVisible,
+                "opacity-0": !isSearchInstructionsVisible,
+              })}
+            >
               <Hotkey />
               for{" "}
               <span className="text-sm rounded-full bg-gradient-to-r from-blue-400/30 via-blue-400 to-sky-blue/30 px-[1px] py-[5px] font-medium text-blue-300">
