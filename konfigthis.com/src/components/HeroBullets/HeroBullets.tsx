@@ -11,6 +11,7 @@ import {
 } from "@mantine/core";
 import { useOs } from "@mantine/hooks";
 import { IconCalendarEvent, IconExternalLink } from "@tabler/icons-react";
+import { useState, useEffect } from "react";
 
 const useStyles = createStyles((theme) => ({
   wrapper: {
@@ -108,6 +109,16 @@ export function HeroBullets() {
   const { classes } = useStyles();
   const os = useOs();
   const isDesktop = os === "linux" || os === "windows" || os === "macos";
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    // Change the visibility after a delay
+    const timer = setTimeout(() => {
+      setIsVisible(true);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, []);
   return (
     <div className="pt-16">
       <Container className={classes.wrapper} size={1400}>
@@ -133,7 +144,12 @@ export function HeroBullets() {
             </Text>
           </Container>
 
-          <div className={classes.controls}>
+          <div
+            className={clsx(classes.controls, "transition-all duration-700", {
+              "opacity-0 translate-y-40": !isVisible,
+              "opacity-1": isVisible,
+            })}
+          >
             <div className="relative group">
               <div
                 className={clsx(
@@ -209,7 +225,12 @@ export function HeroBullets() {
             )}
           </div>
         </div>
-        <Box className="my-8">
+        <Box
+          className={clsx("my-8", "transition-all duration-700", {
+            "opacity-0 translate-y-40": !isVisible,
+            "opacity-1": isVisible,
+          })}
+        >
           <AspectRatio
             className="rounded-xl overflow-hidden shadow-lg"
             mx="auto"
