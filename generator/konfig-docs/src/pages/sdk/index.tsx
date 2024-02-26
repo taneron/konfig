@@ -1,6 +1,6 @@
 import Head from "@docusaurus/Head";
 import Layout from "@theme/Layout";
-import React, { PropsWithChildren, useState } from "react";
+import React, { PropsWithChildren, useEffect, useState } from "react";
 import { isMacOs, isMobile } from "react-device-detect";
 import sdkLinksJson from "./sdk-links.json";
 import clsx from "clsx";
@@ -22,13 +22,29 @@ export default function Sdks() {
       filteredCategories.includes(category)
     );
   });
+  const [isCardVisible, setIsCardVisible] = useState(false);
+  const [isCTAVisible, setIsCTAVisible] = useState(false);
+
+  useEffect(() => {
+    // Change the visibility after a delay
+    const cardVisibilityTimer = setTimeout(() => {
+      setIsCardVisible(true);
+    }, 500);
+    const ctaVisibilityTimer = setTimeout(() => {
+      setIsCTAVisible(true);
+    }, 1500);
+
+    return () => {
+      clearTimeout(cardVisibilityTimer);
+      clearTimeout(ctaVisibilityTimer);
+    };
+  }, []);
   return (
     <Layout
       title={`SDKs`}
       description={`Explore SDKs for up-to-date and relevant public APIs.`}
     >
-      <Head>
-        <meta property="og:image" content="/img/sdk-explore-link-preview.png" />
+      <head>
         <style>
           {`
           .navbar__search {
@@ -36,6 +52,9 @@ export default function Sdks() {
           }
           `}
         </style>
+      </head>
+      <Head>
+        <meta property="og:image" content="/img/sdk-explore-link-preview.png" />
       </Head>
       <div
         style={{
@@ -62,8 +81,24 @@ export default function Sdks() {
             </div>
           </div>
         </div>
-        <div className="sm:w-[480px] md:w-[600px] lg:w-[768px] flex flex-col bg-gradient-to-b from-slate-50 to-white mx-auto relative px-5 py-10 top-[-75px] rounded-sm bg-white shadow-xl">
-          <div className="absolute flex flex-col z-0 inset-0 m-auto w-fit text-blue-400 font-bold text-sm top-[-50px]">
+        <div
+          className={clsx(
+            "transition-all duration-700 sm:w-[480px] md:w-[600px] lg:w-[768px] flex flex-col bg-gradient-to-b from-slate-50 to-white mx-auto relative px-5 py-10 top-[-75px] rounded-sm bg-white shadow-xl",
+            {
+              "opacity-1": isCardVisible,
+              "opacity-0 translate-y-40": !isCardVisible,
+            }
+          )}
+        >
+          <div
+            className={clsx(
+              "transition-all duration-500 absolute flex flex-col z-0 inset-0 m-auto w-fit text-blue-400 font-bold text-sm top-[-50px]",
+              {
+                "opacity-1": isCTAVisible,
+                "opacity-0": !isCTAVisible,
+              }
+            )}
+          >
             <div>Start scrolling to explore 👀</div>
             <IconChevronDown className="mx-auto" />
           </div>

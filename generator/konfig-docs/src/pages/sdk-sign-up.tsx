@@ -35,7 +35,7 @@ export default function SdkSignUp() {
       >
         <div
           className={clsx(
-            "transitio-all duration-500 text-blue-300 text-center mx-auto max-w-3xl px-2",
+            "transition-all duration-500 text-blue-300 text-center mx-auto max-w-3xl px-2",
             {
               "opacity-1": isVisible,
               "opacity-0 translate-y-40": !isVisible,
