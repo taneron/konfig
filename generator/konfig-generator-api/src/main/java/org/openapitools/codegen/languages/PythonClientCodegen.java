@@ -86,6 +86,7 @@ public class PythonClientCodegen extends AbstractPythonCodegen {
     public String objectOpenChar = "{";
     public String objectCloseChar = "}";
     public String objectFieldDelimiter = ": ";
+    public String binaryExampleOverride = null;
     protected String packageUrl;
     protected String apiDocPath = "docs/apis/tags/";
     protected String modelDocPath = "docs/models/";
@@ -1840,6 +1841,12 @@ public class PythonClientCodegen extends AbstractPythonCodegen {
      * @return the example value
      */
     protected Object getObjectExample(Schema sc) {
+        if (ModelUtils.isComposedSchema(sc)) {
+            if (sc.getAllOf() != null && sc.getAllOf().stream().count() == 1) {
+                List<Schema> allOf = sc.getAllOf();
+                return getObjectExample(allOf.get(0));
+            }
+        }
         Schema schema = sc;
         String ref = sc.get$ref();
         if (ref != null) {
@@ -1919,6 +1926,9 @@ public class PythonClientCodegen extends AbstractPythonCodegen {
     }
 
     private String generateBinaryExample(String example) {
+        if (binaryExampleOverride != null) {
+            return binaryExampleOverride;
+        }
         if (example == null)
             example = "/path/to/file";
         return binaryExample(example);

@@ -26,8 +26,8 @@ module {{moduleName}}
     attr_accessor :server_operation_variables
 
 {{#apiKeyMethods}}
-    def {{keyParamNameSnakeCase}}=(value)
-      @api_key['{{name}}'] = value
+    def {{> securityKeyName}}=(value)
+      @api_key_store['{{name}}'] = value
     end
 
 {{/apiKeyMethods}}
@@ -55,8 +55,8 @@ module {{moduleName}}
     # @return [Hash] key: parameter name, value: parameter value (API key)
     #
     # @example parameter name is "api_key", API key is "xxx" (e.g. "api_key=xxx" in query string)
-    #   config.api_key['api_key'] = 'xxx'
-    attr_accessor :api_key
+    #   config.api_key_store['api_key'] = 'xxx'
+    attr_accessor :api_key_store
 
     # Defines API key prefixes used with API Key authentications.
     #
@@ -66,6 +66,7 @@ module {{moduleName}}
     #   config.api_key_prefix['api_key'] = 'Token'
     attr_accessor :api_key_prefix
 
+{{#hasHttpBasicMethods}}
     # Defines the username used with HTTP basic authentication.
     #
     # @return [String]
@@ -76,9 +77,17 @@ module {{moduleName}}
     # @return [String]
     attr_accessor :password
 
-    # Defines the access token (Bearer) used with OAuth2.
+{{/hasHttpBasicMethods}}
+{{#hasHttpBearerMethods}}
+    # Defines the bearer token used for HTTP authentication
     attr_accessor :access_token
 
+{{/hasHttpBearerMethods}}
+{{#hasOAuthMethods}}
+    # Defines the access token used with OAuth2.
+    attr_accessor :access_token
+
+{{/hasOAuthMethods}}
     # Set this to enable/disable debugging. When enabled (set to true), HTTP request/response
     # details will be logged with `logger.debug` (see the `logger` attribute).
     # Default to false.
@@ -127,8 +136,13 @@ module {{moduleName}}
       @server_operation_index = {}
       @server_variables = {}
       @server_operation_variables = {}
-      @api_key = {}
+      @api_key_store = {}
       @api_key_prefix = {}
+{{#apiKeyMethods}}
+      {{#vendorExtensions.x-konfig-prefix}}
+      @api_key_prefix['{{name}}'] = '{{vendorExtensions.x-konfig-prefix}}'
+      {{/vendorExtensions.x-konfig-prefix}}
+{{/apiKeyMethods}}
       @client_side_validation = true
       {{#isFaraday}}
       @ssl_verify = true
@@ -205,20 +219,23 @@ module {{moduleName}}
     # Gets API key (with prefix if set).
     # @param [String] param_name the parameter name of API key auth
     def api_key_with_prefix(param_name, param_alias = nil)
-      key = @api_key[param_name]
-      key = @api_key.fetch(param_alias, key) unless param_alias.nil?
+      value = @api_key_store[param_name]
+      value = @api_key_store.fetch(param_alias, value) unless param_alias.nil?
+      return nil if value.nil?
       if @api_key_prefix[param_name]
-        "#{@api_key_prefix[param_name]} #{key}"
+        "#{@api_key_prefix[param_name]}#{value}"
       else
-        key
+        value
       end
     end
 
+{{#hasHttpBasicMethods}}
     # Gets Basic Auth token string
     def basic_auth_token
       'Basic ' + ["#{username}:#{password}"].pack('m').delete("\r\n")
     end
 
+{{/hasHttpBasicMethods}}
     # Returns Auth Settings hash for api client.
     def auth_settings
       {

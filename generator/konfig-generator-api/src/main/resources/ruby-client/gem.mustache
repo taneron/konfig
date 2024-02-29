@@ -51,27 +51,52 @@ module {{moduleName}}
   @config = Configuration.default
   SENTINEL = Object.new
   class << self
-    extend Forwardable
 
-    def is_sentinel(value)
+    private def is_sentinel(value)
       value == SENTINEL
     end
 
-    def_delegators :@config, :host, :host=
+    def host
+      @config.host
+    end
+
+    def host=(value)
+      @config.host = value
+    end
 {{#apiKeyMethods}}
-    def_delegators :@config, :{{keyParamNameSnakeCase}}, :{{keyParamNameSnakeCase}}= # api key
+    # api key from OpenAPI spec
+    def {{> securityKeyName}}
+      @config.{{> securityKeyName}}
+    end
+
+    def {{> securityKeyName}}=(value)
+      @config.{{> securityKeyName}} = value
+    end
 {{/apiKeyMethods}}
 {{#clientState}}
-    def_delegators :@config, :{{.}}, :{{.}}= # client state from konfig.yaml
+    # client state from konfig.yaml
+    def {{.}}
+      @config.{{.}}
+    end
+
+    def {{.}}=(value)
+      @config.{{.}} = value
+    end
 {{/clientState}}
 {{#clientStateWithExamples}}
-    def_delegators :@config, :{{name}}, :{{name}}= # client state from konfig.yaml
+    # client state from konfig.yaml
+    def {{name}}
+      @config.{{name}}
+    end
+
+    def {{name}}=(value)
+      @config.{{name}} = value
+    end
 {{/clientStateWithExamples}}
 
     # Customize default settings for the SDK using block.
     #   {{moduleName}}.configure do |config|
-    #     config.username = "xxx"
-    #     config.password = "xxx"
+    #     config.host = "http://example.com"
     #   end
     # If no block given, return the default Configuration object.
     def configure
@@ -86,7 +111,7 @@ module {{moduleName}}
   {{#apiInfo}}
   class Client
     {{#apis}}
-    attr_accessor :{{classNameSnakeCase}}
+    attr_reader :{{classNameSnakeCase}}
     {{/apis}}
 
     def initialize(config = Configuration.default)

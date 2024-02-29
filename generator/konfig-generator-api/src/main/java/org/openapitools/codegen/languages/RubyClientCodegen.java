@@ -112,8 +112,8 @@ public class RubyClientCodegen extends AbstractRubyCodegen {
         outputFolder = "generated-code" + File.separator + "ruby";
         modelTemplateFiles.put("model.mustache", ".rb");
         apiTemplateFiles.put("api.mustache", ".rb");
-        modelDocTemplateFiles.put("model_doc.mustache", ".md");
-        apiDocTemplateFiles.put("api_doc.mustache", ".md");
+        // modelDocTemplateFiles.put("model_doc.mustache", ".md");
+        // apiDocTemplateFiles.put("api_doc.mustache", ".md");
         embeddedTemplateDir = templateDir = "ruby-client";
 
         modelTestTemplateFiles.put("model_test.mustache", ".rb");
@@ -597,33 +597,31 @@ public class RubyClientCodegen extends AbstractRubyCodegen {
         this.useAutoload = useAutoload;
     }
 
+    private PythonClientCodegen pythonClientCodegen() {
+        PythonClientCodegen pythonClientCodegen = new PythonClientCodegen();
+        pythonClientCodegen.booleanTrueLiteral = "true";
+        pythonClientCodegen.booleanFalseLiteral = "false";
+        pythonClientCodegen.objectFieldDelimiter = " => ";
+        pythonClientCodegen.binaryExampleOverride = "File.open(\"path/to/file\", \"rb\")";
+        pythonClientCodegen.setOpenAPI(this.openAPI);
+        return pythonClientCodegen;
+    }
+
     @Override
     public void setParameterExampleValue(CodegenParameter p) {
-        // hacky workaround by using Python's implementation here
-        PythonClientCodegen pythonClientCodegen = new PythonClientCodegen();
-        pythonClientCodegen.objectFieldDelimiter = " => ";
-        // got a NPE when I don't add this here. I'm scared I might be missing other things but it seems work
-        pythonClientCodegen.setOpenAPI(this.openAPI);
+        PythonClientCodegen pythonClientCodegen = pythonClientCodegen();
         pythonClientCodegen.setParameterExampleValue(p, p.oasSchema);
     }
 
     @Override
     public void setParameterExampleValue(CodegenParameter codegenParameter, Parameter parameter) {
-        // hacky workaround by using Python's implementation here
-        PythonClientCodegen pythonClientCodegen = new PythonClientCodegen();
-        pythonClientCodegen.objectFieldDelimiter = " => ";
-        // got a NPE when I don't add this here. I'm scared I might be missing other things but it seems work
-        pythonClientCodegen.setOpenAPI(this.openAPI);
+        PythonClientCodegen pythonClientCodegen = pythonClientCodegen();
         pythonClientCodegen.setParameterExampleValue(codegenParameter, parameter);
     }
 
     @Override
     public void setParameterExampleValue(CodegenParameter codegenParameter, RequestBody requestBody) {
-        // hacky workaround by using Python's implementation here
-        PythonClientCodegen pythonClientCodegen = new PythonClientCodegen();
-        pythonClientCodegen.objectFieldDelimiter = " => ";
-        // got a NPE when I don't add this here. I'm scared I might be missing other things but it seems work
-        pythonClientCodegen.setOpenAPI(this.openAPI);
+        PythonClientCodegen pythonClientCodegen = pythonClientCodegen();
         pythonClientCodegen.setParameterExampleValue(codegenParameter, requestBody);
     }
 

@@ -5,7 +5,6 @@
 
 The version of the OpenAPI document: 1.0.0
 Contact: api@snaptrade.com
-
 =end
 
 require 'date'
@@ -18,6 +17,7 @@ module SnapTrade
 
     attr_accessor :account
 
+    # Order Type
     attr_accessor :order_type
 
     # Trade time in force examples:   * FOK - Fill Or Kill   * Day - Day   * GTC - Good Til Canceled   * GTD - Good Til Date 
@@ -25,6 +25,7 @@ module SnapTrade
 
     attr_accessor :symbol
 
+    # Trade Action
     attr_accessor :action
 
     # Trade Units. Cannot work with notional value.

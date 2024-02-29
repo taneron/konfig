@@ -362,7 +362,7 @@ export default class Deploy extends Command {
         const { files, ...restOfConfig } = rubyGeneratorConfig
         const requestJava: GenerateRequestBodyInputType['generators']['ruby'] =
           {
-            files: createTemplateFilesObject(files, 'csharp', configDir),
+            files: createTemplateFilesObject(files, 'ruby', configDir),
             ...handleReadmeSnippet({ config: restOfConfig }),
             ...handleReadmeSupportingDescriptionSnippet({
               config: restOfConfig,
@@ -1033,6 +1033,12 @@ export default class Deploy extends Command {
                 outputDirectory,
                 generatorConfig: body.generators.ruby,
               })
+              CliUx.ux.action.stop()
+              // insert TOC at beginning of README.md
+              CliUx.ux.action.start(
+                'Inserting table of contents into README.md'
+              )
+              insertTableOfContents({ outputDirectory })
               CliUx.ux.action.stop()
             }
           }

@@ -5,7 +5,6 @@
 
 The version of the OpenAPI document: 1.0.0
 Contact: api@snaptrade.com
-
 =end
 
 require 'date'
@@ -25,6 +24,7 @@ module SnapTrade
 
     attr_accessor :option_symbol
 
+    # Trade Action
     attr_accessor :action
 
     # Trade Units. Cannot work with notional value.
@@ -48,6 +48,7 @@ module SnapTrade
     # Stop Price. If stop loss or stop limit order, the price to trigger the stop
     attr_accessor :stop_price
 
+    # Order Type
     attr_accessor :order_type
 
     # Trade time in force examples:   * FOK - Fill Or Kill   * Day - Day   * GTC - Good Til Canceled   * GTD - Good Til Date 
