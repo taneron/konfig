@@ -65,7 +65,6 @@ class FileFormatsNullable(
             "FRESHDESK": "FRESHDESK",
             "WEB_SCRAPE": "WEB_SCRAPE",
             "JPG": "JPG",
-            "JPG": "JPG",
             "PNG": "PNG",
             "MP3": "MP3",
             "MP4": "MP4",
@@ -187,10 +186,6 @@ class FileFormatsNullable(
     @schemas.classproperty
     def WEB_SCRAPE(cls):
         return cls("WEB_SCRAPE")
-    
-    @schemas.classproperty
-    def JPG(cls):
-        return cls("JPG")
     
     @schemas.classproperty
     def JPG(cls):
