@@ -322,6 +322,10 @@ const customRequests: Record<string, CustomRequest> = {
         json = json.replaceAll(substring, `(https://developers.zoom.us)`);
       }
 
+      // replace every markdown link (e.g. "(URL)"") that starts with "/docs/api" with "(https://developers.zoom.us)"
+      const regex = /(\(\/docs\/api.*?\))/g;
+      json = json.replaceAll(regex, `(https://developers.zoom.us)`);
+
       return json;
     },
   },
