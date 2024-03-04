@@ -300,10 +300,27 @@ const customRequests: Record<string, CustomRequest> = {
       const start = html.indexOf(marker);
       const end = html.indexOf('"', start);
       const base64 = html.slice(start + marker.length, end);
-      const json = Buffer.from(base64, "base64").toString("utf-8");
+      let json = Buffer.from(base64, "base64").toString("utf-8");
 
       // Close the browser
       await browser.close();
+
+      const toReplace = [
+        "(/api-reference/zoom-api/methods#operation/groups)",
+        "(/api-reference/zoom-api/methods#operation/users)",
+        "(/docs/api-reference/using-zoom-apis/#meeting-id-and-uuid)",
+        "(/docs/api-reference/using-zoom-apis#meeting-id-and-uuid)",
+        "(/docs/api-reference/zoom-api/ma#operation/users)",
+        "(/docs/api-reference/zoom-api/methods#operation/meeting)",
+        "(/docs/api-reference/zoom-api/methods#operation/meetingRegistrants)",
+        "(/docs/api-reference/zoom-api/methods#operation/webinarCreate)",
+        "(/docs/api/rest/reference/zoom-api/methods#operation/webinar)",
+        "(/docs/api-reference/zoom-api/methods#operation/webinar)",
+      ];
+
+      for (const substring of toReplace) {
+        json = json.replaceAll(substring, `(https://developers.zoom.us)`);
+      }
 
       return json;
     },

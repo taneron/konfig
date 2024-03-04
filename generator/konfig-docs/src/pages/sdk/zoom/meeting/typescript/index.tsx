@@ -16,7 +16,7 @@ export default function ZoomMeetingTypeScriptSdk() {
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/zoom/meeting/logo.png"
       clientNameCamelCase="zoomMeeting"
       homepage="zoom.us/"
-      lastUpdated={new Date("2024-03-04T05:44:19.001Z")}
+      lastUpdated={new Date("2024-03-04T06:09:29.415Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/zoom/meeting/favicon.png"
       contactUrl="https://developer.zoom.us/"
       // Missing contactEmail
@@ -1994,7 +1994,7 @@ export default function ZoomMeetingTypeScriptSdk() {
         "name": "occurrenceIds",
         "schema": "string",
         "required": false,
-        "description": "A comma-separated list of meeting occurrence IDs. You can get this value with the [Get a meeting](/docs/api-reference/zoom-api/methods#operation/meeting) API."
+        "description": "A comma-separated list of meeting occurrence IDs. You can get this value with the [Get a meeting](https://developers.zoom.us) API."
       },
       {
         "name": "first_name",
@@ -2541,7 +2541,7 @@ export default function ZoomMeetingTypeScriptSdk() {
         "name": "userId",
         "schema": "string",
         "required": true,
-        "description": "The user ID retrievable from the [List users](/api-reference/zoom-api/methods#operation/users) API."
+        "description": "The user ID retrievable from the [List users](https://developers.zoom.us) API."
       }
     ],
     "responses": [
@@ -2563,7 +2563,7 @@ export default function ZoomMeetingTypeScriptSdk() {
         "name": "userId",
         "schema": "string",
         "required": true,
-        "description": "The user ID retrievable from the [List users](/api-reference/zoom-api/methods#operation/users) API."
+        "description": "The user ID retrievable from the [List users](https://developers.zoom.us) API."
       },
       {
         "name": "meeting_id",
@@ -2866,7 +2866,7 @@ export default function ZoomMeetingTypeScriptSdk() {
         "name": "groupId",
         "schema": "string",
         "required": false,
-        "description": "The group ID. To get a group ID, use the [**List groups**](/api-reference/zoom-api/methods#operation/groups) API. \n\n **Note:** The API response will only contain users who are members of the queried group ID."
+        "description": "The group ID. To get a group ID, use the [**List groups**](https://developers.zoom.us) API. \n\n **Note:** The API response will only contain users who are members of the queried group ID."
       }
     ],
     "responses": [
@@ -2900,7 +2900,7 @@ export default function ZoomMeetingTypeScriptSdk() {
         "name": "groupId",
         "schema": "string",
         "required": false,
-        "description": "The group ID. To get a group ID, use the [**List groups**](/api-reference/zoom-api/methods#operation/groups) API. \n\n **Note:** The API response will only contain users who are members of the queried group ID."
+        "description": "The group ID. To get a group ID, use the [**List groups**](https://developers.zoom.us) API. \n\n **Note:** The API response will only contain users who are members of the queried group ID."
       }
     ],
     "responses": [
@@ -2962,7 +2962,7 @@ export default function ZoomMeetingTypeScriptSdk() {
         "name": "includeFields",
         "schema": "string",
         "required": false,
-        "description": "Provide `registrant_id` as the value for this field if you would like to see the registrant ID attribute in the response of this API call. A registrant ID is a unique identifier of a [meeting registrant](/docs/api-reference/zoom-api/methods#operation/meetingRegistrants)."
+        "description": "Provide `registrant_id` as the value for this field if you would like to see the registrant ID attribute in the response of this API call. A registrant ID is a unique identifier of a [meeting registrant](https://developers.zoom.us)."
       }
     ],
     "responses": [
@@ -3162,7 +3162,7 @@ export default function ZoomMeetingTypeScriptSdk() {
         "name": "groupId",
         "schema": "string",
         "required": false,
-        "description": "The group ID. To get a group ID, use the [**List groups**](/api-reference/zoom-api/methods#operation/groups) API. \n\n **Note:** The API response will only contain meetings where the host is a member of the queried group ID."
+        "description": "The group ID. To get a group ID, use the [**List groups**](https://developers.zoom.us) API. \n\n **Note:** The API response will only contain meetings where the host is a member of the queried group ID."
       }
     ],
     "responses": [
@@ -3220,7 +3220,7 @@ export default function ZoomMeetingTypeScriptSdk() {
         "name": "groupId",
         "schema": "string",
         "required": false,
-        "description": "The group ID. To get a group ID, use the [**List groups**](/api-reference/zoom-api/methods#operation/groups) API. \n\n **Note:** The API response will only contain users who are members of the queried group ID."
+        "description": "The group ID. To get a group ID, use the [**List groups**](https://developers.zoom.us) API. \n\n **Note:** The API response will only contain users who are members of the queried group ID."
       }
     ],
     "responses": [
@@ -4221,7 +4221,7 @@ export default function ZoomMeetingTypeScriptSdk() {
         "name": "userId",
         "schema": "string",
         "required": true,
-        "description": "The user's ID. To get a user's ID, use the [**List users**](/docs/api-reference/zoom-api/ma#operation/users) API. For user-level apps, pass the `me` value instead of the user ID value."
+        "description": "The user's ID. To get a user's ID, use the [**List users**](https://developers.zoom.us) API. For user-level apps, pass the `me` value instead of the user ID value."
       }
     ],
     "responses": [
@@ -4243,7 +4243,7 @@ export default function ZoomMeetingTypeScriptSdk() {
         "name": "userId",
         "schema": "string",
         "required": true,
-        "description": "The user ID retrievable from the [List users](/api-reference/zoom-api/methods#operation/users) API."
+        "description": "The user ID retrievable from the [List users](https://developers.zoom.us) API."
       },
       {
         "name": "webinar_id",
@@ -4452,7 +4452,7 @@ export default function ZoomMeetingTypeScriptSdk() {
         "name": "occurrenceId",
         "schema": "string",
         "required": false,
-        "description": "Unique identifier for an occurrence of a recurring webinar. [Recurring webinars](https://support.zoom.us/hc/en-us/articles/216354763-How-to-Schedule-A-Recurring-Webinar) can have a maximum of 50 occurrences. When you create a recurring Webinar using [**Create a webinar**](/docs/api-reference/zoom-api/methods#operation/webinarCreate) API, you can retrieve the Occurrence ID from the response of the API call."
+        "description": "Unique identifier for an occurrence of a recurring webinar. [Recurring webinars](https://support.zoom.us/hc/en-us/articles/216354763-How-to-Schedule-A-Recurring-Webinar) can have a maximum of 50 occurrences. When you create a recurring Webinar using [**Create a webinar**](https://developers.zoom.us) API, you can retrieve the Occurrence ID from the response of the API call."
       },
       {
         "name": "showPreviousOccurrences",

@@ -12752,9 +12752,7 @@ paths:
           in: query
           description: >-
             A comma-separated list of meeting occurrence IDs. You can get this
-            value with the [Get a
-            meeting](/docs/api-reference/zoom-api/methods#operation/meeting)
-            API.
+            value with the [Get a meeting](https://developers.zoom.us) API.
           required: false
           schema:
             type: string
@@ -15648,7 +15646,7 @@ paths:
           in: path
           description: >-
             The user ID retrievable from the [List
-            users](/api-reference/zoom-api/methods#operation/users) API.
+            users](https://developers.zoom.us) API.
           required: true
           schema:
             type: string
@@ -15736,7 +15734,7 @@ paths:
           in: path
           description: >-
             The user ID retrievable from the [List
-            users](/api-reference/zoom-api/methods#operation/users) API.
+            users](https://developers.zoom.us) API.
           required: true
           schema:
             type: string
@@ -16002,8 +16000,7 @@ paths:
                             meetings for a user. To view the complete agenda of
                             a meeting, retrieve details for a single meeting,
                             use the [**Get a
-                            meeting**](/docs/api-reference/zoom-api/methods#operation/meeting)
-                            API.
+                            meeting**](https://developers.zoom.us) API.
                           example: My Meeting
                         created_at:
                           type: string
@@ -18817,7 +18814,7 @@ paths:
           in: query
           description: >-
             The group ID. To get a group ID, use the [**List
-            groups**](/api-reference/zoom-api/methods#operation/groups) API. 
+            groups**](https://developers.zoom.us) API. 
 
              **Note:** The API response will only contain users who are members of the queried group ID.
           required: false
@@ -18926,7 +18923,7 @@ paths:
           in: query
           description: >-
             The group ID. To get a group ID, use the [**List
-            groups**](/api-reference/zoom-api/methods#operation/groups) API. 
+            groups**](https://developers.zoom.us) API. 
 
              **Note:** The API response will only contain users who are members of the queried group ID.
           required: false
@@ -19267,7 +19264,7 @@ paths:
             Provide `registrant_id` as the value for this field if you would
             like to see the registrant ID attribute in the response of this API
             call. A registrant ID is a unique identifier of a [meeting
-            registrant](/docs/api-reference/zoom-api/methods#operation/meetingRegistrants).
+            registrant](https://developers.zoom.us).
           required: false
           schema:
             type: string
@@ -20306,7 +20303,7 @@ paths:
           in: query
           description: >-
             The group ID. To get a group ID, use the [**List
-            groups**](/api-reference/zoom-api/methods#operation/groups) API. 
+            groups**](https://developers.zoom.us) API. 
 
              **Note:** The API response will only contain meetings where the host is a member of the queried group ID.
           required: false
@@ -20521,7 +20518,7 @@ paths:
           in: query
           description: >-
             The group ID. To get a group ID, use the [**List
-            groups**](/api-reference/zoom-api/methods#operation/groups) API. 
+            groups**](https://developers.zoom.us) API. 
 
              **Note:** The API response will only contain users who are members of the queried group ID.
           required: false
@@ -25159,9 +25156,9 @@ paths:
         that webinar as a template for scheduling future webinars.  To use a
         template when scheduling a webinar, use the `id` value in this API
         response in the `template_id` field of the [**Create a
-        webinar**](/docs/api-reference/zoom-api/methods#operation/webinarCreate)
-        API. **Prerequisites:** * A Pro or a higher account with the [Zoom
-        Webinar plan](https://zoom.us/pricing/webinar).
+        webinar**](https://developers.zoom.us) API. **Prerequisites:** * A Pro
+        or a higher account with the [Zoom Webinar
+        plan](https://zoom.us/pricing/webinar).
 
 
         **Scopes:** `webinar:read:admin`,`webinar:read`
@@ -25171,8 +25168,8 @@ paths:
           in: path
           description: >-
             The user's ID. To get a user's ID, use the [**List
-            users**](/docs/api-reference/zoom-api/ma#operation/users) API. For
-            user-level apps, pass the `me` value instead of the user ID value.
+            users**](https://developers.zoom.us) API. For user-level apps, pass
+            the `me` value instead of the user ID value.
           required: true
           schema:
             type: string
@@ -25258,7 +25255,7 @@ paths:
           in: path
           description: >-
             The user ID retrievable from the [List
-            users](/api-reference/zoom-api/methods#operation/users) API.
+            users](https://developers.zoom.us) API.
           required: true
           schema:
             type: string
@@ -27561,8 +27558,7 @@ paths:
             [Recurring
             webinars](https://support.zoom.us/hc/en-us/articles/216354763-How-to-Schedule-A-Recurring-Webinar)
             can have a maximum of 50 occurrences. When you create a recurring
-            Webinar using [**Create a
-            webinar**](/docs/api-reference/zoom-api/methods#operation/webinarCreate)
+            Webinar using [**Create a webinar**](https://developers.zoom.us)
             API, you can retrieve the Occurrence ID from the response of the API
             call.
           required: false
@@ -28467,7 +28463,7 @@ paths:
                     example: '2022-03-26T07:18:32Z'
                   start_url:
                     type: string
-                    description: "  \n The `start_url` of a webinar is a URL using which a host or an alternative host can start the webinar. This URL should only be used by the host of the meeting and should not be shared with anyone other than the host of the webinar. \n\nThe expiration time for the `start_url` field listed in the response of the [**Create a webinar**](/docs/api-reference/zoom-api/methods#operation/webinarCreate) API is two hours for all regular users. \n\t\nFor users created using the `custCreate` option via the [**Create users**](/docs/api-reference/zoom-api/methods#operation/userCreate) API, the expiration time of the `start_url` field is 90 days.\n\t\nFor security reasons, to retrieve the latest value for the `start_url` field programmatically (after expiry), you must call the [**Get a webinar**](/docs/api-reference/zoom-api/methods#operation/webinar) API and refer to the value of the `start_url` field in the response.\n\n\n "
+                    description: "  \n The `start_url` of a webinar is a URL using which a host or an alternative host can start the webinar. This URL should only be used by the host of the meeting and should not be shared with anyone other than the host of the webinar. \n\nThe expiration time for the `start_url` field listed in the response of the [**Create a webinar**](https://developers.zoom.us) API is two hours for all regular users. \n\t\nFor users created using the `custCreate` option via the [**Create users**](/docs/api-reference/zoom-api/methods#operation/userCreate) API, the expiration time of the `start_url` field is 90 days.\n\t\nFor security reasons, to retrieve the latest value for the `start_url` field programmatically (after expiry), you must call the [**Get a webinar**](/docs/api-reference/zoom-api/methods#operation/webinar) API and refer to the value of the `start_url` field in the response.\n\n\n "
                     example: https://example.com/s/11111
                   timezone:
                     type: string
