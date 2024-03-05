@@ -4,10 +4,6 @@ const nextConfig = {
   experimental: {
     scrollRestoration: true,
   },
-  i18n: {
-    locales: ['en'],
-    defaultLocale: 'en',
-  },
   images: {
     remotePatterns: [
       {
