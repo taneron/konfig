@@ -46,6 +46,7 @@ export async function extractMetaDescription({
       },
     ],
     temperature: 0,
+    seed: 0,
   })
   const metaDescription = response.choices[0].message.content
 
