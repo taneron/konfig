@@ -102,6 +102,7 @@ const DocumentationPage = observer(
     demos,
     faviconLink,
     logo,
+    metaDescription,
   }: InferGetServerSidePropsType<typeof getStaticProps>) => {
     const theme = useMantineTheme()
     const { colorScheme } = useMantineColorScheme()
@@ -142,14 +143,18 @@ const DocumentationPage = observer(
     }, [router.asPath])
 
     return (
-      <GoogleAnalyticsProvider googleAnalyticsId={googleAnalyticsId}>
+      <>
+        <GoogleAnalyticsProvider googleAnalyticsId={googleAnalyticsId} />
         <Head>
-          <title>{docTitle}</title>
           {faviconLink ? (
             <link rel="icon" href={faviconLink} />
           ) : (
             <link rel="icon" href="/favicon.png" />
           )}
+          <title>{title}</title>
+          <meta property="og:title" content={title} />
+          <meta name="description" content={metaDescription} />
+          <meta property="og:description" content={metaDescription} />
         </Head>
         <MantineProvider
           inherit
@@ -260,7 +265,7 @@ const DocumentationPage = observer(
             </OperationsContext.Provider>
           </AppShell>
         </MantineProvider>
-      </GoogleAnalyticsProvider>
+      </>
     )
   }
 )

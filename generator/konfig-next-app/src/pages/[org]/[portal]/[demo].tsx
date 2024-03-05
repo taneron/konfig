@@ -99,24 +99,23 @@ const DemoPage = observer(
           primaryColor: 'brand',
         }}
       >
-        <GoogleAnalyticsProvider googleAnalyticsId={googleAnalyticsId}>
-          <Head>
-            {faviconLink ? (
-              <link rel="icon" href={faviconLink} />
-            ) : (
-              <link rel="icon" href="/favicon.png" />
-            )}
-          </Head>
-          <DemoPortal
-            omitOwnerAndRepo={omitOwnerAndRepo}
-            hasDocumentation={hasDocumentation}
-            state={state}
-            allMarkdown={allMarkdown}
-            owner={owner}
-            repo={repo}
-            logo={logo}
-          />
-        </GoogleAnalyticsProvider>
+        <GoogleAnalyticsProvider googleAnalyticsId={googleAnalyticsId} />
+        <Head>
+          {faviconLink ? (
+            <link rel="icon" href={faviconLink} />
+          ) : (
+            <link rel="icon" href="/favicon.png" />
+          )}
+        </Head>
+        <DemoPortal
+          omitOwnerAndRepo={omitOwnerAndRepo}
+          hasDocumentation={hasDocumentation}
+          state={state}
+          allMarkdown={allMarkdown}
+          owner={owner}
+          repo={repo}
+          logo={logo}
+        />
       </MantineProvider>
     )
   }

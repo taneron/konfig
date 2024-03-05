@@ -10,6 +10,7 @@ import { generateLogoLink } from './generate-logo-link'
 import { MarkdownPageProps } from './generate-props-for-markdown-page'
 import { computeDocumentProps } from './compute-document-props'
 import { githubGetKonfigYamlsSafe } from './github-get-konfig-yamls-safe'
+import { extractMetaDescription } from './extract-meta-description'
 
 /**
  * Custom mappings to preserve existing links for SnapTrade
