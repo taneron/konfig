@@ -120,6 +120,7 @@ const DocumentationPage = observer(
         owner,
         repo,
         omitOwnerAndRepo,
+        metaDescription: '',
       })
     })
 
@@ -137,6 +138,7 @@ const DocumentationPage = observer(
           owner,
           repo,
           omitOwnerAndRepo,
+          metaDescription: '',
         })
       )
       // eslint-disable-next-line react-hooks/exhaustive-deps
