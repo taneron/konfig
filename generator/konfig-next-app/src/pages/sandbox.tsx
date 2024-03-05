@@ -10,11 +10,9 @@ import { type KonfigYamlType, type SocialObject } from 'konfig-lib'
 import { KonfigYaml } from 'konfig-lib/dist/KonfigYaml'
 import { KONFIG_YAML_NAME } from 'konfig-lib/dist/util/konfig-yaml-name'
 import { Button, Center, MantineProvider, useMantineTheme } from '@mantine/core'
-import {
-  DemoInput,
-  generateDemosFromFilenameAndContent,
-} from '@/utils/generate-demos-from-file-name-and-content'
+import { DemoInput } from '@/utils/generate-demos-from-file-name-and-content'
 import { generateMantineThemeColors } from '@/utils/generate-mantine-theme-colors'
+import { generateDemosFromFilenameAndContentWithoutMetaDescriptions } from '@/utils/generate-demos-from-file-name-and-content-without-meta-descriptions'
 
 /**
  * This is here to force this page to be SSR only so Next.js doesn't try to make
@@ -87,7 +85,7 @@ async function generateDemos(files: FileOrDirInfo[]): Promise<Demo[]> {
       })
     }
   }
-  return generateDemosFromFilenameAndContent({ demos })
+  return generateDemosFromFilenameAndContentWithoutMetaDescriptions({ demos })
 }
 
 class SandboxState {
