@@ -117,7 +117,7 @@ function generateSdkRepository(
     result.reason = `Error occurred during generate: ${error.message}`;
     return result;
   }
-  addSignupToReadme(tmpSdkDir, language, data);
+  fixReadMe(tmpSdkDir, sdkName, language, data);
 
   // Copy generated sdk into cloned repository
   copySdkToRepository(tmpSdkDir, repoDir, language);
@@ -139,7 +139,12 @@ function generateSdkRepository(
   return result;
 }
 
-function addSignupToReadme(sdkDir: string, language: string, data: Published) {
+function fixReadMe(
+  sdkDir: string,
+  sdkName: string,
+  language: string,
+  data: Published
+) {
   const serviceNameQuery = data.serviceName
     ? `&serviceName=${data.serviceName}`
     : "";
@@ -153,17 +158,25 @@ function addSignupToReadme(sdkDir: string, language: string, data: Published) {
   const sdkReadmeFilepath = path.join(sdkDir, language, "README.md");
   let sdkReadme = fs.readFileSync(sdkReadmeFilepath, "utf-8");
 
-  // Replace badges
+  // Remove badges
   const badgesRegex = /(\[!\[(npm|PyPI|Maven Central)\][\s\S]*?)(?=<\/div>)/m;
   const signupBadgeUrl = `https://raw.githubusercontent.com/konfig-dev/brand-assets/HEAD/cta-images/${language}-cta.png`;
-  const singupBadge = `[![Sign up](${signupBadgeUrl})](${signupLink})`;
+  const signupBadge = `<div align="center">
+  <a href="${signupLink}">
+    <img src="${signupBadgeUrl}" width="50%">
+  </a>
+</div>`;
   const badges = sdkReadme.match(badgesRegex);
   if (!badges) throw Error("Badges not found in README.md");
-  sdkReadme = sdkReadme.replace(badges[0], `${singupBadge}\n`);
+  sdkReadme = sdkReadme.replace(badges[0], "");
 
   const installationSectionRegex = /^## Installation([\s\S]*?)(?=\n##)/m;
-  const replacementText = `## Installation<a id="installation"></a>\n${singupBadge}\n`;
+  const replacementText = `## Installation<a id="installation"></a>\n${signupBadge}\n`;
   sdkReadme = sdkReadme.replace(installationSectionRegex, replacementText);
+
+  // make header image relative for languages that dont use relative path in readme
+  const headerImage = `https://raw.githubusercontent.com/konfig-sdks/${sdkName}/HEAD/${language}/header.png`;
+  sdkReadme = sdkReadme.replace(headerImage, "./header.png");
   fs.writeFileSync(sdkReadmeFilepath, sdkReadme);
 }
 
