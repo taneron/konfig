@@ -163,7 +163,7 @@ function fixReadMe(
   const signupBadgeUrl = `https://raw.githubusercontent.com/konfig-dev/brand-assets/HEAD/cta-images/${language}-cta.png`;
   const signupBadge = `<div align="center">
   <a href="${signupLink}">
-    <img src="${signupBadgeUrl}" width="50%">
+    <img src="${signupBadgeUrl}" width="70%">
   </a>
 </div>`;
   const badges = sdkReadme.match(badgesRegex);
@@ -300,6 +300,16 @@ function displayResults(results: GenerateSdkResult[]) {
   );
 }
 
+function listRepositories() {
+  const { stdout } = execa.sync("gh", ["repo", "list", "konfig-sdks"]);
+  const lines = stdout.split("\n");
+  const repositoryNames = lines.map((line) => {
+    const [repositoryName, _] = line.trim().split(/\s+/);
+    return repositoryName.replace("konfig-sdks/", "");
+  });
+  return repositoryNames;
+}
+
 async function main() {
   const arg = process.argv[2];
   const publishedJsons = fs.readdirSync(publishedDir);
@@ -308,7 +318,7 @@ async function main() {
     publishedJsons.map(async (file) => {
       const key = file.replace(".json", "");
       if (!arg || key.includes(arg)) {
-        const res = await generateSdkRepositories(key, true);
+        const res = await generateSdkRepositories(key);
         result.push(...res);
       }
     })
