@@ -1,4 +1,4 @@
-import { SecuritySchemes, parseSpec } from "konfig-lib";
+import { SecuritySchemes, parseSpec, recurseObject } from "konfig-lib";
 import path from "path";
 import { Db } from "../scripts/collect";
 import * as fs from "fs";
@@ -98,6 +98,32 @@ async function executeCustomRequest(key: string, customRequest: CustomRequest) {
 }
 
 const customRequests: Record<string, CustomRequest> = {
+  "mailchimp.com": {
+    lambda: async () => {
+      const url = "https://api.mailchimp.com/schema/3.0/Swagger.json?expand";
+      const rawSpecString = await fetch(url).then((res) => res.text());
+      // replace every markdown link (e.g. "(URL)"") that starts with "(/" or "(#" with "(https://mailchimp.com/developer/)"
+      const regex = /(\((\/|#).*?\))/g;
+      return rawSpecString.replaceAll(
+        regex,
+        `(https://mailchimp.com/developer/)`
+      );
+    },
+  },
+  "finicity.com": {
+    type: "GET",
+    url: "https://static.developer.mastercard.com/content/open-banking-us/swagger/openbanking-us.yaml",
+  },
+  "meilisearch.com": {
+    type: "GET",
+    url: "https://bump.sh/meilisearch/doc/meilisearch.yaml",
+  },
+  "nasa.gov_TechPort": {
+    lambda: async () => {
+      const url = "https://techport.nasa.gov/api/specification";
+      return fetch(url).then((res) => res.text());
+    },
+  },
   "lob.com": {
     lambda: async () => {
       const response = await fetch(
@@ -119,7 +145,21 @@ const customRequests: Record<string, CustomRequest> = {
           Authorization: "bearer 428c282ac3d7bf40265e8700904bb85b",
         },
       });
-      return response.text();
+      // remove all properties that start with the substring: "x-mill"
+      const rawSpecString = await response.text();
+      const parsedSpec = JSON.parse(rawSpecString);
+      recurseObject(parsedSpec, ({ value }) => {
+        if (value === undefined) return;
+        if (typeof value !== "object") return;
+        if (value === null) return;
+        const keys = Object.keys(value);
+        for (const key of keys) {
+          if (key.startsWith("x-mill")) {
+            delete value[key];
+          }
+        }
+      });
+      return JSON.stringify(parsedSpec);
     },
   },
   "svix.com": {

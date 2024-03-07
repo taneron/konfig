@@ -91,7 +91,16 @@ export function getMethodObjects(spec: Spec): Method[] {
         refOrObject: mediaObjectOrRef,
         $ref: spec.$ref,
       }).content;
-      if (mediaObject === undefined) continue;
+      if (mediaObject === undefined) {
+        responses.push({
+          statusCode,
+          description:
+            "description" in mediaObjectOrRef
+              ? mediaObjectOrRef.description
+              : "",
+        });
+        continue;
+      }
       const mediaTypes = Object.keys(mediaObject);
       const mediaType = mediaTypes[0];
       const responseObjectOrRef = mediaObject[mediaType];
@@ -101,15 +110,22 @@ export function getMethodObjects(spec: Spec): Method[] {
         $ref: spec.$ref,
       });
       const schemaOrRef = responseObject.schema;
-      const schema =
-        schemaOrRef !== undefined
-          ? resolveRef({ refOrObject: schemaOrRef, $ref: spec.$ref })
-          : undefined;
-      const description = schema?.description ?? "";
-      responses.push({
-        statusCode,
-        description,
-      });
+      try {
+        const schema =
+          schemaOrRef !== undefined
+            ? resolveRef({ refOrObject: schemaOrRef, $ref: spec.$ref })
+            : undefined;
+        const description = schema?.description ?? "";
+        responses.push({
+          statusCode,
+          description,
+        });
+      } catch (e) {
+        if (e instanceof Error) {
+          if (e.name === "MissingPointerError") continue;
+        }
+        throw e;
+      }
     }
 
     const method = getMethodName({
