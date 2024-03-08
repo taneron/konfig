@@ -1,10 +1,10 @@
 import { SecuritySchemes, parseSpec, recurseObject } from "konfig-lib";
 import path from "path";
 import { Db } from "../scripts/collect";
-import * as fs from "fs";
+import * as fs from "fs-extra";
 import deepmerge from "deepmerge";
 import yaml from "js-yaml";
-import puppeteer from "puppeteer";
+import puppeteer, { Browser as PuppeteerBrowser } from "puppeteer";
 import {
   computeDifficultyScore,
   customRequestSpecsDir,
@@ -20,15 +20,23 @@ import {
   getProviderName,
   getServiceName,
   getVersion,
+  browserDownloadsFolder,
 } from "../scripts/util";
+import { PuppeteerBlocker } from "@cliqz/adblocker-puppeteer";
+import fetch from "cross-fetch"; // required 'fetch'
 
 /**
  * For describing a custom request to get an OAS
  */
 export type CustomRequest = (
-  | { url: string; regex?: string; type: "GET" }
+  | {
+      url: string;
+      defaultUrlForBrokenLinks?: string;
+      regex?: string;
+      type: "GET";
+    }
   | { url: string; body: string }
-  | { lambda: () => Promise<string> }
+  | { lambda: (browser: PuppeteerBrowser) => Promise<string> }
 ) & {
   securitySchemes?: SecuritySchemes;
   apiBaseUrl?: string;
@@ -54,10 +62,14 @@ function parseOAS(oas: string, regex: string | undefined): any {
   }
 }
 
-async function executeCustomRequest(key: string, customRequest: CustomRequest) {
+async function executeCustomRequest(
+  key: string,
+  customRequest: CustomRequest,
+  browser: PuppeteerBrowser
+) {
   if ("type" in customRequest && customRequest.type === "GET") {
     const getRequest = customRequest;
-    const { url, regex } = getRequest;
+    const { url, regex, defaultUrlForBrokenLinks } = getRequest;
     console.log(`Processing get request for ${key}`);
 
     const rawString = await fetch(url, {
@@ -73,7 +85,16 @@ async function executeCustomRequest(key: string, customRequest: CustomRequest) {
       rawSpec.openapi = getRequest.openapi;
     }
 
-    const rawSpecString = JSON.stringify(rawSpec);
+    let rawSpecString = JSON.stringify(rawSpec);
+
+    if (defaultUrlForBrokenLinks !== undefined) {
+      const regexForBrokenLinks = /(\((\/|#).*?\))/g;
+      rawSpecString = rawSpecString.replaceAll(
+        regexForBrokenLinks,
+        `(${defaultUrlForBrokenLinks})`
+      );
+    }
+
     return rawSpecString;
   } else if ("body" in customRequest) {
     const postRequest = customRequest;
@@ -91,7 +112,7 @@ async function executeCustomRequest(key: string, customRequest: CustomRequest) {
   } else if ("lambda" in customRequest) {
     const lambdaRequest = customRequest;
     console.log(`Processing lambda request for ${key}`);
-    return await lambdaRequest.lambda();
+    return await lambdaRequest.lambda(browser);
   } else {
     throw Error("Unexpected custom request");
   }
@@ -350,6 +371,40 @@ const customRequests: Record<string, CustomRequest> = {
     type: "GET",
     url: "https://developer.zuora.com/yaml/zuora_openapi.yaml",
   },
+  "launchdarkly.com": {
+    lambda: async (browser) => {
+      return downloadOpenApiSpecFromRedocly({
+        url: "https://apidocs.launchdarkly.com",
+        filename: "swagger.json",
+        browser,
+      });
+    },
+  },
+  "klarna.com_payments": {
+    lambda: async (browser) => {
+      return downloadOpenApiSpecFromRedocly({
+        url: "https://docs.klarna.com/api/payments/",
+        filename: "swagger.json",
+        browser,
+        enableAdBlock: true,
+      });
+    },
+  },
+  "klarna.com_checkout": {
+    lambda: async (browser) => {
+      return downloadOpenApiSpecFromRedocly({
+        url: "https://docs.klarna.com/api/checkout/",
+        filename: "swagger.json",
+        browser,
+        enableAdBlock: true,
+      });
+    },
+  },
+  "justeattakeaway.com": {
+    type: "GET",
+    url: "https://uk.api.just-eat.io/docs/openapi.yaml",
+    defaultUrlForBrokenLinks: "https://uk.api.just-eat.io/docs/",
+  },
   "zoom.us_meeting": {
     lambda: async () => {
       const url =
@@ -426,15 +481,159 @@ const customRequests: Record<string, CustomRequest> = {
   },
 };
 
+/**
+ * Downloads the OpenAPI spec from the Redocly URL and saves it to the specified filename
+ */
+async function downloadOpenApiSpecFromRedocly({
+  url,
+  filename,
+  browser,
+  enableAdBlock,
+  closeModal,
+}: {
+  url: string;
+  filename: string;
+  browser: PuppeteerBrowser;
+  enableAdBlock?: boolean;
+  closeModal?: {
+    modalSelector: string;
+    closeSelector: string;
+  };
+}) {
+  const page = await browser.newPage();
+
+  if (enableAdBlock) {
+    PuppeteerBlocker.fromPrebuiltAdsAndTracking(fetch).then((blocker) => {
+      blocker.enableBlockingInPage(page);
+    });
+  }
+
+  // Set the download options
+  const client = await page.target().createCDPSession();
+
+  // extract domain without scheme from URL (e.g. https://apidocs.launchdarkly.com -> apidocs.launchdarkly.com)
+  // or (e.g. https://docs.klarna.com/api/payments/ -> docs.klarna.com/api/payments)
+  const domainWithoutScheme = new URL(url).hostname + new URL(url).pathname;
+
+  const removeTrailingSlash = (str: string) =>
+    str.endsWith("/") ? str.slice(0, -1) : str;
+
+  // replace all slashes with underscores
+  const domainWithoutSlashes = removeTrailingSlash(
+    domainWithoutScheme
+  ).replaceAll("/", "_");
+
+  const downloadPath = path.join(browserDownloadsFolder, domainWithoutSlashes);
+
+  // need to clear directory so we can properly wait for download to finish
+  fs.rmdirSync(downloadPath, { recursive: true });
+
+  fs.ensureDirSync(downloadPath);
+  await client.send("Page.setDownloadBehavior", {
+    behavior: "allow",
+    downloadPath,
+  });
+
+  // Navigate to the page
+  console.log(`Navigating to ${url}`);
+  await page.goto(url);
+  console.log(`Finished navigating to ${url}`);
+
+  if (closeModal !== undefined) {
+    console.log("Closing modal...");
+    await page.waitForSelector(closeModal.modalSelector);
+    console.log("Modal found");
+    await page.waitForSelector(closeModal.closeSelector);
+    console.log("Modal close button found");
+    await page.click(closeModal.closeSelector);
+
+    // wait for modalSelector to disappear
+    await page.waitForFunction(
+      (modalSelector) => !document.querySelector(modalSelector),
+      {},
+      closeModal.modalSelector
+    );
+
+    console.log("Finished closing modal");
+  }
+
+  // Click the download button
+  const downloadButtonSelector = `a[download="${filename}"]`;
+  await page.waitForSelector(downloadButtonSelector);
+  await page.click(downloadButtonSelector);
+
+  // wait until download finishes by checking if the size of files the
+  // download folder have stopped increasing after the file appears
+  console.log(`Waiting for download to finish for ${url}...`);
+  await waitForDownloadToFinishByFileSize(downloadPath);
+  console.log(`Finished waiting for download to finish for ${url}`);
+
+  let rawSpecString = fs.readFileSync(
+    path.join(downloadPath, filename),
+    "utf-8"
+  );
+  const regex = /(\((\/|#).*?\))/g;
+  rawSpecString = rawSpecString.replaceAll(regex, `(${url})`);
+  return rawSpecString;
+}
+
+async function waitForDownloadToFinishByFileSize(downloadPath: string) {
+  console.log(`Waiting for file to appear under ${downloadPath}...`);
+  // wait for the file to appear
+  while (true) {
+    const files = fs.readdirSync(downloadPath);
+    if (files.length > 0) {
+      break;
+    }
+  }
+  console.log(`File appeared under ${downloadPath}`);
+  // wait for the file to stop increasing in size by checking if the size hasn't increased in size for a duration
+  let previousSize = 0;
+  let tick = 0;
+  while (true) {
+    const files = fs.readdirSync(downloadPath);
+    if (files.length === 0) {
+      throw Error("Expecting files to be present");
+    }
+    const file = files[0];
+    const stats = fs.statSync(path.join(downloadPath, file));
+    if (stats.size === previousSize) {
+      tick++;
+      if (tick > 2) {
+        break;
+      }
+    } else {
+      tick = 0;
+    }
+    previousSize = stats.size;
+    await new Promise((resolve) => setTimeout(resolve, 500));
+  }
+}
+
 export async function collectFromCustomRequests(): Promise<Db> {
   const db: Db = { specifications: {} };
 
+  const browser = await puppeteer.launch({
+    headless: process.env.NOT_HEADLESS ? false : "new",
+    // change default resolution to 1920x1080
+    defaultViewport: { width: 1920, height: 1080 },
+    devtools: true,
+  });
   for (const key in customRequests) {
+    if (process.env.FILTER_CUSTOM !== undefined) {
+      if (!key.includes(process.env.FILTER_CUSTOM)) {
+        continue;
+      }
+    }
     const customRequest = customRequests[key];
     if (customRequest === undefined)
       throw Error("Expect customRequest to be defined");
 
-    const rawSpecString = await executeCustomRequest(key, customRequest);
+    const rawSpecString = await executeCustomRequest(
+      key,
+      customRequest,
+      browser
+    );
 
     if (rawSpecString === undefined) {
       throw Error("Expect rawSpecString to be defined");
@@ -501,6 +700,7 @@ export async function collectFromCustomRequests(): Promise<Db> {
       yaml.dump(spec.spec)
     );
   }
+  browser.close();
 
   return db;
 }

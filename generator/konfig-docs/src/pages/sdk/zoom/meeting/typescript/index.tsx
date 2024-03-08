@@ -10,13 +10,13 @@ export default function ZoomMeetingTypeScriptSdk() {
   return (
     <Sdk
       sdkName="zoom-meeting-typescript-sdk"
-      metaDescription="Zoom is a video conferencing platform that allows users to connect remotely for virtual meetings, webinars, online events, and collaborative work sessions. With features like screen sharing, virtual backgrounds, and chat functionality, Zoom has become a popular tool for individuals and businesses to communicate and collaborate in real-time, fostering productivity and connectivity across distances."
+      metaDescription="Zoom is a video conferencing platform that allows users to connect remotely for virtual meetings, webinars, online events, and collaborative work sessions. With features like screen sharing, virtual backgrounds, and chat functionality, Zoom is a popular tool for individuals and businesses to communicate and collaborate in real-time."
       company="Zoom"
       serviceName="Meeting"
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/zoom/meeting/logo.png"
       clientNameCamelCase="zoomMeeting"
       homepage="zoom.us/"
-      lastUpdated={new Date("2024-03-06T23:24:34.758Z")}
+      lastUpdated={new Date("2024-03-07T20:32:00.928Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/zoom/meeting/favicon.png"
       contactUrl="https://developer.zoom.us/"
       // Missing contactEmail
@@ -3111,11 +3111,11 @@ export default function ZoomMeetingTypeScriptSdk() {
       },
       {
         "statusCode": "400",
-        "description": "**HTTP Status Code:** `400` <br>\n Bad Request \n\n **Error Code:** `1010` <br>\n User {userId} not exist or not belong to this account.<br><br> <br>\n**Error Code:** `300` <br>\n Cannot access meeting information.<br><br> <br>\n**Error Code:** `200` <br>\n Only available for paid account: {accountId} <br>\n**Error Code:** `12702` <br>\n Can not access a meeting a year ago. <br>\n"
+        "description": "**HTTP Status Code:** `400` <br>\n Bad Request  \n\n **Error Code:** `1010` <br>\n User {userId} not exist or not belong to this account.<br><br> <br>\n**Error Code:** `300` <br>\n Cannot access meeting information.<br><br> <br>\n**Error Code:** `200` <br>\n Only available for paid account: {accountId} <br>\n**Error Code:** `12702` <br>\n Can not access a meeting a year ago. <br>\n"
       },
       {
         "statusCode": "404",
-        "description": "**HTTP Status Code:** `404` <br>\n Not Found \n\n **Error Code:** `1001` <br>\n User {userId} not exist or not belong to this account.<br>\nUser not exist: {userId}<br><br> <br>\n**Error Code:** `3001` <br>\n This meeting is not available or ID is not valid.<br>\nMeeting ID is invalid or not end. <br>\n"
+        "description": "**HTTP Status Code:** `404` <br>\n Not Found  \n\n **Error Code:** `1001` <br>\n User {userId} not exist or not belong to this account.<br>\nUser not exist: {userId}<br><br> <br>\n**Error Code:** `3001` <br>\n This meeting is not available or ID is not valid.<br>\nMeeting ID is invalid or not end. <br>\n"
       }
     ]
   },
