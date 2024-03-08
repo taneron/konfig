@@ -65,7 +65,7 @@ function generateSdkRepository(
     data.fixedSpecFileName
   );
 
-  if (!debug && repositoryExists(sdkName)) {
+  if (repositoryExists(sdkName)) {
     result.result = "skip";
     result.reason = "Repository already exists.";
     return result;
