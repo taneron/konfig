@@ -401,7 +401,7 @@ const customRequests: Record<string, CustomRequest> = {
   },
   "launchdarkly.com": {
     lambda: async (browser) => {
-      return downloadOpenApiSpecFromRedocly({
+      return downloadOpenApiSpecFromRedoclyEmbedded({
         url: "https://apidocs.launchdarkly.com",
         filename: "swagger.json",
         browser,
@@ -410,7 +410,7 @@ const customRequests: Record<string, CustomRequest> = {
   },
   "klarna.com_payments": {
     lambda: async (browser) => {
-      return downloadOpenApiSpecFromRedocly({
+      return downloadOpenApiSpecFromRedoclyEmbedded({
         url: "https://docs.klarna.com/api/payments/",
         filename: "swagger.json",
         browser,
@@ -420,7 +420,7 @@ const customRequests: Record<string, CustomRequest> = {
   },
   "klarna.com_checkout": {
     lambda: async (browser) => {
-      return downloadOpenApiSpecFromRedocly({
+      return downloadOpenApiSpecFromRedoclyEmbedded({
         url: "https://docs.klarna.com/api/checkout/",
         filename: "swagger.json",
         browser,
@@ -536,7 +536,7 @@ const customRequests: Record<string, CustomRequest> = {
 /**
  * Downloads the OpenAPI spec from the Redocly URL and saves it to the specified filename
  */
-async function downloadOpenApiSpecFromRedocly({
+async function downloadOpenApiSpecFromRedoclyEmbedded({
   url,
   filename,
   browser,
