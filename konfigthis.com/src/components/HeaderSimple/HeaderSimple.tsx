@@ -128,6 +128,17 @@ export function HeaderSimple() {
                 component="a"
               />
               <NavLink
+                className="py-4 text-gray-600 border-t border-solid border-gray-100"
+                label="SDKs for Relevant APIs"
+                classNames={{
+                  label: "text-lg",
+                }}
+                rightSection={<IconExternalLink stroke={1.5} />}
+                target="_blank"
+                href="/sdk"
+                component="a"
+              />
+              <NavLink
                 className="py-4 font-bold border-t border-solid border-gray-100"
                 label="Book a Demo"
                 classNames={{
