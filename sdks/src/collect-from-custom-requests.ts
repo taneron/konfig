@@ -534,7 +534,10 @@ const customRequests: Record<string, CustomRequest> = {
 };
 
 /**
- * Downloads the OpenAPI spec from the Redocly URL and saves it to the specified filename
+ * Downloads the OpenAPI spec from the Redocly URL and saves it to the specified
+ * filename.  Sometimes Redocly embeds the contents of the OAS inside the
+ * bundled JS files so we need to use Puppeteer to navigate to the page and
+ * download the file.
  */
 async function downloadOpenApiSpecFromRedoclyEmbedded({
   url,
