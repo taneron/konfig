@@ -65,6 +65,15 @@ async function addApiToPublish() {
   PublishJson.saveHomepage({ homepage }, api);
   console.log(`✅ Homepage: ${PublishJson.getHomepage(api)}`);
 
+  // NEW
+  const developerDocumentation =
+    PublishJson.getDeveloperDocumentation(api) ??
+    (await getDeveloperDocumentation());
+  PublishJson.saveDeveloperDocumentation({ developerDocumentation }, api);
+  console.log(
+    `✅ Developer Documentation: ${PublishJson.getDeveloperDocumentation(api)}`
+  );
+
   // (6) & (7)
   const metaDescription =
     PublishJson.getMetaDescription(api) ??
@@ -240,14 +249,25 @@ async function ensureLogoExists(homepage: string, companyServicePath: string) {
   // get logo image, determine file type, and save to file
   const response = await axios.get(logoUrl.logoUrl, {
     responseType: "arraybuffer",
+    headers: {
+      "Accept-Encoding": "gzip",
+    },
   });
   const buffer = Buffer.from(response.data, "binary");
+  const ext = await getFileTypeFromBuffer(buffer);
+  const logoPath = path.join(companyServicePath, `logo.${ext}`);
+  fs.writeFileSync(logoPath, buffer);
+}
+
+async function getFileTypeFromBuffer(buffer: Buffer): Promise<string> {
   const fileType = await fileTypeFromBuffer(buffer);
   if (!fileType) {
     throw new Error("Could not determine file type");
   }
-  const logoPath = path.join(companyServicePath, `logo.${fileType.ext}`);
-  fs.writeFileSync(logoPath, buffer);
+  if (fileType.ext === "xml") {
+    return "svg";
+  }
+  return fileType.ext;
 }
 
 async function getMetaDescription(
@@ -263,7 +283,7 @@ async function getMetaDescription(
     const addMetaDescription = await inquirer.prompt({
       type: "confirm",
       name: "addMetaDescription",
-      message: "Would you like to add the meta description?",
+      message: "Would you like to manually add the meta description?",
     });
     if (addMetaDescription.addMetaDescription) return metaDescription;
   }
@@ -355,11 +375,11 @@ async function getCategories(
   companyName: string,
   metaDescription: string | null
 ): Promise<string[]> {
-  const specData = getSpecData(api);
-  if (specData.categories) {
-    console.log("🟢 Found categories in spec data");
-    return specData.categories;
-  }
+  // const specData = getSpecData(api);
+  // if (specData.categories) {
+  //   console.log("🟢 Found categories in spec data");
+  //   return specData.categories;
+  // }
   const publishJson: PublishJsonType = JSON.parse(
     fs.readFileSync(path.join(ROOT_FOLDER_PATH, "publish.json"), "utf-8")
   );
@@ -446,6 +466,18 @@ async function getHomepage(): Promise<string> {
   return homepage.replace(/^(https?:\/\/)/, "");
 }
 
+async function getDeveloperDocumentation(): Promise<string> {
+  const developerDocumentation: string = (
+    await inquirer.prompt({
+      type: "input",
+      name: "developerDocumentation",
+      message: "What is the URL for developer documentation?",
+    })
+  ).developerDocumentation;
+  // remove "https://" or "http://" from the beginning of the string
+  return developerDocumentation.replace(/^(https?:\/\/)/, "");
+}
+
 async function getCompany(): Promise<string> {
   return (
     await inquirer.prompt({
@@ -490,6 +522,11 @@ class PublishJson {
 
   static getHomepage(api: string): string | undefined {
     return PublishJson._currentPublishJson().publish[api]?.homepage;
+  }
+
+  static getDeveloperDocumentation(api: string): string | undefined {
+    return PublishJson._currentPublishJson().publish[api]
+      ?.developerDocumentation;
   }
 
   static getCategories(api: string): string[] | undefined {
@@ -545,6 +582,15 @@ class PublishJson {
   static saveHomepage = this._writeToDiskAfter(
     ({ homepage }: { homepage: string }, progress) => {
       progress.homepage = homepage;
+    }
+  );
+
+  static saveDeveloperDocumentation = this._writeToDiskAfter(
+    (
+      { developerDocumentation }: { developerDocumentation: string },
+      progress
+    ) => {
+      progress.developerDocumentation = developerDocumentation;
     }
   );
 

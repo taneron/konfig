@@ -1,4 +1,8 @@
-import { SecuritySchemes, parseSpec, recurseObject } from "konfig-lib";
+import {
+  SecuritySchemes,
+  parseSpec,
+  recurseObject,
+} from "../../generator/konfig-dash/packages/konfig-lib/dist";
 import path from "path";
 import { Db } from "../scripts/collect";
 import * as fs from "fs-extra";
@@ -21,6 +25,8 @@ import {
   getServiceName,
   getVersion,
   browserDownloadsFolder,
+  getCustomRequestLastFetched,
+  saveCustomRequestLastFetched,
 } from "../scripts/util";
 import { PuppeteerBlocker } from "@cliqz/adblocker-puppeteer";
 import fetch from "cross-fetch"; // required 'fetch'
@@ -87,13 +93,14 @@ async function executeCustomRequest(
 
     let rawSpecString = JSON.stringify(rawSpec);
 
-    if (defaultUrlForBrokenLinks !== undefined) {
-      const regexForBrokenLinks = /(\((\/|#).*?\))/g;
-      rawSpecString = rawSpecString.replaceAll(
-        regexForBrokenLinks,
-        `(${defaultUrlForBrokenLinks})`
-      );
-    }
+    const regexForBrokenLinks = /(\((\/|#).*?\))/g;
+
+    const urlWithoutSubpath = url.split("/").slice(0, 3).join("/");
+
+    rawSpecString = rawSpecString.replaceAll(
+      regexForBrokenLinks,
+      `(${defaultUrlForBrokenLinks ?? urlWithoutSubpath})`
+    );
 
     return rawSpecString;
   } else if ("body" in customRequest) {
@@ -119,6 +126,10 @@ async function executeCustomRequest(
 }
 
 const customRequests: Record<string, CustomRequest> = {
+  "gitlab.com": {
+    type: "GET",
+    url: "https://gitlab.com/gitlab-org/gitlab/-/raw/master/doc/api/openapi/openapi.yaml",
+  },
   "mailchimp.com": {
     lambda: async () => {
       const url = "https://api.mailchimp.com/schema/3.0/Swagger.json?expand";
@@ -130,6 +141,19 @@ const customRequests: Record<string, CustomRequest> = {
         `(https://mailchimp.com/developer/)`
       );
     },
+  },
+  "docusign.com": {
+    type: "GET",
+    url: "https://raw.githubusercontent.com/docusign/eSign-OpenAPI-Specification/master/esignature.rest.swagger-v2.1.json",
+  },
+  "discourse.org": {
+    type: "GET",
+    url: "http://docs.discourse.org/openapi.json",
+  },
+  "elevenlabs.com": {
+    type: "GET",
+    url: "https://api.elevenlabs.io/openapi.json",
+    apiBaseUrl: "https://api.elevenlabs.io",
   },
   "finicity.com": {
     type: "GET",
@@ -284,6 +308,10 @@ const customRequests: Record<string, CustomRequest> = {
     type: "GET",
     url: "https://actions.zapier.com/api/v1/openapi.json",
   },
+  "httpbin.org": {
+    type: "GET",
+    url: "https://httpbin.org/spec.json",
+  },
   "paylocity.com_weblink": {
     lambda: async () => {
       const rawSpecString = await fetch(
@@ -404,6 +432,30 @@ const customRequests: Record<string, CustomRequest> = {
     type: "GET",
     url: "https://uk.api.just-eat.io/docs/openapi.yaml",
     defaultUrlForBrokenLinks: "https://uk.api.just-eat.io/docs/",
+  },
+  "hetzner.com": {
+    type: "GET",
+    url: "https://docs.hetzner.cloud/spec.json",
+  },
+  "hsbc.com_AccountInformationCE": {
+    lambda: async (browser) => {
+      const url =
+        "https://develop.hsbc.com/ob-api-documentation/account-information-ce-hsbcnet/endpoints";
+      const anchorSelector = "a.apidownloadlink";
+
+      // open page to url and grab "href" attribute from anchorSelector
+      // then fetch the file
+      const page = await browser.newPage();
+      await page.goto(url);
+      const href = await page.$eval(anchorSelector, (el) =>
+        el.getAttribute("href")
+      );
+      if (href === null) throw Error("Expecting href to be defined");
+      const rawSpecString = await fetch(`https://develop.hsbc.com${href}`).then(
+        (res) => res.text()
+      );
+      return rawSpecString;
+    },
   },
   "zoom.us_meeting": {
     lambda: async () => {
@@ -620,22 +672,50 @@ export async function collectFromCustomRequests(): Promise<Db> {
     devtools: true,
   });
   for (const key in customRequests) {
+    const specFilename = `${key}.yaml`;
+    const customRequestSpecFilePath = path.join(
+      customRequestSpecsDir,
+      specFilename
+    );
+
+    // if fetched in the last day, skip
     if (process.env.FILTER_CUSTOM !== undefined) {
       if (!key.includes(process.env.FILTER_CUSTOM)) {
         continue;
       }
     }
+
     const customRequest = customRequests[key];
     if (customRequest === undefined)
       throw Error("Expect customRequest to be defined");
 
-    const rawSpecString = await executeCustomRequest(
-      key,
-      customRequest,
-      browser
-    );
+    const lastFetched = getCustomRequestLastFetched(key);
 
-    if (rawSpecString === undefined) {
+    let rawSpecStringCurrent: string | null = null;
+    if (
+      lastFetched !== undefined &&
+      process.env.FILTER_CUSTOMER === undefined &&
+      lastFetched > new Date(Date.now() - 1000 * 60 * 60 * 24)
+    ) {
+      console.log(`Skip fetching ${key} due to last fetched being recent`);
+    } else {
+      rawSpecStringCurrent = await executeCustomRequest(
+        key,
+        customRequest,
+        browser
+      );
+    }
+    let rawSpecStringLastFetched: string | null = null;
+    if (fs.existsSync(customRequestSpecFilePath)) {
+      rawSpecStringLastFetched = fs.readFileSync(
+        customRequestSpecFilePath,
+        "utf-8"
+      );
+    }
+
+    const rawSpecString = rawSpecStringCurrent ?? rawSpecStringLastFetched;
+
+    if (rawSpecString === null) {
       throw Error("Expect rawSpecString to be defined");
     }
 
@@ -661,13 +741,13 @@ export async function collectFromCustomRequests(): Promise<Db> {
     if (apiBaseUrl === undefined) {
       if (customRequest.apiBaseUrl !== undefined) {
         apiBaseUrl = customRequest.apiBaseUrl;
+        spec.spec.servers = [{ url: apiBaseUrl }];
       } else {
         console.log(`❌ Skipping ${key} due to missing apiBaseUrl.`);
         continue;
       }
     }
 
-    const specFilename = `${key}.yaml`;
     db.specifications[`from-custom-request_${key}`] = {
       providerName: getProviderName(spec),
       openApiRaw: getOpenApiRaw(spec),
@@ -695,12 +775,11 @@ export async function collectFromCustomRequests(): Promise<Db> {
       ),
     };
     console.log(`Writing post request spec to disk for ${key}`);
-    fs.writeFileSync(
-      path.join(customRequestSpecsDir, specFilename),
-      yaml.dump(spec.spec)
-    );
+    fs.writeFileSync(customRequestSpecFilePath, yaml.dump(spec.spec));
   }
   browser.close();
+
+  saveCustomRequestLastFetched(new Date(), Object.keys(customRequests));
 
   return db;
 }
