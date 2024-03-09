@@ -237,7 +237,7 @@ async function createConfig() {
           style: "light",
           links: [
             {
-              title: "Links",
+              title: "Company",
               items: [
                 { to: "/about", label: "About" },
                 {
@@ -251,6 +251,24 @@ async function createConfig() {
                 {
                   label: "Blog",
                   to: "/blog",
+                },
+              ],
+            },
+            {
+              title: "Resources",
+              items: [
+                {
+                  label: "Documentation",
+                  to: "/docs",
+                },
+                {
+                  label: "Interactive Tutorial",
+                  to: "/interactive-tutorial",
+                },
+                { to: "/sdk", label: "SDKs" },
+                {
+                  label: "Schedule Demo",
+                  to: "/schedule-demo",
                 },
               ],
             },
