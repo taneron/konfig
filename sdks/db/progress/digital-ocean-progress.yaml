@@ -1,0 +1,1036 @@
+examples: {}
+examples_2: {}
+examples_3:
+  /v2/account:
+    get:
+      '200':
+        application/json: {}
+  /v2/account/keys:
+    post:
+      '201':
+        application/json: {}
+  /v2/account/keys/{ssh_key_identifier}:
+    get:
+      '200':
+        application/json: {}
+  /v2/actions/{action_id}:
+    get:
+      '200':
+        application/json: {}
+  /v2/droplets/actions:
+    post:
+      '201':
+        application/json: {}
+  /v2/droplets/{droplet_id}/actions:
+    post:
+      '201':
+        application/json: {}
+  /v2/kubernetes/clusters/{cluster_id}/clusterlint:
+    post:
+      '202':
+        application/json: {}
+  /v2/monitoring/alerts:
+    post:
+      '200':
+        application/json: {}
+  /v2/projects:
+    post:
+      '201':
+        application/json: {}
+  /v2/registry:
+    get:
+      '200':
+        application/json: {}
+  /v2/registry/subscription:
+    get:
+      '200':
+        application/json: {}
+  /v2/snapshots/{snapshot_id}:
+    get:
+      '200':
+        application/json: {}
+ignoreObjectsWithNoProperties: true
+ignorePotentialIncorrectType: true
+operationIds:
+  /v2/1-clicks/kubernetes:
+    post: 1ClickApplications_installKubernetesApplication
+  /v2/apps/metrics/bandwidth_daily:
+    post: Apps_getMultipleDailyMetrics
+  /v2/apps/propose:
+    post: Apps_proposeAppSpec
+  /v2/apps/regions:
+    get: Apps_listRegions
+  /v2/apps/tiers:
+    get: Apps_listTiers
+  /v2/apps/tiers/instance_sizes:
+    get: Apps_listInstanceSizes
+  /v2/apps/tiers/instance_sizes/{slug}:
+    get: Apps_getInstanceSize
+  /v2/apps/tiers/{slug}:
+    get: Apps_getTierInfo
+  /v2/apps/{app_id}/alerts:
+    get: Apps_listAlerts
+  /v2/apps/{app_id}/alerts/{alert_id}/destinations:
+    post: Apps_updateDestinationsForAlerts
+  /v2/apps/{app_id}/components/{component_name}/logs:
+    get: Apps_getActiveDeploymentLogs
+  /v2/apps/{app_id}/deployments:
+    get: Apps_listDeployments
+    post: Apps_createDeployment
+  /v2/apps/{app_id}/deployments/{deployment_id}:
+    get: Apps_getDeploymentInfo
+  /v2/apps/{app_id}/deployments/{deployment_id}/cancel:
+    post: Apps_cancelDeployment
+  /v2/apps/{app_id}/deployments/{deployment_id}/components/{component_name}/logs:
+    get: Apps_getDeploymentLogs
+  /v2/apps/{app_id}/deployments/{deployment_id}/logs:
+    get: Apps_getAggregateDeploymentLogs
+  /v2/apps/{app_id}/logs:
+    get: Apps_getActiveDeploymentLogs
+  /v2/apps/{app_id}/metrics/bandwidth_daily:
+    get: Apps_getAppDailyBandwidthMetrics
+  /v2/apps/{app_id}/rollback:
+    post: Apps_rollbackDeployment
+  /v2/apps/{app_id}/rollback/commit:
+    post: Apps_commitRollback
+  /v2/apps/{app_id}/rollback/revert:
+    post: Apps_revertRollback
+  /v2/apps/{app_id}/rollback/validate:
+    post: Apps_validateRollback
+  /v2/cdn/endpoints:
+    get: CdnEndpoints_listAll
+    post: CdnEndpoints_createNewEndpoint
+  /v2/cdn/endpoints/{cdn_id}:
+    delete: CdnEndpoints_deleteEndpoint
+    get: CdnEndpoints_getExistingEndpoint
+    put: CdnEndpoints_updateEndpoint
+  /v2/cdn/endpoints/{cdn_id}/cache:
+    delete: CdnEndpoints_purgeCache
+  /v2/customers/my/invoices/{invoice_uuid}:
+    get: Billing_getInvoiceByUuid
+  /v2/customers/my/invoices/{invoice_uuid}/csv:
+    get: Billing_getInvoiceCsvByUuid
+  /v2/customers/my/invoices/{invoice_uuid}/pdf:
+    get: Billing_getPdfByUuid
+  /v2/customers/my/invoices/{invoice_uuid}/summary:
+    get: Billing_getInvoiceSummaryByUuid
+  /v2/databases:
+    get: Databases_listClusters
+    post: Databases_createCluster
+  /v2/databases/options:
+    get: Databases_listOptions
+  /v2/databases/{database_cluster_uuid}:
+    delete: Databases_destroyCluster
+    get: Databases_getClusterInfo
+  /v2/databases/{database_cluster_uuid}/backups:
+    get: Databases_listBackups
+  /v2/databases/{database_cluster_uuid}/ca:
+    get: Databases_getPublicCertificate
+  /v2/databases/{database_cluster_uuid}/config:
+    get: Databases_getClusterConfig
+    patch: Databases_updateConfigCluster
+  /v2/databases/{database_cluster_uuid}/events:
+    get: Databases_listEventsLogs
+  /v2/databases/{database_cluster_uuid}/eviction_policy:
+    get: Databases_getEvictionPolicy
+    put: Databases_configureEvictionPolicy
+  /v2/databases/{database_cluster_uuid}/firewall:
+    get: Databases_listFirewallRules
+    put: Databases_updateFirewallRules
+  /v2/databases/{database_cluster_uuid}/maintenance:
+    put: Databases_configureMaintenanceWindow
+  /v2/databases/{database_cluster_uuid}/migrate:
+    put: Databases_migrateClusterToNewRegion
+  /v2/databases/{database_cluster_uuid}/online-migration:
+    get: Databases_getMigrationStatus
+    put: Databases_startOnlineMigration
+  /v2/databases/{database_cluster_uuid}/online-migration/{migration_id}:
+    delete: Databases_stopOnlineMigration
+  /v2/databases/{database_cluster_uuid}/pools:
+    get: Databases_listConnectionPools
+    post: Databases_addNewConnectionPool
+  /v2/databases/{database_cluster_uuid}/pools/{pool_name}:
+    delete: Databases_deleteConnectionPool
+    get: Databases_getConnectionPool
+    put: Databases_updateConnectionPoolPostgresql
+  /v2/databases/{database_cluster_uuid}/replicas:
+    get: Databases_listReadOnlyReplicas
+    post: Databases_createReadOnlyReplica
+  /v2/databases/{database_cluster_uuid}/replicas/{replica_name}:
+    delete: Databases_destroyReadonlyReplica
+    get: Databases_getExistingReadOnlyReplica
+  /v2/databases/{database_cluster_uuid}/replicas/{replica_name}/promote:
+    put: Databases_promoteReadonlyReplicaToPrimary
+  /v2/databases/{database_cluster_uuid}/resize:
+    put: Databases_resizeCluster
+  /v2/databases/{database_cluster_uuid}/sql_mode:
+    get: Databases_getSqlMode
+    put: Databases_updateSqlMode
+  /v2/databases/{database_cluster_uuid}/topics:
+    get: Databases_listTopicsKafkaCluster
+    post: Databases_createTopicKafkaCluster
+  /v2/databases/{database_cluster_uuid}/topics/{topic_name}:
+    delete: Databases_deleteTopicKafkaCluster
+    get: Databases_getTopicKafkaCluster
+    put: Databases_updateTopicKafkaCluster
+  /v2/databases/{database_cluster_uuid}/upgrade:
+    put: Databases_upgradeMajorVersion
+  /v2/databases/{database_cluster_uuid}/users:
+    get: Databases_listUsers
+    post: Databases_addUser
+  /v2/databases/{database_cluster_uuid}/users/{username}:
+    delete: Databases_removeUser
+    get: Databases_getUser
+    put: Databases_updateSettings
+  /v2/databases/{database_cluster_uuid}/users/{username}/reset_auth:
+    post: Databases_resetUserAuth
+  /v2/domains/{domain_name}/records:
+    get: DomainRecords_listAllRecords
+    post: DomainRecords_createNewRecord
+  /v2/domains/{domain_name}/records/{domain_record_id}:
+    delete: DomainRecords_deleteById
+    get: DomainRecords_getExistingRecord
+    patch: DomainRecords_updateRecordById
+    put: DomainRecords_updateRecordById
+  /v2/droplets:
+    delete: Droplets_deleteByTag
+  /v2/droplets/actions:
+    post: DropletActions_actOnTaggedDroplets
+  /v2/droplets/{droplet_id}/backups:
+    get: Droplets_listBackups
+  /v2/droplets/{droplet_id}/destroy_with_associated_resources:
+    get: Droplets_listAssociatedResources
+  /v2/droplets/{droplet_id}/destroy_with_associated_resources/dangerous:
+    delete: Droplets_deleteDangerous
+  /v2/droplets/{droplet_id}/destroy_with_associated_resources/retry:
+    post: Droplets_retryDestroyWithAssociatedResources
+  /v2/droplets/{droplet_id}/destroy_with_associated_resources/selective:
+    delete: Droplets_destroyAssociatedResourcesSelective
+  /v2/droplets/{droplet_id}/destroy_with_associated_resources/status:
+    get: Droplets_checkDestroyStatus
+  /v2/droplets/{droplet_id}/firewalls:
+    get: Droplets_listFirewalls
+  /v2/droplets/{droplet_id}/kernels:
+    get: Droplets_listKernels
+  /v2/droplets/{droplet_id}/neighbors:
+    get: Droplets_listNeighbors
+  /v2/droplets/{droplet_id}/snapshots:
+    get: Droplets_listSnapshots
+  /v2/firewalls/{firewall_id}/droplets:
+    delete: Firewalls_removeDroplets
+    post: Firewalls_addDroplets
+  /v2/firewalls/{firewall_id}/rules:
+    delete: Firewalls_removeRules
+    post: Firewalls_addRules
+  /v2/firewalls/{firewall_id}/tags:
+    delete: Firewalls_removeTags
+    post: Firewalls_addTags
+  /v2/functions/namespaces:
+    get: Functions_listNamespaces
+    post: Functions_createNamespace
+  /v2/functions/namespaces/{namespace_id}:
+    delete: Functions_deleteNamespace
+    get: Functions_getNamespaceDetails
+  /v2/functions/namespaces/{namespace_id}/triggers:
+    get: Functions_listTriggers
+    post: Functions_createTriggerInNamespace
+  /v2/functions/namespaces/{namespace_id}/triggers/{trigger_name}:
+    delete: Functions_deleteTrigger
+    get: Functions_getTriggerDetails
+    put: Functions_updateTriggerDetails
+  /v2/images:
+    post: Images_importCustomImageFromUrl
+  /v2/kubernetes/clusters:
+    get: Kubernetes_listClusters
+    post: Kubernetes_createNewCluster
+  /v2/kubernetes/clusters/{cluster_id}:
+    delete: Kubernetes_deleteCluster
+    get: Kubernetes_getClusterInfo
+    put: Kubernetes_updateCluster
+  /v2/kubernetes/clusters/{cluster_id}/clusterlint:
+    get: Kubernetes_getClusterLintDiagnostics
+    post: Kubernetes_runClusterlintChecks
+  /v2/kubernetes/clusters/{cluster_id}/credentials:
+    get: Kubernetes_getCredentialsByClusterId
+  /v2/kubernetes/clusters/{cluster_id}/destroy_with_associated_resources:
+    get: Kubernetes_listAssociatedResources
+  /v2/kubernetes/clusters/{cluster_id}/destroy_with_associated_resources/dangerous:
+    delete: Kubernetes_deleteClusterAssociatedResourcesDangerous
+  /v2/kubernetes/clusters/{cluster_id}/destroy_with_associated_resources/selective:
+    delete: Kubernetes_selectiveClusterDestroy
+  /v2/kubernetes/clusters/{cluster_id}/kubeconfig:
+    get: Kubernetes_getKubeconfig
+  /v2/kubernetes/clusters/{cluster_id}/node_pools:
+    get: Kubernetes_listNodePools
+    post: Kubernetes_addNodePool
+  /v2/kubernetes/clusters/{cluster_id}/node_pools/{node_pool_id}:
+    delete: Kubernetes_deleteNodePool
+    get: Kubernetes_getNodePool
+    put: Kubernetes_updateNodePool
+  /v2/kubernetes/clusters/{cluster_id}/node_pools/{node_pool_id}/nodes/{node_id}:
+    delete: Kubernetes_deleteNodeInNodePool
+  /v2/kubernetes/clusters/{cluster_id}/node_pools/{node_pool_id}/recycle:
+    post: Kubernetes_recycleNodePool
+  /v2/kubernetes/clusters/{cluster_id}/upgrade:
+    post: Kubernetes_upgradeCluster
+  /v2/kubernetes/clusters/{cluster_id}/upgrades:
+    get: Kubernetes_getAvailableUpgrades
+  /v2/kubernetes/clusters/{cluster_id}/user:
+    get: Kubernetes_getUserInformation
+  /v2/kubernetes/options:
+    get: Kubernetes_listOptions
+  /v2/kubernetes/registry:
+    delete: Kubernetes_removeRegistry
+    post: Kubernetes_addContainerRegistryToClusters
+  /v2/load_balancers/{lb_id}/droplets:
+    delete: LoadBalancers_removeDroplets
+    post: LoadBalancers_assignDroplets
+  /v2/load_balancers/{lb_id}/forwarding_rules:
+    delete: LoadBalancers_removeForwardingRules
+    post: LoadBalancers_addForwardingRules
+  /v2/monitoring/alerts:
+    get: Monitoring_listAlertPolicies
+    post: Monitoring_createAlertPolicy
+  /v2/monitoring/alerts/{alert_uuid}:
+    delete: Monitoring_deleteAlertPolicy
+    get: Monitoring_getExistingAlertPolicy
+    put: Monitoring_updateAlertPolicy
+  /v2/monitoring/metrics/apps/cpu_percentage:
+    get: Monitoring_getAppCpuPercentageMetrics
+  /v2/monitoring/metrics/apps/memory_percentage:
+    get: Monitoring_getAppMemoryPercentageMetrics
+  /v2/monitoring/metrics/apps/restart_count:
+    get: Monitoring_getAppRestartCountMetrics
+  /v2/monitoring/metrics/droplet/bandwidth:
+    get: Monitoring_getDropletBandwidthMetrics
+  /v2/monitoring/metrics/droplet/cpu:
+    get: Monitoring_dropletCpuMetricsget
+  /v2/monitoring/metrics/droplet/filesystem_free:
+    get: Monitoring_getDropletFilesystemFreeMetrics
+  /v2/monitoring/metrics/droplet/filesystem_size:
+    get: Monitoring_getDropletFilesystemSizeMetrics
+  /v2/monitoring/metrics/droplet/load_1:
+    get: Monitoring_getDropletLoad1Metrics
+  /v2/monitoring/metrics/droplet/load_15:
+    get: Monitoring_getDropletLoad15Metrics
+  /v2/monitoring/metrics/droplet/load_5:
+    get: Monitoring_dropletLoad5MetricsGet
+  /v2/monitoring/metrics/droplet/memory_available:
+    get: Monitoring_getDropletMemoryAvailableMetrics
+  /v2/monitoring/metrics/droplet/memory_cached:
+    get: Monitoring_dropletMemoryCachedMetrics
+  /v2/monitoring/metrics/droplet/memory_free:
+    get: Monitoring_getDropletMemoryFreeMetrics
+  /v2/monitoring/metrics/droplet/memory_total:
+    get: Monitoring_getDropletMemoryTotalMetrics
+  /v2/projects/default:
+    get: Projects_getDefaultProject
+    patch: Projects_updateDefaultProjectAttributes
+    put: Projects_updateDefaultProject
+  /v2/projects/default/resources:
+    get: ProjectResources_listDefault
+    post: ProjectResources_assignResourcesToDefault
+  /v2/projects/{project_id}/resources:
+    get: ProjectResources_list
+    post: ProjectResources_assignToProject
+  /v2/registry/docker-credentials:
+    get: ContainerRegistry_getDockerCredentials
+  /v2/registry/options:
+    get: ContainerRegistry_listOptions
+  /v2/registry/subscription:
+    get: ContainerRegistry_getSubscriptionInfo
+    post: ContainerRegistry_updateSubscriptionTier
+  /v2/registry/validate-name:
+    post: ContainerRegistry_validateName
+  /v2/registry/{registry_name}/garbage-collection:
+    get: ContainerRegistry_getActiveGarbageCollection
+    post: ContainerRegistry_startGarbageCollection
+  /v2/registry/{registry_name}/garbage-collection/{garbage_collection_uuid}:
+    put: ContainerRegistry_cancelGarbageCollection
+  /v2/registry/{registry_name}/garbage-collections:
+    get: ContainerRegistry_listGarbageCollections
+  /v2/registry/{registry_name}/repositories:
+    get: ContainerRegistry_listRepositories
+  /v2/registry/{registry_name}/repositories/{repository_name}/digests:
+    get: ContainerRegistry_listRepositoryManifests
+  /v2/registry/{registry_name}/repositories/{repository_name}/digests/{manifest_digest}:
+    delete: ContainerRegistry_deleteRepositoryManifestByDigest
+  /v2/registry/{registry_name}/repositories/{repository_name}/tags:
+    get: ContainerRegistry_listRepositoryTags
+  /v2/registry/{registry_name}/repositories/{repository_name}/tags/{repository_tag}:
+    delete: ContainerRegistry_deleteRepositoryTag
+  /v2/registry/{registry_name}/repositoriesV2:
+    get: ContainerRegistry_listRepositoriesV2
+  /v2/reports/droplet_neighbors_ids:
+    get: Droplets_listDropletNeighbors
+  /v2/tags/{tag_id}/resources:
+    delete: Tags_untagResource
+    post: Tags_tagResource
+  /v2/uptime/checks:
+    get: Uptime_listChecks
+    post: Uptime_createCheck
+  /v2/uptime/checks/{check_id}:
+    delete: Uptime_deleteCheck
+    get: Uptime_getCheckById
+    put: Uptime_updateCheckSettings
+  /v2/uptime/checks/{check_id}/alerts:
+    get: Uptime_listAllAlerts
+    post: Uptime_createNewAlert
+  /v2/uptime/checks/{check_id}/alerts/{alert_id}:
+    delete: Uptime_deleteAlert
+    get: Uptime_getExistingAlert
+    put: Uptime_updateAlertSettings
+  /v2/uptime/checks/{check_id}/state:
+    get: Uptime_getCheckState
+  /v2/volumes:
+    delete: BlockStorage_deleteByRegionAndName
+  /v2/volumes/snapshots/{snapshot_id}:
+    delete: BlockStorage_deleteVolumeSnapshot
+    get: BlockStorage_getSnapshotDetails
+  /v2/volumes/{volume_id}/actions:
+    post: BlockStorageActions_initiateAttachAction
+  /v2/vpcs/{vpc_id}/members:
+    get: VpCs_listMembers
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /v2/account/keys/{ssh_key_identifier}:
+    put:
+      application/json: SshKeysUpdateRequest
+  /v2/certificates:
+    post:
+      application/json: CertificatesCreateRequest
+  /v2/databases:
+    post:
+      application/json: DatabasesCreateClusterRequest
+  /v2/databases/{database_cluster_uuid}/eviction_policy:
+    put:
+      application/json: DatabasesConfigureEvictionPolicyRequest
+  /v2/databases/{database_cluster_uuid}/firewall:
+    put:
+      application/json: DatabasesUpdateFirewallRulesRequest
+  /v2/databases/{database_cluster_uuid}/migrate:
+    put:
+      application/json: DatabasesMigrateClusterToNewRegionRequest
+  /v2/databases/{database_cluster_uuid}/users:
+    post:
+      application/json: DatabasesAddUserRequest
+  /v2/databases/{database_cluster_uuid}/users/{username}:
+    put:
+      application/json: DatabasesUpdateSettingsRequest
+  /v2/databases/{database_cluster_uuid}/users/{username}/reset_auth:
+    post:
+      application/json: DatabasesResetUserAuthRequest
+  /v2/domains/{domain_name}/records:
+    post:
+      application/json: DomainRecordsCreateNewRecordRequest
+  /v2/droplets:
+    post:
+      application/json: DropletsCreateRequest
+  /v2/droplets/actions:
+    post:
+      application/json: DropletActionsActOnTaggedDropletsRequest
+  /v2/droplets/{droplet_id}/actions:
+    post:
+      application/json: DropletActionsPostRequest
+  /v2/firewalls:
+    post:
+      application/json: FirewallsCreateRequest
+  /v2/firewalls/{firewall_id}:
+    put:
+      application/json: FirewallsUpdateRequest
+  /v2/firewalls/{firewall_id}/droplets:
+    delete:
+      application/json: FirewallsRemoveDropletsRequest
+    post:
+      application/json: FirewallsAddDropletsRequest
+  /v2/firewalls/{firewall_id}/rules:
+    delete:
+      application/json: FirewallsRemoveRulesRequest
+    post:
+      application/json: FirewallsAddRulesRequest
+  /v2/firewalls/{firewall_id}/tags:
+    delete:
+      application/json: FirewallsRemoveTagsRequest
+    post:
+      application/json: FirewallsAddTagsRequest
+  /v2/floating_ips/{floating_ip}/actions:
+    post:
+      application/json: FloatingIPsActionPostRequest
+  /v2/images/{image_id}/actions:
+    post:
+      application/json: ImageActionsPostRequest
+  /v2/kubernetes/clusters/{cluster_id}/node_pools/{node_pool_id}/recycle:
+    post:
+      application/json: KubernetesRecycleNodePoolRequest
+  /v2/kubernetes/clusters/{cluster_id}/upgrade:
+    post:
+      application/json: KubernetesUpgradeClusterRequest
+  /v2/load_balancers/{lb_id}/droplets:
+    delete:
+      application/json: LoadBalancersRemoveDropletsRequest
+    post:
+      application/json: LoadBalancersAssignDropletsRequest
+  /v2/load_balancers/{lb_id}/forwarding_rules:
+    delete:
+      application/json: LoadBalancersRemoveForwardingRulesRequest
+    post:
+      application/json: LoadBalancersAddForwardingRulesRequest
+  /v2/registry/subscription:
+    post:
+      application/json: ContainerRegistryUpdateSubscriptionTierRequest
+  /v2/reserved_ips/{reserved_ip}/actions:
+    post:
+      application/json: ReservedIPsActionsPostRequest
+  /v2/volumes:
+    post:
+      application/json: VolumesCreateRequest
+  /v2/volumes/actions:
+    post:
+      application/json: VolumeActionsPostRequest
+  /v2/volumes/{volume_id}/actions:
+    post:
+      application/json: BlockStorageActionsInitiateAttachActionRequest
+  /v2/volumes/{volume_id}/snapshots:
+    post:
+      application/json: VolumeSnapshotsCreateRequest
+  /v2/vpcs:
+    post:
+      application/json: VpcsCreateRequest
+  /v2/vpcs/{vpc_id}:
+    patch:
+      application/json: VpcsPatchRequest
+    put:
+      application/json: VpcsUpdateRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /v2/1-clicks:
+    get:
+      '200':
+        application/json: OneClicksListResponse
+  /v2/1-clicks/kubernetes:
+    post:
+      '200':
+        application/json: 1ClickApplicationsInstallKubernetesApplicationResponse
+  /v2/account:
+    get:
+      '200':
+        application/json: AccountGetResponse
+  /v2/account/keys:
+    get:
+      '200':
+        application/json: SshKeysListResponse
+    post:
+      '201':
+        application/json: SshKeysCreateResponse
+  /v2/account/keys/{ssh_key_identifier}:
+    get:
+      '200':
+        application/json: SshKeysGetResponse
+  /v2/actions:
+    get:
+      '200':
+        application/json: ActionsListResponse
+  /v2/actions/{action_id}:
+    get:
+      '200':
+        application/json: ActionsGetResponse
+  /v2/apps/{app_id}/rollback/validate:
+    post:
+      '200':
+        application/json: AppsValidateRollbackResponse
+  /v2/cdn/endpoints:
+    get:
+      '200':
+        application/json: CdnEndpointsListAllResponse
+    post:
+      '201':
+        application/json: CdnEndpointsCreateNewEndpointResponse
+  /v2/certificates:
+    get:
+      '200':
+        application/json: CertificatesListResponse
+    post:
+      '201':
+        application/json: CertificatesCreateResponse
+  /v2/certificates/{certificate_id}:
+    get:
+      '200':
+        application/json: CertificatesGetResponse
+  /v2/customers/my/billing_history:
+    get:
+      '200':
+        application/json: BillingHistoryListResponse
+  /v2/customers/my/invoices:
+    get:
+      '200':
+        application/json: InvoicesListResponse
+  /v2/customers/my/invoices/{invoice_uuid}:
+    get:
+      '200':
+        application/json: BillingGetInvoiceByUuidResponse
+  /v2/customers/my/invoices/{invoice_uuid}/csv:
+    get:
+      '200':
+        text/csv: BillingGetInvoiceCsvByUuidResponse
+  /v2/customers/my/invoices/{invoice_uuid}/pdf:
+    get:
+      '200':
+        application/pdf: BillingGetPdfByUuidResponse
+  /v2/databases:
+    get:
+      '200':
+        application/json: DatabasesListClustersResponse
+    post:
+      '201':
+        application/json: DatabasesCreateClusterResponse
+  /v2/databases/{database_cluster_uuid}/backups:
+    get:
+      '200':
+        application/json: DatabasesListBackupsResponse
+  /v2/databases/{database_cluster_uuid}/ca:
+    get:
+      '200':
+        application/json: DatabasesGetPublicCertificateResponse
+  /v2/databases/{database_cluster_uuid}/config:
+    get:
+      '200':
+        application/json: DatabasesGetClusterConfigResponse
+  /v2/databases/{database_cluster_uuid}/dbs:
+    get:
+      '200':
+        application/json: DatabasesListResponse
+    post:
+      '201':
+        application/json: DatabasesAddResponse
+  /v2/databases/{database_cluster_uuid}/events:
+    get:
+      '200':
+        application/json: DatabasesListEventsLogsResponse
+  /v2/databases/{database_cluster_uuid}/eviction_policy:
+    get:
+      '200':
+        application/json: DatabasesGetEvictionPolicyResponse
+  /v2/databases/{database_cluster_uuid}/firewall:
+    get:
+      '200':
+        application/json: DatabasesListFirewallRulesResponse
+  /v2/databases/{database_cluster_uuid}/pools:
+    post:
+      '201':
+        application/json: DatabasesAddNewConnectionPoolResponse
+  /v2/databases/{database_cluster_uuid}/replicas:
+    get:
+      '200':
+        application/json: DatabasesListReadOnlyReplicasResponse
+    post:
+      '201':
+        application/json: DatabasesCreateReadOnlyReplicaResponse
+  /v2/databases/{database_cluster_uuid}/topics:
+    get:
+      '200':
+        application/json: DatabasesListTopicsKafkaClusterResponse
+    post:
+      '201':
+        application/json: DatabasesCreateTopicKafkaClusterResponse
+  /v2/databases/{database_cluster_uuid}/users:
+    get:
+      '200':
+        application/json: DatabasesListUsersResponse
+    post:
+      '201':
+        application/json: DatabasesAddUserResponse
+  /v2/domains:
+    get:
+      '200':
+        application/json: DomainsListResponse
+    post:
+      '201':
+        application/json: DomainsCreateResponse
+  /v2/domains/{domain_name}:
+    get:
+      '200':
+        application/json: DomainsGetResponse
+  /v2/domains/{domain_name}/records:
+    get:
+      '200':
+        application/json: DomainRecordsListAllRecordsResponse
+    post:
+      '201':
+        application/json: DomainRecordsCreateNewRecordResponse
+  /v2/domains/{domain_name}/records/{domain_record_id}:
+    get:
+      '200':
+        application/json: DomainRecordsGetExistingRecordResponse
+  /v2/droplets:
+    get:
+      '200':
+        application/json: DropletsListResponse
+    post:
+      '202':
+        application/json: DropletsCreateResponse
+  /v2/droplets/actions:
+    post:
+      '201':
+        application/json: DropletActionsActOnTaggedDropletsResponse
+  /v2/droplets/{droplet_id}:
+    get:
+      '200':
+        application/json: DropletsGetResponse
+  /v2/droplets/{droplet_id}/actions:
+    get:
+      '200':
+        application/json: DropletActionsListResponse
+    post:
+      '201':
+        application/json: DropletActionsPostResponse
+  /v2/droplets/{droplet_id}/backups:
+    get:
+      '200':
+        application/json: DropletsListBackupsResponse
+  /v2/droplets/{droplet_id}/destroy_with_associated_resources:
+    get:
+      '200':
+        application/json: DropletsListAssociatedResourcesResponse
+  /v2/droplets/{droplet_id}/firewalls:
+    get:
+      '200':
+        application/json: DropletsListFirewallsResponse
+  /v2/droplets/{droplet_id}/kernels:
+    get:
+      '200':
+        application/json: DropletsListKernelsResponse
+  /v2/droplets/{droplet_id}/neighbors:
+    get:
+      '200':
+        application/json: DropletsListNeighborsResponse
+  /v2/droplets/{droplet_id}/snapshots:
+    get:
+      '200':
+        application/json: DropletsListSnapshotsResponse
+  /v2/firewalls:
+    get:
+      '200':
+        application/json: FirewallsListResponse
+    post:
+      '202':
+        application/json: FirewallsCreateResponse
+  /v2/firewalls/{firewall_id}:
+    get:
+      '200':
+        application/json: FirewallsGetResponse
+    put:
+      '200':
+        application/json: FirewallsUpdateResponse
+  /v2/floating_ips:
+    get:
+      '200':
+        application/json: FloatingIPsListResponse
+    post:
+      '202':
+        application/json: FloatingIPsCreateResponse
+  /v2/floating_ips/{floating_ip}:
+    get:
+      '200':
+        application/json: FloatingIPsGetResponse
+  /v2/floating_ips/{floating_ip}/actions:
+    get:
+      '200':
+        application/json: FloatingIPsActionListResponse
+    post:
+      '201':
+        application/json: FloatingIPsActionPostResponse
+  /v2/functions/namespaces:
+    get:
+      '200':
+        application/json: FunctionsListNamespacesResponse
+    post:
+      '200':
+        application/json: FunctionsCreateNamespaceResponse
+  /v2/functions/namespaces/{namespace_id}/triggers:
+    get:
+      '200':
+        application/json: FunctionsListTriggersResponse
+    post:
+      '200':
+        application/json: FunctionsCreateTriggerInNamespaceResponse
+  /v2/images:
+    get:
+      '200':
+        application/json: ImagesListResponse
+    post:
+      '202':
+        application/json: ImagesImportCustomImageFromUrlResponse
+  /v2/images/{image_id}:
+    get:
+      '200':
+        application/json: ImagesGetResponse
+    put:
+      '200':
+        application/json: ImagesUpdateResponse
+  /v2/images/{image_id}/actions:
+    get:
+      '200':
+        application/json: ImageActionsListResponse
+  /v2/kubernetes/clusters:
+    get:
+      '200':
+        application/json: KubernetesListClustersResponse
+    post:
+      '201':
+        application/json: KubernetesCreateNewClusterResponse
+  /v2/kubernetes/clusters/{cluster_id}:
+    get:
+      '200':
+        application/json: KubernetesGetClusterInfoResponse
+    put:
+      '202':
+        application/json: KubernetesUpdateClusterResponse
+  /v2/kubernetes/clusters/{cluster_id}/clusterlint:
+    post:
+      '202':
+        application/json: KubernetesRunClusterlintChecksResponse
+  /v2/kubernetes/clusters/{cluster_id}/node_pools:
+    get:
+      '200':
+        application/json: KubernetesListNodePoolsResponse
+    post:
+      '201':
+        application/json: KubernetesAddNodePoolResponse
+  /v2/kubernetes/clusters/{cluster_id}/node_pools/{node_pool_id}:
+    get:
+      '200':
+        application/json: KubernetesGetNodePoolResponse
+    put:
+      '202':
+        application/json: KubernetesUpdateNodePoolResponse
+  /v2/kubernetes/clusters/{cluster_id}/upgrades:
+    get:
+      '200':
+        application/json: KubernetesGetAvailableUpgradesResponse
+  /v2/load_balancers:
+    get:
+      '200':
+        application/json: LoadBalancersListResponse
+    post:
+      '202':
+        application/json: LoadBalancersCreateResponse
+  /v2/load_balancers/{lb_id}:
+    get:
+      '200':
+        application/json: LoadBalancersGetResponse
+    put:
+      '200':
+        application/json: LoadBalancersUpdateResponse
+  /v2/monitoring/alerts:
+    get:
+      '200':
+        application/json: MonitoringListAlertPoliciesResponse
+    post:
+      '200':
+        application/json: MonitoringCreateAlertPolicyResponse
+  /v2/projects:
+    get:
+      '200':
+        application/json: ProjectsListResponse
+    post:
+      '201':
+        application/json: ProjectsCreateResponse
+  /v2/projects/default:
+    get:
+      '200':
+        application/json: ProjectsGetDefaultProjectResponse
+  /v2/projects/{project_id}/resources:
+    get:
+      '200':
+        application/json: ProjectResourcesListResponse
+    post:
+      '200':
+        application/json: ProjectResourcesAssignToProjectResponse
+  /v2/regions:
+    get:
+      '200':
+        application/json: RegionsListResponse
+  /v2/registry:
+    get:
+      '200':
+        application/json: RegistryGetResponse
+  /v2/registry/options:
+    get:
+      '200':
+        application/json: ContainerRegistryListOptionsResponse
+  /v2/registry/subscription:
+    get:
+      '200':
+        application/json: ContainerRegistryGetSubscriptionInfoResponse
+  /v2/registry/{registry_name}/garbage-collection:
+    get:
+      '200':
+        application/json: ContainerRegistryGetActiveGarbageCollectionResponse
+  /v2/registry/{registry_name}/garbage-collections:
+    get:
+      '200':
+        application/json: ContainerRegistryListGarbageCollectionsResponse
+  /v2/registry/{registry_name}/repositories:
+    get:
+      '200':
+        application/json: ContainerRegistryListRepositoriesResponse
+  /v2/registry/{registry_name}/repositories/{repository_name}/digests:
+    get:
+      '200':
+        application/json: ContainerRegistryListRepositoryManifestsResponse
+  /v2/registry/{registry_name}/repositories/{repository_name}/tags:
+    get:
+      '200':
+        application/json: ContainerRegistryListRepositoryTagsResponse
+  /v2/registry/{registry_name}/repositoriesV2:
+    get:
+      '200':
+        application/json: ContainerRegistryListRepositoriesV2Response
+  /v2/reserved_ips:
+    get:
+      '200':
+        application/json: ReservedIPsListResponse
+    post:
+      '202':
+        application/json: ReservedIPsCreateResponse
+  /v2/reserved_ips/{reserved_ip}:
+    get:
+      '200':
+        application/json: ReservedIPsGetResponse
+  /v2/reserved_ips/{reserved_ip}/actions:
+    get:
+      '200':
+        application/json: ReservedIPsActionsListResponse
+    post:
+      '201':
+        application/json: ReservedIPsActionsPostResponse
+  /v2/sizes:
+    get:
+      '200':
+        application/json: SizesListResponse
+  /v2/snapshots:
+    get:
+      '200':
+        application/json: SnapshotsListResponse
+  /v2/snapshots/{snapshot_id}:
+    get:
+      '200':
+        application/json: SnapshotsGetResponse
+  /v2/tags:
+    get:
+      '200':
+        application/json: TagsListResponse
+    post:
+      '201':
+        application/json: TagsCreateResponse
+  /v2/tags/{tag_id}:
+    get:
+      '200':
+        application/json: TagsGetResponse
+  /v2/uptime/checks:
+    get:
+      '200':
+        application/json: UptimeListChecksResponse
+    post:
+      '201':
+        application/json: UptimeCreateCheckResponse
+  /v2/uptime/checks/{check_id}/alerts:
+    get:
+      '200':
+        application/json: UptimeListAllAlertsResponse
+    post:
+      '201':
+        application/json: UptimeCreateNewAlertResponse
+  /v2/uptime/checks/{check_id}/state:
+    get:
+      '200':
+        application/json: UptimeGetCheckStateResponse
+  /v2/volumes:
+    get:
+      '200':
+        application/json: VolumesListResponse
+    post:
+      '201':
+        application/json: VolumesCreateResponse
+  /v2/volumes/actions:
+    post:
+      '202':
+        application/json: VolumeActionsPostResponse
+  /v2/volumes/snapshots/{snapshot_id}:
+    get:
+      '200':
+        application/json: BlockStorageGetSnapshotDetailsResponse
+  /v2/volumes/{volume_id}/actions:
+    get:
+      '200':
+        application/json: VolumeActionsListResponse
+  /v2/volumes/{volume_id}/snapshots:
+    get:
+      '200':
+        application/json: VolumeSnapshotsListResponse
+  /v2/vpcs:
+    get:
+      '200':
+        application/json: VpcsListResponse
+    post:
+      '201':
+        application/json: VpcsCreateResponse
+  /v2/vpcs/{vpc_id}/members:
+    get:
+      '200':
+        application/json: VpCsListMembersResponse
+securityParameters:
+  X-Dangerous:
+    header: false
+  app_component:
+    query: false
+  app_id:
+    query: false
+  date:
+    query: false
+  direction:
+    query: false
+  end:
+    query: false
+  expiry_seconds:
+    query: false
+  follow:
+    query: false
+  host_id:
+    query: false
+  interface:
+    query: false
+  name:
+    query: false
+  page:
+    query: false
+  page_token:
+    query: false
+  per_page:
+    query: false
+  pod_connection_timeout:
+    query: false
+  private:
+    query: false
+  read_write:
+    query: false
+  region:
+    query: false
+  replace:
+    query: false
+  resource_type:
+    query: false
+  run_id:
+    query: false
+  skip_drain:
+    query: false
+  start:
+    query: false
+  tag_name:
+    query: false
+  type:
+    query: false
+  with_projects:
+    query: false
+validServerUrls: {}

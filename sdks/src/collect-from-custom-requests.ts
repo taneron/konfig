@@ -28,7 +28,7 @@ import {
   getCustomRequestLastFetched,
   saveCustomRequestLastFetched,
 } from "../scripts/util";
-import { PuppeteerBlocker } from "@cliqz/adblocker-puppeteer";
+import { FiltersEngine, PuppeteerBlocker } from "@cliqz/adblocker-puppeteer";
 import fetch from "cross-fetch"; // required 'fetch'
 
 /**
@@ -519,6 +519,10 @@ const customRequests: Record<string, CustomRequest> = {
       );
     },
   },
+  "digitalocean.com": {
+    type: "GET",
+    url: "https://api-engineering.nyc3.cdn.digitaloceanspaces.com/spec-ci/DigitalOcean-public.v2.yaml",
+  },
   "spotify.com_1.0.0": {
     lambda: async () => {
       const response = await fetch(
@@ -674,6 +678,7 @@ export async function collectFromCustomRequests(): Promise<Db> {
     defaultViewport: { width: 1920, height: 1080 },
     devtools: true,
   });
+  const fetchedKeys: string[] = [];
   for (const key in customRequests) {
     const specFilename = `${key}.yaml`;
     const customRequestSpecFilePath = path.join(
@@ -707,6 +712,7 @@ export async function collectFromCustomRequests(): Promise<Db> {
         customRequest,
         browser
       );
+      fetchedKeys.push(key);
     }
     let rawSpecStringLastFetched: string | null = null;
     if (fs.existsSync(customRequestSpecFilePath)) {
@@ -782,7 +788,7 @@ export async function collectFromCustomRequests(): Promise<Db> {
   }
   browser.close();
 
-  saveCustomRequestLastFetched(new Date(), Object.keys(customRequests));
+  saveCustomRequestLastFetched(new Date(), fetchedKeys);
 
   return db;
 }
