@@ -247,14 +247,14 @@ async function main() {
                   },
                 },
                 {
-                  title: `Writing logs to file ${relativePathToDirectory}`,
+                  title: `Write log to file ${relativePathToDirectory}`,
                   task: async (ctx) => {
-                    for (const context of Object.values(ctx.apis)) {
-                      fs.writeFileSync(
-                        context.logFilePath,
-                        yaml.dump(context.logs)
-                      );
-                    }
+                    const logFilePath =
+                      ctx.apis[absolutePathToFile].logFilePath;
+                    fs.writeFileSync(
+                      logFilePath,
+                      yaml.dump(ctx.apis[absolutePathToFile].logs)
+                    );
                   },
                 },
               ],
@@ -265,7 +265,7 @@ async function main() {
     ),
     {
       ctx: initialContext,
-      concurrent: 4,
+      concurrent: 2,
       exitOnError: false,
       registerSignalListeners: true,
       rendererOptions: {
