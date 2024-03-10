@@ -130,6 +130,18 @@ const customRequests: Record<string, CustomRequest> = {
     type: "GET",
     url: "https://raw.githubusercontent.com/Multiwoven/docs/main/api-reference/openapi.yml",
   },
+  "clickup.com": {
+    lambda: async () => {
+      const url =
+        "https://clickup.com/api/page-data/clickupreference/operation/GetAuthorizedTeams/page-data.json";
+      const response = await fetch(url);
+      const json = await response.json();
+      const redocStoreStr = json.result.data.contentItem.data.redocStoreStr;
+      const redocStore = JSON.parse(redocStoreStr);
+      const oas = redocStore.definition.data;
+      return JSON.stringify(oas);
+    },
+  },
   "baseten.co": {
     type: "GET",
     url: "https://api.baseten.co/v1/spec",
