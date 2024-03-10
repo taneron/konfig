@@ -28,9 +28,8 @@ jobs:
           cache-dependency-path: sdks/yarn.lock
       - run: yarn install --network-timeout 600000
       - name: Pull Latest Changes in openapi-examples
-        run: |
-          cd openapi-examples
-          git pull
+        working-directory: sdks/openapi-examples
+        run: git pull
       - run: yarn check-status-of-apis
       - name: Commit and push changes
         if: success()
