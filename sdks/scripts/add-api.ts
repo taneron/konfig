@@ -15,6 +15,10 @@ import { fileTypeFromBuffer } from "file-type";
 import os from "os";
 import kebabCase from "lodash.kebabcase";
 import camelCase from "camelcase";
+import {
+  getCompanyDescriptionFromApolloIo,
+  getKeywordsFromApolloIo,
+} from "./get-company-description-from-apollo-io";
 
 const ROOT_FOLDER_PATH = path.dirname(__dirname);
 const DB_FOLDER_PATH = path.join(ROOT_FOLDER_PATH, "db");
@@ -83,7 +87,7 @@ async function addApiToPublish() {
   // (6) & (7)
   const metaDescription =
     PublishJson.getMetaDescription(api) ??
-    (await getMetaDescription(api, company));
+    (await getMetaDescription(api, company, homepage));
   if (metaDescription !== null) {
     PublishJson.saveMetaDescription({ metaDescription }, api);
     console.log(`✅ Meta Description: ${metaDescription}`);
@@ -94,7 +98,7 @@ async function addApiToPublish() {
   // (3)
   const categories =
     PublishJson.getCategories(api) ??
-    (await getCategories(api, company, metaDescription));
+    (await getCategories(api, company, metaDescription, homepage));
   PublishJson.saveCategories({ categories }, api);
   console.log(`✅ Categories: ${PublishJson.getCategories(api)}`);
 
@@ -283,22 +287,26 @@ async function getFileTypeFromBuffer(buffer: Buffer): Promise<string> {
 
 async function getMetaDescription(
   api: string,
-  companyName: string
+  companyName: string,
+  domain: string
 ): Promise<string | null> {
-  const dataFromHtmlJson = JSON.parse(
-    fs.readFileSync(path.join(DB_FOLDER_PATH, "data-from-html.json"), "utf-8")
-  );
-  const metaDescription = dataFromHtmlJson[api]?.description;
-  if (metaDescription) {
-    console.log(`🟢 Found meta description in data-from-html.json`);
-    const addMetaDescription = await inquirer.prompt({
+  const descriptionFromApollo = await getCompanyDescriptionFromApolloIo(domain);
+
+  if (descriptionFromApollo) {
+    console.log("🟢 Found description from Apollo.io");
+    console.log(
+      boxen(descriptionFromApollo, { title: "Description (✨ Apollo)" })
+    );
+    const useDescriptionFromApollo = await inquirer.prompt({
       type: "confirm",
-      name: "addMetaDescription",
-      message: "Would you like to manually add the meta description?",
+      name: "useDescriptionFromApollo",
+      message: "Would you like to use the description from Apollo?",
     });
-    if (addMetaDescription.addMetaDescription) return metaDescription;
+    if (useDescriptionFromApollo.useDescriptionFromApollo) {
+      return descriptionFromApollo;
+    }
   }
-  console.log("⚪️ Meta description not found in data-from-html.json");
+
   const oai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
   const client = Instructor({ client: oai, mode: "FUNCTIONS" });
   console.log("🧠 Generating meta description using AI...");
@@ -384,13 +392,15 @@ async function getServiceName(api: string): Promise<string | false> {
 async function getCategories(
   api: string,
   companyName: string,
-  metaDescription: string | null
+  metaDescription: string | null,
+  homepage: string
 ): Promise<string[]> {
   // const specData = getSpecData(api);
   // if (specData.categories) {
   //   console.log("🟢 Found categories in spec data");
   //   return specData.categories;
   // }
+
   const publishJson: PublishJsonType = JSON.parse(
     fs.readFileSync(path.join(ROOT_FOLDER_PATH, "publish.json"), "utf-8")
   );
@@ -456,13 +466,45 @@ Here are existing categories: ${allCategories.join(", ")}.
     console.log(boxen(newCategories.join("\n"), { title: "New (✨ AI)" }));
   }
 
-  const categories = await inquirer.prompt({
-    type: "input",
-    name: "categories",
-    message: "What are the categories?",
-    default: [...matchingCategories, ...newCategories].join(","),
-  });
-  return categories.categories.split(",").map(snakeCase);
+  const keywords = await getKeywordsFromApolloIo(homepage);
+
+  if (keywords) {
+    console.log(
+      boxen(keywords.join("\n"), {
+        title: "Keywords (✨ Apollo)",
+      })
+    );
+  }
+
+  const foundCategories = [
+    ...matchingCategories,
+    ...newCategories,
+    ...(keywords ?? []),
+  ];
+
+  const selectedCategories = (
+    await inquirer.prompt({
+      type: "checkbox",
+      name: "selectedCategories",
+      message: "Select the categories",
+      choices: foundCategories,
+    })
+  ).selectedCategories;
+
+  const categories = (
+    await inquirer.prompt({
+      type: "input",
+      name: "categories",
+      message:
+        "Want to add any new categories? (pass multiple categories as comma separated list)",
+    })
+  ).categories;
+  const allSelectedCategories = [
+    ...selectedCategories,
+    ...categories.split(",").map((category: string) => category.trim()),
+  ];
+  console.log("✅ Selected Categories: ", allSelectedCategories.join(", "));
+  return allSelectedCategories.map(snakeCase);
 }
 
 async function getHomepage(): Promise<string> {
@@ -494,11 +536,11 @@ async function getApiStatusUrls(): Promise<string[] | false | "inherit"> {
     await inquirer.prompt({
       type: "input",
       name: "apiStatusUrls",
-      message: `What URLs should we check for API Status? Enter as a comma separated list. (e.g. enter nothing to disable API status checks for this API or "inherit" to use URLs from OpenAPI specification)`,
+      message: `What URLs should we check for API Status? Enter as a comma separated list. (e.g. enter nothing to disable API status checks for this API or "i" to use URLs from OpenAPI specification)`,
     })
   ).apiStatusUrls;
 
-  if (apiStatusUrls === "inherit") {
+  if (apiStatusUrls === "i") {
     return "inherit";
   }
 

@@ -1,0 +1,173 @@
+description: Missing description placeholder
+examples: {}
+examples_2: {}
+examples_3: {}
+operationIds:
+  /api/v1/connector_definitions:
+    get: ConnectorDefinitions_getBasedOnType
+  /api/v1/connector_definitions/check_connection:
+    post: ConnectorDefinitions_checkConnection
+  /api/v1/connector_definitions/{connector_name}:
+    get: ConnectorDefinitions_getByName
+  /api/v1/connectors:
+    get: Connectors_listAll
+    post: Connectors_createNewConnector
+  /api/v1/connectors/{id}:
+    delete: Connectors_deleteById
+    get: Connectors_getById
+    put: Connectors_updateById
+  /api/v1/connectors/{id}/discover:
+    get: Connectors_discoverCatalogInfo
+  /api/v1/connectors/{id}/query_source:
+    post: Connectors_querySource
+  /api/v1/models:
+    get: Models_listAllModels
+    post: Models_createModel
+  /api/v1/models/{id}:
+    delete: Models_deleteModel
+    get: Models_getById
+    put: Models_updateModelById
+  /api/v1/reports:
+    get: Reports_getDataBasedOnType
+  /api/v1/syncs:
+    get: Syncs_listOperations
+    post: Syncs_createNewSyncOperation
+  /api/v1/syncs/configurations:
+    get: Syncs_getReportData
+  /api/v1/syncs/{id}:
+    delete: Syncs_deleteSyncOperation
+    get: Syncs_showDetails
+    put: Syncs_updateSpecificSync
+  /api/v1/syncs/{sync_id}/sync_runs:
+    get: SyncRuns_listBySyncId
+  /api/v1/syncs/{sync_id}/sync_runs/{sync_run_id}/sync_records:
+    get: SyncRecords_listForSyncRun
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /api/v1/connector_definitions/check_connection:
+    post:
+      application/json: ConnectorDefinitionsCheckConnectionRequest
+  /api/v1/connectors:
+    post:
+      application/json: ConnectorsCreateNewConnectorRequest
+  /api/v1/connectors/{id}:
+    put:
+      application/json: ConnectorsUpdateByIdRequest
+  /api/v1/connectors/{id}/query_source:
+    post:
+      application/json: ConnectorsQuerySourceRequest
+  /api/v1/models:
+    post:
+      application/json: ModelsCreateModelRequest
+  /api/v1/models/{id}:
+    put:
+      application/json: ModelsUpdateModelByIdRequest
+  /api/v1/syncs:
+    post:
+      application/json: SyncsCreateNewSyncOperationRequest
+  /api/v1/syncs/{id}:
+    put:
+      application/json: SyncsUpdateSpecificSyncRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /api/v1/connector_definitions:
+    get:
+      '200':
+        application/json: ConnectorDefinitionsGetBasedOnTypeResponse
+  /api/v1/connector_definitions/check_connection:
+    post:
+      '200':
+        application/json: ConnectorDefinitionsCheckConnectionResponse
+  /api/v1/connector_definitions/{connector_name}:
+    get:
+      '200':
+        application/json: ConnectorDefinitionsGetByNameResponse
+  /api/v1/connectors:
+    get:
+      '200':
+        application/json: ConnectorsListAllResponse
+    post:
+      '201':
+        application/json: ConnectorsCreateNewConnectorResponse
+  /api/v1/connectors/{id}:
+    get:
+      '200':
+        application/json: ConnectorsGetByIdResponse
+    put:
+      '200':
+        application/json: ConnectorsUpdateByIdResponse
+  /api/v1/connectors/{id}/discover:
+    get:
+      '200':
+        application/json: ConnectorsDiscoverCatalogInfoResponse
+  /api/v1/connectors/{id}/query_source:
+    post:
+      '200':
+        application/json: ConnectorsQuerySourceResponse
+  /api/v1/models:
+    get:
+      '200':
+        application/json: ModelsListAllModelsResponse
+    post:
+      '201':
+        application/json: ModelsCreateModelResponse
+  /api/v1/models/{id}:
+    get:
+      '200':
+        application/json: ModelsGetByIdResponse
+    put:
+      '200':
+        application/json: ModelsUpdateModelByIdResponse
+  /api/v1/reports:
+    get:
+      '200':
+        application/json: ReportsGetDataBasedOnTypeResponse
+  /api/v1/syncs:
+    get:
+      '200':
+        application/json: SyncsListOperationsResponse
+    post:
+      '200':
+        application/json: SyncsCreateNewSyncOperationResponse
+  /api/v1/syncs/configurations:
+    get:
+      '200':
+        application/json: SyncsGetReportDataResponse
+  /api/v1/syncs/{id}:
+    get:
+      '200':
+        application/json: SyncsShowDetailsResponse
+    put:
+      '200':
+        application/json: SyncsUpdateSpecificSyncResponse
+  /api/v1/syncs/{sync_id}/sync_runs:
+    get:
+      '200':
+        application/json: SyncRunsListBySyncIdResponse
+      '404':
+        application/json: SyncRunsListBySyncId404Response
+  /api/v1/syncs/{sync_id}/sync_runs/{sync_run_id}/sync_records:
+    get:
+      '200':
+        application/json: SyncRecordsListForSyncRunResponse
+      '404':
+        application/json: SyncRecordsListForSyncRun404Response
+securityParameters:
+  connector_ids:
+    query: false
+  metric:
+    query: false
+  page:
+    query: false
+  page[number]:
+    query: false
+  page[size]:
+    query: false
+  status:
+    query: false
+  time_period:
+    query: false
+  type:
+    query: false
+validServerUrls: {}

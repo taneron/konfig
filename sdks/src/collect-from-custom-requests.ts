@@ -126,6 +126,10 @@ async function executeCustomRequest(
 }
 
 const customRequests: Record<string, CustomRequest> = {
+  "multiwoven.com": {
+    type: "GET",
+    url: "https://raw.githubusercontent.com/Multiwoven/docs/main/api-reference/openapi.yml",
+  },
   "baseten.co": {
     type: "GET",
     url: "https://api.baseten.co/v1/spec",
