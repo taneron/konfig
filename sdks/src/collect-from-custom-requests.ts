@@ -27,9 +27,11 @@ import {
   browserDownloadsFolder,
   getCustomRequestLastFetched,
   saveCustomRequestLastFetched,
+  processedCustomRequestCacheDir,
 } from "../scripts/util";
-import { FiltersEngine, PuppeteerBlocker } from "@cliqz/adblocker-puppeteer";
+import { PuppeteerBlocker } from "@cliqz/adblocker-puppeteer";
 import fetch from "cross-fetch"; // required 'fetch'
+import crypto from "crypto";
 
 /**
  * For describing a custom request to get an OAS
@@ -703,6 +705,57 @@ async function waitForDownloadToFinishByFileSize(downloadPath: string) {
   }
 }
 
+type CachedProcessedRequest = {
+  processed: Db["specifications"][string];
+  hash: string;
+};
+
+function cachedCustomRequestPath(key: string) {
+  return path.join(processedCustomRequestCacheDir, `${key}.yaml`);
+}
+
+/**
+ * Returns the cached processed custom request if it exists and is still valid.
+ */
+function getCachedProcessedCustomRequest({
+  key,
+}: {
+  key: string;
+}): CachedProcessedRequest | undefined {
+  const cachePath = cachedCustomRequestPath(key);
+  if (!fs.existsSync(cachePath)) {
+    return undefined;
+  }
+  const processed = yaml.load(
+    fs.readFileSync(cachePath, "utf-8")
+  ) as CachedProcessedRequest;
+
+  return processed;
+}
+
+function hashRawSpecString(rawSpecString: string) {
+  return crypto.createHash("sha256").update(rawSpecString).digest("hex");
+}
+
+/**
+ * Hashes rawSpecString and saves that alongside the processed custom request
+ * to disk.
+ */
+function saveCachedProcessedCustomRequest({
+  key,
+  processed,
+  rawSpecString,
+}: {
+  key: string;
+  processed: CachedProcessedRequest["processed"];
+  rawSpecString: string;
+}) {
+  const cachePath = cachedCustomRequestPath(key);
+  const hash = hashRawSpecString(rawSpecString);
+  const cachedProcessedRequest: CachedProcessedRequest = { processed, hash };
+  fs.writeFileSync(cachePath, yaml.dump(cachedProcessedRequest));
+}
+
 async function processCustomRequest({
   customRequest,
   key,
@@ -719,7 +772,6 @@ async function processCustomRequest({
   specFilename: string;
 }): Promise<Db["specifications"][string] | undefined> {
   const lastFetched = getCustomRequestLastFetched(key);
-
   let rawSpecStringCurrent: string | null = null;
   if (
     lastFetched !== undefined &&
@@ -749,11 +801,16 @@ async function processCustomRequest({
     throw Error("Expect rawSpecString to be defined");
   }
 
+  const cachedProcessedCustomRequest = getCachedProcessedCustomRequest({ key });
+  if (
+    cachedProcessedCustomRequest !== undefined &&
+    hashRawSpecString(rawSpecString) === cachedProcessedCustomRequest.hash
+  ) {
+    console.log(`Using cached processed custom request for ${key}`);
+    return cachedProcessedCustomRequest.processed;
+  }
+
   const spec = await parseSpec(rawSpecString);
-  const numberOfEndpoints = getNumberOfEndpoints(spec);
-  const numberOfOperations = getNumberOfOperations(spec);
-  const numberOfSchemas = getNumberOfSchemas(spec);
-  const numberOfParameters = getNumberOfParameters(spec);
 
   // if getRequest.securitySchemes then also apply to spec
   if (customRequest.securitySchemes !== undefined) {
@@ -777,9 +834,11 @@ async function processCustomRequest({
     }
   }
 
-  console.log(`Writing post request spec to disk for ${key}`);
-  fs.writeFileSync(customRequestSpecFilePath, yaml.dump(spec.spec));
-  const processedRequest = {
+  const numberOfEndpoints = getNumberOfEndpoints(spec);
+  const numberOfOperations = getNumberOfOperations(spec);
+  const numberOfSchemas = getNumberOfSchemas(spec);
+  const numberOfParameters = getNumberOfParameters(spec);
+  const processedRequest: Db["specifications"][string] = {
     providerName: getProviderName(spec),
     openApiRaw: getOpenApiRaw(spec),
     securitySchemes: getSecuritySchemes(spec, customRequest.securitySchemes),
@@ -796,7 +855,8 @@ async function processCustomRequest({
     parameters: numberOfParameters,
     contactUrl: getInfoContactUrl(spec),
     contactEmail: getInfoContactEmail(spec),
-    originalCustomRequest: customRequest,
+    originalCustomRequest:
+      "lambda" in customRequest ? { lambda: true } : customRequest,
     customRequestSpecFilename: specFilename,
     difficultyScore: computeDifficultyScore(
       numberOfEndpoints,
@@ -805,6 +865,16 @@ async function processCustomRequest({
       numberOfParameters
     ),
   };
+
+  saveCachedProcessedCustomRequest({
+    key,
+    processed: processedRequest,
+    rawSpecString,
+  });
+  // This is expected to be written to later
+  console.log(`Writing post request spec to disk for ${key}`);
+  fs.writeFileSync(customRequestSpecFilePath, yaml.dump(spec.spec));
+
   return processedRequest;
 }
 

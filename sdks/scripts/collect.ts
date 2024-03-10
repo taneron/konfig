@@ -48,6 +48,21 @@ function collectOasFilePaths(): Paths {
   return paths;
 }
 
+type CustomRequestWithLambda = CustomRequest;
+
+type NewLambdaType = true; // Replace with your desired type
+
+/**
+ * As part of caching work in collect.ts, we need to serialize the processed CustomRequest
+ * so that it can be saved to disk and read back from disk. This type is used to
+ * serialize the CustomRequest object.
+ */
+type CustomRequestSerializable =
+  | Omit<CustomRequestWithLambda, "lambda">
+  | {
+      lambda: NewLambdaType;
+    };
+
 /**
  * Extra or overwrite properties for SdkPageProps
  */
@@ -56,7 +71,7 @@ export type AdditionalSpecDataProps = {
   categories?: string[];
   // null means it was not originally from openapi-directory repo
   openapiDirectoryPath?: string;
-  originalCustomRequest?: CustomRequest;
+  originalCustomRequest?: CustomRequestSerializable;
   customRequestSpecFilename?: string;
   originalSpecUrl?: string;
   fixedSpecFileName?: string;

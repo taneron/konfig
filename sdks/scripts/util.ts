@@ -17,6 +17,10 @@ export const customRequestSpecsDir = path.join(
   dbFolder,
   "custom-request-specs"
 );
+export const processedCustomRequestCacheDir = path.join(
+  dbFolder,
+  "processed-custom-request-cache"
+);
 
 const lastUpdatedSchema = z.object({
   lastUpdated: z.record(z.coerce.date()),
