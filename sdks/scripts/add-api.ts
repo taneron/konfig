@@ -74,6 +74,12 @@ async function addApiToPublish() {
     `✅ Developer Documentation: ${PublishJson.getDeveloperDocumentation(api)}`
   );
 
+  // NEW
+  const apiStatusUrls =
+    PublishJson.getApiStatusUrls(api) ?? (await getApiStatusUrls());
+  PublishJson.saveApiStatusUrls({ apiStatusUrls }, api);
+  console.log(`✅ API Status URLs: ${PublishJson.getApiStatusUrls(api)}`);
+
   // (6) & (7)
   const metaDescription =
     PublishJson.getMetaDescription(api) ??
@@ -478,6 +484,35 @@ async function getDeveloperDocumentation(): Promise<string> {
   return developerDocumentation.replace(/^(https?:\/\/)/, "");
 }
 
+async function getApiStatusUrls(): Promise<string[] | false | "inherit"> {
+  const apiStatusUrls: string = (
+    await inquirer.prompt({
+      type: "input",
+      name: "apiStatusUrls",
+      message: `What URLs should we check for API Status? Enter as a comma separated list. (e.g. enter nothing to disable API status checks for this API or "inherit" to use URLs from OpenAPI specification)`,
+    })
+  ).apiStatusUrls;
+
+  if (apiStatusUrls === "inherit") {
+    return "inherit";
+  }
+
+  if (apiStatusUrls.length === 0) {
+    return false;
+  }
+
+  const urls = apiStatusUrls.split(",").map((url) => url.trim());
+
+  // ensure https://" or "http://" are at beginning of the string
+  const urlWithProtocol = urls.map((url) => {
+    if (!/^https?:\/\//i.test(url)) {
+      return "https://" + url;
+    }
+    return url;
+  });
+  return urlWithProtocol;
+}
+
 async function getCompany(): Promise<string> {
   return (
     await inquirer.prompt({
@@ -527,6 +562,12 @@ class PublishJson {
   static getDeveloperDocumentation(api: string): string | undefined {
     return PublishJson._currentPublishJson().publish[api]
       ?.developerDocumentation;
+  }
+
+  static getApiStatusUrls(
+    api: string
+  ): string[] | false | "inherit" | undefined {
+    return PublishJson._currentPublishJson().publish[api]?.apiStatusUrls;
   }
 
   static getCategories(api: string): string[] | undefined {
@@ -591,6 +632,15 @@ class PublishJson {
       progress
     ) => {
       progress.developerDocumentation = developerDocumentation;
+    }
+  );
+
+  static saveApiStatusUrls = this._writeToDiskAfter(
+    (
+      { apiStatusUrls }: { apiStatusUrls: string[] | false | "inherit" },
+      progress
+    ) => {
+      progress.apiStatusUrls = apiStatusUrls;
     }
   );
 
