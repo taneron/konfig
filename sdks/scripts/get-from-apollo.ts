@@ -320,6 +320,13 @@ export async function getKeywordsFromApolloIo(
   return response.organization?.keywords;
 }
 
+export async function getCompanyNameFromApolloIo(
+  company: string
+): Promise<string | undefined> {
+  const response = await getCompanyEnrichmentData(company);
+  return response.organization?.name;
+}
+
 export async function getCompanyDescriptionFromApolloIo(
   company: string
 ): Promise<string | undefined> {

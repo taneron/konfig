@@ -42,7 +42,10 @@ export type CustomRequest = (
       type: "GET";
     }
   | { url: string; body: string }
-  | { lambda: (browser: PuppeteerBrowser) => Promise<string> }
+  | {
+      lambda: (browser: PuppeteerBrowser) => Promise<string>;
+      defaultUrlForBrokenLinks?: string;
+    }
 ) & {
   securitySchemes?: SecuritySchemes;
   apiBaseUrl?: string;
@@ -68,6 +71,7 @@ function parseOAS(oas: string, regex: string | undefined): any {
   }
 }
 
+const REGEX_FOR_BROKEN_LINKS = /(\((\/|#).*?\))/g;
 async function executeCustomRequest(
   key: string,
   customRequest: CustomRequest,
@@ -93,12 +97,10 @@ async function executeCustomRequest(
 
     let rawSpecString = JSON.stringify(rawSpec);
 
-    const regexForBrokenLinks = /(\((\/|#).*?\))/g;
-
     const urlWithoutSubpath = url.split("/").slice(0, 3).join("/");
 
     rawSpecString = rawSpecString.replaceAll(
-      regexForBrokenLinks,
+      REGEX_FOR_BROKEN_LINKS,
       `(${defaultUrlForBrokenLinks ?? urlWithoutSubpath})`
     );
 
@@ -119,7 +121,14 @@ async function executeCustomRequest(
   } else if ("lambda" in customRequest) {
     const lambdaRequest = customRequest;
     console.log(`Processing lambda request for ${key}`);
-    return await lambdaRequest.lambda(browser);
+    let rawSpecString = await lambdaRequest.lambda(browser);
+    if ("defaultUrlForBrokenLinks" in customRequest) {
+      rawSpecString = rawSpecString.replaceAll(
+        REGEX_FOR_BROKEN_LINKS,
+        `(${customRequest.defaultUrlForBrokenLinks})`
+      );
+    }
+    return rawSpecString;
   } else {
     throw Error("Unexpected custom request");
   }
@@ -141,6 +150,7 @@ const customRequests: Record<string, CustomRequest> = {
       const oas = redocStore.definition.data;
       return JSON.stringify(oas);
     },
+    defaultUrlForBrokenLinks: "https://clickup.com/api",
   },
   "baseten.co": {
     type: "GET",

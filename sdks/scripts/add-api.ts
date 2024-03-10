@@ -17,8 +17,9 @@ import kebabCase from "lodash.kebabcase";
 import camelCase from "camelcase";
 import {
   getCompanyDescriptionFromApolloIo,
+  getCompanyNameFromApolloIo,
   getKeywordsFromApolloIo,
-} from "./get-company-description-from-apollo-io";
+} from "./get-from-apollo";
 
 const ROOT_FOLDER_PATH = path.dirname(__dirname);
 const DB_FOLDER_PATH = path.join(ROOT_FOLDER_PATH, "db");
@@ -62,12 +63,13 @@ async function addApiToPublish() {
   const api = await chooseApiFromSpecData();
 
   // (2)
-  const company = PublishJson.getCompany(api) ?? (await getCompany());
-  PublishJson.saveCompany({ company }, api);
-  console.log(`✅ Company: ${company}`);
   const homepage = PublishJson.getHomepage(api) ?? (await getHomepage());
   PublishJson.saveHomepage({ homepage }, api);
   console.log(`✅ Homepage: ${PublishJson.getHomepage(api)}`);
+
+  const company = PublishJson.getCompany(api) ?? (await getCompany(homepage));
+  PublishJson.saveCompany({ company }, api);
+  console.log(`✅ Company: ${company}`);
 
   // NEW
   const developerDocumentation =
@@ -215,33 +217,39 @@ async function ensureImagePreviewExists(
   );
 
   // ask if screen shot has been taken
-  await inquirer.prompt({
-    type: "confirm",
-    name: "screenshotTaken",
-    message: "Has the screenshot been taken?",
-  });
+  const image = (
+    await inquirer.prompt({
+      type: "input",
+      name: "image",
+      message: `Provide a URL if you found an image online or "y" if you took a screenshot?`,
+    })
+  ).image;
 
-  // Find latest screenshot under user's Downloads folder
-  const downloadPath = path.join(os.homedir(), "Downloads");
-  const downloadFiles = fs.readdirSync(downloadPath);
-  const screenshotFiles = downloadFiles.filter(
-    (file) => file.endsWith(".png") || file.endsWith(".jpg")
-  );
-  if (screenshotFiles.length === 0) {
-    console.log("❌ No screenshot found in Downloads folder");
-    return;
+  if (image === "y") {
+    // Find latest screenshot under user's Downloads folder
+    const downloadPath = path.join(os.homedir(), "Downloads");
+    const downloadFiles = fs.readdirSync(downloadPath);
+    const screenshotFiles = downloadFiles.filter(
+      (file) => file.endsWith(".png") || file.endsWith(".jpg")
+    );
+    if (screenshotFiles.length === 0) {
+      console.log("❌ No screenshot found in Downloads folder");
+      return;
+    }
+    // sort screenshotFiles by date modified
+    screenshotFiles.sort((a, b) => {
+      const aStats = fs.statSync(path.join(downloadPath, a));
+      const bStats = fs.statSync(path.join(downloadPath, b));
+      return bStats.mtimeMs - aStats.mtimeMs;
+    });
+
+    const latestScreenshot = screenshotFiles[0];
+    const screenshotPath = path.join(downloadPath, latestScreenshot);
+    const destinationPath = path.join(companyServicePath, "imagePreview.png");
+    fs.copyFileSync(screenshotPath, destinationPath);
+  } else {
+    await getAndSaveLogo(image, companyServicePath, "imagePreview");
   }
-  // sort screenshotFiles by date modified
-  screenshotFiles.sort((a, b) => {
-    const aStats = fs.statSync(path.join(downloadPath, a));
-    const bStats = fs.statSync(path.join(downloadPath, b));
-    return bStats.mtimeMs - aStats.mtimeMs;
-  });
-
-  const latestScreenshot = screenshotFiles[0];
-  const screenshotPath = path.join(downloadPath, latestScreenshot);
-  const destinationPath = path.join(companyServicePath, "imagePreview.png");
-  fs.copyFileSync(screenshotPath, destinationPath);
 }
 
 async function ensureLogoExists(homepage: string, companyServicePath: string) {
@@ -261,8 +269,16 @@ async function ensureLogoExists(homepage: string, companyServicePath: string) {
     name: "logoUrl",
     message: "What is the URL to the logo?",
   });
+  await getAndSaveLogo(logoUrl.logoUrl, companyServicePath, "logo");
+}
+
+async function getAndSaveLogo(
+  url: string,
+  companyServicePath: string,
+  fileName: string
+) {
   // get logo image, determine file type, and save to file
-  const response = await axios.get(logoUrl.logoUrl, {
+  const response = await axios.get(url, {
     responseType: "arraybuffer",
     headers: {
       "Accept-Encoding": "gzip",
@@ -270,7 +286,7 @@ async function ensureLogoExists(homepage: string, companyServicePath: string) {
   });
   const buffer = Buffer.from(response.data, "binary");
   const ext = await getFileTypeFromBuffer(buffer);
-  const logoPath = path.join(companyServicePath, `logo.${ext}`);
+  const logoPath = path.join(companyServicePath, `${fileName}.${ext}`);
   fs.writeFileSync(logoPath, buffer);
 }
 
@@ -560,7 +576,22 @@ async function getApiStatusUrls(): Promise<string[] | false | "inherit"> {
   return urlWithProtocol;
 }
 
-async function getCompany(): Promise<string> {
+async function getCompany(homepage: string): Promise<string> {
+  const companyName = await getCompanyNameFromApolloIo(homepage);
+
+  if (companyName !== undefined) {
+    console.log("🟢 Found company name from Apollo.io");
+    console.log(boxen(companyName, { title: "Company Name (✨ Apollo)" }));
+    const useCompanyNameFromApollo = await inquirer.prompt({
+      type: "confirm",
+      name: "useCompanyNameFromApollo",
+      message: "Would you like to use the company name from Apollo?",
+    });
+    if (useCompanyNameFromApollo.useCompanyNameFromApollo) {
+      return companyName;
+    }
+  }
+
   return (
     await inquirer.prompt({
       type: "input",

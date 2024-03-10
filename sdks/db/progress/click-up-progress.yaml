@@ -1,0 +1,435 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignoreObjectsWithNoProperties: true
+ignorePotentialIncorrectType: true
+operationIds:
+  /checklist/{checklist_id}:
+    delete: TaskChecklists_removeChecklist
+    put: TaskChecklists_updateChecklist
+  /checklist/{checklist_id}/checklist_item:
+    post: TaskChecklists_addLineItem
+  /checklist/{checklist_id}/checklist_item/{checklist_item_id}:
+    delete: TaskChecklists_removeChecklistItem
+    put: TaskChecklists_updateChecklistItem
+  /comment/{comment_id}:
+    delete: Comments_deleteTaskComment
+    put: Comments_updateTaskComment
+  /folder/{folder_id}:
+    delete: Folders_removeFolder
+    get: Folders_getFolderContent
+    put: Folders_renameFolder
+  /folder/{folder_id}/guest/{guest_id}:
+    delete: Guests_revokeAccessFromFolder
+    post: Guests_addGuestToFolder
+  /folder/{folder_id}/list:
+    get: Lists_getFolderLists
+    post: Lists_addToFolder
+  /folder/{folder_id}/view:
+    get: Views_folderViewsGet
+    post: Views_addViewToFolder
+  /goal/{goal_id}:
+    delete: Goals_removeGoal
+    get: Goals_getDetails
+    put: Goals_updateGoalDetails
+  /goal/{goal_id}/key_result:
+    post: Goals_addKeyResult
+  /group:
+    get: TeamsUserGroups_getUserGroups
+  /group/{group_id}:
+    delete: TeamsUserGroups_removeGroup
+    put: TeamsUserGroups_updateUserGroup
+  /key_result/{key_result_id}:
+    delete: Goals_removeTarget
+    put: Goals_updateKeyResult
+  /list/{list_id}:
+    delete: Lists_removeList
+    get: Lists_getListDetails
+    put: Lists_updateListInfoDueDatePriorityAssigneeColor
+  /list/{list_id}/comment:
+    get: Comments_getListComments
+    post: Comments_addToListComment
+  /list/{list_id}/field:
+    get: CustomFields_getListFields
+  /list/{list_id}/guest/{guest_id}:
+    delete: Guests_removeFromList
+    post: Guests_shareListWith
+  /list/{list_id}/member:
+    get: Members_getListUsers
+  /list/{list_id}/task:
+    get: Tasks_getListTasks
+    post: Tasks_createNewTask
+  /list/{list_id}/task/{task_id}:
+    delete: Lists_removeTaskFromList
+    post: Lists_addTaskToList
+  /list/{list_id}/taskTemplate/{template_id}:
+    post: TaskTemplates_createFromTemplate
+  /list/{list_id}/view:
+    get: Views_getListViews
+    post: Views_addViewToList
+  /oauth/token:
+    post: Authorization_getAccessToken
+  /space/{space_id}:
+    delete: Spaces_removeSpace
+    get: Spaces_getDetails
+    put: Spaces_updateDetailsAndEnableClickApps
+  /space/{space_id}/folder:
+    get: Folders_getContentsOf
+    post: Folders_createNewFolder
+  /space/{space_id}/list:
+    get: Lists_getFolderless
+    post: Lists_createFolderlessList
+  /space/{space_id}/tag:
+    get: Tags_getSpace
+    post: Tags_createSpaceTag
+  /space/{space_id}/tag/{tag_name}:
+    delete: Tags_removeSpaceTag
+    put: Tags_updateSpaceTag
+  /space/{space_id}/view:
+    get: Views_spaceViewsGet
+    post: Views_addViewToSpace
+  /task/bulk_time_in_status/task_ids:
+    get: Tasks_getTimeInStatusBulk
+  /task/{task_id}:
+    delete: Tasks_removeTaskById
+    get: Tasks_getTaskDetails
+    put: Tasks_updateTaskFields
+  /task/{task_id}/attachment:
+    post: Attachments_uploadFileToTaskAsAttachment
+  /task/{task_id}/checklist:
+    post: TaskChecklists_createNewChecklist
+  /task/{task_id}/comment:
+    get: Comments_getTaskComments
+    post: Comments_createNewTaskComment
+  /task/{task_id}/dependency:
+    delete: TaskRelationships_removeDependency
+    post: TaskRelationships_addDependency
+  /task/{task_id}/field/{field_id}:
+    delete: CustomFields_removeFieldValue
+    post: CustomFields_setFieldValue
+  /task/{task_id}/guest/{guest_id}:
+    delete: Guests_revokeAccessToTask
+    post: Guests_addToTask
+  /task/{task_id}/link/{links_to}:
+    delete: TaskRelationships_removeLinkBetweenTasks
+    post: TaskRelationships_linkTasks
+  /task/{task_id}/member:
+    get: Members_getTaskAccess
+  /task/{task_id}/tag/{tag_name}:
+    delete: Tags_removeFromTask
+    post: Tags_addToTask
+  /task/{task_id}/time:
+    get: TimeTrackingLegacy_getTrackedTime
+    post: TimeTrackingLegacy_recordTimeForTask
+  /task/{task_id}/time/{interval_id}:
+    delete: TimeTrackingLegacy_removeTrackedTime
+    put: TimeTrackingLegacy_editTimeTracked
+  /task/{task_id}/time_in_status:
+    get: Tasks_getTimeInStatus
+  /team:
+    get: Authorization_getWorkspaceList
+  /team/{team_Id}/task:
+    get: Tasks_filterTeamTasks
+  /team/{team_Id}/time_entries:
+    get: TimeTracking_getTimeEntriesWithinDateRange
+    post: TimeTracking_createTimeEntry
+  /team/{team_Id}/time_entries/start:
+    post: TimeTracking_startTimer
+  /team/{team_id}/custom_item:
+    get: CustomTaskTypes_getAvailableTaskTypes
+  /team/{team_id}/customroles:
+    get: Roles_listAvailableCustomRoles
+  /team/{team_id}/goal:
+    get: Goals_getWorkspaceGoals
+    post: Goals_addNewGoalToWorkspace
+  /team/{team_id}/group:
+    post: TeamsUserGroups_createTeam
+  /team/{team_id}/guest:
+    post: Guests_inviteToWorkspace
+  /team/{team_id}/guest/{guest_id}:
+    delete: Guests_revokeGuestAccessToWorkspace
+    get: Guests_getGuestInformation
+    put: Guests_editGuestOnWorkspace
+  /team/{team_id}/plan:
+    get: TeamsWorkspaces_getWorkspacePlan
+  /team/{team_id}/seats:
+    get: TeamsWorkspaces_getWorkspaceSeats
+  /team/{team_id}/shared:
+    get: SharedHierarchy_viewTasksListsFolders
+  /team/{team_id}/space:
+    get: Spaces_getSpaceDetails
+    post: Spaces_addNewSpaceToWorkspace
+  /team/{team_id}/taskTemplate:
+    get: TaskTemplates_getTemplates
+  /team/{team_id}/time_entries/current:
+    get: TimeTracking_getCurrentTimeEntry
+  /team/{team_id}/time_entries/stop:
+    post: TimeTracking_stopTimeEntry
+  /team/{team_id}/time_entries/tags:
+    delete: TimeTracking_removeTagsFromTimeEntries
+    get: TimeTracking_getAllTagsFromTimeEntries
+    post: TimeTracking_addTagsFromTimeEntries
+    put: TimeTracking_changeTagNames
+  /team/{team_id}/time_entries/{timer_id}:
+    delete: TimeTracking_removeEntry
+    get: TimeTracking_getSingleTimeEntry
+    put: TimeTracking_updateTimeEntryDetails
+  /team/{team_id}/time_entries/{timer_id}/history:
+    get: TimeTracking_getTimeEntryHistory
+  /team/{team_id}/user:
+    post: Users_inviteUserToWorkspace
+  /team/{team_id}/user/{user_id}:
+    delete: Users_deactivateFromWorkspace
+    get: Users_getUserDetails
+    put: Users_updateUserDetails
+  /team/{team_id}/view:
+    get: Views_getEverythingLevel
+    post: Views_createWorkspaceViewEverythingLevel
+  /team/{team_id}/webhook:
+    get: Webhooks_workspaceGet
+    post: Webhooks_createWebhook
+  /user:
+    get: Authorization_viewAccountDetails
+  /view/{view_id}:
+    delete: Views_deleteViewById
+    get: Views_getViewInfo
+    put: Views_updateViewDetails
+  /view/{view_id}/comment:
+    get: Comments_getViewComments
+    post: Comments_createChatViewComment
+  /view/{view_id}/task:
+    get: Views_getTasksInView
+  /webhook/{webhook_id}:
+    delete: Webhooks_removeWebhookById
+    put: Webhooks_updateEventsToMonitor
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /task/{task_id}/attachment:
+    post:
+      multipart/form-data: AttachmentsUploadFileToTaskAsAttachmentRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /checklist/{checklist_id}:
+    delete:
+      '200':
+        application/json: TaskChecklistsRemoveChecklistResponse
+    put:
+      '200':
+        application/json: TaskChecklistsUpdateChecklistResponse
+  /checklist/{checklist_id}/checklist_item/{checklist_item_id}:
+    delete:
+      '200':
+        application/json: TaskChecklistsRemoveChecklistItemResponse
+  /comment/{comment_id}:
+    delete:
+      '200':
+        application/json: CommentsDeleteTaskCommentResponse
+    put:
+      '200':
+        application/json: CommentsUpdateTaskCommentResponse
+  /folder/{folder_id}:
+    delete:
+      '200':
+        application/json: FoldersRemoveFolderResponse
+  /goal/{goal_id}:
+    delete:
+      '200':
+        application/json: GoalsRemoveGoalResponse
+  /group/{group_id}:
+    delete:
+      '200':
+        application/json: TeamsUserGroupsRemoveGroupResponse
+  /key_result/{key_result_id}:
+    delete:
+      '200':
+        application/json: GoalsRemoveTargetResponse
+  /list/{list_id}:
+    delete:
+      '200':
+        application/json: ListsRemoveListResponse
+  /list/{list_id}/task/{task_id}:
+    delete:
+      '200':
+        application/json: ListsRemoveTaskFromListResponse
+    post:
+      '200':
+        application/json: ListsAddTaskToListResponse
+  /list/{list_id}/taskTemplate/{template_id}:
+    post:
+      '200':
+        application/json: TaskTemplatesCreateFromTemplateResponse
+  /space/{space_id}:
+    delete:
+      '200':
+        application/json: SpacesRemoveSpaceResponse
+  /space/{space_id}/tag:
+    post:
+      '200':
+        application/json: TagsCreateSpaceTagResponse
+  /space/{space_id}/tag/{tag_name}:
+    delete:
+      '200':
+        application/json: TagsRemoveSpaceTagResponse
+  /task/{task_id}:
+    delete:
+      '200':
+        application/json: TasksRemoveTaskByIdResponse
+  /task/{task_id}/dependency:
+    delete:
+      '200':
+        application/json: TaskRelationshipsRemoveDependencyResponse
+    post:
+      '200':
+        application/json: TaskRelationshipsAddDependencyResponse
+  /task/{task_id}/field/{field_id}:
+    delete:
+      '200':
+        application/json: CustomFieldsRemoveFieldValueResponse
+    post:
+      '200':
+        application/json: CustomFieldsSetFieldValueResponse
+  /task/{task_id}/tag/{tag_name}:
+    delete:
+      '200':
+        application/json: TagsRemoveFromTaskResponse
+    post:
+      '200':
+        application/json: TagsAddToTaskResponse
+  /task/{task_id}/time/{interval_id}:
+    delete:
+      '200':
+        application/json: TimeTrackingLegacyRemoveTrackedTimeResponse
+    put:
+      '200':
+        application/json: TimeTrackingLegacyEditTimeTrackedResponse
+  /team/{team_id}/guest/{guest_id}:
+    get:
+      '200':
+        application/json: GuestsGetGuestInformationResponse
+  /team/{team_id}/time_entries/tags:
+    delete:
+      '200':
+        application/json: TimeTrackingRemoveTagsFromTimeEntriesResponse
+    post:
+      '200':
+        application/json: TimeTrackingAddTagsFromTimeEntriesResponse
+    put:
+      '200':
+        application/json: TimeTrackingChangeTagNamesResponse
+  /team/{team_id}/time_entries/{timer_id}:
+    put:
+      '200':
+        application/json: TimeTrackingUpdateTimeEntryDetailsResponse
+  /team/{team_id}/time_entries/{timer_id}/history:
+    get:
+      '200':
+        application/json: TimeTrackingGetTimeEntryHistoryResponse
+  /view/{view_id}:
+    delete:
+      '200':
+        application/json: ViewsDeleteViewByIdResponse
+  /webhook/{webhook_id}:
+    delete:
+      '200':
+        application/json: WebhooksRemoveWebhookByIdResponse
+securityParameters:
+  archived:
+    query: false
+  assignee:
+    query: false
+  assignees:
+    query: false
+  client_id:
+    query: false
+  client_secret:
+    query: false
+  code:
+    query: false
+  custom_fields:
+    query: false
+  custom_items:
+    query: false
+  custom_task_ids:
+    query: false
+  date_created_gt:
+    query: false
+  date_created_lt:
+    query: false
+  date_done_gt:
+    query: false
+  date_done_lt:
+    query: false
+  date_updated_gt:
+    query: false
+  date_updated_lt:
+    query: false
+  dependency_of:
+    query: false
+  depends_on:
+    query: false
+  due_date_gt:
+    query: false
+  due_date_lt:
+    query: false
+  end_date:
+    query: false
+  folder_id:
+    query: false
+  group_ids:
+    query: false
+  include_closed:
+    query: false
+  include_completed:
+    query: false
+  include_location_names:
+    query: false
+  include_markdown_description:
+    query: false
+  include_members:
+    query: false
+  include_shared:
+    query: false
+  include_subtasks:
+    query: false
+  include_task_:
+    query: false
+  include_task_tags:
+    query: false
+  list_id:
+    query: false
+  list_ids:
+    query: false
+  order_by:
+    query: false
+  page:
+    query: false
+  parent:
+    query: false
+  project_ids:
+    query: false
+  reverse:
+    query: false
+  space_id:
+    query: false
+  space_ids:
+    query: false
+  start:
+    query: false
+  start_date:
+    query: false
+  start_id:
+    query: false
+  statuses:
+    query: false
+  subtasks:
+    query: false
+  tags:
+    query: false
+  task_id:
+    query: false
+  task_ids:
+    query: false
+  team_id:
+    query: false
+validServerUrls: {}
