@@ -187,6 +187,7 @@ async function main() {
    */
   const promises: Promise<void>[] = [];
   const fixSpecNotWorkingList = ["ably.io_platform_1.1.0"];
+  const t1 = Date.now();
   for (const spec in publishDatum) {
     const publishData = publishJson.publish[spec];
     const { dynamicPath, specData } = publishDatum[spec];
@@ -242,6 +243,8 @@ async function main() {
     );
   }
   await Promise.all(promises);
+  const t2 = Date.now();
+  console.log(`⏱️ Fixed all specs in ${(t2 - t1) / 1000} seconds`);
 
   /**
    * Second pass: write to published/
