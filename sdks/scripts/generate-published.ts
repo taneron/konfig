@@ -205,7 +205,8 @@ async function main() {
 
     if (publishData.apiStatusUrls !== undefined) {
       if (!oas.spec.info) oas.spec.info = {} as any;
-      (oas.spec.info as any)["x-api-status-urls"] = publishData.apiStatusUrls;
+      if (publishData.apiStatusUrls !== "inherit")
+        (oas.spec.info as any)["x-api-status-urls"] = publishData.apiStatusUrls;
     }
 
     const openapiFilename = "openapi.yaml";

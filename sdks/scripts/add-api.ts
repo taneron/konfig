@@ -206,6 +206,9 @@ async function ensureImagePreviewExists(
     return;
   }
   console.log(`🔗 Take a screen shot from: https://${homepage}`);
+  console.log(
+    `🔗 Or take something from google images: https://www.google.com/search?q=${homepage}&sca_esv=8b94fdf9c54254b4&udm=2&sxsrf=ACQVn0-dkmzkin3gOWPkD3hG2Lua1nYGfA:1710040201133&source=lnt&tbs=isz:l&uds=AMwkrPvqGo5zoYGWt6LNDCHlwCLepPBUhib_mmmsktE8LFd5wbAdg2JVjvHdD72sKly-br_l--4v8i6J09G-3Jjmxp7j72gjiiZp_FaH-MGujWfYzLCZoo8&sa=X&ved=2ahUKEwiSwPWV3OiEAxW9HjQIHYyBCVoQpwV6BAgDEAc&biw=1338&bih=924&dpr=2`
+  );
 
   // ask if screen shot has been taken
   await inquirer.prompt({
@@ -217,7 +220,9 @@ async function ensureImagePreviewExists(
   // Find latest screenshot under user's Downloads folder
   const downloadPath = path.join(os.homedir(), "Downloads");
   const downloadFiles = fs.readdirSync(downloadPath);
-  const screenshotFiles = downloadFiles.filter((file) => file.endsWith(".png"));
+  const screenshotFiles = downloadFiles.filter(
+    (file) => file.endsWith(".png") || file.endsWith(".jpg")
+  );
   if (screenshotFiles.length === 0) {
     console.log("❌ No screenshot found in Downloads folder");
     return;

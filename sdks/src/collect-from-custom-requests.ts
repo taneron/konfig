@@ -126,6 +126,10 @@ async function executeCustomRequest(
 }
 
 const customRequests: Record<string, CustomRequest> = {
+  "dev.to": {
+    type: "GET",
+    url: "https://raw.githubusercontent.com/forem/forem/main/swagger/v1/api_v1.json",
+  },
   "gitlab.com": {
     type: "GET",
     url: "https://gitlab.com/gitlab-org/gitlab/-/raw/master/doc/api/openapi/openapi.yaml",

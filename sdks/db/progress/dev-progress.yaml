@@ -1,0 +1,503 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignoreObjectsWithNoProperties: true
+ignorePotentialIncorrectType: true
+operationIds:
+  /api/admin/users:
+    post: Users_inviteUser
+  /api/articles:
+    get: Articles_listPublishedArticles
+    post: Articles_createNewArticle
+  /api/articles/latest:
+    get: Articles_listLatestPublished
+  /api/articles/me:
+    get: Articles_getPublishedList
+  /api/articles/me/all:
+    get: Articles_getAllUserArticles
+  /api/articles/me/published:
+    get: Articles_getPublishedList
+  /api/articles/me/unpublished:
+    get: Articles_getUnpublishedList
+  /api/articles/{id}:
+    get: Articles_getById
+    put: Articles_updateById
+  /api/articles/{id}/unpublish:
+    put: Articles_unpublishById
+  /api/articles/{username}/{slug}:
+    get: Articles_getByPath
+  /api/billboards:
+    get: Billboards_getList
+    post: Billboards_createNewBillboard
+  /api/billboards/{id}:
+    get: Billboards_getById
+    put: Billboards_updateById
+  /api/billboards/{id}/unpublish:
+    put: Billboards_unpublishBillboard
+  /api/comments:
+    get: Comments_getAllThreaded
+  /api/comments/{id}:
+    get: Comments_getThreadedComment
+  /api/followers/users:
+    get: Followers_getList
+  /api/follows/tags:
+    get: Followedtags_getTagList
+  /api/organizations:
+    get: Organizations_listOfDev
+    post: Organizations_createNewOrganization
+  /api/organizations/{id}:
+    delete: Organizations_deleteById
+    get: Organizations_getById
+    put: Organizations_updateById
+  /api/organizations/{organization_id_or_username}/articles:
+    get: Organizations_listArticles
+  /api/organizations/{organization_id_or_username}/users:
+    get: Organizations_listUsers
+  /api/organizations/{username}:
+    get: Organizations_getByUsername
+  /api/pages:
+    get: Pages_listAllDetails
+    post: Pages_createNewPage
+  /api/pages/{id}:
+    delete: Pages_removePageById
+    get: Pages_getDetails
+    put: Pages_updatePageDetails
+  /api/podcast_episodes:
+    get: Podcastepisodes_listByDescendingPublicationDate
+  /api/profile_images/{username}:
+    get: ProfileImages_getByUsername
+  /api/reactions:
+    post: Reactions_createReaction
+  /api/reactions/toggle:
+    post: Reactions_toggleUserReaction
+  /api/readinglist:
+    get: Readinglist_getUserReadinglist
+  /api/segments:
+    get: Segments_listAudienceSegments
+    post: Segments_createManuallyManagedSegment
+  /api/segments/{id}:
+    delete: Segments_deleteManuallyManagedSegment
+    get: Segments_getById
+  /api/segments/{id}/add_users:
+    put: Segments_addUsersToSegment
+  /api/segments/{id}/remove_users:
+    put: Segments_removeUsersFromSegment
+  /api/segments/{id}/users:
+    get: Segments_getUserListInSegment
+  /api/tags:
+    get: Tags_listByPopularity
+  /api/users/me:
+    get: Users_getInformation
+  /api/users/{id}:
+    get: Users_getByIdOrUsername
+  /api/users/{id}/limited:
+    delete: Users_removeLimits
+    put: Users_addLimitedRole
+  /api/users/{id}/spam:
+    delete: Users_removeSpamRole
+    put: Users_assignSpamRole
+  /api/users/{id}/suspend:
+    put: Users_suspendUser
+  /api/users/{id}/trusted:
+    delete: Users_removeTrustedRole
+    put: Users_addTrustedRole
+  /api/users/{id}/unpublish:
+    put: Users_unpublishUserArticlesAndComments
+  /api/videos:
+    get: Videos_listByPopularity
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /api/billboards:
+    post:
+      application/json: BillboardsCreateNewBillboardRequest
+  /api/billboards/{id}:
+    put:
+      application/json: BillboardsUpdateByIdRequest
+  /api/pages:
+    post:
+      application/json: PagesCreateNewPageRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /api/admin/users:
+    post:
+      '401':
+        application/json: UsersInviteUserResponse
+      '422':
+        application/json: UsersInviteUser422Response
+  /api/articles:
+    get:
+      '200':
+        application/json: ArticlesListPublishedArticlesResponse
+    post:
+      '201':
+        application/json: ArticlesCreateNewArticleResponse
+      '401':
+        application/json: ArticlesCreateNewArticle401Response
+      '422':
+        application/json: ArticlesCreateNewArticle422Response
+  /api/articles/latest:
+    get:
+      '200':
+        application/json: ArticlesListLatestPublishedResponse
+  /api/articles/me:
+    get:
+      '200':
+        application/json: ArticlesGetPublishedListResponse
+      '401':
+        application/json: ArticlesGetPublishedList401Response
+  /api/articles/me/all:
+    get:
+      '200':
+        application/json: ArticlesGetAllUserArticlesResponse
+      '401':
+        application/json: ArticlesGetAllUserArticles401Response
+  /api/articles/me/published:
+    get:
+      '200':
+        application/json: ArticlesGetPublishedList200Response
+      '401':
+        application/json: ArticlesGetPublishedList401Response
+  /api/articles/me/unpublished:
+    get:
+      '200':
+        application/json: ArticlesGetUnpublishedListResponse
+      '401':
+        application/json: ArticlesGetUnpublishedList401Response
+  /api/articles/{id}:
+    get:
+      '200':
+        application/json: ArticlesGetByIdResponse
+      '404':
+        application/json: ArticlesGetById404Response
+    put:
+      '200':
+        application/json: ArticlesUpdateByIdResponse
+      '401':
+        application/json: ArticlesUpdateById401Response
+      '404':
+        application/json: ArticlesUpdateById404Response
+      '422':
+        application/json: ArticlesUpdateById422Response
+  /api/articles/{id}/unpublish:
+    put:
+      '401':
+        application/json: ArticlesUnpublishByIdResponse
+      '404':
+        application/json: ArticlesUnpublishById404Response
+  /api/articles/{username}/{slug}:
+    get:
+      '200':
+        application/json: ArticlesGetByPathResponse
+      '404':
+        application/json: ArticlesGetByPath404Response
+  /api/billboards:
+    get:
+      '200':
+        application/json: BillboardsGetListResponse
+      '401':
+        application/json: BillboardsGetList401Response
+    post:
+      '201':
+        application/json: BillboardsCreateNewBillboardResponse
+      '401':
+        application/json: BillboardsCreateNewBillboard401Response
+      '422':
+        application/json: BillboardsCreateNewBillboard422Response
+  /api/billboards/{id}:
+    get:
+      '200':
+        application/json: BillboardsGetByIdResponse
+      '401':
+        application/json: BillboardsGetById401Response
+      '404':
+        application/json: BillboardsGetById404Response
+    put:
+      '200':
+        application/json: BillboardsUpdateByIdResponse
+      '401':
+        application/json: BillboardsUpdateById401Response
+      '404':
+        application/json: BillboardsUpdateById404Response
+  /api/billboards/{id}/unpublish:
+    put:
+      '401':
+        application/json: BillboardsUnpublishBillboardResponse
+      '404':
+        application/json: BillboardsUnpublishBillboard404Response
+  /api/comments:
+    get:
+      '200':
+        application/json: CommentsGetAllThreadedResponse
+      '404':
+        application/json: CommentsGetAllThreaded404Response
+  /api/comments/{id}:
+    get:
+      '200':
+        application/json: CommentsGetThreadedCommentResponse
+      '404':
+        application/json: CommentsGetThreadedComment404Response
+  /api/followers/users:
+    get:
+      '200':
+        application/json: FollowersGetListResponse
+      '401':
+        application/json: FollowersGetList401Response
+  /api/follows/tags:
+    get:
+      '200':
+        application/json: FollowedtagsGetTagListResponse
+      '401':
+        application/json: FollowedtagsGetTagList401Response
+  /api/organizations:
+    get:
+      '200':
+        application/json: OrganizationsListOfDevResponse
+    post:
+      '201':
+        application/json: OrganizationsCreateNewOrganizationResponse
+      '422':
+        application/json: OrganizationsCreateNewOrganization422Response
+  /api/organizations/{id}:
+    delete:
+      '200':
+        application/json: OrganizationsDeleteByIdResponse
+      '401':
+        application/json: OrganizationsDeleteById401Response
+    get:
+      '200':
+        application/json: OrganizationsGetByIdResponse
+      '404':
+        application/json: OrganizationsGetById404Response
+    put:
+      '200':
+        application/json: OrganizationsUpdateByIdResponse
+      '401':
+        application/json: OrganizationsUpdateById401Response
+      '404':
+        application/json: OrganizationsUpdateById404Response
+      '422':
+        application/json: OrganizationsUpdateById422Response
+  /api/organizations/{organization_id_or_username}/articles:
+    get:
+      '200':
+        application/json: OrganizationsListArticlesResponse
+      '404':
+        application/json: OrganizationsListArticles404Response
+  /api/organizations/{organization_id_or_username}/users:
+    get:
+      '200':
+        application/json: OrganizationsListUsersResponse
+      '404':
+        application/json: OrganizationsListUsers404Response
+  /api/organizations/{username}:
+    get:
+      '200':
+        application/json: OrganizationsGetByUsernameResponse
+      '404':
+        application/json: OrganizationsGetByUsername404Response
+  /api/pages:
+    get:
+      '200':
+        application/json: PagesListAllDetailsResponse
+    post:
+      '200':
+        application/json: PagesCreateNewPageResponse
+      '401':
+        application/json: PagesCreateNewPage401Response
+      '422':
+        application/json: PagesCreateNewPage422Response
+  /api/pages/{id}:
+    delete:
+      '401':
+        application/json: PagesRemovePageByIdResponse
+      '422':
+        application/json: PagesRemovePageById422Response
+    put:
+      '401':
+        application/json: PagesUpdatePageDetailsResponse
+      '422':
+        application/json: PagesUpdatePageDetails422Response
+  /api/podcast_episodes:
+    get:
+      '200':
+        application/json: PodcastepisodesListByDescendingPublicationDateResponse
+      '404':
+        application/json: PodcastepisodesListByDescendingPublicationDate404Response
+  /api/profile_images/{username}:
+    get:
+      '200':
+        application/json: ProfileImagesGetByUsernameResponse
+      '404':
+        application/json: ProfileImagesGetByUsername404Response
+  /api/reactions:
+    post:
+      '200':
+        application/json: ReactionsCreateReactionResponse
+      '401':
+        application/json: ReactionsCreateReaction401Response
+  /api/reactions/toggle:
+    post:
+      '200':
+        application/json: ReactionsToggleUserReactionResponse
+      '401':
+        application/json: ReactionsToggleUserReaction401Response
+  /api/readinglist:
+    get:
+      '200':
+        application/json: ReadinglistGetUserReadinglistResponse
+      '401':
+        application/json: ReadinglistGetUserReadinglist401Response
+  /api/segments:
+    get:
+      '200':
+        application/json: SegmentsListAudienceSegmentsResponse
+      '401':
+        application/json: SegmentsListAudienceSegments401Response
+    post:
+      '201':
+        application/json: SegmentsCreateManuallyManagedSegmentResponse
+      '401':
+        application/json: SegmentsCreateManuallyManagedSegment401Response
+  /api/segments/{id}:
+    delete:
+      '200':
+        application/json: SegmentsDeleteManuallyManagedSegmentResponse
+      '401':
+        application/json: SegmentsDeleteManuallyManagedSegment401Response
+      '404':
+        application/json: SegmentsDeleteManuallyManagedSegment404Response
+      '409':
+        application/json: SegmentsDeleteManuallyManagedSegment409Response
+    get:
+      '200':
+        application/json: SegmentsGetByIdResponse
+      '401':
+        application/json: SegmentsGetById401Response
+      '404':
+        application/json: SegmentsGetById404Response
+  /api/segments/{id}/add_users:
+    put:
+      '200':
+        application/json: SegmentsAddUsersToSegmentResponse
+      '401':
+        application/json: SegmentsAddUsersToSegment401Response
+      '404':
+        application/json: SegmentsAddUsersToSegment404Response
+      '422':
+        application/json: SegmentsAddUsersToSegment422Response
+  /api/segments/{id}/remove_users:
+    put:
+      '200':
+        application/json: SegmentsRemoveUsersFromSegmentResponse
+      '401':
+        application/json: SegmentsRemoveUsersFromSegment401Response
+      '404':
+        application/json: SegmentsRemoveUsersFromSegment404Response
+      '422':
+        application/json: SegmentsRemoveUsersFromSegment422Response
+  /api/segments/{id}/users:
+    get:
+      '200':
+        application/json: SegmentsGetUserListInSegmentResponse
+      '401':
+        application/json: SegmentsGetUserListInSegment401Response
+      '404':
+        application/json: SegmentsGetUserListInSegment404Response
+  /api/tags:
+    get:
+      '200':
+        application/json: TagsListByPopularityResponse
+  /api/users/me:
+    get:
+      '200':
+        application/json: UsersGetInformationResponse
+      '401':
+        application/json: UsersGetInformation401Response
+  /api/users/{id}:
+    get:
+      '200':
+        application/json: UsersGetByIdOrUsernameResponse
+  /api/users/{id}/limited:
+    delete:
+      '401':
+        application/json: UsersRemoveLimitsResponse
+      '404':
+        application/json: UsersRemoveLimits404Response
+    put:
+      '401':
+        application/json: UsersAddLimitedRoleResponse
+      '404':
+        application/json: UsersAddLimitedRole404Response
+  /api/users/{id}/spam:
+    delete:
+      '401':
+        application/json: UsersRemoveSpamRoleResponse
+      '404':
+        application/json: UsersRemoveSpamRole404Response
+    put:
+      '401':
+        application/json: UsersAssignSpamRoleResponse
+      '404':
+        application/json: UsersAssignSpamRole404Response
+  /api/users/{id}/suspend:
+    put:
+      '401':
+        application/json: UsersSuspendUserResponse
+      '404':
+        application/json: UsersSuspendUser404Response
+  /api/users/{id}/trusted:
+    delete:
+      '401':
+        application/json: UsersRemoveTrustedRoleResponse
+      '404':
+        application/json: UsersRemoveTrustedRole404Response
+    put:
+      '401':
+        application/json: UsersAddTrustedRoleResponse
+      '404':
+        application/json: UsersAddTrustedRole404Response
+  /api/users/{id}/unpublish:
+    put:
+      '401':
+        application/json: UsersUnpublishUserArticlesAndCommentsResponse
+      '404':
+        application/json: UsersUnpublishUserArticlesAndComments404Response
+  /api/videos:
+    get:
+      '200':
+        application/json: VideosListByPopularityResponse
+securityParameters:
+  a_id:
+    query: false
+  category:
+    query: false
+  collection_id:
+    query: false
+  note:
+    query: false
+  p_id:
+    query: false
+  page:
+    query: false
+  per_page:
+    query: false
+  reactable_id:
+    query: false
+  reactable_type:
+    query: false
+  sort:
+    query: false
+  state:
+    query: false
+  tag:
+    query: false
+  tags:
+    query: false
+  tags_exclude:
+    query: false
+  top:
+    query: false
+  username:
+    query: false
+validServerUrls: {}
