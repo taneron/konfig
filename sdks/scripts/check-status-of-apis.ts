@@ -265,7 +265,7 @@ async function main() {
     ),
     {
       ctx: initialContext,
-      concurrent: true,
+      concurrent: 4,
       exitOnError: false,
       registerSignalListeners: true,
       rendererOptions: {
