@@ -31,9 +31,7 @@ jobs:
       - run: yarn install --network-timeout 600000
       - run: yarn check-status-of-apis
       - name: Commit and push changes
-        if: success()
         run: |
-          cd sdks/openapi-examples
           git config --global user.email "publisher@konfigthis.com"
           git config --global user.name "konfig-publisher"
           git commit -am "🤖 automation: update status of APIs"
