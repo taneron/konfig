@@ -31,6 +31,10 @@ jobs:
           node-version: ${{ matrix.node_version }}
           cache: yarn
           cache-dependency-path: sdks/yarn.lock
+      - name: Set up SSH key for submodule access
+        uses: webfactory/ssh-agent@v0.8.0
+        with:
+          ssh-private-key: ${{ secrets.OPENAPI_EXAMPLES_SUBMODULE_DEPLOY_KEY }}
       - run: yarn install --network-timeout 600000
       - run: yarn check-status-of-apis
       - name: Commit and push changes
