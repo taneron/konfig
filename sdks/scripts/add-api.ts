@@ -443,7 +443,7 @@ ${
 
 Here are existing categories: ${allCategories.join(", ")}.
 
-  What are the categories for the company "${companyName}"? Try to match "${companyName}" to existing categories or if there are new categories then please list them.`;
+  What are the categories for the company "${companyName}"? Try to match "${companyName}" to existing categories or if there are new categories then please list them. Do not provide duplicate categories.`;
 
   const { matchingCategories, newCategories } =
     await client.chat.completions.create({
