@@ -17,9 +17,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
         with:
-          submodules: 'sdks/openapi-examples'
-          token: ${{ secrets.SUBMODULES_ACCESS_TOKEN }}
+          submodules: true
         continue-on-error: true
+
+      - name: Checkout openapi-examples
+        uses: actions/checkout@v2
+        with:
+          repository: konfig-sdks/openapi-examples
+          path: sdks/openapi-examples
 
       - uses: actions/setup-node@v3
         with:
@@ -27,10 +32,6 @@ jobs:
           cache: yarn
           cache-dependency-path: sdks/yarn.lock
       - run: yarn install --network-timeout 600000
-      - name: Pull Latest Changes in sdks/openapi-examples
-        run: |
-          cd sdks/openapi-examples
-          git pull
       - run: yarn check-status-of-apis
       - name: Commit and push changes
         if: success()
