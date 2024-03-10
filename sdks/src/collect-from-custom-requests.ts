@@ -703,6 +703,111 @@ async function waitForDownloadToFinishByFileSize(downloadPath: string) {
   }
 }
 
+async function processCustomRequest({
+  customRequest,
+  key,
+  browser,
+  fetchedKeys,
+  customRequestSpecFilePath,
+  specFilename,
+}: {
+  customRequest: CustomRequest;
+  key: string;
+  browser: PuppeteerBrowser;
+  fetchedKeys: string[];
+  customRequestSpecFilePath: string;
+  specFilename: string;
+}): Promise<Db["specifications"][string] | undefined> {
+  const lastFetched = getCustomRequestLastFetched(key);
+
+  let rawSpecStringCurrent: string | null = null;
+  if (
+    lastFetched !== undefined &&
+    process.env.FILTER_CUSTOMER === undefined &&
+    lastFetched > new Date(Date.now() - 1000 * 60 * 60 * 24)
+  ) {
+    console.log(`Skip fetching ${key} due to last fetched being recent`);
+  } else {
+    rawSpecStringCurrent = await executeCustomRequest(
+      key,
+      customRequest,
+      browser
+    );
+    fetchedKeys.push(key);
+  }
+  let rawSpecStringLastFetched: string | null = null;
+  if (fs.existsSync(customRequestSpecFilePath)) {
+    rawSpecStringLastFetched = fs.readFileSync(
+      customRequestSpecFilePath,
+      "utf-8"
+    );
+  }
+
+  const rawSpecString = rawSpecStringCurrent ?? rawSpecStringLastFetched;
+
+  if (rawSpecString === null) {
+    throw Error("Expect rawSpecString to be defined");
+  }
+
+  const spec = await parseSpec(rawSpecString);
+  const numberOfEndpoints = getNumberOfEndpoints(spec);
+  const numberOfOperations = getNumberOfOperations(spec);
+  const numberOfSchemas = getNumberOfSchemas(spec);
+  const numberOfParameters = getNumberOfParameters(spec);
+
+  // if getRequest.securitySchemes then also apply to spec
+  if (customRequest.securitySchemes !== undefined) {
+    if (spec.spec.components === undefined) spec.spec.components = {};
+    spec.spec.components.securitySchemes = customRequest.securitySchemes as any;
+    spec.spec.security = [
+      Object.fromEntries(
+        Object.keys(customRequest.securitySchemes).map((key) => [key, []])
+      ),
+    ];
+  }
+
+  let apiBaseUrl = spec.spec.servers?.[0]?.url;
+  if (apiBaseUrl === undefined) {
+    if (customRequest.apiBaseUrl !== undefined) {
+      apiBaseUrl = customRequest.apiBaseUrl;
+      spec.spec.servers = [{ url: apiBaseUrl }];
+    } else {
+      console.log(`❌ Skipping ${key} due to missing apiBaseUrl.`);
+      return;
+    }
+  }
+
+  console.log(`Writing post request spec to disk for ${key}`);
+  fs.writeFileSync(customRequestSpecFilePath, yaml.dump(spec.spec));
+  const processedRequest = {
+    providerName: getProviderName(spec),
+    openApiRaw: getOpenApiRaw(spec),
+    securitySchemes: getSecuritySchemes(spec, customRequest.securitySchemes),
+    categories: getCategories(spec),
+    homepage: getProviderName(spec),
+    apiBaseUrl,
+    serviceName: getServiceName(spec),
+    apiVersion: getVersion(spec),
+    apiDescription: spec.spec.info.description,
+    apiTitle: spec.spec.info.title,
+    endpoints: numberOfEndpoints,
+    sdkMethods: numberOfOperations,
+    schemas: numberOfSchemas,
+    parameters: numberOfParameters,
+    contactUrl: getInfoContactUrl(spec),
+    contactEmail: getInfoContactEmail(spec),
+    originalCustomRequest: customRequest,
+    customRequestSpecFilename: specFilename,
+    difficultyScore: computeDifficultyScore(
+      numberOfEndpoints,
+      numberOfOperations,
+      numberOfSchemas,
+      numberOfParameters
+    ),
+  };
+  return processedRequest;
+}
+
 export async function collectFromCustomRequests(): Promise<Db> {
   const db: Db = { specifications: {} };
 
@@ -712,6 +817,7 @@ export async function collectFromCustomRequests(): Promise<Db> {
     defaultViewport: { width: 1920, height: 1080 },
     devtools: true,
   });
+
   const fetchedKeys: string[] = [];
   for (const key in customRequests) {
     const specFilename = `${key}.yaml`;
@@ -727,98 +833,20 @@ export async function collectFromCustomRequests(): Promise<Db> {
       }
     }
 
-    const customRequest = customRequests[key];
-    if (customRequest === undefined)
-      throw Error("Expect customRequest to be defined");
+    const processedRequest = await processCustomRequest({
+      customRequest: customRequests[key],
+      key,
+      browser,
+      fetchedKeys,
+      customRequestSpecFilePath,
+      specFilename,
+    });
 
-    const lastFetched = getCustomRequestLastFetched(key);
-
-    let rawSpecStringCurrent: string | null = null;
-    if (
-      lastFetched !== undefined &&
-      process.env.FILTER_CUSTOMER === undefined &&
-      lastFetched > new Date(Date.now() - 1000 * 60 * 60 * 24)
-    ) {
-      console.log(`Skip fetching ${key} due to last fetched being recent`);
-    } else {
-      rawSpecStringCurrent = await executeCustomRequest(
-        key,
-        customRequest,
-        browser
-      );
-      fetchedKeys.push(key);
-    }
-    let rawSpecStringLastFetched: string | null = null;
-    if (fs.existsSync(customRequestSpecFilePath)) {
-      rawSpecStringLastFetched = fs.readFileSync(
-        customRequestSpecFilePath,
-        "utf-8"
-      );
+    if (processedRequest === undefined) {
+      continue;
     }
 
-    const rawSpecString = rawSpecStringCurrent ?? rawSpecStringLastFetched;
-
-    if (rawSpecString === null) {
-      throw Error("Expect rawSpecString to be defined");
-    }
-
-    const spec = await parseSpec(rawSpecString);
-    const numberOfEndpoints = getNumberOfEndpoints(spec);
-    const numberOfOperations = getNumberOfOperations(spec);
-    const numberOfSchemas = getNumberOfSchemas(spec);
-    const numberOfParameters = getNumberOfParameters(spec);
-
-    // if getRequest.securitySchemes then also apply to spec
-    if (customRequest.securitySchemes !== undefined) {
-      if (spec.spec.components === undefined) spec.spec.components = {};
-      spec.spec.components.securitySchemes =
-        customRequest.securitySchemes as any;
-      spec.spec.security = [
-        Object.fromEntries(
-          Object.keys(customRequest.securitySchemes).map((key) => [key, []])
-        ),
-      ];
-    }
-
-    let apiBaseUrl = spec.spec.servers?.[0]?.url;
-    if (apiBaseUrl === undefined) {
-      if (customRequest.apiBaseUrl !== undefined) {
-        apiBaseUrl = customRequest.apiBaseUrl;
-        spec.spec.servers = [{ url: apiBaseUrl }];
-      } else {
-        console.log(`❌ Skipping ${key} due to missing apiBaseUrl.`);
-        continue;
-      }
-    }
-
-    db.specifications[`from-custom-request_${key}`] = {
-      providerName: getProviderName(spec),
-      openApiRaw: getOpenApiRaw(spec),
-      securitySchemes: getSecuritySchemes(spec, customRequest.securitySchemes),
-      categories: getCategories(spec),
-      homepage: getProviderName(spec),
-      apiBaseUrl,
-      serviceName: getServiceName(spec),
-      apiVersion: getVersion(spec),
-      apiDescription: spec.spec.info.description,
-      apiTitle: spec.spec.info.title,
-      endpoints: numberOfEndpoints,
-      sdkMethods: numberOfOperations,
-      schemas: numberOfSchemas,
-      parameters: numberOfParameters,
-      contactUrl: getInfoContactUrl(spec),
-      contactEmail: getInfoContactEmail(spec),
-      originalCustomRequest: customRequest,
-      customRequestSpecFilename: specFilename,
-      difficultyScore: computeDifficultyScore(
-        numberOfEndpoints,
-        numberOfOperations,
-        numberOfSchemas,
-        numberOfParameters
-      ),
-    };
-    console.log(`Writing post request spec to disk for ${key}`);
-    fs.writeFileSync(customRequestSpecFilePath, yaml.dump(spec.spec));
+    db.specifications[`from-custom-request_${key}`] = processedRequest;
   }
   browser.close();
 
