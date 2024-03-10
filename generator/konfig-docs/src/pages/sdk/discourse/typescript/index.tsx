@@ -16,7 +16,7 @@ export default function DiscourseTypeScriptSdk() {
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/discourse/logo.png"
       clientNameCamelCase="discourse"
       homepage="discourse.org"
-      lastUpdated={new Date("2024-03-09T00:41:22.919Z")}
+      lastUpdated={new Date("2024-03-10T00:26:56.618Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/discourse/favicon.png"
       // Missing contactUrl
       // Missing contactEmail

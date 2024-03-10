@@ -16,7 +16,7 @@ export default function XkcdTypeScriptSdk() {
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/xkcd/logo.png"
       clientNameCamelCase="xkcd"
       homepage="xkcd.com/"
-      lastUpdated={new Date("2024-03-05T22:03:48.374Z")}
+      lastUpdated={new Date("2024-03-10T00:26:56.618Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/xkcd/favicon.png"
       // Missing contactUrl
       // Missing contactEmail

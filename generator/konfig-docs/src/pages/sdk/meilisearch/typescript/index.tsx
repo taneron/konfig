@@ -16,7 +16,7 @@ export default function MeilisearchTypeScriptSdk() {
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/meilisearch/logo.png"
       clientNameCamelCase="meilisearch"
       homepage="www.meilisearch.com/"
-      lastUpdated={new Date("2024-03-08T21:26:41.741Z")}
+      lastUpdated={new Date("2024-03-10T00:26:56.618Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/meilisearch/favicon.png"
       // Missing contactUrl
       contactEmail="bonjour@Meilisearch.com"

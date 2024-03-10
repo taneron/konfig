@@ -17,7 +17,7 @@ export default function MailchimpTypeScriptSdk() {
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/mailchimp/logo.png"
       clientNameCamelCase="mailchimp"
       homepage="mailchimp.com/"
-      lastUpdated={new Date("2024-03-07T08:55:03.100Z")}
+      lastUpdated={new Date("2024-03-10T00:26:56.618Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/mailchimp/favicon.png"
       // Missing contactUrl
       contactEmail="apihelp@mailchimp.com"
