@@ -96,6 +96,7 @@ async function main() {
     "openapi-examples"
   );
 
+  console.log("Collecting OpenAPI files...");
   const openapiFiles = fs
     .readdirSync(OPENAPI_EXAMPLES_PATH, {
       withFileTypes: true,
@@ -123,6 +124,7 @@ async function main() {
         ),
       };
     });
+  console.log(`Found ${openapiFiles.length} OpenAPI files`);
 
   const openapiFilesFiltered = openapiFiles.filter(
     ({ relativePathToDirectory }) => {
