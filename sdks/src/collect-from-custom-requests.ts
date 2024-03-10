@@ -126,6 +126,10 @@ async function executeCustomRequest(
 }
 
 const customRequests: Record<string, CustomRequest> = {
+  "baseten.co": {
+    type: "GET",
+    url: "https://api.baseten.co/v1/spec",
+  },
   "dev.to": {
     type: "GET",
     url: "https://raw.githubusercontent.com/forem/forem/main/swagger/v1/api_v1.json",
