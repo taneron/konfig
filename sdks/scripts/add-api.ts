@@ -518,7 +518,9 @@ Here are existing categories: ${allCategories.join(", ")}.
   ).categories;
   const allSelectedCategories = [
     ...selectedCategories,
-    ...categories.split(",").map((category: string) => category.trim()),
+    ...(categories === ""
+      ? []
+      : categories.split(",").map((category: string) => category.trim())),
   ];
   const deduplicatedCategories = Array.from(new Set(allSelectedCategories));
   const finalCategories = deduplicatedCategories.map(snakeCase);
