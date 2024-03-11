@@ -459,7 +459,7 @@ ${
 
 Here are existing categories: ${allCategories.join(", ")}.
 
-  What are the categories for the company "${companyName}"? Try to match "${companyName}" to existing categories or if there are new categories then please list them. Do not provide duplicate categories.`;
+  What are the categories for the company "${companyName}"? Try to match "${companyName}" to existing categories or if there are new categories then please list them. Do not provide duplicate categories. Provide all categories in snake_case. Do not use special characters like "&".`;
 
   const { matchingCategories, newCategories } =
     await client.chat.completions.create({
@@ -483,10 +483,11 @@ Here are existing categories: ${allCategories.join(", ")}.
   }
 
   const keywords = await getKeywordsFromApolloIo(homepage);
+  const keywordsSnakeCase = keywords?.map(snakeCase);
 
-  if (keywords) {
+  if (keywordsSnakeCase) {
     console.log(
-      boxen(keywords.join("\n"), {
+      boxen(keywordsSnakeCase.join("\n"), {
         title: "Keywords (✨ Apollo)",
       })
     );
@@ -495,7 +496,7 @@ Here are existing categories: ${allCategories.join(", ")}.
   const foundCategories = [
     ...matchingCategories,
     ...newCategories,
-    ...(keywords ?? []),
+    ...(keywordsSnakeCase ?? []),
   ];
 
   const selectedCategories = (

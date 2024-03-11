@@ -16,7 +16,7 @@ export default function UniCourtTypeScriptSdk() {
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/unicourt/logo.png"
       clientNameCamelCase="uniCourt"
       homepage="unicourt.com"
-      lastUpdated={new Date("2024-03-01T23:17:56.414Z")}
+      lastUpdated={new Date("2024-03-11T03:31:43.916Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/unicourt/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
