@@ -204,6 +204,7 @@ type CachedMethodObjectsCache = {
   hash: string;
   methodObjects: ReturnType<typeof getMethodObjects>;
   numberOfSchemas: number;
+  apiDescription: string;
 };
 
 function getMethodObjectsCachePath(spec: string) {
@@ -297,9 +298,10 @@ async function main() {
         JSON.stringify(publishData) &&
       fixedSpecCache.rawSpecString === rawSpecString &&
       fixedSpecCache.konfigCliVersion === getLocalKonfigCliVersion() &&
-      fs.existsSync(fixedSpecPath)
+      fs.existsSync(fixedSpecPath) &&
+      fs.readFileSync(fixedSpecPath, "utf-8").length > 0
     ) {
-      console.log(`⚪️ Skipping ${spec} because it is cached`);
+      console.log(`⚪️ Skipping fixing of ${spec} because it is cached`);
       continue;
     }
 
@@ -406,7 +408,7 @@ async function main() {
     const fixedSpecPath = path.join(fixedSpecsOutputPath, fixedSpecFileName);
     const fixedSpecString = fs.readFileSync(fixedSpecPath, "utf-8");
     if (fixedSpecString === "") {
-      throw Error(`❌ ERROR: ${fixedSpecPath} is empty`);
+      throw Error(`❌ ERROR: ${fixedSpecPath} is empty for ${spec}`);
     }
     const openapiExamplesFilePath = path.join(
       openapiExamplesDirPath,
@@ -426,31 +428,46 @@ async function main() {
      *
      * Note: we can cache this based on two things the equality of fixedSpecString
      * 1. Equality of fixedSpecString
-     * 2. The existence of OAS file in openapi-examples
+     * 2. Equality of publish.json entry
+     * 3. Equality of spec-data entry
+     * 4. The existence of OAS file in openapi-examples
      */
 
     const cachedMethodObjects = getMethodObjectsCache(spec);
-    const hash = hashRawSpecString(fixedSpecString);
+    const hash = hashRawSpecString(fixedSpecString, publishData, specData);
     const isCached =
       cachedMethodObjects?.hash === hash &&
       fs.existsSync(openapiExamplesFilePath) &&
-      cachedMethodObjects.numberOfSchemas !== undefined;
+      /**
+       * Checking if their undefined because these were added later
+       */
+      cachedMethodObjects.numberOfSchemas !== undefined &&
+      cachedMethodObjects.apiDescription !== undefined;
     let methods: ReturnType<typeof getMethodObjects> | null = null;
     let numberOfSchemas: number | null = null;
+    let apiDescription: string | null = null;
     if (isCached) {
       console.log(
         `⚪️ Skipping getMethodObjects for ${spec} and writing to openapi-examples because it is cached`
       );
       methods = cachedMethodObjects?.methodObjects;
       numberOfSchemas = cachedMethodObjects?.numberOfSchemas;
+      apiDescription = cachedMethodObjects?.apiDescription;
     } else {
       const oas = await parseSpec(fixedSpecString);
       methods = getMethodObjects(oas);
       fs.writeFileSync(openapiExamplesFilePath, yaml.dump(oas.spec));
       numberOfSchemas = getNumberOfSchemas(oas);
+      apiDescription =
+        publishData.apiDescription ?? oas.spec.info?.description ?? "";
       saveMethodObjectsCache({
         spec,
-        cache: { hash, methodObjects: methods, numberOfSchemas },
+        cache: {
+          hash,
+          methodObjects: methods,
+          numberOfSchemas,
+          apiDescription,
+        },
       });
     }
     if (methods === null || methods === undefined) {
@@ -459,6 +476,9 @@ async function main() {
     if (numberOfSchemas === null || numberOfSchemas === undefined) {
       throw Error(`❌ ERROR: numberOfSchemas is empty for ${spec}`);
     }
+    if (apiDescription === null || apiDescription === undefined) {
+      throw Error(`❌ ERROR: apiDescription is empty for ${spec}`);
+    }
 
     /**
      * 2.c Prepare to write to published/
@@ -466,6 +486,7 @@ async function main() {
     const merged: Published = {
       ...specData,
       ...publishData,
+      apiDescription: apiDescription ?? publishData.apiDescription,
       schemas: numberOfSchemas,
       categories: nonEmptyCategories,
       methods,

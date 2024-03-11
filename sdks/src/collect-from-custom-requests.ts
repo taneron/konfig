@@ -72,7 +72,7 @@ function parseOAS(oas: string, regex: string | undefined): any {
   }
 }
 
-export const REGEX_FOR_BROKEN_LINKS = /\([\/|#][\w-]+?\)/g;
+export const REGEX_FOR_BROKEN_LINKS = /\([\/|#][{}%~\/\w-]+?\)/g;
 async function executeCustomRequest(
   key: string,
   customRequest: CustomRequest,
@@ -152,6 +152,11 @@ const customRequests: Record<string, CustomRequest> = {
       return JSON.stringify(oas);
     },
     defaultUrlForBrokenLinks: "https://clickup.com/api",
+  },
+  "onedoc.com": {
+    type: "GET",
+    url: "https://app.onedoclabs.com/api/api-doc",
+    apiBaseUrl: "https://app.onedoclabs.com",
   },
   "baseten.co": {
     type: "GET",
@@ -541,6 +546,10 @@ const customRequests: Record<string, CustomRequest> = {
       });
     },
   },
+  "griffin.com": {
+    type: "GET",
+    url: "http://docs.griffin.com/redocusaurus/plugin-redoc-0.yaml",
+  },
   "resend.com": {
     type: "GET",
     url: "https://raw.githubusercontent.com/resend/resend-openapi/main/resend.yaml",
@@ -573,6 +582,30 @@ const customRequests: Record<string, CustomRequest> = {
   "hetzner.com": {
     type: "GET",
     url: "https://docs.hetzner.cloud/spec.json",
+  },
+  "box.com": {
+    type: "GET",
+    url: "https://raw.githubusercontent.com/box/box-openapi/en/openapi.json",
+  },
+  "api.video": {
+    type: "GET",
+    url: "https://raw.githubusercontent.com/apivideo/api.video-documentation/main/openapi.yaml",
+  },
+  "appwrite.io_Client": {
+    type: "GET",
+    url: "https://raw.githubusercontent.com/appwrite/appwrite/main/app/config/specs/open-api3-latest-client.json",
+  },
+  "appwrite.io_Server": {
+    type: "GET",
+    url: "https://raw.githubusercontent.com/appwrite/appwrite/main/app/config/specs/open-api3-latest-server.json",
+  },
+  "appwrite.io_Console": {
+    type: "GET",
+    url: "https://raw.githubusercontent.com/appwrite/appwrite/main/app/config/specs/open-api3-latest-console.json",
+  },
+  "asana.com": {
+    type: "GET",
+    url: "https://raw.githubusercontent.com/Asana/openapi/master/defs/asana_oas.yaml",
   },
   "hsbc.com_AccountInformationCE": {
     lambda: async (browser) => {
@@ -979,8 +1012,7 @@ async function processCustomRequest({
       apiBaseUrl = customRequest.apiBaseUrl;
       spec.spec.servers = [{ url: apiBaseUrl }];
     } else {
-      console.log(`❌ Skipping ${key} due to missing apiBaseUrl.`);
-      return;
+      throw Error(`❌ ${key} is missing apiBaseUrl.`);
     }
   }
 
