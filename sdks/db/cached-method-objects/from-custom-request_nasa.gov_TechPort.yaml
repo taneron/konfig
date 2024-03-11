@@ -1,0 +1,132 @@
+hash: 2147ea525465fb8fce9b34afcef7198340696500668c4f27416a281149bca96f
+methodObjects:
+  - url: /api
+    method: getSpecification
+    httpMethod: get
+    tag: Resource
+    typeScriptTag: resource
+    description: Returns the swagger specification for the API.
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: Successful response
+      - statusCode: default
+        description: Object not found.
+  - url: /api/projects
+    method: listAvailableIds
+    httpMethod: get
+    tag: Project
+    typeScriptTag: project
+    description: Returns a list of available technology project IDs.
+    parameters:
+      - name: updatedSince
+        schema: string
+        required: true
+        description: >-
+          ISO 8601 full-date in the format YYYY-MM-DD. Filters the list of
+          available ID values by their lastUpdated parameter.
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: Object not found.
+  - url: /api/projects/search
+    method: findMatchingProjects
+    httpMethod: get
+    tag: Project
+    typeScriptTag: project
+    description: Returns a list of projects matching the search term.
+    parameters:
+      - name: projectId
+        schema: integer
+        required: false
+        description: The specific ID of the project requested.
+      - name: searchQuery
+        schema: string
+        required: false
+        description: >-
+          The term on which to search. Will check all project fields for the
+          this term.
+      - name: missionDirectorate
+        schema: string
+        required: false
+        description: The mission directorate acronym of the projects. Used to filter.
+      - name: program
+        schema: string
+        required: false
+        description: The program acronym of the projects. Used to filter.
+      - name: titleSearch
+        schema: string
+        required: false
+        description: >-
+          The term on which to search. Will check only project titles for the
+          this term.
+    responses:
+      - statusCode: '200'
+        description: List of projects that match the criteria.
+      - statusCode: default
+        description: Object not found.
+  - url: /api/projects/{projectId}
+    method: getInfo
+    httpMethod: get
+    tag: Project
+    typeScriptTag: project
+    description: Returns information about a specific technology project.
+    parameters:
+      - name: projectId
+        schema: integer
+        required: true
+        description: ID of project to fetch
+    responses:
+      - statusCode: '200'
+        description: >-
+          Top-level TechPort object representing a NASA technology project and
+          its associated data.
+      - statusCode: default
+        description: Object not found.
+  - url: /api/organizations
+    method: getListByName
+    httpMethod: get
+    tag: Organization
+    typeScriptTag: organization
+    description: Returns a list of organizations that match a given name.
+    parameters:
+      - name: name
+        schema: string
+        required: false
+        description: Organization Name to filter on.
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: Object not found.
+  - url: /api/organizations/types
+    method: listTypes
+    httpMethod: get
+    tag: Organization
+    typeScriptTag: organization
+    description: >-
+      Returns a list of available organization types, including set-aside and
+      MSI types.
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: Object not found.
+  - url: /api/organizations/{organizationId}
+    method: getInformation
+    httpMethod: get
+    tag: Organization
+    typeScriptTag: organization
+    description: Get an organization and its information.
+    parameters:
+      - name: organizationId
+        schema: integer
+        required: true
+        description: Organization Id.
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: Error.

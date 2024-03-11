@@ -1,0 +1,62 @@
+hash: 08a4af61520fcc2a41e605a072bd1d9064e435808097c0d59373b46754f5c1a5
+methodObjects:
+  - url: /v1/secrets
+    method: getAllSecrets
+    httpMethod: get
+    tag: Secret
+    typeScriptTag: secret
+    description: Gets all secrets
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: A list of Baseten secrets.
+  - url: /v1/secrets
+    method: upsertNewSecret
+    httpMethod: post
+    tag: Secret
+    typeScriptTag: secret
+    description: Upserts a secret
+    parameters:
+      - name: name
+        schema: string
+        required: true
+        description: ''
+      - name: value
+        schema: string
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: >-
+          A Baseten secret. Note that we do not support retrieving secret
+          values.
+  - url: /v1/models/{model_id}/deployments/development
+    method: getDevelopmentDetails
+    httpMethod: get
+    tag: Deployment
+    typeScriptTag: deployment
+    description: Gets a model's development deployment
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: A deployment of a model.
+  - url: /v1/models/{model_id}/deployments/production
+    method: getProductionDetails
+    httpMethod: get
+    tag: Deployment
+    typeScriptTag: deployment
+    description: Gets a model's production deployment
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: A deployment of a model.
+  - url: /v1/models/{model_id}/deployments/{deployment_id}
+    method: detailsGet
+    httpMethod: get
+    tag: Deployment
+    typeScriptTag: deployment
+    description: Gets a model's deployment by id
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: A deployment of a model.

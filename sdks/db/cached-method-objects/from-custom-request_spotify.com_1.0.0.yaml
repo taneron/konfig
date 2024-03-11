@@ -1,0 +1,2443 @@
+hash: 9c92855a7728b112bb4500371abe613a3b9db01be64cff120d5c920086990560
+methodObjects:
+  - url: /albums/{id}
+    method: getInformation
+    httpMethod: get
+    tag: Albums
+    typeScriptTag: albums
+    description: |
+      Get Album
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: ''
+      - name: market
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /albums
+    method: listSeveral
+    httpMethod: get
+    tag: Albums
+    typeScriptTag: albums
+    description: |
+      Get Several Albums
+    parameters:
+      - name: ids
+        schema: string
+        required: true
+        description: ''
+      - name: market
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /albums/{id}/tracks
+    method: getTracksById
+    httpMethod: get
+    tag: Albums
+    typeScriptTag: albums
+    description: |
+      Get Album Tracks
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: ''
+      - name: market
+        schema: string
+        required: false
+        description: ''
+      - name: limit
+        schema: integer
+        required: false
+        description: ''
+      - name: offset
+        schema: integer
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /artists/{id}
+    method: getCatalogInfo
+    httpMethod: get
+    tag: Artists
+    typeScriptTag: artists
+    description: |
+      Get Artist
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /artists
+    method: getCatalogInfo
+    httpMethod: get
+    tag: Artists
+    typeScriptTag: artists
+    description: |
+      Get Several Artists
+    parameters:
+      - name: ids
+        schema: string
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /artists/{id}/albums
+    method: getAlbumsById
+    httpMethod: get
+    tag: Artists
+    typeScriptTag: artists
+    description: |
+      Get Artist's Albums
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: ''
+      - name: includeGroups
+        schema: string
+        required: false
+        description: ''
+      - name: market
+        schema: string
+        required: false
+        description: ''
+      - name: limit
+        schema: integer
+        required: false
+        description: ''
+      - name: offset
+        schema: integer
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /artists/{id}/top-tracks
+    method: getTopTracks
+    httpMethod: get
+    tag: Artists
+    typeScriptTag: artists
+    description: |
+      Get Artist's Top Tracks
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: ''
+      - name: market
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /artists/{id}/related-artists
+    method: getRelatedArtists
+    httpMethod: get
+    tag: Artists
+    typeScriptTag: artists
+    description: |
+      Get Artist's Related Artists
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /shows/{id}
+    method: getInformation
+    httpMethod: get
+    tag: Shows
+    typeScriptTag: shows
+    description: |
+      Get Show
+    parameters:
+      - name: market
+        schema: string
+        required: false
+        description: ''
+      - name: id
+        schema: string
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /shows
+    method: getMultipleShowsInfo
+    httpMethod: get
+    tag: Shows
+    typeScriptTag: shows
+    description: |
+      Get Several Shows
+    parameters:
+      - name: market
+        schema: string
+        required: false
+        description: ''
+      - name: ids
+        schema: string
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /shows/{id}/episodes
+    method: getEpisodesById
+    httpMethod: get
+    tag: Shows
+    typeScriptTag: shows
+    description: |
+      Get Show Episodes
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: ''
+      - name: market
+        schema: string
+        required: false
+        description: ''
+      - name: limit
+        schema: integer
+        required: false
+        description: ''
+      - name: offset
+        schema: integer
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /episodes/{id}
+    method: getSingleById
+    httpMethod: get
+    tag: Episodes
+    typeScriptTag: episodes
+    description: |
+      Get Episode
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: ''
+      - name: market
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /episodes
+    method: getSeveral
+    httpMethod: get
+    tag: Episodes
+    typeScriptTag: episodes
+    description: |
+      Get Several Episodes
+    parameters:
+      - name: ids
+        schema: string
+        required: true
+        description: ''
+      - name: market
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /audiobooks/{id}
+    method: getCatalogInfo
+    httpMethod: get
+    tag: Audiobooks
+    typeScriptTag: audiobooks
+    description: |
+      Get an Audiobook
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: ''
+      - name: market
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /audiobooks
+    method: getSeveral
+    httpMethod: get
+    tag: Audiobooks
+    typeScriptTag: audiobooks
+    description: |
+      Get Several Audiobooks
+    parameters:
+      - name: ids
+        schema: string
+        required: true
+        description: ''
+      - name: market
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /audiobooks/{id}/chapters
+    method: getChaptersById
+    httpMethod: get
+    tag: Audiobooks
+    typeScriptTag: audiobooks
+    description: |
+      Get Audiobook Chapters
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: ''
+      - name: market
+        schema: string
+        required: false
+        description: ''
+      - name: limit
+        schema: integer
+        required: false
+        description: ''
+      - name: offset
+        schema: integer
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /me/audiobooks
+    method: removeFromLibrary
+    httpMethod: delete
+    tag: Audiobooks
+    typeScriptTag: audiobooks
+    description: |
+      Remove User's Saved Audiobooks
+    parameters:
+      - name: ids
+        schema: string
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: Audiobook(s) have been removed from the library
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /me/audiobooks
+    method: listSaved
+    httpMethod: get
+    tag: Audiobooks
+    typeScriptTag: audiobooks
+    description: |
+      Get User's Saved Audiobooks
+    parameters:
+      - name: limit
+        schema: integer
+        required: false
+        description: ''
+      - name: offset
+        schema: integer
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /me/audiobooks
+    method: saveCurrentUserLibrary
+    httpMethod: put
+    tag: Audiobooks
+    typeScriptTag: audiobooks
+    description: |
+      Save Audiobooks for Current User
+    parameters:
+      - name: ids
+        schema: string
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: Audiobook(s) are saved to the library
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /me/audiobooks/contains
+    method: checkUserSaved
+    httpMethod: get
+    tag: Audiobooks
+    typeScriptTag: audiobooks
+    description: |
+      Check User's Saved Audiobooks
+    parameters:
+      - name: ids
+        schema: string
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /chapters/{id}
+    method: getChapterInfo
+    httpMethod: get
+    tag: Chapters
+    typeScriptTag: chapters
+    description: |
+      Get a Chapter
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: ''
+      - name: market
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /chapters
+    method: getMultipleByIds
+    httpMethod: get
+    tag: Chapters
+    typeScriptTag: chapters
+    description: |
+      Get Several Chapters
+    parameters:
+      - name: ids
+        schema: string
+        required: true
+        description: ''
+      - name: market
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /tracks/{id}
+    method: getBySpotifyId
+    httpMethod: get
+    tag: Tracks
+    typeScriptTag: tracks
+    description: |
+      Get Track
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: ''
+      - name: market
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /tracks
+    method: getMultipleByIds
+    httpMethod: get
+    tag: Tracks
+    typeScriptTag: tracks
+    description: |
+      Get Several Tracks
+    parameters:
+      - name: market
+        schema: string
+        required: false
+        description: ''
+      - name: ids
+        schema: string
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /search
+    method: spotifyCatalogInfo
+    httpMethod: get
+    tag: Search
+    typeScriptTag: search
+    description: |
+      Search for Item
+    parameters:
+      - name: q
+        schema: string
+        required: true
+        description: ''
+      - name: type
+        schema: array
+        required: true
+        description: ''
+      - name: market
+        schema: string
+        required: false
+        description: ''
+      - name: limit
+        schema: integer
+        required: false
+        description: ''
+      - name: offset
+        schema: integer
+        required: false
+        description: ''
+      - name: includeExternal
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /me
+    method: getCurrentUserProfile
+    httpMethod: get
+    tag: Users
+    typeScriptTag: users
+    description: |
+      Get Current User's Profile
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /playlists/{playlist_id}
+    method: getPlaylistById
+    httpMethod: get
+    tag: Playlists
+    typeScriptTag: playlists
+    description: |
+      Get Playlist
+    parameters:
+      - name: playlistId
+        schema: string
+        required: true
+        description: ''
+      - name: market
+        schema: string
+        required: false
+        description: ''
+      - name: fields
+        schema: string
+        required: false
+        description: ''
+      - name: additionalTypes
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /playlists/{playlist_id}
+    method: updateDetails
+    httpMethod: put
+    tag: Playlists
+    typeScriptTag: playlists
+    description: |
+      Change Playlist Details
+    parameters:
+      - name: playlistId
+        schema: string
+        required: true
+        description: ''
+      - name: description
+        schema: string
+        description: ''
+      - name: name
+        schema: string
+        description: ''
+      - name: public
+        schema: boolean
+        description: ''
+      - name: collaborative
+        schema: boolean
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: Playlist updated
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /playlists/{playlist_id}/tracks
+    method: removeItems
+    httpMethod: delete
+    tag: Playlists
+    typeScriptTag: playlists
+    description: |
+      Remove Playlist Items
+    parameters:
+      - name: playlistId
+        schema: string
+        required: true
+        description: ''
+      - name: tracks
+        schema: array
+        required: true
+        description: ''
+      - name: snapshot_id
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /playlists/{playlist_id}/tracks
+    method: getPlaylistItems
+    httpMethod: get
+    tag: Playlists
+    typeScriptTag: playlists
+    description: |
+      Get Playlist Items
+    parameters:
+      - name: playlistId
+        schema: string
+        required: true
+        description: ''
+      - name: market
+        schema: string
+        required: false
+        description: ''
+      - name: fields
+        schema: string
+        required: false
+        description: ''
+      - name: limit
+        schema: integer
+        required: false
+        description: ''
+      - name: offset
+        schema: integer
+        required: false
+        description: ''
+      - name: additionalTypes
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /playlists/{playlist_id}/tracks
+    method: addItems
+    httpMethod: post
+    tag: Playlists
+    typeScriptTag: playlists
+    description: |
+      Add Items to Playlist
+    parameters:
+      - name: playlistId
+        schema: string
+        required: true
+        description: ''
+      - name: position
+        schema: integer
+        required: false
+        description: ''
+      - name: uris
+        schema: string
+        required: false
+        description: ''
+      - name: uris
+        schema: array
+        description: ''
+      - name: position
+        schema: integer
+        description: ''
+    responses:
+      - statusCode: '201'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /playlists/{playlist_id}/tracks
+    method: updatePlaylistItems
+    httpMethod: put
+    tag: Playlists
+    typeScriptTag: playlists
+    description: |
+      Update Playlist Items
+    parameters:
+      - name: playlistId
+        schema: string
+        required: true
+        description: ''
+      - name: uris
+        schema: string
+        required: false
+        description: ''
+      - name: uris
+        schema: array
+        description: ''
+      - name: range_start
+        schema: integer
+        description: ''
+      - name: insert_before
+        schema: integer
+        description: ''
+      - name: range_length
+        schema: integer
+        description: ''
+      - name: snapshot_id
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /me/playlists
+    method: getUserPlaylists
+    httpMethod: get
+    tag: Playlists
+    typeScriptTag: playlists
+    description: |
+      Get Current User's Playlists
+    parameters:
+      - name: limit
+        schema: integer
+        required: false
+        description: ''
+      - name: offset
+        schema: integer
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /me/albums
+    method: removeSaved
+    httpMethod: delete
+    tag: Albums
+    typeScriptTag: albums
+    description: |
+      Remove Users' Saved Albums
+    parameters:
+      - name: ids
+        schema: string
+        required: true
+        description: ''
+      - name: ids
+        schema: array
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: Album(s) have been removed from the library
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /me/albums
+    method: getSaved
+    httpMethod: get
+    tag: Albums
+    typeScriptTag: albums
+    description: |
+      Get User's Saved Albums
+    parameters:
+      - name: limit
+        schema: integer
+        required: false
+        description: ''
+      - name: offset
+        schema: integer
+        required: false
+        description: ''
+      - name: market
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /me/albums
+    method: saveCurrentUserLibrary
+    httpMethod: put
+    tag: Albums
+    typeScriptTag: albums
+    description: |
+      Save Albums for Current User
+    parameters:
+      - name: ids
+        schema: string
+        required: true
+        description: ''
+      - name: ids
+        schema: array
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: The album is saved
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /me/albums/contains
+    method: checkSaved
+    httpMethod: get
+    tag: Albums
+    typeScriptTag: albums
+    description: |
+      Check User's Saved Albums
+    parameters:
+      - name: ids
+        schema: string
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /me/tracks
+    method: removeFromLibrary
+    httpMethod: delete
+    tag: Tracks
+    typeScriptTag: tracks
+    description: |
+      Remove User's Saved Tracks
+    parameters:
+      - name: ids
+        schema: string
+        required: true
+        description: ''
+      - name: ids
+        schema: array
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: Track removed
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /me/tracks
+    method: getUserSaved
+    httpMethod: get
+    tag: Tracks
+    typeScriptTag: tracks
+    description: |
+      Get User's Saved Tracks
+    parameters:
+      - name: market
+        schema: string
+        required: false
+        description: ''
+      - name: limit
+        schema: integer
+        required: false
+        description: ''
+      - name: offset
+        schema: integer
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /me/tracks
+    method: saveForCurrentUser
+    httpMethod: put
+    tag: Tracks
+    typeScriptTag: tracks
+    description: |
+      Save Tracks for Current User
+    parameters:
+      - name: ids
+        schema: string
+        required: true
+        description: ''
+      - name: ids
+        schema: array
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: Track saved
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /me/tracks/contains
+    method: checkSaved
+    httpMethod: get
+    tag: Tracks
+    typeScriptTag: tracks
+    description: |
+      Check User's Saved Tracks
+    parameters:
+      - name: ids
+        schema: string
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /me/episodes
+    method: removeFromLibrary
+    httpMethod: delete
+    tag: Episodes
+    typeScriptTag: episodes
+    description: |
+      Remove User's Saved Episodes
+    parameters:
+      - name: ids
+        schema: string
+        required: true
+        description: ''
+      - name: ids
+        schema: array
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: Episode removed
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /me/episodes
+    method: getUserSavedEpisodes
+    httpMethod: get
+    tag: Episodes
+    typeScriptTag: episodes
+    description: |
+      Get User's Saved Episodes
+    parameters:
+      - name: market
+        schema: string
+        required: false
+        description: ''
+      - name: limit
+        schema: integer
+        required: false
+        description: ''
+      - name: offset
+        schema: integer
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /me/episodes
+    method: saveCurrentUserLibrary
+    httpMethod: put
+    tag: Episodes
+    typeScriptTag: episodes
+    description: |
+      Save Episodes for Current User
+    parameters:
+      - name: ids
+        schema: string
+        required: true
+        description: ''
+      - name: ids
+        schema: array
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: Episode saved
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /me/episodes/contains
+    method: checkSavedEpisodes
+    httpMethod: get
+    tag: Episodes
+    typeScriptTag: episodes
+    description: |
+      Check User's Saved Episodes
+    parameters:
+      - name: ids
+        schema: string
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /me/shows
+    method: removeUserLibrary
+    httpMethod: delete
+    tag: Shows
+    typeScriptTag: shows
+    description: |
+      Remove User's Saved Shows
+    parameters:
+      - name: ids
+        schema: string
+        required: true
+        description: ''
+      - name: market
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: Show removed
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /me/shows
+    method: getUserSavedShows
+    httpMethod: get
+    tag: Shows
+    typeScriptTag: shows
+    description: |
+      Get User's Saved Shows
+    parameters:
+      - name: limit
+        schema: integer
+        required: false
+        description: ''
+      - name: offset
+        schema: integer
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /me/shows
+    method: saveCurrentUserLibrary
+    httpMethod: put
+    tag: Shows
+    typeScriptTag: shows
+    description: |
+      Save Shows for Current User
+    parameters:
+      - name: ids
+        schema: string
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: Show saved
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /me/shows/contains
+    method: checkSavedShows
+    httpMethod: get
+    tag: Shows
+    typeScriptTag: shows
+    description: |
+      Check User's Saved Shows
+    parameters:
+      - name: ids
+        schema: string
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /me/top/{type}
+    method: getTopItems
+    httpMethod: get
+    tag: Users
+    typeScriptTag: users
+    description: |
+      Get User's Top Items
+    parameters:
+      - name: type
+        schema: string
+        required: true
+        description: ''
+      - name: timeRange
+        schema: string
+        required: false
+        description: ''
+      - name: limit
+        schema: integer
+        required: false
+        description: ''
+      - name: offset
+        schema: integer
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /users/{user_id}
+    method: getUserProfile
+    httpMethod: get
+    tag: Users
+    typeScriptTag: users
+    description: |
+      Get User's Profile
+    parameters:
+      - name: userId
+        schema: string
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /users/{user_id}/playlists
+    method: getUserPlaylists
+    httpMethod: get
+    tag: Playlists
+    typeScriptTag: playlists
+    description: |
+      Get User's Playlists
+    parameters:
+      - name: userId
+        schema: string
+        required: true
+        description: ''
+      - name: limit
+        schema: integer
+        required: false
+        description: ''
+      - name: offset
+        schema: integer
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /users/{user_id}/playlists
+    method: createPlaylist
+    httpMethod: post
+    tag: Playlists
+    typeScriptTag: playlists
+    description: |
+      Create Playlist
+    parameters:
+      - name: userId
+        schema: string
+        required: true
+        description: ''
+      - name: description
+        schema: string
+        required: false
+        description: ''
+      - name: name
+        schema: string
+        required: true
+        description: ''
+      - name: public
+        schema: boolean
+        required: false
+        description: ''
+      - name: collaborative
+        schema: boolean
+        required: false
+        description: ''
+    responses:
+      - statusCode: '201'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /playlists/{playlist_id}/followers
+    method: unfollowPlaylist
+    httpMethod: delete
+    tag: Users
+    typeScriptTag: users
+    description: |
+      Unfollow Playlist
+    parameters:
+      - name: playlistId
+        schema: string
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: Playlist unfollowed
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /playlists/{playlist_id}/followers
+    method: followPlaylist
+    httpMethod: put
+    tag: Users
+    typeScriptTag: users
+    description: |
+      Follow Playlist
+    parameters:
+      - name: playlistId
+        schema: string
+        required: true
+        description: ''
+      - name: public
+        schema: boolean
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: Playlist followed
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /browse/featured-playlists
+    method: getFeatured
+    httpMethod: get
+    tag: Playlists
+    typeScriptTag: playlists
+    description: |
+      Get Featured Playlists
+    parameters:
+      - name: locale
+        schema: string
+        required: false
+        description: ''
+      - name: limit
+        schema: integer
+        required: false
+        description: ''
+      - name: offset
+        schema: integer
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /browse/categories
+    method: listSeveral
+    httpMethod: get
+    tag: Categories
+    typeScriptTag: categories
+    description: |
+      Get Several Browse Categories
+    parameters:
+      - name: locale
+        schema: string
+        required: false
+        description: ''
+      - name: limit
+        schema: integer
+        required: false
+        description: ''
+      - name: offset
+        schema: integer
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /browse/categories/{category_id}
+    method: getSingle
+    httpMethod: get
+    tag: Categories
+    typeScriptTag: categories
+    description: |
+      Get Single Browse Category
+    parameters:
+      - name: categoryId
+        schema: string
+        required: true
+        description: ''
+      - name: locale
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /browse/categories/{category_id}/playlists
+    method: getCategoryPlaylists
+    httpMethod: get
+    tag: Playlists
+    typeScriptTag: playlists
+    description: |
+      Get Category's Playlists
+    parameters:
+      - name: categoryId
+        schema: string
+        required: true
+        description: ''
+      - name: limit
+        schema: integer
+        required: false
+        description: ''
+      - name: offset
+        schema: integer
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /playlists/{playlist_id}/images
+    method: getCoverImage
+    httpMethod: get
+    tag: Playlists
+    typeScriptTag: playlists
+    description: |
+      Get Playlist Cover Image
+    parameters:
+      - name: playlistId
+        schema: string
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /playlists/{playlist_id}/images
+    method: replaceCoverImage
+    httpMethod: put
+    tag: Playlists
+    typeScriptTag: playlists
+    description: |
+      Add Custom Playlist Cover Image
+    parameters:
+      - name: playlistId
+        schema: string
+        required: true
+        description: ''
+    responses:
+      - statusCode: '202'
+        description: Image uploaded
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /browse/new-releases
+    method: getNewReleases
+    httpMethod: get
+    tag: Albums
+    typeScriptTag: albums
+    description: |
+      Get New Releases
+    parameters:
+      - name: limit
+        schema: integer
+        required: false
+        description: ''
+      - name: offset
+        schema: integer
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /me/following
+    method: unfollowArtistsUsers
+    httpMethod: delete
+    tag: Users
+    typeScriptTag: users
+    description: |
+      Unfollow Artists or Users
+    parameters:
+      - name: type
+        schema: string
+        required: true
+        description: ''
+      - name: ids
+        schema: string
+        required: true
+        description: ''
+      - name: ids
+        schema: array
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: Artist or user unfollowed
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /me/following
+    method: getFollowedArtists
+    httpMethod: get
+    tag: Users
+    typeScriptTag: users
+    description: |
+      Get Followed Artists
+    parameters:
+      - name: type
+        schema: string
+        required: true
+        description: ''
+      - name: after
+        schema: string
+        required: false
+        description: ''
+      - name: limit
+        schema: integer
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /me/following
+    method: followArtistsOrUsers
+    httpMethod: put
+    tag: Users
+    typeScriptTag: users
+    description: |
+      Follow Artists or Users
+    parameters:
+      - name: type
+        schema: string
+        required: true
+        description: ''
+      - name: ids
+        schema: string
+        required: true
+        description: ''
+      - name: ids
+        schema: array
+        required: true
+        description: ''
+    responses:
+      - statusCode: '204'
+        description: Artist or user followed
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /me/following/contains
+    method: checkFollowingArtistsUsers
+    httpMethod: get
+    tag: Users
+    typeScriptTag: users
+    description: |
+      Check If User Follows Artists or Users
+    parameters:
+      - name: type
+        schema: string
+        required: true
+        description: ''
+      - name: ids
+        schema: string
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /playlists/{playlist_id}/followers/contains
+    method: checkIfFollowsPlaylist
+    httpMethod: get
+    tag: Users
+    typeScriptTag: users
+    description: |
+      Check if Users Follow Playlist
+    parameters:
+      - name: playlistId
+        schema: string
+        required: true
+        description: ''
+      - name: ids
+        schema: string
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /audio-features
+    method: getMultipleAudioFeatures
+    httpMethod: get
+    tag: Tracks
+    typeScriptTag: tracks
+    description: |
+      Get Several Tracks' Audio Features
+    parameters:
+      - name: ids
+        schema: string
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /audio-features/{id}
+    method: getAudioFeaturesById
+    httpMethod: get
+    tag: Tracks
+    typeScriptTag: tracks
+    description: |
+      Get Track's Audio Features
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /audio-analysis/{id}
+    method: getAudioAnalysis
+    httpMethod: get
+    tag: Tracks
+    typeScriptTag: tracks
+    description: |
+      Get Track's Audio Analysis
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /recommendations
+    method: getRecommendations
+    httpMethod: get
+    tag: Tracks
+    typeScriptTag: tracks
+    description: |
+      Get Recommendations
+    parameters:
+      - name: limit
+        schema: integer
+        required: false
+        description: ''
+      - name: market
+        schema: string
+        required: false
+        description: ''
+      - name: seedArtists
+        schema: string
+        required: true
+        description: ''
+      - name: seedGenres
+        schema: string
+        required: true
+        description: ''
+      - name: seedTracks
+        schema: string
+        required: true
+        description: ''
+      - name: minAcousticness
+        schema: number
+        required: false
+        description: ''
+      - name: maxAcousticness
+        schema: number
+        required: false
+        description: ''
+      - name: targetAcousticness
+        schema: number
+        required: false
+        description: ''
+      - name: minDanceability
+        schema: number
+        required: false
+        description: ''
+      - name: maxDanceability
+        schema: number
+        required: false
+        description: ''
+      - name: targetDanceability
+        schema: number
+        required: false
+        description: ''
+      - name: minDurationMs
+        schema: integer
+        required: false
+        description: ''
+      - name: maxDurationMs
+        schema: integer
+        required: false
+        description: ''
+      - name: targetDurationMs
+        schema: integer
+        required: false
+        description: ''
+      - name: minEnergy
+        schema: number
+        required: false
+        description: ''
+      - name: maxEnergy
+        schema: number
+        required: false
+        description: ''
+      - name: targetEnergy
+        schema: number
+        required: false
+        description: ''
+      - name: minInstrumentalness
+        schema: number
+        required: false
+        description: ''
+      - name: maxInstrumentalness
+        schema: number
+        required: false
+        description: ''
+      - name: targetInstrumentalness
+        schema: number
+        required: false
+        description: ''
+      - name: minKey
+        schema: integer
+        required: false
+        description: ''
+      - name: maxKey
+        schema: integer
+        required: false
+        description: ''
+      - name: targetKey
+        schema: integer
+        required: false
+        description: ''
+      - name: minLiveness
+        schema: number
+        required: false
+        description: ''
+      - name: maxLiveness
+        schema: number
+        required: false
+        description: ''
+      - name: targetLiveness
+        schema: number
+        required: false
+        description: ''
+      - name: minLoudness
+        schema: number
+        required: false
+        description: ''
+      - name: maxLoudness
+        schema: number
+        required: false
+        description: ''
+      - name: targetLoudness
+        schema: number
+        required: false
+        description: ''
+      - name: minMode
+        schema: integer
+        required: false
+        description: ''
+      - name: maxMode
+        schema: integer
+        required: false
+        description: ''
+      - name: targetMode
+        schema: integer
+        required: false
+        description: ''
+      - name: minPopularity
+        schema: integer
+        required: false
+        description: ''
+      - name: maxPopularity
+        schema: integer
+        required: false
+        description: ''
+      - name: targetPopularity
+        schema: integer
+        required: false
+        description: ''
+      - name: minSpeechiness
+        schema: number
+        required: false
+        description: ''
+      - name: maxSpeechiness
+        schema: number
+        required: false
+        description: ''
+      - name: targetSpeechiness
+        schema: number
+        required: false
+        description: ''
+      - name: minTempo
+        schema: number
+        required: false
+        description: ''
+      - name: maxTempo
+        schema: number
+        required: false
+        description: ''
+      - name: targetTempo
+        schema: number
+        required: false
+        description: ''
+      - name: minTimeSignature
+        schema: integer
+        required: false
+        description: ''
+      - name: maxTimeSignature
+        schema: integer
+        required: false
+        description: ''
+      - name: targetTimeSignature
+        schema: integer
+        required: false
+        description: ''
+      - name: minValence
+        schema: number
+        required: false
+        description: ''
+      - name: maxValence
+        schema: number
+        required: false
+        description: ''
+      - name: targetValence
+        schema: number
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /recommendations/available-genre-seeds
+    method: getAvailableSeeds
+    httpMethod: get
+    tag: Genres
+    typeScriptTag: genres
+    description: |
+      Get Available Genre Seeds
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /me/player
+    method: getCurrentPlaybackState
+    httpMethod: get
+    tag: Player
+    typeScriptTag: player
+    description: |
+      Get Playback State
+    parameters:
+      - name: market
+        schema: string
+        required: false
+        description: ''
+      - name: additionalTypes
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '204'
+        description: Playback not available or active
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /me/player
+    method: transferPlaybackToNewDevice
+    httpMethod: put
+    tag: Player
+    typeScriptTag: player
+    description: |
+      Transfer Playback
+    parameters:
+      - name: device_ids
+        schema: array
+        required: true
+        description: ''
+      - name: play
+        schema: boolean
+        required: false
+        description: ''
+    responses:
+      - statusCode: '204'
+        description: Playback transferred
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /me/player/devices
+    method: getAvailableDevices
+    httpMethod: get
+    tag: Player
+    typeScriptTag: player
+    description: |
+      Get Available Devices
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /me/player/currently-playing
+    method: getCurrentlyPlayingTrack
+    httpMethod: get
+    tag: Player
+    typeScriptTag: player
+    description: |
+      Get Currently Playing Track
+    parameters:
+      - name: market
+        schema: string
+        required: false
+        description: ''
+      - name: additionalTypes
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /me/player/play
+    method: startPlayback
+    httpMethod: put
+    tag: Player
+    typeScriptTag: player
+    description: |
+      Start/Resume Playback
+    parameters:
+      - name: deviceId
+        schema: string
+        required: false
+        description: ''
+      - name: context_uri
+        schema: string
+        description: ''
+      - name: uris
+        schema: array
+        description: ''
+      - name: offset
+        schema: object
+        description: ''
+      - name: position_ms
+        schema: integer
+        description: ''
+    responses:
+      - statusCode: '204'
+        description: Playback started
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /me/player/pause
+    method: pausePlayback
+    httpMethod: put
+    tag: Player
+    typeScriptTag: player
+    description: |
+      Pause Playback
+    parameters:
+      - name: deviceId
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '204'
+        description: Playback paused
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /me/player/next
+    method: skipToNextTrack
+    httpMethod: post
+    tag: Player
+    typeScriptTag: player
+    description: |
+      Skip To Next
+    parameters:
+      - name: deviceId
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '204'
+        description: Command sent
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /me/player/previous
+    method: skipToPreviousTrack
+    httpMethod: post
+    tag: Player
+    typeScriptTag: player
+    description: |
+      Skip To Previous
+    parameters:
+      - name: deviceId
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '204'
+        description: Command sent
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /me/player/seek
+    method: seekToPosition
+    httpMethod: put
+    tag: Player
+    typeScriptTag: player
+    description: |
+      Seek To Position
+    parameters:
+      - name: positionMs
+        schema: integer
+        required: true
+        description: ''
+      - name: deviceId
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '204'
+        description: Command sent
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /me/player/repeat
+    method: setRepeatMode
+    httpMethod: put
+    tag: Player
+    typeScriptTag: player
+    description: |
+      Set Repeat Mode
+    parameters:
+      - name: state
+        schema: string
+        required: true
+        description: ''
+      - name: deviceId
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '204'
+        description: Command sent
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /me/player/volume
+    method: setPlaybackVolume
+    httpMethod: put
+    tag: Player
+    typeScriptTag: player
+    description: |
+      Set Playback Volume
+    parameters:
+      - name: volumePercent
+        schema: integer
+        required: true
+        description: ''
+      - name: deviceId
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '204'
+        description: Command sent
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /me/player/shuffle
+    method: togglePlaybackShuffle
+    httpMethod: put
+    tag: Player
+    typeScriptTag: player
+    description: |
+      Toggle Playback Shuffle
+    parameters:
+      - name: state
+        schema: boolean
+        required: true
+        description: ''
+      - name: deviceId
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '204'
+        description: Command sent
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /me/player/recently-played
+    method: getRecentlyPlayedTracks
+    httpMethod: get
+    tag: Player
+    typeScriptTag: player
+    description: |
+      Get Recently Played Tracks
+    parameters:
+      - name: limit
+        schema: integer
+        required: false
+        description: ''
+      - name: after
+        schema: integer
+        required: false
+        description: ''
+      - name: before
+        schema: integer
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /me/player/queue
+    method: getUserQueue
+    httpMethod: get
+    tag: Player
+    typeScriptTag: player
+    description: |
+      Get the User's Queue
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /me/player/queue
+    method: addItemToQueue
+    httpMethod: post
+    tag: Player
+    typeScriptTag: player
+    description: |
+      Add Item to Playback Queue
+    parameters:
+      - name: uri
+        schema: string
+        required: true
+        description: ''
+      - name: deviceId
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '204'
+        description: Command received
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /markets
+    method: listAvailable
+    httpMethod: get
+    tag: Markets
+    typeScriptTag: markets
+    description: |
+      Get Available Markets
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''

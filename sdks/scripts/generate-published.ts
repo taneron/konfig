@@ -12,6 +12,7 @@ import execa from "execa";
 import kebabcase from "lodash.kebabcase";
 import { PublishJson, publishJsonSchema } from "../src/publish-json-schema";
 import { getLocalKonfigCliVersion } from "../src/get-local-konfig-cli-version";
+import { hashRawSpecString } from "../src/hash-raw-spec-string";
 
 const publishJsonPath = path.join(path.dirname(__dirname), "publish.json");
 const specDataDirPath = path.join(path.dirname(__dirname), "db", "spec-data");
@@ -35,6 +36,11 @@ const fixedSpecsOutputPath = path.join(
   path.dirname(__dirname),
   "db",
   "fixed-specs"
+);
+const cachedMethodObjectsDirectoryPath = path.join(
+  path.dirname(__dirname),
+  "db",
+  "cached-method-objects"
 );
 const fixedSpecsCacheOutputPath = path.join(
   path.dirname(__dirname),
@@ -193,6 +199,37 @@ function saveFixedSpechCache({
   fs.writeFileSync(path, yaml.dump(cache));
 }
 
+type CachedMethodObjectsCache = {
+  hash: string;
+  methodObjects: ReturnType<typeof getMethodObjects>;
+};
+
+function getMethodObjectsCachePath(spec: string) {
+  return path.join(cachedMethodObjectsDirectoryPath, `${spec}.yaml`);
+}
+
+function getMethodObjectsCache(spec: string) {
+  const cachePath = getMethodObjectsCachePath(spec);
+  if (!fs.existsSync(cachePath)) {
+    return undefined;
+  }
+  const cache = yaml.load(
+    fs.readFileSync(cachePath, "utf-8")
+  ) as CachedMethodObjectsCache;
+  return cache;
+}
+
+function saveMethodObjectsCache({
+  spec,
+  cache,
+}: {
+  spec: string;
+  cache: CachedMethodObjectsCache;
+}) {
+  const cachePath = getMethodObjectsCachePath(spec);
+  fs.writeFileSync(cachePath, yaml.dump(cache));
+}
+
 async function main() {
   const publishJson: PublishJson = publishJsonSchema.parse(
     JSON.parse(fs.readFileSync(publishJsonPath, "utf-8"))
@@ -212,7 +249,7 @@ async function main() {
   const fixedSpecFileNames: Record<string, string> = {};
 
   /**
-   * First pass: write fixed specs to fixed-specs/
+   * (1) First pass: write fixed specs to fixed-specs/
    *
    * Note: This entire phase is cacheable by four things:
    * 1. Equality of publish.json entry
@@ -331,9 +368,17 @@ async function main() {
   console.log(`⏱️ Fixed all specs in ${(t2 - t1) / 1000} seconds`);
 
   /**
-   * Second pass: write to published/
+   * (2) Second pass: write to published/
+   *
    */
   for (const spec in publishDatum) {
+    const publishedPath = `${path.join(publishedDirPath, spec)}.json`;
+    /**
+     * We always add to publishedJsons because we want to delete any files in
+     * published/ that are not in publishedJsons
+     */
+    publishedJsons.add(publishedPath);
+
     const {
       openapiExamplesDirPath,
       nonEmptyCategories,
@@ -345,14 +390,9 @@ async function main() {
       metaDescription,
     } = publishDatum[spec];
     const specDataPath = path.join(specDataDirPath, spec);
-    const { categories, ...specData }: SdkPagePropsWithPropertiesOmitted =
-      JSON.parse(fs.readFileSync(`${specDataPath}.json`, "utf-8"));
-
-    const typescriptSdkUsageCode = generateTypescriptSdkUsageCode({
-      ...specData,
-      ...publishData,
-    });
-
+    const specData: SdkPagePropsWithPropertiesOmitted = JSON.parse(
+      fs.readFileSync(`${specDataPath}.json`, "utf-8")
+    );
     // write fixed oas to openapiExamples directory to file openapi.yaml
     const fixedSpecFileName = fixedSpecFileNames[spec];
     const fixedSpecPath = path.join(fixedSpecsOutputPath, fixedSpecFileName);
@@ -360,19 +400,56 @@ async function main() {
     if (fixedSpecString === "") {
       throw Error(`❌ ERROR: ${fixedSpecPath} is empty`);
     }
-    const oas = await parseSpec(fixedSpecString);
-    fs.writeFileSync(
-      path.join(openapiExamplesDirPath, "openapi.yaml"),
-      yaml.dump(oas.spec)
+    const openapiExamplesFilePath = path.join(
+      openapiExamplesDirPath,
+      "openapi.yaml"
     );
 
-    const serviceName = getServiceName({ publishData, specData });
+    /**
+     * 2.a Generate typescript SDK usage code to be embedded in pSEO pages
+     */
+    const typescriptSdkUsageCode = generateTypescriptSdkUsageCode({
+      ...specData,
+      ...publishData,
+    });
 
+    /**
+     * 2.b Generate method objects to be embedded in pSEO pages / write to openapi-examples
+     *
+     * Note: we can cache this based on two things the equality of fixedSpecString
+     * 1. Equality of fixedSpecString
+     * 2. The existence of OAS file in openapi-examples
+     */
+
+    const cachedMethodObjects = getMethodObjectsCache(spec);
+    const hash = hashRawSpecString(fixedSpecString);
+    const isCached =
+      cachedMethodObjects?.hash === hash &&
+      fs.existsSync(openapiExamplesFilePath);
+    let methods: ReturnType<typeof getMethodObjects> | null = null;
+    if (isCached) {
+      console.log(
+        `⚪️ Skipping getMethodObjects for ${spec} and writing to openapi-examples because it is cached`
+      );
+      methods = cachedMethodObjects?.methodObjects;
+    } else {
+      const oas = await parseSpec(fixedSpecString);
+      methods = getMethodObjects(oas);
+      fs.writeFileSync(openapiExamplesFilePath, yaml.dump(oas.spec));
+      saveMethodObjectsCache({ spec, cache: { hash, methodObjects: methods } });
+    }
+    if (methods === null) {
+      throw Error(`❌ ERROR: methods is null for ${spec}`);
+    }
+
+    /**
+     * 2.c Prepare to write to published/
+     */
     const merged: Published = {
       ...specData,
       ...publishData,
       categories: nonEmptyCategories,
-      methods: getMethodObjects(oas),
+      methods,
       metaDescription,
       originalSpecUrl: specData.openApiRaw,
       logo: `${githubUrlPrefix}${logoPath}`,
@@ -383,7 +460,7 @@ async function main() {
       lastUpdated: now,
       typescriptSdkUsageCode,
       fixedSpecFileName: fixedSpecFileNames[spec],
-      serviceName,
+      serviceName: getServiceName({ publishData, specData }),
     };
 
     if (
@@ -395,15 +472,13 @@ async function main() {
       );
     }
 
-    const publishedPath = path.join(publishedDirPath, spec);
-    publishedJsons.add(`${publishedPath}.json`);
-
+    /**
+     * 2.d Write to published/ if there are changes
+     */
     // check if JSON in published/ is exactly the same besides the "lastUpdated" property
-    const exists = fs.existsSync(`${publishedPath}.json`);
+    const exists = fs.existsSync(publishedPath);
     if (exists) {
-      const existing = JSON.parse(
-        fs.readFileSync(`${publishedPath}.json`, "utf-8")
-      );
+      const existing = JSON.parse(fs.readFileSync(publishedPath, "utf-8"));
 
       // temporarily "lastUpdated" property for comparison below
       // copy and delete the property to preserve lastUpdated for merged
@@ -419,7 +494,7 @@ async function main() {
 
     // write to "published/" directory
     console.log(`🔵 Writing ${publishedPath} to disk`);
-    fs.writeFileSync(`${publishedPath}.json`, JSON.stringify(merged, null, 2));
+    fs.writeFileSync(publishedPath, JSON.stringify(merged, null, 2));
   }
 
   // delete any specs that are not in publishedJsons

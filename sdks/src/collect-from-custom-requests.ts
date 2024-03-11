@@ -32,6 +32,7 @@ import {
 import { PuppeteerBlocker } from "@cliqz/adblocker-puppeteer";
 import fetch from "cross-fetch"; // required 'fetch'
 import crypto from "crypto";
+import { hashRawSpecString } from "./hash-raw-spec-string";
 
 /**
  * For describing a custom request to get an OAS
@@ -731,10 +732,6 @@ function getCachedProcessedCustomRequest({
   ) as CachedProcessedRequest;
 
   return processed;
-}
-
-function hashRawSpecString(rawSpecString: string) {
-  return crypto.createHash("sha256").update(rawSpecString).digest("hex");
 }
 
 /**

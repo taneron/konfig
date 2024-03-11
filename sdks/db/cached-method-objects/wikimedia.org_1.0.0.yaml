@@ -1,0 +1,1797 @@
+hash: a5671de9201445d3d63eb13372b0fbd749dfb915181302c4fe96630242a861c3
+methodObjects:
+  - url: /feed/availability
+    method: getByWikiDomain
+    httpMethod: get
+    tag: Feed content availability
+    typeScriptTag: feedContentAvailability
+    description: Gets availability of featured feed content for the apps by wiki domain.
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /media/math/check/{type}
+    method: checkFormula
+    httpMethod: post
+    tag: Math
+    typeScriptTag: math
+    description: Check and normalize a TeX formula.
+    parameters:
+      - name: type
+        schema: string
+        required: true
+        description: The input type of the given formula; can be tex or inline-tex
+      - name: q
+        schema: string
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: Information about the checked formula
+      - statusCode: '400'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /media/math/formula/{hash}
+    method: getFormulaByHash
+    httpMethod: get
+    tag: Math
+    typeScriptTag: math
+    description: Get a previously-stored formula
+    parameters:
+      - name: hash
+        schema: string
+        required: true
+        description: The hash string of the previous POST data
+    responses:
+      - statusCode: '200'
+        description: Information about the checked formula
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /media/math/render/{format}/{hash}
+    method: renderFormulaByHash
+    httpMethod: get
+    tag: Math
+    typeScriptTag: math
+    description: Get rendered formula in the given format.
+    parameters:
+      - name: format
+        schema: string
+        required: true
+        description: The output format; can be svg or mml
+      - name: hash
+        schema: string
+        required: true
+        description: The hash string of the previous POST data
+    responses:
+      - statusCode: '200'
+        description: The rendered formula
+      - statusCode: '404'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: >-
+      /metrics/bytes-difference/absolute/aggregate/{project}/{editor-type}/{page-type}/{granularity}/{start}/{end}
+    method: getAbsoluteAggregateByProjectAndDateRange
+    httpMethod: get
+    tag: Bytes difference data
+    typeScriptTag: bytesDifferenceData
+    description: >
+      Get the sum of absolute value of text bytes difference between current
+      edit and
+
+      previous one.
+    parameters:
+      - name: project
+        schema: string
+        required: true
+        description: >
+          The name of any Wikimedia project formatted like {language
+          code}.{project name},
+
+          for example en.wikipedia. You may pass en.wikipedia.org and the .org
+          will be stripped
+
+          off. For projects like commons without language codes, use
+          commons.wikimedia. For
+
+          projects like www.mediawiki.org, you can use that full string, or just
+          use mediawiki
+
+          or mediawiki.org. If you're interested in the aggregation of all
+          projects, use
+
+          all-projects.
+      - name: editorType
+        schema: string
+        required: true
+        description: >
+          If you want to filter by editor-type, use one of anonymous, group-bot
+          (registered
+
+          accounts belonging to the bot group), name-bot (registered accounts
+          not belonging to
+
+          the bot group but having bot-like names) or user (registered account
+          not in bot group
+
+          nor having bot-like name). If you are interested in edits regardless
+          of their
+
+          editor-type, use all-editor-types.
+      - name: pageType
+        schema: string
+        required: true
+        description: >
+          If you want to filter by page-type, use one of content (edits on pages
+          in content
+
+          namespaces) or non-content (edits on pages in non-content namespaces).
+          If you are
+
+          interested in edits regardless of their page-type, use all-page-types.
+      - name: granularity
+        schema: string
+        required: true
+        description: >
+          Time unit for the response data. As of today, supported values are
+          daily and monthly
+      - name: start
+        schema: string
+        required: true
+        description: The date of the first day to include, in YYYYMMDD format
+      - name: end
+        schema: string
+        required: true
+        description: The date of the last day to include, in YYYYMMDD format
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: >-
+      /metrics/bytes-difference/absolute/per-page/{project}/{page-title}/{editor-type}/{granularity}/{start}/{end}
+    method: getAbsolutePerPage
+    httpMethod: get
+    tag: Bytes difference data
+    typeScriptTag: bytesDifferenceData
+    description: Get the sum of absolute text bytes difference per page.
+    parameters:
+      - name: project
+        schema: string
+        required: true
+        description: >
+          The name of any Wikimedia project formatted like {language
+          code}.{project name},
+
+          for example en.wikipedia. You may pass en.wikipedia.org and the .org
+          will be stripped
+
+          off. For projects like commons without language codes, use
+          commons.wikimedia. For
+
+          projects like www.mediawiki.org, you can use that full string, or just
+          use mediawiki
+
+          or mediawiki.org.
+      - name: pageTitle
+        schema: string
+        required: true
+        description: >
+          The page-title to request absolute bytes-difference for. Should be
+          prefixed with the
+
+          page canonical namespace.
+      - name: editorType
+        schema: string
+        required: true
+        description: >
+          If you want to filter by editor-type, use one of anonymous, group-bot
+          (registered
+
+          accounts belonging to the bot group), name-bot (registered accounts
+          not belonging to
+
+          the bot group but having bot-like names) or user (registered account
+          not in bot group
+
+          nor having bot-like name). If you are interested in edits regardless
+          of their
+
+          editor-type, use all-editor-types.
+      - name: granularity
+        schema: string
+        required: true
+        description: >
+          Time unit for the response data. As of today, supported values are
+          daily and monthly
+      - name: start
+        schema: string
+        required: true
+        description: The date of the first day to include, in YYYYMMDD format
+      - name: end
+        schema: string
+        required: true
+        description: The date of the last day to include, in YYYYMMDD format
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: >-
+      /metrics/bytes-difference/net/aggregate/{project}/{editor-type}/{page-type}/{granularity}/{start}/{end}
+    method: getNetAggregateByProjectAndDateRange
+    httpMethod: get
+    tag: Bytes difference data
+    typeScriptTag: bytesDifferenceData
+    description: >-
+      Get the sum of net text bytes difference between current edit and previous
+      one.
+    parameters:
+      - name: project
+        schema: string
+        required: true
+        description: >
+          The name of any Wikimedia project formatted like {language
+          code}.{project name},
+
+          for example en.wikipedia. You may pass en.wikipedia.org and the .org
+          will be stripped
+
+          off. For projects like commons without language codes, use
+          commons.wikimedia. For
+
+          projects like www.mediawiki.org, you can use that full string, or just
+          use mediawiki
+
+          or mediawiki.org. If you're interested in the aggregation of all
+          projects, use
+
+          all-projects.
+      - name: editorType
+        schema: string
+        required: true
+        description: >
+          If you want to filter by editor-type, use one of anonymous, group-bot
+          (registered
+
+          accounts belonging to the bot group), name-bot (registered accounts
+          not belonging to
+
+          the bot group but having bot-like names) or user (registered account
+          not in bot group
+
+          nor having bot-like name). If you are interested in edits regardless
+          of their
+
+          editor-type, use all-editor-types.
+      - name: pageType
+        schema: string
+        required: true
+        description: >
+          If you want to filter by page-type, use one of content (edits on pages
+          in content
+
+          namespaces) or non-content (edits on pages in non-content namespaces).
+          If you are
+
+          interested in edits regardless of their page-type, use all-page-types.
+      - name: granularity
+        schema: string
+        required: true
+        description: >
+          Time unit for the response data. As of today, supported values are
+          daily and monthly
+      - name: start
+        schema: string
+        required: true
+        description: The date of the first day to include, in YYYYMMDD format
+      - name: end
+        schema: string
+        required: true
+        description: The date of the last day to include, in YYYYMMDD format
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: >-
+      /metrics/bytes-difference/net/per-page/{project}/{page-title}/{editor-type}/{granularity}/{start}/{end}
+    method: getSumNetTextBytesDifferencePerPage
+    httpMethod: get
+    tag: Bytes difference data
+    typeScriptTag: bytesDifferenceData
+    description: Get the sum of net text bytes difference per page.
+    parameters:
+      - name: project
+        schema: string
+        required: true
+        description: >
+          The name of any Wikimedia project formatted like {language
+          code}.{project name},
+
+          for example en.wikipedia. You may pass en.wikipedia.org and the .org
+          will be stripped
+
+          off. For projects like commons without language codes, use
+          commons.wikimedia. For
+
+          projects like www.mediawiki.org, you can use that full string, or just
+          use mediawiki
+
+          or mediawiki.org.
+      - name: pageTitle
+        schema: string
+        required: true
+        description: >
+          The page-title to request net bytes-difference for. Should be prefixed
+          with the
+
+          page canonical namespace.
+      - name: editorType
+        schema: string
+        required: true
+        description: >
+          If you want to filter by editor-type, use one of anonymous, group-bot
+          (registered
+
+          accounts belonging to the bot group), name-bot (registered accounts
+          not belonging to
+
+          the bot group but having bot-like names) or user (registered account
+          not in bot group
+
+          nor having bot-like name). If you are interested in edits regardless
+          of their
+
+          editor-type, use all-editor-types.
+      - name: granularity
+        schema: string
+        required: true
+        description: >
+          Time unit for the response data. As of today, supported values are
+          daily and monthly
+      - name: start
+        schema: string
+        required: true
+        description: The date of the first day to include, in YYYYMMDD format
+      - name: end
+        schema: string
+        required: true
+        description: The date of the last day to include, in YYYYMMDD format
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: >-
+      /metrics/edited-pages/aggregate/{project}/{editor-type}/{page-type}/{activity-level}/{granularity}/{start}/{end}
+    method: getAggregateByProjectAndDateRange
+    httpMethod: get
+    tag: Edited pages data
+    typeScriptTag: editedPagesData
+    description: Get edited-pages counts for a project.
+    parameters:
+      - name: project
+        schema: string
+        required: true
+        description: >
+          The name of any Wikimedia project formatted like {language
+          code}.{project name},
+
+          for example en.wikipedia. You may pass en.wikipedia.org and the .org
+          will be stripped
+
+          off.  For projects like commons without language codes, use
+          commons.wikimedia.
+
+          For projects like www.mediawiki.org, you can use that full string, or
+          just use
+
+          mediawiki or mediawiki.org.
+      - name: editorType
+        schema: string
+        required: true
+        description: >
+          If you want to filter by editor-type, use one of anonymous, group-bot
+          (registered
+
+          accounts belonging to the bot group), name-bot (registered accounts
+          not belonging to
+
+          the bot group but having bot-like names) or user (registered account
+          not in bot group
+
+          nor having bot-like name). If you are interested in edits regardless
+          of their
+
+          editor-type, use all-editor-types.
+      - name: pageType
+        schema: string
+        required: true
+        description: >
+          If you want to filter by page-type, use one of content (edited-pages
+          in content
+
+          namespaces) or non-content (edited-pages in non-content namespaces).
+          If you are
+
+          interested in edited-pages regardless of their page-type, use
+          all-page-types.
+      - name: activityLevel
+        schema: string
+        required: true
+        description: >
+          If you want to filter by activity-level, use one of 1..4-edits,
+          5..24-edits,
+
+          25..99-edits or 100..-edits. If you are interested in edited-pages
+          regardless
+
+          of their activity level, use all-activity-levels.
+      - name: granularity
+        schema: string
+        required: true
+        description: |
+          The time unit for the response data. As of today, supported values are
+          daily and monthly.
+      - name: start
+        schema: string
+        required: true
+        description: The date of the first day to include, in YYYYMMDD format
+      - name: end
+        schema: string
+        required: true
+        description: The date of the last day to include, in YYYYMMDD format
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: >-
+      /metrics/edited-pages/new/{project}/{editor-type}/{page-type}/{granularity}/{start}/{end}
+    method: getNewPagesCountsForProject
+    httpMethod: get
+    tag: Edited pages data
+    typeScriptTag: editedPagesData
+    description: Get new pages counts for a project.
+    parameters:
+      - name: project
+        schema: string
+        required: true
+        description: >
+          The name of any Wikimedia project formatted like {language
+          code}.{project name},
+
+          for example en.wikipedia. You may pass en.wikipedia.org and the .org
+          will be stripped
+
+          off.  For projects like commons without language codes, use
+          commons.wikimedia.
+
+          For projects like www.mediawiki.org, you can use that full string, or
+          just use
+
+          mediawiki or mediawiki.org. If you're interested in the aggregation of
+          all
+
+          projects, use all-projects.
+      - name: editorType
+        schema: string
+        required: true
+        description: >
+          If you want to filter by editor-type, use one of anonymous, group-bot
+          (registered
+
+          accounts belonging to the bot group), name-bot (registered accounts
+          not belonging
+
+          to the bot group but having bot-like names) or user (registered
+          account not in bot
+
+          group nor having bot-like name). If you are interested in edits
+          regardless of
+
+          their editor-type, use all-editor-types.
+      - name: pageType
+        schema: string
+        required: true
+        description: >
+          If you want to filter by page-type, use one of content (new pages in
+          content
+
+          namespaces) or non-content (new pages in non-content namespaces). If
+          you are
+
+          interested in new-articles regardless of their page-type, use
+          all-page-types.
+      - name: granularity
+        schema: string
+        required: true
+        description: |
+          The time unit for the response data. As of today, supported values are
+          daily and monthly.
+      - name: start
+        schema: string
+        required: true
+        description: The date of the first day to include, in YYYYMMDD format
+      - name: end
+        schema: string
+        required: true
+        description: The date of the last day to include, in YYYYMMDD format
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: >-
+      /metrics/edited-pages/top-by-absolute-bytes-difference/{project}/{editor-type}/{page-type}/{year}/{month}/{day}
+    method: getTopByAbsoluteBytesDifference
+    httpMethod: get
+    tag: Edited pages data
+    typeScriptTag: editedPagesData
+    description: Get top 100 edited-pages by absolute bytes-difference.
+    parameters:
+      - name: project
+        schema: string
+        required: true
+        description: >
+          The name of any Wikimedia project formatted like {language
+          code}.{project name},
+
+          for example en.wikipedia. You may pass en.wikipedia.org and the .org
+          will be stripped
+
+          off. For projects like commons without language codes, use
+          commons.wikimedia. For
+
+          projects like www.mediawiki.org, you can use that full string, or just
+          use mediawiki
+
+          or mediawiki.org.
+      - name: editorType
+        schema: string
+        required: true
+        description: >
+          If you want to filter by editor-type, use one of anonymous, group-bot
+          (registered
+
+          accounts belonging to the bot group), name-bot (registered accounts
+          not belonging to
+
+          the bot group but having bot-like names) or user (registered account
+          not in bot group
+
+          nor having bot-like name). If you are interested in edits regardless
+          of their
+
+          editor-type, use all-editor-types.
+      - name: pageType
+        schema: string
+        required: true
+        description: >
+          If you want to filter by page-type, use one of content (edits on pages
+          in content
+
+          namespaces) or non-content (edits on pages in non-content namespaces).
+          If you are
+
+          interested in edits regardless of their page-type, use all-page-types.
+      - name: year
+        schema: string
+        required: true
+        description: >-
+          The year of the date for which to retrieve top edited-pages, in YYYY
+          format.
+      - name: month
+        schema: string
+        required: true
+        description: >-
+          The month of the date for which to retrieve top edited-pages, in MM
+          format. If you want to get the top edited-pages of a whole month, the
+          day parameter should be all-days.
+      - name: day
+        schema: string
+        required: true
+        description: >-
+          The day of the date for which to retrieve top edited-pages, in DD
+          format, or all-days for a monthly value.
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: >-
+      /metrics/edited-pages/top-by-edits/{project}/{editor-type}/{page-type}/{year}/{month}/{day}
+    method: getTopByEditsCount
+    httpMethod: get
+    tag: Edited pages data
+    typeScriptTag: editedPagesData
+    description: Get top 100 edited-pages by edits count.
+    parameters:
+      - name: project
+        schema: string
+        required: true
+        description: >
+          The name of any Wikimedia project formatted like {language
+          code}.{project name},
+
+          for example en.wikipedia. You may pass en.wikipedia.org and the .org
+          will be stripped
+
+          off. For projects like commons without language codes, use
+          commons.wikimedia. For
+
+          projects like www.mediawiki.org, you can use that full string, or just
+          use mediawiki
+
+          or mediawiki.org.
+      - name: editorType
+        schema: string
+        required: true
+        description: >
+          If you want to filter by editor-type, use one of anonymous, group-bot
+          (registered
+
+          accounts belonging to the bot group), name-bot (registered accounts
+          not belonging to
+
+          the bot group but having bot-like names) or user (registered account
+          not in bot group
+
+          nor having bot-like name). If you are interested in edits regardless
+          of their
+
+          editor-type, use all-editor-types.
+      - name: pageType
+        schema: string
+        required: true
+        description: >
+          If you want to filter by page-type, use one of content (edits on pages
+          in content
+
+          namespaces) or non-content (edits on pages in non-content namespaces).
+          If you are
+
+          interested in edits regardless of their page-type, use all-page-types.
+      - name: year
+        schema: string
+        required: true
+        description: >-
+          The year of the date for which to retrieve top edited-pages, in YYYY
+          format.
+      - name: month
+        schema: string
+        required: true
+        description: >-
+          The month of the date for which to retrieve top edited-pages, in MM
+          format. If you want to get the top edited-pages of a whole month, the
+          day parameter should be all-days.
+      - name: day
+        schema: string
+        required: true
+        description: >-
+          The day of the date for which to retrieve top edited-pages, in DD
+          format, or all-days for a monthly value.
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: >-
+      /metrics/edited-pages/top-by-net-bytes-difference/{project}/{editor-type}/{page-type}/{year}/{month}/{day}
+    method: getTopByNetBytesDifference
+    httpMethod: get
+    tag: Edited pages data
+    typeScriptTag: editedPagesData
+    description: Get top 100 edited-pages by net bytes-difference.
+    parameters:
+      - name: project
+        schema: string
+        required: true
+        description: >
+          The name of any Wikimedia project formatted like {language
+          code}.{project name},
+
+          for example en.wikipedia. You may pass en.wikipedia.org and the .org
+          will be stripped
+
+          off. For projects like commons without language codes, use
+          commons.wikimedia. For
+
+          projects like www.mediawiki.org, you can use that full string, or just
+          use mediawiki
+
+          or mediawiki.org.
+      - name: editorType
+        schema: string
+        required: true
+        description: >
+          If you want to filter by editor-type, use one of anonymous, group-bot
+          (registered
+
+          accounts belonging to the bot group), name-bot (registered accounts
+          not belonging to
+
+          the bot group but having bot-like names) or user (registered account
+          not in bot group
+
+          nor having bot-like name). If you are interested in edits regardless
+          of their
+
+          editor-type, use all-editor-types.
+      - name: pageType
+        schema: string
+        required: true
+        description: >
+          If you want to filter by page-type, use one of content (edits on pages
+          in content
+
+          namespaces) or non-content (edits on pages in non-content namespaces).
+          If you are
+
+          interested in edits regardless of their page-type, use all-page-types.
+      - name: year
+        schema: string
+        required: true
+        description: >-
+          The year of the date for which to retrieve top edited-pages, in YYYY
+          format.
+      - name: month
+        schema: string
+        required: true
+        description: >-
+          The month of the date for which to retrieve top edited-pages, in MM
+          format. If you want to get the top edited-pages of a whole month, the
+          day parameter should be all-days.
+      - name: day
+        schema: string
+        required: true
+        description: >-
+          The day of the date for which to retrieve top edited-pages, in DD
+          format, or all-days for a monthly value.
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: >-
+      /metrics/editors/aggregate/{project}/{editor-type}/{page-type}/{activity-level}/{granularity}/{start}/{end}
+    method: getEditorsCountsForProject
+    httpMethod: get
+    tag: Editors data
+    typeScriptTag: editorsData
+    description: Get editors counts for a project.
+    parameters:
+      - name: project
+        schema: string
+        required: true
+        description: >
+          The name of any Wikimedia project formatted like {language
+          code}.{project name},
+
+          for example en.wikipedia. You may pass en.wikipedia.org and the .org
+          will be stripped
+
+          off.  For projects like commons without language codes, use
+          commons.wikimedia.
+
+          For projects like www.mediawiki.org, you can use that full string, or
+          just use
+
+          mediawiki or mediawiki.org.
+      - name: editorType
+        schema: string
+        required: true
+        description: >
+          If you want to filter by editor-type, use one of anonymous, group-bot
+          (registered
+
+          accounts belonging to the bot group), name-bot (registered accounts
+          not belonging
+
+          to the bot group but having bot-like names) or user (registered
+          account not in bot
+
+          group nor having bot-like name). If you are interested in edits
+          regardless
+
+          of their editor-type, use all-editor-types.
+      - name: pageType
+        schema: string
+        required: true
+        description: >
+          If you want to filter by page-type, use one of content (edits made in
+          content
+
+          namespaces) or non-content (edits made in non-content namespaces). If
+          you are
+
+          interested in editors regardless of their page-type, use
+          all-page-types.
+      - name: activityLevel
+        schema: string
+        required: true
+        description: >
+          If you want to filter by activity-level, use one of 1..4-edits,
+          5..24-edits,
+
+          25..99-edits or 100..-edits. If you are interested in editors
+          regardless
+
+          of their activity-level, use all-activity-levels.
+      - name: granularity
+        schema: string
+        required: true
+        description: |
+          The time unit for the response data. As of today, supported values are
+          daily and monthly.
+      - name: start
+        schema: string
+        required: true
+        description: The date of the first day to include, in YYYYMMDD format
+      - name: end
+        schema: string
+        required: true
+        description: The date of the last day to include, in YYYYMMDD format
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: >-
+      /metrics/editors/top-by-absolute-bytes-difference/{project}/{editor-type}/{page-type}/{year}/{month}/{day}
+    method: getTopByAbsoluteBytesDifference
+    httpMethod: get
+    tag: Editors data
+    typeScriptTag: editorsData
+    description: Get top 100 editors by absolute bytes-difference.
+    parameters:
+      - name: project
+        schema: string
+        required: true
+        description: >
+          The name of any Wikimedia project formatted like {language
+          code}.{project name},
+
+          for example en.wikipedia. You may pass en.wikipedia.org and the .org
+          will be stripped
+
+          off. For projects like commons without language codes, use
+          commons.wikimedia. For
+
+          projects like www.mediawiki.org, you can use that full string, or just
+          use mediawiki
+
+          or mediawiki.org.
+      - name: editorType
+        schema: string
+        required: true
+        description: >
+          If you want to filter by editor-type, use one of anonymous, group-bot
+          (registered
+
+          accounts belonging to the bot group), name-bot (registered accounts
+          not belonging to
+
+          the bot group but having bot-like names) or user (registered account
+          not in bot group
+
+          nor having bot-like name). If you are interested in edits regardless
+          of their
+
+          editor-type, use all-editor-types.
+      - name: pageType
+        schema: string
+        required: true
+        description: >
+          If you want to filter by page-type, use one of content (edits on pages
+          in content
+
+          namespaces) or non-content (edits on pages in non-content namespaces).
+          If you are
+
+          interested in edits regardless of their page-type, use all-page-types.
+      - name: year
+        schema: string
+        required: true
+        description: >-
+          The year of the date for which to retrieve top editors, in YYYY
+          format.
+      - name: month
+        schema: string
+        required: true
+        description: >-
+          The month of the date for which to retrieve top editors, in MM format.
+          If you want to get the top editors of a whole month, the day parameter
+          should be all-days.
+      - name: day
+        schema: string
+        required: true
+        description: >-
+          The day of the date for which to retrieve top editors, in DD format,
+          or all-days for a monthly value.
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: >-
+      /metrics/editors/top-by-edits/{project}/{editor-type}/{page-type}/{year}/{month}/{day}
+    method: getTopEditorsByEditsCount
+    httpMethod: get
+    tag: Editors data
+    typeScriptTag: editorsData
+    description: Get top 100 editors by edits count.
+    parameters:
+      - name: project
+        schema: string
+        required: true
+        description: >
+          The name of any Wikimedia project formatted like {language
+          code}.{project name},
+
+          for example en.wikipedia. You may pass en.wikipedia.org and the .org
+          will be stripped
+
+          off. For projects like commons without language codes, use
+          commons.wikimedia. For
+
+          projects like www.mediawiki.org, you can use that full string, or just
+          use mediawiki
+
+          or mediawiki.org.
+      - name: editorType
+        schema: string
+        required: true
+        description: >
+          If you want to filter by editor-type, use one of anonymous, group-bot
+          (registered
+
+          accounts belonging to the bot group), name-bot (registered accounts
+          not belonging to
+
+          the bot group but having bot-like names) or user (registered account
+          not in bot group
+
+          nor having bot-like name). If you are interested in edits regardless
+          of their
+
+          editor-type, use all-editor-types.
+      - name: pageType
+        schema: string
+        required: true
+        description: >
+          If you want to filter by page-type, use one of content (edits on pages
+          in content
+
+          namespaces) or non-content (edits on pages in non-content namespaces).
+          If you are
+
+          interested in edits regardless of their page-type, use all-page-types.
+      - name: year
+        schema: string
+        required: true
+        description: >-
+          The year of the date for which to retrieve top editors, in YYYY
+          format.
+      - name: month
+        schema: string
+        required: true
+        description: >-
+          The month of the date for which to retrieve top editors, in MM format.
+          If you want to get the top editors of a whole month, the day parameter
+          should be all-days.
+      - name: day
+        schema: string
+        required: true
+        description: >-
+          The day of the date for which to retrieve top editors, in DD format,
+          or all-days for a monthly value.
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: >-
+      /metrics/editors/top-by-net-bytes-difference/{project}/{editor-type}/{page-type}/{year}/{month}/{day}
+    method: getTopByNetBytesDifference
+    httpMethod: get
+    tag: Editors data
+    typeScriptTag: editorsData
+    description: Get top 100 editors by net bytes-difference.
+    parameters:
+      - name: project
+        schema: string
+        required: true
+        description: >
+          The name of any Wikimedia project formatted like {language
+          code}.{project name},
+
+          for example en.wikipedia. You may pass en.wikipedia.org and the .org
+          will be stripped
+
+          off. For projects like commons without language codes, use
+          commons.wikimedia. For
+
+          projects like www.mediawiki.org, you can use that full string, or just
+          use mediawiki
+
+          or mediawiki.org.
+      - name: editorType
+        schema: string
+        required: true
+        description: >
+          If you want to filter by editor-type, use one of anonymous, group-bot
+          (registered
+
+          accounts belonging to the bot group), name-bot (registered accounts
+          not belonging to
+
+          the bot group but having bot-like names) or user (registered account
+          not in bot group
+
+          nor having bot-like name). If you are interested in edits regardless
+          of their
+
+          editor-type, use all-editor-types.
+      - name: pageType
+        schema: string
+        required: true
+        description: >
+          If you want to filter by page-type, use one of content (edits on pages
+          in content
+
+          namespaces) or non-content (edits on pages in non-content namespaces).
+          If you are
+
+          interested in edits regardless of their page-type, use all-page-types.
+      - name: year
+        schema: string
+        required: true
+        description: >-
+          The year of the date for which to retrieve top editors, in YYYY
+          format.
+      - name: month
+        schema: string
+        required: true
+        description: >-
+          The month of the date for which to retrieve top editors, in MM format.
+          If you want to get the top editors of a whole month, the day parameter
+          should be all-days.
+      - name: day
+        schema: string
+        required: true
+        description: >-
+          The day of the date for which to retrieve top editors, in DD format,
+          or all-days for a monthly value.
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: >-
+      /metrics/edits/aggregate/{project}/{editor-type}/{page-type}/{granularity}/{start}/{end}
+    method: getEditsCountsForProject
+    httpMethod: get
+    tag: Edits data
+    typeScriptTag: editsData
+    description: Get edits counts for a project.
+    parameters:
+      - name: project
+        schema: string
+        required: true
+        description: >
+          The name of any Wikimedia project formatted like {language
+          code}.{project name},
+
+          for example en.wikipedia. You may pass en.wikipedia.org and the .org
+          will be stripped
+
+          off.  For projects like commons without language codes, use
+          commons.wikimedia.
+
+          For projects like www.mediawiki.org, you can use that full string, or
+          just use
+
+          mediawiki or mediawiki.org. If you're interested in the aggregation of
+
+          all projects, use all-projects.
+      - name: editorType
+        schema: string
+        required: true
+        description: >
+          If you want to filter by editor-type, use one of anonymous, group-bot
+          (registered
+
+          accounts belonging to the bot group), name-bot (registered accounts
+          not belonging
+
+          to the bot group but having bot-like names) or user (registered
+          account not in bot
+
+          group nor having bot-like name). If you are interested in edits
+          regardless
+
+          of their editor-type, use all-editor-types.
+      - name: pageType
+        schema: string
+        required: true
+        description: >
+          If you want to filter by page-type, use one of content (edits on pages
+          in content
+
+          namespaces) or non-content (edits on pages in non-content namespaces).
+          If you are
+
+          interested in edits regardless of their page-type, use all-page-types.
+      - name: granularity
+        schema: string
+        required: true
+        description: |
+          The time unit for the response data. As of today, supported values are
+          daily and monthly.
+      - name: start
+        schema: string
+        required: true
+        description: The date of the first day to include, in YYYYMMDD format
+      - name: end
+        schema: string
+        required: true
+        description: The date of the last day to include, in YYYYMMDD format
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: >-
+      /metrics/edits/per-page/{project}/{page-title}/{editor-type}/{granularity}/{start}/{end}
+    method: getPageEditCounts
+    httpMethod: get
+    tag: Edits data
+    typeScriptTag: editsData
+    description: Get edit counts for a page in a project.
+    parameters:
+      - name: project
+        schema: string
+        required: true
+        description: >
+          The name of any Wikimedia project formatted like {language
+          code}.{project name},
+
+          for example en.wikipedia. You may pass en.wikipedia.org and the .org
+          will be stripped
+
+          off. For projects like commons without language codes, use
+          commons.wikimedia. For
+
+          projects like www.mediawiki.org, you can use that full string, or just
+          use mediawiki
+
+          or mediawiki.org.
+      - name: pageTitle
+        schema: string
+        required: true
+        description: >
+          The page-title to request edits for. It should be prefixed with
+          canonical namespace.
+
+          Spaces will be converted to underscores.
+      - name: editorType
+        schema: string
+        required: true
+        description: >
+          If you want to filter by editor-type, use one of anonymous, group-bot
+          (registered
+
+          accounts belonging to the bot group), name-bot (registered accounts
+          not belonging to
+
+          the bot group but having bot-like names) or user (registered account
+          not in bot group
+
+          nor having bot-like name). If you are interested in edits regardless
+          of their
+
+          editor-type, use all-editor-types.
+      - name: granularity
+        schema: string
+        required: true
+        description: >
+          Time unit for the response data. As of today, supported values are
+          daily and monthly
+      - name: start
+        schema: string
+        required: true
+        description: The date of the first day to include, in YYYYMMDD format
+      - name: end
+        schema: string
+        required: true
+        description: The date of the last day to include, in YYYYMMDD format
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: >-
+      /metrics/legacy/pagecounts/aggregate/{project}/{access-site}/{granularity}/{start}/{end}
+    method: getPagecountsAggregateByProjectAndDateRange
+    httpMethod: get
+    tag: Legacy data
+    typeScriptTag: legacyData
+    description: >
+      Given a project and a date range, returns a timeseries of pagecounts.
+
+      You can filter by access site (mobile or desktop) and you can choose
+      between monthly,
+
+      daily and hourly granularity as well.
+
+
+      - Stability:
+      [experimental](https://www.mediawiki.org/wiki/API_versioning#Experimental)
+
+      - Rate limit: 100 req/s
+
+      - License: Data accessible via this endpoint is available under the
+        [CC0 1.0 license](https://creativecommons.org/publicdomain/zero/1.0/).
+    parameters:
+      - name: project
+        schema: string
+        required: true
+        description: >
+          The name of any Wikimedia project formatted like {language
+          code}.{project name},
+
+          for example en.wikipedia. You may pass en.wikipedia.org and the .org
+          will be stripped
+
+          off. For projects like commons without language codes, use
+          commons.wikimedia.
+      - name: accessSite
+        schema: string
+        required: true
+        description: >-
+          If you want to filter by access site, use one of desktop-site or
+          mobile-site. If you are interested in pagecounts regardless of access
+          site use all-sites.
+      - name: granularity
+        schema: string
+        required: true
+        description: >
+          The time unit for the response data. As of today, the supported
+          granularities for
+
+          this endpoint are hourly, daily and monthly.
+      - name: start
+        schema: string
+        required: true
+        description: >-
+          The timestamp of the first hour/day/month to include, in YYYYMMDDHH
+          format.
+      - name: end
+        schema: string
+        required: true
+        description: >
+          The timestamp of the last hour/day/month to include, in YYYYMMDDHH
+          format.
+
+          In hourly and daily granularities this value is inclusive, in the
+          monthly granularity
+
+          this value is exclusive.
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: >-
+      /metrics/pageviews/aggregate/{project}/{access}/{agent}/{granularity}/{start}/{end}
+    method: getPageviewCountsByProject
+    httpMethod: get
+    tag: Pageviews data
+    typeScriptTag: pageviewsData
+    description: Get pageview counts for a project.
+    parameters:
+      - name: project
+        schema: string
+        required: true
+        description: >
+          If you want to filter by project, use the domain of any Wikimedia
+          project,
+
+          for example 'en.wikipedia.org', 'www.mediawiki.org' or
+          'commons.wikimedia.org'.
+
+          If you are interested in all pageviews regardless of project, use
+          all-projects.
+      - name: access
+        schema: string
+        required: true
+        description: >
+          If you want to filter by access method, use one of desktop, mobile-app
+          or mobile-web.
+
+          If you are interested in pageviews regardless of access method, use
+          all-access.
+      - name: agent
+        schema: string
+        required: true
+        description: >
+          If you want to filter by agent type, use one of user or spider. If you
+          are interested
+
+          in pageviews regardless of agent type, use all-agents.
+      - name: granularity
+        schema: string
+        required: true
+        description: >
+          The time unit for the response data. As of today, the supported
+          granularities for this
+
+          endpoint are hourly, daily, and monthly.
+      - name: start
+        schema: string
+        required: true
+        description: >-
+          The timestamp of the first hour/day/month to include, in YYYYMMDDHH
+          format
+      - name: end
+        schema: string
+        required: true
+        description: >-
+          The timestamp of the last hour/day/month to include, in YYYYMMDDHH
+          format
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: >-
+      /metrics/pageviews/per-article/{project}/{access}/{agent}/{article}/{granularity}/{start}/{end}
+    method: getPageviewCountsByArticleDateRange
+    httpMethod: get
+    tag: Pageviews data
+    typeScriptTag: pageviewsData
+    description: Get pageview counts for a page.
+    parameters:
+      - name: project
+        schema: string
+        required: true
+        description: >
+          If you want to filter by project, use the domain of any Wikimedia
+          project,
+
+          for example 'en.wikipedia.org', 'www.mediawiki.org' or
+          'commons.wikimedia.org'.
+      - name: access
+        schema: string
+        required: true
+        description: >
+          If you want to filter by access method, use one of desktop, mobile-app
+
+          or mobile-web. If you are interested in pageviews regardless of access
+          method,
+
+          use all-access.
+      - name: agent
+        schema: string
+        required: true
+        description: >
+          If you want to filter by agent type, use one of user, bot or spider.
+          If you are
+
+          interested in pageviews regardless of agent type, use all-agents.
+      - name: article
+        schema: string
+        required: true
+        description: >
+          'The title of any article in the specified project. Any spaces should
+          be replaced
+
+          with underscores. It also should be URI-encoded, so that non-URI-safe
+          characters like
+
+          %, / or ? are accepted. Example: Are_You_the_One%3F'.
+      - name: granularity
+        schema: string
+        required: true
+        description: >
+          The time unit for the response data. As of today, the only supported
+          granularity for
+
+          this endpoint is daily and monthly.
+      - name: start
+        schema: string
+        required: true
+        description: The date of the first day to include, in YYYYMMDD or YYYYMMDDHH format
+      - name: end
+        schema: string
+        required: true
+        description: The date of the last day to include, in YYYYMMDD or YYYYMMDDHH format
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /metrics/pageviews/top-by-country/{project}/{access}/{year}/{month}
+    method: listByCountryAndAccess
+    httpMethod: get
+    tag: Pageviews data
+    typeScriptTag: pageviewsData
+    description: Get pageviews by country and access method.
+    parameters:
+      - name: project
+        schema: string
+        required: true
+        description: >
+          If you want to filter by project, use the domain of any Wikimedia
+          project,
+
+          for example 'en.wikipedia.org', 'www.mediawiki.org' or
+          'commons.wikimedia.org'.
+      - name: access
+        schema: string
+        required: true
+        description: >
+          If you want to filter by access method, use one of desktop, mobile-app
+          or mobile-web.
+
+          If you are interested in pageviews regardless of access method, use
+          all-access.
+      - name: year
+        schema: string
+        required: true
+        description: >-
+          The year of the date for which to retrieve top countries, in YYYY
+          format.
+      - name: month
+        schema: string
+        required: true
+        description: >
+          The month of the date for which to retrieve top countries, in MM
+          format.
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /metrics/pageviews/top/{project}/{access}/{year}/{month}/{day}
+    method: listMostViewedArticlesByProjectAndTimespan
+    httpMethod: get
+    tag: Pageviews data
+    typeScriptTag: pageviewsData
+    description: Get the most viewed articles for a project.
+    parameters:
+      - name: project
+        schema: string
+        required: true
+        description: >
+          If you want to filter by project, use the domain of any Wikimedia
+          project,
+
+          for example 'en.wikipedia.org', 'www.mediawiki.org' or
+          'commons.wikimedia.org'.
+      - name: access
+        schema: string
+        required: true
+        description: >
+          If you want to filter by access method, use one of desktop, mobile-app
+          or mobile-web.
+
+          If you are interested in pageviews regardless of access method, use
+          all-access.
+      - name: year
+        schema: string
+        required: true
+        description: >-
+          The year of the date for which to retrieve top articles, in YYYY
+          format.
+      - name: month
+        schema: string
+        required: true
+        description: >
+          The month of the date for which to retrieve top articles, in MM
+          format. If you want
+
+          to get the top articles of a whole month, the day parameter should be
+          all-days.
+      - name: day
+        schema: string
+        required: true
+        description: The day of the date for which to retrieve top articles, in DD format.
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /metrics/registered-users/new/{project}/{granularity}/{start}/{end}
+    method: getNewUserCountsByProjectAndDateRange
+    httpMethod: get
+    tag: Registered users data
+    typeScriptTag: registeredUsersData
+    description: Get newly registered users counts for a project.
+    parameters:
+      - name: project
+        schema: string
+        required: true
+        description: >
+          The name of any Wikimedia project formatted like {language
+          code}.{project name},
+
+          for example en.wikipedia. You may pass en.wikipedia.org and the .org
+          will be stripped
+
+          off.  For projects like commons without language codes, use
+          commons.wikimedia.
+
+          For projects like www.mediawiki.org, you can use that full string, or
+          just use
+
+          mediawiki or mediawiki.org. If you're interested in the aggregation of
+
+          all projects, use all.
+      - name: granularity
+        schema: string
+        required: true
+        description: |
+          The time unit for the response data. As of today, supported values are
+          daily and monthly.
+      - name: start
+        schema: string
+        required: true
+        description: The date of the first day to include, in YYYYMMDD format
+      - name: end
+        schema: string
+        required: true
+        description: The date of the last day to include, in YYYYMMDD format
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: >-
+      /metrics/unique-devices/{project}/{access-site}/{granularity}/{start}/{end}
+    method: getByProjectAndDateRange
+    httpMethod: get
+    tag: Unique devices data
+    typeScriptTag: uniqueDevicesData
+    description: Get unique devices count per project
+    parameters:
+      - name: project
+        schema: string
+        required: true
+        description: >
+          If you want to filter by project, use the domain of any Wikimedia
+          project,
+
+          for example 'en.wikipedia.org', 'www.mediawiki.org' or
+          'commons.wikimedia.org'.
+      - name: accessSite
+        schema: string
+        required: true
+        description: >
+          If you want to filter by accessed site, use one of desktop-site or
+          mobile-site.
+
+          If you are interested in unique devices regardless of accessed site,
+          use or all-sites.
+      - name: granularity
+        schema: string
+        required: true
+        description: >
+          The time unit for the response data. As of today, the supported
+          granularities
+
+          for this endpoint are daily and monthly.
+      - name: start
+        schema: string
+        required: true
+        description: The timestamp of the first day/month to include, in YYYYMMDD format
+      - name: end
+        schema: string
+        required: true
+        description: The timestamp of the last day/month to include, in YYYYMMDD format
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /transform/html/from/{from_lang}/to/{to_lang}
+    method: contentMachineTranslate
+    httpMethod: post
+    tag: Transform
+    typeScriptTag: transform
+    description: Machine-translate content
+    parameters:
+      - name: fromLang
+        schema: string
+        required: true
+        description: The source language code
+      - name: toLang
+        schema: string
+        required: true
+        description: The target language code
+      - name: html
+        schema: string
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /transform/html/from/{from_lang}/to/{to_lang}/{provider}
+    method: contentMachineTranslate
+    httpMethod: post
+    tag: Transform
+    typeScriptTag: transform
+    description: Machine-translate content
+    parameters:
+      - name: fromLang
+        schema: string
+        required: true
+        description: The source language code
+      - name: toLang
+        schema: string
+        required: true
+        description: The target language code
+      - name: provider
+        schema: string
+        required: true
+        description: The machine translation provider id
+      - name: html
+        schema: string
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /transform/list/tool/{tool}
+    method: getListToolLanguagePairs
+    httpMethod: get
+    tag: Transform
+    typeScriptTag: transform
+    description: Lists the tools and language pairs available for the given tool category
+    parameters:
+      - name: tool
+        schema: string
+        required: true
+        description: The tool category to list tools and language pairs for
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /transform/list/tool/{tool}/{from}
+    method: toolLanguagePairsList
+    httpMethod: get
+    tag: Transform
+    typeScriptTag: transform
+    description: Lists the tools and language pairs available for the given tool category
+    parameters:
+      - name: tool
+        schema: string
+        required: true
+        description: The tool category to list tools and language pairs for
+      - name: from
+        schema: string
+        required: true
+        description: The source language code
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /transform/list/tool/{tool}/{from}/{to}
+    method: toolLanguagePairsList
+    httpMethod: get
+    tag: Transform
+    typeScriptTag: transform
+    description: Lists the tools and language pairs available for the given tool category
+    parameters:
+      - name: tool
+        schema: string
+        required: true
+        description: The tool category to list tools and language pairs for
+      - name: from
+        schema: string
+        required: true
+        description: The source language code
+      - name: to
+        schema: string
+        required: true
+        description: The target language code
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /transform/word/from/{from_lang}/to/{to_lang}/{word}
+    method: getDictionaryMeaning
+    httpMethod: get
+    tag: Transform
+    typeScriptTag: transform
+    description: Fetch the dictionary meaning of a word
+    parameters:
+      - name: fromLang
+        schema: string
+        required: true
+        description: The source language code
+      - name: toLang
+        schema: string
+        required: true
+        description: The target language code
+      - name: word
+        schema: string
+        required: true
+        description: The word to lookup
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /transform/word/from/{from_lang}/to/{to_lang}/{word}/{provider}
+    method: getDictionaryMeaning
+    httpMethod: get
+    tag: Transform
+    typeScriptTag: transform
+    description: Fetch the dictionary meaning of a word
+    parameters:
+      - name: fromLang
+        schema: string
+        required: true
+        description: The source language code
+      - name: toLang
+        schema: string
+        required: true
+        description: The target language code
+      - name: word
+        schema: string
+        required: true
+        description: The word to lookup
+      - name: provider
+        schema: string
+        required: true
+        description: The dictionary provider id
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''
+  - url: /transform/list/languagepairs
+    method: listLanguagePairs
+    httpMethod: get
+    tag: Transform
+    typeScriptTag: transform
+    description: Lists the language pairs supported by the back-end
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /transform/list/pair/{from}/{to}
+    method: languagePairList
+    httpMethod: get
+    tag: Transform
+    typeScriptTag: transform
+    description: Lists the tools available for a language pair
+    parameters:
+      - name: from
+        schema: string
+        required: true
+        description: The source language code
+      - name: to
+        schema: string
+        required: true
+        description: The target language code
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: ''

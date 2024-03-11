@@ -1,0 +1,764 @@
+hash: 0858fa903b17ab05f58db99bd04330a9068f085da2106bfdd1517b68b418dac0
+methodObjects:
+  - url: /account-access-consents
+    method: createConsent
+    httpMethod: post
+    tag: Account Access Consents
+    typeScriptTag: accountAccessConsents
+    description: Create Account Access Consents
+    parameters:
+      - name: xFapiAuthDate
+        schema: string
+        required: false
+        description: >-
+          The time when the PSU last logged in with the TPP. 
+
+          All dates in the HTTP headers are represented as RFC 7231 Full Dates.
+          An example is below: 
+
+          Sun, 10 Sep 2017 19:43:31 UTC
+      - name: xFapiCustomerIpAddress
+        schema: string
+        required: false
+        description: The PSU's IP address if the PSU is currently logged in with the TPP.
+      - name: xFapiInteractionId
+        schema: string
+        required: false
+        description: An RFC4122 UID used as a correlation id.
+      - name: xCustomerUserAgent
+        schema: string
+        required: false
+        description: Indicates the user-agent that the PSU is using.
+      - name: Data
+        schema: object
+        required: true
+        description: ''
+      - name: Risk
+        schema: object
+        required: true
+        description: ''
+    responses:
+      - statusCode: '201'
+        description: ''
+      - statusCode: '400'
+        description: >-
+          An array of detail error codes, and messages, and URLs to
+          documentation to help remediation.
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: >-
+          An array of detail error codes, and messages, and URLs to
+          documentation to help remediation.
+      - statusCode: '405'
+        description: ''
+      - statusCode: '406'
+        description: ''
+      - statusCode: '415'
+        description: ''
+      - statusCode: '429'
+        description: ''
+      - statusCode: '500'
+        description: >-
+          An array of detail error codes, and messages, and URLs to
+          documentation to help remediation.
+  - url: /account-access-consents/{ConsentId}
+    method: deleteConsent
+    httpMethod: delete
+    tag: Account Access Consents
+    typeScriptTag: accountAccessConsents
+    description: Delete Account Access Consents
+    parameters:
+      - name: consentId
+        schema: string
+        required: true
+        description: ConsentId
+      - name: xFapiAuthDate
+        schema: string
+        required: false
+        description: >-
+          The time when the PSU last logged in with the TPP. 
+
+          All dates in the HTTP headers are represented as RFC 7231 Full Dates.
+          An example is below: 
+
+          Sun, 10 Sep 2017 19:43:31 UTC
+      - name: xFapiCustomerIpAddress
+        schema: string
+        required: false
+        description: The PSU's IP address if the PSU is currently logged in with the TPP.
+      - name: xFapiInteractionId
+        schema: string
+        required: false
+        description: An RFC4122 UID used as a correlation id.
+      - name: xCustomerUserAgent
+        schema: string
+        required: false
+        description: Indicates the user-agent that the PSU is using.
+    responses:
+      - statusCode: '204'
+        description: ''
+      - statusCode: '400'
+        description: >-
+          An array of detail error codes, and messages, and URLs to
+          documentation to help remediation.
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: >-
+          An array of detail error codes, and messages, and URLs to
+          documentation to help remediation.
+      - statusCode: '405'
+        description: ''
+      - statusCode: '406'
+        description: ''
+      - statusCode: '429'
+        description: ''
+      - statusCode: '500'
+        description: >-
+          An array of detail error codes, and messages, and URLs to
+          documentation to help remediation.
+  - url: /account-access-consents/{ConsentId}
+    method: getByConsentId
+    httpMethod: get
+    tag: Account Access Consents
+    typeScriptTag: accountAccessConsents
+    description: Get Account Access Consents
+    parameters:
+      - name: consentId
+        schema: string
+        required: true
+        description: ConsentId
+      - name: xFapiAuthDate
+        schema: string
+        required: false
+        description: >-
+          The time when the PSU last logged in with the TPP. 
+
+          All dates in the HTTP headers are represented as RFC 7231 Full Dates.
+          An example is below: 
+
+          Sun, 10 Sep 2017 19:43:31 UTC
+      - name: xFapiCustomerIpAddress
+        schema: string
+        required: false
+        description: The PSU's IP address if the PSU is currently logged in with the TPP.
+      - name: xFapiInteractionId
+        schema: string
+        required: false
+        description: An RFC4122 UID used as a correlation id.
+      - name: xCustomerUserAgent
+        schema: string
+        required: false
+        description: Indicates the user-agent that the PSU is using.
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: >-
+          An array of detail error codes, and messages, and URLs to
+          documentation to help remediation.
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: >-
+          An array of detail error codes, and messages, and URLs to
+          documentation to help remediation.
+      - statusCode: '405'
+        description: ''
+      - statusCode: '406'
+        description: ''
+      - statusCode: '429'
+        description: ''
+      - statusCode: '500'
+        description: >-
+          An array of detail error codes, and messages, and URLs to
+          documentation to help remediation.
+  - url: /accounts
+    method: getAll
+    httpMethod: get
+    tag: Accounts
+    typeScriptTag: accounts
+    description: Get Accounts
+    parameters:
+      - name: xFapiAuthDate
+        schema: string
+        required: false
+        description: >-
+          The time when the PSU last logged in with the TPP. 
+
+          All dates in the HTTP headers are represented as RFC 7231 Full Dates.
+          An example is below: 
+
+          Sun, 10 Sep 2017 19:43:31 UTC
+      - name: xFapiCustomerIpAddress
+        schema: string
+        required: false
+        description: The PSU's IP address if the PSU is currently logged in with the TPP.
+      - name: xFapiInteractionId
+        schema: string
+        required: false
+        description: An RFC4122 UID used as a correlation id.
+      - name: xCustomerUserAgent
+        schema: string
+        required: false
+        description: Indicates the user-agent that the PSU is using.
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: >-
+          An array of detail error codes, and messages, and URLs to
+          documentation to help remediation.
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: >-
+          An array of detail error codes, and messages, and URLs to
+          documentation to help remediation.
+      - statusCode: '405'
+        description: ''
+      - statusCode: '406'
+        description: ''
+      - statusCode: '429'
+        description: ''
+      - statusCode: '500'
+        description: >-
+          An array of detail error codes, and messages, and URLs to
+          documentation to help remediation.
+  - url: /accounts/{AccountId}
+    method: getBalancesByAccountId
+    httpMethod: get
+    tag: Accounts
+    typeScriptTag: accounts
+    description: Get Accounts by AccountId
+    parameters:
+      - name: accountId
+        schema: string
+        required: true
+        description: AccountId
+      - name: xFapiAuthDate
+        schema: string
+        required: false
+        description: >-
+          The time when the PSU last logged in with the TPP. 
+
+          All dates in the HTTP headers are represented as RFC 7231 Full Dates.
+          An example is below: 
+
+          Sun, 10 Sep 2017 19:43:31 UTC
+      - name: xFapiCustomerIpAddress
+        schema: string
+        required: false
+        description: The PSU's IP address if the PSU is currently logged in with the TPP.
+      - name: xFapiInteractionId
+        schema: string
+        required: false
+        description: An RFC4122 UID used as a correlation id.
+      - name: xCustomerUserAgent
+        schema: string
+        required: false
+        description: Indicates the user-agent that the PSU is using.
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: >-
+          An array of detail error codes, and messages, and URLs to
+          documentation to help remediation.
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: >-
+          An array of detail error codes, and messages, and URLs to
+          documentation to help remediation.
+      - statusCode: '405'
+        description: ''
+      - statusCode: '406'
+        description: ''
+      - statusCode: '429'
+        description: ''
+      - statusCode: '500'
+        description: >-
+          An array of detail error codes, and messages, and URLs to
+          documentation to help remediation.
+  - url: /accounts/{AccountId}/balances
+    method: getByAccountId
+    httpMethod: get
+    tag: Balances
+    typeScriptTag: balances
+    description: Get Account Balances
+    parameters:
+      - name: accountId
+        schema: string
+        required: true
+        description: AccountId
+      - name: xFapiAuthDate
+        schema: string
+        required: false
+        description: >-
+          The time when the PSU last logged in with the TPP. 
+
+          All dates in the HTTP headers are represented as RFC 7231 Full Dates.
+          An example is below: 
+
+          Sun, 10 Sep 2017 19:43:31 UTC
+      - name: xFapiCustomerIpAddress
+        schema: string
+        required: false
+        description: The PSU's IP address if the PSU is currently logged in with the TPP.
+      - name: xFapiInteractionId
+        schema: string
+        required: false
+        description: An RFC4122 UID used as a correlation id.
+      - name: xCustomerUserAgent
+        schema: string
+        required: false
+        description: Indicates the user-agent that the PSU is using.
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: >-
+          An array of detail error codes, and messages, and URLs to
+          documentation to help remediation.
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: >-
+          An array of detail error codes, and messages, and URLs to
+          documentation to help remediation.
+      - statusCode: '405'
+        description: ''
+      - statusCode: '406'
+        description: ''
+      - statusCode: '429'
+        description: ''
+      - statusCode: '500'
+        description: >-
+          An array of detail error codes, and messages, and URLs to
+          documentation to help remediation.
+  - url: /accounts/{AccountId}/direct-debits
+    method: getByAccountId
+    httpMethod: get
+    tag: Direct Debits
+    typeScriptTag: directDebits
+    description: Get Account Direct Debits
+    parameters:
+      - name: accountId
+        schema: string
+        required: true
+        description: AccountId
+      - name: xFapiAuthDate
+        schema: string
+        required: false
+        description: >-
+          The time when the PSU last logged in with the TPP. 
+
+          All dates in the HTTP headers are represented as RFC 7231 Full Dates.
+          An example is below: 
+
+          Sun, 10 Sep 2017 19:43:31 UTC
+      - name: xFapiCustomerIpAddress
+        schema: string
+        required: false
+        description: The PSU's IP address if the PSU is currently logged in with the TPP.
+      - name: xFapiInteractionId
+        schema: string
+        required: false
+        description: An RFC4122 UID used as a correlation id.
+      - name: xCustomerUserAgent
+        schema: string
+        required: false
+        description: Indicates the user-agent that the PSU is using.
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: >-
+          An array of detail error codes, and messages, and URLs to
+          documentation to help remediation.
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: >-
+          An array of detail error codes, and messages, and URLs to
+          documentation to help remediation.
+      - statusCode: '404'
+        description: ''
+      - statusCode: '405'
+        description: ''
+      - statusCode: '406'
+        description: ''
+      - statusCode: '429'
+        description: ''
+      - statusCode: '500'
+        description: >-
+          An array of detail error codes, and messages, and URLs to
+          documentation to help remediation.
+  - url: /accounts/{AccountId}/scheduled-payments
+    method: getByAccountId
+    httpMethod: get
+    tag: Scheduled Payments
+    typeScriptTag: scheduledPayments
+    description: Get Account Scheduled Payments
+    parameters:
+      - name: accountId
+        schema: string
+        required: true
+        description: AccountId
+      - name: xFapiAuthDate
+        schema: string
+        required: false
+        description: >-
+          The time when the PSU last logged in with the TPP. 
+
+          All dates in the HTTP headers are represented as RFC 7231 Full Dates.
+          An example is below: 
+
+          Sun, 10 Sep 2017 19:43:31 UTC
+      - name: xFapiCustomerIpAddress
+        schema: string
+        required: false
+        description: The PSU's IP address if the PSU is currently logged in with the TPP.
+      - name: xFapiInteractionId
+        schema: string
+        required: false
+        description: An RFC4122 UID used as a correlation id.
+      - name: xCustomerUserAgent
+        schema: string
+        required: false
+        description: Indicates the user-agent that the PSU is using.
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: >-
+          An array of detail error codes, and messages, and URLs to
+          documentation to help remediation.
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: >-
+          An array of detail error codes, and messages, and URLs to
+          documentation to help remediation.
+      - statusCode: '404'
+        description: ''
+      - statusCode: '405'
+        description: ''
+      - statusCode: '406'
+        description: ''
+      - statusCode: '429'
+        description: ''
+      - statusCode: '500'
+        description: >-
+          An array of detail error codes, and messages, and URLs to
+          documentation to help remediation.
+  - url: /accounts/{AccountId}/standing-orders
+    method: getByAccountId
+    httpMethod: get
+    tag: Standing Orders
+    typeScriptTag: standingOrders
+    description: Get Account Standing Orders
+    parameters:
+      - name: accountId
+        schema: string
+        required: true
+        description: AccountId
+      - name: xFapiAuthDate
+        schema: string
+        required: false
+        description: >-
+          The time when the PSU last logged in with the TPP. 
+
+          All dates in the HTTP headers are represented as RFC 7231 Full Dates.
+          An example is below: 
+
+          Sun, 10 Sep 2017 19:43:31 UTC
+      - name: xFapiCustomerIpAddress
+        schema: string
+        required: false
+        description: The PSU's IP address if the PSU is currently logged in with the TPP.
+      - name: xFapiInteractionId
+        schema: string
+        required: false
+        description: An RFC4122 UID used as a correlation id.
+      - name: xCustomerUserAgent
+        schema: string
+        required: false
+        description: Indicates the user-agent that the PSU is using.
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: >-
+          An array of detail error codes, and messages, and URLs to
+          documentation to help remediation.
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: >-
+          An array of detail error codes, and messages, and URLs to
+          documentation to help remediation.
+      - statusCode: '404'
+        description: ''
+      - statusCode: '405'
+        description: ''
+      - statusCode: '406'
+        description: ''
+      - statusCode: '429'
+        description: ''
+      - statusCode: '500'
+        description: >-
+          An array of detail error codes, and messages, and URLs to
+          documentation to help remediation.
+  - url: /accounts/{AccountId}/transactions
+    method: getByAccountId
+    httpMethod: get
+    tag: Transactions
+    typeScriptTag: transactions
+    description: Get Account Transactions
+    parameters:
+      - name: accountId
+        schema: string
+        required: true
+        description: AccountId
+      - name: xFapiAuthDate
+        schema: string
+        required: false
+        description: >-
+          The time when the PSU last logged in with the TPP. 
+
+          All dates in the HTTP headers are represented as RFC 7231 Full Dates.
+          An example is below: 
+
+          Sun, 10 Sep 2017 19:43:31 UTC
+      - name: xFapiCustomerIpAddress
+        schema: string
+        required: false
+        description: The PSU's IP address if the PSU is currently logged in with the TPP.
+      - name: xFapiInteractionId
+        schema: string
+        required: false
+        description: An RFC4122 UID used as a correlation id.
+      - name: xCustomerUserAgent
+        schema: string
+        required: false
+        description: Indicates the user-agent that the PSU is using.
+      - name: fromBookingDateTime
+        schema: string
+        description: >-
+          The UTC ISO 8601 Date Time to filter transactions FROM
+
+          NB Time component is optional - set to 00:00:00 for just Date.
+
+          If the Date Time contains a timezone, the ASPSP must ignore the
+          timezone component.
+      - name: toBookingDateTime
+        schema: string
+        description: >-
+          The UTC ISO 8601 Date Time to filter transactions TO
+
+          NB Time component is optional - set to 00:00:00 for just Date.
+
+          If the Date Time contains a timezone, the ASPSP must ignore the
+          timezone component.
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: >-
+          An array of detail error codes, and messages, and URLs to
+          documentation to help remediation.
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: >-
+          An array of detail error codes, and messages, and URLs to
+          documentation to help remediation.
+      - statusCode: '405'
+        description: ''
+      - statusCode: '406'
+        description: ''
+      - statusCode: '429'
+        description: ''
+      - statusCode: '500'
+        description: >-
+          An array of detail error codes, and messages, and URLs to
+          documentation to help remediation.
+  - url: /accounts/{AccountId}/beneficiaries
+    method: getByAccountId
+    httpMethod: get
+    tag: Beneficiaries
+    typeScriptTag: beneficiaries
+    description: Get Account Beneficiaries
+    parameters:
+      - name: accountId
+        schema: string
+        required: true
+        description: AccountId
+      - name: xFapiAuthDate
+        schema: string
+        required: false
+        description: >-
+          The time when the PSU last logged in with the TPP. 
+
+          All dates in the HTTP headers are represented as RFC 7231 Full Dates.
+          An example is below: 
+
+          Sun, 10 Sep 2017 19:43:31 UTC
+      - name: xFapiCustomerIpAddress
+        schema: string
+        required: false
+        description: The PSU's IP address if the PSU is currently logged in with the TPP.
+      - name: xFapiInteractionId
+        schema: string
+        required: false
+        description: An RFC4122 UID used as a correlation id.
+      - name: xCustomerUserAgent
+        schema: string
+        required: false
+        description: Indicates the user-agent that the PSU is using.
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: >-
+          An array of detail error codes, and messages, and URLs to
+          documentation to help remediation.
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: >-
+          An array of detail error codes, and messages, and URLs to
+          documentation to help remediation.
+      - statusCode: '404'
+        description: ''
+      - statusCode: '405'
+        description: ''
+      - statusCode: '406'
+        description: ''
+      - statusCode: '429'
+        description: ''
+      - statusCode: '500'
+        description: >-
+          An array of detail error codes, and messages, and URLs to
+          documentation to help remediation.
+  - url: /accounts/{AccountId}/parties
+    method: getByAccountId
+    httpMethod: get
+    tag: Parties
+    typeScriptTag: parties
+    description: Get Account Parties
+    parameters:
+      - name: accountId
+        schema: string
+        required: true
+        description: AccountId
+      - name: xFapiAuthDate
+        schema: string
+        required: false
+        description: >-
+          The time when the PSU last logged in with the TPP. 
+
+          All dates in the HTTP headers are represented as RFC 7231 Full Dates.
+          An example is below: 
+
+          Sun, 10 Sep 2017 19:43:31 UTC
+      - name: xFapiCustomerIpAddress
+        schema: string
+        required: false
+        description: The PSU's IP address if the PSU is currently logged in with the TPP.
+      - name: xFapiInteractionId
+        schema: string
+        required: false
+        description: An RFC4122 UID used as a correlation id.
+      - name: xCustomerUserAgent
+        schema: string
+        required: false
+        description: Indicates the user-agent that the PSU is using.
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: >-
+          An array of detail error codes, and messages, and URLs to
+          documentation to help remediation.
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: >-
+          An array of detail error codes, and messages, and URLs to
+          documentation to help remediation.
+      - statusCode: '404'
+        description: ''
+      - statusCode: '405'
+        description: ''
+      - statusCode: '406'
+        description: ''
+      - statusCode: '429'
+        description: ''
+      - statusCode: '500'
+        description: >-
+          An array of detail error codes, and messages, and URLs to
+          documentation to help remediation.
+  - url: /accounts/{AccountId}/product
+    method: getByAccountId
+    httpMethod: get
+    tag: Products
+    typeScriptTag: products
+    description: Get Account Products
+    parameters:
+      - name: accountId
+        schema: string
+        required: true
+        description: AccountId
+      - name: xFapiAuthDate
+        schema: string
+        required: false
+        description: >-
+          The time when the PSU last logged in with the TPP. 
+
+          All dates in the HTTP headers are represented as RFC 7231 Full Dates.
+          An example is below: 
+
+          Sun, 10 Sep 2017 19:43:31 UTC
+      - name: xFapiCustomerIpAddress
+        schema: string
+        required: false
+        description: The PSU's IP address if the PSU is currently logged in with the TPP.
+      - name: xFapiInteractionId
+        schema: string
+        required: false
+        description: An RFC4122 UID used as a correlation id.
+      - name: xCustomerUserAgent
+        schema: string
+        required: false
+        description: Indicates the user-agent that the PSU is using.
+    responses:
+      - statusCode: '200'
+        description: >-
+          Product details of Other Product which is not avaiable in the standard
+          list
+      - statusCode: '400'
+        description: >-
+          An array of detail error codes, and messages, and URLs to
+          documentation to help remediation.
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: >-
+          An array of detail error codes, and messages, and URLs to
+          documentation to help remediation.
+      - statusCode: '404'
+        description: ''
+      - statusCode: '405'
+        description: ''
+      - statusCode: '406'
+        description: ''
+      - statusCode: '429'
+        description: ''
+      - statusCode: '500'
+        description: >-
+          An array of detail error codes, and messages, and URLs to
+          documentation to help remediation.

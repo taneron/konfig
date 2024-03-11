@@ -1,0 +1,28 @@
+hash: f4c19207ab6c0a241b967b361aba2be4ba75ffc885dcd21e32c16c14e697531f
+methodObjects:
+  - url: /info.0.json
+    method: getComicMetadata
+    httpMethod: get
+    tag: Info
+    typeScriptTag: info
+    description: |
+      Fetch current comic and metadata.
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /{comicId}/info.0.json
+    method: getById
+    httpMethod: get
+    tag: Info
+    typeScriptTag: info
+    description: |
+      Fetch comics and metadata  by comic id.
+    parameters:
+      - name: comicId
+        schema: number
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''

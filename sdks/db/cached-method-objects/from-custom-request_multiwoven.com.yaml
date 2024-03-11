@@ -1,0 +1,379 @@
+hash: 01e05d6a3e462f1b471504f6b1491cf6d5e6faed7d3e2361453438665e9054e8
+methodObjects:
+  - url: /api/v1/models
+    method: listAllModels
+    httpMethod: get
+    tag: Models
+    typeScriptTag: models
+    description: Lists all models
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /api/v1/models
+    method: createModel
+    httpMethod: post
+    tag: Models
+    typeScriptTag: models
+    description: Creates a model
+    parameters:
+      - name: model
+        schema: object
+        description: ''
+    responses:
+      - statusCode: '201'
+        description: ''
+  - url: /api/v1/models/{id}
+    method: deleteModel
+    httpMethod: delete
+    tag: Models
+    typeScriptTag: models
+    description: Deletes a model
+    parameters:
+      - name: id
+        schema: integer
+        required: true
+        description: ''
+    responses:
+      - statusCode: '204'
+        description: Model deleted
+  - url: /api/v1/models/{id}
+    method: getById
+    httpMethod: get
+    tag: Models
+    typeScriptTag: models
+    description: Retrieves a model
+    parameters:
+      - name: id
+        schema: integer
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /api/v1/models/{id}
+    method: updateModelById
+    httpMethod: put
+    tag: Models
+    typeScriptTag: models
+    description: Updates a model
+    parameters:
+      - name: id
+        schema: integer
+        required: true
+        description: ''
+      - name: model
+        schema: object
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /api/v1/connector_definitions
+    method: getBasedOnType
+    httpMethod: get
+    tag: Connector Definitions
+    typeScriptTag: connectorDefinitions
+    description: Retrieve connector definitions based on type
+    parameters:
+      - name: type
+        schema: string
+        required: true
+        description: Type of the connector (source or destination)
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /api/v1/connector_definitions/{connector_name}
+    method: getByName
+    httpMethod: get
+    tag: Connector Definitions
+    typeScriptTag: connectorDefinitions
+    description: Retrieve specific connector definition based on its name
+    parameters:
+      - name: connectorName
+        schema: string
+        required: true
+        description: Name of the connector
+      - name: type
+        schema: string
+        required: true
+        description: Type of the connector (source or destination)
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /api/v1/connector_definitions/check_connection
+    method: checkConnection
+    httpMethod: post
+    tag: Connector Definitions
+    typeScriptTag: connectorDefinitions
+    description: Checks the connection for a specified connector definition
+    parameters:
+      - name: type
+        schema: string
+        description: ''
+      - name: name
+        schema: string
+        description: ''
+      - name: connection_spec
+        schema: object
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /api/v1/connectors
+    method: listAll
+    httpMethod: get
+    tag: Connectors
+    typeScriptTag: connectors
+    description: Lists all connectors
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /api/v1/connectors
+    method: createNewConnector
+    httpMethod: post
+    tag: Connectors
+    typeScriptTag: connectors
+    description: Creates a connector
+    parameters:
+      - name: connector
+        schema: object
+        description: ''
+    responses:
+      - statusCode: '201'
+        description: ''
+  - url: /api/v1/connectors/{id}
+    method: deleteById
+    httpMethod: delete
+    tag: Connectors
+    typeScriptTag: connectors
+    description: Deletes a specific connector by ID
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: Unique ID of the connector
+    responses:
+      - statusCode: '204'
+        description: No content, indicating successful deletion
+  - url: /api/v1/connectors/{id}
+    method: getById
+    httpMethod: get
+    tag: Connectors
+    typeScriptTag: connectors
+    description: Retrieves a specific connector by ID
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: Unique ID of the connector
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /api/v1/connectors/{id}
+    method: updateById
+    httpMethod: put
+    tag: Connectors
+    typeScriptTag: connectors
+    description: Updates a specific connector by ID
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: Unique ID of the connector
+      - name: connector
+        schema: object
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /api/v1/connectors/{id}/discover
+    method: discoverCatalogInfo
+    httpMethod: get
+    tag: Connectors
+    typeScriptTag: connectors
+    description: Discovers catalog information for a specified connector
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: Unique ID of the connector
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /api/v1/connectors/{id}/query_source
+    method: querySource
+    httpMethod: post
+    tag: Connectors
+    typeScriptTag: connectors
+    description: Query your source data
+    parameters:
+      - name: id
+        schema: integer
+        required: true
+        description: The ID of the connector to query
+      - name: query
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /api/v1/syncs
+    method: listOperations
+    httpMethod: get
+    tag: Syncs
+    typeScriptTag: syncs
+    description: List all sync operations
+    parameters:
+      - name: page[number]
+        schema: integer
+        required: false
+        description: Page number for pagination
+      - name: page[size]
+        schema: integer
+        required: false
+        description: Number of items per page for pagination
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /api/v1/syncs
+    method: createNewSyncOperation
+    httpMethod: post
+    tag: Syncs
+    typeScriptTag: syncs
+    description: Create a new sync operation
+    parameters:
+      - name: sync
+        schema: object
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /api/v1/syncs/{id}
+    method: deleteSyncOperation
+    httpMethod: delete
+    tag: Syncs
+    typeScriptTag: syncs
+    description: Delete a specific sync operation
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: The ID of the sync operation to delete
+    responses:
+      - statusCode: '204'
+        description: No content, indicating the sync operation was successfully deleted
+  - url: /api/v1/syncs/{id}
+    method: showDetails
+    httpMethod: get
+    tag: Syncs
+    typeScriptTag: syncs
+    description: Show details of a specific sync operation
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /api/v1/syncs/{id}
+    method: updateSpecificSync
+    httpMethod: put
+    tag: Syncs
+    typeScriptTag: syncs
+    description: Update a specific sync operation
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: ''
+      - name: sync
+        schema: object
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /api/v1/syncs/configurations
+    method: getReportData
+    httpMethod: get
+    tag: Syncs
+    typeScriptTag: syncs
+    description: Get report data based on given type
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /api/v1/reports
+    method: getDataBasedOnType
+    httpMethod: get
+    tag: Reports
+    typeScriptTag: reports
+    description: Get report data based on given type
+    parameters:
+      - name: type
+        schema: string
+        required: true
+        description: Type of the report to query.
+      - name: metric
+        schema: string
+        description: Specific metric of interest in the report.
+      - name: connectorIds
+        schema: array
+        description: IDs of the connectors.
+      - name: timePeriod
+        schema: string
+        description: Time period for the report.
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Validation error occurred.
+  - url: /api/v1/syncs/{sync_id}/sync_runs
+    method: listBySyncId
+    httpMethod: get
+    tag: SyncRuns
+    typeScriptTag: syncRuns
+    description: List sync runs for a specific sync
+    parameters:
+      - name: syncId
+        schema: integer
+        required: true
+        description: The ID of the sync to list runs for.
+      - name: status
+        schema: string
+        description: Optional status to filter the sync runs by.
+      - name: page
+        schema: integer
+        description: Page number for pagination.
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: ''
+  - url: /api/v1/syncs/{sync_id}/sync_runs/{sync_run_id}/sync_records
+    method: listForSyncRun
+    httpMethod: get
+    tag: SyncRecords
+    typeScriptTag: syncRecords
+    description: List sync records for a specific sync run
+    parameters:
+      - name: syncId
+        schema: integer
+        required: true
+        description: The ID of the sync to list records for.
+      - name: syncRunId
+        schema: integer
+        required: true
+        description: The ID of the sync run to list records for.
+      - name: status
+        schema: string
+        description: Optional status to filter the sync records by.
+      - name: page
+        schema: integer
+        description: Page number for pagination.
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: ''
