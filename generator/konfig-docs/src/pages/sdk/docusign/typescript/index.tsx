@@ -16,7 +16,7 @@ export default function DocusignTypeScriptSdk() {
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/docusign/logo.png"
       clientNameCamelCase="docusign"
       homepage="docusign.com"
-      lastUpdated={new Date("2024-03-09T00:02:29.006Z")}
+      lastUpdated={new Date("2024-03-11T06:04:39.099Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/docusign/favicon.png"
       contactUrl="https://developers.docusign.com/"
       contactEmail="devcenter@docusign.com"
@@ -31419,7 +31419,7 @@ export default function DocusignTypeScriptSdk() {
       apiVersion="v2.1"
       endpoints={208}
       sdkMethods={610}
-      schemas={581}
+      schemas={598}
       parameters={4443}
       difficulty="Very Hard"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/docusign/openapi.yaml"

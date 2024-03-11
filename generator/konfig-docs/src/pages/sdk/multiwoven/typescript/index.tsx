@@ -17,7 +17,7 @@ export default function MultiwovenTypeScriptSdk() {
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/multiwoven/logo.png"
       clientNameCamelCase="multiwoven"
       homepage="www.multiwoven.com/"
-      lastUpdated={new Date("2024-03-10T06:33:11.276Z")}
+      lastUpdated={new Date("2024-03-11T06:04:39.099Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/multiwoven/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
@@ -631,7 +631,7 @@ export default function MultiwovenTypeScriptSdk() {
       apiVersion="1.0.0"
       endpoints={15}
       sdkMethods={24}
-      schemas={0}
+      schemas={31}
       parameters={37}
       difficulty="Easy"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/multiwoven/openapi.yaml"

@@ -16,7 +16,7 @@ export default function DigitalOceanTypeScriptSdk() {
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/digitalocean/logo.png"
       clientNameCamelCase="digitalOcean"
       homepage="digitalocean.com"
-      lastUpdated={new Date("2024-03-09T00:54:15.995Z")}
+      lastUpdated={new Date("2024-03-11T06:04:39.099Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/digitalocean/favicon.png"
       // Missing contactUrl
       contactEmail="api-engineering@digitalocean.com"
@@ -14583,7 +14583,7 @@ export default function DigitalOceanTypeScriptSdk() {
       apiVersion="2.0"
       endpoints={189}
       sdkMethods={300}
-      schemas={321}
+      schemas={486}
       parameters={617}
       difficulty="Very Hard"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/digitalocean/openapi.yaml"

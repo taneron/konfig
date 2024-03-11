@@ -16,7 +16,7 @@ export default function GitLabTypeScriptSdk() {
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/gitlab/logo.png"
       clientNameCamelCase="gitLab"
       homepage="gitlab.com"
-      lastUpdated={new Date("2024-03-08T23:14:51.655Z")}
+      lastUpdated={new Date("2024-03-11T06:04:39.099Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/gitlab/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
@@ -2542,7 +2542,7 @@ export default function GitLabTypeScriptSdk() {
       apiVersion="v4"
       endpoints={48}
       sdkMethods={73}
-      schemas={26}
+      schemas={59}
       parameters={248}
       difficulty="Medium"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/gitlab/openapi.yaml"

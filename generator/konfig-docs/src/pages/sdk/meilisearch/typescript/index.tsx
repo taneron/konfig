@@ -16,7 +16,7 @@ export default function MeilisearchTypeScriptSdk() {
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/meilisearch/logo.png"
       clientNameCamelCase="meilisearch"
       homepage="www.meilisearch.com/"
-      lastUpdated={new Date("2024-03-10T00:26:56.618Z")}
+      lastUpdated={new Date("2024-03-11T06:04:39.099Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/meilisearch/favicon.png"
       // Missing contactUrl
       contactEmail="bonjour@Meilisearch.com"
@@ -2376,7 +2376,7 @@ export default function MeilisearchTypeScriptSdk() {
       apiVersion="1.6.0"
       endpoints={36}
       sdkMethods={94}
-      schemas={48}
+      schemas={71}
       parameters={158}
       difficulty="Medium"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/meilisearch/openapi.yaml"

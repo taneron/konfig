@@ -16,7 +16,7 @@ export default function MastercardTypeScriptSdk() {
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/mastercard/logo.png"
       clientNameCamelCase="mastercard"
       homepage="finicity.com"
-      lastUpdated={new Date("2024-03-08T21:26:41.741Z")}
+      lastUpdated={new Date("2024-03-11T06:04:39.099Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/mastercard/favicon.png"
       contactUrl="https://developer.mastercard.com/open-banking-us/documentation/support/"
       contactEmail="apisupport@mastercard.com"
@@ -5662,7 +5662,7 @@ export default function MastercardTypeScriptSdk() {
       apiVersion="1.16.0"
       endpoints={93}
       sdkMethods={104}
-      schemas={506}
+      schemas={510}
       parameters={468}
       difficulty="Hard"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/mastercard/openapi.yaml"

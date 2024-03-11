@@ -16,7 +16,7 @@ export default function ShutterstockTypeScriptSdk() {
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/shutterstock/logo.png"
       clientNameCamelCase="shutterstock"
       homepage="developers.shutterstock.com"
-      lastUpdated={new Date("2024-03-11T03:31:43.916Z")}
+      lastUpdated={new Date("2024-03-11T06:04:39.099Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/shutterstock/favicon.ico"
       // Missing contactUrl
       // Missing contactEmail
@@ -6165,7 +6165,7 @@ export default function ShutterstockTypeScriptSdk() {
       apiVersion="1.1.32"
       endpoints={91}
       sdkMethods={118}
-      schemas={167}
+      schemas={169}
       parameters={526}
       difficulty="Hard"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/shutterstock/openapi.yaml"

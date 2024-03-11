@@ -16,7 +16,7 @@ export default function DevTypeScriptSdk() {
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/dev/logo.png"
       clientNameCamelCase="dev"
       homepage="dev.to"
-      lastUpdated={new Date("2024-03-10T03:15:16.747Z")}
+      lastUpdated={new Date("2024-03-11T06:04:39.099Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/dev/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
@@ -2015,7 +2015,7 @@ export default function DevTypeScriptSdk() {
       apiVersion="1.0.0"
       endpoints={43}
       sdkMethods={58}
-      schemas={21}
+      schemas={147}
       parameters={129}
       difficulty="Medium"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/dev/openapi.yaml"

@@ -25,7 +25,7 @@ Flightpath: Plan for the future with flexible financial modeling tools built for
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/baremetrics/logo.png"
       clientNameCamelCase="baremetrics"
       homepage="baremetrics.com"
-      lastUpdated={new Date("2024-03-11T05:58:47.500Z")}
+      lastUpdated={new Date("2024-03-11T06:04:39.099Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/baremetrics/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
@@ -2250,7 +2250,7 @@ Flightpath: Plan for the future with flexible financial modeling tools built for
       apiVersion="1.0"
       endpoints={41}
       sdkMethods={63}
-      schemas={0}
+      schemas={148}
       parameters={164}
       difficulty="Medium"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/baremetrics/openapi.yaml"

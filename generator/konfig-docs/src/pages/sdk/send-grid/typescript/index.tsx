@@ -16,7 +16,7 @@ export default function SendGridTypeScriptSdk() {
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/sendgrid/logo.png"
       clientNameCamelCase="sendGrid"
       homepage="sendgrid.com/en-us"
-      lastUpdated={new Date("2024-03-11T03:31:43.916Z")}
+      lastUpdated={new Date("2024-03-11T06:04:39.099Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/sendgrid/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
@@ -11974,7 +11974,7 @@ export default function SendGridTypeScriptSdk() {
       apiVersion="1.0.0"
       endpoints={201}
       sdkMethods={419}
-      schemas={145}
+      schemas={545}
       parameters={781}
       difficulty="Very Hard"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/sendgrid/openapi.yaml"

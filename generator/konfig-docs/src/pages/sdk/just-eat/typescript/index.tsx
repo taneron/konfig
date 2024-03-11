@@ -16,7 +16,7 @@ export default function JustEatTypeScriptSdk() {
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/just-eat/logo.png"
       clientNameCamelCase="justEat"
       homepage="developers.just-eat.com/"
-      lastUpdated={new Date("2024-03-08T21:13:39.373Z")}
+      lastUpdated={new Date("2024-03-11T06:04:39.099Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/just-eat/favicon.png"
       contactUrl="https://developers.just-eat.com/"
       contactEmail="david.handley@justeattakeaway.com"
@@ -5569,7 +5569,7 @@ export default function JustEatTypeScriptSdk() {
       apiVersion="1.0.0"
       endpoints={85}
       sdkMethods={94}
-      schemas={1395}
+      schemas={1387}
       parameters={515}
       difficulty="Very Hard"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/just-eat/openapi.yaml"

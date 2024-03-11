@@ -16,7 +16,7 @@ export default function ClickUpTypeScriptSdk() {
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/clickup/logo.png"
       clientNameCamelCase="clickUp"
       homepage="clickup.com"
-      lastUpdated={new Date("2024-03-10T11:11:26.661Z")}
+      lastUpdated={new Date("2024-03-11T06:04:39.099Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/clickup/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
@@ -5019,7 +5019,7 @@ export default function ClickUpTypeScriptSdk() {
       apiVersion="2.0"
       endpoints={72}
       sdkMethods={197}
-      schemas={301}
+      schemas={335}
       parameters={541}
       difficulty="Hard"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/clickup/openapi.yaml"

@@ -16,7 +16,7 @@ export default function HetznerTypeScriptSdk() {
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/hetzner/logo.png"
       clientNameCamelCase="hetzner"
       homepage="hetzner.com"
-      lastUpdated={new Date("2024-03-08T22:58:50.365Z")}
+      lastUpdated={new Date("2024-03-11T06:04:39.099Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/hetzner/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
@@ -5452,7 +5452,7 @@ export default function HetznerTypeScriptSdk() {
       apiVersion="1.0.0"
       endpoints={130}
       sdkMethods={162}
-      schemas={18}
+      schemas={232}
       parameters={478}
       difficulty="Hard"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/hetzner/openapi.yaml"

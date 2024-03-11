@@ -16,7 +16,7 @@ export default function DiscourseTypeScriptSdk() {
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/discourse/logo.png"
       clientNameCamelCase="discourse"
       homepage="discourse.org"
-      lastUpdated={new Date("2024-03-10T00:26:56.618Z")}
+      lastUpdated={new Date("2024-03-11T06:04:39.099Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/discourse/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
@@ -2863,7 +2863,7 @@ export default function DiscourseTypeScriptSdk() {
       apiVersion="latest"
       endpoints={71}
       sdkMethods={87}
-      schemas={0}
+      schemas={120}
       parameters={250}
       difficulty="Medium"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/discourse/openapi.yaml"

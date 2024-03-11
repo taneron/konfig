@@ -16,7 +16,7 @@ export default function HttpbinTypeScriptSdk() {
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/httpbin/logo.svg"
       clientNameCamelCase="httpbin"
       homepage="httpbin.org"
-      lastUpdated={new Date("2024-03-09T00:02:29.006Z")}
+      lastUpdated={new Date("2024-03-11T06:04:39.099Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/httpbin/favicon.png"
       contactUrl="https://kennethreitz.org"
       contactEmail="me@kennethreitz.org"
@@ -1719,7 +1719,7 @@ export default function HttpbinTypeScriptSdk() {
       apiVersion="0.9.2"
       endpoints={52}
       sdkMethods={78}
-      schemas={0}
+      schemas={1}
       parameters={60}
       difficulty="Easy"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/httpbin/openapi.yaml"
