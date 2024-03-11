@@ -1,0 +1,845 @@
+hash: ffe7dd47c20d3f6075909bed1253b78d46610141989284cf59ff1c825fe550c3
+methodObjects:
+  - url: /public-token/exchange
+    method: exchangeToken
+    httpMethod: post
+    tag: Authentication
+    typeScriptTag: authentication
+    description: Public Token Exchange
+    parameters:
+      - name: publicToken
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /connections
+    method: listAll
+    httpMethod: get
+    tag: Connections
+    typeScriptTag: connections
+    description: List All Connections
+    parameters:
+      - name: cursor
+        schema: string
+        description: Pagination cursor to start requests from
+      - name: limit
+        schema: string
+        description: The maximum number of results to return in a page.
+      - name: externalId
+        schema: string
+        description: ''
+      - name: dotNumber
+        schema: string
+        description: ''
+      - name: tag
+        schema: string
+        description: Filter connections by tag
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /connections
+    method: createCustomConnection
+    httpMethod: post
+    tag: Connections
+    typeScriptTag: connections
+    description: Create Connection
+    parameters:
+      - name: tags
+        schema: array
+        description: ''
+      - name: backfill
+        schema: object
+        description: ''
+      - name: company
+        schema: object
+        description: ''
+      - name: credentials
+        schema: object
+        description: ''
+      - name: externalId
+        schema: string
+        description: ''
+      - name: provider
+        schema: string
+        description: ''
+      - name: syncMode
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /connections/current
+    method: getCurrentDetails
+    httpMethod: get
+    tag: Connections
+    typeScriptTag: connections
+    description: Get Current Connection
+    parameters:
+      - name: connectionToken
+        schema: string
+        description: >-
+          (Required) The token returned when a user authenticated their account.
+          This authorizes access to a specific account.
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /connections/current
+    method: updateCurrentConnectionDetails
+    httpMethod: patch
+    tag: Connections
+    typeScriptTag: connections
+    description: Update Current Connection
+    parameters:
+      - name: connectionToken
+        schema: string
+        description: >-
+          (Required) The token returned when a user authenticated their account.
+          This authorizes access to a specific account.
+      - name: tags
+        schema: array
+        description: ''
+      - name: company
+        schema: object
+        description: ''
+      - name: externalId
+        schema: string
+        description: ''
+      - name: status
+        schema: string
+        description: ''
+      - name: syncMode
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /syncs
+    method: listSyncHistory
+    httpMethod: get
+    tag: Data Management
+    typeScriptTag: dataManagement
+    description: List Sync History
+    parameters:
+      - name: limit
+        schema: string
+        description: The maximum number of results to return in a page.
+      - name: cursor
+        schema: string
+        description: Pagination cursor to start requests from
+      - name: status
+        schema: string
+        description: ''
+      - name: expand
+        schema: string
+        description: Expand related resources in the response to reduce requests.
+      - name: connectionToken
+        schema: string
+        description: >-
+          (Required) The token returned when a user authenticated their account.
+          This authorizes access to a specific account.
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /syncs
+    method: requestSyncManual
+    httpMethod: post
+    tag: Data Management
+    typeScriptTag: dataManagement
+    description: Request Sync
+    parameters:
+      - name: connectionToken
+        schema: string
+        description: >-
+          (Required) The token returned when a user authenticated their account.
+          This authorizes access to a specific account.
+      - name: days
+        schema: number
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /syncs/{id}
+    method: getSyncStatus
+    httpMethod: get
+    tag: Data Management
+    typeScriptTag: dataManagement
+    description: Get Sync Job Status
+    parameters:
+      - name: expand
+        schema: string
+        description: Expand related resources in the response to reduce requests.
+      - name: connectionToken
+        schema: string
+        description: >-
+          (Required) The token returned when a user authenticated their account.
+          This authorizes access to a specific account.
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /passthrough
+    method: makePassthroughRequest
+    httpMethod: post
+    tag: Data Management
+    typeScriptTag: dataManagement
+    description: Passthrough
+    parameters:
+      - name: connectionToken
+        schema: string
+        description: >-
+          (Required) The token returned when a user authenticated their account.
+          This authorizes access to a specific account.
+      - name: body
+        schema: string
+        description: ''
+      - name: headers
+        schema: object
+        description: ''
+      - name: method
+        schema: string
+        description: ''
+      - name: path
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /drivers
+    method: list
+    httpMethod: get
+    tag: Drivers
+    typeScriptTag: drivers
+    description: List Drivers
+    parameters:
+      - name: cursor
+        schema: string
+        description: Pagination cursor to start requests from
+      - name: limit
+        schema: string
+        description: The maximum number of results to return in a page.
+      - name: modifiedAfter
+        schema: string
+        description: Only include records that were last modified after a provided date.
+      - name: modifiedBefore
+        schema: string
+        description: Only include records that were last modified before a provided date.
+      - name: raw
+        schema: string
+        description: >-
+          Include raw responses used to normalize model. Used for debugging or
+          accessing unique properties that are not unified.
+      - name: expand
+        schema: string
+        description: Expand resources in the returned response
+      - name: connectionToken
+        schema: string
+        description: >-
+          (Required) The token returned when a user authenticated their account.
+          This authorizes access to a specific account.
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /drivers/{id}
+    method: getDetails
+    httpMethod: get
+    tag: Drivers
+    typeScriptTag: drivers
+    description: Get Driver
+    parameters:
+      - name: raw
+        schema: string
+        description: >-
+          Include raw responses used to normalize model. Used for debugging or
+          accessing unique properties that are not unified.
+      - name: expand
+        schema: string
+        description: Expand resources in the returned response
+      - name: connectionToken
+        schema: string
+        description: >-
+          (Required) The token returned when a user authenticated their account.
+          This authorizes access to a specific account.
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /groups
+    method: getAllGroups
+    httpMethod: get
+    tag: Groups
+    typeScriptTag: groups
+    description: List Groups
+    parameters:
+      - name: limit
+        schema: string
+        description: The maximum number of results to return in a page.
+      - name: cursor
+        schema: string
+        description: Pagination cursor to start requests from
+      - name: expand
+        schema: string
+        description: Expand resources in the returned response
+      - name: raw
+        schema: string
+        description: >-
+          Include raw responses used to normalize model. Used for debugging or
+          accessing unique properties that are not unified.
+      - name: modifiedAfter
+        schema: string
+        description: Only include records that were last modified after a provided date.
+      - name: modifiedBefore
+        schema: string
+        description: Only include records that were last modified before a provided date.
+      - name: connectionToken
+        schema: string
+        description: >-
+          (Required) The token returned when a user authenticated their account.
+          This authorizes access to a specific account.
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /hos/available-time
+    method: getAvailableTime
+    httpMethod: get
+    tag: Hours of Service
+    typeScriptTag: hoursOfService
+    description: Available Time for Drivers
+    parameters:
+      - name: cursor
+        schema: string
+        description: Pagination cursor to start requests from
+      - name: limit
+        schema: string
+        description: The maximum number of results to return in a page.
+      - name: driverIds
+        schema: string
+        description: Comma separated list of driver IDs to filter for
+      - name: expand
+        schema: string
+        description: Expand resources in the returned response
+      - name: raw
+        schema: string
+        description: >-
+          Include raw responses used to normalize model. Used for debugging or
+          accessing unique properties that are not unified.
+      - name: connectionToken
+        schema: string
+        description: >-
+          (Required) The token returned when a user authenticated their account.
+          This authorizes access to a specific account.
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /hos/logs
+    method: listHosLogs
+    httpMethod: get
+    tag: Hours of Service
+    typeScriptTag: hoursOfService
+    description: List HOS Logs
+    parameters:
+      - name: cursor
+        schema: string
+        description: Pagination cursor to start requests from
+      - name: limit
+        schema: string
+        description: The maximum number of results to return in a page.
+      - name: startedAfter
+        schema: string
+        description: Only include records of statuses that started after a provided date.
+      - name: startedBefore
+        schema: string
+        description: Only include records of statuses that started before a provided date.
+      - name: modifiedAfter
+        schema: string
+        description: Only include records that were last modified after a provided date.
+      - name: modifiedBefore
+        schema: string
+        description: Only include records that were last modified before a provided date.
+      - name: driverIds
+        schema: string
+        description: Comma separated list of driver IDs to filter for
+      - name: expand
+        schema: string
+        description: Expand resources in the returned response
+      - name: raw
+        schema: string
+        description: >-
+          Include raw responses used to normalize model. Used for debugging or
+          accessing unique properties that are not unified.
+      - name: connectionToken
+        schema: string
+        description: >-
+          (Required) The token returned when a user authenticated their account.
+          This authorizes access to a specific account.
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /hos/daily-logs
+    method: getDailyLogs
+    httpMethod: get
+    tag: Hours of Service
+    typeScriptTag: hoursOfService
+    description: List HOS Daily Logs
+    parameters:
+      - name: cursor
+        schema: string
+        description: Pagination cursor to start requests from
+      - name: limit
+        schema: string
+        description: The maximum number of results to return in a page.
+      - name: startDate
+        schema: string
+        description: Only include daily logs from on or after a specific date
+      - name: endDate
+        schema: string
+        description: Only include daily logs from on or before a specific date
+      - name: modifiedAfter
+        schema: string
+        description: Only include records that were last modified after a provided date.
+      - name: modifiedBefore
+        schema: string
+        description: Only include records that were last modified before a provided date.
+      - name: driverIds
+        schema: string
+        description: Comma separated list of driver IDs to filter for
+      - name: raw
+        schema: string
+        description: >-
+          Include raw responses used to normalize model. Used for debugging or
+          accessing unique properties that are not unified.
+      - name: expand
+        schema: string
+        description: Expand resources in the returned response
+      - name: connectionToken
+        schema: string
+        description: >-
+          (Required) The token returned when a user authenticated their account.
+          This authorizes access to a specific account.
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /ifta/summary
+    method: getMonthlyReports
+    httpMethod: get
+    tag: IFTA
+    typeScriptTag: ifta
+    description: Get IFTA Summary
+    parameters:
+      - name: cursor
+        schema: string
+        description: Pagination cursor to start requests from
+      - name: expand
+        schema: string
+        description: Expand resources in the returned response
+      - name: raw
+        schema: string
+        description: >-
+          Include raw responses used to normalize model. Used for debugging or
+          accessing unique properties that are not unified.
+      - name: startMonth
+        schema: string
+        description: (Required) The month from which to start including vehicle reports
+      - name: endMonth
+        schema: string
+        description: (Required) Include vehicle reports up to and including this month
+      - name: groupBy
+        schema: string
+        description: >-
+          Computes the total distance traversed within a specified month range,
+          with the results grouped by either jurisdiction, vehicle, or both. If
+          no grouping parameter is provided, the default grouping is
+          `vehicle,jurisdiction`.
+      - name: connectionToken
+        schema: string
+        description: >-
+          (Required) The token returned when a user authenticated their account.
+          This authorizes access to a specific account.
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /issues
+    method: listObservedEvents
+    httpMethod: get
+    tag: Issues
+    typeScriptTag: issues
+    description: List Issues
+    parameters:
+      - name: limit
+        schema: string
+        description: The maximum number of results to return in a page.
+      - name: cursor
+        schema: string
+        description: Pagination cursor to start requests from
+      - name: lastReportedAfter
+        schema: string
+        description: Timestamp to start when the issue was last observed
+      - name: lastReportedBefore
+        schema: string
+        description: Timestamp to end when the issue was last observed
+      - name: expand
+        schema: string
+        description: Expand related resources to see all details
+      - name: connectionId
+        schema: string
+        description: Filter issues to a specific connection
+      - name: errorCode
+        schema: string
+        description: Filter issues to a specific error code
+      - name: status
+        schema: string
+        description: Filter issues to a specific status
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /issues/{issueId}/resolve
+    method: markResolved
+    httpMethod: post
+    tag: Issues
+    typeScriptTag: issues
+    description: Resolve Issue
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /providers
+    method: getList
+    httpMethod: get
+    tag: Providers
+    typeScriptTag: providers
+    description: List Providers
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /safety/events
+    method: getEvents
+    httpMethod: get
+    tag: Safety
+    typeScriptTag: safety
+    description: List Safety Events
+    parameters:
+      - name: cursor
+        schema: string
+        description: Pagination cursor to start requests from
+      - name: limit
+        schema: string
+        description: The maximum number of results to return in a page.
+      - name: modifiedAfter
+        schema: string
+        description: Only include records that were last modified after a provided date.
+      - name: modifiedBefore
+        schema: string
+        description: Only include records that were last modified before a provided date.
+      - name: startedAfter
+        schema: string
+        description: Only include records of statuses that started after a provided date.
+      - name: startedBefore
+        schema: string
+        description: Only include records of statuses that started before a provided date.
+      - name: driverIds
+        schema: string
+        description: Comma separated list of driver IDs to filter for
+      - name: vehicleIds
+        schema: string
+        description: Comma separated list of vehicle IDs to filter for
+      - name: expand
+        schema: string
+        description: Expand resources in the returned response
+      - name: raw
+        schema: string
+        description: >-
+          Include raw responses used to normalize model. Used for debugging or
+          accessing unique properties that are not unified.
+      - name: connectionToken
+        schema: string
+        description: >-
+          (Required) The token returned when a user authenticated their account.
+          This authorizes access to a specific account.
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /trailers
+    method: getAllTrailers
+    httpMethod: get
+    tag: Trailers
+    typeScriptTag: trailers
+    description: List Trailers
+    parameters:
+      - name: limit
+        schema: string
+        description: The maximum number of results to return in a page.
+      - name: cursor
+        schema: string
+        description: Pagination cursor to start requests from
+      - name: expand
+        schema: string
+        description: Expand resources in the returned response
+      - name: raw
+        schema: string
+        description: >-
+          Include raw responses used to normalize model. Used for debugging or
+          accessing unique properties that are not unified.
+      - name: modifiedAfter
+        schema: string
+        description: Only include records that were last modified after a provided date.
+      - name: modifiedBefore
+        schema: string
+        description: Only include records that were last modified before a provided date.
+      - name: connectionToken
+        schema: string
+        description: >-
+          (Required) The token returned when a user authenticated their account.
+          This authorizes access to a specific account.
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /trailers/locations
+    method: listLatestLocations
+    httpMethod: get
+    tag: Trailers
+    typeScriptTag: trailers
+    description: Latest Trailer Locations
+    parameters:
+      - name: limit
+        schema: string
+        description: The maximum number of results to return in a page.
+      - name: cursor
+        schema: string
+        description: Pagination cursor to start requests from
+      - name: expand
+        schema: string
+        description: Expand resources in the returned response
+      - name: raw
+        schema: string
+        description: >-
+          Include raw responses used to normalize model. Used for debugging or
+          accessing unique properties that are not unified.
+      - name: connectionToken
+        schema: string
+        description: >-
+          (Required) The token returned when a user authenticated their account.
+          This authorizes access to a specific account.
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /vehicles
+    method: getAll
+    httpMethod: get
+    tag: Vehicles
+    typeScriptTag: vehicles
+    description: List Vehicles
+    parameters:
+      - name: cursor
+        schema: string
+        description: Pagination cursor to start requests from
+      - name: limit
+        schema: string
+        description: The maximum number of results to return in a page.
+      - name: modifiedAfter
+        schema: string
+        description: Only include records that were last modified after a provided date.
+      - name: modifiedBefore
+        schema: string
+        description: Only include records that were last modified before a provided date.
+      - name: raw
+        schema: string
+        description: >-
+          Include raw responses used to normalize model. Used for debugging or
+          accessing unique properties that are not unified.
+      - name: expand
+        schema: string
+        description: Expand resources in the returned response
+      - name: connectionToken
+        schema: string
+        description: >-
+          (Required) The token returned when a user authenticated their account.
+          This authorizes access to a specific account.
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /vehicles/{id}
+    method: getDetails
+    httpMethod: get
+    tag: Vehicles
+    typeScriptTag: vehicles
+    description: Get Vehicle
+    parameters:
+      - name: raw
+        schema: string
+        description: >-
+          Include raw responses used to normalize model. Used for debugging or
+          accessing unique properties that are not unified.
+      - name: expand
+        schema: string
+        description: Expand resources in the returned response
+      - name: connectionToken
+        schema: string
+        description: >-
+          (Required) The token returned when a user authenticated their account.
+          This authorizes access to a specific account.
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /vehicles/locations
+    method: getLatestLocations
+    httpMethod: get
+    tag: Vehicles
+    typeScriptTag: vehicles
+    description: Latest Vehicle Locations
+    parameters:
+      - name: cursor
+        schema: string
+        description: Pagination cursor to start requests from
+      - name: limit
+        schema: string
+        description: The maximum number of results to return in a page.
+      - name: raw
+        schema: string
+        description: >-
+          Include raw responses used to normalize model. Used for debugging or
+          accessing unique properties that are not unified.
+      - name: vehicleIds
+        schema: string
+        description: Comma separated list of vehicle IDs to filter for
+      - name: expand
+        schema: string
+        description: Expand resources in the returned response
+      - name: connectionToken
+        schema: string
+        description: >-
+          (Required) The token returned when a user authenticated their account.
+          This authorizes access to a specific account.
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /vehicles/{vehicleId}/locations
+    method: listHistoricalLocations
+    httpMethod: get
+    tag: Vehicles
+    typeScriptTag: vehicles
+    description: Historical Vehicle Locations
+    parameters:
+      - name: cursor
+        schema: string
+        description: Pagination cursor to start requests from
+      - name: limit
+        schema: string
+        description: The maximum number of results to return in a page.
+      - name: startAt
+        schema: string
+        description: Timestamp to start from - defaults to `TODAY - 1 MONTH`
+      - name: endAt
+        schema: string
+        description: Timestamp to end at - defaults to `TODAY`
+      - name: raw
+        schema: string
+        description: >-
+          Include raw responses used to normalize model. Used for debugging or
+          accessing unique properties that are not unified.
+      - name: connectionToken
+        schema: string
+        description: >-
+          (Required) The token returned when a user authenticated their account.
+          This authorizes access to a specific account.
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /vehicles/{vehicleId}/stats/historical
+    method: getHistoricalStats
+    httpMethod: get
+    tag: Vehicles
+    typeScriptTag: vehicles
+    description: Historical Vehicle Stats
+    parameters:
+      - name: cursor
+        schema: string
+        description: Pagination cursor to start requests from
+      - name: limit
+        schema: string
+        description: The maximum number of results to return in a page.
+      - name: expand
+        schema: string
+        description: Expand resources in the returned response
+      - name: startAt
+        schema: string
+        description: Timestamp to start from - defaults to `TODAY - 1 MONTH`
+      - name: endAt
+        schema: string
+        description: Timestamp to end at - defaults to `TODAY`
+      - name: types
+        schema: string
+        description: Comma separated list of vehicle stats to filter for
+      - name: raw
+        schema: string
+        description: >-
+          Include raw responses used to normalize model. Used for debugging or
+          accessing unique properties that are not unified.
+      - name: connectionToken
+        schema: string
+        description: >-
+          (Required) The token returned when a user authenticated their account.
+          This authorizes access to a specific account.
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /trips
+    method: getAllTrips
+    httpMethod: get
+    tag: Trips
+    typeScriptTag: trips
+    description: List Trips
+    parameters:
+      - name: cursor
+        schema: string
+        description: Pagination cursor to start requests from
+      - name: limit
+        schema: string
+        description: The maximum number of results to return in a page.
+      - name: modifiedAfter
+        schema: string
+        description: Only include records that were last modified after a provided date.
+      - name: modifiedBefore
+        schema: string
+        description: Only include records that were last modified before a provided date.
+      - name: startedAfter
+        schema: string
+        description: Only include trips that started after a provided date.
+      - name: startedBefore
+        schema: string
+        description: Only include trips that started before a provided date.
+      - name: endedAfter
+        schema: string
+        description: Only include trips that ended after a provided date.
+      - name: endedBefore
+        schema: string
+        description: Only include trips that ended before a provided date.
+      - name: driverIds
+        schema: string
+        description: Comma separated list of driver IDs to filter for
+      - name: vehicleIds
+        schema: string
+        description: Comma separated list of vehicle IDs to filter for
+      - name: raw
+        schema: string
+        description: >-
+          Include raw responses used to normalize model. Used for debugging or
+          accessing unique properties that are not unified.
+      - name: expand
+        schema: string
+        description: Expand resources in the returned response
+      - name: connectionToken
+        schema: string
+        description: >-
+          (Required) The token returned when a user authenticated their account.
+          This authorizes access to a specific account.
+    responses:
+      - statusCode: '200'
+        description: ''
+numberOfSchemas: 6
+apiDescription: >-
+  Terminal is a unified API that makes it easy to integrate with the leading
+  telematics service providers.
+
+
+  Contact Support:
+   Name: Terminal
+   Email: connect@withterminal.com

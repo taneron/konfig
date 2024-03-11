@@ -9,6 +9,7 @@ import * as fs from "fs-extra";
 import deepmerge from "deepmerge";
 import yaml from "js-yaml";
 import puppeteer, { Browser as PuppeteerBrowser } from "puppeteer";
+import { transpile } from "postman2openapi";
 import {
   computeDifficultyScore,
   customRequestSpecsDir,
@@ -225,6 +226,17 @@ const customRequests: Record<string, CustomRequest> = {
       );
       rawSpecString = rawSpecString.replaceAll("((http", "(http");
       return rawSpecString;
+    },
+  },
+  "withterminal.com": {
+    lambda: async () => {
+      const postmanUrl =
+        "https://raw.githubusercontent.com/terminal-api/postman/main/postman/terminal.postman_collection.json";
+      const postmanCollection = await fetch(postmanUrl).then((res) =>
+        res.json()
+      );
+      const openapi = transpile(postmanCollection);
+      return JSON.stringify(openapi);
     },
   },
   "vimeo.com": {

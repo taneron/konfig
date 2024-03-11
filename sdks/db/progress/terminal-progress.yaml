@@ -1,0 +1,142 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignoreObjectsWithNoProperties: true
+ignorePotentialIncorrectType: true
+operationIds:
+  /connections:
+    get: Connections_listAll
+    post: Connections_createCustomConnection
+  /connections/current:
+    get: Connections_getCurrentDetails
+    patch: Connections_updateCurrentConnectionDetails
+  /drivers:
+    get: Drivers_list
+  /drivers/{id}:
+    get: Drivers_getDetails
+  /groups:
+    get: Groups_getAllGroups
+  /hos/available-time:
+    get: HoursOfService_getAvailableTime
+  /hos/daily-logs:
+    get: HoursOfService_getDailyLogs
+  /hos/logs:
+    get: HoursOfService_listHosLogs
+  /ifta/summary:
+    get: Ifta_getMonthlyReports
+  /issues:
+    get: Issues_listObservedEvents
+  /issues/{issueId}/resolve:
+    post: Issues_markResolved
+  /passthrough:
+    post: DataManagement_makePassthroughRequest
+  /providers:
+    get: Providers_getList
+  /public-token/exchange:
+    post: Authentication_exchangeToken
+  /safety/events:
+    get: Safety_getEvents
+  /syncs:
+    get: DataManagement_listSyncHistory
+    post: DataManagement_requestSyncManual
+  /syncs/{id}:
+    get: DataManagement_getSyncStatus
+  /trailers:
+    get: Trailers_getAllTrailers
+  /trailers/locations:
+    get: Trailers_listLatestLocations
+  /trips:
+    get: Trips_getAllTrips
+  /vehicles:
+    get: Vehicles_getAll
+  /vehicles/locations:
+    get: Vehicles_getLatestLocations
+  /vehicles/{id}:
+    get: Vehicles_getDetails
+  /vehicles/{vehicleId}/locations:
+    get: Vehicles_listHistoricalLocations
+  /vehicles/{vehicleId}/stats/historical:
+    get: Vehicles_getHistoricalStats
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /connections:
+    post:
+      application/json: ConnectionsCreateCustomConnectionRequest
+  /connections/current:
+    patch:
+      application/json: ConnectionsUpdateCurrentConnectionDetailsRequest
+  /issues/{issueId}/resolve:
+    post:
+      application/json: IssuesMarkResolvedRequest
+  /passthrough:
+    post:
+      application/json: DataManagementMakePassthroughRequestRequest
+  /public-token/exchange:
+    post:
+      application/json: AuthenticationExchangeTokenRequest
+  /syncs:
+    post:
+      application/json: DataManagementRequestSyncManualRequest
+responseDescriptions: {}
+responseSchemaNames: {}
+securityParameters:
+  connection-token:
+    header: false
+  connectionId:
+    query: false
+  cursor:
+    query: false
+  dotNumber:
+    query: false
+  driverIds:
+    query: false
+  endAt:
+    query: false
+  endDate:
+    query: false
+  endMonth:
+    query: false
+  endedAfter:
+    query: false
+  endedBefore:
+    query: false
+  errorCode:
+    query: false
+  expand:
+    query: false
+  externalId:
+    query: false
+  groupBy:
+    query: false
+  lastReportedAfter:
+    query: false
+  lastReportedBefore:
+    query: false
+  limit:
+    query: false
+  modifiedAfter:
+    query: false
+  modifiedBefore:
+    query: false
+  raw:
+    query: false
+  startAt:
+    query: false
+  startDate:
+    query: false
+  startMonth:
+    query: false
+  startedAfter:
+    query: false
+  startedBefore:
+    query: false
+  status:
+    query: false
+  tag:
+    query: false
+  types:
+    query: false
+  vehicleIds:
+    query: false
+validServerUrls: {}
