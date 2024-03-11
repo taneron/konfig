@@ -1,0 +1,640 @@
+hash: b3a325cda6b1ad1c8149675d19d598f2ef1587d2cfdd0ac01695c9a1da4471fd
+methodObjects:
+  - url: /v2/cards
+    method: listByUserId
+    httpMethod: get
+    tag: Cards
+    typeScriptTag: cards
+    description: |
+
+      List cards
+    parameters:
+      - name: userId
+        schema: string
+        required: false
+        description: ''
+      - name: cursor
+        schema: string
+        required: false
+        description: ''
+      - name: limit
+        schema: integer
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /v2/cards
+    method: createNewCard
+    httpMethod: post
+    tag: Cards
+    typeScriptTag: cards
+    description: |
+
+      Create card
+    parameters:
+      - name: idempotencyKey
+        schema: string
+        required: true
+        description: ''
+      - name: owner
+        schema: object
+        required: true
+        description: ''
+      - name: card_name
+        schema: string
+        required: true
+        description: ''
+      - name: card_type
+        schema: string
+        required: true
+        description: ''
+      - name: limit_type
+        schema: string
+        required: true
+        description: ''
+      - name: spend_controls
+        schema: undefined
+        required: false
+        description: ''
+      - name: mailing_address
+        schema: undefined
+        required: false
+        description: ''
+      - name: metadata
+        schema: object
+        required: false
+        description: ''
+      - name: card_attribute_preferences
+        schema: undefined
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: |
+
+          Only cards with limit_type = CARD have spend_controls
+  - url: /v2/cards/{id}
+    method: getById
+    httpMethod: get
+    tag: Cards
+    typeScriptTag: cards
+    description: |
+
+      Get card
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: |
+
+          Only cards with limit_type = CARD have spend_controls
+  - url: /v2/cards/{id}
+    method: updateCard
+    httpMethod: put
+    tag: Cards
+    typeScriptTag: cards
+    description: |
+
+      Update card
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: ''
+      - name: idempotencyKey
+        schema: string
+        required: false
+        description: ''
+      - name: spend_controls
+        schema: undefined
+        description: ''
+      - name: metadata
+        schema: object
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: |
+
+          Only cards with limit_type = CARD have spend_controls
+  - url: /v2/cards/{id}/lock
+    method: lockCard
+    httpMethod: post
+    tag: Cards
+    typeScriptTag: cards
+    description: |
+
+      Lock card
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: ''
+      - name: idempotencyKey
+        schema: string
+        required: false
+        description: ''
+      - name: description
+        schema: string
+        required: false
+        description: ''
+      - name: reason
+        schema: string
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: |
+
+          Only cards with limit_type = CARD have spend_controls
+  - url: /v2/cards/{id}/pan
+    method: getCardDetails
+    httpMethod: get
+    tag: Cards
+    typeScriptTag: cards
+    description: |
+
+      Get card number
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: |
+
+          Card number, CVV, and expiration date of a card.
+  - url: /v2/cards/{id}/secure_email
+    method: createSecureEmail
+    httpMethod: post
+    tag: Cards
+    typeScriptTag: cards
+    description: |
+
+      Create secure email to send card number 
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: ''
+      - name: idempotencyKey
+        schema: string
+        required: true
+        description: ''
+      - name: recipient_email
+        schema: string
+        description: ''
+      - name: sender_name
+        schema: string
+        description: ''
+      - name: message
+        schema: string
+        description: ''
+      - name: expiry_days
+        schema: integer
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: emailCardNumber 200 response
+  - url: /v2/cards/{id}/terminate
+    method: terminateExistingCard
+    httpMethod: post
+    tag: Cards
+    typeScriptTag: cards
+    description: |
+
+      Terminate card
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: ''
+      - name: idempotencyKey
+        schema: string
+        required: false
+        description: ''
+      - name: description
+        schema: string
+        required: false
+        description: ''
+      - name: reason
+        schema: string
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: |
+
+          Only cards with limit_type = CARD have spend_controls
+  - url: /v2/cards/{id}/unlock
+    method: unlockExistingCard
+    httpMethod: post
+    tag: Cards
+    typeScriptTag: cards
+    description: |
+
+      Unlock card
+    parameters:
+      - name: idempotencyKey
+        schema: string
+        required: false
+        description: ''
+      - name: id
+        schema: string
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: |
+
+          Only cards with limit_type = CARD have spend_controls
+  - url: /v2/company
+    method: getInfo
+    httpMethod: get
+    tag: Companies
+    typeScriptTag: companies
+    description: |
+
+      Get company
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /v2/departments
+    method: listAll
+    httpMethod: get
+    tag: Departments
+    typeScriptTag: departments
+    description: |
+
+      List departments
+    parameters:
+      - name: cursor
+        schema: string
+        required: false
+        description: ''
+      - name: limit
+        schema: integer
+        required: false
+        description: ''
+      - name: name
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /v2/departments
+    method: addNewDepartment
+    httpMethod: post
+    tag: Departments
+    typeScriptTag: departments
+    description: |
+
+      Create department
+    parameters:
+      - name: idempotencyKey
+        schema: string
+        required: false
+        description: ''
+      - name: description
+        schema: string
+        required: false
+        description: ''
+      - name: name
+        schema: string
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /v2/departments/{id}
+    method: getById
+    httpMethod: get
+    tag: Departments
+    typeScriptTag: departments
+    description: |
+
+      Get department
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /v2/locations
+    method: getAllLocations
+    httpMethod: get
+    tag: Locations
+    typeScriptTag: locations
+    description: |
+
+      List locations
+    parameters:
+      - name: cursor
+        schema: string
+        required: false
+        description: ''
+      - name: limit
+        schema: integer
+        required: false
+        description: ''
+      - name: name
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /v2/locations
+    method: addNewLocation
+    httpMethod: post
+    tag: Locations
+    typeScriptTag: locations
+    description: |
+
+      Create location
+    parameters:
+      - name: idempotencyKey
+        schema: string
+        required: false
+        description: ''
+      - name: description
+        schema: string
+        required: false
+        description: ''
+      - name: name
+        schema: string
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /v2/locations/{id}
+    method: getLocationById
+    httpMethod: get
+    tag: Locations
+    typeScriptTag: locations
+    description: |
+
+      Get location
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /v2/titles
+    method: getAll
+    httpMethod: get
+    tag: Titles
+    typeScriptTag: titles
+    description: |
+
+      List titles
+    parameters:
+      - name: cursor
+        schema: string
+        required: false
+        description: ''
+      - name: limit
+        schema: integer
+        required: false
+        description: ''
+      - name: name
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /v2/titles
+    method: createNewTitle
+    httpMethod: post
+    tag: Titles
+    typeScriptTag: titles
+    description: |
+
+      Create title
+    parameters:
+      - name: idempotencyKey
+        schema: string
+        required: false
+        description: ''
+      - name: name
+        schema: string
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /v2/titles/{id}
+    method: getTitleById
+    httpMethod: get
+    tag: Titles
+    typeScriptTag: titles
+    description: |
+
+      Get title
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /v2/users
+    method: listUsers
+    httpMethod: get
+    tag: Users
+    typeScriptTag: users
+    description: |
+
+      List users
+    parameters:
+      - name: cursor
+        schema: string
+        required: false
+        description: ''
+      - name: limit
+        schema: integer
+        required: false
+        description: ''
+      - name: email
+        schema: string
+        required: false
+        description: ''
+      - name: remoteDisplayId
+        schema: string
+        required: false
+        description: ''
+      - name: expand[]
+        schema: array
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /v2/users
+    method: inviteNewEmployee
+    httpMethod: post
+    tag: Users
+    typeScriptTag: users
+    description: |
+
+      Invite user
+    parameters:
+      - name: idempotencyKey
+        schema: string
+        required: false
+        description: ''
+      - name: first_name
+        schema: string
+        required: true
+        description: ''
+      - name: last_name
+        schema: string
+        required: true
+        description: ''
+      - name: email
+        schema: string
+        required: true
+        description: ''
+      - name: manager_id
+        schema: string
+        required: false
+        description: ''
+      - name: department_id
+        schema: string
+        required: false
+        description: ''
+      - name: location_id
+        schema: string
+        required: false
+        description: ''
+      - name: title_id
+        schema: string
+        required: false
+        description: ''
+      - name: metadata
+        schema: object
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /v2/users/me
+    method: getCurrentUser
+    httpMethod: get
+    tag: Users
+    typeScriptTag: users
+    description: |
+
+      Get current user
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /v2/users/{id}
+    method: getUserById
+    httpMethod: get
+    tag: Users
+    typeScriptTag: users
+    description: |
+
+      Get user
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /v2/users/{id}
+    method: updateUser
+    httpMethod: put
+    tag: Users
+    typeScriptTag: users
+    description: |
+
+      Update user
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: ''
+      - name: idempotencyKey
+        schema: string
+        required: false
+        description: ''
+      - name: status
+        schema: undefined
+        description: ''
+      - name: manager_id
+        schema: string
+        description: ''
+      - name: department_id
+        schema: string
+        description: ''
+      - name: location_id
+        schema: string
+        description: ''
+      - name: title_id
+        schema: string
+        description: ''
+      - name: metadata
+        schema: object
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /v2/users/{id}/limit
+    method: getMonthlyLimit
+    httpMethod: get
+    tag: Users
+    typeScriptTag: users
+    description: |
+
+      Get limit for the user
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /v2/users/{id}/limit
+    method: setMonthlyLimit
+    httpMethod: post
+    tag: Users
+    typeScriptTag: users
+    description: |
+
+      Set limit for the user
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: ''
+      - name: idempotencyKey
+        schema: string
+        required: false
+        description: ''
+      - name: monthly_limit
+        schema: undefined
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+numberOfSchemas: 43

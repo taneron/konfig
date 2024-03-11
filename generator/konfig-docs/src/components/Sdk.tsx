@@ -62,14 +62,16 @@ export function Sdk({
   language = "TypeScript",
   doesNotHaveApiDescription,
 }: Omit<SdkPageProps, "difficultyScore" | "providerName"> & ReactProps) {
-  const description = `Explore the ${company} TypeScript SDK. Dive into comprehensive documentation and utilize ${methods.length} methods to integrate ${company}'s API into your application.`;
+  const serviceNameSubstring =
+    serviceName !== undefined ? ` ${serviceName}` : "";
+  const description = `Explore the ${company}${serviceNameSubstring} TypeScript SDK. Dive into comprehensive documentation and utilize ${methods.length} methods to integrate ${company}'s${serviceNameSubstring} API into your application.`;
   const homepageWithHttpScheme =
     homepage.startsWith("https://") || homepage.startsWith("http://")
       ? homepage
       : `https://${homepage}`;
   return (
     <Layout
-      title={`${company} API - ${language} SDK, Documentation, and OpenAPI Specification`}
+      title={`${company}${serviceNameSubstring} API - ${language} SDK, Documentation, and OpenAPI Specification`}
       description={description}
     >
       <Head>

@@ -1,0 +1,71 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+operationIds:
+  /v2/cards:
+    get: Cards_listByUserId
+    post: Cards_createNewCard
+  /v2/cards/{id}:
+    get: Cards_getById
+    put: Cards_updateCard
+  /v2/cards/{id}/lock:
+    post: Cards_lockCard
+  /v2/cards/{id}/pan:
+    get: Cards_getCardDetails
+  /v2/cards/{id}/secure_email:
+    post: Cards_createSecureEmail
+  /v2/cards/{id}/terminate:
+    post: Cards_terminateExistingCard
+  /v2/cards/{id}/unlock:
+    post: Cards_unlockExistingCard
+  /v2/company:
+    get: Companies_getInfo
+  /v2/departments:
+    get: Departments_listAll
+    post: Departments_addNewDepartment
+  /v2/departments/{id}:
+    get: Departments_getById
+  /v2/locations:
+    get: Locations_getAllLocations
+    post: Locations_addNewLocation
+  /v2/locations/{id}:
+    get: Locations_getLocationById
+  /v2/titles:
+    get: Titles_getAll
+    post: Titles_createNewTitle
+  /v2/titles/{id}:
+    get: Titles_getTitleById
+  /v2/users:
+    get: Users_listUsers
+    post: Users_inviteNewEmployee
+  /v2/users/me:
+    get: Users_getCurrentUser
+  /v2/users/{id}:
+    get: Users_getUserById
+    put: Users_updateUser
+  /v2/users/{id}/limit:
+    get: Users_getMonthlyLimit
+    post: Users_setMonthlyLimit
+operationTags: {}
+renameTags: {}
+requestSchemaNames: {}
+responseDescriptions: {}
+responseSchemaNames: {}
+securityParameters:
+  Idempotency-Key:
+    header: false
+  cursor:
+    query: false
+  email:
+    query: false
+  expand[]:
+    query: false
+  limit:
+    query: false
+  name:
+    query: false
+  remote_display_id:
+    query: false
+  user_id:
+    query: false
+validServerUrls: {}
