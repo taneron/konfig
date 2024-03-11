@@ -3,7 +3,7 @@ import * as fs from "fs-extra";
 import { SdkPagePropsWithPropertiesOmitted } from "./collect";
 import { parseSpec } from "konfig-lib";
 import camelcase from "konfig-lib/dist/util/camelcase";
-import { Published, customRequestSpecsDir } from "./util";
+import { Published, customRequestSpecsDir, getNumberOfSchemas } from "./util";
 import yaml from "js-yaml";
 import { generateSdkDynamicPath } from "./util";
 import { getMethodObjects } from "../src/get-method-objects";
@@ -203,6 +203,7 @@ function saveFixedSpechCache({
 type CachedMethodObjectsCache = {
   hash: string;
   methodObjects: ReturnType<typeof getMethodObjects>;
+  numberOfSchemas: number;
 };
 
 function getMethodObjectsCachePath(spec: string) {
@@ -432,21 +433,31 @@ async function main() {
     const hash = hashRawSpecString(fixedSpecString);
     const isCached =
       cachedMethodObjects?.hash === hash &&
-      fs.existsSync(openapiExamplesFilePath);
+      fs.existsSync(openapiExamplesFilePath) &&
+      cachedMethodObjects.numberOfSchemas !== undefined;
     let methods: ReturnType<typeof getMethodObjects> | null = null;
+    let numberOfSchemas: number | null = null;
     if (isCached) {
       console.log(
         `⚪️ Skipping getMethodObjects for ${spec} and writing to openapi-examples because it is cached`
       );
       methods = cachedMethodObjects?.methodObjects;
+      numberOfSchemas = cachedMethodObjects?.numberOfSchemas;
     } else {
       const oas = await parseSpec(fixedSpecString);
       methods = getMethodObjects(oas);
       fs.writeFileSync(openapiExamplesFilePath, yaml.dump(oas.spec));
-      saveMethodObjectsCache({ spec, cache: { hash, methodObjects: methods } });
+      numberOfSchemas = getNumberOfSchemas(oas);
+      saveMethodObjectsCache({
+        spec,
+        cache: { hash, methodObjects: methods, numberOfSchemas },
+      });
     }
-    if (methods === null) {
-      throw Error(`❌ ERROR: methods is null for ${spec}`);
+    if (methods === null || methods === undefined) {
+      throw Error(`❌ ERROR: methods is empty for ${spec}`);
+    }
+    if (numberOfSchemas === null || numberOfSchemas === undefined) {
+      throw Error(`❌ ERROR: numberOfSchemas is empty for ${spec}`);
     }
 
     /**
@@ -455,6 +466,7 @@ async function main() {
     const merged: Published = {
       ...specData,
       ...publishData,
+      schemas: numberOfSchemas,
       categories: nonEmptyCategories,
       methods,
       metaDescription,
