@@ -191,10 +191,15 @@ async function main() {
   for (const spec in publishDatum) {
     const publishData = publishJson.publish[spec];
     const { dynamicPath, specData } = publishDatum[spec];
+    const fixedSpecFileName = getFixedSpecFileName(publishData.sdkName);
+    fixedSpecFileNames[spec] = fixedSpecFileName;
 
     let rawSpecString = getRawSpecString(specData);
     const oas = await parseSpec(rawSpecString);
 
+    /**
+     * 1.a Perform any overrides authored in publish.json
+     */
     // if publishData includes securitySchemes then override the securitySchemes in oas
     if (publishData.securitySchemes) {
       if (!oas.spec.components) oas.spec.components = {};
@@ -210,9 +215,10 @@ async function main() {
         (oas.spec.info as any)["x-api-status-urls"] = publishData.apiStatusUrls;
     }
 
+    /**
+     * 1.b Write to intermediate-fixed-specs/ to be later fixed in 1.c
+     */
     const openapiFilename = "openapi.yaml";
-    const fixedSpecFileName = getFixedSpecFileName(publishData.sdkName);
-    fixedSpecFileNames[spec] = fixedSpecFileName;
     const specIntermediatePathDirectory = path.join(
       intermediateFixedSpecsOutputPath,
       dynamicPath
@@ -229,18 +235,19 @@ async function main() {
     // fixing it
     fs.writeFileSync(specIntermediatePath, yaml.dump(oas.spec));
 
+    const fixedSpecPath = path.join(fixedSpecsOutputPath, fixedSpecFileName);
     if (fixSpecNotWorkingList.includes(spec)) {
       console.log(`🟡 Skipping ${spec} because it is in fixSpecNotWorkingList`);
-      fs.writeFileSync(specIntermediatePath, rawSpecString);
+      // If the spec is in fixSpecNotWorkingList, then we simply write the spec to fixedSpecsOutputPath
+      // and don't fix it
+      fs.writeFileSync(fixedSpecPath, yaml.dump(oas.spec));
       continue;
     }
 
-    promises.push(
-      fixSpec(
-        specIntermediatePath,
-        path.join(fixedSpecsOutputPath, fixedSpecFileName)
-      )
-    );
+    /**
+     * 1.c Fix the spec
+     */
+    promises.push(fixSpec(specIntermediatePath, fixedSpecPath));
   }
   await Promise.all(promises);
   const t2 = Date.now();
@@ -321,7 +328,7 @@ async function main() {
         fs.readFileSync(`${publishedPath}.json`, "utf-8")
       );
 
-      // temporarily "lastUpdated" property
+      // temporarily "lastUpdated" property for comparison below
       // copy and delete the property to preserve lastUpdated for merged
       delete existing.lastUpdated;
       const mergedCopy: any = { ...merged };
