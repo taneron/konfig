@@ -1,0 +1,41 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+operationIds:
+  /v2/accounts/card:
+    get: Accounts_listCardAccounts
+  /v2/accounts/card/primary/statements:
+    get: Accounts_listPrimaryCardStatements
+  /v2/accounts/cash:
+    get: Accounts_listCashAccounts
+  /v2/accounts/cash/primary:
+    get: Accounts_status
+  /v2/accounts/cash/{id}:
+    get: Accounts_getCashAccount
+  /v2/accounts/cash/{id}/statements:
+    get: Accounts_listCashStatements
+  /v2/transactions/card/primary:
+    get: Transactions_listAllCardTransactions
+  /v2/transactions/cash/{id}:
+    get: Transactions_listById
+operationTags: {}
+renameTags: {}
+requestSchemaNames: {}
+responseDescriptions: {}
+responseSchemaNames:
+  /v2/accounts/card:
+    get:
+      '200':
+        application/json: AccountsListCardAccountsResponse
+securityParameters:
+  cursor:
+    query: false
+  expand[]:
+    query: false
+  limit:
+    query: false
+  posted_at_start:
+    query: false
+  user_ids:
+    query: false
+validServerUrls: {}

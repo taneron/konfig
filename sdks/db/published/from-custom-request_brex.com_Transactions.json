@@ -1,0 +1,376 @@
+{
+  "securitySchemes": {
+    "OAuth2": {
+      "type": "oauth2",
+      "description": "OAuth2 security scheme",
+      "flows": {
+        "authorizationCode": {
+          "authorizationUrl": "https://accounts-api.brex.com/oauth2/default/v1/authorize",
+          "tokenUrl": "https://accounts-api.brex.com/oauth2/default/v1/token",
+          "scopes": {
+            "openid": "openid",
+            "offline_access": "offline access",
+            "transactions.card.readonly": "View card transaction data",
+            "statements.card.readonly": "View card statement data",
+            "accounts.card.readonly": "View card account data",
+            "accounts.cash.readonly": "View cash account data"
+          }
+        }
+      }
+    }
+  },
+  "apiBaseUrl": "https://platform.brexapis.com",
+  "apiVersion": "1.0",
+  "apiDescription": "\nThe transactions API lets you view your transactions, accounts, and statements.\n",
+  "apiTitle": "Transactions API",
+  "endpoints": 8,
+  "sdkMethods": 8,
+  "schemas": 16,
+  "parameters": 15,
+  "contactUrl": "https://brex.com",
+  "contactEmail": "developer-access@brex.com",
+  "originalCustomRequest": {
+    "lambda": true
+  },
+  "customRequestSpecFilename": "brex.com_Transactions.yaml",
+  "difficultyScore": 19.25,
+  "difficulty": "Easy",
+  "company": "Brex",
+  "serviceName": "Transactions",
+  "sdkName": "brex-transactions-{language}-sdk",
+  "clientName": "BrexTransactions",
+  "metaDescription": "Brex is the AI-powered spend platform. We transform finance teams from reactive no-sayers to proactive growth drivers. With Brex, companies spend with confidence by empowering employees to make smarter financial decisions from anywhere. Brex provides corporate cards, business accounts, and global payments, plus intuitive software for travel and expenses, that make it easy to plan and track all company spend in one place, in real time. Over 20,000 companies from startups to global enterprises — including DoorDash, Flexport, and Compass — use Brex to proactively control spend, reduce costs, and increase efficiency on a global scale.",
+  "apiStatusUrls": "inherit",
+  "homepage": "brex.com",
+  "developerDocumentation": "developer.brex.com/openapi/transactions_api/",
+  "categories": [
+    "finance",
+    "payments",
+    "online_payments",
+    "fintech",
+    "automation",
+    "global_payments",
+    "travel_expenses"
+  ],
+  "methods": [
+    {
+      "url": "/v2/accounts/card",
+      "method": "listCardAccounts",
+      "httpMethod": "get",
+      "tag": "Accounts",
+      "typeScriptTag": "accounts",
+      "description": "\nList card accounts\n",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": "Bad request"
+        },
+        {
+          "statusCode": "401",
+          "description": "Unauthorized"
+        },
+        {
+          "statusCode": "403",
+          "description": "Forbidden"
+        }
+      ]
+    },
+    {
+      "url": "/v2/accounts/card/primary/statements",
+      "method": "listPrimaryCardStatements",
+      "httpMethod": "get",
+      "tag": "Accounts",
+      "typeScriptTag": "accounts",
+      "description": "\nList primary card account statements. \n",
+      "parameters": [
+        {
+          "name": "cursor",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "limit",
+          "schema": "integer",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": "Bad request"
+        },
+        {
+          "statusCode": "401",
+          "description": "Unauthorized"
+        },
+        {
+          "statusCode": "403",
+          "description": "Forbidden"
+        }
+      ]
+    },
+    {
+      "url": "/v2/accounts/cash",
+      "method": "listCashAccounts",
+      "httpMethod": "get",
+      "tag": "Accounts",
+      "typeScriptTag": "accounts",
+      "description": "\nList cash accounts\n",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": "Bad request"
+        },
+        {
+          "statusCode": "401",
+          "description": "Unauthorized"
+        },
+        {
+          "statusCode": "403",
+          "description": "Forbidden"
+        }
+      ]
+    },
+    {
+      "url": "/v2/accounts/cash/primary",
+      "method": "status",
+      "httpMethod": "get",
+      "tag": "Accounts",
+      "typeScriptTag": "accounts",
+      "description": "\nGet primary cash account\n",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": "Bad request"
+        },
+        {
+          "statusCode": "401",
+          "description": "Unauthorized"
+        },
+        {
+          "statusCode": "403",
+          "description": "Forbidden"
+        }
+      ]
+    },
+    {
+      "url": "/v2/accounts/cash/{id}",
+      "method": "getCashAccount",
+      "httpMethod": "get",
+      "tag": "Accounts",
+      "typeScriptTag": "accounts",
+      "description": "\nGet cash account by ID\n",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": "Bad request"
+        },
+        {
+          "statusCode": "401",
+          "description": "Unauthorized"
+        },
+        {
+          "statusCode": "403",
+          "description": "Forbidden"
+        }
+      ]
+    },
+    {
+      "url": "/v2/accounts/cash/{id}/statements",
+      "method": "listCashStatements",
+      "httpMethod": "get",
+      "tag": "Accounts",
+      "typeScriptTag": "accounts",
+      "description": "\nList cash account statements.    \n",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": ""
+        },
+        {
+          "name": "cursor",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "limit",
+          "schema": "integer",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": "Bad request"
+        },
+        {
+          "statusCode": "401",
+          "description": "Unauthorized"
+        },
+        {
+          "statusCode": "403",
+          "description": "Forbidden"
+        }
+      ]
+    },
+    {
+      "url": "/v2/transactions/card/primary",
+      "method": "listAllCardTransactions",
+      "httpMethod": "get",
+      "tag": "Transactions",
+      "typeScriptTag": "transactions",
+      "description": "\nList transactions for all card accounts.\n",
+      "parameters": [
+        {
+          "name": "cursor",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "limit",
+          "schema": "integer",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "userIds",
+          "schema": "array",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "postedAtStart",
+          "schema": "string",
+          "required": false,
+          "description": "\nShows only transactions with a `posted_at_date` on or after this date-time. This parameter is the date-time notation as defined by [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6)\n"
+        },
+        {
+          "name": "expand[]",
+          "schema": "array",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": "Bad request"
+        },
+        {
+          "statusCode": "401",
+          "description": "Unauthorized"
+        },
+        {
+          "statusCode": "403",
+          "description": "Forbidden"
+        }
+      ]
+    },
+    {
+      "url": "/v2/transactions/cash/{id}",
+      "method": "listById",
+      "httpMethod": "get",
+      "tag": "Transactions",
+      "typeScriptTag": "transactions",
+      "description": "\nList transactions for the selected cash account.\n",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": ""
+        },
+        {
+          "name": "cursor",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "limit",
+          "schema": "integer",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "postedAtStart",
+          "schema": "string",
+          "required": false,
+          "description": "\nShows only transactions with a `posted_at_date` on or after this date-time. This parameter is the date-time notation as defined by [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6)\n"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": "Bad request"
+        },
+        {
+          "statusCode": "401",
+          "description": "Unauthorized"
+        },
+        {
+          "statusCode": "403",
+          "description": "Forbidden"
+        }
+      ]
+    }
+  ],
+  "logo": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/brex/transactions/logo.png",
+  "openApiRaw": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/brex/transactions/openapi.yaml",
+  "previewLinkImage": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/brex/transactions/imagePreview.jpg",
+  "faviconUrl": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/brex/transactions/favicon.png",
+  "clientNameCamelCase": "brexTransactions",
+  "lastUpdated": "2024-03-11T06:43:11.466Z",
+  "typescriptSdkUsageCode": "import { BrexTransactions } from 'brex-transactions-typescript-sdk';\n\nconst brexTransactions = new BrexTransactions({\n    // OAuth2 security scheme\n    clientId: \"CLIENT_ID\",\n    clientSecret: \"CLIENT_SECRET\",\n    redirectUri: \"REDIRECT_URI\",\n})",
+  "fixedSpecFileName": "brex-transactions-fixed-spec.yaml"
+}

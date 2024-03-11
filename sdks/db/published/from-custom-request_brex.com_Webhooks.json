@@ -1,0 +1,326 @@
+{
+  "securitySchemes": {
+    "OAuth2": {
+      "type": "oauth2",
+      "description": "OAuth2 security scheme",
+      "flows": {
+        "clientCredentials": {
+          "tokenUrl": "https://accounts-api.brex.com/oauth2/default/v1/token",
+          "scopes": {
+            "openid": "openid",
+            "offline_access": "offline access"
+          }
+        },
+        "authorizationCode": {
+          "authorizationUrl": "https://accounts-api.brex.com/oauth2/default/v1/authorize",
+          "tokenUrl": "https://accounts-api.brex.com/oauth2/default/v1/token",
+          "scopes": {
+            "openid": "openid",
+            "offline_access": "offline access"
+          }
+        }
+      }
+    }
+  },
+  "apiBaseUrl": "https://platform.brexapis.com",
+  "apiVersion": "0.1",
+  "apiDescription": "\nBrex uses webhooks to send real-time notifications when events happen in the accounts that you manage.\nUse webhook subscriptions to subscribe to different webhook events.\n",
+  "apiTitle": "Webhooks API",
+  "endpoints": 3,
+  "sdkMethods": 6,
+  "schemas": 28,
+  "parameters": 11,
+  "contactUrl": "https://brex.com",
+  "contactEmail": "developer-access@brex.com",
+  "originalCustomRequest": {
+    "lambda": true
+  },
+  "customRequestSpecFilename": "brex.com_Webhooks.yaml",
+  "difficultyScore": 22.25,
+  "difficulty": "Easy",
+  "company": "Brex",
+  "serviceName": "Webhooks",
+  "sdkName": "brex-webhooks-{language}-sdk",
+  "clientName": "BrexWebhooks",
+  "metaDescription": "Brex is the AI-powered spend platform. We transform finance teams from reactive no-sayers to proactive growth drivers. With Brex, companies spend with confidence by empowering employees to make smarter financial decisions from anywhere. Brex provides corporate cards, business accounts, and global payments, plus intuitive software for travel and expenses, that make it easy to plan and track all company spend in one place, in real time. Over 20,000 companies from startups to global enterprises — including DoorDash, Flexport, and Compass — use Brex to proactively control spend, reduce costs, and increase efficiency on a global scale.",
+  "apiStatusUrls": "inherit",
+  "homepage": "brex.com",
+  "developerDocumentation": "developer.brex.com/openapi/webhooks_api/",
+  "categories": [
+    "finance",
+    "payments",
+    "online_payments",
+    "fintech",
+    "automation",
+    "banking",
+    "global_payments",
+    "travel_expenses"
+  ],
+  "methods": [
+    {
+      "url": "/v1/webhooks",
+      "method": "list",
+      "httpMethod": "get",
+      "tag": "Webhook Subscriptions",
+      "typeScriptTag": "webhookSubscriptions",
+      "description": "List Webhooks",
+      "parameters": [
+        {
+          "name": "cursor",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "limit",
+          "schema": "integer",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": "Bad request"
+        },
+        {
+          "statusCode": "401",
+          "description": "Unauthorized"
+        },
+        {
+          "statusCode": "403",
+          "description": "Forbidden"
+        },
+        {
+          "statusCode": "500",
+          "description": "Internal server error"
+        }
+      ]
+    },
+    {
+      "url": "/v1/webhooks",
+      "method": "registerEndpoint",
+      "httpMethod": "post",
+      "tag": "Webhook Subscriptions",
+      "typeScriptTag": "webhookSubscriptions",
+      "description": "Register Webhook",
+      "parameters": [
+        {
+          "name": "idempotencyKey",
+          "schema": "string",
+          "required": true,
+          "description": ""
+        },
+        {
+          "name": "url",
+          "schema": "string",
+          "required": true,
+          "description": ""
+        },
+        {
+          "name": "event_types",
+          "schema": "array",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": "Bad request"
+        },
+        {
+          "statusCode": "401",
+          "description": "Unauthorized"
+        },
+        {
+          "statusCode": "403",
+          "description": "Forbidden"
+        },
+        {
+          "statusCode": "500",
+          "description": "Internal server error"
+        }
+      ]
+    },
+    {
+      "url": "/v1/webhooks/secrets",
+      "method": "listSecrets",
+      "httpMethod": "get",
+      "tag": "Webhook Subscriptions",
+      "typeScriptTag": "webhookSubscriptions",
+      "description": "List Webhook Secrets",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": "Bad request"
+        },
+        {
+          "statusCode": "401",
+          "description": "Unauthorized"
+        },
+        {
+          "statusCode": "403",
+          "description": "Forbidden"
+        },
+        {
+          "statusCode": "500",
+          "description": "Internal server error"
+        }
+      ]
+    },
+    {
+      "url": "/v1/webhooks/{id}",
+      "method": "unregisterWebhook",
+      "httpMethod": "delete",
+      "tag": "Webhook Subscriptions",
+      "typeScriptTag": "webhookSubscriptions",
+      "description": "Unregister Webhook",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": "deleteSubscription 200 response"
+        },
+        {
+          "statusCode": "400",
+          "description": "Bad request"
+        },
+        {
+          "statusCode": "401",
+          "description": "Unauthorized"
+        },
+        {
+          "statusCode": "403",
+          "description": "Forbidden"
+        },
+        {
+          "statusCode": "500",
+          "description": "Internal server error"
+        }
+      ]
+    },
+    {
+      "url": "/v1/webhooks/{id}",
+      "method": "getDetails",
+      "httpMethod": "get",
+      "tag": "Webhook Subscriptions",
+      "typeScriptTag": "webhookSubscriptions",
+      "description": "Get Webhook",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": "Bad request"
+        },
+        {
+          "statusCode": "401",
+          "description": "Unauthorized"
+        },
+        {
+          "statusCode": "403",
+          "description": "Forbidden"
+        },
+        {
+          "statusCode": "500",
+          "description": "Internal server error"
+        }
+      ]
+    },
+    {
+      "url": "/v1/webhooks/{id}",
+      "method": "updateWebhook",
+      "httpMethod": "put",
+      "tag": "Webhook Subscriptions",
+      "typeScriptTag": "webhookSubscriptions",
+      "description": "Update Webhook",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": ""
+        },
+        {
+          "name": "url",
+          "schema": "string",
+          "required": true,
+          "description": ""
+        },
+        {
+          "name": "event_types",
+          "schema": "array",
+          "required": true,
+          "description": ""
+        },
+        {
+          "name": "status",
+          "schema": "string",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": "Bad request"
+        },
+        {
+          "statusCode": "401",
+          "description": "Unauthorized"
+        },
+        {
+          "statusCode": "403",
+          "description": "Forbidden"
+        },
+        {
+          "statusCode": "500",
+          "description": "Internal server error"
+        }
+      ]
+    }
+  ],
+  "logo": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/brex/webhooks/logo.png",
+  "openApiRaw": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/brex/webhooks/openapi.yaml",
+  "previewLinkImage": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/brex/webhooks/imagePreview.jpg",
+  "faviconUrl": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/brex/webhooks/favicon.png",
+  "clientNameCamelCase": "brexWebhooks",
+  "lastUpdated": "2024-03-11T06:43:11.466Z",
+  "typescriptSdkUsageCode": "import { BrexWebhooks } from 'brex-webhooks-typescript-sdk';\n\nconst brexWebhooks = new BrexWebhooks({\n    // OAuth2 security scheme\n    clientId: \"CLIENT_ID\",\n    clientSecret: \"CLIENT_SECRET\",\n})",
+  "fixedSpecFileName": "brex-webhooks-fixed-spec.yaml"
+}

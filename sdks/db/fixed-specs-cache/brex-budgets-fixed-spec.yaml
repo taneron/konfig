@@ -1,0 +1,1158 @@
+publishJson:
+  company: Brex
+  serviceName: Budgets
+  sdkName: brex-budgets-{language}-sdk
+  clientName: BrexBudgets
+  metaDescription: >-
+    Brex is the AI-powered spend platform. We transform finance teams from
+    reactive no-sayers to proactive growth drivers. With Brex, companies spend
+    with confidence by empowering employees to make smarter financial decisions
+    from anywhere. Brex provides corporate cards, business accounts, and global
+    payments, plus intuitive software for travel and expenses, that make it easy
+    to plan and track all company spend in one place, in real time. Over 20,000
+    companies from startups to global enterprises — including DoorDash,
+    Flexport, and Compass — use Brex to proactively control spend, reduce costs,
+    and increase efficiency on a global scale.
+  apiStatusUrls: inherit
+  homepage: brex.com
+  developerDocumentation: developer.brex.com/openapi/budgets_api/
+  categories:
+    - finance
+    - payments
+    - online_payments
+    - fintech
+    - automation
+    - global_payments
+    - travel_expenses
+    - banking
+    - business_accounts
+    - corporate_cards
+rawSpecString: |
+  openapi: 3.0.1
+  info:
+    title: Budgets API
+    description: |
+
+      The budgets API lets you manage your Brex budgets.
+    contact:
+      name: Admin
+      url: https://brex.com
+      email: developer-access@brex.com
+    version: '1.0'
+  servers:
+    - url: https://platform.brexapis.com
+      description: Production
+    - url: https://platform.staging.brexapps.com
+      description: >-
+        Staging (Note: This is not a sandbox. It will not work with customer
+        tokens.)
+  security:
+    - OAuth2: []
+  tags:
+    - name: Budgets
+      description: Endpoints for budgets data.
+    - name: Budget Programs
+      description: Endpoints for budgets programs data.
+  paths:
+    /v1/budget_programs:
+      get:
+        tags:
+          - Budget Programs
+        summary: |
+
+          List Budget Programs
+        description: |
+
+          Lists Budget Programs belonging to this account
+        operationId: listBudgetPrograms
+        parameters:
+          - name: cursor
+            in: query
+            required: false
+            schema:
+              type: string
+              nullable: true
+          - name: limit
+            in: query
+            required: false
+            schema:
+              type: integer
+              format: int32
+              nullable: true
+        responses:
+          '200':
+            description: listBudgetPrograms 200 response
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Page_BudgetProgram_'
+          '400':
+            description: Bad request
+          '401':
+            description: Unauthorized
+          '403':
+            description: Forbidden
+        security:
+          - OAuth2:
+              - budgets.readonly
+              - budgets
+      post:
+        tags:
+          - Budget Programs
+        summary: |
+
+          Create Budget Program
+        description: >
+
+          Creates a Budget Program.
+
+          If your account does not have access to budget program features, a 403
+          response status will be returned.
+
+          If this is the case and you want to gain access to this endpoint, please
+          contact Brex support.
+        operationId: createBudgetProgram
+        parameters:
+          - name: Idempotency-Key
+            in: header
+            required: true
+            schema:
+              type: string
+        requestBody:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateBudgetProgramRequest'
+          required: true
+        responses:
+          '200':
+            description: createBudgetProgram 200 response
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/BudgetProgram'
+          '400':
+            description: Bad request
+          '401':
+            description: Unauthorized
+          '403':
+            description: Forbidden
+        security:
+          - OAuth2:
+              - budgets
+    /v1/budget_programs/{id}:
+      get:
+        tags:
+          - Budget Programs
+        summary: |
+
+          Get Budget Program
+        description: |
+
+          Retrieves a Budget Program by ID
+        operationId: getBudgetProgramById
+        parameters:
+          - name: id
+            in: path
+            required: true
+            schema:
+              type: string
+        responses:
+          '200':
+            description: getBudgetProgramById 200 response
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/BudgetProgram'
+          '400':
+            description: Bad request
+          '401':
+            description: Unauthorized
+          '403':
+            description: Forbidden
+          '404':
+            description: Not Found
+        security:
+          - OAuth2:
+              - budgets.readonly
+              - budgets
+      put:
+        tags:
+          - Budget Programs
+        summary: |
+
+          Update Budget Program
+        description: >
+
+          Updates a Budget Program.
+
+          This endpoint requires budget management. If your account does not have
+          access to budget management features, a 403 response status will be
+          returned. 
+
+          If this is the case and you want to gain access to this endpoint, please
+          contact Brex support.
+        operationId: updateBudgetProgram
+        parameters:
+          - name: id
+            in: path
+            required: true
+            schema:
+              type: string
+          - name: Idempotency-Key
+            in: header
+            required: true
+            schema:
+              type: string
+        requestBody:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateBudgetProgramRequest'
+          required: true
+        responses:
+          '200':
+            description: updateBudgetProgram 200 response
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/BudgetProgram'
+          '400':
+            description: Bad request
+          '401':
+            description: Unauthorized
+          '403':
+            description: Forbidden
+          '404':
+            description: Not Found
+        security:
+          - OAuth2:
+              - budgets
+      delete:
+        tags:
+          - Budget Programs
+        summary: |
+
+          Delete Budget Program
+        description: >
+
+          Delete a Budget Program by ID.
+
+          This endpoint requires budget management. If your account does not have
+          access to budget management features, a 403 response status will be
+          returned. 
+
+          If this is the case and you want to gain access to this endpoint, please
+          contact Brex support.
+        operationId: deleteBudgetProgram
+        parameters:
+          - name: id
+            in: path
+            required: true
+            schema:
+              type: string
+        responses:
+          '200':
+            description: deleteBudgetProgram 200 response
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/BudgetProgram'
+          '400':
+            description: Bad request
+          '401':
+            description: Unauthorized
+          '403':
+            description: Forbidden
+          '404':
+            description: Not Found
+        security:
+          - OAuth2:
+              - budgets
+    /v1/budgets:
+      get:
+        tags:
+          - Budgets
+        summary: |
+
+          List Budgets
+        description: |
+
+          Lists Budgets belonging to this account
+        operationId: listBudgets
+        parameters:
+          - name: cursor
+            in: query
+            required: false
+            schema:
+              type: string
+              nullable: true
+          - name: limit
+            in: query
+            required: false
+            schema:
+              type: integer
+              format: int32
+              nullable: true
+        responses:
+          '200':
+            description: listBudgets 200 response
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Page_Budget_'
+          '400':
+            description: Bad request
+          '401':
+            description: Unauthorized
+          '403':
+            description: Forbidden
+        security:
+          - OAuth2:
+              - budgets.readonly
+              - budgets
+      post:
+        tags:
+          - Budgets
+        summary: |
+
+          Create Budget
+        description: >
+
+          Creates a Budget.
+
+          This endpoint requires budget management. If your account does not have
+          access to budget management features, a 403 response status will be
+          returned. 
+
+          If this is the case and you want to gain access to this endpoint, please
+          contact Brex support.
+        operationId: createBudget
+        parameters:
+          - name: Idempotency-Key
+            in: header
+            required: true
+            schema:
+              type: string
+        requestBody:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateBudgetRequest'
+          required: true
+        responses:
+          '200':
+            description: createBudget 200 response
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Budget'
+          '400':
+            description: Bad request
+          '401':
+            description: Unauthorized
+          '403':
+            description: Forbidden
+        security:
+          - OAuth2:
+              - budgets
+    /v1/budgets/{id}:
+      get:
+        tags:
+          - Budgets
+        summary: |
+
+          Get Budget
+        description: |
+
+          Retrieves a Budget by ID
+        operationId: getBudgetById
+        parameters:
+          - name: id
+            in: path
+            required: true
+            schema:
+              type: string
+        responses:
+          '200':
+            description: getBudgetById 200 response
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Budget'
+          '400':
+            description: Bad request
+          '401':
+            description: Unauthorized
+          '403':
+            description: Forbidden
+          '404':
+            description: Not Found
+        security:
+          - OAuth2:
+              - budgets.readonly
+              - budgets
+      put:
+        tags:
+          - Budgets
+        summary: |
+
+          Update Budget
+        description: >
+
+          Updates a Budget.
+
+          This endpoint requires budget management. If your account does not have
+          access to budget management features, a 403 response status will be
+          returned. 
+
+          If this is the case and you want to gain access to this endpoint, please
+          contact Brex support.
+        operationId: updateBudget
+        parameters:
+          - name: id
+            in: path
+            required: true
+            schema:
+              type: string
+          - name: Idempotency-Key
+            in: header
+            required: true
+            schema:
+              type: string
+        requestBody:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateBudgetRequest'
+          required: true
+        responses:
+          '200':
+            description: updateBudget 200 response
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Budget'
+          '400':
+            description: Bad request
+          '401':
+            description: Unauthorized
+          '403':
+            description: Forbidden
+          '404':
+            description: Not Found
+        security:
+          - OAuth2:
+              - budgets
+    /v1/budgets/{id}/archive:
+      post:
+        tags:
+          - Budgets
+        summary: |
+
+          Archive a budget
+        description: >
+
+          Archives a budget, making it unusable for future expenses and removing
+          it from the UI
+        operationId: archiveBudget
+        parameters:
+          - name: id
+            in: path
+            required: true
+            schema:
+              type: string
+        responses:
+          '200':
+            description: archiveBudget 200 response
+          '400':
+            description: Bad request
+          '401':
+            description: Unauthorized
+          '403':
+            description: Forbidden
+          '404':
+            description: Not Found
+        security:
+          - OAuth2:
+              - budgets
+  components:
+    schemas:
+      Budget:
+        required:
+          - budget_status
+          - period_type
+          - spend_type
+        type: object
+        properties:
+          budget_id:
+            type: string
+            description: |
+
+              Unique ID for the Budget.
+          account_id:
+            type: string
+            description: |
+
+              The Brex account this Budget belongs to.
+          creator_user_id:
+            type: string
+            description: |
+
+              The ID of the user who originally created this budget.
+            nullable: true
+          name:
+            type: string
+            description: |
+
+              Name for the Budget.
+          description:
+            type: string
+            description: |
+
+              Description of what the Budget is used for.
+            nullable: true
+          parent_budget_id:
+            type: string
+            description: |
+
+              ID of parent Budget.
+            nullable: true
+          owner_user_ids:
+            type: array
+            description: |
+
+              User IDs of the owners of the Budget.
+            items:
+              type: string
+          member_user_ids:
+            type: array
+            description: |
+
+              User IDs of the members of the Budget.
+            items:
+              type: string
+          period_type:
+            $ref: '#/components/schemas/PeriodType'
+          start_date:
+            type: string
+            description: |
+
+              The UTC date when the Budget should start counting.
+            format: date
+            nullable: true
+          end_date:
+            type: string
+            description: |
+
+              The UTC date when the Budget should stop counting.
+            format: date
+            nullable: true
+          limit:
+            allOf:
+              - $ref: '#/components/schemas/Money'
+              - nullable: true
+          budget_status:
+            $ref: '#/components/schemas/BudgetStatus'
+          limit_type:
+            allOf:
+              - $ref: '#/components/schemas/LimitType'
+              - nullable: true
+          spend_type:
+            $ref: '#/components/schemas/SpendType'
+          current_period_balance:
+            allOf:
+              - $ref: '#/components/schemas/BudgetPeriodBalance'
+              - nullable: true
+      BudgetBlueprint:
+        required:
+          - id
+          - limit_type
+          - period_type
+          - spend_type
+        type: object
+        properties:
+          id:
+            type: string
+          name:
+            type: string
+            description: |
+
+              Name for the Budget.
+          description:
+            type: string
+            description: |
+
+              Description of what the Budget is used for.
+            nullable: true
+          parent_budget_id:
+            type: string
+            description: |
+
+              ID of parent Budget.
+          owner_user_ids:
+            type: array
+            description: |
+
+              User IDs of the owners of the Budget.
+            items:
+              type: string
+          period_type:
+            $ref: '#/components/schemas/PeriodType'
+          start_date:
+            type: string
+            description: |
+
+              The UTC date when the Budget should start counting.
+            format: date
+            nullable: true
+          end_date:
+            type: string
+            description: |
+
+              The UTC date when the Budget should stop counting.
+            format: date
+            nullable: true
+          limit:
+            allOf:
+              - $ref: '#/components/schemas/Money'
+              - nullable: true
+          limit_type:
+            $ref: '#/components/schemas/LimitType'
+          spend_type:
+            $ref: '#/components/schemas/SpendType'
+        description: |
+
+          Blueprint for provisioning Budgets for a Budget Program.
+      BudgetPeriodBalance:
+        type: object
+        properties:
+          start_date:
+            type: string
+            format: date
+            nullable: true
+          end_date:
+            type: string
+            format: date
+            nullable: true
+          balance:
+            allOf:
+              - $ref: '#/components/schemas/Money'
+              - nullable: true
+        description: |
+
+          Current Budget period balance.
+      BudgetProgram:
+        required:
+          - budget_blueprints
+          - budget_program_status
+          - created_at
+          - id
+          - name
+          - updated_at
+        type: object
+        properties:
+          id:
+            type: string
+          name:
+            type: string
+          description:
+            type: string
+            nullable: true
+          budget_blueprints:
+            type: array
+            items:
+              $ref: '#/components/schemas/BudgetBlueprint'
+          existing_budget_ids:
+            type: array
+            description: |
+
+              IDs for existing budgets associated with this Budget Program.
+            nullable: true
+            items:
+              type: string
+          employee_filter:
+            $ref: '#/components/schemas/EmployeeFilter'
+          budget_program_status:
+            $ref: '#/components/schemas/BudgetProgramStatus'
+          creator_user_id:
+            type: string
+            nullable: true
+          created_at:
+            type: string
+            format: date
+          updated_at:
+            type: string
+            format: date
+        description: |
+
+          Budget Program used to create budgets for eligible users.
+      BudgetProgramStatus:
+        type: string
+        enum:
+          - BUDGET_PROGRAM_STATUS_ACTIVE
+          - BUDGET_PROGRAM_STATUS_INACTIVE
+          - BUDGET_PROGRAM_STATUS_DELETED
+      BudgetStatus:
+        type: string
+        description: |
+
+          Status of the Budget e.g. APPROVED.
+        enum:
+          - APPROVED
+          - EXPIRED
+          - TERMINATED
+          - DELETED
+      BudgetLimitVisibilityType:
+        type: string
+        description: |
+
+          Determines if budget members are allowed to view the budget limit.
+        enum:
+          - SHARED
+          - PRIVATE
+      CreateBudgetBlueprintRequest:
+        required:
+          - limit
+          - limit_type
+          - limit_visibility
+          - period_type
+          - spend_type
+        type: object
+        properties:
+          name:
+            type: string
+            description: |
+
+              Name for the Budget.
+          description:
+            type: string
+            description: |
+
+              Description of what the Budget is used for.
+          parent_budget_id:
+            type: string
+            description: |
+
+              ID of parent Budget.
+          owner_user_ids:
+            type: array
+            description: |
+
+              User IDs of the owners of the Budget.
+            nullable: true
+            items:
+              type: string
+          period_type:
+            $ref: '#/components/schemas/PeriodType'
+          start_date:
+            type: string
+            description: |
+
+              The UTC date when the Budget should start counting.
+            format: date
+            nullable: true
+          end_date:
+            type: string
+            description: |
+
+              The UTC date when the Budget should stop counting.
+            format: date
+            nullable: true
+          limit:
+            $ref: '#/components/schemas/Money'
+          limit_type:
+            $ref: '#/components/schemas/LimitType'
+          spend_type:
+            $ref: '#/components/schemas/SpendType'
+          limit_visibility:
+            $ref: '#/components/schemas/BudgetLimitVisibilityType'
+        description: |
+
+          Blueprint for provisioning Budgets for a Budget Program.
+      CreateBudgetProgramRequest:
+        required:
+          - budget_blueprints
+          - name
+        type: object
+        properties:
+          existing_budget_ids:
+            type: array
+            description: |
+
+              IDs for existing budgets associated with this Budget Program.
+            nullable: true
+            items:
+              type: string
+          budget_blueprints:
+            type: array
+            items:
+              $ref: '#/components/schemas/CreateBudgetBlueprintRequest'
+          employee_filter:
+            allOf:
+              - $ref: '#/components/schemas/EmployeeFilter'
+              - nullable: true
+          name:
+            type: string
+          description:
+            type: string
+            nullable: true
+        description: |
+
+          Budget Program used to create budgets for eligible users.
+      CreateBudgetRequest:
+        required:
+          - parent_budget_id
+          - limit
+          - limit_type
+          - limit_visibility
+          - period_type
+          - spend_type
+        type: object
+        properties:
+          name:
+            type: string
+            description: |
+
+              Name for the Budget.
+          description:
+            type: string
+            description: |
+
+              Description of what the Budget is used for.
+          parent_budget_id:
+            type: string
+            description: |
+
+              ID of parent Budget.
+          owner_user_ids:
+            type: array
+            description: |
+
+              User IDs of the owners of the Budget.
+            nullable: true
+            items:
+              type: string
+          member_user_ids:
+            type: array
+            description: |
+
+              User IDs of the members of the Budget.
+            nullable: true
+            items:
+              type: string
+          period_type:
+            $ref: '#/components/schemas/PeriodType'
+          limit:
+            $ref: '#/components/schemas/Money'
+          limit_type:
+            $ref: '#/components/schemas/LimitType'
+          spend_type:
+            $ref: '#/components/schemas/SpendType'
+          start_date:
+            type: string
+            description: |
+
+              The UTC date when the Budget should start counting.
+            format: date
+            nullable: true
+          end_date:
+            type: string
+            description: |
+
+              The UTC date when the Budget should stop counting.
+            format: date
+            nullable: true
+          limit_visibility:
+            $ref: '#/components/schemas/BudgetLimitVisibilityType'
+      EmployeeFilter:
+        type: object
+        properties:
+          employment_status:
+            allOf:
+              - $ref: '#/components/schemas/EmploymentStatus'
+              - nullable: true
+          employment_type:
+            allOf:
+              - $ref: '#/components/schemas/EmploymentType'
+              - nullable: true
+        description: |
+
+          A filter used to determine if a user adheres to a Budget Program.
+      EmploymentStatus:
+        type: string
+        description: |
+
+          A filter used to determine if a user adheres to a Budget Program.
+        enum:
+          - EMPLOYMENT_STATUS_ACTIVE
+          - EMPLOYMENT_STATUS_INACTIVE
+          - EMPLOYMENT_STATUS_PENDING
+      EmploymentType:
+        type: string
+        description: |
+
+          What kind of employment the employee has.
+        enum:
+          - EMPLOYMENT_TYPE_FULL_TIME
+          - EMPLOYMENT_TYPE_PART_TIME
+          - EMPLOYMENT_TYPE_CONTRACTOR
+          - EMPLOYMENT_TYPE_INTERN
+          - EMPLOYMENT_TYPE_FREELANCE
+      LimitType:
+        type: string
+        description: |
+
+          Whether the Budget limit blocks spend.
+        enum:
+          - HARD
+          - SOFT
+      Money:
+        type: object
+        properties:
+          amount:
+            type: integer
+            description: >-
+              The amount of money, in the smallest denomination of the currency
+              indicated by currency. For example, when currency is USD, amount is
+              in cents.
+            format: int64
+          currency:
+            type: string
+            description: >-
+              The type of currency, in ISO 4217 format. Default to USD if not
+              specified
+            nullable: true
+        description: >
+
+          Money fields can be signed or unsigned. Fields are signed (an unsigned
+          value will be interpreted as positive). The amount of money will be
+          represented in the smallest denomination
+
+          of the currency indicated. For example, USD 7.00 will be represented in
+          cents with an amount of 700.
+      Page_BudgetProgram_:
+        required:
+          - items
+        type: object
+        properties:
+          next_cursor:
+            type: string
+            nullable: true
+          items:
+            type: array
+            items:
+              $ref: '#/components/schemas/BudgetProgram'
+      Page_Budget_:
+        required:
+          - items
+        type: object
+        properties:
+          next_cursor:
+            type: string
+            nullable: true
+          items:
+            type: array
+            items:
+              $ref: '#/components/schemas/Budget'
+      PeriodType:
+        type: string
+        description: |
+
+          Period type of the Budget e.g. MONTHLY.
+        enum:
+          - WEEKLY
+          - MONTHLY
+          - QUARTERLY
+          - YEARLY
+          - ONE_TIME
+      SpendType:
+        type: string
+        description: >
+
+          Whether this Budget only can be spent from by cards provisioned by this
+          Budget. 
+        enum:
+          - BUDGET_PROVISIONED_CARDS_ONLY
+          - NON_BUDGET_PROVISIONED_CARDS_ALLOWED
+      UpdateBudgetBlueprintRequest:
+        type: object
+        properties:
+          id:
+            type: string
+            description: >
+
+              ID of budget blueprint to update, omit if adding new budget
+              blueprint to budget program.
+            nullable: true
+          name:
+            type: string
+            description: |
+
+              Name for the Budget.
+            nullable: true
+          description:
+            type: string
+            description: |
+
+              Description of what the Budget is used for.
+            nullable: true
+          parent_budget_id:
+            type: string
+            description: |
+
+              ID of parent Budget.
+            nullable: true
+          owner_user_ids:
+            type: array
+            description: |
+
+              User IDs of the owners of the Budget.
+            nullable: true
+            items:
+              type: string
+          period_type:
+            allOf:
+              - $ref: '#/components/schemas/PeriodType'
+              - nullable: true
+          start_date:
+            type: string
+            description: |
+
+              The UTC date when the Budget should start counting.
+            format: date
+            nullable: true
+          end_date:
+            type: string
+            description: |
+
+              The UTC date when the Budget should stop counting.
+            format: date
+            nullable: true
+          limit:
+            allOf:
+              - $ref: '#/components/schemas/Money'
+              - nullable: true
+          limit_type:
+            allOf:
+              - $ref: '#/components/schemas/LimitType'
+              - nullable: true
+          spend_type:
+            allOf:
+              - $ref: '#/components/schemas/SpendType'
+              - nullable: true
+        description: |
+
+          Blueprint for provisioning Budgets for a Budget Program.
+      UpdateBudgetProgramRequest:
+        type: object
+        properties:
+          existing_budget_ids:
+            type: array
+            description: |
+
+              IDs for existing budgets associated with this Budget Program.
+            nullable: true
+            items:
+              type: string
+          budget_blueprints:
+            type: array
+            description: >
+
+              The Blueprints to update the budget program with. Blueprints without
+              an ID are treated as new blueprints to be created.
+
+              Blueprints that exist currently on the Budget Program, but are
+              missing from the input, will be deleted.
+            nullable: true
+            items:
+              $ref: '#/components/schemas/UpdateBudgetBlueprintRequest'
+          employee_filter:
+            allOf:
+              - $ref: '#/components/schemas/EmployeeFilter'
+              - nullable: true
+          name:
+            type: string
+            nullable: true
+          description:
+            type: string
+            nullable: true
+        description: |
+
+          Budget Program used to create budgets for eligible users.
+      UpdateBudgetRequest:
+        type: object
+        properties:
+          name:
+            type: string
+            description: |
+
+              Name for the Budget.
+            nullable: true
+          description:
+            type: string
+            description: |
+
+              Description of what the Budget is used for.
+            nullable: true
+          owner_user_ids:
+            type: array
+            description: |
+
+              User IDs of the owners of the Budget.
+            nullable: true
+            items:
+              type: string
+          member_user_ids:
+            type: array
+            description: |
+
+              User IDs of the members of the Budget.
+            nullable: true
+            items:
+              type: string
+          limit:
+            allOf:
+              - $ref: '#/components/schemas/Money'
+              - nullable: true
+          limit_type:
+            allOf:
+              - $ref: '#/components/schemas/LimitType'
+              - nullable: true
+          spend_type:
+            allOf:
+              - $ref: '#/components/schemas/SpendType'
+              - nullable: true
+          start_date:
+            type: string
+            description: |
+
+              The UTC date when the Budget should start counting.
+            format: date
+            nullable: true
+          end_date:
+            type: string
+            description: |
+
+              The UTC date when the Budget should stop counting.
+            format: date
+            nullable: true
+          limit_visibility:
+            allOf:
+              - $ref: '#/components/schemas/BudgetLimitVisibilityType'
+              - nullable: true
+    securitySchemes:
+      OAuth2:
+        type: oauth2
+        description: OAuth2 security scheme
+        flows:
+          authorizationCode:
+            authorizationUrl: https://accounts-api.brex.com/oauth2/default/v1/authorize
+            tokenUrl: https://accounts-api.brex.com/oauth2/default/v1/token
+            scopes:
+              openid: openid
+              offline_access: offline access
+              budgets: View and manage budgets data
+              budgets.readonly: View budgets data
+  x-explorer-enabled: false
+konfigCliVersion: 1.38.28

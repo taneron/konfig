@@ -1,0 +1,291 @@
+import React from "react";
+import { HttpMethodsEnum } from "konfig-lib/dist/forEachOperation";
+// @ts-ignore
+import Description from "./_description.mdx";
+// @ts-ignore
+import GettingStarted from "./_getting-started.mdx";
+import { Sdk } from "@site/src/components/Sdk";
+
+export default function BrexExpensesTypeScriptSdk() {
+  return (
+    <Sdk
+      sdkName="brex-expenses-typescript-sdk"
+      metaDescription="Brex is the AI-powered spend platform. We transform finance teams from reactive no-sayers to proactive growth drivers. With Brex, companies spend with confidence by empowering employees to make smarter financial decisions from anywhere. Brex provides corporate cards, business accounts, and global payments, plus intuitive software for travel and expenses, that make it easy to plan and track all company spend in one place, in real time. Over 20,000 companies from startups to global enterprises — including DoorDash, Flexport, and Compass — use Brex to proactively control spend, reduce costs, and increase efficiency on a global scale."
+      company="Brex"
+      serviceName="Expenses"
+      logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/brex/expenses/logo.png"
+      clientNameCamelCase="brexExpenses"
+      homepage="brex.com"
+      lastUpdated={new Date("2024-03-11T06:43:11.466Z")}
+      faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/brex/expenses/favicon.png"
+      contactUrl="https://brex.com"
+      contactEmail="developer-access@brex.com"
+      previewLinkImage="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/brex/expenses/imagePreview.jpg"
+      GettingStarted={GettingStarted}
+      Description={Description}
+      methods={[
+  {
+    "url": "/v1/expenses/card",
+    "method": "list",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "Card Expenses",
+    "typeScriptTag": "cardExpenses",
+    "description": "List expenses",
+    "parameters": [
+      {
+        "name": "expand[]",
+        "schema": "array",
+        "required": false,
+        "description": "Get additional details for the expense, e.g. merchant mcc code, by passing in `expand[]=merchant`. Query parameters include `location`, `department`, `merchant`, `receipts.download_uris`, `user`, `budget` and `payment`."
+      },
+      {
+        "name": "userId[]",
+        "schema": "array",
+        "required": false,
+        "description": "Get expenses belong to provided user(s)."
+      },
+      {
+        "name": "parentExpenseId[]",
+        "schema": "array",
+        "required": false,
+        "description": "Get itemized expenses belong to provided parent expenses ID(s)."
+      },
+      {
+        "name": "budgetId[]",
+        "schema": "array",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "status[]",
+        "schema": "array",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "paymentStatus[]",
+        "schema": "array",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "purchasedAtStart",
+        "schema": "string",
+        "required": false,
+        "description": "\nShows only expenses with a `purchased_at` on or after this date-time. This parameter is the date-time notation as defined by [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6), e.g. 2022-11-12T23:59:59.999\n"
+      },
+      {
+        "name": "purchasedAtEnd",
+        "schema": "string",
+        "required": false,
+        "description": "\nShows only expenses with a `purchased_at` on or before this date-time. This parameter is the date-time notation as defined by [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6), e.g. 2022-11-12T23:59:59.999\n"
+      },
+      {
+        "name": "cursor",
+        "schema": "string",
+        "required": false,
+        "description": "\nThe cursor to use for pagination. This is the `next_cursor` value returned from the previous response.\n"
+      },
+      {
+        "name": "limit",
+        "schema": "integer",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": "Bad request"
+      },
+      {
+        "statusCode": "401",
+        "description": "Unauthorized"
+      },
+      {
+        "statusCode": "403",
+        "description": "Forbidden"
+      }
+    ]
+  },
+  {
+    "url": "/v1/expenses/card/receipt_match",
+    "method": "createNewReceiptMatch",
+    "httpMethod": HttpMethodsEnum.POST,
+    "tag": "Receipt Match",
+    "typeScriptTag": "receiptMatch",
+    "description": "Create a new receipt match",
+    "parameters": [
+      {
+        "name": "receipt_name",
+        "schema": "string",
+        "required": true,
+        "description": ""
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": "The pre-signed file upload URI and unique identifier of the request.\n"
+      },
+      {
+        "statusCode": "400",
+        "description": "Bad request"
+      },
+      {
+        "statusCode": "401",
+        "description": "Unauthorized"
+      }
+    ]
+  },
+  {
+    "url": "/v1/expenses/card/{expense_id}",
+    "method": "getById",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "Card Expenses",
+    "typeScriptTag": "cardExpenses",
+    "description": "Get an expense",
+    "parameters": [
+      {
+        "name": "expenseId",
+        "schema": "string",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "expand[]",
+        "schema": "array",
+        "required": false,
+        "description": "Get additional details for the expense, e.g. merchant mcc code, by passing in `expand[]=merchant`. Query parameters include `location`, `department`, `merchant`, `receipts.download_uris`, `user`, `budget` and `payment`."
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": "The expense object that has expandable fields, e.g., `location`, `department`, and `receipts`."
+      },
+      {
+        "statusCode": "400",
+        "description": "Bad request"
+      },
+      {
+        "statusCode": "401",
+        "description": "Unauthorized"
+      },
+      {
+        "statusCode": "403",
+        "description": "Forbidden"
+      },
+      {
+        "statusCode": "404",
+        "description": "Not Found"
+      }
+    ]
+  },
+  {
+    "url": "/v1/expenses/card/{expense_id}",
+    "method": "updateExpense",
+    "httpMethod": HttpMethodsEnum.PUT,
+    "tag": "Card Expenses",
+    "typeScriptTag": "cardExpenses",
+    "description": "Update an expense",
+    "parameters": [
+      {
+        "name": "expenseId",
+        "schema": "string",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "memo",
+        "schema": "string",
+        "description": ""
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": "Bad request"
+      },
+      {
+        "statusCode": "401",
+        "description": "Unauthorized"
+      },
+      {
+        "statusCode": "403",
+        "description": "Forbidden"
+      },
+      {
+        "statusCode": "404",
+        "description": "Not Found"
+      }
+    ]
+  },
+  {
+    "url": "/v1/expenses/card/{expense_id}/receipt_upload",
+    "method": "createNewReceipt",
+    "httpMethod": HttpMethodsEnum.POST,
+    "tag": "Receipt Upload",
+    "typeScriptTag": "receiptUpload",
+    "description": "Create a new receipt upload",
+    "parameters": [
+      {
+        "name": "expenseId",
+        "schema": "string",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "receipt_name",
+        "schema": "string",
+        "required": true,
+        "description": ""
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": "The pre-signed file upload URI and unique identifier of the request.\n"
+      },
+      {
+        "statusCode": "400",
+        "description": "Bad request"
+      },
+      {
+        "statusCode": "401",
+        "description": "Unauthorized"
+      },
+      {
+        "statusCode": "403",
+        "description": "Forbidden"
+      },
+      {
+        "statusCode": "404",
+        "description": "Not Found"
+      }
+    ]
+  }
+]
+    }
+      language="TypeScript"
+      apiTitle="Expenses API"
+      apiBaseUrl="https://platform.brexapis.com"
+      apiVersion="0.1"
+      endpoints={4}
+      sdkMethods={5}
+      schemas={19}
+      parameters={17}
+      difficulty="Easy"
+      openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/brex/expenses/openapi.yaml"
+    />
+  );
+}
+  

@@ -1,0 +1,372 @@
+hash: 7dcf663458f9707e4f16c04cc2854f871e7214173c54fc3004e5996ff631cb6a
+methodObjects:
+  - url: /v1/budget_programs
+    method: list
+    httpMethod: get
+    tag: Budget Programs
+    typeScriptTag: budgetPrograms
+    description: |
+
+      List Budget Programs
+    parameters:
+      - name: cursor
+        schema: string
+        required: false
+        description: ''
+      - name: limit
+        schema: integer
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad request
+      - statusCode: '401'
+        description: Unauthorized
+      - statusCode: '403'
+        description: Forbidden
+  - url: /v1/budget_programs
+    method: create
+    httpMethod: post
+    tag: Budget Programs
+    typeScriptTag: budgetPrograms
+    description: |
+
+      Create Budget Program
+    parameters:
+      - name: idempotencyKey
+        schema: string
+        required: true
+        description: ''
+      - name: description
+        schema: string
+        required: false
+        description: ''
+      - name: existing_budget_ids
+        schema: array
+        required: false
+        description: ''
+      - name: budget_blueprints
+        schema: array
+        required: true
+        description: ''
+      - name: employee_filter
+        schema: undefined
+        required: false
+        description: ''
+      - name: name
+        schema: string
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: |
+
+          Budget Program used to create budgets for eligible users.
+      - statusCode: '400'
+        description: Bad request
+      - statusCode: '401'
+        description: Unauthorized
+      - statusCode: '403'
+        description: Forbidden
+  - url: /v1/budget_programs/{id}
+    method: removeProgramById
+    httpMethod: delete
+    tag: Budget Programs
+    typeScriptTag: budgetPrograms
+    description: |
+
+      Delete Budget Program
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: |
+
+          Budget Program used to create budgets for eligible users.
+      - statusCode: '400'
+        description: Bad request
+      - statusCode: '401'
+        description: Unauthorized
+      - statusCode: '403'
+        description: Forbidden
+      - statusCode: '404'
+        description: Not Found
+  - url: /v1/budget_programs/{id}
+    method: getById
+    httpMethod: get
+    tag: Budget Programs
+    typeScriptTag: budgetPrograms
+    description: |
+
+      Get Budget Program
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: |
+
+          Budget Program used to create budgets for eligible users.
+      - statusCode: '400'
+        description: Bad request
+      - statusCode: '401'
+        description: Unauthorized
+      - statusCode: '403'
+        description: Forbidden
+      - statusCode: '404'
+        description: Not Found
+  - url: /v1/budget_programs/{id}
+    method: updateProgramById
+    httpMethod: put
+    tag: Budget Programs
+    typeScriptTag: budgetPrograms
+    description: |
+
+      Update Budget Program
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: ''
+      - name: idempotencyKey
+        schema: string
+        required: true
+        description: ''
+      - name: description
+        schema: string
+        description: ''
+      - name: existing_budget_ids
+        schema: array
+        description: ''
+      - name: budget_blueprints
+        schema: array
+        description: ''
+      - name: employee_filter
+        schema: undefined
+        description: ''
+      - name: name
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: |
+
+          Budget Program used to create budgets for eligible users.
+      - statusCode: '400'
+        description: Bad request
+      - statusCode: '401'
+        description: Unauthorized
+      - statusCode: '403'
+        description: Forbidden
+      - statusCode: '404'
+        description: Not Found
+  - url: /v1/budgets
+    method: list
+    httpMethod: get
+    tag: Budgets
+    typeScriptTag: budgets
+    description: |
+
+      List Budgets
+    parameters:
+      - name: cursor
+        schema: string
+        required: false
+        description: ''
+      - name: limit
+        schema: integer
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad request
+      - statusCode: '401'
+        description: Unauthorized
+      - statusCode: '403'
+        description: Forbidden
+  - url: /v1/budgets
+    method: create
+    httpMethod: post
+    tag: Budgets
+    typeScriptTag: budgets
+    description: |
+
+      Create Budget
+    parameters:
+      - name: idempotencyKey
+        schema: string
+        required: true
+        description: ''
+      - name: description
+        schema: string
+        required: false
+        description: ''
+      - name: name
+        schema: string
+        required: false
+        description: ''
+      - name: parent_budget_id
+        schema: string
+        required: true
+        description: ''
+      - name: owner_user_ids
+        schema: array
+        required: false
+        description: ''
+      - name: member_user_ids
+        schema: array
+        required: false
+        description: ''
+      - name: period_type
+        schema: string
+        required: true
+        description: ''
+      - name: limit
+        schema: object
+        required: true
+        description: ''
+      - name: limit_type
+        schema: string
+        required: true
+        description: ''
+      - name: spend_type
+        schema: string
+        required: true
+        description: ''
+      - name: start_date
+        schema: string
+        required: false
+        description: ''
+      - name: end_date
+        schema: string
+        required: false
+        description: ''
+      - name: limit_visibility
+        schema: string
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad request
+      - statusCode: '401'
+        description: Unauthorized
+      - statusCode: '403'
+        description: Forbidden
+  - url: /v1/budgets/{id}
+    method: getById
+    httpMethod: get
+    tag: Budgets
+    typeScriptTag: budgets
+    description: |
+
+      Get Budget
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad request
+      - statusCode: '401'
+        description: Unauthorized
+      - statusCode: '403'
+        description: Forbidden
+      - statusCode: '404'
+        description: Not Found
+  - url: /v1/budgets/{id}
+    method: updateBudget
+    httpMethod: put
+    tag: Budgets
+    typeScriptTag: budgets
+    description: |
+
+      Update Budget
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: ''
+      - name: idempotencyKey
+        schema: string
+        required: true
+        description: ''
+      - name: description
+        schema: string
+        description: ''
+      - name: name
+        schema: string
+        description: ''
+      - name: owner_user_ids
+        schema: array
+        description: ''
+      - name: member_user_ids
+        schema: array
+        description: ''
+      - name: limit
+        schema: undefined
+        description: ''
+      - name: limit_type
+        schema: undefined
+        description: ''
+      - name: spend_type
+        schema: undefined
+        description: ''
+      - name: start_date
+        schema: string
+        description: ''
+      - name: end_date
+        schema: string
+        description: ''
+      - name: limit_visibility
+        schema: undefined
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad request
+      - statusCode: '401'
+        description: Unauthorized
+      - statusCode: '403'
+        description: Forbidden
+      - statusCode: '404'
+        description: Not Found
+  - url: /v1/budgets/{id}/archive
+    method: archiveBudgetById
+    httpMethod: post
+    tag: Budgets
+    typeScriptTag: budgets
+    description: |
+
+      Archive a budget
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: archiveBudget 200 response
+      - statusCode: '400'
+        description: Bad request
+      - statusCode: '401'
+        description: Unauthorized
+      - statusCode: '403'
+        description: Forbidden
+      - statusCode: '404'
+        description: Not Found
+numberOfSchemas: 22

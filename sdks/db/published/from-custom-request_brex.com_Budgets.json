@@ -1,0 +1,631 @@
+{
+  "securitySchemes": {
+    "OAuth2": {
+      "type": "oauth2",
+      "description": "OAuth2 security scheme",
+      "flows": {
+        "authorizationCode": {
+          "authorizationUrl": "https://accounts-api.brex.com/oauth2/default/v1/authorize",
+          "tokenUrl": "https://accounts-api.brex.com/oauth2/default/v1/token",
+          "scopes": {
+            "openid": "openid",
+            "offline_access": "offline access",
+            "budgets": "View and manage budgets data",
+            "budgets.readonly": "View budgets data"
+          }
+        }
+      }
+    }
+  },
+  "apiBaseUrl": "https://platform.brexapis.com",
+  "apiVersion": "1.0",
+  "apiDescription": "\nThe budgets API lets you manage your Brex budgets.\n",
+  "apiTitle": "Budgets API",
+  "endpoints": 5,
+  "sdkMethods": 10,
+  "schemas": 22,
+  "parameters": 46,
+  "contactUrl": "https://brex.com",
+  "contactEmail": "developer-access@brex.com",
+  "originalCustomRequest": {
+    "lambda": true
+  },
+  "customRequestSpecFilename": "brex.com_Budgets.yaml",
+  "difficultyScore": 32.5,
+  "difficulty": "Easy",
+  "company": "Brex",
+  "serviceName": "Budgets",
+  "sdkName": "brex-budgets-{language}-sdk",
+  "clientName": "BrexBudgets",
+  "metaDescription": "Brex is the AI-powered spend platform. We transform finance teams from reactive no-sayers to proactive growth drivers. With Brex, companies spend with confidence by empowering employees to make smarter financial decisions from anywhere. Brex provides corporate cards, business accounts, and global payments, plus intuitive software for travel and expenses, that make it easy to plan and track all company spend in one place, in real time. Over 20,000 companies from startups to global enterprises — including DoorDash, Flexport, and Compass — use Brex to proactively control spend, reduce costs, and increase efficiency on a global scale.",
+  "apiStatusUrls": "inherit",
+  "homepage": "brex.com",
+  "developerDocumentation": "developer.brex.com/openapi/budgets_api/",
+  "categories": [
+    "finance",
+    "payments",
+    "online_payments",
+    "fintech",
+    "automation",
+    "global_payments",
+    "travel_expenses",
+    "banking",
+    "business_accounts",
+    "corporate_cards"
+  ],
+  "methods": [
+    {
+      "url": "/v1/budget_programs",
+      "method": "list",
+      "httpMethod": "get",
+      "tag": "Budget Programs",
+      "typeScriptTag": "budgetPrograms",
+      "description": "\nList Budget Programs\n",
+      "parameters": [
+        {
+          "name": "cursor",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "limit",
+          "schema": "integer",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": "Bad request"
+        },
+        {
+          "statusCode": "401",
+          "description": "Unauthorized"
+        },
+        {
+          "statusCode": "403",
+          "description": "Forbidden"
+        }
+      ]
+    },
+    {
+      "url": "/v1/budget_programs",
+      "method": "create",
+      "httpMethod": "post",
+      "tag": "Budget Programs",
+      "typeScriptTag": "budgetPrograms",
+      "description": "\nCreate Budget Program\n",
+      "parameters": [
+        {
+          "name": "idempotencyKey",
+          "schema": "string",
+          "required": true,
+          "description": ""
+        },
+        {
+          "name": "description",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "existing_budget_ids",
+          "schema": "array",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "budget_blueprints",
+          "schema": "array",
+          "required": true,
+          "description": ""
+        },
+        {
+          "name": "employee_filter",
+          "schema": "undefined",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "name",
+          "schema": "string",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": "\nBudget Program used to create budgets for eligible users.\n"
+        },
+        {
+          "statusCode": "400",
+          "description": "Bad request"
+        },
+        {
+          "statusCode": "401",
+          "description": "Unauthorized"
+        },
+        {
+          "statusCode": "403",
+          "description": "Forbidden"
+        }
+      ]
+    },
+    {
+      "url": "/v1/budget_programs/{id}",
+      "method": "removeProgramById",
+      "httpMethod": "delete",
+      "tag": "Budget Programs",
+      "typeScriptTag": "budgetPrograms",
+      "description": "\nDelete Budget Program\n",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": "\nBudget Program used to create budgets for eligible users.\n"
+        },
+        {
+          "statusCode": "400",
+          "description": "Bad request"
+        },
+        {
+          "statusCode": "401",
+          "description": "Unauthorized"
+        },
+        {
+          "statusCode": "403",
+          "description": "Forbidden"
+        },
+        {
+          "statusCode": "404",
+          "description": "Not Found"
+        }
+      ]
+    },
+    {
+      "url": "/v1/budget_programs/{id}",
+      "method": "getById",
+      "httpMethod": "get",
+      "tag": "Budget Programs",
+      "typeScriptTag": "budgetPrograms",
+      "description": "\nGet Budget Program\n",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": "\nBudget Program used to create budgets for eligible users.\n"
+        },
+        {
+          "statusCode": "400",
+          "description": "Bad request"
+        },
+        {
+          "statusCode": "401",
+          "description": "Unauthorized"
+        },
+        {
+          "statusCode": "403",
+          "description": "Forbidden"
+        },
+        {
+          "statusCode": "404",
+          "description": "Not Found"
+        }
+      ]
+    },
+    {
+      "url": "/v1/budget_programs/{id}",
+      "method": "updateProgramById",
+      "httpMethod": "put",
+      "tag": "Budget Programs",
+      "typeScriptTag": "budgetPrograms",
+      "description": "\nUpdate Budget Program\n",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": ""
+        },
+        {
+          "name": "idempotencyKey",
+          "schema": "string",
+          "required": true,
+          "description": ""
+        },
+        {
+          "name": "description",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "existing_budget_ids",
+          "schema": "array",
+          "description": ""
+        },
+        {
+          "name": "budget_blueprints",
+          "schema": "array",
+          "description": ""
+        },
+        {
+          "name": "employee_filter",
+          "schema": "undefined",
+          "description": ""
+        },
+        {
+          "name": "name",
+          "schema": "string",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": "\nBudget Program used to create budgets for eligible users.\n"
+        },
+        {
+          "statusCode": "400",
+          "description": "Bad request"
+        },
+        {
+          "statusCode": "401",
+          "description": "Unauthorized"
+        },
+        {
+          "statusCode": "403",
+          "description": "Forbidden"
+        },
+        {
+          "statusCode": "404",
+          "description": "Not Found"
+        }
+      ]
+    },
+    {
+      "url": "/v1/budgets",
+      "method": "list",
+      "httpMethod": "get",
+      "tag": "Budgets",
+      "typeScriptTag": "budgets",
+      "description": "\nList Budgets\n",
+      "parameters": [
+        {
+          "name": "cursor",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "limit",
+          "schema": "integer",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": "Bad request"
+        },
+        {
+          "statusCode": "401",
+          "description": "Unauthorized"
+        },
+        {
+          "statusCode": "403",
+          "description": "Forbidden"
+        }
+      ]
+    },
+    {
+      "url": "/v1/budgets",
+      "method": "create",
+      "httpMethod": "post",
+      "tag": "Budgets",
+      "typeScriptTag": "budgets",
+      "description": "\nCreate Budget\n",
+      "parameters": [
+        {
+          "name": "idempotencyKey",
+          "schema": "string",
+          "required": true,
+          "description": ""
+        },
+        {
+          "name": "description",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "name",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "parent_budget_id",
+          "schema": "string",
+          "required": true,
+          "description": ""
+        },
+        {
+          "name": "owner_user_ids",
+          "schema": "array",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "member_user_ids",
+          "schema": "array",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "period_type",
+          "schema": "string",
+          "required": true,
+          "description": ""
+        },
+        {
+          "name": "limit",
+          "schema": "object",
+          "required": true,
+          "description": ""
+        },
+        {
+          "name": "limit_type",
+          "schema": "string",
+          "required": true,
+          "description": ""
+        },
+        {
+          "name": "spend_type",
+          "schema": "string",
+          "required": true,
+          "description": ""
+        },
+        {
+          "name": "start_date",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "end_date",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "limit_visibility",
+          "schema": "string",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": "Bad request"
+        },
+        {
+          "statusCode": "401",
+          "description": "Unauthorized"
+        },
+        {
+          "statusCode": "403",
+          "description": "Forbidden"
+        }
+      ]
+    },
+    {
+      "url": "/v1/budgets/{id}",
+      "method": "getById",
+      "httpMethod": "get",
+      "tag": "Budgets",
+      "typeScriptTag": "budgets",
+      "description": "\nGet Budget\n",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": "Bad request"
+        },
+        {
+          "statusCode": "401",
+          "description": "Unauthorized"
+        },
+        {
+          "statusCode": "403",
+          "description": "Forbidden"
+        },
+        {
+          "statusCode": "404",
+          "description": "Not Found"
+        }
+      ]
+    },
+    {
+      "url": "/v1/budgets/{id}",
+      "method": "updateBudget",
+      "httpMethod": "put",
+      "tag": "Budgets",
+      "typeScriptTag": "budgets",
+      "description": "\nUpdate Budget\n",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": ""
+        },
+        {
+          "name": "idempotencyKey",
+          "schema": "string",
+          "required": true,
+          "description": ""
+        },
+        {
+          "name": "description",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "name",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "owner_user_ids",
+          "schema": "array",
+          "description": ""
+        },
+        {
+          "name": "member_user_ids",
+          "schema": "array",
+          "description": ""
+        },
+        {
+          "name": "limit",
+          "schema": "undefined",
+          "description": ""
+        },
+        {
+          "name": "limit_type",
+          "schema": "undefined",
+          "description": ""
+        },
+        {
+          "name": "spend_type",
+          "schema": "undefined",
+          "description": ""
+        },
+        {
+          "name": "start_date",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "end_date",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "limit_visibility",
+          "schema": "undefined",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": "Bad request"
+        },
+        {
+          "statusCode": "401",
+          "description": "Unauthorized"
+        },
+        {
+          "statusCode": "403",
+          "description": "Forbidden"
+        },
+        {
+          "statusCode": "404",
+          "description": "Not Found"
+        }
+      ]
+    },
+    {
+      "url": "/v1/budgets/{id}/archive",
+      "method": "archiveBudgetById",
+      "httpMethod": "post",
+      "tag": "Budgets",
+      "typeScriptTag": "budgets",
+      "description": "\nArchive a budget\n",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": "archiveBudget 200 response"
+        },
+        {
+          "statusCode": "400",
+          "description": "Bad request"
+        },
+        {
+          "statusCode": "401",
+          "description": "Unauthorized"
+        },
+        {
+          "statusCode": "403",
+          "description": "Forbidden"
+        },
+        {
+          "statusCode": "404",
+          "description": "Not Found"
+        }
+      ]
+    }
+  ],
+  "logo": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/brex/budgets/logo.png",
+  "openApiRaw": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/brex/budgets/openapi.yaml",
+  "previewLinkImage": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/brex/budgets/imagePreview.jpg",
+  "faviconUrl": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/brex/budgets/favicon.png",
+  "clientNameCamelCase": "brexBudgets",
+  "lastUpdated": "2024-03-11T06:43:11.466Z",
+  "typescriptSdkUsageCode": "import { BrexBudgets } from 'brex-budgets-typescript-sdk';\n\nconst brexBudgets = new BrexBudgets({\n    // OAuth2 security scheme\n    clientId: \"CLIENT_ID\",\n    clientSecret: \"CLIENT_SECRET\",\n    redirectUri: \"REDIRECT_URI\",\n})",
+  "fixedSpecFileName": "brex-budgets-fixed-spec.yaml"
+}

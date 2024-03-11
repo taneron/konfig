@@ -1,0 +1,89 @@
+hash: 313c087a147104375cf8a9abd59d40dfe9039d7bc30d58bec78a0d08a9d41fe4
+methodObjects:
+  - url: /v1/referrals
+    method: getList
+    httpMethod: get
+    tag: Referrals
+    typeScriptTag: referrals
+    description: List referrals
+    parameters:
+      - name: cursor
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Invalid cursor
+      - statusCode: '401'
+        description: Unauthorized
+  - url: /v1/referrals
+    method: createNewReferral
+    httpMethod: post
+    tag: Referrals
+    typeScriptTag: referrals
+    description: Creates a referral
+    parameters:
+      - name: referral_code
+        schema: string
+        required: true
+        description: ''
+      - name: applicant
+        schema: object
+        required: true
+        description: ''
+      - name: business
+        schema: undefined
+        required: false
+        description: ''
+      - name: contact_preference
+        schema: undefined
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '401'
+        description: Unauthorized
+  - url: /v1/referrals/{id}
+    method: getById
+    httpMethod: get
+    tag: Referrals
+    typeScriptTag: referrals
+    description: Gets a referral by ID
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '401'
+        description: Unauthorized
+      - statusCode: '404'
+        description: Referral not found
+  - url: /v1/referrals/{id}/document_upload
+    method: uploadDocument
+    httpMethod: post
+    tag: Referrals
+    typeScriptTag: referrals
+    description: Create a new document upload
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: ''
+      - name: type
+        schema: string
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '401'
+        description: Unauthorized
+      - statusCode: '404'
+        description: Referral not found
+numberOfSchemas: 25

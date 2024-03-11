@@ -1,0 +1,32 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+operationIds:
+  /v1/budget_programs:
+    get: BudgetPrograms_list
+    post: BudgetPrograms_create
+  /v1/budget_programs/{id}:
+    delete: BudgetPrograms_removeProgramById
+    get: BudgetPrograms_getById
+    put: BudgetPrograms_updateProgramById
+  /v1/budgets:
+    get: Budgets_list
+    post: Budgets_create
+  /v1/budgets/{id}:
+    get: Budgets_getById
+    put: Budgets_updateBudget
+  /v1/budgets/{id}/archive:
+    post: Budgets_archiveBudgetById
+operationTags: {}
+renameTags: {}
+requestSchemaNames: {}
+responseDescriptions: {}
+responseSchemaNames: {}
+securityParameters:
+  Idempotency-Key:
+    header: false
+  cursor:
+    query: false
+  limit:
+    query: false
+validServerUrls: {}

@@ -1,0 +1,215 @@
+hash: 3ea23221a5920ac7f4563e944e7e1d1fcb4ac7ff0a07f387bdb9f7d95aea6e6b
+methodObjects:
+  - url: /v2/accounts/card
+    method: listCardAccounts
+    httpMethod: get
+    tag: Accounts
+    typeScriptTag: accounts
+    description: |
+
+      List card accounts
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad request
+      - statusCode: '401'
+        description: Unauthorized
+      - statusCode: '403'
+        description: Forbidden
+  - url: /v2/accounts/card/primary/statements
+    method: listPrimaryCardStatements
+    httpMethod: get
+    tag: Accounts
+    typeScriptTag: accounts
+    description: |
+
+      List primary card account statements. 
+    parameters:
+      - name: cursor
+        schema: string
+        required: false
+        description: ''
+      - name: limit
+        schema: integer
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad request
+      - statusCode: '401'
+        description: Unauthorized
+      - statusCode: '403'
+        description: Forbidden
+  - url: /v2/accounts/cash
+    method: listCashAccounts
+    httpMethod: get
+    tag: Accounts
+    typeScriptTag: accounts
+    description: |
+
+      List cash accounts
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad request
+      - statusCode: '401'
+        description: Unauthorized
+      - statusCode: '403'
+        description: Forbidden
+  - url: /v2/accounts/cash/primary
+    method: status
+    httpMethod: get
+    tag: Accounts
+    typeScriptTag: accounts
+    description: |
+
+      Get primary cash account
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad request
+      - statusCode: '401'
+        description: Unauthorized
+      - statusCode: '403'
+        description: Forbidden
+  - url: /v2/accounts/cash/{id}
+    method: getCashAccount
+    httpMethod: get
+    tag: Accounts
+    typeScriptTag: accounts
+    description: |
+
+      Get cash account by ID
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad request
+      - statusCode: '401'
+        description: Unauthorized
+      - statusCode: '403'
+        description: Forbidden
+  - url: /v2/accounts/cash/{id}/statements
+    method: listCashStatements
+    httpMethod: get
+    tag: Accounts
+    typeScriptTag: accounts
+    description: |
+
+      List cash account statements.    
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: ''
+      - name: cursor
+        schema: string
+        required: false
+        description: ''
+      - name: limit
+        schema: integer
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad request
+      - statusCode: '401'
+        description: Unauthorized
+      - statusCode: '403'
+        description: Forbidden
+  - url: /v2/transactions/card/primary
+    method: listAllCardTransactions
+    httpMethod: get
+    tag: Transactions
+    typeScriptTag: transactions
+    description: |
+
+      List transactions for all card accounts.
+    parameters:
+      - name: cursor
+        schema: string
+        required: false
+        description: ''
+      - name: limit
+        schema: integer
+        required: false
+        description: ''
+      - name: userIds
+        schema: array
+        required: false
+        description: ''
+      - name: postedAtStart
+        schema: string
+        required: false
+        description: >
+
+          Shows only transactions with a `posted_at_date` on or after this
+          date-time. This parameter is the date-time notation as defined by [RFC
+          3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6)
+      - name: expand[]
+        schema: array
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad request
+      - statusCode: '401'
+        description: Unauthorized
+      - statusCode: '403'
+        description: Forbidden
+  - url: /v2/transactions/cash/{id}
+    method: listById
+    httpMethod: get
+    tag: Transactions
+    typeScriptTag: transactions
+    description: |
+
+      List transactions for the selected cash account.
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: ''
+      - name: cursor
+        schema: string
+        required: false
+        description: ''
+      - name: limit
+        schema: integer
+        required: false
+        description: ''
+      - name: postedAtStart
+        schema: string
+        required: false
+        description: >
+
+          Shows only transactions with a `posted_at_date` on or after this
+          date-time. This parameter is the date-time notation as defined by [RFC
+          3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6)
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad request
+      - statusCode: '401'
+        description: Unauthorized
+      - statusCode: '403'
+        description: Forbidden
+numberOfSchemas: 16

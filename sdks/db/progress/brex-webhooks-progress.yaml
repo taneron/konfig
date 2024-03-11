@@ -1,0 +1,31 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+fixOnlyOneTagName: false
+operationIds:
+  /v1/webhooks:
+    get: WebhookSubscriptions_list
+    post: WebhookSubscriptions_registerEndpoint
+  /v1/webhooks/secrets:
+    get: WebhookSubscriptions_listSecrets
+  /v1/webhooks/{id}:
+    delete: WebhookSubscriptions_unregisterWebhook
+    get: WebhookSubscriptions_getDetails
+    put: WebhookSubscriptions_updateWebhook
+operationTags: {}
+renameTags: {}
+requestSchemaNames: {}
+responseDescriptions: {}
+responseSchemaNames:
+  /v1/webhooks/secrets:
+    get:
+      '200':
+        application/json: WebhookSubscriptionsListSecretsResponse
+securityParameters:
+  Idempotency-Key:
+    header: false
+  cursor:
+    query: false
+  limit:
+    query: false
+validServerUrls: {}
