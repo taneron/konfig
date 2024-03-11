@@ -47,8 +47,8 @@ export default function Sdks() {
   }, []);
   return (
     <Layout
-      title={`SDKs`}
-      description={`Explore SDKs for up-to-date and relevant public APIs.`}
+      title={`Up-to-date SDKs for relevant APIs`}
+      description={`Discover and access over ${sdkLinksJson.length} up-to-date SDKs tailored for a wide range of public APIs. Streamline your development with our comprehensive, easy-to-navigate directory.`}
     >
       <head>
         <style>
