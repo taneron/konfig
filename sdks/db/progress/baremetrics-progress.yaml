@@ -1,0 +1,669 @@
+description: Missing description placeholder
+examples: {}
+examples_2: {}
+examples_3: {}
+ignoreObjectsWithNoProperties: true
+ignorePotentialIncorrectType: true
+operationIds:
+  /v1/account:
+    get: Account_getDetails
+  /v1/annotations:
+    get: Annotation_list
+    post: Annotation_createNew
+  /v1/annotations/{id}:
+    delete: Annotation_removeById
+    get: Annotation_getDetails
+  /v1/attributes:
+    post: Attribute_setProperties
+  /v1/attributes/fields:
+    get: Attribute_getFields
+    post: Attribute_createField
+  /v1/attributes/fields/{id}:
+    put: Attribute_updateField
+  /v1/cancellation_insights/events:
+    get: Event_listCancellationInsightEvents
+    post: Event_createInsightEvent
+  /v1/cancellation_insights/events/{id}:
+    get: Event_getEventById
+    put: Event_updateEventById
+  /v1/cancellation_insights/reasons:
+    post: CancellationInsight_createNewReason
+  /v1/cancellation_insights/reasons/{id}:
+    delete: Reason_deleteById
+    get: Reason_showDetails
+    put: Reason_updateReasonById
+  /v1/goals:
+    get: Goal_getList
+    post: Goal_createNewGoal
+  /v1/goals/{id}:
+    delete: Goal_remove
+    get: Goal_getById
+  /v1/metrics:
+    get: Metric_showSummary
+  /v1/metrics/cohorts:
+    get: Metric_showCohorts
+  /v1/metrics/{metric}:
+    get: Metric_showDetails
+  /v1/metrics/{metric}/customers:
+    get: Metric_listCustomers
+  /v1/metrics/{metric}/plans:
+    get: Metric_showPlanBreakout
+  /v1/segments:
+    get: Segment_listSegments
+    post: Segment_createRequest
+  /v1/segments/fields:
+    get: Segment_getFields
+  /v1/segments/search:
+    post: Segment_findWithoutSave
+  /v1/segments/{id}:
+    delete: Segment_removeById
+    get: Segment_showDetails
+    put: Segment_updateById
+  /v1/sources:
+    get: Source_listSources
+  /v1/users:
+    get: User_listUsers
+  /v1/users/{id}:
+    get: User_getUserById
+  /v1/{source_id}/charges:
+    get: Source_getChargeList
+    post: Source_createChargeOneOff
+  /v1/{source_id}/charges/{oid}:
+    delete: Source_removeOneOffCharge
+    get: Source_getChargeDetails
+  /v1/{source_id}/customers:
+    get: Source_getCustomerList
+    post: Source_createCustomerRecord
+  /v1/{source_id}/customers/{customer_oid}:
+    put: Source_updateCustomerInformation
+  /v1/{source_id}/customers/{oid}:
+    delete: Source_deleteCustomer
+    get: Source_getCustomerDetails
+  /v1/{source_id}/customers/{oid}/events:
+    get: Source_listCustomerEvents
+  /v1/{source_id}/events:
+    get: Source_getEvents
+  /v1/{source_id}/events/{id}:
+    get: Source_getEventById
+  /v1/{source_id}/plans:
+    get: Source_getPlansList
+    post: Source_createPlan
+  /v1/{source_id}/plans/{oid}:
+    delete: Source_deletePlan
+    get: Source_getPlan
+  /v1/{source_id}/plans/{plan_oid}:
+    put: Source_updatePlan
+  /v1/{source_id}/refunds:
+    get: Source_getRefunds
+    post: Source_createOneOffRefund
+  /v1/{source_id}/refunds/{oid}:
+    delete: Source_removeOneOffRefund
+    get: Source_getRefundDetails
+  /v1/{source_id}/subscriptions:
+    get: Source_getSubscriptions
+    post: Source_createSubscription
+  /v1/{source_id}/subscriptions/{oid}:
+    delete: Source_removeSubscription
+    get: Source_getSubscription
+  /v1/{source_id}/subscriptions/{subscription_oid}:
+    put: Source_updateSubscription
+  /v1/{source_id}/subscriptions/{subscription_oid}/cancel:
+    put: Source_cancelSubscription
+operationTags:
+  /v1/account:
+    get: Account
+  /v1/annotations:
+    get: Annotation
+    post: Annotation
+  /v1/annotations/{id}:
+    delete: Annotation
+    get: Annotation
+  /v1/attributes:
+    post: Attribute
+  /v1/attributes/fields:
+    get: Attribute
+    post: Attribute
+  /v1/attributes/fields/{id}:
+    put: Attribute
+  /v1/cancellation_insights/events:
+    get: Event
+    post: Event
+  /v1/cancellation_insights/events/{id}:
+    get: Event
+    put: Event
+  /v1/cancellation_insights/reasons:
+    post: CancellationInsight
+  /v1/cancellation_insights/reasons/{id}:
+    delete: Reason
+    get: Reason
+    put: Reason
+  /v1/goals:
+    get: Goal
+    post: Goal
+  /v1/goals/{id}:
+    delete: Goal
+    get: Goal
+  /v1/metrics:
+    get: Metric
+  /v1/metrics/cohorts:
+    get: Metric
+  /v1/metrics/{metric}:
+    get: Metric
+  /v1/metrics/{metric}/customers:
+    get: Metric
+  /v1/metrics/{metric}/plans:
+    get: Metric
+  /v1/segments:
+    get: Segment
+    post: Segment
+  /v1/segments/fields:
+    get: Segment
+  /v1/segments/search:
+    post: Segment
+  /v1/segments/{id}:
+    delete: Segment
+    get: Segment
+    put: Segment
+  /v1/sources:
+    get: Source
+  /v1/users:
+    get: User
+  /v1/users/{id}:
+    get: User
+  /v1/{source_id}/charges:
+    get: Source
+    post: Source
+  /v1/{source_id}/charges/{oid}:
+    delete: Source
+    get: Source
+  /v1/{source_id}/customers:
+    get: Source
+    post: Source
+  /v1/{source_id}/customers/{customer_oid}:
+    put: Source
+  /v1/{source_id}/customers/{oid}:
+    delete: Source
+    get: Source
+  /v1/{source_id}/customers/{oid}/events:
+    get: Source
+  /v1/{source_id}/events:
+    get: Source
+  /v1/{source_id}/events/{id}:
+    get: Source
+  /v1/{source_id}/plans:
+    get: Source
+    post: Source
+  /v1/{source_id}/plans/{oid}:
+    delete: Source
+    get: Source
+  /v1/{source_id}/plans/{plan_oid}:
+    put: Source
+  /v1/{source_id}/refunds:
+    get: Source
+    post: Source
+  /v1/{source_id}/refunds/{oid}:
+    delete: Source
+    get: Source
+  /v1/{source_id}/subscriptions:
+    get: Source
+    post: Source
+  /v1/{source_id}/subscriptions/{oid}:
+    delete: Source
+    get: Source
+  /v1/{source_id}/subscriptions/{subscription_oid}:
+    put: Source
+  /v1/{source_id}/subscriptions/{subscription_oid}/cancel:
+    put: Source
+renameTags: {}
+requestSchemaNames:
+  /v1/annotations:
+    post:
+      application/json: AnnotationCreateNewRequest
+  /v1/attributes:
+    post:
+      application/json: AttributeSetPropertiesRequest
+  /v1/attributes/fields:
+    post:
+      application/json: AttributeCreateFieldRequest
+  /v1/attributes/fields/{id}:
+    put:
+      application/json: AttributeUpdateFieldRequest
+  /v1/cancellation_insights/events:
+    post:
+      application/json: EventCreateInsightEventRequest
+  /v1/cancellation_insights/events/{id}:
+    put:
+      application/json: EventUpdateEventByIdRequest
+  /v1/cancellation_insights/reasons:
+    post:
+      application/json: CancellationInsightCreateNewReasonRequest
+  /v1/cancellation_insights/reasons/{id}:
+    put:
+      application/json: ReasonUpdateReasonByIdRequest
+  /v1/goals:
+    post:
+      application/json: GoalCreateNewGoalRequest
+  /v1/segments:
+    post:
+      application/json: SegmentCreateRequestRequest
+  /v1/segments/search:
+    post:
+      application/json: SegmentFindWithoutSaveRequest
+  /v1/segments/{id}:
+    put:
+      application/json: SegmentUpdateByIdRequest
+  /v1/{source_id}/charges:
+    post:
+      application/json: SourceCreateChargeOneOffRequest
+  /v1/{source_id}/customers:
+    post:
+      application/json: SourceCreateCustomerRecordRequest
+  /v1/{source_id}/customers/{customer_oid}:
+    put:
+      application/json: SourceUpdateCustomerInformationRequest
+  /v1/{source_id}/plans:
+    post:
+      application/json: SourceCreatePlanRequest
+  /v1/{source_id}/plans/{plan_oid}:
+    put:
+      application/json: SourceUpdatePlanRequest
+  /v1/{source_id}/refunds:
+    post:
+      application/json: SourceCreateOneOffRefundRequest
+  /v1/{source_id}/subscriptions:
+    post:
+      application/json: SourceCreateSubscriptionRequest
+  /v1/{source_id}/subscriptions/{subscription_oid}:
+    put:
+      application/json: SourceUpdateSubscriptionRequest
+  /v1/{source_id}/subscriptions/{subscription_oid}/cancel:
+    put:
+      application/json: SourceCancelSubscriptionRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /v1/account:
+    get:
+      '200':
+        application/json: AccountGetDetailsResponse
+      '400':
+        application/json: AccountGetDetails400Response
+  /v1/annotations:
+    get:
+      '200':
+        application/json: AnnotationListResponse
+      '400':
+        application/json: AnnotationList400Response
+    post:
+      '200':
+        application/json: AnnotationCreateNewResponse
+      '400':
+        application/json: AnnotationCreateNew400Response
+  /v1/annotations/{id}:
+    delete:
+      '202':
+        application/json: AnnotationRemoveByIdResponse
+      '400':
+        application/json: AnnotationRemoveById400Response
+    get:
+      '200':
+        application/json: AnnotationGetDetailsResponse
+      '400':
+        application/json: AnnotationGetDetails400Response
+  /v1/attributes:
+    post:
+      '200':
+        application/json: AttributeSetPropertiesResponse
+      '400':
+        application/json: AttributeSetProperties400Response
+      '409':
+        text/plain: AttributeSetProperties409Response
+  /v1/attributes/fields:
+    get:
+      '200':
+        application/json: AttributeGetFieldsResponse
+      '400':
+        application/json: AttributeGetFields400Response
+    post:
+      '200':
+        application/json: AttributeCreateFieldResponse
+      '400':
+        application/json: AttributeCreateField400Response
+  /v1/attributes/fields/{id}:
+    put:
+      '200':
+        application/json: AttributeUpdateFieldResponse
+      '400':
+        application/json: AttributeUpdateField400Response
+  /v1/cancellation_insights/events:
+    get:
+      '200':
+        application/json: EventListCancellationInsightEventsResponse
+      '400':
+        application/json: EventListCancellationInsightEvents400Response
+    post:
+      '200':
+        application/json: EventCreateInsightEventResponse
+      '400':
+        application/json: EventCreateInsightEvent400Response
+  /v1/cancellation_insights/events/{id}:
+    get:
+      '200':
+        application/json: EventGetEventByIdResponse
+      '400':
+        application/json: EventGetEventById400Response
+    put:
+      '200':
+        application/json: EventUpdateEventByIdResponse
+      '400':
+        application/json: EventUpdateEventById400Response
+  /v1/cancellation_insights/reasons:
+    post:
+      '200':
+        application/json: CancellationInsightCreateNewReasonResponse
+      '400':
+        application/json: CancellationInsightCreateNewReason400Response
+  /v1/cancellation_insights/reasons/{id}:
+    delete:
+      '202':
+        application/json: ReasonDeleteByIdResponse
+      '400':
+        application/json: ReasonDeleteById400Response
+    get:
+      '200':
+        application/json: ReasonShowDetailsResponse
+      '400':
+        application/json: ReasonShowDetails400Response
+    put:
+      '200':
+        application/json: ReasonUpdateReasonByIdResponse
+      '400':
+        application/json: ReasonUpdateReasonById400Response
+  /v1/goals:
+    get:
+      '200':
+        application/json: GoalGetListResponse
+      '400':
+        application/json: GoalGetList400Response
+    post:
+      '200':
+        application/json: GoalCreateNewGoalResponse
+      '400':
+        application/json: GoalCreateNewGoal400Response
+  /v1/goals/{id}:
+    delete:
+      '202':
+        application/json: GoalRemoveResponse
+      '400':
+        application/json: GoalRemove400Response
+    get:
+      '200':
+        application/json: GoalGetByIdResponse
+      '400':
+        application/json: GoalGetById400Response
+  /v1/metrics:
+    get:
+      '200':
+        application/json: MetricShowSummaryResponse
+      '400':
+        application/json: MetricShowSummary400Response
+  /v1/metrics/cohorts:
+    get:
+      '200':
+        application/json: MetricShowCohortsResponse
+      '400':
+        application/json: MetricShowCohorts400Response
+  /v1/metrics/{metric}:
+    get:
+      '200':
+        application/json: MetricShowDetailsResponse
+      '400':
+        application/json: MetricShowDetails400Response
+  /v1/metrics/{metric}/customers:
+    get:
+      '200':
+        application/json: MetricListCustomersResponse
+      '400':
+        application/json: MetricListCustomers400Response
+  /v1/metrics/{metric}/plans:
+    get:
+      '200':
+        application/json: MetricShowPlanBreakoutResponse
+      '400':
+        application/json: MetricShowPlanBreakout400Response
+  /v1/segments:
+    get:
+      '200':
+        application/json: SegmentListSegmentsResponse
+      '400':
+        application/json: SegmentListSegments400Response
+    post:
+      '200':
+        application/json: SegmentCreateRequestResponse
+      '400':
+        application/json: SegmentCreateRequest400Response
+  /v1/segments/fields:
+    get:
+      '200':
+        application/json: SegmentGetFieldsResponse
+      '400':
+        application/json: SegmentGetFields400Response
+  /v1/segments/search:
+    post:
+      '200':
+        application/json: SegmentFindWithoutSaveResponse
+      '400':
+        application/json: SegmentFindWithoutSave400Response
+  /v1/segments/{id}:
+    delete:
+      '202':
+        application/json: SegmentRemoveByIdResponse
+      '400':
+        application/json: SegmentRemoveById400Response
+    get:
+      '200':
+        application/json: SegmentShowDetailsResponse
+      '400':
+        application/json: SegmentShowDetails400Response
+    put:
+      '200':
+        application/json: SegmentUpdateByIdResponse
+      '400':
+        application/json: SegmentUpdateById400Response
+  /v1/sources:
+    get:
+      '200':
+        application/json: SourceListSourcesResponse
+      '400':
+        application/json: SourceListSources400Response
+  /v1/users:
+    get:
+      '200':
+        application/json: UserListUsersResponse
+      '400':
+        application/json: UserListUsers400Response
+  /v1/users/{id}:
+    get:
+      '200':
+        application/json: UserGetUserByIdResponse
+      '400':
+        application/json: UserGetUserById400Response
+  /v1/{source_id}/charges:
+    get:
+      '200':
+        application/json: SourceGetChargeListResponse
+      '400':
+        application/json: SourceGetChargeList400Response
+    post:
+      '200':
+        application/json: SourceCreateChargeOneOffResponse
+      '400':
+        application/json: SourceCreateChargeOneOff400Response
+  /v1/{source_id}/charges/{oid}:
+    delete:
+      '202':
+        application/json: SourceRemoveOneOffChargeResponse
+      '400':
+        application/json: SourceRemoveOneOffCharge400Response
+    get:
+      '200':
+        application/json: SourceGetChargeDetailsResponse
+      '400':
+        application/json: SourceGetChargeDetails400Response
+  /v1/{source_id}/customers:
+    get:
+      '200':
+        application/json: SourceGetCustomerListResponse
+      '400':
+        application/json: SourceGetCustomerList400Response
+    post:
+      '200':
+        application/json: SourceCreateCustomerRecordResponse
+      '400':
+        application/json: SourceCreateCustomerRecord400Response
+  /v1/{source_id}/customers/{customer_oid}:
+    put:
+      '200':
+        application/json: SourceUpdateCustomerInformationResponse
+      '400':
+        application/json: SourceUpdateCustomerInformation400Response
+  /v1/{source_id}/customers/{oid}:
+    delete:
+      '202':
+        application/json: SourceDeleteCustomerResponse
+      '400':
+        application/json: SourceDeleteCustomer400Response
+    get:
+      '200':
+        application/json: SourceGetCustomerDetailsResponse
+      '400':
+        application/json: SourceGetCustomerDetails400Response
+  /v1/{source_id}/customers/{oid}/events:
+    get:
+      '200':
+        application/json: SourceListCustomerEventsResponse
+      '400':
+        application/json: SourceListCustomerEvents400Response
+  /v1/{source_id}/events:
+    get:
+      '200':
+        application/json: SourceGetEventsResponse
+      '400':
+        application/json: SourceGetEvents400Response
+  /v1/{source_id}/events/{id}:
+    get:
+      '200':
+        application/json: SourceGetEventByIdResponse
+      '400':
+        application/json: SourceGetEventById400Response
+  /v1/{source_id}/plans:
+    get:
+      '200':
+        application/json: SourceGetPlansListResponse
+      '400':
+        application/json: SourceGetPlansList400Response
+    post:
+      '200':
+        application/json: SourceCreatePlanResponse
+      '400':
+        application/json: SourceCreatePlan400Response
+  /v1/{source_id}/plans/{oid}:
+    delete:
+      '202':
+        application/json: SourceDeletePlanResponse
+      '400':
+        application/json: SourceDeletePlan400Response
+    get:
+      '200':
+        application/json: SourceGetPlanResponse
+      '400':
+        application/json: SourceGetPlan400Response
+  /v1/{source_id}/plans/{plan_oid}:
+    put:
+      '200':
+        application/json: SourceUpdatePlanResponse
+      '400':
+        application/json: SourceUpdatePlan400Response
+  /v1/{source_id}/refunds:
+    get:
+      '200':
+        application/json: SourceGetRefundsResponse
+      '400':
+        application/json: SourceGetRefunds400Response
+    post:
+      '200':
+        application/json: SourceCreateOneOffRefundResponse
+      '400':
+        application/json: SourceCreateOneOffRefund400Response
+  /v1/{source_id}/refunds/{oid}:
+    delete:
+      '202':
+        application/json: SourceRemoveOneOffRefundResponse
+      '400':
+        application/json: SourceRemoveOneOffRefund400Response
+    get:
+      '200':
+        application/json: SourceGetRefundDetailsResponse
+      '400':
+        application/json: SourceGetRefundDetails400Response
+  /v1/{source_id}/subscriptions:
+    get:
+      '200':
+        application/json: SourceGetSubscriptionsResponse
+      '400':
+        application/json: SourceGetSubscriptions400Response
+    post:
+      '200':
+        application/json: SourceCreateSubscriptionResponse
+      '400':
+        application/json: SourceCreateSubscription400Response
+  /v1/{source_id}/subscriptions/{oid}:
+    delete:
+      '202':
+        application/json: SourceRemoveSubscriptionResponse
+      '400':
+        application/json: SourceRemoveSubscription400Response
+    get:
+      '200':
+        application/json: SourceGetSubscriptionResponse
+      '400':
+        application/json: SourceGetSubscription400Response
+  /v1/{source_id}/subscriptions/{subscription_oid}:
+    put:
+      '200':
+        application/json: SourceUpdateSubscriptionResponse
+      '400':
+        application/json: SourceUpdateSubscription400Response
+  /v1/{source_id}/subscriptions/{subscription_oid}/cancel:
+    put:
+      '200':
+        application/json: SourceCancelSubscriptionResponse
+      '400':
+        application/json: SourceCancelSubscription400Response
+securityParameters:
+  compare_to:
+    query: false
+  customer_oid:
+    query: false
+  end:
+    query: false
+  end_date:
+    query: false
+  live_stream:
+    query: false
+  order:
+    query: false
+  page:
+    query: false
+  per_page:
+    query: false
+  search:
+    query: false
+  sort:
+    query: false
+  start:
+    query: false
+  start_date:
+    query: false
+  subscription_oid:
+    query: false
+validServerUrls: {}

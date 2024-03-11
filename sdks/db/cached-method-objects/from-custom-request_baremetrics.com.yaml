@@ -1,0 +1,1397 @@
+hash: 355b4238201c081f1de9b6255fb8a76d7893abc6c62c90299c158caba1d0367b
+methodObjects:
+  - url: /v1/account
+    method: getDetails
+    httpMethod: get
+    tag: Account
+    typeScriptTag: account
+    description: Get Account
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /v1/sources
+    method: listSources
+    httpMethod: get
+    tag: Source
+    typeScriptTag: source
+    description: List Sources
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /v1/{source_id}/plans
+    method: getPlansList
+    httpMethod: get
+    tag: Source
+    typeScriptTag: source
+    description: List Plans
+    parameters:
+      - name: search
+        schema: string
+        description: Allows you to search based on the name or oid fields
+      - name: sourceId
+        schema: string
+        required: true
+        description: Please see [Sources](ref:sources)
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /v1/{source_id}/plans
+    method: createPlan
+    httpMethod: post
+    tag: Source
+    typeScriptTag: source
+    description: Create Plan
+    parameters:
+      - name: sourceId
+        schema: string
+        required: true
+        description: Please see [Sources](ref:sources)
+      - name: oid
+        schema: string
+        required: true
+        description: ''
+      - name: name
+        schema: string
+        required: true
+        description: ''
+      - name: currency
+        schema: string
+        required: true
+        description: ''
+      - name: amount
+        schema: integer
+        required: true
+        description: ''
+      - name: interval
+        schema: string
+        required: true
+        description: ''
+      - name: interval_count
+        schema: integer
+        required: true
+        description: ''
+      - name: trial_duration
+        schema: integer
+        required: false
+        description: ''
+      - name: trial_duration_unit
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /v1/{source_id}/plans/{oid}
+    method: deletePlan
+    httpMethod: delete
+    tag: Source
+    typeScriptTag: source
+    description: Delete Plan
+    parameters:
+      - name: oid
+        schema: string
+        required: true
+        description: ''
+      - name: sourceId
+        schema: string
+        required: true
+        description: Please see [Sources](ref:sources)
+    responses:
+      - statusCode: '202'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /v1/{source_id}/plans/{oid}
+    method: getPlan
+    httpMethod: get
+    tag: Source
+    typeScriptTag: source
+    description: Show Plan
+    parameters:
+      - name: oid
+        schema: string
+        required: true
+        description: ''
+      - name: sourceId
+        schema: string
+        required: true
+        description: Please see [Sources](ref:sources)
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /v1/{source_id}/plans/{plan_oid}
+    method: updatePlan
+    httpMethod: put
+    tag: Source
+    typeScriptTag: source
+    description: Update Plan
+    parameters:
+      - name: planOid
+        schema: string
+        required: true
+        description: Your interval plan id
+      - name: sourceId
+        schema: string
+        required: true
+        description: Please see [Sources](ref:sources)
+      - name: name
+        schema: string
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /v1/{source_id}/customers
+    method: getCustomerList
+    httpMethod: get
+    tag: Source
+    typeScriptTag: source
+    description: List Customers
+    parameters:
+      - name: search
+        schema: string
+        description: >-
+          Allows you to search for a customer based on: oid, email, notes and
+          name
+      - name: sourceId
+        schema: string
+        required: true
+        description: Please see [Sources](ref:sources)
+      - name: sort
+        schema: string
+        description: Allows you to sort the results. You can use ltv or created
+      - name: order
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /v1/{source_id}/customers
+    method: createCustomerRecord
+    httpMethod: post
+    tag: Source
+    typeScriptTag: source
+    description: Create Customer
+    parameters:
+      - name: sourceId
+        schema: string
+        required: true
+        description: Please see [Sources](ref:sources)
+      - name: name
+        schema: string
+        required: false
+        description: ''
+      - name: notes
+        schema: string
+        required: false
+        description: ''
+      - name: email
+        schema: string
+        required: false
+        description: ''
+      - name: oid
+        schema: string
+        required: true
+        description: ''
+      - name: created
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /v1/{source_id}/customers/{oid}
+    method: deleteCustomer
+    httpMethod: delete
+    tag: Source
+    typeScriptTag: source
+    description: Delete Customer
+    parameters:
+      - name: oid
+        schema: string
+        required: true
+        description: ''
+      - name: sourceId
+        schema: string
+        required: true
+        description: Please see [Sources](ref:sources)
+    responses:
+      - statusCode: '202'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /v1/{source_id}/customers/{oid}
+    method: getCustomerDetails
+    httpMethod: get
+    tag: Source
+    typeScriptTag: source
+    description: Show Customer
+    parameters:
+      - name: oid
+        schema: string
+        required: true
+        description: ''
+      - name: sourceId
+        schema: string
+        required: true
+        description: Please see [Sources](ref:sources)
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /v1/{source_id}/customers/{oid}/events
+    method: listCustomerEvents
+    httpMethod: get
+    tag: Source
+    typeScriptTag: source
+    description: List Customer Events
+    parameters:
+      - name: sourceId
+        schema: string
+        required: true
+        description: Please see [Sources](ref:sources)
+      - name: oid
+        schema: string
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /v1/{source_id}/customers/{customer_oid}
+    method: updateCustomerInformation
+    httpMethod: put
+    tag: Source
+    typeScriptTag: source
+    description: Update Customer
+    parameters:
+      - name: customerOid
+        schema: string
+        required: true
+        description: Your unique ID for the customer
+      - name: sourceId
+        schema: string
+        required: true
+        description: Please see [Sources](ref:sources)
+      - name: name
+        schema: string
+        description: ''
+      - name: notes
+        schema: string
+        description: ''
+      - name: created
+        schema: string
+        description: ''
+      - name: email
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /v1/{source_id}/subscriptions
+    method: getSubscriptions
+    httpMethod: get
+    tag: Source
+    typeScriptTag: source
+    description: List Subscriptions
+    parameters:
+      - name: sourceId
+        schema: string
+        required: true
+        description: Please see [Sources](ref:sources)
+      - name: customerOid
+        schema: string
+        description: This allows you to return subscriptions for a given customer
+      - name: order
+        schema: string
+        description: >-
+          Allows you to order subscriptions from newest to oldest `desc` or
+          oldest to newest `asc`
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /v1/{source_id}/subscriptions
+    method: createSubscription
+    httpMethod: post
+    tag: Source
+    typeScriptTag: source
+    description: Create Subscription
+    parameters:
+      - name: sourceId
+        schema: string
+        required: true
+        description: Please see [Sources](ref:sources)
+      - name: oid
+        schema: string
+        required: true
+        description: ''
+      - name: started_at
+        schema: string
+        required: true
+        description: ''
+      - name: canceled_at
+        schema: string
+        required: false
+        description: ''
+      - name: plan_oid
+        schema: string
+        required: true
+        description: ''
+      - name: customer_oid
+        schema: string
+        required: true
+        description: ''
+      - name: addons
+        schema: array
+        required: false
+        description: ''
+      - name: quantity
+        schema: integer
+        required: false
+        description: ''
+      - name: discount
+        schema: integer
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /v1/{source_id}/subscriptions/{oid}
+    method: removeSubscription
+    httpMethod: delete
+    tag: Source
+    typeScriptTag: source
+    description: Delete Subscription
+    parameters:
+      - name: oid
+        schema: string
+        required: true
+        description: ''
+      - name: sourceId
+        schema: string
+        required: true
+        description: Please see [Sources](ref:sources)
+    responses:
+      - statusCode: '202'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /v1/{source_id}/subscriptions/{oid}
+    method: getSubscription
+    httpMethod: get
+    tag: Source
+    typeScriptTag: source
+    description: Show Subscription
+    parameters:
+      - name: oid
+        schema: string
+        required: true
+        description: ''
+      - name: sourceId
+        schema: string
+        required: true
+        description: Please see [Sources](ref:sources)
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /v1/{source_id}/subscriptions/{subscription_oid}
+    method: updateSubscription
+    httpMethod: put
+    tag: Source
+    typeScriptTag: source
+    description: Update Subscription
+    parameters:
+      - name: subscriptionOid
+        schema: string
+        required: true
+        description: Your unique ID for the subscription
+      - name: sourceId
+        schema: string
+        required: true
+        description: Please see [Sources](ref:sources)
+      - name: plan_oid
+        schema: string
+        required: true
+        description: ''
+      - name: occurred_at
+        schema: string
+        required: false
+        description: ''
+      - name: addons
+        schema: array
+        required: false
+        description: ''
+      - name: quantity
+        schema: integer
+        required: false
+        description: ''
+      - name: discount
+        schema: integer
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /v1/{source_id}/subscriptions/{subscription_oid}/cancel
+    method: cancelSubscription
+    httpMethod: put
+    tag: Source
+    typeScriptTag: source
+    description: Cancel Subscription
+    parameters:
+      - name: subscriptionOid
+        schema: string
+        required: true
+        description: Your unique ID for the subscription
+      - name: sourceId
+        schema: string
+        required: true
+        description: Please see [Sources](ref:sources)
+      - name: canceled_at
+        schema: string
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /v1/annotations
+    method: list
+    httpMethod: get
+    tag: Annotation
+    typeScriptTag: annotation
+    description: List Annotations
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /v1/annotations
+    method: createNew
+    httpMethod: post
+    tag: Annotation
+    typeScriptTag: annotation
+    description: Create Annotation
+    parameters:
+      - name: metric
+        schema: string
+        required: true
+        description: ''
+      - name: annotation
+        schema: string
+        required: true
+        description: ''
+      - name: date
+        schema: string
+        required: true
+        description: ''
+      - name: global
+        schema: boolean
+        required: true
+        description: ''
+      - name: user_id
+        schema: string
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /v1/annotations/{id}
+    method: removeById
+    httpMethod: delete
+    tag: Annotation
+    typeScriptTag: annotation
+    description: Delete Annotation
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: ''
+    responses:
+      - statusCode: '202'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /v1/annotations/{id}
+    method: getDetails
+    httpMethod: get
+    tag: Annotation
+    typeScriptTag: annotation
+    description: Show Annotation
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /v1/goals
+    method: getList
+    httpMethod: get
+    tag: Goal
+    typeScriptTag: goal
+    description: List Goals
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /v1/goals
+    method: createNewGoal
+    httpMethod: post
+    tag: Goal
+    typeScriptTag: goal
+    description: Create Goal
+    parameters:
+      - name: metric
+        schema: string
+        required: true
+        description: ''
+      - name: start_amount
+        schema: integer
+        required: true
+        description: ''
+      - name: end_amount
+        schema: integer
+        required: true
+        description: ''
+      - name: start_date
+        schema: string
+        required: true
+        description: ''
+      - name: end_date
+        schema: string
+        required: true
+        description: ''
+      - name: name
+        schema: string
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /v1/goals/{id}
+    method: remove
+    httpMethod: delete
+    tag: Goal
+    typeScriptTag: goal
+    description: Delete Goal
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: ''
+    responses:
+      - statusCode: '202'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /v1/goals/{id}
+    method: getById
+    httpMethod: get
+    tag: Goal
+    typeScriptTag: goal
+    description: Show Goal
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: Unique ID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /v1/users
+    method: listUsers
+    httpMethod: get
+    tag: User
+    typeScriptTag: user
+    description: List Users
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /v1/users/{id}
+    method: getUserById
+    httpMethod: get
+    tag: User
+    typeScriptTag: user
+    description: Show User
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /v1/{source_id}/charges
+    method: getChargeList
+    httpMethod: get
+    tag: Source
+    typeScriptTag: source
+    description: List Charges
+    parameters:
+      - name: sourceId
+        schema: string
+        required: true
+        description: Please see [Sources](ref:sources)
+      - name: start
+        schema: string
+        description: ''
+      - name: end
+        schema: string
+        description: ''
+      - name: subscriptionOid
+        schema: string
+        description: ''
+      - name: customerOid
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /v1/{source_id}/charges
+    method: createChargeOneOff
+    httpMethod: post
+    tag: Source
+    typeScriptTag: source
+    description: Create Charge
+    parameters:
+      - name: sourceId
+        schema: string
+        required: true
+        description: Please see [Sources](ref:sources)
+      - name: oid
+        schema: string
+        required: true
+        description: ''
+      - name: amount
+        schema: integer
+        required: true
+        description: ''
+      - name: currency
+        schema: string
+        required: true
+        description: ''
+      - name: customer_oid
+        schema: string
+        required: true
+        description: ''
+      - name: created
+        schema: string
+        required: false
+        description: ''
+      - name: status
+        schema: string
+        required: false
+        description: ''
+      - name: fee
+        schema: integer
+        required: false
+        description: ''
+      - name: subscription_oid
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /v1/{source_id}/charges/{oid}
+    method: removeOneOffCharge
+    httpMethod: delete
+    tag: Source
+    typeScriptTag: source
+    description: Delete Charge
+    parameters:
+      - name: sourceId
+        schema: string
+        required: true
+        description: Please see [Sources](ref:sources)
+      - name: oid
+        schema: string
+        required: true
+        description: ''
+    responses:
+      - statusCode: '202'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /v1/{source_id}/charges/{oid}
+    method: getChargeDetails
+    httpMethod: get
+    tag: Source
+    typeScriptTag: source
+    description: Show Charge
+    parameters:
+      - name: sourceId
+        schema: string
+        required: true
+        description: Please see [Sources](ref:sources)
+      - name: oid
+        schema: string
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /v1/{source_id}/refunds
+    method: getRefunds
+    httpMethod: get
+    tag: Source
+    typeScriptTag: source
+    description: List Refunds
+    parameters:
+      - name: sourceId
+        schema: string
+        required: true
+        description: Please see [Sources](ref:sources)
+      - name: start
+        schema: string
+        description: ''
+      - name: end
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /v1/{source_id}/refunds
+    method: createOneOffRefund
+    httpMethod: post
+    tag: Source
+    typeScriptTag: source
+    description: Create Refund
+    parameters:
+      - name: sourceId
+        schema: string
+        required: true
+        description: Please see [Sources](ref:sources)
+      - name: oid
+        schema: string
+        required: true
+        description: ''
+      - name: amount
+        schema: integer
+        required: true
+        description: ''
+      - name: currency
+        schema: string
+        required: true
+        description: ''
+      - name: customer_oid
+        schema: string
+        required: true
+        description: ''
+      - name: charge_oid
+        schema: string
+        required: true
+        description: ''
+      - name: created
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /v1/{source_id}/refunds/{oid}
+    method: removeOneOffRefund
+    httpMethod: delete
+    tag: Source
+    typeScriptTag: source
+    description: Delete Refund
+    parameters:
+      - name: sourceId
+        schema: string
+        required: true
+        description: Please see [Sources](ref:sources)
+      - name: oid
+        schema: string
+        required: true
+        description: ''
+    responses:
+      - statusCode: '202'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /v1/{source_id}/refunds/{oid}
+    method: getRefundDetails
+    httpMethod: get
+    tag: Source
+    typeScriptTag: source
+    description: Show Refund
+    parameters:
+      - name: sourceId
+        schema: string
+        required: true
+        description: Please see [Sources](ref:sources)
+      - name: oid
+        schema: string
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /v1/{source_id}/events
+    method: getEvents
+    httpMethod: get
+    tag: Source
+    typeScriptTag: source
+    description: List Events
+    parameters:
+      - name: sourceId
+        schema: string
+        required: true
+        description: Please see [Sources](ref:sources)
+      - name: liveStream
+        schema: string
+        description: Set this to true to only return events that show up in the live stream
+      - name: start
+        schema: string
+        description: ''
+      - name: end
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /v1/{source_id}/events/{id}
+    method: getEventById
+    httpMethod: get
+    tag: Source
+    typeScriptTag: source
+    description: Show Event
+    parameters:
+      - name: sourceId
+        schema: string
+        required: true
+        description: Please see [Sources](ref:sources)
+      - name: id
+        schema: string
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /v1/metrics
+    method: showSummary
+    httpMethod: get
+    tag: Metric
+    typeScriptTag: metric
+    description: Show Summary
+    parameters:
+      - name: startDate
+        schema: string
+        required: true
+        description: ''
+      - name: endDate
+        schema: string
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /v1/metrics/{metric}
+    method: showDetails
+    httpMethod: get
+    tag: Metric
+    typeScriptTag: metric
+    description: Show Metric
+    parameters:
+      - name: metric
+        schema: string
+        required: true
+        description: >-
+          You can see a list of available metrics
+          [here](https://developers.baremetrics.com/reference/introduction)
+      - name: startDate
+        schema: string
+        required: true
+        description: ''
+      - name: endDate
+        schema: string
+        required: true
+        description: ''
+      - name: compareTo
+        schema: integer
+        description: The number of days ago to compare results to
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /v1/metrics/{metric}/customers
+    method: listCustomers
+    httpMethod: get
+    tag: Metric
+    typeScriptTag: metric
+    description: Show Customers
+    parameters:
+      - name: startDate
+        schema: string
+        required: true
+        description: ''
+      - name: endDate
+        schema: string
+        required: true
+        description: ''
+      - name: metric
+        schema: string
+        required: true
+        description: >-
+          You can see a list of available metrics
+          [here](https://developers.baremetrics.com/reference/introduction)
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /v1/metrics/{metric}/plans
+    method: showPlanBreakout
+    httpMethod: get
+    tag: Metric
+    typeScriptTag: metric
+    description: Show Plan Breakout
+    parameters:
+      - name: startDate
+        schema: string
+        required: true
+        description: ''
+      - name: endDate
+        schema: string
+        required: true
+        description: ''
+      - name: metric
+        schema: string
+        required: true
+        description: >-
+          You can see a list of available metrics
+          [here](https://developers.baremetrics.com/reference/introduction)
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /v1/metrics/cohorts
+    method: showCohorts
+    httpMethod: get
+    tag: Metric
+    typeScriptTag: metric
+    description: Show Cohorts
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /v1/segments/fields
+    method: getFields
+    httpMethod: get
+    tag: Segment
+    typeScriptTag: segment
+    description: List Fields
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /v1/segments
+    method: listSegments
+    httpMethod: get
+    tag: Segment
+    typeScriptTag: segment
+    description: List Segments
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /v1/segments
+    method: createRequest
+    httpMethod: post
+    tag: Segment
+    typeScriptTag: segment
+    description: Create Segment
+    parameters:
+      - name: query
+        schema: array
+        required: true
+        description: ''
+      - name: name
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /v1/segments/{id}
+    method: removeById
+    httpMethod: delete
+    tag: Segment
+    typeScriptTag: segment
+    description: Delete Segment
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: ''
+    responses:
+      - statusCode: '202'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /v1/segments/{id}
+    method: showDetails
+    httpMethod: get
+    tag: Segment
+    typeScriptTag: segment
+    description: Show Segment
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /v1/segments/{id}
+    method: updateById
+    httpMethod: put
+    tag: Segment
+    typeScriptTag: segment
+    description: Update Segment
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: ''
+      - name: name
+        schema: string
+        description: ''
+      - name: query
+        schema: array
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /v1/segments/search
+    method: findWithoutSave
+    httpMethod: post
+    tag: Segment
+    typeScriptTag: segment
+    description: Search Segment
+    parameters:
+      - name: perPage
+        schema: integer
+        description: ''
+      - name: page
+        schema: integer
+        description: ''
+      - name: sort
+        schema: string
+        description: ''
+      - name: order
+        schema: string
+        description: ''
+      - name: query
+        schema: array
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /v1/attributes
+    method: setProperties
+    httpMethod: post
+    tag: Attribute
+    typeScriptTag: attribute
+    description: Set Attributes
+    parameters:
+      - name: attributes
+        schema: array
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '409'
+        description: ''
+  - url: /v1/attributes/fields
+    method: getFields
+    httpMethod: get
+    tag: Attribute
+    typeScriptTag: attribute
+    description: List Attribute Fields
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /v1/attributes/fields
+    method: createField
+    httpMethod: post
+    tag: Attribute
+    typeScriptTag: attribute
+    description: Create Attribute Field
+    parameters:
+      - name: title
+        schema: string
+        required: true
+        description: ''
+      - name: field_type
+        schema: string
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /v1/attributes/fields/{id}
+    method: updateField
+    httpMethod: put
+    tag: Attribute
+    typeScriptTag: attribute
+    description: Update Attribute Field
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: ''
+      - name: title
+        schema: string
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /v1/cancellation_insights/events
+    method: listCancellationInsightEvents
+    httpMethod: get
+    tag: Event
+    typeScriptTag: event
+    description: List Events
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /v1/cancellation_insights/events
+    method: createInsightEvent
+    httpMethod: post
+    tag: Event
+    typeScriptTag: event
+    description: Create Event
+    parameters:
+      - name: reason_id
+        schema: string
+        required: true
+        description: ''
+      - name: comment
+        schema: string
+        required: false
+        description: ''
+      - name: customer_oid
+        schema: string
+        required: false
+        description: ''
+      - name: subscription_oids
+        schema: array
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /v1/cancellation_insights/events/{id}
+    method: getEventById
+    httpMethod: get
+    tag: Event
+    typeScriptTag: event
+    description: Show Event
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /v1/cancellation_insights/events/{id}
+    method: updateEventById
+    httpMethod: put
+    tag: Event
+    typeScriptTag: event
+    description: Update Event
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: ''
+      - name: reason_id
+        schema: string
+        description: ''
+      - name: comment
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /v1/cancellation_insights/reasons/{id}
+    method: deleteById
+    httpMethod: delete
+    tag: Reason
+    typeScriptTag: reason
+    description: Delete Reason
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: ''
+    responses:
+      - statusCode: '202'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /v1/cancellation_insights/reasons/{id}
+    method: showDetails
+    httpMethod: get
+    tag: Reason
+    typeScriptTag: reason
+    description: Show Reason
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /v1/cancellation_insights/reasons/{id}
+    method: updateReasonById
+    httpMethod: put
+    tag: Reason
+    typeScriptTag: reason
+    description: Update Reason
+    parameters:
+      - name: id
+        schema: string
+        required: true
+        description: ''
+      - name: text
+        schema: string
+        required: true
+        description: ''
+      - name: sort_key
+        schema: integer
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+  - url: /v1/cancellation_insights/reasons
+    method: createNewReason
+    httpMethod: post
+    tag: CancellationInsight
+    typeScriptTag: cancellationInsight
+    description: Create Reason
+    parameters:
+      - name: text
+        schema: string
+        required: true
+        description: ''
+      - name: sort_key
+        schema: integer
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''

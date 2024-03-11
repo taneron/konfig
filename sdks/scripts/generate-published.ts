@@ -13,6 +13,7 @@ import kebabcase from "lodash.kebabcase";
 import { PublishJson, publishJsonSchema } from "../src/publish-json-schema";
 import { getLocalKonfigCliVersion } from "../src/get-local-konfig-cli-version";
 import { hashRawSpecString } from "../src/hash-raw-spec-string";
+import { REGEX_FOR_BROKEN_LINKS } from "../src/collect-from-custom-requests";
 
 const publishJsonPath = path.join(path.dirname(__dirname), "publish.json");
 const specDataDirPath = path.join(path.dirname(__dirname), "db", "spec-data");
@@ -272,6 +273,12 @@ async function main() {
       fixedSpecFileName
     );
     let rawSpecString = getRawSpecString(specData);
+    if (publishData.developerDocumentation !== undefined) {
+      rawSpecString = rawSpecString.replaceAll(
+        REGEX_FOR_BROKEN_LINKS,
+        `(https://${publishData.developerDocumentation})`
+      );
+    }
 
     /**
      * Lets see if we can skip this spec
