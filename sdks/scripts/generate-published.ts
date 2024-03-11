@@ -11,6 +11,7 @@ import { generateTypescriptSdkUsageCode } from "../src/generate-typescript-sdk-u
 import execa from "execa";
 import kebabcase from "lodash.kebabcase";
 import { PublishJson, publishJsonSchema } from "../src/publish-json-schema";
+import { getLocalKonfigCliVersion } from "../src/get-local-konfig-cli-version";
 
 const publishJsonPath = path.join(path.dirname(__dirname), "publish.json");
 const specDataDirPath = path.join(path.dirname(__dirname), "db", "spec-data");
@@ -35,6 +36,11 @@ const fixedSpecsOutputPath = path.join(
   "db",
   "fixed-specs"
 );
+const fixedSpecsCacheOutputPath = path.join(
+  path.dirname(__dirname),
+  "db",
+  "fixed-specs-cache"
+);
 const intermediateFixedSpecsOutputPath = path.join(
   path.dirname(__dirname),
   "db",
@@ -46,6 +52,11 @@ const intermediateFixedSpecsOutputPath = path.join(
  */
 const openapiFilename = "openapi.yaml";
 
+/**
+ * Collects all the data needed to publish the SDKs from the publish.json and spec-data
+ *
+ * @returns A map from spec to PublishDatum
+ */
 function collectAllPublishData() {
   const publishJson: PublishJson = publishJsonSchema.parse(
     JSON.parse(fs.readFileSync(publishJsonPath, "utf-8"))
@@ -167,6 +178,21 @@ function getServiceName({
   return specData.serviceName;
 }
 
+type FixedSpecCache = {
+  publishJson: PublishJson["publish"][string];
+  rawSpecString: string;
+  konfigCliVersion: string;
+};
+function saveFixedSpechCache({
+  path,
+  cache,
+}: {
+  path: string;
+  cache: FixedSpecCache;
+}) {
+  fs.writeFileSync(path, yaml.dump(cache));
+}
+
 async function main() {
   const publishJson: PublishJson = publishJsonSchema.parse(
     JSON.parse(fs.readFileSync(publishJsonPath, "utf-8"))
@@ -174,16 +200,26 @@ async function main() {
   const now = new Date();
   const publishedJsons: Set<string> = new Set();
 
-  if (!fs.existsSync(fixedSpecsOutputPath))
-    fs.mkdirSync(fixedSpecsOutputPath), { recursive: true };
-  if (!fs.existsSync(progressYamlsPath))
-    fs.mkdirSync(progressYamlsPath), { recursive: true };
+  fs.ensureDirSync(fixedSpecsOutputPath);
+  fs.ensureDirSync(progressYamlsPath);
 
   const publishDatum = collectAllPublishData();
+
+  /**
+   * This is a map from spec to fixedSpecFileName to be populated in the first
+   * pass and used in the second pass
+   */
   const fixedSpecFileNames: Record<string, string> = {};
 
   /**
-   * First pass: fix specs
+   * First pass: write fixed specs to fixed-specs/
+   *
+   * Note: This entire phase is cacheable by four things:
+   * 1. Equality of publish.json entry
+   * 2. Equality of rawSpecString (which is the contents of the OAS file)
+   * 3. Equality of version of konfig-cli
+   * 4. The existence of the fixed spec
+   * If all four are true, then we can skip this entire phase
    */
   const promises: Promise<void>[] = [];
   const fixSpecNotWorkingList = ["ably.io_platform_1.1.0"];
@@ -193,13 +229,41 @@ async function main() {
     const { dynamicPath, specData } = publishDatum[spec];
     const fixedSpecFileName = getFixedSpecFileName(publishData.sdkName);
     fixedSpecFileNames[spec] = fixedSpecFileName;
-
+    const fixedSpecPath = path.join(fixedSpecsOutputPath, fixedSpecFileName);
+    const fixedSpecCachePath = path.join(
+      fixedSpecsCacheOutputPath,
+      fixedSpecFileName
+    );
     let rawSpecString = getRawSpecString(specData);
+
+    /**
+     * Lets see if we can skip this spec
+     */
+    const fixedSpecCache: FixedSpecCache | undefined = fs.existsSync(
+      fixedSpecCachePath
+    )
+      ? (yaml.load(
+          fs.readFileSync(fixedSpecCachePath, "utf-8")
+        ) as FixedSpecCache)
+      : undefined;
+    if (
+      fixedSpecCache !== undefined &&
+      JSON.stringify(fixedSpecCache.publishJson) ===
+        JSON.stringify(publishData) &&
+      fixedSpecCache.rawSpecString === rawSpecString &&
+      fixedSpecCache.konfigCliVersion === getLocalKonfigCliVersion() &&
+      fs.existsSync(fixedSpecPath)
+    ) {
+      console.log(`⚪️ Skipping ${spec} because it is cached`);
+      continue;
+    }
+
     const oas = await parseSpec(rawSpecString);
 
     /**
      * 1.a Perform any overrides authored in publish.json
      */
+
     // if publishData includes securitySchemes then override the securitySchemes in oas
     if (publishData.securitySchemes) {
       if (!oas.spec.components) oas.spec.components = {};
@@ -209,6 +273,7 @@ async function main() {
       );
     }
 
+    // if publishData includes apiStatusUrls then configure the vendor extension x-api-status-urls in oas
     if (publishData.apiStatusUrls !== undefined) {
       if (!oas.spec.info) oas.spec.info = {} as any;
       if (publishData.apiStatusUrls !== "inherit")
@@ -229,13 +294,15 @@ async function main() {
       openapiFilename
     );
 
+    /**
+     *
+     * Dylan: The reason why we do this is so we can author "securitySchemes" in
+     * the publish.json and then override the securitySchemes in the OAS before
+     * fixing it
+     */
     // write oas to openapiExamples directory to file openapi.yaml
-    // Dylan: The reason why we do this is so we can author "securitySchemes" in
-    // the publish.json and then override the securitySchemes in the OAS before
-    // fixing it
     fs.writeFileSync(specIntermediatePath, yaml.dump(oas.spec));
 
-    const fixedSpecPath = path.join(fixedSpecsOutputPath, fixedSpecFileName);
     if (fixSpecNotWorkingList.includes(spec)) {
       console.log(`🟡 Skipping ${spec} because it is in fixSpecNotWorkingList`);
       // If the spec is in fixSpecNotWorkingList, then we simply write the spec to fixedSpecsOutputPath
@@ -248,6 +315,16 @@ async function main() {
      * 1.c Fix the spec
      */
     promises.push(fixSpec(specIntermediatePath, fixedSpecPath));
+
+    // Save cache to avoid repeating this phase in the future
+    saveFixedSpechCache({
+      path: fixedSpecCachePath,
+      cache: {
+        publishJson: publishData,
+        rawSpecString,
+        konfigCliVersion: getLocalKonfigCliVersion(),
+      },
+    });
   }
   await Promise.all(promises);
   const t2 = Date.now();
