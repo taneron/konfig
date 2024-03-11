@@ -299,46 +299,7 @@ const customRequests: Record<string, CustomRequest> = {
         "https://developers.notion.com/reference/retrieve-a-comment?json=on",
         "https://developers.notion.com/reference/post-search?json=on",
       ];
-      const specs: object[] = [];
-      for (const url of urls) {
-        const rawSpecString = await fetch(url, {
-          headers: {
-            accept: "*/*",
-            "accept-language": "en-US,en;q=0.9",
-            "cache-control": "no-cache",
-            pragma: "no-cache",
-            "sec-ch-ua": '"Not_A Brand";v="8", "Chromium";v="120"',
-            "sec-ch-ua-mobile": "?0",
-            "sec-ch-ua-platform": '"macOS"',
-            "sec-fetch-dest": "empty",
-            "sec-fetch-mode": "cors",
-            "sec-fetch-site": "same-origin",
-            "sentry-trace":
-              "dce4d3ea8da447b7962c4e50a0a2eccb-a9cb60f78dd7f21a-0",
-            "x-requested-with": "XMLHttpRequest",
-            cookie:
-              "XSRF-TOKEN=RTVFxI7GO63fcVw91fitervD; intercom-id-gpfdrxfd=a7e56783-d834-4130-a3ce-9b4cc750ecc8; intercom-device-id-gpfdrxfd=1ec4b6a8-ed93-4c7b-b85c-88a6a336068f; ekfls=0ddebe53-2d38-438c-839a-8d6bb1f6aa6d; intercom-session-gpfdrxfd=",
-            Referer: "https://developers.notion.com/reference/update-a-block",
-            "Referrer-Policy": "strict-origin-when-cross-origin",
-          },
-          body: null,
-          method: "GET",
-        }).then((response) => response.text());
-        const rawSpec = JSON.parse(rawSpecString);
-        if (rawSpec.oasDefinition !== undefined) {
-          console.log(`Got oasDefinition for ${url}`);
-          specs.push(rawSpec.oasDefinition);
-        } else {
-          throw Error("Expecting oasDefinition to be defined");
-        }
-      }
-
-      // deepmerge all specs but don't append arrays
-      // instead, just use the source array
-      const mergedSpec = deepmerge.all(specs, {
-        arrayMerge: (destination, source) => source,
-      });
-      return JSON.stringify(mergedSpec);
+      return downloadOpenApiSpecFromReadme({ urls });
     },
   },
   "zapier.com_actions": {
@@ -578,6 +539,53 @@ const customRequests: Record<string, CustomRequest> = {
   },
 };
 
+async function downloadOpenApiSpecFromReadme({
+  urls,
+}: {
+  urls: string[];
+}): Promise<string> {
+  const specs: object[] = [];
+  urls = urls.map((url) => (url.endsWith("?json=on") ? url : url + "?json=on"));
+  for (const url of urls) {
+    const rawSpecString = await fetch(url, {
+      headers: {
+        accept: "*/*",
+        "accept-language": "en-US,en;q=0.9",
+        "cache-control": "no-cache",
+        pragma: "no-cache",
+        "sec-ch-ua": '"Not_A Brand";v="8", "Chromium";v="120"',
+        "sec-ch-ua-mobile": "?0",
+        "sec-ch-ua-platform": '"macOS"',
+        "sec-fetch-dest": "empty",
+        "sec-fetch-mode": "cors",
+        "sec-fetch-site": "same-origin",
+        "sentry-trace": "dce4d3ea8da447b7962c4e50a0a2eccb-a9cb60f78dd7f21a-0",
+        "x-requested-with": "XMLHttpRequest",
+        cookie:
+          "XSRF-TOKEN=RTVFxI7GO63fcVw91fitervD; intercom-id-gpfdrxfd=a7e56783-d834-4130-a3ce-9b4cc750ecc8; intercom-device-id-gpfdrxfd=1ec4b6a8-ed93-4c7b-b85c-88a6a336068f; ekfls=0ddebe53-2d38-438c-839a-8d6bb1f6aa6d; intercom-session-gpfdrxfd=",
+        Referer: url,
+        "Referrer-Policy": "strict-origin-when-cross-origin",
+      },
+      body: null,
+      method: "GET",
+    }).then((response) => response.text());
+    const rawSpec = JSON.parse(rawSpecString);
+    if (rawSpec.oasDefinition !== undefined) {
+      console.log(`Got oasDefinition for ${url}`);
+      specs.push(rawSpec.oasDefinition);
+    } else {
+      throw Error("Expecting oasDefinition to be defined");
+    }
+  }
+
+  // deepmerge all specs but don't append arrays
+  // instead, just use the source array
+  const mergedSpec = deepmerge.all(specs, {
+    arrayMerge: (destination, source) => source,
+  });
+  return JSON.stringify(mergedSpec);
+}
+
 /**
  * Downloads the OpenAPI spec from the Redocly URL and saves it to the specified
  * filename.  Sometimes Redocly embeds the contents of the OAS inside the
@@ -712,7 +720,6 @@ async function waitForDownloadToFinishByFileSize(downloadPath: string) {
 
 type CachedProcessedRequest = {
   processed: Db["specifications"][string];
-  hash: string;
 };
 
 function cachedCustomRequestPath(key: string) {
@@ -745,15 +752,12 @@ function getCachedProcessedCustomRequest({
 function saveCachedProcessedCustomRequest({
   key,
   processed,
-  rawSpecString,
 }: {
   key: string;
   processed: CachedProcessedRequest["processed"];
-  rawSpecString: string;
 }) {
   const cachePath = cachedCustomRequestPath(key);
-  const hash = hashRawSpecString(rawSpecString);
-  const cachedProcessedRequest: CachedProcessedRequest = { processed, hash };
+  const cachedProcessedRequest: CachedProcessedRequest = { processed };
   fs.writeFileSync(cachePath, yaml.dump(cachedProcessedRequest));
 }
 
@@ -780,6 +784,13 @@ async function processCustomRequest({
     lastFetched > new Date(Date.now() - 1000 * 60 * 60 * 24)
   ) {
     console.log(`Skip fetching ${key} due to last fetched being recent`);
+    const cachedProcessedCustomRequest = getCachedProcessedCustomRequest({
+      key,
+    });
+    if (cachedProcessedCustomRequest !== undefined) {
+      console.log(`Using cached processed custom request for ${key}`);
+      return cachedProcessedCustomRequest.processed;
+    }
   } else {
     rawSpecStringCurrent = await executeCustomRequest(
       key,
@@ -800,15 +811,6 @@ async function processCustomRequest({
 
   if (rawSpecString === null) {
     throw Error("Expect rawSpecString to be defined");
-  }
-
-  const cachedProcessedCustomRequest = getCachedProcessedCustomRequest({ key });
-  if (
-    cachedProcessedCustomRequest !== undefined &&
-    hashRawSpecString(rawSpecString) === cachedProcessedCustomRequest.hash
-  ) {
-    console.log(`Using cached processed custom request for ${key}`);
-    return cachedProcessedCustomRequest.processed;
   }
 
   const spec = await parseSpec(rawSpecString);
@@ -867,15 +869,14 @@ async function processCustomRequest({
     ),
   };
 
-  saveCachedProcessedCustomRequest({
-    key,
-    processed: processedRequest,
-    rawSpecString,
-  });
-  // This is expected to be written to later
+  // "yarn published" expects the file to be present to be processed
   console.log(`Writing post request spec to disk for ${key}`);
   fs.writeFileSync(customRequestSpecFilePath, yaml.dump(spec.spec));
 
+  saveCachedProcessedCustomRequest({
+    key,
+    processed: processedRequest,
+  });
   return processedRequest;
 }
 
