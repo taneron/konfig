@@ -478,6 +478,69 @@ const customRequests: Record<string, CustomRequest> = {
       });
     },
   },
+  "brex.com_Team": {
+    lambda: async (browser) => {
+      return downloadOpenApiSpecFromRedoclyEmbedded({
+        url: "https://developer.brex.com/openapi/team_api/",
+        filename: "swagger.json",
+        browser,
+      });
+    },
+  },
+  "brex.com_Onboarding": {
+    lambda: async (browser) => {
+      return downloadOpenApiSpecFromRedoclyEmbedded({
+        url: "https://developer.brex.com/openapi/onboarding_api/",
+        filename: "swagger.json",
+        browser,
+      });
+    },
+  },
+  "brex.com_Payments": {
+    lambda: async (browser) => {
+      return downloadOpenApiSpecFromRedoclyEmbedded({
+        url: "https://developer.brex.com/openapi/payments_api/",
+        filename: "swagger.json",
+        browser,
+      });
+    },
+  },
+  "brex.com_Transactions": {
+    lambda: async (browser) => {
+      return downloadOpenApiSpecFromRedoclyEmbedded({
+        url: "https://developer.brex.com/openapi/transactions_api/",
+        filename: "swagger.json",
+        browser,
+      });
+    },
+  },
+  "brex.com_Expenses": {
+    lambda: async (browser) => {
+      return downloadOpenApiSpecFromRedoclyEmbedded({
+        url: "https://developer.brex.com/openapi/expenses_api/",
+        filename: "swagger.json",
+        browser,
+      });
+    },
+  },
+  "brex.com_Webhooks": {
+    lambda: async (browser) => {
+      return downloadOpenApiSpecFromRedoclyEmbedded({
+        url: "https://developer.brex.com/openapi/webhooks_api/",
+        filename: "swagger.json",
+        browser,
+      });
+    },
+  },
+  "brex.com_Budgets": {
+    lambda: async (browser) => {
+      return downloadOpenApiSpecFromRedoclyEmbedded({
+        url: "https://developer.brex.com/openapi/budgets_api/",
+        filename: "swagger.json",
+        browser,
+      });
+    },
+  },
   "klarna.com_payments": {
     lambda: async (browser) => {
       return downloadOpenApiSpecFromRedoclyEmbedded({
@@ -721,7 +784,9 @@ async function downloadOpenApiSpecFromRedoclyEmbedded({
 
   // Navigate to the page
   console.log(`Navigating to ${url}`);
-  await page.goto(url);
+  await page.goto(url, {
+    waitUntil: "networkidle2",
+  });
   console.log(`Finished navigating to ${url}`);
 
   if (closeModal !== undefined) {
@@ -745,6 +810,7 @@ async function downloadOpenApiSpecFromRedoclyEmbedded({
   // Click the download button
   const downloadButtonSelector = `a[download="${filename}"]`;
   await page.waitForSelector(downloadButtonSelector);
+  // wait for page to fully load as well
   await page.click(downloadButtonSelector);
 
   // wait until download finishes by checking if the size of files the
