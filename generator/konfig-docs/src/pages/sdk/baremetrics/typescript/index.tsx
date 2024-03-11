@@ -25,7 +25,7 @@ Flightpath: Plan for the future with flexible financial modeling tools built for
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/baremetrics/logo.png"
       clientNameCamelCase="baremetrics"
       homepage="baremetrics.com"
-      lastUpdated={new Date("2024-03-11T05:38:04.068Z")}
+      lastUpdated={new Date("2024-03-11T05:58:47.500Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/baremetrics/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
@@ -1553,7 +1553,7 @@ Flightpath: Plan for the future with flexible financial modeling tools built for
         "name": "metric",
         "schema": "string",
         "required": true,
-        "description": "You can see a list of available metrics [here](#available-metrics)"
+        "description": "You can see a list of available metrics [here](https://developers.baremetrics.com/reference/introduction)"
       },
       {
         "name": "startDate",
@@ -1608,7 +1608,7 @@ Flightpath: Plan for the future with flexible financial modeling tools built for
         "name": "metric",
         "schema": "string",
         "required": true,
-        "description": "You can see a list of available metrics [here](#customer)"
+        "description": "You can see a list of available metrics [here](https://developers.baremetrics.com/reference/introduction)"
       }
     ],
     "responses": [
@@ -1646,7 +1646,7 @@ Flightpath: Plan for the future with flexible financial modeling tools built for
         "name": "metric",
         "schema": "string",
         "required": true,
-        "description": "You can see a list of available metrics [here](#available-metrics)"
+        "description": "You can see a list of available metrics [here](https://developers.baremetrics.com/reference/introduction)"
       }
     ],
     "responses": [
