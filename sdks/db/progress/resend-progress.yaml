@@ -1,0 +1,49 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+operationIds:
+  /api-keys:
+    get: ApiKeys_getList
+    post: ApiKeys_createNewKey
+  /api-keys/{api_key_id}:
+    delete: ApiKeys_removeExistingKey
+  /audiences:
+    get: Audiences_getList
+    post: Audiences_createContactList
+  /audiences/{audience_id}/contacts:
+    get: Contacts_getList
+    post: Contacts_createNewContact
+  /audiences/{audience_id}/contacts/{email}:
+    delete: Contacts_removeByEmail
+  /audiences/{audience_id}/contacts/{id}:
+    delete: Contacts_removeById
+    get: Contacts_getSingle
+    patch: Contacts_updateSingleContact
+  /audiences/{id}:
+    delete: Audiences_removeExistingAudience
+    get: Audiences_getSingleAudience
+  /domains:
+    get: Domains_getList
+    post: Domains_createNewDomain
+  /domains/{domain_id}:
+    delete: Domains_removeDomain
+    get: Domains_getSingleDomain
+    patch: Domains_updateExistingDomain
+  /domains/{domain_id}/verify:
+    post: Domains_verifyDomain
+  /emails:
+    post: Emails_sendEmail
+  /emails/batch:
+    post: Emails_triggerBatchEmails
+  /emails/{email_id}:
+    get: Emails_getSingleEmail
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /emails/batch:
+    post:
+      application/json: EmailsTriggerBatchEmailsRequest
+responseDescriptions: {}
+responseSchemaNames: {}
+securityParameters: {}
+validServerUrls: {}

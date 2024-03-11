@@ -541,6 +541,10 @@ const customRequests: Record<string, CustomRequest> = {
       });
     },
   },
+  "resend.com": {
+    type: "GET",
+    url: "https://raw.githubusercontent.com/resend/resend-openapi/main/resend.yaml",
+  },
   "klarna.com_payments": {
     lambda: async (browser) => {
       return downloadOpenApiSpecFromRedoclyEmbedded({
