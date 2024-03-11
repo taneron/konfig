@@ -1,0 +1,645 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignorePotentialIncorrectType: true
+operationIds:
+  /context:
+    get: Context_listOwnerContexts
+    post: Context_createNewContext
+  /context/{context-id}:
+    delete: Context_removeContext
+    get: Context_getInformation
+  /context/{context-id}/environment-variable:
+    get: Context_listEnvironmentVariables
+  /context/{context-id}/environment-variable/{env-var-name}:
+    delete: Context_removeEnvironmentVariable
+    put: Context_updateEnvironmentVariable
+  /context/{context_id}/restrictions:
+    get: Context_getRestrictions
+    post: Context_createRestriction
+  /context/{context_id}/restrictions/{restriction_id}:
+    delete: Context_deleteRestriction
+  /insights/pages/{project-slug}/summary:
+    get: Insights_getProjectSummaryMetrics
+  /insights/time-series/{project-slug}/workflows/{workflow-name}/jobs:
+    get: Insights_getJobTimeseriesData
+  /insights/{org-slug}/summary:
+    get: Insights_getSummaryMetricsWithTrends
+  /insights/{project-slug}/branches:
+    get: Insights_listProjectBranches
+  /insights/{project-slug}/flaky-tests:
+    get: Insights_getFlakyTests
+  /insights/{project-slug}/workflows:
+    get: Insights_getProjectWorkflowMetrics
+  /insights/{project-slug}/workflows/{workflow-name}:
+    get: Insights_getRecentWorkflowRuns
+  /insights/{project-slug}/workflows/{workflow-name}/jobs:
+    get: Insights_getProjectWorkflowJobMetrics
+  /insights/{project-slug}/workflows/{workflow-name}/summary:
+    get: Insights_getWorkflowSummaryMetrics
+  /insights/{project-slug}/workflows/{workflow-name}/test-metrics:
+    get: Insights_getProjectWorkflowTestMetrics
+  /me:
+    get: User_getInformation
+  /me/collaborations:
+    get: User_listCollaborations
+  /org/{orgID}/oidc-custom-claims:
+    delete: OidcTokenManagement_deleteOrgClaims
+    get: OidcTokenManagement_getOrgClaims
+    patch: OidcTokenManagement_updateOrgClaims
+  /org/{orgID}/project/{projectID}/oidc-custom-claims:
+    delete: OidcTokenManagement_deleteProjectClaims
+    get: OidcTokenManagement_getProjectClaims
+    patch: OidcTokenManagement_updateProjectClaims
+  /owner/{ownerID}/context/{context}/decision:
+    get: PolicyManagement_getDecisionAuditLogs
+    post: PolicyManagement_evaluateInputData
+  /owner/{ownerID}/context/{context}/decision/settings:
+    get: PolicyManagement_getDecisionSettings
+    patch: PolicyManagement_modifyDecisionSettings
+  /owner/{ownerID}/context/{context}/decision/{decisionID}:
+    get: PolicyManagement_getDecisionAuditLogByGivenId
+  /owner/{ownerID}/context/{context}/decision/{decisionID}/policy-bundle:
+    get: PolicyManagement_getPolicyBundleForDecision
+  /owner/{ownerID}/context/{context}/policy-bundle:
+    get: PolicyManagement_getPolicyBundle
+    post: PolicyManagement_createPolicyBundleForContext
+  /owner/{ownerID}/context/{context}/policy-bundle/{policyName}:
+    get: PolicyManagement_getDocument
+  /pipeline:
+    get: Pipeline_listRecentPipelines
+  /pipeline/continue:
+    post: Pipeline_continueExecution
+  /pipeline/{pipeline-id}:
+    get: Pipeline_getById
+  /pipeline/{pipeline-id}/config:
+    get: Pipeline_getConfigurationById
+  /pipeline/{pipeline-id}/workflow:
+    get: Pipeline_listWorkflows
+  /project/{project-slug}:
+    get: Project_getBySlug
+  /project/{project-slug}/checkout-key:
+    get: Project_listCheckoutKeys
+    post: Project_createCheckoutKey
+  /project/{project-slug}/checkout-key/{fingerprint}:
+    delete: Project_deleteCheckoutKeyByFingerprint
+    get: Project_getCheckoutKeyByFingerprint
+  /project/{project-slug}/envvar:
+    get: Project_listEnvVarValues
+    post: Project_createEnvVar
+  /project/{project-slug}/envvar/{name}:
+    delete: Project_deleteEnvironmentVariable
+    get: Project_getMaskedEnvVar
+  /project/{project-slug}/job/{job-number}:
+    get: Job_getDetails
+  /project/{project-slug}/job/{job-number}/cancel:
+    post: Job_cancelWithNumber
+  /project/{project-slug}/pipeline:
+    get: Pipeline_getAllPipelines
+    post: Pipeline_triggerNewPipeline
+  /project/{project-slug}/pipeline/mine:
+    get: Pipeline_listUserPipelines
+  /project/{project-slug}/pipeline/{pipeline-number}:
+    get: Pipeline_getByNumber
+  /project/{project-slug}/schedule:
+    get: Schedule_getAllSchedules
+    post: Schedule_createNewSchedule
+  /project/{project-slug}/{job-number}/artifacts:
+    get: Job_getArtifacts
+  /project/{project-slug}/{job-number}/tests:
+    get: Job_getTestMetadata
+  /project/{provider}/{organization}/{project}:
+    post: Project_createProjectDefaultSettings
+  /project/{provider}/{organization}/{project}/settings:
+    get: Project_getSettings
+    patch: Project_updateSettings
+  /schedule/{schedule-id}:
+    delete: Schedule_removeById
+    get: Schedule_getById
+    patch: Schedule_updateSchedule
+  /user/{id}:
+    get: User_getUserInformation
+  /webhook:
+    get: Webhook_listMatchingScope
+    post: Webhook_createOutboundWebhook
+  /webhook/{webhook-id}:
+    delete: Webhook_deleteOutboundWebhook
+    get: Webhook_getById
+    put: Webhook_updateOutboundWebhook
+  /workflow/{id}:
+    get: Workflow_getById
+  /workflow/{id}/approve/{approval_request_id}:
+    post: Workflow_approveJob
+  /workflow/{id}/cancel:
+    post: Workflow_cancelWorkflow
+  /workflow/{id}/job:
+    get: Workflow_getJobs
+  /workflow/{id}/rerun:
+    post: Workflow_rerunWorkflow
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /context:
+    post:
+      application/json: ContextCreateNewContextRequest
+  /context/{context-id}/environment-variable/{env-var-name}:
+    put:
+      application/json: ContextUpdateEnvironmentVariableRequest
+  /context/{context_id}/restrictions:
+    post:
+      application/json: ContextCreateRestrictionRequest
+  /owner/{ownerID}/context/{context}/decision:
+    post:
+      application/json: PolicyManagementEvaluateInputDataRequest
+  /pipeline/continue:
+    post:
+      application/json: PipelineContinueExecutionRequest
+  /project/{project-slug}/checkout-key:
+    post:
+      application/json: ProjectCreateCheckoutKeyRequest
+  /project/{project-slug}/envvar:
+    post:
+      application/json: ProjectCreateEnvVarRequest
+  /project/{project-slug}/pipeline:
+    post:
+      application/json: PipelineTriggerNewPipelineRequest
+  /project/{project-slug}/schedule:
+    post:
+      application/json: ScheduleCreateNewScheduleRequest
+  /schedule/{schedule-id}:
+    patch:
+      application/json: ScheduleUpdateScheduleRequest
+  /webhook:
+    post:
+      application/json: WebhookCreateOutboundWebhookRequest
+  /webhook/{webhook-id}:
+    put:
+      application/json: WebhookUpdateOutboundWebhookRequest
+  /workflow/{id}/rerun:
+    post:
+      application/json: WorkflowRerunWorkflowRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /context:
+    get:
+      '200':
+        application/json: ContextListOwnerContextsResponse
+      default:
+        application/json: ContextListOwnerContextsdefaultResponse
+    post:
+      '200':
+        application/json: ContextCreateNewContextResponse
+      default:
+        application/json: ContextCreateNewContextdefaultResponse
+  /context/{context-id}:
+    delete:
+      '200':
+        application/json: ContextRemoveContextResponse
+      default:
+        application/json: ContextRemoveContextdefaultResponse
+    get:
+      '200':
+        application/json: ContextGetInformationResponse
+      default:
+        application/json: ContextGetInformationdefaultResponse
+  /context/{context-id}/environment-variable:
+    get:
+      '200':
+        application/json: ContextListEnvironmentVariablesResponse
+      default:
+        application/json: ContextListEnvironmentVariablesdefaultResponse
+  /context/{context-id}/environment-variable/{env-var-name}:
+    delete:
+      '200':
+        application/json: ContextRemoveEnvironmentVariableResponse
+      default:
+        application/json: ContextRemoveEnvironmentVariabledefaultResponse
+    put:
+      '200':
+        application/json: ContextUpdateEnvironmentVariableResponse
+      default:
+        application/json: ContextUpdateEnvironmentVariabledefaultResponse
+  /context/{context_id}/restrictions:
+    get:
+      '400':
+        application/json: ContextGetRestrictionsResponse
+      '401':
+        application/json: ContextGetRestrictions401Response
+      '404':
+        application/json: ContextGetRestrictions404Response
+      '429':
+        application/json: ContextGetRestrictions429Response
+      '500':
+        application/json: ContextGetRestrictions500Response
+    post:
+      '400':
+        application/json: ContextCreateRestrictionResponse
+      '409':
+        application/json: ContextCreateRestriction409Response
+  /context/{context_id}/restrictions/{restriction_id}:
+    delete:
+      '400':
+        application/json: ContextDeleteRestrictionResponse
+  /insights/pages/{project-slug}/summary:
+    get:
+      '200':
+        application/json: InsightsGetProjectSummaryMetricsResponse
+      default:
+        application/json: InsightsGetProjectSummaryMetricsdefaultResponse
+  /insights/time-series/{project-slug}/workflows/{workflow-name}/jobs:
+    get:
+      '200':
+        application/json: InsightsGetJobTimeseriesDataResponse
+      default:
+        application/json: InsightsGetJobTimeseriesDatadefaultResponse
+  /insights/{org-slug}/summary:
+    get:
+      '200':
+        application/json: InsightsGetSummaryMetricsWithTrendsResponse
+      default:
+        application/json: InsightsGetSummaryMetricsWithTrendsdefaultResponse
+  /insights/{project-slug}/branches:
+    get:
+      '200':
+        application/json: InsightsListProjectBranchesResponse
+      default:
+        application/json: InsightsListProjectBranchesdefaultResponse
+  /insights/{project-slug}/flaky-tests:
+    get:
+      '200':
+        application/json: InsightsGetFlakyTestsResponse
+      default:
+        application/json: InsightsGetFlakyTestsdefaultResponse
+  /insights/{project-slug}/workflows:
+    get:
+      '200':
+        application/json: InsightsGetProjectWorkflowMetricsResponse
+      default:
+        application/json: InsightsGetProjectWorkflowMetricsdefaultResponse
+  /insights/{project-slug}/workflows/{workflow-name}:
+    get:
+      '200':
+        application/json: InsightsGetRecentWorkflowRunsResponse
+      default:
+        application/json: InsightsGetRecentWorkflowRunsdefaultResponse
+  /insights/{project-slug}/workflows/{workflow-name}/jobs:
+    get:
+      '200':
+        application/json: InsightsGetProjectWorkflowJobMetricsResponse
+      default:
+        application/json: InsightsGetProjectWorkflowJobMetricsdefaultResponse
+  /insights/{project-slug}/workflows/{workflow-name}/summary:
+    get:
+      '200':
+        application/json: InsightsGetWorkflowSummaryMetricsResponse
+      default:
+        application/json: InsightsGetWorkflowSummaryMetricsdefaultResponse
+  /insights/{project-slug}/workflows/{workflow-name}/test-metrics:
+    get:
+      '200':
+        application/json: InsightsGetProjectWorkflowTestMetricsResponse
+      default:
+        application/json: InsightsGetProjectWorkflowTestMetricsdefaultResponse
+  /me:
+    get:
+      '200':
+        application/json: UserGetInformationResponse
+      default:
+        application/json: UserGetInformationdefaultResponse
+  /me/collaborations:
+    get:
+      '200':
+        application/json: UserListCollaborationsResponse
+      default:
+        application/json: UserListCollaborationsdefaultResponse
+  /org/{orgID}/oidc-custom-claims:
+    delete:
+      '400':
+        application/json: OidcTokenManagementDeleteOrgClaimsResponse
+      '403':
+        application/json: OidcTokenManagementDeleteOrgClaims403Response
+      '500':
+        application/json: OidcTokenManagementDeleteOrgClaims500Response
+  /owner/{ownerID}/context/{context}/decision:
+    get:
+      '200':
+        application/json: PolicyManagementGetDecisionAuditLogsResponse
+      '401':
+        application/json: PolicyManagementGetDecisionAuditLogs401Response
+      '500':
+        application/json: PolicyManagementGetDecisionAuditLogs500Response
+    post:
+      '400':
+        application/json: PolicyManagementEvaluateInputDataResponse
+      '401':
+        application/json: PolicyManagementEvaluateInputData401Response
+      '500':
+        application/json: PolicyManagementEvaluateInputData500Response
+  /owner/{ownerID}/context/{context}/decision/{decisionID}:
+    get:
+      '404':
+        application/json: PolicyManagementGetDecisionAuditLogByGivenIdResponse
+  /owner/{ownerID}/context/{context}/decision/{decisionID}/policy-bundle:
+    get:
+      '404':
+        application/json: PolicyManagementGetPolicyBundleForDecisionResponse
+  /owner/{ownerID}/context/{context}/policy-bundle:
+    post:
+      '413':
+        application/json: PolicyManagementCreatePolicyBundleForContextResponse
+  /owner/{ownerID}/context/{context}/policy-bundle/{policyName}:
+    get:
+      '404':
+        application/json: PolicyManagementGetDocumentResponse
+  /pipeline:
+    get:
+      '200':
+        application/json: PipelineListRecentPipelinesResponse
+      default:
+        application/json: PipelineListRecentPipelinesdefaultResponse
+  /pipeline/continue:
+    post:
+      '200':
+        application/json: PipelineContinueExecutionResponse
+      default:
+        application/json: PipelineContinueExecutiondefaultResponse
+  /pipeline/{pipeline-id}:
+    get:
+      '200':
+        application/json: PipelineGetByIdResponse
+      default:
+        application/json: PipelineGetByIddefaultResponse
+  /pipeline/{pipeline-id}/config:
+    get:
+      '200':
+        application/json: PipelineGetConfigurationByIdResponse
+      default:
+        application/json: PipelineGetConfigurationByIddefaultResponse
+  /pipeline/{pipeline-id}/workflow:
+    get:
+      '200':
+        application/json: PipelineListWorkflowsResponse
+      default:
+        application/json: PipelineListWorkflowsdefaultResponse
+  /project/{project-slug}:
+    get:
+      '200':
+        application/json: ProjectGetBySlugResponse
+      default:
+        application/json: ProjectGetBySlugdefaultResponse
+  /project/{project-slug}/checkout-key:
+    get:
+      '200':
+        application/json: ProjectListCheckoutKeysResponse
+      default:
+        application/json: ProjectListCheckoutKeysdefaultResponse
+    post:
+      '201':
+        application/json: ProjectCreateCheckoutKeyResponse
+      default:
+        application/json: ProjectCreateCheckoutKeydefaultResponse
+  /project/{project-slug}/checkout-key/{fingerprint}:
+    delete:
+      '200':
+        application/json: ProjectDeleteCheckoutKeyByFingerprintResponse
+      default:
+        application/json: ProjectDeleteCheckoutKeyByFingerprintdefaultResponse
+    get:
+      '200':
+        application/json: ProjectGetCheckoutKeyByFingerprintResponse
+      default:
+        application/json: ProjectGetCheckoutKeyByFingerprintdefaultResponse
+  /project/{project-slug}/envvar:
+    get:
+      '200':
+        application/json: ProjectListEnvVarValuesResponse
+      default:
+        application/json: ProjectListEnvVarValuesdefaultResponse
+    post:
+      '201':
+        application/json: ProjectCreateEnvVarResponse
+      default:
+        application/json: ProjectCreateEnvVardefaultResponse
+  /project/{project-slug}/envvar/{name}:
+    delete:
+      '200':
+        application/json: ProjectDeleteEnvironmentVariableResponse
+      default:
+        application/json: ProjectDeleteEnvironmentVariabledefaultResponse
+    get:
+      '200':
+        application/json: ProjectGetMaskedEnvVarResponse
+      default:
+        application/json: ProjectGetMaskedEnvVardefaultResponse
+  /project/{project-slug}/job/{job-number}:
+    get:
+      '200':
+        application/json: JobGetDetailsResponse
+      default:
+        application/json: JobGetDetailsdefaultResponse
+  /project/{project-slug}/job/{job-number}/cancel:
+    post:
+      '200':
+        application/json: JobCancelWithNumberResponse
+      default:
+        application/json: JobCancelWithNumberdefaultResponse
+  /project/{project-slug}/pipeline:
+    get:
+      '200':
+        application/json: PipelineGetAllPipelinesResponse
+      default:
+        application/json: PipelineGetAllPipelinesdefaultResponse
+    post:
+      '201':
+        application/json: PipelineTriggerNewPipelineResponse
+      default:
+        application/json: PipelineTriggerNewPipelinedefaultResponse
+  /project/{project-slug}/pipeline/mine:
+    get:
+      '200':
+        application/json: PipelineListUserPipelinesResponse
+      default:
+        application/json: PipelineListUserPipelinesdefaultResponse
+  /project/{project-slug}/pipeline/{pipeline-number}:
+    get:
+      '200':
+        application/json: PipelineGetByNumberResponse
+      default:
+        application/json: PipelineGetByNumberdefaultResponse
+  /project/{project-slug}/schedule:
+    get:
+      '200':
+        application/json: ScheduleGetAllSchedulesResponse
+      default:
+        application/json: ScheduleGetAllSchedulesdefaultResponse
+    post:
+      '201':
+        application/json: ScheduleCreateNewScheduleResponse
+      default:
+        application/json: ScheduleCreateNewScheduledefaultResponse
+  /project/{project-slug}/{job-number}/artifacts:
+    get:
+      '200':
+        application/json: JobGetArtifactsResponse
+      default:
+        application/json: JobGetArtifactsdefaultResponse
+  /project/{project-slug}/{job-number}/tests:
+    get:
+      '200':
+        application/json: JobGetTestMetadataResponse
+      default:
+        application/json: JobGetTestMetadatadefaultResponse
+  /project/{provider}/{organization}/{project}:
+    post:
+      '400':
+        application/json: ProjectCreateProjectDefaultSettingsResponse
+      '403':
+        application/json: ProjectCreateProjectDefaultSettings403Response
+      '404':
+        application/json: ProjectCreateProjectDefaultSettings404Response
+      '405':
+        application/json: ProjectCreateProjectDefaultSettings405Response
+  /project/{provider}/{organization}/{project}/settings:
+    get:
+      '404':
+        application/json: ProjectGetSettingsResponse
+    patch:
+      '400':
+        application/json: ProjectUpdateSettingsResponse
+      '422':
+        application/json: ProjectUpdateSettings422Response
+  /schedule/{schedule-id}:
+    delete:
+      '200':
+        application/json: ScheduleRemoveByIdResponse
+      default:
+        application/json: ScheduleRemoveByIddefaultResponse
+    get:
+      '200':
+        application/json: ScheduleGetByIdResponse
+      default:
+        application/json: ScheduleGetByIddefaultResponse
+    patch:
+      '200':
+        application/json: ScheduleUpdateScheduleResponse
+      default:
+        application/json: ScheduleUpdateScheduledefaultResponse
+  /user/{id}:
+    get:
+      '200':
+        application/json: UserGetUserInformationResponse
+      default:
+        application/json: UserGetUserInformationdefaultResponse
+  /webhook:
+    get:
+      '200':
+        application/json: WebhookListMatchingScopeResponse
+      default:
+        application/json: WebhookListMatchingScopedefaultResponse
+    post:
+      '201':
+        application/json: WebhookCreateOutboundWebhookResponse
+      default:
+        application/json: WebhookCreateOutboundWebhookdefaultResponse
+  /webhook/{webhook-id}:
+    delete:
+      '200':
+        application/json: WebhookDeleteOutboundWebhookResponse
+      default:
+        application/json: WebhookDeleteOutboundWebhookdefaultResponse
+    get:
+      '200':
+        application/json: WebhookGetByIdResponse
+      default:
+        application/json: WebhookGetByIddefaultResponse
+    put:
+      '200':
+        application/json: WebhookUpdateOutboundWebhookResponse
+      default:
+        application/json: WebhookUpdateOutboundWebhookdefaultResponse
+  /workflow/{id}:
+    get:
+      '200':
+        application/json: WorkflowGetByIdResponse
+      default:
+        application/json: WorkflowGetByIddefaultResponse
+  /workflow/{id}/approve/{approval_request_id}:
+    post:
+      '202':
+        application/json: WorkflowApproveJobResponse
+      default:
+        application/json: WorkflowApproveJobdefaultResponse
+  /workflow/{id}/cancel:
+    post:
+      '202':
+        application/json: WorkflowCancelWorkflowResponse
+      default:
+        application/json: WorkflowCancelWorkflowdefaultResponse
+  /workflow/{id}/job:
+    get:
+      '200':
+        application/json: WorkflowGetJobsResponse
+      default:
+        application/json: WorkflowGetJobsdefaultResponse
+  /workflow/{id}/rerun:
+    post:
+      '202':
+        application/json: WorkflowRerunWorkflowResponse
+      default:
+        application/json: WorkflowRerunWorkflowdefaultResponse
+securityParameters:
+  after:
+    query: false
+  all-branches:
+    query: false
+  before:
+    query: false
+  branch:
+    query: false
+  branches:
+    query: false
+  build_number:
+    query: false
+  claims:
+    query: false
+  digest:
+    query: false
+  dry:
+    query: false
+  end-date:
+    query: false
+  granularity:
+    query: false
+  mine:
+    query: false
+  offset:
+    query: false
+  org-slug:
+    query: false
+  owner-id:
+    query: false
+  owner-slug:
+    query: false
+  owner-type:
+    query: false
+  page-token:
+    query: false
+  project-names:
+    query: false
+  project_id:
+    query: false
+  reporting-window:
+    query: false
+  scope-id:
+    query: false
+  scope-type:
+    query: false
+  start-date:
+    query: false
+  status:
+    query: false
+  workflow-name:
+    query: false
+  workflow-names:
+    query: false
+validServerUrls: {}

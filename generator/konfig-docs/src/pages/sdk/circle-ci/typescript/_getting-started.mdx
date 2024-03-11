@@ -1,0 +1,12 @@
+```typescript index.ts
+import { CircleCi } from 'circle-ci-typescript-sdk';
+
+const circleCi = new CircleCi({
+    // Project API tokens are not supported for API v2. Use a personal API token.
+    apiKeyHeader: "CIRCLE_TOKEN",
+    // HTTP basic authentication. The username should be set as the circle-token value, and the password should be left blank. Note that project tokens are currently not supported on API v2.
+    username: "USERNAME",
+    password: "PASSWORD",
+    // DEPRECATED - we will remove this option in the future. Project API tokens are not supported for API v2. Use a personal API token.
+    apiKeyQuery: "CIRCLE_TOKEN",
+})

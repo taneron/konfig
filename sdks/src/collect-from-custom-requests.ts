@@ -161,6 +161,10 @@ const customRequests: Record<string, CustomRequest> = {
     type: "GET",
     url: "https://raw.githubusercontent.com/forem/forem/main/swagger/v1/api_v1.json",
   },
+  "circleci.com": {
+    type: "GET",
+    url: "https://circleci.com/api/v2/openapi.json",
+  },
   "gitlab.com": {
     type: "GET",
     url: "https://gitlab.com/gitlab-org/gitlab/-/raw/master/doc/api/openapi/openapi.yaml",

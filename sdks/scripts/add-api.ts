@@ -520,8 +520,10 @@ Here are existing categories: ${allCategories.join(", ")}.
     ...selectedCategories,
     ...categories.split(",").map((category: string) => category.trim()),
   ];
-  console.log("✅ Selected Categories: ", allSelectedCategories.join(", "));
-  return allSelectedCategories.map(snakeCase);
+  const deduplicatedCategories = Array.from(new Set(allSelectedCategories));
+  const finalCategories = deduplicatedCategories.map(snakeCase);
+  console.log("✅ Selected Categories: ", finalCategories.join(", "));
+  return finalCategories;
 }
 
 async function getHomepage(): Promise<string> {
