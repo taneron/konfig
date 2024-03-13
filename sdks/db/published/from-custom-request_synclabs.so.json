@@ -1,0 +1,592 @@
+{
+  "securitySchemes": {
+    "apiKey": {
+      "type": "apiKey",
+      "in": "header",
+      "name": "x-api-key"
+    }
+  },
+  "apiBaseUrl": "https://api.synclabs.so",
+  "apiVersion": "1.0",
+  "apiDescription": "Synchronize API allows you to lipsync a video to any audio in any language.",
+  "apiTitle": "Synchronize API",
+  "endpoints": 16,
+  "sdkMethods": 16,
+  "schemas": 15,
+  "parameters": 41,
+  "originalCustomRequest": {
+    "type": "GET",
+    "url": "https://api.synclabs.so/playground-json",
+    "apiBaseUrl": "https://api.synclabs.so"
+  },
+  "customRequestSpecFilename": "synclabs.so.yaml",
+  "difficultyScore": 33.75,
+  "difficulty": "Easy",
+  "company": "sync. labs",
+  "sdkName": "sync-labs-{language}-sdk",
+  "clientName": "SyncLabs",
+  "metaDescription": "building generative models to modify + synthesize humans in video. \n\nthe first product we released is our synchronizer – a state-of-the-art lip-syncing model to sync a video to any audio in any language. \n\nwhy is this important?\n\nImagine a world where you can watch your favorite films, content creators, or learn anything you want in your native tongue — seamlessly.\n\nlanguage should no longer be a barrier. \n\nwe're building a suite of audio / video models to change how we live, work, and play.",
+  "apiStatusUrls": "inherit",
+  "homepage": "synclabs.so",
+  "developerDocumentation": "docs.synclabs.so/api-reference/introduction",
+  "categories": [
+    "ai",
+    "audio_generation",
+    "video",
+    "language",
+    "media"
+  ],
+  "methods": [
+    {
+      "url": "/video/cost",
+      "method": "cost",
+      "httpMethod": "get",
+      "tag": "video",
+      "typeScriptTag": "video",
+      "description": "",
+      "parameters": [
+        {
+          "name": "audioUrl",
+          "schema": "string",
+          "required": true,
+          "description": "A url to the audio file to be synchronized -- must be publicly accessible",
+          "example": "AUDIOURL"
+        },
+        {
+          "name": "videoUrl",
+          "schema": "string",
+          "required": true,
+          "description": "A url to the video file to be synchronized -- must be publicly accessible",
+          "example": "VIDEOURL"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/video",
+      "method": "lipSync",
+      "httpMethod": "post",
+      "tag": "video",
+      "typeScriptTag": "video",
+      "description": "",
+      "parameters": [
+        {
+          "name": "audioUrl",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "AUDIOURL"
+        },
+        {
+          "name": "videoUrl",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "VIDEOURL"
+        },
+        {
+          "name": "synergize",
+          "schema": "boolean",
+          "required": true,
+          "description": "",
+          "example": true,
+          "default": true
+        },
+        {
+          "name": "maxCredits",
+          "schema": "number",
+          "required": false,
+          "description": "",
+          "default": null
+        },
+        {
+          "name": "webhookUrl",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "default": null
+        },
+        {
+          "name": "model",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "default": "sync-1.5.0"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "default",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/video/{id}",
+      "method": "getLipSyncJob",
+      "httpMethod": "get",
+      "tag": "video",
+      "typeScriptTag": "video",
+      "description": "",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "default",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/lipsync/cost",
+      "method": "lipsyncCost",
+      "httpMethod": "get",
+      "tag": "lipsync",
+      "typeScriptTag": "lipsync",
+      "description": "",
+      "parameters": [
+        {
+          "name": "audioUrl",
+          "schema": "string",
+          "required": true,
+          "description": "A url to the audio file to be synchronized -- must be publicly accessible",
+          "example": "AUDIOURL"
+        },
+        {
+          "name": "videoUrl",
+          "schema": "string",
+          "required": true,
+          "description": "A url to the video file to be synchronized -- must be publicly accessible",
+          "example": "VIDEOURL"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/lipsync",
+      "method": "lipSync",
+      "httpMethod": "post",
+      "tag": "lipsync",
+      "typeScriptTag": "lipsync",
+      "description": "",
+      "parameters": [
+        {
+          "name": "audioUrl",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "AUDIOURL"
+        },
+        {
+          "name": "videoUrl",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "VIDEOURL"
+        },
+        {
+          "name": "synergize",
+          "schema": "boolean",
+          "required": true,
+          "description": "",
+          "example": true,
+          "default": true
+        },
+        {
+          "name": "maxCredits",
+          "schema": "number",
+          "required": false,
+          "description": "",
+          "default": null
+        },
+        {
+          "name": "webhookUrl",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "default": null
+        },
+        {
+          "name": "model",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "default": "sync-1.5.0"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "default",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/lipsync/{id}",
+      "method": "getLipsync",
+      "httpMethod": "get",
+      "tag": "lipsync",
+      "typeScriptTag": "lipsync",
+      "description": "",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "default",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/voices",
+      "method": "voices",
+      "httpMethod": "get",
+      "tag": "voices",
+      "typeScriptTag": "voices",
+      "description": "",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/translate/cost",
+      "method": "translationCost",
+      "httpMethod": "get",
+      "tag": "translate",
+      "typeScriptTag": "translate",
+      "description": "",
+      "parameters": [
+        {
+          "name": "videoUrl",
+          "schema": "string",
+          "required": true,
+          "description": "A url to the video file to be synchronized -- must be publicly accessible",
+          "example": "VIDEOURL"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/translate",
+      "method": "translate",
+      "httpMethod": "post",
+      "tag": "translate",
+      "typeScriptTag": "translate",
+      "description": "",
+      "parameters": [
+        {
+          "name": "videoUrl",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "VIDEOURL"
+        },
+        {
+          "name": "targetLanguage",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "TARGETLANGUAGE"
+        },
+        {
+          "name": "maxCredits",
+          "schema": "number",
+          "required": false,
+          "description": "",
+          "default": null
+        },
+        {
+          "name": "webhookUrl",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "default": null
+        },
+        {
+          "name": "model",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "default": "sync-1.5.0"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/translate/{id}",
+      "method": "getTranslation",
+      "httpMethod": "get",
+      "tag": "translate",
+      "typeScriptTag": "translate",
+      "description": "",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "default",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/speak/cost",
+      "method": "speakCost",
+      "httpMethod": "get",
+      "tag": "speak",
+      "typeScriptTag": "speak",
+      "description": "",
+      "parameters": [
+        {
+          "name": "transcript",
+          "schema": "string",
+          "required": false,
+          "description": "A string of text to be spoken by the AI"
+        },
+        {
+          "name": "transcriptUrl",
+          "schema": "string",
+          "required": false,
+          "description": "A url pointing to a file of text to be spoken by the AI"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/speak",
+      "method": "speak",
+      "httpMethod": "post",
+      "tag": "speak",
+      "typeScriptTag": "speak",
+      "description": "",
+      "parameters": [
+        {
+          "name": "transcript",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "TRANSCRIPT"
+        },
+        {
+          "name": "voiceId",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "VOICEID"
+        },
+        {
+          "name": "maxCredits",
+          "schema": "number",
+          "required": false,
+          "description": "",
+          "default": null
+        },
+        {
+          "name": "webhookUrl",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "default": null
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/speak/{id}",
+      "method": "getSpeech",
+      "httpMethod": "get",
+      "tag": "speak",
+      "typeScriptTag": "speak",
+      "description": "",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "default",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/animate/cost",
+      "method": "animateCost",
+      "httpMethod": "get",
+      "tag": "animate",
+      "typeScriptTag": "animate",
+      "description": "",
+      "parameters": [
+        {
+          "name": "transcript",
+          "schema": "string",
+          "required": false,
+          "description": "A string of text to be spoken by the AI"
+        },
+        {
+          "name": "transcriptUrl",
+          "schema": "string",
+          "required": false,
+          "description": "A url pointing to a file of text to be spoken by the AI"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/animate",
+      "method": "animate",
+      "httpMethod": "post",
+      "tag": "animate",
+      "typeScriptTag": "animate",
+      "description": "",
+      "parameters": [
+        {
+          "name": "videoUrl",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "VIDEOURL"
+        },
+        {
+          "name": "transcript",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "TRANSCRIPT"
+        },
+        {
+          "name": "voiceId",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "VOICEID"
+        },
+        {
+          "name": "model",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "default": "sync-1.5.0"
+        },
+        {
+          "name": "maxCredits",
+          "schema": "number",
+          "required": false,
+          "description": "",
+          "default": null
+        },
+        {
+          "name": "webhookUrl",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "default": null
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/animate/{id}",
+      "method": "getAnimation",
+      "httpMethod": "get",
+      "tag": "animate",
+      "typeScriptTag": "animate",
+      "description": "",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "default",
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "repositoryDescription": "Building generative models for video modifications and synthesis. First product: Synchronizer for lip-sync in any language. Break language barriers in entertainment and learning. Creating a suite of audio/video models for a transformative experience. sync. labs's {language} SDK generated by Konfig (https://konfigthis.com/).",
+  "logo": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/sync-labs/logo.png",
+  "openApiRaw": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/sync-labs/openapi.yaml",
+  "openApiGitHubUi": "https://github.com/konfig-sdks/openapi-examples/tree/HEAD/sync-labs/openapi.yaml",
+  "previewLinkImage": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/sync-labs/imagePreview.png",
+  "faviconUrl": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/sync-labs/favicon.png",
+  "clientNameCamelCase": "syncLabs",
+  "lastUpdated": "2024-03-13T17:38:35.018Z",
+  "typescriptSdkUsageCode": "import { SyncLabs } from 'sync-labs-typescript-sdk';\n\nconst syncLabs = new SyncLabs({\n    apiKey: \"X_API_KEY\",\n})",
+  "typescriptSdkFirstRequestCode": "// \nconst costResponse = syncLabs.video.cost({\n    audioUrl: \"AUDIOURL\"\n    videoUrl: \"VIDEOURL\"\n})",
+  "fixedSpecFileName": "sync-labs-fixed-spec.yaml"
+}

@@ -399,6 +399,11 @@ const customRequests: Record<string, CustomRequest> = {
       return downloadOpenApiSpecFromReadme({ urls });
     },
   },
+  "synclabs.so": {
+    type: "GET",
+    url: "https://api.synclabs.so/playground-json",
+    apiBaseUrl: "https://api.synclabs.so",
+  },
   "zapier.com_actions": {
     type: "GET",
     url: "https://actions.zapier.com/api/v1/openapi.json",

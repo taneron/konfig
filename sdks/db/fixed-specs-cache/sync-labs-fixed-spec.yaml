@@ -1,0 +1,843 @@
+publishJson:
+  company: sync. labs
+  serviceName: false
+  sdkName: sync-labs-{language}-sdk
+  clientName: SyncLabs
+  metaDescription: >-
+    building generative models to modify + synthesize humans in video. 
+
+
+    the first product we released is our synchronizer – a state-of-the-art
+    lip-syncing model to sync a video to any audio in any language. 
+
+
+    why is this important?
+
+
+    Imagine a world where you can watch your favorite films, content creators,
+    or learn anything you want in your native tongue — seamlessly.
+
+
+    language should no longer be a barrier. 
+
+
+    we're building a suite of audio / video models to change how we live, work,
+    and play.
+  apiStatusUrls: inherit
+  homepage: synclabs.so
+  developerDocumentation: docs.synclabs.so/api-reference/introduction
+  categories:
+    - ai
+    - audio_generation
+    - video
+    - language
+    - media
+rawSpecString: |
+  openapi: 3.0.0
+  paths:
+    /video/cost:
+      get:
+        operationId: VideoController_cost
+        summary: ''
+        deprecated: true
+        parameters:
+          - name: audioUrl
+            required: true
+            in: query
+            description: >-
+              A url to the audio file to be synchronized -- must be publicly
+              accessible
+            schema:
+              type: string
+          - name: videoUrl
+            required: true
+            in: query
+            description: >-
+              A url to the video file to be synchronized -- must be publicly
+              accessible
+            schema:
+              type: string
+        responses:
+          '200':
+            description: ''
+        tags:
+          - video
+    /video:
+      post:
+        operationId: VideoController_lipSync
+        summary: ''
+        description: >-
+          [Deprecated] Submit a set of urls to publically hosted audio and video
+          files or to YouTube videos. Our synchronizer will sync the video's lip
+          movements to match the audio and return the synced video.
+        deprecated: true
+        parameters: []
+        requestBody:
+          required: true
+          description: >-
+            The audio + video data to be synced. Set synergize = false to skip our
+            synergizer post-processor for a 10x speedup, but w/ a degredation in
+            output quality.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateVideoDto'
+        responses:
+          default:
+            description: ''
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/VideoInitial'
+        tags:
+          - video
+    /video/{id}:
+      get:
+        operationId: VideoController_getLipSyncJob
+        summary: ''
+        description: >-
+          [Deprecated] Use the video ID from the POST request to check video
+          status. Keep checking until status is 'completed' and a download URL is
+          provided.
+        deprecated: true
+        parameters:
+          - name: id
+            required: true
+            in: path
+            schema:
+              type: string
+        responses:
+          default:
+            description: Returns video status and URL to download from.
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/VideoExtended'
+        tags:
+          - video
+    /lipsync/cost:
+      get:
+        operationId: LipSyncController_lipsyncCost
+        parameters:
+          - name: audioUrl
+            required: true
+            in: query
+            description: >-
+              A url to the audio file to be synchronized -- must be publicly
+              accessible
+            schema:
+              type: string
+          - name: videoUrl
+            required: true
+            in: query
+            description: >-
+              A url to the video file to be synchronized -- must be publicly
+              accessible
+            schema:
+              type: string
+        responses:
+          '200':
+            description: ''
+        tags:
+          - lipsync
+    /lipsync:
+      post:
+        operationId: LipSyncController_lipSync
+        summary: ''
+        description: >-
+          Submit a set of urls to publically hosted audio and video files or to
+          YouTube videos. Our synchronizer will sync the video's lip movements to
+          match the audio and return the synced video.
+        parameters: []
+        requestBody:
+          required: true
+          description: >-
+            The audio + video data to be synced. Set synergize = false to skip our
+            synergizer post-processor for a 10x speedup, but w/ a degredation in
+            output quality.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LipsyncDto'
+        responses:
+          default:
+            description: ''
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/LipSyncInitial'
+        tags:
+          - lipsync
+    /lipsync/{id}:
+      get:
+        operationId: LipSyncController_getLipsync
+        summary: ''
+        description: >-
+          Use the video ID from the POST request to check video status. Keep
+          checking until status is 'completed' and a download URL is provided.
+        parameters:
+          - name: id
+            required: true
+            in: path
+            schema:
+              type: string
+        responses:
+          default:
+            description: Returns video status and URL to download from.
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/LipSyncExtended'
+        tags:
+          - lipsync
+    /voices:
+      get:
+        operationId: VoicesController_voices
+        summary: ''
+        description: Get all voices
+        parameters: []
+        responses:
+          '200':
+            description: ''
+        tags:
+          - voices
+    /translate/cost:
+      get:
+        operationId: TranslateController_translationCost
+        parameters:
+          - name: videoUrl
+            required: true
+            in: query
+            description: >-
+              A url to the video file to be synchronized -- must be publicly
+              accessible
+            schema:
+              type: string
+        responses:
+          '200':
+            description: ''
+        tags:
+          - translate
+    /translate:
+      post:
+        operationId: TranslateController_translate
+        summary: ''
+        description: >-
+          Translates and synchronizes the given video to the specified target
+          language.
+        parameters: []
+        requestBody:
+          required: true
+          description: >-
+            Required data for translating and synchronizing video. Includes video
+            URL, target language, and optional parameters for model selection,
+            webhook integration, and credit limits.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TranslateDto'
+        responses:
+          '200':
+            description: The translation job has been successfully created.
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/TranslationJobInitial'
+        tags:
+          - translate
+    /translate/{id}:
+      get:
+        operationId: TranslateController_getTranslation
+        summary: ''
+        description: >-
+          Use the video ID from the POST request to check video status. Keep
+          checking until status is 'completed' and a download URL is provided.
+        parameters:
+          - name: id
+            required: true
+            in: path
+            schema:
+              type: string
+        responses:
+          default:
+            description: Returns video status and URL to download from.
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/TranslationJobExtended'
+        tags:
+          - translate
+    /speak/cost:
+      get:
+        operationId: SpeakController_speakCost
+        parameters:
+          - name: transcript
+            required: false
+            in: query
+            description: A string of text to be spoken by the AI
+            schema:
+              type: string
+          - name: transcriptUrl
+            required: false
+            in: query
+            description: A url pointing to a file of text to be spoken by the AI
+            schema:
+              type: string
+        responses:
+          '200':
+            description: ''
+        tags:
+          - speak
+    /speak:
+      post:
+        operationId: SpeakController_speak
+        summary: ''
+        description: ''
+        parameters: []
+        requestBody:
+          required: true
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SpeakDto'
+        responses:
+          '200':
+            description: ''
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/SpeakInitial'
+        tags:
+          - speak
+    /speak/{id}:
+      get:
+        operationId: SpeakController_getSpeech
+        summary: ''
+        description: >-
+          Use the video ID from the POST request to check video status. Keep
+          checking until status is 'completed' and a download URL is provided.
+        parameters:
+          - name: id
+            required: true
+            in: path
+            schema:
+              type: string
+        responses:
+          default:
+            description: Returns video status and URL to download from.
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/SpeakExtended'
+        tags:
+          - speak
+    /animate/cost:
+      get:
+        operationId: AnimateController_animateCost
+        parameters:
+          - name: transcript
+            required: false
+            in: query
+            description: A string of text to be spoken by the AI
+            schema:
+              type: string
+          - name: transcriptUrl
+            required: false
+            in: query
+            description: A url pointing to a file of text to be spoken by the AI
+            schema:
+              type: string
+        responses:
+          '200':
+            description: ''
+        tags:
+          - animate
+    /animate:
+      post:
+        operationId: AnimateController_animate
+        summary: ''
+        description: >-
+          Generates audio given inputted text and voice and synchronizes with the
+          given video.
+        parameters: []
+        requestBody:
+          required: true
+          description: >-
+            Required data for animating video. Includes video URL, transcript,
+            voice, and optional parameters for webhook integration and credit
+            limits.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnimateDto'
+        responses:
+          '200':
+            description: ''
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/AnimateInitial'
+        tags:
+          - animate
+    /animate/{id}:
+      get:
+        operationId: AnimateController_getAnimation
+        summary: ''
+        description: >-
+          Use the ID from the POST request to check status. Keep checking until
+          status is 'completed' and a download URL is provided.
+        parameters:
+          - name: id
+            required: true
+            in: path
+            schema:
+              type: string
+        responses:
+          default:
+            description: Returns status and URL to download from.
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/AnimateExtended'
+        tags:
+          - animate
+  info:
+    title: Synchronize API
+    description: Synchronize API allows you to lipsync a video to any audio in any language.
+    version: '1.0'
+    contact: {}
+  tags: []
+  servers:
+    - url: https://api.synclabs.so
+  components:
+    securitySchemes:
+      apiKey:
+        type: apiKey
+        in: header
+        name: x-api-key
+    schemas:
+      CreateVideoDto:
+        type: object
+        properties:
+          audioUrl:
+            type: string
+            description: >-
+              A url to the audio file to be synchronized -- must be publicly
+              accessible
+          videoUrl:
+            type: string
+            description: >-
+              A url to the video file to be synchronized -- must be publicly
+              accessible
+          synergize:
+            type: boolean
+            description: A flag to enable / disable post-processing
+            default: true
+          maxCredits:
+            type: number
+            description: >-
+              Maximum number of credits to use for video generation. If job
+              exceeds this value, the job will be aborted
+            default: null
+          webhookUrl:
+            type: string
+            description: A url to send a notification to upon completion of video generation
+            default: null
+          model:
+            type: string
+            description: The model to use for video generation
+            default: sync-1.5.0
+        required:
+          - audioUrl
+          - videoUrl
+          - synergize
+      VideoInitial:
+        type: object
+        properties:
+          id:
+            type: string
+            description: A unique identifier for the video.
+          url:
+            type: string
+            description: A URL which can be used to download the video.
+          original_video_url:
+            type: string
+            description: The original URL of the video that was submitted.
+          original_audio_url:
+            type: string
+            description: The original URL of the audio that was submitted.
+          status:
+            type: string
+            description: The status of the video.
+          synergize:
+            type: boolean
+            description: A flag to enable / disable post-processing
+        required:
+          - id
+          - original_video_url
+          - original_audio_url
+          - status
+          - synergize
+      VideoExtended:
+        type: object
+        properties:
+          id:
+            type: string
+            description: A unique identifier for the video.
+          url:
+            type: string
+            description: A URL which can be used to download the video.
+          original_video_url:
+            type: string
+            description: The original URL of the video that was submitted.
+          original_audio_url:
+            type: string
+            description: The original URL of the audio that was submitted.
+          status:
+            type: string
+            description: The status of the video.
+          synergize:
+            type: boolean
+            description: A flag to enable / disable post-processing
+          credits_deducted:
+            type: number
+            description: The number of credits deducted for the video.
+        required:
+          - id
+          - original_video_url
+          - original_audio_url
+          - status
+          - synergize
+          - credits_deducted
+      LipsyncDto:
+        type: object
+        properties:
+          audioUrl:
+            type: string
+            description: >-
+              A url to the audio file to be synchronized -- must be publicly
+              accessible
+          videoUrl:
+            type: string
+            description: >-
+              A url to the video file to be synchronized -- must be publicly
+              accessible
+          synergize:
+            type: boolean
+            description: A flag to enable / disable post-processing
+            default: true
+          maxCredits:
+            type: number
+            description: >-
+              Maximum number of credits to use for video generation. If job
+              exceeds this value, the job will be aborted
+            default: null
+          webhookUrl:
+            type: string
+            description: A url to send a notification to upon completion of video generation
+            default: null
+          model:
+            type: string
+            description: The model to use for video generation
+            default: sync-1.5.0
+        required:
+          - audioUrl
+          - videoUrl
+          - synergize
+      LipSyncInitial:
+        type: object
+        properties:
+          id:
+            type: string
+            description: A unique identifier for the video.
+          url:
+            type: string
+            description: A URL which can be used to download the video.
+          original_video_url:
+            type: string
+            description: The original URL of the video that was submitted.
+          original_audio_url:
+            type: string
+            description: The original URL of the audio that was submitted.
+          status:
+            type: string
+            description: The status of the video.
+          synergize:
+            type: boolean
+            description: A flag to enable / disable post-processing
+        required:
+          - id
+          - original_video_url
+          - original_audio_url
+          - status
+          - synergize
+      LipSyncExtended:
+        type: object
+        properties:
+          id:
+            type: string
+            description: A unique identifier for the video.
+          url:
+            type: string
+            description: A URL which can be used to download the video.
+          original_video_url:
+            type: string
+            description: The original URL of the video that was submitted.
+          original_audio_url:
+            type: string
+            description: The original URL of the audio that was submitted.
+          status:
+            type: string
+            description: The status of the video.
+          synergize:
+            type: boolean
+            description: A flag to enable / disable post-processing
+          credits_deducted:
+            type: number
+            description: The number of credits deducted for the video.
+        required:
+          - id
+          - original_video_url
+          - original_audio_url
+          - status
+          - synergize
+          - credits_deducted
+      TranslateDto:
+        type: object
+        properties:
+          videoUrl:
+            type: string
+            description: >-
+              A url to the video file to be translated and synchronized -- must be
+              publicly accessible
+          targetLanguage:
+            type: string
+            description: Target language to translate the video to
+          maxCredits:
+            type: number
+            description: >-
+              Maximum number of credits to use for video generation. If job
+              exceeds this value, the job will be aborted
+            default: null
+          webhookUrl:
+            type: string
+            description: A url to send a notification to upon completion of video generation
+            default: null
+          model:
+            type: string
+            description: The model to use for video generation.
+            default: sync-1.5.0
+        required:
+          - videoUrl
+          - targetLanguage
+      TranslationJobInitial:
+        type: object
+        properties:
+          id:
+            type: string
+            description: A unique identifier for the translation job.
+          video_url:
+            type: string
+            description: A URL which can be used to download the video.
+          original_video_url:
+            type: string
+            description: The original URL of the video that was submitted.
+          target_language:
+            type: string
+            description: The language into which the video is being translated.
+          status:
+            type: string
+            description: The status of the translation job.
+          step:
+            type: string
+            description: The step of the translation job.
+        required:
+          - id
+          - original_video_url
+          - status
+          - step
+      TranslationJobExtended:
+        type: object
+        properties:
+          id:
+            type: string
+            description: A unique identifier for the translation job.
+          video_url:
+            type: string
+            description: A URL which can be used to download the video.
+          audio_url:
+            type: string
+            description: A URL which can be used to download the audio.
+          transcript_url:
+            type: string
+            description: A URL to access the transcript of the video.
+          original_video_url:
+            type: string
+            description: The original URL of the video that was submitted.
+          source_language:
+            type: string
+            description: The source language of the video.
+          target_language:
+            type: string
+            description: The language into which the video is being translated.
+          status:
+            type: string
+            description: The status of the translation job.
+          step:
+            type: string
+            description: The step of the translation job.
+        required:
+          - id
+          - audio_url
+          - original_video_url
+          - source_language
+          - status
+          - step
+      SpeakDto:
+        type: object
+        properties:
+          transcript:
+            type: string
+            description: A string of text to be spoken by the AI
+          voiceId:
+            type: string
+            description: The voice to use for audio generation
+          maxCredits:
+            type: number
+            description: >-
+              Maximum number of credits to use for audio generation. If job
+              exceeds this value, the job will be aborted
+            default: null
+          webhookUrl:
+            type: string
+            description: A url to send a notification to upon completion of audio generation
+            default: null
+        required:
+          - transcript
+          - voiceId
+      SpeakInitial:
+        type: object
+        properties:
+          id:
+            type: string
+            description: A unique identifier for the video.
+          audio_url:
+            type: string
+            description: A URL which can be used to download the audio.
+          transcript_url:
+            type: string
+            description: A URL to a file containing the input transcript.
+          status:
+            type: string
+            description: The status of the audio.
+        required:
+          - id
+          - transcript_url
+          - status
+      SpeakExtended:
+        type: object
+        properties:
+          id:
+            type: string
+            description: A unique identifier for the video.
+          audio_url:
+            type: string
+            description: A URL which can be used to download the audio.
+          transcript_url:
+            type: string
+            description: A URL to a file containing the input transcript.
+          status:
+            type: string
+            description: The status of the audio.
+          credits_deducted:
+            type: number
+            description: The number of credits deducted for the audio.
+        required:
+          - id
+          - transcript_url
+          - status
+          - credits_deducted
+      AnimateDto:
+        type: object
+        properties:
+          videoUrl:
+            type: string
+            description: >-
+              A url to the video file to be synchronized -- must be publicly
+              accessible
+          transcript:
+            type: string
+            description: A string of text to be spoken by the AI
+          voiceId:
+            type: string
+            description: The voice to use for audio generation
+          model:
+            type: string
+            description: The model to use for video generation
+            default: sync-1.5.0
+          maxCredits:
+            type: number
+            description: >-
+              Maximum number of credits to use for audio generation. If job
+              exceeds this value, the job will be aborted
+            default: null
+          webhookUrl:
+            type: string
+            description: A url to send a notification to upon completion of audio generation
+            default: null
+        required:
+          - videoUrl
+          - transcript
+          - voiceId
+      AnimateInitial:
+        type: object
+        properties:
+          id:
+            type: string
+            description: A unique identifier for the video.
+          video_url:
+            type: string
+            description: A URL which can be used to download the audio.
+          audio_url:
+            type: string
+            description: A URL which can be used to download the audio.
+          transcript_url:
+            type: string
+            description: A URL to a file containing the input transcript.
+          status:
+            type: string
+            description: The status of the audio.
+        required:
+          - id
+          - transcript_url
+          - status
+      AnimateExtended:
+        type: object
+        properties:
+          id:
+            type: string
+            description: A unique identifier for the video.
+          video_url:
+            type: string
+            description: A URL which can be used to download the audio.
+          audio_url:
+            type: string
+            description: A URL which can be used to download the audio.
+          transcript_url:
+            type: string
+            description: A URL to a file containing the input transcript.
+          status:
+            type: string
+            description: The status of the audio.
+          credits_deducted:
+            type: number
+            description: The number of credits deducted for the audio.
+        required:
+          - id
+          - transcript_url
+          - status
+          - credits_deducted
+  security:
+    - apiKey: []
+konfigCliVersion: 1.38.29
