@@ -163,7 +163,11 @@ function AboutCompany({
     <div className="py-20 px-8 md:px-32">
       <div className="w-fit">
         <div className="shadow-inner w-fit rounded-md border p-4">
-          <img className="max-w-[200px]" src={logo} alt={company} />
+          <img
+            className="max-w-[200px] max-h-[80px]"
+            src={logo}
+            alt={company}
+          />
         </div>
         <h2 className="mt-4 mb-0 text-3xl text-slate-800">About {company}</h2>
         <p className="mt-2 max-w-[800px]">{metaDescription}</p>
@@ -432,7 +436,7 @@ function HeroSection({
           aria-hidden={!showGraphic}
           className="opacity-1 aria-hidden:opacity-0 flex items-center flex-col lg:min-w-[400px] xl:min-w-[540px] transition-all duration-1000"
         >
-          <div className="my-5 bg-white p-4 shadow-xl rounded-sm w-fit">
+          <div className="my-5 p-4 shadow-xl rounded-sm w-fit bg-gradient-to-br relative from-white to-slate-300">
             <img className="sm:h-16" src={logo} alt={`${company} logo`} />
           </div>
           <IconArrowsDownUp className="text-blue-200" />
