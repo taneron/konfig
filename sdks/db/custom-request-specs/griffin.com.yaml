@@ -52,17 +52,16 @@ info:
     such as when we enforce tighter access controls around certain operations.
 
     For example, when closing a bank account: rather than send a PATCH request
-    to the [bank account](#tag/Bank-accounts) resource to update it's status to
-    `"closed"`, we provide a dedicated account closure resource.
+    to the [bank account](http://docs.griffin.com) resource to update it's
+    status to `"closed"`, we provide a dedicated account closure resource.
 
 
     Anyone can [create an account](https://app.griffin.com/register) with
-    Griffin and try out out API in [sandbox
-    mode](/docs/concepts/sandbox-vs-live-mode).
+    Griffin and try out out API in [sandbox mode](http://docs.griffin.com).
 
 
     New to Griffin? Check out our [getting started
-    guide](/docs/introduction/get-started-with-the-api).
+    guide](http://docs.griffin.com).
 
 
     ## Navigation
@@ -72,27 +71,25 @@ info:
     resource, you will find the URLs for related resources in the response body.
 
 
-    The API is structured as a tree with your [organization](#tag/Organizations)
-    at the top. Everything that you own will be a sub-resource of your
-    organization.
+    The API is structured as a tree with your
+    [organization](http://docs.griffin.com) at the top. Everything that you own
+    will be a sub-resource of your organization.
 
 
     To bootstrap the navigation process, request the
-    [index](#tag/Navigation/paths/~1v0~1index/get) endpoint: the response will
-    contain your `organization-url`.
+    [index](http://docs.griffin.com) endpoint: the response will contain your
+    `organization-url`.
 
 
-    For a walkthrough, see our [getting started
-    guide](/docs/introduction/get-started-with-the-api).
+    For a walkthrough, see our [getting started guide](http://docs.griffin.com).
 
 
     ## Pagination
 
 
     Our list APIs support pagination (e.g. [list bank
-    accounts](#tag/Bank-accounts/paths/~1v0~1organizations~1%7Borganization-id%7D~1bank~1accounts/get)
-    and [list
-    payments](#tag/Payments/paths/~1v0~1bank~1accounts~1%7Bbank-account-id%7D~1payments/get)).
+    accounts](http://docs.griffin.com) and [list
+    payments](http://docs.griffin.com)).
 
     By default, a list API returns up to 25 results. If there are more results
     available, the response payload will include links to the previous/next
@@ -146,8 +143,8 @@ info:
     included in the response payload's links.
 
     If you want to change parameters (see [filtering and
-    sorting](#section/Filtering-and-sorting)), request the first page and follow
-    the links from there.
+    sorting](http://docs.griffin.com)), request the first page and follow the
+    links from there.
 
 
     ## Filtering and sorting
@@ -280,7 +277,7 @@ tags:
   - name: Legal persons
     description: >-
       In the Griffin API, your organization and your customers are all
-      represented by [legal persons](/docs/terms/legal-person). When you sign up
+      represented by [legal persons](http://docs.griffin.com). When you sign up
       with Griffin, your organization will be automatically assigned a unique
       legal person ID. When onboarding your customers, you will create legal
       persons to represent them.
@@ -294,43 +291,42 @@ tags:
 
 
       A `corporation` represents any non-human entity (not just companies). A
-      corporation should have at least one [director](/docs/terms/director) or
-      [person with significant
-      control](/docs/terms/person-with-significant-control) attached to it, who
-      must also be represented as a distinct `individual` legal person.
+      corporation should have at least one [director](http://docs.griffin.com)
+      or [person with significant control](http://docs.griffin.com) attached to
+      it, who must also be represented as a distinct `individual` legal person.
   - name: Claims
     description: >-
-      A [claim](/docs/terms/claim) is an unverified data point or series of data
-      points attached to a [legal person](#tag/Legal-persons). Claims are
-      verified by running a [verification](#tag/Verifications) against the legal
-      person.
+      A [claim](http://docs.griffin.com) is an unverified data point or series
+      of data points attached to a [legal person](http://docs.griffin.com).
+      Claims are verified by running a [verification](http://docs.griffin.com)
+      against the legal person.
   - name: Workflows
     description: >-
-      A [workflow](/docs/terms/workflow) determines which checks will be run
-      against a [legal person](#tag/Legal-persons) as part of a
-      [verification](#tag/Verifications)
+      A [workflow](http://docs.griffin.com) determines which checks will be run
+      against a [legal person](http://docs.griffin.com) as part of a
+      [verification](http://docs.griffin.com)
   - name: Reliance onboarding
     description: >-
       Reliance onboarding allows you to create and submit an application on
       behalf of your customer, using information about them you have already
       collected. [For more information see our reliance onboarding
-      guide](/docs/guides/reliance-onboarding).
+      guide](http://docs.griffin.com).
   - name: Bank accounts
     description: >
       Bank accounts are used for managing funds. You can open different types of
       bank account using the `"bank-product-type"` field. Some account types are
       for managing your own funds and some are for managing your customers'
       funds. For information, check out our guides for opening bank accounts:
-        - [open an operational account](/docs/guides/open-an-operational-account).
-        - [open a safeguarding account](/docs/guides/open-a-safeguarding-account).
-        - [open a client money account](/docs/guides/open-a-client-money-account).
+        - [open an operational account](http://docs.griffin.com).
+        - [open a safeguarding account](http://docs.griffin.com).
+        - [open a client money account](http://docs.griffin.com).
   - name: Payments
     description: >-
       A payment captures the intent to move funds from a bank account to another
       party's bank account. Outbound payments can be made from your [bank
-      account](#tag/Bank-accounts) to a [payee](#tag/Payees). Griffin accepts
-      inbound payments to your bank accounts on your behalf. 
-       If it's your first time using our payments API, check out our guide for [making a payment](/docs/banking/make-a-bank-payment)
+      account](http://docs.griffin.com) to a [payee](http://docs.griffin.com).
+      Griffin accepts inbound payments to your bank accounts on your behalf. 
+       If it's your first time using our payments API, check out our guide for [making a payment](http://docs.griffin.com)
   - name: Transactions
     description: >-
       The transaction resource represents any form of activity in a bank account
@@ -350,42 +346,44 @@ tags:
     description: >-
       The organization resource represents your company and acts as a container
       for the majority of other resources, including [legal
-      persons](#tag/Legal-Persons) and [bank accounts](#tag/Bank-accounts).
+      persons](http://docs.griffin.com) and [bank
+      accounts](http://docs.griffin.com).
 
       When you register for an account with Griffin, a new
-      [organization](#tag/Organizations) is created alongside your
-      [user](#tag/Users) account (unless you have received an
-      [invitation](#tag/Invitations) to join an existing organization).
+      [organization](http://docs.griffin.com) is created alongside your
+      [user](http://docs.griffin.com) account (unless you have received an
+      [invitation](http://docs.griffin.com) to join an existing organization).
 
-      Your [user](#tag/Users) account is associated with an
-      [organization](#tag/Organizations) via a [membership](#tag/Memberships).
+      Your [user](http://docs.griffin.com) account is associated with an
+      [organization](http://docs.griffin.com) via a
+      [membership](http://docs.griffin.com).
 
 
-      Your [organization](#tag/Organization) can be in one of two modes:
+      Your [organization](http://docs.griffin.com) can be in one of two modes:
 
       - `test-mode` for organizations created when you sign up for the sandbox.
 
       - `live-mode` for when you go live with Griffin.
 
 
-      Learn more about [sandbox vs. live
-      mode](/docs/concepts/sandbox-vs-live-mode).
+      Learn more about [sandbox vs. live mode](http://docs.griffin.com).
   - name: Users
     description: >-
       Users represent individuals who use the Griffin platform. A user must have
-      a [membership](#tag/Memberships) in at least one
-      [organization](#tag/Organizations), and may have memberships in multiple
-      organizations.
+      a [membership](http://docs.griffin.com) in at least one
+      [organization](http://docs.griffin.com), and may have memberships in
+      multiple organizations.
   - name: Memberships
     description: >-
-      Memberships represents the relationship between a [user](#tag/Users) and
-      an [organization](#tag/Organizations).
-                                              A membership must have at least one [role](#tag/Roles) assigned to it.
+      Memberships represents the relationship between a
+      [user](http://docs.griffin.com) and an
+      [organization](http://docs.griffin.com).
+                                              A membership must have at least one [role](http://docs.griffin.com) assigned to it.
   - name: Invitations
     description: >-
-      Invitations enable [users](#tag/Users) to create new
-      [memberships](#tag/Memberships) for their
-      [organization](#tag/Organizations).
+      Invitations enable [users](http://docs.griffin.com) to create new
+      [memberships](http://docs.griffin.com) for their
+      [organization](http://docs.griffin.com).
 
       The new membership is only created once when the invitation is accepted.
 
@@ -401,12 +399,14 @@ tags:
 
 
       When a new membership is created, the invited user is assigned the
-      [role](#tag/Roles) with the most limited set of capabilities by default.
+      [role](http://docs.griffin.com) with the most limited set of capabilities
+      by default.
   - name: Roles
     description: >-
       A role represents a pre-defined set of capabilities that can be assigned
-      to a [user](#tag/Users) via their [membership](#tag/Memberships) in an
-      [organization](#tag/Organization). By default, the first user in an
+      to a [user](http://docs.griffin.com) via their
+      [membership](http://docs.griffin.com) in an
+      [organization](http://docs.griffin.com). By default, the first user in an
       organization gets assigned an administration role. Subsequent users get
       assigned the most limited set of capabilities.
   - name: API keys
@@ -420,10 +420,11 @@ tags:
       authenticate.
 
 
-      Each API key is only valid for one [organization](#tag/Organizations).
+      Each API key is only valid for one
+      [organization](http://docs.griffin.com).
 
-      If you are a [member](#tag/Memberships) of multiple organizations, you
-      will need to create a new API key for each one.
+      If you are a [member](http://docs.griffin.com) of multiple organizations,
+      you will need to create a new API key for each one.
 
       There is currently no limit on the number of API keys you can create.
 paths:
@@ -446,7 +447,7 @@ paths:
                     type: string
                     title: organizations-url
                     example: /v0/organizations
-                    description: Link to the [organization](#tag/Organizations).
+                    description: Link to the [organization](http://docs.griffin.com).
                   users-url:
                     type: string
                     title: users-url
@@ -468,7 +469,7 @@ paths:
                     type: string
                     title: organization-url
                     example: /v0/organizations/og.IG9yZ2FuaXphdGlvbi1pZA
-                    description: Link to the [organization](#tag/Organizations).
+                    description: Link to the [organization](http://docs.griffin.com).
                 required:
                   - organizations-url
                   - users-url
@@ -629,7 +630,7 @@ paths:
                     type: string
                     title: organization-url
                     example: /v0/organizations/og.IG9yZ2FuaXphdGlvbi1pZA
-                    description: Link to the [organization](#tag/Organizations).
+                    description: Link to the [organization](http://docs.griffin.com).
                   user-url:
                     type: string
                     title: user-url
@@ -714,8 +715,8 @@ paths:
                     title: account-submissions-url
                     example: /v0/bank/accounts/ba.IGJhbmstYWNjb3VudC1pZA/submissions
                     description: >-
-                      Link to the [payment submissions](#tag/Payments) debiting
-                      from this account.
+                      Link to the [payment submissions](http://docs.griffin.com)
+                      debiting from this account.
                   account-restricted:
                     type: boolean
                     title: account-restricted
@@ -727,23 +728,23 @@ paths:
                     title: account-payments-url
                     example: /v0/bank/accounts/ba.IGJhbmstYWNjb3VudC1pZA/payments
                     description: >-
-                      Link to the [payments](#tag/Payments) associated with this
-                      account.
+                      Link to the [payments](http://docs.griffin.com) associated
+                      with this account.
                   pooled-account-memberships-url:
                     type: string
                     title: pooled-account-memberships-url
                     example: /v0/bank/accounts/ba.IGJhbmstYWNjb3VudC1pZA/membership
                     description: >-
                       Link to the list of [pool
-                      members](#tag/Pooled-account-membership) associated with
-                      this account.
+                      members](http://docs.griffin.com) associated with this
+                      account.
                   account-admissions-url:
                     type: string
                     title: account-admissions-url
                     example: /v0/bank/accounts/ba.IGJhbmstYWNjb3VudC1pZA/admissions
                     description: >-
-                      Link to the [payment admissions](#tag/Payments) crediting
-                      to this account.
+                      Link to the [payment admissions](http://docs.griffin.com)
+                      crediting to this account.
                   bank-product-type:
                     title: bank-product-type
                     enum:
@@ -755,7 +756,7 @@ paths:
                     description: >-
                       Specifies the type of bank account. (For more detail on
                       bank account types, see our guide for [creating a bank
-                      account](/docs/banking/create-a-bank-account).)
+                      account](http://docs.griffin.com).)
                   display-name:
                     type: string
                     minLength: 1
@@ -768,9 +769,9 @@ paths:
                     title: controller-url
                     example: /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA
                     description: >-
-                      Link to the [legal person](#tag/Legal-persons) that
-                      represents the [controller](/docs/terms/controller) of the
-                      account.
+                      Link to the [legal person](http://docs.griffin.com) that
+                      represents the [controller](http://docs.griffin.com) of
+                      the account.
                   pooled-funds:
                     type: boolean
                     title: pooled-funds
@@ -803,8 +804,9 @@ paths:
                     title: owner-url
                     example: /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA
                     description: >-
-                      Link to the [legal person](#tag/Legal-persons) that
-                      represents the [owner](/docs/terms/owner) of the account.
+                      Link to the [legal person](http://docs.griffin.com) that
+                      represents the [owner](http://docs.griffin.com) of the
+                      account.
                   created-at:
                     title: created-at
                     format: date-time
@@ -838,9 +840,7 @@ paths:
                     type: object
                     additionalProperties: false
                     title: available-balance
-                    description: >-
-                      Shows the [available
-                      balance](/docs/terms/available-balance).
+                    description: Shows the [available balance](http://docs.griffin.com).
                   pooled-account-membership-updates-url:
                     type: string
                     title: pooled-account-membership-updates-url
@@ -848,7 +848,7 @@ paths:
                       /v0/bank/accounts/ba.IGJhbmstYWNjb3VudC1pZA/membership-updates
                     description: >-
                       Link to manage [pooled account
-                      membership](#tag/Pooled-account-membership).
+                      membership](http://docs.griffin.com).
                   bank-addresses:
                     type: array
                     items:
@@ -860,7 +860,7 @@ paths:
                           title: account-holder
                           description: >-
                             The name of the [account
-                            holder](/docs/terms/account-holder).
+                            holder](http://docs.griffin.com).
                         bank-id-code:
                           title: bank-id-code
                           type: string
@@ -909,8 +909,8 @@ paths:
                     type: string
                     title: account-transactions-url
                     description: >-
-                      Link to the [transactions](#tag/Transactions) associated
-                      with this account.
+                      Link to the [transactions](http://docs.griffin.com)
+                      associated with this account.
                     example: /v0/bank/accounts/ba.IGJhbmstYWNjb3VudC1pZA/transactions
                   account-url:
                     type: string
@@ -922,8 +922,8 @@ paths:
                     title: beneficiary-url
                     example: /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA
                     description: >-
-                      Link to the [legal person](#tag/Legal-persons) that
-                      represents the [beneficiary](/docs/terms/beneficiary) of
+                      Link to the [legal person](http://docs.griffin.com) that
+                      represents the [beneficiary](http://docs.griffin.com) of
                       the account.
                   account-balance:
                     required:
@@ -946,7 +946,7 @@ paths:
                     type: object
                     additionalProperties: false
                     title: account-balance
-                    description: Shows the [account balance](/docs/terms/account-balance).
+                    description: Shows the [account balance](http://docs.griffin.com).
                   savings-type:
                     title: savings-type
                     enum:
@@ -1026,8 +1026,8 @@ paths:
                     title: account-submissions-url
                     example: /v0/bank/accounts/ba.IGJhbmstYWNjb3VudC1pZA/submissions
                     description: >-
-                      Link to the [payment submissions](#tag/Payments) debiting
-                      from this account.
+                      Link to the [payment submissions](http://docs.griffin.com)
+                      debiting from this account.
                   account-restricted:
                     type: boolean
                     title: account-restricted
@@ -1039,23 +1039,23 @@ paths:
                     title: account-payments-url
                     example: /v0/bank/accounts/ba.IGJhbmstYWNjb3VudC1pZA/payments
                     description: >-
-                      Link to the [payments](#tag/Payments) associated with this
-                      account.
+                      Link to the [payments](http://docs.griffin.com) associated
+                      with this account.
                   pooled-account-memberships-url:
                     type: string
                     title: pooled-account-memberships-url
                     example: /v0/bank/accounts/ba.IGJhbmstYWNjb3VudC1pZA/membership
                     description: >-
                       Link to the list of [pool
-                      members](#tag/Pooled-account-membership) associated with
-                      this account.
+                      members](http://docs.griffin.com) associated with this
+                      account.
                   account-admissions-url:
                     type: string
                     title: account-admissions-url
                     example: /v0/bank/accounts/ba.IGJhbmstYWNjb3VudC1pZA/admissions
                     description: >-
-                      Link to the [payment admissions](#tag/Payments) crediting
-                      to this account.
+                      Link to the [payment admissions](http://docs.griffin.com)
+                      crediting to this account.
                   bank-product-type:
                     title: bank-product-type
                     enum:
@@ -1067,7 +1067,7 @@ paths:
                     description: >-
                       Specifies the type of bank account. (For more detail on
                       bank account types, see our guide for [creating a bank
-                      account](/docs/banking/create-a-bank-account).)
+                      account](http://docs.griffin.com).)
                   display-name:
                     type: string
                     minLength: 1
@@ -1080,9 +1080,9 @@ paths:
                     title: controller-url
                     example: /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA
                     description: >-
-                      Link to the [legal person](#tag/Legal-persons) that
-                      represents the [controller](/docs/terms/controller) of the
-                      account.
+                      Link to the [legal person](http://docs.griffin.com) that
+                      represents the [controller](http://docs.griffin.com) of
+                      the account.
                   pooled-funds:
                     type: boolean
                     title: pooled-funds
@@ -1115,8 +1115,9 @@ paths:
                     title: owner-url
                     example: /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA
                     description: >-
-                      Link to the [legal person](#tag/Legal-persons) that
-                      represents the [owner](/docs/terms/owner) of the account.
+                      Link to the [legal person](http://docs.griffin.com) that
+                      represents the [owner](http://docs.griffin.com) of the
+                      account.
                   created-at:
                     title: created-at
                     format: date-time
@@ -1150,9 +1151,7 @@ paths:
                     type: object
                     additionalProperties: false
                     title: available-balance
-                    description: >-
-                      Shows the [available
-                      balance](/docs/terms/available-balance).
+                    description: Shows the [available balance](http://docs.griffin.com).
                   pooled-account-membership-updates-url:
                     type: string
                     title: pooled-account-membership-updates-url
@@ -1160,7 +1159,7 @@ paths:
                       /v0/bank/accounts/ba.IGJhbmstYWNjb3VudC1pZA/membership-updates
                     description: >-
                       Link to manage [pooled account
-                      membership](#tag/Pooled-account-membership).
+                      membership](http://docs.griffin.com).
                   bank-addresses:
                     type: array
                     items:
@@ -1172,7 +1171,7 @@ paths:
                           title: account-holder
                           description: >-
                             The name of the [account
-                            holder](/docs/terms/account-holder).
+                            holder](http://docs.griffin.com).
                         bank-id-code:
                           title: bank-id-code
                           type: string
@@ -1221,8 +1220,8 @@ paths:
                     type: string
                     title: account-transactions-url
                     description: >-
-                      Link to the [transactions](#tag/Transactions) associated
-                      with this account.
+                      Link to the [transactions](http://docs.griffin.com)
+                      associated with this account.
                     example: /v0/bank/accounts/ba.IGJhbmstYWNjb3VudC1pZA/transactions
                   account-url:
                     type: string
@@ -1234,8 +1233,8 @@ paths:
                     title: beneficiary-url
                     example: /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA
                     description: >-
-                      Link to the [legal person](#tag/Legal-persons) that
-                      represents the [beneficiary](/docs/terms/beneficiary) of
+                      Link to the [legal person](http://docs.griffin.com) that
+                      represents the [beneficiary](http://docs.griffin.com) of
                       the account.
                   account-balance:
                     required:
@@ -1258,7 +1257,7 @@ paths:
                     type: object
                     additionalProperties: false
                     title: account-balance
-                    description: Shows the [account balance](/docs/terms/account-balance).
+                    description: Shows the [account balance](http://docs.griffin.com).
                   savings-type:
                     title: savings-type
                     enum:
@@ -1325,8 +1324,8 @@ paths:
                     title: account-submissions-url
                     example: /v0/bank/accounts/ba.IGJhbmstYWNjb3VudC1pZA/submissions
                     description: >-
-                      Link to the [payment submissions](#tag/Payments) debiting
-                      from this account.
+                      Link to the [payment submissions](http://docs.griffin.com)
+                      debiting from this account.
                   account-restricted:
                     type: boolean
                     title: account-restricted
@@ -1338,23 +1337,23 @@ paths:
                     title: account-payments-url
                     example: /v0/bank/accounts/ba.IGJhbmstYWNjb3VudC1pZA/payments
                     description: >-
-                      Link to the [payments](#tag/Payments) associated with this
-                      account.
+                      Link to the [payments](http://docs.griffin.com) associated
+                      with this account.
                   pooled-account-memberships-url:
                     type: string
                     title: pooled-account-memberships-url
                     example: /v0/bank/accounts/ba.IGJhbmstYWNjb3VudC1pZA/membership
                     description: >-
                       Link to the list of [pool
-                      members](#tag/Pooled-account-membership) associated with
-                      this account.
+                      members](http://docs.griffin.com) associated with this
+                      account.
                   account-admissions-url:
                     type: string
                     title: account-admissions-url
                     example: /v0/bank/accounts/ba.IGJhbmstYWNjb3VudC1pZA/admissions
                     description: >-
-                      Link to the [payment admissions](#tag/Payments) crediting
-                      to this account.
+                      Link to the [payment admissions](http://docs.griffin.com)
+                      crediting to this account.
                   bank-product-type:
                     title: bank-product-type
                     enum:
@@ -1366,7 +1365,7 @@ paths:
                     description: >-
                       Specifies the type of bank account. (For more detail on
                       bank account types, see our guide for [creating a bank
-                      account](/docs/banking/create-a-bank-account).)
+                      account](http://docs.griffin.com).)
                   display-name:
                     type: string
                     minLength: 1
@@ -1379,9 +1378,9 @@ paths:
                     title: controller-url
                     example: /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA
                     description: >-
-                      Link to the [legal person](#tag/Legal-persons) that
-                      represents the [controller](/docs/terms/controller) of the
-                      account.
+                      Link to the [legal person](http://docs.griffin.com) that
+                      represents the [controller](http://docs.griffin.com) of
+                      the account.
                   pooled-funds:
                     type: boolean
                     title: pooled-funds
@@ -1414,8 +1413,9 @@ paths:
                     title: owner-url
                     example: /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA
                     description: >-
-                      Link to the [legal person](#tag/Legal-persons) that
-                      represents the [owner](/docs/terms/owner) of the account.
+                      Link to the [legal person](http://docs.griffin.com) that
+                      represents the [owner](http://docs.griffin.com) of the
+                      account.
                   created-at:
                     title: created-at
                     format: date-time
@@ -1449,9 +1449,7 @@ paths:
                     type: object
                     additionalProperties: false
                     title: available-balance
-                    description: >-
-                      Shows the [available
-                      balance](/docs/terms/available-balance).
+                    description: Shows the [available balance](http://docs.griffin.com).
                   pooled-account-membership-updates-url:
                     type: string
                     title: pooled-account-membership-updates-url
@@ -1459,7 +1457,7 @@ paths:
                       /v0/bank/accounts/ba.IGJhbmstYWNjb3VudC1pZA/membership-updates
                     description: >-
                       Link to manage [pooled account
-                      membership](#tag/Pooled-account-membership).
+                      membership](http://docs.griffin.com).
                   bank-addresses:
                     type: array
                     items:
@@ -1471,7 +1469,7 @@ paths:
                           title: account-holder
                           description: >-
                             The name of the [account
-                            holder](/docs/terms/account-holder).
+                            holder](http://docs.griffin.com).
                         bank-id-code:
                           title: bank-id-code
                           type: string
@@ -1520,8 +1518,8 @@ paths:
                     type: string
                     title: account-transactions-url
                     description: >-
-                      Link to the [transactions](#tag/Transactions) associated
-                      with this account.
+                      Link to the [transactions](http://docs.griffin.com)
+                      associated with this account.
                     example: /v0/bank/accounts/ba.IGJhbmstYWNjb3VudC1pZA/transactions
                   account-url:
                     type: string
@@ -1533,8 +1531,8 @@ paths:
                     title: beneficiary-url
                     example: /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA
                     description: >-
-                      Link to the [legal person](#tag/Legal-persons) that
-                      represents the [beneficiary](/docs/terms/beneficiary) of
+                      Link to the [legal person](http://docs.griffin.com) that
+                      represents the [beneficiary](http://docs.griffin.com) of
                       the account.
                   account-balance:
                     required:
@@ -1557,7 +1555,7 @@ paths:
                     type: object
                     additionalProperties: false
                     title: account-balance
-                    description: Shows the [account balance](/docs/terms/account-balance).
+                    description: Shows the [account balance](http://docs.griffin.com).
                   savings-type:
                     title: savings-type
                     enum:
@@ -1909,7 +1907,7 @@ paths:
                           example: /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA
                           description: >-
                             A contextual link to the [legal
-                            person](#tag/Legal-persons).
+                            person](http://docs.griffin.com).
                       required:
                         - created-at
                         - legal-person-url
@@ -1973,7 +1971,7 @@ paths:
                               example: /v0/verifications/vn.IHZlcmlmaWNhdGlvbi1pZA
                               description: >-
                                 A link to the
-                                [verification](#tag/Verifications).
+                                [verification](http://docs.griffin.com).
                             updated-at:
                               title: updated-at
                               format: date-time
@@ -1985,12 +1983,14 @@ paths:
                               example: /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA
                               description: >-
                                 A contextual link to the [legal
-                                person](#tag/Legal-persons).
+                                person](http://docs.griffin.com).
                             workflow-url:
                               type: string
                               title: workflow-url
                               example: /v0/workflows/wf.ICAgICB3b3JrZmxvdy1pZA
-                              description: A link to the [workflow](/docs/terms/workflow).
+                              description: >-
+                                A link to the
+                                [workflow](http://docs.griffin.com).
                             created-at:
                               title: created-at
                               format: date-time
@@ -2054,7 +2054,7 @@ paths:
                               example: /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA
                               description: >-
                                 A contextual link to the [legal
-                                person](#tag/Legal-persons).
+                                person](http://docs.griffin.com).
                             notes:
                               type: string
                               minLength: 1
@@ -2084,7 +2084,7 @@ paths:
                               example: /v0/verifications/vn.IHZlcmlmaWNhdGlvbi1pZA
                               description: >-
                                 A link to the
-                                [verification](#tag/Verifications).
+                                [verification](http://docs.griffin.com).
                             previous-risk-rating:
                               title: previous-risk-rating
                               type: string
@@ -2112,7 +2112,7 @@ paths:
                                   example: /v0/verifications/vn.IHZlcmlmaWNhdGlvbi1pZA
                                   description: >-
                                     A link to the
-                                    [verification](#tag/Verifications).
+                                    [verification](http://docs.griffin.com).
                                 decision-outcome:
                                   title: decision-outcome
                                   type: string
@@ -2144,14 +2144,15 @@ paths:
                                   type: string
                                   example: /v0/users/ur.ICAgICAgICAgdXNlci1pZA
                                   description: >-
-                                    Link to the [user](#tag/Users) that made the
-                                    decision (if applicable).
+                                    Link to the [user](http://docs.griffin.com)
+                                    that made the decision (if applicable).
                                   title: decision-user-url
                                 decision-user-username:
                                   type: string
                                   example: user@example.com
                                   description: >-
-                                    Username of the [user](#tag/Users) that made
+                                    Username of the
+                                    [user](http://docs.griffin.com) that made
                                     the decision (if applicable).
                                   title: decision-user-username
                                 decision-ops-user:
@@ -2169,7 +2170,9 @@ paths:
                                 - decision-notes
                                 - created-at
                               title: latest-decision
-                              description: The most recent [decision](#tag/Decisions)
+                              description: >-
+                                The most recent
+                                [decision](http://docs.griffin.com)
                             legal-person-type:
                               title: legal-person-type
                               enum:
@@ -2200,22 +2203,22 @@ paths:
                               type: string
                               description: >-
                                 Status of the current
-                                [application](/docs/terms/application)
+                                [application](http://docs.griffin.com)
                             legal-person-url:
                               type: string
                               title: legal-person-url
                               example: /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA
                               description: >-
                                 A contextual link to the [legal
-                                person](#tag/Legal-persons).
+                                person](http://docs.griffin.com).
                             legal-person-decisions-url:
                               type: string
                               title: legal-person-decisions-url
                               example: >-
                                 /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA/decisions
                               description: >-
-                                Link to [decisions](#tag/Decisions) for this
-                                [legal person](/docs/terms/legal-person).
+                                Link to [decisions](http://docs.griffin.com) for
+                                this [legal person](http://docs.griffin.com).
                             status-changed-at:
                               title: status-changed-at
                               format: date-time
@@ -2232,25 +2235,28 @@ paths:
                               example: >-
                                 /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA/claims
                               description: >-
-                                Link to the [claims](#tag/Claims) for this
-                                [legal person](/docs/terms/legal-person).
+                                Link to the [claims](http://docs.griffin.com)
+                                for this [legal
+                                person](http://docs.griffin.com).
                             legal-person-bank-payees-url:
                               type: string
                               title: legal-person-bank-payees-url
                               example: >-
                                 /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA/bank/payees
                               description: >-
-                                Link to the [payees](#tag/Payees) for this
-                                [legal person](/docs/terms/legal-person).
+                                Link to the [payees](http://docs.griffin.com)
+                                for this [legal
+                                person](http://docs.griffin.com).
                             legal-person-verifications-url:
                               type: string
                               title: legal-person-verifications-url
                               example: >-
                                 /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA/verifications
                               description: >-
-                                Link to all [verifications](#tag/Verifications)
-                                run against this [legal
-                                person](/docs/terms/legal-person).
+                                Link to all
+                                [verifications](http://docs.griffin.com) run
+                                against this [legal
+                                person](http://docs.griffin.com).
                             legal-person-documents-url:
                               type: string
                               title: legal-person-documents-url
@@ -2258,7 +2264,7 @@ paths:
                                 /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA/documents
                               description: >-
                                 Link to all evidence documents associated with
-                                this [legal person](/docs/terms/legal-person).
+                                this [legal person](http://docs.griffin.com).
                           required:
                             - created-at
                             - display-name
@@ -2314,7 +2320,7 @@ paths:
                     example: /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA
                     description: >-
                       A contextual link to the [legal
-                      person](#tag/Legal-persons).
+                      person](http://docs.griffin.com).
                 deletions:
                   type: array
                   items:
@@ -2323,7 +2329,7 @@ paths:
                     example: /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA
                     description: >-
                       A contextual link to the [legal
-                      person](#tag/Legal-persons).
+                      person](http://docs.griffin.com).
               required:
                 - additions
                 - deletions
@@ -2343,8 +2349,8 @@ paths:
                     example: /v0/bank/accounts/ba.IGJhbmstYWNjb3VudC1pZA/membership
                     description: >-
                       Link to the list of [pool
-                      members](#tag/Pooled-account-membership) associated with
-                      this account.
+                      members](http://docs.griffin.com) associated with this
+                      account.
                 required:
                   - pooled-account-memberships-url
                 title: update-pooled-account-memberships-response
@@ -2486,7 +2492,9 @@ paths:
                                   type: string
                                   title: payee-url
                                   example: /v0/payees/pe.ICAgICAgICBwYXllZS1pZA
-                                  description: Link to the [payee](#tag/Payees).
+                                  description: >-
+                                    Link to the
+                                    [payee](http://docs.griffin.com).
                                 creditor-type:
                                   enum:
                                     - payee
@@ -2518,7 +2526,7 @@ paths:
                                   title: account-holder
                                   description: >-
                                     The name of the [account
-                                    holder](/docs/terms/account-holder).
+                                    holder](http://docs.griffin.com).
                                 account-number:
                                   type: string
                                   x-allOf:
@@ -2682,7 +2690,7 @@ paths:
                               title: account-holder
                               description: >-
                                 The name of the [account
-                                holder](/docs/terms/account-holder).
+                                holder](http://docs.griffin.com).
                             account-url:
                               type: string
                               title: account-url
@@ -2747,7 +2755,7 @@ paths:
                               title: account-holder
                               description: >-
                                 The name of the [account
-                                holder](/docs/terms/account-holder).
+                                holder](http://docs.griffin.com).
                             account-url:
                               type: string
                               title: account-url
@@ -2823,7 +2831,7 @@ paths:
                           type: string
                           title: payee-url
                           example: /v0/payees/pe.ICAgICAgICBwYXllZS1pZA
-                          description: Link to the [payee](#tag/Payees).
+                          description: Link to the [payee](http://docs.griffin.com).
                         creditor-type:
                           enum:
                             - payee
@@ -2855,7 +2863,7 @@ paths:
                           title: account-holder
                           description: >-
                             The name of the [account
-                            holder](/docs/terms/account-holder).
+                            holder](http://docs.griffin.com).
                         account-number:
                           type: string
                           x-allOf:
@@ -2983,7 +2991,7 @@ paths:
                             type: string
                             title: payee-url
                             example: /v0/payees/pe.ICAgICAgICBwYXllZS1pZA
-                            description: Link to the [payee](#tag/Payees).
+                            description: Link to the [payee](http://docs.griffin.com).
                           creditor-type:
                             enum:
                               - payee
@@ -3015,7 +3023,7 @@ paths:
                             title: account-holder
                             description: >-
                               The name of the [account
-                              holder](/docs/terms/account-holder).
+                              holder](http://docs.griffin.com).
                           account-number:
                             type: string
                             x-allOf:
@@ -3177,7 +3185,7 @@ paths:
                         title: account-holder
                         description: >-
                           The name of the [account
-                          holder](/docs/terms/account-holder).
+                          holder](http://docs.griffin.com).
                       account-url:
                         type: string
                         title: account-url
@@ -3242,7 +3250,7 @@ paths:
                         title: account-holder
                         description: >-
                           The name of the [account
-                          holder](/docs/terms/account-holder).
+                          holder](http://docs.griffin.com).
                       account-url:
                         type: string
                         title: account-url
@@ -3657,10 +3665,12 @@ paths:
                         transaction-origin-type:
                           title: transaction-origin-type
                           enum:
+                            - interest
                             - deposit
                             - fee
                             - transfer
                             - payment
+                            - commission
                           type: string
                           description: >-
                             Specifies the origin of a balance change, for
@@ -3700,7 +3710,7 @@ paths:
                           title: balance-change
                           description: >-
                             Shows the account [balance
-                            change](/docs/terms/balance-change).
+                            change](http://docs.griffin.com).
                         account-balance:
                           required:
                             - currency
@@ -3724,7 +3734,7 @@ paths:
                           title: account-balance
                           description: >-
                             Shows the [account
-                            balance](/docs/terms/account-balance).
+                            balance](http://docs.griffin.com).
                       required:
                         - account-transaction-url
                         - account-balance
@@ -3768,7 +3778,9 @@ paths:
                                       type: string
                                       title: payee-url
                                       example: /v0/payees/pe.ICAgICAgICBwYXllZS1pZA
-                                      description: Link to the [payee](#tag/Payees).
+                                      description: >-
+                                        Link to the
+                                        [payee](http://docs.griffin.com).
                                     creditor-type:
                                       enum:
                                         - payee
@@ -3801,7 +3813,7 @@ paths:
                                       title: account-holder
                                       description: >-
                                         The name of the [account
-                                        holder](/docs/terms/account-holder).
+                                        holder](http://docs.griffin.com).
                                     account-number:
                                       type: string
                                       x-allOf:
@@ -3965,7 +3977,7 @@ paths:
                                   title: account-holder
                                   description: >-
                                     The name of the [account
-                                    holder](/docs/terms/account-holder).
+                                    holder](http://docs.griffin.com).
                                 account-url:
                                   type: string
                                   title: account-url
@@ -4034,7 +4046,7 @@ paths:
                                   title: account-holder
                                   description: >-
                                     The name of the [account
-                                    holder](/docs/terms/account-holder).
+                                    holder](http://docs.griffin.com).
                                 account-url:
                                   type: string
                                   title: account-url
@@ -4112,10 +4124,12 @@ paths:
                   transaction-origin-type:
                     title: transaction-origin-type
                     enum:
+                      - interest
                       - deposit
                       - fee
                       - transfer
                       - payment
+                      - commission
                     type: string
                     description: >-
                       Specifies the origin of a balance change, for example a
@@ -4155,7 +4169,7 @@ paths:
                     title: balance-change
                     description: >-
                       Shows the account [balance
-                      change](/docs/terms/balance-change).
+                      change](http://docs.griffin.com).
                   account-balance:
                     required:
                       - currency
@@ -4177,7 +4191,7 @@ paths:
                     type: object
                     additionalProperties: false
                     title: account-balance
-                    description: Shows the [account balance](/docs/terms/account-balance).
+                    description: Shows the [account balance](http://docs.griffin.com).
                 required:
                   - account-transaction-url
                   - account-balance
@@ -4558,7 +4572,7 @@ paths:
                     minLength: 1
                     title: event-url
                     example: /v0/events/ev.ICAgICAgICBldmVudC1pZA
-                    description: Link to the [event](#tag/Events).
+                    description: Link to the [event](http://docs.griffin.com).
                   event-type:
                     title: event-type
                     enum:
@@ -4625,7 +4639,7 @@ paths:
                         type: string
                         title: verification-url
                         example: /v0/verifications/vn.IHZlcmlmaWNhdGlvbi1pZA
-                        description: A link to the [verification](#tag/Verifications).
+                        description: A link to the [verification](http://docs.griffin.com).
                       decision-outcome:
                         title: decision-outcome
                         type: string
@@ -4657,15 +4671,15 @@ paths:
                         type: string
                         example: /v0/users/ur.ICAgICAgICAgdXNlci1pZA
                         description: >-
-                          Link to the [user](#tag/Users) that made the decision
-                          (if applicable).
+                          Link to the [user](http://docs.griffin.com) that made
+                          the decision (if applicable).
                         title: decision-user-url
                       decision-user-username:
                         type: string
                         example: user@example.com
                         description: >-
-                          Username of the [user](#tag/Users) that made the
-                          decision (if applicable).
+                          Username of the [user](http://docs.griffin.com) that
+                          made the decision (if applicable).
                         title: decision-user-username
                       decision-ops-user:
                         title: decision-ops-user
@@ -4680,7 +4694,7 @@ paths:
                       - decision-notes
                       - created-at
                     title: latest-decision
-                    description: The most recent [decision](#tag/Decisions)
+                    description: The most recent [decision](http://docs.griffin.com)
                   legal-person-type:
                     title: legal-person-type
                     enum:
@@ -4713,21 +4727,21 @@ paths:
                     type: string
                     description: >-
                       Status of the current
-                      [application](/docs/terms/application)
+                      [application](http://docs.griffin.com)
                   legal-person-url:
                     type: string
                     title: legal-person-url
                     example: /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA
                     description: >-
                       A contextual link to the [legal
-                      person](#tag/Legal-persons).
+                      person](http://docs.griffin.com).
                   legal-person-decisions-url:
                     type: string
                     title: legal-person-decisions-url
                     example: /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA/decisions
                     description: >-
-                      Link to [decisions](#tag/Decisions) for this [legal
-                      person](/docs/terms/legal-person).
+                      Link to [decisions](http://docs.griffin.com) for this
+                      [legal person](http://docs.griffin.com).
                   status-changed-at:
                     title: status-changed-at
                     format: date-time
@@ -4743,29 +4757,29 @@ paths:
                     title: legal-person-claims-url
                     example: /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA/claims
                     description: >-
-                      Link to the [claims](#tag/Claims) for this [legal
-                      person](/docs/terms/legal-person).
+                      Link to the [claims](http://docs.griffin.com) for this
+                      [legal person](http://docs.griffin.com).
                   legal-person-bank-payees-url:
                     type: string
                     title: legal-person-bank-payees-url
                     example: /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA/bank/payees
                     description: >-
-                      Link to the [payees](#tag/Payees) for this [legal
-                      person](/docs/terms/legal-person).
+                      Link to the [payees](http://docs.griffin.com) for this
+                      [legal person](http://docs.griffin.com).
                   legal-person-verifications-url:
                     type: string
                     title: legal-person-verifications-url
                     example: /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA/verifications
                     description: >-
-                      Link to all [verifications](#tag/Verifications) run
-                      against this [legal person](/docs/terms/legal-person).
+                      Link to all [verifications](http://docs.griffin.com) run
+                      against this [legal person](http://docs.griffin.com).
                   legal-person-documents-url:
                     type: string
                     title: legal-person-documents-url
                     example: /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA/documents
                     description: >-
                       Link to all evidence documents associated with this [legal
-                      person](/docs/terms/legal-person).
+                      person](http://docs.griffin.com).
                 required:
                   - created-at
                   - display-name
@@ -4830,7 +4844,7 @@ paths:
                         type: string
                         title: verification-url
                         example: /v0/verifications/vn.IHZlcmlmaWNhdGlvbi1pZA
-                        description: A link to the [verification](#tag/Verifications).
+                        description: A link to the [verification](http://docs.griffin.com).
                       decision-outcome:
                         title: decision-outcome
                         type: string
@@ -4862,15 +4876,15 @@ paths:
                         type: string
                         example: /v0/users/ur.ICAgICAgICAgdXNlci1pZA
                         description: >-
-                          Link to the [user](#tag/Users) that made the decision
-                          (if applicable).
+                          Link to the [user](http://docs.griffin.com) that made
+                          the decision (if applicable).
                         title: decision-user-url
                       decision-user-username:
                         type: string
                         example: user@example.com
                         description: >-
-                          Username of the [user](#tag/Users) that made the
-                          decision (if applicable).
+                          Username of the [user](http://docs.griffin.com) that
+                          made the decision (if applicable).
                         title: decision-user-username
                       decision-ops-user:
                         title: decision-ops-user
@@ -4885,7 +4899,7 @@ paths:
                       - decision-notes
                       - created-at
                     title: latest-decision
-                    description: The most recent [decision](#tag/Decisions)
+                    description: The most recent [decision](http://docs.griffin.com)
                   legal-person-type:
                     title: legal-person-type
                     enum:
@@ -4918,21 +4932,21 @@ paths:
                     type: string
                     description: >-
                       Status of the current
-                      [application](/docs/terms/application)
+                      [application](http://docs.griffin.com)
                   legal-person-url:
                     type: string
                     title: legal-person-url
                     example: /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA
                     description: >-
                       A contextual link to the [legal
-                      person](#tag/Legal-persons).
+                      person](http://docs.griffin.com).
                   legal-person-decisions-url:
                     type: string
                     title: legal-person-decisions-url
                     example: /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA/decisions
                     description: >-
-                      Link to [decisions](#tag/Decisions) for this [legal
-                      person](/docs/terms/legal-person).
+                      Link to [decisions](http://docs.griffin.com) for this
+                      [legal person](http://docs.griffin.com).
                   status-changed-at:
                     title: status-changed-at
                     format: date-time
@@ -4948,29 +4962,29 @@ paths:
                     title: legal-person-claims-url
                     example: /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA/claims
                     description: >-
-                      Link to the [claims](#tag/Claims) for this [legal
-                      person](/docs/terms/legal-person).
+                      Link to the [claims](http://docs.griffin.com) for this
+                      [legal person](http://docs.griffin.com).
                   legal-person-bank-payees-url:
                     type: string
                     title: legal-person-bank-payees-url
                     example: /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA/bank/payees
                     description: >-
-                      Link to the [payees](#tag/Payees) for this [legal
-                      person](/docs/terms/legal-person).
+                      Link to the [payees](http://docs.griffin.com) for this
+                      [legal person](http://docs.griffin.com).
                   legal-person-verifications-url:
                     type: string
                     title: legal-person-verifications-url
                     example: /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA/verifications
                     description: >-
-                      Link to all [verifications](#tag/Verifications) run
-                      against this [legal person](/docs/terms/legal-person).
+                      Link to all [verifications](http://docs.griffin.com) run
+                      against this [legal person](http://docs.griffin.com).
                   legal-person-documents-url:
                     type: string
                     title: legal-person-documents-url
                     example: /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA/documents
                     description: >-
                       Link to all evidence documents associated with this [legal
-                      person](/docs/terms/legal-person).
+                      person](http://docs.griffin.com).
                 required:
                   - created-at
                   - display-name
@@ -5067,7 +5081,7 @@ paths:
                           type: string
                           title: payee-url
                           example: /v0/payees/pe.ICAgICAgICBwYXllZS1pZA
-                          description: Link to the [payee](#tag/Payees).
+                          description: Link to the [payee](http://docs.griffin.com).
                         account-number:
                           type: string
                           x-allOf:
@@ -5085,14 +5099,14 @@ paths:
                           title: account-holder
                           description: >-
                             The name of the [account
-                            holder](/docs/terms/account-holder).
+                            holder](http://docs.griffin.com).
                         legal-person-url:
                           type: string
                           title: legal-person-url
                           example: /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA
                           description: >-
                             A contextual link to the [legal
-                            person](#tag/Legal-persons).
+                            person](http://docs.griffin.com).
                         bank-id:
                           type: string
                           x-allOf:
@@ -5186,9 +5200,7 @@ paths:
                   type: string
                   minLength: 1
                   title: account-holder
-                  description: >-
-                    The name of the [account
-                    holder](/docs/terms/account-holder).
+                  description: The name of the [account holder](http://docs.griffin.com).
                 account-number:
                   type: string
                   x-allOf:
@@ -5229,7 +5241,7 @@ paths:
                     type: string
                     title: payee-url
                     example: /v0/payees/pe.ICAgICAgICBwYXllZS1pZA
-                    description: Link to the [payee](#tag/Payees).
+                    description: Link to the [payee](http://docs.griffin.com).
                   account-number:
                     type: string
                     x-allOf:
@@ -5245,16 +5257,14 @@ paths:
                     type: string
                     minLength: 1
                     title: account-holder
-                    description: >-
-                      The name of the [account
-                      holder](/docs/terms/account-holder).
+                    description: The name of the [account holder](http://docs.griffin.com).
                   legal-person-url:
                     type: string
                     title: legal-person-url
                     example: /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA
                     description: >-
                       A contextual link to the [legal
-                      person](#tag/Legal-persons).
+                      person](http://docs.griffin.com).
                   bank-id:
                     type: string
                     x-allOf:
@@ -5670,7 +5680,7 @@ paths:
                               example: /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA
                               description: >-
                                 A contextual link to the [legal
-                                person](#tag/Legal-persons).
+                                person](http://docs.griffin.com).
                             ownership-percent:
                               type: string
                               format: ''
@@ -7408,7 +7418,7 @@ paths:
                               example: /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA
                               description: >-
                                 A contextual link to the [legal
-                                person](#tag/Legal-persons).
+                                person](http://docs.griffin.com).
                             companies-house-url:
                               title: companies-house-url
                               description: The URL of the entity in Companies House
@@ -7822,7 +7832,7 @@ paths:
                       example: /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA
                       description: >-
                         A contextual link to the [legal
-                        person](#tag/Legal-persons).
+                        person](http://docs.griffin.com).
                     ownership-percent:
                       type: string
                       format: ''
@@ -9522,7 +9532,7 @@ paths:
                       example: /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA
                       description: >-
                         A contextual link to the [legal
-                        person](#tag/Legal-persons).
+                        person](http://docs.griffin.com).
                     companies-house-url:
                       title: companies-house-url
                       description: The URL of the entity in Companies House
@@ -9903,7 +9913,7 @@ paths:
                         example: /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA
                         description: >-
                           A contextual link to the [legal
-                          person](#tag/Legal-persons).
+                          person](http://docs.griffin.com).
                       ownership-percent:
                         type: string
                         format: ''
@@ -11612,7 +11622,7 @@ paths:
                         example: /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA
                         description: >-
                           A contextual link to the [legal
-                          person](#tag/Legal-persons).
+                          person](http://docs.griffin.com).
                       companies-house-url:
                         title: companies-house-url
                         description: The URL of the entity in Companies House
@@ -11784,7 +11794,9 @@ paths:
                           type: string
                           title: verification-url
                           example: /v0/verifications/vn.IHZlcmlmaWNhdGlvbi1pZA
-                          description: A link to the [verification](#tag/Verifications).
+                          description: >-
+                            A link to the
+                            [verification](http://docs.griffin.com).
                         decision-outcome:
                           title: decision-outcome
                           type: string
@@ -11816,15 +11828,15 @@ paths:
                           type: string
                           example: /v0/users/ur.ICAgICAgICAgdXNlci1pZA
                           description: >-
-                            Link to the [user](#tag/Users) that made the
-                            decision (if applicable).
+                            Link to the [user](http://docs.griffin.com) that
+                            made the decision (if applicable).
                           title: decision-user-url
                         decision-user-username:
                           type: string
                           example: user@example.com
                           description: >-
-                            Username of the [user](#tag/Users) that made the
-                            decision (if applicable).
+                            Username of the [user](http://docs.griffin.com) that
+                            made the decision (if applicable).
                           title: decision-user-username
                         decision-ops-user:
                           title: decision-ops-user
@@ -11898,7 +11910,7 @@ paths:
                   type: string
                   title: verification-url
                   example: /v0/verifications/vn.IHZlcmlmaWNhdGlvbi1pZA
-                  description: A link to the [verification](#tag/Verifications).
+                  description: A link to the [verification](http://docs.griffin.com).
                 decision-outcome:
                   title: decision-outcome
                   type: string
@@ -11927,7 +11939,7 @@ paths:
                     type: string
                     title: verification-url
                     example: /v0/verifications/vn.IHZlcmlmaWNhdGlvbi1pZA
-                    description: A link to the [verification](#tag/Verifications).
+                    description: A link to the [verification](http://docs.griffin.com).
                   decision-outcome:
                     title: decision-outcome
                     type: string
@@ -11959,15 +11971,15 @@ paths:
                     type: string
                     example: /v0/users/ur.ICAgICAgICAgdXNlci1pZA
                     description: >-
-                      Link to the [user](#tag/Users) that made the decision (if
-                      applicable).
+                      Link to the [user](http://docs.griffin.com) that made the
+                      decision (if applicable).
                     title: decision-user-url
                   decision-user-username:
                     type: string
                     example: user@example.com
                     description: >-
-                      Username of the [user](#tag/Users) that made the decision
-                      (if applicable).
+                      Username of the [user](http://docs.griffin.com) that made
+                      the decision (if applicable).
                     title: decision-user-username
                   decision-ops-user:
                     title: decision-ops-user
@@ -12139,7 +12151,7 @@ paths:
                               example: /v0/verifications/vn.IHZlcmlmaWNhdGlvbi1pZA
                               description: >-
                                 A link to the
-                                [verification](#tag/Verifications).
+                                [verification](http://docs.griffin.com).
                             legal-person-history-event-type:
                               title: legal-person-history-event-type
                               type: string
@@ -12165,8 +12177,8 @@ paths:
                               type: string
                               example: /v0/users/ur.ICAgICAgICAgdXNlci1pZA
                               description: >-
-                                Link to the [user](#tag/Users) that made the
-                                decision (if applicable).
+                                Link to the [user](http://docs.griffin.com) that
+                                made the decision (if applicable).
                               title: decision-user-url
                             decision-ops-user:
                               title: decision-ops-user
@@ -12180,8 +12192,8 @@ paths:
                               type: string
                               example: user@example.com
                               description: >-
-                                Username of the [user](#tag/Users) that made the
-                                decision (if applicable).
+                                Username of the [user](http://docs.griffin.com)
+                                that made the decision (if applicable).
                               title: decision-user-username
                           required:
                             - legal-person-history-event-type
@@ -12291,7 +12303,9 @@ paths:
                           type: string
                           title: verification-url
                           example: /v0/verifications/vn.IHZlcmlmaWNhdGlvbi1pZA
-                          description: A link to the [verification](#tag/Verifications).
+                          description: >-
+                            A link to the
+                            [verification](http://docs.griffin.com).
                         updated-at:
                           title: updated-at
                           format: date-time
@@ -12303,12 +12317,12 @@ paths:
                           example: /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA
                           description: >-
                             A contextual link to the [legal
-                            person](#tag/Legal-persons).
+                            person](http://docs.griffin.com).
                         workflow-url:
                           type: string
                           title: workflow-url
                           example: /v0/workflows/wf.ICAgICB3b3JrZmxvdy1pZA
-                          description: A link to the [workflow](/docs/terms/workflow).
+                          description: A link to the [workflow](http://docs.griffin.com).
                         created-at:
                           title: created-at
                           format: date-time
@@ -12393,7 +12407,7 @@ paths:
 
 
         These claims can be found in the `required-claim-types` field on a
-        [Workflow](#tag/Workflows/paths/~1v0~1workflows~1{workflow-id}/get).
+        [Workflow](http://docs.griffin.com).
 
 
         ---
@@ -12429,7 +12443,7 @@ paths:
                   type: string
                   title: workflow-url
                   example: /v0/workflows/wf.ICAgICB3b3JrZmxvdy1pZA
-                  description: A link to the [workflow](/docs/terms/workflow).
+                  description: A link to the [workflow](http://docs.griffin.com).
               required:
                 - workflow-url
               title: request-create-verification
@@ -12451,7 +12465,7 @@ paths:
                     type: string
                     title: verification-url
                     example: /v0/verifications/vn.IHZlcmlmaWNhdGlvbi1pZA
-                    description: A link to the [verification](#tag/Verifications).
+                    description: A link to the [verification](http://docs.griffin.com).
                   updated-at:
                     title: updated-at
                     format: date-time
@@ -12463,12 +12477,12 @@ paths:
                     example: /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA
                     description: >-
                       A contextual link to the [legal
-                      person](#tag/Legal-persons).
+                      person](http://docs.griffin.com).
                   workflow-url:
                     type: string
                     title: workflow-url
                     example: /v0/workflows/wf.ICAgICB3b3JrZmxvdy1pZA
-                    description: A link to the [workflow](/docs/terms/workflow).
+                    description: A link to the [workflow](http://docs.griffin.com).
                   created-at:
                     title: created-at
                     format: date-time
@@ -12531,8 +12545,8 @@ paths:
       tags:
         - Memberships
       description: >-
-        Returns the [user's](#tag/Users) [membership](#tag/Memberships)
-        information.
+        Returns the [user's](http://docs.griffin.com)
+        [membership](http://docs.griffin.com) information.
       parameters:
         - required: true
           name: membership-id
@@ -12551,14 +12565,14 @@ paths:
                     type: string
                     title: membership-url
                     example: /v0/memberships/mp.ICAgbWVtYmVyc2hpcC1pZA
-                    description: Link to the [membership](#tag/Memberships).
+                    description: Link to the [membership](http://docs.griffin.com).
                   membership-roles-url:
                     type: string
                     title: membership-roles-url
                     example: /v0/memberships/mp.ICAgbWVtYmVyc2hpcC1pZA/roles
                     description: >-
-                      Link to the assigned [roles](#tag/Roles) for this
-                      [membership](#tag/Memberships).
+                      Link to the assigned [roles](http://docs.griffin.com) for
+                      this [membership](http://docs.griffin.com).
                   organization:
                     type: object
                     properties:
@@ -12567,9 +12581,10 @@ paths:
                         title: own-legal-person-url
                         example: /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA
                         description: >-
-                          Link to the [legal person](#tag/Legal-persons) that
-                          represents the [organization](#tag/Organizations);
-                          this can be an individual or a company.
+                          Link to the [legal person](http://docs.griffin.com)
+                          that represents the
+                          [organization](http://docs.griffin.com); this can be
+                          an individual or a company.
                       organization-mode:
                         title: organization-mode
                         enum:
@@ -12579,15 +12594,15 @@ paths:
                         description: >-
                           The organization can either be a sandbox organization
                           or a live one; Check out our guide for [sandbox mode
-                          vs live mode](/docs/concepts/sandbox-vs-live-mode).
+                          vs live mode](http://docs.griffin.com).
                       organization-memberships-url:
                         type: string
                         title: organization-memberships-url
                         example: >-
                           /v0/organizations/og.IG9yZ2FuaXphdGlvbi1pZA/memberships
                         description: >-
-                          Link to the [memberships](#tag/Memberships) for this
-                          [organization](#tag/Organizations).
+                          Link to the [memberships](http://docs.griffin.com) for
+                          this [organization](http://docs.griffin.com).
                       organization-invitations-url:
                         type: string
                         title: organization-invitations-url
@@ -12595,8 +12610,9 @@ paths:
                           /v0/organizations/og.IG9yZ2FuaXphdGlvbi1pZA/invitations
                         description: >-
                           Link to the resource that enables you to
-                          [invite](#tag/Invites) new [users](#tag/Users) to this
-                          [organization](#tag/Organizations).
+                          [invite](http://docs.griffin.com) new
+                          [users](http://docs.griffin.com) to this
+                          [organization](http://docs.griffin.com).
                       organization-onboarding-applications-url:
                         type: string
                         title: organization-onboarding-applications-url
@@ -12604,7 +12620,7 @@ paths:
                           /v0/organizations/og.IG9yZ2FuaXphdGlvbi1pZA/onboarding/applications
                         description: >-
                           Link to the [Reliance
-                          onboarding](#tag/Reliance-onboarding).
+                          onboarding](http://docs.griffin.com).
                       display-name:
                         type: string
                         minLength: 1
@@ -12632,17 +12648,18 @@ paths:
                         title: organization-workflows-url
                         example: /v0/organizations/og.IG9yZ2FuaXphdGlvbi1pZA/workflows
                         description: >-
-                          Link to the onboarding [workflows](#tag/Workflows)
-                          configured for this
-                          [organization](#tag/Organizations).
+                          Link to the onboarding
+                          [workflows](http://docs.griffin.com) configured for
+                          this [organization](http://docs.griffin.com).
                       organization-bank-accounts-url:
                         type: string
                         title: organization-bank-accounts-url
                         example: >-
                           /v0/organizations/og.IG9yZ2FuaXphdGlvbi1pZA/bank/accounts
                         description: >-
-                          Link to the [bank accounts](#tag/Bank-accounts)
-                          managed by this [organization](#tag/Organizations).
+                          Link to the [bank accounts](http://docs.griffin.com)
+                          managed by this
+                          [organization](http://docs.griffin.com).
                       available-roles:
                         type: array
                         items:
@@ -12659,16 +12676,16 @@ paths:
                               type: string
                               title: role-url
                               example: /v0/roles/re.ICAgICAgICAgcm9sZS1pZA
-                              description: Link to the [role](#tag/Roles).
+                              description: Link to the [role](http://docs.griffin.com).
                           required:
                             - display-name
                             - description
                             - role-url
                           title: role
                         description: >-
-                          The subset of [roles](#tag/Roles) available to
-                          [members](#tag/Members) of this
-                          [organization](#tag/Organizations).
+                          The subset of [roles](http://docs.griffin.com)
+                          available to [members](http://docs.griffin.com) of
+                          this [organization](http://docs.griffin.com).
                         title: available-roles
                       can-decide-on-verifications?:
                         type: boolean
@@ -12680,7 +12697,7 @@ paths:
                         type: string
                         title: organization-url
                         example: /v0/organizations/og.IG9yZ2FuaXphdGlvbi1pZA
-                        description: Link to the [organization](#tag/Organizations).
+                        description: Link to the [organization](http://docs.griffin.com).
                       organization-individuals-url:
                         type: string
                         title: organization-individuals-url
@@ -12697,8 +12714,9 @@ paths:
                         example: >-
                           /v0/organizations/og.IG9yZ2FuaXphdGlvbi1pZA/legal-persons
                         description: >-
-                          Link to the [legal persons](#tag/Legal-persons)
-                          grouped under this [organization](#tag/Organizations).
+                          Link to the [legal persons](http://docs.griffin.com)
+                          grouped under this
+                          [organization](http://docs.griffin.com).
                       organization-events-url:
                         type: string
                         title: organization-events-url
@@ -12725,7 +12743,9 @@ paths:
                       - organization-workflows-url
                       - own-legal-person-url
                     title: organization
-                    description: Shows the associated [organization](#tag/Organizations).
+                    description: >-
+                      Shows the associated
+                      [organization](http://docs.griffin.com).
                   roles:
                     type: array
                     items:
@@ -12742,14 +12762,14 @@ paths:
                           type: string
                           title: role-url
                           example: /v0/roles/re.ICAgICAgICAgcm9sZS1pZA
-                          description: Link to the [role](#tag/Roles).
+                          description: Link to the [role](http://docs.griffin.com).
                       required:
                         - display-name
                         - description
                         - role-url
                       title: role
                     title: roles
-                    description: Shows a collection of [roles](#tag/Roles).
+                    description: Shows a collection of [roles](http://docs.griffin.com).
                   user:
                     type: object
                     properties:
@@ -12772,12 +12792,16 @@ paths:
                         type: string
                         title: api-keys-url
                         example: /v0/organizations/og.IG9yZ2FuaXphdGlvbi1pZA/api-keys
-                        description: Link to the user's [api keys](#tag/API-keys).
+                        description: >-
+                          Link to the user's [api
+                          keys](http://docs.griffin.com).
                       user-memberships-url:
                         type: string
                         title: user-memberships-url
                         example: /v0/users/ur.ICAgICAgICAgdXNlci1pZA/memberships
-                        description: Link to the user's [memberships](#tag/Memberships).
+                        description: >-
+                          Link to the user's
+                          [memberships](http://docs.griffin.com).
                       given-name:
                         type: string
                       surname:
@@ -12789,7 +12813,7 @@ paths:
                       - api-keys-url
                       - user-memberships-url
                     title: user
-                    description: Shows the associated [user](#tag/Users).
+                    description: Shows the associated [user](http://docs.griffin.com).
                   created-at:
                     title: created-at
                     format: date-time
@@ -12818,7 +12842,9 @@ paths:
     delete:
       tags:
         - Memberships
-      description: Removes a [user](#tag/Users) from an [organization](#tag/Organizations).
+      description: >-
+        Removes a [user](http://docs.griffin.com) from an
+        [organization](http://docs.griffin.com).
       parameters:
         - required: true
           name: membership-id
@@ -12845,8 +12871,8 @@ paths:
       tags:
         - Roles
       description: >-
-        Returns the [roles](#tag/Roles) assigned to this
-        [membership](#tag/Memberships).
+        Returns the [roles](http://docs.griffin.com) assigned to this
+        [membership](http://docs.griffin.com).
       parameters:
         - required: true
           name: membership-id
@@ -12877,14 +12903,14 @@ paths:
                           type: string
                           title: role-url
                           example: /v0/roles/re.ICAgICAgICAgcm9sZS1pZA
-                          description: Link to the [role](#tag/Roles).
+                          description: Link to the [role](http://docs.griffin.com).
                       required:
                         - display-name
                         - description
                         - role-url
                       title: role
                     title: roles
-                    description: Shows a collection of [roles](#tag/Roles).
+                    description: Shows a collection of [roles](http://docs.griffin.com).
                 required:
                   - roles
                 title: roles-response
@@ -12902,11 +12928,12 @@ paths:
       tags:
         - Roles
       description: >-
-        Assigns [roles](#tag/Roles) to the [membership](#tag/Memberships).
+        Assigns [roles](http://docs.griffin.com) to the
+        [membership](http://docs.griffin.com).
 
 
         A 422 is served if you provide a role that is not in the
-        [Organisations](#tag/Organizations) `"available-roles"`.
+        [Organisations](http://docs.griffin.com) `"available-roles"`.
       parameters:
         - required: true
           name: membership-id
@@ -12925,7 +12952,7 @@ paths:
                     type: string
                     title: role-url
                     example: /v0/roles/re.ICAgICAgICAgcm9sZS1pZA
-                    description: Link to the [role](#tag/Roles).
+                    description: Link to the [role](http://docs.griffin.com).
               required:
                 - role-urls
               title: request-update-membership-roles
@@ -12954,14 +12981,14 @@ paths:
                           type: string
                           title: role-url
                           example: /v0/roles/re.ICAgICAgICAgcm9sZS1pZA
-                          description: Link to the [role](#tag/Roles).
+                          description: Link to the [role](http://docs.griffin.com).
                       required:
                         - display-name
                         - description
                         - role-url
                       title: role
                     title: roles
-                    description: Shows a collection of [roles](#tag/Roles).
+                    description: Shows a collection of [roles](http://docs.griffin.com).
                 required:
                   - roles
                 title: roles-response
@@ -13018,19 +13045,19 @@ paths:
                         type: string
                         title: workflow-url
                         example: /v0/workflows/wf.ICAgICB3b3JrZmxvdy1pZA
-                        description: A link to the [workflow](/docs/terms/workflow).
+                        description: A link to the [workflow](http://docs.griffin.com).
                       legal-person-url:
                         type: string
                         title: legal-person-url
                         example: /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA
                         description: >-
                           A contextual link to the [legal
-                          person](#tag/Legal-persons).
+                          person](http://docs.griffin.com).
                       verification-url:
                         type: string
                         title: verification-url
                         example: /v0/verifications/vn.IHZlcmlmaWNhdGlvbi1pZA
-                        description: A link to the [verification](#tag/Verifications).
+                        description: A link to the [verification](http://docs.griffin.com).
                       onboarding-application-status:
                         enum:
                           - processing
@@ -13059,7 +13086,7 @@ paths:
                         type: string
                         title: workflow-url
                         example: /v0/workflows/wf.ICAgICB3b3JrZmxvdy1pZA
-                        description: A link to the [workflow](/docs/terms/workflow).
+                        description: A link to the [workflow](http://docs.griffin.com).
                       onboarding-application-status:
                         enum:
                           - submitted
@@ -13086,19 +13113,19 @@ paths:
                         type: string
                         title: workflow-url
                         example: /v0/workflows/wf.ICAgICB3b3JrZmxvdy1pZA
-                        description: A link to the [workflow](/docs/terms/workflow).
+                        description: A link to the [workflow](http://docs.griffin.com).
                       legal-person-url:
                         type: string
                         title: legal-person-url
                         example: /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA
                         description: >-
                           A contextual link to the [legal
-                          person](#tag/Legal-persons).
+                          person](http://docs.griffin.com).
                       verification-url:
                         type: string
                         title: verification-url
                         example: /v0/verifications/vn.IHZlcmlmaWNhdGlvbi1pZA
-                        description: A link to the [verification](#tag/Verifications).
+                        description: A link to the [verification](http://docs.griffin.com).
                       decision-outcome:
                         title: decision-outcome
                         type: string
@@ -13157,9 +13184,9 @@ paths:
                     title: own-legal-person-url
                     example: /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA
                     description: >-
-                      Link to the [legal person](#tag/Legal-persons) that
-                      represents the [organization](#tag/Organizations); this
-                      can be an individual or a company.
+                      Link to the [legal person](http://docs.griffin.com) that
+                      represents the [organization](http://docs.griffin.com);
+                      this can be an individual or a company.
                   organization-mode:
                     title: organization-mode
                     enum:
@@ -13169,22 +13196,23 @@ paths:
                     description: >-
                       The organization can either be a sandbox organization or a
                       live one; Check out our guide for [sandbox mode vs live
-                      mode](/docs/concepts/sandbox-vs-live-mode).
+                      mode](http://docs.griffin.com).
                   organization-memberships-url:
                     type: string
                     title: organization-memberships-url
                     example: /v0/organizations/og.IG9yZ2FuaXphdGlvbi1pZA/memberships
                     description: >-
-                      Link to the [memberships](#tag/Memberships) for this
-                      [organization](#tag/Organizations).
+                      Link to the [memberships](http://docs.griffin.com) for
+                      this [organization](http://docs.griffin.com).
                   organization-invitations-url:
                     type: string
                     title: organization-invitations-url
                     example: /v0/organizations/og.IG9yZ2FuaXphdGlvbi1pZA/invitations
                     description: >-
                       Link to the resource that enables you to
-                      [invite](#tag/Invites) new [users](#tag/Users) to this
-                      [organization](#tag/Organizations).
+                      [invite](http://docs.griffin.com) new
+                      [users](http://docs.griffin.com) to this
+                      [organization](http://docs.griffin.com).
                   organization-onboarding-applications-url:
                     type: string
                     title: organization-onboarding-applications-url
@@ -13192,7 +13220,7 @@ paths:
                       /v0/organizations/og.IG9yZ2FuaXphdGlvbi1pZA/onboarding/applications
                     description: >-
                       Link to the [Reliance
-                      onboarding](#tag/Reliance-onboarding).
+                      onboarding](http://docs.griffin.com).
                   display-name:
                     type: string
                     minLength: 1
@@ -13221,15 +13249,16 @@ paths:
                     title: organization-workflows-url
                     example: /v0/organizations/og.IG9yZ2FuaXphdGlvbi1pZA/workflows
                     description: >-
-                      Link to the onboarding [workflows](#tag/Workflows)
-                      configured for this [organization](#tag/Organizations).
+                      Link to the onboarding
+                      [workflows](http://docs.griffin.com) configured for this
+                      [organization](http://docs.griffin.com).
                   organization-bank-accounts-url:
                     type: string
                     title: organization-bank-accounts-url
                     example: /v0/organizations/og.IG9yZ2FuaXphdGlvbi1pZA/bank/accounts
                     description: >-
-                      Link to the [bank accounts](#tag/Bank-accounts) managed by
-                      this [organization](#tag/Organizations).
+                      Link to the [bank accounts](http://docs.griffin.com)
+                      managed by this [organization](http://docs.griffin.com).
                   available-roles:
                     type: array
                     items:
@@ -13248,22 +13277,22 @@ paths:
                           type: string
                           title: role-url
                           example: /v0/roles/re.ICAgICAgICAgcm9sZS1pZA
-                          description: Link to the [role](#tag/Roles).
+                          description: Link to the [role](http://docs.griffin.com).
                       required:
                         - display-name
                         - description
                         - role-url
                       title: role
                     description: >-
-                      The subset of [roles](#tag/Roles) available to
-                      [members](#tag/Members) of this
-                      [organization](#tag/Organizations).
+                      The subset of [roles](http://docs.griffin.com) available
+                      to [members](http://docs.griffin.com) of this
+                      [organization](http://docs.griffin.com).
                     title: available-roles
                   organization-url:
                     type: string
                     title: organization-url
                     example: /v0/organizations/og.IG9yZ2FuaXphdGlvbi1pZA
-                    description: Link to the [organization](#tag/Organizations).
+                    description: Link to the [organization](http://docs.griffin.com).
                   organization-individuals-url:
                     type: string
                     title: organization-individuals-url
@@ -13277,8 +13306,9 @@ paths:
                     title: organization-legal-persons-url
                     example: /v0/organizations/og.IG9yZ2FuaXphdGlvbi1pZA/legal-persons
                     description: >-
-                      Link to the [legal persons](#tag/Legal-persons) grouped
-                      under this [organization](#tag/Organizations).
+                      Link to the [legal persons](http://docs.griffin.com)
+                      grouped under this
+                      [organization](http://docs.griffin.com).
                   organization-events-url:
                     type: string
                     title: organization-events-url
@@ -13401,7 +13431,7 @@ paths:
                           type: string
                           title: organization-url
                           example: /v0/organizations/og.IG9yZ2FuaXphdGlvbi1pZA
-                          description: Link to the [organization](#tag/Organizations).
+                          description: Link to the [organization](http://docs.griffin.com).
                         user-url:
                           type: string
                           title: user-url
@@ -13502,7 +13532,7 @@ paths:
                     type: string
                     title: organization-url
                     example: /v0/organizations/og.IG9yZ2FuaXphdGlvbi1pZA
-                    description: Link to the [organization](#tag/Organizations).
+                    description: Link to the [organization](http://docs.griffin.com).
                   user-url:
                     type: string
                     title: user-url
@@ -13552,8 +13582,8 @@ paths:
         - in: query
           name: filter[beneficiary][eq]
           description: >-
-            Link to the [legal person](#tag/Legal-persons) that represents the
-            [beneficiary](/docs/terms/beneficiary) of the account.
+            Link to the [legal person](http://docs.griffin.com) that represents
+            the [beneficiary](http://docs.griffin.com) of the account.
           required: false
           example: /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA
           title: ''
@@ -13562,8 +13592,8 @@ paths:
         - in: query
           name: filter[owner][eq]
           description: >-
-            Link to the [legal person](#tag/Legal-persons) that represents the
-            [owner](/docs/terms/owner) of the account.
+            Link to the [legal person](http://docs.griffin.com) that represents
+            the [owner](http://docs.griffin.com) of the account.
           required: false
           example: /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA
           title: ''
@@ -13691,7 +13721,7 @@ paths:
               description: >-
                 Specifies the type of bank account. (For more detail on bank
                 account types, see our guide for [creating a bank
-                account](/docs/banking/create-a-bank-account).)
+                account](http://docs.griffin.com).)
         - example: djE6NL0DfDTSUk67KJKCi-L5Zg
           name: page[before]
           title: before
@@ -13725,8 +13755,9 @@ paths:
                           example: >-
                             /v0/bank/accounts/ba.IGJhbmstYWNjb3VudC1pZA/submissions
                           description: >-
-                            Link to the [payment submissions](#tag/Payments)
-                            debiting from this account.
+                            Link to the [payment
+                            submissions](http://docs.griffin.com) debiting from
+                            this account.
                         account-restricted:
                           type: boolean
                           title: account-restricted
@@ -13738,8 +13769,8 @@ paths:
                           title: account-payments-url
                           example: /v0/bank/accounts/ba.IGJhbmstYWNjb3VudC1pZA/payments
                           description: >-
-                            Link to the [payments](#tag/Payments) associated
-                            with this account.
+                            Link to the [payments](http://docs.griffin.com)
+                            associated with this account.
                         pooled-account-memberships-url:
                           type: string
                           title: pooled-account-memberships-url
@@ -13747,16 +13778,17 @@ paths:
                             /v0/bank/accounts/ba.IGJhbmstYWNjb3VudC1pZA/membership
                           description: >-
                             Link to the list of [pool
-                            members](#tag/Pooled-account-membership) associated
-                            with this account.
+                            members](http://docs.griffin.com) associated with
+                            this account.
                         account-admissions-url:
                           type: string
                           title: account-admissions-url
                           example: >-
                             /v0/bank/accounts/ba.IGJhbmstYWNjb3VudC1pZA/admissions
                           description: >-
-                            Link to the [payment admissions](#tag/Payments)
-                            crediting to this account.
+                            Link to the [payment
+                            admissions](http://docs.griffin.com) crediting to
+                            this account.
                         bank-product-type:
                           title: bank-product-type
                           enum:
@@ -13768,7 +13800,7 @@ paths:
                           description: >-
                             Specifies the type of bank account. (For more detail
                             on bank account types, see our guide for [creating a
-                            bank account](/docs/banking/create-a-bank-account).)
+                            bank account](http://docs.griffin.com).)
                         display-name:
                           type: string
                           minLength: 1
@@ -13781,9 +13813,10 @@ paths:
                           title: controller-url
                           example: /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA
                           description: >-
-                            Link to the [legal person](#tag/Legal-persons) that
-                            represents the [controller](/docs/terms/controller)
-                            of the account.
+                            Link to the [legal person](http://docs.griffin.com)
+                            that represents the
+                            [controller](http://docs.griffin.com) of the
+                            account.
                         pooled-funds:
                           type: boolean
                           title: pooled-funds
@@ -13817,9 +13850,9 @@ paths:
                           title: owner-url
                           example: /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA
                           description: >-
-                            Link to the [legal person](#tag/Legal-persons) that
-                            represents the [owner](/docs/terms/owner) of the
-                            account.
+                            Link to the [legal person](http://docs.griffin.com)
+                            that represents the [owner](http://docs.griffin.com)
+                            of the account.
                         created-at:
                           title: created-at
                           format: date-time
@@ -13856,7 +13889,7 @@ paths:
                           title: available-balance
                           description: >-
                             Shows the [available
-                            balance](/docs/terms/available-balance).
+                            balance](http://docs.griffin.com).
                         pooled-account-membership-updates-url:
                           type: string
                           title: pooled-account-membership-updates-url
@@ -13864,7 +13897,7 @@ paths:
                             /v0/bank/accounts/ba.IGJhbmstYWNjb3VudC1pZA/membership-updates
                           description: >-
                             Link to manage [pooled account
-                            membership](#tag/Pooled-account-membership).
+                            membership](http://docs.griffin.com).
                         bank-addresses:
                           type: array
                           items:
@@ -13876,7 +13909,7 @@ paths:
                                 title: account-holder
                                 description: >-
                                   The name of the [account
-                                  holder](/docs/terms/account-holder).
+                                  holder](http://docs.griffin.com).
                               bank-id-code:
                                 title: bank-id-code
                                 type: string
@@ -13925,7 +13958,7 @@ paths:
                           type: string
                           title: account-transactions-url
                           description: >-
-                            Link to the [transactions](#tag/Transactions)
+                            Link to the [transactions](http://docs.griffin.com)
                             associated with this account.
                           example: >-
                             /v0/bank/accounts/ba.IGJhbmstYWNjb3VudC1pZA/transactions
@@ -13939,9 +13972,9 @@ paths:
                           title: beneficiary-url
                           example: /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA
                           description: >-
-                            Link to the [legal person](#tag/Legal-persons) that
-                            represents the
-                            [beneficiary](/docs/terms/beneficiary) of the
+                            Link to the [legal person](http://docs.griffin.com)
+                            that represents the
+                            [beneficiary](http://docs.griffin.com) of the
                             account.
                         account-balance:
                           required:
@@ -13966,7 +13999,7 @@ paths:
                           title: account-balance
                           description: >-
                             Shows the [account
-                            balance](/docs/terms/account-balance).
+                            balance](http://docs.griffin.com).
                         savings-type:
                           title: savings-type
                           enum:
@@ -14021,7 +14054,7 @@ paths:
                                   example: /v0/verifications/vn.IHZlcmlmaWNhdGlvbi1pZA
                                   description: >-
                                     A link to the
-                                    [verification](#tag/Verifications).
+                                    [verification](http://docs.griffin.com).
                                 decision-outcome:
                                   title: decision-outcome
                                   type: string
@@ -14053,14 +14086,15 @@ paths:
                                   type: string
                                   example: /v0/users/ur.ICAgICAgICAgdXNlci1pZA
                                   description: >-
-                                    Link to the [user](#tag/Users) that made the
-                                    decision (if applicable).
+                                    Link to the [user](http://docs.griffin.com)
+                                    that made the decision (if applicable).
                                   title: decision-user-url
                                 decision-user-username:
                                   type: string
                                   example: user@example.com
                                   description: >-
-                                    Username of the [user](#tag/Users) that made
+                                    Username of the
+                                    [user](http://docs.griffin.com) that made
                                     the decision (if applicable).
                                   title: decision-user-username
                                 decision-ops-user:
@@ -14078,7 +14112,9 @@ paths:
                                 - decision-notes
                                 - created-at
                               title: latest-decision
-                              description: The most recent [decision](#tag/Decisions)
+                              description: >-
+                                The most recent
+                                [decision](http://docs.griffin.com)
                             legal-person-type:
                               title: legal-person-type
                               enum:
@@ -14111,22 +14147,22 @@ paths:
                               type: string
                               description: >-
                                 Status of the current
-                                [application](/docs/terms/application)
+                                [application](http://docs.griffin.com)
                             legal-person-url:
                               type: string
                               title: legal-person-url
                               example: /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA
                               description: >-
                                 A contextual link to the [legal
-                                person](#tag/Legal-persons).
+                                person](http://docs.griffin.com).
                             legal-person-decisions-url:
                               type: string
                               title: legal-person-decisions-url
                               example: >-
                                 /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA/decisions
                               description: >-
-                                Link to [decisions](#tag/Decisions) for this
-                                [legal person](/docs/terms/legal-person).
+                                Link to [decisions](http://docs.griffin.com) for
+                                this [legal person](http://docs.griffin.com).
                             status-changed-at:
                               title: status-changed-at
                               format: date-time
@@ -14143,25 +14179,28 @@ paths:
                               example: >-
                                 /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA/claims
                               description: >-
-                                Link to the [claims](#tag/Claims) for this
-                                [legal person](/docs/terms/legal-person).
+                                Link to the [claims](http://docs.griffin.com)
+                                for this [legal
+                                person](http://docs.griffin.com).
                             legal-person-bank-payees-url:
                               type: string
                               title: legal-person-bank-payees-url
                               example: >-
                                 /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA/bank/payees
                               description: >-
-                                Link to the [payees](#tag/Payees) for this
-                                [legal person](/docs/terms/legal-person).
+                                Link to the [payees](http://docs.griffin.com)
+                                for this [legal
+                                person](http://docs.griffin.com).
                             legal-person-verifications-url:
                               type: string
                               title: legal-person-verifications-url
                               example: >-
                                 /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA/verifications
                               description: >-
-                                Link to all [verifications](#tag/Verifications)
-                                run against this [legal
-                                person](/docs/terms/legal-person).
+                                Link to all
+                                [verifications](http://docs.griffin.com) run
+                                against this [legal
+                                person](http://docs.griffin.com).
                             legal-person-documents-url:
                               type: string
                               title: legal-person-documents-url
@@ -14169,7 +14208,7 @@ paths:
                                 /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA/documents
                               description: >-
                                 Link to all evidence documents associated with
-                                this [legal person](/docs/terms/legal-person).
+                                this [legal person](http://docs.griffin.com).
                           required:
                             - created-at
                             - display-name
@@ -14228,8 +14267,8 @@ paths:
                       title: owner-url
                       example: /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA
                       description: >-
-                        Link to the [legal person](#tag/Legal-persons) that
-                        represents the [owner](/docs/terms/owner) of the
+                        Link to the [legal person](http://docs.griffin.com) that
+                        represents the [owner](http://docs.griffin.com) of the
                         account.
                     savings-type:
                       title: savings-type
@@ -14282,9 +14321,9 @@ paths:
                           title: owner-url
                           example: /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA
                           description: >-
-                            Link to the [legal person](#tag/Legal-persons) that
-                            represents the [owner](/docs/terms/owner) of the
-                            account.
+                            Link to the [legal person](http://docs.griffin.com)
+                            that represents the [owner](http://docs.griffin.com)
+                            of the account.
                         pooled-funds:
                           enum:
                             - true
@@ -14313,9 +14352,10 @@ paths:
                               title: owner-url
                               example: /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA
                               description: >-
-                                Link to the [legal person](#tag/Legal-persons)
-                                that represents the [owner](/docs/terms/owner)
-                                of the account.
+                                Link to the [legal
+                                person](http://docs.griffin.com) that represents
+                                the [owner](http://docs.griffin.com) of the
+                                account.
                           required:
                             - client-money-type
                         - {}
@@ -14327,9 +14367,9 @@ paths:
                           title: beneficiary-url
                           example: /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA
                           description: >-
-                            Link to the [legal person](#tag/Legal-persons) that
-                            represents the
-                            [beneficiary](/docs/terms/beneficiary) of the
+                            Link to the [legal person](http://docs.griffin.com)
+                            that represents the
+                            [beneficiary](http://docs.griffin.com) of the
                             account.
                         client-money-type:
                           title: client-money-type
@@ -14349,9 +14389,9 @@ paths:
                           title: owner-url
                           example: /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA
                           description: >-
-                            Link to the [legal person](#tag/Legal-persons) that
-                            represents the [owner](/docs/terms/owner) of the
-                            account.
+                            Link to the [legal person](http://docs.griffin.com)
+                            that represents the [owner](http://docs.griffin.com)
+                            of the account.
                         pooled-funds:
                           enum:
                             - false
@@ -14368,10 +14408,10 @@ paths:
                               title: beneficiary-url
                               example: /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA
                               description: >-
-                                Link to the [legal person](#tag/Legal-persons)
-                                that represents the
-                                [beneficiary](/docs/terms/beneficiary) of the
-                                account.
+                                Link to the [legal
+                                person](http://docs.griffin.com) that represents
+                                the [beneficiary](http://docs.griffin.com) of
+                                the account.
                             client-money-type:
                               title: client-money-type
                               enum:
@@ -14390,9 +14430,10 @@ paths:
                               title: owner-url
                               example: /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA
                               description: >-
-                                Link to the [legal person](#tag/Legal-persons)
-                                that represents the [owner](/docs/terms/owner)
-                                of the account.
+                                Link to the [legal
+                                person](http://docs.griffin.com) that represents
+                                the [owner](http://docs.griffin.com) of the
+                                account.
                           required:
                             - beneficiary-url
                             - client-money-type
@@ -14421,9 +14462,9 @@ paths:
                           title: owner-url
                           example: /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA
                           description: >-
-                            Link to the [legal person](#tag/Legal-persons) that
-                            represents the [owner](/docs/terms/owner) of the
-                            account.
+                            Link to the [legal person](http://docs.griffin.com)
+                            that represents the [owner](http://docs.griffin.com)
+                            of the account.
                         pooled-funds:
                           enum:
                             - true
@@ -14441,9 +14482,10 @@ paths:
                               title: owner-url
                               example: /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA
                               description: >-
-                                Link to the [legal person](#tag/Legal-persons)
-                                that represents the [owner](/docs/terms/owner)
-                                of the account.
+                                Link to the [legal
+                                person](http://docs.griffin.com) that represents
+                                the [owner](http://docs.griffin.com) of the
+                                account.
                         - {}
                       title: 'true'
                       required:
@@ -14455,9 +14497,9 @@ paths:
                           title: beneficiary-url
                           example: /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA
                           description: >-
-                            Link to the [legal person](#tag/Legal-persons) that
-                            represents the
-                            [beneficiary](/docs/terms/beneficiary) of the
+                            Link to the [legal person](http://docs.griffin.com)
+                            that represents the
+                            [beneficiary](http://docs.griffin.com) of the
                             account.
                         display-name:
                           type: string
@@ -14469,9 +14511,9 @@ paths:
                           title: owner-url
                           example: /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA
                           description: >-
-                            Link to the [legal person](#tag/Legal-persons) that
-                            represents the [owner](/docs/terms/owner) of the
-                            account.
+                            Link to the [legal person](http://docs.griffin.com)
+                            that represents the [owner](http://docs.griffin.com)
+                            of the account.
                         pooled-funds:
                           enum:
                             - false
@@ -14487,10 +14529,10 @@ paths:
                               title: beneficiary-url
                               example: /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA
                               description: >-
-                                Link to the [legal person](#tag/Legal-persons)
-                                that represents the
-                                [beneficiary](/docs/terms/beneficiary) of the
-                                account.
+                                Link to the [legal
+                                person](http://docs.griffin.com) that represents
+                                the [beneficiary](http://docs.griffin.com) of
+                                the account.
                             display-name:
                               type: string
                               minLength: 1
@@ -14501,9 +14543,10 @@ paths:
                               title: owner-url
                               example: /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA
                               description: >-
-                                Link to the [legal person](#tag/Legal-persons)
-                                that represents the [owner](/docs/terms/owner)
-                                of the account.
+                                Link to the [legal
+                                person](http://docs.griffin.com) that represents
+                                the [owner](http://docs.griffin.com) of the
+                                account.
                           required:
                             - beneficiary-url
                         - {}
@@ -14541,8 +14584,8 @@ paths:
                     title: account-submissions-url
                     example: /v0/bank/accounts/ba.IGJhbmstYWNjb3VudC1pZA/submissions
                     description: >-
-                      Link to the [payment submissions](#tag/Payments) debiting
-                      from this account.
+                      Link to the [payment submissions](http://docs.griffin.com)
+                      debiting from this account.
                   account-restricted:
                     type: boolean
                     title: account-restricted
@@ -14554,23 +14597,23 @@ paths:
                     title: account-payments-url
                     example: /v0/bank/accounts/ba.IGJhbmstYWNjb3VudC1pZA/payments
                     description: >-
-                      Link to the [payments](#tag/Payments) associated with this
-                      account.
+                      Link to the [payments](http://docs.griffin.com) associated
+                      with this account.
                   pooled-account-memberships-url:
                     type: string
                     title: pooled-account-memberships-url
                     example: /v0/bank/accounts/ba.IGJhbmstYWNjb3VudC1pZA/membership
                     description: >-
                       Link to the list of [pool
-                      members](#tag/Pooled-account-membership) associated with
-                      this account.
+                      members](http://docs.griffin.com) associated with this
+                      account.
                   account-admissions-url:
                     type: string
                     title: account-admissions-url
                     example: /v0/bank/accounts/ba.IGJhbmstYWNjb3VudC1pZA/admissions
                     description: >-
-                      Link to the [payment admissions](#tag/Payments) crediting
-                      to this account.
+                      Link to the [payment admissions](http://docs.griffin.com)
+                      crediting to this account.
                   bank-product-type:
                     title: bank-product-type
                     enum:
@@ -14582,7 +14625,7 @@ paths:
                     description: >-
                       Specifies the type of bank account. (For more detail on
                       bank account types, see our guide for [creating a bank
-                      account](/docs/banking/create-a-bank-account).)
+                      account](http://docs.griffin.com).)
                   display-name:
                     type: string
                     minLength: 1
@@ -14595,9 +14638,9 @@ paths:
                     title: controller-url
                     example: /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA
                     description: >-
-                      Link to the [legal person](#tag/Legal-persons) that
-                      represents the [controller](/docs/terms/controller) of the
-                      account.
+                      Link to the [legal person](http://docs.griffin.com) that
+                      represents the [controller](http://docs.griffin.com) of
+                      the account.
                   pooled-funds:
                     type: boolean
                     title: pooled-funds
@@ -14630,8 +14673,9 @@ paths:
                     title: owner-url
                     example: /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA
                     description: >-
-                      Link to the [legal person](#tag/Legal-persons) that
-                      represents the [owner](/docs/terms/owner) of the account.
+                      Link to the [legal person](http://docs.griffin.com) that
+                      represents the [owner](http://docs.griffin.com) of the
+                      account.
                   created-at:
                     title: created-at
                     format: date-time
@@ -14665,9 +14709,7 @@ paths:
                     type: object
                     additionalProperties: false
                     title: available-balance
-                    description: >-
-                      Shows the [available
-                      balance](/docs/terms/available-balance).
+                    description: Shows the [available balance](http://docs.griffin.com).
                   pooled-account-membership-updates-url:
                     type: string
                     title: pooled-account-membership-updates-url
@@ -14675,7 +14717,7 @@ paths:
                       /v0/bank/accounts/ba.IGJhbmstYWNjb3VudC1pZA/membership-updates
                     description: >-
                       Link to manage [pooled account
-                      membership](#tag/Pooled-account-membership).
+                      membership](http://docs.griffin.com).
                   bank-addresses:
                     type: array
                     items:
@@ -14687,7 +14729,7 @@ paths:
                           title: account-holder
                           description: >-
                             The name of the [account
-                            holder](/docs/terms/account-holder).
+                            holder](http://docs.griffin.com).
                         bank-id-code:
                           title: bank-id-code
                           type: string
@@ -14736,8 +14778,8 @@ paths:
                     type: string
                     title: account-transactions-url
                     description: >-
-                      Link to the [transactions](#tag/Transactions) associated
-                      with this account.
+                      Link to the [transactions](http://docs.griffin.com)
+                      associated with this account.
                     example: /v0/bank/accounts/ba.IGJhbmstYWNjb3VudC1pZA/transactions
                   account-url:
                     type: string
@@ -14749,8 +14791,8 @@ paths:
                     title: beneficiary-url
                     example: /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA
                     description: >-
-                      Link to the [legal person](#tag/Legal-persons) that
-                      represents the [beneficiary](/docs/terms/beneficiary) of
+                      Link to the [legal person](http://docs.griffin.com) that
+                      represents the [beneficiary](http://docs.griffin.com) of
                       the account.
                   account-balance:
                     required:
@@ -14773,7 +14815,7 @@ paths:
                     type: object
                     additionalProperties: false
                     title: account-balance
-                    description: Shows the [account balance](/docs/terms/account-balance).
+                    description: Shows the [account balance](http://docs.griffin.com).
                   savings-type:
                     title: savings-type
                     enum:
@@ -14944,7 +14986,7 @@ paths:
                           minLength: 1
                           title: event-url
                           example: /v0/events/ev.ICAgICAgICBldmVudC1pZA
-                          description: Link to the [event](#tag/Events).
+                          description: Link to the [event](http://docs.griffin.com).
                         event-type:
                           title: event-type
                           enum:
@@ -15185,7 +15227,7 @@ paths:
                               example: /v0/verifications/vn.IHZlcmlmaWNhdGlvbi1pZA
                               description: >-
                                 A link to the
-                                [verification](#tag/Verifications).
+                                [verification](http://docs.griffin.com).
                             decision-outcome:
                               title: decision-outcome
                               type: string
@@ -15217,15 +15259,15 @@ paths:
                               type: string
                               example: /v0/users/ur.ICAgICAgICAgdXNlci1pZA
                               description: >-
-                                Link to the [user](#tag/Users) that made the
-                                decision (if applicable).
+                                Link to the [user](http://docs.griffin.com) that
+                                made the decision (if applicable).
                               title: decision-user-url
                             decision-user-username:
                               type: string
                               example: user@example.com
                               description: >-
-                                Username of the [user](#tag/Users) that made the
-                                decision (if applicable).
+                                Username of the [user](http://docs.griffin.com)
+                                that made the decision (if applicable).
                               title: decision-user-username
                             decision-ops-user:
                               title: decision-ops-user
@@ -15242,7 +15284,7 @@ paths:
                             - decision-notes
                             - created-at
                           title: latest-decision
-                          description: The most recent [decision](#tag/Decisions)
+                          description: The most recent [decision](http://docs.griffin.com)
                         legal-person-type:
                           title: legal-person-type
                           enum:
@@ -15275,22 +15317,22 @@ paths:
                           type: string
                           description: >-
                             Status of the current
-                            [application](/docs/terms/application)
+                            [application](http://docs.griffin.com)
                         legal-person-url:
                           type: string
                           title: legal-person-url
                           example: /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA
                           description: >-
                             A contextual link to the [legal
-                            person](#tag/Legal-persons).
+                            person](http://docs.griffin.com).
                         legal-person-decisions-url:
                           type: string
                           title: legal-person-decisions-url
                           example: >-
                             /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA/decisions
                           description: >-
-                            Link to [decisions](#tag/Decisions) for this [legal
-                            person](/docs/terms/legal-person).
+                            Link to [decisions](http://docs.griffin.com) for
+                            this [legal person](http://docs.griffin.com).
                         status-changed-at:
                           title: status-changed-at
                           format: date-time
@@ -15306,25 +15348,25 @@ paths:
                           title: legal-person-claims-url
                           example: /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA/claims
                           description: >-
-                            Link to the [claims](#tag/Claims) for this [legal
-                            person](/docs/terms/legal-person).
+                            Link to the [claims](http://docs.griffin.com) for
+                            this [legal person](http://docs.griffin.com).
                         legal-person-bank-payees-url:
                           type: string
                           title: legal-person-bank-payees-url
                           example: >-
                             /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA/bank/payees
                           description: >-
-                            Link to the [payees](#tag/Payees) for this [legal
-                            person](/docs/terms/legal-person).
+                            Link to the [payees](http://docs.griffin.com) for
+                            this [legal person](http://docs.griffin.com).
                         legal-person-verifications-url:
                           type: string
                           title: legal-person-verifications-url
                           example: >-
                             /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA/verifications
                           description: >-
-                            Link to all [verifications](#tag/Verifications) run
-                            against this [legal
-                            person](/docs/terms/legal-person).
+                            Link to all [verifications](http://docs.griffin.com)
+                            run against this [legal
+                            person](http://docs.griffin.com).
                         legal-person-documents-url:
                           type: string
                           title: legal-person-documents-url
@@ -15332,7 +15374,7 @@ paths:
                             /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA/documents
                           description: >-
                             Link to all evidence documents associated with this
-                            [legal person](/docs/terms/legal-person).
+                            [legal person](http://docs.griffin.com).
                       required:
                         - created-at
                         - display-name
@@ -15401,7 +15443,7 @@ paths:
                               example: /v0/verifications/vn.IHZlcmlmaWNhdGlvbi1pZA
                               description: >-
                                 A link to the
-                                [verification](#tag/Verifications).
+                                [verification](http://docs.griffin.com).
                             updated-at:
                               title: updated-at
                               format: date-time
@@ -15413,12 +15455,14 @@ paths:
                               example: /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA
                               description: >-
                                 A contextual link to the [legal
-                                person](#tag/Legal-persons).
+                                person](http://docs.griffin.com).
                             workflow-url:
                               type: string
                               title: workflow-url
                               example: /v0/workflows/wf.ICAgICB3b3JrZmxvdy1pZA
-                              description: A link to the [workflow](/docs/terms/workflow).
+                              description: >-
+                                A link to the
+                                [workflow](http://docs.griffin.com).
                             created-at:
                               title: created-at
                               format: date-time
@@ -15482,7 +15526,7 @@ paths:
                               example: /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA
                               description: >-
                                 A contextual link to the [legal
-                                person](#tag/Legal-persons).
+                                person](http://docs.griffin.com).
                             notes:
                               type: string
                               minLength: 1
@@ -15512,7 +15556,7 @@ paths:
                               example: /v0/verifications/vn.IHZlcmlmaWNhdGlvbi1pZA
                               description: >-
                                 A link to the
-                                [verification](#tag/Verifications).
+                                [verification](http://docs.griffin.com).
                             previous-risk-rating:
                               title: previous-risk-rating
                               type: string
@@ -15548,8 +15592,8 @@ paths:
       tags:
         - Legal persons
       description: >-
-        Creates a new Legal Person. A collection of [Claims](#tag/Claims) may be
-        provided.
+        Creates a new Legal Person. A collection of
+        [Claims](http://docs.griffin.com) may be provided.
       parameters:
         - required: true
           name: organization-id
@@ -15871,7 +15915,7 @@ paths:
                             example: /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA
                             description: >-
                               A contextual link to the [legal
-                              person](#tag/Legal-persons).
+                              person](http://docs.griffin.com).
                           ownership-percent:
                             type: string
                             format: ''
@@ -17601,7 +17645,7 @@ paths:
                             example: /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA
                             description: >-
                               A contextual link to the [legal
-                              person](#tag/Legal-persons).
+                              person](http://docs.griffin.com).
                           companies-house-url:
                             title: companies-house-url
                             description: The URL of the entity in Companies House
@@ -17713,7 +17757,7 @@ paths:
                         type: string
                         title: verification-url
                         example: /v0/verifications/vn.IHZlcmlmaWNhdGlvbi1pZA
-                        description: A link to the [verification](#tag/Verifications).
+                        description: A link to the [verification](http://docs.griffin.com).
                       decision-outcome:
                         title: decision-outcome
                         type: string
@@ -17745,15 +17789,15 @@ paths:
                         type: string
                         example: /v0/users/ur.ICAgICAgICAgdXNlci1pZA
                         description: >-
-                          Link to the [user](#tag/Users) that made the decision
-                          (if applicable).
+                          Link to the [user](http://docs.griffin.com) that made
+                          the decision (if applicable).
                         title: decision-user-url
                       decision-user-username:
                         type: string
                         example: user@example.com
                         description: >-
-                          Username of the [user](#tag/Users) that made the
-                          decision (if applicable).
+                          Username of the [user](http://docs.griffin.com) that
+                          made the decision (if applicable).
                         title: decision-user-username
                       decision-ops-user:
                         title: decision-ops-user
@@ -17768,7 +17812,7 @@ paths:
                       - decision-notes
                       - created-at
                     title: latest-decision
-                    description: The most recent [decision](#tag/Decisions)
+                    description: The most recent [decision](http://docs.griffin.com)
                   legal-person-type:
                     title: legal-person-type
                     enum:
@@ -17801,21 +17845,21 @@ paths:
                     type: string
                     description: >-
                       Status of the current
-                      [application](/docs/terms/application)
+                      [application](http://docs.griffin.com)
                   legal-person-url:
                     type: string
                     title: legal-person-url
                     example: /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA
                     description: >-
                       A contextual link to the [legal
-                      person](#tag/Legal-persons).
+                      person](http://docs.griffin.com).
                   legal-person-decisions-url:
                     type: string
                     title: legal-person-decisions-url
                     example: /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA/decisions
                     description: >-
-                      Link to [decisions](#tag/Decisions) for this [legal
-                      person](/docs/terms/legal-person).
+                      Link to [decisions](http://docs.griffin.com) for this
+                      [legal person](http://docs.griffin.com).
                   status-changed-at:
                     title: status-changed-at
                     format: date-time
@@ -17831,29 +17875,29 @@ paths:
                     title: legal-person-claims-url
                     example: /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA/claims
                     description: >-
-                      Link to the [claims](#tag/Claims) for this [legal
-                      person](/docs/terms/legal-person).
+                      Link to the [claims](http://docs.griffin.com) for this
+                      [legal person](http://docs.griffin.com).
                   legal-person-bank-payees-url:
                     type: string
                     title: legal-person-bank-payees-url
                     example: /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA/bank/payees
                     description: >-
-                      Link to the [payees](#tag/Payees) for this [legal
-                      person](/docs/terms/legal-person).
+                      Link to the [payees](http://docs.griffin.com) for this
+                      [legal person](http://docs.griffin.com).
                   legal-person-verifications-url:
                     type: string
                     title: legal-person-verifications-url
                     example: /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA/verifications
                     description: >-
-                      Link to all [verifications](#tag/Verifications) run
-                      against this [legal person](/docs/terms/legal-person).
+                      Link to all [verifications](http://docs.griffin.com) run
+                      against this [legal person](http://docs.griffin.com).
                   legal-person-documents-url:
                     type: string
                     title: legal-person-documents-url
                     example: /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA/documents
                     description: >-
                       Link to all evidence documents associated with this [legal
-                      person](/docs/terms/legal-person).
+                      person](http://docs.griffin.com).
                 required:
                   - created-at
                   - display-name
@@ -17882,8 +17926,8 @@ paths:
       tags:
         - Memberships
       description: >-
-        Returns this [organization's](#tag/Organizations)
-        [memberships](#tag/Memberships).
+        Returns this [organization's](http://docs.griffin.com)
+        [memberships](http://docs.griffin.com).
       parameters:
         - in: query
           name: sort
@@ -17950,14 +17994,15 @@ paths:
                           type: string
                           title: membership-url
                           example: /v0/memberships/mp.ICAgbWVtYmVyc2hpcC1pZA
-                          description: Link to the [membership](#tag/Memberships).
+                          description: Link to the [membership](http://docs.griffin.com).
                         membership-roles-url:
                           type: string
                           title: membership-roles-url
                           example: /v0/memberships/mp.ICAgbWVtYmVyc2hpcC1pZA/roles
                           description: >-
-                            Link to the assigned [roles](#tag/Roles) for this
-                            [membership](#tag/Memberships).
+                            Link to the assigned
+                            [roles](http://docs.griffin.com) for this
+                            [membership](http://docs.griffin.com).
                         organization:
                           type: object
                           properties:
@@ -17966,10 +18011,10 @@ paths:
                               title: own-legal-person-url
                               example: /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA
                               description: >-
-                                Link to the [legal person](#tag/Legal-persons)
-                                that represents the
-                                [organization](#tag/Organizations); this can be
-                                an individual or a company.
+                                Link to the [legal
+                                person](http://docs.griffin.com) that represents
+                                the [organization](http://docs.griffin.com);
+                                this can be an individual or a company.
                             organization-mode:
                               title: organization-mode
                               enum:
@@ -17980,15 +18025,16 @@ paths:
                                 The organization can either be a sandbox
                                 organization or a live one; Check out our guide
                                 for [sandbox mode vs live
-                                mode](/docs/concepts/sandbox-vs-live-mode).
+                                mode](http://docs.griffin.com).
                             organization-memberships-url:
                               type: string
                               title: organization-memberships-url
                               example: >-
                                 /v0/organizations/og.IG9yZ2FuaXphdGlvbi1pZA/memberships
                               description: >-
-                                Link to the [memberships](#tag/Memberships) for
-                                this [organization](#tag/Organizations).
+                                Link to the
+                                [memberships](http://docs.griffin.com) for this
+                                [organization](http://docs.griffin.com).
                             organization-invitations-url:
                               type: string
                               title: organization-invitations-url
@@ -17996,8 +18042,9 @@ paths:
                                 /v0/organizations/og.IG9yZ2FuaXphdGlvbi1pZA/invitations
                               description: >-
                                 Link to the resource that enables you to
-                                [invite](#tag/Invites) new [users](#tag/Users)
-                                to this [organization](#tag/Organizations).
+                                [invite](http://docs.griffin.com) new
+                                [users](http://docs.griffin.com) to this
+                                [organization](http://docs.griffin.com).
                             organization-onboarding-applications-url:
                               type: string
                               title: organization-onboarding-applications-url
@@ -18005,7 +18052,7 @@ paths:
                                 /v0/organizations/og.IG9yZ2FuaXphdGlvbi1pZA/onboarding/applications
                               description: >-
                                 Link to the [Reliance
-                                onboarding](#tag/Reliance-onboarding).
+                                onboarding](http://docs.griffin.com).
                             display-name:
                               type: string
                               minLength: 1
@@ -18041,17 +18088,18 @@ paths:
                                 /v0/organizations/og.IG9yZ2FuaXphdGlvbi1pZA/workflows
                               description: >-
                                 Link to the onboarding
-                                [workflows](#tag/Workflows) configured for this
-                                [organization](#tag/Organizations).
+                                [workflows](http://docs.griffin.com) configured
+                                for this
+                                [organization](http://docs.griffin.com).
                             organization-bank-accounts-url:
                               type: string
                               title: organization-bank-accounts-url
                               example: >-
                                 /v0/organizations/og.IG9yZ2FuaXphdGlvbi1pZA/bank/accounts
                               description: >-
-                                Link to the [bank accounts](#tag/Bank-accounts)
-                                managed by this
-                                [organization](#tag/Organizations).
+                                Link to the [bank
+                                accounts](http://docs.griffin.com) managed by
+                                this [organization](http://docs.griffin.com).
                             available-roles:
                               type: array
                               items:
@@ -18072,16 +18120,18 @@ paths:
                                     type: string
                                     title: role-url
                                     example: /v0/roles/re.ICAgICAgICAgcm9sZS1pZA
-                                    description: Link to the [role](#tag/Roles).
+                                    description: >-
+                                      Link to the
+                                      [role](http://docs.griffin.com).
                                 required:
                                   - display-name
                                   - description
                                   - role-url
                                 title: role
                               description: >-
-                                The subset of [roles](#tag/Roles) available to
-                                [members](#tag/Members) of this
-                                [organization](#tag/Organizations).
+                                The subset of [roles](http://docs.griffin.com)
+                                available to [members](http://docs.griffin.com)
+                                of this [organization](http://docs.griffin.com).
                               title: available-roles
                             can-decide-on-verifications?:
                               type: boolean
@@ -18093,7 +18143,9 @@ paths:
                               type: string
                               title: organization-url
                               example: /v0/organizations/og.IG9yZ2FuaXphdGlvbi1pZA
-                              description: Link to the [organization](#tag/Organizations).
+                              description: >-
+                                Link to the
+                                [organization](http://docs.griffin.com).
                             organization-individuals-url:
                               type: string
                               title: organization-individuals-url
@@ -18110,9 +18162,9 @@ paths:
                               example: >-
                                 /v0/organizations/og.IG9yZ2FuaXphdGlvbi1pZA/legal-persons
                               description: >-
-                                Link to the [legal persons](#tag/Legal-persons)
-                                grouped under this
-                                [organization](#tag/Organizations).
+                                Link to the [legal
+                                persons](http://docs.griffin.com) grouped under
+                                this [organization](http://docs.griffin.com).
                             organization-events-url:
                               type: string
                               title: organization-events-url
@@ -18159,14 +18211,16 @@ paths:
                                 type: string
                                 title: role-url
                                 example: /v0/roles/re.ICAgICAgICAgcm9sZS1pZA
-                                description: Link to the [role](#tag/Roles).
+                                description: Link to the [role](http://docs.griffin.com).
                             required:
                               - display-name
                               - description
                               - role-url
                             title: role
                           title: roles
-                          description: Shows a collection of [roles](#tag/Roles).
+                          description: >-
+                            Shows a collection of
+                            [roles](http://docs.griffin.com).
                         user:
                           type: object
                           properties:
@@ -18189,14 +18243,16 @@ paths:
                               type: string
                               title: api-keys-url
                               example: /v0/users/ur.ICAgICAgICAgdXNlci1pZA/api-keys
-                              description: Link to the user's [api keys](#tag/API-keys).
+                              description: >-
+                                Link to the user's [api
+                                keys](http://docs.griffin.com).
                             user-memberships-url:
                               type: string
                               title: user-memberships-url
                               example: /v0/users/ur.ICAgICAgICAgdXNlci1pZA/memberships
                               description: >-
                                 Link to the user's
-                                [memberships](#tag/Memberships).
+                                [memberships](http://docs.griffin.com).
                             given-name:
                               type: string
                             surname:
@@ -18208,7 +18264,9 @@ paths:
                             - api-keys-url
                             - user-memberships-url
                           title: user
-                          description: Shows the associated [user](#tag/Users).
+                          description: >-
+                            Shows the associated
+                            [user](http://docs.griffin.com).
                         created-at:
                           title: created-at
                           format: date-time
@@ -18270,7 +18328,7 @@ paths:
                   type: string
                   title: workflow-url
                   example: /v0/workflows/wf.ICAgICB3b3JrZmxvdy1pZA
-                  description: A link to the [workflow](/docs/terms/workflow).
+                  description: A link to the [workflow](http://docs.griffin.com).
                 subject-profile:
                   type: object
                   properties:
@@ -18578,7 +18636,7 @@ paths:
                                 example: /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA
                                 description: >-
                                   A contextual link to the [legal
-                                  person](#tag/Legal-persons).
+                                  person](http://docs.griffin.com).
                               ownership-percent:
                                 type: string
                                 format: ''
@@ -20334,7 +20392,7 @@ paths:
                                 example: /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA
                                 description: >-
                                   A contextual link to the [legal
-                                  person](#tag/Legal-persons).
+                                  person](http://docs.griffin.com).
                               companies-house-url:
                                 title: companies-house-url
                                 description: The URL of the entity in Companies House
@@ -20816,7 +20874,7 @@ paths:
                                   example: /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA
                                   description: >-
                                     A contextual link to the [legal
-                                    person](#tag/Legal-persons).
+                                    person](http://docs.griffin.com).
                                 ownership-percent:
                                   type: string
                                   format: ''
@@ -22578,7 +22636,7 @@ paths:
                                   example: /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA
                                   description: >-
                                     A contextual link to the [legal
-                                    person](#tag/Legal-persons).
+                                    person](http://docs.griffin.com).
                                 companies-house-url:
                                   title: companies-house-url
                                   description: The URL of the entity in Companies House
@@ -22752,13 +22810,13 @@ paths:
                           type: string
                           title: organization-url
                           example: /v0/organizations/og.IG9yZ2FuaXphdGlvbi1pZA
-                          description: Link to the [organization](#tag/Organizations).
+                          description: Link to the [organization](http://docs.griffin.com).
                         webhook-url:
                           type: string
                           minLength: 1
                           title: webhook-url
                           example: /v0/webhooks/wh.ICAgICAgd2ViaG9vay1pZA
-                          description: Link to the [webhook](#tag/Webhooks).
+                          description: Link to the [webhook](http://docs.griffin.com).
                         webhook-destination-url:
                           type: string
                           x-allOf:
@@ -22871,13 +22929,13 @@ paths:
                     type: string
                     title: organization-url
                     example: /v0/organizations/og.IG9yZ2FuaXphdGlvbi1pZA
-                    description: Link to the [organization](#tag/Organizations).
+                    description: Link to the [organization](http://docs.griffin.com).
                   webhook-url:
                     type: string
                     minLength: 1
                     title: webhook-url
                     example: /v0/webhooks/wh.ICAgICAgd2ViaG9vay1pZA
-                    description: Link to the [webhook](#tag/Webhooks).
+                    description: Link to the [webhook](http://docs.griffin.com).
                   webhook-destination-url:
                     type: string
                     x-allOf:
@@ -22935,7 +22993,7 @@ paths:
         - Workflows
       description: >-
         Lists workflows for use when creating a
-        [verification](#tag/Verifications).
+        [verification](http://docs.griffin.com).
       parameters:
         - in: query
           name: sort
@@ -23002,7 +23060,7 @@ paths:
                           type: string
                           title: workflow-url
                           example: /v0/workflows/wf.ICAgICB3b3JrZmxvdy1pZA
-                          description: A link to the [workflow](/docs/terms/workflow).
+                          description: A link to the [workflow](http://docs.griffin.com).
                         display-name:
                           type: string
                           minLength: 1
@@ -23150,7 +23208,7 @@ paths:
                     type: string
                     title: payee-url
                     example: /v0/payees/pe.ICAgICAgICBwYXllZS1pZA
-                    description: Link to the [payee](#tag/Payees).
+                    description: Link to the [payee](http://docs.griffin.com).
                   account-number:
                     type: string
                     x-allOf:
@@ -23166,16 +23224,14 @@ paths:
                     type: string
                     minLength: 1
                     title: account-holder
-                    description: >-
-                      The name of the [account
-                      holder](/docs/terms/account-holder).
+                    description: The name of the [account holder](http://docs.griffin.com).
                   legal-person-url:
                     type: string
                     title: legal-person-url
                     example: /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA
                     description: >-
                       A contextual link to the [legal
-                      person](#tag/Legal-persons).
+                      person](http://docs.griffin.com).
                   bank-id:
                     type: string
                     x-allOf:
@@ -23296,7 +23352,7 @@ paths:
                     type: string
                     title: payee-url
                     example: /v0/payees/pe.ICAgICAgICBwYXllZS1pZA
-                    description: Link to the [payee](#tag/Payees).
+                    description: Link to the [payee](http://docs.griffin.com).
                   account-number:
                     type: string
                     x-allOf:
@@ -23312,16 +23368,14 @@ paths:
                     type: string
                     minLength: 1
                     title: account-holder
-                    description: >-
-                      The name of the [account
-                      holder](/docs/terms/account-holder).
+                    description: The name of the [account holder](http://docs.griffin.com).
                   legal-person-url:
                     type: string
                     title: legal-person-url
                     example: /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA
                     description: >-
                       A contextual link to the [legal
-                      person](#tag/Legal-persons).
+                      person](http://docs.griffin.com).
                   bank-id:
                     type: string
                     x-allOf:
@@ -23412,7 +23466,7 @@ paths:
                             type: string
                             title: payee-url
                             example: /v0/payees/pe.ICAgICAgICBwYXllZS1pZA
-                            description: Link to the [payee](#tag/Payees).
+                            description: Link to the [payee](http://docs.griffin.com).
                           creditor-type:
                             enum:
                               - payee
@@ -23444,7 +23498,7 @@ paths:
                             title: account-holder
                             description: >-
                               The name of the [account
-                              holder](/docs/terms/account-holder).
+                              holder](http://docs.griffin.com).
                           account-number:
                             type: string
                             x-allOf:
@@ -23606,7 +23660,7 @@ paths:
                         title: account-holder
                         description: >-
                           The name of the [account
-                          holder](/docs/terms/account-holder).
+                          holder](http://docs.griffin.com).
                       account-url:
                         type: string
                         title: account-url
@@ -23671,7 +23725,7 @@ paths:
                         title: account-holder
                         description: >-
                           The name of the [account
-                          holder](/docs/terms/account-holder).
+                          holder](http://docs.griffin.com).
                       account-url:
                         type: string
                         title: account-url
@@ -24093,14 +24147,14 @@ paths:
                           type: string
                           title: role-url
                           example: /v0/roles/re.ICAgICAgICAgcm9sZS1pZA
-                          description: Link to the [role](#tag/Roles).
+                          description: Link to the [role](http://docs.griffin.com).
                       required:
                         - display-name
                         - description
                         - role-url
                       title: role
                     title: roles
-                    description: Shows a collection of [roles](#tag/Roles).
+                    description: Shows a collection of [roles](http://docs.griffin.com).
                 required:
                   - roles
                 title: roles-response
@@ -24136,7 +24190,7 @@ paths:
                     type: string
                     title: role-url
                     example: /v0/roles/re.ICAgICAgICAgcm9sZS1pZA
-                    description: Link to the [role](#tag/Roles).
+                    description: Link to the [role](http://docs.griffin.com).
                 required:
                   - display-name
                   - description
@@ -24300,12 +24354,12 @@ paths:
                     type: string
                     title: api-keys-url
                     example: /v0/organizations/og.IG9yZ2FuaXphdGlvbi1pZA/api-keys
-                    description: Link to the user's [api keys](#tag/API-keys).
+                    description: Link to the user's [api keys](http://docs.griffin.com).
                   user-memberships-url:
                     type: string
                     title: user-memberships-url
                     example: /v0/users/ur.ICAgICAgICAgdXNlci1pZA/memberships
-                    description: Link to the user's [memberships](#tag/Memberships).
+                    description: Link to the user's [memberships](http://docs.griffin.com).
                   given-name:
                     type: string
                   surname:
@@ -24317,7 +24371,7 @@ paths:
                   - api-keys-url
                   - user-memberships-url
                 title: user
-                description: Shows the associated [user](#tag/Users).
+                description: Shows the associated [user](http://docs.griffin.com).
         '400':
           description: ''
         '401':
@@ -24415,7 +24469,7 @@ paths:
                           type: string
                           title: organization-url
                           example: /v0/organizations/og.IG9yZ2FuaXphdGlvbi1pZA
-                          description: Link to the [organization](#tag/Organizations).
+                          description: Link to the [organization](http://docs.griffin.com).
                         user-url:
                           type: string
                           title: user-url
@@ -24465,7 +24519,9 @@ paths:
     get:
       tags:
         - Memberships
-      description: Returns this [user's](#tag/Users) [memberships](#tag/Memberships).
+      description: >-
+        Returns this [user's](http://docs.griffin.com)
+        [memberships](http://docs.griffin.com).
       parameters:
         - in: query
           name: sort
@@ -24532,14 +24588,15 @@ paths:
                           type: string
                           title: membership-url
                           example: /v0/memberships/mp.ICAgbWVtYmVyc2hpcC1pZA
-                          description: Link to the [membership](#tag/Memberships).
+                          description: Link to the [membership](http://docs.griffin.com).
                         membership-roles-url:
                           type: string
                           title: membership-roles-url
                           example: /v0/memberships/mp.ICAgbWVtYmVyc2hpcC1pZA/roles
                           description: >-
-                            Link to the assigned [roles](#tag/Roles) for this
-                            [membership](#tag/Memberships).
+                            Link to the assigned
+                            [roles](http://docs.griffin.com) for this
+                            [membership](http://docs.griffin.com).
                         organization:
                           type: object
                           properties:
@@ -24548,10 +24605,10 @@ paths:
                               title: own-legal-person-url
                               example: /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA
                               description: >-
-                                Link to the [legal person](#tag/Legal-persons)
-                                that represents the
-                                [organization](#tag/Organizations); this can be
-                                an individual or a company.
+                                Link to the [legal
+                                person](http://docs.griffin.com) that represents
+                                the [organization](http://docs.griffin.com);
+                                this can be an individual or a company.
                             organization-mode:
                               title: organization-mode
                               enum:
@@ -24562,15 +24619,16 @@ paths:
                                 The organization can either be a sandbox
                                 organization or a live one; Check out our guide
                                 for [sandbox mode vs live
-                                mode](/docs/concepts/sandbox-vs-live-mode).
+                                mode](http://docs.griffin.com).
                             organization-memberships-url:
                               type: string
                               title: organization-memberships-url
                               example: >-
                                 /v0/organizations/og.IG9yZ2FuaXphdGlvbi1pZA/memberships
                               description: >-
-                                Link to the [memberships](#tag/Memberships) for
-                                this [organization](#tag/Organizations).
+                                Link to the
+                                [memberships](http://docs.griffin.com) for this
+                                [organization](http://docs.griffin.com).
                             organization-invitations-url:
                               type: string
                               title: organization-invitations-url
@@ -24578,8 +24636,9 @@ paths:
                                 /v0/organizations/og.IG9yZ2FuaXphdGlvbi1pZA/invitations
                               description: >-
                                 Link to the resource that enables you to
-                                [invite](#tag/Invites) new [users](#tag/Users)
-                                to this [organization](#tag/Organizations).
+                                [invite](http://docs.griffin.com) new
+                                [users](http://docs.griffin.com) to this
+                                [organization](http://docs.griffin.com).
                             organization-onboarding-applications-url:
                               type: string
                               title: organization-onboarding-applications-url
@@ -24587,7 +24646,7 @@ paths:
                                 /v0/organizations/og.IG9yZ2FuaXphdGlvbi1pZA/onboarding/applications
                               description: >-
                                 Link to the [Reliance
-                                onboarding](#tag/Reliance-onboarding).
+                                onboarding](http://docs.griffin.com).
                             display-name:
                               type: string
                               minLength: 1
@@ -24623,17 +24682,18 @@ paths:
                                 /v0/organizations/og.IG9yZ2FuaXphdGlvbi1pZA/workflows
                               description: >-
                                 Link to the onboarding
-                                [workflows](#tag/Workflows) configured for this
-                                [organization](#tag/Organizations).
+                                [workflows](http://docs.griffin.com) configured
+                                for this
+                                [organization](http://docs.griffin.com).
                             organization-bank-accounts-url:
                               type: string
                               title: organization-bank-accounts-url
                               example: >-
                                 /v0/organizations/og.IG9yZ2FuaXphdGlvbi1pZA/bank/accounts
                               description: >-
-                                Link to the [bank accounts](#tag/Bank-accounts)
-                                managed by this
-                                [organization](#tag/Organizations).
+                                Link to the [bank
+                                accounts](http://docs.griffin.com) managed by
+                                this [organization](http://docs.griffin.com).
                             available-roles:
                               type: array
                               items:
@@ -24654,16 +24714,18 @@ paths:
                                     type: string
                                     title: role-url
                                     example: /v0/roles/re.ICAgICAgICAgcm9sZS1pZA
-                                    description: Link to the [role](#tag/Roles).
+                                    description: >-
+                                      Link to the
+                                      [role](http://docs.griffin.com).
                                 required:
                                   - display-name
                                   - description
                                   - role-url
                                 title: role
                               description: >-
-                                The subset of [roles](#tag/Roles) available to
-                                [members](#tag/Members) of this
-                                [organization](#tag/Organizations).
+                                The subset of [roles](http://docs.griffin.com)
+                                available to [members](http://docs.griffin.com)
+                                of this [organization](http://docs.griffin.com).
                               title: available-roles
                             can-decide-on-verifications?:
                               type: boolean
@@ -24675,7 +24737,9 @@ paths:
                               type: string
                               title: organization-url
                               example: /v0/organizations/og.IG9yZ2FuaXphdGlvbi1pZA
-                              description: Link to the [organization](#tag/Organizations).
+                              description: >-
+                                Link to the
+                                [organization](http://docs.griffin.com).
                             organization-individuals-url:
                               type: string
                               title: organization-individuals-url
@@ -24692,9 +24756,9 @@ paths:
                               example: >-
                                 /v0/organizations/og.IG9yZ2FuaXphdGlvbi1pZA/legal-persons
                               description: >-
-                                Link to the [legal persons](#tag/Legal-persons)
-                                grouped under this
-                                [organization](#tag/Organizations).
+                                Link to the [legal
+                                persons](http://docs.griffin.com) grouped under
+                                this [organization](http://docs.griffin.com).
                             organization-events-url:
                               type: string
                               title: organization-events-url
@@ -24741,14 +24805,16 @@ paths:
                                 type: string
                                 title: role-url
                                 example: /v0/roles/re.ICAgICAgICAgcm9sZS1pZA
-                                description: Link to the [role](#tag/Roles).
+                                description: Link to the [role](http://docs.griffin.com).
                             required:
                               - display-name
                               - description
                               - role-url
                             title: role
                           title: roles
-                          description: Shows a collection of [roles](#tag/Roles).
+                          description: >-
+                            Shows a collection of
+                            [roles](http://docs.griffin.com).
                         user:
                           type: object
                           properties:
@@ -24771,14 +24837,16 @@ paths:
                               type: string
                               title: api-keys-url
                               example: /v0/users/ur.ICAgICAgICAgdXNlci1pZA/api-keys
-                              description: Link to the user's [api keys](#tag/API-keys).
+                              description: >-
+                                Link to the user's [api
+                                keys](http://docs.griffin.com).
                             user-memberships-url:
                               type: string
                               title: user-memberships-url
                               example: /v0/users/ur.ICAgICAgICAgdXNlci1pZA/memberships
                               description: >-
                                 Link to the user's
-                                [memberships](#tag/Memberships).
+                                [memberships](http://docs.griffin.com).
                             given-name:
                               type: string
                             surname:
@@ -24790,7 +24858,9 @@ paths:
                             - api-keys-url
                             - user-memberships-url
                           title: user
-                          description: Shows the associated [user](#tag/Users).
+                          description: >-
+                            Shows the associated
+                            [user](http://docs.griffin.com).
                         created-at:
                           title: created-at
                           format: date-time
@@ -24854,7 +24924,7 @@ paths:
                     type: string
                     title: verification-url
                     example: /v0/verifications/vn.IHZlcmlmaWNhdGlvbi1pZA
-                    description: A link to the [verification](#tag/Verifications).
+                    description: A link to the [verification](http://docs.griffin.com).
                   updated-at:
                     title: updated-at
                     format: date-time
@@ -24866,12 +24936,12 @@ paths:
                     example: /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA
                     description: >-
                       A contextual link to the [legal
-                      person](#tag/Legal-persons).
+                      person](http://docs.griffin.com).
                   workflow-url:
                     type: string
                     title: workflow-url
                     example: /v0/workflows/wf.ICAgICB3b3JrZmxvdy1pZA
-                    description: A link to the [workflow](/docs/terms/workflow).
+                    description: A link to the [workflow](http://docs.griffin.com).
                   created-at:
                     title: created-at
                     format: date-time
@@ -24945,13 +25015,13 @@ paths:
                     type: string
                     title: organization-url
                     example: /v0/organizations/og.IG9yZ2FuaXphdGlvbi1pZA
-                    description: Link to the [organization](#tag/Organizations).
+                    description: Link to the [organization](http://docs.griffin.com).
                   webhook-url:
                     type: string
                     minLength: 1
                     title: webhook-url
                     example: /v0/webhooks/wh.ICAgICAgd2ViaG9vay1pZA
-                    description: Link to the [webhook](#tag/Webhooks).
+                    description: Link to the [webhook](http://docs.griffin.com).
                   webhook-destination-url:
                     type: string
                     x-allOf:
@@ -25066,13 +25136,13 @@ paths:
                     type: string
                     title: organization-url
                     example: /v0/organizations/og.IG9yZ2FuaXphdGlvbi1pZA
-                    description: Link to the [organization](#tag/Organizations).
+                    description: Link to the [organization](http://docs.griffin.com).
                   webhook-url:
                     type: string
                     minLength: 1
                     title: webhook-url
                     example: /v0/webhooks/wh.ICAgICAgd2ViaG9vay1pZA
-                    description: Link to the [webhook](#tag/Webhooks).
+                    description: Link to the [webhook](http://docs.griffin.com).
                   webhook-destination-url:
                     type: string
                     x-allOf:
@@ -25147,13 +25217,13 @@ paths:
                     type: string
                     title: organization-url
                     example: /v0/organizations/og.IG9yZ2FuaXphdGlvbi1pZA
-                    description: Link to the [organization](#tag/Organizations).
+                    description: Link to the [organization](http://docs.griffin.com).
                   webhook-url:
                     type: string
                     minLength: 1
                     title: webhook-url
                     example: /v0/webhooks/wh.ICAgICAgd2ViaG9vay1pZA
-                    description: Link to the [webhook](#tag/Webhooks).
+                    description: Link to the [webhook](http://docs.griffin.com).
                   webhook-destination-url:
                     type: string
                     x-allOf:
@@ -25228,13 +25298,13 @@ paths:
                     type: string
                     title: organization-url
                     example: /v0/organizations/og.IG9yZ2FuaXphdGlvbi1pZA
-                    description: Link to the [organization](#tag/Organizations).
+                    description: Link to the [organization](http://docs.griffin.com).
                   webhook-url:
                     type: string
                     minLength: 1
                     title: webhook-url
                     example: /v0/webhooks/wh.ICAgICAgd2ViaG9vay1pZA
-                    description: Link to the [webhook](#tag/Webhooks).
+                    description: Link to the [webhook](http://docs.griffin.com).
                   webhook-destination-url:
                     type: string
                     x-allOf:
@@ -25477,7 +25547,7 @@ paths:
                     type: string
                     title: workflow-url
                     example: /v0/workflows/wf.ICAgICB3b3JrZmxvdy1pZA
-                    description: A link to the [workflow](/docs/terms/workflow).
+                    description: A link to the [workflow](http://docs.griffin.com).
                   display-name:
                     type: string
                     minLength: 1

@@ -1,0 +1,1506 @@
+openapi: 3.1.0
+x-stoplight:
+  id: v4f9fwzq9hclo
+info:
+  title: Zapier Embed API
+  version: 1.0.0
+  description: The Zapier Embed API.
+  contact:
+    email: contact@zapier.com
+    name: Zapier
+    url: https://help.zapier.com/hc/en-us
+  x-api-id: 370df4a0-2f97-4972-873f-eef6ac607531
+  x-audience: external-partner
+servers:
+  - url: https://api.zapier.com/v2
+    description: Production
+tags:
+  - name: Actions
+    description: Endpoints or functions that leverage Actions.
+  - name: Apps
+    description: Endpoints or functions that leverage Apps.
+  - name: Authentications
+    description: Endpoints or functions that leverage Authentications.
+  - name: Zaps
+    description: Endpoints or functions that leverage Zaps.
+  - name: Experimental
+    description: Endpoints or functions under this category are in the experimental phase.
+paths:
+  /actions:
+    get:
+      operationId: get-actions
+      description: >-
+        Fetch the available actions for the provided App. It's typical to filter
+        by type so that only actions that make sense for a particular step are
+        shown. For example only showing reads for the first step in a Zap.
+
+
+        This endpoint requires the `zap` OAuth scope.
+
+
+        This API is rate limited by IP address (60 requests per min), or partner
+        (150 requests per min), whichever occurs first.
+      summary: Get Actions
+      parameters:
+        - $ref: '#/components/parameters/app'
+        - $ref: '#/components/parameters/action_type'
+      tags:
+        - Actions
+      responses:
+        '200':
+          description: A valid response for fetching available actions for the App.
+          content:
+            application/vnd.api+json:
+              schema:
+                type: object
+                additionalProperties: false
+                properties:
+                  links:
+                    $ref: '#/components/schemas/Links'
+                  meta:
+                    $ref: '#/components/schemas/Meta'
+                  data:
+                    x-stoplight:
+                      id: y66uevss99ldk
+                    type: array
+                    items:
+                      $ref: ../models/Action.yaml
+                      x-stoplight:
+                        id: 08691ffzj6wm3
+              examples:
+                ActionsExample:
+                  value:
+                    links:
+                      next: null
+                      prev: null
+                    meta:
+                      limit: 10
+                      offset: 0
+                      count: 1
+                    data:
+                      - type: action
+                        id: uag:1f188536-6dd0-4172-8414-2b90914ddee9
+                        key: new_lead
+                        action_type: READ
+                        app: 83b47c0e-adda-44da-a45d-42565fe521ef
+                        description: Triggers when a new lead is added to SuperExampleCRM
+                        is_instant: true
+                        title: New Lead
+        '404':
+          $ref: '#/components/responses/FourOhFourError'
+        '406':
+          $ref: '#/components/responses/FourOhSixError'
+        '415':
+          $ref: '#/components/responses/FourFifteenError'
+        default:
+          $ref: '#/components/responses/DefaultError'
+    parameters: []
+  /authentications:
+    get:
+      operationId: get-authentications
+      description: >-
+        Fetch the available Authentications for the provided App. This will only
+        return Authentications that are owned by the user and not those that are
+        shared with them, since it''s not possible to create Zaps with
+        Authentications you don''t own.
+
+
+        This endpoint requires the `authentication` OAuth scope.
+
+
+        This API is rate limited by IP address (60 requests per min), or partner
+        (150 requests per min), whichever occurs first.
+      summary: Get Authentications
+      parameters:
+        - $ref: '#/components/parameters/app'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/offset'
+      tags:
+        - Authentications
+      requestBody:
+        content: {}
+      responses:
+        '200':
+          content:
+            application/vnd.api+json:
+              schema:
+                type: object
+                additionalProperties: false
+                properties:
+                  links:
+                    $ref: '#/components/schemas/Links'
+                  meta:
+                    $ref: '#/components/schemas/Meta'
+                  data:
+                    x-stoplight:
+                      id: 8xv9pjeka9p4w
+                    type: array
+                    items:
+                      $ref: ../models/Authentication.yaml
+                      x-stoplight:
+                        id: oglwzigsyobyg
+              examples:
+                AuthenticationsExample:
+                  value:
+                    links:
+                      next: null
+                      prev: null
+                    meta:
+                      limit: 10
+                      offset: 0
+                      count: 1
+                    data:
+                      - type: authentication
+                        id: b3eYnwl
+                        app: b61ae76e-487b-4622-8679-df3d3e20bccc
+                        is_expired: false
+                        title: SuperExampleCRM (example@zapier.com)
+          description: >-
+            A successful request to get available Authentications for the
+            provided App.
+        '404':
+          $ref: '#/components/responses/FourOhFourError'
+        '406':
+          $ref: '#/components/responses/FourOhSixError'
+        '415':
+          $ref: '#/components/responses/FourFifteenError'
+        default:
+          $ref: '#/components/responses/DefaultError'
+    post:
+      operationId: create-authentication
+      description: >-
+        Creates a new Authentication for the provided App.
+
+
+        This endpoint requires the `authentication:write` OAuth scope.
+
+
+        This API is rate limited by IP address (60 requests per min), or partner
+        (150 requests per min), whichever occurs first.
+      summary: Create Authentication
+      tags:
+        - Authentications
+      requestBody:
+        required: true
+        content:
+          application/vnd.api+json:
+            schema:
+              type: object
+              properties:
+                data:
+                  type: object
+                  x-stoplight:
+                    id: ikchkp3loucw7
+                  properties:
+                    title:
+                      type: string
+                      maxLength: 255
+                      description: The title of the authentication.
+                      example: SuperExampleCRM (example@zapier.com)
+                      x-stoplight:
+                        id: qsah1luqpw3aw
+                    app:
+                      type: string
+                      description: A canonical App ID, as provided by the `/apps` endpoint.
+                      format: uuid
+                      example: 868f9d3c-2ea0-4f19-a32d-a61b276ab8de
+                      x-stoplight:
+                        id: 4t3xjr9hkys93
+                    authentication_fields:
+                      type: object
+                      description: >-
+                        Required values to create an authentication. These
+                        values will be used by the target integration to
+                        successfully create the Authentication
+                        https://platform.zapier.com/build/auth.
+                      x-stoplight:
+                        id: qjdjpcuahd3ah
+                  required:
+                    - title
+                    - app
+                    - authentication_fields
+        description: Inputs to create a new Authentication
+      responses:
+        '201':
+          description: A successful response to create a new Authentication
+          content:
+            application/vnd.api+json:
+              schema:
+                type: object
+                properties:
+                  links:
+                    $ref: '#/components/schemas/Links'
+                    x-stoplight:
+                      id: n7dl4exiymwf5
+                  meta:
+                    $ref: '#/components/schemas/Meta'
+                    x-stoplight:
+                      id: tnsnoe6rr38by
+                  data:
+                    type: array
+                    x-stoplight:
+                      id: sp4f7twbjuyvt
+                    items:
+                      $ref: ../models/Authentication.yaml
+                      x-stoplight:
+                        id: lxvorbxynz7q4
+              examples:
+                AuthenticationsExample:
+                  value:
+                    links:
+                      next: null
+                      prev: null
+                    meta:
+                      limit: 10
+                      offset: 0
+                      count: 1
+                    data:
+                      - type: authentication
+                        id: b3eYnwl
+                        app: b61ae76e-487b-4622-8679-df3d3e20bccc
+                        is_expired: false
+                        title: SuperExampleCRM (example@zapier.com)
+        '406':
+          $ref: '#/components/responses/FourOhSixError'
+        '415':
+          $ref: '#/components/responses/FourFifteenError'
+        default:
+          $ref: '#/components/responses/DefaultError'
+    parameters: []
+  /actions/{action}/inputs:
+    post:
+      operationId: get-fields-inputs
+      description: >-
+        Get the Input Fields for a particular Action, using the provided
+        authentication and inputs.
+
+
+        This endpoint requires the `zap:write` OAuth scope.
+
+
+        This API is rate limited by IP address (60 requests per min), or partner
+        (150 requests per min), whichever occurs first.
+      parameters: []
+      summary: Get Input Fields
+      tags:
+        - Actions
+      requestBody:
+        $ref: '#/components/requestBodies/Inputs'
+        examples:
+          Example 1:
+            value:
+              authentication: b3eYnwl
+              inputs:
+                deal_pipeline: My Awesome Pipeline
+              limit: 10
+              offset: 0
+      responses:
+        '200':
+          description: >-
+            A successful response for getting the input fields for a particular
+            Action.
+          content:
+            application/vnd.api+json:
+              schema:
+                type: object
+                additionalProperties: false
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta'
+                  data:
+                    x-stoplight:
+                      id: d12jbgm654li9
+                    type: array
+                    items:
+                      x-stoplight:
+                        id: oqly4mdn0oahi
+                      anyOf:
+                        - $ref: ../models/Input-Field.yaml
+                          x-stoplight:
+                            id: aa89vbos7u7bt
+                        - $ref: ../models/Fieldset.yaml
+                          x-stoplight:
+                            id: hhdrvc5sgwy4m
+                        - $ref: ../models/Info-Field.yaml
+                          x-stoplight:
+                            id: 22g4l4bd4w92z
+        '404':
+          $ref: '#/components/responses/FourOhFourError'
+        '406':
+          $ref: '#/components/responses/FourOhSixError'
+        '415':
+          $ref: '#/components/responses/FourFifteenError'
+        default:
+          $ref: '#/components/responses/DefaultError'
+      x-internal: false
+    parameters:
+      - $ref: '#/components/parameters/action'
+  /actions/{action}/outputs:
+    post:
+      operationId: get-fields-outputs
+      description: >-
+        Get the Output Fields for a particular Action, using the provided
+        authentication and inputs.
+
+
+        This endpoint requires the `zap:write` OAuth scope.
+
+
+        This API is rate limited by IP address (60 requests per min).
+      summary: Get Output Fields
+      parameters: []
+      tags:
+        - Actions
+      requestBody:
+        $ref: '#/components/requestBodies/Outputs'
+        examples:
+          Example 1:
+            value:
+              authentication: b3eYnwl
+              fetch_live_samples: true
+              inputs:
+                deal_pipeline: My Awesome Pipeline
+              limit: 10
+              offset: 0
+      responses:
+        '200':
+          description: A successful request to get the Output Fields for an Action.
+          content:
+            application/vnd.api+json:
+              schema:
+                type: object
+                additionalProperties: false
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta'
+                  data:
+                    type: array
+                    items:
+                      $ref: ../models/Output-Field.yaml
+              examples:
+                OutputFieldsExample:
+                  value:
+                    meta:
+                      limit: 10
+                      offset: 0
+                      count: 1
+                    data:
+                      - type: output_field
+                        id: first_name
+                        sample: Wade
+                        title: First Name
+        '404':
+          $ref: '#/components/responses/FourOhFourError'
+        '406':
+          $ref: '#/components/responses/FourOhSixError'
+        '415':
+          $ref: '#/components/responses/FourFifteenError'
+        default:
+          $ref: '#/components/responses/DefaultError'
+      x-internal: false
+    parameters:
+      - $ref: '#/components/parameters/action'
+  /actions/{action}/inputs/{input}/choices:
+    parameters:
+      - name: action
+        in: path
+        required: true
+        schema:
+          type: string
+          example: uag:87b1c14e-ef30-43d5-9395-6c6514dbb123
+        description: An Action ID, as provided by the `/actions` endpoint.
+      - schema:
+          type: string
+          example: lead_id
+        name: input
+        in: path
+        required: true
+        description: An Input Field ID, as provided by the `/inputs` endpoint.
+    post:
+      operationId: get-choices
+      summary: Get Choices
+      description: >-
+        Get the possible values for an Input Field that is marked as `SELECT`.
+
+
+        This endpoint requires the `zap` OAuth scope.
+
+
+        This API is rate limited by IP address (60 requests per min), or partner
+        (150 requests per min), whichever occurs first.
+      parameters:
+        - schema:
+            type: string
+            default: '1'
+            example: '1'
+          in: query
+          name: page
+          description: The page of choices to return, defaults to the first
+      tags:
+        - Actions
+      requestBody:
+        content:
+          application/vnd.api+json:
+            schema:
+              type: object
+              x-examples:
+                Example 1:
+                  data:
+                    authentication: J2PlD7Rt
+                    inputs:
+                      worksheet: 123_nKsdw34
+              properties:
+                data:
+                  type: object
+                  required:
+                    - authentication
+                  properties:
+                    authentication:
+                      type: string
+                    inputs:
+                      type: object
+              required:
+                - data
+        description: ''
+      responses:
+        '200':
+          description: A successful response for getting the requested Input Fields.
+          content:
+            application/vnd.api+json:
+              schema:
+                type: object
+                additionalProperties: false
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: ../models/Choice.yaml
+                  meta:
+                    $ref: '#/components/schemas/MetaWithPage'
+                  links:
+                    $ref: '#/components/schemas/LinksWithPage'
+                    x-stoplight:
+                      id: b7vo65yrboxrv
+              examples:
+                GetChoicesExample:
+                  value:
+                    meta:
+                      page: 10
+                    data:
+                      - type: choice
+                        id: usa
+                        label: United States of America
+                        value: usa
+        '404':
+          $ref: '#/components/responses/FourOhFourError'
+        '406':
+          $ref: '#/components/responses/FourOhSixError'
+        '415':
+          $ref: '#/components/responses/FourFifteenError'
+        default:
+          $ref: '#/components/responses/DefaultError'
+      x-internal: false
+  /apps:
+    get:
+      operationId: get-v2-apps
+      description: >-
+        This endpoint returns a list of popular apps.  Keep in mind that Zapier
+        built-in apps will not be returned and the order of the result is by app
+        popularity.
+
+
+        This endpoint requires the `zap` OAuth scope.
+
+
+        This API is rate limited by IP address (60 requests per min), or partner
+        (150 requests per min), whichever occurs first.
+      summary: Get Apps
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: limit
+          description: Used for paginating results. Specifies the amount of apps to return.
+        - schema:
+            type: integer
+          in: query
+          name: offset
+          description: >-
+            Used for paginating results. Specifies the offset of the apps to
+            return.
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+          description: >-
+            Provide the users access token in the format `Bearer
+            ACCESS_TOKEN_HERE`. It is required to either provide this header, or
+            to provide the `client_id` query parameter.
+        - schema:
+            type: string
+          in: query
+          name: category
+          description: >-
+            Categories that apps must have in order to be returned in the
+            response. E.g. Accounting (`accounting`), AI Tools (`ai-tools`), and
+            All (`all`).
+
+            The full list of valid categories can be retrieved using the
+            `category` endpoint, detailed
+            [here](https://platform.zapier.com/embed/partner-api#get-v1categories).
+        - schema:
+            type: string
+          in: query
+          name: query
+          description: >-
+            Parameter to limit the results to apps whose titles match the
+            provided query.
+        - schema:
+            type: string
+          in: query
+          name: ids
+          description: >-
+            Parameter to restrict the results to apps whose ID matches those in
+            the provided comma-separated value. Cannot be combined with
+            `category`.
+      tags:
+        - Apps
+      requestBody:
+        content: {}
+      responses:
+        '200':
+          content:
+            application/vnd.api+json:
+              schema:
+                type: object
+                additionalProperties: false
+                properties:
+                  links:
+                    $ref: '#/components/schemas/Links'
+                  meta:
+                    $ref: '#/components/schemas/Meta'
+                  data:
+                    type: array
+                    items:
+                      $ref: ../models/App.yaml
+                      x-stoplight:
+                        id: vuqdljvf1dkfx
+              examples:
+                GetAppsExample:
+                  value:
+                    data:
+                      - type: app
+                        id: 1e4fcbf4-d80b-4ec3-b33b-c085f1ecbbaa
+                        categories:
+                          - slug: partners
+                        description: >-
+                          HubSpot is your all-in-one stop for all of your
+                          marketing software needs.
+                        hex_color: 8bcbca
+                        image: >-
+                          https://zapier-images.imgix.net/storage/developer/cde9764aa8d19fdd6d591455dbe5a78d.png?auto=format%2Ccompress&ixlib=python-3.0.0&q=50
+                        images:
+                          url_16x16: >-
+                            https://zapier-images.imgix.net/storage/developer/cde9764aa8d19fdd6d591455dbe5a78d.png?auto=format%2Ccompress&fit=crop&h=16&ixlib=python-3.0.0&q=50&w=16
+                          url_32x32: >-
+                            https://zapier-images.imgix.net/storage/developer/cde9764aa8d19fdd6d591455dbe5a78d.png?auto=format%2Ccompress&fit=crop&h=32&ixlib=python-3.0.0&q=50&w=32
+                          url_64x64: >-
+                            https://zapier-images.imgix.net/storage/developer/cde9764aa8d19fdd6d591455dbe5a78d.png?auto=format%2Ccompress&fit=crop&h=64&ixlib=python-3.0.0&q=50&w=64
+                          url_128x128: >-
+                            https://zapier-images.imgix.net/storage/developer/cde9764aa8d19fdd6d591455dbe5a78d.png?auto=format%2Ccompress&fit=crop&h=128&ixlib=python-3.0.0&q=50&w=128
+                        title: HubSpot
+                        links:
+                          connect_new_authentication: >-
+                            https://zapier.com/engine/auth/start/HubSpotCLIAPI@1.7.1?redirect=https%3A%2F%2Fapi.zapier.com%2Fv2%2Fauthentications%2Fredirect
+                    links:
+                      next: https://api.zapier.com/v2/apps?offset=20&limit=10
+                      prev: https://api.zapier.com/v2/apps?offset=0&limit=10
+                    meta:
+                      limit: 10
+                      offset: 10
+                      count: 133
+          description: OK
+        '401':
+          content:
+            application/vnd.api+json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    x-stoplight:
+                      id: vdmg3yluafenr
+                    items:
+                      $ref: ../models/JSON-Error.yaml
+                      x-stoplight:
+                        id: l58vecxneaykz
+          description: Unauthorized
+        default:
+          $ref: '#/components/responses/DefaultError'
+    parameters: []
+  /zap-runs:
+    get:
+      operationId: get-zap-runs
+      description: >-
+        This endpoint is a first version tool that delivers basic yet essential
+        details about their executed Zap runs. As an evolving interface, this
+        first version serves foundational information about Zap runs.
+
+
+        _However, it's important to note that this is an initial implementation
+        and the **response payload is not definitive**. Our aim is to
+        continually iterate and enhance this API, refining its capabilities and
+        data output, to progressively deliver more valuable and useful
+        information in future versions._
+
+
+        This endpoint requires the `zap:runs` OAuth scope.
+
+
+        This API is rate limited by IP address (60 requests per min), or partner
+        (150 requests per min), whichever occurs first.
+
+
+        Please note that since this is an experimental tool, if you're
+        interested in gaining access, you must contact our support team.
+      summary: Get Zap Runs
+      parameters:
+        - schema:
+            type: string
+            example: '2024-01-01T10:09:08.07'
+          in: query
+          name: from_date
+          description: >-
+            Find Zap runs equal to or newer than this date. If not provided,
+            results default to last 30 days' Zap Runs.
+        - schema:
+            type: string
+            example: '2023-01-02T11:10:09.08'
+          in: query
+          name: to_date
+          description: Find Zap runs less than this date.
+        - schema:
+            type: string
+            example: 001fa849-dc8e-aca6-a09b-ba705bceada1
+          in: query
+          name: zap_id
+          description: Find Zap runs for the specified Zap ID.
+        - schema:
+            type: integer
+            example: 10
+          in: query
+          name: limit
+          description: Maximum number of returned Zap Runs.
+        - schema:
+            type: integer
+            example: 10
+          in: query
+          name: offset
+          description: Number of Zap Runs to skip.
+        - schema:
+            type: string
+            maxLength: 150
+          in: query
+          name: search
+          description: >-
+            Performs a text search against the `zap_title`, `data_in`, and
+            `data_out` fields, returning only zap runs that match the specified
+            keywords.
+        - schema:
+            type: string
+            example: throttled
+            enum:
+              - delayed
+              - scheduled
+              - pending
+              - error
+              - error_handled
+              - halted
+              - throttled
+              - held
+              - filtered
+              - skipped
+              - success
+          in: query
+          name: statuses
+          description: >-
+            Accepts one or more status values separated by commas, enabling the
+            filtering of zap runs based on the specified status or statuses
+            provided.
+      tags:
+        - Experimental
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    description: The list of Zap Runs.
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ZapRun'
+                  links:
+                    $ref: '#/components/schemas/Links'
+                  Meta:
+                    $ref: '#/components/schemas/Meta'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      $ref: ../models/JSON-Error.yaml
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      $ref: ../models/JSON-Error.yaml
+      x-internal: false
+    parameters: []
+  /zaps:
+    get:
+      operationId: get-v2-zaps
+      description: >-
+        This endpoint returns a list of Zaps for the authenticated Zapier user.
+
+
+        The `expand` array can be used to expand selected fields into full
+        objects in the response.  Inputs with keys can also be passed to filter
+        Zaps by certain criteria.
+
+
+        This endpoint requires the `zap` OAuth scope.
+
+
+        This API is rate limited by IP address (60 requests per min), or partner
+        (150 requests per min), whichever occurs first.
+      summary: Get Zaps
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: limit
+          description: Used for paginating results. Specifies the amount of apps to return
+        - schema:
+            type: integer
+          in: query
+          name: offset
+          description: >-
+            Used for paginating results. Specifies the offset of the apps to
+            return
+        - schema:
+            type: object
+            additionalProperties:
+              type: string
+          in: query
+          name: inputs
+          style: deepObject
+          description: >-
+            You may pass inputs[KEY]=VALUE1,VALUE2 to filter for Zaps that
+            contain those settings. For example, if your OAuth app is Trello you
+            may filter for Zaps that contain a certain Trello board using
+            inputs[board]=BOARD_ID — Keys are defined by your app on the
+            developer platform.
+          allowReserved: true
+        - schema:
+            type: string
+            example: steps.action
+          in: query
+          name: expand
+          description: >-
+            A comma separated list of Zap fields that should be expanded from
+            ids to full objects in the response. If a field may not be expanded,
+            its encoded form will be returned instead.
+      tags:
+        - Zaps
+      requestBody:
+        content: {}
+      responses:
+        '200':
+          content:
+            application/vnd.api+json:
+              schema:
+                type: object
+                additionalProperties: false
+                properties:
+                  links:
+                    $ref: '#/components/schemas/Links'
+                  meta:
+                    $ref: '#/components/schemas/Meta'
+                  data:
+                    type: array
+                    items:
+                      $ref: ../models/Zap.yaml
+                      x-stoplight:
+                        id: sxhd9c6l6g7ua
+              examples:
+                GetZapsExample:
+                  value:
+                    links:
+                      next: https://api.zapier.com/v2/zaps?offset=20&limit=10
+                      prev: https://api.zapier.com/v2/zaps?offset=0&limit=10
+                    meta:
+                      limit: 10
+                      offset: 10
+                      count: 133
+                    data:
+                      - type: zap
+                        id: 00000000-0000-c000-8000-000000012345
+                        is_enabled: false
+                        last_successful_run_date: '2019-08-24T14:15:22Z'
+                        title: My Zap
+                        steps:
+                          - action: uag:1f188536-6dd0-4172-8414-2b90914ddee9
+                            inputs:
+                              deal_stage: CLOSED_WON
+                            authentication: b3eYnwl
+                          - action: uag:1f188536-6dd0-4172-8414-2b90914ddaa7
+                            inputs:
+                              full_name: '{{customer__full_name}}'
+                            authentication: BRn9rRg
+                        links:
+                          html_editor: >-
+                            https://zapier.com/webintent/edit-zap/00000000-0000-c000-8000-000000012345
+                        updated_at: '2019-08-24T14:15:22Z'
+          description: OK
+        '401':
+          content:
+            application/vnd.api+json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    x-stoplight:
+                      id: vdmg3yluafenr
+                    items:
+                      $ref: ../models/JSON-Error.yaml
+                      x-stoplight:
+                        id: l58vecxneaykz
+          description: Unauthorized
+        '403':
+          content:
+            application/vnd.api+json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      $ref: ../models/JSON-Error.yaml
+          description: Forbidden
+        default:
+          $ref: '#/components/responses/DefaultError'
+    parameters: []
+    post:
+      operationId: post-zaps
+      description: >-
+        This URL creates a new Zap based on a series of steps and a given title.
+        `is_enabled` must be set to true when creating a new Zap.
+
+
+        This endpoint requires the `zap:write` OAuth scope.
+
+
+        This API is rate limited by IP address (60 requests per min), or partner
+        (150 requests per min), whichever occurs first.
+      summary: Create a Zap
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: expand
+          description: >-
+            A comma separated list of Zap fields that should be expanded from
+            ids to full objects in the response. If a field may not be expanded,
+            its encoded form will be returned instead.
+      tags:
+        - Zaps
+      requestBody:
+        content:
+          application/vnd.api+json:
+            schema:
+              type: object
+              additionalProperties: false
+              properties:
+                data:
+                  $ref: ../models/Zap.yaml
+                  x-stoplight:
+                    id: vw89ibjhro143
+                  description: The definition of the Zap that will be created.
+              required:
+                - data
+        description: ''
+      responses:
+        '201':
+          description: Created
+          content:
+            application/vnd.api+json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: ../models/Zap.yaml
+                    x-stoplight:
+                      id: oqmlg56a9ej8h
+        default:
+          $ref: '#/components/responses/DefaultError'
+  /actions/{action}/test:
+    parameters:
+      - schema:
+          type: string
+        name: action
+        in: path
+        required: true
+        description: An Action ID, as provided by the `/actions` endpoint.
+    post:
+      operationId: test-action
+      description: >-
+        Tests the action (step) in the third party api, using the provided
+        authentication and inputs. On a successful test returns 200 and the
+        result of executing the action, otherwise it returns a 400 and details
+        about the failure.
+
+
+        This endpoint requires the `zap:write` OAuth scope.
+
+
+        This API is rate limited by IP address (60 requests per min).
+      summary: Test an action (step)
+      tags:
+        - Actions
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  '':
+                    type: string
+                    x-stoplight:
+                      id: m15m1mdsk7bvc
+            application/vnd.api+json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    x-stoplight:
+                      id: qlbm0e8jqc3ly
+                    items:
+                      x-stoplight:
+                        id: x26i0e55dyp02
+                      type: object
+                  meta:
+                    $ref: '#/components/schemas/Meta'
+                    x-stoplight:
+                      id: npiau31y6oeeh
+                  links:
+                    $ref: '#/components/schemas/Links'
+                    x-stoplight:
+                      id: zhn4igtrkhlyx
+        '404':
+          $ref: '#/components/responses/FourOhFourError'
+        '406':
+          $ref: '#/components/responses/FourOhSixError'
+      x-stoplight:
+        id: fgw9khltcrahx
+      requestBody:
+        $ref: '#/components/requestBodies/TestAction'
+components:
+  schemas:
+    InputsWithAuthenticationId:
+      description: The common data object that includes inputs and an authentication id.
+      type: object
+      additionalProperties: false
+      properties:
+        authentication:
+          type:
+            - string
+            - 'null'
+          description: >-
+            An Authentication ID, as provided by the `/authentications`
+            endpoint.
+          x-stoplight:
+            id: x4243l2r0sn61
+        inputs:
+          type: object
+          description: >-
+            The current set of input fields in a JSON object, where each key is
+            the `id` of an Input Field, and the corresponding value the current
+            value of the field.
+        limit:
+          type: integer
+          format: int32
+          description: >-
+            Used for paginating results. Specifies the maximum number of items
+            to return per page.
+        offset:
+          type: integer
+          format: int32
+          description: Used for paginating results. Specifies the offset to use.
+      required:
+        - authentication
+        - inputs
+      examples:
+        authentication: BRn9rRg
+        inputs:
+          stage_name: CLOSED_WON
+        limit: 10
+        offset: 20
+    InputsWithAuthenticationIdAndFetchLiveSamples:
+      description: The common data object that includes inputs and an authentication id.
+      x-stoplight:
+        id: slf9f11zlbpep
+      type: object
+      additionalProperties: false
+      examples:
+        authentication: BRn9rRg
+        inputs:
+          stage_name: CLOSED_WON
+        limit: 10
+        offset: 20
+      title: InputsWithAuthenticationIdAndFetchLiveSamples
+      properties:
+        authentication:
+          type:
+            - string
+            - 'null'
+          description: >-
+            An Authentication ID, as provided by the `/authentications`
+            endpoint.
+        inputs:
+          type: object
+          description: >-
+            The current set of input fields in a JSON object, where each key is
+            the `id` of an Input Field, and the corresponding value the current
+            value of the field.
+        fetch_live_samples:
+          type: boolean
+          x-stoplight:
+            id: sztwd2jml2g66
+          default: false
+          description: Whether to retrieve live samples for the field
+      required:
+        - authentication
+        - inputs
+    Links:
+      title: Links
+      x-stoplight:
+        id: g3mw8odxd2a5b
+      type: object
+      additionalProperties: false
+      properties:
+        next:
+          type:
+            - string
+            - 'null'
+          x-stoplight:
+            id: w5nhbvv8b1r4r
+          format: uri
+          pattern: ^https:\/\/api\.zapier\.com\/.*
+          description: The URL of the next page of paginated results.
+          example: https://api.zapier.com/v2/apps?offset=20&limit=10
+          readOnly: true
+          nullable: true
+          default: null
+        prev:
+          type:
+            - string
+            - 'null'
+          x-stoplight:
+            id: 3rs1teh1vdfoz
+          format: uri
+          pattern: ^https:\/\/api\.zapier\.com\/.*
+          description: The URL of the previous page of paginated results.
+          example: https://api.zapier.com/v2/apps?offset=0&limit=10
+          readOnly: true
+          nullable: true
+          default: null
+      description: The links object returned in paginated response bodies.
+    Meta:
+      title: Meta
+      x-stoplight:
+        id: msk45ygr2wrc8
+      type: object
+      additionalProperties: false
+      properties:
+        limit:
+          type: integer
+          x-stoplight:
+            id: 2fm9jmi21w2gp
+          minimum: 1
+          description: The limit value used in the request.
+          example: 10
+          readOnly: true
+          format: int32
+        offset:
+          type: integer
+          x-stoplight:
+            id: eio99why05ylu
+          minimum: 0
+          description: The offset value used in the request.
+          default: 0
+          example: 10
+          format: int32
+        count:
+          type: integer
+          x-stoplight:
+            id: nh8w20vy7kwk4
+          minimum: 0
+          description: >-
+            The total number of objects in the collection represented by the
+            endpoint.
+          example: 133
+          readOnly: true
+          format: int32
+      description: The meta object returned in paginated response bodies.
+    LinksWithPage:
+      title: LinksWithPage
+      x-stoplight:
+        id: xzqnni6w46yxz
+      type: object
+      additionalProperties: false
+      description: The links object returned in paginated response bodies.
+      properties:
+        next:
+          type:
+            - string
+            - 'null'
+          x-stoplight:
+            id: 1qw4ipgciehf5
+          format: uri
+          pattern: ^https:\/\/api\.zapier\.com\/.*
+          description: The URL of the next page of paginated results.
+          example: >-
+            https://api.zapier.com/v2/actions/core:abcd/inputs/lead_id/choices?page=3
+          nullable: true
+          default: null
+          readOnly: true
+        prev:
+          type:
+            - string
+            - 'null'
+          x-stoplight:
+            id: 00b22pohany81
+          format: uri
+          pattern: ^https:\/\/api\.zapier\.com\/.*
+          description: The URL of the previous page of paginated results.
+          example: >-
+            https://api.zapier.com/v2/actions/core:abcd/inputs/lead_id/choices?page=1
+          nullable: true
+          default: null
+          readOnly: true
+    MetaWithPage:
+      title: MetaWithPage
+      x-stoplight:
+        id: ltgg98ltcua97
+      type: object
+      additionalProperties: false
+      description: >-
+        The meta object returned in paginated response bodies, for results using
+        cursor pagination.
+      properties:
+        page:
+          type: integer
+          format: int32
+          x-stoplight:
+            id: u85us29cgmyin
+          description: The page of results requested
+          example: 10
+          default: 1
+          readOnly: true
+    InputsWithAuthenticationIdNoPage:
+      title: InputsWithAuthenticationIdNoPage
+      x-stoplight:
+        id: hngkbpz9wble3
+      type: object
+      properties:
+        authentication:
+          type:
+            - string
+            - 'null'
+          x-stoplight:
+            id: xnxoa9djz4t00
+          example: BRn9rRg
+          description: >-
+            An Authentication ID, as provided by the `/authentications`
+            endpoint.
+        inputs:
+          type: object
+          x-stoplight:
+            id: b03fuc0a4gv7j
+          description: >-
+            The current set of input fields in a JSON object, where each key is
+            the `id` of an Input Field, and the corresponding value the current
+            value of the field.
+      examples:
+        - authentication: BRn9rRg
+          inputs:
+            text: Hi there
+            channel: U036WM3E84D
+        - authentication: BRn9rRg
+          inputs:
+            spreadsheet: 1eM41g5BqFpGi1O2BTlc7cA_MNj2mujLJ_QNRwuWQ-rc
+            worksheet: '0'
+    ZapRun:
+      title: ZapRun
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: 00946041-b63b-a34c-9c30-630c32f0c3a4
+          description: Zap Run Identifier.
+        start_time:
+          type: string
+          format: date-time
+          example: '2023-12-01T06:29:10.360000+00:00'
+          description: The specific time when the Zap Run was initiated.
+          readOnly: true
+        end_time:
+          type: string
+          format: date-time
+          example: '2023-12-01T06:29:10.360000+00:00'
+          description: The specific time when the Zap Run was finished.
+          readOnly: true
+        status:
+          enum:
+            - delayed
+            - scheduled
+            - pending
+            - error
+            - halted
+            - throttled
+            - held
+            - filtered
+            - skipped
+            - success
+          description: Represents the current state or progress of the Zap Run
+          readOnly: true
+        zap_title:
+          type: string
+          example: Zap Title - New Item
+          description: >-
+            Refers to the name or title of the specific Zap that the run is
+            associated with.
+          readOnly: true
+        steps:
+          type: array
+          description: >-
+            The list of sequential actions or processes involved in the
+            execution of the associated Zap run.
+          items:
+            $ref: '#/components/schemas/ZapRunStep'
+        data_in:
+          type: string
+          description: >-
+            The information about the data inputted into and logged out from a
+            specific Zap Run during its execution.
+        data_out:
+          type: string
+          description: >-
+            The information logged out from a specific Zap Run during its
+            execution.
+    ZapRunStep:
+      title: ZapRunStep
+      type: object
+      properties:
+        status:
+          enum:
+            - delayed
+            - scheduled
+            - pending
+            - error
+            - halted
+            - throttled
+            - held
+            - filtered
+            - skipped
+            - success
+          description: Represents the current state or progress of the Zap Run Step.
+          readOnly: true
+        start_time:
+          type: string
+          format: date-time
+          example: '2023-12-01T06:29:15.870509+00:00'
+          description: >-
+            The specific time when the execution of the step in the Zap run
+            began.
+          readOnly: true
+  responses:
+    DefaultError:
+      description: An unexpected error has occurred but details are available.
+      content:
+        application/vnd.api+json:
+          schema:
+            type: object
+            properties:
+              errors:
+                type: array
+                items:
+                  $ref: ../models/JSON-Error.yaml
+                  x-stoplight:
+                    id: h3ihokmwh1x4o
+    FourOhSixError:
+      description: This request is invalid.
+      content:
+        application/vnd.api+json:
+          schema:
+            type: object
+            properties:
+              errors:
+                type: array
+                items:
+                  $ref: ../models/JSON-Error.yaml
+    FourFifteenError:
+      description: This media type is unsupported.
+      content:
+        application/vnd.api+json:
+          schema:
+            type: object
+            properties:
+              errors:
+                type: array
+                items:
+                  $ref: ../models/JSON-Error.yaml
+    FourOhFourError:
+      description: Not found
+      content:
+        application/vnd.api+json:
+          schema:
+            type: object
+            properties:
+              errors:
+                type: array
+                items:
+                  $ref: ../models/JSON-Error.yaml
+  parameters:
+    limit:
+      name: limit
+      in: query
+      required: false
+      schema:
+        type: integer
+        default: 10
+      description: >-
+        Used for paginating results. Specifies the maximum number of items to
+        return per page. If this value is not set, it defaults to 10.
+    offset:
+      name: offset
+      in: query
+      required: false
+      schema:
+        type: integer
+      description: Used for paginating results. Specifies the offset to use.
+    app:
+      name: app
+      in: query
+      required: true
+      schema:
+        type: string
+        format: uuid
+        example: 868f9d3c-2ea0-4f19-a32d-a61b276ab8de
+      description: A canonical App ID, as provided by the `/apps` endpoint.
+    action:
+      name: action
+      in: path
+      required: true
+      schema:
+        type: string
+        example: uag:87b1c14e-ef30-43d5-9395-6c6514dbb123
+      description: An Action ID, as provided by the `/actions` endpoint.
+    action_type:
+      name: action_type
+      in: query
+      required: true
+      schema:
+        type: string
+        enum:
+          - READ
+          - WRITE
+        example: READ
+      description: The type of Action to filter for.
+  requestBodies:
+    Inputs:
+      description: Common inputs with inputs and an authentication id.
+      content:
+        application/vnd.api+json:
+          schema:
+            type: object
+            additionalProperties: false
+            properties:
+              data:
+                $ref: '#/components/schemas/InputsWithAuthenticationId'
+                x-stoplight:
+                  id: k2qnaa3i5c3qb
+          examples: {}
+    Outputs:
+      content:
+        application/vnd.api+json:
+          schema:
+            type: object
+            properties:
+              data:
+                $ref: >-
+                  #/components/schemas/InputsWithAuthenticationIdAndFetchLiveSamples
+                x-stoplight:
+                  id: yi2s3ggfutlr0
+      description: >-
+        Common inputs with inputs, an authentication id and a parameter to
+        optionally retrieve live samples for the field
+    TestAction:
+      content:
+        application/vnd.api+json:
+          schema:
+            type: object
+            properties:
+              data:
+                $ref: '#/components/schemas/InputsWithAuthenticationIdNoPage'
+                x-stoplight:
+                  id: d4ph7lebgpk9p
+      description: >-
+        Authentication id and inputs (such as `worksheet`, `spreadsheet` for
+        google sheets, `text` and `channel` for slack) used to test the action.
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://zapier.com/oauth/authorize/
+          tokenUrl: https://zapier.com/oauth/token/
+          refreshUrl: https://zapier.com/oauth/token/
+          scopes:
+            profile: Read profile information about the currently-authenticated user
+            zap: Read Zaps
+            zap:write: Write Zaps
+            authentication: Read Authentications
+            authentication:write: Write Authentications
+            zap:runs: Read Zap Runs
+        implicit:
+          authorizationUrl: https://zapier.com/oauth/authorize/
+          scopes:
+            profile: Read profile information about the currently-authenticated user
+            zap: Read Zaps
+            zap:write: Write Zaps
+            authentication: Read Authentications
+            authentication:write: Write Authentications
+            zap:runs: Read Zap Runs
+      description: >-
+        Contact Zapier support for your Client ID and Secret. More details are
+        available [here](https://platform.zapier.com/embed/partner-api).

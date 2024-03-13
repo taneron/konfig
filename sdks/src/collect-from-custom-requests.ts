@@ -239,6 +239,10 @@ const customRequests: Record<string, CustomRequest> = {
       return JSON.stringify(openapi);
     },
   },
+  "1password.com_Partnership": {
+    type: "GET",
+    url: "https://i.1password.com/media/1password-partnership-api/partnership-api.yml",
+  },
   "1password.com_Connect": {
     type: "GET",
     url: "https://i.1password.com/media/1password-connect/1password-connect-api.yaml",
@@ -398,6 +402,10 @@ const customRequests: Record<string, CustomRequest> = {
   "zapier.com_actions": {
     type: "GET",
     url: "https://actions.zapier.com/api/v1/openapi.json",
+  },
+  "zapier.com_Embed": {
+    type: "GET",
+    url: "https://stoplight.io/api/v1/projects/zapier/public-api/nodes/spec/reference/API.yaml?fromExportButton=true&snapshotType=http_service",
   },
   "httpbin.org": {
     type: "GET",
@@ -757,14 +765,31 @@ async function downloadOpenApiSpecFromReadme({
       body: null,
       method: "GET",
     }).then((response) => response.text());
-    const rawSpec = JSON.parse(rawSpecString);
-    if (rawSpec.oasDefinition !== undefined && rawSpec.oasDefinition !== null) {
-      console.log(`Got oasDefinition for ${url}`);
-      specs.push(rawSpec.oasDefinition);
-    } else {
-      throw Error(
-        `Expecting oasDefinition to be defined but it's not for ${url}`
-      );
+    try {
+      const rawSpec = JSON.parse(rawSpecString);
+      if (
+        rawSpec.oasDefinition !== undefined &&
+        rawSpec.oasDefinition !== null
+      ) {
+        console.log(`Got oasDefinition for ${url}`);
+        specs.push(rawSpec.oasDefinition);
+      } else {
+        throw Error(
+          `Expecting oasDefinition to be defined but it's not for ${url}`
+        );
+      }
+    } catch (e) {
+      const emptyDiv = "<div></div>";
+      if (rawSpecString === emptyDiv) {
+        console.warn(`Got empty div ("${emptyDiv}") as a result...skipping`);
+        continue;
+      }
+      if (rawSpecString.endsWith("html>")) {
+        console.warn(`Got HTML instead of JSON...skipping`);
+        continue;
+      }
+      console.error(rawSpecString);
+      throw e;
     }
   }
 
@@ -961,14 +986,12 @@ async function processCustomRequest({
   customRequest,
   key,
   browser,
-  fetchedKeys,
   customRequestSpecFilePath,
   specFilename,
 }: {
   customRequest: CustomRequest;
   key: string;
   browser: PuppeteerBrowser;
-  fetchedKeys: string[];
   customRequestSpecFilePath: string;
   specFilename: string;
 }): Promise<Db["specifications"][string] | undefined> {
@@ -993,7 +1016,7 @@ async function processCustomRequest({
       customRequest,
       browser
     );
-    fetchedKeys.push(key);
+    saveCustomRequestLastFetched(new Date(), [key]);
   }
   let rawSpecStringLastFetched: string | null = null;
   if (fs.existsSync(customRequestSpecFilePath)) {
@@ -1085,7 +1108,6 @@ export async function collectFromCustomRequests(): Promise<Db> {
     devtools: true,
   });
 
-  const fetchedKeys: string[] = [];
   for (const key in customRequests) {
     const specFilename = `${key}.yaml`;
     const customRequestSpecFilePath = path.join(
@@ -1104,7 +1126,6 @@ export async function collectFromCustomRequests(): Promise<Db> {
       customRequest: customRequests[key],
       key,
       browser,
-      fetchedKeys,
       customRequestSpecFilePath,
       specFilename,
     });
@@ -1116,8 +1137,6 @@ export async function collectFromCustomRequests(): Promise<Db> {
     db.specifications[`from-custom-request_${key}`] = processedRequest;
   }
   browser.close();
-
-  saveCustomRequestLastFetched(new Date(), fetchedKeys);
 
   return db;
 }

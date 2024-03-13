@@ -66,12 +66,12 @@
       "description": "> ### Code references is an Enterprise feature\n>\n> Code references is available to customers on an Enterprise plan. To learn more, [read about our pricing](https://launchdarkly.com/pricing/). To upgrade your plan, [contact Sales](https://launchdarkly.com/contact-sales/).\n\n> ### Use ld-find-code-refs\n>\n> LaunchDarkly provides the [ld-find-code-refs utility](https://github.com/launchdarkly/ld-find-code-refs) that creates repository connections, generates code reference data, and creates calls to the code references API. Most customers do not need to call this API directly.\n\nThe code references API provides access to all resources related to each connected repository, and associated feature flag code reference data for all branches. To learn more, read [Code references](https://docs.launchdarkly.com/home/code/code-references).\n"
     },
     {
-      "name": "Contexts",
-      "description": "\nContexts are people, services, machines, or other resources that encounter feature flags in your product. Contexts are identified by their `kind`, which describes the type of resources encountering flags, and by their `key`. Each unique combination of one or more contexts that have encountered a feature flag in your product is called a context instance.\n\nWhen you use the LaunchDarkly SDK to evaluate a flag, you provide a context to that call. LaunchDarkly records the key and attributes of each context instance. You can view these in the LaunchDarkly user interface from the **Contexts** list, or use the Context APIs. To learn more, read [Contexts](https://docs.launchdarkly.com/home/contexts).\n\nLaunchDarkly provides APIs for you to:\n\n* retrieve contexts, context instances, and context attribute names and values\n* search for contexts or context instances\n* delete context instances\n* fetch context kinds\n* create and update context kinds\n\nTo learn more about context kinds, read [Context kinds](https://docs.launchdarkly.com/home/contexts/context-kinds).\n\nContexts are always scoped within a project and an environment. Each environment has its own set of context instance records.\n\nSeveral of the endpoints in the contexts API require a context instance ID or application ID. Both of these IDs are returned as part of the [Search for context instances](/tag/Contexts#operation/searchContextInstances) response. The context instance ID is the `id` field of each element in the `items` array. The application ID is the `applicationId` field of each element in the `items` array. By default, the application ID is set to the SDK you are using. In the LaunchDarkly UI, the application ID and application version appear on the context details page in the \"From source\" field. You can change the application ID as part of your SDK configuration. To learn more, read [Application metadata configuration](https://docs.launchdarkly.com/sdk/features/app-config).\n\n### Filtering contexts and context instances\n\nWhen you [search for contexts](/tag/Contexts#operation/searchContexts) or [context instances](/tag/Contexts#operation/searchContextInstances), you can filter on certain fields using the `filter` parameter either as a query parameter or as a request body parameter.\n\nThe `filter` parameter supports the following operators: `after`, `anyOf`, `before`, `contains`, `equals`, `exists`, `notEquals`, `startsWith`.\n\n<details>\n<summary>Expand for details on operators and syntax</summary>\n\n#### after\n\nReturns contexts or context instances if any of the values in a field, which should be dates, are after the provided time. For example:\n\n* `myField after \"2022-09-21T19:03:15+00:00\"`\n\n#### anyOf\n\nReturns contexts or context instances if any of the values in a field match any of the values in the match value. For example:\n\n* `myField anyOf [44]`\n* `myField anyOf [\"phone\",\"tablet\"]`\n* `myField anyOf [true]\"`\n\n#### before\n\nReturns contexts or context instances if any of the values in a field, which should be dates, are before the provided time. For example:\n\n* `myField before \"2022-09-21T19:03:15+00:00\"`\n\n#### contains\n\nReturns contexts or context instances if all the match values are found in the list of values in this field. For example:\n\n* `myListField contains 44`\n* `myListField contains [\"phone\",\"tablet\"]`\n* `myListField contains true`\n\n#### equals\n\nReturns contexts or context instances if there is an exact match on the entire field. For example:\n\n* `myField equals 44`\n* `myField equals \"device\"`\n* `myField equals true`\n* `myField equals [1,2,3,4]`\n* `myField equals [\"hello\",\"goodbye\"]`\n\n#### exists\n\nReturns contexts or context instances if the field matches the specified existence. For example:\n\n* `myField exists true`\n* `myField exists false`\n* `*.name exists true`\n\n#### notEquals\n\nReturns contexts or context instances if there is not an exact match on the entire field. For example:\n\n* `myField notEquals 44`\n* `myField notEquals \"device\"`\n* `myField notEquals true`\n* `myField notEquals [1,2,3,4]`\n* `myField notEquals [\"hello\",\"goodbye\"]`\n\n#### startsWith\n\nReturns contexts or context instances if the value in a field, which should be a singular string, begins with the provided substring. For example:\n\n* `myField startsWith \"do\"`\n\n</details>\n\nYou can also combine filters in the following ways:\n\n* Use a comma (`,`) as an AND operator\n* Use a vertical bar (`|`) as an OR operator\n* Use parentheses `()` to group filters\n\nFor example:\n\n* `myField notEquals 0, myField notEquals 1` returns contexts or context instances where `myField` is not 0 and is not 1\n* `myFirstField equals \"device\",(mySecondField equals \"iPhone\"|mySecondField equals \"iPad\")` returns contexts or context instances where `myFirstField` is equal to \"device\" and `mySecondField` is equal to either \"iPhone\" or \"iPad\"\n\n#### Supported fields and operators\n\nYou can only filter certain fields in contexts and context instances when using the `filter` parameter. Additionally, you can only filter some fields with certain operators.\n\nWhen you search for [contexts]((/tag/Contexts#operation/searchContexts)), the `filter` parameter supports the following fields and operators:\n\n|<div style=\"width:120px\">Field</div> |Description |Supported operators |\n|---|---|---|\n|`applicationId` |An identifier representing the application where the LaunchDarkly SDK is running. |`equals`, `notEquals`, `anyOf` |\n|`id` |Unique identifier for the context. |`equals`, `notEquals`, `anyOf` |\n|`key` |The context key. |`equals`, `notEquals`, `anyOf`, `startsWith` |\n|`kind` |The context kind. |`equals`, `notEquals`, `anyOf` |\n|`kinds` |A list of all kinds found in the context. Supply a list of strings to the operator. |`equals`, `anyOf`, `contains` |\n|`kindKey` |The kind and key for the context. They are joined with `:`, for example, `user:user-key-abc123`. |`equals`, `notEquals`, `anyOf` |\n|`kindKeys` |A list of all kinds and keys found in the context. The kind and key are joined with `:`, for example, `user:user-key-abc123`. Supply a list of strings to the operator. |`equals`, `anyOf`, `contains` |\n|`q` |A \"fuzzy\" search across context attribute values and the context key. Supply a string or list of strings to the operator.  |`equals` |\n|`name` |The name for the context. |`equals`, `notEquals`, `exists`, `anyOf`, `startsWith` |\n|`<a kind>.<an attribute name>` |A kind and the name of any attribute that appears in a context of that kind, for example, `user.email`. To filter all kinds, use `*` in place of the kind, for example, `*.email`. You can use either a literal attribute name or a JSON path to specify the attribute. If you use a JSON path, then you must escape the `/` character, using `~1`, and the `~` character, using `~0`. For example, use `user.job/title` or `user./job~1title` to filter the `/job/title` field in a user context kind. If the field or value includes whitespace, it should be enclosed in double quotes. |`equals`, `notEquals`, `exists`, `startsWith`, `before`, `after`.|\n\nWhen searching for [context instances](/tag/Contexts#operation/searchContextInstances), the `filter` parameter supports the following fields and operators\n\n|<div style=\"width:120px\">Field</div> |Description |Supported operators |\n|---|---|---|\n|`applicationId` |An identifier representing the application where the LaunchDarkly SDK is running. |`equals`, `notEquals`, `anyOf` |\n|`id` |Unique identifier for the context instance. |`equals`, `notEquals`, `anyOf` |\n|`kinds` |A list of all kinds found in the context instance. Supply a list of strings to the operator. |`equals`, `anyOf`, `contains` |\n|`kindKeys` |A list of all kinds and keys found in the context instance. The kind and key are joined with `:`, for example, `user:user-key-abc123`. Supply a list of strings to the operator. |`equals`, `anyOf`, `contains` |\n"
-    },
-    {
       "name": "Context settings",
       "description": "You can use the context settings API to assign a context to a specific variation for any feature flag. To learn more, read [Viewing and managing contexts](https://docs.launchdarkly.com/home/contexts/attributes#viewing-and-managing-contexts).\n"
+    },
+    {
+      "name": "Contexts",
+      "description": "\nContexts are people, services, machines, or other resources that encounter feature flags in your product. Contexts are identified by their `kind`, which describes the type of resources encountering flags, and by their `key`. Each unique combination of one or more contexts that have encountered a feature flag in your product is called a context instance.\n\nWhen you use the LaunchDarkly SDK to evaluate a flag, you provide a context to that call. LaunchDarkly records the key and attributes of each context instance. You can view these in the LaunchDarkly user interface from the **Contexts** list, or use the Context APIs. To learn more, read [Contexts](https://docs.launchdarkly.com/home/contexts).\n\nLaunchDarkly provides APIs for you to:\n\n* retrieve contexts, context instances, and context attribute names and values\n* search for contexts or context instances\n* delete context instances\n* fetch context kinds\n* create and update context kinds\n\nTo learn more about context kinds, read [Context kinds](https://docs.launchdarkly.com/home/contexts/context-kinds).\n\nContexts are always scoped within a project and an environment. Each environment has its own set of context instance records.\n\nSeveral of the endpoints in the contexts API require a context instance ID or application ID. Both of these IDs are returned as part of the [Search for context instances](/tag/Contexts#operation/searchContextInstances) response. The context instance ID is the `id` field of each element in the `items` array. The application ID is the `applicationId` field of each element in the `items` array. By default, the application ID is set to the SDK you are using. In the LaunchDarkly UI, the application ID and application version appear on the context details page in the \"From source\" field. You can change the application ID as part of your SDK configuration. To learn more, read [Application metadata configuration](https://docs.launchdarkly.com/sdk/features/app-config).\n\n### Filtering contexts and context instances\n\nWhen you [search for contexts](/tag/Contexts#operation/searchContexts) or [context instances](/tag/Contexts#operation/searchContextInstances), you can filter on certain fields using the `filter` parameter either as a query parameter or as a request body parameter.\n\nThe `filter` parameter supports the following operators: `after`, `anyOf`, `before`, `contains`, `equals`, `exists`, `notEquals`, `startsWith`.\n\n<details>\n<summary>Expand for details on operators and syntax</summary>\n\n#### after\n\nReturns contexts or context instances if any of the values in a field, which should be dates, are after the provided time. For example:\n\n* `myField after \"2022-09-21T19:03:15+00:00\"`\n\n#### anyOf\n\nReturns contexts or context instances if any of the values in a field match any of the values in the match value. For example:\n\n* `myField anyOf [44]`\n* `myField anyOf [\"phone\",\"tablet\"]`\n* `myField anyOf [true]\"`\n\n#### before\n\nReturns contexts or context instances if any of the values in a field, which should be dates, are before the provided time. For example:\n\n* `myField before \"2022-09-21T19:03:15+00:00\"`\n\n#### contains\n\nReturns contexts or context instances if all the match values are found in the list of values in this field. For example:\n\n* `myListField contains 44`\n* `myListField contains [\"phone\",\"tablet\"]`\n* `myListField contains true`\n\n#### equals\n\nReturns contexts or context instances if there is an exact match on the entire field. For example:\n\n* `myField equals 44`\n* `myField equals \"device\"`\n* `myField equals true`\n* `myField equals [1,2,3,4]`\n* `myField equals [\"hello\",\"goodbye\"]`\n\n#### exists\n\nReturns contexts or context instances if the field matches the specified existence. For example:\n\n* `myField exists true`\n* `myField exists false`\n* `*.name exists true`\n\n#### notEquals\n\nReturns contexts or context instances if there is not an exact match on the entire field. For example:\n\n* `myField notEquals 44`\n* `myField notEquals \"device\"`\n* `myField notEquals true`\n* `myField notEquals [1,2,3,4]`\n* `myField notEquals [\"hello\",\"goodbye\"]`\n\n#### startsWith\n\nReturns contexts or context instances if the value in a field, which should be a singular string, begins with the provided substring. For example:\n\n* `myField startsWith \"do\"`\n\n</details>\n\nYou can also combine filters in the following ways:\n\n* Use a comma (`,`) as an AND operator\n* Use a vertical bar (`|`) as an OR operator\n* Use parentheses `()` to group filters\n\nFor example:\n\n* `myField notEquals 0, myField notEquals 1` returns contexts or context instances where `myField` is not 0 and is not 1\n* `myFirstField equals \"device\",(mySecondField equals \"iPhone\"|mySecondField equals \"iPad\")` returns contexts or context instances where `myFirstField` is equal to \"device\" and `mySecondField` is equal to either \"iPhone\" or \"iPad\"\n\n#### Supported fields and operators\n\nYou can only filter certain fields in contexts and context instances when using the `filter` parameter. Additionally, you can only filter some fields with certain operators.\n\nWhen you search for [contexts]((/tag/Contexts#operation/searchContexts)), the `filter` parameter supports the following fields and operators:\n\n|<div style=\"width:120px\">Field</div> |Description |Supported operators |\n|---|---|---|\n|`applicationId` |An identifier representing the application where the LaunchDarkly SDK is running. |`equals`, `notEquals`, `anyOf` |\n|`id` |Unique identifier for the context. |`equals`, `notEquals`, `anyOf` |\n|`key` |The context key. |`equals`, `notEquals`, `anyOf`, `startsWith` |\n|`kind` |The context kind. |`equals`, `notEquals`, `anyOf` |\n|`kinds` |A list of all kinds found in the context. Supply a list of strings to the operator. |`equals`, `anyOf`, `contains` |\n|`kindKey` |The kind and key for the context. They are joined with `:`, for example, `user:user-key-abc123`. |`equals`, `notEquals`, `anyOf` |\n|`kindKeys` |A list of all kinds and keys found in the context. The kind and key are joined with `:`, for example, `user:user-key-abc123`. Supply a list of strings to the operator. |`equals`, `anyOf`, `contains` |\n|`q` |A \"fuzzy\" search across context attribute values and the context key. Supply a string or list of strings to the operator.  |`equals` |\n|`name` |The name for the context. |`equals`, `notEquals`, `exists`, `anyOf`, `startsWith` |\n|`<a kind>.<an attribute name>` |A kind and the name of any attribute that appears in a context of that kind, for example, `user.email`. To filter all kinds, use `*` in place of the kind, for example, `*.email`. You can use either a literal attribute name or a JSON path to specify the attribute. If you use a JSON path, then you must escape the `/` character, using `~1`, and the `~` character, using `~0`. For example, use `user.job/title` or `user./job~1title` to filter the `/job/title` field in a user context kind. If the field or value includes whitespace, it should be enclosed in double quotes. |`equals`, `notEquals`, `exists`, `startsWith`, `before`, `after`.|\n\nWhen searching for [context instances](/tag/Contexts#operation/searchContextInstances), the `filter` parameter supports the following fields and operators\n\n|<div style=\"width:120px\">Field</div> |Description |Supported operators |\n|---|---|---|\n|`applicationId` |An identifier representing the application where the LaunchDarkly SDK is running. |`equals`, `notEquals`, `anyOf` |\n|`id` |Unique identifier for the context instance. |`equals`, `notEquals`, `anyOf` |\n|`kinds` |A list of all kinds found in the context instance. Supply a list of strings to the operator. |`equals`, `anyOf`, `contains` |\n|`kindKeys` |A list of all kinds and keys found in the context instance. The kind and key are joined with `:`, for example, `user:user-key-abc123`. Supply a list of strings to the operator. |`equals`, `anyOf`, `contains` |\n"
     },
     {
       "name": "Custom roles",
@@ -108,6 +108,30 @@
     {
       "name": "Follow flags",
       "description": "Follow flags to receive email updates about targeting changes to a flag in a project and environment.\n\nSeveral of the endpoints in the follow flags API require a member ID. The member ID is returned as part of the [Invite new members](/tag/Account-members#operation/postMembers) and [List account members](/tag/Account-members#operation/getMembers) responses. It is the `_id` field of each element in the `items` array.\n"
+    },
+    {
+      "name": "Insights charts (beta)",
+      "description": "> ### This feature is in beta\n>\n> To use this feature, pass in a header including the `LD-API-Version` key with value set to `beta`. Use this header with each call. To learn more, read [Beta resources](/#section/Overview/Beta-resources).\n>\n> Resources that are in beta are still undergoing testing and development. They may change without notice, including becoming backwards incompatible.\n\nThe charts API provides access to the data used in engineering insights project metrics. To learn more, read [Project metrics](https://docs.launchdarkly.com/home/engineering-insights/metrics).\n"
+    },
+    {
+      "name": "Insights deployments (beta)",
+      "description": "> ### This feature is in beta\n>\n> To use this feature, pass in a header including the `LD-API-Version` key with value set to `beta`. Use this header with each call. To learn more, read [Beta resources](/#section/Overview/Beta-resources).\n>\n> Resources that are in beta are still undergoing testing and development. They may change without notice, including becoming backwards incompatible.\n\nThe deployments API provides access to deployment information in engineering insights. To learn more, read [Deployments](https://docs.launchdarkly.com/home/engineering-insights/metrics/deployment).\n"
+    },
+    {
+      "name": "Insights flag events (beta)",
+      "description": "> ### This feature is in beta\n>\n> To use this feature, pass in a header including the `LD-API-Version` key with value set to `beta`. Use this header with each call. To learn more, read [Beta resources](/#section/Overview/Beta-resources).\n>\n> Resources that are in beta are still undergoing testing and development. They may change without notice, including becoming backwards incompatible.\n\nThe flag events API provides access to flag-event data used in engineering insights project metrics. To learn more, read [Flag health](https://docs.launchdarkly.com/home/engineering-insights/metrics/flag-health).\n"
+    },
+    {
+      "name": "Insights pull requests (beta)",
+      "description": "> ### This feature is in beta\n>\n> To use this feature, pass in a header including the `LD-API-Version` key with value set to `beta`. Use this header with each call. To learn more, read [Beta resources](/#section/Overview/Beta-resources).\n>\n> Resources that are in beta are still undergoing testing and development. They may change without notice, including becoming backwards incompatible.\n\nThe pull requests API provides access to information used for lead time calculations. To learn more, read [Lead time](https://docs.launchdarkly.com/home/engineering-insights/metrics/lead-time).\n"
+    },
+    {
+      "name": "Insights repositories (beta)",
+      "description": "> ### This feature is in beta\n>\n> To use this feature, pass in a header including the `LD-API-Version` key with value set to `beta`. Use this header with each call. To learn more, read [Beta resources](/#section/Overview/Beta-resources).\n>\n> Resources that are in beta are still undergoing testing and development. They may change without notice, including becoming backwards incompatible.\n\nEngineering insights automatically creates repository associations when it receives deployments or code references. Optionally, you can manually configure additional associations. You can use the repositories API to list repositories and create associations to projects. To learn more, read [Send deployment information](https://docs.launchdarkly.com/home/engineering-insights/config-deployment). \n"
+    },
+    {
+      "name": "Insights scores (beta)",
+      "description": "> ### This feature is in beta\n>\n> To use this feature, pass in a header including the `LD-API-Version` key with value set to `beta`. Use this header with each call. To learn more, read [Beta resources](/#section/Overview/Beta-resources).\n>\n> Resources that are in beta are still undergoing testing and development. They may change without notice, including becoming backwards incompatible.\n\nThe insights scores API provides scores for data used in engineering insights project metrics. To learn more, read [Project overview](https://docs.launchdarkly.com/home/engineering-insights/project-overview) and [Project metrics](https://docs.launchdarkly.com/home/engineering-insights/metrics).\n"
     },
     {
       "name": "Integration audit log subscriptions",
@@ -174,6 +198,10 @@
       "description": "> ### This feature is in beta\n>\n> To use this feature, pass in a header including the `LD-API-Version` key with value set to `beta`. Use this header with each call. To learn more, read [Beta resources](/#section/Overview/Beta-resources).\n>\n> Resources that are in beta are still undergoing testing and development. They may change without notice, including becoming backwards incompatible.\n\n> ### Teams is an Enterprise feature\n>\n> Teams is available to customers on an Enterprise plan. To learn more, [read about our pricing](https://launchdarkly.com/pricing/). To upgrade your plan, [contact Sales](https://launchdarkly.com/contact-sales/).\n\nA team is a group of members in your LaunchDarkly account. A team can have maintainers who are able to add and remove team members. It also can have custom roles assigned to it that allows shared access to those roles for all team members. To learn more, read [Teams](https://docs.launchdarkly.com/home/teams).\n"
     },
     {
+      "name": "User settings",
+      "description": "> ### Contexts are now available\n>\n> After you have upgraded your LaunchDarkly SDK to use contexts instead of users, you should use [Contexts](/tag/Contexts) instead of the user settings API. To learn more, read [Contexts](https://docs.launchdarkly.com/home/contexts).\n\nLaunchDarkly's user settings API provides a picture of all feature flags and their current values for a specific user. This gives you instant visibility into how a particular user experiences your site or application. To learn more, read [Viewing and managing users](https://docs.launchdarkly.com/home/users/attributes#viewing-and-managing-users).\n\nYou can also use the user settings API to assign a user to a specific variation for any feature flag.\n"
+    },
+    {
       "name": "Users",
       "description": "> ### Contexts are now available\n>\n> After you have upgraded your LaunchDarkly SDK to use contexts instead of users, you should use [Contexts](/tag/Contexts) instead of these endpoints. To learn more, read [Contexts](https://docs.launchdarkly.com/home/contexts).\n\n\nLaunchDarkly creates a record for each user passed in to `variation` calls. This record powers the autocomplete functionality on the feature flag dashboard, as well as the Users page. To learn more, read [Users and user segments](https://docs.launchdarkly.com/home/users).\n\nLaunchDarkly also offers an API that lets you tap into this data. You can use the users API to see what user data is available to LaunchDarkly, as well as determine which flag values a user will receive. You can also explicitly set which flag value a user will receive via this API.\n\nUsers are always scoped within a project and environment. In other words, each environment has its own set of user records.\n"
     },
@@ -182,20 +210,16 @@
       "description": "> ### Contexts are now available\n>\n> After you have upgraded your LaunchDarkly SDK to use contexts instead of users, you should use [Contexts](/tag/Contexts) instead of these endpoints. To learn more, read [Contexts](https://docs.launchdarkly.com/home/contexts).\n\n> ### This feature is in beta\n>\n> To use this feature, pass in a header including the `LD-API-Version` key with value set to `beta`. Use this header with each call. To learn more, read [Beta resources](/#section/Overview/Beta-resources).\n>\n> Resources that are in beta are still undergoing testing and development. They may change without notice, including becoming backwards incompatible.\n\nLaunchDarkly creates a record for each user passed in to `variation` calls. This record powers the autocomplete functionality on the feature flag dashboard, as well as the Users page. To learn more, read [Users and user segments](https://docs.launchdarkly.com/home/users)\n\nLaunchDarkly also offers an API that lets you access this data. You can use the users API to see what user data is available to LaunchDarkly, as well as determine which flag values a user will receive. You can also explicitly set which flag value a user will receive with this API.\n\nUsers are always scoped within both a project and an environment. Each environment has its own set of user records.\n"
     },
     {
-      "name": "User settings",
-      "description": "> ### Contexts are now available\n>\n> After you have upgraded your LaunchDarkly SDK to use contexts instead of users, you should use [Contexts](/tag/Contexts) instead of the user settings API. To learn more, read [Contexts](https://docs.launchdarkly.com/home/contexts).\n\nLaunchDarkly's user settings API provides a picture of all feature flags and their current values for a specific user. This gives you instant visibility into how a particular user experiences your site or application. To learn more, read [Viewing and managing users](https://docs.launchdarkly.com/home/users/attributes#viewing-and-managing-users).\n\nYou can also use the user settings API to assign a user to a specific variation for any feature flag.\n"
-    },
-    {
       "name": "Webhooks",
       "description": "The webhooks API lets you build your own integrations that subscribe to activities in LaunchDarkly. When you generate an activity in LaunchDarkly, such as when you change a flag or you create a project, LaunchDarkly sends an HTTP POST payload to the webhook's URL. Use webhooks to update external issue trackers, update support tickets, notify customers of new feature rollouts, and more.\n\nSeveral of the endpoints in the webhooks API require a webhook ID. The webhook ID is returned as part of the [Creates a webhook](/tag/Webhooks#operation/postWebhook) and [List webhooks](/tag/Webhooks#operation/getAllWebhooks) responses. It is the `_id` field, or the `_id` field of each element in the `items` array.\n\n## Designating the payload\n\nThe webhook payload is identical to an audit log entry. To learn more, read [Get audit log entry](/tag/Audit-log#operation/getAuditLogEntry).\n\nHere's a sample payload:\n\n> ### Webhook delivery order\n>\n> Webhooks may not be delivered in chronological order. We recommend using the payload's \"date\" field as a timestamp to reorder webhooks as they are received.\n\n```json\n{\n  \"_links\": {\n    \"canonical\": {\n      \"href\": \"/api/v2/projects/alexis/environments/test\",\n      \"type\": \"application/json\"\n    },\n    \"parent\": {\n      \"href\": \"/api/v2/auditlog\",\n      \"type\": \"application/json\"\n    },\n    \"self\": {\n      \"href\": \"/api/v2/auditlog/57c0a8e29969090743529965\",\n      \"type\": \"application/json\"\n    },\n    \"site\": {\n      \"href\": \"/settings#/projects\",\n      \"type\": \"text/html\"\n    }\n  },\n  \"_id\": \"57c0a8e29969090743529965\",\n  \"date\": 1472243938774,\n  \"accesses\": [\n    {\n      \"action\": \"updateName\",\n      \"resource\": \"proj/alexis:env/test\"\n    }\n  ],\n  \"kind\": \"environment\",\n  \"name\": \"Testing\",\n  \"description\": \"- Changed the name from ~~Test~~ to *Testing*\",\n  \"member\": {\n    \"_links\": {\n      \"parent\": {\n        \"href\": \"/internal/account/members\",\n        \"type\": \"application/json\"\n      },\n      \"self\": {\n        \"href\": \"/internal/account/members/548f6741c1efad40031b18ae\",\n        \"type\": \"application/json\"\n      }\n    },\n    \"_id\": \"548f6741c1efad40031b18ae\",\n    \"email\": \"ariel@acme.com\",\n    \"firstName\": \"Ariel\",\n    \"lastName\": \"Flores\"\n  },\n  \"titleVerb\": \"changed the name of\",\n  \"title\": \"[Ariel Flores](mailto:ariel@acme.com) changed the name of [Testing](https://app.launchdarkly.com/settings#/projects)\",\n  \"target\": {\n    \"_links\": {\n      \"canonical\": {\n        \"href\": \"/api/v2/projects/alexis/environments/test\",\n        \"type\": \"application/json\"\n      },\n      \"site\": {\n        \"href\": \"/settings#/projects\",\n        \"type\": \"text/html\"\n      }\n    },\n    \"name\": \"Testing\",\n    \"resources\": [\"proj/alexis:env/test\"]\n  }\n}\n```\n\n## Signing the webhook\n\nOptionally, you can define a `secret` when you create a webhook. If you define the secret, the webhook `POST` request will include an `X-LD-Signature header`, whose value will contain an HMAC SHA256 hex digest of the webhook payload, using the `secret` as the key.\n\nCompute the signature of the payload using the same shared secret in your code to verify that the webhook was triggered by LaunchDarkly.\n\n## Understanding connection retries\n\nIf LaunchDarkly receives a non-`2xx` response to a webhook `POST`, it will retry the delivery one time. Webhook delivery is not guaranteed. If you build an integration on webhooks, make sure it is tolerant of delivery failures.\n"
     },
     {
-      "name": "Workflows",
-      "description": "> ### Workflows is an Enterprise feature\n>\n> Workflows is available to customers on an Enterprise plan. To learn more, [read about our pricing](https://launchdarkly.com/pricing/). To upgrade your plan, [contact Sales](https://launchdarkly.com/contact-sales/).\n\nA workflow is a set of actions that you can schedule in advance to make changes to a feature flag at a future date and time. You can also include approval requests at different stages of a workflow. To learn more, read [Workflows](https://docs.launchdarkly.com/home/feature-workflows/workflows).\n\nThe actions supported are as follows:\n\n- Turning targeting `ON` or `OFF`\n- Setting the default variation\n- Adding targets to a given variation\n- Creating a rule to target by segment\n- Modifying the rollout percentage for rules\n\nYou can create multiple stages of a flag release workflow. Unique stages are defined by their conditions: either approvals and/or scheduled changes.\n\nSeveral of the endpoints in the workflows API require a workflow ID or one or more member IDs. The workflow ID is returned as part of the [Create workflow](/tag/Workflows#operation/postWorkflow) and [Get workflows](/tag/Workflows#operation/getWorkflows) responses. It is the `_id` field, or the `_id` field of each element in the `items` array. The member ID is returned as part of the [List account members](/tag/Account-members#operation/getMembers) response. It is the `_id` field of each element in the `items` array.\n"
-    },
-    {
       "name": "Workflow templates",
       "description": "> ### Workflow templates is an Enterprise feature\n>\n> Workflow templates are available to customers on an Enterprise plan. To learn more, [read about our pricing](https://launchdarkly.com/pricing/). To upgrade your plan, [contact Sales](https://launchdarkly.com/contact-sales/).\n\nWorkflow templates allow you to define a set of workflow stages that you can use as a starting point for new workflows. You can create these workflows for any flag in any environment and any project, and you can create as many workflows as you like from a given template.\n\nYou can create workflow templates in two ways:\n* by specifying the desired stages, using the `stages` property of the request body\n* by specifying an existing workflow to save as a template, using the `workflowId` property of the request body\n\nYou can use templates to create a workflow in any project, environment, or flag. However, when you create a template, you must specify a particular project, environment, and flag. This means that when you create a template using the `stages` property, you must also include `projectKey`, `environmentKey`, and `flagKey` properties in the request body. When you create a template from an existing workflow, it will use the project, environment, and flag of the existing workflow, so those properties can be omitted from the request body.\n\nTo learn more, read [Workflows documentation](https://docs.launchdarkly.com/home/feature-workflows/workflows) and [Workflows API documentation](https://apidocs.launchdarkly.com/tag/Workflows).\n"
+    },
+    {
+      "name": "Workflows",
+      "description": "> ### Workflows is an Enterprise feature\n>\n> Workflows is available to customers on an Enterprise plan. To learn more, [read about our pricing](https://launchdarkly.com/pricing/). To upgrade your plan, [contact Sales](https://launchdarkly.com/contact-sales/).\n\nA workflow is a set of actions that you can schedule in advance to make changes to a feature flag at a future date and time. You can also include approval requests at different stages of a workflow. To learn more, read [Workflows](https://docs.launchdarkly.com/home/feature-workflows/workflows).\n\nThe actions supported are as follows:\n\n- Turning targeting `ON` or `OFF`\n- Setting the default variation\n- Adding targets to a given variation\n- Creating a rule to target by segment\n- Modifying the rollout percentage for rules\n\nYou can create multiple stages of a flag release workflow. Unique stages are defined by their conditions: either approvals and/or scheduled changes.\n\nSeveral of the endpoints in the workflows API require a workflow ID or one or more member IDs. The workflow ID is returned as part of the [Create workflow](/tag/Workflows#operation/postWorkflow) and [Get workflows](/tag/Workflows#operation/getWorkflows) responses. It is the `_id` field, or the `_id` field of each element in the `items` array. The member ID is returned as part of the [List account members](/tag/Account-members#operation/getMembers) response. It is the `_id` field of each element in the `items` array.\n"
     },
     {
       "name": "Other",
@@ -9343,6 +9367,16 @@
               "type": "string",
               "format": "string",
               "description": "A comma-separated list of properties that can reveal additional information in the response."
+            }
+          },
+          {
+            "name": "versionId",
+            "in": "query",
+            "description": "The specific version ID of the metric",
+            "schema": {
+              "type": "string",
+              "format": "string",
+              "description": "The specific version ID of the metric"
             }
           }
         ],
@@ -23808,6 +23842,2462 @@
         ],
         "operationId": "deleteWebhook"
       }
+    },
+    "/api/v2/engineering-insights/charts/deployments/frequency": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Chart response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InsightsChart"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationFailedErrorRep"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid access token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedErrorRep"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenErrorRep"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Invalid resource identifier",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotFoundErrorRep"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RateLimitedErrorRep"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Insights charts (beta)"
+        ],
+        "summary": "Get deployment frequency chart data",
+        "description": "Get deployment frequency chart data. Engineering insights displays deployment frequency data in the [deployment frequency metric view](https://docs.launchdarkly.com/home/engineering-insights/metrics/deployment).\n\n### Expanding the chart response\n\nLaunchDarkly supports expanding the chart response to include additional fields.\n\nTo expand the response, append the `expand` query parameter and include the following:\n\n* `metrics` includes details on the metrics related to deployment frequency\n\nFor example, use `?expand=metrics` to include the `metrics` field in the response. By default, this field is **not** included in the response.\n",
+        "parameters": [
+          {
+            "name": "projectKey",
+            "in": "query",
+            "description": "The project key",
+            "schema": {
+              "type": "string",
+              "format": "string",
+              "description": "The project key"
+            }
+          },
+          {
+            "name": "environmentKey",
+            "in": "query",
+            "description": "The environment key",
+            "schema": {
+              "type": "string",
+              "format": "string",
+              "description": "The environment key"
+            }
+          },
+          {
+            "name": "applicationKey",
+            "in": "query",
+            "description": "Comma separated list of application keys",
+            "schema": {
+              "type": "string",
+              "format": "string",
+              "description": "Comma separated list of application keys"
+            }
+          },
+          {
+            "name": "from",
+            "in": "query",
+            "description": "Unix timestamp in milliseconds. Default value is 7 days ago.",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "description": "Unix timestamp in milliseconds. Default value is now.",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "bucketType",
+            "in": "query",
+            "description": "Specify type of bucket. Options: `rolling`, `hour`, `day`. Default: `rolling`.",
+            "schema": {
+              "type": "string",
+              "format": "string",
+              "description": "Specify type of bucket. Options: `rolling`, `hour`, `day`. Default: `rolling`."
+            }
+          },
+          {
+            "name": "bucketMs",
+            "in": "query",
+            "description": "Duration of intervals for x-axis in milliseconds. Default value is one day (`86400000` milliseconds).",
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "description": "Duration of intervals for x-axis in milliseconds. Default value is one day (`86400000` milliseconds)."
+            }
+          },
+          {
+            "name": "groupBy",
+            "in": "query",
+            "description": "Options: `application`, `kind`",
+            "schema": {
+              "type": "string",
+              "format": "string",
+              "description": "Options: `application`, `kind`"
+            }
+          },
+          {
+            "name": "expand",
+            "in": "query",
+            "description": "Options: `metrics`",
+            "schema": {
+              "type": "string",
+              "format": "string",
+              "description": "Options: `metrics`"
+            }
+          }
+        ],
+        "operationId": "getDeploymentFrequencyChart"
+      }
+    },
+    "/api/v2/engineering-insights/charts/flags/stale": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Chart response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InsightsChart"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationFailedErrorRep"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid access token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedErrorRep"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenErrorRep"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Invalid resource identifier",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotFoundErrorRep"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RateLimitedErrorRep"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Insights charts (beta)"
+        ],
+        "summary": "Get stale flags chart data",
+        "description": "Get stale flags chart data. Engineering insights displays stale flags data in the [flag health metric view](https://docs.launchdarkly.com/home/engineering-insights/metrics/flag-health).\n\n### Expanding the chart response\n\nLaunchDarkly supports expanding the chart response to include additional fields.\n\nTo expand the response, append the `expand` query parameter and include the following:\n\n* `metrics` includes details on the metrics related to stale flags\n\nFor example, use `?expand=metrics` to include the `metrics` field in the response. By default, this field is **not** included in the response.\n",
+        "parameters": [
+          {
+            "name": "projectKey",
+            "in": "query",
+            "description": "The project key",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "string",
+              "description": "The project key"
+            }
+          },
+          {
+            "name": "environmentKey",
+            "in": "query",
+            "description": "The environment key",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "string",
+              "description": "The environment key"
+            }
+          },
+          {
+            "name": "applicationKey",
+            "in": "query",
+            "description": "Comma separated list of application keys",
+            "schema": {
+              "type": "string",
+              "format": "string",
+              "description": "Comma separated list of application keys"
+            }
+          },
+          {
+            "name": "groupBy",
+            "in": "query",
+            "description": "Property to group results by. Options: `maintainer`",
+            "schema": {
+              "type": "string",
+              "format": "string",
+              "description": "Property to group results by. Options: `maintainer`"
+            }
+          },
+          {
+            "name": "maintainerId",
+            "in": "query",
+            "description": "Comma-separated list of individual maintainers to filter results.",
+            "schema": {
+              "type": "string",
+              "format": "string",
+              "description": "Comma-separated list of individual maintainers to filter results."
+            }
+          },
+          {
+            "name": "maintainerTeamKey",
+            "in": "query",
+            "description": "Comma-separated list of team maintainer keys to filter results.",
+            "schema": {
+              "type": "string",
+              "format": "string",
+              "description": "Comma-separated list of team maintainer keys to filter results."
+            }
+          },
+          {
+            "name": "expand",
+            "in": "query",
+            "description": "Options: `metrics`",
+            "schema": {
+              "type": "string",
+              "format": "string",
+              "description": "Options: `metrics`"
+            }
+          }
+        ],
+        "operationId": "getStaleFlagsChart"
+      }
+    },
+    "/api/v2/engineering-insights/charts/flags/status": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Chart response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InsightsChart"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationFailedErrorRep"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid access token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedErrorRep"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenErrorRep"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Invalid resource identifier",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotFoundErrorRep"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RateLimitedErrorRep"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Insights charts (beta)"
+        ],
+        "summary": "Get flag status chart data",
+        "description": "Get flag status chart data. To learn more, read [Using the flag status chart](https://docs.launchdarkly.com/home/engineering-insights/metrics/flag-health#using-the-flag-status-chart).",
+        "parameters": [
+          {
+            "name": "projectKey",
+            "in": "query",
+            "description": "The project key",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "string",
+              "description": "The project key"
+            }
+          },
+          {
+            "name": "environmentKey",
+            "in": "query",
+            "description": "The environment key",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "string",
+              "description": "The environment key"
+            }
+          },
+          {
+            "name": "applicationKey",
+            "in": "query",
+            "description": "Comma separated list of application keys",
+            "schema": {
+              "type": "string",
+              "format": "string",
+              "description": "Comma separated list of application keys"
+            }
+          }
+        ],
+        "operationId": "getFlagStatusChart"
+      }
+    },
+    "/api/v2/engineering-insights/charts/lead-time": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Chart response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InsightsChart"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationFailedErrorRep"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid access token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedErrorRep"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenErrorRep"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Invalid resource identifier",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotFoundErrorRep"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RateLimitedErrorRep"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Insights charts (beta)"
+        ],
+        "summary": "Get lead time chart data",
+        "description": "Get lead time chart data. The engineering insights UI displays lead time data in the [lead time metric view](https://docs.launchdarkly.com/home/engineering-insights/metrics/lead-time).",
+        "parameters": [
+          {
+            "name": "projectKey",
+            "in": "query",
+            "description": "The project key",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "string",
+              "description": "The project key"
+            }
+          },
+          {
+            "name": "environmentKey",
+            "in": "query",
+            "description": "The environment key",
+            "schema": {
+              "type": "string",
+              "format": "string",
+              "description": "The environment key"
+            }
+          },
+          {
+            "name": "applicationKey",
+            "in": "query",
+            "description": "Comma separated list of application keys",
+            "schema": {
+              "type": "string",
+              "format": "string",
+              "description": "Comma separated list of application keys"
+            }
+          },
+          {
+            "name": "from",
+            "in": "query",
+            "description": "Unix timestamp in milliseconds. Default value is 7 days ago.",
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "description": "Unix timestamp in milliseconds. Default value is 7 days ago."
+            }
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "description": "Unix timestamp in milliseconds. Default value is now.",
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "description": "Unix timestamp in milliseconds. Default value is now."
+            }
+          },
+          {
+            "name": "bucketType",
+            "in": "query",
+            "description": "Specify type of bucket. Options: `rolling`, `hour`, `day`. Default: `rolling`.",
+            "schema": {
+              "type": "string",
+              "format": "string",
+              "description": "Specify type of bucket. Options: `rolling`, `hour`, `day`. Default: `rolling`."
+            }
+          },
+          {
+            "name": "bucketMs",
+            "in": "query",
+            "description": "Duration of intervals for x-axis in milliseconds. Default value is one day (`86400000` milliseconds).",
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "description": "Duration of intervals for x-axis in milliseconds. Default value is one day (`86400000` milliseconds)."
+            }
+          },
+          {
+            "name": "groupBy",
+            "in": "query",
+            "description": "Options: `application`, `stage`. Default: `stage`.",
+            "schema": {
+              "type": "string",
+              "format": "string",
+              "description": "Options: `application`, `stage`. Default: `stage`."
+            }
+          },
+          {
+            "name": "expand",
+            "in": "query",
+            "description": "Options: `metrics`, `percentiles`.",
+            "schema": {
+              "type": "string",
+              "format": "string",
+              "description": "Options: `metrics`, `percentiles`."
+            }
+          }
+        ],
+        "operationId": "getLeadTimeChart"
+      }
+    },
+    "/api/v2/engineering-insights/charts/releases/frequency": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Chart response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InsightsChart"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationFailedErrorRep"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid access token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedErrorRep"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenErrorRep"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Invalid resource identifier",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotFoundErrorRep"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RateLimitedErrorRep"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Insights charts (beta)"
+        ],
+        "summary": "Get replease frequency chart data",
+        "description": "Get release frequency chart data. Engineering insights displays release frequency data in the [release frequency metric view](https://docs.launchdarkly.com/home/engineering-insights/metrics/release).",
+        "parameters": [
+          {
+            "name": "projectKey",
+            "in": "query",
+            "description": "The project key",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "string",
+              "description": "The project key"
+            }
+          },
+          {
+            "name": "environmentKey",
+            "in": "query",
+            "description": "The environment key",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "string",
+              "description": "The environment key"
+            }
+          },
+          {
+            "name": "applicationKey",
+            "in": "query",
+            "description": "Comma separated list of application keys",
+            "schema": {
+              "type": "string",
+              "format": "string",
+              "description": "Comma separated list of application keys"
+            }
+          },
+          {
+            "name": "hasExperiments",
+            "in": "query",
+            "description": "Filter events to those associated with an experiment (`true`) or without an experiment (`false`)",
+            "schema": {
+              "type": "boolean",
+              "format": "boolean",
+              "description": "Filter events to those associated with an experiment (`true`) or without an experiment (`false`)"
+            }
+          },
+          {
+            "name": "global",
+            "in": "query",
+            "description": "Filter to include or exclude global events. Default value is `include`. Options: `include`, `exclude`",
+            "schema": {
+              "type": "string",
+              "format": "string",
+              "description": "Filter to include or exclude global events. Default value is `include`. Options: `include`, `exclude`"
+            }
+          },
+          {
+            "name": "groupBy",
+            "in": "query",
+            "description": "Property to group results by. Options: `impact`",
+            "schema": {
+              "type": "string",
+              "format": "string",
+              "description": "Property to group results by. Options: `impact`"
+            }
+          },
+          {
+            "name": "from",
+            "in": "query",
+            "description": "Unix timestamp in milliseconds. Default value is 7 days ago.",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "description": "Unix timestamp in milliseconds. Default value is now.",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "bucketType",
+            "in": "query",
+            "description": "Specify type of bucket. Options: `rolling`, `hour`, `day`. Default: `rolling`.",
+            "schema": {
+              "type": "string",
+              "format": "string",
+              "description": "Specify type of bucket. Options: `rolling`, `hour`, `day`. Default: `rolling`."
+            }
+          },
+          {
+            "name": "bucketMs",
+            "in": "query",
+            "description": "Duration of intervals for x-axis in milliseconds. Default value is one day (`86400000` milliseconds).",
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "description": "Duration of intervals for x-axis in milliseconds. Default value is one day (`86400000` milliseconds)."
+            }
+          },
+          {
+            "name": "expand",
+            "in": "query",
+            "description": "Options: `metrics`",
+            "schema": {
+              "type": "string",
+              "format": "string",
+              "description": "Options: `metrics`"
+            }
+          }
+        ],
+        "operationId": "getReleaseFrequencyChart"
+      }
+    },
+    "/api/v2/engineering-insights/deployment-events": {
+      "post": {
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationFailedErrorRep"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid access token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedErrorRep"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenErrorRep"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Invalid resource identifier",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotFoundErrorRep"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RateLimitedErrorRep"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Insights deployments (beta)"
+        ],
+        "summary": "Create deployment event",
+        "description": "Create deployment event",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostDeploymentEventInput"
+              }
+            }
+          },
+          "required": true
+        },
+        "operationId": "createDeploymentEvent"
+      }
+    },
+    "/api/v2/engineering-insights/deployments": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Deployment collection response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeploymentCollectionRep"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationFailedErrorRep"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid access token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedErrorRep"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenErrorRep"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Invalid resource identifier",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotFoundErrorRep"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RateLimitedErrorRep"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Insights deployments (beta)"
+        ],
+        "summary": "List deployments",
+        "description": "Get a list of deployments\n\n### Expanding the deployment collection response\n\nLaunchDarkly supports expanding the deployment collection response to include additional fields.\n\nTo expand the response, append the `expand` query parameter and include the following:\n\n* `pullRequests` includes details on all of the pull requests associated with each deployment\n* `flagReferences` includes details on all of the references to flags in each deployment\n\nFor example, use `?expand=pullRequests` to include the `pullRequests` field in the response. By default, this field is **not** included in the response.\n",
+        "parameters": [
+          {
+            "name": "projectKey",
+            "in": "query",
+            "description": "The project key",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "string",
+              "description": "The project key"
+            }
+          },
+          {
+            "name": "environmentKey",
+            "in": "query",
+            "description": "The environment key",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "string",
+              "description": "The environment key"
+            }
+          },
+          {
+            "name": "applicationKey",
+            "in": "query",
+            "description": "Comma separated list of application keys",
+            "schema": {
+              "type": "string",
+              "format": "string",
+              "description": "Comma separated list of application keys"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The number of deployments to return. Default is 20. Maximum allowed is 100.",
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "description": "The number of deployments to return. Default is 20. Maximum allowed is 100."
+            }
+          },
+          {
+            "name": "expand",
+            "in": "query",
+            "description": "Expand properties in response. Options: `pullRequests`, `flagReferences`",
+            "schema": {
+              "type": "string",
+              "format": "string",
+              "description": "Expand properties in response. Options: `pullRequests`, `flagReferences`"
+            }
+          },
+          {
+            "name": "from",
+            "in": "query",
+            "description": "Unix timestamp in milliseconds. Default value is 7 days ago.",
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "description": "Unix timestamp in milliseconds. Default value is 7 days ago."
+            }
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "description": "Unix timestamp in milliseconds. Default value is now.",
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "description": "Unix timestamp in milliseconds. Default value is now."
+            }
+          },
+          {
+            "name": "after",
+            "in": "query",
+            "description": "Identifier used for pagination",
+            "schema": {
+              "type": "string",
+              "format": "string",
+              "description": "Identifier used for pagination"
+            }
+          },
+          {
+            "name": "before",
+            "in": "query",
+            "description": "Identifier used for pagination",
+            "schema": {
+              "type": "string",
+              "format": "string",
+              "description": "Identifier used for pagination"
+            }
+          },
+          {
+            "name": "kind",
+            "in": "query",
+            "description": "The deployment kind",
+            "schema": {
+              "type": "string",
+              "format": "string",
+              "description": "The deployment kind"
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "description": "The deployment status",
+            "schema": {
+              "type": "string",
+              "format": "string",
+              "description": "The deployment status"
+            }
+          }
+        ],
+        "operationId": "getDeployments"
+      }
+    },
+    "/api/v2/engineering-insights/deployments/{deploymentID}": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Deployment response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeploymentRep"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationFailedErrorRep"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid access token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedErrorRep"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenErrorRep"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Invalid resource identifier",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotFoundErrorRep"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RateLimitedErrorRep"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Insights deployments (beta)"
+        ],
+        "summary": "Get deployment",
+        "description": "Get a deployment by ID.\n\nThe deployment ID is returned as part of the [List deployments](#operation/getDeployments) response. It is the `id` field of each element in the `items` array.\n\n### Expanding the deployment response\n\nLaunchDarkly supports expanding the deployment response to include additional fields.\n\nTo expand the response, append the `expand` query parameter and include the following:\n\n* `pullRequests` includes details on all of the pull requests associated with each deployment\n* `flagReferences` includes details on all of the references to flags in each deployment\n\nFor example, use `?expand=pullRequests` to include the `pullRequests` field in the response. By default, this field is **not** included in the response.\n",
+        "parameters": [
+          {
+            "name": "deploymentID",
+            "in": "path",
+            "description": "The deployment ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "string",
+              "description": "The deployment ID"
+            }
+          },
+          {
+            "name": "expand",
+            "in": "query",
+            "description": "Expand properties in response. Options: `pullRequests`, `flagReferences`",
+            "schema": {
+              "type": "string",
+              "format": "string",
+              "description": "Expand properties in response. Options: `pullRequests`, `flagReferences`"
+            }
+          }
+        ],
+        "operationId": "getDeployment"
+      },
+      "patch": {
+        "responses": {
+          "200": {
+            "description": "Deployment response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeploymentRep"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationFailedErrorRep"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid access token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedErrorRep"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenErrorRep"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Invalid resource identifier",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotFoundErrorRep"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RateLimitedErrorRep"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Insights deployments (beta)"
+        ],
+        "summary": "Update deployment",
+        "description": "Update a deployment by ID. Updating a deployment uses a [JSON patch](https://datatracker.ietf.org/doc/html/rfc6902) representation of the desired changes. To learn more, read [Updates](/#section/Overview/Updates).<br/><br/>The deployment ID is returned as part of the [List deployments](#operation/getDeployments) response. It is the `id` field of each element in the `items` array.",
+        "parameters": [
+          {
+            "name": "deploymentID",
+            "in": "path",
+            "description": "The deployment ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "string",
+              "description": "The deployment ID"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/JSONPatch"
+              },
+              "example": [
+                {
+                  "op": "replace",
+                  "path": "/status",
+                  "value": "finished"
+                }
+              ]
+            }
+          },
+          "required": true
+        },
+        "operationId": "updateDeployment"
+      }
+    },
+    "/api/v2/engineering-insights/flag-events": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Flag event collection response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FlagEventCollectionRep"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationFailedErrorRep"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid access token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedErrorRep"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenErrorRep"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Invalid resource identifier",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotFoundErrorRep"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RateLimitedErrorRep"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Insights flag events (beta)"
+        ],
+        "summary": "List flag events",
+        "description": "Get a list of flag events\n\n### Expanding the flag event collection response\n\nLaunchDarkly supports expanding the flag event collection response to include additional fields.\n\nTo expand the response, append the `expand` query parameter and include the following:\n\n* `experiments` includes details on all of the experiments run on each flag\n\nFor example, use `?expand=experiments` to include the `experiments` field in the response. By default, this field is **not** included in the response.\n",
+        "parameters": [
+          {
+            "name": "projectKey",
+            "in": "query",
+            "description": "The project key",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "string",
+              "description": "The project key"
+            }
+          },
+          {
+            "name": "environmentKey",
+            "in": "query",
+            "description": "The environment key",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "string",
+              "description": "The environment key"
+            }
+          },
+          {
+            "name": "applicationKey",
+            "in": "query",
+            "description": "Comma separated list of application keys",
+            "schema": {
+              "type": "string",
+              "format": "string",
+              "description": "Comma separated list of application keys"
+            }
+          },
+          {
+            "name": "query",
+            "in": "query",
+            "description": "Filter events by flag key",
+            "schema": {
+              "type": "string",
+              "format": "string",
+              "description": "Filter events by flag key"
+            }
+          },
+          {
+            "name": "impactSize",
+            "in": "query",
+            "description": "Filter events by impact size. A small impact created a less than 20% change in the proportion of end users receiving one or more flag variations. A medium impact created between a 20%-80% change. A large impact created a more than 80% change. Options: `none`, `small`, `medium`, `large`",
+            "schema": {
+              "type": "string",
+              "format": "string",
+              "description": "Filter events by impact size. A small impact created a less than 20% change in the proportion of end users receiving one or more flag variations. A medium impact created between a 20%-80% change. A large impact created a more than 80% change. Options: `none`, `small`, `medium`, `large`"
+            }
+          },
+          {
+            "name": "hasExperiments",
+            "in": "query",
+            "description": "Filter events to those associated with an experiment (`true`) or without an experiment (`false`)",
+            "schema": {
+              "type": "boolean",
+              "format": "boolean",
+              "description": "Filter events to those associated with an experiment (`true`) or without an experiment (`false`)"
+            }
+          },
+          {
+            "name": "global",
+            "in": "query",
+            "description": "Filter to include or exclude global events. Default value is `include`. Options: `include`, `exclude`",
+            "schema": {
+              "type": "string",
+              "format": "string",
+              "description": "Filter to include or exclude global events. Default value is `include`. Options: `include`, `exclude`"
+            }
+          },
+          {
+            "name": "expand",
+            "in": "query",
+            "description": "Expand properties in response. Options: `experiments`",
+            "schema": {
+              "type": "string",
+              "format": "string",
+              "description": "Expand properties in response. Options: `experiments`"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The number of deployments to return. Default is 20. Maximum allowed is 100.",
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "description": "The number of deployments to return. Default is 20. Maximum allowed is 100."
+            }
+          },
+          {
+            "name": "from",
+            "in": "query",
+            "description": "Unix timestamp in milliseconds. Default value is 7 days ago.",
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "description": "Unix timestamp in milliseconds. Default value is 7 days ago."
+            }
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "description": "Unix timestamp in milliseconds. Default value is now.",
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "description": "Unix timestamp in milliseconds. Default value is now."
+            }
+          },
+          {
+            "name": "after",
+            "in": "query",
+            "description": "Identifier used for pagination",
+            "schema": {
+              "type": "string",
+              "format": "string",
+              "description": "Identifier used for pagination"
+            }
+          },
+          {
+            "name": "before",
+            "in": "query",
+            "description": "Identifier used for pagination",
+            "schema": {
+              "type": "string",
+              "format": "string",
+              "description": "Identifier used for pagination"
+            }
+          }
+        ],
+        "operationId": "getFlagEvents"
+      }
+    },
+    "/api/v2/engineering-insights/insights/group": {
+      "post": {
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InsightGroup"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationFailedErrorRep"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid access token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedErrorRep"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenErrorRep"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Invalid resource identifier",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotFoundErrorRep"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Status conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StatusConflictErrorRep"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RateLimitedErrorRep"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Insights scores (beta)"
+        ],
+        "summary": "Create insight group",
+        "description": "Create insight group",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostInsightGroupParams"
+              }
+            }
+          },
+          "required": true
+        },
+        "operationId": "createInsightGroup"
+      }
+    },
+    "/api/v2/engineering-insights/insights/groups": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Insight groups collection response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InsightGroupCollection"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationFailedErrorRep"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid access token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedErrorRep"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenErrorRep"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RateLimitedErrorRep"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Insights scores (beta)"
+        ],
+        "summary": "List insight groups",
+        "description": "List groups for which you are collecting insights\n\n### Expanding the insight groups collection response\n\nLaunchDarkly supports expanding the insight groups collection response to include additional fields.\n\nTo expand the response, append the `expand` query parameter and include the following:\n\n* `scores` includes details on all of the scores used in the engineering insights metrics views for each group\n* `environment` includes details on each environment associated with each group\n* `metadata` includes counts of the number of insight groups with particular indicators, such as \"execellent,\" \"good,\" \"fair,\" and so on.\n\nFor example, use `?expand=scores` to include the `scores` field in the response. By default, this field is **not** included in the response.\n",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The number of insight groups to return. Default is 20. Must be between 1 and 20 inclusive.",
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "description": "The number of insight groups to return. Default is 20. Must be between 1 and 20 inclusive."
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "Where to start in the list. Use this with pagination. For example, an offset of 10 skips the first ten items and then returns the next items in the list, up to the query `limit`.",
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "description": "Where to start in the list. Use this with pagination. For example, an offset of 10 skips the first ten items and then returns the next items in the list, up to the query `limit`."
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "Sort flag list by field. Prefix field with <code>-</code> to sort in descending order. Allowed fields: name",
+            "schema": {
+              "type": "string",
+              "format": "string",
+              "description": "Sort flag list by field. Prefix field with <code>-</code> to sort in descending order. Allowed fields: name"
+            }
+          },
+          {
+            "name": "query",
+            "in": "query",
+            "description": "Filter list of insights groups by name.",
+            "schema": {
+              "type": "string",
+              "format": "string",
+              "description": "Filter list of insights groups by name."
+            }
+          },
+          {
+            "name": "expand",
+            "in": "query",
+            "description": "Options: `scores`, `environment`, `metadata`",
+            "schema": {
+              "type": "string",
+              "format": "string",
+              "description": "Options: `scores`, `environment`, `metadata`"
+            }
+          }
+        ],
+        "operationId": "getInsightGroups"
+      }
+    },
+    "/api/v2/engineering-insights/insights/groups/{insightGroupKey}": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Insight group response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InsightGroup"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationFailedErrorRep"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid access token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedErrorRep"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenErrorRep"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Invalid resource identifier",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotFoundErrorRep"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RateLimitedErrorRep"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Insights scores (beta)"
+        ],
+        "summary": "Get insight group",
+        "description": "Get insight group\n\n### Expanding the insight group response\n\nLaunchDarkly supports expanding the insight group response to include additional fields.\n\nTo expand the response, append the `expand` query parameter and include the following:\n\n* `scores` includes details on all of the scores used in the engineering insights metrics views for this group\n* `environment` includes details on each environment associated with this group\n\nFor example, use `?expand=scores` to include the `scores` field in the response. By default, this field is **not** included in the response.\n",
+        "parameters": [
+          {
+            "name": "insightGroupKey",
+            "in": "path",
+            "description": "The insight group key",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "string",
+              "description": "The insight group key"
+            }
+          },
+          {
+            "name": "expand",
+            "in": "query",
+            "description": "Options: `scores`, `environment`",
+            "schema": {
+              "type": "string",
+              "format": "string",
+              "description": "Options: `scores`, `environment`"
+            }
+          }
+        ],
+        "operationId": "getInsightGroup"
+      },
+      "patch": {
+        "responses": {
+          "200": {
+            "description": "Insight group response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InsightGroup"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationFailedErrorRep"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid access token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedErrorRep"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenErrorRep"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Invalid resource identifier",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotFoundErrorRep"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Invalid patch content",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PatchFailedErrorRep"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RateLimitedErrorRep"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Insights scores (beta)"
+        ],
+        "summary": "Patch insight group",
+        "description": "Update an insight group. Updating an insight group uses a [JSON patch](https://datatracker.ietf.org/doc/html/rfc6902) representation of the desired changes. To learn more, read [Updates](/#section/Overview/Updates).",
+        "parameters": [
+          {
+            "name": "insightGroupKey",
+            "in": "path",
+            "description": "The insight group key",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "string",
+              "description": "The insight group key"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/JSONPatch"
+              },
+              "example": [
+                {
+                  "op": "replace",
+                  "path": "/name",
+                  "value": "Prod group"
+                }
+              ]
+            }
+          },
+          "required": true
+        },
+        "operationId": "patchInsightGroup"
+      },
+      "delete": {
+        "responses": {
+          "204": {
+            "description": "Action succeeded"
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationFailedErrorRep"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid access token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedErrorRep"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenErrorRep"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Invalid resource identifier",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotFoundErrorRep"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RateLimitedErrorRep"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Insights scores (beta)"
+        ],
+        "summary": "Delete insight group",
+        "description": "Delete insight group",
+        "parameters": [
+          {
+            "name": "insightGroupKey",
+            "in": "path",
+            "description": "The insight group key",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "string",
+              "description": "The insight group key"
+            }
+          }
+        ],
+        "operationId": "deleteInsightGroup"
+      }
+    },
+    "/api/v2/engineering-insights/insights/scores": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Insight score response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InsightScores"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationFailedErrorRep"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid access token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedErrorRep"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenErrorRep"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RateLimitedErrorRep"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Insights scores (beta)"
+        ],
+        "summary": "Get insight scores",
+        "description": "Return insights scores, based on the given parameters. This data is also used in engineering insights metrics views.",
+        "parameters": [
+          {
+            "name": "projectKey",
+            "in": "query",
+            "description": "The project key",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "string",
+              "description": "The project key"
+            }
+          },
+          {
+            "name": "environmentKey",
+            "in": "query",
+            "description": "The environment key",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "string",
+              "description": "The environment key"
+            }
+          },
+          {
+            "name": "applicationKey",
+            "in": "query",
+            "description": "Comma separated list of application keys",
+            "schema": {
+              "type": "string",
+              "format": "string",
+              "description": "Comma separated list of application keys"
+            }
+          }
+        ],
+        "operationId": "getInsightsScores"
+      }
+    },
+    "/api/v2/engineering-insights/pull-requests": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Pull request collection response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PullRequestCollectionRep"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationFailedErrorRep"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid access token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedErrorRep"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenErrorRep"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Invalid resource identifier",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotFoundErrorRep"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RateLimitedErrorRep"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Insights pull requests (beta)"
+        ],
+        "summary": "List pull requests",
+        "description": "Get a list of pull requests\n\n### Expanding the pull request collection response\n\nLaunchDarkly supports expanding the pull request collection response to include additional fields.\n\nTo expand the response, append the `expand` query parameter and include the following:\n\n* `deployments` includes details on all of the deployments associated with each pull request\n* `flagReferences` includes details on all of the references to flags in each pull request\n* `leadTime` includes details about the lead time of the pull request for each stage\n\nFor example, use `?expand=deployments` to include the `deployments` field in the response. By default, this field is **not** included in the response.\n",
+        "parameters": [
+          {
+            "name": "projectKey",
+            "in": "query",
+            "description": "The project key",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "string",
+              "description": "The project key"
+            }
+          },
+          {
+            "name": "environmentKey",
+            "in": "query",
+            "description": "Required if you are using the <code>sort</code> parameter's <code>leadTime</code> option to sort pull requests.",
+            "schema": {
+              "type": "string",
+              "format": "string",
+              "description": "Required if you are using the <code>sort</code> parameter's <code>leadTime</code> option to sort pull requests."
+            }
+          },
+          {
+            "name": "applicationKey",
+            "in": "query",
+            "description": "Filter the results to pull requests deployed to a comma separated list of applications",
+            "schema": {
+              "type": "string",
+              "format": "string",
+              "description": "Filter the results to pull requests deployed to a comma separated list of applications"
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "description": "Filter results to pull requests with the given status. Options: `open`, `merged`, `closed`, `deployed`.",
+            "schema": {
+              "type": "string",
+              "format": "string",
+              "description": "Filter results to pull requests with the given status. Options: `open`, `merged`, `closed`, `deployed`."
+            }
+          },
+          {
+            "name": "query",
+            "in": "query",
+            "description": "Filter list of pull requests by title or author",
+            "schema": {
+              "type": "string",
+              "format": "string",
+              "description": "Filter list of pull requests by title or author"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The number of pull requests to return. Default is 20. Maximum allowed is 100.",
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "description": "The number of pull requests to return. Default is 20. Maximum allowed is 100."
+            }
+          },
+          {
+            "name": "expand",
+            "in": "query",
+            "description": "Expand properties in response. Options: `deployments`, `flagReferences`, `leadTime`.",
+            "schema": {
+              "type": "string",
+              "format": "string",
+              "description": "Expand properties in response. Options: `deployments`, `flagReferences`, `leadTime`."
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "Sort results. Requires the `environmentKey` to be set. Options: `leadTime` (asc) and `-leadTime` (desc). When query option is excluded, default sort is by created or merged date.",
+            "schema": {
+              "type": "string",
+              "format": "string",
+              "description": "Sort results. Requires the `environmentKey` to be set. Options: `leadTime` (asc) and `-leadTime` (desc). When query option is excluded, default sort is by created or merged date."
+            }
+          },
+          {
+            "name": "from",
+            "in": "query",
+            "description": "Unix timestamp in milliseconds. Default value is 7 days ago.",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "description": "Unix timestamp in milliseconds. Default value is now.",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "after",
+            "in": "query",
+            "description": "Identifier used for pagination",
+            "schema": {
+              "type": "string",
+              "format": "string",
+              "description": "Identifier used for pagination"
+            }
+          },
+          {
+            "name": "before",
+            "in": "query",
+            "description": "Identifier used for pagination",
+            "schema": {
+              "type": "string",
+              "format": "string",
+              "description": "Identifier used for pagination"
+            }
+          }
+        ],
+        "operationId": "getPullRequests"
+      }
+    },
+    "/api/v2/engineering-insights/repositories": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Repository collection response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InsightsRepositoryCollection"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationFailedErrorRep"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid access token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedErrorRep"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenErrorRep"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Invalid resource identifier",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotFoundErrorRep"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RateLimitedErrorRep"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Insights repositories (beta)"
+        ],
+        "summary": "List repositories",
+        "description": "Get a list of repositories\n\n### Expanding the repository collection response\n\nLaunchDarkly supports expanding the repository collection response to include additional fields.\n\nTo expand the response, append the `expand` query parameter and include the following:\n\n* `projects` includes details on all of the LaunchDarkly projects associated with each repository\n\nFor example, use `?expand=projects` to include the `projects` field in the response. By default, this field is **not** included in the response.\n",
+        "parameters": [
+          {
+            "name": "expand",
+            "in": "query",
+            "description": "Expand properties in response. Options: `projects`",
+            "schema": {
+              "type": "string",
+              "format": "string",
+              "description": "Expand properties in response. Options: `projects`"
+            }
+          }
+        ],
+        "operationId": "getInsightsRepositories"
+      }
+    },
+    "/api/v2/engineering-insights/repositories/projects": {
+      "put": {
+        "responses": {
+          "200": {
+            "description": "Repositories projects response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InsightsRepositoryProjectCollection"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationFailedErrorRep"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid access token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedErrorRep"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenErrorRep"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Invalid resource identifier",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotFoundErrorRep"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RateLimitedErrorRep"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Insights repositories (beta)"
+        ],
+        "summary": "Associate repositories with projects",
+        "description": "Associate repositories with projects",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InsightsRepositoryProjectMappings"
+              }
+            }
+          },
+          "required": true
+        },
+        "operationId": "associateRepositoriesAndProjects"
+      }
+    },
+    "/api/v2/engineering-insights/repositories/{repositoryKey}/projects/{projectKey}": {
+      "delete": {
+        "responses": {
+          "204": {
+            "description": "Action succeeded"
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationFailedErrorRep"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid access token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedErrorRep"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenErrorRep"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Invalid resource identifier",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotFoundErrorRep"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RateLimitedErrorRep"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Insights repositories (beta)"
+        ],
+        "summary": "Remove repository project association",
+        "description": "Remove repository project association",
+        "parameters": [
+          {
+            "name": "repositoryKey",
+            "in": "path",
+            "description": "The repository key",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "string",
+              "description": "The repository key"
+            }
+          },
+          {
+            "name": "projectKey",
+            "in": "path",
+            "description": "The project key",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "string",
+              "description": "The project key"
+            }
+          }
+        ],
+        "operationId": "deleteRepositoryProject"
+      }
     }
   },
   "components": {
@@ -32440,6 +34930,10 @@
             "description": "A human-friendly name for the project",
             "example": "My Project"
           },
+          "_access": {
+            "description": "Details on the allowed and denied actions for this project",
+            "$ref": "#/components/schemas/Access"
+          },
           "tags": {
             "type": "array",
             "description": "A list of tags for the project",
@@ -32557,6 +35051,10 @@
             "type": "string",
             "description": "A human-friendly name for the project",
             "example": "My Project"
+          },
+          "_access": {
+            "description": "Details on the allowed and denied actions for this project",
+            "$ref": "#/components/schemas/Access"
           },
           "tags": {
             "type": "array",
@@ -36985,6 +39483,1694 @@
               "type": "string"
             },
             "example": []
+          }
+        }
+      },
+      "DeploymentCollectionRep": {
+        "type": "object",
+        "required": [
+          "totalCount",
+          "items"
+        ],
+        "properties": {
+          "totalCount": {
+            "type": "integer",
+            "description": "The total number of deployments",
+            "example": 25
+          },
+          "items": {
+            "type": "array",
+            "description": "A list of deployments",
+            "items": {
+              "$ref": "#/components/schemas/DeploymentRep"
+            }
+          },
+          "_links": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/Link"
+            },
+            "description": "The location and content type of related resources",
+            "example": {
+              "next": {
+                "href": "/api/v2/engineering-insights/deployments?after=a4290006-1fd1-4ca5-acf7-9f31fac61cf5",
+                "type": "application/json"
+              },
+              "self": {
+                "href": "/api/v2/engineering-insights/deployments",
+                "type": "application/json"
+              }
+            }
+          }
+        }
+      },
+      "DeploymentKind": {
+        "type": "string"
+      },
+      "DeploymentRep": {
+        "type": "object",
+        "required": [
+          "id",
+          "applicationKey",
+          "applicationVersion",
+          "startedAt",
+          "status",
+          "kind",
+          "active",
+          "archived",
+          "environmentKey",
+          "numberOfContributors",
+          "numberOfPullRequests",
+          "linesAdded",
+          "linesDeleted",
+          "leadTime"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "The deployment ID",
+            "example": "a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11"
+          },
+          "applicationKey": {
+            "type": "string",
+            "description": "The application key",
+            "example": "billing-service"
+          },
+          "applicationVersion": {
+            "type": "string",
+            "description": "The application version",
+            "example": "a90a8a2"
+          },
+          "startedAt": {
+            "description": "The time the deployment started",
+            "example": "1706701522000",
+            "$ref": "#/components/schemas/UnixMillis"
+          },
+          "endedAt": {
+            "description": "The time the deployment ended",
+            "example": "1706712518000",
+            "$ref": "#/components/schemas/UnixMillis"
+          },
+          "durationMs": {
+            "type": "integer",
+            "format": "int64",
+            "description": "The duration of the deployment in milliseconds",
+            "example": 10996000
+          },
+          "status": {
+            "description": "The status of the deployment",
+            "example": "finished",
+            "$ref": "#/components/schemas/DeploymentStatus"
+          },
+          "kind": {
+            "description": "The kind of deployment",
+            "example": "redeployment",
+            "$ref": "#/components/schemas/DeploymentKind"
+          },
+          "active": {
+            "type": "boolean",
+            "description": "Whether the deployment is active",
+            "example": true
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": {},
+            "description": "The metadata associated with the deployment",
+            "example": {
+              "buildNumber": "1234"
+            }
+          },
+          "archived": {
+            "type": "boolean",
+            "description": "Whether the deployment is archived",
+            "example": false
+          },
+          "environmentKey": {
+            "type": "string",
+            "description": "The environment key",
+            "example": "production"
+          },
+          "numberOfContributors": {
+            "type": "integer",
+            "description": "The number of contributors",
+            "example": 1
+          },
+          "numberOfPullRequests": {
+            "type": "integer",
+            "description": "The number of pull requests",
+            "example": 2
+          },
+          "linesAdded": {
+            "type": "integer",
+            "format": "int64",
+            "description": "The number of lines added",
+            "example": 100
+          },
+          "linesDeleted": {
+            "type": "integer",
+            "format": "int64",
+            "description": "The number of lines deleted",
+            "example": 50
+          },
+          "leadTime": {
+            "type": "integer",
+            "format": "int64",
+            "description": "The total lead time from first commit to deployment end in milliseconds",
+            "example": 20237000
+          },
+          "pullRequests": {
+            "description": "The pull requests contained in the deployment",
+            "$ref": "#/components/schemas/PullRequestCollectionRep"
+          },
+          "flagReferences": {
+            "description": "The flag references contained in the deployment",
+            "$ref": "#/components/schemas/FlagReferenceCollectionRep"
+          },
+          "leadTimeStages": {
+            "description": "The lead time stages for the deployment",
+            "$ref": "#/components/schemas/LeadTimeStagesRep"
+          }
+        }
+      },
+      "DeploymentStatus": {
+        "type": "string"
+      },
+      "EvaluationsSummary": {
+        "type": "object",
+        "properties": {
+          "variations": {
+            "type": "array",
+            "description": "A list of variation evaluations",
+            "items": {
+              "$ref": "#/components/schemas/VariationEvalSummary"
+            }
+          }
+        }
+      },
+      "EventType": {
+        "type": "string"
+      },
+      "FailureReasonRep": {
+        "type": "object",
+        "required": [
+          "attribute",
+          "reason"
+        ],
+        "properties": {
+          "attribute": {
+            "type": "string",
+            "description": "The attribute that failed validation",
+            "example": "projectKey"
+          },
+          "reason": {
+            "type": "string",
+            "description": "The reason the attribute failed validation",
+            "example": "must be present"
+          }
+        }
+      },
+      "FlagEventCollectionRep": {
+        "type": "object",
+        "required": [
+          "totalCount",
+          "items"
+        ],
+        "properties": {
+          "totalCount": {
+            "type": "integer",
+            "description": "The total number of flag events",
+            "example": 1200
+          },
+          "items": {
+            "type": "array",
+            "description": "A list of flag events",
+            "items": {
+              "$ref": "#/components/schemas/FlagEventRep"
+            }
+          },
+          "_links": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/Link"
+            },
+            "description": "The location and content type of related resources",
+            "example": {
+              "next": {
+                "href": "/api/v2/engineering-insights/flag-events?after=a4290006-1fd1-4ca5-acf7-9f31fac61cf5",
+                "type": "application/json"
+              },
+              "self": {
+                "href": "/api/v2/engineering-insights/flag-events",
+                "type": "application/json"
+              }
+            }
+          }
+        }
+      },
+      "FlagEventExperiment": {
+        "type": "object",
+        "required": [
+          "key",
+          "name",
+          "iteration"
+        ],
+        "properties": {
+          "key": {
+            "type": "string",
+            "description": "The experiment key",
+            "example": "experiment-1"
+          },
+          "name": {
+            "type": "string",
+            "description": "The experiment name",
+            "example": "Experiment 1"
+          },
+          "iteration": {
+            "description": "The experiment iteration",
+            "$ref": "#/components/schemas/FlagEventExperimentIteration"
+          },
+          "_links": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/Link"
+            },
+            "description": "The location and content type of related resources"
+          }
+        }
+      },
+      "FlagEventExperimentCollection": {
+        "type": "object",
+        "required": [
+          "totalCount",
+          "items"
+        ],
+        "properties": {
+          "totalCount": {
+            "type": "integer",
+            "description": "The total number of experiments",
+            "example": 1
+          },
+          "items": {
+            "type": "array",
+            "description": "A list of experiments",
+            "items": {
+              "$ref": "#/components/schemas/FlagEventExperiment"
+            }
+          }
+        }
+      },
+      "FlagEventExperimentIteration": {
+        "type": "object",
+        "required": [
+          "id",
+          "status",
+          "startedAt"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The experiment iteration ID",
+            "example": "65baa44ecc4b5bce113bb4f7"
+          },
+          "status": {
+            "description": "The experiment iteration status",
+            "example": "running",
+            "enum": [
+              "running",
+              "stopped"
+            ],
+            "$ref": "#/components/schemas/IterationStatus"
+          },
+          "startedAt": {
+            "description": "Timestamp of when the iteration started",
+            "example": "1655314200000",
+            "$ref": "#/components/schemas/UnixMillis"
+          },
+          "endedAt": {
+            "description": "Timestamp of when the iteration ended",
+            "example": "1656610200000",
+            "$ref": "#/components/schemas/UnixMillis"
+          },
+          "_links": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/Link"
+            },
+            "description": "The location and content type of related resources"
+          }
+        }
+      },
+      "FlagEventImpactRep": {
+        "type": "object",
+        "properties": {
+          "size": {
+            "type": "string",
+            "description": "The size of the flag event impact. Sizes are defined as: none (0%), small (0-20%), medium (20-80%), large (>80%)",
+            "example": "medium",
+            "enum": [
+              "none",
+              "small",
+              "medium",
+              "large"
+            ]
+          },
+          "percentage": {
+            "type": "number",
+            "description": "The percentage of the flag event impact",
+            "example": 50
+          },
+          "reason": {
+            "description": "The reason for the flag event impact",
+            "example": "evaluations",
+            "enum": [
+              "evaluations",
+              "global",
+              "waiting"
+            ],
+            "$ref": "#/components/schemas/ImpactReason"
+          },
+          "evaluationsSummary": {
+            "description": "A summary of the change in variation evaluations after the flag event",
+            "$ref": "#/components/schemas/EvaluationsSummary"
+          }
+        }
+      },
+      "FlagEventMemberRep": {
+        "type": "object",
+        "required": [
+          "id",
+          "email",
+          "firstName",
+          "lastName"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The member ID",
+            "example": "65baa44ecc4b5bce113bb4f7"
+          },
+          "email": {
+            "type": "string",
+            "description": "The member email",
+            "example": "test@launchdarkly.com"
+          },
+          "firstName": {
+            "type": "string",
+            "description": "The member first name"
+          },
+          "lastName": {
+            "type": "string",
+            "description": "The member last name"
+          }
+        }
+      },
+      "FlagEventRep": {
+        "type": "object",
+        "required": [
+          "id",
+          "projectId",
+          "projectKey",
+          "flagKey",
+          "eventType",
+          "eventTime",
+          "description",
+          "impact"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "The flag event ID",
+            "example": "e3b2b0e0-9e9b-4c9a-8e9a-0e0e0e0e0e0e"
+          },
+          "projectId": {
+            "type": "string",
+            "description": "The project ID",
+            "example": "65baa44ecc4b5bce113bb4f7"
+          },
+          "projectKey": {
+            "type": "string",
+            "description": "The project key",
+            "example": "default"
+          },
+          "environmentId": {
+            "type": "string",
+            "description": "The environment ID",
+            "example": "65baa44ecc4b5bce113bb4f7"
+          },
+          "environmentKey": {
+            "type": "string",
+            "description": "The environment key",
+            "example": "production"
+          },
+          "flagKey": {
+            "type": "string",
+            "description": "The flag key",
+            "example": "enable-new-payment-method"
+          },
+          "eventType": {
+            "description": "The event type",
+            "example": "enabled_targeting",
+            "$ref": "#/components/schemas/EventType"
+          },
+          "eventTime": {
+            "description": "A Unix timestamp in milliseconds",
+            "example": "1616425200000",
+            "$ref": "#/components/schemas/UnixMillis"
+          },
+          "description": {
+            "type": "string",
+            "description": "The event description",
+            "example": "Targeting rule enabled"
+          },
+          "auditLogEntryId": {
+            "type": "string",
+            "description": "The audit log entry ID",
+            "example": "e3b2b0e0-9e9b-4c9a-8e9a-0e0e0e0e0e0e"
+          },
+          "member": {
+            "description": "The member data",
+            "$ref": "#/components/schemas/FlagEventMemberRep"
+          },
+          "actions": {
+            "type": "array",
+            "description": "The resource actions",
+            "items": {
+              "type": "string"
+            }
+          },
+          "impact": {
+            "description": "The flag event evaluation impact",
+            "$ref": "#/components/schemas/FlagEventImpactRep"
+          },
+          "experiments": {
+            "description": "A list of experiment iterations related to the flag event",
+            "$ref": "#/components/schemas/FlagEventExperimentCollection"
+          }
+        }
+      },
+      "FlagReferenceCollectionRep": {
+        "type": "object",
+        "required": [
+          "totalCount",
+          "items"
+        ],
+        "properties": {
+          "totalCount": {
+            "type": "integer",
+            "description": "The total number of flag references",
+            "example": 25
+          },
+          "items": {
+            "type": "array",
+            "description": "A list of flag references",
+            "items": {
+              "$ref": "#/components/schemas/FlagReferenceRep"
+            }
+          }
+        }
+      },
+      "FlagReferenceRep": {
+        "type": "object",
+        "required": [
+          "projectKey",
+          "flagKey",
+          "referencesAdded",
+          "referencesRemoved"
+        ],
+        "properties": {
+          "projectKey": {
+            "type": "string",
+            "description": "The project key",
+            "example": "default"
+          },
+          "flagKey": {
+            "type": "string",
+            "description": "The flag key",
+            "example": "enable-new-payment-structure"
+          },
+          "referencesAdded": {
+            "type": "integer",
+            "description": "The number of references added",
+            "example": 2
+          },
+          "referencesRemoved": {
+            "type": "integer",
+            "description": "The number of references removed",
+            "example": 5
+          }
+        }
+      },
+      "ImpactReason": {
+        "type": "string"
+      },
+      "InsightGroup": {
+        "type": "object",
+        "required": [
+          "key",
+          "name",
+          "projectKey",
+          "environmentKey",
+          "createdAt"
+        ],
+        "properties": {
+          "environment": {
+            "description": "Expanded details about the environment",
+            "$ref": "#/components/schemas/Environment"
+          },
+          "scores": {
+            "description": "The scores for the insight group",
+            "$ref": "#/components/schemas/InsightGroupScores"
+          },
+          "scoreMetadata": {
+            "description": "Metadata about the insight scores, when expanded",
+            "$ref": "#/components/schemas/InsightGroupCollectionScoreMetadata"
+          },
+          "key": {
+            "type": "string",
+            "description": "The insight group key",
+            "example": "default-production-all-apps"
+          },
+          "name": {
+            "type": "string",
+            "description": "The insight group name",
+            "example": "Production - All Apps"
+          },
+          "projectKey": {
+            "type": "string",
+            "description": "The project key",
+            "example": "default"
+          },
+          "environmentKey": {
+            "type": "string",
+            "description": "The environment key",
+            "example": "production"
+          },
+          "applicationKeys": {
+            "type": "array",
+            "description": "The application keys",
+            "items": {
+              "type": "string"
+            },
+            "example": [
+              "billing-service",
+              "inventory-service"
+            ]
+          },
+          "createdAt": {
+            "description": "The time the insight group was created",
+            "example": "1706701522000",
+            "$ref": "#/components/schemas/UnixMillis"
+          }
+        }
+      },
+      "InsightGroupCollection": {
+        "type": "object",
+        "required": [
+          "totalCount",
+          "items"
+        ],
+        "properties": {
+          "totalCount": {
+            "type": "integer",
+            "description": "The total number of insight groups",
+            "example": 15
+          },
+          "items": {
+            "type": "array",
+            "description": "A list of insight groups",
+            "items": {
+              "$ref": "#/components/schemas/InsightGroup"
+            }
+          },
+          "_links": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/Link"
+            },
+            "description": "The location and content type of related resources"
+          },
+          "metadata": {
+            "description": "Metadata about the insight groups",
+            "$ref": "#/components/schemas/InsightGroupCollectionMetadata"
+          },
+          "scoreMetadata": {
+            "description": "Metadata about the insight scores, when expanded",
+            "$ref": "#/components/schemas/InsightGroupCollectionScoreMetadata"
+          }
+        }
+      },
+      "InsightGroupCollectionMetadata": {
+        "type": "object",
+        "required": [
+          "countByIndicator"
+        ],
+        "properties": {
+          "countByIndicator": {
+            "$ref": "#/components/schemas/InsightGroupsCountByIndicator"
+          }
+        }
+      },
+      "InsightGroupCollectionScoreMetadata": {
+        "type": "object",
+        "required": [
+          "period",
+          "lastPeriod"
+        ],
+        "properties": {
+          "period": {
+            "description": "The time period for the score calculations",
+            "$ref": "#/components/schemas/InsightPeriod"
+          },
+          "lastPeriod": {
+            "description": "The time period for the score calculations in the last period",
+            "$ref": "#/components/schemas/InsightPeriod"
+          }
+        }
+      },
+      "InsightGroupScores": {
+        "type": "object",
+        "required": [
+          "overall",
+          "deploymentFrequency",
+          "deploymentFailureRate",
+          "leadTime",
+          "impactSize",
+          "experimentationCoverage",
+          "flagHealth",
+          "velocity",
+          "risk",
+          "efficiency"
+        ],
+        "properties": {
+          "overall": {
+            "description": "The overall score for the insight group",
+            "$ref": "#/components/schemas/InsightsMetricScore"
+          },
+          "deploymentFrequency": {
+            "description": "The deployment frequency score for the insight group",
+            "$ref": "#/components/schemas/InsightsMetricScore"
+          },
+          "deploymentFailureRate": {
+            "description": "The deployment failure rate score for the insight group",
+            "$ref": "#/components/schemas/InsightsMetricScore"
+          },
+          "leadTime": {
+            "description": "The lead time score for the insight group",
+            "$ref": "#/components/schemas/InsightsMetricScore"
+          },
+          "impactSize": {
+            "description": "The impact size score for the insight group",
+            "$ref": "#/components/schemas/InsightsMetricScore"
+          },
+          "experimentationCoverage": {
+            "description": "The Experimentation coverage score for the insight group",
+            "$ref": "#/components/schemas/InsightsMetricScore"
+          },
+          "flagHealth": {
+            "description": "The flag health score for the insight group",
+            "$ref": "#/components/schemas/InsightsMetricScore"
+          },
+          "velocity": {
+            "description": "The velocity score for the insight group",
+            "$ref": "#/components/schemas/InsightsMetricScore"
+          },
+          "risk": {
+            "description": "The risk score for the insight group",
+            "$ref": "#/components/schemas/InsightsMetricScore"
+          },
+          "efficiency": {
+            "description": "The efficiency score for the insight group",
+            "$ref": "#/components/schemas/InsightsMetricScore"
+          },
+          "creationRatio": {
+            "description": "The creation ratio score for the insight group",
+            "$ref": "#/components/schemas/InsightsMetricScore"
+          }
+        }
+      },
+      "InsightGroupsCountByIndicator": {
+        "type": "object",
+        "required": [
+          "excellent",
+          "good",
+          "fair",
+          "needsAttention",
+          "notCalculated",
+          "unknown",
+          "total"
+        ],
+        "properties": {
+          "excellent": {
+            "type": "integer",
+            "description": "The number of insight groups with an excellent indicator",
+            "example": 1
+          },
+          "good": {
+            "type": "integer",
+            "description": "The number of insight groups with a good indicator",
+            "example": 1
+          },
+          "fair": {
+            "type": "integer",
+            "description": "The number of insight groups with a fair indicator",
+            "example": 1
+          },
+          "needsAttention": {
+            "type": "integer",
+            "description": "The number of insight groups with a needs attention indicator",
+            "example": 1
+          },
+          "notCalculated": {
+            "type": "integer",
+            "description": "The number of insight groups with a not calculated indicator",
+            "example": 1
+          },
+          "unknown": {
+            "type": "integer",
+            "description": "The number of insight groups with an unknown indicator",
+            "example": 1
+          },
+          "total": {
+            "type": "integer",
+            "description": "The total number of insight groups",
+            "example": 6
+          }
+        }
+      },
+      "InsightPeriod": {
+        "type": "object",
+        "required": [
+          "startTime",
+          "endTime"
+        ],
+        "properties": {
+          "startTime": {
+            "description": "The start time of the period",
+            "example": "1706701522000",
+            "$ref": "#/components/schemas/UnixMillis"
+          },
+          "endTime": {
+            "description": "The end time of the period",
+            "example": "1706701522000",
+            "$ref": "#/components/schemas/UnixMillis"
+          }
+        }
+      },
+      "InsightScores": {
+        "type": "object",
+        "required": [
+          "period",
+          "lastPeriod",
+          "scores"
+        ],
+        "properties": {
+          "period": {
+            "description": "The time period for the scores",
+            "$ref": "#/components/schemas/InsightPeriod"
+          },
+          "lastPeriod": {
+            "description": "The time period for the scores in the last period",
+            "$ref": "#/components/schemas/InsightPeriod"
+          },
+          "scores": {
+            "description": "The scores for the insight groups",
+            "$ref": "#/components/schemas/InsightGroupScores"
+          },
+          "_links": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/Link"
+            },
+            "description": "The location and content type of related resources"
+          }
+        }
+      },
+      "InsightsChart": {
+        "type": "object",
+        "required": [
+          "metadata",
+          "series"
+        ],
+        "properties": {
+          "metadata": {
+            "description": "Metadata for the chart",
+            "$ref": "#/components/schemas/InsightsChartMetadata"
+          },
+          "series": {
+            "type": "array",
+            "description": "Series data for the chart",
+            "items": {
+              "$ref": "#/components/schemas/InsightsChartSeries"
+            }
+          }
+        }
+      },
+      "InsightsChartBounds": {
+        "type": "object",
+        "required": [
+          "name",
+          "value"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of the bound",
+            "example": "equal"
+          },
+          "value": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Value of the bound",
+            "example": 100
+          }
+        }
+      },
+      "InsightsChartMetadata": {
+        "type": "object",
+        "required": [
+          "summary",
+          "xAxis",
+          "yAxis"
+        ],
+        "properties": {
+          "summary": {
+            "description": "Metadata values",
+            "$ref": "#/components/schemas/InsightsChartMetadataCustomValues"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the chart",
+            "example": "deploymentFrequency"
+          },
+          "metrics": {
+            "description": "Metrics for the given chart data, included when expanded",
+            "$ref": "#/components/schemas/InsightsChartMetrics"
+          },
+          "xAxis": {
+            "description": "X-axis metadata",
+            "example": "timestamp",
+            "$ref": "#/components/schemas/InsightsChartSeriesMetadataAxis"
+          },
+          "yAxis": {
+            "description": "Y-axis metadata",
+            "example": "count",
+            "$ref": "#/components/schemas/InsightsChartSeriesMetadataAxis"
+          }
+        }
+      },
+      "InsightsChartMetadataCustomValues": {
+        "type": "object",
+        "additionalProperties": {}
+      },
+      "InsightsChartMetric": {
+        "type": "object",
+        "required": [
+          "indicator",
+          "value",
+          "unit",
+          "modifier",
+          "tiers"
+        ],
+        "properties": {
+          "indicator": {
+            "type": "string",
+            "description": "Metric indicator tier",
+            "example": "excellent"
+          },
+          "value": {
+            "type": "number",
+            "description": "Metric value",
+            "example": 5
+          },
+          "unit": {
+            "type": "string",
+            "description": "Metric unit",
+            "example": "count"
+          },
+          "modifier": {
+            "type": "string",
+            "description": "Metric modifier",
+            "example": "per day"
+          },
+          "tiers": {
+            "type": "array",
+            "description": "Metric indicator tiers",
+            "items": {
+              "$ref": "#/components/schemas/InsightsMetricTierDefinition"
+            }
+          }
+        }
+      },
+      "InsightsChartMetrics": {
+        "type": "object",
+        "additionalProperties": {
+          "$ref": "#/components/schemas/InsightsChartMetric"
+        }
+      },
+      "InsightsChartSeries": {
+        "type": "object",
+        "required": [
+          "metadata",
+          "data"
+        ],
+        "properties": {
+          "metadata": {
+            "description": "Metadata for the series",
+            "$ref": "#/components/schemas/InsightsChartSeriesMetadata"
+          },
+          "data": {
+            "type": "array",
+            "description": "Data points for the series",
+            "items": {
+              "$ref": "#/components/schemas/InsightsChartSeriesDataPoint"
+            }
+          }
+        }
+      },
+      "InsightsChartSeriesDataPoint": {
+        "type": "object",
+        "required": [
+          "x",
+          "y"
+        ],
+        "properties": {
+          "x": {
+            "type": "integer",
+            "format": "int64",
+            "description": "X-axis value",
+            "example": 1617225600000
+          },
+          "y": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Y-axis value",
+            "example": 100
+          },
+          "values": {
+            "type": "object",
+            "additionalProperties": {},
+            "description": "Additional values for the data point"
+          }
+        }
+      },
+      "InsightsChartSeriesMetadata": {
+        "type": "object",
+        "required": [
+          "name"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of the series"
+          },
+          "count": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Aggregate count of the series values"
+          },
+          "bounds": {
+            "type": "array",
+            "description": "Bounds for the series data",
+            "items": {
+              "$ref": "#/components/schemas/InsightsChartBounds"
+            }
+          }
+        }
+      },
+      "InsightsChartSeriesMetadataAxis": {
+        "type": "object",
+        "required": [
+          "unit"
+        ],
+        "properties": {
+          "unit": {
+            "type": "string",
+            "description": "Unit of the axis",
+            "example": "count"
+          }
+        }
+      },
+      "InsightsMetricIndicatorRange": {
+        "type": "object",
+        "required": [
+          "min",
+          "max"
+        ],
+        "properties": {
+          "min": {
+            "type": "integer",
+            "description": "The minimum value for the indicator range",
+            "example": 0
+          },
+          "max": {
+            "type": "integer",
+            "description": "The maximum value for the indicator range",
+            "example": 100
+          }
+        }
+      },
+      "InsightsMetricScore": {
+        "type": "object",
+        "required": [
+          "score",
+          "indicator",
+          "indicatorRange"
+        ],
+        "properties": {
+          "score": {
+            "type": "integer",
+            "description": "The score for the metric",
+            "example": 100
+          },
+          "aggregateOf": {
+            "type": "array",
+            "description": "The keys of the metrics that were aggregated to calculate this score",
+            "items": {
+              "type": "string"
+            },
+            "example": [
+              "deploymentFrequency",
+              "leadTime"
+            ]
+          },
+          "diffVsLastPeriod": {
+            "type": "integer"
+          },
+          "indicator": {
+            "description": "The indicator for the score",
+            "example": "excellent",
+            "enum": [
+              "excellent",
+              "good",
+              "fair",
+              "needsAttention",
+              "notCalculated",
+              "unknown"
+            ],
+            "$ref": "#/components/schemas/InsightsMetricScoreIndicator"
+          },
+          "indicatorRange": {
+            "description": "The indicator range for the score",
+            "$ref": "#/components/schemas/InsightsMetricIndicatorRange"
+          },
+          "lastPeriod": {
+            "description": "The score for the metric in the last period",
+            "$ref": "#/components/schemas/InsightsMetricScore"
+          }
+        }
+      },
+      "InsightsMetricScoreIndicator": {
+        "type": "string"
+      },
+      "InsightsMetricTierDefinition": {
+        "type": "object",
+        "required": [
+          "indicator",
+          "description"
+        ],
+        "properties": {
+          "indicator": {
+            "type": "string",
+            "description": "Metric indicator tier",
+            "example": "excellent"
+          },
+          "description": {
+            "type": "string",
+            "description": "Metric indicator description",
+            "example": "at least 1 per day"
+          }
+        }
+      },
+      "InsightsRepository": {
+        "type": "object",
+        "required": [
+          "_id",
+          "version",
+          "key",
+          "type",
+          "url",
+          "mainBranch"
+        ],
+        "properties": {
+          "_id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "The repository ID",
+            "example": "5f9a9b1a-5b9a-4b9a-9a9a-9a9a9a9a9a9a"
+          },
+          "version": {
+            "type": "integer",
+            "description": "The repository version",
+            "example": 1
+          },
+          "key": {
+            "type": "string",
+            "description": "The repository key",
+            "example": "launchdarkly/LaunchDarkly-Docs"
+          },
+          "type": {
+            "type": "string",
+            "description": "The repository type",
+            "example": "github"
+          },
+          "url": {
+            "type": "string",
+            "description": "The repository URL",
+            "example": "https://github.com/launchdarkly/LaunchDarkly-Docs"
+          },
+          "mainBranch": {
+            "type": "string",
+            "description": "The repository main branch",
+            "example": "main"
+          },
+          "projects": {
+            "$ref": "#/components/schemas/ProjectSummaryCollection"
+          }
+        }
+      },
+      "InsightsRepositoryCollection": {
+        "type": "object",
+        "required": [
+          "totalCount",
+          "items"
+        ],
+        "properties": {
+          "totalCount": {
+            "type": "integer",
+            "description": "Total number of repositories",
+            "example": 1
+          },
+          "items": {
+            "type": "array",
+            "description": "List of repositories",
+            "items": {
+              "$ref": "#/components/schemas/InsightsRepository"
+            }
+          },
+          "_links": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/Link"
+            },
+            "description": "The location and content type of related resources"
+          }
+        }
+      },
+      "InsightsRepositoryProject": {
+        "type": "object",
+        "required": [
+          "repositoryKey",
+          "projectKey"
+        ],
+        "properties": {
+          "repositoryKey": {
+            "type": "string",
+            "description": "The repository key",
+            "example": "launchdarkly/LaunchDarkly-Docs"
+          },
+          "projectKey": {
+            "type": "string",
+            "description": "The project key",
+            "example": "default"
+          }
+        }
+      },
+      "InsightsRepositoryProjectCollection": {
+        "type": "object",
+        "required": [
+          "totalCount",
+          "items"
+        ],
+        "properties": {
+          "totalCount": {
+            "type": "integer",
+            "description": "Total number of repository project associations",
+            "example": 1
+          },
+          "items": {
+            "type": "array",
+            "description": "List of repository project associations",
+            "items": {
+              "$ref": "#/components/schemas/InsightsRepositoryProject"
+            }
+          },
+          "_links": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/Link"
+            },
+            "description": "The location and content type of related resources"
+          }
+        }
+      },
+      "InsightsRepositoryProjectMappings": {
+        "type": "object",
+        "required": [
+          "mappings"
+        ],
+        "properties": {
+          "mappings": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InsightsRepositoryProject"
+            }
+          }
+        }
+      },
+      "IterationStatus": {
+        "type": "string"
+      },
+      "LeadTimeStagesRep": {
+        "type": "object",
+        "required": [
+          "codingDurationMs"
+        ],
+        "properties": {
+          "codingDurationMs": {
+            "type": "integer",
+            "format": "int64",
+            "description": "The coding duration in milliseconds",
+            "example": 1000000
+          },
+          "reviewDurationMs": {
+            "type": "integer",
+            "format": "int64",
+            "description": "The review duration in milliseconds",
+            "example": 500000
+          },
+          "waitDurationMs": {
+            "type": "integer",
+            "format": "int64",
+            "description": "The wait duration between merge time and deploy start time in milliseconds",
+            "example": 100000
+          },
+          "deployDurationMs": {
+            "type": "integer",
+            "format": "int64",
+            "description": "The deploy duration in milliseconds",
+            "example": 100000
+          },
+          "totalLeadTimeMs": {
+            "type": "integer",
+            "format": "int64",
+            "description": "The total lead time in milliseconds",
+            "example": 1600000
+          }
+        }
+      },
+      "PostDeploymentEventInput": {
+        "type": "object",
+        "required": [
+          "projectKey",
+          "environmentKey",
+          "applicationKey",
+          "version",
+          "eventType"
+        ],
+        "properties": {
+          "projectKey": {
+            "type": "string",
+            "description": "The project key",
+            "example": "default"
+          },
+          "environmentKey": {
+            "type": "string",
+            "description": "The environment key",
+            "example": "production"
+          },
+          "applicationKey": {
+            "type": "string",
+            "description": "The application key. This defines the granularity at which you want to view your insights metrics. Typically it is the name of one of the GitHub repositories that you use in this project.<br/><br/>LaunchDarkly automatically creates a new application each time you send a unique application key.",
+            "example": "billing-service"
+          },
+          "applicationName": {
+            "type": "string",
+            "description": "The application name. This defines how the application is displayed",
+            "example": "Billing Service"
+          },
+          "applicationKind": {
+            "type": "string",
+            "description": "The kind of application. Default: <code>server</code>",
+            "example": "server",
+            "enum": [
+              "server",
+              "browser",
+              "mobile"
+            ]
+          },
+          "version": {
+            "type": "string",
+            "description": "The application version. You can set the application version to any string that includes only letters, numbers, periods (<code>.</code>), hyphens (<code>-</code>), or underscores (<code>_</code>).<br/><br/>We recommend setting the application version to at least the first seven characters of the SHA or to the tag of the GitHub commit for this deployment.",
+            "example": "a90a8a2"
+          },
+          "versionName": {
+            "type": "string",
+            "description": "The version name. This defines how the version is displayed",
+            "example": "v1.0.0"
+          },
+          "eventType": {
+            "type": "string",
+            "description": "The event type",
+            "example": "started",
+            "enum": [
+              "started",
+              "failed",
+              "finished",
+              "custom"
+            ]
+          },
+          "eventTime": {
+            "description": "The time, in Unix milliseconds, when the event occurred. If not included, the time will default to when the event is processed and stored in LaunchDarkly.",
+            "example": "1706701522000",
+            "$ref": "#/components/schemas/UnixMillis"
+          },
+          "eventMetadata": {
+            "type": "object",
+            "additionalProperties": {},
+            "description": "A JSON object containing metadata about the event",
+            "example": {
+              "buildSystemVersion": "v1.2.3"
+            }
+          },
+          "deploymentMetadata": {
+            "type": "object",
+            "additionalProperties": {},
+            "description": "A JSON object containing metadata about the deployment",
+            "example": {
+              "buildNumber": "1234"
+            }
+          }
+        }
+      },
+      "PostInsightGroupParams": {
+        "type": "object",
+        "required": [
+          "name",
+          "key",
+          "projectKey",
+          "environmentKey"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The name of the insight group",
+            "example": "Production - All Apps"
+          },
+          "key": {
+            "type": "string",
+            "description": "The key of the insight group",
+            "example": "default-production-all-apps"
+          },
+          "projectKey": {
+            "type": "string",
+            "description": "The projectKey to be associated with the insight group",
+            "example": "default"
+          },
+          "environmentKey": {
+            "type": "string",
+            "description": "The environmentKey to be associated with the insight group",
+            "example": "production"
+          },
+          "applicationKeys": {
+            "type": "array",
+            "description": "The application keys to associate with the insight group. If not provided, the insight group will include data from all applications.",
+            "items": {
+              "type": "string"
+            },
+            "example": [
+              "billing-service",
+              "inventory-service"
+            ]
+          }
+        }
+      },
+      "ProjectSummaryCollection": {
+        "type": "object",
+        "required": [
+          "totalCount",
+          "items"
+        ],
+        "properties": {
+          "totalCount": {
+            "type": "integer"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProjectSummary"
+            }
+          },
+          "_links": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/Link"
+            }
+          }
+        }
+      },
+      "PullRequestCollectionRep": {
+        "type": "object",
+        "required": [
+          "totalCount",
+          "items"
+        ],
+        "properties": {
+          "totalCount": {
+            "type": "integer",
+            "description": "The total number of pull requests",
+            "example": 25
+          },
+          "items": {
+            "type": "array",
+            "description": "A list of pull requests",
+            "items": {
+              "$ref": "#/components/schemas/PullRequestRep"
+            }
+          },
+          "_links": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/Link"
+            },
+            "description": "The location and content type of related resources",
+            "example": {
+              "next": {
+                "href": "/api/v2/engineering-insights/pull-requests?after=a4290006-1fd1-4ca5-acf7-9f31fac61cf5",
+                "type": "application/json"
+              },
+              "self": {
+                "href": "/api/v2/engineering-insights/pull-requests",
+                "type": "application/json"
+              }
+            }
+          }
+        }
+      },
+      "PullRequestLeadTimeRep": {
+        "type": "object",
+        "required": [
+          "codingDurationMs"
+        ],
+        "properties": {
+          "codingDurationMs": {
+            "type": "integer",
+            "format": "int64",
+            "description": "The coding duration in milliseconds",
+            "example": 1000000
+          },
+          "reviewDurationMs": {
+            "type": "integer",
+            "format": "int64",
+            "description": "The review duration in milliseconds",
+            "example": 500000
+          },
+          "maxWaitDurationMs": {
+            "type": "integer",
+            "format": "int64",
+            "description": "The max wait duration between merge time and deploy start time in milliseconds",
+            "example": 100000
+          },
+          "avgWaitDurationMs": {
+            "type": "integer",
+            "format": "int64",
+            "description": "The average wait duration between merge time and deploy start time in milliseconds",
+            "example": 100000
+          },
+          "maxDeployDurationMs": {
+            "type": "integer",
+            "format": "int64",
+            "description": "The max deploy duration in milliseconds",
+            "example": 100000
+          },
+          "avgDeployDurationMs": {
+            "type": "integer",
+            "format": "int64",
+            "description": "The average deploy duration in milliseconds",
+            "example": 100000
+          },
+          "maxTotalLeadTimeMs": {
+            "type": "integer",
+            "format": "int64",
+            "description": "The max total lead time in milliseconds",
+            "example": 1600000
+          },
+          "avgTotalLeadTimeMs": {
+            "type": "integer",
+            "format": "int64",
+            "description": "The average total lead time in milliseconds",
+            "example": 1600000
+          }
+        }
+      },
+      "PullRequestRep": {
+        "type": "object",
+        "required": [
+          "id",
+          "externalId",
+          "title",
+          "status",
+          "author",
+          "createTime",
+          "baseCommitKey",
+          "headCommitKey",
+          "filesChanged",
+          "linesAdded",
+          "linesDeleted",
+          "url"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "The pull request internal ID",
+            "example": "a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11"
+          },
+          "externalId": {
+            "type": "string",
+            "description": "The pull request number",
+            "example": "1234"
+          },
+          "title": {
+            "type": "string",
+            "description": "The pull request title",
+            "example": "Enable new payment structure"
+          },
+          "status": {
+            "type": "string",
+            "description": "The pull request status",
+            "example": "merged"
+          },
+          "author": {
+            "type": "string",
+            "description": "The pull request author",
+            "example": "jane.doe"
+          },
+          "createTime": {
+            "description": "The pull request create time",
+            "example": "1706701522000",
+            "$ref": "#/components/schemas/UnixMillis"
+          },
+          "mergeTime": {
+            "description": "The pull request merge time",
+            "example": "1706712518000",
+            "$ref": "#/components/schemas/UnixMillis"
+          },
+          "mergeCommitKey": {
+            "type": "string",
+            "description": "The pull request merge commit key",
+            "example": "a90a8a2"
+          },
+          "baseCommitKey": {
+            "type": "string",
+            "description": "The pull request base commit key",
+            "example": "a90a8a2"
+          },
+          "headCommitKey": {
+            "type": "string",
+            "description": "The pull request head commit key",
+            "example": "a90a8a2"
+          },
+          "filesChanged": {
+            "type": "integer",
+            "description": "The number of files changed",
+            "example": 2
+          },
+          "linesAdded": {
+            "type": "integer",
+            "description": "The number of lines added",
+            "example": 100
+          },
+          "linesDeleted": {
+            "type": "integer",
+            "description": "The number of lines deleted",
+            "example": 50
+          },
+          "url": {
+            "type": "string",
+            "description": "The pull request URL",
+            "example": "https://github.com/launchdarkly/LaunchDarkly-Docs/pull/406"
+          },
+          "deployments": {
+            "description": "A list of deployments associated with the pull request",
+            "$ref": "#/components/schemas/DeploymentCollectionRep"
+          },
+          "flagReferences": {
+            "description": "A list of flag references associated with the pull request",
+            "$ref": "#/components/schemas/FlagReferenceCollectionRep"
+          },
+          "leadTime": {
+            "description": "The lead time for the pull request in a given environment",
+            "$ref": "#/components/schemas/PullRequestLeadTimeRep"
+          }
+        }
+      },
+      "ValidationFailedErrorRep": {
+        "type": "object",
+        "required": [
+          "code",
+          "message",
+          "errors"
+        ],
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Specific error code encountered",
+            "example": "invalid_request"
+          },
+          "message": {
+            "type": "string",
+            "description": "Description of the error",
+            "example": "validation failed"
+          },
+          "errors": {
+            "type": "array",
+            "description": "List of validation errors",
+            "items": {
+              "$ref": "#/components/schemas/FailureReasonRep"
+            }
+          }
+        }
+      },
+      "VariationEvalSummary": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "description": "The variation value",
+            "example": "true"
+          },
+          "before": {
+            "type": "integer",
+            "format": "int64",
+            "description": "The number of evaluations in the ten minutes before the flag event",
+            "example": 1000
+          },
+          "after": {
+            "type": "integer",
+            "format": "int64",
+            "description": "The number of evaluations in the ten minutes after the flag event",
+            "example": 500
           }
         }
       }
