@@ -4,6 +4,7 @@ import { z } from "zod";
 import * as path from "path";
 import { dbFolder } from "./util";
 import * as fs from "fs-extra";
+import kebabCase from "lodash.kebabcase";
 
 const GH_DESC_CHAR_LIMIT = 350;
 const DescriptionSchema = z.object({ description: z.string().max(350) });
@@ -26,7 +27,7 @@ export async function generateRepositoryDescription(
 ): Promise<string> {
   const cachePath = path.join(
     processedCustomRequestCacheDir,
-    `${companyName}${serviceName ? `-${serviceName}` : ""}.json`
+    `${kebabCase(`${companyName}${serviceName ? `-${serviceName}` : ""}`)}.json`
   );
   if (fs.existsSync(cachePath)) {
     const cache: Record<string, string> = JSON.parse(
