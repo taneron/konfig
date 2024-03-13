@@ -12,7 +12,7 @@ export default function GiphyTypeScriptSdk() {
   return (
     <SdkNew
       sdkName="giphy-typescript-sdk"
-      metaDescription="Giphy is a platform that provides a vast collection of animated GIFs and stickers for users to express themselves in various online conversations. It offers a wide range of categories and search functionalities to easily find and share engaging visual content across social media, messaging platforms, and more."
+      metaDescription={`Giphy is a platform that provides a vast collection of animated GIFs and stickers for users to express themselves in various online conversations. It offers a wide range of categories and search functionalities to easily find and share engaging visual content across social media, messaging platforms, and more.`}
       company="Giphy"
       // Missing serviceName
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/giphy/logo.png"

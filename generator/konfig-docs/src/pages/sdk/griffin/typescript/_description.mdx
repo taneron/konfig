@@ -4,25 +4,25 @@ The Griffin API is based on [REST](https://en.wikipedia.org/wiki/Representationa
 It has resource-oriented URLs, accepts [JSON](https://www.json.org/json-en.html)-encoded request bodies, returns [JSON](https://www.json.org/json-en.html)-encoded responses, and uses standard HTTP response verbs and response codes.
 
 Our API deviates from strict RESTful principles if it makes sense to do so, such as when we enforce tighter access controls around certain operations.
-For example, when closing a bank account: rather than send a PATCH request to the [bank account](https://docs.griffin.com/api) resource to update it's status to `"closed"`, we provide a dedicated account closure resource.
+For example, when closing a bank account: rather than send a PATCH request to the [bank account](http://docs.griffin.com) resource to update it's status to `"closed"`, we provide a dedicated account closure resource.
 
-Anyone can [create an account](https://app.griffin.com/register) with Griffin and try out out API in [sandbox mode](https://docs.griffin.com/api).
+Anyone can [create an account](https://app.griffin.com/register) with Griffin and try out out API in [sandbox mode](http://docs.griffin.com).
 
-New to Griffin? Check out our [getting started guide](https://docs.griffin.com/api).
+New to Griffin? Check out our [getting started guide](http://docs.griffin.com).
 
 ## Navigation
 
 Our API is designed to be navigated programmatically. When you request any resource, you will find the URLs for related resources in the response body.
 
-The API is structured as a tree with your [organization](https://docs.griffin.com/api) at the top. Everything that you own will be a sub-resource of your organization.
+The API is structured as a tree with your [organization](http://docs.griffin.com) at the top. Everything that you own will be a sub-resource of your organization.
 
-To bootstrap the navigation process, request the [index](https://docs.griffin.com/api) endpoint: the response will contain your `organization-url`.
+To bootstrap the navigation process, request the [index](http://docs.griffin.com) endpoint: the response will contain your `organization-url`.
 
-For a walkthrough, see our [getting started guide](https://docs.griffin.com/api).
+For a walkthrough, see our [getting started guide](http://docs.griffin.com).
 
 ## Pagination
 
-Our list APIs support pagination (e.g. [list bank accounts](https://docs.griffin.com/api) and [list payments](https://docs.griffin.com/api)).
+Our list APIs support pagination (e.g. [list bank accounts](http://docs.griffin.com) and [list payments](http://docs.griffin.com)).
 By default, a list API returns up to 25 results. If there are more results available, the response payload will include links to the previous/next pages.
 
 ### Change page size
@@ -53,7 +53,7 @@ Perform a GET request to the value of the attribute to fetch the previous/next p
 If there is no previous or next page available, the value of the attribute will be  null.
 
 Any other query parameters included in the initial request will also be included in the response payload's links.
-If you want to change parameters (see [filtering and sorting](https://docs.griffin.com/api)), request the first page and follow the links from there.
+If you want to change parameters (see [filtering and sorting](http://docs.griffin.com)), request the first page and follow the links from there.
 
 ## Filtering and sorting
 

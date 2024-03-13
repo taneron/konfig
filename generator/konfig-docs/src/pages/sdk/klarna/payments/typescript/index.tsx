@@ -12,7 +12,7 @@ export default function KlarnaPaymentsTypeScriptSdk() {
   return (
     <SdkNew
       sdkName="klarna-payments-typescript-sdk"
-      metaDescription="Klarna is a Swedish bank that provides online financial services such as payment solutions for online storefronts. It offers customers the ability to buy now and pay later, as well as other financing options. Klarna has gained popularity for its smooth checkout experience and customer-friendly payment options."
+      metaDescription={`Klarna is a Swedish bank that provides online financial services such as payment solutions for online storefronts. It offers customers the ability to buy now and pay later, as well as other financing options. Klarna has gained popularity for its smooth checkout experience and customer-friendly payment options.`}
       company="Klarna"
       serviceName="Payments"
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/klarna/payments/logo.png"

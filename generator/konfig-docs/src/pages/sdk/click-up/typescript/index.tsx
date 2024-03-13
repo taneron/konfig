@@ -12,13 +12,13 @@ export default function ClickUpTypeScriptSdk() {
   return (
     <SdkNew
       sdkName="click-up-typescript-sdk"
-      metaDescription="ClickUp is a productivity platform that allows teams to manage tasks, documents, goals, and chat all in one place. With customizable features and integrations, ClickUp aims to streamline workflows and improve collaboration within organizations of all sizes."
+      metaDescription={`ClickUp is a productivity platform that allows teams to manage tasks, documents, goals, and chat all in one place. With customizable features and integrations, ClickUp aims to streamline workflows and improve collaboration within organizations of all sizes.`}
       company="ClickUp"
       // Missing serviceName
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/clickup/logo.png"
       clientNameCamelCase="clickUp"
       homepage="clickup.com"
-      lastUpdated={new Date("2024-03-13T02:25:22.175Z")}
+      lastUpdated={new Date("2024-03-13T16:59:14.076Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/clickup/favicon.png"
       // Missing contactUrl
       // Missing contactEmail

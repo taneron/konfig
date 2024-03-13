@@ -12,13 +12,13 @@ export default function TerminalTypeScriptSdk() {
   return (
     <SdkNew
       sdkName="terminal-typescript-sdk"
-      metaDescription="Terminal is Plaid for Telematics in commercial trucking. Companies building the next generation of insurance products, financial services and fleet software for trucking use our Universal API to access GPS data, speeding data and vehicle stats.Check us out at https://withterminal.com"
+      metaDescription={`Terminal is Plaid for Telematics in commercial trucking. Companies building the next generation of insurance products, financial services and fleet software for trucking use our Universal API to access GPS data, speeding data and vehicle stats.Check us out at https://withterminal.com`}
       company="Terminal"
       // Missing serviceName
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/terminal/logo.png"
       clientNameCamelCase="terminal"
       homepage="withterminal.com"
-      lastUpdated={new Date("2024-03-13T02:25:22.175Z")}
+      lastUpdated={new Date("2024-03-13T16:59:14.076Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/terminal/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
@@ -86,7 +86,7 @@ export default function TerminalTypeScriptSdk() {
         "name": "tag",
         "schema": "string",
         "description": "Filter connections by tag",
-        "example": "tempor in aliqua"
+        "example": "cupidatat laboris id"
       }
     ],
     "responses": [
@@ -132,7 +132,7 @@ export default function TerminalTypeScriptSdk() {
         "name": "externalId",
         "schema": "string",
         "description": "",
-        "example": "ullamco dolore ipsum"
+        "example": "elit consectetur"
       },
       {
         "name": "provider",
@@ -195,8 +195,8 @@ export default function TerminalTypeScriptSdk() {
         "schema": "array",
         "description": "",
         "example": [
-          "dolor in magna",
-          "reprehenderit dolor nostrud"
+          "irure ut sed Duis",
+          "officia"
         ]
       },
       {
@@ -208,13 +208,13 @@ export default function TerminalTypeScriptSdk() {
         "name": "externalId",
         "schema": "string",
         "description": "",
-        "example": "ad sed dolore cupidatat"
+        "example": "reprehenderit ut"
       },
       {
         "name": "status",
         "schema": "string",
         "description": "",
-        "example": "laborum sed consectetur"
+        "example": "sed Lorem"
       },
       {
         "name": "syncMode",
@@ -679,13 +679,13 @@ export default function TerminalTypeScriptSdk() {
         "name": "startDate",
         "schema": "string",
         "description": "Only include daily logs from on or after a specific date",
-        "example": "1995-04-25"
+        "example": "1953-07-15"
       },
       {
         "name": "endDate",
         "schema": "string",
         "description": "Only include daily logs from on or before a specific date",
-        "example": "1995-04-25"
+        "example": "1953-07-15"
       },
       {
         "name": "modifiedAfter",
@@ -813,13 +813,13 @@ export default function TerminalTypeScriptSdk() {
         "name": "lastReportedAfter",
         "schema": "string",
         "description": "Timestamp to start when the issue was last observed",
-        "example": "2023-06-07"
+        "example": "1951-08-17"
       },
       {
         "name": "lastReportedBefore",
         "schema": "string",
         "description": "Timestamp to end when the issue was last observed",
-        "example": "2023-06-07"
+        "example": "1951-08-17"
       },
       {
         "name": "expand",
@@ -837,13 +837,13 @@ export default function TerminalTypeScriptSdk() {
         "name": "errorCode",
         "schema": "string",
         "description": "Filter issues to a specific error code",
-        "example": "invalid_source_id"
+        "example": "exceeded_retention_window"
       },
       {
         "name": "status",
         "schema": "string",
         "description": "Filter issues to a specific status",
-        "example": "ongoing"
+        "example": "resolved"
       }
     ],
     "responses": [
@@ -1422,6 +1422,58 @@ export default function TerminalTypeScriptSdk() {
         "description": ""
       }
     ]
+  },
+  {
+    "url": "/devices",
+    "method": "getAllDevices",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "Devices",
+    "typeScriptTag": "devices",
+    "description": "List Devices",
+    "parameters": [
+      {
+        "name": "cursor",
+        "schema": "string",
+        "description": "Pagination cursor to start requests from",
+        "example": "{{nextCursor}}"
+      },
+      {
+        "name": "limit",
+        "schema": "string",
+        "description": "The maximum number of results to return in a page.",
+        "example": "1"
+      },
+      {
+        "name": "modifiedAfter",
+        "schema": "string",
+        "description": "Only include records that were last modified after a provided date.",
+        "example": "2021-01-06T03:24:53.000Z"
+      },
+      {
+        "name": "modifiedBefore",
+        "schema": "string",
+        "description": "Only include records that were last modified before a provided date.",
+        "example": "2021-01-06T03:24:53.000Z"
+      },
+      {
+        "name": "raw",
+        "schema": "string",
+        "description": "Include raw responses used to normalize model. Used for debugging or accessing unique properties that are not unified.",
+        "example": "true"
+      },
+      {
+        "name": "connectionToken",
+        "schema": "string",
+        "description": "(Required) The token returned when a user authenticated their account. This authorizes access to a specific account.",
+        "example": "{{connectionToken}}"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      }
+    ]
   }
 ]
     }
@@ -1429,10 +1481,10 @@ export default function TerminalTypeScriptSdk() {
       apiTitle="Terminal API"
       apiBaseUrl="https://api.sandbox.withterminal.com/tsp/v1/"
       apiVersion="1.0.0"
-      endpoints={25}
-      sdkMethods={34}
+      endpoints={26}
+      sdkMethods={35}
       schemas={6}
-      parameters={158}
+      parameters={164}
       difficulty="Easy"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/terminal/openapi.yaml"
       openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/terminal/openapi.yaml"

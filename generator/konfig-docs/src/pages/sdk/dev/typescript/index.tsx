@@ -12,7 +12,7 @@ export default function DevTypeScriptSdk() {
   return (
     <SdkNew
       sdkName="dev-typescript-sdk"
-      metaDescription="DEV is a community of software developers where they can share knowledge, collaborate, and learn from each other. It's a platform for writing, reading, and discussing code and software development topics. DEV also provides resources, tools, and opportunities for developers to grow their skills and network with industry professionals."
+      metaDescription={`DEV is a community of software developers where they can share knowledge, collaborate, and learn from each other. It's a platform for writing, reading, and discussing code and software development topics. DEV also provides resources, tools, and opportunities for developers to grow their skills and network with industry professionals.`}
       company="DEV"
       // Missing serviceName
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/dev/logo.png"

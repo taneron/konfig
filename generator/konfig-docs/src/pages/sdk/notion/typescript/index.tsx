@@ -12,13 +12,13 @@ export default function NotionTypeScriptSdk() {
   return (
     <SdkNew
       sdkName="notion-typescript-sdk"
-      metaDescription="Notion is a new tool that blends your everyday work apps into one. It's the all-in-one workspace for you and your team."
+      metaDescription={`Notion is a new tool that blends your everyday work apps into one. It's the all-in-one workspace for you and your team.`}
       company="Notion"
       // Missing serviceName
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/notion/logo.png"
       clientNameCamelCase="notion"
       homepage="developers.notion.com"
-      lastUpdated={new Date("2024-03-13T02:25:22.175Z")}
+      lastUpdated={new Date("2024-03-13T16:59:14.076Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/notion/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
@@ -28,54 +28,6 @@ export default function NotionTypeScriptSdk() {
       FirstRequest={FirstRequest}
       categories={["all_in_one","planning","agile","automation","docs","documentation","okr","goals","gantt","kanban","forms","wikis","roadmap","reporting","collaboration","productivity","workspace","productivity_software","task_management","information_technology","business_productivity","enterprise_software","work_management","project_management","organization"]}
       methods={[
-  {
-    "url": "/v1/oauth/token",
-    "method": "generateAccess",
-    "httpMethod": HttpMethodsEnum.POST,
-    "tag": "Token",
-    "typeScriptTag": "token",
-    "description": "Create a token",
-    "parameters": [
-      {
-        "name": "code",
-        "schema": "string",
-        "required": true,
-        "description": "",
-        "example": "CODE"
-      },
-      {
-        "name": "grant_type",
-        "schema": "string",
-        "required": true,
-        "description": "",
-        "example": "GRANT_TYPE",
-        "default": "\"authorization_code\""
-      },
-      {
-        "name": "redirect_uri",
-        "schema": "string",
-        "required": true,
-        "description": "",
-        "example": "REDIRECT_URI"
-      },
-      {
-        "name": "external_account",
-        "schema": "object",
-        "required": false,
-        "description": ""
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": ""
-      },
-      {
-        "statusCode": "400",
-        "description": ""
-      }
-    ]
-  },
   {
     "url": "/v1/blocks/{block_id}/children",
     "method": "getChildren",
@@ -960,10 +912,10 @@ export default function NotionTypeScriptSdk() {
       apiTitle="Notion API"
       apiBaseUrl="https://api.notion.com"
       apiVersion="1"
-      endpoints={14}
-      sdkMethods={20}
-      schemas={58}
-      parameters={78}
+      endpoints={13}
+      sdkMethods={19}
+      schemas={55}
+      parameters={74}
       difficulty="Easy"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/notion/openapi.yaml"
       openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/notion/openapi.yaml"

@@ -12,7 +12,7 @@ export default function QualtricsSurveyTypeScriptSdk() {
   return (
     <SdkNew
       sdkName="qualtrics-survey-typescript-sdk"
-      metaDescription="Know what your customers and employees need, when they need it, and deliver it every time with powerful, AI driven Experience Management (XM) software."
+      metaDescription={`Know what your customers and employees need, when they need it, and deliver it every time with powerful, AI driven Experience Management (XM) software.`}
       company="Qualtrics"
       serviceName="Survey"
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/qualtrics/survey/logo.svg"

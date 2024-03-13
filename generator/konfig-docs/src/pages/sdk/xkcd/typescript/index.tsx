@@ -12,7 +12,7 @@ export default function XkcdTypeScriptSdk() {
   return (
     <SdkNew
       sdkName="xkcd-typescript-sdk"
-      metaDescription="xkcd is a webcomic of romance, sarcasm, math, and language. It delivers a mix of humor and intelligence through its stick-figure comics that explore various topics such as science, technology, and pop culture in a witty and insightful manner."
+      metaDescription={`xkcd is a webcomic of romance, sarcasm, math, and language. It delivers a mix of humor and intelligence through its stick-figure comics that explore various topics such as science, technology, and pop culture in a witty and insightful manner.`}
       company="xkcd"
       // Missing serviceName
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/xkcd/logo.png"

@@ -12,7 +12,7 @@ export default function ResendTypeScriptSdk() {
   return (
     <SdkNew
       sdkName="resend-typescript-sdk"
-      metaDescription="Email for developers"
+      metaDescription={`Email for developers`}
       company="Resend"
       // Missing serviceName
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/resend/logo.png"

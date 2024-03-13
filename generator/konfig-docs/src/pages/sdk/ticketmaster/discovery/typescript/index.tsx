@@ -12,7 +12,7 @@ export default function TicketmasterDiscoveryTypeScriptSdk() {
   return (
     <SdkNew
       sdkName="ticketmaster-typescript-sdk"
-      metaDescription="Tap into the Ticketmaster open developer network which gives you the flexibility and scale to bring unforgettable live events to fans. It’s our technology – your way."
+      metaDescription={`Tap into the Ticketmaster open developer network which gives you the flexibility and scale to bring unforgettable live events to fans. It’s our technology – your way.`}
       company="Ticketmaster"
       serviceName="Discovery"
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/ticketmaster/discovery/logo.png"

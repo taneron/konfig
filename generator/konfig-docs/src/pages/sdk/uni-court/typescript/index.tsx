@@ -12,7 +12,7 @@ export default function UniCourtTypeScriptSdk() {
   return (
     <SdkNew
       sdkName="unicourt-typescript-sdk"
-      metaDescription="UniCourt is a leader in making court data more accessible and useful. We provide real-time access to court data from state, federal, and local courts, as well as analytics, case management, and automation tools for legal professionals."
+      metaDescription={`UniCourt is a leader in making court data more accessible and useful. We provide real-time access to court data from state, federal, and local courts, as well as analytics, case management, and automation tools for legal professionals.`}
       company="UniCourt"
       // Missing serviceName
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/unicourt/logo.png"

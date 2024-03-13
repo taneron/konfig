@@ -12,7 +12,7 @@ export default function FlickrTypeScriptSdk() {
   return (
     <SdkNew
       sdkName="flickr-typescript-sdk"
-      metaDescription="Flickr is an image hosting and video hosting website, web services suite, and online community platform. It was one of the earliest Web 2.0 applications. Flickr allows users to share and embed personal photographs and videos, and to interact with other members through commenting, groups, and more."
+      metaDescription={`Flickr is an image hosting and video hosting website, web services suite, and online community platform. It was one of the earliest Web 2.0 applications. Flickr allows users to share and embed personal photographs and videos, and to interact with other members through commenting, groups, and more.`}
       company="Flickr"
       // Missing serviceName
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/flickr/logo.png"

@@ -12,7 +12,7 @@ export default function TrelloTypeScriptSdk() {
   return (
     <SdkNew
       sdkName="trello-typescript-sdk"
-      metaDescription="Trello is a collaboration tool that organizes your projects into boards. In one glance, Trello tells you what's being worked on, who's working on what, and where something is in a process."
+      metaDescription={`Trello is a collaboration tool that organizes your projects into boards. In one glance, Trello tells you what's being worked on, who's working on what, and where something is in a process.`}
       company="Trello"
       // Missing serviceName
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/trello/logo.png"

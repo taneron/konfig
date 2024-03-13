@@ -12,7 +12,7 @@ export default function ZapierAiActionsTypeScriptSdk() {
   return (
     <SdkNew
       sdkName="zapier-actions-typescript-sdk"
-      metaDescription="AI Actions is a tool for builders to equip AI platforms (or custom integrations) with the ability to run any Zapier action! The 20,000+ searches and actions you know and love from the Zapier automation platform can be used with your favorite AI tool."
+      metaDescription={`AI Actions is a tool for builders to equip AI platforms (or custom integrations) with the ability to run any Zapier action! The 20,000+ searches and actions you know and love from the Zapier automation platform can be used with your favorite AI tool.`}
       company="Zapier"
       doesNotHaveApiDescription={true}
       serviceName="AI Actions"

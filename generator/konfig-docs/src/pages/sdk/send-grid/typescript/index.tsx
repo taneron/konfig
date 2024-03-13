@@ -12,7 +12,7 @@ export default function SendGridTypeScriptSdk() {
   return (
     <SdkNew
       sdkName="send-grid-typescript-sdk"
-      metaDescription="SendGrid is a cloud-based email delivery service that assists businesses in sending transactional and marketing emails. With a focus on reliability and deliverability, SendGrid helps developers send emails efficiently and effectively to their audiences."
+      metaDescription={`SendGrid is a cloud-based email delivery service that assists businesses in sending transactional and marketing emails. With a focus on reliability and deliverability, SendGrid helps developers send emails efficiently and effectively to their audiences.`}
       company="SendGrid"
       // Missing serviceName
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/sendgrid/logo.png"

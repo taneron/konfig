@@ -12,7 +12,7 @@ export default function StackExchangeTypeScriptSdk() {
   return (
     <SdkNew
       sdkName="stack-exchange-typescript-sdk"
-      metaDescription="We make Stack Overflow and 170+ other community-powered Q&A sites."
+      metaDescription={`We make Stack Overflow and 170+ other community-powered Q&A sites.`}
       company="Stack Exchange"
       // Missing serviceName
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/stack-exchange/logo.png"

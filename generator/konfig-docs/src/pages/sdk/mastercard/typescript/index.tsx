@@ -12,7 +12,7 @@ export default function MastercardTypeScriptSdk() {
   return (
     <SdkNew
       sdkName="mastercard-typescript-sdk"
-      metaDescription="Mastercard is a global payment technology company that connects billions of consumers, financial institutions, merchants, governments, and businesses worldwide, enabling them to use electronic forms of payment securely and efficiently."
+      metaDescription={`Mastercard is a global payment technology company that connects billions of consumers, financial institutions, merchants, governments, and businesses worldwide, enabling them to use electronic forms of payment securely and efficiently.`}
       company="Mastercard"
       // Missing serviceName
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/mastercard/logo.png"

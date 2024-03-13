@@ -12,7 +12,7 @@ export default function ZoomMeetingTypeScriptSdk() {
   return (
     <SdkNew
       sdkName="zoom-meeting-typescript-sdk"
-      metaDescription="Zoom is a video conferencing platform that allows users to connect remotely for virtual meetings, webinars, online events, and collaborative work sessions. With features like screen sharing, virtual backgrounds, and chat functionality, Zoom is a popular tool for individuals and businesses to communicate and collaborate in real-time."
+      metaDescription={`Zoom is a video conferencing platform that allows users to connect remotely for virtual meetings, webinars, online events, and collaborative work sessions. With features like screen sharing, virtual backgrounds, and chat functionality, Zoom is a popular tool for individuals and businesses to communicate and collaborate in real-time.`}
       company="Zoom"
       serviceName="Meeting"
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/zoom/meeting/logo.png"

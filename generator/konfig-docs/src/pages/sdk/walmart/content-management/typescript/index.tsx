@@ -12,7 +12,7 @@ export default function WalmartContentManagementTypeScriptSdk() {
   return (
     <SdkNew
       sdkName="walmart-content-management-typescript-sdk"
-      metaDescription="Walmart is the world's largest retailer, and the Walmart Open API provides access to our extensive product catalog, thus enabling digital businesses to create new and innovative shopping experiences."
+      metaDescription={`Walmart is the world's largest retailer, and the Walmart Open API provides access to our extensive product catalog, thus enabling digital businesses to create new and innovative shopping experiences.`}
       company="Walmart"
       serviceName="Content Management"
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/walmart/content-management/logo.png"

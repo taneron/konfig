@@ -12,13 +12,13 @@ export default function VimeoTypeScriptSdk() {
   return (
     <SdkNew
       sdkName="vimeo-typescript-sdk"
-      metaDescription="Join the world's leading professional video platform and grow your business with easy-to-use, high-quality video creation, hosting, and marketing tools."
+      metaDescription={`Join the world's leading professional video platform and grow your business with easy-to-use, high-quality video creation, hosting, and marketing tools.`}
       company="Vimeo"
       // Missing serviceName
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/vimeo/logo.avif"
       clientNameCamelCase="vimeo"
       homepage="developer.vimeo.com"
-      lastUpdated={new Date("2024-03-13T02:25:22.175Z")}
+      lastUpdated={new Date("2024-03-13T16:59:14.076Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/vimeo/favicon.jpg"
       contactUrl="https://developer.vimeo.com/help"
       // Missing contactEmail
@@ -19256,6 +19256,29 @@ export default function VimeoTypeScriptSdk() {
     ]
   },
   {
+    "url": "/users/{user_id}/{subscription_id}",
+    "method": "getSubscriptionInfo",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "Payments\\Essentials",
+    "typeScriptTag": "paymentsEssentials",
+    "description": "Get information about a payments service subscription",
+    "parameters": [
+      {
+        "name": "subscriptionId",
+        "schema": "string",
+        "required": true,
+        "description": "The ID of the subscription.",
+        "example": "abc12345"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": "OK"
+      }
+    ]
+  },
+  {
     "url": "/videos",
     "method": "videos",
     "httpMethod": HttpMethodsEnum.GET,
@@ -22532,10 +22555,10 @@ export default function VimeoTypeScriptSdk() {
       apiTitle="Vimeo API"
       apiBaseUrl="https://api.vimeo.com"
       apiVersion="3.4"
-      endpoints={269}
-      sdkMethods={484}
-      schemas={330}
-      parameters={1763}
+      endpoints={270}
+      sdkMethods={485}
+      schemas={331}
+      parameters={1764}
       difficulty="Very Hard"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/vimeo/openapi.yaml"
       openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/vimeo/openapi.yaml"

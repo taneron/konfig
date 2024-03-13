@@ -12,7 +12,7 @@ export default function GoDaddyDomainsTypeScriptSdk() {
   return (
     <SdkNew
       sdkName="godaddy-typescript-sdk"
-      metaDescription="All the help and tools you need to grow online: Websites, Domains, Digital and Social Marketing - plus GoDaddy Guides with you every step of the way."
+      metaDescription={`All the help and tools you need to grow online: Websites, Domains, Digital and Social Marketing - plus GoDaddy Guides with you every step of the way.`}
       company="GoDaddy"
       serviceName="Domains"
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/godaddy/domains/logo.png"

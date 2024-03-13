@@ -12,7 +12,7 @@ export default function LobTypeScriptSdk() {
   return (
     <SdkNew
       sdkName="lob-typescript-sdk"
-      metaDescription="Lob provides a suite of APIs to deliver mail, including address verification, mail tracking, and more. Our print & mail API is used by companies large and small to send postcards, letters, and checks."
+      metaDescription={`Lob provides a suite of APIs to deliver mail, including address verification, mail tracking, and more. Our print & mail API is used by companies large and small to send postcards, letters, and checks.`}
       company="Lob"
       // Missing serviceName
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/lob/logo.svg"

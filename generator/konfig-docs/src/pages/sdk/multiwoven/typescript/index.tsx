@@ -12,7 +12,7 @@ export default function MultiwovenTypeScriptSdk() {
   return (
     <SdkNew
       sdkName="multiwoven-typescript-sdk"
-      metaDescription="Open-source Reverse ETL that makes data segmentation, sync and activation both easy and fully secure."
+      metaDescription={`Open-source Reverse ETL that makes data segmentation, sync and activation both easy and fully secure.`}
       company="Multiwoven"
       // Missing serviceName
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/multiwoven/logo.png"

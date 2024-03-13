@@ -12,9 +12,9 @@ export default function AppwriteServerTypeScriptSdk() {
   return (
     <SdkNew
       sdkName="appwrite-server-typescript-sdk"
-      metaDescription="Appwrite's open-source development platform lets you build any application at any scale, own your data, and use your preferred coding languages and tools.
+      metaDescription={`Appwrite's open-source development platform lets you build any application at any scale, own your data, and use your preferred coding languages and tools.
 
-Build like a team of hundreds."
+Build like a team of hundreds.`}
       company="Appwrite"
       serviceName="Server"
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/appwrite/server/logo.png"

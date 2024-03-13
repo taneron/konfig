@@ -12,13 +12,13 @@ export default function MeilisearchTypeScriptSdk() {
   return (
     <SdkNew
       sdkName="meilisearch-typescript-sdk"
-      metaDescription="Meilisearch is a powerful, fast, open-source, and easy-to-use search engine that provides instant search results for large datasets. It offers features like typo-tolerance, faceting, filters, and customizable ranking to enhance search experiences for developers and users alike."
+      metaDescription={`Meilisearch is a powerful, fast, open-source, and easy-to-use search engine that provides instant search results for large datasets. It offers features like typo-tolerance, faceting, filters, and customizable ranking to enhance search experiences for developers and users alike.`}
       company="Meilisearch"
       // Missing serviceName
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/meilisearch/logo.png"
       clientNameCamelCase="meilisearch"
       homepage="www.meilisearch.com/"
-      lastUpdated={new Date("2024-03-13T02:25:22.175Z")}
+      lastUpdated={new Date("2024-03-13T16:59:14.076Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/meilisearch/favicon.png"
       // Missing contactUrl
       contactEmail="bonjour@Meilisearch.com"
@@ -2499,7 +2499,12 @@ export default function MeilisearchTypeScriptSdk() {
         "description": ""
       },
       {
-        "name": "scoreDetails",
+        "name": "metrics",
+        "schema": "boolean",
+        "description": ""
+      },
+      {
+        "name": "exportPuffinReports",
         "schema": "boolean",
         "description": ""
       }
@@ -2535,11 +2540,11 @@ export default function MeilisearchTypeScriptSdk() {
       language="TypeScript"
       apiTitle="Meilisearch Core API"
       apiBaseUrl="{protocol}://{domain}:{port}"
-      apiVersion="1.6.0"
+      apiVersion="1.7.0"
       endpoints={36}
       sdkMethods={94}
       schemas={71}
-      parameters={158}
+      parameters={159}
       difficulty="Medium"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/meilisearch/openapi.yaml"
       openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/meilisearch/openapi.yaml"

@@ -12,7 +12,7 @@ export default function WhatsAppBusinessTypeScriptSdk() {
   return (
     <SdkNew
       sdkName="whats-app-business-typescript-sdk"
-      metaDescription="Use WhatsApp Messenger to stay in touch with friends and family. WhatsApp is free and offers simple, secure, reliable messaging and calling, available on phones all over the world."
+      metaDescription={`Use WhatsApp Messenger to stay in touch with friends and family. WhatsApp is free and offers simple, secure, reliable messaging and calling, available on phones all over the world.`}
       company="WhatsApp"
       serviceName="Business"
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/whatsapp/business/logo.png"

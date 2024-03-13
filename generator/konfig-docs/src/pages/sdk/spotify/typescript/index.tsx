@@ -12,7 +12,7 @@ export default function SpotifyTypeScriptSdk() {
   return (
     <SdkNew
       sdkName="spotify-typescript-sdk"
-      metaDescription="Spotify is a digital music service that gives you access to millions of songs."
+      metaDescription={`Spotify is a digital music service that gives you access to millions of songs.`}
       company="Spotify"
       // Missing serviceName
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/spotify/logo.png"

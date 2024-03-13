@@ -12,7 +12,7 @@ export default function XTypeScriptSdk() {
   return (
     <SdkNew
       sdkName="x-typescript-sdk"
-      metaDescription="Publish & analyze posts, optimize ads, & create unique customer experiences with the X API, X Ads API, & X Embeds."
+      metaDescription={`Publish & analyze posts, optimize ads, & create unique customer experiences with the X API, X Ads API, & X Embeds.`}
       company="X"
       // Missing serviceName
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/x/logo.jpg"

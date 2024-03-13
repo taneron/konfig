@@ -12,7 +12,7 @@ export default function DiscourseTypeScriptSdk() {
   return (
     <SdkNew
       sdkName="discourse-typescript-sdk"
-      metaDescription="Discourse is a modern forum software designed for community engagement and discussion. It offers a user-friendly interface, powerful moderation tools, and extensive customization options. Discourse fosters healthy conversations, promotes user participation, and provides a platform for sharing knowledge and ideas across diverse communities."
+      metaDescription={`Discourse is a modern forum software designed for community engagement and discussion. It offers a user-friendly interface, powerful moderation tools, and extensive customization options. Discourse fosters healthy conversations, promotes user participation, and provides a platform for sharing knowledge and ideas across diverse communities.`}
       company="Discourse"
       // Missing serviceName
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/discourse/logo.png"

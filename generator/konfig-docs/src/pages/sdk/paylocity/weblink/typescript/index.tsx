@@ -12,7 +12,7 @@ export default function PaylocityWeblinkTypeScriptSdk() {
   return (
     <SdkNew
       sdkName="paylocity-typescript-sdk"
-      metaDescription="Paylocity is the HR & Payroll provider that frees you from the tasks of today, so together, we can spend more time focused on the promise of tomorrow."
+      metaDescription={`Paylocity is the HR & Payroll provider that frees you from the tasks of today, so together, we can spend more time focused on the promise of tomorrow.`}
       company="Paylocity"
       serviceName="Weblink"
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/paylocity/weblink/logo.jpg"

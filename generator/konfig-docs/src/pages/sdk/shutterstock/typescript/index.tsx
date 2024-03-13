@@ -12,7 +12,7 @@ export default function ShutterstockTypeScriptSdk() {
   return (
     <SdkNew
       sdkName="shutterstock-typescript-sdk"
-      metaDescription="Download the best royalty free images from Shutterstock, including photos, vectors, and illustrations. Enjoy straightforward pricing and simple licensing."
+      metaDescription={`Download the best royalty free images from Shutterstock, including photos, vectors, and illustrations. Enjoy straightforward pricing and simple licensing.`}
       company="Shutterstock"
       // Missing serviceName
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/shutterstock/logo.png"

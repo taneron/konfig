@@ -12,13 +12,13 @@ export default function SnykTypeScriptSdk() {
   return (
     <SdkNew
       sdkName="snyk-typescript-sdk"
-      metaDescription="Snyk helps software-driven businesses develop fast and stay secure. Continuously find and fix vulnerabilities for npm, Maven, NuGet, RubyGems, PyPI and more."
+      metaDescription={`Snyk helps software-driven businesses develop fast and stay secure. Continuously find and fix vulnerabilities for npm, Maven, NuGet, RubyGems, PyPI and more.`}
       company="Snyk"
       // Missing serviceName
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/snyk/logo.png"
       clientNameCamelCase="snyk"
       homepage="docs.snyk.io/snyk-api/snyk-rest-api-overview"
-      lastUpdated={new Date("2024-03-13T02:25:22.175Z")}
+      lastUpdated={new Date("2024-03-13T16:59:14.076Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/snyk/favicon.ico"
       // Missing contactUrl
       // Missing contactEmail
@@ -634,7 +634,7 @@ export default function SnykTypeScriptSdk() {
       {
         "name": "from",
         "schema": "string",
-        "description": "The start date (inclusive) of the audit logs search. Example: 2023-07-27\n"
+        "description": "The start date (inclusive) of the audit logs search. If this is not specified, the start of yesterday is used. Example: 2023-07-27\n"
       },
       {
         "name": "to",
@@ -2931,7 +2931,7 @@ export default function SnykTypeScriptSdk() {
       {
         "name": "from",
         "schema": "string",
-        "description": "The start date (inclusive) of the audit logs search. Example: 2023-07-27\n"
+        "description": "The start date (inclusive) of the audit logs search. If this is not specified, the start of yesterday is used. Example: 2023-07-27\n"
       },
       {
         "name": "to",

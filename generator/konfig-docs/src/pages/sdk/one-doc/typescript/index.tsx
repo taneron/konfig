@@ -12,7 +12,7 @@ export default function OneDocTypeScriptSdk() {
   return (
     <SdkNew
       sdkName="one-doc-typescript-sdk"
-      metaDescription="Onedoc is an innovative API solution for developers, offering a simple and secure way to create and manage PDF documents using familiar technologies like React."
+      metaDescription={`Onedoc is an innovative API solution for developers, offering a simple and secure way to create and manage PDF documents using familiar technologies like React.`}
       company="OneDoc"
       // Missing serviceName
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/onedoc/logo.png"

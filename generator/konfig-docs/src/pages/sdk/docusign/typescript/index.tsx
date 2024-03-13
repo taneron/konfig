@@ -12,7 +12,7 @@ export default function DocusignTypeScriptSdk() {
   return (
     <SdkNew
       sdkName="docusign-typescript-sdk"
-      metaDescription="DocuSign makes it easy to send, sign and manage documents securely. With DocuSign, individuals and organizations can streamline the document signing process, reduce paperwork, and increase efficiency. DocuSign offers electronic signature solutions that are trusted by millions worldwide, enabling users to sign documents anytime, anywhere, on any device."
+      metaDescription={`DocuSign makes it easy to send, sign and manage documents securely. With DocuSign, individuals and organizations can streamline the document signing process, reduce paperwork, and increase efficiency. DocuSign offers electronic signature solutions that are trusted by millions worldwide, enabling users to sign documents anytime, anywhere, on any device.`}
       company="Docusign"
       // Missing serviceName
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/docusign/logo.png"

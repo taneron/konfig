@@ -12,7 +12,7 @@ export default function YouNeedABudgetTypeScriptSdk() {
   return (
     <SdkNew
       sdkName="ynab-typescript-sdk"
-      metaDescription="Working hard with nothing to show for it? Use your money more efficiently and control your spending and saving with the YNAB app."
+      metaDescription={`Working hard with nothing to show for it? Use your money more efficiently and control your spending and saving with the YNAB app.`}
       company="You Need A Budget"
       // Missing serviceName
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/you-need-a-budget/logo.png"

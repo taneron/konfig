@@ -12,7 +12,7 @@ export default function ZuoraTypeScriptSdk() {
   return (
     <SdkNew
       sdkName="zuora-typescript-sdk"
-      metaDescription="Zuora is a subscription management platform that helps businesses manage their subscription-based services efficiently. It provides tools for billing, revenue recognition, subscription analytics, and more. Zuora empowers companies to launch and scale subscription models, optimize pricing strategies, and enhance customer relationships."
+      metaDescription={`Zuora is a subscription management platform that helps businesses manage their subscription-based services efficiently. It provides tools for billing, revenue recognition, subscription analytics, and more. Zuora empowers companies to launch and scale subscription models, optimize pricing strategies, and enhance customer relationships.`}
       company="Zuora"
       // Missing serviceName
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/zuora/logo.png"

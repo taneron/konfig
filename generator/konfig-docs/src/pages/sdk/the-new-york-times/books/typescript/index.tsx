@@ -12,7 +12,7 @@ export default function TheNewYorkTimesBooksTypeScriptSdk() {
   return (
     <SdkNew
       sdkName="nytimes-typescript-sdk"
-      metaDescription="Live news, investigations, opinion, photos and video by the journalists of The New York Times from more than 150 countries around the world. Subscribe for coverage of U.S. and international news, politics, business, technology, science, health, arts, sports and more."
+      metaDescription={`Live news, investigations, opinion, photos and video by the journalists of The New York Times from more than 150 countries around the world. Subscribe for coverage of U.S. and international news, politics, business, technology, science, health, arts, sports and more.`}
       company="The New York Times"
       serviceName="Books"
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/the-new-york-times/books/logo.png"

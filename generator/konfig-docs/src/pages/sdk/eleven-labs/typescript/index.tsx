@@ -12,13 +12,13 @@ export default function ElevenLabsTypeScriptSdk() {
   return (
     <SdkNew
       sdkName="eleven-labs-typescript-sdk"
-      metaDescription="Elevate your projects with the fastest & most powerful text to speech & voice API. Quickly generate AI voices in multiple languages for your chatbots, agents, LLMs, websites, apps and more."
+      metaDescription={`Elevate your projects with the fastest & most powerful text to speech & voice API. Quickly generate AI voices in multiple languages for your chatbots, agents, LLMs, websites, apps and more.`}
       company="ElevenLabs"
       // Missing serviceName
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/elevenlabs/logo.png"
       clientNameCamelCase="elevenLabs"
       homepage="elevenlabs.com"
-      lastUpdated={new Date("2024-03-13T02:25:22.175Z")}
+      lastUpdated={new Date("2024-03-13T16:59:14.076Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/elevenlabs/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
@@ -1911,7 +1911,7 @@ export default function ElevenLabsTypeScriptSdk() {
     "responses": [
       {
         "statusCode": "200",
-        "description": ""
+        "description": "Successful Response"
       },
       {
         "statusCode": "422",
@@ -2280,7 +2280,7 @@ export default function ElevenLabsTypeScriptSdk() {
       apiVersion="1.0"
       endpoints={45}
       sdkMethods={50}
-      schemas={74}
+      schemas={73}
       parameters={188}
       difficulty="Medium"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/elevenlabs/openapi.yaml"

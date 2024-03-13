@@ -12,7 +12,7 @@ export default function RottenTomatoesTypeScriptSdk() {
   return (
     <SdkNew
       sdkName="rotten-tomatoes-typescript-sdk"
-      metaDescription="Rotten Tomatoes, home of the Tomatometer, is the most trusted measurement of quality for Movies & TV. The definitive site for Reviews, Trailers, Showtimes, and Tickets."
+      metaDescription={`Rotten Tomatoes, home of the Tomatometer, is the most trusted measurement of quality for Movies & TV. The definitive site for Reviews, Trailers, Showtimes, and Tickets.`}
       company="Rotten Tomatoes"
       doesNotHaveApiDescription={true}
       // Missing serviceName

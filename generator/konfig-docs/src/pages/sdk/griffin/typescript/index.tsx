@@ -12,17 +12,17 @@ export default function GriffinTypeScriptSdk() {
   return (
     <SdkNew
       sdkName="griffin-typescript-sdk"
-      metaDescription="Griffin is the bank you can build on. We make it simple, quick and cost-effective to build and launch financial products. 
+      metaDescription={`Griffin is the bank you can build on. We make it simple, quick and cost-effective to build and launch financial products. 
 
 Build on the secure and regulated infrastructure of a bank and seamlessly embed financial services into your app. 
 
-Griffin is authorised (with restrictions) by the PRA and FCA and backed by leading investors EQT Ventures, MassMutual Ventures, Tribe Capital, Notion Capital and Seedcamp."
+Griffin is authorised (with restrictions) by the PRA and FCA and backed by leading investors EQT Ventures, MassMutual Ventures, Tribe Capital, Notion Capital and Seedcamp.`}
       company="Griffin"
       // Missing serviceName
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/griffin/logo.webp"
       clientNameCamelCase="griffin"
       homepage="griffin.com"
-      lastUpdated={new Date("2024-03-13T02:25:22.175Z")}
+      lastUpdated={new Date("2024-03-13T16:59:14.076Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/griffin/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
@@ -1835,14 +1835,14 @@ Griffin is authorised (with restrictions) by the PRA and FCA and backed by leadi
         "name": "filter[beneficiary][eq]",
         "schema": "string",
         "required": false,
-        "description": "Link to the [legal person](https://docs.griffin.com/api) that represents the [beneficiary](https://docs.griffin.com/api) of the account.",
+        "description": "Link to the [legal person](http://docs.griffin.com) that represents the [beneficiary](http://docs.griffin.com) of the account.",
         "example": "/v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA"
       },
       {
         "name": "filter[owner][eq]",
         "schema": "string",
         "required": false,
-        "description": "Link to the [legal person](https://docs.griffin.com/api) that represents the [owner](https://docs.griffin.com/api) of the account.",
+        "description": "Link to the [legal person](http://docs.griffin.com) that represents the [owner](http://docs.griffin.com) of the account.",
         "example": "/v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA"
       },
       {
@@ -2808,7 +2808,7 @@ Griffin is authorised (with restrictions) by the PRA and FCA and backed by leadi
     "responses": [
       {
         "statusCode": "200",
-        "description": "Shows the associated [user](https://docs.griffin.com/api)."
+        "description": "Shows the associated [user](http://docs.griffin.com)."
       },
       {
         "statusCode": "400",

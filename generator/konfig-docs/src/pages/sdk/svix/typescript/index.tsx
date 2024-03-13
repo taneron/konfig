@@ -12,7 +12,7 @@ export default function SvixTypeScriptSdk() {
   return (
     <SdkNew
       sdkName="svix-typescript-sdk"
-      metaDescription="Svix is a platform that simplifies webhook processing for developers. By providing a reliable infrastructure and powerful tools, Svix enables developers to easily send and receive webhooks, ensuring seamless communication between services and applications."
+      metaDescription={`Svix is a platform that simplifies webhook processing for developers. By providing a reliable infrastructure and powerful tools, Svix enables developers to easily send and receive webhooks, ensuring seamless communication between services and applications.`}
       company="Svix"
       // Missing serviceName
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/svix/logo.png"

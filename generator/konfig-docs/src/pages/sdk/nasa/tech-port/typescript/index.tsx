@@ -12,7 +12,7 @@ export default function NasaTechPortTypeScriptSdk() {
   return (
     <SdkNew
       sdkName="nasa-tech-port-typescript-sdk"
-      metaDescription="NASA, the National Aeronautics and Space Administration, is an independent agency of the U.S. federal government responsible for the civilian space program, as well as aeronautics and aerospace research. NASA conducts space exploration missions, scientific research, and technology development to expand our understanding of the universe."
+      metaDescription={`NASA, the National Aeronautics and Space Administration, is an independent agency of the U.S. federal government responsible for the civilian space program, as well as aeronautics and aerospace research. NASA conducts space exploration missions, scientific research, and technology development to expand our understanding of the universe.`}
       company="NASA"
       serviceName="TechPort"
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/nasa/techport/logo.png"

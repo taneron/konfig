@@ -12,7 +12,7 @@ export default function OpenBankingAccountAndTransactionTypeScriptSdk() {
   return (
     <SdkNew
       sdkName="open-banking-account-and-transaction-typescript-sdk"
-      metaDescription="The trusted technology that connects banks, fintechs & technical providers - technology that's helping 6m users take control of their money."
+      metaDescription={`The trusted technology that connects banks, fintechs & technical providers - technology that's helping 6m users take control of their money.`}
       company="Open Banking"
       serviceName="Account and Transaction"
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/open-banking/account-and-transaction/logo.svg"

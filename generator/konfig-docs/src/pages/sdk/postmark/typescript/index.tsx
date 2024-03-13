@@ -12,7 +12,7 @@ export default function PostmarkTypeScriptSdk() {
   return (
     <SdkNew
       sdkName="postmark-typescript-sdk"
-      metaDescription="Send transactional and marketing emails and get them to the inbox on time, every time. Postmark is a fast and reliable email delivery service for developers."
+      metaDescription={`Send transactional and marketing emails and get them to the inbox on time, every time. Postmark is a fast and reliable email delivery service for developers.`}
       company="Postmark"
       // Missing serviceName
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/postmark/logo.svg"

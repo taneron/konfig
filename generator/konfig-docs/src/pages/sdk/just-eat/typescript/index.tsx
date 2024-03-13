@@ -12,13 +12,13 @@ export default function JustEatTypeScriptSdk() {
   return (
     <SdkNew
       sdkName="just-eat-typescript-sdk"
-      metaDescription="Just Eat is an online food ordering and delivery platform that connects users with a wide range of restaurants in their area. Users can browse menus, place orders, and have food delivered straight to their doorstep. Just Eat offers a convenient and easy way to satisfy food cravings from the comfort of home."
+      metaDescription={`Just Eat is an online food ordering and delivery platform that connects users with a wide range of restaurants in their area. Users can browse menus, place orders, and have food delivered straight to their doorstep. Just Eat offers a convenient and easy way to satisfy food cravings from the comfort of home.`}
       company="Just Eat"
       // Missing serviceName
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/just-eat/logo.png"
       clientNameCamelCase="justEat"
       homepage="developers.just-eat.com/"
-      lastUpdated={new Date("2024-03-13T02:25:22.175Z")}
+      lastUpdated={new Date("2024-03-13T16:59:14.076Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/just-eat/favicon.png"
       contactUrl="https://developers.just-eat.com/"
       contactEmail="david.handley@justeattakeaway.com"
@@ -5267,275 +5267,6 @@ export default function JustEatTypeScriptSdk() {
     ]
   },
   {
-    "url": "/search/autocomplete/{tenant}",
-    "method": "getAutoCompletedSearchTerms",
-    "httpMethod": HttpMethodsEnum.GET,
-    "tag": "Customer Experience",
-    "typeScriptTag": "customerExperience",
-    "description": "Get auto-completed search terms",
-    "parameters": [
-      {
-        "name": "tenant",
-        "schema": "string",
-        "required": true,
-        "description": "A valid country code, e.g. \"uk\".",
-        "example": "TENANT"
-      },
-      {
-        "name": "searchTerm",
-        "schema": "string",
-        "required": true,
-        "description": "User's search term - at least one character required",
-        "example": "SEARCHTERM"
-      },
-      {
-        "name": "latlong",
-        "schema": "array",
-        "required": true,
-        "description": "The latitude and longitude coordinates of the location in which to search.\nSpecify the coordinates as latitude,longitude.",
-        "example": [
-          51.501285,
-          -0.1424422
-        ]
-      },
-      {
-        "name": "limit",
-        "schema": "number",
-        "required": false,
-        "description": "Limit the number of auto-completed terms returned by the API. Defaults to 7. Valid values 1 - 10"
-      },
-      {
-        "name": "serviceType",
-        "schema": "array",
-        "required": false,
-        "description": "Filter autocomplete results by service type.\nValid values are \"any\", \"delivery\" and \"collection\".\nDefaults to \"any\"."
-      },
-      {
-        "name": "excludedResultTypes",
-        "schema": "array",
-        "required": false,
-        "description": "Filter restaurants, dishes and cuisines by provided exclusion list.\nSearch filter will be applied only if this array contains the value `alcohol`."
-      },
-      {
-        "name": "xJetApplication",
-        "schema": "string",
-        "required": false,
-        "description": "Descriptor of client or internal application"
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": ""
-      },
-      {
-        "statusCode": "400",
-        "description": "A HTTP 4xx error response"
-      },
-      {
-        "statusCode": "401",
-        "description": "A HTTP 4xx error response"
-      },
-      {
-        "statusCode": "429",
-        "description": "A HTTP 4xx error response"
-      },
-      {
-        "statusCode": "500",
-        "description": "A HTTP 500 error response"
-      },
-      {
-        "statusCode": "503",
-        "description": "Service Unavailable"
-      }
-    ]
-  },
-  {
-    "url": "/search/menu/{tenant}/{restaurantId}",
-    "method": "searchMenuProducts",
-    "httpMethod": HttpMethodsEnum.GET,
-    "tag": "Customer Experience",
-    "typeScriptTag": "customerExperience",
-    "description": "Get Products from a menu",
-    "parameters": [
-      {
-        "name": "tenant",
-        "schema": "string",
-        "required": true,
-        "description": "A valid country code, e.g. \"uk\".",
-        "example": "TENANT"
-      },
-      {
-        "name": "restaurantId",
-        "schema": "string",
-        "required": true,
-        "description": "The ID for a restaurant",
-        "example": "RESTAURANTID"
-      },
-      {
-        "name": "searchTerm",
-        "schema": "string",
-        "required": true,
-        "description": "User's search term - at least one character required",
-        "example": "SEARCHTERM"
-      },
-      {
-        "name": "limit",
-        "schema": "number",
-        "required": false,
-        "description": "Limit the number of terms returned by the API, defaults to 100",
-        "default": 100
-      },
-      {
-        "name": "serviceType",
-        "schema": "array",
-        "required": false,
-        "description": "Filter product results by service type.\nValid values are \"any\", \"delivery\" and \"collection\".\nDefaults to \"delivery\".",
-        "default": "delivery"
-      },
-      {
-        "name": "excludedResultTypes",
-        "schema": "array",
-        "required": false,
-        "description": "Filter dishes by provided exclusion list.\nSearch filter will be applied only if this array contains the value `alcohol`."
-      },
-      {
-        "name": "xJetApplication",
-        "schema": "string",
-        "required": false,
-        "description": "Descriptor of client or internal application"
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": ""
-      },
-      {
-        "statusCode": "400",
-        "description": "A HTTP 4xx error response"
-      },
-      {
-        "statusCode": "401",
-        "description": "A HTTP 4xx error response"
-      },
-      {
-        "statusCode": "403",
-        "description": "A HTTP 4xx error response"
-      },
-      {
-        "statusCode": "422",
-        "description": "A HTTP 4xx error response"
-      },
-      {
-        "statusCode": "429",
-        "description": "A HTTP 4xx error response"
-      },
-      {
-        "statusCode": "500",
-        "description": "A HTTP 500 error response"
-      },
-      {
-        "statusCode": "503",
-        "description": "Service Unavailable"
-      }
-    ]
-  },
-  {
-    "url": "/search/restaurants/{tenant}",
-    "method": "searchRestaurantsByLatLong",
-    "httpMethod": HttpMethodsEnum.GET,
-    "tag": "Customer Experience",
-    "typeScriptTag": "customerExperience",
-    "description": "Search restaurants",
-    "parameters": [
-      {
-        "name": "tenant",
-        "schema": "string",
-        "required": true,
-        "description": "A valid country code, e.g. \"uk\".",
-        "example": "TENANT"
-      },
-      {
-        "name": "searchTerm",
-        "schema": "string",
-        "required": true,
-        "description": "User's search term.",
-        "example": "SEARCHTERM"
-      },
-      {
-        "name": "latlong",
-        "schema": "array",
-        "required": true,
-        "description": "The latitude and longitude coordinates of the location in which to search.\nSpecify the coordinates as latitude,longitude.",
-        "example": [
-          51.501285,
-          -0.1424422
-        ]
-      },
-      {
-        "name": "limit",
-        "schema": "number",
-        "required": false,
-        "description": "Limit the number of restaurants returned by the API.\nValid values are numbers between 1 and 500.\nIf not provided, the limit defaults to 300."
-      },
-      {
-        "name": "includeTestPartners",
-        "schema": "string",
-        "required": false,
-        "description": "Include test partners in results. Value can be true or false."
-      },
-      {
-        "name": "serviceType",
-        "schema": "array",
-        "required": false,
-        "description": "Filter restaurant results by service type.\nValid values are \"any\", \"delivery\" and \"collection\".\nDefaults to \"any\"."
-      },
-      {
-        "name": "excludedResultTypes",
-        "schema": "array",
-        "required": false,
-        "description": "Filter restaurants and dishes by provided exclusion list.\nSearch filter will be applied only if this array contains the value `alcohol`."
-      },
-      {
-        "name": "xJetApplication",
-        "schema": "string",
-        "required": false,
-        "description": "Descriptor of client or internal application"
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": "Restaurant details for a restaurant search result"
-      },
-      {
-        "statusCode": "400",
-        "description": "A HTTP 4xx error response"
-      },
-      {
-        "statusCode": "401",
-        "description": "A HTTP 4xx error response"
-      },
-      {
-        "statusCode": "422",
-        "description": "A HTTP 4xx error response"
-      },
-      {
-        "statusCode": "429",
-        "description": "A HTTP 4xx error response"
-      },
-      {
-        "statusCode": "500",
-        "description": "A HTTP 500 error response"
-      },
-      {
-        "statusCode": "503",
-        "description": "Service Unavailable"
-      }
-    ]
-  },
-  {
     "url": "/send-to-pos-failed",
     "method": "handlePosFailed",
     "httpMethod": HttpMethodsEnum.POST,
@@ -5837,10 +5568,10 @@ export default function JustEatTypeScriptSdk() {
       apiTitle="Just Eat API"
       apiBaseUrl="https://uk.api.just-eat.io"
       apiVersion="1.0.0"
-      endpoints={85}
-      sdkMethods={94}
-      schemas={1387}
-      parameters={515}
+      endpoints={82}
+      sdkMethods={91}
+      schemas={1382}
+      parameters={493}
       difficulty="Very Hard"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/just-eat/openapi.yaml"
       openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/just-eat/openapi.yaml"
