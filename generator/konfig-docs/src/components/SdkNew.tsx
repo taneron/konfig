@@ -51,11 +51,18 @@ export function SdkNew({
   if (categories === undefined) {
     throw new Error("categories is required for the SdkNew component");
   }
+  const title = `Integrate ${company}'s${serviceNameSubstring} API using Konfig's ${language} SDK`;
+  /*
+Easily Integrate
+            <br />
+            <span className="text-white">
+              {" "}
+              {company}'s{serviceNameSubstring} API{" "}
+            </span>{" "}
+            using <span className="text-white">Konfig's {language} SDK</span>
+  */
   return (
-    <Layout
-      title={`${company}${serviceNameSubstring} API - ${language} SDK, Documentation, and OpenAPI Specification`}
-      description={description}
-    >
+    <Layout title={title} description={description}>
       <Head>
         <meta property="og:image" content={previewLinkImage} />
         <meta property="og:description" content={description} />
