@@ -69,6 +69,43 @@ operationIds:
     delete: DataExportDestinations_deleteById
     get: DataExportDestinations_getSingleById
     patch: DataExportDestinations_updateDestinationPatch
+  /api/v2/engineering-insights/charts/deployments/frequency:
+    get: InsightsChartsBeta_deploymentFrequencyChartData
+  /api/v2/engineering-insights/charts/flags/stale:
+    get: InsightsChartsBeta_staleFlagsChartData
+  /api/v2/engineering-insights/charts/flags/status:
+    get: InsightsChartsBeta_getFlagStatusChartData
+  /api/v2/engineering-insights/charts/lead-time:
+    get: InsightsChartsBeta_leadTimeChartData
+  /api/v2/engineering-insights/charts/releases/frequency:
+    get: InsightsChartsBeta_releaseFrequencyData
+  /api/v2/engineering-insights/deployment-events:
+    post: InsightsDeploymentsBeta_createDeploymentEvent
+  /api/v2/engineering-insights/deployments:
+    get: InsightsDeploymentsBeta_listDeployments
+  /api/v2/engineering-insights/deployments/{deploymentID}:
+    get: InsightsDeploymentsBeta_getDeploymentById
+    patch: InsightsDeploymentsBeta_updateDeploymentById
+  /api/v2/engineering-insights/flag-events:
+    get: InsightsFlagEventsBeta_listFlagEvents
+  /api/v2/engineering-insights/insights/group:
+    post: InsightsScoresBeta_createInsightGroup
+  /api/v2/engineering-insights/insights/groups:
+    get: InsightsScoresBeta_listGroupInsightScores
+  /api/v2/engineering-insights/insights/groups/{insightGroupKey}:
+    delete: InsightsScoresBeta_deleteInsightGroup
+    get: InsightsScoresBeta_expandGroupInsightScores
+    patch: InsightsScoresBeta_updateInsightGroupPatch
+  /api/v2/engineering-insights/insights/scores:
+    get: InsightsScoresBeta_getInsightScores
+  /api/v2/engineering-insights/pull-requests:
+    get: InsightsPullRequestsBeta_listPullRequests
+  /api/v2/engineering-insights/repositories:
+    get: InsightsRepositoriesBeta_listRepositories
+  /api/v2/engineering-insights/repositories/projects:
+    put: InsightsRepositoriesBeta_associateRepositoriesAndProjects
+  /api/v2/engineering-insights/repositories/{repositoryKey}/projects/{projectKey}:
+    delete: InsightsRepositoriesBeta_removeRepositoryProjectAssociation
   /api/v2/flag-links/projects/{projectKey}/flags/{featureFlagKey}:
     get: FlagLinksBeta_listLinks
     post: FlagLinksBeta_createFlagLink
@@ -411,11 +448,17 @@ securityParameters:
     query: false
   anonymous:
     query: false
+  applicationKey:
+    query: false
   archived:
     query: false
   before:
     query: false
   branchName:
+    query: false
+  bucketMs:
+    query: false
+  bucketType:
     query: false
   clone:
     query: false
@@ -429,6 +472,8 @@ securityParameters:
     query: false
   environment:
     query: false
+  environmentKey:
+    query: false
   expand:
     query: false
   expiry:
@@ -439,9 +484,17 @@ securityParameters:
     query: false
   from:
     query: false
+  global:
+    query: false
+  groupBy:
+    query: false
   groupby:
     query: false
+  hasExperiments:
+    query: false
   ignoreConflicts:
+    query: false
+  impactSize:
     query: false
   includeTotalCount:
     query: false
@@ -453,6 +506,10 @@ securityParameters:
     query: false
   limit:
     query: false
+  maintainerId:
+    query: false
+  maintainerTeamKey:
+    query: false
   offset:
     query: false
   pre:
@@ -461,7 +518,11 @@ securityParameters:
     query: false
   project:
     query: false
+  projectKey:
+    query: false
   q:
+    query: false
+  query:
     query: false
   repoName:
     query: false
@@ -492,6 +553,8 @@ securityParameters:
   tz:
     query: false
   version:
+    query: false
+  versionId:
     query: false
   withBranches:
     query: false

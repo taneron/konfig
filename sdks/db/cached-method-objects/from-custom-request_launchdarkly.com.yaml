@@ -1,4 +1,4 @@
-hash: 70cd04d33b077e1d1d1d140f4a2f39cc095c93cd8aeb2fe8d0594ef5ad849691
+hash: 44614103c15c7860ba138ea2a47f83b802c1b021c7cca668a5c080e02acf9606
 methodObjects:
   - url: /api/v2
     method: getResourceCategories
@@ -3364,6 +3364,9 @@ methodObjects:
         description: >-
           A comma-separated list of properties that can reveal additional
           information in the response.
+      - name: versionId
+        schema: string
+        description: The specific version ID of the metric
     responses:
       - statusCode: '200'
         description: ''
@@ -8828,7 +8831,869 @@ methodObjects:
         description: ''
       - statusCode: '429'
         description: ''
-numberOfSchemas: 393
+  - url: /api/v2/engineering-insights/charts/deployments/frequency
+    method: deploymentFrequencyChartData
+    httpMethod: get
+    tag: Insights charts (beta)
+    typeScriptTag: insightsChartsBeta
+    description: Get deployment frequency chart data
+    parameters:
+      - name: projectKey
+        schema: string
+        description: The project key
+      - name: environmentKey
+        schema: string
+        description: The environment key
+      - name: applicationKey
+        schema: string
+        description: Comma separated list of application keys
+      - name: from
+        schema: string
+        description: Unix timestamp in milliseconds. Default value is 7 days ago.
+      - name: to
+        schema: string
+        description: Unix timestamp in milliseconds. Default value is now.
+      - name: bucketType
+        schema: string
+        description: >-
+          Specify type of bucket. Options: `rolling`, `hour`, `day`. Default:
+          `rolling`.
+      - name: bucketMs
+        schema: integer
+        description: >-
+          Duration of intervals for x-axis in milliseconds. Default value is one
+          day (`86400000` milliseconds).
+      - name: groupBy
+        schema: string
+        description: 'Options: `application`, `kind`'
+      - name: expand
+        schema: string
+        description: 'Options: `metrics`'
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /api/v2/engineering-insights/charts/flags/stale
+    method: staleFlagsChartData
+    httpMethod: get
+    tag: Insights charts (beta)
+    typeScriptTag: insightsChartsBeta
+    description: Get stale flags chart data
+    parameters:
+      - name: projectKey
+        schema: string
+        required: true
+        description: The project key
+        example: PROJECTKEY
+      - name: environmentKey
+        schema: string
+        required: true
+        description: The environment key
+        example: ENVIRONMENTKEY
+      - name: applicationKey
+        schema: string
+        description: Comma separated list of application keys
+      - name: groupBy
+        schema: string
+        description: 'Property to group results by. Options: `maintainer`'
+      - name: maintainerId
+        schema: string
+        description: Comma-separated list of individual maintainers to filter results.
+      - name: maintainerTeamKey
+        schema: string
+        description: Comma-separated list of team maintainer keys to filter results.
+      - name: expand
+        schema: string
+        description: 'Options: `metrics`'
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /api/v2/engineering-insights/charts/flags/status
+    method: getFlagStatusChartData
+    httpMethod: get
+    tag: Insights charts (beta)
+    typeScriptTag: insightsChartsBeta
+    description: Get flag status chart data
+    parameters:
+      - name: projectKey
+        schema: string
+        required: true
+        description: The project key
+        example: PROJECTKEY
+      - name: environmentKey
+        schema: string
+        required: true
+        description: The environment key
+        example: ENVIRONMENTKEY
+      - name: applicationKey
+        schema: string
+        description: Comma separated list of application keys
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /api/v2/engineering-insights/charts/lead-time
+    method: leadTimeChartData
+    httpMethod: get
+    tag: Insights charts (beta)
+    typeScriptTag: insightsChartsBeta
+    description: Get lead time chart data
+    parameters:
+      - name: projectKey
+        schema: string
+        required: true
+        description: The project key
+        example: PROJECTKEY
+      - name: environmentKey
+        schema: string
+        description: The environment key
+      - name: applicationKey
+        schema: string
+        description: Comma separated list of application keys
+      - name: from
+        schema: integer
+        description: Unix timestamp in milliseconds. Default value is 7 days ago.
+      - name: to
+        schema: integer
+        description: Unix timestamp in milliseconds. Default value is now.
+      - name: bucketType
+        schema: string
+        description: >-
+          Specify type of bucket. Options: `rolling`, `hour`, `day`. Default:
+          `rolling`.
+      - name: bucketMs
+        schema: integer
+        description: >-
+          Duration of intervals for x-axis in milliseconds. Default value is one
+          day (`86400000` milliseconds).
+      - name: groupBy
+        schema: string
+        description: 'Options: `application`, `stage`. Default: `stage`.'
+      - name: expand
+        schema: string
+        description: 'Options: `metrics`, `percentiles`.'
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /api/v2/engineering-insights/charts/releases/frequency
+    method: releaseFrequencyData
+    httpMethod: get
+    tag: Insights charts (beta)
+    typeScriptTag: insightsChartsBeta
+    description: Get replease frequency chart data
+    parameters:
+      - name: projectKey
+        schema: string
+        required: true
+        description: The project key
+        example: PROJECTKEY
+      - name: environmentKey
+        schema: string
+        required: true
+        description: The environment key
+        example: ENVIRONMENTKEY
+      - name: applicationKey
+        schema: string
+        description: Comma separated list of application keys
+      - name: hasExperiments
+        schema: boolean
+        description: >-
+          Filter events to those associated with an experiment (`true`) or
+          without an experiment (`false`)
+      - name: global
+        schema: string
+        description: >-
+          Filter to include or exclude global events. Default value is
+          `include`. Options: `include`, `exclude`
+      - name: groupBy
+        schema: string
+        description: 'Property to group results by. Options: `impact`'
+      - name: from
+        schema: string
+        description: Unix timestamp in milliseconds. Default value is 7 days ago.
+      - name: to
+        schema: string
+        description: Unix timestamp in milliseconds. Default value is now.
+      - name: bucketType
+        schema: string
+        description: >-
+          Specify type of bucket. Options: `rolling`, `hour`, `day`. Default:
+          `rolling`.
+      - name: bucketMs
+        schema: integer
+        description: >-
+          Duration of intervals for x-axis in milliseconds. Default value is one
+          day (`86400000` milliseconds).
+      - name: expand
+        schema: string
+        description: 'Options: `metrics`'
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /api/v2/engineering-insights/deployment-events
+    method: createDeploymentEvent
+    httpMethod: post
+    tag: Insights deployments (beta)
+    typeScriptTag: insightsDeploymentsBeta
+    description: Create deployment event
+    parameters:
+      - name: version
+        schema: string
+        required: true
+        description: ''
+        example: a90a8a2
+      - name: projectKey
+        schema: string
+        required: true
+        description: ''
+        example: default
+      - name: environmentKey
+        schema: string
+        required: true
+        description: ''
+        example: production
+      - name: applicationKey
+        schema: string
+        required: true
+        description: ''
+        example: billing-service
+      - name: applicationName
+        schema: string
+        required: false
+        description: ''
+        example: Billing Service
+      - name: applicationKind
+        schema: string
+        required: false
+        description: ''
+        example: server
+      - name: versionName
+        schema: string
+        required: false
+        description: ''
+        example: v1.0.0
+      - name: eventType
+        schema: string
+        required: true
+        description: ''
+        example: started
+      - name: eventTime
+        schema: integer
+        required: false
+        description: ''
+      - name: eventMetadata
+        schema: object
+        required: false
+        description: ''
+        example:
+          buildSystemVersion: v1.2.3
+      - name: deploymentMetadata
+        schema: object
+        required: false
+        description: ''
+        example:
+          buildNumber: '1234'
+    responses:
+      - statusCode: '201'
+        description: Created
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /api/v2/engineering-insights/deployments
+    method: listDeployments
+    httpMethod: get
+    tag: Insights deployments (beta)
+    typeScriptTag: insightsDeploymentsBeta
+    description: List deployments
+    parameters:
+      - name: projectKey
+        schema: string
+        required: true
+        description: The project key
+        example: PROJECTKEY
+      - name: environmentKey
+        schema: string
+        required: true
+        description: The environment key
+        example: ENVIRONMENTKEY
+      - name: applicationKey
+        schema: string
+        description: Comma separated list of application keys
+      - name: limit
+        schema: integer
+        description: >-
+          The number of deployments to return. Default is 20. Maximum allowed is
+          100.
+      - name: expand
+        schema: string
+        description: >-
+          Expand properties in response. Options: `pullRequests`,
+          `flagReferences`
+      - name: from
+        schema: integer
+        description: Unix timestamp in milliseconds. Default value is 7 days ago.
+      - name: to
+        schema: integer
+        description: Unix timestamp in milliseconds. Default value is now.
+      - name: after
+        schema: string
+        description: Identifier used for pagination
+      - name: before
+        schema: string
+        description: Identifier used for pagination
+      - name: kind
+        schema: string
+        description: The deployment kind
+      - name: status
+        schema: string
+        description: The deployment status
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /api/v2/engineering-insights/deployments/{deploymentID}
+    method: getDeploymentById
+    httpMethod: get
+    tag: Insights deployments (beta)
+    typeScriptTag: insightsDeploymentsBeta
+    description: Get deployment
+    parameters:
+      - name: deploymentId
+        schema: string
+        required: true
+        description: The deployment ID
+        example: DEPLOYMENTID
+      - name: expand
+        schema: string
+        description: >-
+          Expand properties in response. Options: `pullRequests`,
+          `flagReferences`
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /api/v2/engineering-insights/deployments/{deploymentID}
+    method: updateDeploymentById
+    httpMethod: patch
+    tag: Insights deployments (beta)
+    typeScriptTag: insightsDeploymentsBeta
+    description: Update deployment
+    parameters:
+      - name: deploymentId
+        schema: string
+        required: true
+        description: The deployment ID
+        example: DEPLOYMENTID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /api/v2/engineering-insights/flag-events
+    method: listFlagEvents
+    httpMethod: get
+    tag: Insights flag events (beta)
+    typeScriptTag: insightsFlagEventsBeta
+    description: List flag events
+    parameters:
+      - name: projectKey
+        schema: string
+        required: true
+        description: The project key
+        example: PROJECTKEY
+      - name: environmentKey
+        schema: string
+        required: true
+        description: The environment key
+        example: ENVIRONMENTKEY
+      - name: applicationKey
+        schema: string
+        description: Comma separated list of application keys
+      - name: query
+        schema: string
+        description: Filter events by flag key
+      - name: impactSize
+        schema: string
+        description: >-
+          Filter events by impact size. A small impact created a less than 20%
+          change in the proportion of end users receiving one or more flag
+          variations. A medium impact created between a 20%-80% change. A large
+          impact created a more than 80% change. Options: `none`, `small`,
+          `medium`, `large`
+      - name: hasExperiments
+        schema: boolean
+        description: >-
+          Filter events to those associated with an experiment (`true`) or
+          without an experiment (`false`)
+      - name: global
+        schema: string
+        description: >-
+          Filter to include or exclude global events. Default value is
+          `include`. Options: `include`, `exclude`
+      - name: expand
+        schema: string
+        description: 'Expand properties in response. Options: `experiments`'
+      - name: limit
+        schema: integer
+        description: >-
+          The number of deployments to return. Default is 20. Maximum allowed is
+          100.
+      - name: from
+        schema: integer
+        description: Unix timestamp in milliseconds. Default value is 7 days ago.
+      - name: to
+        schema: integer
+        description: Unix timestamp in milliseconds. Default value is now.
+      - name: after
+        schema: string
+        description: Identifier used for pagination
+      - name: before
+        schema: string
+        description: Identifier used for pagination
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /api/v2/engineering-insights/insights/group
+    method: createInsightGroup
+    httpMethod: post
+    tag: Insights scores (beta)
+    typeScriptTag: insightsScoresBeta
+    description: Create insight group
+    parameters:
+      - name: name
+        schema: string
+        required: true
+        description: ''
+        example: Production - All Apps
+      - name: key
+        schema: string
+        required: true
+        description: ''
+        example: default-production-all-apps
+      - name: projectKey
+        schema: string
+        required: true
+        description: ''
+        example: default
+      - name: environmentKey
+        schema: string
+        required: true
+        description: ''
+        example: production
+      - name: applicationKeys
+        schema: array
+        required: false
+        description: ''
+        example:
+          - billing-service
+          - inventory-service
+    responses:
+      - statusCode: '201'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: '409'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /api/v2/engineering-insights/insights/groups
+    method: listGroupInsightScores
+    httpMethod: get
+    tag: Insights scores (beta)
+    typeScriptTag: insightsScoresBeta
+    description: List insight groups
+    parameters:
+      - name: limit
+        schema: integer
+        description: >-
+          The number of insight groups to return. Default is 20. Must be between
+          1 and 20 inclusive.
+      - name: offset
+        schema: integer
+        description: >-
+          Where to start in the list. Use this with pagination. For example, an
+          offset of 10 skips the first ten items and then returns the next items
+          in the list, up to the query `limit`.
+      - name: sort
+        schema: string
+        description: >-
+          Sort flag list by field. Prefix field with <code>-</code> to sort in
+          descending order. Allowed fields: name
+      - name: query
+        schema: string
+        description: Filter list of insights groups by name.
+      - name: expand
+        schema: string
+        description: 'Options: `scores`, `environment`, `metadata`'
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /api/v2/engineering-insights/insights/groups/{insightGroupKey}
+    method: deleteInsightGroup
+    httpMethod: delete
+    tag: Insights scores (beta)
+    typeScriptTag: insightsScoresBeta
+    description: Delete insight group
+    parameters:
+      - name: insightGroupKey
+        schema: string
+        required: true
+        description: The insight group key
+        example: INSIGHTGROUPKEY
+    responses:
+      - statusCode: '204'
+        description: Action succeeded
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /api/v2/engineering-insights/insights/groups/{insightGroupKey}
+    method: expandGroupInsightScores
+    httpMethod: get
+    tag: Insights scores (beta)
+    typeScriptTag: insightsScoresBeta
+    description: Get insight group
+    parameters:
+      - name: insightGroupKey
+        schema: string
+        required: true
+        description: The insight group key
+        example: INSIGHTGROUPKEY
+      - name: expand
+        schema: string
+        description: 'Options: `scores`, `environment`'
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /api/v2/engineering-insights/insights/groups/{insightGroupKey}
+    method: updateInsightGroupPatch
+    httpMethod: patch
+    tag: Insights scores (beta)
+    typeScriptTag: insightsScoresBeta
+    description: Patch insight group
+    parameters:
+      - name: insightGroupKey
+        schema: string
+        required: true
+        description: The insight group key
+        example: INSIGHTGROUPKEY
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: '422'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /api/v2/engineering-insights/insights/scores
+    method: getInsightScores
+    httpMethod: get
+    tag: Insights scores (beta)
+    typeScriptTag: insightsScoresBeta
+    description: Get insight scores
+    parameters:
+      - name: projectKey
+        schema: string
+        required: true
+        description: The project key
+        example: PROJECTKEY
+      - name: environmentKey
+        schema: string
+        required: true
+        description: The environment key
+        example: ENVIRONMENTKEY
+      - name: applicationKey
+        schema: string
+        description: Comma separated list of application keys
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /api/v2/engineering-insights/pull-requests
+    method: listPullRequests
+    httpMethod: get
+    tag: Insights pull requests (beta)
+    typeScriptTag: insightsPullRequestsBeta
+    description: List pull requests
+    parameters:
+      - name: projectKey
+        schema: string
+        required: true
+        description: The project key
+        example: PROJECTKEY
+      - name: environmentKey
+        schema: string
+        description: >-
+          Required if you are using the <code>sort</code> parameter's
+          <code>leadTime</code> option to sort pull requests.
+      - name: applicationKey
+        schema: string
+        description: >-
+          Filter the results to pull requests deployed to a comma separated list
+          of applications
+      - name: status
+        schema: string
+        description: >-
+          Filter results to pull requests with the given status. Options:
+          `open`, `merged`, `closed`, `deployed`.
+      - name: query
+        schema: string
+        description: Filter list of pull requests by title or author
+      - name: limit
+        schema: integer
+        description: >-
+          The number of pull requests to return. Default is 20. Maximum allowed
+          is 100.
+      - name: expand
+        schema: string
+        description: >-
+          Expand properties in response. Options: `deployments`,
+          `flagReferences`, `leadTime`.
+      - name: sort
+        schema: string
+        description: >-
+          Sort results. Requires the `environmentKey` to be set. Options:
+          `leadTime` (asc) and `-leadTime` (desc). When query option is
+          excluded, default sort is by created or merged date.
+      - name: from
+        schema: string
+        description: Unix timestamp in milliseconds. Default value is 7 days ago.
+      - name: to
+        schema: string
+        description: Unix timestamp in milliseconds. Default value is now.
+      - name: after
+        schema: string
+        description: Identifier used for pagination
+      - name: before
+        schema: string
+        description: Identifier used for pagination
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /api/v2/engineering-insights/repositories
+    method: listRepositories
+    httpMethod: get
+    tag: Insights repositories (beta)
+    typeScriptTag: insightsRepositoriesBeta
+    description: List repositories
+    parameters:
+      - name: expand
+        schema: string
+        description: 'Expand properties in response. Options: `projects`'
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: /api/v2/engineering-insights/repositories/projects
+    method: associateRepositoriesAndProjects
+    httpMethod: put
+    tag: Insights repositories (beta)
+    typeScriptTag: insightsRepositoriesBeta
+    description: Associate repositories with projects
+    parameters:
+      - name: mappings
+        schema: array
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: '429'
+        description: ''
+  - url: >-
+      /api/v2/engineering-insights/repositories/{repositoryKey}/projects/{projectKey}
+    method: removeRepositoryProjectAssociation
+    httpMethod: delete
+    tag: Insights repositories (beta)
+    typeScriptTag: insightsRepositoriesBeta
+    description: Remove repository project association
+    parameters:
+      - name: repositoryKey
+        schema: string
+        required: true
+        description: The repository key
+        example: REPOSITORYKEY
+      - name: projectKey
+        schema: string
+        required: true
+        description: The project key
+        example: PROJECTKEY
+    responses:
+      - statusCode: '204'
+        description: Action succeeded
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: '429'
+        description: ''
+numberOfSchemas: 447
 apiDescription: >
   # Overview
 

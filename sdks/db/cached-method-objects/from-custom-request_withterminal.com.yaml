@@ -1,4 +1,4 @@
-hash: 48dcef3c92501c3c973e68f86ea32e0c4ff289c47a888c5eed47728383b1b742
+hash: 270da21d159d6b14ea7d62a7bbebdfc51c0ab8e9e38ff8cdbdabb377453062f7
 methodObjects:
   - url: /public-token/exchange
     method: exchangeToken
@@ -40,7 +40,7 @@ methodObjects:
       - name: tag
         schema: string
         description: Filter connections by tag
-        example: tempor in aliqua
+        example: cupidatat laboris id
     responses:
       - statusCode: '200'
         description: ''
@@ -69,7 +69,7 @@ methodObjects:
       - name: externalId
         schema: string
         description: ''
-        example: ullamco dolore ipsum
+        example: elit consectetur
       - name: provider
         schema: string
         description: ''
@@ -114,19 +114,19 @@ methodObjects:
         schema: array
         description: ''
         example:
-          - dolor in magna
-          - reprehenderit dolor nostrud
+          - irure ut sed Duis
+          - officia
       - name: company
         schema: object
         description: ''
       - name: externalId
         schema: string
         description: ''
-        example: ad sed dolore cupidatat
+        example: reprehenderit ut
       - name: status
         schema: string
         description: ''
-        example: laborum sed consectetur
+        example: sed Lorem
       - name: syncMode
         schema: string
         description: ''
@@ -457,11 +457,11 @@ methodObjects:
       - name: startDate
         schema: string
         description: Only include daily logs from on or after a specific date
-        example: '1995-04-25'
+        example: '1953-07-15'
       - name: endDate
         schema: string
         description: Only include daily logs from on or before a specific date
-        example: '1995-04-25'
+        example: '1953-07-15'
       - name: modifiedAfter
         schema: string
         description: Only include records that were last modified after a provided date.
@@ -557,11 +557,11 @@ methodObjects:
       - name: lastReportedAfter
         schema: string
         description: Timestamp to start when the issue was last observed
-        example: '2023-06-07'
+        example: '1951-08-17'
       - name: lastReportedBefore
         schema: string
         description: Timestamp to end when the issue was last observed
-        example: '2023-06-07'
+        example: '1951-08-17'
       - name: expand
         schema: string
         description: Expand related resources to see all details
@@ -573,11 +573,11 @@ methodObjects:
       - name: errorCode
         schema: string
         description: Filter issues to a specific error code
-        example: invalid_source_id
+        example: exceeded_retention_window
       - name: status
         schema: string
         description: Filter issues to a specific status
-        example: ongoing
+        example: resolved
     responses:
       - statusCode: '200'
         description: ''
@@ -982,6 +982,44 @@ methodObjects:
         schema: string
         description: Expand resources in the returned response
         example: ''
+      - name: connectionToken
+        schema: string
+        description: >-
+          (Required) The token returned when a user authenticated their account.
+          This authorizes access to a specific account.
+        example: '{{connectionToken}}'
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /devices
+    method: getAllDevices
+    httpMethod: get
+    tag: Devices
+    typeScriptTag: devices
+    description: List Devices
+    parameters:
+      - name: cursor
+        schema: string
+        description: Pagination cursor to start requests from
+        example: '{{nextCursor}}'
+      - name: limit
+        schema: string
+        description: The maximum number of results to return in a page.
+        example: '1'
+      - name: modifiedAfter
+        schema: string
+        description: Only include records that were last modified after a provided date.
+        example: '2021-01-06T03:24:53.000Z'
+      - name: modifiedBefore
+        schema: string
+        description: Only include records that were last modified before a provided date.
+        example: '2021-01-06T03:24:53.000Z'
+      - name: raw
+        schema: string
+        description: >-
+          Include raw responses used to normalize model. Used for debugging or
+          accessing unique properties that are not unified.
+        example: 'true'
       - name: connectionToken
         schema: string
         description: >-

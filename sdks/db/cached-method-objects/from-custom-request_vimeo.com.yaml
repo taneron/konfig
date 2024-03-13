@@ -1,4 +1,4 @@
-hash: 928cb0cccee06ebcd0ec5c181cbbe68e9f8e0a05a5237bc8cf40591e3bde54ce
+hash: 07230fa200652117d70b39506f05a62605b805a96b6a7f0f50416f5e517d58ce
 methodObjects:
   - url: /
     method: endpoints
@@ -14024,6 +14024,21 @@ methodObjects:
         description: ''
       - statusCode: '404'
         description: ''
+  - url: /users/{user_id}/{subscription_id}
+    method: getSubscriptionInfo
+    httpMethod: get
+    tag: Payments\Essentials
+    typeScriptTag: paymentsEssentials
+    description: Get information about a payments service subscription
+    parameters:
+      - name: subscriptionId
+        schema: string
+        required: true
+        description: The ID of the subscription.
+        example: abc12345
+    responses:
+      - statusCode: '200'
+        description: OK
   - url: /videos
     method: videos
     httpMethod: get
@@ -16266,7 +16281,7 @@ methodObjects:
         description: ''
       - statusCode: '404'
         description: ''
-numberOfSchemas: 330
+numberOfSchemas: 331
 apiDescription: >-
   Build something great. Vimeo's API supports flexible, high-quality video
   integration with your custom apps.

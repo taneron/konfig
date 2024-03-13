@@ -24,7 +24,7 @@ rawSpecString: |
   info:
     title: Meilisearch Core API
     description: Search documents, configure and manage the Meilisearch engine.
-    version: 1.6.0
+    version: 1.7.0
     contact:
       name: Meilisearch
       email: bonjour@Meilisearch.com
@@ -186,12 +186,18 @@ rawSpecString: |
             description: >-
               The distance between the target point and the geoPoint in the
               document
+          similarity:
+            type: number
+            description: |
+              the similarity score between the target vector and the value vector.
+
+              1.0 means a perfect similarity, 0.0 a perfect dissimilarity.
         required:
           - order
           - value
         description: >-
-          Custom rule in the form of either `attribute:direction` or
-          `_geoPoint(lat, lng):direction`.
+          Custom rule in the form of either `attribute:direction`,
+          `vectorSort(vector)` or `_geoPoint(lat, lng):direction`.
       score:
         type: number
         description: >
@@ -211,9 +217,14 @@ rawSpecString: |
                 $ref: '#/components/schemas/order'
               matchingWords:
                 type: integer
-                description: the number of words from the query found
+                description: >-
+                  number of words in the query that match in the document. The
+                  higher the better.
               maxMatchingWords:
                 type: integer
+                description: >-
+                  max number of words in the query that can match in the document
+                  for this iteration of the words ranking rule.
               score:
                 $ref: '#/components/schemas/score'
             required:
@@ -258,7 +269,7 @@ rawSpecString: |
             properties:
               order:
                 $ref: '#/components/schemas/order'
-              attribute_ranking_order_score:
+              attributeRankingOrderScore:
                 type: number
                 description: >
                   Score computed depending on the first attribute each word of the
@@ -267,7 +278,7 @@ rawSpecString: |
 
                   The first attribute in the `searchableAttributes` list yields
                   the highest score, the last attribute the lowest.
-              query_word_distance_score:
+              queryWordDistanceScore:
                 type: number
                 description: >
                   Score computed depending on the position the attributes where
@@ -283,8 +294,8 @@ rawSpecString: |
                 $ref: '#/components/schemas/score'
             required:
               - order
-              - attribute_ranking_order_score
-              - query_word_distance_score
+              - attributeRankingOrderScore
+              - queryWordDistanceScore
               - score
           exactness:
             type: object
@@ -303,6 +314,16 @@ rawSpecString: |
                   exactly starts with the query.
 
                   - `noExactMatch`: any other document.
+              matchingWords:
+                type: integer
+                description: >
+                  for `noExactMatch`, the number of exact words contained in an
+                  attribute. The higher the better.
+              maxMatchingWords:
+                type: integer
+                description: >
+                  for `noExactMatch`, the maximum number of exact words contained
+                  in an attribute
               score:
                 $ref: '#/components/schemas/score'
             required:
@@ -311,7 +332,7 @@ rawSpecString: |
               - score
         additionalProperties:
           $ref: '#/components/schemas/customRankingRuleDetails'
-        description: (EXPERIMENTAL) The ranking score per ranking rule.
+        description: The ranking score per ranking rule.
         examples:
           With sort:
             words:
@@ -417,8 +438,8 @@ rawSpecString: |
           _rankingScoreDetails:
             type: object
             description: >-
-              (EXPERIMENTAL) Only present if showRankingScoreDetails = `true`. The
-              ranking score of each ranking rule for that document.
+              Only present if showRankingScoreDetails = `true`. The ranking score
+              of each ranking rule for that document.
             properties:
               '':
                 $ref: '#/components/schemas/rankingScoreDetails'
@@ -1162,9 +1183,9 @@ rawSpecString: |
           showRankingScoreDetails:
             type: boolean
             description: >-
-              (EXPERIMENTAL) Defines whether a `_rankingScoreDetails` object
-              containing information about the score of that document for each
-              ranking rule should be returned or not.
+              Defines whether a `_rankingScoreDetails` object containing
+              information about the score of that document for each ranking rule
+              should be returned or not.
             default: false
           matchingStrategy:
             type: string
@@ -5066,16 +5087,20 @@ rawSpecString: |
                   properties:
                     vectorStore:
                       type: boolean
-                    scoreDetails:
+                    metrics:
+                      type: boolean
+                    exportPuffinReports:
                       type: boolean
                   required:
                     - vectorStore
-                    - scoreDetails
+                    - metrics
+                    - exportPuffinReports
                 examples:
                   Default status of the features:
                     value:
                       vectorStore: false
-                      scoreDetails: false
+                      metrics: true
+                      exportPuffinReports: false
           '401':
             $ref: '#/components/responses/401'
       patch:
@@ -5095,14 +5120,17 @@ rawSpecString: |
                 properties:
                   vectorStore:
                     type: boolean
-                  scoreDetails:
+                  metrics:
+                    type: boolean
+                  exportPuffinReports:
                     type: boolean
                 additionalProperties: false
               examples:
                 Example:
                   value:
                     vectorStore: true
-                    scoreDetails: false
+                    metrics: false
+                    exportPuffinReports: false
         responses:
           '200':
             description: Ok
@@ -5114,16 +5142,20 @@ rawSpecString: |
                   properties:
                     vectorStore:
                       type: boolean
-                    scoreDetails:
+                    metrics:
+                      type: boolean
+                    exportPuffinReports:
                       type: boolean
                   required:
                     - vectorStore
-                    - scoreDetails
+                    - metrics
+                    - exportPuffinReports
                 examples:
                   Updated status of the feature:
                     value:
                       vectorStore: true
-                      scoreDetails: false
+                      metrics: false
+                      exportPuffinReports: false
           '401':
             $ref: '#/components/responses/401'
     /metrics:

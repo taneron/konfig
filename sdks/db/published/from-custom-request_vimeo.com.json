@@ -54,16 +54,16 @@
   "apiVersion": "3.4",
   "apiDescription": "Build something great. Vimeo's API supports flexible, high-quality video integration with your custom apps.",
   "apiTitle": "Vimeo API",
-  "endpoints": 269,
-  "sdkMethods": 484,
-  "schemas": 330,
-  "parameters": 1763,
+  "endpoints": 270,
+  "sdkMethods": 485,
+  "schemas": 331,
+  "parameters": 1764,
   "contactUrl": "https://developer.vimeo.com/help",
   "originalCustomRequest": {
     "lambda": true
   },
   "customRequestSpecFilename": "vimeo.com.yaml",
-  "difficultyScore": 962.75,
+  "difficultyScore": 964.5,
   "difficulty": "Very Hard",
   "company": "Vimeo",
   "sdkName": "vimeo-{language}-sdk",
@@ -19302,6 +19302,29 @@
       ]
     },
     {
+      "url": "/users/{user_id}/{subscription_id}",
+      "method": "getSubscriptionInfo",
+      "httpMethod": "get",
+      "tag": "Payments\\Essentials",
+      "typeScriptTag": "paymentsEssentials",
+      "description": "Get information about a payments service subscription",
+      "parameters": [
+        {
+          "name": "subscriptionId",
+          "schema": "string",
+          "required": true,
+          "description": "The ID of the subscription.",
+          "example": "abc12345"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": "OK"
+        }
+      ]
+    },
+    {
       "url": "/videos",
       "method": "videos",
       "httpMethod": "get",
@@ -22580,7 +22603,7 @@
   "previewLinkImage": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/vimeo/imagePreview.png",
   "faviconUrl": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/vimeo/favicon.jpg",
   "clientNameCamelCase": "vimeo",
-  "lastUpdated": "2024-03-13T02:25:22.175Z",
+  "lastUpdated": "2024-03-13T16:59:14.076Z",
   "typescriptSdkUsageCode": "import { Vimeo } from 'vimeo-typescript-sdk';\n\nconst vimeo = new Vimeo({\n    token: \"TOKEN\",\n    clientId: \"CLIENT_ID\",\n    clientSecret: \"CLIENT_SECRET\",\n})",
   "typescriptSdkFirstRequestCode": "// Get the API specification\nconst endpointsResponse = vimeo.apiInformation\\essentials.endpoints({\n    openapi: true\n    version: \"3.4\"\n})",
   "fixedSpecFileName": "vimeo-fixed-spec.yaml"

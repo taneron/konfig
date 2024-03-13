@@ -280,7 +280,7 @@ export default function ${camelcase(codeFriendlyCompanyName, {
   return (
     <${reactComponent}
       sdkName="${sdkName.replace("{language}", "typescript")}"
-      metaDescription="${metaDescription}"
+      metaDescription={\`${metaDescription}\`}
       company="${company}"${
     apiDescription === "" || apiDescription === undefined
       ? `

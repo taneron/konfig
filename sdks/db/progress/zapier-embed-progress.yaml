@@ -1,0 +1,141 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignorePotentialIncorrectType: true
+operationIds:
+  /actions:
+    get: Actions_listAvailableActions
+  /actions/{action}/inputs:
+    post: Actions_getInputFields
+  /actions/{action}/inputs/{input}/choices:
+    post: Actions_getChoices
+  /actions/{action}/outputs:
+    post: Actions_getOutputFields
+  /actions/{action}/test:
+    post: Actions_testActionExecution
+  /apps:
+    get: Apps_listPopular
+  /authentications:
+    get: Authentications_getAvailable
+    post: Authentications_createNewAuthentication
+  /zap-runs:
+    get: Experimental_getZapRuns
+  /zaps:
+    get: Zaps_getFilteredZaps
+    post: Zaps_createZap
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /actions/{action}/inputs:
+    post:
+      application/vnd.api+json: ActionsGetInputFieldsRequest
+  /actions/{action}/inputs/{input}/choices:
+    post:
+      application/vnd.api+json: ActionsGetChoicesRequest
+  /actions/{action}/outputs:
+    post:
+      application/vnd.api+json: ActionsGetOutputFieldsRequest
+  /actions/{action}/test:
+    post:
+      application/vnd.api+json: ActionsTestActionExecutionRequest
+  /authentications:
+    post:
+      application/vnd.api+json: AuthenticationsCreateNewAuthenticationRequest
+  /zaps:
+    post:
+      application/vnd.api+json: ZapsCreateZapRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /actions:
+    get:
+      '200':
+        application/vnd.api+json: ActionsListAvailableActionsResponse
+      '404':
+        application/vnd.api+json: ActionsListAvailableActions404Response
+      '406':
+        application/vnd.api+json: ActionsListAvailableActions406Response
+      '415':
+        application/vnd.api+json: ActionsListAvailableActions415Response
+      default:
+        application/vnd.api+json: ActionsListAvailableActionsdefaultResponse
+  /actions/{action}/inputs:
+    post:
+      '200':
+        application/vnd.api+json: ActionsGetInputFieldsResponse
+  /actions/{action}/inputs/{input}/choices:
+    post:
+      '200':
+        application/vnd.api+json: ActionsGetChoicesResponse
+  /actions/{action}/outputs:
+    post:
+      '200':
+        application/vnd.api+json: ActionsGetOutputFieldsResponse
+  /actions/{action}/test:
+    post:
+      '200':
+        application/json: ActionsTestActionExecutionResponse
+        application/vnd.api+json: ActionsTestActionExecution200Response
+  /apps:
+    get:
+      '200':
+        application/vnd.api+json: AppsListPopularResponse
+      '401':
+        application/vnd.api+json: AppsListPopular401Response
+  /authentications:
+    get:
+      '200':
+        application/vnd.api+json: AuthenticationsGetAvailableResponse
+    post:
+      '201':
+        application/vnd.api+json: AuthenticationsCreateNewAuthenticationResponse
+  /zap-runs:
+    get:
+      '200':
+        application/json: ExperimentalGetZapRunsResponse
+      '401':
+        application/json: ExperimentalGetZapRuns401Response
+      '403':
+        application/json: ExperimentalGetZapRuns403Response
+  /zaps:
+    get:
+      '200':
+        application/vnd.api+json: ZapsGetFilteredZapsResponse
+      '401':
+        application/vnd.api+json: ZapsGetFilteredZaps401Response
+      '403':
+        application/vnd.api+json: ZapsGetFilteredZaps403Response
+    post:
+      '201':
+        application/vnd.api+json: ZapsCreateZapResponse
+securityParameters:
+  action_type:
+    query: false
+  app:
+    query: false
+  category:
+    query: false
+  expand:
+    query: false
+  from_date:
+    query: false
+  ids:
+    query: false
+  inputs:
+    query: false
+  limit:
+    query: false
+  offset:
+    query: false
+  page:
+    query: false
+  query:
+    query: false
+  search:
+    query: false
+  statuses:
+    query: false
+  to_date:
+    query: false
+  zap_id:
+    query: false
+validServerUrls: {}

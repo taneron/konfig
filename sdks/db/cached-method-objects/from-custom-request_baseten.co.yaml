@@ -1,4 +1,4 @@
-hash: 716b31767dad8e71433e2a6b0b787d4a81fcb32bb53e01d3392bbfea7ced5efd
+hash: d5031e4a97fe733b0ba1ffbb6201a18b1d31718ce1351bd2f9a0e49037af3fe1
 methodObjects:
   - url: /v1/secrets
     method: getAllSecrets
@@ -62,5 +62,95 @@ methodObjects:
     responses:
       - statusCode: '200'
         description: A deployment of a model.
-numberOfSchemas: 6
+  - url: /v1/models/{model_id}/deployments/development/autoscaling_settings
+    method: updateDevelopmentSetting
+    httpMethod: patch
+    tag: AutoscalingSetting
+    typeScriptTag: autoscalingSetting
+    description: Updates a development deployment's autoscaling settings
+    parameters:
+      - name: min_replica
+        schema: integer
+        description: ''
+        default: null
+      - name: max_replica
+        schema: integer
+        description: ''
+        default: null
+      - name: autoscaling_window
+        schema: integer
+        description: ''
+        default: null
+      - name: scale_down_delay
+        schema: integer
+        description: ''
+        default: null
+      - name: concurrency_target
+        schema: integer
+        description: ''
+        default: null
+    responses:
+      - statusCode: '200'
+        description: The response to a request to update autoscaling settings.
+  - url: /v1/models/{model_id}/deployments/production/autoscaling_settings
+    method: updateStatus
+    httpMethod: patch
+    tag: AutoscalingSetting
+    typeScriptTag: autoscalingSetting
+    description: Updates a production deployment's autoscaling settings
+    parameters:
+      - name: min_replica
+        schema: integer
+        description: ''
+        default: null
+      - name: max_replica
+        schema: integer
+        description: ''
+        default: null
+      - name: autoscaling_window
+        schema: integer
+        description: ''
+        default: null
+      - name: scale_down_delay
+        schema: integer
+        description: ''
+        default: null
+      - name: concurrency_target
+        schema: integer
+        description: ''
+        default: null
+    responses:
+      - statusCode: '200'
+        description: The response to a request to update autoscaling settings.
+  - url: /v1/models/{model_id}/deployments/{deployment_id}/autoscaling_settings
+    method: updateDeploymentSettings
+    httpMethod: patch
+    tag: AutoscalingSetting
+    typeScriptTag: autoscalingSetting
+    description: Updates a deployment's autoscaling settings
+    parameters:
+      - name: min_replica
+        schema: integer
+        description: ''
+        default: null
+      - name: max_replica
+        schema: integer
+        description: ''
+        default: null
+      - name: autoscaling_window
+        schema: integer
+        description: ''
+        default: null
+      - name: scale_down_delay
+        schema: integer
+        description: ''
+        default: null
+      - name: concurrency_target
+        schema: integer
+        description: ''
+        default: null
+    responses:
+      - statusCode: '200'
+        description: The response to a request to update autoscaling settings.
+numberOfSchemas: 9
 apiDescription: REST API for management of Baseten resources

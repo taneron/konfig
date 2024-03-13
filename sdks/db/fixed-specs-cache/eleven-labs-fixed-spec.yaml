@@ -2466,7 +2466,8 @@ rawSpecString: |
             description: Successful Response
             content:
               application/json:
-                schema: {}
+                schema:
+                  $ref: '#/components/schemas/DubbingMetadataResponse'
           '422':
             description: Validation Error
             content:
@@ -2519,7 +2520,9 @@ rawSpecString: |
         tags:
           - dubbing
         summary: Get Dubbed File
-        description: Returns dubbed file.
+        description: >-
+          Returns dubbed file as a streamed file. Videos will be returned in MP4
+          format and audio only dubs will be returned in MP3.
         operationId: Get_dubbed_file_v1_dubbing__dubbing_id__audio__language_code__get
         parameters:
           - description: ID of the dubbing project.
@@ -2555,9 +2558,6 @@ rawSpecString: |
         responses:
           '200':
             description: Successful Response
-            content:
-              application/json:
-                schema: {}
           '422':
             description: Validation Error
             content:
@@ -3692,6 +3692,33 @@ rawSpecString: |
           - dubbing_id
           - expected_duration_sec
         title: DoDubbingResponseModel
+      DubbingMetadataResponse:
+        properties:
+          dubbing_id:
+            type: string
+            title: Dubbing Id
+          name:
+            type: string
+            title: Name
+          status:
+            type: string
+            title: Status
+          error:
+            type: string
+            title: Error
+          target_languages:
+            items:
+              type: string
+            type: array
+            title: Target Languages
+        type: object
+        required:
+          - dubbing_id
+          - name
+          - status
+          - error
+          - target_languages
+        title: DubbingMetadataResponse
       ExtendedSubscriptionResponseModel:
         properties:
           tier:
@@ -3751,6 +3778,12 @@ rawSpecString: |
               - unpaid
               - free
             title: Status
+          billing_period:
+            type: string
+            enum:
+              - monthly_period
+              - annual_period
+            title: Billing Period
           next_invoice:
             $ref: '#/components/schemas/InvoiceResponseModel'
           has_open_invoices:
@@ -3773,6 +3806,7 @@ rawSpecString: |
           - can_use_professional_voice_cloning
           - currency
           - status
+          - billing_period
           - next_invoice
           - has_open_invoices
         title: ExtendedSubscriptionResponseModel
@@ -4582,6 +4616,12 @@ rawSpecString: |
               - unpaid
               - free
             title: Status
+          billing_period:
+            type: string
+            enum:
+              - monthly_period
+              - annual_period
+            title: Billing Period
         type: object
         required:
           - tier
@@ -4599,6 +4639,7 @@ rawSpecString: |
           - can_use_professional_voice_cloning
           - currency
           - status
+          - billing_period
         title: SubscriptionResponseModel
       UserResponseModel:
         properties:

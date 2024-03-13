@@ -1712,15 +1712,8 @@ components:
           type: array
         representations:
           description: >
-            A list of precise locations that surface an issue.
-
-            A coordinate may have multiple representations. For example, a
-            package vulnerability may be represented both
-
-            by its package dependency graph traversal, and by the location in a
-            package manifest that introduced the
-
-            dependency.
+            A list of precise locations that surface an issue. A coordinate may
+            have multiple representations.
           items:
             oneOf:
               - description: An object that contains an opaque identifying string.
@@ -10088,8 +10081,8 @@ paths:
           schema:
             type: string
         - description: >
-            The start date (inclusive) of the audit logs search. Example:
-            2023-07-27
+            The start date (inclusive) of the audit logs search. If this is not
+            specified, the start of yesterday is used. Example: 2023-07-27
           in: query
           name: from
           schema:
@@ -34204,8 +34197,8 @@ paths:
           schema:
             type: string
         - description: >
-            The start date (inclusive) of the audit logs search. Example:
-            2023-07-27
+            The start date (inclusive) of the audit logs search. If this is not
+            specified, the start of yesterday is used. Example: 2023-07-27
           in: query
           name: from
           schema:

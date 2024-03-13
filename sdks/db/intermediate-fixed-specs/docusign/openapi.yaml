@@ -3340,7 +3340,8 @@ paths:
 
 
         If you want to listen for events on only one envelope, use the
-        [eventNotification](https://raw.githubusercontent.com) object instead.
+        [eventNotification](/docs/esign-rest-api/reference/envelopes/envelopes/create/#schema__envelopedefinition_eventnotification)
+        object instead.
 
 
         **Note:** To use this function, you must be an account administrator and
@@ -22424,16 +22425,24 @@ paths:
                 $ref: '#/components/schemas/errorDetails'
       deprecated: false
       x-ds-methodname: postDocumentTabs
-      description: |
+      description: >
         Adds tabs to the document specified by `documentId` in the
+
         template specified by `templateId`.
 
+
         In the request body, you only need to specify the tabs that your
+
         are adding. For example, to add a text
-        [prefill tab](https://raw.githubusercontent.com),
+
+        [prefill
+        tab](/docs/esign-rest-api/reference/templates/templatedocumenttabs/create/#definition__templatetabs_prefilltabs),
+
         your request body might look like this:
 
+
         ```
+
         {
           "prefillTabs": {
             "textTabs": [
@@ -22447,6 +22456,7 @@ paths:
             ]
           }
         }
+
         ```
       x-ds-method: create
       x-ds-service: Uncategorized
@@ -33701,7 +33711,7 @@ x-ds-categories:
 
       configuration. See the
 
-      [`eventNotification`](https://raw.githubusercontent.com)
+      [`eventNotification`](/docs/esign-rest-api/reference/envelopes/envelopes/create/#schema__envelopedefinition_eventnotification)
 
       property for envelopes.
 
@@ -34596,7 +34606,8 @@ components:
             Workflow unique ID</br>This is the ID you must specify when setting
             ID Verification in an envelope using the `identityVerification`
 
-            [core recipient parameter](https://raw.githubusercontent.com)
+            [core recipient
+            parameter](/docs/esign-rest-api/reference/envelopes/enveloperecipients/#core-recipient-parameters)
           type: string
         workflowLabel:
           description: ''
@@ -35421,8 +35432,8 @@ components:
         allowAccessCodeFormat:
           description: >-
             When **true,** the configured [Access Code
-            Format](https://raw.githubusercontent.com) page is enabled for
-            account administrators.
+            Format](/docs/esign-rest-api/reference/accounts/accounts/get/#accessCodeFormat)
+            page is enabled for account administrators.
 
 
             **Note:** Only Admin users can change this setting.
@@ -49087,7 +49098,8 @@ components:
             `envelopeEvents` property or the `recipientEvents` property.
 
 
-            The [possible event statuses](https://raw.githubusercontent.com)
+            The [possible event
+            statuses](/platform/webhooks/connect/improved-json-sim-event-model/#eventreference)
             are:
 
 
@@ -53823,11 +53835,13 @@ components:
 
             For a list of the available types, see the
 
-            [`display` property](https://raw.githubusercontent.com)
+            [`display`
+            property](/docs/esign-rest-api/reference/envelopes/envelopes/create/#schema__envelopedefinition_documents_htmldefinition_displayanchors_displaysettings_display)
 
             of the
 
-            [`displaySettings` object.](https://raw.githubusercontent.com)
+            [`displaySettings`
+            object.](/docs/esign-rest-api/reference/envelopes/envelopes/create/#schema__envelopedefinition_documents_htmldefinition_displayanchors_displaysettings)
           type: array
           items:
             $ref: '#/components/schemas/documentHtmlDisplayAnchor'
@@ -56956,7 +56970,7 @@ components:
 
             For information about adding merge field information to the email
             subject, see [Template Email Subject Merge
-            Fields](https://raw.githubusercontent.com).
+            Fields](/docs/esign-rest-api/reference/templates/templates/create/#template-email-subject-merge-fields).
 
 
             **Note:** The subject line is limited to 100 characters, including
@@ -57033,9 +57047,10 @@ components:
           description: >-
             Not used. Use the
 
-            [`expirations`](https://raw.githubusercontent.com)
+            [`expirations`](/docs/esign-rest-api/reference/envelopes/envelopes/create/#definition__envelopedefinition_notification_expirations)
 
-            property in the [`notification`](https://raw.githubusercontent.com)
+            property in the
+            [`notification`](/docs/esign-rest-api/reference/envelopes/envelopes/create/#definition__envelopedefinition_notification)
             object instead.
           type: string
         expireDateTime:
@@ -57049,9 +57064,10 @@ components:
           description: >-
             Not used. Use the
 
-            [`expirations`](https://raw.githubusercontent.com)
+            [`expirations`](/docs/esign-rest-api/reference/envelopes/envelopes/create/#definition__envelopedefinition_notification_expirations)
 
-            property in the [`notification`](https://raw.githubusercontent.com)
+            property in the
+            [`notification`](/docs/esign-rest-api/reference/envelopes/envelopes/create/#definition__envelopedefinition_notification)
             object instead.
           type: string
         externalEnvelopeId:
@@ -57586,7 +57602,7 @@ components:
 
             For information about adding merge field information to the email
             subject, see [Template Email Subject Merge
-            Fields](https://raw.githubusercontent.com).
+            Fields](/docs/esign-rest-api/reference/templates/templates/create/#template-email-subject-merge-fields).
 
 
             **Note:** The subject line is limited to 100 characters, including
@@ -57671,27 +57687,30 @@ components:
           description: >-
             Not used. Use the
 
-            [`expirations`](https://raw.githubusercontent.com)
+            [`expirations`](/docs/esign-rest-api/reference/envelopes/envelopes/create/#definition__envelopedefinition_notification_expirations)
 
-            property in the [`notification`](https://raw.githubusercontent.com)
+            property in the
+            [`notification`](/docs/esign-rest-api/reference/envelopes/envelopes/create/#definition__envelopedefinition_notification)
             object instead.
           type: string
         expireDateTime:
           description: >-
             Not used. Use the
 
-            [`expirations`](https://raw.githubusercontent.com)
+            [`expirations`](/docs/esign-rest-api/reference/envelopes/envelopes/create/#definition__envelopedefinition_notification_expirations)
 
-            property in the [`notification`](https://raw.githubusercontent.com)
+            property in the
+            [`notification`](/docs/esign-rest-api/reference/envelopes/envelopes/create/#definition__envelopedefinition_notification)
             object instead.
           type: string
         expireEnabled:
           description: >-
             Not used. Use the
 
-            [`expirations`](https://raw.githubusercontent.com)
+            [`expirations`](/docs/esign-rest-api/reference/envelopes/envelopes/create/#definition__envelopedefinition_notification_expirations)
 
-            property in the [`notification`](https://raw.githubusercontent.com)
+            property in the
+            [`notification`](/docs/esign-rest-api/reference/envelopes/envelopes/create/#definition__envelopedefinition_notification)
             object instead.
           type: string
         externalEnvelopeId:
@@ -58251,7 +58270,7 @@ components:
 
             For information about adding merge field information to the email
             subject, see [Template Email Subject Merge
-            Fields](https://raw.githubusercontent.com).
+            Fields](/docs/esign-rest-api/reference/templates/templates/create/#template-email-subject-merge-fields).
 
 
             **Note:** The subject line is limited to 100 characters, including
@@ -59360,7 +59379,7 @@ components:
 
             For information about adding merge field information to the email
             subject, see [Template Email Subject Merge
-            Fields](https://raw.githubusercontent.com).
+            Fields](/docs/esign-rest-api/reference/templates/templates/create/#template-email-subject-merge-fields).
 
 
             **Note:** The subject line is limited to 100 characters, including
@@ -59441,27 +59460,30 @@ components:
           description: >-
             Not used. Use the
 
-            [`expirations`](https://raw.githubusercontent.com)
+            [`expirations`](/docs/esign-rest-api/reference/envelopes/envelopes/create/#definition__envelopedefinition_notification_expirations)
 
-            property in the [`notification`](https://raw.githubusercontent.com)
+            property in the
+            [`notification`](/docs/esign-rest-api/reference/envelopes/envelopes/create/#definition__envelopedefinition_notification)
             object instead.
           type: string
         expireDateTime:
           description: >-
             Not used. Use the
 
-            [`expirations`](https://raw.githubusercontent.com)
+            [`expirations`](/docs/esign-rest-api/reference/envelopes/envelopes/create/#definition__envelopedefinition_notification_expirations)
 
-            property in the [`notification`](https://raw.githubusercontent.com)
+            property in the
+            [`notification`](/docs/esign-rest-api/reference/envelopes/envelopes/create/#definition__envelopedefinition_notification)
             object instead.
           type: string
         expireEnabled:
           description: >-
             Not used. Use the
 
-            [`expirations`](https://raw.githubusercontent.com)
+            [`expirations`](/docs/esign-rest-api/reference/envelopes/envelopes/create/#definition__envelopedefinition_notification_expirations)
 
-            property in the [`notification`](https://raw.githubusercontent.com)
+            property in the
+            [`notification`](/docs/esign-rest-api/reference/envelopes/envelopes/create/#definition__envelopedefinition_notification)
             object instead.
           type: string
         externalEnvelopeId:
@@ -60115,7 +60137,8 @@ components:
             `envelopeEvents` property or the `recipientEvents` property.
 
 
-            The [possible event statuses](https://raw.githubusercontent.com)
+            The [possible event
+            statuses](/platform/webhooks/connect/improved-json-sim-event-model/#eventreference)
             are:
 
 
@@ -66702,7 +66725,7 @@ components:
             In most cases, you should not need to change
 
             this value. See [Explicitly define
-            formatting](https://raw.githubusercontent.com).
+            formatting](/docs/esign-rest-api/esign101/concepts/tabs/number-fields/#explicitly-define-formatting).
 
 
             Valid values:
@@ -66823,7 +66846,7 @@ components:
             In most cases, you should not need to change
 
             this value. See [Explicitly define
-            formatting](https://raw.githubusercontent.com).
+            formatting](/docs/esign-rest-api/esign101/concepts/tabs/number-fields/#explicitly-define-formatting).
 
 
             Valid values:
@@ -67568,7 +67591,7 @@ components:
             In most cases, you should not need to change
 
             this value. See [Explicitly define
-            formatting](https://raw.githubusercontent.com).
+            formatting](/docs/esign-rest-api/esign101/concepts/tabs/number-fields/#explicitly-define-formatting).
 
 
             Valid values:
@@ -67687,7 +67710,7 @@ components:
             In most cases, you should not need to change
 
             this value. See [Explicitly define
-            formatting](https://raw.githubusercontent.com).
+            formatting](/docs/esign-rest-api/esign101/concepts/tabs/number-fields/#explicitly-define-formatting).
 
 
             Valid values:
@@ -75343,7 +75366,7 @@ components:
 
             For information about adding merge field information to the email
             subject, see [Template Email Subject Merge
-            Fields](https://raw.githubusercontent.com).
+            Fields](/docs/esign-rest-api/reference/templates/templates/create/#template-email-subject-merge-fields).
 
 
             **Note:** The subject line is limited to 100 characters, including
@@ -75903,7 +75926,8 @@ components:
 
             For specific information about number tabs
 
-            see [Features of numberTabs](https://raw.githubusercontent.com).
+            see [Features of
+            numberTabs](/docs/esign-rest-api/esign101/concepts/tabs/number-fields/#features-of-numbertabs).
 
 
             [number]:
@@ -85051,7 +85075,8 @@ components:
 
             For specific information about number tabs
 
-            see [Features of numberTabs](https://raw.githubusercontent.com).
+            see [Features of
+            numberTabs](/docs/esign-rest-api/esign101/concepts/tabs/number-fields/#features-of-numbertabs).
 
 
             [number]:
@@ -85077,7 +85102,8 @@ components:
 
             For specific information about numerical tabs
 
-            see [Features of numericalTabs](https://raw.githubusercontent.com).
+            see [Features of
+            numericalTabs](/docs/esign-rest-api/esign101/concepts/tabs/number-fields/#features-of-numericaltabs).
           type: array
           items:
             $ref: '#/components/schemas/numerical'
@@ -86241,7 +86267,8 @@ components:
 
             For specific information about number tabs
 
-            see [Features of numberTabs](https://raw.githubusercontent.com).
+            see [Features of
+            numberTabs](/docs/esign-rest-api/esign101/concepts/tabs/number-fields/#features-of-numbertabs).
 
 
             [number]:
@@ -86267,7 +86294,8 @@ components:
 
             For specific information about numerical tabs
 
-            see [Features of numericalTabs](https://raw.githubusercontent.com).
+            see [Features of
+            numericalTabs](/docs/esign-rest-api/esign101/concepts/tabs/number-fields/#features-of-numericaltabs).
           type: array
           items:
             $ref: '#/components/schemas/numerical'
@@ -93210,7 +93238,8 @@ components:
 
             For specific information about number tabs
 
-            see [Features of numberTabs](https://raw.githubusercontent.com).
+            see [Features of
+            numberTabs](/docs/esign-rest-api/esign101/concepts/tabs/number-fields/#features-of-numbertabs).
 
 
             [number]:
@@ -93236,7 +93265,8 @@ components:
 
             For specific information about numerical tabs
 
-            see [Features of numericalTabs](https://raw.githubusercontent.com).
+            see [Features of
+            numericalTabs](/docs/esign-rest-api/esign101/concepts/tabs/number-fields/#features-of-numericaltabs).
           type: array
           items:
             $ref: '#/components/schemas/numerical'
@@ -93936,7 +93966,8 @@ components:
 
             For specific information about number tabs
 
-            see [Features of numberTabs](https://raw.githubusercontent.com).
+            see [Features of
+            numberTabs](/docs/esign-rest-api/esign101/concepts/tabs/number-fields/#features-of-numbertabs).
 
 
             [number]:
@@ -93962,7 +93993,8 @@ components:
 
             For specific information about numerical tabs
 
-            see [Features of numericalTabs](https://raw.githubusercontent.com).
+            see [Features of
+            numericalTabs](/docs/esign-rest-api/esign101/concepts/tabs/number-fields/#features-of-numericaltabs).
           type: array
           items:
             $ref: '#/components/schemas/numerical'
@@ -94662,7 +94694,8 @@ components:
 
             For specific information about number tabs
 
-            see [Features of numberTabs](https://raw.githubusercontent.com).
+            see [Features of
+            numberTabs](/docs/esign-rest-api/esign101/concepts/tabs/number-fields/#features-of-numbertabs).
 
 
             [number]:
@@ -94688,7 +94721,8 @@ components:
 
             For specific information about numerical tabs
 
-            see [Features of numericalTabs](https://raw.githubusercontent.com).
+            see [Features of
+            numericalTabs](/docs/esign-rest-api/esign101/concepts/tabs/number-fields/#features-of-numericaltabs).
           type: array
           items:
             $ref: '#/components/schemas/numerical'
@@ -95450,7 +95484,8 @@ components:
             `envelopeEvents` property or the `recipientEvents` property.
 
 
-            The [possible event statuses](https://raw.githubusercontent.com)
+            The [possible event
+            statuses](/platform/webhooks/connect/improved-json-sim-event-model/#eventreference)
             are:
 
 
@@ -96976,7 +97011,7 @@ components:
 
             For information about adding merge field information to the email
             subject, see [Template Email Subject Merge
-            Fields](https://raw.githubusercontent.com).
+            Fields](/docs/esign-rest-api/reference/templates/templates/create/#template-email-subject-merge-fields).
 
 
             **Note:** The subject line is limited to 100 characters, including
@@ -97053,27 +97088,30 @@ components:
           description: >-
             Not used. Use the
 
-            [`expirations`](https://raw.githubusercontent.com)
+            [`expirations`](/docs/esign-rest-api/reference/envelopes/envelopes/create/#definition__envelopedefinition_notification_expirations)
 
-            property in the [`notification`](https://raw.githubusercontent.com)
+            property in the
+            [`notification`](/docs/esign-rest-api/reference/envelopes/envelopes/create/#definition__envelopedefinition_notification)
             object instead.
           type: string
         expireDateTime:
           description: >-
             Not used. Use the
 
-            [`expirations`](https://raw.githubusercontent.com)
+            [`expirations`](/docs/esign-rest-api/reference/envelopes/envelopes/create/#definition__envelopedefinition_notification_expirations)
 
-            property in the [`notification`](https://raw.githubusercontent.com)
+            property in the
+            [`notification`](/docs/esign-rest-api/reference/envelopes/envelopes/create/#definition__envelopedefinition_notification)
             object instead.
           type: string
         expireEnabled:
           description: >-
             Not used. Use the
 
-            [`expirations`](https://raw.githubusercontent.com)
+            [`expirations`](/docs/esign-rest-api/reference/envelopes/envelopes/create/#definition__envelopedefinition_notification_expirations)
 
-            property in the [`notification`](https://raw.githubusercontent.com)
+            property in the
+            [`notification`](/docs/esign-rest-api/reference/envelopes/envelopes/create/#definition__envelopedefinition_notification)
             object instead.
           type: string
         externalEnvelopeId:
@@ -97945,7 +97983,7 @@ components:
 
             For information about adding merge field information to the email
             subject, see [Template Email Subject Merge
-            Fields](https://raw.githubusercontent.com).
+            Fields](/docs/esign-rest-api/reference/templates/templates/create/#template-email-subject-merge-fields).
 
 
             **Note:** The subject line is limited to 100 characters, including
@@ -98022,27 +98060,30 @@ components:
           description: >-
             Not used. Use the
 
-            [`expirations`](https://raw.githubusercontent.com)
+            [`expirations`](/docs/esign-rest-api/reference/envelopes/envelopes/create/#definition__envelopedefinition_notification_expirations)
 
-            property in the [`notification`](https://raw.githubusercontent.com)
+            property in the
+            [`notification`](/docs/esign-rest-api/reference/envelopes/envelopes/create/#definition__envelopedefinition_notification)
             object instead.
           type: string
         expireDateTime:
           description: >-
             Not used. Use the
 
-            [`expirations`](https://raw.githubusercontent.com)
+            [`expirations`](/docs/esign-rest-api/reference/envelopes/envelopes/create/#definition__envelopedefinition_notification_expirations)
 
-            property in the [`notification`](https://raw.githubusercontent.com)
+            property in the
+            [`notification`](/docs/esign-rest-api/reference/envelopes/envelopes/create/#definition__envelopedefinition_notification)
             object instead.
           type: string
         expireEnabled:
           description: >-
             Not used. Use the
 
-            [`expirations`](https://raw.githubusercontent.com)
+            [`expirations`](/docs/esign-rest-api/reference/envelopes/envelopes/create/#definition__envelopedefinition_notification_expirations)
 
-            property in the [`notification`](https://raw.githubusercontent.com)
+            property in the
+            [`notification`](/docs/esign-rest-api/reference/envelopes/envelopes/create/#definition__envelopedefinition_notification)
             object instead.
           type: string
         externalEnvelopeId:
@@ -98823,7 +98864,8 @@ components:
 
             For specific information about number tabs
 
-            see [Features of numberTabs](https://raw.githubusercontent.com).
+            see [Features of
+            numberTabs](/docs/esign-rest-api/esign101/concepts/tabs/number-fields/#features-of-numbertabs).
 
 
             [number]:
@@ -98849,7 +98891,8 @@ components:
 
             For specific information about numerical tabs
 
-            see [Features of numericalTabs](https://raw.githubusercontent.com).
+            see [Features of
+            numericalTabs](/docs/esign-rest-api/esign101/concepts/tabs/number-fields/#features-of-numericaltabs).
           type: array
           items:
             $ref: '#/components/schemas/numerical'
@@ -100341,7 +100384,7 @@ components:
 
             For information about adding merge field information to the email
             subject, see [Template Email Subject Merge
-            Fields](https://raw.githubusercontent.com).
+            Fields](/docs/esign-rest-api/reference/templates/templates/create/#template-email-subject-merge-fields).
 
 
             **Note:** The subject line is limited to 100 characters, including

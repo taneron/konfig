@@ -4,20 +4,32 @@ examples_3: {}
 operationIds:
   /v1/models/{model_id}/deployments/development:
     get: Deployment_getDevelopmentDetails
+  /v1/models/{model_id}/deployments/development/autoscaling_settings:
+    patch: AutoscalingSetting_updateDevelopmentSetting
   /v1/models/{model_id}/deployments/production:
     get: Deployment_getProductionDetails
+  /v1/models/{model_id}/deployments/production/autoscaling_settings:
+    patch: AutoscalingSetting_updateStatus
   /v1/models/{model_id}/deployments/{deployment_id}:
     get: Deployment_detailsGet
+  /v1/models/{model_id}/deployments/{deployment_id}/autoscaling_settings:
+    patch: AutoscalingSetting_updateDeploymentSettings
   /v1/secrets:
     get: Secret_getAllSecrets
     post: Secret_upsertNewSecret
 operationTags:
   /v1/models/{model_id}/deployments/development:
     get: Deployment
+  /v1/models/{model_id}/deployments/development/autoscaling_settings:
+    patch: AutoscalingSetting
   /v1/models/{model_id}/deployments/production:
     get: Deployment
+  /v1/models/{model_id}/deployments/production/autoscaling_settings:
+    patch: AutoscalingSetting
   /v1/models/{model_id}/deployments/{deployment_id}:
     get: Deployment
+  /v1/models/{model_id}/deployments/{deployment_id}/autoscaling_settings:
+    patch: AutoscalingSetting
   /v1/secrets:
     get: Secret
     post: Secret

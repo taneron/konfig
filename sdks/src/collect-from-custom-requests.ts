@@ -405,7 +405,7 @@ const customRequests: Record<string, CustomRequest> = {
   },
   "zapier.com_Embed": {
     type: "GET",
-    url: "https://stoplight.io/api/v1/projects/zapier/public-api/nodes/spec/reference/API.yaml?fromExportButton=true&snapshotType=http_service",
+    url: "https://stoplight.io/api/v1/projects/zapier/public-api/nodes/spec/reference/API.yaml?fromExportButton=true&snapshotType=http_service&deref=optimizedBundle",
   },
   "httpbin.org": {
     type: "GET",
