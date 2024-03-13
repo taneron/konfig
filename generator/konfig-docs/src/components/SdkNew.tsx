@@ -346,7 +346,8 @@ function MakeYourFirstRequest({
         <FirstRequest />
       </div>
       <h2 className="mt-16 mb-4 text-2xl sm:text-3xl text-slate-800 text-center font-bold">
-        Enjoy a buttery developer experience with {numberOfMethods} SDK methods
+        Enjoy a buttery smooth developer experience with {numberOfMethods} SDK
+        methods
       </h2>
       <div className="container">
         <div className="grid gap-4 grid-cols-1 md:grid-cols-2">
