@@ -4,11 +4,13 @@ import { HttpMethodsEnum } from "konfig-lib/dist/forEachOperation";
 import Description from "./_description.mdx";
 // @ts-ignore
 import GettingStarted from "./_getting-started.mdx";
-import { Sdk } from "@site/src/components/Sdk";
+// @ts-ignore
+import FirstRequest from "./_first-request.mdx"
+import { SdkNew } from "@site/src/components/SdkNew";
 
 export default function BrexPaymentsTypeScriptSdk() {
   return (
-    <Sdk
+    <SdkNew
       sdkName="brex-payments-typescript-sdk"
       metaDescription="Brex is the AI-powered spend platform. We transform finance teams from reactive no-sayers to proactive growth drivers. With Brex, companies spend with confidence by empowering employees to make smarter financial decisions from anywhere. Brex provides corporate cards, business accounts, and global payments, plus intuitive software for travel and expenses, that make it easy to plan and track all company spend in one place, in real time. Over 20,000 companies from startups to global enterprises — including DoorDash, Flexport, and Compass — use Brex to proactively control spend, reduce costs, and increase efficiency on a global scale."
       company="Brex"
@@ -16,13 +18,15 @@ export default function BrexPaymentsTypeScriptSdk() {
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/brex/payments/logo.png"
       clientNameCamelCase="brexPayments"
       homepage="brex.com"
-      lastUpdated={new Date("2024-03-11T06:43:11.466Z")}
+      lastUpdated={new Date("2024-03-13T02:25:22.175Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/brex/payments/favicon.png"
       contactUrl="https://brex.com"
       contactEmail="developer-access@brex.com"
       previewLinkImage="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/brex/payments/imagePreview.jpg"
       GettingStarted={GettingStarted}
       Description={Description}
+      FirstRequest={FirstRequest}
+      categories={["finance","payments","online_payments","fintech","automation","global_payments","travel_expenses","banking"]}
       methods={[
   {
     "url": "/v1/incoming_transfers",
@@ -36,13 +40,15 @@ export default function BrexPaymentsTypeScriptSdk() {
         "name": "idempotencyKey",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "IDEMPOTENCY-KEY"
       },
       {
         "name": "description",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "DESCRIPTION"
       },
       {
         "name": "counterparty",
@@ -166,13 +172,15 @@ export default function BrexPaymentsTypeScriptSdk() {
         "name": "idempotencyKey",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "IDEMPOTENCY-KEY"
       },
       {
         "name": "description",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "DESCRIPTION"
       },
       {
         "name": "counterparty",
@@ -190,7 +198,8 @@ export default function BrexPaymentsTypeScriptSdk() {
         "name": "external_memo",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "EXTERNAL_MEMO"
       },
       {
         "name": "originating_account",
@@ -224,7 +233,8 @@ export default function BrexPaymentsTypeScriptSdk() {
         "name": "id",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "ID"
       }
     ],
     "responses": [
@@ -308,13 +318,15 @@ export default function BrexPaymentsTypeScriptSdk() {
         "name": "idempotencyKey",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "IDEMPOTENCY-KEY"
       },
       {
         "name": "company_name",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "COMPANY_NAME"
       },
       {
         "name": "email",
@@ -354,7 +366,8 @@ export default function BrexPaymentsTypeScriptSdk() {
         "name": "id",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "ID"
       }
     ],
     "responses": [
@@ -376,7 +389,8 @@ export default function BrexPaymentsTypeScriptSdk() {
         "name": "id",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "ID"
       }
     ],
     "responses": [
@@ -420,7 +434,8 @@ export default function BrexPaymentsTypeScriptSdk() {
         "name": "id",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "ID"
       },
       {
         "name": "company_name",
@@ -467,6 +482,8 @@ export default function BrexPaymentsTypeScriptSdk() {
       parameters={34}
       difficulty="Easy"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/brex/payments/openapi.yaml"
+      openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/brex/payments/openapi.yaml"
+      developerDocumentation="developer.brex.com/openapi/payments_api/"
     />
   );
 }

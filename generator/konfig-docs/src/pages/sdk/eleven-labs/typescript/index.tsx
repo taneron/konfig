@@ -4,11 +4,13 @@ import { HttpMethodsEnum } from "konfig-lib/dist/forEachOperation";
 import Description from "./_description.mdx";
 // @ts-ignore
 import GettingStarted from "./_getting-started.mdx";
-import { Sdk } from "@site/src/components/Sdk";
+// @ts-ignore
+import FirstRequest from "./_first-request.mdx"
+import { SdkNew } from "@site/src/components/SdkNew";
 
 export default function ElevenLabsTypeScriptSdk() {
   return (
-    <Sdk
+    <SdkNew
       sdkName="eleven-labs-typescript-sdk"
       metaDescription="Elevate your projects with the fastest & most powerful text to speech & voice API. Quickly generate AI voices in multiple languages for your chatbots, agents, LLMs, websites, apps and more."
       company="ElevenLabs"
@@ -16,13 +18,15 @@ export default function ElevenLabsTypeScriptSdk() {
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/elevenlabs/logo.png"
       clientNameCamelCase="elevenLabs"
       homepage="elevenlabs.com"
-      lastUpdated={new Date("2024-03-11T06:04:39.099Z")}
+      lastUpdated={new Date("2024-03-13T02:25:22.175Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/elevenlabs/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
       previewLinkImage="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/elevenlabs/imagePreview.png"
       GettingStarted={GettingStarted}
       Description={Description}
+      FirstRequest={FirstRequest}
+      categories={["ai","audio_generation","voice_generation","text_to_speech","tts","llm","generative_ai"]}
       methods={[
   {
     "url": "/v1/history",
@@ -36,7 +40,8 @@ export default function ElevenLabsTypeScriptSdk() {
         "name": "pageSize",
         "schema": "integer",
         "required": false,
-        "description": "How many history items to return at maximum. Can not exceed 1000, defaults to 100."
+        "description": "How many history items to return at maximum. Can not exceed 1000, defaults to 100.",
+        "default": 100
       },
       {
         "name": "startAfterHistoryItemId",
@@ -80,7 +85,8 @@ export default function ElevenLabsTypeScriptSdk() {
         "name": "historyItemId",
         "schema": "string",
         "required": true,
-        "description": "History item ID to be used, you can use GET https://api.elevenlabs.io/v1/history to receive a list of history items and their IDs."
+        "description": "History item ID to be used, you can use GET https://api.elevenlabs.io/v1/history to receive a list of history items and their IDs.",
+        "example": "VW7YKqPnjY4h39yTbx2L"
       },
       {
         "name": "xiApiKey",
@@ -112,7 +118,8 @@ export default function ElevenLabsTypeScriptSdk() {
         "name": "historyItemId",
         "schema": "string",
         "required": true,
-        "description": "History item ID to be used, you can use GET https://api.elevenlabs.io/v1/history to receive a list of history items and their IDs."
+        "description": "History item ID to be used, you can use GET https://api.elevenlabs.io/v1/history to receive a list of history items and their IDs.",
+        "example": "VW7YKqPnjY4h39yTbx2L"
       },
       {
         "name": "xiApiKey",
@@ -144,7 +151,8 @@ export default function ElevenLabsTypeScriptSdk() {
         "name": "historyItemId",
         "schema": "string",
         "required": true,
-        "description": "History item ID to be used, you can use GET https://api.elevenlabs.io/v1/history to receive a list of history items and their IDs."
+        "description": "History item ID to be used, you can use GET https://api.elevenlabs.io/v1/history to receive a list of history items and their IDs.",
+        "example": "VW7YKqPnjY4h39yTbx2L"
       },
       {
         "name": "xiApiKey",
@@ -208,13 +216,15 @@ export default function ElevenLabsTypeScriptSdk() {
         "name": "voiceId",
         "schema": "string",
         "required": true,
-        "description": "Voice ID to be used, you can use https://api.elevenlabs.io/v1/voices to list all the available voices."
+        "description": "Voice ID to be used, you can use https://api.elevenlabs.io/v1/voices to list all the available voices.",
+        "example": "21m00Tcm4TlvDq8ikWAM"
       },
       {
         "name": "sampleId",
         "schema": "string",
         "required": true,
-        "description": "Sample ID to be used, you can use GET https://api.elevenlabs.io/v1/voices/{voice_id} to list all the available samples for a voice."
+        "description": "Sample ID to be used, you can use GET https://api.elevenlabs.io/v1/voices/{voice_id} to list all the available samples for a voice.",
+        "example": "VW7YKqPnjY4h39yTbx2L"
       },
       {
         "name": "xiApiKey",
@@ -246,13 +256,15 @@ export default function ElevenLabsTypeScriptSdk() {
         "name": "voiceId",
         "schema": "string",
         "required": true,
-        "description": "Voice ID to be used, you can use https://api.elevenlabs.io/v1/voices to list all the available voices."
+        "description": "Voice ID to be used, you can use https://api.elevenlabs.io/v1/voices to list all the available voices.",
+        "example": "21m00Tcm4TlvDq8ikWAM"
       },
       {
         "name": "sampleId",
         "schema": "string",
         "required": true,
-        "description": "Sample ID to be used, you can use GET https://api.elevenlabs.io/v1/voices/{voice_id} to list all the available samples for a voice."
+        "description": "Sample ID to be used, you can use GET https://api.elevenlabs.io/v1/voices/{voice_id} to list all the available samples for a voice.",
+        "example": "VW7YKqPnjY4h39yTbx2L"
       },
       {
         "name": "xiApiKey",
@@ -284,19 +296,22 @@ export default function ElevenLabsTypeScriptSdk() {
         "name": "voiceId",
         "schema": "string",
         "required": true,
-        "description": "Voice ID to be used, you can use https://api.elevenlabs.io/v1/voices to list all the available voices."
+        "description": "Voice ID to be used, you can use https://api.elevenlabs.io/v1/voices to list all the available voices.",
+        "example": "21m00Tcm4TlvDq8ikWAM"
       },
       {
         "name": "optimizeStreamingLatency",
         "schema": "integer",
         "required": false,
-        "description": "You can turn on latency optimizations at some cost of quality. The best possible final latency varies by model. Possible values:\n0 - default mode (no latency optimizations)\n1 - normal latency optimizations (about 50% of possible latency improvement of option 3)\n2 - strong latency optimizations (about 75% of possible latency improvement of option 3)\n3 - max latency optimizations\n4 - max latency optimizations, but also with text normalizer turned off for even more latency savings (best latency, but can mispronounce eg numbers and dates).\n\nDefaults to 0.\n"
+        "description": "You can turn on latency optimizations at some cost of quality. The best possible final latency varies by model. Possible values:\n0 - default mode (no latency optimizations)\n1 - normal latency optimizations (about 50% of possible latency improvement of option 3)\n2 - strong latency optimizations (about 75% of possible latency improvement of option 3)\n3 - max latency optimizations\n4 - max latency optimizations, but also with text normalizer turned off for even more latency savings (best latency, but can mispronounce eg numbers and dates).\n\nDefaults to 0.\n",
+        "default": 0
       },
       {
         "name": "outputFormat",
         "schema": "string",
         "required": false,
-        "description": "Output format of the generated audio. Must be one of:\nmp3_22050_32 - output format, mp3 with 22.05kHz sample rate at 32kbps.\nmp3_44100_32 - output format, mp3 with 44.1kHz sample rate at 32kbps.\nmp3_44100_64 - output format, mp3 with 44.1kHz sample rate at 64kbps.\nmp3_44100_96 - output format, mp3 with 44.1kHz sample rate at 96kbps.\nmp3_44100_128 - default output format, mp3 with 44.1kHz sample rate at 128kbps.\nmp3_44100_192 - output format, mp3 with 44.1kHz sample rate at 192kbps. Requires you to be subscribed to Creator tier or above.\npcm_16000 - PCM format (S16LE) with 16kHz sample rate.\npcm_22050 - PCM format (S16LE) with 22.05kHz sample rate.\npcm_24000 - PCM format (S16LE) with 24kHz sample rate.\npcm_44100 - PCM format (S16LE) with 44.1kHz sample rate. Requires you to be subscribed to Independent Publisher tier or above.\nulaw_8000 - μ-law format (sometimes written mu-law, often approximated as u-law) with 8kHz sample rate. Note that this format is commonly used for Twilio audio inputs.\n"
+        "description": "Output format of the generated audio. Must be one of:\nmp3_22050_32 - output format, mp3 with 22.05kHz sample rate at 32kbps.\nmp3_44100_32 - output format, mp3 with 44.1kHz sample rate at 32kbps.\nmp3_44100_64 - output format, mp3 with 44.1kHz sample rate at 64kbps.\nmp3_44100_96 - output format, mp3 with 44.1kHz sample rate at 96kbps.\nmp3_44100_128 - default output format, mp3 with 44.1kHz sample rate at 128kbps.\nmp3_44100_192 - output format, mp3 with 44.1kHz sample rate at 192kbps. Requires you to be subscribed to Creator tier or above.\npcm_16000 - PCM format (S16LE) with 16kHz sample rate.\npcm_22050 - PCM format (S16LE) with 22.05kHz sample rate.\npcm_24000 - PCM format (S16LE) with 24kHz sample rate.\npcm_44100 - PCM format (S16LE) with 44.1kHz sample rate. Requires you to be subscribed to Independent Publisher tier or above.\nulaw_8000 - μ-law format (sometimes written mu-law, often approximated as u-law) with 8kHz sample rate. Note that this format is commonly used for Twilio audio inputs.\n",
+        "default": "mp3_44100_128"
       },
       {
         "name": "xiApiKey",
@@ -308,13 +323,15 @@ export default function ElevenLabsTypeScriptSdk() {
         "name": "text",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "TEXT"
       },
       {
         "name": "model_id",
         "schema": "string",
         "required": false,
-        "description": ""
+        "description": "",
+        "default": "eleven_monolingual_v1"
       },
       {
         "name": "voice_settings",
@@ -326,7 +343,8 @@ export default function ElevenLabsTypeScriptSdk() {
         "name": "pronunciation_dictionary_locators",
         "schema": "array",
         "required": false,
-        "description": ""
+        "description": "",
+        "default": []
       }
     ],
     "responses": [
@@ -352,19 +370,22 @@ export default function ElevenLabsTypeScriptSdk() {
         "name": "voiceId",
         "schema": "string",
         "required": true,
-        "description": "Voice ID to be used, you can use https://api.elevenlabs.io/v1/voices to list all the available voices."
+        "description": "Voice ID to be used, you can use https://api.elevenlabs.io/v1/voices to list all the available voices.",
+        "example": "21m00Tcm4TlvDq8ikWAM"
       },
       {
         "name": "optimizeStreamingLatency",
         "schema": "integer",
         "required": false,
-        "description": "You can turn on latency optimizations at some cost of quality. The best possible final latency varies by model. Possible values:\n0 - default mode (no latency optimizations)\n1 - normal latency optimizations (about 50% of possible latency improvement of option 3)\n2 - strong latency optimizations (about 75% of possible latency improvement of option 3)\n3 - max latency optimizations\n4 - max latency optimizations, but also with text normalizer turned off for even more latency savings (best latency, but can mispronounce eg numbers and dates).\n\nDefaults to 0.\n"
+        "description": "You can turn on latency optimizations at some cost of quality. The best possible final latency varies by model. Possible values:\n0 - default mode (no latency optimizations)\n1 - normal latency optimizations (about 50% of possible latency improvement of option 3)\n2 - strong latency optimizations (about 75% of possible latency improvement of option 3)\n3 - max latency optimizations\n4 - max latency optimizations, but also with text normalizer turned off for even more latency savings (best latency, but can mispronounce eg numbers and dates).\n\nDefaults to 0.\n",
+        "default": 0
       },
       {
         "name": "outputFormat",
         "schema": "string",
         "required": false,
-        "description": "Output format of the generated audio. Must be one of:\nmp3_22050_32 - output format, mp3 with 22.05kHz sample rate at 32kbps.\nmp3_44100_32 - output format, mp3 with 44.1kHz sample rate at 32kbps.\nmp3_44100_64 - output format, mp3 with 44.1kHz sample rate at 64kbps.\nmp3_44100_96 - output format, mp3 with 44.1kHz sample rate at 96kbps.\nmp3_44100_128 - default output format, mp3 with 44.1kHz sample rate at 128kbps.\nmp3_44100_192 - output format, mp3 with 44.1kHz sample rate at 192kbps. Requires you to be subscribed to Creator tier or above.\npcm_16000 - PCM format (S16LE) with 16kHz sample rate.\npcm_22050 - PCM format (S16LE) with 22.05kHz sample rate.\npcm_24000 - PCM format (S16LE) with 24kHz sample rate.\npcm_44100 - PCM format (S16LE) with 44.1kHz sample rate. Requires you to be subscribed to Independent Publisher tier or above.\nulaw_8000 - μ-law format (sometimes written mu-law, often approximated as u-law) with 8kHz sample rate. Note that this format is commonly used for Twilio audio inputs.\n"
+        "description": "Output format of the generated audio. Must be one of:\nmp3_22050_32 - output format, mp3 with 22.05kHz sample rate at 32kbps.\nmp3_44100_32 - output format, mp3 with 44.1kHz sample rate at 32kbps.\nmp3_44100_64 - output format, mp3 with 44.1kHz sample rate at 64kbps.\nmp3_44100_96 - output format, mp3 with 44.1kHz sample rate at 96kbps.\nmp3_44100_128 - default output format, mp3 with 44.1kHz sample rate at 128kbps.\nmp3_44100_192 - output format, mp3 with 44.1kHz sample rate at 192kbps. Requires you to be subscribed to Creator tier or above.\npcm_16000 - PCM format (S16LE) with 16kHz sample rate.\npcm_22050 - PCM format (S16LE) with 22.05kHz sample rate.\npcm_24000 - PCM format (S16LE) with 24kHz sample rate.\npcm_44100 - PCM format (S16LE) with 44.1kHz sample rate. Requires you to be subscribed to Independent Publisher tier or above.\nulaw_8000 - μ-law format (sometimes written mu-law, often approximated as u-law) with 8kHz sample rate. Note that this format is commonly used for Twilio audio inputs.\n",
+        "default": "mp3_44100_128"
       },
       {
         "name": "xiApiKey",
@@ -376,13 +397,15 @@ export default function ElevenLabsTypeScriptSdk() {
         "name": "text",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "TEXT"
       },
       {
         "name": "model_id",
         "schema": "string",
         "required": false,
-        "description": ""
+        "description": "",
+        "default": "eleven_monolingual_v1"
       },
       {
         "name": "voice_settings",
@@ -394,7 +417,8 @@ export default function ElevenLabsTypeScriptSdk() {
         "name": "pronunciation_dictionary_locators",
         "schema": "array",
         "required": false,
-        "description": ""
+        "description": "",
+        "default": []
       }
     ],
     "responses": [
@@ -420,13 +444,15 @@ export default function ElevenLabsTypeScriptSdk() {
         "name": "voiceId",
         "schema": "string",
         "required": true,
-        "description": "Voice ID to be used, you can use https://api.elevenlabs.io/v1/voices to list all the available voices."
+        "description": "Voice ID to be used, you can use https://api.elevenlabs.io/v1/voices to list all the available voices.",
+        "example": "21m00Tcm4TlvDq8ikWAM"
       },
       {
         "name": "optimizeStreamingLatency",
         "schema": "integer",
         "required": false,
-        "description": "You can turn on latency optimizations at some cost of quality. The best possible final latency varies by model. Possible values:\n0 - default mode (no latency optimizations)\n1 - normal latency optimizations (about 50% of possible latency improvement of option 3)\n2 - strong latency optimizations (about 75% of possible latency improvement of option 3)\n3 - max latency optimizations\n4 - max latency optimizations, but also with text normalizer turned off for even more latency savings (best latency, but can mispronounce eg numbers and dates).\n\nDefaults to 0.\n"
+        "description": "You can turn on latency optimizations at some cost of quality. The best possible final latency varies by model. Possible values:\n0 - default mode (no latency optimizations)\n1 - normal latency optimizations (about 50% of possible latency improvement of option 3)\n2 - strong latency optimizations (about 75% of possible latency improvement of option 3)\n3 - max latency optimizations\n4 - max latency optimizations, but also with text normalizer turned off for even more latency savings (best latency, but can mispronounce eg numbers and dates).\n\nDefaults to 0.\n",
+        "default": 0
       },
       {
         "name": "xiApiKey",
@@ -438,13 +464,15 @@ export default function ElevenLabsTypeScriptSdk() {
         "name": "audio",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "AUDIO"
       },
       {
         "name": "model_id",
         "schema": "string",
         "required": false,
-        "description": ""
+        "description": "",
+        "default": "eleven_english_sts_v2"
       },
       {
         "name": "voice_settings",
@@ -476,13 +504,15 @@ export default function ElevenLabsTypeScriptSdk() {
         "name": "voiceId",
         "schema": "string",
         "required": true,
-        "description": "Voice ID to be used, you can use https://api.elevenlabs.io/v1/voices to list all the available voices."
+        "description": "Voice ID to be used, you can use https://api.elevenlabs.io/v1/voices to list all the available voices.",
+        "example": "21m00Tcm4TlvDq8ikWAM"
       },
       {
         "name": "optimizeStreamingLatency",
         "schema": "integer",
         "required": false,
-        "description": "You can turn on latency optimizations at some cost of quality. The best possible final latency varies by model. Possible values:\n0 - default mode (no latency optimizations)\n1 - normal latency optimizations (about 50% of possible latency improvement of option 3)\n2 - strong latency optimizations (about 75% of possible latency improvement of option 3)\n3 - max latency optimizations\n4 - max latency optimizations, but also with text normalizer turned off for even more latency savings (best latency, but can mispronounce eg numbers and dates).\n\nDefaults to 0.\n"
+        "description": "You can turn on latency optimizations at some cost of quality. The best possible final latency varies by model. Possible values:\n0 - default mode (no latency optimizations)\n1 - normal latency optimizations (about 50% of possible latency improvement of option 3)\n2 - strong latency optimizations (about 75% of possible latency improvement of option 3)\n3 - max latency optimizations\n4 - max latency optimizations, but also with text normalizer turned off for even more latency savings (best latency, but can mispronounce eg numbers and dates).\n\nDefaults to 0.\n",
+        "default": 0
       },
       {
         "name": "xiApiKey",
@@ -494,13 +524,15 @@ export default function ElevenLabsTypeScriptSdk() {
         "name": "audio",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "AUDIO"
       },
       {
         "name": "model_id",
         "schema": "string",
         "required": false,
-        "description": ""
+        "description": "",
+        "default": "eleven_english_sts_v2"
       },
       {
         "name": "voice_settings",
@@ -553,31 +585,36 @@ export default function ElevenLabsTypeScriptSdk() {
         "name": "gender",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "GENDER"
       },
       {
         "name": "accent",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "ACCENT"
       },
       {
         "name": "age",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "AGE"
       },
       {
         "name": "accent_strength",
         "schema": "number",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": 0
       },
       {
         "name": "text",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "TEXT"
       }
     ],
     "responses": [
@@ -609,19 +646,22 @@ export default function ElevenLabsTypeScriptSdk() {
         "name": "voice_name",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "VOICE_NAME"
       },
       {
         "name": "voice_description",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "VOICE_DESCRIPTION"
       },
       {
         "name": "generated_voice_id",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "GENERATED_VOICE_ID"
       },
       {
         "name": "labels",
@@ -746,7 +786,8 @@ export default function ElevenLabsTypeScriptSdk() {
         "name": "voiceId",
         "schema": "string",
         "required": true,
-        "description": "Voice ID to be used, you can use https://api.elevenlabs.io/v1/voices to list all the available voices."
+        "description": "Voice ID to be used, you can use https://api.elevenlabs.io/v1/voices to list all the available voices.",
+        "example": "21m00Tcm4TlvDq8ikWAM"
       },
       {
         "name": "xiApiKey",
@@ -778,7 +819,8 @@ export default function ElevenLabsTypeScriptSdk() {
         "name": "voiceId",
         "schema": "string",
         "required": true,
-        "description": "Voice ID to be used, you can use https://api.elevenlabs.io/v1/voices to list all the available voices."
+        "description": "Voice ID to be used, you can use https://api.elevenlabs.io/v1/voices to list all the available voices.",
+        "example": "21m00Tcm4TlvDq8ikWAM"
       },
       {
         "name": "xiApiKey",
@@ -810,13 +852,15 @@ export default function ElevenLabsTypeScriptSdk() {
         "name": "voiceId",
         "schema": "string",
         "required": true,
-        "description": "Voice ID to be used, you can use https://api.elevenlabs.io/v1/voices to list all the available voices."
+        "description": "Voice ID to be used, you can use https://api.elevenlabs.io/v1/voices to list all the available voices.",
+        "example": "21m00Tcm4TlvDq8ikWAM"
       },
       {
         "name": "withSettings",
         "schema": "boolean",
         "required": false,
-        "description": "If set will return settings information corresponding to the voice, requires authorization."
+        "description": "If set will return settings information corresponding to the voice, requires authorization.",
+        "default": false
       },
       {
         "name": "xiApiKey",
@@ -848,7 +892,8 @@ export default function ElevenLabsTypeScriptSdk() {
         "name": "voiceId",
         "schema": "string",
         "required": true,
-        "description": "Voice ID to be used, you can use https://api.elevenlabs.io/v1/voices to list all the available voices."
+        "description": "Voice ID to be used, you can use https://api.elevenlabs.io/v1/voices to list all the available voices.",
+        "example": "21m00Tcm4TlvDq8ikWAM"
       },
       {
         "name": "xiApiKey",
@@ -860,25 +905,29 @@ export default function ElevenLabsTypeScriptSdk() {
         "name": "stability",
         "schema": "number",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": 0
       },
       {
         "name": "similarity_boost",
         "schema": "number",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": 0
       },
       {
         "name": "style",
         "schema": "number",
         "required": false,
-        "description": ""
+        "description": "",
+        "default": 0
       },
       {
         "name": "use_speaker_boost",
         "schema": "boolean",
         "required": false,
-        "description": ""
+        "description": "",
+        "default": true
       }
     ],
     "responses": [
@@ -916,7 +965,8 @@ export default function ElevenLabsTypeScriptSdk() {
         "name": "name",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "NAME"
       },
       {
         "name": "files",
@@ -954,7 +1004,8 @@ export default function ElevenLabsTypeScriptSdk() {
         "name": "voiceId",
         "schema": "string",
         "required": true,
-        "description": "Voice ID to be used, you can use https://api.elevenlabs.io/v1/voices to list all the available voices."
+        "description": "Voice ID to be used, you can use https://api.elevenlabs.io/v1/voices to list all the available voices.",
+        "example": "21m00Tcm4TlvDq8ikWAM"
       },
       {
         "name": "xiApiKey",
@@ -972,7 +1023,8 @@ export default function ElevenLabsTypeScriptSdk() {
         "name": "name",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "NAME"
       },
       {
         "name": "files",
@@ -1010,13 +1062,15 @@ export default function ElevenLabsTypeScriptSdk() {
         "name": "publicUserId",
         "schema": "string",
         "required": true,
-        "description": "Public user ID used to publicly identify ElevenLabs users."
+        "description": "Public user ID used to publicly identify ElevenLabs users.",
+        "example": "63e06b7e7cafdc46be4d2e0b3f045940231ae058d508589653d74d1265a574ca"
       },
       {
         "name": "voiceId",
         "schema": "string",
         "required": true,
-        "description": "Voice ID to be used, you can use https://api.elevenlabs.io/v1/voices to list all the available voices."
+        "description": "Voice ID to be used, you can use https://api.elevenlabs.io/v1/voices to list all the available voices.",
+        "example": "21m00Tcm4TlvDq8ikWAM"
       },
       {
         "name": "xiApiKey",
@@ -1028,7 +1082,8 @@ export default function ElevenLabsTypeScriptSdk() {
         "name": "new_name",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "NEW_NAME"
       }
     ],
     "responses": [
@@ -1092,7 +1147,8 @@ export default function ElevenLabsTypeScriptSdk() {
         "name": "name",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "NAME"
       },
       {
         "name": "from_url",
@@ -1110,25 +1166,29 @@ export default function ElevenLabsTypeScriptSdk() {
         "name": "default_title_voice_id",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "DEFAULT_TITLE_VOICE_ID"
       },
       {
         "name": "default_paragraph_voice_id",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "DEFAULT_PARAGRAPH_VOICE_ID"
       },
       {
         "name": "default_model_id",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "DEFAULT_MODEL_ID"
       },
       {
         "name": "quality_preset",
         "schema": "string",
         "required": false,
-        "description": ""
+        "description": "",
+        "default": "standard"
       },
       {
         "name": "author",
@@ -1146,13 +1206,15 @@ export default function ElevenLabsTypeScriptSdk() {
         "name": "acx_volume_normalization",
         "schema": "boolean",
         "required": false,
-        "description": ""
+        "description": "",
+        "default": false
       },
       {
         "name": "volume_normalization",
         "schema": "boolean",
         "required": false,
-        "description": ""
+        "description": "",
+        "default": false
       },
       {
         "name": "pronunciation_dictionary_locators",
@@ -1190,7 +1252,8 @@ export default function ElevenLabsTypeScriptSdk() {
         "name": "projectId",
         "schema": "string",
         "required": true,
-        "description": "The project_id of the project, you can query GET https://api.elevenlabs.io/v1/projects to list all available projects."
+        "description": "The project_id of the project, you can query GET https://api.elevenlabs.io/v1/projects to list all available projects.",
+        "example": "21m00Tcm4TlvDq8ikWAM"
       },
       {
         "name": "xiApiKey",
@@ -1222,7 +1285,8 @@ export default function ElevenLabsTypeScriptSdk() {
         "name": "projectId",
         "schema": "string",
         "required": true,
-        "description": "The project_id of the project, you can query GET https://api.elevenlabs.io/v1/projects to list all available projects."
+        "description": "The project_id of the project, you can query GET https://api.elevenlabs.io/v1/projects to list all available projects.",
+        "example": "21m00Tcm4TlvDq8ikWAM"
       },
       {
         "name": "xiApiKey",
@@ -1254,7 +1318,8 @@ export default function ElevenLabsTypeScriptSdk() {
         "name": "projectId",
         "schema": "string",
         "required": true,
-        "description": "The project_id of the project, you can query GET https://api.elevenlabs.io/v1/projects to list all available projects."
+        "description": "The project_id of the project, you can query GET https://api.elevenlabs.io/v1/projects to list all available projects.",
+        "example": "21m00Tcm4TlvDq8ikWAM"
       },
       {
         "name": "xiApiKey",
@@ -1286,7 +1351,8 @@ export default function ElevenLabsTypeScriptSdk() {
         "name": "projectId",
         "schema": "string",
         "required": true,
-        "description": "The project_id of the project, you can query GET https://api.elevenlabs.io/v1/projects to list all available projects."
+        "description": "The project_id of the project, you can query GET https://api.elevenlabs.io/v1/projects to list all available projects.",
+        "example": "21m00Tcm4TlvDq8ikWAM"
       },
       {
         "name": "xiApiKey",
@@ -1318,13 +1384,15 @@ export default function ElevenLabsTypeScriptSdk() {
         "name": "projectId",
         "schema": "string",
         "required": true,
-        "description": "The project_id of the project, you can query GET https://api.elevenlabs.io/v1/projects to list all available projects."
+        "description": "The project_id of the project, you can query GET https://api.elevenlabs.io/v1/projects to list all available projects.",
+        "example": "21m00Tcm4TlvDq8ikWAM"
       },
       {
         "name": "projectSnapshotId",
         "schema": "string",
         "required": true,
-        "description": "The project_snapshot_id of the project snapshot. You can query GET /v1/projects/{project_id}/snapshots to list all available snapshots for a project."
+        "description": "The project_snapshot_id of the project snapshot. You can query GET /v1/projects/{project_id}/snapshots to list all available snapshots for a project.",
+        "example": "21m00Tcm4TlvDq8ikWAM"
       },
       {
         "name": "xiApiKey",
@@ -1356,7 +1424,8 @@ export default function ElevenLabsTypeScriptSdk() {
         "name": "projectId",
         "schema": "string",
         "required": true,
-        "description": "The project_id of the project, you can query GET https://api.elevenlabs.io/v1/projects to list all available projects."
+        "description": "The project_id of the project, you can query GET https://api.elevenlabs.io/v1/projects to list all available projects.",
+        "example": "21m00Tcm4TlvDq8ikWAM"
       },
       {
         "name": "xiApiKey",
@@ -1388,13 +1457,15 @@ export default function ElevenLabsTypeScriptSdk() {
         "name": "projectId",
         "schema": "string",
         "required": true,
-        "description": "The project_id of the project, you can query GET https://api.elevenlabs.io/v1/projects to list all available projects."
+        "description": "The project_id of the project, you can query GET https://api.elevenlabs.io/v1/projects to list all available projects.",
+        "example": "21m00Tcm4TlvDq8ikWAM"
       },
       {
         "name": "chapterId",
         "schema": "string",
         "required": true,
-        "description": "The chapter_id of the chapter. You can query GET https://api.elevenlabs.io/v1/projects/{project_id}/chapters to list all available chapters for a project."
+        "description": "The chapter_id of the chapter. You can query GET https://api.elevenlabs.io/v1/projects/{project_id}/chapters to list all available chapters for a project.",
+        "example": "21m00Tcm4TlvDq8ikWAM"
       },
       {
         "name": "xiApiKey",
@@ -1426,13 +1497,15 @@ export default function ElevenLabsTypeScriptSdk() {
         "name": "projectId",
         "schema": "string",
         "required": true,
-        "description": "The project_id of the project, you can query GET https://api.elevenlabs.io/v1/projects to list all available projects."
+        "description": "The project_id of the project, you can query GET https://api.elevenlabs.io/v1/projects to list all available projects.",
+        "example": "21m00Tcm4TlvDq8ikWAM"
       },
       {
         "name": "chapterId",
         "schema": "string",
         "required": true,
-        "description": "The chapter_id of the chapter. You can query GET https://api.elevenlabs.io/v1/projects/{project_id}/chapters to list all available chapters for a project."
+        "description": "The chapter_id of the chapter. You can query GET https://api.elevenlabs.io/v1/projects/{project_id}/chapters to list all available chapters for a project.",
+        "example": "21m00Tcm4TlvDq8ikWAM"
       },
       {
         "name": "xiApiKey",
@@ -1464,13 +1537,15 @@ export default function ElevenLabsTypeScriptSdk() {
         "name": "projectId",
         "schema": "string",
         "required": true,
-        "description": "The project_id of the project, you can query GET https://api.elevenlabs.io/v1/projects to list all available projects."
+        "description": "The project_id of the project, you can query GET https://api.elevenlabs.io/v1/projects to list all available projects.",
+        "example": "21m00Tcm4TlvDq8ikWAM"
       },
       {
         "name": "chapterId",
         "schema": "string",
         "required": true,
-        "description": "The chapter_id of the chapter. You can query GET https://api.elevenlabs.io/v1/projects/{project_id}/chapters to list all available chapters for a project."
+        "description": "The chapter_id of the chapter. You can query GET https://api.elevenlabs.io/v1/projects/{project_id}/chapters to list all available chapters for a project.",
+        "example": "21m00Tcm4TlvDq8ikWAM"
       },
       {
         "name": "xiApiKey",
@@ -1502,13 +1577,15 @@ export default function ElevenLabsTypeScriptSdk() {
         "name": "projectId",
         "schema": "string",
         "required": true,
-        "description": "The project_id of the project, you can query GET https://api.elevenlabs.io/v1/projects to list all available projects."
+        "description": "The project_id of the project, you can query GET https://api.elevenlabs.io/v1/projects to list all available projects.",
+        "example": "21m00Tcm4TlvDq8ikWAM"
       },
       {
         "name": "chapterId",
         "schema": "string",
         "required": true,
-        "description": "The chapter_id of the chapter. You can query GET https://api.elevenlabs.io/v1/projects/{project_id}/chapters to list all available chapters for a project."
+        "description": "The chapter_id of the chapter. You can query GET https://api.elevenlabs.io/v1/projects/{project_id}/chapters to list all available chapters for a project.",
+        "example": "21m00Tcm4TlvDq8ikWAM"
       },
       {
         "name": "xiApiKey",
@@ -1540,19 +1617,22 @@ export default function ElevenLabsTypeScriptSdk() {
         "name": "projectId",
         "schema": "string",
         "required": true,
-        "description": "The project_id of the project, you can query GET https://api.elevenlabs.io/v1/projects to list all available projects."
+        "description": "The project_id of the project, you can query GET https://api.elevenlabs.io/v1/projects to list all available projects.",
+        "example": "21m00Tcm4TlvDq8ikWAM"
       },
       {
         "name": "chapterId",
         "schema": "string",
         "required": true,
-        "description": "The chapter_id of the chapter. You can query GET https://api.elevenlabs.io/v1/projects/{project_id}/chapters to list all available chapters for a project."
+        "description": "The chapter_id of the chapter. You can query GET https://api.elevenlabs.io/v1/projects/{project_id}/chapters to list all available chapters for a project.",
+        "example": "21m00Tcm4TlvDq8ikWAM"
       },
       {
         "name": "chapterSnapshotId",
         "schema": "string",
         "required": true,
-        "description": "The chapter_snapshot_id of the chapter snapshot. You can query GET /v1/projects/{project_id}/chapters/{chapter_id}/snapshots to the all available snapshots for a chapter."
+        "description": "The chapter_snapshot_id of the chapter snapshot. You can query GET /v1/projects/{project_id}/chapters/{chapter_id}/snapshots to the all available snapshots for a chapter.",
+        "example": "21m00Tcm4TlvDq8ikWAM"
       },
       {
         "name": "xiApiKey",
@@ -1584,7 +1664,8 @@ export default function ElevenLabsTypeScriptSdk() {
         "name": "projectId",
         "schema": "string",
         "required": true,
-        "description": "The project_id of the project, you can query GET https://api.elevenlabs.io/v1/projects to list all available projects."
+        "description": "The project_id of the project, you can query GET https://api.elevenlabs.io/v1/projects to list all available projects.",
+        "example": "21m00Tcm4TlvDq8ikWAM"
       },
       {
         "name": "xiApiKey",
@@ -1670,25 +1751,29 @@ export default function ElevenLabsTypeScriptSdk() {
         "name": "source_lang",
         "schema": "string",
         "required": false,
-        "description": ""
+        "description": "",
+        "default": "auto"
       },
       {
         "name": "target_lang",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "TARGET_LANG"
       },
       {
         "name": "num_speakers",
         "schema": "integer",
         "required": false,
-        "description": ""
+        "description": "",
+        "default": 0
       },
       {
         "name": "watermark",
         "schema": "boolean",
         "required": false,
-        "description": ""
+        "description": "",
+        "default": false
       },
       {
         "name": "start_time",
@@ -1706,13 +1791,15 @@ export default function ElevenLabsTypeScriptSdk() {
         "name": "highest_resolution",
         "schema": "boolean",
         "required": false,
-        "description": ""
+        "description": "",
+        "default": false
       },
       {
         "name": "dubbing_studio",
         "schema": "boolean",
         "required": false,
-        "description": ""
+        "description": "",
+        "default": false
       }
     ],
     "responses": [
@@ -1738,7 +1825,8 @@ export default function ElevenLabsTypeScriptSdk() {
         "name": "dubbingId",
         "schema": "string",
         "required": true,
-        "description": "ID of the dubbing project."
+        "description": "ID of the dubbing project.",
+        "example": "DUBBING_ID"
       },
       {
         "name": "xiApiKey",
@@ -1770,7 +1858,8 @@ export default function ElevenLabsTypeScriptSdk() {
         "name": "dubbingId",
         "schema": "string",
         "required": true,
-        "description": "ID of the dubbing project."
+        "description": "ID of the dubbing project.",
+        "example": "DUBBING_ID"
       },
       {
         "name": "xiApiKey",
@@ -1802,13 +1891,15 @@ export default function ElevenLabsTypeScriptSdk() {
         "name": "dubbingId",
         "schema": "string",
         "required": true,
-        "description": "ID of the dubbing project."
+        "description": "ID of the dubbing project.",
+        "example": "DUBBING_ID"
       },
       {
         "name": "languageCode",
         "schema": "string",
         "required": true,
-        "description": "ID of the language."
+        "description": "ID of the language.",
+        "example": "LANGUAGE_CODE"
       },
       {
         "name": "xiApiKey",
@@ -1840,7 +1931,8 @@ export default function ElevenLabsTypeScriptSdk() {
         "name": "workspaceId",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "WORKSPACE_ID"
       }
     ],
     "responses": [
@@ -1904,7 +1996,8 @@ export default function ElevenLabsTypeScriptSdk() {
         "name": "name",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "NAME"
       },
       {
         "name": "image",
@@ -1922,7 +2015,8 @@ export default function ElevenLabsTypeScriptSdk() {
         "name": "small",
         "schema": "boolean",
         "required": false,
-        "description": ""
+        "description": "",
+        "default": false
       },
       {
         "name": "text_color",
@@ -1940,7 +2034,8 @@ export default function ElevenLabsTypeScriptSdk() {
         "name": "sessionization",
         "schema": "integer",
         "required": false,
-        "description": ""
+        "description": "",
+        "default": 0
       },
       {
         "name": "voice_id",
@@ -1958,13 +2053,15 @@ export default function ElevenLabsTypeScriptSdk() {
         "name": "file",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "FILE"
       },
       {
         "name": "auto_convert",
         "schema": "boolean",
         "required": false,
-        "description": ""
+        "description": "",
+        "default": false
       }
     ],
     "responses": [
@@ -1990,67 +2087,79 @@ export default function ElevenLabsTypeScriptSdk() {
         "name": "pageSize",
         "schema": "integer",
         "required": false,
-        "description": "How many shared voices to return at maximum. Can not exceed 500, defaults to 30."
+        "description": "How many shared voices to return at maximum. Can not exceed 500, defaults to 30.",
+        "default": 30
       },
       {
         "name": "category",
         "schema": "string",
         "required": false,
-        "description": "voice category used for filtering"
+        "description": "voice category used for filtering",
+        "example": "professional"
       },
       {
         "name": "gender",
         "schema": "string",
         "required": false,
-        "description": "gender used for filtering"
+        "description": "gender used for filtering",
+        "example": "male"
       },
       {
         "name": "age",
         "schema": "string",
         "required": false,
-        "description": "age used for filtering"
+        "description": "age used for filtering",
+        "example": "young"
       },
       {
         "name": "accent",
         "schema": "string",
         "required": false,
-        "description": "accent used for filtering"
+        "description": "accent used for filtering",
+        "example": "american"
       },
       {
         "name": "search",
         "schema": "string",
         "required": false,
-        "description": "search term used for filtering"
+        "description": "search term used for filtering",
+        "example": "tiktok"
       },
       {
         "name": "useCases",
         "schema": "array",
         "required": false,
-        "description": "use-case used for filtering"
+        "description": "use-case used for filtering",
+        "example": "audiobook"
       },
       {
         "name": "descriptives",
         "schema": "array",
         "required": false,
-        "description": "search term used for filtering"
+        "description": "search term used for filtering",
+        "example": "tiktok"
       },
       {
         "name": "sort",
         "schema": "string",
         "required": false,
-        "description": "sort criteria"
+        "description": "sort criteria",
+        "example": "created_date"
       },
       {
         "name": "featured",
         "schema": "boolean",
         "required": false,
-        "description": "Filter featured voices"
+        "description": "Filter featured voices",
+        "example": true,
+        "default": false
       },
       {
         "name": "page",
         "schema": "integer",
         "required": false,
-        "description": ""
+        "description": "",
+        "default": 0
       },
       {
         "name": "xiApiKey",
@@ -2100,7 +2209,8 @@ export default function ElevenLabsTypeScriptSdk() {
         "name": "name",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "NAME"
       }
     ],
     "responses": [
@@ -2141,7 +2251,8 @@ export default function ElevenLabsTypeScriptSdk() {
         "name": "pronunciationDictionaryId",
         "schema": "string",
         "required": true,
-        "description": "The id of the pronunciation dictionary"
+        "description": "The id of the pronunciation dictionary",
+        "example": "21m00Tcm4TlvDq8ikWAM"
       },
       {
         "name": "xiApiKey",
@@ -2173,6 +2284,8 @@ export default function ElevenLabsTypeScriptSdk() {
       parameters={188}
       difficulty="Medium"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/elevenlabs/openapi.yaml"
+      openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/elevenlabs/openapi.yaml"
+      developerDocumentation="elevenlabs.io/docs/introduction"
     />
   );
 }

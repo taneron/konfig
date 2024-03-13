@@ -4,11 +4,13 @@ import { HttpMethodsEnum } from "konfig-lib/dist/forEachOperation";
 import Description from "./_description.mdx";
 // @ts-ignore
 import GettingStarted from "./_getting-started.mdx";
-import { Sdk } from "@site/src/components/Sdk";
+// @ts-ignore
+import FirstRequest from "./_first-request.mdx"
+import { SdkNew } from "@site/src/components/SdkNew";
 
 export default function DevTypeScriptSdk() {
   return (
-    <Sdk
+    <SdkNew
       sdkName="dev-typescript-sdk"
       metaDescription="DEV is a community of software developers where they can share knowledge, collaborate, and learn from each other. It's a platform for writing, reading, and discussing code and software development topics. DEV also provides resources, tools, and opportunities for developers to grow their skills and network with industry professionals."
       company="DEV"
@@ -16,13 +18,15 @@ export default function DevTypeScriptSdk() {
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/dev/logo.png"
       clientNameCamelCase="dev"
       homepage="dev.to"
-      lastUpdated={new Date("2024-03-11T17:20:37.894Z")}
+      lastUpdated={new Date("2024-03-13T02:25:22.175Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/dev/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
       previewLinkImage="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/dev/imagePreview.png"
       GettingStarted={GettingStarted}
       Description={Description}
+      FirstRequest={FirstRequest}
+      categories={["developer_tools","automation","collaboration","media","community_engagement","discussion","knowledge_sharing","platform","writing","reading","code","software_development","resources","skills","network","blogging","industry_professionals"]}
       methods={[
   {
     "url": "/api/articles",
@@ -36,55 +40,64 @@ export default function DevTypeScriptSdk() {
         "name": "page",
         "schema": "integer",
         "required": false,
-        "description": "Pagination page"
+        "description": "Pagination page",
+        "default": 1
       },
       {
         "name": "perPage",
         "schema": "integer",
         "required": false,
-        "description": "Page size (the number of items to return per page). The default maximum value can be overridden by \"API_PER_PAGE_MAX\" environment variable."
+        "description": "Page size (the number of items to return per page). The default maximum value can be overridden by \"API_PER_PAGE_MAX\" environment variable.",
+        "default": 30
       },
       {
         "name": "tag",
         "schema": "string",
         "required": false,
-        "description": "Using this parameter will retrieve articles that contain the requested tag. Articles\nwill be ordered by descending popularity.This parameter can be used in conjuction with `top`."
+        "description": "Using this parameter will retrieve articles that contain the requested tag. Articles\nwill be ordered by descending popularity.This parameter can be used in conjuction with `top`.",
+        "example": "discuss"
       },
       {
         "name": "tags",
         "schema": "string",
         "required": false,
-        "description": "Using this parameter will retrieve articles with any of the comma-separated tags.\nArticles will be ordered by descending popularity."
+        "description": "Using this parameter will retrieve articles with any of the comma-separated tags.\nArticles will be ordered by descending popularity.",
+        "example": "javascript, css"
       },
       {
         "name": "tagsExclude",
         "schema": "string",
         "required": false,
-        "description": "Using this parameter will retrieve articles that do _not_ contain _any_\nof comma-separated tags. Articles will be ordered by descending popularity."
+        "description": "Using this parameter will retrieve articles that do _not_ contain _any_\nof comma-separated tags. Articles will be ordered by descending popularity.",
+        "example": "node, java"
       },
       {
         "name": "username",
         "schema": "string",
         "required": false,
-        "description": "Using this parameter will retrieve articles belonging\n            to a User or Organization ordered by descending publication date.\n            If `state=all` the number of items returned will be `1000` instead of the default `30`.\n            This parameter can be used in conjuction with `state`."
+        "description": "Using this parameter will retrieve articles belonging\n            to a User or Organization ordered by descending publication date.\n            If `state=all` the number of items returned will be `1000` instead of the default `30`.\n            This parameter can be used in conjuction with `state`.",
+        "example": "ben"
       },
       {
         "name": "state",
         "schema": "string",
         "required": false,
-        "description": "Using this parameter will allow the client to check which articles are fresh or rising.\n            If `state=fresh` the server will return fresh articles.\n            If `state=rising` the server will return rising articles.\n            This param can be used in conjuction with `username`, only if set to `all`."
+        "description": "Using this parameter will allow the client to check which articles are fresh or rising.\n            If `state=fresh` the server will return fresh articles.\n            If `state=rising` the server will return rising articles.\n            This param can be used in conjuction with `username`, only if set to `all`.",
+        "example": "fresh"
       },
       {
         "name": "top",
         "schema": "integer",
         "required": false,
-        "description": "Using this parameter will allow the client to return the most popular articles\nin the last `N` days.\n`top` indicates the number of days since publication of the articles returned.\nThis param can be used in conjuction with `tag`."
+        "description": "Using this parameter will allow the client to return the most popular articles\nin the last `N` days.\n`top` indicates the number of days since publication of the articles returned.\nThis param can be used in conjuction with `tag`.",
+        "example": 2
       },
       {
         "name": "collectionId",
         "schema": "integer",
         "required": false,
-        "description": "Adding this will allow the client to return the list of articles\nbelonging to the requested collection, ordered by ascending publication date."
+        "description": "Adding this will allow the client to return the list of articles\nbelonging to the requested collection, ordered by ascending publication date.",
+        "example": 99
       }
     ],
     "responses": [
@@ -135,13 +148,15 @@ export default function DevTypeScriptSdk() {
         "name": "page",
         "schema": "integer",
         "required": false,
-        "description": "Pagination page"
+        "description": "Pagination page",
+        "default": 1
       },
       {
         "name": "perPage",
         "schema": "integer",
         "required": false,
-        "description": "Page size (the number of items to return per page). The default maximum value can be overridden by \"API_PER_PAGE_MAX\" environment variable."
+        "description": "Page size (the number of items to return per page). The default maximum value can be overridden by \"API_PER_PAGE_MAX\" environment variable.",
+        "default": 30
       }
     ],
     "responses": [
@@ -163,7 +178,8 @@ export default function DevTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": 0
       }
     ],
     "responses": [
@@ -189,7 +205,8 @@ export default function DevTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "The ID of the user to unpublish."
+        "description": "The ID of the user to unpublish.",
+        "example": 123
       },
       {
         "name": "article",
@@ -228,13 +245,15 @@ export default function DevTypeScriptSdk() {
         "name": "username",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "USERNAME"
       },
       {
         "name": "slug",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "SLUG"
       }
     ],
     "responses": [
@@ -260,13 +279,15 @@ export default function DevTypeScriptSdk() {
         "name": "page",
         "schema": "integer",
         "required": false,
-        "description": "Pagination page"
+        "description": "Pagination page",
+        "default": 1
       },
       {
         "name": "perPage",
         "schema": "integer",
         "required": false,
-        "description": "Page size (the number of items to return per page). The default maximum value can be overridden by \"API_PER_PAGE_MAX\" environment variable."
+        "description": "Page size (the number of items to return per page). The default maximum value can be overridden by \"API_PER_PAGE_MAX\" environment variable.",
+        "default": 30
       }
     ],
     "responses": [
@@ -292,13 +313,15 @@ export default function DevTypeScriptSdk() {
         "name": "page",
         "schema": "integer",
         "required": false,
-        "description": "Pagination page"
+        "description": "Pagination page",
+        "default": 1
       },
       {
         "name": "perPage",
         "schema": "integer",
         "required": false,
-        "description": "Page size (the number of items to return per page). The default maximum value can be overridden by \"API_PER_PAGE_MAX\" environment variable."
+        "description": "Page size (the number of items to return per page). The default maximum value can be overridden by \"API_PER_PAGE_MAX\" environment variable.",
+        "default": 30
       }
     ],
     "responses": [
@@ -324,13 +347,15 @@ export default function DevTypeScriptSdk() {
         "name": "page",
         "schema": "integer",
         "required": false,
-        "description": "Pagination page"
+        "description": "Pagination page",
+        "default": 1
       },
       {
         "name": "perPage",
         "schema": "integer",
         "required": false,
-        "description": "Page size (the number of items to return per page). The default maximum value can be overridden by \"API_PER_PAGE_MAX\" environment variable."
+        "description": "Page size (the number of items to return per page). The default maximum value can be overridden by \"API_PER_PAGE_MAX\" environment variable.",
+        "default": 30
       }
     ],
     "responses": [
@@ -356,13 +381,15 @@ export default function DevTypeScriptSdk() {
         "name": "page",
         "schema": "integer",
         "required": false,
-        "description": "Pagination page"
+        "description": "Pagination page",
+        "default": 1
       },
       {
         "name": "perPage",
         "schema": "integer",
         "required": false,
-        "description": "Page size (the number of items to return per page). The default maximum value can be overridden by \"API_PER_PAGE_MAX\" environment variable."
+        "description": "Page size (the number of items to return per page). The default maximum value can be overridden by \"API_PER_PAGE_MAX\" environment variable.",
+        "default": 30
       }
     ],
     "responses": [
@@ -388,13 +415,15 @@ export default function DevTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "The ID of the article to unpublish."
+        "description": "The ID of the article to unpublish.",
+        "example": 1
       },
       {
         "name": "note",
         "schema": "string",
         "required": false,
-        "description": "Content for the note that's created along with unpublishing"
+        "description": "Content for the note that's created along with unpublishing",
+        "example": "Admin requested unpublishing all articles via API"
       }
     ],
     "responses": [
@@ -424,7 +453,8 @@ export default function DevTypeScriptSdk() {
         "name": "perPage",
         "schema": "integer",
         "required": false,
-        "description": "Page size (the number of items to return per page). The default maximum value can be overridden by \"API_PER_PAGE_MAX\" environment variable."
+        "description": "Page size (the number of items to return per page). The default maximum value can be overridden by \"API_PER_PAGE_MAX\" environment variable.",
+        "default": 30
       }
     ],
     "responses": [
@@ -469,7 +499,8 @@ export default function DevTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": 0
       }
     ],
     "responses": [
@@ -503,7 +534,8 @@ export default function DevTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": 0
       }
     ],
     "responses": [
@@ -533,13 +565,15 @@ export default function DevTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": 0
       },
       {
         "name": "perPage",
         "schema": "integer",
         "required": false,
-        "description": "Page size (the number of items to return per page). The default maximum value can be overridden by \"API_PER_PAGE_MAX\" environment variable."
+        "description": "Page size (the number of items to return per page). The default maximum value can be overridden by \"API_PER_PAGE_MAX\" environment variable.",
+        "default": 30
       }
     ],
     "responses": [
@@ -569,7 +603,8 @@ export default function DevTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": 0
       },
       {
         "name": "user_ids",
@@ -608,7 +643,8 @@ export default function DevTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": 0
       },
       {
         "name": "user_ids",
@@ -689,7 +725,8 @@ export default function DevTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "The ID of the billboard."
+        "description": "The ID of the billboard.",
+        "example": 123
       }
     ],
     "responses": [
@@ -719,7 +756,8 @@ export default function DevTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "The ID of the billboard."
+        "description": "The ID of the billboard.",
+        "example": 123
       }
     ],
     "responses": [
@@ -749,7 +787,8 @@ export default function DevTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "The ID of the billboard to unpublish."
+        "description": "The ID of the billboard to unpublish.",
+        "example": 123
       }
     ],
     "responses": [
@@ -779,31 +818,36 @@ export default function DevTypeScriptSdk() {
         "name": "page",
         "schema": "integer",
         "required": false,
-        "description": "Pagination page"
+        "description": "Pagination page",
+        "default": 1
       },
       {
         "name": "perPage",
         "schema": "integer",
         "required": false,
-        "description": "Page size (the number of items to return per page). The default maximum value can be overridden by \"API_PER_PAGE_MAX\" environment variable."
+        "description": "Page size (the number of items to return per page). The default maximum value can be overridden by \"API_PER_PAGE_MAX\" environment variable.",
+        "default": 30
       },
       {
         "name": "aId",
         "schema": "string",
         "required": false,
-        "description": "Article identifier."
+        "description": "Article identifier.",
+        "example": "321"
       },
       {
         "name": "pId",
         "schema": "string",
         "required": false,
-        "description": "Podcast Episode identifier."
+        "description": "Podcast Episode identifier.",
+        "example": "321"
       },
       {
         "name": "page",
         "schema": "string",
         "required": false,
-        "description": "Page"
+        "description": "Page",
+        "example": "321"
       }
     ],
     "responses": [
@@ -829,7 +873,8 @@ export default function DevTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "Comment identifier."
+        "description": "Comment identifier.",
+        "example": 321
       }
     ],
     "responses": [
@@ -874,19 +919,22 @@ export default function DevTypeScriptSdk() {
         "name": "page",
         "schema": "integer",
         "required": false,
-        "description": "Pagination page"
+        "description": "Pagination page",
+        "default": 1
       },
       {
         "name": "perPage",
         "schema": "integer",
         "required": false,
-        "description": "Page size (the number of items to return per page). The default maximum value can be overridden by \"API_PER_PAGE_MAX\" environment variable."
+        "description": "Page size (the number of items to return per page). The default maximum value can be overridden by \"API_PER_PAGE_MAX\" environment variable.",
+        "default": 30
       },
       {
         "name": "sort",
         "schema": "string",
         "required": false,
-        "description": "Default is 'created_at'. Specifies the sort order for the created_at param of the follow\n                                relationship. To sort by newest followers first (descending order) specify\n                                ?sort=-created_at."
+        "description": "Default is 'created_at'. Specifies the sort order for the created_at param of the follow\n                                relationship. To sort by newest followers first (descending order) specify\n                                ?sort=-created_at.",
+        "example": "created_at"
       }
     ],
     "responses": [
@@ -912,7 +960,8 @@ export default function DevTypeScriptSdk() {
         "name": "username",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "USERNAME"
       }
     ],
     "responses": [
@@ -938,19 +987,22 @@ export default function DevTypeScriptSdk() {
         "name": "organizationIdOrUsername",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "ORGANIZATION_ID_OR_USERNAME"
       },
       {
         "name": "page",
         "schema": "integer",
         "required": false,
-        "description": "Pagination page"
+        "description": "Pagination page",
+        "default": 1
       },
       {
         "name": "perPage",
         "schema": "integer",
         "required": false,
-        "description": "Page size (the number of items to return per page). The default maximum value can be overridden by \"API_PER_PAGE_MAX\" environment variable."
+        "description": "Page size (the number of items to return per page). The default maximum value can be overridden by \"API_PER_PAGE_MAX\" environment variable.",
+        "default": 30
       }
     ],
     "responses": [
@@ -976,19 +1028,22 @@ export default function DevTypeScriptSdk() {
         "name": "organizationIdOrUsername",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "ORGANIZATION_ID_OR_USERNAME"
       },
       {
         "name": "page",
         "schema": "integer",
         "required": false,
-        "description": "Pagination page"
+        "description": "Pagination page",
+        "default": 1
       },
       {
         "name": "perPage",
         "schema": "integer",
         "required": false,
-        "description": "Page size (the number of items to return per page). The default maximum value can be overridden by \"API_PER_PAGE_MAX\" environment variable."
+        "description": "Page size (the number of items to return per page). The default maximum value can be overridden by \"API_PER_PAGE_MAX\" environment variable.",
+        "default": 30
       }
     ],
     "responses": [
@@ -1014,13 +1069,15 @@ export default function DevTypeScriptSdk() {
         "name": "page",
         "schema": "integer",
         "required": false,
-        "description": "Pagination page"
+        "description": "Pagination page",
+        "default": 1
       },
       {
         "name": "perPage",
         "schema": "integer",
         "required": false,
-        "description": "Page size (the number of items to return per page). The default maximum value can be overridden by \"API_PER_PAGE_MAX\" environment variable."
+        "description": "Page size (the number of items to return per page). The default maximum value can be overridden by \"API_PER_PAGE_MAX\" environment variable.",
+        "default": 10
       }
     ],
     "responses": [
@@ -1126,7 +1183,8 @@ export default function DevTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "The ID of the organization."
+        "description": "The ID of the organization.",
+        "example": 1
       }
     ],
     "responses": [
@@ -1152,7 +1210,8 @@ export default function DevTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": 0
       }
     ],
     "responses": [
@@ -1178,7 +1237,8 @@ export default function DevTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "The ID of the organization to update."
+        "description": "The ID of the organization to update.",
+        "example": 123
       },
       {
         "name": "summary",
@@ -1316,7 +1376,8 @@ export default function DevTypeScriptSdk() {
       {
         "name": "template",
         "schema": "string",
-        "description": ""
+        "description": "",
+        "default": "contained"
       }
     ],
     "responses": [
@@ -1346,7 +1407,8 @@ export default function DevTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "The ID of the page."
+        "description": "The ID of the page.",
+        "example": 1
       }
     ],
     "responses": [
@@ -1376,7 +1438,8 @@ export default function DevTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "The ID of the page."
+        "description": "The ID of the page.",
+        "example": 1
       }
     ],
     "responses": [
@@ -1398,25 +1461,29 @@ export default function DevTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "The ID of the page."
+        "description": "The ID of the page.",
+        "example": 1
       },
       {
         "name": "title",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "TITLE"
       },
       {
         "name": "description",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "DESCRIPTION"
       },
       {
         "name": "slug",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "SLUG"
       },
       {
         "name": "body_markdown",
@@ -1446,7 +1513,9 @@ export default function DevTypeScriptSdk() {
         "name": "template",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "TEMPLATE",
+        "default": "contained"
       }
     ],
     "responses": [
@@ -1476,19 +1545,22 @@ export default function DevTypeScriptSdk() {
         "name": "page",
         "schema": "integer",
         "required": false,
-        "description": "Pagination page"
+        "description": "Pagination page",
+        "default": 1
       },
       {
         "name": "perPage",
         "schema": "integer",
         "required": false,
-        "description": "Page size (the number of items to return per page). The default maximum value can be overridden by \"API_PER_PAGE_MAX\" environment variable."
+        "description": "Page size (the number of items to return per page). The default maximum value can be overridden by \"API_PER_PAGE_MAX\" environment variable.",
+        "default": 30
       },
       {
         "name": "username",
         "schema": "string",
         "required": false,
-        "description": "Using this parameter will retrieve episodes belonging to a specific podcast."
+        "description": "Using this parameter will retrieve episodes belonging to a specific podcast.",
+        "example": "codenewbie"
       }
     ],
     "responses": [
@@ -1514,7 +1586,8 @@ export default function DevTypeScriptSdk() {
         "name": "username",
         "schema": "string",
         "required": true,
-        "description": "The parameter is the username of the user or the username of the organization."
+        "description": "The parameter is the username of the user or the username of the organization.",
+        "example": "janedoe"
       }
     ],
     "responses": [
@@ -1540,19 +1613,22 @@ export default function DevTypeScriptSdk() {
         "name": "category",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "CATEGORY"
       },
       {
         "name": "reactableId",
         "schema": "integer",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": 0
       },
       {
         "name": "reactableType",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "REACTABLE_TYPE"
       }
     ],
     "responses": [
@@ -1578,19 +1654,22 @@ export default function DevTypeScriptSdk() {
         "name": "category",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "CATEGORY"
       },
       {
         "name": "reactableId",
         "schema": "integer",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": 0
       },
       {
         "name": "reactableType",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "REACTABLE_TYPE"
       }
     ],
     "responses": [
@@ -1616,13 +1695,15 @@ export default function DevTypeScriptSdk() {
         "name": "page",
         "schema": "integer",
         "required": false,
-        "description": "Pagination page"
+        "description": "Pagination page",
+        "default": 1
       },
       {
         "name": "perPage",
         "schema": "integer",
         "required": false,
-        "description": "Page size (the number of items to return per page). The default maximum value can be overridden by \"API_PER_PAGE_MAX\" environment variable."
+        "description": "Page size (the number of items to return per page). The default maximum value can be overridden by \"API_PER_PAGE_MAX\" environment variable.",
+        "default": 30
       }
     ],
     "responses": [
@@ -1648,13 +1729,15 @@ export default function DevTypeScriptSdk() {
         "name": "page",
         "schema": "integer",
         "required": false,
-        "description": "Pagination page"
+        "description": "Pagination page",
+        "default": 1
       },
       {
         "name": "perPage",
         "schema": "integer",
         "required": false,
-        "description": "Page size (the number of items to return per page). The default maximum value can be overridden by \"API_PER_PAGE_MAX\" environment variable."
+        "description": "Page size (the number of items to return per page). The default maximum value can be overridden by \"API_PER_PAGE_MAX\" environment variable.",
+        "default": 10
       }
     ],
     "responses": [
@@ -1676,7 +1759,8 @@ export default function DevTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "The ID of the user to suspend."
+        "description": "The ID of the user to suspend.",
+        "example": 1
       }
     ],
     "responses": [
@@ -1706,7 +1790,8 @@ export default function DevTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "The ID of the user to un-limit."
+        "description": "The ID of the user to un-limit.",
+        "example": 1
       }
     ],
     "responses": [
@@ -1736,7 +1821,8 @@ export default function DevTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "The ID of the user to limit."
+        "description": "The ID of the user to limit.",
+        "example": 1
       }
     ],
     "responses": [
@@ -1766,7 +1852,8 @@ export default function DevTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "The ID of the user to remove the spam role from."
+        "description": "The ID of the user to remove the spam role from.",
+        "example": 1
       }
     ],
     "responses": [
@@ -1796,7 +1883,8 @@ export default function DevTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "The ID of the user to assign the spam role."
+        "description": "The ID of the user to assign the spam role.",
+        "example": 1
       }
     ],
     "responses": [
@@ -1826,7 +1914,8 @@ export default function DevTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "The ID of the user to remove the trusted role from."
+        "description": "The ID of the user to remove the trusted role from.",
+        "example": 1
       }
     ],
     "responses": [
@@ -1856,7 +1945,8 @@ export default function DevTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "The ID of the user to assign the trusted role."
+        "description": "The ID of the user to assign the trusted role.",
+        "example": 1
       }
     ],
     "responses": [
@@ -1905,7 +1995,8 @@ export default function DevTypeScriptSdk() {
         "name": "id",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "ID"
       }
     ],
     "responses": [
@@ -1927,7 +2018,8 @@ export default function DevTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "The ID of the user to unpublish."
+        "description": "The ID of the user to unpublish.",
+        "example": 1
       }
     ],
     "responses": [
@@ -1991,13 +2083,15 @@ export default function DevTypeScriptSdk() {
         "name": "page",
         "schema": "integer",
         "required": false,
-        "description": "Pagination page"
+        "description": "Pagination page",
+        "default": 1
       },
       {
         "name": "perPage",
         "schema": "integer",
         "required": false,
-        "description": "Page size (the number of items to return per page). The default maximum value can be overridden by \"API_PER_PAGE_MAX\" environment variable."
+        "description": "Page size (the number of items to return per page). The default maximum value can be overridden by \"API_PER_PAGE_MAX\" environment variable.",
+        "default": 24
       }
     ],
     "responses": [
@@ -2019,6 +2113,8 @@ export default function DevTypeScriptSdk() {
       parameters={129}
       difficulty="Medium"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/dev/openapi.yaml"
+      openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/dev/openapi.yaml"
+      developerDocumentation="developers.forem.com/"
     />
   );
 }

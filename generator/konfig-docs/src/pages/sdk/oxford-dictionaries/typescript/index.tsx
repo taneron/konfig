@@ -4,11 +4,13 @@ import { HttpMethodsEnum } from "konfig-lib/dist/forEachOperation";
 import Description from "./_description.mdx";
 // @ts-ignore
 import GettingStarted from "./_getting-started.mdx";
-import { Sdk } from "@site/src/components/Sdk";
+// @ts-ignore
+import FirstRequest from "./_first-request.mdx"
+import { SdkNew } from "@site/src/components/SdkNew";
 
 export default function OxfordDictionariesTypeScriptSdk() {
   return (
-    <Sdk
+    <SdkNew
       sdkName="oxford-dictionaries-typescript-sdk"
       metaDescription="Oxford Dictionaries, part of the Oxford Language Division, is a leading authority on the English language. It offers a wide range of language resources, including dictionaries, thesauruses, grammar guides, and language learning tools. Oxford Dictionaries provides accurate and up-to-date definitions, word origins, and usage examples to support language comprehension and communication."
       company="Oxford Dictionaries"
@@ -16,13 +18,15 @@ export default function OxfordDictionariesTypeScriptSdk() {
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/oxford-dictionaries/logo.png"
       clientNameCamelCase="oxfordDictionaries"
       homepage="developer.oxforddictionaries.com"
-      lastUpdated={new Date("2024-03-11T16:20:31.165Z")}
+      lastUpdated={new Date("2024-03-13T02:25:22.175Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/oxford-dictionaries/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
       previewLinkImage="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/oxford-dictionaries/imagePreview.png"
       GettingStarted={GettingStarted}
       Description={Description}
+      FirstRequest={FirstRequest}
+      categories={["media","collaboration","language","education","grammar","dictionaries","language_learning"]}
       methods={[
   {
     "url": "/domains/{source_domains_language}/{target_domains_language}",
@@ -36,13 +40,15 @@ export default function OxfordDictionariesTypeScriptSdk() {
         "name": "sourceDomainsLanguage",
         "schema": "string",
         "required": true,
-        "description": "IANA language code"
+        "description": "IANA language code",
+        "example": "SOURCE_DOMAINS_LANGUAGE"
       },
       {
         "name": "targetDomainsLanguage",
         "schema": "string",
         "required": true,
-        "description": "IANA language code"
+        "description": "IANA language code",
+        "example": "TARGET_DOMAINS_LANGUAGE"
       }
     ],
     "responses": [
@@ -72,7 +78,8 @@ export default function OxfordDictionariesTypeScriptSdk() {
         "name": "sourceLanguage",
         "schema": "string",
         "required": true,
-        "description": "IANA language code"
+        "description": "IANA language code",
+        "example": "SOURCE_LANGUAGE"
       }
     ],
     "responses": [
@@ -98,13 +105,16 @@ export default function OxfordDictionariesTypeScriptSdk() {
         "name": "sourceLanguage",
         "schema": "string",
         "required": true,
-        "description": "IANA language code"
+        "description": "IANA language code",
+        "example": "SOURCE_LANGUAGE"
       },
       {
         "name": "wordId",
         "schema": "string",
         "required": true,
-        "description": "An Entry identifier. Case-sensitive."
+        "description": "An Entry identifier. Case-sensitive.",
+        "example": "WORD_ID",
+        "default": "ace"
       }
     ],
     "responses": [
@@ -134,13 +144,16 @@ export default function OxfordDictionariesTypeScriptSdk() {
         "name": "sourceLang",
         "schema": "string",
         "required": true,
-        "description": "IANA language code"
+        "description": "IANA language code",
+        "example": "SOURCE_LANG"
       },
       {
         "name": "wordId",
         "schema": "string",
         "required": true,
-        "description": "An Entry identifier. Case-sensitive."
+        "description": "An Entry identifier. Case-sensitive.",
+        "example": "WORD_ID",
+        "default": "ace"
       }
     ],
     "responses": [
@@ -170,13 +183,16 @@ export default function OxfordDictionariesTypeScriptSdk() {
         "name": "sourceLang",
         "schema": "string",
         "required": true,
-        "description": "IANA language code"
+        "description": "IANA language code",
+        "example": "SOURCE_LANG"
       },
       {
         "name": "wordId",
         "schema": "string",
         "required": true,
-        "description": "An Entry identifier. Case-sensitive."
+        "description": "An Entry identifier. Case-sensitive.",
+        "example": "WORD_ID",
+        "default": "ace"
       }
     ],
     "responses": [
@@ -206,19 +222,23 @@ export default function OxfordDictionariesTypeScriptSdk() {
         "name": "sourceLang",
         "schema": "string",
         "required": true,
-        "description": "IANA language code"
+        "description": "IANA language code",
+        "example": "SOURCE_LANG"
       },
       {
         "name": "wordId",
         "schema": "string",
         "required": true,
-        "description": "An Entry identifier. Case-sensitive."
+        "description": "An Entry identifier. Case-sensitive.",
+        "example": "WORD_ID",
+        "default": "ace"
       },
       {
         "name": "region",
         "schema": "string",
         "required": true,
-        "description": "Region filter parameter. gb = Oxford Dictionary of English. us = New Oxford American Dictionary."
+        "description": "Region filter parameter. gb = Oxford Dictionary of English. us = New Oxford American Dictionary.",
+        "example": "REGION"
       }
     ],
     "responses": [
@@ -248,13 +268,16 @@ export default function OxfordDictionariesTypeScriptSdk() {
         "name": "sourceLang",
         "schema": "string",
         "required": true,
-        "description": "IANA language code"
+        "description": "IANA language code",
+        "example": "SOURCE_LANG"
       },
       {
         "name": "wordId",
         "schema": "string",
         "required": true,
-        "description": "An Entry identifier. Case-sensitive."
+        "description": "An Entry identifier. Case-sensitive.",
+        "example": "WORD_ID",
+        "default": "ace"
       }
     ],
     "responses": [
@@ -284,13 +307,16 @@ export default function OxfordDictionariesTypeScriptSdk() {
         "name": "sourceLang",
         "schema": "string",
         "required": true,
-        "description": "IANA language code"
+        "description": "IANA language code",
+        "example": "SOURCE_LANG"
       },
       {
         "name": "wordId",
         "schema": "string",
         "required": true,
-        "description": "An Entry identifier. Case-sensitive."
+        "description": "An Entry identifier. Case-sensitive.",
+        "example": "WORD_ID",
+        "default": "ace"
       }
     ],
     "responses": [
@@ -320,19 +346,24 @@ export default function OxfordDictionariesTypeScriptSdk() {
         "name": "sourceLang",
         "schema": "string",
         "required": true,
-        "description": "IANA language code"
+        "description": "IANA language code",
+        "example": "SOURCE_LANG"
       },
       {
         "name": "wordId",
         "schema": "string",
         "required": true,
-        "description": "An Entry identifier. Case-sensitive."
+        "description": "An Entry identifier. Case-sensitive.",
+        "example": "WORD_ID",
+        "default": "ace"
       },
       {
         "name": "filters",
         "schema": "string",
         "required": true,
-        "description": "Separate filtering conditions using a semicolon. Conditions take values grammaticalFeatures and/or lexicalCategory and are case-sensitive. To list multiple values in single condition divide them with comma."
+        "description": "Separate filtering conditions using a semicolon. Conditions take values grammaticalFeatures and/or lexicalCategory and are case-sensitive. To list multiple values in single condition divide them with comma.",
+        "example": "FILTERS",
+        "default": "grammaticalFeatures=singular,past;lexicalCategory=noun"
       }
     ],
     "responses": [
@@ -362,19 +393,23 @@ export default function OxfordDictionariesTypeScriptSdk() {
         "name": "sourceTranslationLanguage",
         "schema": "string",
         "required": true,
-        "description": "IANA language code"
+        "description": "IANA language code",
+        "example": "SOURCE_TRANSLATION_LANGUAGE"
       },
       {
         "name": "wordId",
         "schema": "string",
         "required": true,
-        "description": "The source word"
+        "description": "The source word",
+        "example": "WORD_ID",
+        "default": "change"
       },
       {
         "name": "targetTranslationLanguage",
         "schema": "string",
         "required": true,
-        "description": "IANA language code"
+        "description": "IANA language code",
+        "example": "TARGET_TRANSLATION_LANGUAGE"
       }
     ],
     "responses": [
@@ -427,7 +462,8 @@ export default function OxfordDictionariesTypeScriptSdk() {
         "name": "endpoint",
         "schema": "string",
         "required": true,
-        "description": "Name of the endpoint."
+        "description": "Name of the endpoint.",
+        "example": "ENDPOINT"
       }
     ],
     "responses": [
@@ -457,7 +493,8 @@ export default function OxfordDictionariesTypeScriptSdk() {
         "name": "sourceLanguage",
         "schema": "string",
         "required": true,
-        "description": "IANA language code. If provided output will be filtered by sourceLanguage."
+        "description": "IANA language code. If provided output will be filtered by sourceLanguage.",
+        "example": "SOURCE_LANGUAGE"
       }
     ],
     "responses": [
@@ -483,19 +520,24 @@ export default function OxfordDictionariesTypeScriptSdk() {
         "name": "sourceLang",
         "schema": "string",
         "required": true,
-        "description": "IANA language code"
+        "description": "IANA language code",
+        "example": "SOURCE_LANG"
       },
       {
         "name": "filters",
         "schema": "string",
         "required": true,
-        "description": "Separate filtering conditions using a semicolon. Conditions take values grammaticalFeatures and/or lexicalCategory and are case-sensitive. To list multiple values in single condition divide them with comma."
+        "description": "Separate filtering conditions using a semicolon. Conditions take values grammaticalFeatures and/or lexicalCategory and are case-sensitive. To list multiple values in single condition divide them with comma.",
+        "example": "FILTERS",
+        "default": "grammaticalFeatures=singular,past;lexicalCategory=noun"
       },
       {
         "name": "wordId",
         "schema": "string",
         "required": true,
-        "description": "The input word"
+        "description": "The input word",
+        "example": "WORD_ID",
+        "default": "swimming"
       }
     ],
     "responses": [
@@ -557,7 +599,8 @@ export default function OxfordDictionariesTypeScriptSdk() {
         "name": "language",
         "schema": "string",
         "required": true,
-        "description": "IANA language code"
+        "description": "IANA language code",
+        "example": "LANGUAGE"
       }
     ],
     "responses": [
@@ -587,7 +630,8 @@ export default function OxfordDictionariesTypeScriptSdk() {
         "name": "sourceLanguage",
         "schema": "string",
         "required": true,
-        "description": "IANA language code"
+        "description": "IANA language code",
+        "example": "SOURCE_LANGUAGE"
       }
     ],
     "responses": [
@@ -613,7 +657,8 @@ export default function OxfordDictionariesTypeScriptSdk() {
         "name": "sourceLanguage",
         "schema": "string",
         "required": true,
-        "description": "IANA language code"
+        "description": "IANA language code",
+        "example": "SOURCE_LANGUAGE"
       }
     ],
     "responses": [
@@ -643,13 +688,15 @@ export default function OxfordDictionariesTypeScriptSdk() {
         "name": "sourceRegisterLanguage",
         "schema": "string",
         "required": true,
-        "description": "IANA language code"
+        "description": "IANA language code",
+        "example": "SOURCE_REGISTER_LANGUAGE"
       },
       {
         "name": "targetRegisterLanguage",
         "schema": "string",
         "required": true,
-        "description": "IANA language code"
+        "description": "IANA language code",
+        "example": "TARGET_REGISTER_LANGUAGE"
       }
     ],
     "responses": [
@@ -683,19 +730,22 @@ export default function OxfordDictionariesTypeScriptSdk() {
         "name": "sourceLang",
         "schema": "string",
         "required": true,
-        "description": "IANA language code"
+        "description": "IANA language code",
+        "example": "SOURCE_LANG"
       },
       {
         "name": "q",
         "schema": "string",
         "required": false,
-        "description": "Search string"
+        "description": "Search string",
+        "default": "eye"
       },
       {
         "name": "prefix",
         "schema": "boolean",
         "required": false,
-        "description": "Set prefix to true if you'd like to get results only starting with search string."
+        "description": "Set prefix to true if you'd like to get results only starting with search string.",
+        "default": "false"
       },
       {
         "name": "regions",
@@ -743,25 +793,29 @@ export default function OxfordDictionariesTypeScriptSdk() {
         "name": "sourceSearchLanguage",
         "schema": "string",
         "required": true,
-        "description": "IANA language code"
+        "description": "IANA language code",
+        "example": "SOURCE_SEARCH_LANGUAGE"
       },
       {
         "name": "targetSearchLanguage",
         "schema": "string",
         "required": true,
-        "description": "IANA language code"
+        "description": "IANA language code",
+        "example": "TARGET_SEARCH_LANGUAGE"
       },
       {
         "name": "q",
         "schema": "string",
         "required": false,
-        "description": "Search string."
+        "description": "Search string.",
+        "default": "eye"
       },
       {
         "name": "prefix",
         "schema": "boolean",
         "required": false,
-        "description": "Set prefix to true if you'd like to get results only starting with search string."
+        "description": "Set prefix to true if you'd like to get results only starting with search string.",
+        "default": "false"
       },
       {
         "name": "regions",
@@ -809,13 +863,16 @@ export default function OxfordDictionariesTypeScriptSdk() {
         "name": "sourceLang",
         "schema": "string",
         "required": true,
-        "description": "IANA language code"
+        "description": "IANA language code",
+        "example": "SOURCE_LANG"
       },
       {
         "name": "filtersAdvanced",
         "schema": "string",
         "required": true,
-        "description": "Semicolon separated list of wordlist parameters, presented as value pairs: LexicalCategory, domains, regions, registers. Parameters can take comma separated list of values. E.g., lexicalCategory=noun,adjective;domains=sport. Number of values limited to 5."
+        "description": "Semicolon separated list of wordlist parameters, presented as value pairs: LexicalCategory, domains, regions, registers. Parameters can take comma separated list of values. E.g., lexicalCategory=noun,adjective;domains=sport. Number of values limited to 5.",
+        "example": "FILTERS_ADVANCED",
+        "default": "lexicalCategory=Noun;domains=sport"
       },
       {
         "name": "exclude",
@@ -839,19 +896,22 @@ export default function OxfordDictionariesTypeScriptSdk() {
         "name": "wordLength",
         "schema": "string",
         "required": false,
-        "description": "Parameter to speficy the minimum (>), exact or maximum (<) length of the words required. E.g., >5 - more than 5 chars; <4 - less than 4 chars; >5<10 - from 5 to 10 chars; 3 - exactly 3 chars."
+        "description": "Parameter to speficy the minimum (>), exact or maximum (<) length of the words required. E.g., >5 - more than 5 chars; <4 - less than 4 chars; >5<10 - from 5 to 10 chars; 3 - exactly 3 chars.",
+        "default": ">5,<10"
       },
       {
         "name": "prefix",
         "schema": "string",
         "required": false,
-        "description": "Filter words that start with prefix parameter"
+        "description": "Filter words that start with prefix parameter",
+        "default": "goal"
       },
       {
         "name": "exact",
         "schema": "boolean",
         "required": false,
-        "description": "If exact=true wordlist returns a list of entries that exactly matches the search string. Otherwise wordlist lists entries that start with prefix string."
+        "description": "If exact=true wordlist returns a list of entries that exactly matches the search string. Otherwise wordlist lists entries that start with prefix string.",
+        "default": "false"
       },
       {
         "name": "limit",
@@ -897,13 +957,16 @@ export default function OxfordDictionariesTypeScriptSdk() {
         "name": "sourceLang",
         "schema": "string",
         "required": true,
-        "description": "IANA language code"
+        "description": "IANA language code",
+        "example": "SOURCE_LANG"
       },
       {
         "name": "filtersBasic",
         "schema": "string",
         "required": true,
-        "description": "Semicolon separated list of wordlist parameters, presented as value pairs: LexicalCategory, domains, regions, registers. Parameters can take comma separated list of values. E.g., lexicalCategory=noun,adjective;domains=sport. Number of values limited to 5."
+        "description": "Semicolon separated list of wordlist parameters, presented as value pairs: LexicalCategory, domains, regions, registers. Parameters can take comma separated list of values. E.g., lexicalCategory=noun,adjective;domains=sport. Number of values limited to 5.",
+        "example": "FILTERS_BASIC",
+        "default": "registers=Rare;domains=Art"
       },
       {
         "name": "limit",
@@ -949,25 +1012,32 @@ export default function OxfordDictionariesTypeScriptSdk() {
         "name": "sourceLang",
         "schema": "string",
         "required": true,
-        "description": "IANA language code"
+        "description": "IANA language code",
+        "example": "SOURCE_LANG",
+        "default": "en"
       },
       {
         "name": "corpus",
         "schema": "string",
         "required": true,
-        "description": "For corpora other than 'nmc' (New Monitor Corpus) please contact api@oxforddictionaries.com"
+        "description": "For corpora other than 'nmc' (New Monitor Corpus) please contact api@oxforddictionaries.com",
+        "example": "CORPUS",
+        "default": "nmc"
       },
       {
         "name": "ngramSize",
         "schema": "string",
         "required": true,
-        "description": "the size of ngrams requested (1-4)"
+        "description": "the size of ngrams requested (1-4)",
+        "example": "NGRAM-SIZE",
+        "default": 2
       },
       {
         "name": "tokens",
         "schema": "string",
         "required": false,
-        "description": "List of tokens to filter. The tokens are separated by spaces, the list items are separated by comma (e.g., for bigrams (n=2) tokens=this is,this was, this will)"
+        "description": "List of tokens to filter. The tokens are separated by spaces, the list items are separated by comma (e.g., for bigrams (n=2) tokens=this is,this was, this will)",
+        "default": "a word"
       },
       {
         "name": "contains",
@@ -985,7 +1055,8 @@ export default function OxfordDictionariesTypeScriptSdk() {
         "name": "format",
         "schema": "string",
         "required": false,
-        "description": "Option specifying whether tokens should be returned as a single string (option \"google\") or as a list of strings (option \"oup\")"
+        "description": "Option specifying whether tokens should be returned as a single string (option \"google\") or as a list of strings (option \"oup\")",
+        "default": "oup"
       },
       {
         "name": "minFrequency",
@@ -1027,13 +1098,15 @@ export default function OxfordDictionariesTypeScriptSdk() {
         "name": "offset",
         "schema": "integer",
         "required": false,
-        "description": "pagination - results offset"
+        "description": "pagination - results offset",
+        "default": 0
       },
       {
         "name": "limit",
         "schema": "integer",
         "required": false,
-        "description": "pagination - results limit"
+        "description": "pagination - results limit",
+        "default": 100
       }
     ],
     "responses": [
@@ -1067,13 +1140,16 @@ export default function OxfordDictionariesTypeScriptSdk() {
         "name": "sourceLang",
         "schema": "string",
         "required": true,
-        "description": "IANA language code"
+        "description": "IANA language code",
+        "example": "SOURCE_LANG",
+        "default": "en"
       },
       {
         "name": "corpus",
         "schema": "string",
         "required": false,
-        "description": "For corpora other than 'nmc' (New Monitor Corpus) please contact api@oxforddictionaries.com"
+        "description": "For corpora other than 'nmc' (New Monitor Corpus) please contact api@oxforddictionaries.com",
+        "default": "nmc"
       },
       {
         "name": "wordform",
@@ -1091,7 +1167,8 @@ export default function OxfordDictionariesTypeScriptSdk() {
         "name": "lemma",
         "schema": "string",
         "required": false,
-        "description": "The lemma of the word to look up (e.g., Book, booked, books all have the lemma \"book\")"
+        "description": "The lemma of the word to look up (e.g., Book, booked, books all have the lemma \"book\")",
+        "default": "test"
       },
       {
         "name": "lexicalCategory",
@@ -1131,13 +1208,16 @@ export default function OxfordDictionariesTypeScriptSdk() {
         "name": "sourceLang",
         "schema": "string",
         "required": true,
-        "description": "IANA language code"
+        "description": "IANA language code",
+        "example": "SOURCE_LANG",
+        "default": "en"
       },
       {
         "name": "corpus",
         "schema": "string",
         "required": false,
-        "description": "For corpora other than 'nmc' (New Monitor Corpus) please contact api@oxforddictionaries.com"
+        "description": "For corpora other than 'nmc' (New Monitor Corpus) please contact api@oxforddictionaries.com",
+        "default": "nmc"
       },
       {
         "name": "wordform",
@@ -1155,7 +1235,8 @@ export default function OxfordDictionariesTypeScriptSdk() {
         "name": "lemma",
         "schema": "string",
         "required": false,
-        "description": "The lemma of the word to look up (e.g., Book, booked, books all have the lemma \"book\")"
+        "description": "The lemma of the word to look up (e.g., Book, booked, books all have the lemma \"book\")",
+        "default": "test"
       },
       {
         "name": "lexicalCategory",
@@ -1209,13 +1290,15 @@ export default function OxfordDictionariesTypeScriptSdk() {
         "name": "offset",
         "schema": "integer",
         "required": false,
-        "description": "pagination - results offset"
+        "description": "pagination - results offset",
+        "default": 0
       },
       {
         "name": "limit",
         "schema": "integer",
         "required": false,
-        "description": "pagination - results limit"
+        "description": "pagination - results limit",
+        "default": 100
       }
     ],
     "responses": [
@@ -1249,6 +1332,8 @@ export default function OxfordDictionariesTypeScriptSdk() {
       parameters={149}
       difficulty="Easy"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/oxford-dictionaries/openapi.yaml"
+      openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/oxford-dictionaries/openapi.yaml"
+      developerDocumentation="developer.oxforddictionaries.com/"
     />
   );
 }

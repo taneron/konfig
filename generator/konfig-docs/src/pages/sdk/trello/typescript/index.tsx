@@ -4,11 +4,13 @@ import { HttpMethodsEnum } from "konfig-lib/dist/forEachOperation";
 import Description from "./_description.mdx";
 // @ts-ignore
 import GettingStarted from "./_getting-started.mdx";
-import { Sdk } from "@site/src/components/Sdk";
+// @ts-ignore
+import FirstRequest from "./_first-request.mdx"
+import { SdkNew } from "@site/src/components/SdkNew";
 
 export default function TrelloTypeScriptSdk() {
   return (
-    <Sdk
+    <SdkNew
       sdkName="trello-typescript-sdk"
       metaDescription="Trello is a collaboration tool that organizes your projects into boards. In one glance, Trello tells you what's being worked on, who's working on what, and where something is in a process."
       company="Trello"
@@ -16,13 +18,15 @@ export default function TrelloTypeScriptSdk() {
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/trello/logo.png"
       clientNameCamelCase="trello"
       homepage="developer.atlassian.com/cloud/trello"
-      lastUpdated={new Date("2024-03-11T06:04:39.099Z")}
+      lastUpdated={new Date("2024-03-13T02:25:22.175Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/trello/favicon.ico"
       contactUrl="https://trello.com/home"
       // Missing contactEmail
       previewLinkImage="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/trello/imagePreview.png"
       GettingStarted={GettingStarted}
       Description={Description}
+      FirstRequest={FirstRequest}
+      categories={["collaboration"]}
       methods={[
   {
     "url": "/actions/{idAction}",
@@ -36,7 +40,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idAction",
         "schema": "string",
         "required": true,
-        "description": "idAction"
+        "description": "idAction",
+        "example": "IDACTION"
       }
     ],
     "responses": [
@@ -62,7 +67,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idAction",
         "schema": "string",
         "required": true,
-        "description": "idAction"
+        "description": "idAction",
+        "example": "IDACTION"
       },
       {
         "name": "display",
@@ -80,7 +86,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "fields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: data, date, idMemberCreator or type"
+        "description": "all or a comma-separated list of: data, date, idMemberCreator or type",
+        "default": "all"
       },
       {
         "name": "member",
@@ -92,7 +99,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "memberFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: avatarHash, bio, bioData, confirmed, fullName, idPremOrgsAdmin, initials, memberType, products, status, url or username"
+        "description": "all or a comma-separated list of: avatarHash, bio, bioData, confirmed, fullName, idPremOrgsAdmin, initials, memberType, products, status, url or username",
+        "default": "avatarHash, fullName, initials and username"
       },
       {
         "name": "memberCreator",
@@ -104,7 +112,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "memberCreatorFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: avatarHash, bio, bioData, confirmed, fullName, idPremOrgsAdmin, initials, memberType, products, status, url or username"
+        "description": "all or a comma-separated list of: avatarHash, bio, bioData, confirmed, fullName, idPremOrgsAdmin, initials, memberType, products, status, url or username",
+        "default": "avatarHash, fullName, initials and username"
       }
     ],
     "responses": [
@@ -130,7 +139,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idAction",
         "schema": "string",
         "required": true,
-        "description": "idAction"
+        "description": "idAction",
+        "example": "IDACTION"
       },
       {
         "name": "text",
@@ -161,13 +171,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idAction",
         "schema": "string",
         "required": true,
-        "description": "idAction"
+        "description": "idAction",
+        "example": "IDACTION"
       },
       {
         "name": "fields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: closed, dateLastActivity, dateLastView, desc, descData, idOrganization, invitations, invited, labelNames, memberships, name, pinned, powerUps, prefs, shortLink, shortUrl, starred, subscribed or url"
+        "description": "all or a comma-separated list of: closed, dateLastActivity, dateLastView, desc, descData, idOrganization, invitations, invited, labelNames, memberships, name, pinned, powerUps, prefs, shortLink, shortUrl, starred, subscribed or url",
+        "default": "all"
       }
     ],
     "responses": [
@@ -193,13 +205,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idAction",
         "schema": "string",
         "required": true,
-        "description": "idAction"
+        "description": "idAction",
+        "example": "IDACTION"
       },
       {
         "name": "field",
         "schema": "string",
         "required": true,
-        "description": "field"
+        "description": "field",
+        "example": "FIELD"
       }
     ],
     "responses": [
@@ -225,13 +239,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idAction",
         "schema": "string",
         "required": true,
-        "description": "idAction"
+        "description": "idAction",
+        "example": "IDACTION"
       },
       {
         "name": "fields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: badges, checkItemStates, closed, dateLastActivity, desc, descData, due, email, idAttachmentCover, idBoard, idChecklists, idLabels, idList, idMembers, idMembersVoted, idShort, labels, manualCoverAttachment, name, pos, shortLink, shortUrl, subscribed or url"
+        "description": "all or a comma-separated list of: badges, checkItemStates, closed, dateLastActivity, desc, descData, due, email, idAttachmentCover, idBoard, idChecklists, idLabels, idList, idMembers, idMembersVoted, idShort, labels, manualCoverAttachment, name, pos, shortLink, shortUrl, subscribed or url",
+        "default": "all"
       }
     ],
     "responses": [
@@ -257,13 +273,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idAction",
         "schema": "string",
         "required": true,
-        "description": "idAction"
+        "description": "idAction",
+        "example": "IDACTION"
       },
       {
         "name": "field",
         "schema": "string",
         "required": true,
-        "description": "field"
+        "description": "field",
+        "example": "FIELD"
       }
     ],
     "responses": [
@@ -289,7 +307,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idAction",
         "schema": "string",
         "required": true,
-        "description": "idAction"
+        "description": "idAction",
+        "example": "IDACTION"
       }
     ],
     "responses": [
@@ -315,7 +334,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idAction",
         "schema": "string",
         "required": true,
-        "description": "idAction"
+        "description": "idAction",
+        "example": "IDACTION"
       }
     ],
     "responses": [
@@ -341,13 +361,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idAction",
         "schema": "string",
         "required": true,
-        "description": "idAction"
+        "description": "idAction",
+        "example": "IDACTION"
       },
       {
         "name": "fields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: closed, idBoard, name, pos or subscribed"
+        "description": "all or a comma-separated list of: closed, idBoard, name, pos or subscribed",
+        "default": "all"
       }
     ],
     "responses": [
@@ -373,13 +395,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idAction",
         "schema": "string",
         "required": true,
-        "description": "idAction"
+        "description": "idAction",
+        "example": "IDACTION"
       },
       {
         "name": "field",
         "schema": "string",
         "required": true,
-        "description": "field"
+        "description": "field",
+        "example": "FIELD"
       }
     ],
     "responses": [
@@ -405,13 +429,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idAction",
         "schema": "string",
         "required": true,
-        "description": "idAction"
+        "description": "idAction",
+        "example": "IDACTION"
       },
       {
         "name": "fields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: avatarHash, avatarSource, bio, bioData, confirmed, email, fullName, gravatarHash, idBoards, idBoardsPinned, idOrganizations, idPremOrgsAdmin, initials, loginTypes, memberType, oneTimeMessagesDismissed, prefs, premiumFeatures, products, status, status, trophies, uploadedAvatarHash, url or username"
+        "description": "all or a comma-separated list of: avatarHash, avatarSource, bio, bioData, confirmed, email, fullName, gravatarHash, idBoards, idBoardsPinned, idOrganizations, idPremOrgsAdmin, initials, loginTypes, memberType, oneTimeMessagesDismissed, prefs, premiumFeatures, products, status, status, trophies, uploadedAvatarHash, url or username",
+        "default": "all"
       }
     ],
     "responses": [
@@ -437,13 +463,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idAction",
         "schema": "string",
         "required": true,
-        "description": "idAction"
+        "description": "idAction",
+        "example": "IDACTION"
       },
       {
         "name": "field",
         "schema": "string",
         "required": true,
-        "description": "field"
+        "description": "field",
+        "example": "FIELD"
       }
     ],
     "responses": [
@@ -469,13 +497,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idAction",
         "schema": "string",
         "required": true,
-        "description": "idAction"
+        "description": "idAction",
+        "example": "IDACTION"
       },
       {
         "name": "fields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: avatarHash, avatarSource, bio, bioData, confirmed, email, fullName, gravatarHash, idBoards, idBoardsPinned, idOrganizations, idPremOrgsAdmin, initials, loginTypes, memberType, oneTimeMessagesDismissed, prefs, premiumFeatures, products, status, status, trophies, uploadedAvatarHash, url or username"
+        "description": "all or a comma-separated list of: avatarHash, avatarSource, bio, bioData, confirmed, email, fullName, gravatarHash, idBoards, idBoardsPinned, idOrganizations, idPremOrgsAdmin, initials, loginTypes, memberType, oneTimeMessagesDismissed, prefs, premiumFeatures, products, status, status, trophies, uploadedAvatarHash, url or username",
+        "default": "all"
       }
     ],
     "responses": [
@@ -501,13 +531,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idAction",
         "schema": "string",
         "required": true,
-        "description": "idAction"
+        "description": "idAction",
+        "example": "IDACTION"
       },
       {
         "name": "field",
         "schema": "string",
         "required": true,
-        "description": "field"
+        "description": "field",
+        "example": "FIELD"
       }
     ],
     "responses": [
@@ -533,13 +565,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idAction",
         "schema": "string",
         "required": true,
-        "description": "idAction"
+        "description": "idAction",
+        "example": "IDACTION"
       },
       {
         "name": "fields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: billableMemberCount, desc, descData, displayName, idBoards, invitations, invited, logoHash, memberships, name, powerUps, prefs, premiumFeatures, products, url or website"
+        "description": "all or a comma-separated list of: billableMemberCount, desc, descData, displayName, idBoards, invitations, invited, logoHash, memberships, name, powerUps, prefs, premiumFeatures, products, url or website",
+        "default": "all"
       }
     ],
     "responses": [
@@ -565,13 +599,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idAction",
         "schema": "string",
         "required": true,
-        "description": "idAction"
+        "description": "idAction",
+        "example": "IDACTION"
       },
       {
         "name": "field",
         "schema": "string",
         "required": true,
-        "description": "field"
+        "description": "field",
+        "example": "FIELD"
       }
     ],
     "responses": [
@@ -597,7 +633,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idAction",
         "schema": "string",
         "required": true,
-        "description": "idAction"
+        "description": "idAction",
+        "example": "IDACTION"
       },
       {
         "name": "value",
@@ -628,13 +665,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idAction",
         "schema": "string",
         "required": true,
-        "description": "idAction"
+        "description": "idAction",
+        "example": "IDACTION"
       },
       {
         "name": "field",
         "schema": "string",
         "required": true,
-        "description": "field"
+        "description": "field",
+        "example": "FIELD"
       }
     ],
     "responses": [
@@ -660,7 +699,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "urls",
         "schema": "string",
         "required": true,
-        "description": "list of API v1 GET routes, not including the version prefix"
+        "description": "list of API v1 GET routes, not including the version prefix",
+        "example": "URLS"
       }
     ],
     "responses": [
@@ -861,7 +901,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idBoard",
         "schema": "string",
         "required": true,
-        "description": "board_id"
+        "description": "board_id",
+        "example": "IDBOARD"
       },
       {
         "name": "actions",
@@ -885,7 +926,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "actionsFormat",
         "schema": "string",
         "required": false,
-        "description": "One of: count, list or minimal"
+        "description": "One of: count, list or minimal",
+        "default": "list"
       },
       {
         "name": "actionsSince",
@@ -897,13 +939,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "actionsLimit",
         "schema": "string",
         "required": false,
-        "description": "a number from 0 to 1000"
+        "description": "a number from 0 to 1000",
+        "default": "50"
       },
       {
         "name": "actionFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: data, date, idMemberCreator or type"
+        "description": "all or a comma-separated list of: data, date, idMemberCreator or type",
+        "default": "all"
       },
       {
         "name": "actionMember",
@@ -915,7 +959,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "actionMemberFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: avatarHash, bio, bioData, confirmed, fullName, idPremOrgsAdmin, initials, memberType, products, status, url or username"
+        "description": "all or a comma-separated list of: avatarHash, bio, bioData, confirmed, fullName, idPremOrgsAdmin, initials, memberType, products, status, url or username",
+        "default": "avatarHash, fullName, initials and username"
       },
       {
         "name": "actionMemberCreator",
@@ -927,19 +972,22 @@ export default function TrelloTypeScriptSdk() {
         "name": "actionMemberCreatorFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: avatarHash, bio, bioData, confirmed, fullName, idPremOrgsAdmin, initials, memberType, products, status, url or username"
+        "description": "all or a comma-separated list of: avatarHash, bio, bioData, confirmed, fullName, idPremOrgsAdmin, initials, memberType, products, status, url or username",
+        "default": "avatarHash, fullName, initials and username"
       },
       {
         "name": "cards",
         "schema": "string",
         "required": false,
-        "description": "One of: all, closed, none, open or visible"
+        "description": "One of: all, closed, none, open or visible",
+        "default": "none"
       },
       {
         "name": "cardFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: badges, checkItemStates, closed, dateLastActivity, desc, descData, due, email, idAttachmentCover, idBoard, idChecklists, idLabels, idList, idMembers, idMembersVoted, idShort, labels, manualCoverAttachment, name, pos, shortLink, shortUrl, subscribed or url"
+        "description": "all or a comma-separated list of: badges, checkItemStates, closed, dateLastActivity, desc, descData, due, email, idAttachmentCover, idBoard, idChecklists, idLabels, idList, idMembers, idMembersVoted, idShort, labels, manualCoverAttachment, name, pos, shortLink, shortUrl, subscribed or url",
+        "default": "all"
       },
       {
         "name": "cardAttachments",
@@ -951,13 +999,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "cardAttachmentFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: bytes, date, edgeColor, idMember, isUpload, mimeType, name, previews or url"
+        "description": "all or a comma-separated list of: bytes, date, edgeColor, idMember, isUpload, mimeType, name, previews or url",
+        "default": "all"
       },
       {
         "name": "cardChecklists",
         "schema": "string",
         "required": false,
-        "description": "One of: all or none"
+        "description": "One of: all or none",
+        "default": "none"
       },
       {
         "name": "cardStickers",
@@ -969,43 +1019,50 @@ export default function TrelloTypeScriptSdk() {
         "name": "boardStars",
         "schema": "string",
         "required": false,
-        "description": "One of: mine or none"
+        "description": "One of: mine or none",
+        "default": "none"
       },
       {
         "name": "labels",
         "schema": "string",
         "required": false,
-        "description": "One of: all or none"
+        "description": "One of: all or none",
+        "default": "none"
       },
       {
         "name": "labelFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: color, idBoard, name or uses"
+        "description": "all or a comma-separated list of: color, idBoard, name or uses",
+        "default": "all"
       },
       {
         "name": "labelsLimit",
         "schema": "string",
         "required": false,
-        "description": "a number from 0 to 1000"
+        "description": "a number from 0 to 1000",
+        "default": "50"
       },
       {
         "name": "lists",
         "schema": "string",
         "required": false,
-        "description": "One of: all, closed, none or open"
+        "description": "One of: all, closed, none or open",
+        "default": "none"
       },
       {
         "name": "listFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: closed, idBoard, name, pos or subscribed"
+        "description": "all or a comma-separated list of: closed, idBoard, name, pos or subscribed",
+        "default": "all"
       },
       {
         "name": "memberships",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: active, admin, deactivated, me or normal"
+        "description": "all or a comma-separated list of: active, admin, deactivated, me or normal",
+        "default": "none"
       },
       {
         "name": "membershipsMember",
@@ -1017,43 +1074,50 @@ export default function TrelloTypeScriptSdk() {
         "name": "membershipsMemberFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: avatarHash, bio, bioData, confirmed, fullName, idPremOrgsAdmin, initials, memberType, products, status, url or username"
+        "description": "all or a comma-separated list of: avatarHash, bio, bioData, confirmed, fullName, idPremOrgsAdmin, initials, memberType, products, status, url or username",
+        "default": "fullName and username"
       },
       {
         "name": "members",
         "schema": "string",
         "required": false,
-        "description": "One of: admins, all, none, normal or owners"
+        "description": "One of: admins, all, none, normal or owners",
+        "default": "none"
       },
       {
         "name": "memberFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: avatarHash, bio, bioData, confirmed, fullName, idPremOrgsAdmin, initials, memberType, products, status, url or username"
+        "description": "all or a comma-separated list of: avatarHash, bio, bioData, confirmed, fullName, idPremOrgsAdmin, initials, memberType, products, status, url or username",
+        "default": "avatarHash, initials, fullName, username and confirmed"
       },
       {
         "name": "membersInvited",
         "schema": "string",
         "required": false,
-        "description": "One of: admins, all, none, normal or owners"
+        "description": "One of: admins, all, none, normal or owners",
+        "default": "none"
       },
       {
         "name": "membersInvitedFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: avatarHash, bio, bioData, confirmed, fullName, idPremOrgsAdmin, initials, memberType, products, status, url or username"
+        "description": "all or a comma-separated list of: avatarHash, bio, bioData, confirmed, fullName, idPremOrgsAdmin, initials, memberType, products, status, url or username",
+        "default": "avatarHash, initials, fullName and username"
       },
       {
         "name": "checklists",
         "schema": "string",
         "required": false,
-        "description": "One of: all or none"
+        "description": "One of: all or none",
+        "default": "none"
       },
       {
         "name": "checklistFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: idBoard, idCard, name or pos"
+        "description": "all or a comma-separated list of: idBoard, idCard, name or pos",
+        "default": "all"
       },
       {
         "name": "organization",
@@ -1065,13 +1129,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "organizationFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: billableMemberCount, desc, descData, displayName, idBoards, invitations, invited, logoHash, memberships, name, powerUps, prefs, premiumFeatures, products, url or website"
+        "description": "all or a comma-separated list of: billableMemberCount, desc, descData, displayName, idBoards, invitations, invited, logoHash, memberships, name, powerUps, prefs, premiumFeatures, products, url or website",
+        "default": "name and displayName"
       },
       {
         "name": "organizationMemberships",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: active, admin, deactivated, me or normal"
+        "description": "all or a comma-separated list of: active, admin, deactivated, me or normal",
+        "default": "none"
       },
       {
         "name": "myPrefs",
@@ -1083,7 +1149,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "fields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: closed, dateLastActivity, dateLastView, desc, descData, idOrganization, invitations, invited, labelNames, memberships, name, pinned, powerUps, prefs, shortLink, shortUrl, starred, subscribed or url"
+        "description": "all or a comma-separated list of: closed, dateLastActivity, dateLastView, desc, descData, idOrganization, invitations, invited, labelNames, memberships, name, pinned, powerUps, prefs, shortLink, shortUrl, starred, subscribed or url",
+        "default": "name, desc, descData, closed, idOrganization, pinned, url, shortUrl, prefs and labelNames"
       }
     ],
     "responses": [
@@ -1109,7 +1176,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idBoard",
         "schema": "string",
         "required": true,
-        "description": "board_id"
+        "description": "board_id",
+        "example": "IDBOARD"
       },
       {
         "name": "closed",
@@ -1290,7 +1358,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idBoard",
         "schema": "string",
         "required": true,
-        "description": "board_id"
+        "description": "board_id",
+        "example": "IDBOARD"
       },
       {
         "name": "entities",
@@ -1308,25 +1377,29 @@ export default function TrelloTypeScriptSdk() {
         "name": "filter",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: addAttachmentToCard, addChecklistToCard, addMemberToBoard, addMemberToCard, addMemberToOrganization, addToOrganizationBoard, commentCard, convertToCardFromCheckItem, copyBoard, copyCard, copyCommentCard, createBoard, createCard, createList, createOrganization, deleteAttachmentFromCard, deleteBoardInvitation, deleteCard, deleteOrganizationInvitation, disablePowerUp, emailCard, enablePowerUp, makeAdminOfBoard, makeNormalMemberOfBoard, makeNormalMemberOfOrganization, makeObserverOfBoard, memberJoinedTrello, moveCardFromBoard, moveCardToBoard, moveListFromBoard, moveListToBoard, removeChecklistFromCard, removeFromOrganizationBoard, removeMemberFromCard, unconfirmedBoardInvitation, unconfirmedOrganizationInvitation, updateBoard, updateCard, updateCard:closed, updateCard:desc, updateCard:idList, updateCard:name, updateCheckItemStateOnCard, updateChecklist, updateList, updateList:closed, updateList:name, updateMember or updateOrganization"
+        "description": "all or a comma-separated list of: addAttachmentToCard, addChecklistToCard, addMemberToBoard, addMemberToCard, addMemberToOrganization, addToOrganizationBoard, commentCard, convertToCardFromCheckItem, copyBoard, copyCard, copyCommentCard, createBoard, createCard, createList, createOrganization, deleteAttachmentFromCard, deleteBoardInvitation, deleteCard, deleteOrganizationInvitation, disablePowerUp, emailCard, enablePowerUp, makeAdminOfBoard, makeNormalMemberOfBoard, makeNormalMemberOfOrganization, makeObserverOfBoard, memberJoinedTrello, moveCardFromBoard, moveCardToBoard, moveListFromBoard, moveListToBoard, removeChecklistFromCard, removeFromOrganizationBoard, removeMemberFromCard, unconfirmedBoardInvitation, unconfirmedOrganizationInvitation, updateBoard, updateCard, updateCard:closed, updateCard:desc, updateCard:idList, updateCard:name, updateCheckItemStateOnCard, updateChecklist, updateList, updateList:closed, updateList:name, updateMember or updateOrganization",
+        "default": "all"
       },
       {
         "name": "fields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: data, date, idMemberCreator or type"
+        "description": "all or a comma-separated list of: data, date, idMemberCreator or type",
+        "default": "all"
       },
       {
         "name": "limit",
         "schema": "string",
         "required": false,
-        "description": "a number from 0 to 1000"
+        "description": "a number from 0 to 1000",
+        "default": "50"
       },
       {
         "name": "format",
         "schema": "string",
         "required": false,
-        "description": "One of: count, list or minimal"
+        "description": "One of: count, list or minimal",
+        "default": "list"
       },
       {
         "name": "since",
@@ -1344,7 +1417,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "page",
         "schema": "string",
         "required": false,
-        "description": "Page * limit must be less than 1000"
+        "description": "Page * limit must be less than 1000",
+        "default": "0"
       },
       {
         "name": "idModels",
@@ -1362,7 +1436,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "memberFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: avatarHash, bio, bioData, confirmed, fullName, idPremOrgsAdmin, initials, memberType, products, status, url or username"
+        "description": "all or a comma-separated list of: avatarHash, bio, bioData, confirmed, fullName, idPremOrgsAdmin, initials, memberType, products, status, url or username",
+        "default": "avatarHash, fullName, initials and username"
       },
       {
         "name": "memberCreator",
@@ -1374,7 +1449,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "memberCreatorFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: avatarHash, bio, bioData, confirmed, fullName, idPremOrgsAdmin, initials, memberType, products, status, url or username"
+        "description": "all or a comma-separated list of: avatarHash, bio, bioData, confirmed, fullName, idPremOrgsAdmin, initials, memberType, products, status, url or username",
+        "default": "avatarHash, fullName, initials and username"
       }
     ],
     "responses": [
@@ -1400,13 +1476,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idBoard",
         "schema": "string",
         "required": true,
-        "description": "board_id"
+        "description": "board_id",
+        "example": "IDBOARD"
       },
       {
         "name": "filter",
         "schema": "string",
         "required": false,
-        "description": "One of: mine or none"
+        "description": "One of: mine or none",
+        "default": "mine"
       }
     ],
     "responses": [
@@ -1432,7 +1510,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idBoard",
         "schema": "string",
         "required": true,
-        "description": "board_id"
+        "description": "board_id",
+        "example": "IDBOARD"
       }
     ],
     "responses": [
@@ -1458,7 +1537,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idBoard",
         "schema": "string",
         "required": true,
-        "description": "board_id"
+        "description": "board_id",
+        "example": "IDBOARD"
       },
       {
         "name": "actions",
@@ -1476,7 +1556,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "attachmentFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: bytes, date, edgeColor, idMember, isUpload, mimeType, name, previews or url"
+        "description": "all or a comma-separated list of: bytes, date, edgeColor, idMember, isUpload, mimeType, name, previews or url",
+        "default": "all"
       },
       {
         "name": "stickers",
@@ -1494,7 +1575,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "memberFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: avatarHash, bio, bioData, confirmed, fullName, idPremOrgsAdmin, initials, memberType, products, status, url or username"
+        "description": "all or a comma-separated list of: avatarHash, bio, bioData, confirmed, fullName, idPremOrgsAdmin, initials, memberType, products, status, url or username",
+        "default": "avatarHash, fullName, initials and username"
       },
       {
         "name": "checkItemStates",
@@ -1506,7 +1588,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "checklists",
         "schema": "string",
         "required": false,
-        "description": "One of: all or none"
+        "description": "One of: all or none",
+        "default": "none"
       },
       {
         "name": "limit",
@@ -1530,13 +1613,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "filter",
         "schema": "string",
         "required": false,
-        "description": "One of: all, closed, none, open or visible"
+        "description": "One of: all, closed, none, open or visible",
+        "default": "visible"
       },
       {
         "name": "fields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: badges, checkItemStates, closed, dateLastActivity, desc, descData, due, email, idAttachmentCover, idBoard, idChecklists, idLabels, idList, idMembers, idMembersVoted, idShort, labels, manualCoverAttachment, name, pos, shortLink, shortUrl, subscribed or url"
+        "description": "all or a comma-separated list of: badges, checkItemStates, closed, dateLastActivity, desc, descData, due, email, idAttachmentCover, idBoard, idChecklists, idLabels, idList, idMembers, idMembersVoted, idShort, labels, manualCoverAttachment, name, pos, shortLink, shortUrl, subscribed or url",
+        "default": "all"
       }
     ],
     "responses": [
@@ -1562,13 +1647,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idBoard",
         "schema": "string",
         "required": true,
-        "description": "board_id"
+        "description": "board_id",
+        "example": "IDBOARD"
       },
       {
         "name": "filter",
         "schema": "string",
         "required": true,
-        "description": "filter"
+        "description": "filter",
+        "example": "FILTER"
       }
     ],
     "responses": [
@@ -1594,13 +1681,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idBoard",
         "schema": "string",
         "required": true,
-        "description": "board_id"
+        "description": "board_id",
+        "example": "IDBOARD"
       },
       {
         "name": "idCard",
         "schema": "string",
         "required": true,
-        "description": "idCard"
+        "description": "idCard",
+        "example": "IDCARD"
       },
       {
         "name": "attachments",
@@ -1612,7 +1701,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "attachmentFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: bytes, date, edgeColor, idMember, isUpload, mimeType, name, previews or url"
+        "description": "all or a comma-separated list of: bytes, date, edgeColor, idMember, isUpload, mimeType, name, previews or url",
+        "default": "all"
       },
       {
         "name": "actions",
@@ -1636,19 +1726,22 @@ export default function TrelloTypeScriptSdk() {
         "name": "actionsLimit",
         "schema": "string",
         "required": false,
-        "description": "a number from 0 to 1000"
+        "description": "a number from 0 to 1000",
+        "default": "50"
       },
       {
         "name": "actionFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: data, date, idMemberCreator or type"
+        "description": "all or a comma-separated list of: data, date, idMemberCreator or type",
+        "default": "all"
       },
       {
         "name": "actionMemberCreatorFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: avatarHash, bio, bioData, confirmed, fullName, idPremOrgsAdmin, initials, memberType, products, status, url or username"
+        "description": "all or a comma-separated list of: avatarHash, bio, bioData, confirmed, fullName, idPremOrgsAdmin, initials, memberType, products, status, url or username",
+        "default": "avatarHash, fullName, initials and username"
       },
       {
         "name": "members",
@@ -1660,7 +1753,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "memberFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: avatarHash, bio, bioData, confirmed, fullName, idPremOrgsAdmin, initials, memberType, products, status, url or username"
+        "description": "all or a comma-separated list of: avatarHash, bio, bioData, confirmed, fullName, idPremOrgsAdmin, initials, memberType, products, status, url or username",
+        "default": "avatarHash, initials, fullName and username"
       },
       {
         "name": "checkItemStates",
@@ -1672,7 +1766,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "checkItemStateFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: idCheckItem or state"
+        "description": "all or a comma-separated list of: idCheckItem or state",
+        "default": "all"
       },
       {
         "name": "labels",
@@ -1684,19 +1779,22 @@ export default function TrelloTypeScriptSdk() {
         "name": "checklists",
         "schema": "string",
         "required": false,
-        "description": "One of: all or none"
+        "description": "One of: all or none",
+        "default": "none"
       },
       {
         "name": "checklistFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: idBoard, idCard, name or pos"
+        "description": "all or a comma-separated list of: idBoard, idCard, name or pos",
+        "default": "all"
       },
       {
         "name": "fields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: badges, checkItemStates, closed, dateLastActivity, desc, descData, due, email, idAttachmentCover, idBoard, idChecklists, idLabels, idList, idMembers, idMembersVoted, idShort, labels, manualCoverAttachment, name, pos, shortLink, shortUrl, subscribed or url"
+        "description": "all or a comma-separated list of: badges, checkItemStates, closed, dateLastActivity, desc, descData, due, email, idAttachmentCover, idBoard, idChecklists, idLabels, idList, idMembers, idMembersVoted, idShort, labels, manualCoverAttachment, name, pos, shortLink, shortUrl, subscribed or url",
+        "default": "all"
       }
     ],
     "responses": [
@@ -1722,43 +1820,50 @@ export default function TrelloTypeScriptSdk() {
         "name": "idBoard",
         "schema": "string",
         "required": true,
-        "description": "board_id"
+        "description": "board_id",
+        "example": "IDBOARD"
       },
       {
         "name": "cards",
         "schema": "string",
         "required": false,
-        "description": "One of: all, closed, none, open or visible"
+        "description": "One of: all, closed, none, open or visible",
+        "default": "none"
       },
       {
         "name": "cardFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: badges, checkItemStates, closed, dateLastActivity, desc, descData, due, email, idAttachmentCover, idBoard, idChecklists, idLabels, idList, idMembers, idMembersVoted, idShort, labels, manualCoverAttachment, name, pos, shortLink, shortUrl, subscribed or url"
+        "description": "all or a comma-separated list of: badges, checkItemStates, closed, dateLastActivity, desc, descData, due, email, idAttachmentCover, idBoard, idChecklists, idLabels, idList, idMembers, idMembersVoted, idShort, labels, manualCoverAttachment, name, pos, shortLink, shortUrl, subscribed or url",
+        "default": "all"
       },
       {
         "name": "checkItems",
         "schema": "string",
         "required": false,
-        "description": "One of: all or none"
+        "description": "One of: all or none",
+        "default": "all"
       },
       {
         "name": "checkItemFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: name, nameData, pos, state or type"
+        "description": "all or a comma-separated list of: name, nameData, pos, state or type",
+        "default": "name, nameData, pos and state"
       },
       {
         "name": "filter",
         "schema": "string",
         "required": false,
-        "description": "One of: all or none"
+        "description": "One of: all or none",
+        "default": "all"
       },
       {
         "name": "fields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: idBoard, idCard, name or pos"
+        "description": "all or a comma-separated list of: idBoard, idCard, name or pos",
+        "default": "all"
       }
     ],
     "responses": [
@@ -1784,7 +1889,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idBoard",
         "schema": "string",
         "required": true,
-        "description": "board_id"
+        "description": "board_id",
+        "example": "IDBOARD"
       },
       {
         "name": "name",
@@ -1815,7 +1921,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idBoard",
         "schema": "string",
         "required": true,
-        "description": "board_id"
+        "description": "board_id",
+        "example": "IDBOARD"
       },
       {
         "name": "value",
@@ -1846,19 +1953,22 @@ export default function TrelloTypeScriptSdk() {
         "name": "idBoard",
         "schema": "string",
         "required": true,
-        "description": "board_id"
+        "description": "board_id",
+        "example": "IDBOARD"
       },
       {
         "name": "tags",
         "schema": "string",
         "required": true,
-        "description": "A valid tag for subscribing"
+        "description": "A valid tag for subscribing",
+        "example": "TAGS"
       },
       {
         "name": "ixLastUpdate",
         "schema": "string",
         "required": true,
-        "description": "a number from -1 to Infinity"
+        "description": "a number from -1 to Infinity",
+        "example": "IXLASTUPDATE"
       }
     ],
     "responses": [
@@ -1884,7 +1994,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idBoard",
         "schema": "string",
         "required": true,
-        "description": "board_id"
+        "description": "board_id",
+        "example": "IDBOARD"
       },
       {
         "name": "value",
@@ -1915,7 +2026,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idBoard",
         "schema": "string",
         "required": true,
-        "description": "board_id"
+        "description": "board_id",
+        "example": "IDBOARD"
       }
     ],
     "responses": [
@@ -1941,7 +2053,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idBoard",
         "schema": "string",
         "required": true,
-        "description": "board_id"
+        "description": "board_id",
+        "example": "IDBOARD"
       },
       {
         "name": "value",
@@ -1972,7 +2085,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idBoard",
         "schema": "string",
         "required": true,
-        "description": "board_id"
+        "description": "board_id",
+        "example": "IDBOARD"
       },
       {
         "name": "value",
@@ -2003,7 +2117,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idBoard",
         "schema": "string",
         "required": true,
-        "description": "board_id"
+        "description": "board_id",
+        "example": "IDBOARD"
       },
       {
         "name": "value",
@@ -2034,7 +2149,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idBoard",
         "schema": "string",
         "required": true,
-        "description": "board_id"
+        "description": "board_id",
+        "example": "IDBOARD"
       },
       {
         "name": "value",
@@ -2065,7 +2181,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idBoard",
         "schema": "string",
         "required": true,
-        "description": "board_id"
+        "description": "board_id",
+        "example": "IDBOARD"
       },
       {
         "name": "value",
@@ -2096,7 +2213,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idBoard",
         "schema": "string",
         "required": true,
-        "description": "board_id"
+        "description": "board_id",
+        "example": "IDBOARD"
       },
       {
         "name": "value",
@@ -2127,7 +2245,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idBoard",
         "schema": "string",
         "required": true,
-        "description": "board_id"
+        "description": "board_id",
+        "example": "IDBOARD"
       },
       {
         "name": "value",
@@ -2158,19 +2277,22 @@ export default function TrelloTypeScriptSdk() {
         "name": "idBoard",
         "schema": "string",
         "required": true,
-        "description": "board_id"
+        "description": "board_id",
+        "example": "IDBOARD"
       },
       {
         "name": "fields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: color, idBoard, name or uses"
+        "description": "all or a comma-separated list of: color, idBoard, name or uses",
+        "default": "all"
       },
       {
         "name": "limit",
         "schema": "string",
         "required": false,
-        "description": "a number from 0 to 1000"
+        "description": "a number from 0 to 1000",
+        "default": "50"
       }
     ],
     "responses": [
@@ -2196,7 +2318,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idBoard",
         "schema": "string",
         "required": true,
-        "description": "board_id"
+        "description": "board_id",
+        "example": "IDBOARD"
       },
       {
         "name": "color",
@@ -2232,19 +2355,22 @@ export default function TrelloTypeScriptSdk() {
         "name": "idBoard",
         "schema": "string",
         "required": true,
-        "description": "board_id"
+        "description": "board_id",
+        "example": "IDBOARD"
       },
       {
         "name": "idLabel",
         "schema": "string",
         "required": true,
-        "description": "idLabel"
+        "description": "idLabel",
+        "example": "IDLABEL"
       },
       {
         "name": "fields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: color, idBoard, name or uses"
+        "description": "all or a comma-separated list of: color, idBoard, name or uses",
+        "default": "all"
       }
     ],
     "responses": [
@@ -2270,31 +2396,36 @@ export default function TrelloTypeScriptSdk() {
         "name": "idBoard",
         "schema": "string",
         "required": true,
-        "description": "board_id"
+        "description": "board_id",
+        "example": "IDBOARD"
       },
       {
         "name": "cards",
         "schema": "string",
         "required": false,
-        "description": "One of: all, closed, none, open or visible"
+        "description": "One of: all, closed, none, open or visible",
+        "default": "none"
       },
       {
         "name": "cardFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: badges, checkItemStates, closed, dateLastActivity, desc, descData, due, email, idAttachmentCover, idBoard, idChecklists, idLabels, idList, idMembers, idMembersVoted, idShort, labels, manualCoverAttachment, name, pos, shortLink, shortUrl, subscribed or url"
+        "description": "all or a comma-separated list of: badges, checkItemStates, closed, dateLastActivity, desc, descData, due, email, idAttachmentCover, idBoard, idChecklists, idLabels, idList, idMembers, idMembersVoted, idShort, labels, manualCoverAttachment, name, pos, shortLink, shortUrl, subscribed or url",
+        "default": "all"
       },
       {
         "name": "filter",
         "schema": "string",
         "required": false,
-        "description": "One of: all, closed, none or open"
+        "description": "One of: all, closed, none or open",
+        "default": "open"
       },
       {
         "name": "fields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: closed, idBoard, name, pos or subscribed"
+        "description": "all or a comma-separated list of: closed, idBoard, name, pos or subscribed",
+        "default": "all"
       }
     ],
     "responses": [
@@ -2320,7 +2451,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idBoard",
         "schema": "string",
         "required": true,
-        "description": "board_id"
+        "description": "board_id",
+        "example": "IDBOARD"
       },
       {
         "name": "name",
@@ -2356,13 +2488,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idBoard",
         "schema": "string",
         "required": true,
-        "description": "board_id"
+        "description": "board_id",
+        "example": "IDBOARD"
       },
       {
         "name": "filter",
         "schema": "string",
         "required": true,
-        "description": "filter"
+        "description": "filter",
+        "example": "FILTER"
       }
     ],
     "responses": [
@@ -2388,7 +2522,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idBoard",
         "schema": "string",
         "required": true,
-        "description": "board_id"
+        "description": "board_id",
+        "example": "IDBOARD"
       }
     ],
     "responses": [
@@ -2414,19 +2549,22 @@ export default function TrelloTypeScriptSdk() {
         "name": "idBoard",
         "schema": "string",
         "required": true,
-        "description": "board_id"
+        "description": "board_id",
+        "example": "IDBOARD"
       },
       {
         "name": "filter",
         "schema": "string",
         "required": false,
-        "description": "One of: admins, all, none, normal or owners"
+        "description": "One of: admins, all, none, normal or owners",
+        "default": "all"
       },
       {
         "name": "fields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: avatarHash, bio, bioData, confirmed, fullName, idPremOrgsAdmin, initials, memberType, products, status, url or username"
+        "description": "all or a comma-separated list of: avatarHash, bio, bioData, confirmed, fullName, idPremOrgsAdmin, initials, memberType, products, status, url or username",
+        "default": "fullName and username"
       },
       {
         "name": "activity",
@@ -2458,7 +2596,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idBoard",
         "schema": "string",
         "required": true,
-        "description": "board_id"
+        "description": "board_id",
+        "example": "IDBOARD"
       },
       {
         "name": "email",
@@ -2499,13 +2638,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idBoard",
         "schema": "string",
         "required": true,
-        "description": "board_id"
+        "description": "board_id",
+        "example": "IDBOARD"
       },
       {
         "name": "filter",
         "schema": "string",
         "required": true,
-        "description": "filter"
+        "description": "filter",
+        "example": "FILTER"
       }
     ],
     "responses": [
@@ -2531,13 +2672,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idBoard",
         "schema": "string",
         "required": true,
-        "description": "board_id"
+        "description": "board_id",
+        "example": "IDBOARD"
       },
       {
         "name": "idMember",
         "schema": "string",
         "required": true,
-        "description": "idMember"
+        "description": "idMember",
+        "example": "IDMEMBER"
       }
     ],
     "responses": [
@@ -2563,13 +2706,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idBoard",
         "schema": "string",
         "required": true,
-        "description": "board_id"
+        "description": "board_id",
+        "example": "IDBOARD"
       },
       {
         "name": "idMember",
         "schema": "string",
         "required": true,
-        "description": "idMember"
+        "description": "idMember",
+        "example": "IDMEMBER"
       },
       {
         "name": "email",
@@ -2610,13 +2755,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idBoard",
         "schema": "string",
         "required": true,
-        "description": "board_id"
+        "description": "board_id",
+        "example": "IDBOARD"
       },
       {
         "name": "idMember",
         "schema": "string",
         "required": true,
-        "description": "idMember"
+        "description": "idMember",
+        "example": "IDMEMBER"
       },
       {
         "name": "actions",
@@ -2634,7 +2781,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "attachmentFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: bytes, date, edgeColor, idMember, isUpload, mimeType, name, previews or url"
+        "description": "all or a comma-separated list of: bytes, date, edgeColor, idMember, isUpload, mimeType, name, previews or url",
+        "default": "all"
       },
       {
         "name": "members",
@@ -2646,7 +2794,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "memberFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: avatarHash, bio, bioData, confirmed, fullName, idPremOrgsAdmin, initials, memberType, products, status, url or username"
+        "description": "all or a comma-separated list of: avatarHash, bio, bioData, confirmed, fullName, idPremOrgsAdmin, initials, memberType, products, status, url or username",
+        "default": "avatarHash, fullName, initials and username"
       },
       {
         "name": "checkItemStates",
@@ -2658,7 +2807,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "checklists",
         "schema": "string",
         "required": false,
-        "description": "One of: all or none"
+        "description": "One of: all or none",
+        "default": "none"
       },
       {
         "name": "board",
@@ -2670,7 +2820,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "boardFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: closed, dateLastActivity, dateLastView, desc, descData, idOrganization, invitations, invited, labelNames, memberships, name, pinned, powerUps, prefs, shortLink, shortUrl, starred, subscribed or url"
+        "description": "all or a comma-separated list of: closed, dateLastActivity, dateLastView, desc, descData, idOrganization, invitations, invited, labelNames, memberships, name, pinned, powerUps, prefs, shortLink, shortUrl, starred, subscribed or url",
+        "default": "name, desc, closed, idOrganization, pinned, url and prefs"
       },
       {
         "name": "list",
@@ -2682,19 +2833,22 @@ export default function TrelloTypeScriptSdk() {
         "name": "listFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: closed, idBoard, name, pos or subscribed"
+        "description": "all or a comma-separated list of: closed, idBoard, name, pos or subscribed",
+        "default": "all"
       },
       {
         "name": "filter",
         "schema": "string",
         "required": false,
-        "description": "One of: all, closed, none, open or visible"
+        "description": "One of: all, closed, none, open or visible",
+        "default": "visible"
       },
       {
         "name": "fields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: badges, checkItemStates, closed, dateLastActivity, desc, descData, due, email, idAttachmentCover, idBoard, idChecklists, idLabels, idList, idMembers, idMembersVoted, idShort, labels, manualCoverAttachment, name, pos, shortLink, shortUrl, subscribed or url"
+        "description": "all or a comma-separated list of: badges, checkItemStates, closed, dateLastActivity, desc, descData, due, email, idAttachmentCover, idBoard, idChecklists, idLabels, idList, idMembers, idMembersVoted, idShort, labels, manualCoverAttachment, name, pos, shortLink, shortUrl, subscribed or url",
+        "default": "all"
       }
     ],
     "responses": [
@@ -2720,13 +2874,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idBoard",
         "schema": "string",
         "required": true,
-        "description": "board_id"
+        "description": "board_id",
+        "example": "IDBOARD"
       },
       {
         "name": "fields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: avatarHash, avatarSource, bio, bioData, confirmed, email, fullName, gravatarHash, idBoards, idBoardsPinned, idOrganizations, idPremOrgsAdmin, initials, loginTypes, memberType, oneTimeMessagesDismissed, prefs, premiumFeatures, products, status, status, trophies, uploadedAvatarHash, url or username"
+        "description": "all or a comma-separated list of: avatarHash, avatarSource, bio, bioData, confirmed, email, fullName, gravatarHash, idBoards, idBoardsPinned, idOrganizations, idPremOrgsAdmin, initials, loginTypes, memberType, oneTimeMessagesDismissed, prefs, premiumFeatures, products, status, status, trophies, uploadedAvatarHash, url or username",
+        "default": "all"
       }
     ],
     "responses": [
@@ -2752,13 +2908,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idBoard",
         "schema": "string",
         "required": true,
-        "description": "board_id"
+        "description": "board_id",
+        "example": "IDBOARD"
       },
       {
         "name": "field",
         "schema": "string",
         "required": true,
-        "description": "field"
+        "description": "field",
+        "example": "FIELD"
       }
     ],
     "responses": [
@@ -2784,13 +2942,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idBoard",
         "schema": "string",
         "required": true,
-        "description": "board_id"
+        "description": "board_id",
+        "example": "IDBOARD"
       },
       {
         "name": "filter",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: active, admin, deactivated, me or normal"
+        "description": "all or a comma-separated list of: active, admin, deactivated, me or normal",
+        "default": "all"
       },
       {
         "name": "member",
@@ -2802,7 +2962,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "memberFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: avatarHash, bio, bioData, confirmed, fullName, idPremOrgsAdmin, initials, memberType, products, status, url or username"
+        "description": "all or a comma-separated list of: avatarHash, bio, bioData, confirmed, fullName, idPremOrgsAdmin, initials, memberType, products, status, url or username",
+        "default": "fullName and username"
       }
     ],
     "responses": [
@@ -2828,13 +2989,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idBoard",
         "schema": "string",
         "required": true,
-        "description": "board_id"
+        "description": "board_id",
+        "example": "IDBOARD"
       },
       {
         "name": "idMembership",
         "schema": "string",
         "required": true,
-        "description": "idMembership"
+        "description": "idMembership",
+        "example": "IDMEMBERSHIP"
       },
       {
         "name": "member",
@@ -2846,7 +3009,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "memberFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: avatarHash, bio, bioData, confirmed, fullName, idPremOrgsAdmin, initials, memberType, products, status, url or username"
+        "description": "all or a comma-separated list of: avatarHash, bio, bioData, confirmed, fullName, idPremOrgsAdmin, initials, memberType, products, status, url or username",
+        "default": "fullName and username"
       }
     ],
     "responses": [
@@ -2872,13 +3036,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idBoard",
         "schema": "string",
         "required": true,
-        "description": "board_id"
+        "description": "board_id",
+        "example": "IDBOARD"
       },
       {
         "name": "idMembership",
         "schema": "string",
         "required": true,
-        "description": "idMembership"
+        "description": "idMembership",
+        "example": "IDMEMBERSHIP"
       },
       {
         "name": "member_fields",
@@ -2914,7 +3080,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idBoard",
         "schema": "string",
         "required": true,
-        "description": "board_id"
+        "description": "board_id",
+        "example": "IDBOARD"
       }
     ],
     "responses": [
@@ -2940,7 +3107,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idBoard",
         "schema": "string",
         "required": true,
-        "description": "board_id"
+        "description": "board_id",
+        "example": "IDBOARD"
       },
       {
         "name": "value",
@@ -2971,7 +3139,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idBoard",
         "schema": "string",
         "required": true,
-        "description": "board_id"
+        "description": "board_id",
+        "example": "IDBOARD"
       },
       {
         "name": "value",
@@ -3002,7 +3171,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idBoard",
         "schema": "string",
         "required": true,
-        "description": "board_id"
+        "description": "board_id",
+        "example": "IDBOARD"
       },
       {
         "name": "value",
@@ -3033,7 +3203,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idBoard",
         "schema": "string",
         "required": true,
-        "description": "board_id"
+        "description": "board_id",
+        "example": "IDBOARD"
       },
       {
         "name": "value",
@@ -3064,7 +3235,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idBoard",
         "schema": "string",
         "required": true,
-        "description": "board_id"
+        "description": "board_id",
+        "example": "IDBOARD"
       },
       {
         "name": "value",
@@ -3095,7 +3267,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idBoard",
         "schema": "string",
         "required": true,
-        "description": "board_id"
+        "description": "board_id",
+        "example": "IDBOARD"
       },
       {
         "name": "value",
@@ -3126,7 +3299,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idBoard",
         "schema": "string",
         "required": true,
-        "description": "board_id"
+        "description": "board_id",
+        "example": "IDBOARD"
       },
       {
         "name": "value",
@@ -3157,7 +3331,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idBoard",
         "schema": "string",
         "required": true,
-        "description": "board_id"
+        "description": "board_id",
+        "example": "IDBOARD"
       },
       {
         "name": "value",
@@ -3188,13 +3363,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idBoard",
         "schema": "string",
         "required": true,
-        "description": "board_id"
+        "description": "board_id",
+        "example": "IDBOARD"
       },
       {
         "name": "fields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: billableMemberCount, desc, descData, displayName, idBoards, invitations, invited, logoHash, memberships, name, powerUps, prefs, premiumFeatures, products, url or website"
+        "description": "all or a comma-separated list of: billableMemberCount, desc, descData, displayName, idBoards, invitations, invited, logoHash, memberships, name, powerUps, prefs, premiumFeatures, products, url or website",
+        "default": "all"
       }
     ],
     "responses": [
@@ -3220,13 +3397,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idBoard",
         "schema": "string",
         "required": true,
-        "description": "board_id"
+        "description": "board_id",
+        "example": "IDBOARD"
       },
       {
         "name": "field",
         "schema": "string",
         "required": true,
-        "description": "field"
+        "description": "field",
+        "example": "FIELD"
       }
     ],
     "responses": [
@@ -3252,7 +3431,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idBoard",
         "schema": "string",
         "required": true,
-        "description": "board_id"
+        "description": "board_id",
+        "example": "IDBOARD"
       },
       {
         "name": "value",
@@ -3283,13 +3463,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idBoard",
         "schema": "string",
         "required": true,
-        "description": "board_id"
+        "description": "board_id",
+        "example": "IDBOARD"
       },
       {
         "name": "powerUp",
         "schema": "string",
         "required": true,
-        "description": "powerUp"
+        "description": "powerUp",
+        "example": "POWERUP"
       }
     ],
     "responses": [
@@ -3315,7 +3497,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idBoard",
         "schema": "string",
         "required": true,
-        "description": "board_id"
+        "description": "board_id",
+        "example": "IDBOARD"
       },
       {
         "name": "value",
@@ -3346,7 +3529,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idBoard",
         "schema": "string",
         "required": true,
-        "description": "board_id"
+        "description": "board_id",
+        "example": "IDBOARD"
       },
       {
         "name": "value",
@@ -3377,7 +3561,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idBoard",
         "schema": "string",
         "required": true,
-        "description": "board_id"
+        "description": "board_id",
+        "example": "IDBOARD"
       },
       {
         "name": "value",
@@ -3408,7 +3593,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idBoard",
         "schema": "string",
         "required": true,
-        "description": "board_id"
+        "description": "board_id",
+        "example": "IDBOARD"
       },
       {
         "name": "value",
@@ -3439,7 +3625,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idBoard",
         "schema": "string",
         "required": true,
-        "description": "board_id"
+        "description": "board_id",
+        "example": "IDBOARD"
       },
       {
         "name": "value",
@@ -3470,7 +3657,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idBoard",
         "schema": "string",
         "required": true,
-        "description": "board_id"
+        "description": "board_id",
+        "example": "IDBOARD"
       },
       {
         "name": "value",
@@ -3501,7 +3689,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idBoard",
         "schema": "string",
         "required": true,
-        "description": "board_id"
+        "description": "board_id",
+        "example": "IDBOARD"
       },
       {
         "name": "value",
@@ -3532,7 +3721,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idBoard",
         "schema": "string",
         "required": true,
-        "description": "board_id"
+        "description": "board_id",
+        "example": "IDBOARD"
       },
       {
         "name": "value",
@@ -3563,7 +3753,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idBoard",
         "schema": "string",
         "required": true,
-        "description": "board_id"
+        "description": "board_id",
+        "example": "IDBOARD"
       },
       {
         "name": "value",
@@ -3594,7 +3785,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idBoard",
         "schema": "string",
         "required": true,
-        "description": "board_id"
+        "description": "board_id",
+        "example": "IDBOARD"
       },
       {
         "name": "value",
@@ -3625,13 +3817,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idBoard",
         "schema": "string",
         "required": true,
-        "description": "board_id"
+        "description": "board_id",
+        "example": "IDBOARD"
       },
       {
         "name": "field",
         "schema": "string",
         "required": true,
-        "description": "field"
+        "description": "field",
+        "example": "FIELD"
       }
     ],
     "responses": [
@@ -3757,7 +3951,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idCard",
         "schema": "string",
         "required": true,
-        "description": "card id or shortlink"
+        "description": "card id or shortlink",
+        "example": "IDCARD"
       }
     ],
     "responses": [
@@ -3783,7 +3978,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idCard",
         "schema": "string",
         "required": true,
-        "description": "card id or shortlink"
+        "description": "card id or shortlink",
+        "example": "IDCARD"
       },
       {
         "name": "actions",
@@ -3807,19 +4003,22 @@ export default function TrelloTypeScriptSdk() {
         "name": "actionsLimit",
         "schema": "string",
         "required": false,
-        "description": "a number from 0 to 1000"
+        "description": "a number from 0 to 1000",
+        "default": "50"
       },
       {
         "name": "actionFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: data, date, idMemberCreator or type"
+        "description": "all or a comma-separated list of: data, date, idMemberCreator or type",
+        "default": "all"
       },
       {
         "name": "actionMemberCreatorFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: avatarHash, bio, bioData, confirmed, fullName, idPremOrgsAdmin, initials, memberType, products, status, url or username"
+        "description": "all or a comma-separated list of: avatarHash, bio, bioData, confirmed, fullName, idPremOrgsAdmin, initials, memberType, products, status, url or username",
+        "default": "avatarHash, fullName, initials and username"
       },
       {
         "name": "attachments",
@@ -3831,7 +4030,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "attachmentFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: bytes, date, edgeColor, idMember, isUpload, mimeType, name, previews or url"
+        "description": "all or a comma-separated list of: bytes, date, edgeColor, idMember, isUpload, mimeType, name, previews or url",
+        "default": "all"
       },
       {
         "name": "members",
@@ -3843,7 +4043,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "memberFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: avatarHash, bio, bioData, confirmed, fullName, idPremOrgsAdmin, initials, memberType, products, status, url or username"
+        "description": "all or a comma-separated list of: avatarHash, bio, bioData, confirmed, fullName, idPremOrgsAdmin, initials, memberType, products, status, url or username",
+        "default": "avatarHash, fullName, initials and username"
       },
       {
         "name": "membersVoted",
@@ -3855,7 +4056,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "memberVotedFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: avatarHash, bio, bioData, confirmed, fullName, idPremOrgsAdmin, initials, memberType, products, status, url or username"
+        "description": "all or a comma-separated list of: avatarHash, bio, bioData, confirmed, fullName, idPremOrgsAdmin, initials, memberType, products, status, url or username",
+        "default": "avatarHash, fullName, initials and username"
       },
       {
         "name": "checkItemStates",
@@ -3867,19 +4069,22 @@ export default function TrelloTypeScriptSdk() {
         "name": "checkItemStateFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: idCheckItem or state"
+        "description": "all or a comma-separated list of: idCheckItem or state",
+        "default": "all"
       },
       {
         "name": "checklists",
         "schema": "string",
         "required": false,
-        "description": "One of: all or none"
+        "description": "One of: all or none",
+        "default": "none"
       },
       {
         "name": "checklistFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: idBoard, idCard, name or pos"
+        "description": "all or a comma-separated list of: idBoard, idCard, name or pos",
+        "default": "all"
       },
       {
         "name": "board",
@@ -3891,7 +4096,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "boardFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: closed, dateLastActivity, dateLastView, desc, descData, idOrganization, invitations, invited, labelNames, memberships, name, pinned, powerUps, prefs, shortLink, shortUrl, starred, subscribed or url"
+        "description": "all or a comma-separated list of: closed, dateLastActivity, dateLastView, desc, descData, idOrganization, invitations, invited, labelNames, memberships, name, pinned, powerUps, prefs, shortLink, shortUrl, starred, subscribed or url",
+        "default": "name, desc, descData, closed, idOrganization, pinned, url and prefs"
       },
       {
         "name": "list",
@@ -3903,7 +4109,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "listFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: closed, idBoard, name, pos or subscribed"
+        "description": "all or a comma-separated list of: closed, idBoard, name, pos or subscribed",
+        "default": "all"
       },
       {
         "name": "stickers",
@@ -3915,13 +4122,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "stickerFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: image, imageScaled, imageUrl, left, rotate, top or zIndex"
+        "description": "all or a comma-separated list of: image, imageScaled, imageUrl, left, rotate, top or zIndex",
+        "default": "all"
       },
       {
         "name": "fields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: badges, checkItemStates, closed, dateLastActivity, desc, descData, due, email, idAttachmentCover, idBoard, idChecklists, idLabels, idList, idMembers, idMembersVoted, idShort, labels, manualCoverAttachment, name, pos, shortLink, shortUrl, subscribed or url"
+        "description": "all or a comma-separated list of: badges, checkItemStates, closed, dateLastActivity, desc, descData, due, email, idAttachmentCover, idBoard, idChecklists, idLabels, idList, idMembers, idMembersVoted, idShort, labels, manualCoverAttachment, name, pos, shortLink, shortUrl, subscribed or url",
+        "default": "badges, checkItemStates, closed, dateLastActivity, desc, descData, due, email, idBoard, idChecklists, idLabels, idList, idMembers, idShort, idAttachmentCover, manualCoverAttachment, labels, name, pos, shortUrl and url"
       }
     ],
     "responses": [
@@ -3947,7 +4156,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idCard",
         "schema": "string",
         "required": true,
-        "description": "card id or shortlink"
+        "description": "card id or shortlink",
+        "example": "IDCARD"
       },
       {
         "name": "closed",
@@ -4053,7 +4263,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idCard",
         "schema": "string",
         "required": true,
-        "description": "card id or shortlink"
+        "description": "card id or shortlink",
+        "example": "IDCARD"
       },
       {
         "name": "entities",
@@ -4071,25 +4282,29 @@ export default function TrelloTypeScriptSdk() {
         "name": "filter",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: addAttachmentToCard, addChecklistToCard, addMemberToBoard, addMemberToCard, addMemberToOrganization, addToOrganizationBoard, commentCard, convertToCardFromCheckItem, copyBoard, copyCard, copyCommentCard, createBoard, createCard, createList, createOrganization, deleteAttachmentFromCard, deleteBoardInvitation, deleteCard, deleteOrganizationInvitation, disablePowerUp, emailCard, enablePowerUp, makeAdminOfBoard, makeNormalMemberOfBoard, makeNormalMemberOfOrganization, makeObserverOfBoard, memberJoinedTrello, moveCardFromBoard, moveCardToBoard, moveListFromBoard, moveListToBoard, removeChecklistFromCard, removeFromOrganizationBoard, removeMemberFromCard, unconfirmedBoardInvitation, unconfirmedOrganizationInvitation, updateBoard, updateCard, updateCard:closed, updateCard:desc, updateCard:idList, updateCard:name, updateCheckItemStateOnCard, updateChecklist, updateList, updateList:closed, updateList:name, updateMember or updateOrganization"
+        "description": "all or a comma-separated list of: addAttachmentToCard, addChecklistToCard, addMemberToBoard, addMemberToCard, addMemberToOrganization, addToOrganizationBoard, commentCard, convertToCardFromCheckItem, copyBoard, copyCard, copyCommentCard, createBoard, createCard, createList, createOrganization, deleteAttachmentFromCard, deleteBoardInvitation, deleteCard, deleteOrganizationInvitation, disablePowerUp, emailCard, enablePowerUp, makeAdminOfBoard, makeNormalMemberOfBoard, makeNormalMemberOfOrganization, makeObserverOfBoard, memberJoinedTrello, moveCardFromBoard, moveCardToBoard, moveListFromBoard, moveListToBoard, removeChecklistFromCard, removeFromOrganizationBoard, removeMemberFromCard, unconfirmedBoardInvitation, unconfirmedOrganizationInvitation, updateBoard, updateCard, updateCard:closed, updateCard:desc, updateCard:idList, updateCard:name, updateCheckItemStateOnCard, updateChecklist, updateList, updateList:closed, updateList:name, updateMember or updateOrganization",
+        "default": "commentCard and updateCard:idList"
       },
       {
         "name": "fields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: data, date, idMemberCreator or type"
+        "description": "all or a comma-separated list of: data, date, idMemberCreator or type",
+        "default": "all"
       },
       {
         "name": "limit",
         "schema": "string",
         "required": false,
-        "description": "a number from 0 to 1000"
+        "description": "a number from 0 to 1000",
+        "default": "50"
       },
       {
         "name": "format",
         "schema": "string",
         "required": false,
-        "description": "One of: count, list or minimal"
+        "description": "One of: count, list or minimal",
+        "default": "list"
       },
       {
         "name": "since",
@@ -4107,7 +4322,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "page",
         "schema": "string",
         "required": false,
-        "description": "Page * limit must be less than 1000"
+        "description": "Page * limit must be less than 1000",
+        "default": "0"
       },
       {
         "name": "idModels",
@@ -4125,7 +4341,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "memberFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: avatarHash, bio, bioData, confirmed, fullName, idPremOrgsAdmin, initials, memberType, products, status, url or username"
+        "description": "all or a comma-separated list of: avatarHash, bio, bioData, confirmed, fullName, idPremOrgsAdmin, initials, memberType, products, status, url or username",
+        "default": "avatarHash, fullName, initials and username"
       },
       {
         "name": "memberCreator",
@@ -4137,7 +4354,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "memberCreatorFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: avatarHash, bio, bioData, confirmed, fullName, idPremOrgsAdmin, initials, memberType, products, status, url or username"
+        "description": "all or a comma-separated list of: avatarHash, bio, bioData, confirmed, fullName, idPremOrgsAdmin, initials, memberType, products, status, url or username",
+        "default": "avatarHash, fullName, initials and username"
       }
     ],
     "responses": [
@@ -4163,7 +4381,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idCard",
         "schema": "string",
         "required": true,
-        "description": "card id or shortlink"
+        "description": "card id or shortlink",
+        "example": "IDCARD"
       },
       {
         "name": "text",
@@ -4194,13 +4413,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idCard",
         "schema": "string",
         "required": true,
-        "description": "card id or shortlink"
+        "description": "card id or shortlink",
+        "example": "IDCARD"
       },
       {
         "name": "idAction",
         "schema": "string",
         "required": true,
-        "description": "idAction"
+        "description": "idAction",
+        "example": "IDACTION"
       }
     ],
     "responses": [
@@ -4226,13 +4447,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idCard",
         "schema": "string",
         "required": true,
-        "description": "card id or shortlink"
+        "description": "card id or shortlink",
+        "example": "IDCARD"
       },
       {
         "name": "idAction",
         "schema": "string",
         "required": true,
-        "description": "idAction"
+        "description": "idAction",
+        "example": "IDACTION"
       },
       {
         "name": "text",
@@ -4263,13 +4486,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idCard",
         "schema": "string",
         "required": true,
-        "description": "card id or shortlink"
+        "description": "card id or shortlink",
+        "example": "IDCARD"
       },
       {
         "name": "fields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: bytes, date, edgeColor, idMember, isUpload, mimeType, name, previews or url"
+        "description": "all or a comma-separated list of: bytes, date, edgeColor, idMember, isUpload, mimeType, name, previews or url",
+        "default": "all"
       },
       {
         "name": "filter",
@@ -4301,7 +4526,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idCard",
         "schema": "string",
         "required": true,
-        "description": "card id or shortlink"
+        "description": "card id or shortlink",
+        "example": "IDCARD"
       },
       {
         "name": "file",
@@ -4347,13 +4573,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idCard",
         "schema": "string",
         "required": true,
-        "description": "card id or shortlink"
+        "description": "card id or shortlink",
+        "example": "IDCARD"
       },
       {
         "name": "idAttachment",
         "schema": "string",
         "required": true,
-        "description": "idAttachment"
+        "description": "idAttachment",
+        "example": "IDATTACHMENT"
       }
     ],
     "responses": [
@@ -4379,19 +4607,22 @@ export default function TrelloTypeScriptSdk() {
         "name": "idCard",
         "schema": "string",
         "required": true,
-        "description": "card id or shortlink"
+        "description": "card id or shortlink",
+        "example": "IDCARD"
       },
       {
         "name": "idAttachment",
         "schema": "string",
         "required": true,
-        "description": "idAttachment"
+        "description": "idAttachment",
+        "example": "IDATTACHMENT"
       },
       {
         "name": "fields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: bytes, date, edgeColor, idMember, isUpload, mimeType, name, previews or url"
+        "description": "all or a comma-separated list of: bytes, date, edgeColor, idMember, isUpload, mimeType, name, previews or url",
+        "default": "all"
       }
     ],
     "responses": [
@@ -4417,13 +4648,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idCard",
         "schema": "string",
         "required": true,
-        "description": "card id or shortlink"
+        "description": "card id or shortlink",
+        "example": "IDCARD"
       },
       {
         "name": "fields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: closed, dateLastActivity, dateLastView, desc, descData, idOrganization, invitations, invited, labelNames, memberships, name, pinned, powerUps, prefs, shortLink, shortUrl, starred, subscribed or url"
+        "description": "all or a comma-separated list of: closed, dateLastActivity, dateLastView, desc, descData, idOrganization, invitations, invited, labelNames, memberships, name, pinned, powerUps, prefs, shortLink, shortUrl, starred, subscribed or url",
+        "default": "all"
       }
     ],
     "responses": [
@@ -4449,13 +4682,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idCard",
         "schema": "string",
         "required": true,
-        "description": "card id or shortlink"
+        "description": "card id or shortlink",
+        "example": "IDCARD"
       },
       {
         "name": "field",
         "schema": "string",
         "required": true,
-        "description": "field"
+        "description": "field",
+        "example": "FIELD"
       }
     ],
     "responses": [
@@ -4481,13 +4716,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idCard",
         "schema": "string",
         "required": true,
-        "description": "card id or shortlink"
+        "description": "card id or shortlink",
+        "example": "IDCARD"
       },
       {
         "name": "fields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: idCheckItem or state"
+        "description": "all or a comma-separated list of: idCheckItem or state",
+        "default": "all"
       }
     ],
     "responses": [
@@ -4513,19 +4750,22 @@ export default function TrelloTypeScriptSdk() {
         "name": "idCard",
         "schema": "string",
         "required": true,
-        "description": "card id or shortlink"
+        "description": "card id or shortlink",
+        "example": "IDCARD"
       },
       {
         "name": "idChecklistCurrent",
         "schema": "string",
         "required": true,
-        "description": "idChecklistCurrent"
+        "description": "idChecklistCurrent",
+        "example": "IDCHECKLISTCURRENT"
       },
       {
         "name": "idCheckItem",
         "schema": "string",
         "required": true,
-        "description": "idCheckItem"
+        "description": "idCheckItem",
+        "example": "IDCHECKITEM"
       },
       {
         "name": "idChecklist",
@@ -4571,13 +4811,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idCard",
         "schema": "string",
         "required": true,
-        "description": "card id or shortlink"
+        "description": "card id or shortlink",
+        "example": "IDCARD"
       },
       {
         "name": "idChecklist",
         "schema": "string",
         "required": true,
-        "description": "idChecklist"
+        "description": "idChecklist",
+        "example": "IDCHECKLIST"
       },
       {
         "name": "name",
@@ -4613,19 +4855,22 @@ export default function TrelloTypeScriptSdk() {
         "name": "idCard",
         "schema": "string",
         "required": true,
-        "description": "card id or shortlink"
+        "description": "card id or shortlink",
+        "example": "IDCARD"
       },
       {
         "name": "idChecklist",
         "schema": "string",
         "required": true,
-        "description": "idChecklist"
+        "description": "idChecklist",
+        "example": "IDCHECKLIST"
       },
       {
         "name": "idCheckItem",
         "schema": "string",
         "required": true,
-        "description": "idCheckItem"
+        "description": "idCheckItem",
+        "example": "IDCHECKITEM"
       }
     ],
     "responses": [
@@ -4651,19 +4896,22 @@ export default function TrelloTypeScriptSdk() {
         "name": "idCard",
         "schema": "string",
         "required": true,
-        "description": "card id or shortlink"
+        "description": "card id or shortlink",
+        "example": "IDCARD"
       },
       {
         "name": "idChecklist",
         "schema": "string",
         "required": true,
-        "description": "idChecklist"
+        "description": "idChecklist",
+        "example": "IDCHECKLIST"
       },
       {
         "name": "idCheckItem",
         "schema": "string",
         "required": true,
-        "description": "idCheckItem"
+        "description": "idCheckItem",
+        "example": "IDCHECKITEM"
       }
     ],
     "responses": [
@@ -4689,19 +4937,22 @@ export default function TrelloTypeScriptSdk() {
         "name": "idCard",
         "schema": "string",
         "required": true,
-        "description": "card id or shortlink"
+        "description": "card id or shortlink",
+        "example": "IDCARD"
       },
       {
         "name": "idChecklist",
         "schema": "string",
         "required": true,
-        "description": "idChecklist"
+        "description": "idChecklist",
+        "example": "IDCHECKLIST"
       },
       {
         "name": "idCheckItem",
         "schema": "string",
         "required": true,
-        "description": "idCheckItem"
+        "description": "idCheckItem",
+        "example": "IDCHECKITEM"
       },
       {
         "name": "value",
@@ -4732,19 +4983,22 @@ export default function TrelloTypeScriptSdk() {
         "name": "idCard",
         "schema": "string",
         "required": true,
-        "description": "card id or shortlink"
+        "description": "card id or shortlink",
+        "example": "IDCARD"
       },
       {
         "name": "idChecklist",
         "schema": "string",
         "required": true,
-        "description": "idChecklist"
+        "description": "idChecklist",
+        "example": "IDCHECKLIST"
       },
       {
         "name": "idCheckItem",
         "schema": "string",
         "required": true,
-        "description": "idCheckItem"
+        "description": "idCheckItem",
+        "example": "IDCHECKITEM"
       },
       {
         "name": "value",
@@ -4775,19 +5029,22 @@ export default function TrelloTypeScriptSdk() {
         "name": "idCard",
         "schema": "string",
         "required": true,
-        "description": "card id or shortlink"
+        "description": "card id or shortlink",
+        "example": "IDCARD"
       },
       {
         "name": "idChecklist",
         "schema": "string",
         "required": true,
-        "description": "idChecklist"
+        "description": "idChecklist",
+        "example": "IDCHECKLIST"
       },
       {
         "name": "idCheckItem",
         "schema": "string",
         "required": true,
-        "description": "idCheckItem"
+        "description": "idCheckItem",
+        "example": "IDCHECKITEM"
       },
       {
         "name": "value",
@@ -4818,43 +5075,50 @@ export default function TrelloTypeScriptSdk() {
         "name": "idCard",
         "schema": "string",
         "required": true,
-        "description": "card id or shortlink"
+        "description": "card id or shortlink",
+        "example": "IDCARD"
       },
       {
         "name": "cards",
         "schema": "string",
         "required": false,
-        "description": "One of: all, closed, none, open or visible"
+        "description": "One of: all, closed, none, open or visible",
+        "default": "none"
       },
       {
         "name": "cardFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: badges, checkItemStates, closed, dateLastActivity, desc, descData, due, email, idAttachmentCover, idBoard, idChecklists, idLabels, idList, idMembers, idMembersVoted, idShort, labels, manualCoverAttachment, name, pos, shortLink, shortUrl, subscribed or url"
+        "description": "all or a comma-separated list of: badges, checkItemStates, closed, dateLastActivity, desc, descData, due, email, idAttachmentCover, idBoard, idChecklists, idLabels, idList, idMembers, idMembersVoted, idShort, labels, manualCoverAttachment, name, pos, shortLink, shortUrl, subscribed or url",
+        "default": "all"
       },
       {
         "name": "checkItems",
         "schema": "string",
         "required": false,
-        "description": "One of: all or none"
+        "description": "One of: all or none",
+        "default": "all"
       },
       {
         "name": "checkItemFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: name, nameData, pos, state or type"
+        "description": "all or a comma-separated list of: name, nameData, pos, state or type",
+        "default": "name, nameData, pos and state"
       },
       {
         "name": "filter",
         "schema": "string",
         "required": false,
-        "description": "One of: all or none"
+        "description": "One of: all or none",
+        "default": "all"
       },
       {
         "name": "fields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: idBoard, idCard, name or pos"
+        "description": "all or a comma-separated list of: idBoard, idCard, name or pos",
+        "default": "all"
       }
     ],
     "responses": [
@@ -4880,7 +5144,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idCard",
         "schema": "string",
         "required": true,
-        "description": "card id or shortlink"
+        "description": "card id or shortlink",
+        "example": "IDCARD"
       },
       {
         "name": "idChecklistSource",
@@ -4921,13 +5186,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idCard",
         "schema": "string",
         "required": true,
-        "description": "card id or shortlink"
+        "description": "card id or shortlink",
+        "example": "IDCARD"
       },
       {
         "name": "idChecklist",
         "schema": "string",
         "required": true,
-        "description": "idChecklist"
+        "description": "idChecklist",
+        "example": "IDCHECKLIST"
       }
     ],
     "responses": [
@@ -4953,7 +5220,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idCard",
         "schema": "string",
         "required": true,
-        "description": "card id or shortlink"
+        "description": "card id or shortlink",
+        "example": "IDCARD"
       },
       {
         "name": "value",
@@ -4984,7 +5252,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idCard",
         "schema": "string",
         "required": true,
-        "description": "card id or shortlink"
+        "description": "card id or shortlink",
+        "example": "IDCARD"
       },
       {
         "name": "value",
@@ -5015,7 +5284,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idCard",
         "schema": "string",
         "required": true,
-        "description": "card id or shortlink"
+        "description": "card id or shortlink",
+        "example": "IDCARD"
       },
       {
         "name": "value",
@@ -5046,7 +5316,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idCard",
         "schema": "string",
         "required": true,
-        "description": "card id or shortlink"
+        "description": "card id or shortlink",
+        "example": "IDCARD"
       },
       {
         "name": "value",
@@ -5077,7 +5348,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idCard",
         "schema": "string",
         "required": true,
-        "description": "card id or shortlink"
+        "description": "card id or shortlink",
+        "example": "IDCARD"
       },
       {
         "name": "idList",
@@ -5113,7 +5385,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idCard",
         "schema": "string",
         "required": true,
-        "description": "card id or shortlink"
+        "description": "card id or shortlink",
+        "example": "IDCARD"
       },
       {
         "name": "value",
@@ -5144,13 +5417,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idCard",
         "schema": "string",
         "required": true,
-        "description": "card id or shortlink"
+        "description": "card id or shortlink",
+        "example": "IDCARD"
       },
       {
         "name": "idLabel",
         "schema": "string",
         "required": true,
-        "description": "idLabel"
+        "description": "idLabel",
+        "example": "IDLABEL"
       }
     ],
     "responses": [
@@ -5176,7 +5451,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idCard",
         "schema": "string",
         "required": true,
-        "description": "card id or shortlink"
+        "description": "card id or shortlink",
+        "example": "IDCARD"
       },
       {
         "name": "value",
@@ -5207,7 +5483,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idCard",
         "schema": "string",
         "required": true,
-        "description": "card id or shortlink"
+        "description": "card id or shortlink",
+        "example": "IDCARD"
       },
       {
         "name": "value",
@@ -5238,7 +5515,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idCard",
         "schema": "string",
         "required": true,
-        "description": "card id or shortlink"
+        "description": "card id or shortlink",
+        "example": "IDCARD"
       },
       {
         "name": "value",
@@ -5269,13 +5547,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idCard",
         "schema": "string",
         "required": true,
-        "description": "card id or shortlink"
+        "description": "card id or shortlink",
+        "example": "IDCARD"
       },
       {
         "name": "idMember",
         "schema": "string",
         "required": true,
-        "description": "idMember"
+        "description": "idMember",
+        "example": "IDMEMBER"
       }
     ],
     "responses": [
@@ -5301,7 +5581,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idCard",
         "schema": "string",
         "required": true,
-        "description": "card id or shortlink"
+        "description": "card id or shortlink",
+        "example": "IDCARD"
       },
       {
         "name": "color",
@@ -5342,7 +5623,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idCard",
         "schema": "string",
         "required": true,
-        "description": "card id or shortlink"
+        "description": "card id or shortlink",
+        "example": "IDCARD"
       },
       {
         "name": "color",
@@ -5383,13 +5665,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idCard",
         "schema": "string",
         "required": true,
-        "description": "card id or shortlink"
+        "description": "card id or shortlink",
+        "example": "IDCARD"
       },
       {
         "name": "color",
         "schema": "string",
         "required": true,
-        "description": "color"
+        "description": "color",
+        "example": "COLOR"
       }
     ],
     "responses": [
@@ -5415,13 +5699,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idCard",
         "schema": "string",
         "required": true,
-        "description": "card id or shortlink"
+        "description": "card id or shortlink",
+        "example": "IDCARD"
       },
       {
         "name": "fields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: closed, idBoard, name, pos or subscribed"
+        "description": "all or a comma-separated list of: closed, idBoard, name, pos or subscribed",
+        "default": "all"
       }
     ],
     "responses": [
@@ -5447,13 +5733,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idCard",
         "schema": "string",
         "required": true,
-        "description": "card id or shortlink"
+        "description": "card id or shortlink",
+        "example": "IDCARD"
       },
       {
         "name": "field",
         "schema": "string",
         "required": true,
-        "description": "field"
+        "description": "field",
+        "example": "FIELD"
       }
     ],
     "responses": [
@@ -5479,7 +5767,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idCard",
         "schema": "string",
         "required": true,
-        "description": "card id or shortlink"
+        "description": "card id or shortlink",
+        "example": "IDCARD"
       }
     ],
     "responses": [
@@ -5505,13 +5794,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idCard",
         "schema": "string",
         "required": true,
-        "description": "card id or shortlink"
+        "description": "card id or shortlink",
+        "example": "IDCARD"
       },
       {
         "name": "fields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: avatarHash, bio, bioData, confirmed, fullName, idPremOrgsAdmin, initials, memberType, products, status, url or username"
+        "description": "all or a comma-separated list of: avatarHash, bio, bioData, confirmed, fullName, idPremOrgsAdmin, initials, memberType, products, status, url or username",
+        "default": "avatarHash, fullName, initials and username"
       }
     ],
     "responses": [
@@ -5537,13 +5828,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idCard",
         "schema": "string",
         "required": true,
-        "description": "card id or shortlink"
+        "description": "card id or shortlink",
+        "example": "IDCARD"
       },
       {
         "name": "fields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: avatarHash, bio, bioData, confirmed, fullName, idPremOrgsAdmin, initials, memberType, products, status, url or username"
+        "description": "all or a comma-separated list of: avatarHash, bio, bioData, confirmed, fullName, idPremOrgsAdmin, initials, memberType, products, status, url or username",
+        "default": "avatarHash, fullName, initials and username"
       }
     ],
     "responses": [
@@ -5569,7 +5862,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idCard",
         "schema": "string",
         "required": true,
-        "description": "card id or shortlink"
+        "description": "card id or shortlink",
+        "example": "IDCARD"
       },
       {
         "name": "value",
@@ -5600,13 +5894,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idCard",
         "schema": "string",
         "required": true,
-        "description": "card id or shortlink"
+        "description": "card id or shortlink",
+        "example": "IDCARD"
       },
       {
         "name": "idMember",
         "schema": "string",
         "required": true,
-        "description": "idMember"
+        "description": "idMember",
+        "example": "IDMEMBER"
       }
     ],
     "responses": [
@@ -5632,7 +5928,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idCard",
         "schema": "string",
         "required": true,
-        "description": "card id or shortlink"
+        "description": "card id or shortlink",
+        "example": "IDCARD"
       },
       {
         "name": "value",
@@ -5663,7 +5960,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idCard",
         "schema": "string",
         "required": true,
-        "description": "card id or shortlink"
+        "description": "card id or shortlink",
+        "example": "IDCARD"
       },
       {
         "name": "value",
@@ -5694,13 +5992,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idCard",
         "schema": "string",
         "required": true,
-        "description": "card id or shortlink"
+        "description": "card id or shortlink",
+        "example": "IDCARD"
       },
       {
         "name": "fields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: image, imageScaled, imageUrl, left, rotate, top or zIndex"
+        "description": "all or a comma-separated list of: image, imageScaled, imageUrl, left, rotate, top or zIndex",
+        "default": "all"
       }
     ],
     "responses": [
@@ -5726,7 +6026,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idCard",
         "schema": "string",
         "required": true,
-        "description": "card id or shortlink"
+        "description": "card id or shortlink",
+        "example": "IDCARD"
       },
       {
         "name": "image",
@@ -5777,13 +6078,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idCard",
         "schema": "string",
         "required": true,
-        "description": "card id or shortlink"
+        "description": "card id or shortlink",
+        "example": "IDCARD"
       },
       {
         "name": "idSticker",
         "schema": "string",
         "required": true,
-        "description": "idSticker"
+        "description": "idSticker",
+        "example": "IDSTICKER"
       }
     ],
     "responses": [
@@ -5809,19 +6112,22 @@ export default function TrelloTypeScriptSdk() {
         "name": "idCard",
         "schema": "string",
         "required": true,
-        "description": "card id or shortlink"
+        "description": "card id or shortlink",
+        "example": "IDCARD"
       },
       {
         "name": "idSticker",
         "schema": "string",
         "required": true,
-        "description": "idSticker"
+        "description": "idSticker",
+        "example": "IDSTICKER"
       },
       {
         "name": "fields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: image, imageScaled, imageUrl, left, rotate, top or zIndex"
+        "description": "all or a comma-separated list of: image, imageScaled, imageUrl, left, rotate, top or zIndex",
+        "default": "all"
       }
     ],
     "responses": [
@@ -5847,13 +6153,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idCard",
         "schema": "string",
         "required": true,
-        "description": "card id or shortlink"
+        "description": "card id or shortlink",
+        "example": "IDCARD"
       },
       {
         "name": "idSticker",
         "schema": "string",
         "required": true,
-        "description": "idSticker"
+        "description": "idSticker",
+        "example": "IDSTICKER"
       },
       {
         "name": "image",
@@ -5904,7 +6212,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idCard",
         "schema": "string",
         "required": true,
-        "description": "card id or shortlink"
+        "description": "card id or shortlink",
+        "example": "IDCARD"
       },
       {
         "name": "value",
@@ -5935,13 +6244,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idCard",
         "schema": "string",
         "required": true,
-        "description": "card id or shortlink"
+        "description": "card id or shortlink",
+        "example": "IDCARD"
       },
       {
         "name": "field",
         "schema": "string",
         "required": true,
-        "description": "field"
+        "description": "field",
+        "example": "FIELD"
       }
     ],
     "responses": [
@@ -6012,7 +6323,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idChecklist",
         "schema": "string",
         "required": true,
-        "description": "idChecklist"
+        "description": "idChecklist",
+        "example": "IDCHECKLIST"
       }
     ],
     "responses": [
@@ -6038,37 +6350,43 @@ export default function TrelloTypeScriptSdk() {
         "name": "idChecklist",
         "schema": "string",
         "required": true,
-        "description": "idChecklist"
+        "description": "idChecklist",
+        "example": "IDCHECKLIST"
       },
       {
         "name": "cards",
         "schema": "string",
         "required": false,
-        "description": "One of: all, closed, none, open or visible"
+        "description": "One of: all, closed, none, open or visible",
+        "default": "none"
       },
       {
         "name": "cardFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: badges, checkItemStates, closed, dateLastActivity, desc, descData, due, email, idAttachmentCover, idBoard, idChecklists, idLabels, idList, idMembers, idMembersVoted, idShort, labels, manualCoverAttachment, name, pos, shortLink, shortUrl, subscribed or url"
+        "description": "all or a comma-separated list of: badges, checkItemStates, closed, dateLastActivity, desc, descData, due, email, idAttachmentCover, idBoard, idChecklists, idLabels, idList, idMembers, idMembersVoted, idShort, labels, manualCoverAttachment, name, pos, shortLink, shortUrl, subscribed or url",
+        "default": "all"
       },
       {
         "name": "checkItems",
         "schema": "string",
         "required": false,
-        "description": "One of: all or none"
+        "description": "One of: all or none",
+        "default": "all"
       },
       {
         "name": "checkItemFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: name, nameData, pos, state or type"
+        "description": "all or a comma-separated list of: name, nameData, pos, state or type",
+        "default": "name, nameData, pos and state"
       },
       {
         "name": "fields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: idBoard, idCard, name or pos"
+        "description": "all or a comma-separated list of: idBoard, idCard, name or pos",
+        "default": "all"
       }
     ],
     "responses": [
@@ -6094,7 +6412,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idChecklist",
         "schema": "string",
         "required": true,
-        "description": "idChecklist"
+        "description": "idChecklist",
+        "example": "IDCHECKLIST"
       },
       {
         "name": "idBoard",
@@ -6145,13 +6464,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idChecklist",
         "schema": "string",
         "required": true,
-        "description": "idChecklist"
+        "description": "idChecklist",
+        "example": "IDCHECKLIST"
       },
       {
         "name": "fields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: closed, dateLastActivity, dateLastView, desc, descData, idOrganization, invitations, invited, labelNames, memberships, name, pinned, powerUps, prefs, shortLink, shortUrl, starred, subscribed or url"
+        "description": "all or a comma-separated list of: closed, dateLastActivity, dateLastView, desc, descData, idOrganization, invitations, invited, labelNames, memberships, name, pinned, powerUps, prefs, shortLink, shortUrl, starred, subscribed or url",
+        "default": "all"
       }
     ],
     "responses": [
@@ -6177,13 +6498,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idChecklist",
         "schema": "string",
         "required": true,
-        "description": "idChecklist"
+        "description": "idChecklist",
+        "example": "IDCHECKLIST"
       },
       {
         "name": "field",
         "schema": "string",
         "required": true,
-        "description": "field"
+        "description": "field",
+        "example": "FIELD"
       }
     ],
     "responses": [
@@ -6209,7 +6532,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idChecklist",
         "schema": "string",
         "required": true,
-        "description": "idChecklist"
+        "description": "idChecklist",
+        "example": "IDCHECKLIST"
       },
       {
         "name": "actions",
@@ -6227,7 +6551,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "attachmentFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: bytes, date, edgeColor, idMember, isUpload, mimeType, name, previews or url"
+        "description": "all or a comma-separated list of: bytes, date, edgeColor, idMember, isUpload, mimeType, name, previews or url",
+        "default": "all"
       },
       {
         "name": "stickers",
@@ -6245,7 +6570,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "memberFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: avatarHash, bio, bioData, confirmed, fullName, idPremOrgsAdmin, initials, memberType, products, status, url or username"
+        "description": "all or a comma-separated list of: avatarHash, bio, bioData, confirmed, fullName, idPremOrgsAdmin, initials, memberType, products, status, url or username",
+        "default": "avatarHash, fullName, initials and username"
       },
       {
         "name": "checkItemStates",
@@ -6257,7 +6583,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "checklists",
         "schema": "string",
         "required": false,
-        "description": "One of: all or none"
+        "description": "One of: all or none",
+        "default": "none"
       },
       {
         "name": "limit",
@@ -6281,13 +6608,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "filter",
         "schema": "string",
         "required": false,
-        "description": "One of: all, closed, none or open"
+        "description": "One of: all, closed, none or open",
+        "default": "open"
       },
       {
         "name": "fields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: badges, checkItemStates, closed, dateLastActivity, desc, descData, due, email, idAttachmentCover, idBoard, idChecklists, idLabels, idList, idMembers, idMembersVoted, idShort, labels, manualCoverAttachment, name, pos, shortLink, shortUrl, subscribed or url"
+        "description": "all or a comma-separated list of: badges, checkItemStates, closed, dateLastActivity, desc, descData, due, email, idAttachmentCover, idBoard, idChecklists, idLabels, idList, idMembers, idMembersVoted, idShort, labels, manualCoverAttachment, name, pos, shortLink, shortUrl, subscribed or url",
+        "default": "all"
       }
     ],
     "responses": [
@@ -6313,13 +6642,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idChecklist",
         "schema": "string",
         "required": true,
-        "description": "idChecklist"
+        "description": "idChecklist",
+        "example": "IDCHECKLIST"
       },
       {
         "name": "filter",
         "schema": "string",
         "required": true,
-        "description": "filter"
+        "description": "filter",
+        "example": "FILTER"
       }
     ],
     "responses": [
@@ -6345,19 +6676,22 @@ export default function TrelloTypeScriptSdk() {
         "name": "idChecklist",
         "schema": "string",
         "required": true,
-        "description": "idChecklist"
+        "description": "idChecklist",
+        "example": "IDCHECKLIST"
       },
       {
         "name": "filter",
         "schema": "string",
         "required": false,
-        "description": "One of: all or none"
+        "description": "One of: all or none",
+        "default": "all"
       },
       {
         "name": "fields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: name, nameData, pos, state or type"
+        "description": "all or a comma-separated list of: name, nameData, pos, state or type",
+        "default": "name, nameData, pos and state"
       }
     ],
     "responses": [
@@ -6383,7 +6717,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idChecklist",
         "schema": "string",
         "required": true,
-        "description": "idChecklist"
+        "description": "idChecklist",
+        "example": "IDCHECKLIST"
       },
       {
         "name": "checked",
@@ -6424,13 +6759,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idChecklist",
         "schema": "string",
         "required": true,
-        "description": "idChecklist"
+        "description": "idChecklist",
+        "example": "IDCHECKLIST"
       },
       {
         "name": "idCheckItem",
         "schema": "string",
         "required": true,
-        "description": "idCheckItem"
+        "description": "idCheckItem",
+        "example": "IDCHECKITEM"
       }
     ],
     "responses": [
@@ -6456,19 +6793,22 @@ export default function TrelloTypeScriptSdk() {
         "name": "idChecklist",
         "schema": "string",
         "required": true,
-        "description": "idChecklist"
+        "description": "idChecklist",
+        "example": "IDCHECKLIST"
       },
       {
         "name": "idCheckItem",
         "schema": "string",
         "required": true,
-        "description": "idCheckItem"
+        "description": "idCheckItem",
+        "example": "IDCHECKITEM"
       },
       {
         "name": "fields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: name, nameData, pos, state or type"
+        "description": "all or a comma-separated list of: name, nameData, pos, state or type",
+        "default": "name, nameData, pos and state"
       }
     ],
     "responses": [
@@ -6494,7 +6834,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idChecklist",
         "schema": "string",
         "required": true,
-        "description": "idChecklist"
+        "description": "idChecklist",
+        "example": "IDCHECKLIST"
       },
       {
         "name": "value",
@@ -6525,7 +6866,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idChecklist",
         "schema": "string",
         "required": true,
-        "description": "idChecklist"
+        "description": "idChecklist",
+        "example": "IDCHECKLIST"
       },
       {
         "name": "value",
@@ -6556,7 +6898,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idChecklist",
         "schema": "string",
         "required": true,
-        "description": "idChecklist"
+        "description": "idChecklist",
+        "example": "IDCHECKLIST"
       },
       {
         "name": "value",
@@ -6587,13 +6930,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idChecklist",
         "schema": "string",
         "required": true,
-        "description": "idChecklist"
+        "description": "idChecklist",
+        "example": "IDCHECKLIST"
       },
       {
         "name": "field",
         "schema": "string",
         "required": true,
-        "description": "field"
+        "description": "field",
+        "example": "FIELD"
       }
     ],
     "responses": [
@@ -6654,7 +6999,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idLabel",
         "schema": "string",
         "required": true,
-        "description": "idLabel"
+        "description": "idLabel",
+        "example": "IDLABEL"
       }
     ],
     "responses": [
@@ -6680,13 +7026,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idLabel",
         "schema": "string",
         "required": true,
-        "description": "idLabel"
+        "description": "idLabel",
+        "example": "IDLABEL"
       },
       {
         "name": "fields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: color, idBoard, name or uses"
+        "description": "all or a comma-separated list of: color, idBoard, name or uses",
+        "default": "all"
       }
     ],
     "responses": [
@@ -6712,7 +7060,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idLabel",
         "schema": "string",
         "required": true,
-        "description": "idLabel"
+        "description": "idLabel",
+        "example": "IDLABEL"
       },
       {
         "name": "color",
@@ -6753,13 +7102,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idLabel",
         "schema": "string",
         "required": true,
-        "description": "idLabel"
+        "description": "idLabel",
+        "example": "IDLABEL"
       },
       {
         "name": "fields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: closed, dateLastActivity, dateLastView, desc, descData, idOrganization, invitations, invited, labelNames, memberships, name, pinned, powerUps, prefs, shortLink, shortUrl, starred, subscribed or url"
+        "description": "all or a comma-separated list of: closed, dateLastActivity, dateLastView, desc, descData, idOrganization, invitations, invited, labelNames, memberships, name, pinned, powerUps, prefs, shortLink, shortUrl, starred, subscribed or url",
+        "default": "all"
       }
     ],
     "responses": [
@@ -6785,13 +7136,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idLabel",
         "schema": "string",
         "required": true,
-        "description": "idLabel"
+        "description": "idLabel",
+        "example": "IDLABEL"
       },
       {
         "name": "field",
         "schema": "string",
         "required": true,
-        "description": "field"
+        "description": "field",
+        "example": "FIELD"
       }
     ],
     "responses": [
@@ -6817,7 +7170,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idLabel",
         "schema": "string",
         "required": true,
-        "description": "idLabel"
+        "description": "idLabel",
+        "example": "IDLABEL"
       },
       {
         "name": "value",
@@ -6848,7 +7202,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idLabel",
         "schema": "string",
         "required": true,
-        "description": "idLabel"
+        "description": "idLabel",
+        "example": "IDLABEL"
       },
       {
         "name": "value",
@@ -6929,19 +7284,22 @@ export default function TrelloTypeScriptSdk() {
         "name": "idList",
         "schema": "string",
         "required": true,
-        "description": "idList"
+        "description": "idList",
+        "example": "IDLIST"
       },
       {
         "name": "cards",
         "schema": "string",
         "required": false,
-        "description": "One of: all, closed, none or open"
+        "description": "One of: all, closed, none or open",
+        "default": "none"
       },
       {
         "name": "cardFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: badges, checkItemStates, closed, dateLastActivity, desc, descData, due, email, idAttachmentCover, idBoard, idChecklists, idLabels, idList, idMembers, idMembersVoted, idShort, labels, manualCoverAttachment, name, pos, shortLink, shortUrl, subscribed or url"
+        "description": "all or a comma-separated list of: badges, checkItemStates, closed, dateLastActivity, desc, descData, due, email, idAttachmentCover, idBoard, idChecklists, idLabels, idList, idMembers, idMembersVoted, idShort, labels, manualCoverAttachment, name, pos, shortLink, shortUrl, subscribed or url",
+        "default": "all"
       },
       {
         "name": "board",
@@ -6953,13 +7311,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "boardFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: closed, dateLastActivity, dateLastView, desc, descData, idOrganization, invitations, invited, labelNames, memberships, name, pinned, powerUps, prefs, shortLink, shortUrl, starred, subscribed or url"
+        "description": "all or a comma-separated list of: closed, dateLastActivity, dateLastView, desc, descData, idOrganization, invitations, invited, labelNames, memberships, name, pinned, powerUps, prefs, shortLink, shortUrl, starred, subscribed or url",
+        "default": "name, desc, descData, closed, idOrganization, pinned, url and prefs"
       },
       {
         "name": "fields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: closed, idBoard, name, pos or subscribed"
+        "description": "all or a comma-separated list of: closed, idBoard, name, pos or subscribed",
+        "default": "name, closed, idBoard and pos"
       }
     ],
     "responses": [
@@ -6985,7 +7345,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idList",
         "schema": "string",
         "required": true,
-        "description": "idList"
+        "description": "idList",
+        "example": "IDLIST"
       },
       {
         "name": "closed",
@@ -7041,7 +7402,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idList",
         "schema": "string",
         "required": true,
-        "description": "idList"
+        "description": "idList",
+        "example": "IDLIST"
       },
       {
         "name": "entities",
@@ -7059,25 +7421,29 @@ export default function TrelloTypeScriptSdk() {
         "name": "filter",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: addAttachmentToCard, addChecklistToCard, addMemberToBoard, addMemberToCard, addMemberToOrganization, addToOrganizationBoard, commentCard, convertToCardFromCheckItem, copyBoard, copyCard, copyCommentCard, createBoard, createCard, createList, createOrganization, deleteAttachmentFromCard, deleteBoardInvitation, deleteCard, deleteOrganizationInvitation, disablePowerUp, emailCard, enablePowerUp, makeAdminOfBoard, makeNormalMemberOfBoard, makeNormalMemberOfOrganization, makeObserverOfBoard, memberJoinedTrello, moveCardFromBoard, moveCardToBoard, moveListFromBoard, moveListToBoard, removeChecklistFromCard, removeFromOrganizationBoard, removeMemberFromCard, unconfirmedBoardInvitation, unconfirmedOrganizationInvitation, updateBoard, updateCard, updateCard:closed, updateCard:desc, updateCard:idList, updateCard:name, updateCheckItemStateOnCard, updateChecklist, updateList, updateList:closed, updateList:name, updateMember or updateOrganization"
+        "description": "all or a comma-separated list of: addAttachmentToCard, addChecklistToCard, addMemberToBoard, addMemberToCard, addMemberToOrganization, addToOrganizationBoard, commentCard, convertToCardFromCheckItem, copyBoard, copyCard, copyCommentCard, createBoard, createCard, createList, createOrganization, deleteAttachmentFromCard, deleteBoardInvitation, deleteCard, deleteOrganizationInvitation, disablePowerUp, emailCard, enablePowerUp, makeAdminOfBoard, makeNormalMemberOfBoard, makeNormalMemberOfOrganization, makeObserverOfBoard, memberJoinedTrello, moveCardFromBoard, moveCardToBoard, moveListFromBoard, moveListToBoard, removeChecklistFromCard, removeFromOrganizationBoard, removeMemberFromCard, unconfirmedBoardInvitation, unconfirmedOrganizationInvitation, updateBoard, updateCard, updateCard:closed, updateCard:desc, updateCard:idList, updateCard:name, updateCheckItemStateOnCard, updateChecklist, updateList, updateList:closed, updateList:name, updateMember or updateOrganization",
+        "default": "all"
       },
       {
         "name": "fields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: data, date, idMemberCreator or type"
+        "description": "all or a comma-separated list of: data, date, idMemberCreator or type",
+        "default": "all"
       },
       {
         "name": "limit",
         "schema": "string",
         "required": false,
-        "description": "a number from 0 to 1000"
+        "description": "a number from 0 to 1000",
+        "default": "50"
       },
       {
         "name": "format",
         "schema": "string",
         "required": false,
-        "description": "One of: count, list or minimal"
+        "description": "One of: count, list or minimal",
+        "default": "list"
       },
       {
         "name": "since",
@@ -7095,7 +7461,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "page",
         "schema": "string",
         "required": false,
-        "description": "Page * limit must be less than 1000"
+        "description": "Page * limit must be less than 1000",
+        "default": "0"
       },
       {
         "name": "idModels",
@@ -7113,7 +7480,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "memberFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: avatarHash, bio, bioData, confirmed, fullName, idPremOrgsAdmin, initials, memberType, products, status, url or username"
+        "description": "all or a comma-separated list of: avatarHash, bio, bioData, confirmed, fullName, idPremOrgsAdmin, initials, memberType, products, status, url or username",
+        "default": "avatarHash, fullName, initials and username"
       },
       {
         "name": "memberCreator",
@@ -7125,7 +7493,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "memberCreatorFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: avatarHash, bio, bioData, confirmed, fullName, idPremOrgsAdmin, initials, memberType, products, status, url or username"
+        "description": "all or a comma-separated list of: avatarHash, bio, bioData, confirmed, fullName, idPremOrgsAdmin, initials, memberType, products, status, url or username",
+        "default": "avatarHash, fullName, initials and username"
       }
     ],
     "responses": [
@@ -7151,7 +7520,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idList",
         "schema": "string",
         "required": true,
-        "description": "idList"
+        "description": "idList",
+        "example": "IDLIST"
       }
     ],
     "responses": [
@@ -7177,13 +7547,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idList",
         "schema": "string",
         "required": true,
-        "description": "idList"
+        "description": "idList",
+        "example": "IDLIST"
       },
       {
         "name": "fields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: closed, dateLastActivity, dateLastView, desc, descData, idOrganization, invitations, invited, labelNames, memberships, name, pinned, powerUps, prefs, shortLink, shortUrl, starred, subscribed or url"
+        "description": "all or a comma-separated list of: closed, dateLastActivity, dateLastView, desc, descData, idOrganization, invitations, invited, labelNames, memberships, name, pinned, powerUps, prefs, shortLink, shortUrl, starred, subscribed or url",
+        "default": "all"
       }
     ],
     "responses": [
@@ -7209,13 +7581,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idList",
         "schema": "string",
         "required": true,
-        "description": "idList"
+        "description": "idList",
+        "example": "IDLIST"
       },
       {
         "name": "field",
         "schema": "string",
         "required": true,
-        "description": "field"
+        "description": "field",
+        "example": "FIELD"
       }
     ],
     "responses": [
@@ -7241,7 +7615,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idList",
         "schema": "string",
         "required": true,
-        "description": "idList"
+        "description": "idList",
+        "example": "IDLIST"
       },
       {
         "name": "actions",
@@ -7259,7 +7634,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "attachmentFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: bytes, date, edgeColor, idMember, isUpload, mimeType, name, previews or url"
+        "description": "all or a comma-separated list of: bytes, date, edgeColor, idMember, isUpload, mimeType, name, previews or url",
+        "default": "all"
       },
       {
         "name": "stickers",
@@ -7277,7 +7653,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "memberFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: avatarHash, bio, bioData, confirmed, fullName, idPremOrgsAdmin, initials, memberType, products, status, url or username"
+        "description": "all or a comma-separated list of: avatarHash, bio, bioData, confirmed, fullName, idPremOrgsAdmin, initials, memberType, products, status, url or username",
+        "default": "avatarHash, fullName, initials and username"
       },
       {
         "name": "checkItemStates",
@@ -7289,7 +7666,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "checklists",
         "schema": "string",
         "required": false,
-        "description": "One of: all or none"
+        "description": "One of: all or none",
+        "default": "none"
       },
       {
         "name": "limit",
@@ -7313,13 +7691,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "filter",
         "schema": "string",
         "required": false,
-        "description": "One of: all, closed, none or open"
+        "description": "One of: all, closed, none or open",
+        "default": "open"
       },
       {
         "name": "fields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: badges, checkItemStates, closed, dateLastActivity, desc, descData, due, email, idAttachmentCover, idBoard, idChecklists, idLabels, idList, idMembers, idMembersVoted, idShort, labels, manualCoverAttachment, name, pos, shortLink, shortUrl, subscribed or url"
+        "description": "all or a comma-separated list of: badges, checkItemStates, closed, dateLastActivity, desc, descData, due, email, idAttachmentCover, idBoard, idChecklists, idLabels, idList, idMembers, idMembersVoted, idShort, labels, manualCoverAttachment, name, pos, shortLink, shortUrl, subscribed or url",
+        "default": "all"
       }
     ],
     "responses": [
@@ -7345,7 +7725,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idList",
         "schema": "string",
         "required": true,
-        "description": "idList"
+        "description": "idList",
+        "example": "IDLIST"
       },
       {
         "name": "desc",
@@ -7396,13 +7777,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idList",
         "schema": "string",
         "required": true,
-        "description": "idList"
+        "description": "idList",
+        "example": "IDLIST"
       },
       {
         "name": "filter",
         "schema": "string",
         "required": true,
-        "description": "filter"
+        "description": "filter",
+        "example": "FILTER"
       }
     ],
     "responses": [
@@ -7428,7 +7811,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idList",
         "schema": "string",
         "required": true,
-        "description": "idList"
+        "description": "idList",
+        "example": "IDLIST"
       },
       {
         "name": "value",
@@ -7459,7 +7843,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idList",
         "schema": "string",
         "required": true,
-        "description": "idList"
+        "description": "idList",
+        "example": "IDLIST"
       },
       {
         "name": "pos",
@@ -7495,7 +7880,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idList",
         "schema": "string",
         "required": true,
-        "description": "idList"
+        "description": "idList",
+        "example": "IDLIST"
       },
       {
         "name": "idBoard",
@@ -7526,7 +7912,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idList",
         "schema": "string",
         "required": true,
-        "description": "idList"
+        "description": "idList",
+        "example": "IDLIST"
       },
       {
         "name": "value",
@@ -7557,7 +7944,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idList",
         "schema": "string",
         "required": true,
-        "description": "idList"
+        "description": "idList",
+        "example": "IDLIST"
       },
       {
         "name": "value",
@@ -7588,7 +7976,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idList",
         "schema": "string",
         "required": true,
-        "description": "idList"
+        "description": "idList",
+        "example": "IDLIST"
       },
       {
         "name": "value",
@@ -7619,13 +8008,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idList",
         "schema": "string",
         "required": true,
-        "description": "idList"
+        "description": "idList",
+        "example": "IDLIST"
       },
       {
         "name": "field",
         "schema": "string",
         "required": true,
-        "description": "field"
+        "description": "field",
+        "example": "FIELD"
       }
     ],
     "responses": [
@@ -7651,7 +8042,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idMember",
         "schema": "string",
         "required": true,
-        "description": "idMember or username"
+        "description": "idMember or username",
+        "example": "IDMEMBER"
       },
       {
         "name": "actions",
@@ -7675,13 +8067,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "actionsLimit",
         "schema": "string",
         "required": false,
-        "description": "a number from 0 to 1000"
+        "description": "a number from 0 to 1000",
+        "default": "50"
       },
       {
         "name": "actionFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: data, date, idMemberCreator or type"
+        "description": "all or a comma-separated list of: data, date, idMemberCreator or type",
+        "default": "all"
       },
       {
         "name": "actionSince",
@@ -7699,13 +8093,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "cards",
         "schema": "string",
         "required": false,
-        "description": "One of: all, closed, none, open or visible"
+        "description": "One of: all, closed, none, open or visible",
+        "default": "none"
       },
       {
         "name": "cardFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: badges, checkItemStates, closed, dateLastActivity, desc, descData, due, email, idAttachmentCover, idBoard, idChecklists, idLabels, idList, idMembers, idMembersVoted, idShort, labels, manualCoverAttachment, name, pos, shortLink, shortUrl, subscribed or url"
+        "description": "all or a comma-separated list of: badges, checkItemStates, closed, dateLastActivity, desc, descData, due, email, idAttachmentCover, idBoard, idChecklists, idLabels, idList, idMembers, idMembersVoted, idShort, labels, manualCoverAttachment, name, pos, shortLink, shortUrl, subscribed or url",
+        "default": "all"
       },
       {
         "name": "cardMembers",
@@ -7717,7 +8113,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "cardMemberFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: avatarHash, bio, bioData, confirmed, fullName, idPremOrgsAdmin, initials, memberType, products, status, url or username"
+        "description": "all or a comma-separated list of: avatarHash, bio, bioData, confirmed, fullName, idPremOrgsAdmin, initials, memberType, products, status, url or username",
+        "default": "avatarHash, fullName, initials and username"
       },
       {
         "name": "cardAttachments",
@@ -7729,7 +8126,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "cardAttachmentFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: bytes, date, edgeColor, idMember, isUpload, mimeType, name, previews or url"
+        "description": "all or a comma-separated list of: bytes, date, edgeColor, idMember, isUpload, mimeType, name, previews or url",
+        "default": "url and previews"
       },
       {
         "name": "cardStickers",
@@ -7747,7 +8145,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "boardFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: closed, dateLastActivity, dateLastView, desc, descData, idOrganization, invitations, invited, labelNames, memberships, name, pinned, powerUps, prefs, shortLink, shortUrl, starred, subscribed or url"
+        "description": "all or a comma-separated list of: closed, dateLastActivity, dateLastView, desc, descData, idOrganization, invitations, invited, labelNames, memberships, name, pinned, powerUps, prefs, shortLink, shortUrl, starred, subscribed or url",
+        "default": "name, closed, idOrganization and pinned"
       },
       {
         "name": "boardActions",
@@ -7771,7 +8170,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "boardActionsFormat",
         "schema": "string",
         "required": false,
-        "description": "One of: count, list or minimal"
+        "description": "One of: count, list or minimal",
+        "default": "list"
       },
       {
         "name": "boardActionsSince",
@@ -7783,25 +8183,29 @@ export default function TrelloTypeScriptSdk() {
         "name": "boardActionsLimit",
         "schema": "string",
         "required": false,
-        "description": "a number from 0 to 1000"
+        "description": "a number from 0 to 1000",
+        "default": "50"
       },
       {
         "name": "boardActionFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: data, date, idMemberCreator or type"
+        "description": "all or a comma-separated list of: data, date, idMemberCreator or type",
+        "default": "all"
       },
       {
         "name": "boardLists",
         "schema": "string",
         "required": false,
-        "description": "One of: all, closed, none or open"
+        "description": "One of: all, closed, none or open",
+        "default": "none"
       },
       {
         "name": "boardMemberships",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: active, admin, deactivated, me or normal"
+        "description": "all or a comma-separated list of: active, admin, deactivated, me or normal",
+        "default": "none"
       },
       {
         "name": "boardOrganization",
@@ -7813,7 +8217,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "boardOrganizationFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: billableMemberCount, desc, descData, displayName, idBoards, invitations, invited, logoHash, memberships, name, powerUps, prefs, premiumFeatures, products, url or website"
+        "description": "all or a comma-separated list of: billableMemberCount, desc, descData, displayName, idBoards, invitations, invited, logoHash, memberships, name, powerUps, prefs, premiumFeatures, products, url or website",
+        "default": "name and displayName"
       },
       {
         "name": "boardsInvited",
@@ -7825,7 +8230,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "boardsInvitedFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: closed, dateLastActivity, dateLastView, desc, descData, idOrganization, invitations, invited, labelNames, memberships, name, pinned, powerUps, prefs, shortLink, shortUrl, starred, subscribed or url"
+        "description": "all or a comma-separated list of: closed, dateLastActivity, dateLastView, desc, descData, idOrganization, invitations, invited, labelNames, memberships, name, pinned, powerUps, prefs, shortLink, shortUrl, starred, subscribed or url",
+        "default": "name, closed, idOrganization and pinned"
       },
       {
         "name": "boardStars",
@@ -7843,13 +8249,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "organizations",
         "schema": "string",
         "required": false,
-        "description": "One of: all, members, none or public"
+        "description": "One of: all, members, none or public",
+        "default": "none"
       },
       {
         "name": "organizationFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: billableMemberCount, desc, descData, displayName, idBoards, invitations, invited, logoHash, memberships, name, powerUps, prefs, premiumFeatures, products, url or website"
+        "description": "all or a comma-separated list of: billableMemberCount, desc, descData, displayName, idBoards, invitations, invited, logoHash, memberships, name, powerUps, prefs, premiumFeatures, products, url or website",
+        "default": "all"
       },
       {
         "name": "organizationPaidAccount",
@@ -7861,13 +8269,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "organizationsInvited",
         "schema": "string",
         "required": false,
-        "description": "One of: all, members, none or public"
+        "description": "One of: all, members, none or public",
+        "default": "none"
       },
       {
         "name": "organizationsInvitedFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: billableMemberCount, desc, descData, displayName, idBoards, invitations, invited, logoHash, memberships, name, powerUps, prefs, premiumFeatures, products, url or website"
+        "description": "all or a comma-separated list of: billableMemberCount, desc, descData, displayName, idBoards, invitations, invited, logoHash, memberships, name, powerUps, prefs, premiumFeatures, products, url or website",
+        "default": "all"
       },
       {
         "name": "notifications",
@@ -7891,13 +8301,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "notificationsLimit",
         "schema": "string",
         "required": false,
-        "description": "a number from 1 to 1000"
+        "description": "a number from 1 to 1000",
+        "default": "50"
       },
       {
         "name": "notificationFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: data, date, idMemberCreator, type or unread"
+        "description": "all or a comma-separated list of: data, date, idMemberCreator, type or unread",
+        "default": "all"
       },
       {
         "name": "notificationMemberCreator",
@@ -7909,7 +8321,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "notificationMemberCreatorFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: avatarHash, bio, bioData, confirmed, fullName, idPremOrgsAdmin, initials, memberType, products, status, url or username"
+        "description": "all or a comma-separated list of: avatarHash, bio, bioData, confirmed, fullName, idPremOrgsAdmin, initials, memberType, products, status, url or username",
+        "default": "avatarHash, fullName, initials and username"
       },
       {
         "name": "notificationBefore",
@@ -7927,7 +8340,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "tokens",
         "schema": "string",
         "required": false,
-        "description": "One of: all or none"
+        "description": "One of: all or none",
+        "default": "none"
       },
       {
         "name": "paidAccount",
@@ -7939,31 +8353,36 @@ export default function TrelloTypeScriptSdk() {
         "name": "boardBackgrounds",
         "schema": "string",
         "required": false,
-        "description": "One of: all, custom, default, none or premium"
+        "description": "One of: all, custom, default, none or premium",
+        "default": "none"
       },
       {
         "name": "customBoardBackgrounds",
         "schema": "string",
         "required": false,
-        "description": "One of: all or none"
+        "description": "One of: all or none",
+        "default": "none"
       },
       {
         "name": "customStickers",
         "schema": "string",
         "required": false,
-        "description": "One of: all or none"
+        "description": "One of: all or none",
+        "default": "none"
       },
       {
         "name": "customEmoji",
         "schema": "string",
         "required": false,
-        "description": "One of: all or none"
+        "description": "One of: all or none",
+        "default": "none"
       },
       {
         "name": "fields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: avatarHash, avatarSource, bio, bioData, confirmed, email, fullName, gravatarHash, idBoards, idBoardsPinned, idOrganizations, idPremOrgsAdmin, initials, loginTypes, memberType, oneTimeMessagesDismissed, prefs, premiumFeatures, products, status, status, trophies, uploadedAvatarHash, url or username"
+        "description": "all or a comma-separated list of: avatarHash, avatarSource, bio, bioData, confirmed, email, fullName, gravatarHash, idBoards, idBoardsPinned, idOrganizations, idPremOrgsAdmin, initials, loginTypes, memberType, oneTimeMessagesDismissed, prefs, premiumFeatures, products, status, status, trophies, uploadedAvatarHash, url or username",
+        "default": "all"
       }
     ],
     "responses": [
@@ -7989,7 +8408,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idMember",
         "schema": "string",
         "required": true,
-        "description": "idMember or username"
+        "description": "idMember or username",
+        "example": "IDMEMBER"
       },
       {
         "name": "avatarSource",
@@ -8055,7 +8475,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idMember",
         "schema": "string",
         "required": true,
-        "description": "idMember or username"
+        "description": "idMember or username",
+        "example": "IDMEMBER"
       },
       {
         "name": "entities",
@@ -8073,25 +8494,29 @@ export default function TrelloTypeScriptSdk() {
         "name": "filter",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: addAttachmentToCard, addChecklistToCard, addMemberToBoard, addMemberToCard, addMemberToOrganization, addToOrganizationBoard, commentCard, convertToCardFromCheckItem, copyBoard, copyCard, copyCommentCard, createBoard, createCard, createList, createOrganization, deleteAttachmentFromCard, deleteBoardInvitation, deleteCard, deleteOrganizationInvitation, disablePowerUp, emailCard, enablePowerUp, makeAdminOfBoard, makeNormalMemberOfBoard, makeNormalMemberOfOrganization, makeObserverOfBoard, memberJoinedTrello, moveCardFromBoard, moveCardToBoard, moveListFromBoard, moveListToBoard, removeChecklistFromCard, removeFromOrganizationBoard, removeMemberFromCard, unconfirmedBoardInvitation, unconfirmedOrganizationInvitation, updateBoard, updateCard, updateCard:closed, updateCard:desc, updateCard:idList, updateCard:name, updateCheckItemStateOnCard, updateChecklist, updateList, updateList:closed, updateList:name, updateMember or updateOrganization"
+        "description": "all or a comma-separated list of: addAttachmentToCard, addChecklistToCard, addMemberToBoard, addMemberToCard, addMemberToOrganization, addToOrganizationBoard, commentCard, convertToCardFromCheckItem, copyBoard, copyCard, copyCommentCard, createBoard, createCard, createList, createOrganization, deleteAttachmentFromCard, deleteBoardInvitation, deleteCard, deleteOrganizationInvitation, disablePowerUp, emailCard, enablePowerUp, makeAdminOfBoard, makeNormalMemberOfBoard, makeNormalMemberOfOrganization, makeObserverOfBoard, memberJoinedTrello, moveCardFromBoard, moveCardToBoard, moveListFromBoard, moveListToBoard, removeChecklistFromCard, removeFromOrganizationBoard, removeMemberFromCard, unconfirmedBoardInvitation, unconfirmedOrganizationInvitation, updateBoard, updateCard, updateCard:closed, updateCard:desc, updateCard:idList, updateCard:name, updateCheckItemStateOnCard, updateChecklist, updateList, updateList:closed, updateList:name, updateMember or updateOrganization",
+        "default": "all"
       },
       {
         "name": "fields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: data, date, idMemberCreator or type"
+        "description": "all or a comma-separated list of: data, date, idMemberCreator or type",
+        "default": "all"
       },
       {
         "name": "limit",
         "schema": "string",
         "required": false,
-        "description": "a number from 0 to 1000"
+        "description": "a number from 0 to 1000",
+        "default": "50"
       },
       {
         "name": "format",
         "schema": "string",
         "required": false,
-        "description": "One of: count, list or minimal"
+        "description": "One of: count, list or minimal",
+        "default": "list"
       },
       {
         "name": "since",
@@ -8109,7 +8534,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "page",
         "schema": "string",
         "required": false,
-        "description": "Page * limit must be less than 1000"
+        "description": "Page * limit must be less than 1000",
+        "default": "0"
       },
       {
         "name": "idModels",
@@ -8127,7 +8553,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "memberFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: avatarHash, bio, bioData, confirmed, fullName, idPremOrgsAdmin, initials, memberType, products, status, url or username"
+        "description": "all or a comma-separated list of: avatarHash, bio, bioData, confirmed, fullName, idPremOrgsAdmin, initials, memberType, products, status, url or username",
+        "default": "avatarHash, fullName, initials and username"
       },
       {
         "name": "memberCreator",
@@ -8139,7 +8566,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "memberCreatorFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: avatarHash, bio, bioData, confirmed, fullName, idPremOrgsAdmin, initials, memberType, products, status, url or username"
+        "description": "all or a comma-separated list of: avatarHash, bio, bioData, confirmed, fullName, idPremOrgsAdmin, initials, memberType, products, status, url or username",
+        "default": "avatarHash, fullName, initials and username"
       }
     ],
     "responses": [
@@ -8165,7 +8593,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idMember",
         "schema": "string",
         "required": true,
-        "description": "idMember or username"
+        "description": "idMember or username",
+        "example": "IDMEMBER"
       },
       {
         "name": "file",
@@ -8196,7 +8625,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idMember",
         "schema": "string",
         "required": true,
-        "description": "idMember or username"
+        "description": "idMember or username",
+        "example": "IDMEMBER"
       },
       {
         "name": "value",
@@ -8227,7 +8657,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idMember",
         "schema": "string",
         "required": true,
-        "description": "idMember or username"
+        "description": "idMember or username",
+        "example": "IDMEMBER"
       },
       {
         "name": "value",
@@ -8258,13 +8689,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idMember",
         "schema": "string",
         "required": true,
-        "description": "idMember or username"
+        "description": "idMember or username",
+        "example": "IDMEMBER"
       },
       {
         "name": "filter",
         "schema": "string",
         "required": false,
-        "description": "One of: all, custom, default, none or premium"
+        "description": "One of: all, custom, default, none or premium",
+        "default": "all"
       }
     ],
     "responses": [
@@ -8290,7 +8723,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idMember",
         "schema": "string",
         "required": true,
-        "description": "idMember or username"
+        "description": "idMember or username",
+        "example": "IDMEMBER"
       },
       {
         "name": "brightness",
@@ -8331,13 +8765,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idMember",
         "schema": "string",
         "required": true,
-        "description": "idMember or username"
+        "description": "idMember or username",
+        "example": "IDMEMBER"
       },
       {
         "name": "idBoardBackground",
         "schema": "string",
         "required": true,
-        "description": "idBoardBackground"
+        "description": "idBoardBackground",
+        "example": "IDBOARDBACKGROUND"
       }
     ],
     "responses": [
@@ -8363,19 +8799,22 @@ export default function TrelloTypeScriptSdk() {
         "name": "idMember",
         "schema": "string",
         "required": true,
-        "description": "idMember or username"
+        "description": "idMember or username",
+        "example": "IDMEMBER"
       },
       {
         "name": "idBoardBackground",
         "schema": "string",
         "required": true,
-        "description": "idBoardBackground"
+        "description": "idBoardBackground",
+        "example": "IDBOARDBACKGROUND"
       },
       {
         "name": "fields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: brightness, fullSizeUrl, scaled or tile"
+        "description": "all or a comma-separated list of: brightness, fullSizeUrl, scaled or tile",
+        "default": "all"
       }
     ],
     "responses": [
@@ -8401,13 +8840,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idMember",
         "schema": "string",
         "required": true,
-        "description": "idMember or username"
+        "description": "idMember or username",
+        "example": "IDMEMBER"
       },
       {
         "name": "idBoardBackground",
         "schema": "string",
         "required": true,
-        "description": "idBoardBackground"
+        "description": "idBoardBackground",
+        "example": "IDBOARDBACKGROUND"
       },
       {
         "name": "brightness",
@@ -8448,7 +8889,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idMember",
         "schema": "string",
         "required": true,
-        "description": "idMember or username"
+        "description": "idMember or username",
+        "example": "IDMEMBER"
       }
     ],
     "responses": [
@@ -8474,7 +8916,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idMember",
         "schema": "string",
         "required": true,
-        "description": "idMember or username"
+        "description": "idMember or username",
+        "example": "IDMEMBER"
       },
       {
         "name": "idBoard",
@@ -8510,13 +8953,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idMember",
         "schema": "string",
         "required": true,
-        "description": "idMember or username"
+        "description": "idMember or username",
+        "example": "IDMEMBER"
       },
       {
         "name": "idBoardStar",
         "schema": "string",
         "required": true,
-        "description": "idBoardStar"
+        "description": "idBoardStar",
+        "example": "IDBOARDSTAR"
       }
     ],
     "responses": [
@@ -8542,13 +8987,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idMember",
         "schema": "string",
         "required": true,
-        "description": "idMember or username"
+        "description": "idMember or username",
+        "example": "IDMEMBER"
       },
       {
         "name": "idBoardStar",
         "schema": "string",
         "required": true,
-        "description": "idBoardStar"
+        "description": "idBoardStar",
+        "example": "IDBOARDSTAR"
       }
     ],
     "responses": [
@@ -8574,13 +9021,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idMember",
         "schema": "string",
         "required": true,
-        "description": "idMember or username"
+        "description": "idMember or username",
+        "example": "IDMEMBER"
       },
       {
         "name": "idBoardStar",
         "schema": "string",
         "required": true,
-        "description": "idBoardStar"
+        "description": "idBoardStar",
+        "example": "IDBOARDSTAR"
       },
       {
         "name": "idBoard",
@@ -8616,13 +9065,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idMember",
         "schema": "string",
         "required": true,
-        "description": "idMember or username"
+        "description": "idMember or username",
+        "example": "IDMEMBER"
       },
       {
         "name": "idBoardStar",
         "schema": "string",
         "required": true,
-        "description": "idBoardStar"
+        "description": "idBoardStar",
+        "example": "IDBOARDSTAR"
       },
       {
         "name": "value",
@@ -8653,13 +9104,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idMember",
         "schema": "string",
         "required": true,
-        "description": "idMember or username"
+        "description": "idMember or username",
+        "example": "IDMEMBER"
       },
       {
         "name": "idBoardStar",
         "schema": "string",
         "required": true,
-        "description": "idBoardStar"
+        "description": "idBoardStar",
+        "example": "IDBOARDSTAR"
       },
       {
         "name": "value",
@@ -8690,19 +9143,22 @@ export default function TrelloTypeScriptSdk() {
         "name": "idMember",
         "schema": "string",
         "required": true,
-        "description": "idMember or username"
+        "description": "idMember or username",
+        "example": "IDMEMBER"
       },
       {
         "name": "filter",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: closed, members, open, organization, pinned, public, starred or unpinned"
+        "description": "all or a comma-separated list of: closed, members, open, organization, pinned, public, starred or unpinned",
+        "default": "all"
       },
       {
         "name": "fields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: closed, dateLastActivity, dateLastView, desc, descData, idOrganization, invitations, invited, labelNames, memberships, name, pinned, powerUps, prefs, shortLink, shortUrl, starred, subscribed or url"
+        "description": "all or a comma-separated list of: closed, dateLastActivity, dateLastView, desc, descData, idOrganization, invitations, invited, labelNames, memberships, name, pinned, powerUps, prefs, shortLink, shortUrl, starred, subscribed or url",
+        "default": "all"
       },
       {
         "name": "actions",
@@ -8720,13 +9176,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "actionsLimit",
         "schema": "string",
         "required": false,
-        "description": "a number from 0 to 1000"
+        "description": "a number from 0 to 1000",
+        "default": "50"
       },
       {
         "name": "actionsFormat",
         "schema": "string",
         "required": false,
-        "description": "One of: count, list or minimal"
+        "description": "One of: count, list or minimal",
+        "default": "list"
       },
       {
         "name": "actionsSince",
@@ -8738,13 +9196,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "actionFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: data, date, idMemberCreator or type"
+        "description": "all or a comma-separated list of: data, date, idMemberCreator or type",
+        "default": "all"
       },
       {
         "name": "memberships",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: active, admin, deactivated, me or normal"
+        "description": "all or a comma-separated list of: active, admin, deactivated, me or normal",
+        "default": "none"
       },
       {
         "name": "organization",
@@ -8756,13 +9216,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "organizationFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: billableMemberCount, desc, descData, displayName, idBoards, invitations, invited, logoHash, memberships, name, powerUps, prefs, premiumFeatures, products, url or website"
+        "description": "all or a comma-separated list of: billableMemberCount, desc, descData, displayName, idBoards, invitations, invited, logoHash, memberships, name, powerUps, prefs, premiumFeatures, products, url or website",
+        "default": "name and displayName"
       },
       {
         "name": "lists",
         "schema": "string",
         "required": false,
-        "description": "One of: all, closed, none or open"
+        "description": "One of: all, closed, none or open",
+        "default": "none"
       }
     ],
     "responses": [
@@ -8788,13 +9250,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idMember",
         "schema": "string",
         "required": true,
-        "description": "idMember or username"
+        "description": "idMember or username",
+        "example": "IDMEMBER"
       },
       {
         "name": "filter",
         "schema": "string",
         "required": true,
-        "description": "filter"
+        "description": "filter",
+        "example": "FILTER"
       }
     ],
     "responses": [
@@ -8820,13 +9284,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idMember",
         "schema": "string",
         "required": true,
-        "description": "idMember or username"
+        "description": "idMember or username",
+        "example": "IDMEMBER"
       },
       {
         "name": "fields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: closed, dateLastActivity, dateLastView, desc, descData, idOrganization, invitations, invited, labelNames, memberships, name, pinned, powerUps, prefs, shortLink, shortUrl, starred, subscribed or url"
+        "description": "all or a comma-separated list of: closed, dateLastActivity, dateLastView, desc, descData, idOrganization, invitations, invited, labelNames, memberships, name, pinned, powerUps, prefs, shortLink, shortUrl, starred, subscribed or url",
+        "default": "all"
       }
     ],
     "responses": [
@@ -8852,13 +9318,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idMember",
         "schema": "string",
         "required": true,
-        "description": "idMember or username"
+        "description": "idMember or username",
+        "example": "IDMEMBER"
       },
       {
         "name": "field",
         "schema": "string",
         "required": true,
-        "description": "field"
+        "description": "field",
+        "example": "FIELD"
       }
     ],
     "responses": [
@@ -8884,7 +9352,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idMember",
         "schema": "string",
         "required": true,
-        "description": "idMember or username"
+        "description": "idMember or username",
+        "example": "IDMEMBER"
       },
       {
         "name": "actions",
@@ -8902,7 +9371,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "attachmentFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: bytes, date, edgeColor, idMember, isUpload, mimeType, name, previews or url"
+        "description": "all or a comma-separated list of: bytes, date, edgeColor, idMember, isUpload, mimeType, name, previews or url",
+        "default": "all"
       },
       {
         "name": "stickers",
@@ -8920,7 +9390,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "memberFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: avatarHash, bio, bioData, confirmed, fullName, idPremOrgsAdmin, initials, memberType, products, status, url or username"
+        "description": "all or a comma-separated list of: avatarHash, bio, bioData, confirmed, fullName, idPremOrgsAdmin, initials, memberType, products, status, url or username",
+        "default": "avatarHash, fullName, initials and username"
       },
       {
         "name": "checkItemStates",
@@ -8932,7 +9403,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "checklists",
         "schema": "string",
         "required": false,
-        "description": "One of: all or none"
+        "description": "One of: all or none",
+        "default": "none"
       },
       {
         "name": "limit",
@@ -8956,13 +9428,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "filter",
         "schema": "string",
         "required": false,
-        "description": "One of: all, closed, none, open or visible"
+        "description": "One of: all, closed, none, open or visible",
+        "default": "visible"
       },
       {
         "name": "fields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: badges, checkItemStates, closed, dateLastActivity, desc, descData, due, email, idAttachmentCover, idBoard, idChecklists, idLabels, idList, idMembers, idMembersVoted, idShort, labels, manualCoverAttachment, name, pos, shortLink, shortUrl, subscribed or url"
+        "description": "all or a comma-separated list of: badges, checkItemStates, closed, dateLastActivity, desc, descData, due, email, idAttachmentCover, idBoard, idChecklists, idLabels, idList, idMembers, idMembersVoted, idShort, labels, manualCoverAttachment, name, pos, shortLink, shortUrl, subscribed or url",
+        "default": "all"
       }
     ],
     "responses": [
@@ -8988,13 +9462,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idMember",
         "schema": "string",
         "required": true,
-        "description": "idMember or username"
+        "description": "idMember or username",
+        "example": "IDMEMBER"
       },
       {
         "name": "filter",
         "schema": "string",
         "required": true,
-        "description": "filter"
+        "description": "filter",
+        "example": "FILTER"
       }
     ],
     "responses": [
@@ -9020,13 +9496,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idMember",
         "schema": "string",
         "required": true,
-        "description": "idMember or username"
+        "description": "idMember or username",
+        "example": "IDMEMBER"
       },
       {
         "name": "filter",
         "schema": "string",
         "required": false,
-        "description": "One of: all or none"
+        "description": "One of: all or none",
+        "default": "all"
       }
     ],
     "responses": [
@@ -9052,7 +9530,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idMember",
         "schema": "string",
         "required": true,
-        "description": "idMember or username"
+        "description": "idMember or username",
+        "example": "IDMEMBER"
       },
       {
         "name": "brightness",
@@ -9093,13 +9572,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idMember",
         "schema": "string",
         "required": true,
-        "description": "idMember or username"
+        "description": "idMember or username",
+        "example": "IDMEMBER"
       },
       {
         "name": "idBoardBackground",
         "schema": "string",
         "required": true,
-        "description": "idBoardBackground"
+        "description": "idBoardBackground",
+        "example": "IDBOARDBACKGROUND"
       }
     ],
     "responses": [
@@ -9125,19 +9606,22 @@ export default function TrelloTypeScriptSdk() {
         "name": "idMember",
         "schema": "string",
         "required": true,
-        "description": "idMember or username"
+        "description": "idMember or username",
+        "example": "IDMEMBER"
       },
       {
         "name": "idBoardBackground",
         "schema": "string",
         "required": true,
-        "description": "idBoardBackground"
+        "description": "idBoardBackground",
+        "example": "IDBOARDBACKGROUND"
       },
       {
         "name": "fields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: brightness, fullSizeUrl, scaled or tile"
+        "description": "all or a comma-separated list of: brightness, fullSizeUrl, scaled or tile",
+        "default": "all"
       }
     ],
     "responses": [
@@ -9163,13 +9647,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idMember",
         "schema": "string",
         "required": true,
-        "description": "idMember or username"
+        "description": "idMember or username",
+        "example": "IDMEMBER"
       },
       {
         "name": "idBoardBackground",
         "schema": "string",
         "required": true,
-        "description": "idBoardBackground"
+        "description": "idBoardBackground",
+        "example": "IDBOARDBACKGROUND"
       },
       {
         "name": "brightness",
@@ -9210,13 +9696,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idMember",
         "schema": "string",
         "required": true,
-        "description": "idMember or username"
+        "description": "idMember or username",
+        "example": "IDMEMBER"
       },
       {
         "name": "filter",
         "schema": "string",
         "required": false,
-        "description": "One of: all or none"
+        "description": "One of: all or none",
+        "default": "all"
       }
     ],
     "responses": [
@@ -9242,7 +9730,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idMember",
         "schema": "string",
         "required": true,
-        "description": "idMember or username"
+        "description": "idMember or username",
+        "example": "IDMEMBER"
       },
       {
         "name": "file",
@@ -9278,19 +9767,22 @@ export default function TrelloTypeScriptSdk() {
         "name": "idMember",
         "schema": "string",
         "required": true,
-        "description": "idMember or username"
+        "description": "idMember or username",
+        "example": "IDMEMBER"
       },
       {
         "name": "idCustomEmoji",
         "schema": "string",
         "required": true,
-        "description": "idCustomEmoji"
+        "description": "idCustomEmoji",
+        "example": "IDCUSTOMEMOJI"
       },
       {
         "name": "fields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: name or url"
+        "description": "all or a comma-separated list of: name or url",
+        "default": "all"
       }
     ],
     "responses": [
@@ -9316,13 +9808,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idMember",
         "schema": "string",
         "required": true,
-        "description": "idMember or username"
+        "description": "idMember or username",
+        "example": "IDMEMBER"
       },
       {
         "name": "filter",
         "schema": "string",
         "required": false,
-        "description": "One of: all or none"
+        "description": "One of: all or none",
+        "default": "all"
       }
     ],
     "responses": [
@@ -9348,7 +9842,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idMember",
         "schema": "string",
         "required": true,
-        "description": "idMember or username"
+        "description": "idMember or username",
+        "example": "IDMEMBER"
       },
       {
         "name": "file",
@@ -9379,13 +9874,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idMember",
         "schema": "string",
         "required": true,
-        "description": "idMember or username"
+        "description": "idMember or username",
+        "example": "IDMEMBER"
       },
       {
         "name": "idCustomSticker",
         "schema": "string",
         "required": true,
-        "description": "idCustomSticker"
+        "description": "idCustomSticker",
+        "example": "IDCUSTOMSTICKER"
       }
     ],
     "responses": [
@@ -9411,19 +9908,22 @@ export default function TrelloTypeScriptSdk() {
         "name": "idMember",
         "schema": "string",
         "required": true,
-        "description": "idMember or username"
+        "description": "idMember or username",
+        "example": "IDMEMBER"
       },
       {
         "name": "idCustomSticker",
         "schema": "string",
         "required": true,
-        "description": "idCustomSticker"
+        "description": "idCustomSticker",
+        "example": "IDCUSTOMSTICKER"
       },
       {
         "name": "fields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: scaled or url"
+        "description": "all or a comma-separated list of: scaled or url",
+        "default": "all"
       }
     ],
     "responses": [
@@ -9449,19 +9949,22 @@ export default function TrelloTypeScriptSdk() {
         "name": "idMember",
         "schema": "string",
         "required": true,
-        "description": "idMember or username"
+        "description": "idMember or username",
+        "example": "IDMEMBER"
       },
       {
         "name": "tags",
         "schema": "string",
         "required": true,
-        "description": "A valid tag for subscribing"
+        "description": "A valid tag for subscribing",
+        "example": "TAGS"
       },
       {
         "name": "ixLastUpdate",
         "schema": "string",
         "required": true,
-        "description": "a number from -1 to Infinity"
+        "description": "a number from -1 to Infinity",
+        "example": "IXLASTUPDATE"
       }
     ],
     "responses": [
@@ -9487,7 +9990,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idMember",
         "schema": "string",
         "required": true,
-        "description": "idMember or username"
+        "description": "idMember or username",
+        "example": "IDMEMBER"
       },
       {
         "name": "value",
@@ -9518,7 +10022,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idMember",
         "schema": "string",
         "required": true,
-        "description": "idMember or username"
+        "description": "idMember or username",
+        "example": "IDMEMBER"
       },
       {
         "name": "value",
@@ -9549,7 +10054,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idMember",
         "schema": "string",
         "required": true,
-        "description": "idMember or username"
+        "description": "idMember or username",
+        "example": "IDMEMBER"
       },
       {
         "name": "entities",
@@ -9567,31 +10073,36 @@ export default function TrelloTypeScriptSdk() {
         "name": "filter",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: addAdminToBoard, addAdminToOrganization, addedAttachmentToCard, addedMemberToCard, addedToBoard, addedToCard, addedToOrganization, cardDueSoon, changeCard, closeBoard, commentCard, createdCard, declinedInvitationToBoard, declinedInvitationToOrganization, invitedToBoard, invitedToOrganization, makeAdminOfBoard, makeAdminOfOrganization, memberJoinedTrello, mentionedOnCard, removedFromBoard, removedFromCard, removedFromOrganization, removedMemberFromCard, unconfirmedInvitedToBoard, unconfirmedInvitedToOrganization or updateCheckItemStateOnCard"
+        "description": "all or a comma-separated list of: addAdminToBoard, addAdminToOrganization, addedAttachmentToCard, addedMemberToCard, addedToBoard, addedToCard, addedToOrganization, cardDueSoon, changeCard, closeBoard, commentCard, createdCard, declinedInvitationToBoard, declinedInvitationToOrganization, invitedToBoard, invitedToOrganization, makeAdminOfBoard, makeAdminOfOrganization, memberJoinedTrello, mentionedOnCard, removedFromBoard, removedFromCard, removedFromOrganization, removedMemberFromCard, unconfirmedInvitedToBoard, unconfirmedInvitedToOrganization or updateCheckItemStateOnCard",
+        "default": "all"
       },
       {
         "name": "readFilter",
         "schema": "string",
         "required": false,
-        "description": "One of: all, read or unread"
+        "description": "One of: all, read or unread",
+        "default": "all"
       },
       {
         "name": "fields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: data, date, idMemberCreator, type or unread"
+        "description": "all or a comma-separated list of: data, date, idMemberCreator, type or unread",
+        "default": "all"
       },
       {
         "name": "limit",
         "schema": "string",
         "required": false,
-        "description": "a number from 1 to 1000"
+        "description": "a number from 1 to 1000",
+        "default": "50"
       },
       {
         "name": "page",
         "schema": "string",
         "required": false,
-        "description": "a number from 0 to 100"
+        "description": "a number from 0 to 100",
+        "default": "0"
       },
       {
         "name": "before",
@@ -9615,7 +10126,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "memberCreatorFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: avatarHash, bio, bioData, confirmed, fullName, idPremOrgsAdmin, initials, memberType, products, status, url or username"
+        "description": "all or a comma-separated list of: avatarHash, bio, bioData, confirmed, fullName, idPremOrgsAdmin, initials, memberType, products, status, url or username",
+        "default": "avatarHash, fullName, initials and username"
       }
     ],
     "responses": [
@@ -9641,13 +10153,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idMember",
         "schema": "string",
         "required": true,
-        "description": "idMember or username"
+        "description": "idMember or username",
+        "example": "IDMEMBER"
       },
       {
         "name": "filter",
         "schema": "string",
         "required": true,
-        "description": "filter"
+        "description": "filter",
+        "example": "FILTER"
       }
     ],
     "responses": [
@@ -9673,7 +10187,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idMember",
         "schema": "string",
         "required": true,
-        "description": "idMember or username"
+        "description": "idMember or username",
+        "example": "IDMEMBER"
       },
       {
         "name": "value",
@@ -9704,19 +10219,22 @@ export default function TrelloTypeScriptSdk() {
         "name": "idMember",
         "schema": "string",
         "required": true,
-        "description": "idMember or username"
+        "description": "idMember or username",
+        "example": "IDMEMBER"
       },
       {
         "name": "filter",
         "schema": "string",
         "required": false,
-        "description": "One of: all, members, none or public"
+        "description": "One of: all, members, none or public",
+        "default": "all"
       },
       {
         "name": "fields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: billableMemberCount, desc, descData, displayName, idBoards, invitations, invited, logoHash, memberships, name, powerUps, prefs, premiumFeatures, products, url or website"
+        "description": "all or a comma-separated list of: billableMemberCount, desc, descData, displayName, idBoards, invitations, invited, logoHash, memberships, name, powerUps, prefs, premiumFeatures, products, url or website",
+        "default": "all"
       },
       {
         "name": "paidAccount",
@@ -9748,13 +10266,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idMember",
         "schema": "string",
         "required": true,
-        "description": "idMember or username"
+        "description": "idMember or username",
+        "example": "IDMEMBER"
       },
       {
         "name": "filter",
         "schema": "string",
         "required": true,
-        "description": "filter"
+        "description": "filter",
+        "example": "FILTER"
       }
     ],
     "responses": [
@@ -9780,13 +10300,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idMember",
         "schema": "string",
         "required": true,
-        "description": "idMember or username"
+        "description": "idMember or username",
+        "example": "IDMEMBER"
       },
       {
         "name": "fields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: billableMemberCount, desc, descData, displayName, idBoards, invitations, invited, logoHash, memberships, name, powerUps, prefs, premiumFeatures, products, url or website"
+        "description": "all or a comma-separated list of: billableMemberCount, desc, descData, displayName, idBoards, invitations, invited, logoHash, memberships, name, powerUps, prefs, premiumFeatures, products, url or website",
+        "default": "all"
       }
     ],
     "responses": [
@@ -9812,13 +10334,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idMember",
         "schema": "string",
         "required": true,
-        "description": "idMember or username"
+        "description": "idMember or username",
+        "example": "IDMEMBER"
       },
       {
         "name": "field",
         "schema": "string",
         "required": true,
-        "description": "field"
+        "description": "field",
+        "example": "FIELD"
       }
     ],
     "responses": [
@@ -9844,7 +10368,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idMember",
         "schema": "string",
         "required": true,
-        "description": "idMember or username"
+        "description": "idMember or username",
+        "example": "IDMEMBER"
       },
       {
         "name": "value",
@@ -9875,7 +10400,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idMember",
         "schema": "string",
         "required": true,
-        "description": "idMember or username"
+        "description": "idMember or username",
+        "example": "IDMEMBER"
       },
       {
         "name": "value",
@@ -9906,7 +10432,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idMember",
         "schema": "string",
         "required": true,
-        "description": "idMember or username"
+        "description": "idMember or username",
+        "example": "IDMEMBER"
       },
       {
         "name": "value",
@@ -9937,7 +10464,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idMember",
         "schema": "string",
         "required": true,
-        "description": "idMember or username"
+        "description": "idMember or username",
+        "example": "IDMEMBER"
       }
     ],
     "responses": [
@@ -9963,7 +10491,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idMember",
         "schema": "string",
         "required": true,
-        "description": "idMember or username"
+        "description": "idMember or username",
+        "example": "IDMEMBER"
       },
       {
         "name": "name",
@@ -10004,13 +10533,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idMember",
         "schema": "string",
         "required": true,
-        "description": "idMember or username"
+        "description": "idMember or username",
+        "example": "IDMEMBER"
       },
       {
         "name": "idSavedSearch",
         "schema": "string",
         "required": true,
-        "description": "idSavedSearch"
+        "description": "idSavedSearch",
+        "example": "IDSAVEDSEARCH"
       }
     ],
     "responses": [
@@ -10036,13 +10567,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idMember",
         "schema": "string",
         "required": true,
-        "description": "idMember or username"
+        "description": "idMember or username",
+        "example": "IDMEMBER"
       },
       {
         "name": "idSavedSearch",
         "schema": "string",
         "required": true,
-        "description": "idSavedSearch"
+        "description": "idSavedSearch",
+        "example": "IDSAVEDSEARCH"
       }
     ],
     "responses": [
@@ -10068,13 +10601,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idMember",
         "schema": "string",
         "required": true,
-        "description": "idMember or username"
+        "description": "idMember or username",
+        "example": "IDMEMBER"
       },
       {
         "name": "idSavedSearch",
         "schema": "string",
         "required": true,
-        "description": "idSavedSearch"
+        "description": "idSavedSearch",
+        "example": "IDSAVEDSEARCH"
       },
       {
         "name": "name",
@@ -10115,13 +10650,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idMember",
         "schema": "string",
         "required": true,
-        "description": "idMember or username"
+        "description": "idMember or username",
+        "example": "IDMEMBER"
       },
       {
         "name": "idSavedSearch",
         "schema": "string",
         "required": true,
-        "description": "idSavedSearch"
+        "description": "idSavedSearch",
+        "example": "IDSAVEDSEARCH"
       },
       {
         "name": "value",
@@ -10152,13 +10689,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idMember",
         "schema": "string",
         "required": true,
-        "description": "idMember or username"
+        "description": "idMember or username",
+        "example": "IDMEMBER"
       },
       {
         "name": "idSavedSearch",
         "schema": "string",
         "required": true,
-        "description": "idSavedSearch"
+        "description": "idSavedSearch",
+        "example": "IDSAVEDSEARCH"
       },
       {
         "name": "value",
@@ -10189,13 +10728,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idMember",
         "schema": "string",
         "required": true,
-        "description": "idMember or username"
+        "description": "idMember or username",
+        "example": "IDMEMBER"
       },
       {
         "name": "idSavedSearch",
         "schema": "string",
         "required": true,
-        "description": "idSavedSearch"
+        "description": "idSavedSearch",
+        "example": "IDSAVEDSEARCH"
       },
       {
         "name": "value",
@@ -10226,13 +10767,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idMember",
         "schema": "string",
         "required": true,
-        "description": "idMember or username"
+        "description": "idMember or username",
+        "example": "IDMEMBER"
       },
       {
         "name": "filter",
         "schema": "string",
         "required": false,
-        "description": "One of: all or none"
+        "description": "One of: all or none",
+        "default": "all"
       }
     ],
     "responses": [
@@ -10258,7 +10801,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idMember",
         "schema": "string",
         "required": true,
-        "description": "idMember or username"
+        "description": "idMember or username",
+        "example": "IDMEMBER"
       },
       {
         "name": "value",
@@ -10289,13 +10833,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idMember",
         "schema": "string",
         "required": true,
-        "description": "idMember or username"
+        "description": "idMember or username",
+        "example": "IDMEMBER"
       },
       {
         "name": "field",
         "schema": "string",
         "required": true,
-        "description": "field"
+        "description": "field",
+        "example": "FIELD"
       }
     ],
     "responses": [
@@ -10340,7 +10886,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idNotification",
         "schema": "string",
         "required": true,
-        "description": "idNotification"
+        "description": "idNotification",
+        "example": "IDNOTIFICATION"
       },
       {
         "name": "display",
@@ -10358,7 +10905,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "fields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: data, date, idMemberCreator, type or unread"
+        "description": "all or a comma-separated list of: data, date, idMemberCreator, type or unread",
+        "default": "all"
       },
       {
         "name": "memberCreator",
@@ -10370,7 +10918,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "memberCreatorFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: avatarHash, bio, bioData, confirmed, fullName, idPremOrgsAdmin, initials, memberType, products, status, url or username"
+        "description": "all or a comma-separated list of: avatarHash, bio, bioData, confirmed, fullName, idPremOrgsAdmin, initials, memberType, products, status, url or username",
+        "default": "avatarHash, fullName, initials and username"
       },
       {
         "name": "board",
@@ -10382,7 +10931,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "boardFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: closed, dateLastActivity, dateLastView, desc, descData, idOrganization, invitations, invited, labelNames, memberships, name, pinned, powerUps, prefs, shortLink, shortUrl, starred, subscribed or url"
+        "description": "all or a comma-separated list of: closed, dateLastActivity, dateLastView, desc, descData, idOrganization, invitations, invited, labelNames, memberships, name, pinned, powerUps, prefs, shortLink, shortUrl, starred, subscribed or url",
+        "default": "name"
       },
       {
         "name": "list",
@@ -10400,7 +10950,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "cardFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: badges, checkItemStates, closed, dateLastActivity, desc, descData, due, email, idAttachmentCover, idBoard, idChecklists, idLabels, idList, idMembers, idMembersVoted, idShort, labels, manualCoverAttachment, name, pos, shortLink, shortUrl, subscribed or url"
+        "description": "all or a comma-separated list of: badges, checkItemStates, closed, dateLastActivity, desc, descData, due, email, idAttachmentCover, idBoard, idChecklists, idLabels, idList, idMembers, idMembersVoted, idShort, labels, manualCoverAttachment, name, pos, shortLink, shortUrl, subscribed or url",
+        "default": "name"
       },
       {
         "name": "organization",
@@ -10412,7 +10963,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "organizationFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: billableMemberCount, desc, descData, displayName, idBoards, invitations, invited, logoHash, memberships, name, powerUps, prefs, premiumFeatures, products, url or website"
+        "description": "all or a comma-separated list of: billableMemberCount, desc, descData, displayName, idBoards, invitations, invited, logoHash, memberships, name, powerUps, prefs, premiumFeatures, products, url or website",
+        "default": "displayName"
       },
       {
         "name": "member",
@@ -10424,7 +10976,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "memberFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: avatarHash, bio, bioData, confirmed, fullName, idPremOrgsAdmin, initials, memberType, products, status, url or username"
+        "description": "all or a comma-separated list of: avatarHash, bio, bioData, confirmed, fullName, idPremOrgsAdmin, initials, memberType, products, status, url or username",
+        "default": "avatarHash, fullName, initials and username"
       }
     ],
     "responses": [
@@ -10450,7 +11003,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idNotification",
         "schema": "string",
         "required": true,
-        "description": "idNotification"
+        "description": "idNotification",
+        "example": "IDNOTIFICATION"
       },
       {
         "name": "unread",
@@ -10481,13 +11035,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idNotification",
         "schema": "string",
         "required": true,
-        "description": "idNotification"
+        "description": "idNotification",
+        "example": "IDNOTIFICATION"
       },
       {
         "name": "fields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: closed, dateLastActivity, dateLastView, desc, descData, idOrganization, invitations, invited, labelNames, memberships, name, pinned, powerUps, prefs, shortLink, shortUrl, starred, subscribed or url"
+        "description": "all or a comma-separated list of: closed, dateLastActivity, dateLastView, desc, descData, idOrganization, invitations, invited, labelNames, memberships, name, pinned, powerUps, prefs, shortLink, shortUrl, starred, subscribed or url",
+        "default": "all"
       }
     ],
     "responses": [
@@ -10513,13 +11069,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idNotification",
         "schema": "string",
         "required": true,
-        "description": "idNotification"
+        "description": "idNotification",
+        "example": "IDNOTIFICATION"
       },
       {
         "name": "field",
         "schema": "string",
         "required": true,
-        "description": "field"
+        "description": "field",
+        "example": "FIELD"
       }
     ],
     "responses": [
@@ -10545,13 +11103,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idNotification",
         "schema": "string",
         "required": true,
-        "description": "idNotification"
+        "description": "idNotification",
+        "example": "IDNOTIFICATION"
       },
       {
         "name": "fields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: badges, checkItemStates, closed, dateLastActivity, desc, descData, due, email, idAttachmentCover, idBoard, idChecklists, idLabels, idList, idMembers, idMembersVoted, idShort, labels, manualCoverAttachment, name, pos, shortLink, shortUrl, subscribed or url"
+        "description": "all or a comma-separated list of: badges, checkItemStates, closed, dateLastActivity, desc, descData, due, email, idAttachmentCover, idBoard, idChecklists, idLabels, idList, idMembers, idMembersVoted, idShort, labels, manualCoverAttachment, name, pos, shortLink, shortUrl, subscribed or url",
+        "default": "all"
       }
     ],
     "responses": [
@@ -10577,13 +11137,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idNotification",
         "schema": "string",
         "required": true,
-        "description": "idNotification"
+        "description": "idNotification",
+        "example": "IDNOTIFICATION"
       },
       {
         "name": "field",
         "schema": "string",
         "required": true,
-        "description": "field"
+        "description": "field",
+        "example": "FIELD"
       }
     ],
     "responses": [
@@ -10609,7 +11171,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idNotification",
         "schema": "string",
         "required": true,
-        "description": "idNotification"
+        "description": "idNotification",
+        "example": "IDNOTIFICATION"
       }
     ],
     "responses": [
@@ -10635,7 +11198,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idNotification",
         "schema": "string",
         "required": true,
-        "description": "idNotification"
+        "description": "idNotification",
+        "example": "IDNOTIFICATION"
       }
     ],
     "responses": [
@@ -10661,13 +11225,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idNotification",
         "schema": "string",
         "required": true,
-        "description": "idNotification"
+        "description": "idNotification",
+        "example": "IDNOTIFICATION"
       },
       {
         "name": "fields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: closed, idBoard, name, pos or subscribed"
+        "description": "all or a comma-separated list of: closed, idBoard, name, pos or subscribed",
+        "default": "all"
       }
     ],
     "responses": [
@@ -10693,13 +11259,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idNotification",
         "schema": "string",
         "required": true,
-        "description": "idNotification"
+        "description": "idNotification",
+        "example": "IDNOTIFICATION"
       },
       {
         "name": "field",
         "schema": "string",
         "required": true,
-        "description": "field"
+        "description": "field",
+        "example": "FIELD"
       }
     ],
     "responses": [
@@ -10725,13 +11293,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idNotification",
         "schema": "string",
         "required": true,
-        "description": "idNotification"
+        "description": "idNotification",
+        "example": "IDNOTIFICATION"
       },
       {
         "name": "fields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: avatarHash, avatarSource, bio, bioData, confirmed, email, fullName, gravatarHash, idBoards, idBoardsPinned, idOrganizations, idPremOrgsAdmin, initials, loginTypes, memberType, oneTimeMessagesDismissed, prefs, premiumFeatures, products, status, status, trophies, uploadedAvatarHash, url or username"
+        "description": "all or a comma-separated list of: avatarHash, avatarSource, bio, bioData, confirmed, email, fullName, gravatarHash, idBoards, idBoardsPinned, idOrganizations, idPremOrgsAdmin, initials, loginTypes, memberType, oneTimeMessagesDismissed, prefs, premiumFeatures, products, status, status, trophies, uploadedAvatarHash, url or username",
+        "default": "all"
       }
     ],
     "responses": [
@@ -10757,13 +11327,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idNotification",
         "schema": "string",
         "required": true,
-        "description": "idNotification"
+        "description": "idNotification",
+        "example": "IDNOTIFICATION"
       },
       {
         "name": "field",
         "schema": "string",
         "required": true,
-        "description": "field"
+        "description": "field",
+        "example": "FIELD"
       }
     ],
     "responses": [
@@ -10789,13 +11361,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idNotification",
         "schema": "string",
         "required": true,
-        "description": "idNotification"
+        "description": "idNotification",
+        "example": "IDNOTIFICATION"
       },
       {
         "name": "fields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: avatarHash, avatarSource, bio, bioData, confirmed, email, fullName, gravatarHash, idBoards, idBoardsPinned, idOrganizations, idPremOrgsAdmin, initials, loginTypes, memberType, oneTimeMessagesDismissed, prefs, premiumFeatures, products, status, status, trophies, uploadedAvatarHash, url or username"
+        "description": "all or a comma-separated list of: avatarHash, avatarSource, bio, bioData, confirmed, email, fullName, gravatarHash, idBoards, idBoardsPinned, idOrganizations, idPremOrgsAdmin, initials, loginTypes, memberType, oneTimeMessagesDismissed, prefs, premiumFeatures, products, status, status, trophies, uploadedAvatarHash, url or username",
+        "default": "all"
       }
     ],
     "responses": [
@@ -10821,13 +11395,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idNotification",
         "schema": "string",
         "required": true,
-        "description": "idNotification"
+        "description": "idNotification",
+        "example": "IDNOTIFICATION"
       },
       {
         "name": "field",
         "schema": "string",
         "required": true,
-        "description": "field"
+        "description": "field",
+        "example": "FIELD"
       }
     ],
     "responses": [
@@ -10853,13 +11429,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idNotification",
         "schema": "string",
         "required": true,
-        "description": "idNotification"
+        "description": "idNotification",
+        "example": "IDNOTIFICATION"
       },
       {
         "name": "fields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: billableMemberCount, desc, descData, displayName, idBoards, invitations, invited, logoHash, memberships, name, powerUps, prefs, premiumFeatures, products, url or website"
+        "description": "all or a comma-separated list of: billableMemberCount, desc, descData, displayName, idBoards, invitations, invited, logoHash, memberships, name, powerUps, prefs, premiumFeatures, products, url or website",
+        "default": "all"
       }
     ],
     "responses": [
@@ -10885,13 +11463,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idNotification",
         "schema": "string",
         "required": true,
-        "description": "idNotification"
+        "description": "idNotification",
+        "example": "IDNOTIFICATION"
       },
       {
         "name": "field",
         "schema": "string",
         "required": true,
-        "description": "field"
+        "description": "field",
+        "example": "FIELD"
       }
     ],
     "responses": [
@@ -10917,7 +11497,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idNotification",
         "schema": "string",
         "required": true,
-        "description": "idNotification"
+        "description": "idNotification",
+        "example": "IDNOTIFICATION"
       },
       {
         "name": "value",
@@ -10948,13 +11529,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idNotification",
         "schema": "string",
         "required": true,
-        "description": "idNotification"
+        "description": "idNotification",
+        "example": "IDNOTIFICATION"
       },
       {
         "name": "field",
         "schema": "string",
         "required": true,
-        "description": "field"
+        "description": "field",
+        "example": "FIELD"
       }
     ],
     "responses": [
@@ -11060,7 +11643,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idOrg",
         "schema": "string",
         "required": true,
-        "description": "idOrg or name"
+        "description": "idOrg or name",
+        "example": "IDORG"
       }
     ],
     "responses": [
@@ -11086,7 +11670,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idOrg",
         "schema": "string",
         "required": true,
-        "description": "idOrg or name"
+        "description": "idOrg or name",
+        "example": "IDORG"
       },
       {
         "name": "actions",
@@ -11110,19 +11695,22 @@ export default function TrelloTypeScriptSdk() {
         "name": "actionsLimit",
         "schema": "string",
         "required": false,
-        "description": "a number from 0 to 1000"
+        "description": "a number from 0 to 1000",
+        "default": "50"
       },
       {
         "name": "actionFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: data, date, idMemberCreator or type"
+        "description": "all or a comma-separated list of: data, date, idMemberCreator or type",
+        "default": "all"
       },
       {
         "name": "memberships",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: active, admin, deactivated, me or normal"
+        "description": "all or a comma-separated list of: active, admin, deactivated, me or normal",
+        "default": "none"
       },
       {
         "name": "membershipsMember",
@@ -11134,19 +11722,22 @@ export default function TrelloTypeScriptSdk() {
         "name": "membershipsMemberFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: avatarHash, bio, bioData, confirmed, fullName, idPremOrgsAdmin, initials, memberType, products, status, url or username"
+        "description": "all or a comma-separated list of: avatarHash, bio, bioData, confirmed, fullName, idPremOrgsAdmin, initials, memberType, products, status, url or username",
+        "default": "fullName and username"
       },
       {
         "name": "members",
         "schema": "string",
         "required": false,
-        "description": "One of: admins, all, none, normal or owners"
+        "description": "One of: admins, all, none, normal or owners",
+        "default": "none"
       },
       {
         "name": "memberFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: avatarHash, bio, bioData, confirmed, fullName, idPremOrgsAdmin, initials, memberType, products, status, url or username"
+        "description": "all or a comma-separated list of: avatarHash, bio, bioData, confirmed, fullName, idPremOrgsAdmin, initials, memberType, products, status, url or username",
+        "default": "avatarHash, fullName, initials, username and confirmed"
       },
       {
         "name": "memberActivity",
@@ -11158,25 +11749,29 @@ export default function TrelloTypeScriptSdk() {
         "name": "membersInvited",
         "schema": "string",
         "required": false,
-        "description": "One of: admins, all, none, normal or owners"
+        "description": "One of: admins, all, none, normal or owners",
+        "default": "none"
       },
       {
         "name": "membersInvitedFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: avatarHash, bio, bioData, confirmed, fullName, idPremOrgsAdmin, initials, memberType, products, status, url or username"
+        "description": "all or a comma-separated list of: avatarHash, bio, bioData, confirmed, fullName, idPremOrgsAdmin, initials, memberType, products, status, url or username",
+        "default": "avatarHash, initials, fullName and username"
       },
       {
         "name": "boards",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: closed, members, open, organization, pinned, public, starred or unpinned"
+        "description": "all or a comma-separated list of: closed, members, open, organization, pinned, public, starred or unpinned",
+        "default": "none"
       },
       {
         "name": "boardFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: closed, dateLastActivity, dateLastView, desc, descData, idOrganization, invitations, invited, labelNames, memberships, name, pinned, powerUps, prefs, shortLink, shortUrl, starred, subscribed or url"
+        "description": "all or a comma-separated list of: closed, dateLastActivity, dateLastView, desc, descData, idOrganization, invitations, invited, labelNames, memberships, name, pinned, powerUps, prefs, shortLink, shortUrl, starred, subscribed or url",
+        "default": "all"
       },
       {
         "name": "boardActions",
@@ -11200,7 +11795,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "boardActionsFormat",
         "schema": "string",
         "required": false,
-        "description": "One of: count, list or minimal"
+        "description": "One of: count, list or minimal",
+        "default": "list"
       },
       {
         "name": "boardActionsSince",
@@ -11212,19 +11808,22 @@ export default function TrelloTypeScriptSdk() {
         "name": "boardActionsLimit",
         "schema": "string",
         "required": false,
-        "description": "a number from 0 to 1000"
+        "description": "a number from 0 to 1000",
+        "default": "50"
       },
       {
         "name": "boardActionFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: data, date, idMemberCreator or type"
+        "description": "all or a comma-separated list of: data, date, idMemberCreator or type",
+        "default": "all"
       },
       {
         "name": "boardLists",
         "schema": "string",
         "required": false,
-        "description": "One of: all, closed, none or open"
+        "description": "One of: all, closed, none or open",
+        "default": "none"
       },
       {
         "name": "paidAccount",
@@ -11236,7 +11835,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "fields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: billableMemberCount, desc, descData, displayName, idBoards, invitations, invited, logoHash, memberships, name, powerUps, prefs, premiumFeatures, products, url or website"
+        "description": "all or a comma-separated list of: billableMemberCount, desc, descData, displayName, idBoards, invitations, invited, logoHash, memberships, name, powerUps, prefs, premiumFeatures, products, url or website",
+        "default": "name, displayName, desc, descData, url, website, logoHash, products and powerUps"
       }
     ],
     "responses": [
@@ -11262,7 +11862,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idOrg",
         "schema": "string",
         "required": true,
-        "description": "idOrg or name"
+        "description": "idOrg or name",
+        "example": "IDORG"
       },
       {
         "name": "desc",
@@ -11348,7 +11949,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idOrg",
         "schema": "string",
         "required": true,
-        "description": "idOrg or name"
+        "description": "idOrg or name",
+        "example": "IDORG"
       },
       {
         "name": "entities",
@@ -11366,25 +11968,29 @@ export default function TrelloTypeScriptSdk() {
         "name": "filter",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: addAttachmentToCard, addChecklistToCard, addMemberToBoard, addMemberToCard, addMemberToOrganization, addToOrganizationBoard, commentCard, convertToCardFromCheckItem, copyBoard, copyCard, copyCommentCard, createBoard, createCard, createList, createOrganization, deleteAttachmentFromCard, deleteBoardInvitation, deleteCard, deleteOrganizationInvitation, disablePowerUp, emailCard, enablePowerUp, makeAdminOfBoard, makeNormalMemberOfBoard, makeNormalMemberOfOrganization, makeObserverOfBoard, memberJoinedTrello, moveCardFromBoard, moveCardToBoard, moveListFromBoard, moveListToBoard, removeChecklistFromCard, removeFromOrganizationBoard, removeMemberFromCard, unconfirmedBoardInvitation, unconfirmedOrganizationInvitation, updateBoard, updateCard, updateCard:closed, updateCard:desc, updateCard:idList, updateCard:name, updateCheckItemStateOnCard, updateChecklist, updateList, updateList:closed, updateList:name, updateMember or updateOrganization"
+        "description": "all or a comma-separated list of: addAttachmentToCard, addChecklistToCard, addMemberToBoard, addMemberToCard, addMemberToOrganization, addToOrganizationBoard, commentCard, convertToCardFromCheckItem, copyBoard, copyCard, copyCommentCard, createBoard, createCard, createList, createOrganization, deleteAttachmentFromCard, deleteBoardInvitation, deleteCard, deleteOrganizationInvitation, disablePowerUp, emailCard, enablePowerUp, makeAdminOfBoard, makeNormalMemberOfBoard, makeNormalMemberOfOrganization, makeObserverOfBoard, memberJoinedTrello, moveCardFromBoard, moveCardToBoard, moveListFromBoard, moveListToBoard, removeChecklistFromCard, removeFromOrganizationBoard, removeMemberFromCard, unconfirmedBoardInvitation, unconfirmedOrganizationInvitation, updateBoard, updateCard, updateCard:closed, updateCard:desc, updateCard:idList, updateCard:name, updateCheckItemStateOnCard, updateChecklist, updateList, updateList:closed, updateList:name, updateMember or updateOrganization",
+        "default": "all"
       },
       {
         "name": "fields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: data, date, idMemberCreator or type"
+        "description": "all or a comma-separated list of: data, date, idMemberCreator or type",
+        "default": "all"
       },
       {
         "name": "limit",
         "schema": "string",
         "required": false,
-        "description": "a number from 0 to 1000"
+        "description": "a number from 0 to 1000",
+        "default": "50"
       },
       {
         "name": "format",
         "schema": "string",
         "required": false,
-        "description": "One of: count, list or minimal"
+        "description": "One of: count, list or minimal",
+        "default": "list"
       },
       {
         "name": "since",
@@ -11402,7 +12008,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "page",
         "schema": "string",
         "required": false,
-        "description": "Page * limit must be less than 1000"
+        "description": "Page * limit must be less than 1000",
+        "default": "0"
       },
       {
         "name": "idModels",
@@ -11420,7 +12027,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "memberFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: avatarHash, bio, bioData, confirmed, fullName, idPremOrgsAdmin, initials, memberType, products, status, url or username"
+        "description": "all or a comma-separated list of: avatarHash, bio, bioData, confirmed, fullName, idPremOrgsAdmin, initials, memberType, products, status, url or username",
+        "default": "avatarHash, fullName, initials and username"
       },
       {
         "name": "memberCreator",
@@ -11432,7 +12040,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "memberCreatorFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: avatarHash, bio, bioData, confirmed, fullName, idPremOrgsAdmin, initials, memberType, products, status, url or username"
+        "description": "all or a comma-separated list of: avatarHash, bio, bioData, confirmed, fullName, idPremOrgsAdmin, initials, memberType, products, status, url or username",
+        "default": "avatarHash, fullName, initials and username"
       }
     ],
     "responses": [
@@ -11458,19 +12067,22 @@ export default function TrelloTypeScriptSdk() {
         "name": "idOrg",
         "schema": "string",
         "required": true,
-        "description": "idOrg or name"
+        "description": "idOrg or name",
+        "example": "IDORG"
       },
       {
         "name": "filter",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: closed, members, open, organization, pinned, public, starred or unpinned"
+        "description": "all or a comma-separated list of: closed, members, open, organization, pinned, public, starred or unpinned",
+        "default": "all"
       },
       {
         "name": "fields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: closed, dateLastActivity, dateLastView, desc, descData, idOrganization, invitations, invited, labelNames, memberships, name, pinned, powerUps, prefs, shortLink, shortUrl, starred, subscribed or url"
+        "description": "all or a comma-separated list of: closed, dateLastActivity, dateLastView, desc, descData, idOrganization, invitations, invited, labelNames, memberships, name, pinned, powerUps, prefs, shortLink, shortUrl, starred, subscribed or url",
+        "default": "all"
       },
       {
         "name": "actions",
@@ -11488,13 +12100,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "actionsLimit",
         "schema": "string",
         "required": false,
-        "description": "a number from 0 to 1000"
+        "description": "a number from 0 to 1000",
+        "default": "50"
       },
       {
         "name": "actionsFormat",
         "schema": "string",
         "required": false,
-        "description": "One of: count, list or minimal"
+        "description": "One of: count, list or minimal",
+        "default": "list"
       },
       {
         "name": "actionsSince",
@@ -11506,13 +12120,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "actionFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: data, date, idMemberCreator or type"
+        "description": "all or a comma-separated list of: data, date, idMemberCreator or type",
+        "default": "all"
       },
       {
         "name": "memberships",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: active, admin, deactivated, me or normal"
+        "description": "all or a comma-separated list of: active, admin, deactivated, me or normal",
+        "default": "none"
       },
       {
         "name": "organization",
@@ -11524,13 +12140,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "organizationFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: billableMemberCount, desc, descData, displayName, idBoards, invitations, invited, logoHash, memberships, name, powerUps, prefs, premiumFeatures, products, url or website"
+        "description": "all or a comma-separated list of: billableMemberCount, desc, descData, displayName, idBoards, invitations, invited, logoHash, memberships, name, powerUps, prefs, premiumFeatures, products, url or website",
+        "default": "name and displayName"
       },
       {
         "name": "lists",
         "schema": "string",
         "required": false,
-        "description": "One of: all, closed, none or open"
+        "description": "One of: all, closed, none or open",
+        "default": "none"
       }
     ],
     "responses": [
@@ -11556,13 +12174,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idOrg",
         "schema": "string",
         "required": true,
-        "description": "idOrg or name"
+        "description": "idOrg or name",
+        "example": "IDORG"
       },
       {
         "name": "filter",
         "schema": "string",
         "required": true,
-        "description": "filter"
+        "description": "filter",
+        "example": "FILTER"
       }
     ],
     "responses": [
@@ -11588,19 +12208,22 @@ export default function TrelloTypeScriptSdk() {
         "name": "idOrg",
         "schema": "string",
         "required": true,
-        "description": "idOrg or name"
+        "description": "idOrg or name",
+        "example": "IDORG"
       },
       {
         "name": "tags",
         "schema": "string",
         "required": true,
-        "description": "A valid tag for subscribing"
+        "description": "A valid tag for subscribing",
+        "example": "TAGS"
       },
       {
         "name": "ixLastUpdate",
         "schema": "string",
         "required": true,
-        "description": "a number from -1 to Infinity"
+        "description": "a number from -1 to Infinity",
+        "example": "IXLASTUPDATE"
       }
     ],
     "responses": [
@@ -11626,7 +12249,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idOrg",
         "schema": "string",
         "required": true,
-        "description": "idOrg or name"
+        "description": "idOrg or name",
+        "example": "IDORG"
       },
       {
         "name": "value",
@@ -11657,7 +12281,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idOrg",
         "schema": "string",
         "required": true,
-        "description": "idOrg or name"
+        "description": "idOrg or name",
+        "example": "IDORG"
       },
       {
         "name": "value",
@@ -11688,7 +12313,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idOrg",
         "schema": "string",
         "required": true,
-        "description": "idOrg or name"
+        "description": "idOrg or name",
+        "example": "IDORG"
       }
     ],
     "responses": [
@@ -11714,7 +12340,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idOrg",
         "schema": "string",
         "required": true,
-        "description": "idOrg or name"
+        "description": "idOrg or name",
+        "example": "IDORG"
       },
       {
         "name": "file",
@@ -11745,19 +12372,22 @@ export default function TrelloTypeScriptSdk() {
         "name": "idOrg",
         "schema": "string",
         "required": true,
-        "description": "idOrg or name"
+        "description": "idOrg or name",
+        "example": "IDORG"
       },
       {
         "name": "filter",
         "schema": "string",
         "required": false,
-        "description": "One of: admins, all, none, normal or owners"
+        "description": "One of: admins, all, none, normal or owners",
+        "default": "all"
       },
       {
         "name": "fields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: avatarHash, bio, bioData, confirmed, fullName, idPremOrgsAdmin, initials, memberType, products, status, url or username"
+        "description": "all or a comma-separated list of: avatarHash, bio, bioData, confirmed, fullName, idPremOrgsAdmin, initials, memberType, products, status, url or username",
+        "default": "fullName and username"
       },
       {
         "name": "activity",
@@ -11789,7 +12419,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idOrg",
         "schema": "string",
         "required": true,
-        "description": "idOrg or name"
+        "description": "idOrg or name",
+        "example": "IDORG"
       },
       {
         "name": "email",
@@ -11830,13 +12461,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idOrg",
         "schema": "string",
         "required": true,
-        "description": "idOrg or name"
+        "description": "idOrg or name",
+        "example": "IDORG"
       },
       {
         "name": "filter",
         "schema": "string",
         "required": true,
-        "description": "filter"
+        "description": "filter",
+        "example": "FILTER"
       }
     ],
     "responses": [
@@ -11862,13 +12495,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idOrg",
         "schema": "string",
         "required": true,
-        "description": "idOrg or name"
+        "description": "idOrg or name",
+        "example": "IDORG"
       },
       {
         "name": "idMember",
         "schema": "string",
         "required": true,
-        "description": "idMember"
+        "description": "idMember",
+        "example": "IDMEMBER"
       }
     ],
     "responses": [
@@ -11894,13 +12529,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idOrg",
         "schema": "string",
         "required": true,
-        "description": "idOrg or name"
+        "description": "idOrg or name",
+        "example": "IDORG"
       },
       {
         "name": "idMember",
         "schema": "string",
         "required": true,
-        "description": "idMember"
+        "description": "idMember",
+        "example": "IDMEMBER"
       },
       {
         "name": "email",
@@ -11941,13 +12578,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idOrg",
         "schema": "string",
         "required": true,
-        "description": "idOrg or name"
+        "description": "idOrg or name",
+        "example": "IDORG"
       },
       {
         "name": "idMember",
         "schema": "string",
         "required": true,
-        "description": "idMember"
+        "description": "idMember",
+        "example": "IDMEMBER"
       }
     ],
     "responses": [
@@ -11973,13 +12612,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idOrg",
         "schema": "string",
         "required": true,
-        "description": "idOrg or name"
+        "description": "idOrg or name",
+        "example": "IDORG"
       },
       {
         "name": "idMember",
         "schema": "string",
         "required": true,
-        "description": "idMember"
+        "description": "idMember",
+        "example": "IDMEMBER"
       },
       {
         "name": "actions",
@@ -11997,7 +12638,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "attachmentFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: bytes, date, edgeColor, idMember, isUpload, mimeType, name, previews or url"
+        "description": "all or a comma-separated list of: bytes, date, edgeColor, idMember, isUpload, mimeType, name, previews or url",
+        "default": "all"
       },
       {
         "name": "members",
@@ -12009,7 +12651,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "memberFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: avatarHash, bio, bioData, confirmed, fullName, idPremOrgsAdmin, initials, memberType, products, status, url or username"
+        "description": "all or a comma-separated list of: avatarHash, bio, bioData, confirmed, fullName, idPremOrgsAdmin, initials, memberType, products, status, url or username",
+        "default": "avatarHash, fullName, initials and username"
       },
       {
         "name": "checkItemStates",
@@ -12021,7 +12664,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "checklists",
         "schema": "string",
         "required": false,
-        "description": "One of: all or none"
+        "description": "One of: all or none",
+        "default": "none"
       },
       {
         "name": "board",
@@ -12033,7 +12677,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "boardFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: closed, dateLastActivity, dateLastView, desc, descData, idOrganization, invitations, invited, labelNames, memberships, name, pinned, powerUps, prefs, shortLink, shortUrl, starred, subscribed or url"
+        "description": "all or a comma-separated list of: closed, dateLastActivity, dateLastView, desc, descData, idOrganization, invitations, invited, labelNames, memberships, name, pinned, powerUps, prefs, shortLink, shortUrl, starred, subscribed or url",
+        "default": "name, desc, closed, idOrganization, pinned, url and prefs"
       },
       {
         "name": "list",
@@ -12045,19 +12690,22 @@ export default function TrelloTypeScriptSdk() {
         "name": "listFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: closed, idBoard, name, pos or subscribed"
+        "description": "all or a comma-separated list of: closed, idBoard, name, pos or subscribed",
+        "default": "all"
       },
       {
         "name": "filter",
         "schema": "string",
         "required": false,
-        "description": "One of: all, closed, none, open or visible"
+        "description": "One of: all, closed, none, open or visible",
+        "default": "visible"
       },
       {
         "name": "fields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: badges, checkItemStates, closed, dateLastActivity, desc, descData, due, email, idAttachmentCover, idBoard, idChecklists, idLabels, idList, idMembers, idMembersVoted, idShort, labels, manualCoverAttachment, name, pos, shortLink, shortUrl, subscribed or url"
+        "description": "all or a comma-separated list of: badges, checkItemStates, closed, dateLastActivity, desc, descData, due, email, idAttachmentCover, idBoard, idChecklists, idLabels, idList, idMembers, idMembersVoted, idShort, labels, manualCoverAttachment, name, pos, shortLink, shortUrl, subscribed or url",
+        "default": "all"
       }
     ],
     "responses": [
@@ -12083,13 +12731,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idOrg",
         "schema": "string",
         "required": true,
-        "description": "idOrg or name"
+        "description": "idOrg or name",
+        "example": "IDORG"
       },
       {
         "name": "idMember",
         "schema": "string",
         "required": true,
-        "description": "idMember"
+        "description": "idMember",
+        "example": "IDMEMBER"
       },
       {
         "name": "value",
@@ -12120,13 +12770,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idOrg",
         "schema": "string",
         "required": true,
-        "description": "idOrg or name"
+        "description": "idOrg or name",
+        "example": "IDORG"
       },
       {
         "name": "fields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: avatarHash, avatarSource, bio, bioData, confirmed, email, fullName, gravatarHash, idBoards, idBoardsPinned, idOrganizations, idPremOrgsAdmin, initials, loginTypes, memberType, oneTimeMessagesDismissed, prefs, premiumFeatures, products, status, status, trophies, uploadedAvatarHash, url or username"
+        "description": "all or a comma-separated list of: avatarHash, avatarSource, bio, bioData, confirmed, email, fullName, gravatarHash, idBoards, idBoardsPinned, idOrganizations, idPremOrgsAdmin, initials, loginTypes, memberType, oneTimeMessagesDismissed, prefs, premiumFeatures, products, status, status, trophies, uploadedAvatarHash, url or username",
+        "default": "all"
       }
     ],
     "responses": [
@@ -12152,13 +12804,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idOrg",
         "schema": "string",
         "required": true,
-        "description": "idOrg or name"
+        "description": "idOrg or name",
+        "example": "IDORG"
       },
       {
         "name": "field",
         "schema": "string",
         "required": true,
-        "description": "field"
+        "description": "field",
+        "example": "FIELD"
       }
     ],
     "responses": [
@@ -12184,13 +12838,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idOrg",
         "schema": "string",
         "required": true,
-        "description": "idOrg or name"
+        "description": "idOrg or name",
+        "example": "IDORG"
       },
       {
         "name": "filter",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: active, admin, deactivated, me or normal"
+        "description": "all or a comma-separated list of: active, admin, deactivated, me or normal",
+        "default": "all"
       },
       {
         "name": "member",
@@ -12202,7 +12858,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "memberFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: avatarHash, bio, bioData, confirmed, fullName, idPremOrgsAdmin, initials, memberType, products, status, url or username"
+        "description": "all or a comma-separated list of: avatarHash, bio, bioData, confirmed, fullName, idPremOrgsAdmin, initials, memberType, products, status, url or username",
+        "default": "fullName and username"
       }
     ],
     "responses": [
@@ -12228,13 +12885,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idOrg",
         "schema": "string",
         "required": true,
-        "description": "idOrg or name"
+        "description": "idOrg or name",
+        "example": "IDORG"
       },
       {
         "name": "idMembership",
         "schema": "string",
         "required": true,
-        "description": "idMembership"
+        "description": "idMembership",
+        "example": "IDMEMBERSHIP"
       },
       {
         "name": "member",
@@ -12246,7 +12905,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "memberFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: avatarHash, bio, bioData, confirmed, fullName, idPremOrgsAdmin, initials, memberType, products, status, url or username"
+        "description": "all or a comma-separated list of: avatarHash, bio, bioData, confirmed, fullName, idPremOrgsAdmin, initials, memberType, products, status, url or username",
+        "default": "fullName and username"
       }
     ],
     "responses": [
@@ -12272,13 +12932,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idOrg",
         "schema": "string",
         "required": true,
-        "description": "idOrg or name"
+        "description": "idOrg or name",
+        "example": "IDORG"
       },
       {
         "name": "idMembership",
         "schema": "string",
         "required": true,
-        "description": "idMembership"
+        "description": "idMembership",
+        "example": "IDMEMBERSHIP"
       },
       {
         "name": "member_fields",
@@ -12314,7 +12976,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idOrg",
         "schema": "string",
         "required": true,
-        "description": "idOrg or name"
+        "description": "idOrg or name",
+        "example": "IDORG"
       },
       {
         "name": "value",
@@ -12345,7 +13008,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idOrg",
         "schema": "string",
         "required": true,
-        "description": "idOrg or name"
+        "description": "idOrg or name",
+        "example": "IDORG"
       }
     ],
     "responses": [
@@ -12371,7 +13035,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idOrg",
         "schema": "string",
         "required": true,
-        "description": "idOrg or name"
+        "description": "idOrg or name",
+        "example": "IDORG"
       },
       {
         "name": "value",
@@ -12402,7 +13067,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idOrg",
         "schema": "string",
         "required": true,
-        "description": "idOrg or name"
+        "description": "idOrg or name",
+        "example": "IDORG"
       },
       {
         "name": "value",
@@ -12433,7 +13099,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idOrg",
         "schema": "string",
         "required": true,
-        "description": "idOrg or name"
+        "description": "idOrg or name",
+        "example": "IDORG"
       },
       {
         "name": "value",
@@ -12464,7 +13131,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idOrg",
         "schema": "string",
         "required": true,
-        "description": "idOrg or name"
+        "description": "idOrg or name",
+        "example": "IDORG"
       },
       {
         "name": "value",
@@ -12495,7 +13163,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idOrg",
         "schema": "string",
         "required": true,
-        "description": "idOrg or name"
+        "description": "idOrg or name",
+        "example": "IDORG"
       },
       {
         "name": "value",
@@ -12526,7 +13195,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idOrg",
         "schema": "string",
         "required": true,
-        "description": "idOrg or name"
+        "description": "idOrg or name",
+        "example": "IDORG"
       },
       {
         "name": "value",
@@ -12557,13 +13227,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idOrg",
         "schema": "string",
         "required": true,
-        "description": "idOrg or name"
+        "description": "idOrg or name",
+        "example": "IDORG"
       },
       {
         "name": "value",
         "schema": "string",
         "required": true,
-        "description": "An email address with optional expansion tokens"
+        "description": "An email address with optional expansion tokens",
+        "example": "VALUE"
       }
     ],
     "responses": [
@@ -12589,7 +13261,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idOrg",
         "schema": "string",
         "required": true,
-        "description": "idOrg or name"
+        "description": "idOrg or name",
+        "example": "IDORG"
       },
       {
         "name": "value",
@@ -12620,7 +13293,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idOrg",
         "schema": "string",
         "required": true,
-        "description": "idOrg or name"
+        "description": "idOrg or name",
+        "example": "IDORG"
       },
       {
         "name": "value",
@@ -12651,7 +13325,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idOrg",
         "schema": "string",
         "required": true,
-        "description": "idOrg or name"
+        "description": "idOrg or name",
+        "example": "IDORG"
       },
       {
         "name": "value",
@@ -12682,13 +13357,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idOrg",
         "schema": "string",
         "required": true,
-        "description": "idOrg or name"
+        "description": "idOrg or name",
+        "example": "IDORG"
       },
       {
         "name": "field",
         "schema": "string",
         "required": true,
-        "description": "field"
+        "description": "field",
+        "example": "FIELD"
       }
     ],
     "responses": [
@@ -12714,19 +13391,22 @@ export default function TrelloTypeScriptSdk() {
         "name": "query",
         "schema": "string",
         "required": true,
-        "description": "a string with a length from 1 to 16384"
+        "description": "a string with a length from 1 to 16384",
+        "example": "QUERY"
       },
       {
         "name": "idBoards",
         "schema": "string",
         "required": false,
-        "description": "A comma-separated list of objectIds, 24-character hex strings"
+        "description": "A comma-separated list of objectIds, 24-character hex strings",
+        "default": "mine"
       },
       {
         "name": "idOrganizations",
         "schema": "string",
         "required": true,
-        "description": "A comma-separated list of objectIds, 24-character hex strings"
+        "description": "A comma-separated list of objectIds, 24-character hex strings",
+        "example": "IDORGANIZATIONS"
       },
       {
         "name": "idCards",
@@ -12738,37 +13418,43 @@ export default function TrelloTypeScriptSdk() {
         "name": "modelTypes",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: actions, boards, cards, members or organizations"
+        "description": "all or a comma-separated list of: actions, boards, cards, members or organizations",
+        "default": "all"
       },
       {
         "name": "boardFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: closed, dateLastActivity, dateLastView, desc, descData, idOrganization, invitations, invited, labelNames, memberships, name, pinned, powerUps, prefs, shortLink, shortUrl, starred, subscribed or url"
+        "description": "all or a comma-separated list of: closed, dateLastActivity, dateLastView, desc, descData, idOrganization, invitations, invited, labelNames, memberships, name, pinned, powerUps, prefs, shortLink, shortUrl, starred, subscribed or url",
+        "default": "name and idOrganization"
       },
       {
         "name": "boardsLimit",
         "schema": "string",
         "required": false,
-        "description": "a number from 1 to 1000"
+        "description": "a number from 1 to 1000",
+        "default": "10"
       },
       {
         "name": "cardFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: badges, checkItemStates, closed, dateLastActivity, desc, descData, due, email, idAttachmentCover, idBoard, idChecklists, idLabels, idList, idMembers, idMembersVoted, idShort, labels, manualCoverAttachment, name, pos, shortLink, shortUrl, subscribed or url"
+        "description": "all or a comma-separated list of: badges, checkItemStates, closed, dateLastActivity, desc, descData, due, email, idAttachmentCover, idBoard, idChecklists, idLabels, idList, idMembers, idMembersVoted, idShort, labels, manualCoverAttachment, name, pos, shortLink, shortUrl, subscribed or url",
+        "default": "all"
       },
       {
         "name": "cardsLimit",
         "schema": "string",
         "required": false,
-        "description": "a number from 1 to 1000"
+        "description": "a number from 1 to 1000",
+        "default": "10"
       },
       {
         "name": "cardsPage",
         "schema": "string",
         "required": false,
-        "description": "a number from 0 to 100"
+        "description": "a number from 0 to 100",
+        "default": "0"
       },
       {
         "name": "cardBoard",
@@ -12804,25 +13490,29 @@ export default function TrelloTypeScriptSdk() {
         "name": "organizationFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: billableMemberCount, desc, descData, displayName, idBoards, invitations, invited, logoHash, memberships, name, powerUps, prefs, premiumFeatures, products, url or website"
+        "description": "all or a comma-separated list of: billableMemberCount, desc, descData, displayName, idBoards, invitations, invited, logoHash, memberships, name, powerUps, prefs, premiumFeatures, products, url or website",
+        "default": "name and displayName"
       },
       {
         "name": "organizationsLimit",
         "schema": "string",
         "required": false,
-        "description": "a number from 1 to 1000"
+        "description": "a number from 1 to 1000",
+        "default": "10"
       },
       {
         "name": "memberFields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: avatarHash, bio, bioData, confirmed, fullName, idPremOrgsAdmin, initials, memberType, products, status, url or username"
+        "description": "all or a comma-separated list of: avatarHash, bio, bioData, confirmed, fullName, idPremOrgsAdmin, initials, memberType, products, status, url or username",
+        "default": "avatarHash, fullName, initials, username and confirmed"
       },
       {
         "name": "membersLimit",
         "schema": "string",
         "required": false,
-        "description": "a number from 1 to 1000"
+        "description": "a number from 1 to 1000",
+        "default": "10"
       },
       {
         "name": "partial",
@@ -12854,13 +13544,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "query",
         "schema": "string",
         "required": true,
-        "description": "a string with a length from 1 to 16384"
+        "description": "a string with a length from 1 to 16384",
+        "example": "QUERY"
       },
       {
         "name": "limit",
         "schema": "string",
         "required": false,
-        "description": "a number from 1 to 20"
+        "description": "a number from 1 to 20",
+        "default": "8"
       },
       {
         "name": "idBoard",
@@ -12953,7 +13645,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idSession",
         "schema": "string",
         "required": true,
-        "description": "idSession"
+        "description": "idSession",
+        "example": "IDSESSION"
       },
       {
         "name": "idBoard",
@@ -12989,7 +13682,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idSession",
         "schema": "string",
         "required": true,
-        "description": "idSession"
+        "description": "idSession",
+        "example": "IDSESSION"
       },
       {
         "name": "value",
@@ -13039,7 +13733,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "fields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: dateCreated, dateExpires, idMember, identifier or permissions"
+        "description": "all or a comma-separated list of: dateCreated, dateExpires, idMember, identifier or permissions",
+        "default": "all"
       },
       {
         "name": "webhooks",
@@ -13071,7 +13766,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "fields",
         "schema": "string",
         "required": false,
-        "description": "all or a comma-separated list of: avatarHash, avatarSource, bio, bioData, confirmed, email, fullName, gravatarHash, idBoards, idBoardsPinned, idOrganizations, idPremOrgsAdmin, initials, loginTypes, memberType, oneTimeMessagesDismissed, prefs, premiumFeatures, products, status, status, trophies, uploadedAvatarHash, url or username"
+        "description": "all or a comma-separated list of: avatarHash, avatarSource, bio, bioData, confirmed, email, fullName, gravatarHash, idBoards, idBoardsPinned, idOrganizations, idPremOrgsAdmin, initials, loginTypes, memberType, oneTimeMessagesDismissed, prefs, premiumFeatures, products, status, status, trophies, uploadedAvatarHash, url or username",
+        "default": "all"
       }
     ],
     "responses": [
@@ -13097,7 +13793,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "field",
         "schema": "string",
         "required": true,
-        "description": "field"
+        "description": "field",
+        "example": "FIELD"
       }
     ],
     "responses": [
@@ -13212,7 +13909,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idWebhook",
         "schema": "string",
         "required": true,
-        "description": "idWebhook"
+        "description": "idWebhook",
+        "example": "IDWEBHOOK"
       }
     ],
     "responses": [
@@ -13238,7 +13936,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idWebhook",
         "schema": "string",
         "required": true,
-        "description": "idWebhook"
+        "description": "idWebhook",
+        "example": "IDWEBHOOK"
       }
     ],
     "responses": [
@@ -13264,13 +13963,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "token",
         "schema": "string",
         "required": true,
-        "description": "token"
+        "description": "token",
+        "example": "TOKEN"
       },
       {
         "name": "field",
         "schema": "string",
         "required": true,
-        "description": "field"
+        "description": "field",
+        "example": "FIELD"
       }
     ],
     "responses": [
@@ -13296,7 +13997,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "id",
         "schema": "string",
         "required": true,
-        "description": "id"
+        "description": "id",
+        "example": "ID"
       }
     ],
     "responses": [
@@ -13362,7 +14064,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idWebhook",
         "schema": "string",
         "required": true,
-        "description": "idWebhook"
+        "description": "idWebhook",
+        "example": "IDWEBHOOK"
       }
     ],
     "responses": [
@@ -13388,7 +14091,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idWebhook",
         "schema": "string",
         "required": true,
-        "description": "idWebhook"
+        "description": "idWebhook",
+        "example": "IDWEBHOOK"
       }
     ],
     "responses": [
@@ -13414,7 +14118,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idWebhook",
         "schema": "string",
         "required": true,
-        "description": "idWebhook"
+        "description": "idWebhook",
+        "example": "IDWEBHOOK"
       },
       {
         "name": "description",
@@ -13460,7 +14165,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idWebhook",
         "schema": "string",
         "required": true,
-        "description": "idWebhook"
+        "description": "idWebhook",
+        "example": "IDWEBHOOK"
       },
       {
         "name": "value",
@@ -13491,7 +14197,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idWebhook",
         "schema": "string",
         "required": true,
-        "description": "idWebhook"
+        "description": "idWebhook",
+        "example": "IDWEBHOOK"
       },
       {
         "name": "value",
@@ -13522,7 +14229,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idWebhook",
         "schema": "string",
         "required": true,
-        "description": "idWebhook"
+        "description": "idWebhook",
+        "example": "IDWEBHOOK"
       },
       {
         "name": "value",
@@ -13553,7 +14261,8 @@ export default function TrelloTypeScriptSdk() {
         "name": "idWebhook",
         "schema": "string",
         "required": true,
-        "description": "idWebhook"
+        "description": "idWebhook",
+        "example": "IDWEBHOOK"
       },
       {
         "name": "value",
@@ -13584,13 +14293,15 @@ export default function TrelloTypeScriptSdk() {
         "name": "idWebhook",
         "schema": "string",
         "required": true,
-        "description": "idWebhook"
+        "description": "idWebhook",
+        "example": "IDWEBHOOK"
       },
       {
         "name": "field",
         "schema": "string",
         "required": true,
-        "description": "field"
+        "description": "field",
+        "example": "FIELD"
       }
     ],
     "responses": [
@@ -13616,6 +14327,8 @@ export default function TrelloTypeScriptSdk() {
       parameters={1907}
       difficulty="Very Hard"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/trello/openapi.yaml"
+      openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/trello/openapi.yaml"
+      
     />
   );
 }

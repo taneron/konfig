@@ -4,11 +4,13 @@ import { HttpMethodsEnum } from "konfig-lib/dist/forEachOperation";
 import Description from "./_description.mdx";
 // @ts-ignore
 import GettingStarted from "./_getting-started.mdx";
-import { Sdk } from "@site/src/components/Sdk";
+// @ts-ignore
+import FirstRequest from "./_first-request.mdx"
+import { SdkNew } from "@site/src/components/SdkNew";
 
 export default function HetznerTypeScriptSdk() {
   return (
-    <Sdk
+    <SdkNew
       sdkName="hetzner-typescript-sdk"
       metaDescription="Hetzner provides reliable and efficient cloud hosting and data center services. With state-of-the-art infrastructure and a focus on security and performance, Hetzner caters to a wide range of businesses looking for scalable and dependable hosting solutions. From dedicated servers to cloud storage and virtual private servers, Hetzner offers a comprehensive suite of services to meet the diverse needs of its clients."
       company="Hetzner"
@@ -16,13 +18,15 @@ export default function HetznerTypeScriptSdk() {
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/hetzner/logo.png"
       clientNameCamelCase="hetzner"
       homepage="hetzner.com"
-      lastUpdated={new Date("2024-03-11T06:04:39.099Z")}
+      lastUpdated={new Date("2024-03-13T02:25:22.175Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/hetzner/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
       previewLinkImage="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/hetzner/imagePreview.png"
       GettingStarted={GettingStarted}
       Description={Description}
+      FirstRequest={FirstRequest}
+      categories={["cloud","security","hosting","data_center","dedicated_servers","storage","virtual_private_servers"]}
       methods={[
   {
     "url": "/actions",
@@ -36,7 +40,8 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": false,
-        "description": "Filter the actions by ID. Can be used multiple times. The response will only contain\nactions matching the specified IDs.\n"
+        "description": "Filter the actions by ID. Can be used multiple times. The response will only contain\nactions matching the specified IDs.\n",
+        "example": 42
       },
       {
         "name": "sort",
@@ -54,13 +59,17 @@ export default function HetznerTypeScriptSdk() {
         "name": "page",
         "schema": "integer",
         "required": false,
-        "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+        "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+        "example": 2,
+        "default": 1
       },
       {
         "name": "perPage",
         "schema": "integer",
         "required": false,
-        "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+        "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+        "example": 25,
+        "default": 25
       }
     ],
     "responses": [
@@ -82,7 +91,8 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Resource."
+        "description": "ID of the Resource.",
+        "example": 42
       }
     ],
     "responses": [
@@ -128,13 +138,17 @@ export default function HetznerTypeScriptSdk() {
         "name": "page",
         "schema": "integer",
         "required": false,
-        "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+        "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+        "example": 2,
+        "default": 1
       },
       {
         "name": "perPage",
         "schema": "integer",
         "required": false,
-        "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+        "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+        "example": 25,
+        "default": 25
       }
     ],
     "responses": [
@@ -156,13 +170,15 @@ export default function HetznerTypeScriptSdk() {
         "name": "certificate",
         "schema": "string",
         "required": false,
-        "description": ""
+        "description": "",
+        "example": "-----BEGIN CERTIFICATE-----\n..."
       },
       {
         "name": "domain_names",
         "schema": "array",
         "required": false,
-        "description": ""
+        "description": "",
+        "example": null
       },
       {
         "name": "labels",
@@ -174,19 +190,23 @@ export default function HetznerTypeScriptSdk() {
         "name": "name",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "my website cert"
       },
       {
         "name": "private_key",
         "schema": "string",
         "required": false,
-        "description": ""
+        "description": "",
+        "example": "-----BEGIN PRIVATE KEY-----\n..."
       },
       {
         "name": "type",
         "schema": "string",
         "required": false,
-        "description": ""
+        "description": "",
+        "example": "uploaded",
+        "default": "uploaded"
       }
     ],
     "responses": [
@@ -208,7 +228,8 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": false,
-        "description": "Filter the actions by ID. Can be used multiple times. The response will only contain\nactions matching the specified IDs.\n"
+        "description": "Filter the actions by ID. Can be used multiple times. The response will only contain\nactions matching the specified IDs.\n",
+        "example": 42
       },
       {
         "name": "sort",
@@ -226,13 +247,17 @@ export default function HetznerTypeScriptSdk() {
         "name": "page",
         "schema": "integer",
         "required": false,
-        "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+        "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+        "example": 2,
+        "default": 1
       },
       {
         "name": "perPage",
         "schema": "integer",
         "required": false,
-        "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+        "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+        "example": 25,
+        "default": 25
       }
     ],
     "responses": [
@@ -254,7 +279,8 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Action."
+        "description": "ID of the Action.",
+        "example": 42
       }
     ],
     "responses": [
@@ -276,7 +302,8 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Resource."
+        "description": "ID of the Resource.",
+        "example": 42
       }
     ],
     "responses": [
@@ -298,7 +325,8 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Resource."
+        "description": "ID of the Resource.",
+        "example": 42
       }
     ],
     "responses": [
@@ -320,17 +348,22 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Resource."
+        "description": "ID of the Resource.",
+        "example": 42
       },
       {
         "name": "labels",
         "schema": "object",
-        "description": ""
+        "description": "",
+        "example": {
+          "labelkey": "value"
+        }
       },
       {
         "name": "name",
         "schema": "string",
-        "description": ""
+        "description": "",
+        "example": "my website cert"
       }
     ],
     "responses": [
@@ -352,7 +385,8 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Resource."
+        "description": "ID of the Resource.",
+        "example": 42
       },
       {
         "name": "sort",
@@ -370,13 +404,17 @@ export default function HetznerTypeScriptSdk() {
         "name": "page",
         "schema": "integer",
         "required": false,
-        "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+        "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+        "example": 2,
+        "default": 1
       },
       {
         "name": "perPage",
         "schema": "integer",
         "required": false,
-        "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+        "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+        "example": 25,
+        "default": 25
       }
     ],
     "responses": [
@@ -398,7 +436,8 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Certificate"
+        "description": "ID of the Certificate",
+        "example": 0
       }
     ],
     "responses": [
@@ -420,13 +459,15 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Certificate"
+        "description": "ID of the Certificate",
+        "example": 0
       },
       {
         "name": "actionId",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Action"
+        "description": "ID of the Action",
+        "example": 0
       }
     ],
     "responses": [
@@ -460,13 +501,17 @@ export default function HetznerTypeScriptSdk() {
         "name": "page",
         "schema": "integer",
         "required": false,
-        "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+        "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+        "example": 2,
+        "default": 1
       },
       {
         "name": "perPage",
         "schema": "integer",
         "required": false,
-        "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+        "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+        "example": 25,
+        "default": 25
       }
     ],
     "responses": [
@@ -488,7 +533,8 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of Datacenter"
+        "description": "ID of Datacenter",
+        "example": 0
       }
     ],
     "responses": [
@@ -528,13 +574,17 @@ export default function HetznerTypeScriptSdk() {
         "name": "page",
         "schema": "integer",
         "required": false,
-        "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+        "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+        "example": 2,
+        "default": 1
       },
       {
         "name": "perPage",
         "schema": "integer",
         "required": false,
-        "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+        "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+        "example": 25,
+        "default": 25
       }
     ],
     "responses": [
@@ -568,13 +618,26 @@ export default function HetznerTypeScriptSdk() {
         "name": "name",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "Corporate Intranet Protection"
       },
       {
         "name": "rules",
         "schema": "array",
         "required": false,
-        "description": ""
+        "description": "",
+        "example": [
+          {
+            "direction": "in",
+            "port": "80",
+            "protocol": "tcp",
+            "source_ips": [
+              "28.239.13.1/32",
+              "28.239.14.0/24",
+              "ff21:1eac:9a3b:ee58:5ca:990c:8bc9:c03b/128"
+            ]
+          }
+        ]
       }
     ],
     "responses": [
@@ -596,7 +659,8 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": false,
-        "description": "Filter the actions by ID. Can be used multiple times. The response will only contain\nactions matching the specified IDs.\n"
+        "description": "Filter the actions by ID. Can be used multiple times. The response will only contain\nactions matching the specified IDs.\n",
+        "example": 42
       },
       {
         "name": "sort",
@@ -614,13 +678,17 @@ export default function HetznerTypeScriptSdk() {
         "name": "page",
         "schema": "integer",
         "required": false,
-        "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+        "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+        "example": 2,
+        "default": 1
       },
       {
         "name": "perPage",
         "schema": "integer",
         "required": false,
-        "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+        "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+        "example": 25,
+        "default": 25
       }
     ],
     "responses": [
@@ -642,7 +710,8 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Action."
+        "description": "ID of the Action.",
+        "example": 42
       }
     ],
     "responses": [
@@ -664,7 +733,8 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Resource."
+        "description": "ID of the Resource.",
+        "example": 42
       }
     ],
     "responses": [
@@ -686,7 +756,8 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Resource."
+        "description": "ID of the Resource.",
+        "example": 42
       }
     ],
     "responses": [
@@ -708,17 +779,22 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Resource."
+        "description": "ID of the Resource.",
+        "example": 42
       },
       {
         "name": "labels",
         "schema": "object",
-        "description": ""
+        "description": "",
+        "example": {
+          "labelkey": "value"
+        }
       },
       {
         "name": "name",
         "schema": "string",
-        "description": ""
+        "description": "",
+        "example": "new-name"
       }
     ],
     "responses": [
@@ -740,7 +816,8 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Resource."
+        "description": "ID of the Resource.",
+        "example": 42
       },
       {
         "name": "sort",
@@ -758,13 +835,17 @@ export default function HetznerTypeScriptSdk() {
         "name": "page",
         "schema": "integer",
         "required": false,
-        "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+        "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+        "example": 2,
+        "default": 1
       },
       {
         "name": "perPage",
         "schema": "integer",
         "required": false,
-        "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+        "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+        "example": 25,
+        "default": 25
       }
     ],
     "responses": [
@@ -786,7 +867,8 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Firewall"
+        "description": "ID of the Firewall",
+        "example": 0
       },
       {
         "name": "apply_to",
@@ -814,7 +896,8 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Firewall"
+        "description": "ID of the Firewall",
+        "example": 0
       },
       {
         "name": "remove_from",
@@ -842,7 +925,8 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Firewall"
+        "description": "ID of the Firewall",
+        "example": 0
       },
       {
         "name": "rules",
@@ -870,13 +954,15 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Firewall"
+        "description": "ID of the Firewall",
+        "example": 0
       },
       {
         "name": "actionId",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Action"
+        "description": "ID of the Action",
+        "example": 0
       }
     ],
     "responses": [
@@ -916,13 +1002,17 @@ export default function HetznerTypeScriptSdk() {
         "name": "page",
         "schema": "integer",
         "required": false,
-        "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+        "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+        "example": 2,
+        "default": 1
       },
       {
         "name": "perPage",
         "schema": "integer",
         "required": false,
-        "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+        "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+        "example": 25,
+        "default": 25
       }
     ],
     "responses": [
@@ -944,37 +1034,45 @@ export default function HetznerTypeScriptSdk() {
         "name": "description",
         "schema": "string",
         "required": false,
-        "description": ""
+        "description": "",
+        "example": "Web Frontend"
       },
       {
         "name": "home_location",
         "schema": "string",
         "required": false,
-        "description": ""
+        "description": "",
+        "example": "fsn1"
       },
       {
         "name": "labels",
         "schema": "object",
         "required": false,
-        "description": ""
+        "description": "",
+        "example": {
+          "labelkey": "value"
+        }
       },
       {
         "name": "name",
         "schema": "string",
         "required": false,
-        "description": ""
+        "description": "",
+        "example": "Web Frontend"
       },
       {
         "name": "server",
         "schema": "integer",
         "required": false,
-        "description": ""
+        "description": "",
+        "example": 42
       },
       {
         "name": "type",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "TYPE"
       }
     ],
     "responses": [
@@ -996,7 +1094,8 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": false,
-        "description": "Filter the actions by ID. Can be used multiple times. The response will only contain\nactions matching the specified IDs.\n"
+        "description": "Filter the actions by ID. Can be used multiple times. The response will only contain\nactions matching the specified IDs.\n",
+        "example": 42
       },
       {
         "name": "sort",
@@ -1014,13 +1113,17 @@ export default function HetznerTypeScriptSdk() {
         "name": "page",
         "schema": "integer",
         "required": false,
-        "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+        "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+        "example": 2,
+        "default": 1
       },
       {
         "name": "perPage",
         "schema": "integer",
         "required": false,
-        "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+        "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+        "example": 25,
+        "default": 25
       }
     ],
     "responses": [
@@ -1042,7 +1145,8 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Action."
+        "description": "ID of the Action.",
+        "example": 42
       }
     ],
     "responses": [
@@ -1064,7 +1168,8 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Floating IP"
+        "description": "ID of the Floating IP",
+        "example": 0
       }
     ],
     "responses": [
@@ -1086,7 +1191,8 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Floating IP"
+        "description": "ID of the Floating IP",
+        "example": 0
       }
     ],
     "responses": [
@@ -1108,22 +1214,28 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Floating IP"
+        "description": "ID of the Floating IP",
+        "example": 0
       },
       {
         "name": "description",
         "schema": "string",
-        "description": ""
+        "description": "",
+        "example": "Web Frontend"
       },
       {
         "name": "labels",
         "schema": "object",
-        "description": ""
+        "description": "",
+        "example": {
+          "labelkey": "value"
+        }
       },
       {
         "name": "name",
         "schema": "string",
-        "description": ""
+        "description": "",
+        "example": "Web Frontend"
       }
     ],
     "responses": [
@@ -1145,7 +1257,8 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Floating IP"
+        "description": "ID of the Floating IP",
+        "example": 0
       },
       {
         "name": "sort",
@@ -1163,13 +1276,17 @@ export default function HetznerTypeScriptSdk() {
         "name": "page",
         "schema": "integer",
         "required": false,
-        "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+        "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+        "example": 2,
+        "default": 1
       },
       {
         "name": "perPage",
         "schema": "integer",
         "required": false,
-        "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+        "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+        "example": 25,
+        "default": 25
       }
     ],
     "responses": [
@@ -1191,13 +1308,15 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Floating IP"
+        "description": "ID of the Floating IP",
+        "example": 0
       },
       {
         "name": "server",
         "schema": "integer",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": 42
       }
     ],
     "responses": [
@@ -1219,19 +1338,22 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Floating IP"
+        "description": "ID of the Floating IP",
+        "example": 0
       },
       {
         "name": "dns_ptr",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "server02.example.com"
       },
       {
         "name": "ip",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "1.2.3.4"
       }
     ],
     "responses": [
@@ -1253,12 +1375,14 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Floating IP"
+        "description": "ID of the Floating IP",
+        "example": 0
       },
       {
         "name": "delete",
         "schema": "boolean",
-        "description": ""
+        "description": "",
+        "example": true
       }
     ],
     "responses": [
@@ -1280,7 +1404,8 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Floating IP"
+        "description": "ID of the Floating IP",
+        "example": 0
       }
     ],
     "responses": [
@@ -1302,13 +1427,15 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Floating IP"
+        "description": "ID of the Floating IP",
+        "example": 0
       },
       {
         "name": "actionId",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Action"
+        "description": "ID of the Action",
+        "example": 0
       }
     ],
     "responses": [
@@ -1378,13 +1505,17 @@ export default function HetznerTypeScriptSdk() {
         "name": "page",
         "schema": "integer",
         "required": false,
-        "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+        "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+        "example": 2,
+        "default": 1
       },
       {
         "name": "perPage",
         "schema": "integer",
         "required": false,
-        "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+        "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+        "example": 25,
+        "default": 25
       }
     ],
     "responses": [
@@ -1406,7 +1537,8 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": false,
-        "description": "Filter the actions by ID. Can be used multiple times. The response will only contain\nactions matching the specified IDs.\n"
+        "description": "Filter the actions by ID. Can be used multiple times. The response will only contain\nactions matching the specified IDs.\n",
+        "example": 42
       },
       {
         "name": "sort",
@@ -1424,13 +1556,17 @@ export default function HetznerTypeScriptSdk() {
         "name": "page",
         "schema": "integer",
         "required": false,
-        "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+        "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+        "example": 2,
+        "default": 1
       },
       {
         "name": "perPage",
         "schema": "integer",
         "required": false,
-        "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+        "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+        "example": 25,
+        "default": 25
       }
     ],
     "responses": [
@@ -1452,7 +1588,8 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Action."
+        "description": "ID of the Action.",
+        "example": 42
       }
     ],
     "responses": [
@@ -1474,7 +1611,8 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Image"
+        "description": "ID of the Image",
+        "example": 0
       }
     ],
     "responses": [
@@ -1496,7 +1634,8 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Image"
+        "description": "ID of the Image",
+        "example": 0
       }
     ],
     "responses": [
@@ -1518,17 +1657,22 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Image"
+        "description": "ID of the Image",
+        "example": 0
       },
       {
         "name": "description",
         "schema": "string",
-        "description": ""
+        "description": "",
+        "example": "My new Image description"
       },
       {
         "name": "labels",
         "schema": "object",
-        "description": ""
+        "description": "",
+        "example": {
+          "labelkey": "value"
+        }
       },
       {
         "name": "type",
@@ -1555,7 +1699,8 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Image"
+        "description": "ID of the Image",
+        "example": 0
       },
       {
         "name": "sort",
@@ -1573,13 +1718,17 @@ export default function HetznerTypeScriptSdk() {
         "name": "page",
         "schema": "integer",
         "required": false,
-        "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+        "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+        "example": 2,
+        "default": 1
       },
       {
         "name": "perPage",
         "schema": "integer",
         "required": false,
-        "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+        "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+        "example": 25,
+        "default": 25
       }
     ],
     "responses": [
@@ -1601,12 +1750,14 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Image"
+        "description": "ID of the Image",
+        "example": 0
       },
       {
         "name": "delete",
         "schema": "boolean",
-        "description": ""
+        "description": "",
+        "example": true
       }
     ],
     "responses": [
@@ -1628,13 +1779,15 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Image"
+        "description": "ID of the Image",
+        "example": 0
       },
       {
         "name": "actionId",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Action"
+        "description": "ID of the Action",
+        "example": 0
       }
     ],
     "responses": [
@@ -1674,13 +1827,17 @@ export default function HetznerTypeScriptSdk() {
         "name": "page",
         "schema": "integer",
         "required": false,
-        "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+        "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+        "example": 2,
+        "default": 1
       },
       {
         "name": "perPage",
         "schema": "integer",
         "required": false,
-        "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+        "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+        "example": 25,
+        "default": 25
       }
     ],
     "responses": [
@@ -1702,7 +1859,8 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the ISO"
+        "description": "ID of the ISO",
+        "example": 0
       }
     ],
     "responses": [
@@ -1730,13 +1888,17 @@ export default function HetznerTypeScriptSdk() {
         "name": "page",
         "schema": "integer",
         "required": false,
-        "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+        "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+        "example": 2,
+        "default": 1
       },
       {
         "name": "perPage",
         "schema": "integer",
         "required": false,
-        "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+        "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+        "example": 25,
+        "default": 25
       }
     ],
     "responses": [
@@ -1758,7 +1920,8 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of Load Balancer type"
+        "description": "ID of Load Balancer type",
+        "example": 0
       }
     ],
     "responses": [
@@ -1798,13 +1961,17 @@ export default function HetznerTypeScriptSdk() {
         "name": "page",
         "schema": "integer",
         "required": false,
-        "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+        "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+        "example": 2,
+        "default": 1
       },
       {
         "name": "perPage",
         "schema": "integer",
         "required": false,
-        "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+        "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+        "example": 25,
+        "default": 25
       }
     ],
     "responses": [
@@ -1826,7 +1993,10 @@ export default function HetznerTypeScriptSdk() {
         "name": "algorithm",
         "schema": "object",
         "required": false,
-        "description": ""
+        "description": "",
+        "default": {
+          "type": "round_robin"
+        }
       },
       {
         "name": "labels",
@@ -1838,7 +2008,8 @@ export default function HetznerTypeScriptSdk() {
         "name": "load_balancer_type",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "lb11"
       },
       {
         "name": "location",
@@ -1850,25 +2021,29 @@ export default function HetznerTypeScriptSdk() {
         "name": "name",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "Web Frontend"
       },
       {
         "name": "network",
         "schema": "integer",
         "required": false,
-        "description": ""
+        "description": "",
+        "example": 123
       },
       {
         "name": "network_zone",
         "schema": "string",
         "required": false,
-        "description": ""
+        "description": "",
+        "example": "eu-central"
       },
       {
         "name": "public_interface",
         "schema": "boolean",
         "required": false,
-        "description": ""
+        "description": "",
+        "example": true
       },
       {
         "name": "services",
@@ -1902,7 +2077,8 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": false,
-        "description": "Filter the actions by ID. Can be used multiple times. The response will only contain\nactions matching the specified IDs.\n"
+        "description": "Filter the actions by ID. Can be used multiple times. The response will only contain\nactions matching the specified IDs.\n",
+        "example": 42
       },
       {
         "name": "sort",
@@ -1920,13 +2096,17 @@ export default function HetznerTypeScriptSdk() {
         "name": "page",
         "schema": "integer",
         "required": false,
-        "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+        "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+        "example": 2,
+        "default": 1
       },
       {
         "name": "perPage",
         "schema": "integer",
         "required": false,
-        "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+        "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+        "example": 25,
+        "default": 25
       }
     ],
     "responses": [
@@ -1948,7 +2128,8 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Action."
+        "description": "ID of the Action.",
+        "example": 42
       }
     ],
     "responses": [
@@ -1970,7 +2151,8 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Load Balancer"
+        "description": "ID of the Load Balancer",
+        "example": 0
       }
     ],
     "responses": [
@@ -1992,7 +2174,8 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Load Balancer"
+        "description": "ID of the Load Balancer",
+        "example": 0
       }
     ],
     "responses": [
@@ -2014,17 +2197,22 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Load Balancer"
+        "description": "ID of the Load Balancer",
+        "example": 0
       },
       {
         "name": "labels",
         "schema": "object",
-        "description": ""
+        "description": "",
+        "example": {
+          "labelkey": "value"
+        }
       },
       {
         "name": "name",
         "schema": "string",
-        "description": ""
+        "description": "",
+        "example": "new-name"
       }
     ],
     "responses": [
@@ -2046,7 +2234,8 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Load Balancer"
+        "description": "ID of the Load Balancer",
+        "example": 0
       },
       {
         "name": "sort",
@@ -2064,13 +2253,17 @@ export default function HetznerTypeScriptSdk() {
         "name": "page",
         "schema": "integer",
         "required": false,
-        "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+        "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+        "example": 2,
+        "default": 1
       },
       {
         "name": "perPage",
         "schema": "integer",
         "required": false,
-        "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+        "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+        "example": 25,
+        "default": 25
       }
     ],
     "responses": [
@@ -2092,13 +2285,15 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Load Balancer"
+        "description": "ID of the Load Balancer",
+        "example": 0
       },
       {
         "name": "destination_port",
         "schema": "integer",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": 80
       },
       {
         "name": "health_check",
@@ -2116,19 +2311,22 @@ export default function HetznerTypeScriptSdk() {
         "name": "listen_port",
         "schema": "integer",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": 443
       },
       {
         "name": "protocol",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "https"
       },
       {
         "name": "proxyprotocol",
         "schema": "boolean",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": false
       }
     ],
     "responses": [
@@ -2150,7 +2348,8 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Load Balancer"
+        "description": "ID of the Load Balancer",
+        "example": 0
       },
       {
         "name": "ip",
@@ -2174,13 +2373,16 @@ export default function HetznerTypeScriptSdk() {
         "name": "type",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "TYPE"
       },
       {
         "name": "use_private_ip",
         "schema": "boolean",
         "required": false,
-        "description": ""
+        "description": "",
+        "example": true,
+        "default": false
       }
     ],
     "responses": [
@@ -2202,19 +2404,22 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Load Balancer"
+        "description": "ID of the Load Balancer",
+        "example": 0
       },
       {
         "name": "ip",
         "schema": "string",
         "required": false,
-        "description": ""
+        "description": "",
+        "example": "10.0.1.1"
       },
       {
         "name": "network",
         "schema": "integer",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": 4711
       }
     ],
     "responses": [
@@ -2236,13 +2441,15 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Load Balancer"
+        "description": "ID of the Load Balancer",
+        "example": 0
       },
       {
         "name": "type",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "TYPE"
       }
     ],
     "responses": [
@@ -2264,19 +2471,22 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Load Balancer"
+        "description": "ID of the Load Balancer",
+        "example": 0
       },
       {
         "name": "dns_ptr",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "lb1.example.com"
       },
       {
         "name": "ip",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "1.2.3.4"
       }
     ],
     "responses": [
@@ -2298,12 +2508,14 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Load Balancer"
+        "description": "ID of the Load Balancer",
+        "example": 0
       },
       {
         "name": "delete",
         "schema": "boolean",
-        "description": ""
+        "description": "",
+        "example": true
       }
     ],
     "responses": [
@@ -2325,13 +2537,15 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Load Balancer"
+        "description": "ID of the Load Balancer",
+        "example": 0
       },
       {
         "name": "load_balancer_type",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "lb21"
       }
     ],
     "responses": [
@@ -2353,13 +2567,15 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Load Balancer"
+        "description": "ID of the Load Balancer",
+        "example": 0
       },
       {
         "name": "listen_port",
         "schema": "integer",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": 443
       }
     ],
     "responses": [
@@ -2381,13 +2597,15 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Load Balancer"
+        "description": "ID of the Load Balancer",
+        "example": 0
       },
       {
         "name": "network",
         "schema": "integer",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": 4711
       }
     ],
     "responses": [
@@ -2409,7 +2627,8 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Load Balancer"
+        "description": "ID of the Load Balancer",
+        "example": 0
       }
     ],
     "responses": [
@@ -2431,7 +2650,8 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Load Balancer"
+        "description": "ID of the Load Balancer",
+        "example": 0
       }
     ],
     "responses": [
@@ -2453,7 +2673,8 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Load Balancer"
+        "description": "ID of the Load Balancer",
+        "example": 0
       },
       {
         "name": "ip",
@@ -2477,7 +2698,8 @@ export default function HetznerTypeScriptSdk() {
         "name": "type",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "TYPE"
       }
     ],
     "responses": [
@@ -2499,13 +2721,15 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Load Balancer"
+        "description": "ID of the Load Balancer",
+        "example": 0
       },
       {
         "name": "destination_port",
         "schema": "integer",
         "required": false,
-        "description": ""
+        "description": "",
+        "example": 80
       },
       {
         "name": "health_check",
@@ -2523,19 +2747,22 @@ export default function HetznerTypeScriptSdk() {
         "name": "listen_port",
         "schema": "integer",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": 443
       },
       {
         "name": "protocol",
         "schema": "string",
         "required": false,
-        "description": ""
+        "description": "",
+        "example": "https"
       },
       {
         "name": "proxyprotocol",
         "schema": "boolean",
         "required": false,
-        "description": ""
+        "description": "",
+        "example": false
       }
     ],
     "responses": [
@@ -2557,13 +2784,15 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Load Balancer"
+        "description": "ID of the Load Balancer",
+        "example": 0
       },
       {
         "name": "actionId",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Action"
+        "description": "ID of the Action",
+        "example": 0
       }
     ],
     "responses": [
@@ -2585,25 +2814,29 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Load Balancer"
+        "description": "ID of the Load Balancer",
+        "example": 0
       },
       {
         "name": "type",
         "schema": "string",
         "required": true,
-        "description": "Type of metrics to get"
+        "description": "Type of metrics to get",
+        "example": "TYPE"
       },
       {
         "name": "start",
         "schema": "string",
         "required": true,
-        "description": "Start of period to get Metrics for (in ISO-8601 format)"
+        "description": "Start of period to get Metrics for (in ISO-8601 format)",
+        "example": "START"
       },
       {
         "name": "end",
         "schema": "string",
         "required": true,
-        "description": "End of period to get Metrics for (in ISO-8601 format)"
+        "description": "End of period to get Metrics for (in ISO-8601 format)",
+        "example": "END"
       },
       {
         "name": "step",
@@ -2643,13 +2876,17 @@ export default function HetznerTypeScriptSdk() {
         "name": "page",
         "schema": "integer",
         "required": false,
-        "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+        "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+        "example": 2,
+        "default": 1
       },
       {
         "name": "perPage",
         "schema": "integer",
         "required": false,
-        "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+        "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+        "example": 25,
+        "default": 25
       }
     ],
     "responses": [
@@ -2671,7 +2908,8 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of Location"
+        "description": "ID of Location",
+        "example": 0
       }
     ],
     "responses": [
@@ -2705,13 +2943,17 @@ export default function HetznerTypeScriptSdk() {
         "name": "page",
         "schema": "integer",
         "required": false,
-        "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+        "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+        "example": 2,
+        "default": 1
       },
       {
         "name": "perPage",
         "schema": "integer",
         "required": false,
-        "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+        "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+        "example": 25,
+        "default": 25
       }
     ],
     "responses": [
@@ -2733,13 +2975,15 @@ export default function HetznerTypeScriptSdk() {
         "name": "expose_routes_to_vswitch",
         "schema": "boolean",
         "required": false,
-        "description": ""
+        "description": "",
+        "example": false
       },
       {
         "name": "ip_range",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "10.0.0.0/16"
       },
       {
         "name": "labels",
@@ -2751,7 +2995,8 @@ export default function HetznerTypeScriptSdk() {
         "name": "name",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "mynet"
       },
       {
         "name": "routes",
@@ -2785,7 +3030,8 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": false,
-        "description": "Filter the actions by ID. Can be used multiple times. The response will only contain\nactions matching the specified IDs.\n"
+        "description": "Filter the actions by ID. Can be used multiple times. The response will only contain\nactions matching the specified IDs.\n",
+        "example": 42
       },
       {
         "name": "sort",
@@ -2803,13 +3049,17 @@ export default function HetznerTypeScriptSdk() {
         "name": "page",
         "schema": "integer",
         "required": false,
-        "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+        "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+        "example": 2,
+        "default": 1
       },
       {
         "name": "perPage",
         "schema": "integer",
         "required": false,
-        "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+        "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+        "example": 25,
+        "default": 25
       }
     ],
     "responses": [
@@ -2831,7 +3081,8 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Action."
+        "description": "ID of the Action.",
+        "example": 42
       }
     ],
     "responses": [
@@ -2853,7 +3104,8 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the network"
+        "description": "ID of the network",
+        "example": 0
       }
     ],
     "responses": [
@@ -2875,7 +3127,8 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the network"
+        "description": "ID of the network",
+        "example": 0
       }
     ],
     "responses": [
@@ -2897,12 +3150,14 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the network"
+        "description": "ID of the network",
+        "example": 0
       },
       {
         "name": "expose_routes_to_vswitch",
         "schema": "boolean",
-        "description": ""
+        "description": "",
+        "example": false
       },
       {
         "name": "labels",
@@ -2912,7 +3167,8 @@ export default function HetznerTypeScriptSdk() {
       {
         "name": "name",
         "schema": "string",
-        "description": ""
+        "description": "",
+        "example": "new-name"
       }
     ],
     "responses": [
@@ -2934,7 +3190,8 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Network"
+        "description": "ID of the Network",
+        "example": 0
       },
       {
         "name": "sort",
@@ -2952,13 +3209,17 @@ export default function HetznerTypeScriptSdk() {
         "name": "page",
         "schema": "integer",
         "required": false,
-        "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+        "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+        "example": 2,
+        "default": 1
       },
       {
         "name": "perPage",
         "schema": "integer",
         "required": false,
-        "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+        "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+        "example": 25,
+        "default": 25
       }
     ],
     "responses": [
@@ -2980,19 +3241,22 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Network"
+        "description": "ID of the Network",
+        "example": 0
       },
       {
         "name": "destination",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "10.100.1.0/24"
       },
       {
         "name": "gateway",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "10.0.1.1"
       }
     ],
     "responses": [
@@ -3014,31 +3278,36 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Network"
+        "description": "ID of the Network",
+        "example": 0
       },
       {
         "name": "ip_range",
         "schema": "string",
         "required": false,
-        "description": ""
+        "description": "",
+        "example": "10.0.1.0/24"
       },
       {
         "name": "network_zone",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "eu-central"
       },
       {
         "name": "type",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "TYPE"
       },
       {
         "name": "vswitch_id",
         "schema": "integer",
         "required": false,
-        "description": ""
+        "description": "",
+        "example": 1000
       }
     ],
     "responses": [
@@ -3060,13 +3329,15 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Network"
+        "description": "ID of the Network",
+        "example": 0
       },
       {
         "name": "ip_range",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "10.0.0.0/12"
       }
     ],
     "responses": [
@@ -3088,12 +3359,14 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Network"
+        "description": "ID of the Network",
+        "example": 0
       },
       {
         "name": "delete",
         "schema": "boolean",
-        "description": ""
+        "description": "",
+        "example": true
       }
     ],
     "responses": [
@@ -3115,19 +3388,22 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Network"
+        "description": "ID of the Network",
+        "example": 0
       },
       {
         "name": "destination",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "10.100.1.0/24"
       },
       {
         "name": "gateway",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "10.0.1.1"
       }
     ],
     "responses": [
@@ -3149,13 +3425,15 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Network"
+        "description": "ID of the Network",
+        "example": 0
       },
       {
         "name": "ip_range",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "10.0.1.0/24"
       }
     ],
     "responses": [
@@ -3177,13 +3455,15 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Network"
+        "description": "ID of the Network",
+        "example": 0
       },
       {
         "name": "actionId",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Action"
+        "description": "ID of the Action",
+        "example": 0
       }
     ],
     "responses": [
@@ -3229,13 +3509,17 @@ export default function HetznerTypeScriptSdk() {
         "name": "page",
         "schema": "integer",
         "required": false,
-        "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+        "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+        "example": 2,
+        "default": 1
       },
       {
         "name": "perPage",
         "schema": "integer",
         "required": false,
-        "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+        "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+        "example": 25,
+        "default": 25
       }
     ],
     "responses": [
@@ -3263,13 +3547,15 @@ export default function HetznerTypeScriptSdk() {
         "name": "name",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "my Placement Group"
       },
       {
         "name": "type",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "spread"
       }
     ],
     "responses": [
@@ -3291,7 +3577,8 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Resource."
+        "description": "ID of the Resource.",
+        "example": 42
       }
     ],
     "responses": [
@@ -3313,7 +3600,8 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Resource."
+        "description": "ID of the Resource.",
+        "example": 42
       }
     ],
     "responses": [
@@ -3335,17 +3623,22 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Resource."
+        "description": "ID of the Resource.",
+        "example": 42
       },
       {
         "name": "labels",
         "schema": "object",
-        "description": ""
+        "description": "",
+        "example": {
+          "labelkey": "value"
+        }
       },
       {
         "name": "name",
         "schema": "string",
-        "description": ""
+        "description": "",
+        "example": "my Placement Group"
       }
     ],
     "responses": [
@@ -3394,19 +3687,24 @@ export default function HetznerTypeScriptSdk() {
         "name": "ip",
         "schema": "string",
         "required": false,
-        "description": "Can be used to filter resources by their ip. The response will only contain the resources matching the specified ip."
+        "description": "Can be used to filter resources by their ip. The response will only contain the resources matching the specified ip.",
+        "example": "127.0.0.1"
       },
       {
         "name": "page",
         "schema": "integer",
         "required": false,
-        "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+        "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+        "example": 2,
+        "default": 1
       },
       {
         "name": "perPage",
         "schema": "integer",
         "required": false,
-        "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+        "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+        "example": 25,
+        "default": 25
       },
       {
         "name": "sort",
@@ -3434,43 +3732,53 @@ export default function HetznerTypeScriptSdk() {
         "name": "assignee_id",
         "schema": "integer",
         "required": false,
-        "description": ""
+        "description": "",
+        "example": 17
       },
       {
         "name": "assignee_type",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "server"
       },
       {
         "name": "auto_delete",
         "schema": "boolean",
         "required": false,
-        "description": ""
+        "description": "",
+        "example": false,
+        "default": false
       },
       {
         "name": "datacenter",
         "schema": "string",
         "required": false,
-        "description": ""
+        "description": "",
+        "example": "fsn1-dc8"
       },
       {
         "name": "labels",
         "schema": "object",
         "required": false,
-        "description": ""
+        "description": "",
+        "example": {
+          "labelkey": "value"
+        }
       },
       {
         "name": "name",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "my-ip"
       },
       {
         "name": "type",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "TYPE"
       }
     ],
     "responses": [
@@ -3492,7 +3800,8 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": false,
-        "description": "Filter the actions by ID. Can be used multiple times. The response will only contain\nactions matching the specified IDs.\n"
+        "description": "Filter the actions by ID. Can be used multiple times. The response will only contain\nactions matching the specified IDs.\n",
+        "example": 42
       },
       {
         "name": "sort",
@@ -3510,13 +3819,17 @@ export default function HetznerTypeScriptSdk() {
         "name": "page",
         "schema": "integer",
         "required": false,
-        "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+        "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+        "example": 2,
+        "default": 1
       },
       {
         "name": "perPage",
         "schema": "integer",
         "required": false,
-        "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+        "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+        "example": 25,
+        "default": 25
       }
     ],
     "responses": [
@@ -3538,7 +3851,8 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Action."
+        "description": "ID of the Action.",
+        "example": 42
       }
     ],
     "responses": [
@@ -3560,7 +3874,8 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Resource."
+        "description": "ID of the Resource.",
+        "example": 42
       }
     ],
     "responses": [
@@ -3582,7 +3897,8 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Resource."
+        "description": "ID of the Resource.",
+        "example": 42
       }
     ],
     "responses": [
@@ -3604,22 +3920,28 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Resource."
+        "description": "ID of the Resource.",
+        "example": 42
       },
       {
         "name": "auto_delete",
         "schema": "boolean",
-        "description": ""
+        "description": "",
+        "example": true
       },
       {
         "name": "labels",
         "schema": "object",
-        "description": ""
+        "description": "",
+        "example": {
+          "labelkey": "value"
+        }
       },
       {
         "name": "name",
         "schema": "string",
-        "description": ""
+        "description": "",
+        "example": "my-ip"
       }
     ],
     "responses": [
@@ -3641,19 +3963,22 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Primary IP"
+        "description": "ID of the Primary IP",
+        "example": 0
       },
       {
         "name": "assignee_id",
         "schema": "integer",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": 4711
       },
       {
         "name": "assignee_type",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "server"
       }
     ],
     "responses": [
@@ -3675,19 +4000,22 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Primary IP"
+        "description": "ID of the Primary IP",
+        "example": 0
       },
       {
         "name": "dns_ptr",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "server02.example.com"
       },
       {
         "name": "ip",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "1.2.3.4"
       }
     ],
     "responses": [
@@ -3709,12 +4037,14 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Primary IP"
+        "description": "ID of the Primary IP",
+        "example": 0
       },
       {
         "name": "delete",
         "schema": "boolean",
-        "description": ""
+        "description": "",
+        "example": true
       }
     ],
     "responses": [
@@ -3736,7 +4066,8 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Primary IP"
+        "description": "ID of the Primary IP",
+        "example": 0
       }
     ],
     "responses": [
@@ -3764,13 +4095,17 @@ export default function HetznerTypeScriptSdk() {
         "name": "page",
         "schema": "integer",
         "required": false,
-        "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+        "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+        "example": 2,
+        "default": 1
       },
       {
         "name": "perPage",
         "schema": "integer",
         "required": false,
-        "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+        "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+        "example": 25,
+        "default": 25
       }
     ],
     "responses": [
@@ -3792,7 +4127,8 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of Server Type"
+        "description": "ID of Server Type",
+        "example": 0
       }
     ],
     "responses": [
@@ -3838,13 +4174,17 @@ export default function HetznerTypeScriptSdk() {
         "name": "page",
         "schema": "integer",
         "required": false,
-        "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+        "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+        "example": 2,
+        "default": 1
       },
       {
         "name": "perPage",
         "schema": "integer",
         "required": false,
-        "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+        "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+        "example": 25,
+        "default": 25
       }
     ],
     "responses": [
@@ -3866,25 +4206,33 @@ export default function HetznerTypeScriptSdk() {
         "name": "automount",
         "schema": "boolean",
         "required": false,
-        "description": ""
+        "description": "",
+        "example": false
       },
       {
         "name": "datacenter",
         "schema": "string",
         "required": false,
-        "description": ""
+        "description": "",
+        "example": "nbg1-dc3"
       },
       {
         "name": "firewalls",
         "schema": "array",
         "required": false,
-        "description": ""
+        "description": "",
+        "example": [
+          {
+            "firewall": 38
+          }
+        ]
       },
       {
         "name": "image",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "ubuntu-20.04"
       },
       {
         "name": "labels",
@@ -3896,25 +4244,31 @@ export default function HetznerTypeScriptSdk() {
         "name": "location",
         "schema": "string",
         "required": false,
-        "description": ""
+        "description": "",
+        "example": "nbg1"
       },
       {
         "name": "name",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "my-server"
       },
       {
         "name": "networks",
         "schema": "array",
         "required": false,
-        "description": ""
+        "description": "",
+        "example": [
+          456
+        ]
       },
       {
         "name": "placement_group",
         "schema": "integer",
         "required": false,
-        "description": ""
+        "description": "",
+        "example": 1
       },
       {
         "name": "public_net",
@@ -3926,31 +4280,41 @@ export default function HetznerTypeScriptSdk() {
         "name": "server_type",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "cx11"
       },
       {
         "name": "ssh_keys",
         "schema": "array",
         "required": false,
-        "description": ""
+        "description": "",
+        "example": [
+          "my-ssh-key"
+        ]
       },
       {
         "name": "start_after_create",
         "schema": "boolean",
         "required": false,
-        "description": ""
+        "description": "",
+        "example": true,
+        "default": true
       },
       {
         "name": "user_data",
         "schema": "string",
         "required": false,
-        "description": ""
+        "description": "",
+        "example": "#cloud-config\nruncmd:\n- [touch, /root/cloud-init-worked]\n"
       },
       {
         "name": "volumes",
         "schema": "array",
         "required": false,
-        "description": ""
+        "description": "",
+        "example": [
+          123
+        ]
       }
     ],
     "responses": [
@@ -3972,7 +4336,8 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": false,
-        "description": "Filter the actions by ID. Can be used multiple times. The response will only contain\nactions matching the specified IDs.\n"
+        "description": "Filter the actions by ID. Can be used multiple times. The response will only contain\nactions matching the specified IDs.\n",
+        "example": 42
       },
       {
         "name": "sort",
@@ -3990,13 +4355,17 @@ export default function HetznerTypeScriptSdk() {
         "name": "page",
         "schema": "integer",
         "required": false,
-        "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+        "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+        "example": 2,
+        "default": 1
       },
       {
         "name": "perPage",
         "schema": "integer",
         "required": false,
-        "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+        "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+        "example": 25,
+        "default": 25
       }
     ],
     "responses": [
@@ -4018,7 +4387,8 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Action."
+        "description": "ID of the Action.",
+        "example": 42
       }
     ],
     "responses": [
@@ -4040,7 +4410,8 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Server"
+        "description": "ID of the Server",
+        "example": 0
       }
     ],
     "responses": [
@@ -4062,7 +4433,8 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Server"
+        "description": "ID of the Server",
+        "example": 0
       }
     ],
     "responses": [
@@ -4084,17 +4456,22 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Server"
+        "description": "ID of the Server",
+        "example": 0
       },
       {
         "name": "labels",
         "schema": "object",
-        "description": ""
+        "description": "",
+        "example": {
+          "labelkey": "value"
+        }
       },
       {
         "name": "name",
         "schema": "string",
-        "description": ""
+        "description": "",
+        "example": "my-server"
       }
     ],
     "responses": [
@@ -4116,7 +4493,8 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Resource."
+        "description": "ID of the Resource.",
+        "example": 42
       },
       {
         "name": "sort",
@@ -4134,13 +4512,17 @@ export default function HetznerTypeScriptSdk() {
         "name": "page",
         "schema": "integer",
         "required": false,
-        "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+        "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+        "example": 2,
+        "default": 1
       },
       {
         "name": "perPage",
         "schema": "integer",
         "required": false,
-        "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+        "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+        "example": 25,
+        "default": 25
       }
     ],
     "responses": [
@@ -4162,13 +4544,15 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Server"
+        "description": "ID of the Server",
+        "example": 0
       },
       {
         "name": "placement_group",
         "schema": "integer",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": 1
       }
     ],
     "responses": [
@@ -4190,13 +4574,15 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Server"
+        "description": "ID of the Server",
+        "example": 0
       },
       {
         "name": "iso",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "FreeBSD-11.0-RELEASE-amd64-dvd1"
       }
     ],
     "responses": [
@@ -4218,25 +4604,31 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Server"
+        "description": "ID of the Server",
+        "example": 0
       },
       {
         "name": "alias_ips",
         "schema": "array",
         "required": false,
-        "description": ""
+        "description": "",
+        "example": [
+          "10.0.1.2"
+        ]
       },
       {
         "name": "ip",
         "schema": "string",
         "required": false,
-        "description": ""
+        "description": "",
+        "example": "10.0.1.1"
       },
       {
         "name": "network",
         "schema": "integer",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": 4711
       }
     ],
     "responses": [
@@ -4258,19 +4650,24 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Server"
+        "description": "ID of the Server",
+        "example": 0
       },
       {
         "name": "alias_ips",
         "schema": "array",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": [
+          "10.0.1.2"
+        ]
       },
       {
         "name": "network",
         "schema": "integer",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": 4711
       }
     ],
     "responses": [
@@ -4292,19 +4689,22 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Server"
+        "description": "ID of the Server",
+        "example": 0
       },
       {
         "name": "dns_ptr",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "server01.example.com"
       },
       {
         "name": "ip",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "1.2.3.4"
       }
     ],
     "responses": [
@@ -4326,17 +4726,20 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Server"
+        "description": "ID of the Server",
+        "example": 0
       },
       {
         "name": "delete",
         "schema": "boolean",
-        "description": ""
+        "description": "",
+        "example": true
       },
       {
         "name": "rebuild",
         "schema": "boolean",
-        "description": ""
+        "description": "",
+        "example": true
       }
     ],
     "responses": [
@@ -4358,19 +4761,22 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Server"
+        "description": "ID of the Server",
+        "example": 0
       },
       {
         "name": "server_type",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "cx11"
       },
       {
         "name": "upgrade_disk",
         "schema": "boolean",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": true
       }
     ],
     "responses": [
@@ -4392,12 +4798,14 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Server"
+        "description": "ID of the Server",
+        "example": 0
       },
       {
         "name": "description",
         "schema": "string",
-        "description": ""
+        "description": "",
+        "example": "my image"
       },
       {
         "name": "labels",
@@ -4407,7 +4815,9 @@ export default function HetznerTypeScriptSdk() {
       {
         "name": "type",
         "schema": "string",
-        "description": ""
+        "description": "",
+        "example": "snapshot",
+        "default": "snapshot"
       }
     ],
     "responses": [
@@ -4429,13 +4839,15 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Server"
+        "description": "ID of the Server",
+        "example": 0
       },
       {
         "name": "network",
         "schema": "integer",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": 4711
       }
     ],
     "responses": [
@@ -4457,7 +4869,8 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Server"
+        "description": "ID of the Server",
+        "example": 0
       }
     ],
     "responses": [
@@ -4479,7 +4892,8 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Server"
+        "description": "ID of the Server",
+        "example": 0
       }
     ],
     "responses": [
@@ -4501,7 +4915,8 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Server"
+        "description": "ID of the Server",
+        "example": 0
       }
     ],
     "responses": [
@@ -4523,7 +4938,8 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Server"
+        "description": "ID of the Server",
+        "example": 0
       }
     ],
     "responses": [
@@ -4545,17 +4961,22 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Server"
+        "description": "ID of the Server",
+        "example": 0
       },
       {
         "name": "ssh_keys",
         "schema": "array",
-        "description": ""
+        "description": "",
+        "example": [
+          2323
+        ]
       },
       {
         "name": "type",
         "schema": "string",
-        "description": ""
+        "description": "",
+        "default": "linux64"
       }
     ],
     "responses": [
@@ -4577,7 +4998,8 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Server"
+        "description": "ID of the Server",
+        "example": 0
       }
     ],
     "responses": [
@@ -4599,7 +5021,8 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Server"
+        "description": "ID of the Server",
+        "example": 0
       }
     ],
     "responses": [
@@ -4621,7 +5044,8 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Server"
+        "description": "ID of the Server",
+        "example": 0
       }
     ],
     "responses": [
@@ -4643,13 +5067,15 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Server"
+        "description": "ID of the Server",
+        "example": 0
       },
       {
         "name": "image",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "ubuntu-20.04"
       }
     ],
     "responses": [
@@ -4671,7 +5097,8 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Server"
+        "description": "ID of the Server",
+        "example": 0
       }
     ],
     "responses": [
@@ -4693,7 +5120,8 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Server"
+        "description": "ID of the Server",
+        "example": 0
       }
     ],
     "responses": [
@@ -4715,7 +5143,8 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Server"
+        "description": "ID of the Server",
+        "example": 0
       }
     ],
     "responses": [
@@ -4737,7 +5166,8 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Server"
+        "description": "ID of the Server",
+        "example": 0
       }
     ],
     "responses": [
@@ -4759,7 +5189,8 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Server"
+        "description": "ID of the Server",
+        "example": 0
       }
     ],
     "responses": [
@@ -4781,13 +5212,15 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Server"
+        "description": "ID of the Server",
+        "example": 0
       },
       {
         "name": "actionId",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Action"
+        "description": "ID of the Action",
+        "example": 0
       }
     ],
     "responses": [
@@ -4809,25 +5242,29 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Server"
+        "description": "ID of the Server",
+        "example": 0
       },
       {
         "name": "type",
         "schema": "string",
         "required": true,
-        "description": "Type of metrics to get"
+        "description": "Type of metrics to get",
+        "example": "TYPE"
       },
       {
         "name": "start",
         "schema": "string",
         "required": true,
-        "description": "Start of period to get Metrics for (in ISO-8601 format)"
+        "description": "Start of period to get Metrics for (in ISO-8601 format)",
+        "example": "START"
       },
       {
         "name": "end",
         "schema": "string",
         "required": true,
-        "description": "End of period to get Metrics for (in ISO-8601 format)"
+        "description": "End of period to get Metrics for (in ISO-8601 format)",
+        "example": "END"
       },
       {
         "name": "step",
@@ -4879,13 +5316,17 @@ export default function HetznerTypeScriptSdk() {
         "name": "page",
         "schema": "integer",
         "required": false,
-        "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+        "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+        "example": 2,
+        "default": 1
       },
       {
         "name": "perPage",
         "schema": "integer",
         "required": false,
-        "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+        "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+        "example": 25,
+        "default": 25
       }
     ],
     "responses": [
@@ -4913,13 +5354,15 @@ export default function HetznerTypeScriptSdk() {
         "name": "name",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "My ssh key"
       },
       {
         "name": "public_key",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "ssh-rsa AAAjjk76kgf...Xt"
       }
     ],
     "responses": [
@@ -4941,7 +5384,8 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the SSH key"
+        "description": "ID of the SSH key",
+        "example": 0
       }
     ],
     "responses": [
@@ -4963,7 +5407,8 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the SSH key"
+        "description": "ID of the SSH key",
+        "example": 0
       }
     ],
     "responses": [
@@ -4985,17 +5430,22 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the SSH key"
+        "description": "ID of the SSH key",
+        "example": 0
       },
       {
         "name": "labels",
         "schema": "object",
-        "description": ""
+        "description": "",
+        "example": {
+          "labelkey": "value"
+        }
       },
       {
         "name": "name",
         "schema": "string",
-        "description": ""
+        "description": "",
+        "example": "My ssh key"
       }
     ],
     "responses": [
@@ -5041,13 +5491,17 @@ export default function HetznerTypeScriptSdk() {
         "name": "page",
         "schema": "integer",
         "required": false,
-        "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+        "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+        "example": 2,
+        "default": 1
       },
       {
         "name": "perPage",
         "schema": "integer",
         "required": false,
-        "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+        "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+        "example": 25,
+        "default": 25
       }
     ],
     "responses": [
@@ -5069,31 +5523,38 @@ export default function HetznerTypeScriptSdk() {
         "name": "automount",
         "schema": "boolean",
         "required": false,
-        "description": ""
+        "description": "",
+        "example": false
       },
       {
         "name": "format",
         "schema": "string",
         "required": false,
-        "description": ""
+        "description": "",
+        "example": "xfs"
       },
       {
         "name": "labels",
         "schema": "object",
         "required": false,
-        "description": ""
+        "description": "",
+        "example": {
+          "labelkey": "value"
+        }
       },
       {
         "name": "location",
         "schema": "string",
         "required": false,
-        "description": ""
+        "description": "",
+        "example": "nbg1"
       },
       {
         "name": "name",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "databases-storage"
       },
       {
         "name": "server",
@@ -5105,7 +5566,8 @@ export default function HetznerTypeScriptSdk() {
         "name": "size",
         "schema": "integer",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": 42
       }
     ],
     "responses": [
@@ -5127,7 +5589,8 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": false,
-        "description": "Filter the actions by ID. Can be used multiple times. The response will only contain\nactions matching the specified IDs.\n"
+        "description": "Filter the actions by ID. Can be used multiple times. The response will only contain\nactions matching the specified IDs.\n",
+        "example": 42
       },
       {
         "name": "sort",
@@ -5145,13 +5608,17 @@ export default function HetznerTypeScriptSdk() {
         "name": "page",
         "schema": "integer",
         "required": false,
-        "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+        "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+        "example": 2,
+        "default": 1
       },
       {
         "name": "perPage",
         "schema": "integer",
         "required": false,
-        "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+        "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+        "example": 25,
+        "default": 25
       }
     ],
     "responses": [
@@ -5173,7 +5640,8 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Action."
+        "description": "ID of the Action.",
+        "example": 42
       }
     ],
     "responses": [
@@ -5195,7 +5663,8 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Volume"
+        "description": "ID of the Volume",
+        "example": 0
       }
     ],
     "responses": [
@@ -5217,7 +5686,8 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Volume"
+        "description": "ID of the Volume",
+        "example": 0
       }
     ],
     "responses": [
@@ -5239,7 +5709,8 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Volume to update"
+        "description": "ID of the Volume to update",
+        "example": 0
       },
       {
         "name": "labels",
@@ -5249,7 +5720,8 @@ export default function HetznerTypeScriptSdk() {
       {
         "name": "name",
         "schema": "string",
-        "description": ""
+        "description": "",
+        "example": "database-storage"
       }
     ],
     "responses": [
@@ -5271,7 +5743,8 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Volume"
+        "description": "ID of the Volume",
+        "example": 0
       },
       {
         "name": "sort",
@@ -5289,13 +5762,17 @@ export default function HetznerTypeScriptSdk() {
         "name": "page",
         "schema": "integer",
         "required": false,
-        "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+        "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+        "example": 2,
+        "default": 1
       },
       {
         "name": "perPage",
         "schema": "integer",
         "required": false,
-        "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+        "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+        "example": 25,
+        "default": 25
       }
     ],
     "responses": [
@@ -5317,19 +5794,22 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Volume"
+        "description": "ID of the Volume",
+        "example": 0
       },
       {
         "name": "automount",
         "schema": "boolean",
         "required": false,
-        "description": ""
+        "description": "",
+        "example": false
       },
       {
         "name": "server",
         "schema": "integer",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": 43
       }
     ],
     "responses": [
@@ -5351,12 +5831,14 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Volume"
+        "description": "ID of the Volume",
+        "example": 0
       },
       {
         "name": "delete",
         "schema": "boolean",
-        "description": ""
+        "description": "",
+        "example": true
       }
     ],
     "responses": [
@@ -5378,7 +5860,8 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Volume"
+        "description": "ID of the Volume",
+        "example": 0
       }
     ],
     "responses": [
@@ -5400,13 +5883,15 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Volume"
+        "description": "ID of the Volume",
+        "example": 0
       },
       {
         "name": "size",
         "schema": "number",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": 50
       }
     ],
     "responses": [
@@ -5428,13 +5913,15 @@ export default function HetznerTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Volume"
+        "description": "ID of the Volume",
+        "example": 0
       },
       {
         "name": "actionId",
         "schema": "integer",
         "required": true,
-        "description": "ID of the Action"
+        "description": "ID of the Action",
+        "example": 0
       }
     ],
     "responses": [
@@ -5456,6 +5943,8 @@ export default function HetznerTypeScriptSdk() {
       parameters={478}
       difficulty="Hard"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/hetzner/openapi.yaml"
+      openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/hetzner/openapi.yaml"
+      developerDocumentation="docs.hetzner.cloud/"
     />
   );
 }

@@ -4,11 +4,13 @@ import { HttpMethodsEnum } from "konfig-lib/dist/forEachOperation";
 import Description from "./_description.mdx";
 // @ts-ignore
 import GettingStarted from "./_getting-started.mdx";
-import { Sdk } from "@site/src/components/Sdk";
+// @ts-ignore
+import FirstRequest from "./_first-request.mdx"
+import { SdkNew } from "@site/src/components/SdkNew";
 
 export default function FlickrTypeScriptSdk() {
   return (
-    <Sdk
+    <SdkNew
       sdkName="flickr-typescript-sdk"
       metaDescription="Flickr is an image hosting and video hosting website, web services suite, and online community platform. It was one of the earliest Web 2.0 applications. Flickr allows users to share and embed personal photographs and videos, and to interact with other members through commenting, groups, and more."
       company="Flickr"
@@ -16,13 +18,15 @@ export default function FlickrTypeScriptSdk() {
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/flickr/logo.png"
       clientNameCamelCase="flickr"
       homepage="flickr.com"
-      lastUpdated={new Date("2024-03-11T17:20:37.894Z")}
+      lastUpdated={new Date("2024-03-13T02:25:22.175Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/flickr/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
       previewLinkImage="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/flickr/imagePreview.png"
       GettingStarted={GettingStarted}
       Description={Description}
+      FirstRequest={FirstRequest}
+      categories={["media","collaboration","social_media"]}
       methods={[
   {
     "url": "/oauth/access_token",
@@ -36,49 +40,57 @@ export default function FlickrTypeScriptSdk() {
         "name": "oauthConsumerKey",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "OAUTH_CONSUMER_KEY"
       },
       {
         "name": "oauthNonce",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "OAUTH_NONCE"
       },
       {
         "name": "oauthTimestamp",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "OAUTH_TIMESTAMP"
       },
       {
         "name": "oauthSignatureMethod",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "OAUTH_SIGNATURE_METHOD"
       },
       {
         "name": "oauthVersion",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "OAUTH_VERSION"
       },
       {
         "name": "oauthSignature",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "OAUTH_SIGNATURE"
       },
       {
         "name": "oauthVerifier",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "OAUTH_VERIFIER"
       },
       {
         "name": "oauthToken",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "OAUTH_TOKEN"
       }
     ],
     "responses": [
@@ -100,43 +112,50 @@ export default function FlickrTypeScriptSdk() {
         "name": "oauthConsumerKey",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "OAUTH_CONSUMER_KEY"
       },
       {
         "name": "oauthNonce",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "OAUTH_NONCE"
       },
       {
         "name": "oauthTimestamp",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "OAUTH_TIMESTAMP"
       },
       {
         "name": "oauthSignatureMethod",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "OAUTH_SIGNATURE_METHOD"
       },
       {
         "name": "oauthVersion",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "OAUTH_VERSION"
       },
       {
         "name": "oauthSignature",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "OAUTH_SIGNATURE"
       },
       {
         "name": "oauthCallback",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "OAUTH_CALLBACK"
       }
     ],
     "responses": [
@@ -158,13 +177,15 @@ export default function FlickrTypeScriptSdk() {
         "name": "apiKey",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "API_KEY"
       },
       {
         "name": "photoId",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "PHOTO_ID"
       },
       {
         "name": "userId",
@@ -192,13 +213,15 @@ export default function FlickrTypeScriptSdk() {
         "name": "apiKey",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "API_KEY"
       },
       {
         "name": "userId",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "USER_ID"
       },
       {
         "name": "minFaveDate",
@@ -240,13 +263,15 @@ export default function FlickrTypeScriptSdk() {
         "name": "apiKey",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "API_KEY"
       },
       {
         "name": "galleryId",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "GALLERY_ID"
       }
     ],
     "responses": [
@@ -268,7 +293,8 @@ export default function FlickrTypeScriptSdk() {
         "name": "apiKey",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "API_KEY"
       },
       {
         "name": "groupId",
@@ -280,13 +306,15 @@ export default function FlickrTypeScriptSdk() {
         "name": "topicId",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "TOPIC_ID"
       },
       {
         "name": "replyId",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "REPLY_ID"
       }
     ],
     "responses": [
@@ -308,7 +336,8 @@ export default function FlickrTypeScriptSdk() {
         "name": "apiKey",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "API_KEY"
       },
       {
         "name": "groupId",
@@ -320,7 +349,8 @@ export default function FlickrTypeScriptSdk() {
         "name": "topicId",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "TOPIC_ID"
       }
     ],
     "responses": [
@@ -342,7 +372,8 @@ export default function FlickrTypeScriptSdk() {
         "name": "apiKey",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "API_KEY"
       },
       {
         "name": "groupId",
@@ -380,7 +411,8 @@ export default function FlickrTypeScriptSdk() {
         "name": "apiKey",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "API_KEY"
       },
       {
         "name": "groupId",
@@ -420,13 +452,15 @@ export default function FlickrTypeScriptSdk() {
         "name": "apiKey",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "API_KEY"
       },
       {
         "name": "photoId",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "PHOTO_ID"
       },
       {
         "name": "groupId",
@@ -454,7 +488,8 @@ export default function FlickrTypeScriptSdk() {
         "name": "apiKey",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "API_KEY"
       },
       {
         "name": "groupId",
@@ -482,7 +517,8 @@ export default function FlickrTypeScriptSdk() {
         "name": "apiKey",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "API_KEY"
       },
       {
         "name": "userId",
@@ -510,13 +546,15 @@ export default function FlickrTypeScriptSdk() {
         "name": "apiKey",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "API_KEY"
       },
       {
         "name": "userId",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "USER_ID"
       },
       {
         "name": "safeSearch",
@@ -583,19 +621,22 @@ export default function FlickrTypeScriptSdk() {
         "name": "apiKey",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "API_KEY"
       },
       {
         "name": "photoId",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "PHOTO_ID"
       },
       {
         "name": "photolistId",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "PHOTOLIST_ID"
       }
     ],
     "responses": [
@@ -617,13 +658,15 @@ export default function FlickrTypeScriptSdk() {
         "name": "apiKey",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "API_KEY"
       },
       {
         "name": "photoId",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "PHOTO_ID"
       }
     ],
     "responses": [
@@ -645,13 +688,15 @@ export default function FlickrTypeScriptSdk() {
         "name": "apiKey",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "API_KEY"
       },
       {
         "name": "photoId",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "PHOTO_ID"
       },
       {
         "name": "secret",
@@ -679,13 +724,15 @@ export default function FlickrTypeScriptSdk() {
         "name": "apiKey",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "API_KEY"
       },
       {
         "name": "photoId",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "PHOTO_ID"
       }
     ],
     "responses": [
@@ -707,13 +754,15 @@ export default function FlickrTypeScriptSdk() {
         "name": "apiKey",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "API_KEY"
       },
       {
         "name": "photoId",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "PHOTO_ID"
       }
     ],
     "responses": [
@@ -735,7 +784,8 @@ export default function FlickrTypeScriptSdk() {
         "name": "apiKey",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "API_KEY"
       }
     ],
     "responses": [
@@ -757,7 +807,8 @@ export default function FlickrTypeScriptSdk() {
         "name": "apiKey",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "API_KEY"
       },
       {
         "name": "text",
@@ -939,13 +990,15 @@ export default function FlickrTypeScriptSdk() {
         "name": "apiKey",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "API_KEY"
       },
       {
         "name": "photoId",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "PHOTO_ID"
       },
       {
         "name": "photosetId",
@@ -973,13 +1026,15 @@ export default function FlickrTypeScriptSdk() {
         "name": "apiKey",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "API_KEY"
       },
       {
         "name": "userId",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "USER_ID"
       },
       {
         "name": "page",
@@ -1011,13 +1066,15 @@ export default function FlickrTypeScriptSdk() {
         "name": "apiKey",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "API_KEY"
       },
       {
         "name": "photosetId",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "PHOTOSET_ID"
       }
     ],
     "responses": [
@@ -1039,7 +1096,8 @@ export default function FlickrTypeScriptSdk() {
         "name": "apiKey",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "API_KEY"
       },
       {
         "name": "echo",
@@ -1085,7 +1143,8 @@ export default function FlickrTypeScriptSdk() {
         "name": "api_key",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "API_KEY"
       },
       {
         "name": "content_type",
@@ -1121,7 +1180,8 @@ export default function FlickrTypeScriptSdk() {
         "name": "photo",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "PHOTO"
       },
       {
         "name": "safety_level",
@@ -1149,6 +1209,8 @@ export default function FlickrTypeScriptSdk() {
       parameters={127}
       difficulty="Easy"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/flickr/openapi.yaml"
+      openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/flickr/openapi.yaml"
+      developerDocumentation="www.flickr.com/services/api/"
     />
   );
 }

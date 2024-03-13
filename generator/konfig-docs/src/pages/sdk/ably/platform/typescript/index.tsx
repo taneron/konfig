@@ -4,11 +4,13 @@ import { HttpMethodsEnum } from "konfig-lib/dist/forEachOperation";
 import Description from "./_description.mdx";
 // @ts-ignore
 import GettingStarted from "./_getting-started.mdx";
-import { Sdk } from "@site/src/components/Sdk";
+// @ts-ignore
+import FirstRequest from "./_first-request.mdx"
+import { SdkNew } from "@site/src/components/SdkNew";
 
 export default function AblyPlatformTypeScriptSdk() {
   return (
-    <Sdk
+    <SdkNew
       sdkName="ably-platform-typescript-sdk"
       metaDescription="Ably provides a suite of APIs to build, extend, and deliver powerful digital experiences in realtime. Organizations like Toyota, Bloomberg, HubSpot, and Hopin depend on Ably’s platform to offload the growing complexity of business-critical realtime data synchronization at global scale."
       company="Ably"
@@ -16,13 +18,15 @@ export default function AblyPlatformTypeScriptSdk() {
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/ably/platform/logo.png"
       clientNameCamelCase="ably"
       homepage="ably.com"
-      lastUpdated={new Date("2024-03-11T06:04:39.099Z")}
+      lastUpdated={new Date("2024-03-13T02:25:22.175Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/ably/platform/favicon.ico"
       contactUrl="https://www.ably.io/contact"
       contactEmail="support@ably.io"
       previewLinkImage="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/ably/platform/imagePreview.jpeg"
       GettingStarted={GettingStarted}
       Description={Description}
+      FirstRequest={FirstRequest}
+      categories={["cloud"]}
       methods={[
   {
     "url": "/channels",
@@ -35,7 +39,8 @@ export default function AblyPlatformTypeScriptSdk() {
       {
         "name": "limit",
         "schema": "integer",
-        "description": ""
+        "description": "",
+        "default": 100
       },
       {
         "name": "prefix",
@@ -71,7 +76,8 @@ export default function AblyPlatformTypeScriptSdk() {
         "name": "channelId",
         "schema": "string",
         "required": true,
-        "description": "The [Channel's ID](https://www.ably.io/documentation/rest/channels)."
+        "description": "The [Channel's ID](https://www.ably.io/documentation/rest/channels).",
+        "example": "CHANNEL_ID"
       }
     ],
     "responses": [
@@ -97,7 +103,8 @@ export default function AblyPlatformTypeScriptSdk() {
         "name": "channelId",
         "schema": "string",
         "required": true,
-        "description": "The [Channel's ID](https://www.ably.io/documentation/rest/channels)."
+        "description": "The [Channel's ID](https://www.ably.io/documentation/rest/channels).",
+        "example": "CHANNEL_ID"
       },
       {
         "name": "start",
@@ -107,17 +114,20 @@ export default function AblyPlatformTypeScriptSdk() {
       {
         "name": "limit",
         "schema": "integer",
-        "description": ""
+        "description": "",
+        "default": "100"
       },
       {
         "name": "end",
         "schema": "string",
-        "description": ""
+        "description": "",
+        "default": "now"
       },
       {
         "name": "direction",
         "schema": "string",
-        "description": ""
+        "description": "",
+        "default": "backwards"
       }
     ],
     "responses": [
@@ -143,7 +153,8 @@ export default function AblyPlatformTypeScriptSdk() {
         "name": "channelId",
         "schema": "string",
         "required": true,
-        "description": "The [Channel's ID](https://www.ably.io/documentation/rest/channels)."
+        "description": "The [Channel's ID](https://www.ably.io/documentation/rest/channels).",
+        "example": "CHANNEL_ID"
       },
       {
         "name": "clientId",
@@ -209,7 +220,8 @@ export default function AblyPlatformTypeScriptSdk() {
         "name": "channelId",
         "schema": "string",
         "required": true,
-        "description": "The [Channel's ID](https://www.ably.io/documentation/rest/channels)."
+        "description": "The [Channel's ID](https://www.ably.io/documentation/rest/channels).",
+        "example": "CHANNEL_ID"
       },
       {
         "name": "clientId",
@@ -224,7 +236,8 @@ export default function AblyPlatformTypeScriptSdk() {
       {
         "name": "limit",
         "schema": "integer",
-        "description": ""
+        "description": "",
+        "default": 100
       }
     ],
     "responses": [
@@ -250,7 +263,8 @@ export default function AblyPlatformTypeScriptSdk() {
         "name": "channelId",
         "schema": "string",
         "required": true,
-        "description": "The [Channel's ID](https://www.ably.io/documentation/rest/channels)."
+        "description": "The [Channel's ID](https://www.ably.io/documentation/rest/channels).",
+        "example": "CHANNEL_ID"
       },
       {
         "name": "start",
@@ -260,17 +274,20 @@ export default function AblyPlatformTypeScriptSdk() {
       {
         "name": "limit",
         "schema": "integer",
-        "description": ""
+        "description": "",
+        "default": "100"
       },
       {
         "name": "end",
         "schema": "string",
-        "description": ""
+        "description": "",
+        "default": "now"
       },
       {
         "name": "direction",
         "schema": "string",
-        "description": ""
+        "description": "",
+        "default": "backwards"
       }
     ],
     "responses": [
@@ -296,7 +313,8 @@ export default function AblyPlatformTypeScriptSdk() {
         "name": "keyName",
         "schema": "string",
         "required": true,
-        "description": "The [key name](https://www.ably.io/documentation/rest-api/token-request-spec#api-key-format) comprises of the app ID and key ID of an API key."
+        "description": "The [key name](https://www.ably.io/documentation/rest-api/token-request-spec#api-key-format) comprises of the app ID and key ID of an API key.",
+        "example": "KEYNAME"
       }
     ],
     "responses": [
@@ -371,7 +389,8 @@ export default function AblyPlatformTypeScriptSdk() {
       {
         "name": "limit",
         "schema": "integer",
-        "description": "The maximum number of records to return."
+        "description": "The maximum number of records to return.",
+        "default": 100
       }
     ],
     "responses": [
@@ -474,7 +493,8 @@ export default function AblyPlatformTypeScriptSdk() {
       {
         "name": "limit",
         "schema": "integer",
-        "description": "The maximum number of records to return."
+        "description": "The maximum number of records to return.",
+        "default": 100
       }
     ],
     "responses": [
@@ -560,7 +580,8 @@ export default function AblyPlatformTypeScriptSdk() {
         "name": "deviceId",
         "schema": "string",
         "required": true,
-        "description": "Device's ID."
+        "description": "Device's ID.",
+        "example": "DEVICE_ID"
       }
     ],
     "responses": [
@@ -586,7 +607,8 @@ export default function AblyPlatformTypeScriptSdk() {
         "name": "deviceId",
         "schema": "string",
         "required": true,
-        "description": "Device's ID."
+        "description": "Device's ID.",
+        "example": "DEVICE_ID"
       }
     ],
     "responses": [
@@ -612,7 +634,8 @@ export default function AblyPlatformTypeScriptSdk() {
         "name": "deviceId",
         "schema": "string",
         "required": true,
-        "description": "Device's ID."
+        "description": "Device's ID.",
+        "example": "DEVICE_ID"
       },
       {
         "name": "clientId",
@@ -678,7 +701,8 @@ export default function AblyPlatformTypeScriptSdk() {
         "name": "deviceId",
         "schema": "string",
         "required": true,
-        "description": "Device's ID."
+        "description": "Device's ID.",
+        "example": "DEVICE_ID"
       },
       {
         "name": "clientId",
@@ -744,7 +768,8 @@ export default function AblyPlatformTypeScriptSdk() {
         "name": "deviceId",
         "schema": "string",
         "required": true,
-        "description": "Device's ID."
+        "description": "Device's ID.",
+        "example": "DEVICE_ID"
       }
     ],
     "responses": [
@@ -806,22 +831,26 @@ export default function AblyPlatformTypeScriptSdk() {
       {
         "name": "limit",
         "schema": "integer",
-        "description": ""
+        "description": "",
+        "default": "100"
       },
       {
         "name": "end",
         "schema": "string",
-        "description": ""
+        "description": "",
+        "default": "now"
       },
       {
         "name": "direction",
         "schema": "string",
-        "description": ""
+        "description": "",
+        "default": "backwards"
       },
       {
         "name": "unit",
         "schema": "string",
-        "description": "Specifies the unit of aggregation in the returned results."
+        "description": "Specifies the unit of aggregation in the returned results.",
+        "default": "minute"
       }
     ],
     "responses": [
@@ -866,6 +895,8 @@ export default function AblyPlatformTypeScriptSdk() {
       parameters={76}
       difficulty="Easy"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/ably/platform/openapi.yaml"
+      openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/ably/platform/openapi.yaml"
+      
     />
   );
 }

@@ -4,11 +4,13 @@ import { HttpMethodsEnum } from "konfig-lib/dist/forEachOperation";
 import Description from "./_description.mdx";
 // @ts-ignore
 import GettingStarted from "./_getting-started.mdx";
-import { Sdk } from "@site/src/components/Sdk";
+// @ts-ignore
+import FirstRequest from "./_first-request.mdx"
+import { SdkNew } from "@site/src/components/SdkNew";
 
 export default function SvixTypeScriptSdk() {
   return (
-    <Sdk
+    <SdkNew
       sdkName="svix-typescript-sdk"
       metaDescription="Svix is a platform that simplifies webhook processing for developers. By providing a reliable infrastructure and powerful tools, Svix enables developers to easily send and receive webhooks, ensuring seamless communication between services and applications."
       company="Svix"
@@ -16,13 +18,15 @@ export default function SvixTypeScriptSdk() {
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/svix/logo.png"
       clientNameCamelCase="svix"
       homepage="svix.com"
-      lastUpdated={new Date("2024-03-11T06:04:39.099Z")}
+      lastUpdated={new Date("2024-03-13T02:25:22.175Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/svix/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
       previewLinkImage="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/svix/imagePreview.png"
       GettingStarted={GettingStarted}
       Description={Description}
+      FirstRequest={FirstRequest}
+      categories={["webhooks","notifications","automation","developer_tools"]}
       methods={[
   {
     "url": "/api/v1/auth/app-portal-access/{app_id}",
@@ -36,7 +40,8 @@ export default function SvixTypeScriptSdk() {
         "name": "appId",
         "schema": "string",
         "required": true,
-        "description": "The app's ID or UID"
+        "description": "The app's ID or UID",
+        "example": "unique-app-identifier"
       },
       {
         "name": "idempotencyKey",
@@ -46,12 +51,14 @@ export default function SvixTypeScriptSdk() {
       {
         "name": "featureFlags",
         "schema": "array",
-        "description": ""
+        "description": "",
+        "example": []
       },
       {
         "name": "expiry",
         "schema": "integer",
-        "description": ""
+        "description": "",
+        "default": 604800
       }
     ],
     "responses": [
@@ -101,7 +108,8 @@ export default function SvixTypeScriptSdk() {
         "name": "appId",
         "schema": "string",
         "required": true,
-        "description": "The app's ID or UID"
+        "description": "The app's ID or UID",
+        "example": "unique-app-identifier"
       },
       {
         "name": "idempotencyKey",
@@ -205,7 +213,8 @@ export default function SvixTypeScriptSdk() {
         "name": "appId",
         "schema": "string",
         "required": true,
-        "description": "The app's ID or UID"
+        "description": "The app's ID or UID",
+        "example": "unique-app-identifier"
       },
       {
         "name": "idempotencyKey",
@@ -215,7 +224,8 @@ export default function SvixTypeScriptSdk() {
       {
         "name": "expiry",
         "schema": "integer",
-        "description": ""
+        "description": "",
+        "example": 60
       }
     ],
     "responses": [
@@ -269,7 +279,8 @@ export default function SvixTypeScriptSdk() {
       {
         "name": "iterator",
         "schema": "string",
-        "description": "The iterator returned from a prior invocation"
+        "description": "The iterator returned from a prior invocation",
+        "example": "app_1srOrx2ZWZBpBUvZwXKQmoEYga2"
       },
       {
         "name": "order",
@@ -323,7 +334,8 @@ export default function SvixTypeScriptSdk() {
       {
         "name": "getIfExists",
         "schema": "boolean",
-        "description": "Get an existing application, or create a new one if doesn't exist. It's two separate functions in the libs."
+        "description": "Get an existing application, or create a new one if doesn't exist. It's two separate functions in the libs.",
+        "default": false
       },
       {
         "name": "idempotencyKey",
@@ -334,7 +346,8 @@ export default function SvixTypeScriptSdk() {
         "name": "name",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "My first application"
       },
       {
         "name": "rateLimit",
@@ -346,13 +359,15 @@ export default function SvixTypeScriptSdk() {
         "name": "uid",
         "schema": "string",
         "required": false,
-        "description": ""
+        "description": "",
+        "example": "unique-app-identifier"
       },
       {
         "name": "metadata",
         "schema": "object",
         "required": false,
-        "description": ""
+        "description": "",
+        "default": {}
       }
     ],
     "responses": [
@@ -406,7 +421,8 @@ export default function SvixTypeScriptSdk() {
         "name": "appId",
         "schema": "string",
         "required": true,
-        "description": "The app's ID or UID"
+        "description": "The app's ID or UID",
+        "example": "unique-app-identifier"
       }
     ],
     "responses": [
@@ -456,7 +472,8 @@ export default function SvixTypeScriptSdk() {
         "name": "appId",
         "schema": "string",
         "required": true,
-        "description": "The app's ID or UID"
+        "description": "The app's ID or UID",
+        "example": "unique-app-identifier"
       }
     ],
     "responses": [
@@ -506,7 +523,8 @@ export default function SvixTypeScriptSdk() {
         "name": "appId",
         "schema": "string",
         "required": true,
-        "description": "The app's ID or UID"
+        "description": "The app's ID or UID",
+        "example": "unique-app-identifier"
       },
       {
         "name": "name",
@@ -521,7 +539,8 @@ export default function SvixTypeScriptSdk() {
       {
         "name": "uid",
         "schema": "string",
-        "description": ""
+        "description": "",
+        "example": "unique-app-identifier"
       },
       {
         "name": "metadata",
@@ -576,13 +595,15 @@ export default function SvixTypeScriptSdk() {
         "name": "appId",
         "schema": "string",
         "required": true,
-        "description": "The app's ID or UID"
+        "description": "The app's ID or UID",
+        "example": "unique-app-identifier"
       },
       {
         "name": "name",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "My first application"
       },
       {
         "name": "rateLimit",
@@ -594,13 +615,15 @@ export default function SvixTypeScriptSdk() {
         "name": "uid",
         "schema": "string",
         "required": false,
-        "description": ""
+        "description": "",
+        "example": "unique-app-identifier"
       },
       {
         "name": "metadata",
         "schema": "object",
         "required": false,
-        "description": ""
+        "description": "",
+        "default": {}
       }
     ],
     "responses": [
@@ -654,7 +677,8 @@ export default function SvixTypeScriptSdk() {
         "name": "appId",
         "schema": "string",
         "required": true,
-        "description": "The app's ID or UID"
+        "description": "The app's ID or UID",
+        "example": "unique-app-identifier"
       },
       {
         "name": "limit",
@@ -664,7 +688,8 @@ export default function SvixTypeScriptSdk() {
       {
         "name": "iterator",
         "schema": "string",
-        "description": "The iterator returned from a prior invocation"
+        "description": "The iterator returned from a prior invocation",
+        "example": "ep_1srOrx2ZWZBpBUvZwXKQmoEYga2"
       },
       {
         "name": "order",
@@ -719,7 +744,8 @@ export default function SvixTypeScriptSdk() {
         "name": "appId",
         "schema": "string",
         "required": true,
-        "description": "The app's ID or UID"
+        "description": "The app's ID or UID",
+        "example": "unique-app-identifier"
       },
       {
         "name": "idempotencyKey",
@@ -730,13 +756,17 @@ export default function SvixTypeScriptSdk() {
         "name": "description",
         "schema": "string",
         "required": false,
-        "description": ""
+        "description": "",
+        "example": "An example endpoint name",
+        "default": ""
       },
       {
         "name": "version",
         "schema": "integer",
         "required": false,
-        "description": ""
+        "description": "",
+        "example": 1,
+        "default": 1
       },
       {
         "name": "rateLimit",
@@ -748,43 +778,57 @@ export default function SvixTypeScriptSdk() {
         "name": "uid",
         "schema": "string",
         "required": false,
-        "description": ""
+        "description": "",
+        "example": "unique-ep-identifier"
       },
       {
         "name": "url",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "https://example.com/webhook/"
       },
       {
         "name": "disabled",
         "schema": "boolean",
         "required": false,
-        "description": ""
+        "description": "",
+        "example": false,
+        "default": false
       },
       {
         "name": "filterTypes",
         "schema": "array",
         "required": false,
-        "description": ""
+        "description": "",
+        "example": [
+          "user.signup",
+          "user.deleted"
+        ]
       },
       {
         "name": "channels",
         "schema": "array",
         "required": false,
-        "description": ""
+        "description": "",
+        "example": [
+          "project_123",
+          "group_2"
+        ]
       },
       {
         "name": "secret",
         "schema": "string",
         "required": false,
-        "description": ""
+        "description": "",
+        "example": "whsec_C2FVsBQIhrscChlQIMV+b5sSYspob7oD"
       },
       {
         "name": "metadata",
         "schema": "object",
         "required": false,
-        "description": ""
+        "description": "",
+        "default": {}
       }
     ],
     "responses": [
@@ -834,13 +878,15 @@ export default function SvixTypeScriptSdk() {
         "name": "appId",
         "schema": "string",
         "required": true,
-        "description": "The app's ID or UID"
+        "description": "The app's ID or UID",
+        "example": "unique-app-identifier"
       },
       {
         "name": "endpointId",
         "schema": "string",
         "required": true,
-        "description": "The ep's ID or UID"
+        "description": "The ep's ID or UID",
+        "example": "unique-ep-identifier"
       }
     ],
     "responses": [
@@ -890,13 +936,15 @@ export default function SvixTypeScriptSdk() {
         "name": "appId",
         "schema": "string",
         "required": true,
-        "description": "The app's ID or UID"
+        "description": "The app's ID or UID",
+        "example": "unique-app-identifier"
       },
       {
         "name": "endpointId",
         "schema": "string",
         "required": true,
-        "description": "The ep's ID or UID"
+        "description": "The ep's ID or UID",
+        "example": "unique-ep-identifier"
       }
     ],
     "responses": [
@@ -946,13 +994,15 @@ export default function SvixTypeScriptSdk() {
         "name": "appId",
         "schema": "string",
         "required": true,
-        "description": "The app's ID or UID"
+        "description": "The app's ID or UID",
+        "example": "unique-app-identifier"
       },
       {
         "name": "endpointId",
         "schema": "string",
         "required": true,
-        "description": "The ep's ID or UID"
+        "description": "The ep's ID or UID",
+        "example": "unique-ep-identifier"
       },
       {
         "name": "description",
@@ -962,7 +1012,8 @@ export default function SvixTypeScriptSdk() {
       {
         "name": "version",
         "schema": "integer",
-        "description": ""
+        "description": "",
+        "example": 1
       },
       {
         "name": "rateLimit",
@@ -972,7 +1023,8 @@ export default function SvixTypeScriptSdk() {
       {
         "name": "uid",
         "schema": "string",
-        "description": ""
+        "description": "",
+        "example": "unique-ep-identifier"
       },
       {
         "name": "url",
@@ -997,7 +1049,8 @@ export default function SvixTypeScriptSdk() {
       {
         "name": "secret",
         "schema": "string",
-        "description": ""
+        "description": "",
+        "example": "whsec_C2FVsBQIhrscChlQIMV+b5sSYspob7oD"
       },
       {
         "name": "metadata",
@@ -1052,25 +1105,31 @@ export default function SvixTypeScriptSdk() {
         "name": "appId",
         "schema": "string",
         "required": true,
-        "description": "The app's ID or UID"
+        "description": "The app's ID or UID",
+        "example": "unique-app-identifier"
       },
       {
         "name": "endpointId",
         "schema": "string",
         "required": true,
-        "description": "The ep's ID or UID"
+        "description": "The ep's ID or UID",
+        "example": "unique-ep-identifier"
       },
       {
         "name": "description",
         "schema": "string",
         "required": false,
-        "description": ""
+        "description": "",
+        "example": "An example endpoint name",
+        "default": ""
       },
       {
         "name": "version",
         "schema": "integer",
         "required": false,
-        "description": ""
+        "description": "",
+        "example": 1,
+        "default": 1
       },
       {
         "name": "rateLimit",
@@ -1082,37 +1141,50 @@ export default function SvixTypeScriptSdk() {
         "name": "uid",
         "schema": "string",
         "required": false,
-        "description": ""
+        "description": "",
+        "example": "unique-ep-identifier"
       },
       {
         "name": "url",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "https://example.com/webhook/"
       },
       {
         "name": "disabled",
         "schema": "boolean",
         "required": false,
-        "description": ""
+        "description": "",
+        "example": false,
+        "default": false
       },
       {
         "name": "filterTypes",
         "schema": "array",
         "required": false,
-        "description": ""
+        "description": "",
+        "example": [
+          "user.signup",
+          "user.deleted"
+        ]
       },
       {
         "name": "channels",
         "schema": "array",
         "required": false,
-        "description": ""
+        "description": "",
+        "example": [
+          "project_123",
+          "group_2"
+        ]
       },
       {
         "name": "metadata",
         "schema": "object",
         "required": false,
-        "description": ""
+        "description": "",
+        "default": {}
       }
     ],
     "responses": [
@@ -1166,13 +1238,15 @@ export default function SvixTypeScriptSdk() {
         "name": "appId",
         "schema": "string",
         "required": true,
-        "description": "The app's ID or UID"
+        "description": "The app's ID or UID",
+        "example": "unique-app-identifier"
       },
       {
         "name": "endpointId",
         "schema": "string",
         "required": true,
-        "description": "The ep's ID or UID"
+        "description": "The ep's ID or UID",
+        "example": "unique-ep-identifier"
       }
     ],
     "responses": [
@@ -1222,13 +1296,15 @@ export default function SvixTypeScriptSdk() {
         "name": "appId",
         "schema": "string",
         "required": true,
-        "description": "The app's ID or UID"
+        "description": "The app's ID or UID",
+        "example": "unique-app-identifier"
       },
       {
         "name": "endpointId",
         "schema": "string",
         "required": true,
-        "description": "The ep's ID or UID"
+        "description": "The ep's ID or UID",
+        "example": "unique-ep-identifier"
       },
       {
         "name": "idempotencyKey",
@@ -1238,7 +1314,9 @@ export default function SvixTypeScriptSdk() {
       {
         "name": "key",
         "schema": "string",
-        "description": ""
+        "description": "",
+        "example": "whsec_C2FVsBQIhrscChlQIMV+b5sSYspob7oD",
+        "default": null
       }
     ],
     "responses": [
@@ -1288,13 +1366,15 @@ export default function SvixTypeScriptSdk() {
         "name": "appId",
         "schema": "string",
         "required": true,
-        "description": "The app's ID or UID"
+        "description": "The app's ID or UID",
+        "example": "unique-app-identifier"
       },
       {
         "name": "endpointId",
         "schema": "string",
         "required": true,
-        "description": "The ep's ID or UID"
+        "description": "The ep's ID or UID",
+        "example": "unique-ep-identifier"
       },
       {
         "name": "since",
@@ -1354,13 +1434,15 @@ export default function SvixTypeScriptSdk() {
         "name": "appId",
         "schema": "string",
         "required": true,
-        "description": "The app's ID or UID"
+        "description": "The app's ID or UID",
+        "example": "unique-app-identifier"
       },
       {
         "name": "endpointId",
         "schema": "string",
         "required": true,
-        "description": "The ep's ID or UID"
+        "description": "The ep's ID or UID",
+        "example": "unique-ep-identifier"
       },
       {
         "name": "idempotencyKey",
@@ -1371,7 +1453,8 @@ export default function SvixTypeScriptSdk() {
         "name": "since",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "SINCE"
       },
       {
         "name": "until",
@@ -1427,13 +1510,15 @@ export default function SvixTypeScriptSdk() {
         "name": "appId",
         "schema": "string",
         "required": true,
-        "description": "The app's ID or UID"
+        "description": "The app's ID or UID",
+        "example": "unique-app-identifier"
       },
       {
         "name": "endpointId",
         "schema": "string",
         "required": true,
-        "description": "The ep's ID or UID"
+        "description": "The ep's ID or UID",
+        "example": "unique-ep-identifier"
       },
       {
         "name": "idempotencyKey",
@@ -1444,7 +1529,8 @@ export default function SvixTypeScriptSdk() {
         "name": "since",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "SINCE"
       },
       {
         "name": "until",
@@ -1500,13 +1586,15 @@ export default function SvixTypeScriptSdk() {
         "name": "appId",
         "schema": "string",
         "required": true,
-        "description": "The app's ID or UID"
+        "description": "The app's ID or UID",
+        "example": "unique-app-identifier"
       },
       {
         "name": "endpointId",
         "schema": "string",
         "required": true,
-        "description": "The ep's ID or UID"
+        "description": "The ep's ID or UID",
+        "example": "unique-ep-identifier"
       }
     ],
     "responses": [
@@ -1556,19 +1644,25 @@ export default function SvixTypeScriptSdk() {
         "name": "appId",
         "schema": "string",
         "required": true,
-        "description": "The app's ID or UID"
+        "description": "The app's ID or UID",
+        "example": "unique-app-identifier"
       },
       {
         "name": "endpointId",
         "schema": "string",
         "required": true,
-        "description": "The ep's ID or UID"
+        "description": "The ep's ID or UID",
+        "example": "unique-ep-identifier"
       },
       {
         "name": "headers",
         "schema": "object",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": {
+          "X-Example": "123",
+          "X-Foobar": "Bar"
+        }
       }
     ],
     "responses": [
@@ -1618,19 +1712,25 @@ export default function SvixTypeScriptSdk() {
         "name": "appId",
         "schema": "string",
         "required": true,
-        "description": "The app's ID or UID"
+        "description": "The app's ID or UID",
+        "example": "unique-app-identifier"
       },
       {
         "name": "endpointId",
         "schema": "string",
         "required": true,
-        "description": "The ep's ID or UID"
+        "description": "The ep's ID or UID",
+        "example": "unique-ep-identifier"
       },
       {
         "name": "headers",
         "schema": "object",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": {
+          "X-Example": "123",
+          "X-Foobar": "Bar"
+        }
       }
     ],
     "responses": [
@@ -1680,13 +1780,15 @@ export default function SvixTypeScriptSdk() {
         "name": "appId",
         "schema": "string",
         "required": true,
-        "description": "The app's ID or UID"
+        "description": "The app's ID or UID",
+        "example": "unique-app-identifier"
       },
       {
         "name": "endpointId",
         "schema": "string",
         "required": true,
-        "description": "The ep's ID or UID"
+        "description": "The ep's ID or UID",
+        "example": "unique-ep-identifier"
       }
     ],
     "responses": [
@@ -1736,13 +1838,15 @@ export default function SvixTypeScriptSdk() {
         "name": "appId",
         "schema": "string",
         "required": true,
-        "description": "The app's ID or UID"
+        "description": "The app's ID or UID",
+        "example": "unique-app-identifier"
       },
       {
         "name": "endpointId",
         "schema": "string",
         "required": true,
-        "description": "The ep's ID or UID"
+        "description": "The ep's ID or UID",
+        "example": "unique-ep-identifier"
       },
       {
         "name": "code",
@@ -1802,13 +1906,15 @@ export default function SvixTypeScriptSdk() {
         "name": "appId",
         "schema": "string",
         "required": true,
-        "description": "The app's ID or UID"
+        "description": "The app's ID or UID",
+        "example": "unique-app-identifier"
       },
       {
         "name": "endpointId",
         "schema": "string",
         "required": true,
-        "description": "The ep's ID or UID"
+        "description": "The ep's ID or UID",
+        "example": "unique-ep-identifier"
       },
       {
         "name": "idempotencyKey",
@@ -1819,7 +1925,8 @@ export default function SvixTypeScriptSdk() {
         "name": "eventType",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "user.signup"
       }
     ],
     "responses": [
@@ -1873,7 +1980,8 @@ export default function SvixTypeScriptSdk() {
       {
         "name": "iterator",
         "schema": "string",
-        "description": "The iterator returned from a prior invocation"
+        "description": "The iterator returned from a prior invocation",
+        "example": "user.signup"
       },
       {
         "name": "order",
@@ -1883,12 +1991,14 @@ export default function SvixTypeScriptSdk() {
       {
         "name": "includeArchived",
         "schema": "boolean",
-        "description": "When `true` archived (deleted but not expunged) items are included in the response"
+        "description": "When `true` archived (deleted but not expunged) items are included in the response",
+        "default": false
       },
       {
         "name": "withContent",
         "schema": "boolean",
-        "description": "When `true` the full item (including the schema) is included in the response"
+        "description": "When `true` the full item (including the schema) is included in the response",
+        "default": false
       }
     ],
     "responses": [
@@ -1943,31 +2053,57 @@ export default function SvixTypeScriptSdk() {
         "name": "description",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "A user has signed up"
       },
       {
         "name": "name",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "user.signup"
       },
       {
         "name": "archived",
         "schema": "boolean",
         "required": false,
-        "description": ""
+        "description": "",
+        "example": false,
+        "default": false
       },
       {
         "name": "schemas",
         "schema": "object",
         "required": false,
-        "description": ""
+        "description": "",
+        "example": {
+          "1": {
+            "title": "Invoice Paid Event",
+            "description": "An invoice was paid by a user",
+            "properties": {
+              "invoiceId": {
+                "description": "The invoice id",
+                "type": "string"
+              },
+              "userId": {
+                "description": "The user id",
+                "type": "string"
+              }
+            },
+            "required": [
+              "invoiceId",
+              "userId"
+            ],
+            "type": "object"
+          }
+        }
       },
       {
         "name": "featureFlag",
         "schema": "string",
         "required": false,
-        "description": ""
+        "description": "",
+        "example": "cool-new-feature"
       }
     ],
     "responses": [
@@ -2021,12 +2157,98 @@ export default function SvixTypeScriptSdk() {
       {
         "name": "spec",
         "schema": "object",
-        "description": ""
+        "description": "",
+        "example": {
+          "openapi": "3.1.0",
+          "info": {
+            "title": "Webhook Example",
+            "version": "1.0.0"
+          },
+          "webhooks": {
+            "pet.new": {
+              "post": {
+                "requestBody": {
+                  "description": "Information about a new pet in the system",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "properties": {
+                          "id": {
+                            "format": "int64",
+                            "type": "integer"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "tag": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "name"
+                        ]
+                      }
+                    }
+                  }
+                },
+                "responses": {
+                  "200": {
+                    "description": "Return a 200 status to indicate that the data was received successfully"
+                  }
+                }
+              }
+            }
+          }
+        }
       },
       {
         "name": "specRaw",
         "schema": "string",
-        "description": ""
+        "description": "",
+        "example": {
+          "openapi": "3.1.0",
+          "info": {
+            "title": "Webhook Example",
+            "version": "1.0.0"
+          },
+          "webhooks": {
+            "pet.new": {
+              "post": {
+                "requestBody": {
+                  "description": "Information about a new pet in the system",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "properties": {
+                          "id": {
+                            "format": "int64",
+                            "type": "integer"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "tag": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "name"
+                        ]
+                      }
+                    }
+                  }
+                },
+                "responses": {
+                  "200": {
+                    "description": "Return a 200 status to indicate that the data was received successfully"
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     ],
     "responses": [
@@ -2076,12 +2298,14 @@ export default function SvixTypeScriptSdk() {
         "name": "eventTypeName",
         "schema": "string",
         "required": true,
-        "description": "The event type's name"
+        "description": "The event type's name",
+        "example": "user.signup"
       },
       {
         "name": "expunge",
         "schema": "boolean",
-        "description": "By default event types are archived when \"deleted\". Passing this to `true` deletes them entirely."
+        "description": "By default event types are archived when \"deleted\". Passing this to `true` deletes them entirely.",
+        "default": false
       }
     ],
     "responses": [
@@ -2131,7 +2355,8 @@ export default function SvixTypeScriptSdk() {
         "name": "eventTypeName",
         "schema": "string",
         "required": true,
-        "description": "The event type's name"
+        "description": "The event type's name",
+        "example": "user.signup"
       }
     ],
     "responses": [
@@ -2181,7 +2406,8 @@ export default function SvixTypeScriptSdk() {
         "name": "eventTypeName",
         "schema": "string",
         "required": true,
-        "description": "The event type's name"
+        "description": "The event type's name",
+        "example": "user.signup"
       },
       {
         "name": "description",
@@ -2196,12 +2422,32 @@ export default function SvixTypeScriptSdk() {
       {
         "name": "schemas",
         "schema": "object",
-        "description": ""
+        "description": "",
+        "example": {
+          "title": "Invoice Paid Event",
+          "description": "An invoice was paid by a user",
+          "properties": {
+            "invoiceId": {
+              "description": "The invoice id",
+              "type": "string"
+            },
+            "userId": {
+              "description": "The user id",
+              "type": "string"
+            }
+          },
+          "required": [
+            "invoiceId",
+            "userId"
+          ],
+          "type": "object"
+        }
       },
       {
         "name": "featureFlag",
         "schema": "string",
-        "description": ""
+        "description": "",
+        "example": "cool-new-feature"
       }
     ],
     "responses": [
@@ -2251,31 +2497,57 @@ export default function SvixTypeScriptSdk() {
         "name": "eventTypeName",
         "schema": "string",
         "required": true,
-        "description": "The event type's name"
+        "description": "The event type's name",
+        "example": "user.signup"
       },
       {
         "name": "description",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "A user has signed up"
       },
       {
         "name": "archived",
         "schema": "boolean",
         "required": false,
-        "description": ""
+        "description": "",
+        "example": false,
+        "default": false
       },
       {
         "name": "schemas",
         "schema": "object",
         "required": false,
-        "description": ""
+        "description": "",
+        "example": {
+          "1": {
+            "title": "Invoice Paid Event",
+            "description": "An invoice was paid by a user",
+            "properties": {
+              "invoiceId": {
+                "description": "The invoice id",
+                "type": "string"
+              },
+              "userId": {
+                "description": "The user id",
+                "type": "string"
+              }
+            },
+            "required": [
+              "invoiceId",
+              "userId"
+            ],
+            "type": "object"
+          }
+        }
       },
       {
         "name": "featureFlag",
         "schema": "string",
         "required": false,
-        "description": ""
+        "description": "",
+        "example": "cool-new-feature"
       }
     ],
     "responses": [
@@ -2398,7 +2670,8 @@ export default function SvixTypeScriptSdk() {
         "name": "taskId",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "TASK_ID"
       }
     ],
     "responses": [
@@ -2448,7 +2721,8 @@ export default function SvixTypeScriptSdk() {
         "name": "appId",
         "schema": "string",
         "required": true,
-        "description": "The app's ID or UID"
+        "description": "The app's ID or UID",
+        "example": "unique-app-identifier"
       },
       {
         "name": "limit",
@@ -2458,12 +2732,14 @@ export default function SvixTypeScriptSdk() {
       {
         "name": "iterator",
         "schema": "string",
-        "description": "The iterator returned from a prior invocation"
+        "description": "The iterator returned from a prior invocation",
+        "example": "msg_1srOrx2ZWZBpBUvZwXKQmoEYga2"
       },
       {
         "name": "channel",
         "schema": "string",
-        "description": "Filter response based on the channel"
+        "description": "Filter response based on the channel",
+        "example": "project_1337"
       },
       {
         "name": "before",
@@ -2478,12 +2754,14 @@ export default function SvixTypeScriptSdk() {
       {
         "name": "withContent",
         "schema": "boolean",
-        "description": "When `true` message payloads are included in the response"
+        "description": "When `true` message payloads are included in the response",
+        "default": true
       },
       {
         "name": "tag",
         "schema": "string",
-        "description": "Filter messages matching the provided tag"
+        "description": "Filter messages matching the provided tag",
+        "example": "project_1337"
       },
       {
         "name": "eventTypes",
@@ -2538,12 +2816,14 @@ export default function SvixTypeScriptSdk() {
         "name": "appId",
         "schema": "string",
         "required": true,
-        "description": "The app's ID or UID"
+        "description": "The app's ID or UID",
+        "example": "unique-app-identifier"
       },
       {
         "name": "withContent",
         "schema": "boolean",
-        "description": "When `true` message payloads are included in the response"
+        "description": "When `true` message payloads are included in the response",
+        "default": true
       },
       {
         "name": "idempotencyKey",
@@ -2554,37 +2834,54 @@ export default function SvixTypeScriptSdk() {
         "name": "tags",
         "schema": "array",
         "required": false,
-        "description": ""
+        "description": "",
+        "example": [
+          "my_tag",
+          "other"
+        ]
       },
       {
         "name": "eventId",
         "schema": "string",
         "required": false,
-        "description": ""
+        "description": "",
+        "example": "unique-msg-identifier"
       },
       {
         "name": "eventType",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "user.signup"
       },
       {
         "name": "payload",
         "schema": "object",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": {
+          "email": "test@example.com",
+          "type": "user.created",
+          "username": "test_user"
+        }
       },
       {
         "name": "channels",
         "schema": "array",
         "required": false,
-        "description": ""
+        "description": "",
+        "example": [
+          "project_123",
+          "group_2"
+        ]
       },
       {
         "name": "payloadRetentionPeriod",
         "schema": "integer",
         "required": false,
-        "description": ""
+        "description": "",
+        "example": 90,
+        "default": 90
       },
       {
         "name": "application",
@@ -2650,18 +2947,21 @@ export default function SvixTypeScriptSdk() {
         "name": "appId",
         "schema": "string",
         "required": true,
-        "description": "The app's ID or UID"
+        "description": "The app's ID or UID",
+        "example": "unique-app-identifier"
       },
       {
         "name": "msgId",
         "schema": "string",
         "required": true,
-        "description": "The msg's ID or UID"
+        "description": "The msg's ID or UID",
+        "example": "unique-msg-identifier"
       },
       {
         "name": "withContent",
         "schema": "boolean",
-        "description": "When `true` message payloads are included in the response"
+        "description": "When `true` message payloads are included in the response",
+        "default": true
       }
     ],
     "responses": [
@@ -2711,13 +3011,15 @@ export default function SvixTypeScriptSdk() {
         "name": "appId",
         "schema": "string",
         "required": true,
-        "description": "The app's ID or UID"
+        "description": "The app's ID or UID",
+        "example": "unique-app-identifier"
       },
       {
         "name": "msgId",
         "schema": "string",
         "required": true,
-        "description": "The msg's ID or UID"
+        "description": "The msg's ID or UID",
+        "example": "unique-msg-identifier"
       }
     ],
     "responses": [
@@ -2771,7 +3073,8 @@ export default function SvixTypeScriptSdk() {
       {
         "name": "iterator",
         "schema": "string",
-        "description": "The iterator returned from a prior invocation"
+        "description": "The iterator returned from a prior invocation",
+        "example": "atmpt_1srOrx2ZWZBpBUvZwXKQmoEYga2"
       },
       {
         "name": "status",
@@ -2786,12 +3089,14 @@ export default function SvixTypeScriptSdk() {
       {
         "name": "channel",
         "schema": "string",
-        "description": "Filter response based on the channel"
+        "description": "Filter response based on the channel",
+        "example": "project_1337"
       },
       {
         "name": "tag",
         "schema": "string",
-        "description": "Filter response based on the tag"
+        "description": "Filter response based on the tag",
+        "example": "project_1337"
       },
       {
         "name": "before",
@@ -2806,12 +3111,14 @@ export default function SvixTypeScriptSdk() {
       {
         "name": "withContent",
         "schema": "boolean",
-        "description": "When `true` attempt content is included in the response"
+        "description": "When `true` attempt content is included in the response",
+        "default": true
       },
       {
         "name": "withMsg",
         "schema": "boolean",
-        "description": "When `true`, the message information is included in the response"
+        "description": "When `true`, the message information is included in the response",
+        "default": false
       },
       {
         "name": "eventTypes",
@@ -2822,13 +3129,15 @@ export default function SvixTypeScriptSdk() {
         "name": "appId",
         "schema": "string",
         "required": true,
-        "description": "The app's ID or UID"
+        "description": "The app's ID or UID",
+        "example": "unique-app-identifier"
       },
       {
         "name": "endpointId",
         "schema": "string",
         "required": true,
-        "description": "The ep's ID or UID"
+        "description": "The ep's ID or UID",
+        "example": "unique-ep-identifier"
       }
     ],
     "responses": [
@@ -2882,7 +3191,8 @@ export default function SvixTypeScriptSdk() {
       {
         "name": "iterator",
         "schema": "string",
-        "description": "The iterator returned from a prior invocation"
+        "description": "The iterator returned from a prior invocation",
+        "example": "atmpt_1srOrx2ZWZBpBUvZwXKQmoEYga2"
       },
       {
         "name": "status",
@@ -2897,17 +3207,20 @@ export default function SvixTypeScriptSdk() {
       {
         "name": "channel",
         "schema": "string",
-        "description": "Filter response based on the channel"
+        "description": "Filter response based on the channel",
+        "example": "project_1337"
       },
       {
         "name": "tag",
         "schema": "string",
-        "description": "Filter response based on the tag"
+        "description": "Filter response based on the tag",
+        "example": "project_1337"
       },
       {
         "name": "endpointId",
         "schema": "string",
-        "description": "Filter the attempts based on the attempted endpoint"
+        "description": "Filter the attempts based on the attempted endpoint",
+        "example": "unique-ep-identifier"
       },
       {
         "name": "before",
@@ -2922,19 +3235,22 @@ export default function SvixTypeScriptSdk() {
       {
         "name": "withContent",
         "schema": "boolean",
-        "description": "When `true` attempt content is included in the response"
+        "description": "When `true` attempt content is included in the response",
+        "default": true
       },
       {
         "name": "appId",
         "schema": "string",
         "required": true,
-        "description": "The app's ID or UID"
+        "description": "The app's ID or UID",
+        "example": "unique-app-identifier"
       },
       {
         "name": "msgId",
         "schema": "string",
         "required": true,
-        "description": "The msg's ID or UID"
+        "description": "The msg's ID or UID",
+        "example": "unique-msg-identifier"
       },
       {
         "name": "eventTypes",
@@ -2993,17 +3309,20 @@ export default function SvixTypeScriptSdk() {
       {
         "name": "iterator",
         "schema": "string",
-        "description": "The iterator returned from a prior invocation"
+        "description": "The iterator returned from a prior invocation",
+        "example": "msg_1srOrx2ZWZBpBUvZwXKQmoEYga2"
       },
       {
         "name": "channel",
         "schema": "string",
-        "description": "Filter response based on the channel"
+        "description": "Filter response based on the channel",
+        "example": "project_1337"
       },
       {
         "name": "tag",
         "schema": "string",
-        "description": "Filter response based on the message tags"
+        "description": "Filter response based on the message tags",
+        "example": "project_1337"
       },
       {
         "name": "status",
@@ -3023,19 +3342,22 @@ export default function SvixTypeScriptSdk() {
       {
         "name": "withContent",
         "schema": "boolean",
-        "description": "When `true` message payloads are included in the response"
+        "description": "When `true` message payloads are included in the response",
+        "default": true
       },
       {
         "name": "appId",
         "schema": "string",
         "required": true,
-        "description": "The app's ID or UID"
+        "description": "The app's ID or UID",
+        "example": "unique-app-identifier"
       },
       {
         "name": "endpointId",
         "schema": "string",
         "required": true,
-        "description": "The ep's ID or UID"
+        "description": "The ep's ID or UID",
+        "example": "unique-ep-identifier"
       },
       {
         "name": "eventTypes",
@@ -3094,19 +3416,22 @@ export default function SvixTypeScriptSdk() {
       {
         "name": "iterator",
         "schema": "string",
-        "description": "The iterator returned from a prior invocation"
+        "description": "The iterator returned from a prior invocation",
+        "example": "ep_1srOrx2ZWZBpBUvZwXKQmoEYga2"
       },
       {
         "name": "appId",
         "schema": "string",
         "required": true,
-        "description": "The app's ID or UID"
+        "description": "The app's ID or UID",
+        "example": "unique-app-identifier"
       },
       {
         "name": "msgId",
         "schema": "string",
         "required": true,
-        "description": "The msg's ID or UID"
+        "description": "The msg's ID or UID",
+        "example": "unique-msg-identifier"
       }
     ],
     "responses": [
@@ -3160,17 +3485,20 @@ export default function SvixTypeScriptSdk() {
       {
         "name": "iterator",
         "schema": "string",
-        "description": "The iterator returned from a prior invocation"
+        "description": "The iterator returned from a prior invocation",
+        "example": "atmpt_1srOrx2ZWZBpBUvZwXKQmoEYga2"
       },
       {
         "name": "channel",
         "schema": "string",
-        "description": "Filter response based on the channel"
+        "description": "Filter response based on the channel",
+        "example": "project_1337"
       },
       {
         "name": "tag",
         "schema": "string",
-        "description": "Filter response based on the tag"
+        "description": "Filter response based on the tag",
+        "example": "project_1337"
       },
       {
         "name": "status",
@@ -3196,19 +3524,22 @@ export default function SvixTypeScriptSdk() {
         "name": "appId",
         "schema": "string",
         "required": true,
-        "description": "The app's ID or UID"
+        "description": "The app's ID or UID",
+        "example": "unique-app-identifier"
       },
       {
         "name": "msgId",
         "schema": "string",
         "required": true,
-        "description": "The msg's ID or UID"
+        "description": "The msg's ID or UID",
+        "example": "unique-msg-identifier"
       },
       {
         "name": "endpointId",
         "schema": "string",
         "required": true,
-        "description": "The ep's ID or UID"
+        "description": "The ep's ID or UID",
+        "example": "unique-ep-identifier"
       }
     ],
     "responses": [
@@ -3262,22 +3593,26 @@ export default function SvixTypeScriptSdk() {
       {
         "name": "iterator",
         "schema": "string",
-        "description": "The iterator returned from a prior invocation"
+        "description": "The iterator returned from a prior invocation",
+        "example": "atmpt_1srOrx2ZWZBpBUvZwXKQmoEYga2"
       },
       {
         "name": "endpointId",
         "schema": "string",
-        "description": "Filter the attempts based on the attempted endpoint"
+        "description": "Filter the attempts based on the attempted endpoint",
+        "example": "unique-ep-identifier"
       },
       {
         "name": "channel",
         "schema": "string",
-        "description": "Filter response based on the channel"
+        "description": "Filter response based on the channel",
+        "example": "project_1337"
       },
       {
         "name": "tag",
         "schema": "string",
-        "description": "Filter response based on the tag"
+        "description": "Filter response based on the tag",
+        "example": "project_1337"
       },
       {
         "name": "status",
@@ -3308,13 +3643,15 @@ export default function SvixTypeScriptSdk() {
         "name": "appId",
         "schema": "string",
         "required": true,
-        "description": "The app's ID or UID"
+        "description": "The app's ID or UID",
+        "example": "unique-app-identifier"
       },
       {
         "name": "msgId",
         "schema": "string",
         "required": true,
-        "description": "The msg's ID or UID"
+        "description": "The msg's ID or UID",
+        "example": "unique-msg-identifier"
       }
     ],
     "responses": [
@@ -3364,19 +3701,22 @@ export default function SvixTypeScriptSdk() {
         "name": "appId",
         "schema": "string",
         "required": true,
-        "description": "The app's ID or UID"
+        "description": "The app's ID or UID",
+        "example": "unique-app-identifier"
       },
       {
         "name": "msgId",
         "schema": "string",
         "required": true,
-        "description": "The msg's ID or UID"
+        "description": "The msg's ID or UID",
+        "example": "unique-msg-identifier"
       },
       {
         "name": "attemptId",
         "schema": "string",
         "required": true,
-        "description": "The attempt's ID"
+        "description": "The attempt's ID",
+        "example": "atmpt_1srOrx2ZWZBpBUvZwXKQmoEYga2"
       }
     ],
     "responses": [
@@ -3426,19 +3766,22 @@ export default function SvixTypeScriptSdk() {
         "name": "appId",
         "schema": "string",
         "required": true,
-        "description": "The app's ID or UID"
+        "description": "The app's ID or UID",
+        "example": "unique-app-identifier"
       },
       {
         "name": "msgId",
         "schema": "string",
         "required": true,
-        "description": "The msg's ID or UID"
+        "description": "The msg's ID or UID",
+        "example": "unique-msg-identifier"
       },
       {
         "name": "attemptId",
         "schema": "string",
         "required": true,
-        "description": "The attempt's ID"
+        "description": "The attempt's ID",
+        "example": "atmpt_1srOrx2ZWZBpBUvZwXKQmoEYga2"
       }
     ],
     "responses": [
@@ -3488,19 +3831,22 @@ export default function SvixTypeScriptSdk() {
         "name": "appId",
         "schema": "string",
         "required": true,
-        "description": "The app's ID or UID"
+        "description": "The app's ID or UID",
+        "example": "unique-app-identifier"
       },
       {
         "name": "msgId",
         "schema": "string",
         "required": true,
-        "description": "The msg's ID or UID"
+        "description": "The msg's ID or UID",
+        "example": "unique-msg-identifier"
       },
       {
         "name": "endpointId",
         "schema": "string",
         "required": true,
-        "description": "The ep's ID or UID"
+        "description": "The ep's ID or UID",
+        "example": "unique-ep-identifier"
       },
       {
         "name": "idempotencyKey",
@@ -3560,13 +3906,15 @@ export default function SvixTypeScriptSdk() {
         "name": "since",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "SINCE"
       },
       {
         "name": "until",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "UNTIL"
       },
       {
         "name": "appIds",
@@ -3665,7 +4013,8 @@ export default function SvixTypeScriptSdk() {
         "name": "appId",
         "schema": "string",
         "required": true,
-        "description": "The app's ID or UID"
+        "description": "The app's ID or UID",
+        "example": "unique-app-identifier"
       },
       {
         "name": "limit",
@@ -3675,7 +4024,8 @@ export default function SvixTypeScriptSdk() {
       {
         "name": "iterator",
         "schema": "string",
-        "description": "The iterator returned from a prior invocation"
+        "description": "The iterator returned from a prior invocation",
+        "example": "integ_1srOrx2ZWZBpBUvZwXKQmoEYga2"
       }
     ],
     "responses": [
@@ -3725,7 +4075,8 @@ export default function SvixTypeScriptSdk() {
         "name": "appId",
         "schema": "string",
         "required": true,
-        "description": "The app's ID or UID"
+        "description": "The app's ID or UID",
+        "example": "unique-app-identifier"
       },
       {
         "name": "idempotencyKey",
@@ -3736,7 +4087,8 @@ export default function SvixTypeScriptSdk() {
         "name": "name",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "Example Integration"
       }
     ],
     "responses": [
@@ -3786,13 +4138,15 @@ export default function SvixTypeScriptSdk() {
         "name": "appId",
         "schema": "string",
         "required": true,
-        "description": "The app's ID or UID"
+        "description": "The app's ID or UID",
+        "example": "unique-app-identifier"
       },
       {
         "name": "integId",
         "schema": "string",
         "required": true,
-        "description": "The integ's ID"
+        "description": "The integ's ID",
+        "example": "integ_1srOrx2ZWZBpBUvZwXKQmoEYga2"
       }
     ],
     "responses": [
@@ -3842,13 +4196,15 @@ export default function SvixTypeScriptSdk() {
         "name": "appId",
         "schema": "string",
         "required": true,
-        "description": "The app's ID or UID"
+        "description": "The app's ID or UID",
+        "example": "unique-app-identifier"
       },
       {
         "name": "integId",
         "schema": "string",
         "required": true,
-        "description": "The integ's ID"
+        "description": "The integ's ID",
+        "example": "integ_1srOrx2ZWZBpBUvZwXKQmoEYga2"
       }
     ],
     "responses": [
@@ -3898,19 +4254,22 @@ export default function SvixTypeScriptSdk() {
         "name": "appId",
         "schema": "string",
         "required": true,
-        "description": "The app's ID or UID"
+        "description": "The app's ID or UID",
+        "example": "unique-app-identifier"
       },
       {
         "name": "integId",
         "schema": "string",
         "required": true,
-        "description": "The integ's ID"
+        "description": "The integ's ID",
+        "example": "integ_1srOrx2ZWZBpBUvZwXKQmoEYga2"
       },
       {
         "name": "name",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "Example Integration"
       }
     ],
     "responses": [
@@ -3960,13 +4319,15 @@ export default function SvixTypeScriptSdk() {
         "name": "appId",
         "schema": "string",
         "required": true,
-        "description": "The app's ID or UID"
+        "description": "The app's ID or UID",
+        "example": "unique-app-identifier"
       },
       {
         "name": "integId",
         "schema": "string",
         "required": true,
-        "description": "The integ's ID"
+        "description": "The integ's ID",
+        "example": "integ_1srOrx2ZWZBpBUvZwXKQmoEYga2"
       }
     ],
     "responses": [
@@ -4016,13 +4377,15 @@ export default function SvixTypeScriptSdk() {
         "name": "appId",
         "schema": "string",
         "required": true,
-        "description": "The app's ID or UID"
+        "description": "The app's ID or UID",
+        "example": "unique-app-identifier"
       },
       {
         "name": "integId",
         "schema": "string",
         "required": true,
-        "description": "The integ's ID"
+        "description": "The integ's ID",
+        "example": "integ_1srOrx2ZWZBpBUvZwXKQmoEYga2"
       },
       {
         "name": "idempotencyKey",
@@ -4120,6 +4483,8 @@ export default function SvixTypeScriptSdk() {
       parameters={266}
       difficulty="Hard"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/svix/openapi.yaml"
+      openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/svix/openapi.yaml"
+      
     />
   );
 }

@@ -4,11 +4,13 @@ import { HttpMethodsEnum } from "konfig-lib/dist/forEachOperation";
 import Description from "./_description.mdx";
 // @ts-ignore
 import GettingStarted from "./_getting-started.mdx";
-import { Sdk } from "@site/src/components/Sdk";
+// @ts-ignore
+import FirstRequest from "./_first-request.mdx"
+import { SdkNew } from "@site/src/components/SdkNew";
 
 export default function SnykTypeScriptSdk() {
   return (
-    <Sdk
+    <SdkNew
       sdkName="snyk-typescript-sdk"
       metaDescription="Snyk helps software-driven businesses develop fast and stay secure. Continuously find and fix vulnerabilities for npm, Maven, NuGet, RubyGems, PyPI and more."
       company="Snyk"
@@ -16,13 +18,15 @@ export default function SnykTypeScriptSdk() {
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/snyk/logo.png"
       clientNameCamelCase="snyk"
       homepage="docs.snyk.io/snyk-api/snyk-rest-api-overview"
-      lastUpdated={new Date("2024-03-11T16:20:31.165Z")}
+      lastUpdated={new Date("2024-03-13T02:25:22.175Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/snyk/favicon.ico"
       // Missing contactUrl
       // Missing contactEmail
       previewLinkImage="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/snyk/imagePreview.jpg"
       GettingStarted={GettingStarted}
       Description={Description}
+      FirstRequest={FirstRequest}
+      categories={["security"]}
       methods={[
   {
     "url": "/custom_base_images",
@@ -36,22 +40,27 @@ export default function SnykTypeScriptSdk() {
         "name": "version",
         "schema": "string",
         "required": true,
-        "description": "The requested version of the endpoint to process the request"
+        "description": "The requested version of the endpoint to process the request",
+        "example": "2021-06-04"
       },
       {
         "name": "startingAfter",
         "schema": "string",
-        "description": "Return the page of results immediately after this cursor"
+        "description": "Return the page of results immediately after this cursor",
+        "example": "v1.eyJpZCI6IjEwMDAifQo="
       },
       {
         "name": "endingBefore",
         "schema": "string",
-        "description": "Return the page of results immediately before this cursor"
+        "description": "Return the page of results immediately before this cursor",
+        "example": "v1.eyJpZCI6IjExMDAifQo="
       },
       {
         "name": "limit",
         "schema": "integer",
-        "description": "Number of results to return per page"
+        "description": "Number of results to return per page",
+        "example": 10,
+        "default": 10
       },
       {
         "name": "projectId",
@@ -91,7 +100,8 @@ export default function SnykTypeScriptSdk() {
       {
         "name": "sortDirection",
         "schema": "string",
-        "description": "Which direction to sort"
+        "description": "Which direction to sort",
+        "default": "ASC"
       }
     ],
     "responses": [
@@ -133,7 +143,8 @@ export default function SnykTypeScriptSdk() {
         "name": "version",
         "schema": "string",
         "required": true,
-        "description": "The requested version of the endpoint to process the request"
+        "description": "The requested version of the endpoint to process the request",
+        "example": "2021-06-04"
       },
       {
         "name": "data",
@@ -185,13 +196,15 @@ export default function SnykTypeScriptSdk() {
         "name": "version",
         "schema": "string",
         "required": true,
-        "description": "The requested version of the endpoint to process the request"
+        "description": "The requested version of the endpoint to process the request",
+        "example": "2021-06-04"
       },
       {
         "name": "custombaseimageId",
         "schema": "string",
         "required": true,
-        "description": "Unique identifier for custom base image"
+        "description": "Unique identifier for custom base image",
+        "example": "CUSTOMBASEIMAGE_ID"
       }
     ],
     "responses": [
@@ -225,13 +238,15 @@ export default function SnykTypeScriptSdk() {
         "name": "version",
         "schema": "string",
         "required": true,
-        "description": "The requested version of the endpoint to process the request"
+        "description": "The requested version of the endpoint to process the request",
+        "example": "2021-06-04"
       },
       {
         "name": "custombaseimageId",
         "schema": "string",
         "required": true,
-        "description": "Unique identifier for custom base image"
+        "description": "Unique identifier for custom base image",
+        "example": "CUSTOMBASEIMAGE_ID"
       }
     ],
     "responses": [
@@ -273,13 +288,15 @@ export default function SnykTypeScriptSdk() {
         "name": "version",
         "schema": "string",
         "required": true,
-        "description": "The requested version of the endpoint to process the request"
+        "description": "The requested version of the endpoint to process the request",
+        "example": "2021-06-04"
       },
       {
         "name": "custombaseimageId",
         "schema": "string",
         "required": true,
-        "description": "Unique identifier for custom base image"
+        "description": "Unique identifier for custom base image",
+        "example": "CUSTOMBASEIMAGE_ID"
       },
       {
         "name": "data",
@@ -332,28 +349,34 @@ export default function SnykTypeScriptSdk() {
         "name": "groupId",
         "schema": "string",
         "required": true,
-        "description": "Group ID"
+        "description": "Group ID",
+        "example": "GROUP_ID"
       },
       {
         "name": "version",
         "schema": "string",
         "required": true,
-        "description": "The requested version of the endpoint to process the request"
+        "description": "The requested version of the endpoint to process the request",
+        "example": "2021-06-04"
       },
       {
         "name": "startingAfter",
         "schema": "string",
-        "description": "Return the page of results immediately after this cursor"
+        "description": "Return the page of results immediately after this cursor",
+        "example": "v1.eyJpZCI6IjEwMDAifQo="
       },
       {
         "name": "endingBefore",
         "schema": "string",
-        "description": "Return the page of results immediately before this cursor"
+        "description": "Return the page of results immediately before this cursor",
+        "example": "v1.eyJpZCI6IjExMDAifQo="
       },
       {
         "name": "limit",
         "schema": "integer",
-        "description": "Number of results to return per page"
+        "description": "Number of results to return per page",
+        "example": 10,
+        "default": 10
       }
     ],
     "responses": [
@@ -399,13 +422,15 @@ export default function SnykTypeScriptSdk() {
         "name": "version",
         "schema": "string",
         "required": true,
-        "description": "The requested version of the endpoint to process the request"
+        "description": "The requested version of the endpoint to process the request",
+        "example": "2021-06-04"
       },
       {
         "name": "groupId",
         "schema": "string",
         "required": true,
-        "description": "Group ID"
+        "description": "Group ID",
+        "example": "GROUP_ID"
       },
       {
         "name": "data",
@@ -463,19 +488,22 @@ export default function SnykTypeScriptSdk() {
         "name": "version",
         "schema": "string",
         "required": true,
-        "description": "The requested version of the endpoint to process the request"
+        "description": "The requested version of the endpoint to process the request",
+        "example": "2021-06-04"
       },
       {
         "name": "groupId",
         "schema": "string",
         "required": true,
-        "description": "Group ID"
+        "description": "Group ID",
+        "example": "GROUP_ID"
       },
       {
         "name": "installId",
         "schema": "string",
         "required": true,
-        "description": "Install ID"
+        "description": "Install ID",
+        "example": "INSTALL_ID"
       }
     ],
     "responses": [
@@ -521,19 +549,22 @@ export default function SnykTypeScriptSdk() {
         "name": "version",
         "schema": "string",
         "required": true,
-        "description": "The requested version of the endpoint to process the request"
+        "description": "The requested version of the endpoint to process the request",
+        "example": "2021-06-04"
       },
       {
         "name": "groupId",
         "schema": "string",
         "required": true,
-        "description": "Group ID"
+        "description": "Group ID",
+        "example": "GROUP_ID"
       },
       {
         "name": "installId",
         "schema": "string",
         "required": true,
-        "description": "Install ID"
+        "description": "Install ID",
+        "example": "INSTALL_ID"
       },
       {
         "name": "data",
@@ -585,13 +616,15 @@ export default function SnykTypeScriptSdk() {
         "name": "version",
         "schema": "string",
         "required": true,
-        "description": "The requested version of the endpoint to process the request"
+        "description": "The requested version of the endpoint to process the request",
+        "example": "2021-06-04"
       },
       {
         "name": "groupId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the Group."
+        "description": "The ID of the Group.",
+        "example": "0d3728ec-eebf-484d-9907-ba238019f10b"
       },
       {
         "name": "cursor",
@@ -611,32 +644,39 @@ export default function SnykTypeScriptSdk() {
       {
         "name": "size",
         "schema": "integer",
-        "description": "Number of results to return per page."
+        "description": "Number of results to return per page.",
+        "example": 10
       },
       {
         "name": "sortOrder",
         "schema": "string",
-        "description": "Order in which results are returned."
+        "description": "Order in which results are returned.",
+        "example": "ASC",
+        "default": "DESC"
       },
       {
         "name": "userId",
         "schema": "string",
-        "description": "Filter logs by user ID."
+        "description": "Filter logs by user ID.",
+        "example": "0d3728ec-eebf-484d-9907-ba238019f10b"
       },
       {
         "name": "projectId",
         "schema": "string",
-        "description": "Filter logs by project ID."
+        "description": "Filter logs by project ID.",
+        "example": "0d3728ec-eebf-484d-9907-ba238019f10b"
       },
       {
         "name": "event",
         "schema": "string",
-        "description": "Filter logs by event type, cannot be used in conjunction with exclude_event parameter."
+        "description": "Filter logs by event type, cannot be used in conjunction with exclude_event parameter.",
+        "example": "api.access"
       },
       {
         "name": "excludeEvent",
         "schema": "string",
-        "description": "Exclude event type from results, cannot be used in conjunctions with event parameter."
+        "description": "Exclude event type from results, cannot be used in conjunctions with event parameter.",
+        "example": "api.access"
       }
     ],
     "responses": [
@@ -678,43 +718,52 @@ export default function SnykTypeScriptSdk() {
         "name": "version",
         "schema": "string",
         "required": true,
-        "description": "The requested version of the endpoint to process the request"
+        "description": "The requested version of the endpoint to process the request",
+        "example": "2021-06-04"
       },
       {
         "name": "startingAfter",
         "schema": "string",
-        "description": "Return the page of results immediately after this cursor"
+        "description": "Return the page of results immediately after this cursor",
+        "example": "v1.eyJpZCI6IjEwMDAifQo="
       },
       {
         "name": "endingBefore",
         "schema": "string",
-        "description": "Return the page of results immediately before this cursor"
+        "description": "Return the page of results immediately before this cursor",
+        "example": "v1.eyJpZCI6IjExMDAifQo="
       },
       {
         "name": "limit",
         "schema": "integer",
-        "description": "Number of results to return per page"
+        "description": "Number of results to return per page",
+        "example": 10,
+        "default": 10
       },
       {
         "name": "groupId",
         "schema": "string",
         "required": true,
-        "description": "Group ID"
+        "description": "Group ID",
+        "example": "4a18d42f-0706-4ad0-b127-24078731fbed"
       },
       {
         "name": "scanItemId",
         "schema": "string",
-        "description": "A scan item id to filter issues through their scan item relationship."
+        "description": "A scan item id to filter issues through their scan item relationship.",
+        "example": "4a18d42f-0706-4ad0-b127-24078731fbee"
       },
       {
         "name": "scanItemType",
         "schema": "string",
-        "description": "A scan item types to filter issues through their scan item relationship."
+        "description": "A scan item types to filter issues through their scan item relationship.",
+        "example": "project"
       },
       {
         "name": "type",
         "schema": "string",
-        "description": "An issue type to filter issues."
+        "description": "An issue type to filter issues.",
+        "example": "cloud"
       },
       {
         "name": "updatedBefore",
@@ -787,19 +836,22 @@ export default function SnykTypeScriptSdk() {
         "name": "version",
         "schema": "string",
         "required": true,
-        "description": "The requested version of the endpoint to process the request"
+        "description": "The requested version of the endpoint to process the request",
+        "example": "2021-06-04"
       },
       {
         "name": "groupId",
         "schema": "string",
         "required": true,
-        "description": "Group ID"
+        "description": "Group ID",
+        "example": "4a18d42f-0706-4ad0-b127-24078731fbed"
       },
       {
         "name": "issueId",
         "schema": "string",
         "required": true,
-        "description": "Issue ID"
+        "description": "Issue ID",
+        "example": "4a18d42f-0706-4ad0-b127-24078731fbed"
       }
     ],
     "responses": [
@@ -845,28 +897,34 @@ export default function SnykTypeScriptSdk() {
         "name": "version",
         "schema": "string",
         "required": true,
-        "description": "The requested version of the endpoint to process the request"
+        "description": "The requested version of the endpoint to process the request",
+        "example": "2021-06-04"
       },
       {
         "name": "startingAfter",
         "schema": "string",
-        "description": "Return the page of results immediately after this cursor"
+        "description": "Return the page of results immediately after this cursor",
+        "example": "v1.eyJpZCI6IjEwMDAifQo="
       },
       {
         "name": "endingBefore",
         "schema": "string",
-        "description": "Return the page of results immediately before this cursor"
+        "description": "Return the page of results immediately before this cursor",
+        "example": "v1.eyJpZCI6IjExMDAifQo="
       },
       {
         "name": "limit",
         "schema": "integer",
-        "description": "Number of results to return per page"
+        "description": "Number of results to return per page",
+        "example": 10,
+        "default": 10
       },
       {
         "name": "groupId",
         "schema": "string",
         "required": true,
-        "description": "Unique identifier for group"
+        "description": "Unique identifier for group",
+        "example": "b667f176-df52-4b0a-9954-117af6b05ab7"
       },
       {
         "name": "name",
@@ -918,28 +976,34 @@ export default function SnykTypeScriptSdk() {
         "name": "groupId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the Snyk Group that owns the service accounts."
+        "description": "The ID of the Snyk Group that owns the service accounts.",
+        "example": "GROUP_ID"
       },
       {
         "name": "startingAfter",
         "schema": "string",
-        "description": "Return the page of results immediately after this cursor"
+        "description": "Return the page of results immediately after this cursor",
+        "example": "v1.eyJpZCI6IjEwMDAifQo="
       },
       {
         "name": "endingBefore",
         "schema": "string",
-        "description": "Return the page of results immediately before this cursor"
+        "description": "Return the page of results immediately before this cursor",
+        "example": "v1.eyJpZCI6IjExMDAifQo="
       },
       {
         "name": "limit",
         "schema": "integer",
-        "description": "Number of results to return per page"
+        "description": "Number of results to return per page",
+        "example": 10,
+        "default": 10
       },
       {
         "name": "version",
         "schema": "string",
         "required": true,
-        "description": "The requested version of the endpoint to process the request"
+        "description": "The requested version of the endpoint to process the request",
+        "example": "2021-06-04"
       }
     ],
     "responses": [
@@ -981,13 +1045,15 @@ export default function SnykTypeScriptSdk() {
         "name": "groupId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the Snyk Group that is creating and owns the service account"
+        "description": "The ID of the Snyk Group that is creating and owns the service account",
+        "example": "GROUP_ID"
       },
       {
         "name": "version",
         "schema": "string",
         "required": true,
-        "description": "The requested version of the endpoint to process the request"
+        "description": "The requested version of the endpoint to process the request",
+        "example": "2021-06-04"
       },
       {
         "name": "data",
@@ -1031,19 +1097,22 @@ export default function SnykTypeScriptSdk() {
         "name": "groupId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the Snyk Group that owns the service account."
+        "description": "The ID of the Snyk Group that owns the service account.",
+        "example": "GROUP_ID"
       },
       {
         "name": "serviceaccountId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the service account."
+        "description": "The ID of the service account.",
+        "example": "SERVICEACCOUNT_ID"
       },
       {
         "name": "version",
         "schema": "string",
         "required": true,
-        "description": "The requested version of the endpoint to process the request"
+        "description": "The requested version of the endpoint to process the request",
+        "example": "2021-06-04"
       }
     ],
     "responses": [
@@ -1085,19 +1154,22 @@ export default function SnykTypeScriptSdk() {
         "name": "groupId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the Snyk Group that owns the service account."
+        "description": "The ID of the Snyk Group that owns the service account.",
+        "example": "GROUP_ID"
       },
       {
         "name": "serviceaccountId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the service account."
+        "description": "The ID of the service account.",
+        "example": "SERVICEACCOUNT_ID"
       },
       {
         "name": "version",
         "schema": "string",
         "required": true,
-        "description": "The requested version of the endpoint to process the request"
+        "description": "The requested version of the endpoint to process the request",
+        "example": "2021-06-04"
       }
     ],
     "responses": [
@@ -1139,19 +1211,22 @@ export default function SnykTypeScriptSdk() {
         "name": "groupId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the Snyk Group that owns the service account."
+        "description": "The ID of the Snyk Group that owns the service account.",
+        "example": "GROUP_ID"
       },
       {
         "name": "serviceaccountId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the service account."
+        "description": "The ID of the service account.",
+        "example": "SERVICEACCOUNT_ID"
       },
       {
         "name": "version",
         "schema": "string",
         "required": true,
-        "description": "The requested version of the endpoint to process the request"
+        "description": "The requested version of the endpoint to process the request",
+        "example": "2021-06-04"
       },
       {
         "name": "data",
@@ -1199,19 +1274,22 @@ export default function SnykTypeScriptSdk() {
         "name": "groupId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the Snyk Group that owns the service account."
+        "description": "The ID of the Snyk Group that owns the service account.",
+        "example": "GROUP_ID"
       },
       {
         "name": "serviceaccountId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the service account."
+        "description": "The ID of the service account.",
+        "example": "SERVICEACCOUNT_ID"
       },
       {
         "name": "version",
         "schema": "string",
         "required": true,
-        "description": "The requested version of the endpoint to process the request"
+        "description": "The requested version of the endpoint to process the request",
+        "example": "2021-06-04"
       },
       {
         "name": "data",
@@ -1259,13 +1337,15 @@ export default function SnykTypeScriptSdk() {
         "name": "version",
         "schema": "string",
         "required": true,
-        "description": "The requested version of the endpoint to process the request"
+        "description": "The requested version of the endpoint to process the request",
+        "example": "2021-06-04"
       },
       {
         "name": "groupId",
         "schema": "string",
         "required": true,
-        "description": "The id of the group whose Infrastructure as Code settings are requested"
+        "description": "The id of the group whose Infrastructure as Code settings are requested",
+        "example": "GROUP_ID"
       }
     ],
     "responses": [
@@ -1307,13 +1387,15 @@ export default function SnykTypeScriptSdk() {
         "name": "version",
         "schema": "string",
         "required": true,
-        "description": "The requested version of the endpoint to process the request"
+        "description": "The requested version of the endpoint to process the request",
+        "example": "2021-06-04"
       },
       {
         "name": "groupId",
         "schema": "string",
         "required": true,
-        "description": "The id of the group whose Infrastructure as Code settings are getting updated"
+        "description": "The id of the group whose Infrastructure as Code settings are getting updated",
+        "example": "GROUP_ID"
       },
       {
         "name": "data",
@@ -1391,7 +1473,8 @@ export default function SnykTypeScriptSdk() {
         "name": "version",
         "schema": "string",
         "required": true,
-        "description": "The requested version of the API"
+        "description": "The requested version of the API",
+        "example": "VERSION"
       }
     ],
     "responses": [
@@ -1429,22 +1512,27 @@ export default function SnykTypeScriptSdk() {
         "name": "version",
         "schema": "string",
         "required": true,
-        "description": "The requested version of the endpoint to process the request"
+        "description": "The requested version of the endpoint to process the request",
+        "example": "2021-06-04"
       },
       {
         "name": "startingAfter",
         "schema": "string",
-        "description": "Return the page of results immediately after this cursor"
+        "description": "Return the page of results immediately after this cursor",
+        "example": "v1.eyJpZCI6IjEwMDAifQo="
       },
       {
         "name": "endingBefore",
         "schema": "string",
-        "description": "Return the page of results immediately before this cursor"
+        "description": "Return the page of results immediately before this cursor",
+        "example": "v1.eyJpZCI6IjExMDAifQo="
       },
       {
         "name": "limit",
         "schema": "integer",
-        "description": "Number of results to return per page"
+        "description": "Number of results to return per page",
+        "example": 10,
+        "default": 10
       },
       {
         "name": "groupId",
@@ -1511,13 +1599,15 @@ export default function SnykTypeScriptSdk() {
         "name": "version",
         "schema": "string",
         "required": true,
-        "description": "The requested version of the endpoint to process the request"
+        "description": "The requested version of the endpoint to process the request",
+        "example": "2021-06-04"
       },
       {
         "name": "orgId",
         "schema": "string",
         "required": true,
-        "description": "Unique identifier for org"
+        "description": "Unique identifier for org",
+        "example": "b667f176-df52-4b0a-9954-117af6b05ab7"
       }
     ],
     "responses": [
@@ -1563,13 +1653,15 @@ export default function SnykTypeScriptSdk() {
         "name": "version",
         "schema": "string",
         "required": true,
-        "description": "The requested version of the endpoint to process the request"
+        "description": "The requested version of the endpoint to process the request",
+        "example": "2021-06-04"
       },
       {
         "name": "orgId",
         "schema": "string",
         "required": true,
-        "description": "Unique identifier for org"
+        "description": "Unique identifier for org",
+        "example": "b667f176-df52-4b0a-9954-117af6b05ab7"
       },
       {
         "name": "data",
@@ -1630,28 +1722,34 @@ export default function SnykTypeScriptSdk() {
         "name": "orgId",
         "schema": "string",
         "required": true,
-        "description": "Org ID"
+        "description": "Org ID",
+        "example": "ORG_ID"
       },
       {
         "name": "version",
         "schema": "string",
         "required": true,
-        "description": "The requested version of the endpoint to process the request"
+        "description": "The requested version of the endpoint to process the request",
+        "example": "2021-06-04"
       },
       {
         "name": "startingAfter",
         "schema": "string",
-        "description": "Return the page of results immediately after this cursor"
+        "description": "Return the page of results immediately after this cursor",
+        "example": "v1.eyJpZCI6IjEwMDAifQo="
       },
       {
         "name": "endingBefore",
         "schema": "string",
-        "description": "Return the page of results immediately before this cursor"
+        "description": "Return the page of results immediately before this cursor",
+        "example": "v1.eyJpZCI6IjExMDAifQo="
       },
       {
         "name": "limit",
         "schema": "integer",
-        "description": "Number of results to return per page"
+        "description": "Number of results to return per page",
+        "example": 10,
+        "default": 10
       }
     ],
     "responses": [
@@ -1697,19 +1795,22 @@ export default function SnykTypeScriptSdk() {
         "name": "botId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the app bot"
+        "description": "The ID of the app bot",
+        "example": "BOT_ID"
       },
       {
         "name": "version",
         "schema": "string",
         "required": true,
-        "description": "The requested version of the endpoint to process the request"
+        "description": "The requested version of the endpoint to process the request",
+        "example": "2021-06-04"
       },
       {
         "name": "orgId",
         "schema": "string",
         "required": true,
-        "description": "Org ID"
+        "description": "Org ID",
+        "example": "ORG_ID"
       }
     ],
     "responses": [
@@ -1755,28 +1856,34 @@ export default function SnykTypeScriptSdk() {
         "name": "orgId",
         "schema": "string",
         "required": true,
-        "description": "Org ID"
+        "description": "Org ID",
+        "example": "ORG_ID"
       },
       {
         "name": "version",
         "schema": "string",
         "required": true,
-        "description": "The requested version of the endpoint to process the request"
+        "description": "The requested version of the endpoint to process the request",
+        "example": "2021-06-04"
       },
       {
         "name": "startingAfter",
         "schema": "string",
-        "description": "Return the page of results immediately after this cursor"
+        "description": "Return the page of results immediately after this cursor",
+        "example": "v1.eyJpZCI6IjEwMDAifQo="
       },
       {
         "name": "endingBefore",
         "schema": "string",
-        "description": "Return the page of results immediately before this cursor"
+        "description": "Return the page of results immediately before this cursor",
+        "example": "v1.eyJpZCI6IjExMDAifQo="
       },
       {
         "name": "limit",
         "schema": "integer",
-        "description": "Number of results to return per page"
+        "description": "Number of results to return per page",
+        "example": 10,
+        "default": 10
       }
     ],
     "responses": [
@@ -1822,13 +1929,15 @@ export default function SnykTypeScriptSdk() {
         "name": "version",
         "schema": "string",
         "required": true,
-        "description": "The requested version of the endpoint to process the request"
+        "description": "The requested version of the endpoint to process the request",
+        "example": "2021-06-04"
       },
       {
         "name": "orgId",
         "schema": "string",
         "required": true,
-        "description": "Org ID"
+        "description": "Org ID",
+        "example": "ORG_ID"
       },
       {
         "name": "data",
@@ -1880,28 +1989,34 @@ export default function SnykTypeScriptSdk() {
         "name": "orgId",
         "schema": "string",
         "required": true,
-        "description": "Org ID"
+        "description": "Org ID",
+        "example": "ORG_ID"
       },
       {
         "name": "version",
         "schema": "string",
         "required": true,
-        "description": "The requested version of the endpoint to process the request"
+        "description": "The requested version of the endpoint to process the request",
+        "example": "2021-06-04"
       },
       {
         "name": "startingAfter",
         "schema": "string",
-        "description": "Return the page of results immediately after this cursor"
+        "description": "Return the page of results immediately after this cursor",
+        "example": "v1.eyJpZCI6IjEwMDAifQo="
       },
       {
         "name": "endingBefore",
         "schema": "string",
-        "description": "Return the page of results immediately before this cursor"
+        "description": "Return the page of results immediately before this cursor",
+        "example": "v1.eyJpZCI6IjExMDAifQo="
       },
       {
         "name": "limit",
         "schema": "integer",
-        "description": "Number of results to return per page"
+        "description": "Number of results to return per page",
+        "example": 10,
+        "default": 10
       }
     ],
     "responses": [
@@ -1947,13 +2062,15 @@ export default function SnykTypeScriptSdk() {
         "name": "version",
         "schema": "string",
         "required": true,
-        "description": "The requested version of the endpoint to process the request"
+        "description": "The requested version of the endpoint to process the request",
+        "example": "2021-06-04"
       },
       {
         "name": "orgId",
         "schema": "string",
         "required": true,
-        "description": "Org ID"
+        "description": "Org ID",
+        "example": "ORG_ID"
       },
       {
         "name": "data",
@@ -2005,19 +2122,22 @@ export default function SnykTypeScriptSdk() {
         "name": "orgId",
         "schema": "string",
         "required": true,
-        "description": "Org ID"
+        "description": "Org ID",
+        "example": "ORG_ID"
       },
       {
         "name": "appId",
         "schema": "string",
         "required": true,
-        "description": "App ID"
+        "description": "App ID",
+        "example": "APP_ID"
       },
       {
         "name": "version",
         "schema": "string",
         "required": true,
-        "description": "The requested version of the endpoint to process the request"
+        "description": "The requested version of the endpoint to process the request",
+        "example": "2021-06-04"
       }
     ],
     "responses": [
@@ -2063,19 +2183,22 @@ export default function SnykTypeScriptSdk() {
         "name": "orgId",
         "schema": "string",
         "required": true,
-        "description": "Org ID"
+        "description": "Org ID",
+        "example": "ORG_ID"
       },
       {
         "name": "appId",
         "schema": "string",
         "required": true,
-        "description": "App ID"
+        "description": "App ID",
+        "example": "APP_ID"
       },
       {
         "name": "version",
         "schema": "string",
         "required": true,
-        "description": "The requested version of the endpoint to process the request"
+        "description": "The requested version of the endpoint to process the request",
+        "example": "2021-06-04"
       }
     ],
     "responses": [
@@ -2121,19 +2244,22 @@ export default function SnykTypeScriptSdk() {
         "name": "version",
         "schema": "string",
         "required": true,
-        "description": "The requested version of the endpoint to process the request"
+        "description": "The requested version of the endpoint to process the request",
+        "example": "2021-06-04"
       },
       {
         "name": "orgId",
         "schema": "string",
         "required": true,
-        "description": "Org ID"
+        "description": "Org ID",
+        "example": "ORG_ID"
       },
       {
         "name": "appId",
         "schema": "string",
         "required": true,
-        "description": "App ID"
+        "description": "App ID",
+        "example": "APP_ID"
       },
       {
         "name": "data",
@@ -2185,19 +2311,22 @@ export default function SnykTypeScriptSdk() {
         "name": "version",
         "schema": "string",
         "required": true,
-        "description": "The requested version of the endpoint to process the request"
+        "description": "The requested version of the endpoint to process the request",
+        "example": "2021-06-04"
       },
       {
         "name": "orgId",
         "schema": "string",
         "required": true,
-        "description": "Org ID"
+        "description": "Org ID",
+        "example": "ORG_ID"
       },
       {
         "name": "appId",
         "schema": "string",
         "required": true,
-        "description": "App ID"
+        "description": "App ID",
+        "example": "APP_ID"
       },
       {
         "name": "data",
@@ -2254,28 +2383,34 @@ export default function SnykTypeScriptSdk() {
         "name": "orgId",
         "schema": "string",
         "required": true,
-        "description": "Org ID"
+        "description": "Org ID",
+        "example": "ORG_ID"
       },
       {
         "name": "version",
         "schema": "string",
         "required": true,
-        "description": "The requested version of the endpoint to process the request"
+        "description": "The requested version of the endpoint to process the request",
+        "example": "2021-06-04"
       },
       {
         "name": "startingAfter",
         "schema": "string",
-        "description": "Return the page of results immediately after this cursor"
+        "description": "Return the page of results immediately after this cursor",
+        "example": "v1.eyJpZCI6IjEwMDAifQo="
       },
       {
         "name": "endingBefore",
         "schema": "string",
-        "description": "Return the page of results immediately before this cursor"
+        "description": "Return the page of results immediately before this cursor",
+        "example": "v1.eyJpZCI6IjExMDAifQo="
       },
       {
         "name": "limit",
         "schema": "integer",
-        "description": "Number of results to return per page"
+        "description": "Number of results to return per page",
+        "example": 10,
+        "default": 10
       }
     ],
     "responses": [
@@ -2321,13 +2456,15 @@ export default function SnykTypeScriptSdk() {
         "name": "version",
         "schema": "string",
         "required": true,
-        "description": "The requested version of the endpoint to process the request"
+        "description": "The requested version of the endpoint to process the request",
+        "example": "2021-06-04"
       },
       {
         "name": "orgId",
         "schema": "string",
         "required": true,
-        "description": "Org ID"
+        "description": "Org ID",
+        "example": "ORG_ID"
       },
       {
         "name": "data",
@@ -2385,19 +2522,22 @@ export default function SnykTypeScriptSdk() {
         "name": "version",
         "schema": "string",
         "required": true,
-        "description": "The requested version of the endpoint to process the request"
+        "description": "The requested version of the endpoint to process the request",
+        "example": "2021-06-04"
       },
       {
         "name": "orgId",
         "schema": "string",
         "required": true,
-        "description": "Org ID"
+        "description": "Org ID",
+        "example": "ORG_ID"
       },
       {
         "name": "installId",
         "schema": "string",
         "required": true,
-        "description": "Install ID"
+        "description": "Install ID",
+        "example": "INSTALL_ID"
       }
     ],
     "responses": [
@@ -2443,19 +2583,22 @@ export default function SnykTypeScriptSdk() {
         "name": "version",
         "schema": "string",
         "required": true,
-        "description": "The requested version of the endpoint to process the request"
+        "description": "The requested version of the endpoint to process the request",
+        "example": "2021-06-04"
       },
       {
         "name": "orgId",
         "schema": "string",
         "required": true,
-        "description": "Org ID"
+        "description": "Org ID",
+        "example": "ORG_ID"
       },
       {
         "name": "installId",
         "schema": "string",
         "required": true,
-        "description": "Install ID"
+        "description": "Install ID",
+        "example": "INSTALL_ID"
       },
       {
         "name": "data",
@@ -2507,19 +2650,22 @@ export default function SnykTypeScriptSdk() {
         "name": "version",
         "schema": "string",
         "required": true,
-        "description": "The requested version of the endpoint to process the request"
+        "description": "The requested version of the endpoint to process the request",
+        "example": "2021-06-04"
       },
       {
         "name": "orgId",
         "schema": "string",
         "required": true,
-        "description": "Org ID"
+        "description": "Org ID",
+        "example": "ORG_ID"
       },
       {
         "name": "clientId",
         "schema": "string",
         "required": true,
-        "description": "Client ID"
+        "description": "Client ID",
+        "example": "CLIENT_ID"
       }
     ],
     "responses": [
@@ -2565,19 +2711,22 @@ export default function SnykTypeScriptSdk() {
         "name": "orgId",
         "schema": "string",
         "required": true,
-        "description": "Org ID"
+        "description": "Org ID",
+        "example": "ORG_ID"
       },
       {
         "name": "clientId",
         "schema": "string",
         "required": true,
-        "description": "Client ID"
+        "description": "Client ID",
+        "example": "CLIENT_ID"
       },
       {
         "name": "version",
         "schema": "string",
         "required": true,
-        "description": "The requested version of the endpoint to process the request"
+        "description": "The requested version of the endpoint to process the request",
+        "example": "2021-06-04"
       }
     ],
     "responses": [
@@ -2623,19 +2772,22 @@ export default function SnykTypeScriptSdk() {
         "name": "version",
         "schema": "string",
         "required": true,
-        "description": "The requested version of the endpoint to process the request"
+        "description": "The requested version of the endpoint to process the request",
+        "example": "2021-06-04"
       },
       {
         "name": "orgId",
         "schema": "string",
         "required": true,
-        "description": "Org ID"
+        "description": "Org ID",
+        "example": "ORG_ID"
       },
       {
         "name": "clientId",
         "schema": "string",
         "required": true,
-        "description": "Client ID"
+        "description": "Client ID",
+        "example": "CLIENT_ID"
       },
       {
         "name": "data",
@@ -2687,25 +2839,29 @@ export default function SnykTypeScriptSdk() {
         "name": "version",
         "schema": "string",
         "required": true,
-        "description": "The requested version of the endpoint to process the request"
+        "description": "The requested version of the endpoint to process the request",
+        "example": "2021-06-04"
       },
       {
         "name": "orgId",
         "schema": "string",
         "required": true,
-        "description": "Org ID"
+        "description": "Org ID",
+        "example": "ORG_ID"
       },
       {
         "name": "clientId",
         "schema": "string",
         "required": true,
-        "description": "Client ID"
+        "description": "Client ID",
+        "example": "CLIENT_ID"
       },
       {
         "name": "mode",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "MODE"
       },
       {
         "name": "secret",
@@ -2757,13 +2913,15 @@ export default function SnykTypeScriptSdk() {
         "name": "version",
         "schema": "string",
         "required": true,
-        "description": "The requested version of the endpoint to process the request"
+        "description": "The requested version of the endpoint to process the request",
+        "example": "2021-06-04"
       },
       {
         "name": "orgId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the organization."
+        "description": "The ID of the organization.",
+        "example": "0d3728ec-eebf-484d-9907-ba238019f10b"
       },
       {
         "name": "cursor",
@@ -2783,32 +2941,39 @@ export default function SnykTypeScriptSdk() {
       {
         "name": "size",
         "schema": "integer",
-        "description": "Number of results to return per page."
+        "description": "Number of results to return per page.",
+        "example": 10
       },
       {
         "name": "sortOrder",
         "schema": "string",
-        "description": "Order in which results are returned."
+        "description": "Order in which results are returned.",
+        "example": "ASC",
+        "default": "DESC"
       },
       {
         "name": "userId",
         "schema": "string",
-        "description": "Filter logs by user ID."
+        "description": "Filter logs by user ID.",
+        "example": "0d3728ec-eebf-484d-9907-ba238019f10b"
       },
       {
         "name": "projectId",
         "schema": "string",
-        "description": "Filter logs by project ID."
+        "description": "Filter logs by project ID.",
+        "example": "0d3728ec-eebf-484d-9907-ba238019f10b"
       },
       {
         "name": "event",
         "schema": "string",
-        "description": "Filter logs by event type, cannot be used in conjunction with exclude_event parameter."
+        "description": "Filter logs by event type, cannot be used in conjunction with exclude_event parameter.",
+        "example": "api.access"
       },
       {
         "name": "excludeEvent",
         "schema": "string",
-        "description": "Exclude event type from results, cannot be used in conjunctions with event parameter."
+        "description": "Exclude event type from results, cannot be used in conjunctions with event parameter.",
+        "example": "api.access"
       }
     ],
     "responses": [
@@ -2850,28 +3015,34 @@ export default function SnykTypeScriptSdk() {
         "name": "version",
         "schema": "string",
         "required": true,
-        "description": "The requested version of the endpoint to process the request"
+        "description": "The requested version of the endpoint to process the request",
+        "example": "2021-06-04"
       },
       {
         "name": "orgId",
         "schema": "string",
         "required": true,
-        "description": "Org ID"
+        "description": "Org ID",
+        "example": "ORG_ID"
       },
       {
         "name": "startingAfter",
         "schema": "string",
-        "description": "Return the page of results immediately after this cursor"
+        "description": "Return the page of results immediately after this cursor",
+        "example": "v1.eyJpZCI6IjEwMDAifQo="
       },
       {
         "name": "endingBefore",
         "schema": "string",
-        "description": "Return the page of results immediately before this cursor"
+        "description": "Return the page of results immediately before this cursor",
+        "example": "v1.eyJpZCI6IjExMDAifQo="
       },
       {
         "name": "limit",
         "schema": "integer",
-        "description": "Number of results to return per page"
+        "description": "Number of results to return per page",
+        "example": 10,
+        "default": 10
       },
       {
         "name": "sort",
@@ -2881,7 +3052,8 @@ export default function SnykTypeScriptSdk() {
       {
         "name": "direction",
         "schema": "string",
-        "description": "Return collections sorted in the specified direction"
+        "description": "Return collections sorted in the specified direction",
+        "default": "DESC"
       },
       {
         "name": "name",
@@ -2933,13 +3105,15 @@ export default function SnykTypeScriptSdk() {
         "name": "version",
         "schema": "string",
         "required": true,
-        "description": "The requested version of the endpoint to process the request"
+        "description": "The requested version of the endpoint to process the request",
+        "example": "2021-06-04"
       },
       {
         "name": "orgId",
         "schema": "string",
         "required": true,
-        "description": "Org ID"
+        "description": "Org ID",
+        "example": "ORG_ID"
       },
       {
         "name": "data",
@@ -2991,19 +3165,22 @@ export default function SnykTypeScriptSdk() {
         "name": "version",
         "schema": "string",
         "required": true,
-        "description": "The requested version of the endpoint to process the request"
+        "description": "The requested version of the endpoint to process the request",
+        "example": "2021-06-04"
       },
       {
         "name": "orgId",
         "schema": "string",
         "required": true,
-        "description": "Org ID"
+        "description": "Org ID",
+        "example": "ORG_ID"
       },
       {
         "name": "collectionId",
         "schema": "string",
         "required": true,
-        "description": "Unique identifier for a collection"
+        "description": "Unique identifier for a collection",
+        "example": "COLLECTION_ID"
       }
     ],
     "responses": [
@@ -3049,19 +3226,22 @@ export default function SnykTypeScriptSdk() {
         "name": "version",
         "schema": "string",
         "required": true,
-        "description": "The requested version of the endpoint to process the request"
+        "description": "The requested version of the endpoint to process the request",
+        "example": "2021-06-04"
       },
       {
         "name": "orgId",
         "schema": "string",
         "required": true,
-        "description": "Org ID"
+        "description": "Org ID",
+        "example": "ORG_ID"
       },
       {
         "name": "collectionId",
         "schema": "string",
         "required": true,
-        "description": "Unique identifier for a collection"
+        "description": "Unique identifier for a collection",
+        "example": "COLLECTION_ID"
       }
     ],
     "responses": [
@@ -3107,19 +3287,22 @@ export default function SnykTypeScriptSdk() {
         "name": "version",
         "schema": "string",
         "required": true,
-        "description": "The requested version of the endpoint to process the request"
+        "description": "The requested version of the endpoint to process the request",
+        "example": "2021-06-04"
       },
       {
         "name": "orgId",
         "schema": "string",
         "required": true,
-        "description": "Org ID"
+        "description": "Org ID",
+        "example": "ORG_ID"
       },
       {
         "name": "collectionId",
         "schema": "string",
         "required": true,
-        "description": "Unique identifier for a collection"
+        "description": "Unique identifier for a collection",
+        "example": "COLLECTION_ID"
       },
       {
         "name": "data",
@@ -3171,19 +3354,22 @@ export default function SnykTypeScriptSdk() {
         "name": "version",
         "schema": "string",
         "required": true,
-        "description": "The requested version of the endpoint to process the request"
+        "description": "The requested version of the endpoint to process the request",
+        "example": "2021-06-04"
       },
       {
         "name": "orgId",
         "schema": "string",
         "required": true,
-        "description": "Org ID"
+        "description": "Org ID",
+        "example": "ORG_ID"
       },
       {
         "name": "collectionId",
         "schema": "string",
         "required": true,
-        "description": "Unique identifier for a collection"
+        "description": "Unique identifier for a collection",
+        "example": "COLLECTION_ID"
       },
       {
         "name": "data",
@@ -3235,34 +3421,41 @@ export default function SnykTypeScriptSdk() {
         "name": "version",
         "schema": "string",
         "required": true,
-        "description": "The requested version of the endpoint to process the request"
+        "description": "The requested version of the endpoint to process the request",
+        "example": "2021-06-04"
       },
       {
         "name": "orgId",
         "schema": "string",
         "required": true,
-        "description": "Org ID"
+        "description": "Org ID",
+        "example": "ORG_ID"
       },
       {
         "name": "collectionId",
         "schema": "string",
         "required": true,
-        "description": "Unique identifier for a collection"
+        "description": "Unique identifier for a collection",
+        "example": "COLLECTION_ID"
       },
       {
         "name": "startingAfter",
         "schema": "string",
-        "description": "Return the page of results immediately after this cursor"
+        "description": "Return the page of results immediately after this cursor",
+        "example": "v1.eyJpZCI6IjEwMDAifQo="
       },
       {
         "name": "endingBefore",
         "schema": "string",
-        "description": "Return the page of results immediately before this cursor"
+        "description": "Return the page of results immediately before this cursor",
+        "example": "v1.eyJpZCI6IjExMDAifQo="
       },
       {
         "name": "limit",
         "schema": "integer",
-        "description": "Number of results to return per page"
+        "description": "Number of results to return per page",
+        "example": 10,
+        "default": 10
       },
       {
         "name": "sort",
@@ -3272,7 +3465,8 @@ export default function SnykTypeScriptSdk() {
       {
         "name": "direction",
         "schema": "string",
-        "description": "Return projects sorted in the specified direction"
+        "description": "Return projects sorted in the specified direction",
+        "default": "DESC"
       },
       {
         "name": "targetId",
@@ -3329,19 +3523,22 @@ export default function SnykTypeScriptSdk() {
         "name": "version",
         "schema": "string",
         "required": true,
-        "description": "The requested version of the endpoint to process the request"
+        "description": "The requested version of the endpoint to process the request",
+        "example": "2021-06-04"
       },
       {
         "name": "orgId",
         "schema": "string",
         "required": true,
-        "description": "Org ID"
+        "description": "Org ID",
+        "example": "ORG_ID"
       },
       {
         "name": "collectionId",
         "schema": "string",
         "required": true,
-        "description": "Unique identifier for a collection"
+        "description": "Unique identifier for a collection",
+        "example": "COLLECTION_ID"
       },
       {
         "name": "data",
@@ -3393,43 +3590,57 @@ export default function SnykTypeScriptSdk() {
         "name": "orgId",
         "schema": "string",
         "required": true,
-        "description": "Org ID"
+        "description": "Org ID",
+        "example": "f59045b3-f093-40c3-871d-a334ae30c568"
       },
       {
         "name": "imageIds",
         "schema": "array",
-        "description": "A comma-separated list of Image IDs"
+        "description": "A comma-separated list of Image IDs",
+        "example": [
+          "sha256:b26f21f90920dba8401e30b89ad803587f81cce9bd1f92750f963556da2f930f",
+          "sha256:28984a62eb713aa5fff922ba06e8689f20e4b2f07de30f3d753b868389c0904f"
+        ]
       },
       {
         "name": "platform",
         "schema": "string",
-        "description": "The image Operating System and processor architecture"
+        "description": "The image Operating System and processor architecture",
+        "example": "linux/amd64"
       },
       {
         "name": "names",
         "schema": "array",
-        "description": "The container registry names"
+        "description": "The container registry names",
+        "example": [
+          "gcr.io/snyk/redis:5"
+        ]
       },
       {
         "name": "version",
         "schema": "string",
         "required": true,
-        "description": "The requested version of the endpoint to process the request"
+        "description": "The requested version of the endpoint to process the request",
+        "example": "2021-06-04"
       },
       {
         "name": "limit",
         "schema": "integer",
-        "description": "Number of results to return per page"
+        "description": "Number of results to return per page",
+        "example": 10,
+        "default": 10
       },
       {
         "name": "startingAfter",
         "schema": "string",
-        "description": "Return the page of results immediately after this cursor"
+        "description": "Return the page of results immediately after this cursor",
+        "example": "v1.eyJpZCI6IjEwMDAifQo="
       },
       {
         "name": "endingBefore",
         "schema": "string",
-        "description": "Return the page of results immediately before this cursor"
+        "description": "Return the page of results immediately before this cursor",
+        "example": "v1.eyJpZCI6IjExMDAifQo="
       }
     ],
     "responses": [
@@ -3475,19 +3686,22 @@ export default function SnykTypeScriptSdk() {
         "name": "version",
         "schema": "string",
         "required": true,
-        "description": "The requested version of the endpoint to process the request"
+        "description": "The requested version of the endpoint to process the request",
+        "example": "2021-06-04"
       },
       {
         "name": "orgId",
         "schema": "string",
         "required": true,
-        "description": "Org ID"
+        "description": "Org ID",
+        "example": "f59045b3-f093-40c3-871d-a334ae30c568"
       },
       {
         "name": "imageId",
         "schema": "string",
         "required": true,
-        "description": "Image ID"
+        "description": "Image ID",
+        "example": "sha256:2bd864580926b790a22c8b96fd74496fe87b3c59c0774fe144bab2788e78e676"
       }
     ],
     "responses": [
@@ -3533,34 +3747,41 @@ export default function SnykTypeScriptSdk() {
         "name": "orgId",
         "schema": "string",
         "required": true,
-        "description": "Org ID"
+        "description": "Org ID",
+        "example": "f59045b3-f093-40c3-871d-a334ae30c568"
       },
       {
         "name": "imageId",
         "schema": "string",
         "required": true,
-        "description": "Image ID"
+        "description": "Image ID",
+        "example": "sha256:2bd864580926b790a22c8b96fd74496fe87b3c59c0774fe144bab2788e78e676"
       },
       {
         "name": "version",
         "schema": "string",
         "required": true,
-        "description": "The requested version of the endpoint to process the request"
+        "description": "The requested version of the endpoint to process the request",
+        "example": "2021-06-04"
       },
       {
         "name": "limit",
         "schema": "integer",
-        "description": "Number of results to return per page"
+        "description": "Number of results to return per page",
+        "example": 10,
+        "default": 10
       },
       {
         "name": "startingAfter",
         "schema": "string",
-        "description": "Return the page of results immediately after this cursor"
+        "description": "Return the page of results immediately after this cursor",
+        "example": "v1.eyJpZCI6IjEwMDAifQo="
       },
       {
         "name": "endingBefore",
         "schema": "string",
-        "description": "Return the page of results immediately before this cursor"
+        "description": "Return the page of results immediately before this cursor",
+        "example": "v1.eyJpZCI6IjExMDAifQo="
       }
     ],
     "responses": [
@@ -3606,28 +3827,34 @@ export default function SnykTypeScriptSdk() {
         "name": "orgId",
         "schema": "string",
         "required": true,
-        "description": "The id of the org the user is being invited to"
+        "description": "The id of the org the user is being invited to",
+        "example": "ORG_ID"
       },
       {
         "name": "version",
         "schema": "string",
         "required": true,
-        "description": "The requested version of the endpoint to process the request"
+        "description": "The requested version of the endpoint to process the request",
+        "example": "2021-06-04"
       },
       {
         "name": "startingAfter",
         "schema": "string",
-        "description": "Return the page of results immediately after this cursor"
+        "description": "Return the page of results immediately after this cursor",
+        "example": "v1.eyJpZCI6IjEwMDAifQo="
       },
       {
         "name": "endingBefore",
         "schema": "string",
-        "description": "Return the page of results immediately before this cursor"
+        "description": "Return the page of results immediately before this cursor",
+        "example": "v1.eyJpZCI6IjExMDAifQo="
       },
       {
         "name": "limit",
         "schema": "integer",
-        "description": "Number of results to return per page"
+        "description": "Number of results to return per page",
+        "example": 10,
+        "default": 10
       }
     ],
     "responses": [
@@ -3669,13 +3896,15 @@ export default function SnykTypeScriptSdk() {
         "name": "version",
         "schema": "string",
         "required": true,
-        "description": "The requested version of the endpoint to process the request"
+        "description": "The requested version of the endpoint to process the request",
+        "example": "2021-06-04"
       },
       {
         "name": "orgId",
         "schema": "string",
         "required": true,
-        "description": "The id of the org the user is being invited to"
+        "description": "The id of the org the user is being invited to",
+        "example": "ORG_ID"
       },
       {
         "name": "data",
@@ -3723,19 +3952,22 @@ export default function SnykTypeScriptSdk() {
         "name": "orgId",
         "schema": "string",
         "required": true,
-        "description": "The id of the org the user is being invited to"
+        "description": "The id of the org the user is being invited to",
+        "example": "ORG_ID"
       },
       {
         "name": "inviteId",
         "schema": "string",
         "required": true,
-        "description": "The id of the pending invite to cancel"
+        "description": "The id of the pending invite to cancel",
+        "example": "INVITE_ID"
       },
       {
         "name": "version",
         "schema": "string",
         "required": true,
-        "description": "The requested version of the endpoint to process the request"
+        "description": "The requested version of the endpoint to process the request",
+        "example": "2021-06-04"
       }
     ],
     "responses": [
@@ -3777,43 +4009,52 @@ export default function SnykTypeScriptSdk() {
         "name": "version",
         "schema": "string",
         "required": true,
-        "description": "The requested version of the endpoint to process the request"
+        "description": "The requested version of the endpoint to process the request",
+        "example": "2021-06-04"
       },
       {
         "name": "startingAfter",
         "schema": "string",
-        "description": "Return the page of results immediately after this cursor"
+        "description": "Return the page of results immediately after this cursor",
+        "example": "v1.eyJpZCI6IjEwMDAifQo="
       },
       {
         "name": "endingBefore",
         "schema": "string",
-        "description": "Return the page of results immediately before this cursor"
+        "description": "Return the page of results immediately before this cursor",
+        "example": "v1.eyJpZCI6IjExMDAifQo="
       },
       {
         "name": "limit",
         "schema": "integer",
-        "description": "Number of results to return per page"
+        "description": "Number of results to return per page",
+        "example": 10,
+        "default": 10
       },
       {
         "name": "orgId",
         "schema": "string",
         "required": true,
-        "description": "Org ID"
+        "description": "Org ID",
+        "example": "4a18d42f-0706-4ad0-b127-24078731fbed"
       },
       {
         "name": "scanItemId",
         "schema": "string",
-        "description": "A scan item id to filter issues through their scan item relationship."
+        "description": "A scan item id to filter issues through their scan item relationship.",
+        "example": "4a18d42f-0706-4ad0-b127-24078731fbee"
       },
       {
         "name": "scanItemType",
         "schema": "string",
-        "description": "A scan item types to filter issues through their scan item relationship."
+        "description": "A scan item types to filter issues through their scan item relationship.",
+        "example": "project"
       },
       {
         "name": "type",
         "schema": "string",
-        "description": "An issue type to filter issues."
+        "description": "An issue type to filter issues.",
+        "example": "cloud"
       },
       {
         "name": "updatedBefore",
@@ -3886,19 +4127,22 @@ export default function SnykTypeScriptSdk() {
         "name": "version",
         "schema": "string",
         "required": true,
-        "description": "The requested version of the endpoint to process the request"
+        "description": "The requested version of the endpoint to process the request",
+        "example": "2021-06-04"
       },
       {
         "name": "orgId",
         "schema": "string",
         "required": true,
-        "description": "Org ID"
+        "description": "Org ID",
+        "example": "4a18d42f-0706-4ad0-b127-24078731fbed"
       },
       {
         "name": "issueId",
         "schema": "string",
         "required": true,
-        "description": "Issue ID"
+        "description": "Issue ID",
+        "example": "4a18d42f-0706-4ad0-b127-24078731fbed"
       }
     ],
     "responses": [
@@ -3944,13 +4188,15 @@ export default function SnykTypeScriptSdk() {
         "name": "version",
         "schema": "string",
         "required": true,
-        "description": "The requested version of the endpoint to process the request"
+        "description": "The requested version of the endpoint to process the request",
+        "example": "2021-06-04"
       },
       {
         "name": "orgId",
         "schema": "string",
         "required": true,
-        "description": "Unique identifier for an organization"
+        "description": "Unique identifier for an organization",
+        "example": "ORG_ID"
       },
       {
         "name": "data",
@@ -4002,19 +4248,22 @@ export default function SnykTypeScriptSdk() {
         "name": "version",
         "schema": "string",
         "required": true,
-        "description": "The requested version of the endpoint to process the request"
+        "description": "The requested version of the endpoint to process the request",
+        "example": "2021-06-04"
       },
       {
         "name": "purl",
         "schema": "string",
         "required": true,
-        "description": "A URI-encoded Package URL (purl). Supported purl types are apk, cargo, cocoapods, composer, deb, gem, generic, golang, hex, maven, npm, nuget, pub, pypi, rpm, and swift. A version for the package is also required."
+        "description": "A URI-encoded Package URL (purl). Supported purl types are apk, cargo, cocoapods, composer, deb, gem, generic, golang, hex, maven, npm, nuget, pub, pypi, rpm, and swift. A version for the package is also required.",
+        "example": "pkg%3Amaven%2Fcom.fasterxml.woodstox%2Fwoodstox-core%405.0.0"
       },
       {
         "name": "orgId",
         "schema": "string",
         "required": true,
-        "description": "Unique identifier for an organization"
+        "description": "Unique identifier for an organization",
+        "example": "ORG_ID"
       },
       {
         "name": "offset",
@@ -4070,7 +4319,8 @@ export default function SnykTypeScriptSdk() {
         "name": "orgId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the org that the projects belong to."
+        "description": "The ID of the org that the projects belong to.",
+        "example": "ORG_ID"
       },
       {
         "name": "targetId",
@@ -4140,12 +4390,14 @@ export default function SnykTypeScriptSdk() {
       {
         "name": "cliMonitoredBefore",
         "schema": "string",
-        "description": "Filter projects uploaded and monitored before this date (encoded value)"
+        "description": "Filter projects uploaded and monitored before this date (encoded value)",
+        "example": "2021-05-29T09:50:54.014Z"
       },
       {
         "name": "cliMonitoredAfter",
         "schema": "string",
-        "description": "Filter projects uploaded and monitored after this date (encoded value)"
+        "description": "Filter projects uploaded and monitored after this date (encoded value)",
+        "example": "2021-05-29T09:50:54.014Z"
       },
       {
         "name": "importingUserPublicId",
@@ -4155,7 +4407,11 @@ export default function SnykTypeScriptSdk() {
       {
         "name": "tags",
         "schema": "array",
-        "description": "Return projects that match all the provided tags"
+        "description": "Return projects that match all the provided tags",
+        "example": [
+          "key1:value1",
+          "key2:value2"
+        ]
       },
       {
         "name": "businessCriticality",
@@ -4176,22 +4432,27 @@ export default function SnykTypeScriptSdk() {
         "name": "version",
         "schema": "string",
         "required": true,
-        "description": "The requested version of the endpoint to process the request"
+        "description": "The requested version of the endpoint to process the request",
+        "example": "2021-06-04"
       },
       {
         "name": "startingAfter",
         "schema": "string",
-        "description": "Return the page of results immediately after this cursor"
+        "description": "Return the page of results immediately after this cursor",
+        "example": "v1.eyJpZCI6IjEwMDAifQo="
       },
       {
         "name": "endingBefore",
         "schema": "string",
-        "description": "Return the page of results immediately before this cursor"
+        "description": "Return the page of results immediately before this cursor",
+        "example": "v1.eyJpZCI6IjExMDAifQo="
       },
       {
         "name": "limit",
         "schema": "integer",
-        "description": "Number of results to return per page"
+        "description": "Number of results to return per page",
+        "example": 10,
+        "default": 10
       }
     ],
     "responses": [
@@ -4233,19 +4494,22 @@ export default function SnykTypeScriptSdk() {
         "name": "orgId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the org to which the project belongs to."
+        "description": "The ID of the org to which the project belongs to.",
+        "example": "ORG_ID"
       },
       {
         "name": "projectId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the project."
+        "description": "The ID of the project.",
+        "example": "PROJECT_ID"
       },
       {
         "name": "version",
         "schema": "string",
         "required": true,
-        "description": "The requested version of the endpoint to process the request"
+        "description": "The requested version of the endpoint to process the request",
+        "example": "2021-06-04"
       }
     ],
     "responses": [
@@ -4287,13 +4551,15 @@ export default function SnykTypeScriptSdk() {
         "name": "orgId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the org to which the project belongs to."
+        "description": "The ID of the org to which the project belongs to.",
+        "example": "ORG_ID"
       },
       {
         "name": "projectId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the project."
+        "description": "The ID of the project.",
+        "example": "PROJECT_ID"
       },
       {
         "name": "expand",
@@ -4314,7 +4580,8 @@ export default function SnykTypeScriptSdk() {
         "name": "version",
         "schema": "string",
         "required": true,
-        "description": "The requested version of the endpoint to process the request"
+        "description": "The requested version of the endpoint to process the request",
+        "example": "2021-06-04"
       }
     ],
     "responses": [
@@ -4356,19 +4623,22 @@ export default function SnykTypeScriptSdk() {
         "name": "version",
         "schema": "string",
         "required": true,
-        "description": "The requested version of the endpoint to process the request"
+        "description": "The requested version of the endpoint to process the request",
+        "example": "2021-06-04"
       },
       {
         "name": "orgId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the Org the project belongs to."
+        "description": "The ID of the Org the project belongs to.",
+        "example": "ORG_ID"
       },
       {
         "name": "projectId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the project to patch."
+        "description": "The ID of the project to patch.",
+        "example": "PROJECT_ID"
       },
       {
         "name": "expand",
@@ -4421,24 +4691,28 @@ export default function SnykTypeScriptSdk() {
         "name": "version",
         "schema": "string",
         "required": true,
-        "description": "The requested version of the endpoint to process the request"
+        "description": "The requested version of the endpoint to process the request",
+        "example": "2021-06-04"
       },
       {
         "name": "orgId",
         "schema": "string",
         "required": true,
-        "description": "Unique identifier for an organization"
+        "description": "Unique identifier for an organization",
+        "example": "ORG_ID"
       },
       {
         "name": "projectId",
         "schema": "string",
         "required": true,
-        "description": "Unique identifier for a project"
+        "description": "Unique identifier for a project",
+        "example": "PROJECT_ID"
       },
       {
         "name": "format",
         "schema": "string",
-        "description": "The desired SBOM format of the response."
+        "description": "The desired SBOM format of the response.",
+        "example": "cyclonedx1.4+json"
       }
     ],
     "responses": [
@@ -4484,28 +4758,34 @@ export default function SnykTypeScriptSdk() {
         "name": "orgId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the Snyk Organization that owns the service accounts."
+        "description": "The ID of the Snyk Organization that owns the service accounts.",
+        "example": "ORG_ID"
       },
       {
         "name": "startingAfter",
         "schema": "string",
-        "description": "Return the page of results immediately after this cursor"
+        "description": "Return the page of results immediately after this cursor",
+        "example": "v1.eyJpZCI6IjEwMDAifQo="
       },
       {
         "name": "endingBefore",
         "schema": "string",
-        "description": "Return the page of results immediately before this cursor"
+        "description": "Return the page of results immediately before this cursor",
+        "example": "v1.eyJpZCI6IjExMDAifQo="
       },
       {
         "name": "limit",
         "schema": "integer",
-        "description": "Number of results to return per page"
+        "description": "Number of results to return per page",
+        "example": 10,
+        "default": 10
       },
       {
         "name": "version",
         "schema": "string",
         "required": true,
-        "description": "The requested version of the endpoint to process the request"
+        "description": "The requested version of the endpoint to process the request",
+        "example": "2021-06-04"
       }
     ],
     "responses": [
@@ -4547,13 +4827,15 @@ export default function SnykTypeScriptSdk() {
         "name": "orgId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the Snyk Organization that is creating and will own the service account."
+        "description": "The ID of the Snyk Organization that is creating and will own the service account.",
+        "example": "ORG_ID"
       },
       {
         "name": "version",
         "schema": "string",
         "required": true,
-        "description": "The requested version of the endpoint to process the request"
+        "description": "The requested version of the endpoint to process the request",
+        "example": "2021-06-04"
       },
       {
         "name": "data",
@@ -4597,19 +4879,22 @@ export default function SnykTypeScriptSdk() {
         "name": "orgId",
         "schema": "string",
         "required": true,
-        "description": "The ID of org to which the service account belongs."
+        "description": "The ID of org to which the service account belongs.",
+        "example": "ORG_ID"
       },
       {
         "name": "serviceaccountId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the service account."
+        "description": "The ID of the service account.",
+        "example": "SERVICEACCOUNT_ID"
       },
       {
         "name": "version",
         "schema": "string",
         "required": true,
-        "description": "The requested version of the endpoint to process the request"
+        "description": "The requested version of the endpoint to process the request",
+        "example": "2021-06-04"
       }
     ],
     "responses": [
@@ -4651,19 +4936,22 @@ export default function SnykTypeScriptSdk() {
         "name": "orgId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the Snyk Organization that owns the service account."
+        "description": "The ID of the Snyk Organization that owns the service account.",
+        "example": "ORG_ID"
       },
       {
         "name": "serviceaccountId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the service account."
+        "description": "The ID of the service account.",
+        "example": "SERVICEACCOUNT_ID"
       },
       {
         "name": "version",
         "schema": "string",
         "required": true,
-        "description": "The requested version of the endpoint to process the request"
+        "description": "The requested version of the endpoint to process the request",
+        "example": "2021-06-04"
       }
     ],
     "responses": [
@@ -4705,19 +4993,22 @@ export default function SnykTypeScriptSdk() {
         "name": "orgId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the Snyk Organization that owns the service account."
+        "description": "The ID of the Snyk Organization that owns the service account.",
+        "example": "ORG_ID"
       },
       {
         "name": "serviceaccountId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the service account."
+        "description": "The ID of the service account.",
+        "example": "SERVICEACCOUNT_ID"
       },
       {
         "name": "version",
         "schema": "string",
         "required": true,
-        "description": "The requested version of the endpoint to process the request"
+        "description": "The requested version of the endpoint to process the request",
+        "example": "2021-06-04"
       },
       {
         "name": "data",
@@ -4765,19 +5056,22 @@ export default function SnykTypeScriptSdk() {
         "name": "orgId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the Snyk Organization that owns the service account."
+        "description": "The ID of the Snyk Organization that owns the service account.",
+        "example": "ORG_ID"
       },
       {
         "name": "serviceaccountId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the service account."
+        "description": "The ID of the service account.",
+        "example": "SERVICEACCOUNT_ID"
       },
       {
         "name": "version",
         "schema": "string",
         "required": true,
-        "description": "The requested version of the endpoint to process the request"
+        "description": "The requested version of the endpoint to process the request",
+        "example": "2021-06-04"
       },
       {
         "name": "data",
@@ -4825,13 +5119,15 @@ export default function SnykTypeScriptSdk() {
         "name": "version",
         "schema": "string",
         "required": true,
-        "description": "The requested version of the endpoint to process the request"
+        "description": "The requested version of the endpoint to process the request",
+        "example": "2021-06-04"
       },
       {
         "name": "orgId",
         "schema": "string",
         "required": true,
-        "description": "The id of the org whose Infrastructure as Code settings are requested."
+        "description": "The id of the org whose Infrastructure as Code settings are requested.",
+        "example": "ORG_ID"
       }
     ],
     "responses": [
@@ -4873,13 +5169,15 @@ export default function SnykTypeScriptSdk() {
         "name": "version",
         "schema": "string",
         "required": true,
-        "description": "The requested version of the endpoint to process the request"
+        "description": "The requested version of the endpoint to process the request",
+        "example": "2021-06-04"
       },
       {
         "name": "orgId",
         "schema": "string",
         "required": true,
-        "description": "The id of the org whose Infrastructure as Code settings are getting updated"
+        "description": "The id of the org whose Infrastructure as Code settings are getting updated",
+        "example": "ORG_ID"
       },
       {
         "name": "data",
@@ -4926,13 +5224,15 @@ export default function SnykTypeScriptSdk() {
         "name": "version",
         "schema": "string",
         "required": true,
-        "description": "The requested version of the endpoint to process the request"
+        "description": "The requested version of the endpoint to process the request",
+        "example": "2021-06-04"
       },
       {
         "name": "orgId",
         "schema": "string",
         "required": true,
-        "description": "The id of the org for which we want to retrieve the SAST settings"
+        "description": "The id of the org for which we want to retrieve the SAST settings",
+        "example": "ORG_ID"
       }
     ],
     "responses": [
@@ -4974,13 +5274,15 @@ export default function SnykTypeScriptSdk() {
         "name": "version",
         "schema": "string",
         "required": true,
-        "description": "The requested version of the endpoint to process the request"
+        "description": "The requested version of the endpoint to process the request",
+        "example": "2021-06-04"
       },
       {
         "name": "orgId",
         "schema": "string",
         "required": true,
-        "description": "The id of the org for which we want to update the Snyk Code setting"
+        "description": "The id of the org for which we want to update the Snyk Code setting",
+        "example": "ORG_ID"
       },
       {
         "name": "data",
@@ -5028,19 +5330,22 @@ export default function SnykTypeScriptSdk() {
         "name": "version",
         "schema": "string",
         "required": true,
-        "description": "The requested version of the endpoint to process the request"
+        "description": "The requested version of the endpoint to process the request",
+        "example": "2021-06-04"
       },
       {
         "name": "orgId",
         "schema": "string",
         "required": true,
-        "description": "Org ID"
+        "description": "Org ID",
+        "example": "ORG_ID"
       },
       {
         "name": "botId",
         "schema": "string",
         "required": true,
-        "description": "Bot ID"
+        "description": "Bot ID",
+        "example": "BOT_ID"
       }
     ],
     "responses": [
@@ -5086,19 +5391,22 @@ export default function SnykTypeScriptSdk() {
         "name": "version",
         "schema": "string",
         "required": true,
-        "description": "The requested version of the endpoint to process the request"
+        "description": "The requested version of the endpoint to process the request",
+        "example": "2021-06-04"
       },
       {
         "name": "orgId",
         "schema": "string",
         "required": true,
-        "description": "Org ID"
+        "description": "Org ID",
+        "example": "ORG_ID"
       },
       {
         "name": "botId",
         "schema": "string",
         "required": true,
-        "description": "Bot ID"
+        "description": "Bot ID",
+        "example": "BOT_ID"
       }
     ],
     "responses": [
@@ -5144,19 +5452,22 @@ export default function SnykTypeScriptSdk() {
         "name": "version",
         "schema": "string",
         "required": true,
-        "description": "The requested version of the endpoint to process the request"
+        "description": "The requested version of the endpoint to process the request",
+        "example": "2021-06-04"
       },
       {
         "name": "orgId",
         "schema": "string",
         "required": true,
-        "description": "Org ID"
+        "description": "Org ID",
+        "example": "ORG_ID"
       },
       {
         "name": "botId",
         "schema": "string",
         "required": true,
-        "description": "Bot ID"
+        "description": "Bot ID",
+        "example": "BOT_ID"
       },
       {
         "name": "data",
@@ -5208,34 +5519,41 @@ export default function SnykTypeScriptSdk() {
         "name": "version",
         "schema": "string",
         "required": true,
-        "description": "The requested version of the endpoint to process the request"
+        "description": "The requested version of the endpoint to process the request",
+        "example": "2021-06-04"
       },
       {
         "name": "startingAfter",
         "schema": "string",
-        "description": "Return the page of results immediately after this cursor"
+        "description": "Return the page of results immediately after this cursor",
+        "example": "v1.eyJpZCI6IjEwMDAifQo="
       },
       {
         "name": "endingBefore",
         "schema": "string",
-        "description": "Return the page of results immediately before this cursor"
+        "description": "Return the page of results immediately before this cursor",
+        "example": "v1.eyJpZCI6IjExMDAifQo="
       },
       {
         "name": "limit",
         "schema": "integer",
-        "description": "Number of results to return per page"
+        "description": "Number of results to return per page",
+        "example": 10,
+        "default": 10
       },
       {
         "name": "orgId",
         "schema": "string",
         "required": true,
-        "description": "Org ID"
+        "description": "Org ID",
+        "example": "ORG_ID"
       },
       {
         "name": "botId",
         "schema": "string",
         "required": true,
-        "description": "Bot ID"
+        "description": "Bot ID",
+        "example": "BOT_ID"
       }
     ],
     "responses": [
@@ -5281,25 +5599,29 @@ export default function SnykTypeScriptSdk() {
         "name": "version",
         "schema": "string",
         "required": true,
-        "description": "The requested version of the endpoint to process the request"
+        "description": "The requested version of the endpoint to process the request",
+        "example": "2021-06-04"
       },
       {
         "name": "orgId",
         "schema": "string",
         "required": true,
-        "description": "Org ID"
+        "description": "Org ID",
+        "example": "ORG_ID"
       },
       {
         "name": "projectId",
         "schema": "string",
         "required": true,
-        "description": "Project ID"
+        "description": "Project ID",
+        "example": "PROJECT_ID"
       },
       {
         "name": "botId",
         "schema": "string",
         "required": true,
-        "description": "Bot ID"
+        "description": "Bot ID",
+        "example": "BOT_ID"
       }
     ],
     "responses": [
@@ -5345,25 +5667,29 @@ export default function SnykTypeScriptSdk() {
         "name": "version",
         "schema": "string",
         "required": true,
-        "description": "The requested version of the endpoint to process the request"
+        "description": "The requested version of the endpoint to process the request",
+        "example": "2021-06-04"
       },
       {
         "name": "orgId",
         "schema": "string",
         "required": true,
-        "description": "Org ID"
+        "description": "Org ID",
+        "example": "ORG_ID"
       },
       {
         "name": "botId",
         "schema": "string",
         "required": true,
-        "description": "Bot ID"
+        "description": "Bot ID",
+        "example": "BOT_ID"
       },
       {
         "name": "projectId",
         "schema": "string",
         "required": true,
-        "description": "Project ID"
+        "description": "Project ID",
+        "example": "PROJECT_ID"
       },
       {
         "name": "data",
@@ -5414,25 +5740,29 @@ export default function SnykTypeScriptSdk() {
         "name": "version",
         "schema": "string",
         "required": true,
-        "description": "The requested version of the endpoint to process the request"
+        "description": "The requested version of the endpoint to process the request",
+        "example": "2021-06-04"
       },
       {
         "name": "orgId",
         "schema": "string",
         "required": true,
-        "description": "Org ID"
+        "description": "Org ID",
+        "example": "ORG_ID"
       },
       {
         "name": "projectId",
         "schema": "string",
         "required": true,
-        "description": "Project ID"
+        "description": "Project ID",
+        "example": "PROJECT_ID"
       },
       {
         "name": "botId",
         "schema": "string",
         "required": true,
-        "description": "Bot ID"
+        "description": "Bot ID",
+        "example": "BOT_ID"
       },
       {
         "name": "data",
@@ -5483,35 +5813,42 @@ export default function SnykTypeScriptSdk() {
       {
         "name": "startingAfter",
         "schema": "string",
-        "description": "Return the page of results immediately after this cursor"
+        "description": "Return the page of results immediately after this cursor",
+        "example": "v1.eyJpZCI6IjEwMDAifQo="
       },
       {
         "name": "endingBefore",
         "schema": "string",
-        "description": "Return the page of results immediately before this cursor"
+        "description": "Return the page of results immediately before this cursor",
+        "example": "v1.eyJpZCI6IjExMDAifQo="
       },
       {
         "name": "limit",
         "schema": "integer",
-        "description": "Number of results to return per page"
+        "description": "Number of results to return per page",
+        "example": 100,
+        "default": 1000
       },
       {
         "name": "version",
         "schema": "string",
         "required": true,
-        "description": "The requested version of the endpoint to process the request"
+        "description": "The requested version of the endpoint to process the request",
+        "example": "2021-06-04"
       },
       {
         "name": "orgId",
         "schema": "string",
         "required": true,
-        "description": "Org ID"
+        "description": "Org ID",
+        "example": "ORG_ID"
       },
       {
         "name": "tenantId",
         "schema": "string",
         "required": true,
-        "description": "Tenant ID"
+        "description": "Tenant ID",
+        "example": "TENANT_ID"
       }
     ],
     "responses": [
@@ -5557,25 +5894,29 @@ export default function SnykTypeScriptSdk() {
         "name": "version",
         "schema": "string",
         "required": true,
-        "description": "The requested version of the endpoint to process the request"
+        "description": "The requested version of the endpoint to process the request",
+        "example": "2021-06-04"
       },
       {
         "name": "orgId",
         "schema": "string",
         "required": true,
-        "description": "Org ID"
+        "description": "Org ID",
+        "example": "ORG_ID"
       },
       {
         "name": "channelId",
         "schema": "string",
         "required": true,
-        "description": "Slack Channel ID"
+        "description": "Slack Channel ID",
+        "example": "CHANNEL_ID"
       },
       {
         "name": "tenantId",
         "schema": "string",
         "required": true,
-        "description": "Tenant ID"
+        "description": "Tenant ID",
+        "example": "TENANT_ID"
       }
     ],
     "responses": [
@@ -5621,17 +5962,20 @@ export default function SnykTypeScriptSdk() {
         "name": "version",
         "schema": "string",
         "required": true,
-        "description": "The requested version of the endpoint to process the request"
+        "description": "The requested version of the endpoint to process the request",
+        "example": "2021-06-04"
       },
       {
         "name": "startingAfter",
         "schema": "string",
-        "description": "Return the page of results immediately after this cursor"
+        "description": "Return the page of results immediately after this cursor",
+        "example": "v1.eyJpZCI6IjEwMDAifQo="
       },
       {
         "name": "endingBefore",
         "schema": "string",
-        "description": "Return the page of results immediately before this cursor"
+        "description": "Return the page of results immediately before this cursor",
+        "example": "v1.eyJpZCI6IjExMDAifQo="
       },
       {
         "name": "count",
@@ -5641,13 +5985,16 @@ export default function SnykTypeScriptSdk() {
       {
         "name": "limit",
         "schema": "integer",
-        "description": "Number of results to return per page"
+        "description": "Number of results to return per page",
+        "example": 10,
+        "default": 10
       },
       {
         "name": "orgId",
         "schema": "string",
         "required": true,
-        "description": "The id of the org to return a list of targets"
+        "description": "The id of the org to return a list of targets",
+        "example": "ORG_ID"
       },
       {
         "name": "isPrivate",
@@ -5657,7 +6004,8 @@ export default function SnykTypeScriptSdk() {
       {
         "name": "excludeEmpty",
         "schema": "boolean",
-        "description": "Return only the targets that has projects"
+        "description": "Return only the targets that has projects",
+        "default": true
       },
       {
         "name": "url",
@@ -5677,7 +6025,8 @@ export default function SnykTypeScriptSdk() {
       {
         "name": "createdGte",
         "schema": "string",
-        "description": "Return only targets which have been created at or after the specified date.\n"
+        "description": "Return only targets which have been created at or after the specified date.\n",
+        "example": "2022-01-01T16:00:00Z"
       }
     ],
     "responses": [
@@ -5719,19 +6068,22 @@ export default function SnykTypeScriptSdk() {
         "name": "version",
         "schema": "string",
         "required": true,
-        "description": "The requested version of the endpoint to process the request"
+        "description": "The requested version of the endpoint to process the request",
+        "example": "2021-06-04"
       },
       {
         "name": "orgId",
         "schema": "string",
         "required": true,
-        "description": "The id of the org to delete"
+        "description": "The id of the org to delete",
+        "example": "ORG_ID"
       },
       {
         "name": "targetId",
         "schema": "string",
         "required": true,
-        "description": "The id of the target to delete"
+        "description": "The id of the target to delete",
+        "example": "TARGET_ID"
       }
     ],
     "responses": [
@@ -5769,19 +6121,22 @@ export default function SnykTypeScriptSdk() {
         "name": "version",
         "schema": "string",
         "required": true,
-        "description": "The requested version of the endpoint to process the request"
+        "description": "The requested version of the endpoint to process the request",
+        "example": "2021-06-04"
       },
       {
         "name": "orgId",
         "schema": "string",
         "required": true,
-        "description": "The id of the org to return the target from"
+        "description": "The id of the org to return the target from",
+        "example": "ORG_ID"
       },
       {
         "name": "targetId",
         "schema": "string",
         "required": true,
-        "description": "The id of the target to return"
+        "description": "The id of the target to return",
+        "example": "TARGET_ID"
       }
     ],
     "responses": [
@@ -5819,22 +6174,27 @@ export default function SnykTypeScriptSdk() {
         "name": "version",
         "schema": "string",
         "required": true,
-        "description": "The requested version of the endpoint to process the request"
+        "description": "The requested version of the endpoint to process the request",
+        "example": "2021-06-04"
       },
       {
         "name": "startingAfter",
         "schema": "string",
-        "description": "Return the page of results immediately after this cursor"
+        "description": "Return the page of results immediately after this cursor",
+        "example": "v1.eyJpZCI6IjEwMDAifQo="
       },
       {
         "name": "endingBefore",
         "schema": "string",
-        "description": "Return the page of results immediately before this cursor"
+        "description": "Return the page of results immediately before this cursor",
+        "example": "v1.eyJpZCI6IjExMDAifQo="
       },
       {
         "name": "limit",
         "schema": "integer",
-        "description": "Number of results to return per page"
+        "description": "Number of results to return per page",
+        "example": 10,
+        "default": 10
       }
     ],
     "responses": [
@@ -5885,22 +6245,27 @@ export default function SnykTypeScriptSdk() {
         "name": "version",
         "schema": "string",
         "required": true,
-        "description": "The requested version of the endpoint to process the request"
+        "description": "The requested version of the endpoint to process the request",
+        "example": "2021-06-04"
       },
       {
         "name": "startingAfter",
         "schema": "string",
-        "description": "Return the page of results immediately after this cursor"
+        "description": "Return the page of results immediately after this cursor",
+        "example": "v1.eyJpZCI6IjEwMDAifQo="
       },
       {
         "name": "endingBefore",
         "schema": "string",
-        "description": "Return the page of results immediately before this cursor"
+        "description": "Return the page of results immediately before this cursor",
+        "example": "v1.eyJpZCI6IjExMDAifQo="
       },
       {
         "name": "limit",
         "schema": "integer",
-        "description": "Number of results to return per page"
+        "description": "Number of results to return per page",
+        "example": 10,
+        "default": 10
       }
     ],
     "responses": [
@@ -5946,13 +6311,15 @@ export default function SnykTypeScriptSdk() {
         "name": "version",
         "schema": "string",
         "required": true,
-        "description": "The requested version of the endpoint to process the request"
+        "description": "The requested version of the endpoint to process the request",
+        "example": "2021-06-04"
       },
       {
         "name": "installId",
         "schema": "string",
         "required": true,
-        "description": "Install ID"
+        "description": "Install ID",
+        "example": "INSTALL_ID"
       }
     ],
     "responses": [
@@ -5998,13 +6365,15 @@ export default function SnykTypeScriptSdk() {
         "name": "version",
         "schema": "string",
         "required": true,
-        "description": "The requested version of the endpoint to process the request"
+        "description": "The requested version of the endpoint to process the request",
+        "example": "2021-06-04"
       },
       {
         "name": "appId",
         "schema": "string",
         "required": true,
-        "description": "App ID"
+        "description": "App ID",
+        "example": "APP_ID"
       }
     ],
     "responses": [
@@ -6050,28 +6419,34 @@ export default function SnykTypeScriptSdk() {
         "name": "version",
         "schema": "string",
         "required": true,
-        "description": "The requested version of the endpoint to process the request"
+        "description": "The requested version of the endpoint to process the request",
+        "example": "2021-06-04"
       },
       {
         "name": "startingAfter",
         "schema": "string",
-        "description": "Return the page of results immediately after this cursor"
+        "description": "Return the page of results immediately after this cursor",
+        "example": "v1.eyJpZCI6IjEwMDAifQo="
       },
       {
         "name": "endingBefore",
         "schema": "string",
-        "description": "Return the page of results immediately before this cursor"
+        "description": "Return the page of results immediately before this cursor",
+        "example": "v1.eyJpZCI6IjExMDAifQo="
       },
       {
         "name": "limit",
         "schema": "integer",
-        "description": "Number of results to return per page"
+        "description": "Number of results to return per page",
+        "example": 10,
+        "default": 10
       },
       {
         "name": "appId",
         "schema": "string",
         "required": true,
-        "description": "App ID"
+        "description": "App ID",
+        "example": "APP_ID"
       }
     ],
     "responses": [
@@ -6117,19 +6492,22 @@ export default function SnykTypeScriptSdk() {
         "name": "version",
         "schema": "string",
         "required": true,
-        "description": "The requested version of the endpoint to process the request"
+        "description": "The requested version of the endpoint to process the request",
+        "example": "2021-06-04"
       },
       {
         "name": "appId",
         "schema": "string",
         "required": true,
-        "description": "App ID"
+        "description": "App ID",
+        "example": "APP_ID"
       },
       {
         "name": "sessionId",
         "schema": "string",
         "required": true,
-        "description": "Session ID"
+        "description": "Session ID",
+        "example": "SESSION_ID"
       }
     ],
     "responses": [
@@ -6175,6 +6553,8 @@ export default function SnykTypeScriptSdk() {
       parameters={447}
       difficulty="Hard"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/snyk/openapi.yaml"
+      openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/snyk/openapi.yaml"
+      
     />
   );
 }

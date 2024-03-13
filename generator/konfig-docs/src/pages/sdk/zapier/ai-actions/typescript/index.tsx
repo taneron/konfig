@@ -4,11 +4,13 @@ import { HttpMethodsEnum } from "konfig-lib/dist/forEachOperation";
 import Description from "./_description.mdx";
 // @ts-ignore
 import GettingStarted from "./_getting-started.mdx";
-import { Sdk } from "@site/src/components/Sdk";
+// @ts-ignore
+import FirstRequest from "./_first-request.mdx"
+import { SdkNew } from "@site/src/components/SdkNew";
 
 export default function ZapierAiActionsTypeScriptSdk() {
   return (
-    <Sdk
+    <SdkNew
       sdkName="zapier-actions-typescript-sdk"
       metaDescription="AI Actions is a tool for builders to equip AI platforms (or custom integrations) with the ability to run any Zapier action! The 20,000+ searches and actions you know and love from the Zapier automation platform can be used with your favorite AI tool."
       company="Zapier"
@@ -17,13 +19,15 @@ export default function ZapierAiActionsTypeScriptSdk() {
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/zapier/ai-actions/logo.png"
       clientNameCamelCase="zapierActions"
       homepage="zapier.com"
-      lastUpdated={new Date("2024-03-11T06:04:39.099Z")}
+      lastUpdated={new Date("2024-03-13T02:25:22.175Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/zapier/ai-actions/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
       previewLinkImage="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/zapier/ai-actions/imagePreview.png"
       GettingStarted={GettingStarted}
       Description={Description}
+      FirstRequest={FirstRequest}
+      categories={["automation","ai","developer_tools"]}
       methods={[
   {
     "url": "/api/v1/check",
@@ -82,19 +86,22 @@ export default function ZapierAiActionsTypeScriptSdk() {
         "name": "exposedAppActionId",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "01ARZ3NDEKTSV4RRFFQ69G5FAV"
       },
       {
         "name": "instructions",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "INSTRUCTIONS"
       },
       {
         "name": "preview_only",
         "schema": "boolean",
         "required": false,
-        "description": ""
+        "description": "",
+        "default": false
       }
     ],
     "responses": [
@@ -120,7 +127,8 @@ export default function ZapierAiActionsTypeScriptSdk() {
         "name": "executionLogId",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "01ARZ3NDEKTSV4RRFFQ69G5FAV"
       }
     ],
     "responses": [
@@ -146,6 +154,8 @@ export default function ZapierAiActionsTypeScriptSdk() {
       parameters={4}
       difficulty="Very Easy"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/zapier/ai-actions/openapi.yaml"
+      openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/zapier/ai-actions/openapi.yaml"
+      
     />
   );
 }

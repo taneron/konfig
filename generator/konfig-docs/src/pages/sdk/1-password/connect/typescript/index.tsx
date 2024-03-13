@@ -4,11 +4,13 @@ import { HttpMethodsEnum } from "konfig-lib/dist/forEachOperation";
 import Description from "./_description.mdx";
 // @ts-ignore
 import GettingStarted from "./_getting-started.mdx";
-import { Sdk } from "@site/src/components/Sdk";
+// @ts-ignore
+import FirstRequest from "./_first-request.mdx"
+import { SdkNew } from "@site/src/components/SdkNew";
 
 export default function Sdk1PasswordConnectTypeScriptSdk() {
   return (
-    <Sdk
+    <SdkNew
       sdkName="1-password-connect-typescript-sdk"
       metaDescription="Trusted by more than 100,000 businesses to protect their data, 1Password gives you complete control over passwords and other sensitive business information. 
 
@@ -20,13 +22,15 @@ As an integral layer of the Identity and Access Management (IAM) stack, 1Passwor
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/1-password/connect/logo.png"
       clientNameCamelCase="onePasswordConnect"
       homepage="1password.com"
-      lastUpdated={new Date("2024-03-11T21:38:29.520Z")}
+      lastUpdated={new Date("2024-03-13T02:25:22.175Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/1-password/connect/favicon.png"
       contactUrl="https://support.1password.com/"
       contactEmail="support@1password.com"
       previewLinkImage="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/1-password/connect/imagePreview.png"
       GettingStarted={GettingStarted}
       Description={Description}
+      FirstRequest={FirstRequest}
+      categories={["security","identity_and_access_management","password_management"]}
       methods={[
   {
     "url": "/activity",
@@ -39,12 +43,16 @@ As an integral layer of the Identity and Access Management (IAM) stack, 1Passwor
       {
         "name": "limit",
         "schema": "integer",
-        "description": "How many API Events should be retrieved in a single request."
+        "description": "How many API Events should be retrieved in a single request.",
+        "example": 10,
+        "default": 50
       },
       {
         "name": "offset",
         "schema": "integer",
-        "description": "How far into the collection of API Events should the response start"
+        "description": "How far into the collection of API Events should the response start",
+        "example": 50,
+        "default": 0
       }
     ],
     "responses": [
@@ -69,7 +77,8 @@ As an integral layer of the Identity and Access Management (IAM) stack, 1Passwor
       {
         "name": "filter",
         "schema": "string",
-        "description": "Filter the Vault collection based on Vault name using SCIM eq filter"
+        "description": "Filter the Vault collection based on Vault name using SCIM eq filter",
+        "example": "name eq \"Some Vault Name\""
       }
     ],
     "responses": [
@@ -95,7 +104,8 @@ As an integral layer of the Identity and Access Management (IAM) stack, 1Passwor
         "name": "vaultUuid",
         "schema": "string",
         "required": true,
-        "description": "The UUID of the Vault to fetch Items from"
+        "description": "The UUID of the Vault to fetch Items from",
+        "example": "VAULTUUID"
       }
     ],
     "responses": [
@@ -129,12 +139,14 @@ As an integral layer of the Identity and Access Management (IAM) stack, 1Passwor
         "name": "vaultUuid",
         "schema": "string",
         "required": true,
-        "description": "The UUID of the Vault to fetch Items from"
+        "description": "The UUID of the Vault to fetch Items from",
+        "example": "VAULTUUID"
       },
       {
         "name": "filter",
         "schema": "string",
-        "description": "Filter the Item collection based on Item name using SCIM eq filter"
+        "description": "Filter the Item collection based on Item name using SCIM eq filter",
+        "example": "title eq \"Some Item Name\""
       }
     ],
     "responses": [
@@ -164,7 +176,8 @@ As an integral layer of the Identity and Access Management (IAM) stack, 1Passwor
         "name": "vaultUuid",
         "schema": "string",
         "required": true,
-        "description": "The UUID of the Vault to create an Item in"
+        "description": "The UUID of the Vault to create an Item in",
+        "example": "VAULTUUID"
       }
     ],
     "responses": [
@@ -202,13 +215,15 @@ As an integral layer of the Identity and Access Management (IAM) stack, 1Passwor
         "name": "vaultUuid",
         "schema": "string",
         "required": true,
-        "description": "The UUID of the Vault the item is in"
+        "description": "The UUID of the Vault the item is in",
+        "example": "VAULTUUID"
       },
       {
         "name": "itemUuid",
         "schema": "string",
         "required": true,
-        "description": "The UUID of the Item to update"
+        "description": "The UUID of the Item to update",
+        "example": "ITEMUUID"
       }
     ],
     "responses": [
@@ -242,13 +257,15 @@ As an integral layer of the Identity and Access Management (IAM) stack, 1Passwor
         "name": "vaultUuid",
         "schema": "string",
         "required": true,
-        "description": "The UUID of the Vault to fetch Item from"
+        "description": "The UUID of the Vault to fetch Item from",
+        "example": "VAULTUUID"
       },
       {
         "name": "itemUuid",
         "schema": "string",
         "required": true,
-        "description": "The UUID of the Item to fetch"
+        "description": "The UUID of the Item to fetch",
+        "example": "ITEMUUID"
       }
     ],
     "responses": [
@@ -282,13 +299,15 @@ As an integral layer of the Identity and Access Management (IAM) stack, 1Passwor
         "name": "vaultUuid",
         "schema": "string",
         "required": true,
-        "description": "The UUID of the Vault the item is in"
+        "description": "The UUID of the Vault the item is in",
+        "example": "VAULTUUID"
       },
       {
         "name": "itemUuid",
         "schema": "string",
         "required": true,
-        "description": "The UUID of the Item to update"
+        "description": "The UUID of the Item to update",
+        "example": "ITEMUUID"
       }
     ],
     "responses": [
@@ -322,13 +341,15 @@ As an integral layer of the Identity and Access Management (IAM) stack, 1Passwor
         "name": "vaultUuid",
         "schema": "string",
         "required": true,
-        "description": "The UUID of the Item's Vault"
+        "description": "The UUID of the Item's Vault",
+        "example": "VAULTUUID"
       },
       {
         "name": "itemUuid",
         "schema": "string",
         "required": true,
-        "description": "The UUID of the Item to update"
+        "description": "The UUID of the Item to update",
+        "example": "ITEMUUID"
       }
     ],
     "responses": [
@@ -366,18 +387,21 @@ As an integral layer of the Identity and Access Management (IAM) stack, 1Passwor
         "name": "vaultUuid",
         "schema": "string",
         "required": true,
-        "description": "The UUID of the Vault to fetch Items from"
+        "description": "The UUID of the Vault to fetch Items from",
+        "example": "VAULTUUID"
       },
       {
         "name": "itemUuid",
         "schema": "string",
         "required": true,
-        "description": "The UUID of the Item to fetch files from"
+        "description": "The UUID of the Item to fetch files from",
+        "example": "ITEMUUID"
       },
       {
         "name": "inlineFiles",
         "schema": "boolean",
-        "description": "Tells server to return the base64-encoded file contents in the response."
+        "description": "Tells server to return the base64-encoded file contents in the response.",
+        "example": true
       }
     ],
     "responses": [
@@ -411,24 +435,28 @@ As an integral layer of the Identity and Access Management (IAM) stack, 1Passwor
         "name": "vaultUuid",
         "schema": "string",
         "required": true,
-        "description": "The UUID of the Vault to fetch Item from"
+        "description": "The UUID of the Vault to fetch Item from",
+        "example": "VAULTUUID"
       },
       {
         "name": "itemUuid",
         "schema": "string",
         "required": true,
-        "description": "The UUID of the Item to fetch File from"
+        "description": "The UUID of the Item to fetch File from",
+        "example": "ITEMUUID"
       },
       {
         "name": "fileUuid",
         "schema": "string",
         "required": true,
-        "description": "The UUID of the File to fetch"
+        "description": "The UUID of the File to fetch",
+        "example": "FILEUUID"
       },
       {
         "name": "inlineFiles",
         "schema": "boolean",
-        "description": "Tells server to return the base64-encoded file contents in the response."
+        "description": "Tells server to return the base64-encoded file contents in the response.",
+        "example": true
       }
     ],
     "responses": [
@@ -534,6 +562,8 @@ As an integral layer of the Identity and Access Management (IAM) stack, 1Passwor
       parameters={22}
       difficulty="Easy"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/1-password/connect/openapi.yaml"
+      openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/1-password/connect/openapi.yaml"
+      developerDocumentation="developer.1password.com/docs/connect/connect-api-reference/"
     />
   );
 }

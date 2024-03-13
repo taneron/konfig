@@ -4,11 +4,13 @@ import { HttpMethodsEnum } from "konfig-lib/dist/forEachOperation";
 import Description from "./_description.mdx";
 // @ts-ignore
 import GettingStarted from "./_getting-started.mdx";
-import { Sdk } from "@site/src/components/Sdk";
+// @ts-ignore
+import FirstRequest from "./_first-request.mdx"
+import { SdkNew } from "@site/src/components/SdkNew";
 
 export default function NotionTypeScriptSdk() {
   return (
-    <Sdk
+    <SdkNew
       sdkName="notion-typescript-sdk"
       metaDescription="Notion is a new tool that blends your everyday work apps into one. It's the all-in-one workspace for you and your team."
       company="Notion"
@@ -16,13 +18,15 @@ export default function NotionTypeScriptSdk() {
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/notion/logo.png"
       clientNameCamelCase="notion"
       homepage="developers.notion.com"
-      lastUpdated={new Date("2024-03-11T17:20:37.894Z")}
+      lastUpdated={new Date("2024-03-13T02:25:22.175Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/notion/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
       previewLinkImage="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/notion/imagePreview.png"
       GettingStarted={GettingStarted}
       Description={Description}
+      FirstRequest={FirstRequest}
+      categories={["all_in_one","planning","agile","automation","docs","documentation","okr","goals","gantt","kanban","forms","wikis","roadmap","reporting","collaboration","productivity","workspace","productivity_software","task_management","information_technology","business_productivity","enterprise_software","work_management","project_management","organization"]}
       methods={[
   {
     "url": "/v1/oauth/token",
@@ -36,19 +40,23 @@ export default function NotionTypeScriptSdk() {
         "name": "code",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "CODE"
       },
       {
         "name": "grant_type",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "GRANT_TYPE",
+        "default": "\"authorization_code\""
       },
       {
         "name": "redirect_uri",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "REDIRECT_URI"
       },
       {
         "name": "external_account",
@@ -80,7 +88,8 @@ export default function NotionTypeScriptSdk() {
         "name": "blockId",
         "schema": "string",
         "required": true,
-        "description": "Identifier for a [block](ref:block)"
+        "description": "Identifier for a [block](ref:block)",
+        "example": "BLOCK_ID"
       },
       {
         "name": "startCursor",
@@ -90,13 +99,16 @@ export default function NotionTypeScriptSdk() {
       {
         "name": "pageSize",
         "schema": "integer",
-        "description": "The number of items from the full list desired in the response. Maximum: 100"
+        "description": "The number of items from the full list desired in the response. Maximum: 100",
+        "default": 100
       },
       {
         "name": "notionVersion",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "NOTION-VERSION",
+        "default": "2022-06-28"
       }
     ],
     "responses": [
@@ -122,13 +134,16 @@ export default function NotionTypeScriptSdk() {
         "name": "blockId",
         "schema": "string",
         "required": true,
-        "description": "Identifier for a [block](ref:block). Also accepts a [page](ref:page) ID."
+        "description": "Identifier for a [block](ref:block). Also accepts a [page](ref:page) ID.",
+        "example": "BLOCK_ID"
       },
       {
         "name": "notionVersion",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "NOTION-VERSION",
+        "default": "2022-06-28"
       },
       {
         "name": "children",
@@ -166,12 +181,14 @@ export default function NotionTypeScriptSdk() {
         "name": "blockId",
         "schema": "string",
         "required": true,
-        "description": "Identifier for a Notion block"
+        "description": "Identifier for a Notion block",
+        "example": "BLOCK_ID"
       },
       {
         "name": "notionVersion",
         "schema": "string",
-        "description": ""
+        "description": "",
+        "default": "2022-06-28"
       }
     ],
     "responses": [
@@ -197,12 +214,14 @@ export default function NotionTypeScriptSdk() {
         "name": "blockId",
         "schema": "string",
         "required": true,
-        "description": "Identifier for a Notion block"
+        "description": "Identifier for a Notion block",
+        "example": "BLOCK_ID"
       },
       {
         "name": "notionVersion",
         "schema": "string",
-        "description": ""
+        "description": "",
+        "default": "2022-06-28"
       }
     ],
     "responses": [
@@ -228,12 +247,14 @@ export default function NotionTypeScriptSdk() {
         "name": "blockId",
         "schema": "string",
         "required": true,
-        "description": "Identifier for a Notion block"
+        "description": "Identifier for a Notion block",
+        "example": "BLOCK_ID"
       },
       {
         "name": "notionVersion",
         "schema": "string",
-        "description": ""
+        "description": "",
+        "default": "2022-06-28"
       },
       {
         "name": "{type}",
@@ -243,7 +264,8 @@ export default function NotionTypeScriptSdk() {
       {
         "name": "archived",
         "schema": "boolean",
-        "description": ""
+        "description": "",
+        "default": true
       }
     ],
     "responses": [
@@ -269,19 +291,23 @@ export default function NotionTypeScriptSdk() {
         "name": "notionVersion",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "NOTION-VERSION",
+        "default": "2022-06-28"
       },
       {
         "name": "parent",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "PARENT"
       },
       {
         "name": "properties",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "PROPERTIES"
       },
       {
         "name": "children",
@@ -333,7 +359,8 @@ export default function NotionTypeScriptSdk() {
         "name": "pageId",
         "schema": "string",
         "required": true,
-        "description": "Identifier for a Notion page"
+        "description": "Identifier for a Notion page",
+        "example": "PAGE_ID"
       },
       {
         "name": "filterProperties",
@@ -344,7 +371,9 @@ export default function NotionTypeScriptSdk() {
         "name": "notionVersion",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "NOTION-VERSION",
+        "default": "2022-06-28"
       }
     ],
     "responses": [
@@ -370,12 +399,14 @@ export default function NotionTypeScriptSdk() {
         "name": "pageId",
         "schema": "string",
         "required": true,
-        "description": "The identifier for the Notion page to be updated."
+        "description": "The identifier for the Notion page to be updated.",
+        "example": "PAGE_ID"
       },
       {
         "name": "notionVersion",
         "schema": "string",
-        "description": ""
+        "description": "",
+        "default": "2022-06-28"
       },
       {
         "name": "properties",
@@ -429,13 +460,15 @@ export default function NotionTypeScriptSdk() {
         "name": "pageId",
         "schema": "string",
         "required": true,
-        "description": "Identifier for a Notion page"
+        "description": "Identifier for a Notion page",
+        "example": "PAGE_ID"
       },
       {
         "name": "propertyId",
         "schema": "string",
         "required": true,
-        "description": "Identifier for a page [property](https://developers.notion.com/reference/page#all-property-values)"
+        "description": "Identifier for a page [property](https://developers.notion.com/reference/page#all-property-values)",
+        "example": "PROPERTY_ID"
       },
       {
         "name": "pageSize",
@@ -450,7 +483,8 @@ export default function NotionTypeScriptSdk() {
       {
         "name": "notionVersion",
         "schema": "string",
-        "description": ""
+        "description": "",
+        "default": "2022-06-28"
       }
     ],
     "responses": [
@@ -472,7 +506,9 @@ export default function NotionTypeScriptSdk() {
         "name": "notionVersion",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "NOTION-VERSION",
+        "default": "2022-06-28"
       },
       {
         "name": "title",
@@ -484,13 +520,15 @@ export default function NotionTypeScriptSdk() {
         "name": "parent",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "PARENT"
       },
       {
         "name": "properties",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "PROPERTIES"
       }
     ],
     "responses": [
@@ -516,7 +554,8 @@ export default function NotionTypeScriptSdk() {
         "name": "databaseId",
         "schema": "string",
         "required": true,
-        "description": "Identifier for a Notion database."
+        "description": "Identifier for a Notion database.",
+        "example": "DATABASE_ID"
       },
       {
         "name": "filterProperties",
@@ -527,7 +566,9 @@ export default function NotionTypeScriptSdk() {
         "name": "notionVersion",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "NOTION-VERSION",
+        "default": "2022-06-28"
       },
       {
         "name": "filter",
@@ -547,7 +588,8 @@ export default function NotionTypeScriptSdk() {
       {
         "name": "page_size",
         "schema": "integer",
-        "description": ""
+        "description": "",
+        "default": 100
       }
     ],
     "responses": [
@@ -573,13 +615,16 @@ export default function NotionTypeScriptSdk() {
         "name": "databaseId",
         "schema": "string",
         "required": true,
-        "description": "An identifier for the Notion database."
+        "description": "An identifier for the Notion database.",
+        "example": "DATABASE_ID"
       },
       {
         "name": "notionVersion",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "NOTION-VERSION",
+        "default": "2022-06-28"
       }
     ],
     "responses": [
@@ -613,12 +658,14 @@ export default function NotionTypeScriptSdk() {
         "name": "databaseId",
         "schema": "string",
         "required": true,
-        "description": "identifier for a Notion database"
+        "description": "identifier for a Notion database",
+        "example": "DATABASE_ID"
       },
       {
         "name": "notionVersion",
         "schema": "string",
-        "description": ""
+        "description": "",
+        "default": "2022-06-28"
       },
       {
         "name": "title",
@@ -671,13 +718,16 @@ export default function NotionTypeScriptSdk() {
       {
         "name": "pageSize",
         "schema": "integer",
-        "description": "The number of items from the full list desired in the response. Maximum: 100"
+        "description": "The number of items from the full list desired in the response. Maximum: 100",
+        "default": 100
       },
       {
         "name": "notionVersion",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "NOTION-VERSION",
+        "default": "2022-06-28"
       }
     ],
     "responses": [
@@ -703,13 +753,16 @@ export default function NotionTypeScriptSdk() {
         "name": "userId",
         "schema": "string",
         "required": true,
-        "description": "Identifier for a Notion user"
+        "description": "Identifier for a Notion user",
+        "example": "USER_ID"
       },
       {
         "name": "notionVersion",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "NOTION-VERSION",
+        "default": "2022-06-28"
       }
     ],
     "responses": [
@@ -735,7 +788,9 @@ export default function NotionTypeScriptSdk() {
         "name": "notionVersion",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "NOTION-VERSION",
+        "default": "2022-06-28"
       }
     ],
     "responses": [
@@ -761,13 +816,16 @@ export default function NotionTypeScriptSdk() {
         "name": "notionVersion",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "NOTION-VERSION",
+        "default": "2022-06-28"
       },
       {
         "name": "blockId",
         "schema": "string",
         "required": true,
-        "description": "Identifier for a Notion block or page"
+        "description": "Identifier for a Notion block or page",
+        "example": "BLOCK_ID"
       },
       {
         "name": "startCursor",
@@ -803,7 +861,9 @@ export default function NotionTypeScriptSdk() {
         "name": "notionVersion",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "NOTION-VERSION",
+        "default": "2022-06-28"
       },
       {
         "name": "parent",
@@ -821,7 +881,8 @@ export default function NotionTypeScriptSdk() {
         "name": "rich_text",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "RICH_TEXT"
       }
     ],
     "responses": [
@@ -847,7 +908,9 @@ export default function NotionTypeScriptSdk() {
         "name": "notionVersion",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "NOTION-VERSION",
+        "default": "2022-06-28"
       },
       {
         "name": "query",
@@ -872,7 +935,8 @@ export default function NotionTypeScriptSdk() {
       {
         "name": "page_size",
         "schema": "integer",
-        "description": ""
+        "description": "",
+        "default": 100
       }
     ],
     "responses": [
@@ -902,6 +966,8 @@ export default function NotionTypeScriptSdk() {
       parameters={78}
       difficulty="Easy"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/notion/openapi.yaml"
+      openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/notion/openapi.yaml"
+      developerDocumentation="developers.notion.com/reference/intro"
     />
   );
 }

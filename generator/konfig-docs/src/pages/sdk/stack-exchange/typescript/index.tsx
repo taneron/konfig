@@ -4,11 +4,13 @@ import { HttpMethodsEnum } from "konfig-lib/dist/forEachOperation";
 import Description from "./_description.mdx";
 // @ts-ignore
 import GettingStarted from "./_getting-started.mdx";
-import { Sdk } from "@site/src/components/Sdk";
+// @ts-ignore
+import FirstRequest from "./_first-request.mdx"
+import { SdkNew } from "@site/src/components/SdkNew";
 
 export default function StackExchangeTypeScriptSdk() {
   return (
-    <Sdk
+    <SdkNew
       sdkName="stack-exchange-typescript-sdk"
       metaDescription="We make Stack Overflow and 170+ other community-powered Q&A sites."
       company="Stack Exchange"
@@ -16,13 +18,15 @@ export default function StackExchangeTypeScriptSdk() {
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/stack-exchange/logo.png"
       clientNameCamelCase="stackExchange"
       homepage="api.stackexchange.com"
-      lastUpdated={new Date("2024-03-11T06:04:39.099Z")}
+      lastUpdated={new Date("2024-03-13T02:25:22.175Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/stack-exchange/favicon.ico"
       // Missing contactUrl
       // Missing contactEmail
       previewLinkImage="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/stack-exchange/imagePreview.png"
       GettingStarted={GettingStarted}
       Description={Description}
+      FirstRequest={FirstRequest}
+      categories={["collaboration","developer_tools","support"]}
       methods={[
   {
     "url": "/access-tokens/{accessTokens}",
@@ -36,7 +40,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "accessTokens",
         "schema": "string",
         "required": true,
-        "description": "String list (semicolon delimited)."
+        "description": "String list (semicolon delimited).",
+        "example": "ACCESSTOKENS"
       },
       {
         "name": "pagesize",
@@ -118,7 +123,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "accessTokens",
         "schema": "string",
         "required": true,
-        "description": "String list (semicolon delimited)."
+        "description": "String list (semicolon delimited).",
+        "example": "ACCESSTOKENS"
       },
       {
         "name": "pagesize",
@@ -250,7 +256,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -312,7 +319,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "ids",
         "schema": "string",
         "required": true,
-        "description": "Number list (semicolon delimited)."
+        "description": "Number list (semicolon delimited).",
+        "example": "IDS"
       },
       {
         "name": "order",
@@ -368,7 +376,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -430,7 +439,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "ids",
         "schema": "string",
         "required": true,
-        "description": "Number list (semicolon delimited)."
+        "description": "Number list (semicolon delimited).",
+        "example": "IDS"
       },
       {
         "name": "order",
@@ -486,7 +496,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -548,7 +559,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "accessTokens",
         "schema": "string",
         "required": true,
-        "description": "String list (semicolon delimited)."
+        "description": "String list (semicolon delimited).",
+        "example": "ACCESSTOKENS"
       },
       {
         "name": "pagesize",
@@ -685,7 +697,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -802,7 +815,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -894,7 +908,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -1011,7 +1026,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -1073,7 +1089,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "ids",
         "schema": "string",
         "required": true,
-        "description": "Number list (semicolon delimited)."
+        "description": "Number list (semicolon delimited).",
+        "example": "IDS"
       },
       {
         "name": "order",
@@ -1129,7 +1146,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -1191,7 +1209,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "ids",
         "schema": "string",
         "required": true,
-        "description": "Number list (semicolon delimited)."
+        "description": "Number list (semicolon delimited).",
+        "example": "IDS"
       },
       {
         "name": "fromdate",
@@ -1227,7 +1246,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -1339,7 +1359,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -1401,7 +1422,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "ids",
         "schema": "string",
         "required": true,
-        "description": "Number list (semicolon delimited)."
+        "description": "Number list (semicolon delimited).",
+        "example": "IDS"
       },
       {
         "name": "order",
@@ -1457,7 +1479,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -1519,7 +1542,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": 0
       },
       {
         "name": "filter",
@@ -1535,7 +1559,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       },
       {
         "name": "preview",
@@ -1602,7 +1627,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": 0
       },
       {
         "name": "filter",
@@ -1618,7 +1644,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       },
       {
         "name": "body",
@@ -1766,7 +1793,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": 0
       }
     ],
     "responses": [
@@ -1848,7 +1876,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       },
       {
         "name": "since",
@@ -1991,7 +2020,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "filters",
         "schema": "string",
         "required": true,
-        "description": "String list (semicolon delimited)."
+        "description": "String list (semicolon delimited).",
+        "example": "FILTERS"
       }
     ],
     "responses": [
@@ -2210,7 +2240,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -2322,7 +2353,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -2434,7 +2466,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -2622,7 +2655,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -2734,7 +2768,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -2796,7 +2831,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "toId",
         "schema": "integer",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": 0
       },
       {
         "name": "order",
@@ -2852,7 +2888,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -2964,7 +3001,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -3046,7 +3084,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -3128,7 +3167,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       },
       {
         "name": "since",
@@ -3245,7 +3285,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -3403,7 +3444,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -3485,7 +3527,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -3567,7 +3610,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -3679,7 +3723,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -3791,7 +3836,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -3903,7 +3949,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -4015,7 +4062,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -4127,7 +4175,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -4199,7 +4248,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -4281,7 +4331,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -4363,7 +4414,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -4475,7 +4527,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -4587,7 +4640,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -4649,7 +4703,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "tags",
         "schema": "string",
         "required": true,
-        "description": "String list (semicolon delimited)."
+        "description": "String list (semicolon delimited).",
+        "example": "TAGS"
       },
       {
         "name": "order",
@@ -4705,7 +4760,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -4767,7 +4823,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "tags",
         "schema": "string",
         "required": true,
-        "description": "String list (semicolon delimited)."
+        "description": "String list (semicolon delimited).",
+        "example": "TAGS"
       },
       {
         "name": "order",
@@ -4823,7 +4880,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -4915,7 +4973,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -4997,7 +5056,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -5079,7 +5139,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -5161,7 +5222,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -5425,7 +5487,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -5487,7 +5550,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "ids",
         "schema": "string",
         "required": true,
-        "description": "Number list (semicolon delimited)."
+        "description": "Number list (semicolon delimited).",
+        "example": "IDS"
       },
       {
         "name": "order",
@@ -5543,7 +5607,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -5605,7 +5670,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "ids",
         "schema": "string",
         "required": true,
-        "description": "Number list (semicolon delimited)."
+        "description": "Number list (semicolon delimited).",
+        "example": "IDS"
       },
       {
         "name": "order",
@@ -5661,7 +5727,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -5723,7 +5790,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "ids",
         "schema": "string",
         "required": true,
-        "description": "Number list (semicolon delimited)."
+        "description": "Number list (semicolon delimited).",
+        "example": "IDS"
       },
       {
         "name": "fromdate",
@@ -5759,7 +5827,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -5821,7 +5890,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "ids",
         "schema": "string",
         "required": true,
-        "description": "Number list (semicolon delimited)."
+        "description": "Number list (semicolon delimited).",
+        "example": "IDS"
       },
       {
         "name": "order",
@@ -5877,7 +5947,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -5939,7 +6010,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": 0
       },
       {
         "name": "filter",
@@ -5955,7 +6027,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       },
       {
         "name": "body",
@@ -6047,7 +6120,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -6164,7 +6238,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -6281,7 +6356,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -6398,7 +6474,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -6515,7 +6592,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -6577,7 +6655,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "ids",
         "schema": "string",
         "required": true,
-        "description": "Number list (semicolon delimited)."
+        "description": "Number list (semicolon delimited).",
+        "example": "IDS"
       },
       {
         "name": "order",
@@ -6633,7 +6712,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -6695,7 +6775,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "ids",
         "schema": "string",
         "required": true,
-        "description": "Number list (semicolon delimited)."
+        "description": "Number list (semicolon delimited).",
+        "example": "IDS"
       },
       {
         "name": "order",
@@ -6751,7 +6832,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -6813,7 +6895,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "ids",
         "schema": "string",
         "required": true,
-        "description": "Number list (semicolon delimited)."
+        "description": "Number list (semicolon delimited).",
+        "example": "IDS"
       },
       {
         "name": "order",
@@ -6869,7 +6952,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -6931,7 +7015,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "ids",
         "schema": "string",
         "required": true,
-        "description": "Number list (semicolon delimited)."
+        "description": "Number list (semicolon delimited).",
+        "example": "IDS"
       },
       {
         "name": "order",
@@ -6987,7 +7072,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -7049,7 +7135,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "ids",
         "schema": "string",
         "required": true,
-        "description": "Number list (semicolon delimited)."
+        "description": "Number list (semicolon delimited).",
+        "example": "IDS"
       },
       {
         "name": "order",
@@ -7105,7 +7192,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -7167,7 +7255,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "ids",
         "schema": "string",
         "required": true,
-        "description": "Number list (semicolon delimited)."
+        "description": "Number list (semicolon delimited).",
+        "example": "IDS"
       },
       {
         "name": "fromdate",
@@ -7203,7 +7292,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -7265,7 +7355,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "ids",
         "schema": "string",
         "required": true,
-        "description": "Guid list (semicolon delimited)."
+        "description": "Guid list (semicolon delimited).",
+        "example": "IDS"
       },
       {
         "name": "fromdate",
@@ -7301,7 +7392,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -7418,7 +7510,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       },
       {
         "name": "intitle",
@@ -7545,7 +7638,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       },
       {
         "name": "accepted",
@@ -7727,7 +7821,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       },
       {
         "name": "nottagged",
@@ -7925,7 +8020,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -7987,7 +8083,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "ids",
         "schema": "string",
         "required": true,
-        "description": "Number list (semicolon delimited)."
+        "description": "Number list (semicolon delimited).",
+        "example": "IDS"
       },
       {
         "name": "order",
@@ -8043,7 +8140,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -8160,7 +8258,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -8277,7 +8376,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -8394,7 +8494,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -8506,7 +8607,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -8568,7 +8670,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "tags",
         "schema": "string",
         "required": true,
-        "description": "String list (semicolon delimited)."
+        "description": "String list (semicolon delimited).",
+        "example": "TAGS"
       },
       {
         "name": "pagesize",
@@ -8594,7 +8697,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -8656,7 +8760,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "tags",
         "schema": "string",
         "required": true,
-        "description": "String list (semicolon delimited)."
+        "description": "String list (semicolon delimited).",
+        "example": "TAGS"
       },
       {
         "name": "order",
@@ -8712,7 +8817,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -8774,7 +8880,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "tags",
         "schema": "string",
         "required": true,
-        "description": "String list (semicolon delimited)."
+        "description": "String list (semicolon delimited).",
+        "example": "TAGS"
       },
       {
         "name": "pagesize",
@@ -8800,7 +8907,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -8862,7 +8970,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "tags",
         "schema": "string",
         "required": true,
-        "description": "String list (semicolon delimited)."
+        "description": "String list (semicolon delimited).",
+        "example": "TAGS"
       },
       {
         "name": "order",
@@ -8918,7 +9027,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -8980,7 +9090,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "tags",
         "schema": "string",
         "required": true,
-        "description": "String list (semicolon delimited)."
+        "description": "String list (semicolon delimited).",
+        "example": "TAGS"
       },
       {
         "name": "pagesize",
@@ -9006,7 +9117,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -9068,13 +9180,15 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "tag",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "TAG"
       },
       {
         "name": "period",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "PERIOD"
       },
       {
         "name": "pagesize",
@@ -9100,7 +9214,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -9162,13 +9277,15 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "tag",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "TAG"
       },
       {
         "name": "period",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "PERIOD"
       },
       {
         "name": "pagesize",
@@ -9194,7 +9311,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -9311,7 +9429,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -9423,7 +9542,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -9535,7 +9655,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -9597,7 +9718,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "ids",
         "schema": "string",
         "required": true,
-        "description": "Number list (semicolon delimited)."
+        "description": "Number list (semicolon delimited).",
+        "example": "IDS"
       },
       {
         "name": "order",
@@ -9653,7 +9775,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -9715,7 +9838,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "ids",
         "schema": "string",
         "required": true,
-        "description": "Number list (semicolon delimited)."
+        "description": "Number list (semicolon delimited).",
+        "example": "IDS"
       },
       {
         "name": "order",
@@ -9771,7 +9895,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -9833,7 +9958,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "ids",
         "schema": "string",
         "required": true,
-        "description": "Number list (semicolon delimited)."
+        "description": "Number list (semicolon delimited).",
+        "example": "IDS"
       },
       {
         "name": "pagesize",
@@ -9915,7 +10041,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "ids",
         "schema": "string",
         "required": true,
-        "description": "Number list (semicolon delimited)."
+        "description": "Number list (semicolon delimited).",
+        "example": "IDS"
       },
       {
         "name": "order",
@@ -9971,7 +10098,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -10033,7 +10161,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "ids",
         "schema": "string",
         "required": true,
-        "description": "Number list (semicolon delimited)."
+        "description": "Number list (semicolon delimited).",
+        "example": "IDS"
       },
       {
         "name": "order",
@@ -10089,7 +10218,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -10151,13 +10281,15 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "ids",
         "schema": "string",
         "required": true,
-        "description": "Number list (semicolon delimited)."
+        "description": "Number list (semicolon delimited).",
+        "example": "IDS"
       },
       {
         "name": "toid",
         "schema": "integer",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": 0
       },
       {
         "name": "order",
@@ -10213,7 +10345,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -10275,7 +10408,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "ids",
         "schema": "string",
         "required": true,
-        "description": "Number list (semicolon delimited)."
+        "description": "Number list (semicolon delimited).",
+        "example": "IDS"
       },
       {
         "name": "order",
@@ -10331,7 +10465,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -10393,7 +10528,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "ids",
         "schema": "string",
         "required": true,
-        "description": "Number list (semicolon delimited)."
+        "description": "Number list (semicolon delimited).",
+        "example": "IDS"
       },
       {
         "name": "order",
@@ -10449,7 +10585,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -10511,7 +10648,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "ids",
         "schema": "string",
         "required": true,
-        "description": "Number list (semicolon delimited)."
+        "description": "Number list (semicolon delimited).",
+        "example": "IDS"
       },
       {
         "name": "pagesize",
@@ -10593,7 +10731,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "ids",
         "schema": "string",
         "required": true,
-        "description": "Number list (semicolon delimited)."
+        "description": "Number list (semicolon delimited).",
+        "example": "IDS"
       },
       {
         "name": "order",
@@ -10649,7 +10788,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -10711,7 +10851,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "ids",
         "schema": "string",
         "required": true,
-        "description": "Number list (semicolon delimited)."
+        "description": "Number list (semicolon delimited).",
+        "example": "IDS"
       },
       {
         "name": "order",
@@ -10767,7 +10908,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -10829,7 +10971,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "ids",
         "schema": "string",
         "required": true,
-        "description": "Number list (semicolon delimited)."
+        "description": "Number list (semicolon delimited).",
+        "example": "IDS"
       },
       {
         "name": "order",
@@ -10885,7 +11028,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -10947,7 +11091,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "ids",
         "schema": "string",
         "required": true,
-        "description": "Number list (semicolon delimited)."
+        "description": "Number list (semicolon delimited).",
+        "example": "IDS"
       },
       {
         "name": "order",
@@ -11003,7 +11148,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -11065,7 +11211,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "ids",
         "schema": "string",
         "required": true,
-        "description": "Number list (semicolon delimited)."
+        "description": "Number list (semicolon delimited).",
+        "example": "IDS"
       },
       {
         "name": "order",
@@ -11121,7 +11268,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -11183,7 +11331,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "ids",
         "schema": "string",
         "required": true,
-        "description": "Number list (semicolon delimited)."
+        "description": "Number list (semicolon delimited).",
+        "example": "IDS"
       },
       {
         "name": "fromdate",
@@ -11219,7 +11368,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -11281,7 +11431,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "ids",
         "schema": "string",
         "required": true,
-        "description": "Number list (semicolon delimited)."
+        "description": "Number list (semicolon delimited).",
+        "example": "IDS"
       },
       {
         "name": "pagesize",
@@ -11307,7 +11458,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -11369,7 +11521,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "ids",
         "schema": "string",
         "required": true,
-        "description": "Number list (semicolon delimited)."
+        "description": "Number list (semicolon delimited).",
+        "example": "IDS"
       },
       {
         "name": "order",
@@ -11425,7 +11578,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -11487,7 +11641,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "ids",
         "schema": "string",
         "required": true,
-        "description": "Number list (semicolon delimited)."
+        "description": "Number list (semicolon delimited).",
+        "example": "IDS"
       },
       {
         "name": "order",
@@ -11543,7 +11698,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -11605,7 +11761,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "ids",
         "schema": "string",
         "required": true,
-        "description": "Number list (semicolon delimited)."
+        "description": "Number list (semicolon delimited).",
+        "example": "IDS"
       },
       {
         "name": "fromdate",
@@ -11641,7 +11798,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -11703,7 +11861,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": 0
       },
       {
         "name": "pagesize",
@@ -11729,7 +11888,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -11791,7 +11951,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": 0
       },
       {
         "name": "pagesize",
@@ -11817,7 +11978,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       },
       {
         "name": "since",
@@ -11884,7 +12046,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": 0
       },
       {
         "name": "pagesize",
@@ -11910,7 +12073,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -11972,7 +12136,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": 0
       },
       {
         "name": "pagesize",
@@ -11998,7 +12163,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -12060,7 +12226,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": 0
       },
       {
         "name": "pagesize",
@@ -12086,7 +12253,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -12148,7 +12316,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": 0
       },
       {
         "name": "pagesize",
@@ -12174,7 +12343,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -12236,13 +12406,15 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": 0
       },
       {
         "name": "tags",
         "schema": "string",
         "required": true,
-        "description": "String list (semicolon delimited)."
+        "description": "String list (semicolon delimited).",
+        "example": "TAGS"
       },
       {
         "name": "order",
@@ -12298,7 +12470,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -12360,13 +12533,15 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": 0
       },
       {
         "name": "tags",
         "schema": "string",
         "required": true,
-        "description": "String list (semicolon delimited)."
+        "description": "String list (semicolon delimited).",
+        "example": "TAGS"
       },
       {
         "name": "order",
@@ -12422,7 +12597,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -12484,7 +12660,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": 0
       },
       {
         "name": "pagesize",
@@ -12510,7 +12687,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -12572,7 +12750,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": 0
       },
       {
         "name": "pagesize",
@@ -12598,7 +12777,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -12660,7 +12840,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": 0
       },
       {
         "name": "pagesize",
@@ -12686,7 +12867,8 @@ export default function StackExchangeTypeScriptSdk() {
         "name": "site",
         "schema": "string",
         "required": true,
-        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n"
+        "description": "Each of these methods operates on a single site at a time, identified by the site parameter. This parameter can be the full domain name (ie. \"stackoverflow.com\"), or a short form identified by api_site_parameter on the site object.\n",
+        "example": "SITE"
       }
     ],
     "responses": [
@@ -12748,6 +12930,8 @@ export default function StackExchangeTypeScriptSdk() {
       parameters={1118}
       difficulty="Hard"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/stack-exchange/openapi.yaml"
+      openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/stack-exchange/openapi.yaml"
+      
     />
   );
 }

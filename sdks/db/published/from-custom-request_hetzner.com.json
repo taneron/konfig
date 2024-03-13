@@ -24,6 +24,7 @@
   "sdkName": "hetzner-{language}-sdk",
   "clientName": "Hetzner",
   "metaDescription": "Hetzner provides reliable and efficient cloud hosting and data center services. With state-of-the-art infrastructure and a focus on security and performance, Hetzner caters to a wide range of businesses looking for scalable and dependable hosting solutions. From dedicated servers to cloud storage and virtual private servers, Hetzner offers a comprehensive suite of services to meet the diverse needs of its clients.",
+  "useNewPage": true,
   "homepage": "hetzner.com",
   "developerDocumentation": "docs.hetzner.cloud/",
   "categories": [
@@ -48,7 +49,8 @@
           "name": "id",
           "schema": "integer",
           "required": false,
-          "description": "Filter the actions by ID. Can be used multiple times. The response will only contain\nactions matching the specified IDs.\n"
+          "description": "Filter the actions by ID. Can be used multiple times. The response will only contain\nactions matching the specified IDs.\n",
+          "example": 42
         },
         {
           "name": "sort",
@@ -66,13 +68,17 @@
           "name": "page",
           "schema": "integer",
           "required": false,
-          "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+          "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+          "example": 2,
+          "default": 1
         },
         {
           "name": "perPage",
           "schema": "integer",
           "required": false,
-          "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+          "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+          "example": 25,
+          "default": 25
         }
       ],
       "responses": [
@@ -94,7 +100,8 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Resource."
+          "description": "ID of the Resource.",
+          "example": 42
         }
       ],
       "responses": [
@@ -140,13 +147,17 @@
           "name": "page",
           "schema": "integer",
           "required": false,
-          "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+          "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+          "example": 2,
+          "default": 1
         },
         {
           "name": "perPage",
           "schema": "integer",
           "required": false,
-          "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+          "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+          "example": 25,
+          "default": 25
         }
       ],
       "responses": [
@@ -168,13 +179,15 @@
           "name": "certificate",
           "schema": "string",
           "required": false,
-          "description": ""
+          "description": "",
+          "example": "-----BEGIN CERTIFICATE-----\n..."
         },
         {
           "name": "domain_names",
           "schema": "array",
           "required": false,
-          "description": ""
+          "description": "",
+          "example": null
         },
         {
           "name": "labels",
@@ -186,19 +199,23 @@
           "name": "name",
           "schema": "string",
           "required": true,
-          "description": ""
+          "description": "",
+          "example": "my website cert"
         },
         {
           "name": "private_key",
           "schema": "string",
           "required": false,
-          "description": ""
+          "description": "",
+          "example": "-----BEGIN PRIVATE KEY-----\n..."
         },
         {
           "name": "type",
           "schema": "string",
           "required": false,
-          "description": ""
+          "description": "",
+          "example": "uploaded",
+          "default": "uploaded"
         }
       ],
       "responses": [
@@ -220,7 +237,8 @@
           "name": "id",
           "schema": "integer",
           "required": false,
-          "description": "Filter the actions by ID. Can be used multiple times. The response will only contain\nactions matching the specified IDs.\n"
+          "description": "Filter the actions by ID. Can be used multiple times. The response will only contain\nactions matching the specified IDs.\n",
+          "example": 42
         },
         {
           "name": "sort",
@@ -238,13 +256,17 @@
           "name": "page",
           "schema": "integer",
           "required": false,
-          "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+          "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+          "example": 2,
+          "default": 1
         },
         {
           "name": "perPage",
           "schema": "integer",
           "required": false,
-          "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+          "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+          "example": 25,
+          "default": 25
         }
       ],
       "responses": [
@@ -266,7 +288,8 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Action."
+          "description": "ID of the Action.",
+          "example": 42
         }
       ],
       "responses": [
@@ -288,7 +311,8 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Resource."
+          "description": "ID of the Resource.",
+          "example": 42
         }
       ],
       "responses": [
@@ -310,7 +334,8 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Resource."
+          "description": "ID of the Resource.",
+          "example": 42
         }
       ],
       "responses": [
@@ -332,17 +357,22 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Resource."
+          "description": "ID of the Resource.",
+          "example": 42
         },
         {
           "name": "labels",
           "schema": "object",
-          "description": ""
+          "description": "",
+          "example": {
+            "labelkey": "value"
+          }
         },
         {
           "name": "name",
           "schema": "string",
-          "description": ""
+          "description": "",
+          "example": "my website cert"
         }
       ],
       "responses": [
@@ -364,7 +394,8 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Resource."
+          "description": "ID of the Resource.",
+          "example": 42
         },
         {
           "name": "sort",
@@ -382,13 +413,17 @@
           "name": "page",
           "schema": "integer",
           "required": false,
-          "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+          "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+          "example": 2,
+          "default": 1
         },
         {
           "name": "perPage",
           "schema": "integer",
           "required": false,
-          "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+          "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+          "example": 25,
+          "default": 25
         }
       ],
       "responses": [
@@ -410,7 +445,8 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Certificate"
+          "description": "ID of the Certificate",
+          "example": 0
         }
       ],
       "responses": [
@@ -432,13 +468,15 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Certificate"
+          "description": "ID of the Certificate",
+          "example": 0
         },
         {
           "name": "actionId",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Action"
+          "description": "ID of the Action",
+          "example": 0
         }
       ],
       "responses": [
@@ -472,13 +510,17 @@
           "name": "page",
           "schema": "integer",
           "required": false,
-          "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+          "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+          "example": 2,
+          "default": 1
         },
         {
           "name": "perPage",
           "schema": "integer",
           "required": false,
-          "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+          "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+          "example": 25,
+          "default": 25
         }
       ],
       "responses": [
@@ -500,7 +542,8 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of Datacenter"
+          "description": "ID of Datacenter",
+          "example": 0
         }
       ],
       "responses": [
@@ -540,13 +583,17 @@
           "name": "page",
           "schema": "integer",
           "required": false,
-          "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+          "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+          "example": 2,
+          "default": 1
         },
         {
           "name": "perPage",
           "schema": "integer",
           "required": false,
-          "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+          "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+          "example": 25,
+          "default": 25
         }
       ],
       "responses": [
@@ -580,13 +627,26 @@
           "name": "name",
           "schema": "string",
           "required": true,
-          "description": ""
+          "description": "",
+          "example": "Corporate Intranet Protection"
         },
         {
           "name": "rules",
           "schema": "array",
           "required": false,
-          "description": ""
+          "description": "",
+          "example": [
+            {
+              "direction": "in",
+              "port": "80",
+              "protocol": "tcp",
+              "source_ips": [
+                "28.239.13.1/32",
+                "28.239.14.0/24",
+                "ff21:1eac:9a3b:ee58:5ca:990c:8bc9:c03b/128"
+              ]
+            }
+          ]
         }
       ],
       "responses": [
@@ -608,7 +668,8 @@
           "name": "id",
           "schema": "integer",
           "required": false,
-          "description": "Filter the actions by ID. Can be used multiple times. The response will only contain\nactions matching the specified IDs.\n"
+          "description": "Filter the actions by ID. Can be used multiple times. The response will only contain\nactions matching the specified IDs.\n",
+          "example": 42
         },
         {
           "name": "sort",
@@ -626,13 +687,17 @@
           "name": "page",
           "schema": "integer",
           "required": false,
-          "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+          "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+          "example": 2,
+          "default": 1
         },
         {
           "name": "perPage",
           "schema": "integer",
           "required": false,
-          "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+          "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+          "example": 25,
+          "default": 25
         }
       ],
       "responses": [
@@ -654,7 +719,8 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Action."
+          "description": "ID of the Action.",
+          "example": 42
         }
       ],
       "responses": [
@@ -676,7 +742,8 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Resource."
+          "description": "ID of the Resource.",
+          "example": 42
         }
       ],
       "responses": [
@@ -698,7 +765,8 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Resource."
+          "description": "ID of the Resource.",
+          "example": 42
         }
       ],
       "responses": [
@@ -720,17 +788,22 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Resource."
+          "description": "ID of the Resource.",
+          "example": 42
         },
         {
           "name": "labels",
           "schema": "object",
-          "description": ""
+          "description": "",
+          "example": {
+            "labelkey": "value"
+          }
         },
         {
           "name": "name",
           "schema": "string",
-          "description": ""
+          "description": "",
+          "example": "new-name"
         }
       ],
       "responses": [
@@ -752,7 +825,8 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Resource."
+          "description": "ID of the Resource.",
+          "example": 42
         },
         {
           "name": "sort",
@@ -770,13 +844,17 @@
           "name": "page",
           "schema": "integer",
           "required": false,
-          "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+          "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+          "example": 2,
+          "default": 1
         },
         {
           "name": "perPage",
           "schema": "integer",
           "required": false,
-          "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+          "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+          "example": 25,
+          "default": 25
         }
       ],
       "responses": [
@@ -798,7 +876,8 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Firewall"
+          "description": "ID of the Firewall",
+          "example": 0
         },
         {
           "name": "apply_to",
@@ -826,7 +905,8 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Firewall"
+          "description": "ID of the Firewall",
+          "example": 0
         },
         {
           "name": "remove_from",
@@ -854,7 +934,8 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Firewall"
+          "description": "ID of the Firewall",
+          "example": 0
         },
         {
           "name": "rules",
@@ -882,13 +963,15 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Firewall"
+          "description": "ID of the Firewall",
+          "example": 0
         },
         {
           "name": "actionId",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Action"
+          "description": "ID of the Action",
+          "example": 0
         }
       ],
       "responses": [
@@ -928,13 +1011,17 @@
           "name": "page",
           "schema": "integer",
           "required": false,
-          "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+          "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+          "example": 2,
+          "default": 1
         },
         {
           "name": "perPage",
           "schema": "integer",
           "required": false,
-          "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+          "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+          "example": 25,
+          "default": 25
         }
       ],
       "responses": [
@@ -956,37 +1043,45 @@
           "name": "description",
           "schema": "string",
           "required": false,
-          "description": ""
+          "description": "",
+          "example": "Web Frontend"
         },
         {
           "name": "home_location",
           "schema": "string",
           "required": false,
-          "description": ""
+          "description": "",
+          "example": "fsn1"
         },
         {
           "name": "labels",
           "schema": "object",
           "required": false,
-          "description": ""
+          "description": "",
+          "example": {
+            "labelkey": "value"
+          }
         },
         {
           "name": "name",
           "schema": "string",
           "required": false,
-          "description": ""
+          "description": "",
+          "example": "Web Frontend"
         },
         {
           "name": "server",
           "schema": "integer",
           "required": false,
-          "description": ""
+          "description": "",
+          "example": 42
         },
         {
           "name": "type",
           "schema": "string",
           "required": true,
-          "description": ""
+          "description": "",
+          "example": "TYPE"
         }
       ],
       "responses": [
@@ -1008,7 +1103,8 @@
           "name": "id",
           "schema": "integer",
           "required": false,
-          "description": "Filter the actions by ID. Can be used multiple times. The response will only contain\nactions matching the specified IDs.\n"
+          "description": "Filter the actions by ID. Can be used multiple times. The response will only contain\nactions matching the specified IDs.\n",
+          "example": 42
         },
         {
           "name": "sort",
@@ -1026,13 +1122,17 @@
           "name": "page",
           "schema": "integer",
           "required": false,
-          "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+          "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+          "example": 2,
+          "default": 1
         },
         {
           "name": "perPage",
           "schema": "integer",
           "required": false,
-          "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+          "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+          "example": 25,
+          "default": 25
         }
       ],
       "responses": [
@@ -1054,7 +1154,8 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Action."
+          "description": "ID of the Action.",
+          "example": 42
         }
       ],
       "responses": [
@@ -1076,7 +1177,8 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Floating IP"
+          "description": "ID of the Floating IP",
+          "example": 0
         }
       ],
       "responses": [
@@ -1098,7 +1200,8 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Floating IP"
+          "description": "ID of the Floating IP",
+          "example": 0
         }
       ],
       "responses": [
@@ -1120,22 +1223,28 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Floating IP"
+          "description": "ID of the Floating IP",
+          "example": 0
         },
         {
           "name": "description",
           "schema": "string",
-          "description": ""
+          "description": "",
+          "example": "Web Frontend"
         },
         {
           "name": "labels",
           "schema": "object",
-          "description": ""
+          "description": "",
+          "example": {
+            "labelkey": "value"
+          }
         },
         {
           "name": "name",
           "schema": "string",
-          "description": ""
+          "description": "",
+          "example": "Web Frontend"
         }
       ],
       "responses": [
@@ -1157,7 +1266,8 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Floating IP"
+          "description": "ID of the Floating IP",
+          "example": 0
         },
         {
           "name": "sort",
@@ -1175,13 +1285,17 @@
           "name": "page",
           "schema": "integer",
           "required": false,
-          "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+          "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+          "example": 2,
+          "default": 1
         },
         {
           "name": "perPage",
           "schema": "integer",
           "required": false,
-          "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+          "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+          "example": 25,
+          "default": 25
         }
       ],
       "responses": [
@@ -1203,13 +1317,15 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Floating IP"
+          "description": "ID of the Floating IP",
+          "example": 0
         },
         {
           "name": "server",
           "schema": "integer",
           "required": true,
-          "description": ""
+          "description": "",
+          "example": 42
         }
       ],
       "responses": [
@@ -1231,19 +1347,22 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Floating IP"
+          "description": "ID of the Floating IP",
+          "example": 0
         },
         {
           "name": "dns_ptr",
           "schema": "string",
           "required": true,
-          "description": ""
+          "description": "",
+          "example": "server02.example.com"
         },
         {
           "name": "ip",
           "schema": "string",
           "required": true,
-          "description": ""
+          "description": "",
+          "example": "1.2.3.4"
         }
       ],
       "responses": [
@@ -1265,12 +1384,14 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Floating IP"
+          "description": "ID of the Floating IP",
+          "example": 0
         },
         {
           "name": "delete",
           "schema": "boolean",
-          "description": ""
+          "description": "",
+          "example": true
         }
       ],
       "responses": [
@@ -1292,7 +1413,8 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Floating IP"
+          "description": "ID of the Floating IP",
+          "example": 0
         }
       ],
       "responses": [
@@ -1314,13 +1436,15 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Floating IP"
+          "description": "ID of the Floating IP",
+          "example": 0
         },
         {
           "name": "actionId",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Action"
+          "description": "ID of the Action",
+          "example": 0
         }
       ],
       "responses": [
@@ -1390,13 +1514,17 @@
           "name": "page",
           "schema": "integer",
           "required": false,
-          "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+          "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+          "example": 2,
+          "default": 1
         },
         {
           "name": "perPage",
           "schema": "integer",
           "required": false,
-          "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+          "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+          "example": 25,
+          "default": 25
         }
       ],
       "responses": [
@@ -1418,7 +1546,8 @@
           "name": "id",
           "schema": "integer",
           "required": false,
-          "description": "Filter the actions by ID. Can be used multiple times. The response will only contain\nactions matching the specified IDs.\n"
+          "description": "Filter the actions by ID. Can be used multiple times. The response will only contain\nactions matching the specified IDs.\n",
+          "example": 42
         },
         {
           "name": "sort",
@@ -1436,13 +1565,17 @@
           "name": "page",
           "schema": "integer",
           "required": false,
-          "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+          "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+          "example": 2,
+          "default": 1
         },
         {
           "name": "perPage",
           "schema": "integer",
           "required": false,
-          "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+          "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+          "example": 25,
+          "default": 25
         }
       ],
       "responses": [
@@ -1464,7 +1597,8 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Action."
+          "description": "ID of the Action.",
+          "example": 42
         }
       ],
       "responses": [
@@ -1486,7 +1620,8 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Image"
+          "description": "ID of the Image",
+          "example": 0
         }
       ],
       "responses": [
@@ -1508,7 +1643,8 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Image"
+          "description": "ID of the Image",
+          "example": 0
         }
       ],
       "responses": [
@@ -1530,17 +1666,22 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Image"
+          "description": "ID of the Image",
+          "example": 0
         },
         {
           "name": "description",
           "schema": "string",
-          "description": ""
+          "description": "",
+          "example": "My new Image description"
         },
         {
           "name": "labels",
           "schema": "object",
-          "description": ""
+          "description": "",
+          "example": {
+            "labelkey": "value"
+          }
         },
         {
           "name": "type",
@@ -1567,7 +1708,8 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Image"
+          "description": "ID of the Image",
+          "example": 0
         },
         {
           "name": "sort",
@@ -1585,13 +1727,17 @@
           "name": "page",
           "schema": "integer",
           "required": false,
-          "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+          "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+          "example": 2,
+          "default": 1
         },
         {
           "name": "perPage",
           "schema": "integer",
           "required": false,
-          "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+          "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+          "example": 25,
+          "default": 25
         }
       ],
       "responses": [
@@ -1613,12 +1759,14 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Image"
+          "description": "ID of the Image",
+          "example": 0
         },
         {
           "name": "delete",
           "schema": "boolean",
-          "description": ""
+          "description": "",
+          "example": true
         }
       ],
       "responses": [
@@ -1640,13 +1788,15 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Image"
+          "description": "ID of the Image",
+          "example": 0
         },
         {
           "name": "actionId",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Action"
+          "description": "ID of the Action",
+          "example": 0
         }
       ],
       "responses": [
@@ -1686,13 +1836,17 @@
           "name": "page",
           "schema": "integer",
           "required": false,
-          "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+          "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+          "example": 2,
+          "default": 1
         },
         {
           "name": "perPage",
           "schema": "integer",
           "required": false,
-          "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+          "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+          "example": 25,
+          "default": 25
         }
       ],
       "responses": [
@@ -1714,7 +1868,8 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the ISO"
+          "description": "ID of the ISO",
+          "example": 0
         }
       ],
       "responses": [
@@ -1742,13 +1897,17 @@
           "name": "page",
           "schema": "integer",
           "required": false,
-          "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+          "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+          "example": 2,
+          "default": 1
         },
         {
           "name": "perPage",
           "schema": "integer",
           "required": false,
-          "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+          "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+          "example": 25,
+          "default": 25
         }
       ],
       "responses": [
@@ -1770,7 +1929,8 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of Load Balancer type"
+          "description": "ID of Load Balancer type",
+          "example": 0
         }
       ],
       "responses": [
@@ -1810,13 +1970,17 @@
           "name": "page",
           "schema": "integer",
           "required": false,
-          "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+          "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+          "example": 2,
+          "default": 1
         },
         {
           "name": "perPage",
           "schema": "integer",
           "required": false,
-          "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+          "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+          "example": 25,
+          "default": 25
         }
       ],
       "responses": [
@@ -1838,7 +2002,10 @@
           "name": "algorithm",
           "schema": "object",
           "required": false,
-          "description": ""
+          "description": "",
+          "default": {
+            "type": "round_robin"
+          }
         },
         {
           "name": "labels",
@@ -1850,7 +2017,8 @@
           "name": "load_balancer_type",
           "schema": "string",
           "required": true,
-          "description": ""
+          "description": "",
+          "example": "lb11"
         },
         {
           "name": "location",
@@ -1862,25 +2030,29 @@
           "name": "name",
           "schema": "string",
           "required": true,
-          "description": ""
+          "description": "",
+          "example": "Web Frontend"
         },
         {
           "name": "network",
           "schema": "integer",
           "required": false,
-          "description": ""
+          "description": "",
+          "example": 123
         },
         {
           "name": "network_zone",
           "schema": "string",
           "required": false,
-          "description": ""
+          "description": "",
+          "example": "eu-central"
         },
         {
           "name": "public_interface",
           "schema": "boolean",
           "required": false,
-          "description": ""
+          "description": "",
+          "example": true
         },
         {
           "name": "services",
@@ -1914,7 +2086,8 @@
           "name": "id",
           "schema": "integer",
           "required": false,
-          "description": "Filter the actions by ID. Can be used multiple times. The response will only contain\nactions matching the specified IDs.\n"
+          "description": "Filter the actions by ID. Can be used multiple times. The response will only contain\nactions matching the specified IDs.\n",
+          "example": 42
         },
         {
           "name": "sort",
@@ -1932,13 +2105,17 @@
           "name": "page",
           "schema": "integer",
           "required": false,
-          "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+          "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+          "example": 2,
+          "default": 1
         },
         {
           "name": "perPage",
           "schema": "integer",
           "required": false,
-          "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+          "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+          "example": 25,
+          "default": 25
         }
       ],
       "responses": [
@@ -1960,7 +2137,8 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Action."
+          "description": "ID of the Action.",
+          "example": 42
         }
       ],
       "responses": [
@@ -1982,7 +2160,8 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Load Balancer"
+          "description": "ID of the Load Balancer",
+          "example": 0
         }
       ],
       "responses": [
@@ -2004,7 +2183,8 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Load Balancer"
+          "description": "ID of the Load Balancer",
+          "example": 0
         }
       ],
       "responses": [
@@ -2026,17 +2206,22 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Load Balancer"
+          "description": "ID of the Load Balancer",
+          "example": 0
         },
         {
           "name": "labels",
           "schema": "object",
-          "description": ""
+          "description": "",
+          "example": {
+            "labelkey": "value"
+          }
         },
         {
           "name": "name",
           "schema": "string",
-          "description": ""
+          "description": "",
+          "example": "new-name"
         }
       ],
       "responses": [
@@ -2058,7 +2243,8 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Load Balancer"
+          "description": "ID of the Load Balancer",
+          "example": 0
         },
         {
           "name": "sort",
@@ -2076,13 +2262,17 @@
           "name": "page",
           "schema": "integer",
           "required": false,
-          "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+          "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+          "example": 2,
+          "default": 1
         },
         {
           "name": "perPage",
           "schema": "integer",
           "required": false,
-          "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+          "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+          "example": 25,
+          "default": 25
         }
       ],
       "responses": [
@@ -2104,13 +2294,15 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Load Balancer"
+          "description": "ID of the Load Balancer",
+          "example": 0
         },
         {
           "name": "destination_port",
           "schema": "integer",
           "required": true,
-          "description": ""
+          "description": "",
+          "example": 80
         },
         {
           "name": "health_check",
@@ -2128,19 +2320,22 @@
           "name": "listen_port",
           "schema": "integer",
           "required": true,
-          "description": ""
+          "description": "",
+          "example": 443
         },
         {
           "name": "protocol",
           "schema": "string",
           "required": true,
-          "description": ""
+          "description": "",
+          "example": "https"
         },
         {
           "name": "proxyprotocol",
           "schema": "boolean",
           "required": true,
-          "description": ""
+          "description": "",
+          "example": false
         }
       ],
       "responses": [
@@ -2162,7 +2357,8 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Load Balancer"
+          "description": "ID of the Load Balancer",
+          "example": 0
         },
         {
           "name": "ip",
@@ -2186,13 +2382,16 @@
           "name": "type",
           "schema": "string",
           "required": true,
-          "description": ""
+          "description": "",
+          "example": "TYPE"
         },
         {
           "name": "use_private_ip",
           "schema": "boolean",
           "required": false,
-          "description": ""
+          "description": "",
+          "example": true,
+          "default": false
         }
       ],
       "responses": [
@@ -2214,19 +2413,22 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Load Balancer"
+          "description": "ID of the Load Balancer",
+          "example": 0
         },
         {
           "name": "ip",
           "schema": "string",
           "required": false,
-          "description": ""
+          "description": "",
+          "example": "10.0.1.1"
         },
         {
           "name": "network",
           "schema": "integer",
           "required": true,
-          "description": ""
+          "description": "",
+          "example": 4711
         }
       ],
       "responses": [
@@ -2248,13 +2450,15 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Load Balancer"
+          "description": "ID of the Load Balancer",
+          "example": 0
         },
         {
           "name": "type",
           "schema": "string",
           "required": true,
-          "description": ""
+          "description": "",
+          "example": "TYPE"
         }
       ],
       "responses": [
@@ -2276,19 +2480,22 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Load Balancer"
+          "description": "ID of the Load Balancer",
+          "example": 0
         },
         {
           "name": "dns_ptr",
           "schema": "string",
           "required": true,
-          "description": ""
+          "description": "",
+          "example": "lb1.example.com"
         },
         {
           "name": "ip",
           "schema": "string",
           "required": true,
-          "description": ""
+          "description": "",
+          "example": "1.2.3.4"
         }
       ],
       "responses": [
@@ -2310,12 +2517,14 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Load Balancer"
+          "description": "ID of the Load Balancer",
+          "example": 0
         },
         {
           "name": "delete",
           "schema": "boolean",
-          "description": ""
+          "description": "",
+          "example": true
         }
       ],
       "responses": [
@@ -2337,13 +2546,15 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Load Balancer"
+          "description": "ID of the Load Balancer",
+          "example": 0
         },
         {
           "name": "load_balancer_type",
           "schema": "string",
           "required": true,
-          "description": ""
+          "description": "",
+          "example": "lb21"
         }
       ],
       "responses": [
@@ -2365,13 +2576,15 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Load Balancer"
+          "description": "ID of the Load Balancer",
+          "example": 0
         },
         {
           "name": "listen_port",
           "schema": "integer",
           "required": true,
-          "description": ""
+          "description": "",
+          "example": 443
         }
       ],
       "responses": [
@@ -2393,13 +2606,15 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Load Balancer"
+          "description": "ID of the Load Balancer",
+          "example": 0
         },
         {
           "name": "network",
           "schema": "integer",
           "required": true,
-          "description": ""
+          "description": "",
+          "example": 4711
         }
       ],
       "responses": [
@@ -2421,7 +2636,8 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Load Balancer"
+          "description": "ID of the Load Balancer",
+          "example": 0
         }
       ],
       "responses": [
@@ -2443,7 +2659,8 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Load Balancer"
+          "description": "ID of the Load Balancer",
+          "example": 0
         }
       ],
       "responses": [
@@ -2465,7 +2682,8 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Load Balancer"
+          "description": "ID of the Load Balancer",
+          "example": 0
         },
         {
           "name": "ip",
@@ -2489,7 +2707,8 @@
           "name": "type",
           "schema": "string",
           "required": true,
-          "description": ""
+          "description": "",
+          "example": "TYPE"
         }
       ],
       "responses": [
@@ -2511,13 +2730,15 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Load Balancer"
+          "description": "ID of the Load Balancer",
+          "example": 0
         },
         {
           "name": "destination_port",
           "schema": "integer",
           "required": false,
-          "description": ""
+          "description": "",
+          "example": 80
         },
         {
           "name": "health_check",
@@ -2535,19 +2756,22 @@
           "name": "listen_port",
           "schema": "integer",
           "required": true,
-          "description": ""
+          "description": "",
+          "example": 443
         },
         {
           "name": "protocol",
           "schema": "string",
           "required": false,
-          "description": ""
+          "description": "",
+          "example": "https"
         },
         {
           "name": "proxyprotocol",
           "schema": "boolean",
           "required": false,
-          "description": ""
+          "description": "",
+          "example": false
         }
       ],
       "responses": [
@@ -2569,13 +2793,15 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Load Balancer"
+          "description": "ID of the Load Balancer",
+          "example": 0
         },
         {
           "name": "actionId",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Action"
+          "description": "ID of the Action",
+          "example": 0
         }
       ],
       "responses": [
@@ -2597,25 +2823,29 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Load Balancer"
+          "description": "ID of the Load Balancer",
+          "example": 0
         },
         {
           "name": "type",
           "schema": "string",
           "required": true,
-          "description": "Type of metrics to get"
+          "description": "Type of metrics to get",
+          "example": "TYPE"
         },
         {
           "name": "start",
           "schema": "string",
           "required": true,
-          "description": "Start of period to get Metrics for (in ISO-8601 format)"
+          "description": "Start of period to get Metrics for (in ISO-8601 format)",
+          "example": "START"
         },
         {
           "name": "end",
           "schema": "string",
           "required": true,
-          "description": "End of period to get Metrics for (in ISO-8601 format)"
+          "description": "End of period to get Metrics for (in ISO-8601 format)",
+          "example": "END"
         },
         {
           "name": "step",
@@ -2655,13 +2885,17 @@
           "name": "page",
           "schema": "integer",
           "required": false,
-          "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+          "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+          "example": 2,
+          "default": 1
         },
         {
           "name": "perPage",
           "schema": "integer",
           "required": false,
-          "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+          "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+          "example": 25,
+          "default": 25
         }
       ],
       "responses": [
@@ -2683,7 +2917,8 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of Location"
+          "description": "ID of Location",
+          "example": 0
         }
       ],
       "responses": [
@@ -2717,13 +2952,17 @@
           "name": "page",
           "schema": "integer",
           "required": false,
-          "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+          "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+          "example": 2,
+          "default": 1
         },
         {
           "name": "perPage",
           "schema": "integer",
           "required": false,
-          "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+          "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+          "example": 25,
+          "default": 25
         }
       ],
       "responses": [
@@ -2745,13 +2984,15 @@
           "name": "expose_routes_to_vswitch",
           "schema": "boolean",
           "required": false,
-          "description": ""
+          "description": "",
+          "example": false
         },
         {
           "name": "ip_range",
           "schema": "string",
           "required": true,
-          "description": ""
+          "description": "",
+          "example": "10.0.0.0/16"
         },
         {
           "name": "labels",
@@ -2763,7 +3004,8 @@
           "name": "name",
           "schema": "string",
           "required": true,
-          "description": ""
+          "description": "",
+          "example": "mynet"
         },
         {
           "name": "routes",
@@ -2797,7 +3039,8 @@
           "name": "id",
           "schema": "integer",
           "required": false,
-          "description": "Filter the actions by ID. Can be used multiple times. The response will only contain\nactions matching the specified IDs.\n"
+          "description": "Filter the actions by ID. Can be used multiple times. The response will only contain\nactions matching the specified IDs.\n",
+          "example": 42
         },
         {
           "name": "sort",
@@ -2815,13 +3058,17 @@
           "name": "page",
           "schema": "integer",
           "required": false,
-          "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+          "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+          "example": 2,
+          "default": 1
         },
         {
           "name": "perPage",
           "schema": "integer",
           "required": false,
-          "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+          "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+          "example": 25,
+          "default": 25
         }
       ],
       "responses": [
@@ -2843,7 +3090,8 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Action."
+          "description": "ID of the Action.",
+          "example": 42
         }
       ],
       "responses": [
@@ -2865,7 +3113,8 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the network"
+          "description": "ID of the network",
+          "example": 0
         }
       ],
       "responses": [
@@ -2887,7 +3136,8 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the network"
+          "description": "ID of the network",
+          "example": 0
         }
       ],
       "responses": [
@@ -2909,12 +3159,14 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the network"
+          "description": "ID of the network",
+          "example": 0
         },
         {
           "name": "expose_routes_to_vswitch",
           "schema": "boolean",
-          "description": ""
+          "description": "",
+          "example": false
         },
         {
           "name": "labels",
@@ -2924,7 +3176,8 @@
         {
           "name": "name",
           "schema": "string",
-          "description": ""
+          "description": "",
+          "example": "new-name"
         }
       ],
       "responses": [
@@ -2946,7 +3199,8 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Network"
+          "description": "ID of the Network",
+          "example": 0
         },
         {
           "name": "sort",
@@ -2964,13 +3218,17 @@
           "name": "page",
           "schema": "integer",
           "required": false,
-          "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+          "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+          "example": 2,
+          "default": 1
         },
         {
           "name": "perPage",
           "schema": "integer",
           "required": false,
-          "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+          "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+          "example": 25,
+          "default": 25
         }
       ],
       "responses": [
@@ -2992,19 +3250,22 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Network"
+          "description": "ID of the Network",
+          "example": 0
         },
         {
           "name": "destination",
           "schema": "string",
           "required": true,
-          "description": ""
+          "description": "",
+          "example": "10.100.1.0/24"
         },
         {
           "name": "gateway",
           "schema": "string",
           "required": true,
-          "description": ""
+          "description": "",
+          "example": "10.0.1.1"
         }
       ],
       "responses": [
@@ -3026,31 +3287,36 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Network"
+          "description": "ID of the Network",
+          "example": 0
         },
         {
           "name": "ip_range",
           "schema": "string",
           "required": false,
-          "description": ""
+          "description": "",
+          "example": "10.0.1.0/24"
         },
         {
           "name": "network_zone",
           "schema": "string",
           "required": true,
-          "description": ""
+          "description": "",
+          "example": "eu-central"
         },
         {
           "name": "type",
           "schema": "string",
           "required": true,
-          "description": ""
+          "description": "",
+          "example": "TYPE"
         },
         {
           "name": "vswitch_id",
           "schema": "integer",
           "required": false,
-          "description": ""
+          "description": "",
+          "example": 1000
         }
       ],
       "responses": [
@@ -3072,13 +3338,15 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Network"
+          "description": "ID of the Network",
+          "example": 0
         },
         {
           "name": "ip_range",
           "schema": "string",
           "required": true,
-          "description": ""
+          "description": "",
+          "example": "10.0.0.0/12"
         }
       ],
       "responses": [
@@ -3100,12 +3368,14 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Network"
+          "description": "ID of the Network",
+          "example": 0
         },
         {
           "name": "delete",
           "schema": "boolean",
-          "description": ""
+          "description": "",
+          "example": true
         }
       ],
       "responses": [
@@ -3127,19 +3397,22 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Network"
+          "description": "ID of the Network",
+          "example": 0
         },
         {
           "name": "destination",
           "schema": "string",
           "required": true,
-          "description": ""
+          "description": "",
+          "example": "10.100.1.0/24"
         },
         {
           "name": "gateway",
           "schema": "string",
           "required": true,
-          "description": ""
+          "description": "",
+          "example": "10.0.1.1"
         }
       ],
       "responses": [
@@ -3161,13 +3434,15 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Network"
+          "description": "ID of the Network",
+          "example": 0
         },
         {
           "name": "ip_range",
           "schema": "string",
           "required": true,
-          "description": ""
+          "description": "",
+          "example": "10.0.1.0/24"
         }
       ],
       "responses": [
@@ -3189,13 +3464,15 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Network"
+          "description": "ID of the Network",
+          "example": 0
         },
         {
           "name": "actionId",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Action"
+          "description": "ID of the Action",
+          "example": 0
         }
       ],
       "responses": [
@@ -3241,13 +3518,17 @@
           "name": "page",
           "schema": "integer",
           "required": false,
-          "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+          "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+          "example": 2,
+          "default": 1
         },
         {
           "name": "perPage",
           "schema": "integer",
           "required": false,
-          "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+          "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+          "example": 25,
+          "default": 25
         }
       ],
       "responses": [
@@ -3275,13 +3556,15 @@
           "name": "name",
           "schema": "string",
           "required": true,
-          "description": ""
+          "description": "",
+          "example": "my Placement Group"
         },
         {
           "name": "type",
           "schema": "string",
           "required": true,
-          "description": ""
+          "description": "",
+          "example": "spread"
         }
       ],
       "responses": [
@@ -3303,7 +3586,8 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Resource."
+          "description": "ID of the Resource.",
+          "example": 42
         }
       ],
       "responses": [
@@ -3325,7 +3609,8 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Resource."
+          "description": "ID of the Resource.",
+          "example": 42
         }
       ],
       "responses": [
@@ -3347,17 +3632,22 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Resource."
+          "description": "ID of the Resource.",
+          "example": 42
         },
         {
           "name": "labels",
           "schema": "object",
-          "description": ""
+          "description": "",
+          "example": {
+            "labelkey": "value"
+          }
         },
         {
           "name": "name",
           "schema": "string",
-          "description": ""
+          "description": "",
+          "example": "my Placement Group"
         }
       ],
       "responses": [
@@ -3406,19 +3696,24 @@
           "name": "ip",
           "schema": "string",
           "required": false,
-          "description": "Can be used to filter resources by their ip. The response will only contain the resources matching the specified ip."
+          "description": "Can be used to filter resources by their ip. The response will only contain the resources matching the specified ip.",
+          "example": "127.0.0.1"
         },
         {
           "name": "page",
           "schema": "integer",
           "required": false,
-          "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+          "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+          "example": 2,
+          "default": 1
         },
         {
           "name": "perPage",
           "schema": "integer",
           "required": false,
-          "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+          "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+          "example": 25,
+          "default": 25
         },
         {
           "name": "sort",
@@ -3446,43 +3741,53 @@
           "name": "assignee_id",
           "schema": "integer",
           "required": false,
-          "description": ""
+          "description": "",
+          "example": 17
         },
         {
           "name": "assignee_type",
           "schema": "string",
           "required": true,
-          "description": ""
+          "description": "",
+          "example": "server"
         },
         {
           "name": "auto_delete",
           "schema": "boolean",
           "required": false,
-          "description": ""
+          "description": "",
+          "example": false,
+          "default": false
         },
         {
           "name": "datacenter",
           "schema": "string",
           "required": false,
-          "description": ""
+          "description": "",
+          "example": "fsn1-dc8"
         },
         {
           "name": "labels",
           "schema": "object",
           "required": false,
-          "description": ""
+          "description": "",
+          "example": {
+            "labelkey": "value"
+          }
         },
         {
           "name": "name",
           "schema": "string",
           "required": true,
-          "description": ""
+          "description": "",
+          "example": "my-ip"
         },
         {
           "name": "type",
           "schema": "string",
           "required": true,
-          "description": ""
+          "description": "",
+          "example": "TYPE"
         }
       ],
       "responses": [
@@ -3504,7 +3809,8 @@
           "name": "id",
           "schema": "integer",
           "required": false,
-          "description": "Filter the actions by ID. Can be used multiple times. The response will only contain\nactions matching the specified IDs.\n"
+          "description": "Filter the actions by ID. Can be used multiple times. The response will only contain\nactions matching the specified IDs.\n",
+          "example": 42
         },
         {
           "name": "sort",
@@ -3522,13 +3828,17 @@
           "name": "page",
           "schema": "integer",
           "required": false,
-          "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+          "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+          "example": 2,
+          "default": 1
         },
         {
           "name": "perPage",
           "schema": "integer",
           "required": false,
-          "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+          "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+          "example": 25,
+          "default": 25
         }
       ],
       "responses": [
@@ -3550,7 +3860,8 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Action."
+          "description": "ID of the Action.",
+          "example": 42
         }
       ],
       "responses": [
@@ -3572,7 +3883,8 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Resource."
+          "description": "ID of the Resource.",
+          "example": 42
         }
       ],
       "responses": [
@@ -3594,7 +3906,8 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Resource."
+          "description": "ID of the Resource.",
+          "example": 42
         }
       ],
       "responses": [
@@ -3616,22 +3929,28 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Resource."
+          "description": "ID of the Resource.",
+          "example": 42
         },
         {
           "name": "auto_delete",
           "schema": "boolean",
-          "description": ""
+          "description": "",
+          "example": true
         },
         {
           "name": "labels",
           "schema": "object",
-          "description": ""
+          "description": "",
+          "example": {
+            "labelkey": "value"
+          }
         },
         {
           "name": "name",
           "schema": "string",
-          "description": ""
+          "description": "",
+          "example": "my-ip"
         }
       ],
       "responses": [
@@ -3653,19 +3972,22 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Primary IP"
+          "description": "ID of the Primary IP",
+          "example": 0
         },
         {
           "name": "assignee_id",
           "schema": "integer",
           "required": true,
-          "description": ""
+          "description": "",
+          "example": 4711
         },
         {
           "name": "assignee_type",
           "schema": "string",
           "required": true,
-          "description": ""
+          "description": "",
+          "example": "server"
         }
       ],
       "responses": [
@@ -3687,19 +4009,22 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Primary IP"
+          "description": "ID of the Primary IP",
+          "example": 0
         },
         {
           "name": "dns_ptr",
           "schema": "string",
           "required": true,
-          "description": ""
+          "description": "",
+          "example": "server02.example.com"
         },
         {
           "name": "ip",
           "schema": "string",
           "required": true,
-          "description": ""
+          "description": "",
+          "example": "1.2.3.4"
         }
       ],
       "responses": [
@@ -3721,12 +4046,14 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Primary IP"
+          "description": "ID of the Primary IP",
+          "example": 0
         },
         {
           "name": "delete",
           "schema": "boolean",
-          "description": ""
+          "description": "",
+          "example": true
         }
       ],
       "responses": [
@@ -3748,7 +4075,8 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Primary IP"
+          "description": "ID of the Primary IP",
+          "example": 0
         }
       ],
       "responses": [
@@ -3776,13 +4104,17 @@
           "name": "page",
           "schema": "integer",
           "required": false,
-          "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+          "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+          "example": 2,
+          "default": 1
         },
         {
           "name": "perPage",
           "schema": "integer",
           "required": false,
-          "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+          "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+          "example": 25,
+          "default": 25
         }
       ],
       "responses": [
@@ -3804,7 +4136,8 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of Server Type"
+          "description": "ID of Server Type",
+          "example": 0
         }
       ],
       "responses": [
@@ -3850,13 +4183,17 @@
           "name": "page",
           "schema": "integer",
           "required": false,
-          "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+          "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+          "example": 2,
+          "default": 1
         },
         {
           "name": "perPage",
           "schema": "integer",
           "required": false,
-          "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+          "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+          "example": 25,
+          "default": 25
         }
       ],
       "responses": [
@@ -3878,25 +4215,33 @@
           "name": "automount",
           "schema": "boolean",
           "required": false,
-          "description": ""
+          "description": "",
+          "example": false
         },
         {
           "name": "datacenter",
           "schema": "string",
           "required": false,
-          "description": ""
+          "description": "",
+          "example": "nbg1-dc3"
         },
         {
           "name": "firewalls",
           "schema": "array",
           "required": false,
-          "description": ""
+          "description": "",
+          "example": [
+            {
+              "firewall": 38
+            }
+          ]
         },
         {
           "name": "image",
           "schema": "string",
           "required": true,
-          "description": ""
+          "description": "",
+          "example": "ubuntu-20.04"
         },
         {
           "name": "labels",
@@ -3908,25 +4253,31 @@
           "name": "location",
           "schema": "string",
           "required": false,
-          "description": ""
+          "description": "",
+          "example": "nbg1"
         },
         {
           "name": "name",
           "schema": "string",
           "required": true,
-          "description": ""
+          "description": "",
+          "example": "my-server"
         },
         {
           "name": "networks",
           "schema": "array",
           "required": false,
-          "description": ""
+          "description": "",
+          "example": [
+            456
+          ]
         },
         {
           "name": "placement_group",
           "schema": "integer",
           "required": false,
-          "description": ""
+          "description": "",
+          "example": 1
         },
         {
           "name": "public_net",
@@ -3938,31 +4289,41 @@
           "name": "server_type",
           "schema": "string",
           "required": true,
-          "description": ""
+          "description": "",
+          "example": "cx11"
         },
         {
           "name": "ssh_keys",
           "schema": "array",
           "required": false,
-          "description": ""
+          "description": "",
+          "example": [
+            "my-ssh-key"
+          ]
         },
         {
           "name": "start_after_create",
           "schema": "boolean",
           "required": false,
-          "description": ""
+          "description": "",
+          "example": true,
+          "default": true
         },
         {
           "name": "user_data",
           "schema": "string",
           "required": false,
-          "description": ""
+          "description": "",
+          "example": "#cloud-config\nruncmd:\n- [touch, /root/cloud-init-worked]\n"
         },
         {
           "name": "volumes",
           "schema": "array",
           "required": false,
-          "description": ""
+          "description": "",
+          "example": [
+            123
+          ]
         }
       ],
       "responses": [
@@ -3984,7 +4345,8 @@
           "name": "id",
           "schema": "integer",
           "required": false,
-          "description": "Filter the actions by ID. Can be used multiple times. The response will only contain\nactions matching the specified IDs.\n"
+          "description": "Filter the actions by ID. Can be used multiple times. The response will only contain\nactions matching the specified IDs.\n",
+          "example": 42
         },
         {
           "name": "sort",
@@ -4002,13 +4364,17 @@
           "name": "page",
           "schema": "integer",
           "required": false,
-          "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+          "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+          "example": 2,
+          "default": 1
         },
         {
           "name": "perPage",
           "schema": "integer",
           "required": false,
-          "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+          "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+          "example": 25,
+          "default": 25
         }
       ],
       "responses": [
@@ -4030,7 +4396,8 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Action."
+          "description": "ID of the Action.",
+          "example": 42
         }
       ],
       "responses": [
@@ -4052,7 +4419,8 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Server"
+          "description": "ID of the Server",
+          "example": 0
         }
       ],
       "responses": [
@@ -4074,7 +4442,8 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Server"
+          "description": "ID of the Server",
+          "example": 0
         }
       ],
       "responses": [
@@ -4096,17 +4465,22 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Server"
+          "description": "ID of the Server",
+          "example": 0
         },
         {
           "name": "labels",
           "schema": "object",
-          "description": ""
+          "description": "",
+          "example": {
+            "labelkey": "value"
+          }
         },
         {
           "name": "name",
           "schema": "string",
-          "description": ""
+          "description": "",
+          "example": "my-server"
         }
       ],
       "responses": [
@@ -4128,7 +4502,8 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Resource."
+          "description": "ID of the Resource.",
+          "example": 42
         },
         {
           "name": "sort",
@@ -4146,13 +4521,17 @@
           "name": "page",
           "schema": "integer",
           "required": false,
-          "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+          "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+          "example": 2,
+          "default": 1
         },
         {
           "name": "perPage",
           "schema": "integer",
           "required": false,
-          "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+          "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+          "example": 25,
+          "default": 25
         }
       ],
       "responses": [
@@ -4174,13 +4553,15 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Server"
+          "description": "ID of the Server",
+          "example": 0
         },
         {
           "name": "placement_group",
           "schema": "integer",
           "required": true,
-          "description": ""
+          "description": "",
+          "example": 1
         }
       ],
       "responses": [
@@ -4202,13 +4583,15 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Server"
+          "description": "ID of the Server",
+          "example": 0
         },
         {
           "name": "iso",
           "schema": "string",
           "required": true,
-          "description": ""
+          "description": "",
+          "example": "FreeBSD-11.0-RELEASE-amd64-dvd1"
         }
       ],
       "responses": [
@@ -4230,25 +4613,31 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Server"
+          "description": "ID of the Server",
+          "example": 0
         },
         {
           "name": "alias_ips",
           "schema": "array",
           "required": false,
-          "description": ""
+          "description": "",
+          "example": [
+            "10.0.1.2"
+          ]
         },
         {
           "name": "ip",
           "schema": "string",
           "required": false,
-          "description": ""
+          "description": "",
+          "example": "10.0.1.1"
         },
         {
           "name": "network",
           "schema": "integer",
           "required": true,
-          "description": ""
+          "description": "",
+          "example": 4711
         }
       ],
       "responses": [
@@ -4270,19 +4659,24 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Server"
+          "description": "ID of the Server",
+          "example": 0
         },
         {
           "name": "alias_ips",
           "schema": "array",
           "required": true,
-          "description": ""
+          "description": "",
+          "example": [
+            "10.0.1.2"
+          ]
         },
         {
           "name": "network",
           "schema": "integer",
           "required": true,
-          "description": ""
+          "description": "",
+          "example": 4711
         }
       ],
       "responses": [
@@ -4304,19 +4698,22 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Server"
+          "description": "ID of the Server",
+          "example": 0
         },
         {
           "name": "dns_ptr",
           "schema": "string",
           "required": true,
-          "description": ""
+          "description": "",
+          "example": "server01.example.com"
         },
         {
           "name": "ip",
           "schema": "string",
           "required": true,
-          "description": ""
+          "description": "",
+          "example": "1.2.3.4"
         }
       ],
       "responses": [
@@ -4338,17 +4735,20 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Server"
+          "description": "ID of the Server",
+          "example": 0
         },
         {
           "name": "delete",
           "schema": "boolean",
-          "description": ""
+          "description": "",
+          "example": true
         },
         {
           "name": "rebuild",
           "schema": "boolean",
-          "description": ""
+          "description": "",
+          "example": true
         }
       ],
       "responses": [
@@ -4370,19 +4770,22 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Server"
+          "description": "ID of the Server",
+          "example": 0
         },
         {
           "name": "server_type",
           "schema": "string",
           "required": true,
-          "description": ""
+          "description": "",
+          "example": "cx11"
         },
         {
           "name": "upgrade_disk",
           "schema": "boolean",
           "required": true,
-          "description": ""
+          "description": "",
+          "example": true
         }
       ],
       "responses": [
@@ -4404,12 +4807,14 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Server"
+          "description": "ID of the Server",
+          "example": 0
         },
         {
           "name": "description",
           "schema": "string",
-          "description": ""
+          "description": "",
+          "example": "my image"
         },
         {
           "name": "labels",
@@ -4419,7 +4824,9 @@
         {
           "name": "type",
           "schema": "string",
-          "description": ""
+          "description": "",
+          "example": "snapshot",
+          "default": "snapshot"
         }
       ],
       "responses": [
@@ -4441,13 +4848,15 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Server"
+          "description": "ID of the Server",
+          "example": 0
         },
         {
           "name": "network",
           "schema": "integer",
           "required": true,
-          "description": ""
+          "description": "",
+          "example": 4711
         }
       ],
       "responses": [
@@ -4469,7 +4878,8 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Server"
+          "description": "ID of the Server",
+          "example": 0
         }
       ],
       "responses": [
@@ -4491,7 +4901,8 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Server"
+          "description": "ID of the Server",
+          "example": 0
         }
       ],
       "responses": [
@@ -4513,7 +4924,8 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Server"
+          "description": "ID of the Server",
+          "example": 0
         }
       ],
       "responses": [
@@ -4535,7 +4947,8 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Server"
+          "description": "ID of the Server",
+          "example": 0
         }
       ],
       "responses": [
@@ -4557,17 +4970,22 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Server"
+          "description": "ID of the Server",
+          "example": 0
         },
         {
           "name": "ssh_keys",
           "schema": "array",
-          "description": ""
+          "description": "",
+          "example": [
+            2323
+          ]
         },
         {
           "name": "type",
           "schema": "string",
-          "description": ""
+          "description": "",
+          "default": "linux64"
         }
       ],
       "responses": [
@@ -4589,7 +5007,8 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Server"
+          "description": "ID of the Server",
+          "example": 0
         }
       ],
       "responses": [
@@ -4611,7 +5030,8 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Server"
+          "description": "ID of the Server",
+          "example": 0
         }
       ],
       "responses": [
@@ -4633,7 +5053,8 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Server"
+          "description": "ID of the Server",
+          "example": 0
         }
       ],
       "responses": [
@@ -4655,13 +5076,15 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Server"
+          "description": "ID of the Server",
+          "example": 0
         },
         {
           "name": "image",
           "schema": "string",
           "required": true,
-          "description": ""
+          "description": "",
+          "example": "ubuntu-20.04"
         }
       ],
       "responses": [
@@ -4683,7 +5106,8 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Server"
+          "description": "ID of the Server",
+          "example": 0
         }
       ],
       "responses": [
@@ -4705,7 +5129,8 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Server"
+          "description": "ID of the Server",
+          "example": 0
         }
       ],
       "responses": [
@@ -4727,7 +5152,8 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Server"
+          "description": "ID of the Server",
+          "example": 0
         }
       ],
       "responses": [
@@ -4749,7 +5175,8 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Server"
+          "description": "ID of the Server",
+          "example": 0
         }
       ],
       "responses": [
@@ -4771,7 +5198,8 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Server"
+          "description": "ID of the Server",
+          "example": 0
         }
       ],
       "responses": [
@@ -4793,13 +5221,15 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Server"
+          "description": "ID of the Server",
+          "example": 0
         },
         {
           "name": "actionId",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Action"
+          "description": "ID of the Action",
+          "example": 0
         }
       ],
       "responses": [
@@ -4821,25 +5251,29 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Server"
+          "description": "ID of the Server",
+          "example": 0
         },
         {
           "name": "type",
           "schema": "string",
           "required": true,
-          "description": "Type of metrics to get"
+          "description": "Type of metrics to get",
+          "example": "TYPE"
         },
         {
           "name": "start",
           "schema": "string",
           "required": true,
-          "description": "Start of period to get Metrics for (in ISO-8601 format)"
+          "description": "Start of period to get Metrics for (in ISO-8601 format)",
+          "example": "START"
         },
         {
           "name": "end",
           "schema": "string",
           "required": true,
-          "description": "End of period to get Metrics for (in ISO-8601 format)"
+          "description": "End of period to get Metrics for (in ISO-8601 format)",
+          "example": "END"
         },
         {
           "name": "step",
@@ -4891,13 +5325,17 @@
           "name": "page",
           "schema": "integer",
           "required": false,
-          "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+          "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+          "example": 2,
+          "default": 1
         },
         {
           "name": "perPage",
           "schema": "integer",
           "required": false,
-          "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+          "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+          "example": 25,
+          "default": 25
         }
       ],
       "responses": [
@@ -4925,13 +5363,15 @@
           "name": "name",
           "schema": "string",
           "required": true,
-          "description": ""
+          "description": "",
+          "example": "My ssh key"
         },
         {
           "name": "public_key",
           "schema": "string",
           "required": true,
-          "description": ""
+          "description": "",
+          "example": "ssh-rsa AAAjjk76kgf...Xt"
         }
       ],
       "responses": [
@@ -4953,7 +5393,8 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the SSH key"
+          "description": "ID of the SSH key",
+          "example": 0
         }
       ],
       "responses": [
@@ -4975,7 +5416,8 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the SSH key"
+          "description": "ID of the SSH key",
+          "example": 0
         }
       ],
       "responses": [
@@ -4997,17 +5439,22 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the SSH key"
+          "description": "ID of the SSH key",
+          "example": 0
         },
         {
           "name": "labels",
           "schema": "object",
-          "description": ""
+          "description": "",
+          "example": {
+            "labelkey": "value"
+          }
         },
         {
           "name": "name",
           "schema": "string",
-          "description": ""
+          "description": "",
+          "example": "My ssh key"
         }
       ],
       "responses": [
@@ -5053,13 +5500,17 @@
           "name": "page",
           "schema": "integer",
           "required": false,
-          "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+          "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+          "example": 2,
+          "default": 1
         },
         {
           "name": "perPage",
           "schema": "integer",
           "required": false,
-          "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+          "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+          "example": 25,
+          "default": 25
         }
       ],
       "responses": [
@@ -5081,31 +5532,38 @@
           "name": "automount",
           "schema": "boolean",
           "required": false,
-          "description": ""
+          "description": "",
+          "example": false
         },
         {
           "name": "format",
           "schema": "string",
           "required": false,
-          "description": ""
+          "description": "",
+          "example": "xfs"
         },
         {
           "name": "labels",
           "schema": "object",
           "required": false,
-          "description": ""
+          "description": "",
+          "example": {
+            "labelkey": "value"
+          }
         },
         {
           "name": "location",
           "schema": "string",
           "required": false,
-          "description": ""
+          "description": "",
+          "example": "nbg1"
         },
         {
           "name": "name",
           "schema": "string",
           "required": true,
-          "description": ""
+          "description": "",
+          "example": "databases-storage"
         },
         {
           "name": "server",
@@ -5117,7 +5575,8 @@
           "name": "size",
           "schema": "integer",
           "required": true,
-          "description": ""
+          "description": "",
+          "example": 42
         }
       ],
       "responses": [
@@ -5139,7 +5598,8 @@
           "name": "id",
           "schema": "integer",
           "required": false,
-          "description": "Filter the actions by ID. Can be used multiple times. The response will only contain\nactions matching the specified IDs.\n"
+          "description": "Filter the actions by ID. Can be used multiple times. The response will only contain\nactions matching the specified IDs.\n",
+          "example": 42
         },
         {
           "name": "sort",
@@ -5157,13 +5617,17 @@
           "name": "page",
           "schema": "integer",
           "required": false,
-          "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+          "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+          "example": 2,
+          "default": 1
         },
         {
           "name": "perPage",
           "schema": "integer",
           "required": false,
-          "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+          "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+          "example": 25,
+          "default": 25
         }
       ],
       "responses": [
@@ -5185,7 +5649,8 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Action."
+          "description": "ID of the Action.",
+          "example": 42
         }
       ],
       "responses": [
@@ -5207,7 +5672,8 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Volume"
+          "description": "ID of the Volume",
+          "example": 0
         }
       ],
       "responses": [
@@ -5229,7 +5695,8 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Volume"
+          "description": "ID of the Volume",
+          "example": 0
         }
       ],
       "responses": [
@@ -5251,7 +5718,8 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Volume to update"
+          "description": "ID of the Volume to update",
+          "example": 0
         },
         {
           "name": "labels",
@@ -5261,7 +5729,8 @@
         {
           "name": "name",
           "schema": "string",
-          "description": ""
+          "description": "",
+          "example": "database-storage"
         }
       ],
       "responses": [
@@ -5283,7 +5752,8 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Volume"
+          "description": "ID of the Volume",
+          "example": 0
         },
         {
           "name": "sort",
@@ -5301,13 +5771,17 @@
           "name": "page",
           "schema": "integer",
           "required": false,
-          "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+          "description": "Page number to return. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+          "example": 2,
+          "default": 1
         },
         {
           "name": "perPage",
           "schema": "integer",
           "required": false,
-          "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\"."
+          "description": "Maximum number of entries returned per page. For more information, see \"[Pagination](https://docs.hetzner.cloud)\".",
+          "example": 25,
+          "default": 25
         }
       ],
       "responses": [
@@ -5329,19 +5803,22 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Volume"
+          "description": "ID of the Volume",
+          "example": 0
         },
         {
           "name": "automount",
           "schema": "boolean",
           "required": false,
-          "description": ""
+          "description": "",
+          "example": false
         },
         {
           "name": "server",
           "schema": "integer",
           "required": true,
-          "description": ""
+          "description": "",
+          "example": 43
         }
       ],
       "responses": [
@@ -5363,12 +5840,14 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Volume"
+          "description": "ID of the Volume",
+          "example": 0
         },
         {
           "name": "delete",
           "schema": "boolean",
-          "description": ""
+          "description": "",
+          "example": true
         }
       ],
       "responses": [
@@ -5390,7 +5869,8 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Volume"
+          "description": "ID of the Volume",
+          "example": 0
         }
       ],
       "responses": [
@@ -5412,13 +5892,15 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Volume"
+          "description": "ID of the Volume",
+          "example": 0
         },
         {
           "name": "size",
           "schema": "number",
           "required": true,
-          "description": ""
+          "description": "",
+          "example": 50
         }
       ],
       "responses": [
@@ -5440,13 +5922,15 @@
           "name": "id",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Volume"
+          "description": "ID of the Volume",
+          "example": 0
         },
         {
           "name": "actionId",
           "schema": "integer",
           "required": true,
-          "description": "ID of the Action"
+          "description": "ID of the Action",
+          "example": 0
         }
       ],
       "responses": [
@@ -5457,13 +5941,15 @@
       ]
     }
   ],
-  "repositoryDescription": "Hetzner offers reliable cloud hosting and data center services with top-notch infrastructure, security, and performance for businesses seeking scalable and dependable solutions, including dedicated servers, cloud storage, and VPS. Hetzner's {language} SDK generated by Konfig (https://konfigthis.com/).",
+  "repositoryDescription": "Hetzner offers reliable cloud hosting and data center services with state-of-the-art infrastructure, focusing on security and performance. They have solutions for businesses of all sizes, including dedicated servers, cloud storage, and virtual private servers. Hetzner's {language} SDK generated by Konfig (https://konfigthis.com/).",
   "logo": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/hetzner/logo.png",
   "openApiRaw": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/hetzner/openapi.yaml",
+  "openApiGitHubUi": "https://github.com/konfig-sdks/openapi-examples/tree/HEAD/hetzner/openapi.yaml",
   "previewLinkImage": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/hetzner/imagePreview.png",
   "faviconUrl": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/hetzner/favicon.png",
   "clientNameCamelCase": "hetzner",
-  "lastUpdated": "2024-03-12T20:48:39.438Z",
+  "lastUpdated": "2024-03-13T02:25:22.175Z",
   "typescriptSdkUsageCode": "import { Hetzner } from 'hetzner-typescript-sdk';\n\nconst hetzner = new Hetzner({\n    token: \"TOKEN\",\n})",
+  "typescriptSdkFirstRequestCode": "// Get all Actions\nconst getAllResponse = hetzner.actions.getAll({\n    id: 42\n    page: 2\n    perPage: 25\n})",
   "fixedSpecFileName": "hetzner-fixed-spec.yaml"
 }

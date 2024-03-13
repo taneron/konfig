@@ -4,11 +4,13 @@ import { HttpMethodsEnum } from "konfig-lib/dist/forEachOperation";
 import Description from "./_description.mdx";
 // @ts-ignore
 import GettingStarted from "./_getting-started.mdx";
-import { Sdk } from "@site/src/components/Sdk";
+// @ts-ignore
+import FirstRequest from "./_first-request.mdx"
+import { SdkNew } from "@site/src/components/SdkNew";
 
 export default function PaylocityWeblinkTypeScriptSdk() {
   return (
-    <Sdk
+    <SdkNew
       sdkName="paylocity-typescript-sdk"
       metaDescription="Paylocity is the HR & Payroll provider that frees you from the tasks of today, so together, we can spend more time focused on the promise of tomorrow."
       company="Paylocity"
@@ -16,13 +18,15 @@ export default function PaylocityWeblinkTypeScriptSdk() {
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/paylocity/weblink/logo.jpg"
       clientNameCamelCase="paylocity"
       homepage="developer.paylocity.com"
-      lastUpdated={new Date("2024-03-11T06:04:39.099Z")}
+      lastUpdated={new Date("2024-03-13T02:25:22.175Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/paylocity/weblink/favicon.jpg"
       // Missing contactUrl
       contactEmail="webservices@paylocity.com"
       previewLinkImage="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/paylocity/weblink/imagePreview.png"
       GettingStarted={GettingStarted}
       Description={Description}
+      FirstRequest={FirstRequest}
+      categories={["payroll","hr"]}
       methods={[
   {
     "url": "/v1/employee",
@@ -57,13 +61,15 @@ export default function PaylocityWeblinkTypeScriptSdk() {
         "name": "companyId",
         "schema": "string",
         "required": true,
-        "description": "The Paylocity Company Identifier. This is the unique value provided by Paylocity to each specific Payroll Entity.\r\n                **Allowable Values:**\r\n                9 char max"
+        "description": "The Paylocity Company Identifier. This is the unique value provided by Paylocity to each specific Payroll Entity.\r\n                **Allowable Values:**\r\n                9 char max",
+        "example": "COMPANYID"
       },
       {
         "name": "employeeId",
         "schema": "string",
         "required": true,
-        "description": "The Paylocity Employee ID. This is a unique value per Paylocity Company ID.\r\n**Allowable Values:**\r\n10 char max"
+        "description": "The Paylocity Employee ID. This is a unique value per Paylocity Company ID.\r\n**Allowable Values:**\r\n10 char max",
+        "example": "EMPLOYEEID"
       }
     ],
     "responses": [
@@ -131,25 +137,29 @@ export default function PaylocityWeblinkTypeScriptSdk() {
         "name": "companyId",
         "schema": "string",
         "required": true,
-        "description": "The Paylocity Company Identifier. This is the unique value provided by Paylocity to each specific Payroll Entity.\r\n                **Allowable Values:**\r\n                9 char max"
+        "description": "The Paylocity Company Identifier. This is the unique value provided by Paylocity to each specific Payroll Entity.\r\n                **Allowable Values:**\r\n                9 char max",
+        "example": "COMPANYID"
       },
       {
         "name": "employeeId",
         "schema": "string",
         "required": true,
-        "description": "The Paylocity Employee ID. This is a unique value per Paylocity Company ID.\r\n**Allowable Values:**\r\n10 char max"
+        "description": "The Paylocity Employee ID. This is a unique value per Paylocity Company ID.\r\n**Allowable Values:**\r\n10 char max",
+        "example": "EMPLOYEEID"
       },
       {
         "name": "deductionCode",
         "schema": "string",
         "required": true,
-        "description": "Deduction Code"
+        "description": "Deduction Code",
+        "example": "DEDUCTIONCODE"
       },
       {
         "name": "startDate",
         "schema": "string",
         "required": true,
-        "description": "Start Date"
+        "description": "Start Date",
+        "example": "STARTDATE"
       }
     ],
     "responses": [
@@ -171,13 +181,15 @@ export default function PaylocityWeblinkTypeScriptSdk() {
         "name": "companyId",
         "schema": "string",
         "required": true,
-        "description": "The Paylocity Company Identifier. This is the unique value provided by Paylocity to each specific Payroll Entity.\r\n                **Allowable Values:**\r\n                9 char max"
+        "description": "The Paylocity Company Identifier. This is the unique value provided by Paylocity to each specific Payroll Entity.\r\n                **Allowable Values:**\r\n                9 char max",
+        "example": "COMPANYID"
       },
       {
         "name": "employeeId",
         "schema": "string",
         "required": true,
-        "description": "The Paylocity Employee ID. This is a unique value per Paylocity Company ID.\r\n**Allowable Values:**\r\n10 char max"
+        "description": "The Paylocity Employee ID. This is a unique value per Paylocity Company ID.\r\n**Allowable Values:**\r\n10 char max",
+        "example": "EMPLOYEEID"
       }
     ],
     "responses": [
@@ -203,19 +215,22 @@ export default function PaylocityWeblinkTypeScriptSdk() {
         "name": "companyId",
         "schema": "string",
         "required": true,
-        "description": "The Paylocity Company Identifier. This is the unique value provided by Paylocity to each specific Payroll Entity.\r\n                **Allowable Values:**\r\n                9 char max"
+        "description": "The Paylocity Company Identifier. This is the unique value provided by Paylocity to each specific Payroll Entity.\r\n                **Allowable Values:**\r\n                9 char max",
+        "example": "COMPANYID"
       },
       {
         "name": "employeeId",
         "schema": "string",
         "required": true,
-        "description": "The Paylocity Employee ID. This is a unique value per Paylocity Company ID.\r\n**Allowable Values:**\r\n10 char max"
+        "description": "The Paylocity Employee ID. This is a unique value per Paylocity Company ID.\r\n**Allowable Values:**\r\n10 char max",
+        "example": "EMPLOYEEID"
       },
       {
         "name": "deductionCode",
         "schema": "string",
         "required": true,
-        "description": "Deduction Code"
+        "description": "Deduction Code",
+        "example": "DEDUCTIONCODE"
       }
     ],
     "responses": [
@@ -241,7 +256,8 @@ export default function PaylocityWeblinkTypeScriptSdk() {
         "name": "companyId",
         "schema": "string",
         "required": true,
-        "description": "The Paylocity Company Identifier. This is the unique value provided by Paylocity to each specific Payroll Entity.\r\n                **Allowable Values:**\r\n                9 char max"
+        "description": "The Paylocity Company Identifier. This is the unique value provided by Paylocity to each specific Payroll Entity.\r\n                **Allowable Values:**\r\n                9 char max",
+        "example": "COMPANYID"
       },
       {
         "name": "employeeId",
@@ -325,7 +341,8 @@ export default function PaylocityWeblinkTypeScriptSdk() {
         "name": "firstName",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "FIRSTNAME"
       },
       {
         "name": "sex",
@@ -349,7 +366,8 @@ export default function PaylocityWeblinkTypeScriptSdk() {
         "name": "lastName",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "LASTNAME"
       },
       {
         "name": "maritalStatus",
@@ -471,19 +489,22 @@ export default function PaylocityWeblinkTypeScriptSdk() {
         "name": "companyId",
         "schema": "string",
         "required": true,
-        "description": "The Paylocity Company Identifier. This is the unique value provided by Paylocity to each specific Payroll Entity.\r\n                **Allowable Values:**\r\n                9 char max"
+        "description": "The Paylocity Company Identifier. This is the unique value provided by Paylocity to each specific Payroll Entity.\r\n                **Allowable Values:**\r\n                9 char max",
+        "example": "COMPANYID"
       },
       {
         "name": "employeeId",
         "schema": "string",
         "required": true,
-        "description": "The Paylocity Employee ID. This is a unique value per Paylocity Company ID.\r\n**Allowable Values:**\r\n10 char max"
+        "description": "The Paylocity Employee ID. This is a unique value per Paylocity Company ID.\r\n**Allowable Values:**\r\n10 char max",
+        "example": "EMPLOYEEID"
       },
       {
         "name": "taxCode",
         "schema": "string",
         "required": true,
-        "description": "Tax Code"
+        "description": "Tax Code",
+        "example": "TAXCODE"
       }
     ],
     "responses": [
@@ -505,19 +526,22 @@ export default function PaylocityWeblinkTypeScriptSdk() {
         "name": "companyId",
         "schema": "string",
         "required": true,
-        "description": "The Paylocity Company Identifier. This is the unique value provided by Paylocity to each specific Payroll Entity.\r\n                **Allowable Values:**\r\n                9 char max"
+        "description": "The Paylocity Company Identifier. This is the unique value provided by Paylocity to each specific Payroll Entity.\r\n                **Allowable Values:**\r\n                9 char max",
+        "example": "COMPANYID"
       },
       {
         "name": "employeeId",
         "schema": "string",
         "required": true,
-        "description": "The Paylocity Employee ID. This is a unique value per Paylocity Company ID.\r\n**Allowable Values:**\r\n10 char max"
+        "description": "The Paylocity Employee ID. This is a unique value per Paylocity Company ID.\r\n**Allowable Values:**\r\n10 char max",
+        "example": "EMPLOYEEID"
       },
       {
         "name": "taxCode",
         "schema": "string",
         "required": true,
-        "description": "Tax Code"
+        "description": "Tax Code",
+        "example": "TAXCODE"
       }
     ],
     "responses": [
@@ -543,19 +567,22 @@ export default function PaylocityWeblinkTypeScriptSdk() {
         "name": "companyId",
         "schema": "string",
         "required": true,
-        "description": "The Paylocity Company Identifier. This is the unique value provided by Paylocity to each specific Payroll Entity.\r\n                **Allowable Values:**\r\n                9 char max"
+        "description": "The Paylocity Company Identifier. This is the unique value provided by Paylocity to each specific Payroll Entity.\r\n                **Allowable Values:**\r\n                9 char max",
+        "example": "COMPANYID"
       },
       {
         "name": "employeeId",
         "schema": "string",
         "required": true,
-        "description": "The Paylocity Employee ID. This is a unique value per Paylocity Company ID.\r\n**Allowable Values:**\r\n10 char max"
+        "description": "The Paylocity Employee ID. This is a unique value per Paylocity Company ID.\r\n**Allowable Values:**\r\n10 char max",
+        "example": "EMPLOYEEID"
       },
       {
         "name": "taxCode",
         "schema": "string",
         "required": true,
-        "description": "Tax Code"
+        "description": "Tax Code",
+        "example": "TAXCODE"
       },
       {
         "name": "exemptions",
@@ -611,13 +638,15 @@ export default function PaylocityWeblinkTypeScriptSdk() {
         "name": "companyId",
         "schema": "string",
         "required": true,
-        "description": "The Paylocity Company Identifier. This is the unique value provided by Paylocity to each specific Payroll Entity.\r\n                **Allowable Values:**\r\n                9 char max"
+        "description": "The Paylocity Company Identifier. This is the unique value provided by Paylocity to each specific Payroll Entity.\r\n                **Allowable Values:**\r\n                9 char max",
+        "example": "COMPANYID"
       },
       {
         "name": "employeeId",
         "schema": "string",
         "required": true,
-        "description": "The Paylocity Employee ID. This is a unique value per Paylocity Company ID.\r\n**Allowable Values:**\r\n10 char max"
+        "description": "The Paylocity Employee ID. This is a unique value per Paylocity Company ID.\r\n**Allowable Values:**\r\n10 char max",
+        "example": "EMPLOYEEID"
       }
     ],
     "responses": [
@@ -643,13 +672,15 @@ export default function PaylocityWeblinkTypeScriptSdk() {
         "name": "companyId",
         "schema": "string",
         "required": true,
-        "description": "The Paylocity Company Identifier. This is the unique value provided by Paylocity to each specific Payroll Entity.\r\n                **Allowable Values:**\r\n                9 char max"
+        "description": "The Paylocity Company Identifier. This is the unique value provided by Paylocity to each specific Payroll Entity.\r\n                **Allowable Values:**\r\n                9 char max",
+        "example": "COMPANYID"
       },
       {
         "name": "employeeId",
         "schema": "string",
         "required": true,
-        "description": "The Paylocity Employee ID. This is a unique value per Paylocity Company ID.\r\n**Allowable Values:**\r\n10 char max"
+        "description": "The Paylocity Employee ID. This is a unique value per Paylocity Company ID.\r\n**Allowable Values:**\r\n10 char max",
+        "example": "EMPLOYEEID"
       },
       {
         "name": "exemptions",
@@ -705,13 +736,15 @@ export default function PaylocityWeblinkTypeScriptSdk() {
         "name": "companyId",
         "schema": "string",
         "required": true,
-        "description": "The Paylocity Company Identifier. This is the unique value provided by Paylocity to each specific Payroll Entity.\r\n                **Allowable Values:**\r\n                9 char max"
+        "description": "The Paylocity Company Identifier. This is the unique value provided by Paylocity to each specific Payroll Entity.\r\n                **Allowable Values:**\r\n                9 char max",
+        "example": "COMPANYID"
       },
       {
         "name": "employeeId",
         "schema": "string",
         "required": true,
-        "description": "The Paylocity Employee ID. This is a unique value per Paylocity Company ID.\r\n**Allowable Values:**\r\n10 char max"
+        "description": "The Paylocity Employee ID. This is a unique value per Paylocity Company ID.\r\n**Allowable Values:**\r\n10 char max",
+        "example": "EMPLOYEEID"
       },
       {
         "name": "changeReason",
@@ -797,7 +830,8 @@ export default function PaylocityWeblinkTypeScriptSdk() {
         "name": "code",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "CODE"
       }
     ],
     "responses": [
@@ -827,13 +861,15 @@ export default function PaylocityWeblinkTypeScriptSdk() {
         "name": "companyId",
         "schema": "string",
         "required": true,
-        "description": "The Paylocity Company Identifier. This is the unique value provided by Paylocity to each specific Payroll Entity.\r\n                **Allowable Values:**\r\n                9 char max"
+        "description": "The Paylocity Company Identifier. This is the unique value provided by Paylocity to each specific Payroll Entity.\r\n                **Allowable Values:**\r\n                9 char max",
+        "example": "COMPANYID"
       },
       {
         "name": "codeResource",
         "schema": "string",
         "required": true,
-        "description": "Type of Company Code. Common values costcenter1, costcenter2, costcenter3, deductions, earnings, taxes, paygrade, positions."
+        "description": "Type of Company Code. Common values costcenter1, costcenter2, costcenter3, deductions, earnings, taxes, paygrade, positions.",
+        "example": "CODERESOURCE"
       }
     ],
     "responses": [
@@ -863,7 +899,8 @@ export default function PaylocityWeblinkTypeScriptSdk() {
         "name": "companyId",
         "schema": "string",
         "required": true,
-        "description": "The Paylocity Company Identifier. This is the unique value provided by Paylocity to each specific Payroll Entity.\r\n                **Allowable Values:**\r\n                9 char max"
+        "description": "The Paylocity Company Identifier. This is the unique value provided by Paylocity to each specific Payroll Entity.\r\n                **Allowable Values:**\r\n                9 char max",
+        "example": "COMPANYID"
       }
     ],
     "responses": [
@@ -889,13 +926,15 @@ export default function PaylocityWeblinkTypeScriptSdk() {
         "name": "companyId",
         "schema": "string",
         "required": true,
-        "description": "The Paylocity Company Identifier. This is the unique value provided by Paylocity to each specific Payroll Entity.\r\n                **Allowable Values:**\r\n                9 char max"
+        "description": "The Paylocity Company Identifier. This is the unique value provided by Paylocity to each specific Payroll Entity.\r\n                **Allowable Values:**\r\n                9 char max",
+        "example": "COMPANYID"
       },
       {
         "name": "category",
         "schema": "string",
         "required": true,
-        "description": "Custom Fields Category"
+        "description": "Custom Fields Category",
+        "example": "CATEGORY"
       }
     ],
     "responses": [
@@ -925,13 +964,15 @@ export default function PaylocityWeblinkTypeScriptSdk() {
         "name": "companyId",
         "schema": "string",
         "required": true,
-        "description": "The Paylocity Company Identifier. This is the unique value provided by Paylocity to each specific Payroll Entity.\r\n                **Allowable Values:**\r\n                9 char max"
+        "description": "The Paylocity Company Identifier. This is the unique value provided by Paylocity to each specific Payroll Entity.\r\n                **Allowable Values:**\r\n                9 char max",
+        "example": "COMPANYID"
       },
       {
         "name": "employeeId",
         "schema": "string",
         "required": true,
-        "description": "The Paylocity Employee ID. This is a unique value per Paylocity Company ID.\r\n**Allowable Values:**\r\n10 char max"
+        "description": "The Paylocity Employee ID. This is a unique value per Paylocity Company ID.\r\n**Allowable Values:**\r\n10 char max",
+        "example": "EMPLOYEEID"
       }
     ],
     "responses": [
@@ -961,13 +1002,15 @@ export default function PaylocityWeblinkTypeScriptSdk() {
         "name": "companyId",
         "schema": "string",
         "required": true,
-        "description": "The Paylocity Company Identifier. This is the unique value provided by Paylocity to each specific Payroll Entity.\r\n                **Allowable Values:**\r\n                9 char max"
+        "description": "The Paylocity Company Identifier. This is the unique value provided by Paylocity to each specific Payroll Entity.\r\n                **Allowable Values:**\r\n                9 char max",
+        "example": "COMPANYID"
       },
       {
         "name": "employeeId",
         "schema": "string",
         "required": true,
-        "description": "The Paylocity Employee ID. This is a unique value per Paylocity Company ID.\r\n**Allowable Values:**\r\n10 char max"
+        "description": "The Paylocity Employee ID. This is a unique value per Paylocity Company ID.\r\n**Allowable Values:**\r\n10 char max",
+        "example": "EMPLOYEEID"
       }
     ],
     "responses": [
@@ -993,13 +1036,15 @@ export default function PaylocityWeblinkTypeScriptSdk() {
         "name": "companyId",
         "schema": "string",
         "required": true,
-        "description": "The Paylocity Company Identifier. This is the unique value provided by Paylocity to each specific Payroll Entity.\r\n                **Allowable Values:**\r\n                9 char max"
+        "description": "The Paylocity Company Identifier. This is the unique value provided by Paylocity to each specific Payroll Entity.\r\n                **Allowable Values:**\r\n                9 char max",
+        "example": "COMPANYID"
       },
       {
         "name": "employeeId",
         "schema": "string",
         "required": true,
-        "description": "The Paylocity Employee ID. This is a unique value per Paylocity Company ID.\r\n**Allowable Values:**\r\n10 char max"
+        "description": "The Paylocity Employee ID. This is a unique value per Paylocity Company ID.\r\n**Allowable Values:**\r\n10 char max",
+        "example": "EMPLOYEEID"
       },
       {
         "name": "agency",
@@ -1157,25 +1202,29 @@ export default function PaylocityWeblinkTypeScriptSdk() {
         "name": "companyId",
         "schema": "string",
         "required": true,
-        "description": "The Paylocity Company Identifier. This is the unique value provided by Paylocity to each specific Payroll Entity.\r\n                **Allowable Values:**\r\n                9 char max"
+        "description": "The Paylocity Company Identifier. This is the unique value provided by Paylocity to each specific Payroll Entity.\r\n                **Allowable Values:**\r\n                9 char max",
+        "example": "COMPANYID"
       },
       {
         "name": "employeeId",
         "schema": "string",
         "required": true,
-        "description": "The Paylocity Employee ID. This is a unique value per Paylocity Company ID.\r\n**Allowable Values:**\r\n10 char max"
+        "description": "The Paylocity Employee ID. This is a unique value per Paylocity Company ID.\r\n**Allowable Values:**\r\n10 char max",
+        "example": "EMPLOYEEID"
       },
       {
         "name": "earningCode",
         "schema": "string",
         "required": true,
-        "description": "Earning Code"
+        "description": "Earning Code",
+        "example": "EARNINGCODE"
       },
       {
         "name": "startDate",
         "schema": "string",
         "required": true,
-        "description": "Start Date"
+        "description": "Start Date",
+        "example": "STARTDATE"
       }
     ],
     "responses": [
@@ -1201,25 +1250,29 @@ export default function PaylocityWeblinkTypeScriptSdk() {
         "name": "companyId",
         "schema": "string",
         "required": true,
-        "description": "The Paylocity Company Identifier. This is the unique value provided by Paylocity to each specific Payroll Entity.\r\n                **Allowable Values:**\r\n                9 char max"
+        "description": "The Paylocity Company Identifier. This is the unique value provided by Paylocity to each specific Payroll Entity.\r\n                **Allowable Values:**\r\n                9 char max",
+        "example": "COMPANYID"
       },
       {
         "name": "employeeId",
         "schema": "string",
         "required": true,
-        "description": "The Paylocity Employee ID. This is a unique value per Paylocity Company ID.\r\n**Allowable Values:**\r\n10 char max"
+        "description": "The Paylocity Employee ID. This is a unique value per Paylocity Company ID.\r\n**Allowable Values:**\r\n10 char max",
+        "example": "EMPLOYEEID"
       },
       {
         "name": "earningCode",
         "schema": "string",
         "required": true,
-        "description": "Earning Code"
+        "description": "Earning Code",
+        "example": "EARNINGCODE"
       },
       {
         "name": "startDate",
         "schema": "string",
         "required": true,
-        "description": "Start Date"
+        "description": "Start Date",
+        "example": "STARTDATE"
       }
     ],
     "responses": [
@@ -1245,19 +1298,22 @@ export default function PaylocityWeblinkTypeScriptSdk() {
         "name": "companyId",
         "schema": "string",
         "required": true,
-        "description": "The Paylocity Company Identifier. This is the unique value provided by Paylocity to each specific Payroll Entity.\r\n                **Allowable Values:**\r\n                9 char max"
+        "description": "The Paylocity Company Identifier. This is the unique value provided by Paylocity to each specific Payroll Entity.\r\n                **Allowable Values:**\r\n                9 char max",
+        "example": "COMPANYID"
       },
       {
         "name": "employeeId",
         "schema": "string",
         "required": true,
-        "description": "The Paylocity Employee ID. This is a unique value per Paylocity Company ID.\r\n**Allowable Values:**\r\n10 char max"
+        "description": "The Paylocity Employee ID. This is a unique value per Paylocity Company ID.\r\n**Allowable Values:**\r\n10 char max",
+        "example": "EMPLOYEEID"
       },
       {
         "name": "earningCode",
         "schema": "string",
         "required": true,
-        "description": "Earning Code"
+        "description": "Earning Code",
+        "example": "EARNINGCODE"
       }
     ],
     "responses": [
@@ -1283,13 +1339,15 @@ export default function PaylocityWeblinkTypeScriptSdk() {
         "name": "companyId",
         "schema": "string",
         "required": true,
-        "description": "The Paylocity Company Identifier. This is the unique value provided by Paylocity to each specific Payroll Entity.\r\n                **Allowable Values:**\r\n                9 char max"
+        "description": "The Paylocity Company Identifier. This is the unique value provided by Paylocity to each specific Payroll Entity.\r\n                **Allowable Values:**\r\n                9 char max",
+        "example": "COMPANYID"
       },
       {
         "name": "employeeId",
         "schema": "string",
         "required": true,
-        "description": "The Paylocity Employee ID. This is a unique value per Paylocity Company ID.\r\n**Allowable Values:**\r\n10 char max"
+        "description": "The Paylocity Employee ID. This is a unique value per Paylocity Company ID.\r\n**Allowable Values:**\r\n10 char max",
+        "example": "EMPLOYEEID"
       },
       {
         "name": "address1",
@@ -1435,13 +1493,15 @@ export default function PaylocityWeblinkTypeScriptSdk() {
         "name": "companyId",
         "schema": "string",
         "required": true,
-        "description": "The Paylocity Company Identifier. This is the unique value provided by Paylocity to each specific Payroll Entity.\r\n                **Allowable Values:**\r\n                9 char max"
+        "description": "The Paylocity Company Identifier. This is the unique value provided by Paylocity to each specific Payroll Entity.\r\n                **Allowable Values:**\r\n                9 char max",
+        "example": "COMPANYID"
       },
       {
         "name": "employeeId",
         "schema": "string",
         "required": true,
-        "description": "The Paylocity Employee ID. This is a unique value per Paylocity Company ID.\r\n**Allowable Values:**\r\n10 char max"
+        "description": "The Paylocity Employee ID. This is a unique value per Paylocity Company ID.\r\n**Allowable Values:**\r\n10 char max",
+        "example": "EMPLOYEEID"
       },
       {
         "name": "benefitClass",
@@ -1497,7 +1557,8 @@ export default function PaylocityWeblinkTypeScriptSdk() {
         "name": "companyId",
         "schema": "string",
         "required": true,
-        "description": "The Paylocity Company Identifier. This is the unique value provided by Paylocity to each specific Payroll Entity.\r\n                **Allowable Values:**\r\n                9 char max"
+        "description": "The Paylocity Company Identifier. This is the unique value provided by Paylocity to each specific Payroll Entity.\r\n                **Allowable Values:**\r\n                9 char max",
+        "example": "COMPANYID"
       },
       {
         "name": "additionalDirectDeposit",
@@ -1752,7 +1813,8 @@ export default function PaylocityWeblinkTypeScriptSdk() {
         "name": "companyId",
         "schema": "string",
         "required": true,
-        "description": "The Paylocity Company Identifier. This is the unique value provided by Paylocity to each specific Payroll Entity.\r\n                **Allowable Values:**\r\n                9 char max"
+        "description": "The Paylocity Company Identifier. This is the unique value provided by Paylocity to each specific Payroll Entity.\r\n                **Allowable Values:**\r\n                9 char max",
+        "example": "COMPANYID"
       },
       {
         "name": "pagesize",
@@ -1797,7 +1859,8 @@ export default function PaylocityWeblinkTypeScriptSdk() {
         "name": "companyId",
         "schema": "string",
         "required": true,
-        "description": "The Paylocity Company Identifier. This is the unique value provided by Paylocity to each specific Payroll Entity.\r\n                **Allowable Values:**\r\n                9 char max"
+        "description": "The Paylocity Company Identifier. This is the unique value provided by Paylocity to each specific Payroll Entity.\r\n                **Allowable Values:**\r\n                9 char max",
+        "example": "COMPANYID"
       },
       {
         "name": "additionalDirectDeposit",
@@ -2042,13 +2105,15 @@ export default function PaylocityWeblinkTypeScriptSdk() {
         "name": "companyId",
         "schema": "string",
         "required": true,
-        "description": "The Paylocity Company Identifier. This is the unique value provided by Paylocity to each specific Payroll Entity.\r\n                **Allowable Values:**\r\n                9 char max"
+        "description": "The Paylocity Company Identifier. This is the unique value provided by Paylocity to each specific Payroll Entity.\r\n                **Allowable Values:**\r\n                9 char max",
+        "example": "COMPANYID"
       },
       {
         "name": "employeeId",
         "schema": "string",
         "required": true,
-        "description": "The Paylocity Employee ID. This is a unique value per Paylocity Company ID.\r\n**Allowable Values:**\r\n10 char max"
+        "description": "The Paylocity Employee ID. This is a unique value per Paylocity Company ID.\r\n**Allowable Values:**\r\n10 char max",
+        "example": "EMPLOYEEID"
       }
     ],
     "responses": [
@@ -2078,13 +2143,15 @@ export default function PaylocityWeblinkTypeScriptSdk() {
         "name": "companyId",
         "schema": "string",
         "required": true,
-        "description": "The Paylocity Company Identifier. This is the unique value provided by Paylocity to each specific Payroll Entity.\r\n                **Allowable Values:**\r\n                9 char max"
+        "description": "The Paylocity Company Identifier. This is the unique value provided by Paylocity to each specific Payroll Entity.\r\n                **Allowable Values:**\r\n                9 char max",
+        "example": "COMPANYID"
       },
       {
         "name": "employeeId",
         "schema": "string",
         "required": true,
-        "description": "The Paylocity Employee ID. This is a unique value per Paylocity Company ID.\r\n**Allowable Values:**\r\n10 char max"
+        "description": "The Paylocity Employee ID. This is a unique value per Paylocity Company ID.\r\n**Allowable Values:**\r\n10 char max",
+        "example": "EMPLOYEEID"
       },
       {
         "name": "additionalDirectDeposit",
@@ -2325,13 +2392,15 @@ export default function PaylocityWeblinkTypeScriptSdk() {
         "name": "companyId",
         "schema": "string",
         "required": true,
-        "description": "The Paylocity Company Identifier. This is the unique value provided by Paylocity to each specific Payroll Entity.\r\n                **Allowable Values:**\r\n                9 char max"
+        "description": "The Paylocity Company Identifier. This is the unique value provided by Paylocity to each specific Payroll Entity.\r\n                **Allowable Values:**\r\n                9 char max",
+        "example": "COMPANYID"
       },
       {
         "name": "employeeId",
         "schema": "string",
         "required": true,
-        "description": "The Paylocity Employee ID. This is a unique value per Paylocity Company ID.\r\n**Allowable Values:**\r\n10 char max"
+        "description": "The Paylocity Employee ID. This is a unique value per Paylocity Company ID.\r\n**Allowable Values:**\r\n10 char max",
+        "example": "EMPLOYEEID"
       }
     ],
     "responses": [
@@ -2357,13 +2426,15 @@ export default function PaylocityWeblinkTypeScriptSdk() {
         "name": "companyId",
         "schema": "string",
         "required": true,
-        "description": "The Paylocity Company Identifier. This is the unique value provided by Paylocity to each specific Payroll Entity.\r\n                **Allowable Values:**\r\n                9 char max"
+        "description": "The Paylocity Company Identifier. This is the unique value provided by Paylocity to each specific Payroll Entity.\r\n                **Allowable Values:**\r\n                9 char max",
+        "example": "COMPANYID"
       },
       {
         "name": "employeeId",
         "schema": "string",
         "required": true,
-        "description": "The Paylocity Employee ID. This is a unique value per Paylocity Company ID.\r\n**Allowable Values:**\r\n10 char max"
+        "description": "The Paylocity Employee ID. This is a unique value per Paylocity Company ID.\r\n**Allowable Values:**\r\n10 char max",
+        "example": "EMPLOYEEID"
       },
       {
         "name": "exemptions",
@@ -2419,19 +2490,22 @@ export default function PaylocityWeblinkTypeScriptSdk() {
         "name": "companyId",
         "schema": "string",
         "required": true,
-        "description": "The Paylocity Company Identifier. This is the unique value provided by Paylocity to each specific Payroll Entity.\r\n                **Allowable Values:**\r\n                9 char max"
+        "description": "The Paylocity Company Identifier. This is the unique value provided by Paylocity to each specific Payroll Entity.\r\n                **Allowable Values:**\r\n                9 char max",
+        "example": "COMPANYID"
       },
       {
         "name": "employeeId",
         "schema": "string",
         "required": true,
-        "description": "The Paylocity Employee ID. This is a unique value per Paylocity Company ID.\r\n**Allowable Values:**\r\n10 char max"
+        "description": "The Paylocity Employee ID. This is a unique value per Paylocity Company ID.\r\n**Allowable Values:**\r\n10 char max",
+        "example": "EMPLOYEEID"
       },
       {
         "name": "taxCode",
         "schema": "string",
         "required": true,
-        "description": "Tax Code"
+        "description": "Tax Code",
+        "example": "TAXCODE"
       }
     ],
     "responses": [
@@ -2457,19 +2531,22 @@ export default function PaylocityWeblinkTypeScriptSdk() {
         "name": "companyId",
         "schema": "string",
         "required": true,
-        "description": "The Paylocity Company Identifier. This is the unique value provided by Paylocity to each specific Payroll Entity.\r\n                **Allowable Values:**\r\n                9 char max"
+        "description": "The Paylocity Company Identifier. This is the unique value provided by Paylocity to each specific Payroll Entity.\r\n                **Allowable Values:**\r\n                9 char max",
+        "example": "COMPANYID"
       },
       {
         "name": "employeeId",
         "schema": "string",
         "required": true,
-        "description": "The Paylocity Employee ID. This is a unique value per Paylocity Company ID.\r\n**Allowable Values:**\r\n10 char max"
+        "description": "The Paylocity Employee ID. This is a unique value per Paylocity Company ID.\r\n**Allowable Values:**\r\n10 char max",
+        "example": "EMPLOYEEID"
       },
       {
         "name": "taxCode",
         "schema": "string",
         "required": true,
-        "description": "Tax Code"
+        "description": "Tax Code",
+        "example": "TAXCODE"
       }
     ],
     "responses": [
@@ -2495,13 +2572,15 @@ export default function PaylocityWeblinkTypeScriptSdk() {
         "name": "companyId",
         "schema": "string",
         "required": true,
-        "description": "The Paylocity Company Identifier. This is the unique value provided by Paylocity to each specific Payroll Entity.\r\n                **Allowable Values:**\r\n                9 char max"
+        "description": "The Paylocity Company Identifier. This is the unique value provided by Paylocity to each specific Payroll Entity.\r\n                **Allowable Values:**\r\n                9 char max",
+        "example": "COMPANYID"
       },
       {
         "name": "employeeId",
         "schema": "string",
         "required": true,
-        "description": "The Paylocity Employee ID. This is a unique value per Paylocity Company ID.\r\n**Allowable Values:**\r\n10 char max"
+        "description": "The Paylocity Employee ID. This is a unique value per Paylocity Company ID.\r\n**Allowable Values:**\r\n10 char max",
+        "example": "EMPLOYEEID"
       },
       {
         "name": "amount",
@@ -2597,25 +2676,29 @@ export default function PaylocityWeblinkTypeScriptSdk() {
         "name": "companyId",
         "schema": "string",
         "required": true,
-        "description": "The Paylocity Company Identifier. This is the unique value provided by Paylocity to each specific Payroll Entity.\r\n                **Allowable Values:**\r\n                9 char max"
+        "description": "The Paylocity Company Identifier. This is the unique value provided by Paylocity to each specific Payroll Entity.\r\n                **Allowable Values:**\r\n                9 char max",
+        "example": "COMPANYID"
       },
       {
         "name": "employeeId",
         "schema": "string",
         "required": true,
-        "description": "The Paylocity Employee ID. This is a unique value per Paylocity Company ID.\r\n**Allowable Values:**\r\n10 char max"
+        "description": "The Paylocity Employee ID. This is a unique value per Paylocity Company ID.\r\n**Allowable Values:**\r\n10 char max",
+        "example": "EMPLOYEEID"
       },
       {
         "name": "year",
         "schema": "string",
         "required": true,
-        "description": "The year for which to retrieve pay statement data"
+        "description": "The year for which to retrieve pay statement data",
+        "example": "YEAR"
       },
       {
         "name": "checkDate",
         "schema": "string",
         "required": true,
-        "description": "The check date for which to retrieve pay statement data"
+        "description": "The check date for which to retrieve pay statement data",
+        "example": "CHECKDATE"
       },
       {
         "name": "pagesize",
@@ -2665,19 +2748,22 @@ export default function PaylocityWeblinkTypeScriptSdk() {
         "name": "companyId",
         "schema": "string",
         "required": true,
-        "description": "The Paylocity Company Identifier. This is the unique value provided by Paylocity to each specific Payroll Entity.\r\n                **Allowable Values:**\r\n                9 char max"
+        "description": "The Paylocity Company Identifier. This is the unique value provided by Paylocity to each specific Payroll Entity.\r\n                **Allowable Values:**\r\n                9 char max",
+        "example": "COMPANYID"
       },
       {
         "name": "employeeId",
         "schema": "string",
         "required": true,
-        "description": "The Paylocity Employee ID. This is a unique value per Paylocity Company ID.\r\n**Allowable Values:**\r\n10 char max"
+        "description": "The Paylocity Employee ID. This is a unique value per Paylocity Company ID.\r\n**Allowable Values:**\r\n10 char max",
+        "example": "EMPLOYEEID"
       },
       {
         "name": "year",
         "schema": "string",
         "required": true,
-        "description": "The year for which to retrieve pay statement data"
+        "description": "The year for which to retrieve pay statement data",
+        "example": "YEAR"
       },
       {
         "name": "pagesize",
@@ -2727,25 +2813,29 @@ export default function PaylocityWeblinkTypeScriptSdk() {
         "name": "companyId",
         "schema": "string",
         "required": true,
-        "description": "The Paylocity Company Identifier. This is the unique value provided by Paylocity to each specific Payroll Entity.\r\n                **Allowable Values:**\r\n                9 char max"
+        "description": "The Paylocity Company Identifier. This is the unique value provided by Paylocity to each specific Payroll Entity.\r\n                **Allowable Values:**\r\n                9 char max",
+        "example": "COMPANYID"
       },
       {
         "name": "employeeId",
         "schema": "string",
         "required": true,
-        "description": "The Paylocity Employee ID. This is a unique value per Paylocity Company ID.\r\n**Allowable Values:**\r\n10 char max"
+        "description": "The Paylocity Employee ID. This is a unique value per Paylocity Company ID.\r\n**Allowable Values:**\r\n10 char max",
+        "example": "EMPLOYEEID"
       },
       {
         "name": "year",
         "schema": "string",
         "required": true,
-        "description": "The year for which to retrieve pay statement data"
+        "description": "The year for which to retrieve pay statement data",
+        "example": "YEAR"
       },
       {
         "name": "checkDate",
         "schema": "string",
         "required": true,
-        "description": "The check date for which to retrieve pay statement data"
+        "description": "The check date for which to retrieve pay statement data",
+        "example": "CHECKDATE"
       },
       {
         "name": "pagesize",
@@ -2795,19 +2885,22 @@ export default function PaylocityWeblinkTypeScriptSdk() {
         "name": "companyId",
         "schema": "string",
         "required": true,
-        "description": "The Paylocity Company Identifier. This is the unique value provided by Paylocity to each specific Payroll Entity.\r\n                **Allowable Values:**\r\n                9 char max"
+        "description": "The Paylocity Company Identifier. This is the unique value provided by Paylocity to each specific Payroll Entity.\r\n                **Allowable Values:**\r\n                9 char max",
+        "example": "COMPANYID"
       },
       {
         "name": "employeeId",
         "schema": "string",
         "required": true,
-        "description": "The Paylocity Employee ID. This is a unique value per Paylocity Company ID.\r\n**Allowable Values:**\r\n10 char max"
+        "description": "The Paylocity Employee ID. This is a unique value per Paylocity Company ID.\r\n**Allowable Values:**\r\n10 char max",
+        "example": "EMPLOYEEID"
       },
       {
         "name": "year",
         "schema": "string",
         "required": true,
-        "description": "The year for which to retrieve pay statement data"
+        "description": "The year for which to retrieve pay statement data",
+        "example": "YEAR"
       },
       {
         "name": "pagesize",
@@ -2857,13 +2950,15 @@ export default function PaylocityWeblinkTypeScriptSdk() {
         "name": "companyId",
         "schema": "string",
         "required": true,
-        "description": "The Paylocity Company Identifier. This is the unique value provided by Paylocity to each specific Payroll Entity.\r\n                **Allowable Values:**\r\n                9 char max"
+        "description": "The Paylocity Company Identifier. This is the unique value provided by Paylocity to each specific Payroll Entity.\r\n                **Allowable Values:**\r\n                9 char max",
+        "example": "COMPANYID"
       },
       {
         "name": "employeeId",
         "schema": "string",
         "required": true,
-        "description": "The Paylocity Employee ID. This is a unique value per Paylocity Company ID.\r\n**Allowable Values:**\r\n10 char max"
+        "description": "The Paylocity Employee ID. This is a unique value per Paylocity Company ID.\r\n**Allowable Values:**\r\n10 char max",
+        "example": "EMPLOYEEID"
       },
       {
         "name": "amount",
@@ -2954,13 +3049,15 @@ export default function PaylocityWeblinkTypeScriptSdk() {
         "name": "companyId",
         "schema": "string",
         "required": true,
-        "description": "The Paylocity Company Identifier. This is the unique value provided by Paylocity to each specific Payroll Entity.\r\n                **Allowable Values:**\r\n                9 char max"
+        "description": "The Paylocity Company Identifier. This is the unique value provided by Paylocity to each specific Payroll Entity.\r\n                **Allowable Values:**\r\n                9 char max",
+        "example": "COMPANYID"
       },
       {
         "name": "employeeId",
         "schema": "string",
         "required": true,
-        "description": "The Paylocity Employee ID. This is a unique value per Paylocity Company ID.\r\n**Allowable Values:**\r\n10 char max"
+        "description": "The Paylocity Employee ID. This is a unique value per Paylocity Company ID.\r\n**Allowable Values:**\r\n10 char max",
+        "example": "EMPLOYEEID"
       }
     ],
     "responses": [
@@ -2990,13 +3087,15 @@ export default function PaylocityWeblinkTypeScriptSdk() {
         "name": "companyId",
         "schema": "string",
         "required": true,
-        "description": "The Paylocity Company Identifier. This is the unique value provided by Paylocity to each specific Payroll Entity.\r\n                **Allowable Values:**\r\n                9 char max"
+        "description": "The Paylocity Company Identifier. This is the unique value provided by Paylocity to each specific Payroll Entity.\r\n                **Allowable Values:**\r\n                9 char max",
+        "example": "COMPANYID"
       },
       {
         "name": "employeeId",
         "schema": "string",
         "required": true,
-        "description": "The Paylocity Employee ID. This is a unique value per Paylocity Company ID.\r\n**Allowable Values:**\r\n10 char max"
+        "description": "The Paylocity Employee ID. This is a unique value per Paylocity Company ID.\r\n**Allowable Values:**\r\n10 char max",
+        "example": "EMPLOYEEID"
       },
       {
         "name": "disability",
@@ -3042,6 +3141,8 @@ export default function PaylocityWeblinkTypeScriptSdk() {
       parameters={403}
       difficulty="Medium"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/paylocity/weblink/openapi.yaml"
+      openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/paylocity/weblink/openapi.yaml"
+      
     />
   );
 }

@@ -57,11 +57,13 @@ export function saveCustomRequestLastFetched(date: Date, keys: string[]): void {
  */
 type ExtraOrOverwriteProperties = {
   categories: string[];
+  useNewPage?: boolean;
   faviconUrl: string;
 };
 
 export type Published = SdkPageProps & {
   typescriptSdkUsageCode: string;
+  typescriptSdkFirstRequestCode: string;
   originalSpecUrl?: string;
 } & AdditionalSpecDataProps &
   ExtraOrOverwriteProperties;

@@ -4,11 +4,13 @@ import { HttpMethodsEnum } from "konfig-lib/dist/forEachOperation";
 import Description from "./_description.mdx";
 // @ts-ignore
 import GettingStarted from "./_getting-started.mdx";
-import { Sdk } from "@site/src/components/Sdk";
+// @ts-ignore
+import FirstRequest from "./_first-request.mdx"
+import { SdkNew } from "@site/src/components/SdkNew";
 
 export default function BrexTeamTypeScriptSdk() {
   return (
-    <Sdk
+    <SdkNew
       sdkName="brex-team-typescript-sdk"
       metaDescription="Brex is the AI-powered spend platform. We transform finance teams from reactive no-sayers to proactive growth drivers. With Brex, companies spend with confidence by empowering employees to make smarter financial decisions from anywhere. Brex provides corporate cards, business accounts, and global payments, plus intuitive software for travel and expenses, that make it easy to plan and track all company spend in one place, in real time. Over 20,000 companies from startups to global enterprises — including DoorDash, Flexport, and Compass — use Brex to proactively control spend, reduce costs, and increase efficiency on a global scale."
       company="Brex"
@@ -16,13 +18,15 @@ export default function BrexTeamTypeScriptSdk() {
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/brex/team/logo.png"
       clientNameCamelCase="brexTeam"
       homepage="brex.com"
-      lastUpdated={new Date("2024-03-11T06:30:01.859Z")}
+      lastUpdated={new Date("2024-03-13T02:25:22.175Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/brex/team/favicon.png"
       contactUrl="https://brex.com"
       contactEmail="developer-access@brex.com"
       previewLinkImage="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/brex/team/imagePreview.jpg"
       GettingStarted={GettingStarted}
       Description={Description}
+      FirstRequest={FirstRequest}
+      categories={["finance","payments","online_payments","fintech","automation","banking"]}
       methods={[
   {
     "url": "/v2/cards",
@@ -70,7 +74,8 @@ export default function BrexTeamTypeScriptSdk() {
         "name": "idempotencyKey",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "IDEMPOTENCY-KEY"
       },
       {
         "name": "owner",
@@ -82,19 +87,22 @@ export default function BrexTeamTypeScriptSdk() {
         "name": "card_name",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "CARD_NAME"
       },
       {
         "name": "card_type",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "CARD_TYPE"
       },
       {
         "name": "limit_type",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "LIMIT_TYPE"
       },
       {
         "name": "spend_controls",
@@ -140,7 +148,8 @@ export default function BrexTeamTypeScriptSdk() {
         "name": "id",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "ID"
       }
     ],
     "responses": [
@@ -162,7 +171,8 @@ export default function BrexTeamTypeScriptSdk() {
         "name": "id",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "ID"
       },
       {
         "name": "idempotencyKey",
@@ -200,7 +210,8 @@ export default function BrexTeamTypeScriptSdk() {
         "name": "id",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "ID"
       },
       {
         "name": "idempotencyKey",
@@ -218,7 +229,8 @@ export default function BrexTeamTypeScriptSdk() {
         "name": "reason",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "REASON"
       }
     ],
     "responses": [
@@ -240,7 +252,8 @@ export default function BrexTeamTypeScriptSdk() {
         "name": "id",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "ID"
       }
     ],
     "responses": [
@@ -262,13 +275,15 @@ export default function BrexTeamTypeScriptSdk() {
         "name": "id",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "ID"
       },
       {
         "name": "idempotencyKey",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "IDEMPOTENCY-KEY"
       },
       {
         "name": "recipient_email",
@@ -310,7 +325,8 @@ export default function BrexTeamTypeScriptSdk() {
         "name": "id",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "ID"
       },
       {
         "name": "idempotencyKey",
@@ -328,7 +344,8 @@ export default function BrexTeamTypeScriptSdk() {
         "name": "reason",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "REASON"
       }
     ],
     "responses": [
@@ -356,7 +373,8 @@ export default function BrexTeamTypeScriptSdk() {
         "name": "id",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "ID"
       }
     ],
     "responses": [
@@ -439,7 +457,8 @@ export default function BrexTeamTypeScriptSdk() {
         "name": "name",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "NAME"
       }
     ],
     "responses": [
@@ -461,7 +480,8 @@ export default function BrexTeamTypeScriptSdk() {
         "name": "id",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "ID"
       }
     ],
     "responses": [
@@ -529,7 +549,8 @@ export default function BrexTeamTypeScriptSdk() {
         "name": "name",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "NAME"
       }
     ],
     "responses": [
@@ -551,7 +572,8 @@ export default function BrexTeamTypeScriptSdk() {
         "name": "id",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "ID"
       }
     ],
     "responses": [
@@ -613,7 +635,8 @@ export default function BrexTeamTypeScriptSdk() {
         "name": "name",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "NAME"
       }
     ],
     "responses": [
@@ -635,7 +658,8 @@ export default function BrexTeamTypeScriptSdk() {
         "name": "id",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "ID"
       }
     ],
     "responses": [
@@ -709,19 +733,22 @@ export default function BrexTeamTypeScriptSdk() {
         "name": "first_name",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "FIRST_NAME"
       },
       {
         "name": "last_name",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "LAST_NAME"
       },
       {
         "name": "email",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "EMAIL"
       },
       {
         "name": "manager_id",
@@ -788,7 +815,8 @@ export default function BrexTeamTypeScriptSdk() {
         "name": "id",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "ID"
       }
     ],
     "responses": [
@@ -810,7 +838,8 @@ export default function BrexTeamTypeScriptSdk() {
         "name": "id",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "ID"
       },
       {
         "name": "idempotencyKey",
@@ -868,7 +897,8 @@ export default function BrexTeamTypeScriptSdk() {
         "name": "id",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "ID"
       }
     ],
     "responses": [
@@ -890,7 +920,8 @@ export default function BrexTeamTypeScriptSdk() {
         "name": "id",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "ID"
       },
       {
         "name": "idempotencyKey",
@@ -923,6 +954,8 @@ export default function BrexTeamTypeScriptSdk() {
       parameters={81}
       difficulty="Easy"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/brex/team/openapi.yaml"
+      openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/brex/team/openapi.yaml"
+      developerDocumentation="developer.brex.com/openapi/team_api/"
     />
   );
 }

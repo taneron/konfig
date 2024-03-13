@@ -4,11 +4,13 @@ import { HttpMethodsEnum } from "konfig-lib/dist/forEachOperation";
 import Description from "./_description.mdx";
 // @ts-ignore
 import GettingStarted from "./_getting-started.mdx";
-import { Sdk } from "@site/src/components/Sdk";
+// @ts-ignore
+import FirstRequest from "./_first-request.mdx"
+import { SdkNew } from "@site/src/components/SdkNew";
 
 export default function ResendTypeScriptSdk() {
   return (
-    <Sdk
+    <SdkNew
       sdkName="resend-typescript-sdk"
       metaDescription="Email for developers"
       company="Resend"
@@ -16,13 +18,15 @@ export default function ResendTypeScriptSdk() {
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/resend/logo.png"
       clientNameCamelCase="resend"
       homepage="resend.com"
-      lastUpdated={new Date("2024-03-11T06:52:01.712Z")}
+      lastUpdated={new Date("2024-03-13T02:25:22.175Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/resend/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
       previewLinkImage="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/resend/imagePreview.png"
       GettingStarted={GettingStarted}
       Description={Description}
+      FirstRequest={FirstRequest}
+      categories={["email","developer_tools","automation"]}
       methods={[
   {
     "url": "/emails",
@@ -42,7 +46,8 @@ export default function ResendTypeScriptSdk() {
         "name": "from",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "FROM"
       },
       {
         "name": "to",
@@ -54,7 +59,8 @@ export default function ResendTypeScriptSdk() {
         "name": "subject",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "SUBJECT"
       },
       {
         "name": "bcc",
@@ -118,7 +124,8 @@ export default function ResendTypeScriptSdk() {
         "name": "emailId",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "EMAIL_ID"
       }
     ],
     "responses": [
@@ -170,13 +177,15 @@ export default function ResendTypeScriptSdk() {
         "name": "name",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "NAME"
       },
       {
         "name": "region",
         "schema": "string",
         "required": false,
-        "description": ""
+        "description": "",
+        "default": "us-east-1"
       }
     ],
     "responses": [
@@ -198,7 +207,8 @@ export default function ResendTypeScriptSdk() {
         "name": "domainId",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "DOMAIN_ID"
       }
     ],
     "responses": [
@@ -220,7 +230,8 @@ export default function ResendTypeScriptSdk() {
         "name": "domainId",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "DOMAIN_ID"
       }
     ],
     "responses": [
@@ -242,17 +253,20 @@ export default function ResendTypeScriptSdk() {
         "name": "domainId",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "DOMAIN_ID"
       },
       {
         "name": "click_tracking",
         "schema": "boolean",
-        "description": ""
+        "description": "",
+        "example": true
       },
       {
         "name": "open_tracking",
         "schema": "boolean",
-        "description": ""
+        "description": "",
+        "example": true
       }
     ],
     "responses": [
@@ -274,7 +288,8 @@ export default function ResendTypeScriptSdk() {
         "name": "domainId",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "DOMAIN_ID"
       }
     ],
     "responses": [
@@ -311,7 +326,8 @@ export default function ResendTypeScriptSdk() {
         "name": "name",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "NAME"
       },
       {
         "name": "permission",
@@ -345,7 +361,8 @@ export default function ResendTypeScriptSdk() {
         "name": "apiKeyId",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "API_KEY_ID"
       }
     ],
     "responses": [
@@ -382,7 +399,8 @@ export default function ResendTypeScriptSdk() {
         "name": "name",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "NAME"
       }
     ],
     "responses": [
@@ -404,7 +422,8 @@ export default function ResendTypeScriptSdk() {
         "name": "id",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "ID"
       }
     ],
     "responses": [
@@ -426,7 +445,8 @@ export default function ResendTypeScriptSdk() {
         "name": "id",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "ID"
       }
     ],
     "responses": [
@@ -448,7 +468,8 @@ export default function ResendTypeScriptSdk() {
         "name": "audienceId",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "AUDIENCE_ID"
       }
     ],
     "responses": [
@@ -470,37 +491,43 @@ export default function ResendTypeScriptSdk() {
         "name": "audienceId",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "AUDIENCE_ID"
       },
       {
         "name": "email",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "steve.wozniak@gmail.com"
       },
       {
         "name": "first_name",
         "schema": "string",
         "required": false,
-        "description": ""
+        "description": "",
+        "example": "Steve"
       },
       {
         "name": "last_name",
         "schema": "string",
         "required": false,
-        "description": ""
+        "description": "",
+        "example": "Wozniak"
       },
       {
         "name": "unsubscribed",
         "schema": "boolean",
         "required": false,
-        "description": ""
+        "description": "",
+        "example": false
       },
       {
         "name": "audience_id",
         "schema": "string",
         "required": false,
-        "description": ""
+        "description": "",
+        "example": "78261eea-8f8b-4381-83c6-79fa7120f1cf"
       }
     ],
     "responses": [
@@ -522,13 +549,15 @@ export default function ResendTypeScriptSdk() {
         "name": "email",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "EMAIL"
       },
       {
         "name": "audienceId",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "AUDIENCE_ID"
       }
     ],
     "responses": [
@@ -550,13 +579,15 @@ export default function ResendTypeScriptSdk() {
         "name": "id",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "ID"
       },
       {
         "name": "audienceId",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "AUDIENCE_ID"
       }
     ],
     "responses": [
@@ -578,13 +609,15 @@ export default function ResendTypeScriptSdk() {
         "name": "id",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "ID"
       },
       {
         "name": "audienceId",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "AUDIENCE_ID"
       }
     ],
     "responses": [
@@ -606,33 +639,39 @@ export default function ResendTypeScriptSdk() {
         "name": "id",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "ID"
       },
       {
         "name": "audienceId",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "AUDIENCE_ID"
       },
       {
         "name": "email",
         "schema": "string",
-        "description": ""
+        "description": "",
+        "example": "steve.wozniak@gmail.com"
       },
       {
         "name": "first_name",
         "schema": "string",
-        "description": ""
+        "description": "",
+        "example": "Steve"
       },
       {
         "name": "last_name",
         "schema": "string",
-        "description": ""
+        "description": "",
+        "example": "Wozniak"
       },
       {
         "name": "unsubscribed",
         "schema": "boolean",
-        "description": ""
+        "description": "",
+        "example": false
       }
     ],
     "responses": [
@@ -654,6 +693,8 @@ export default function ResendTypeScriptSdk() {
       parameters={46}
       difficulty="Easy"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/resend/openapi.yaml"
+      openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/resend/openapi.yaml"
+      developerDocumentation="resend.com/docs/introduction"
     />
   );
 }

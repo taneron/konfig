@@ -4,11 +4,13 @@ import { HttpMethodsEnum } from "konfig-lib/dist/forEachOperation";
 import Description from "./_description.mdx";
 // @ts-ignore
 import GettingStarted from "./_getting-started.mdx";
-import { Sdk } from "@site/src/components/Sdk";
+// @ts-ignore
+import FirstRequest from "./_first-request.mdx"
+import { SdkNew } from "@site/src/components/SdkNew";
 
 export default function BasetenTypeScriptSdk() {
   return (
-    <Sdk
+    <SdkNew
       sdkName="baseten-typescript-sdk"
       metaDescription="At Baseten we provide all the infrastructure you need to deploy and serve ML models performantly, scalably, and cost-efficiently.Get started in minutes, and avoid getting tangled in complex deployment processes. You can deploy best-in-class open-source models and take advantage of optimized serving for your own models.We also utilize horizontally scalable services that take you from prototype to production, with light-speed inference on infra that autoscales with your traffic.Best in class doesn't mean breaking the bank. Run your models on the best infrastructure without running up costs by taking advantage of our scaled-to-zero feature."
       company="Baseten"
@@ -16,13 +18,15 @@ export default function BasetenTypeScriptSdk() {
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/baseten/logo.png"
       clientNameCamelCase="baseten"
       homepage="baseten.co"
-      lastUpdated={new Date("2024-03-11T06:04:39.099Z")}
+      lastUpdated={new Date("2024-03-13T02:25:22.175Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/baseten/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
       previewLinkImage="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/baseten/imagePreview.png"
       GettingStarted={GettingStarted}
       Description={Description}
+      FirstRequest={FirstRequest}
+      categories={["ai","ml","developer_tools","automation","collaboration","media","cloud","open_source","machine_learning","deployment","scalability","cost_efficiency","llm","stable_diffusion","tts","text_to_audio","text_to_speech","text_to_image","image_to_video","image_classification","text_embeddings","audio_to_text","image_to_text"]}
       methods={[
   {
     "url": "/v1/secrets",
@@ -51,13 +55,15 @@ export default function BasetenTypeScriptSdk() {
         "name": "name",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "NAME"
       },
       {
         "name": "value",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "VALUE"
       }
     ],
     "responses": [
@@ -124,6 +130,8 @@ export default function BasetenTypeScriptSdk() {
       parameters={2}
       difficulty="Very Easy"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/baseten/openapi.yaml"
+      openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/baseten/openapi.yaml"
+      developerDocumentation="docs.baseten.co/welcome"
     />
   );
 }

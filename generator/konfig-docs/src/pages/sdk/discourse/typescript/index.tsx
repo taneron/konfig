@@ -4,11 +4,13 @@ import { HttpMethodsEnum } from "konfig-lib/dist/forEachOperation";
 import Description from "./_description.mdx";
 // @ts-ignore
 import GettingStarted from "./_getting-started.mdx";
-import { Sdk } from "@site/src/components/Sdk";
+// @ts-ignore
+import FirstRequest from "./_first-request.mdx"
+import { SdkNew } from "@site/src/components/SdkNew";
 
 export default function DiscourseTypeScriptSdk() {
   return (
-    <Sdk
+    <SdkNew
       sdkName="discourse-typescript-sdk"
       metaDescription="Discourse is a modern forum software designed for community engagement and discussion. It offers a user-friendly interface, powerful moderation tools, and extensive customization options. Discourse fosters healthy conversations, promotes user participation, and provides a platform for sharing knowledge and ideas across diverse communities."
       company="Discourse"
@@ -16,13 +18,15 @@ export default function DiscourseTypeScriptSdk() {
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/discourse/logo.png"
       clientNameCamelCase="discourse"
       homepage="discourse.org"
-      lastUpdated={new Date("2024-03-11T17:20:37.894Z")}
+      lastUpdated={new Date("2024-03-13T02:25:22.175Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/discourse/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
       previewLinkImage="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/discourse/imagePreview.png"
       GettingStarted={GettingStarted}
       Description={Description}
+      FirstRequest={FirstRequest}
+      categories={["collaboration","media","forum","community_engagement","discussion","moderation","customization","conversations","user_participation","knowledge_sharing","ideas"]}
       methods={[
   {
     "url": "/admin/backups.json",
@@ -51,7 +55,8 @@ export default function DiscourseTypeScriptSdk() {
         "name": "with_uploads",
         "schema": "boolean",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": true
       }
     ],
     "responses": [
@@ -73,13 +78,15 @@ export default function DiscourseTypeScriptSdk() {
         "name": "filename",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "FILENAME"
       },
       {
         "name": "token",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "TOKEN"
       }
     ],
     "responses": [
@@ -101,7 +108,8 @@ export default function DiscourseTypeScriptSdk() {
         "name": "filename",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "FILENAME"
       }
     ],
     "responses": [
@@ -138,13 +146,15 @@ export default function DiscourseTypeScriptSdk() {
         "name": "name",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "NAME"
       },
       {
         "name": "badge_type_id",
         "schema": "integer",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": 0
       }
     ],
     "responses": [
@@ -166,7 +176,8 @@ export default function DiscourseTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": 0
       }
     ],
     "responses": [
@@ -188,19 +199,22 @@ export default function DiscourseTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": 0
       },
       {
         "name": "name",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "NAME"
       },
       {
         "name": "badge_type_id",
         "schema": "integer",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": 0
       }
     ],
     "responses": [
@@ -243,19 +257,22 @@ export default function DiscourseTypeScriptSdk() {
         "name": "name",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "NAME"
       },
       {
         "name": "color",
         "schema": "string",
         "required": false,
-        "description": ""
+        "description": "",
+        "example": "49d9e9"
       },
       {
         "name": "text_color",
         "schema": "string",
         "required": false,
-        "description": ""
+        "description": "",
+        "example": "f0fcfd"
       },
       {
         "name": "parent_category_id",
@@ -319,25 +336,29 @@ export default function DiscourseTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": 0
       },
       {
         "name": "name",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "NAME"
       },
       {
         "name": "color",
         "schema": "string",
         "required": false,
-        "description": ""
+        "description": "",
+        "example": "49d9e9"
       },
       {
         "name": "text_color",
         "schema": "string",
         "required": false,
-        "description": ""
+        "description": "",
+        "example": "f0fcfd"
       },
       {
         "name": "parent_category_id",
@@ -401,13 +422,15 @@ export default function DiscourseTypeScriptSdk() {
         "name": "slug",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "SLUG"
       },
       {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": 0
       }
     ],
     "responses": [
@@ -429,7 +452,8 @@ export default function DiscourseTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": 0
       }
     ],
     "responses": [
@@ -473,7 +497,8 @@ export default function DiscourseTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": 0
       }
     ],
     "responses": [
@@ -495,7 +520,8 @@ export default function DiscourseTypeScriptSdk() {
         "name": "id",
         "schema": "string",
         "required": true,
-        "description": "Use group name instead of id"
+        "description": "Use group name instead of id",
+        "example": "name"
       }
     ],
     "responses": [
@@ -517,7 +543,8 @@ export default function DiscourseTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": 0
       },
       {
         "name": "group",
@@ -545,12 +572,14 @@ export default function DiscourseTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": 0
       },
       {
         "name": "usernames",
         "schema": "string",
-        "description": ""
+        "description": "",
+        "example": "username1,username2"
       }
     ],
     "responses": [
@@ -572,7 +601,8 @@ export default function DiscourseTypeScriptSdk() {
         "name": "id",
         "schema": "string",
         "required": true,
-        "description": "Use group name instead of id"
+        "description": "Use group name instead of id",
+        "example": "name"
       }
     ],
     "responses": [
@@ -594,12 +624,14 @@ export default function DiscourseTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": 0
       },
       {
         "name": "usernames",
         "schema": "string",
-        "description": ""
+        "description": "",
+        "example": "username1,username2"
       }
     ],
     "responses": [
@@ -636,23 +668,27 @@ export default function DiscourseTypeScriptSdk() {
         "name": "apiKey",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "API-KEY"
       },
       {
         "name": "apiUsername",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "API-USERNAME"
       },
       {
         "name": "email",
         "schema": "string",
-        "description": ""
+        "description": "",
+        "example": "not-a-user-yet@example.com"
       },
       {
         "name": "skip_email",
         "schema": "boolean",
-        "description": ""
+        "description": "",
+        "default": false
       },
       {
         "name": "custom_message",
@@ -662,7 +698,9 @@ export default function DiscourseTypeScriptSdk() {
       {
         "name": "max_redemptions_allowed",
         "schema": "integer",
-        "description": ""
+        "description": "",
+        "example": 5,
+        "default": 1
       },
       {
         "name": "topic_id",
@@ -672,12 +710,14 @@ export default function DiscourseTypeScriptSdk() {
       {
         "name": "group_ids",
         "schema": "string",
-        "description": ""
+        "description": "",
+        "example": "42,43"
       },
       {
         "name": "group_names",
         "schema": "string",
-        "description": ""
+        "description": "",
+        "example": "foo,bar"
       },
       {
         "name": "expires_at",
@@ -704,23 +744,30 @@ export default function DiscourseTypeScriptSdk() {
         "name": "apiKey",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "API-KEY"
       },
       {
         "name": "apiUsername",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "API-USERNAME"
       },
       {
         "name": "email",
         "schema": "string",
-        "description": ""
+        "description": "",
+        "example": [
+          "not-a-user-yet-1@example.com",
+          "not-a-user-yet-2@example.com"
+        ]
       },
       {
         "name": "skip_email",
         "schema": "boolean",
-        "description": ""
+        "description": "",
+        "default": false
       },
       {
         "name": "custom_message",
@@ -730,7 +777,9 @@ export default function DiscourseTypeScriptSdk() {
       {
         "name": "max_redemptions_allowed",
         "schema": "integer",
-        "description": ""
+        "description": "",
+        "example": 5,
+        "default": 1
       },
       {
         "name": "topic_id",
@@ -740,12 +789,14 @@ export default function DiscourseTypeScriptSdk() {
       {
         "name": "group_ids",
         "schema": "string",
-        "description": ""
+        "description": "",
+        "example": "42,43"
       },
       {
         "name": "group_names",
         "schema": "string",
-        "description": ""
+        "description": "",
+        "example": "foo,bar"
       },
       {
         "name": "expires_at",
@@ -808,13 +859,15 @@ export default function DiscourseTypeScriptSdk() {
         "name": "apiKey",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "API-KEY"
       },
       {
         "name": "apiUsername",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "API-USERNAME"
       },
       {
         "name": "before",
@@ -848,7 +901,8 @@ export default function DiscourseTypeScriptSdk() {
         "name": "raw",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "RAW"
       },
       {
         "name": "topic_id",
@@ -866,7 +920,8 @@ export default function DiscourseTypeScriptSdk() {
         "name": "target_recipients",
         "schema": "string",
         "required": false,
-        "description": ""
+        "description": "",
+        "example": "blake,sam"
       },
       {
         "name": "target_usernames",
@@ -878,7 +933,8 @@ export default function DiscourseTypeScriptSdk() {
         "name": "archetype",
         "schema": "string",
         "required": false,
-        "description": ""
+        "description": "",
+        "example": "private_message"
       },
       {
         "name": "created_at",
@@ -924,12 +980,14 @@ export default function DiscourseTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": 0
       },
       {
         "name": "force_destroy",
         "schema": "boolean",
-        "description": ""
+        "description": "",
+        "example": true
       }
     ],
     "responses": [
@@ -951,7 +1009,8 @@ export default function DiscourseTypeScriptSdk() {
         "name": "id",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "ID"
       }
     ],
     "responses": [
@@ -973,7 +1032,8 @@ export default function DiscourseTypeScriptSdk() {
         "name": "id",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "ID"
       },
       {
         "name": "post",
@@ -1000,7 +1060,8 @@ export default function DiscourseTypeScriptSdk() {
         "name": "id",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "ID"
       }
     ],
     "responses": [
@@ -1022,25 +1083,29 @@ export default function DiscourseTypeScriptSdk() {
         "name": "apiKey",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "API-KEY"
       },
       {
         "name": "apiUsername",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "API-USERNAME"
       },
       {
         "name": "id",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "ID"
       },
       {
         "name": "locked",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "LOCKED"
       }
     ],
     "responses": [
@@ -1062,25 +1127,29 @@ export default function DiscourseTypeScriptSdk() {
         "name": "apiKey",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "API-KEY"
       },
       {
         "name": "apiUsername",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "API-USERNAME"
       },
       {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": 0
       },
       {
         "name": "post_action_type_id",
         "schema": "integer",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": 0
       },
       {
         "name": "flag_topic",
@@ -1108,7 +1177,8 @@ export default function DiscourseTypeScriptSdk() {
         "name": "username",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "USERNAME"
       }
     ],
     "responses": [
@@ -1130,7 +1200,8 @@ export default function DiscourseTypeScriptSdk() {
         "name": "username",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "USERNAME"
       }
     ],
     "responses": [
@@ -1151,12 +1222,14 @@ export default function DiscourseTypeScriptSdk() {
       {
         "name": "q",
         "schema": "string",
-        "description": "The query string needs to be url encoded and is made up of the following options:\n- Search term. This is just a string. Usually it would be the first item in the query.\n- `@<username>`: Use the `@` followed by the username to specify posts by this user.\n- `#<category>`: Use the `#` followed by the category slug to search within this category.\n- `tags:`: `api,solved` or for posts that have all the specified tags `api+solved`.\n- `before:`: `yyyy-mm-dd`\n- `after:`: `yyyy-mm-dd`\n- `order:`: `latest`, `likes`, `views`, `latest_topic`\n- `assigned:`: username (without `@`)\n- `in:`: `title`, `likes`, `personal`, `messages`, `seen`, `unseen`, `posted`, `created`, `watching`, `tracking`, `bookmarks`, `assigned`, `unassigned`, `first`, `pinned`, `wiki`\n- `with:`: `images`\n- `status:`: `open`, `closed`, `public`, `archived`, `noreplies`, `single_user`, `solved`, `unsolved`\n- `group:`: group_name or group_id\n- `group_messages:`: group_name or group_id\n- `min_posts:`: 1\n- `max_posts:`: 10\n- `min_views:`: 1\n- `max_views:`: 10\n\nIf you are using cURL you can use the `-G` and the `--data-urlencode` flags to encode the query:\n\n```\ncurl -i -sS -X GET -G \"http://localhost:4200/search.json\" \\\n--data-urlencode 'q=wordpress @scossar #fun after:2020-01-01'\n```\n"
+        "description": "The query string needs to be url encoded and is made up of the following options:\n- Search term. This is just a string. Usually it would be the first item in the query.\n- `@<username>`: Use the `@` followed by the username to specify posts by this user.\n- `#<category>`: Use the `#` followed by the category slug to search within this category.\n- `tags:`: `api,solved` or for posts that have all the specified tags `api+solved`.\n- `before:`: `yyyy-mm-dd`\n- `after:`: `yyyy-mm-dd`\n- `order:`: `latest`, `likes`, `views`, `latest_topic`\n- `assigned:`: username (without `@`)\n- `in:`: `title`, `likes`, `personal`, `messages`, `seen`, `unseen`, `posted`, `created`, `watching`, `tracking`, `bookmarks`, `assigned`, `unassigned`, `first`, `pinned`, `wiki`\n- `with:`: `images`\n- `status:`: `open`, `closed`, `public`, `archived`, `noreplies`, `single_user`, `solved`, `unsolved`\n- `group:`: group_name or group_id\n- `group_messages:`: group_name or group_id\n- `min_posts:`: 1\n- `max_posts:`: 10\n- `min_views:`: 1\n- `max_views:`: 10\n\nIf you are using cURL you can use the `-G` and the `--data-urlencode` flags to encode the query:\n\n```\ncurl -i -sS -X GET -G \"http://localhost:4200/search.json\" \\\n--data-urlencode 'q=wordpress @scossar #fun after:2020-01-01'\n```\n",
+        "example": "api @blake #support tags:api after:2021-06-04 in:unseen in:open\norder:latest_topic"
       },
       {
         "name": "page",
         "schema": "integer",
-        "description": ""
+        "description": "",
+        "example": 1
       }
     ],
     "responses": [
@@ -1208,7 +1281,8 @@ export default function DiscourseTypeScriptSdk() {
         "name": "name",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "NAME"
       }
     ],
     "responses": [
@@ -1230,7 +1304,8 @@ export default function DiscourseTypeScriptSdk() {
         "name": "id",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "ID"
       }
     ],
     "responses": [
@@ -1252,7 +1327,8 @@ export default function DiscourseTypeScriptSdk() {
         "name": "id",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "ID"
       },
       {
         "name": "name",
@@ -1294,7 +1370,8 @@ export default function DiscourseTypeScriptSdk() {
         "name": "name",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "NAME"
       }
     ],
     "responses": [
@@ -1316,25 +1393,29 @@ export default function DiscourseTypeScriptSdk() {
         "name": "apiKey",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "API-KEY"
       },
       {
         "name": "apiUsername",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "API-USERNAME"
       },
       {
         "name": "id",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "ID"
       },
       {
         "name": "post_ids[]",
         "schema": "integer",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": 0
       }
     ],
     "responses": [
@@ -1356,19 +1437,22 @@ export default function DiscourseTypeScriptSdk() {
         "name": "apiKey",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "API-KEY"
       },
       {
         "name": "apiUsername",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "API-USERNAME"
       },
       {
         "name": "id",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "ID"
       }
     ],
     "responses": [
@@ -1390,19 +1474,22 @@ export default function DiscourseTypeScriptSdk() {
         "name": "apiKey",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "API-KEY"
       },
       {
         "name": "apiUsername",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "API-USERNAME"
       },
       {
         "name": "id",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "ID"
       }
     ],
     "responses": [
@@ -1424,19 +1511,22 @@ export default function DiscourseTypeScriptSdk() {
         "name": "apiKey",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "API-KEY"
       },
       {
         "name": "apiUsername",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "API-USERNAME"
       },
       {
         "name": "id",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "ID"
       },
       {
         "name": "topic",
@@ -1463,19 +1553,22 @@ export default function DiscourseTypeScriptSdk() {
         "name": "apiKey",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "API-KEY"
       },
       {
         "name": "apiUsername",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "API-USERNAME"
       },
       {
         "name": "id",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "ID"
       },
       {
         "name": "user",
@@ -1507,19 +1600,22 @@ export default function DiscourseTypeScriptSdk() {
         "name": "apiKey",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "API-KEY"
       },
       {
         "name": "apiUsername",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "API-USERNAME"
       },
       {
         "name": "id",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "ID"
       }
     ],
     "responses": [
@@ -1541,37 +1637,43 @@ export default function DiscourseTypeScriptSdk() {
         "name": "apiKey",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "API-KEY"
       },
       {
         "name": "apiUsername",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "API-USERNAME"
       },
       {
         "name": "id",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "ID"
       },
       {
         "name": "status",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "STATUS"
       },
       {
         "name": "enabled",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "ENABLED"
       },
       {
         "name": "until",
         "schema": "string",
         "required": false,
-        "description": ""
+        "description": "",
+        "example": "2030-12-31"
       }
     ],
     "responses": [
@@ -1593,13 +1695,15 @@ export default function DiscourseTypeScriptSdk() {
         "name": "apiKey",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "API-KEY"
       },
       {
         "name": "apiUsername",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "API-USERNAME"
       },
       {
         "name": "order",
@@ -1631,13 +1735,15 @@ export default function DiscourseTypeScriptSdk() {
         "name": "apiKey",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "API-KEY"
       },
       {
         "name": "apiUsername",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "API-USERNAME"
       },
       {
         "name": "period",
@@ -1664,25 +1770,29 @@ export default function DiscourseTypeScriptSdk() {
         "name": "apiKey",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "API-KEY"
       },
       {
         "name": "apiUsername",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "API-USERNAME"
       },
       {
         "name": "id",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "ID"
       },
       {
         "name": "notification_level",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "NOTIFICATION_LEVEL"
       }
     ],
     "responses": [
@@ -1704,25 +1814,29 @@ export default function DiscourseTypeScriptSdk() {
         "name": "apiKey",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "API-KEY"
       },
       {
         "name": "apiUsername",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "API-USERNAME"
       },
       {
         "name": "id",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "ID"
       },
       {
         "name": "timestamp",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "1594291380"
       }
     ],
     "responses": [
@@ -1744,24 +1858,28 @@ export default function DiscourseTypeScriptSdk() {
         "name": "apiKey",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "API-KEY"
       },
       {
         "name": "apiUsername",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "API-USERNAME"
       },
       {
         "name": "id",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "ID"
       },
       {
         "name": "time",
         "schema": "string",
-        "description": ""
+        "description": "",
+        "example": ""
       },
       {
         "name": "status_type",
@@ -1798,7 +1916,8 @@ export default function DiscourseTypeScriptSdk() {
         "name": "externalId",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "EXTERNAL_ID"
       }
     ],
     "responses": [
@@ -1820,7 +1939,8 @@ export default function DiscourseTypeScriptSdk() {
         "name": "type",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "TYPE"
       },
       {
         "name": "user_id",
@@ -1860,19 +1980,22 @@ export default function DiscourseTypeScriptSdk() {
         "name": "type",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "TYPE"
       },
       {
         "name": "file_name",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "IMG_2021.jpeg"
       },
       {
         "name": "file_size",
         "schema": "integer",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": 4096
       },
       {
         "name": "metadata",
@@ -1900,25 +2023,29 @@ export default function DiscourseTypeScriptSdk() {
         "name": "unique_identifier",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "66e86218-80d9-4bda-b4d5-2b6def968705"
       },
       {
         "name": "for_private_message",
         "schema": "string",
         "required": false,
-        "description": ""
+        "description": "",
+        "example": "true"
       },
       {
         "name": "for_site_setting",
         "schema": "string",
         "required": false,
-        "description": ""
+        "description": "",
+        "example": "true"
       },
       {
         "name": "pasted",
         "schema": "string",
         "required": false,
-        "description": ""
+        "description": "",
+        "example": "true"
       }
     ],
     "responses": [
@@ -1940,19 +2067,22 @@ export default function DiscourseTypeScriptSdk() {
         "name": "upload_type",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "UPLOAD_TYPE"
       },
       {
         "name": "file_name",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "IMG_2021.jpeg"
       },
       {
         "name": "file_size",
         "schema": "integer",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": 4096
       },
       {
         "name": "metadata",
@@ -1980,13 +2110,19 @@ export default function DiscourseTypeScriptSdk() {
         "name": "part_numbers",
         "schema": "array",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": [
+          1,
+          2,
+          3
+        ]
       },
       {
         "name": "unique_identifier",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "66e86218-80d9-4bda-b4d5-2b6def968705"
       }
     ],
     "responses": [
@@ -2008,7 +2144,8 @@ export default function DiscourseTypeScriptSdk() {
         "name": "external_upload_identifier",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "84x83tmxy398t3y._Q_z8CoJYVr69bE6D7f8J6Oo0434QquLFoYdGVerWFx9X5HDEI_TP_95c34n853495x35345394.d.ghQ"
       }
     ],
     "responses": [
@@ -2030,13 +2167,24 @@ export default function DiscourseTypeScriptSdk() {
         "name": "unique_identifier",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "66e86218-80d9-4bda-b4d5-2b6def968705"
       },
       {
         "name": "parts",
         "schema": "array",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": [
+          {
+            "part_number": 1,
+            "etag": "0c376dcfcc2606f4335bbc732de93344"
+          },
+          {
+            "part_number": 2,
+            "etag": "09ert8cfcc2606f4335bbc732de91122"
+          }
+        ]
       }
     ],
     "responses": [
@@ -2058,7 +2206,8 @@ export default function DiscourseTypeScriptSdk() {
         "name": "username",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "USERNAME"
       }
     ],
     "responses": [
@@ -2080,37 +2229,43 @@ export default function DiscourseTypeScriptSdk() {
         "name": "apiKey",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "API-KEY"
       },
       {
         "name": "apiUsername",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "API-USERNAME"
       },
       {
         "name": "name",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "NAME"
       },
       {
         "name": "email",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "EMAIL"
       },
       {
         "name": "password",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "PASSWORD"
       },
       {
         "name": "username",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "USERNAME"
       },
       {
         "name": "active",
@@ -2156,19 +2311,22 @@ export default function DiscourseTypeScriptSdk() {
         "name": "apiKey",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "API-KEY"
       },
       {
         "name": "apiUsername",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "API-USERNAME"
       },
       {
         "name": "username",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "USERNAME"
       }
     ],
     "responses": [
@@ -2190,19 +2348,22 @@ export default function DiscourseTypeScriptSdk() {
         "name": "apiKey",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "API-KEY"
       },
       {
         "name": "apiUsername",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "API-USERNAME"
       },
       {
         "name": "username",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "USERNAME"
       },
       {
         "name": "name",
@@ -2234,19 +2395,22 @@ export default function DiscourseTypeScriptSdk() {
         "name": "apiKey",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "API-KEY"
       },
       {
         "name": "apiUsername",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "API-USERNAME"
       },
       {
         "name": "externalId",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "EXTERNAL_ID"
       }
     ],
     "responses": [
@@ -2268,25 +2432,29 @@ export default function DiscourseTypeScriptSdk() {
         "name": "apiKey",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "API-KEY"
       },
       {
         "name": "apiUsername",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "API-USERNAME"
       },
       {
         "name": "provider",
         "schema": "string",
         "required": true,
-        "description": "Authentication provider name. Can be found in the provider callback\nURL: `/auth/{provider}/callback`"
+        "description": "Authentication provider name. Can be found in the provider callback\nURL: `/auth/{provider}/callback`",
+        "example": "PROVIDER"
       },
       {
         "name": "externalId",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "EXTERNAL_ID"
       }
     ],
     "responses": [
@@ -2308,19 +2476,22 @@ export default function DiscourseTypeScriptSdk() {
         "name": "username",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "USERNAME"
       },
       {
         "name": "upload_id",
         "schema": "integer",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": 0
       },
       {
         "name": "type",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "TYPE"
       }
     ],
     "responses": [
@@ -2342,13 +2513,15 @@ export default function DiscourseTypeScriptSdk() {
         "name": "username",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "USERNAME"
       },
       {
         "name": "email",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "EMAIL"
       }
     ],
     "responses": [
@@ -2370,13 +2543,15 @@ export default function DiscourseTypeScriptSdk() {
         "name": "username",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "USERNAME"
       },
       {
         "name": "new_username",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "NEW_USERNAME"
       }
     ],
     "responses": [
@@ -2398,13 +2573,15 @@ export default function DiscourseTypeScriptSdk() {
         "name": "period",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "PERIOD"
       },
       {
         "name": "order",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "ORDER"
       },
       {
         "name": "asc",
@@ -2436,7 +2613,8 @@ export default function DiscourseTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": 0
       },
       {
         "name": "delete_posts",
@@ -2478,7 +2656,8 @@ export default function DiscourseTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": 0
       }
     ],
     "responses": [
@@ -2500,7 +2679,8 @@ export default function DiscourseTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": 0
       }
     ],
     "responses": [
@@ -2522,7 +2702,8 @@ export default function DiscourseTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": 0
       }
     ],
     "responses": [
@@ -2544,19 +2725,22 @@ export default function DiscourseTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": 0
       },
       {
         "name": "suspend_until",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "2121-02-22"
       },
       {
         "name": "reason",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "REASON"
       },
       {
         "name": "message",
@@ -2568,7 +2752,8 @@ export default function DiscourseTypeScriptSdk() {
         "name": "post_action",
         "schema": "string",
         "required": false,
-        "description": ""
+        "description": "",
+        "example": "delete"
       }
     ],
     "responses": [
@@ -2590,12 +2775,14 @@ export default function DiscourseTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": 0
       },
       {
         "name": "silenced_till",
         "schema": "string",
-        "description": ""
+        "description": "",
+        "example": "2022-06-01T08:00:00.000Z"
       },
       {
         "name": "reason",
@@ -2610,7 +2797,8 @@ export default function DiscourseTypeScriptSdk() {
       {
         "name": "post_action",
         "schema": "string",
-        "description": ""
+        "description": "",
+        "example": "delete"
       }
     ],
     "responses": [
@@ -2632,7 +2820,8 @@ export default function DiscourseTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": 0
       }
     ],
     "responses": [
@@ -2654,7 +2843,8 @@ export default function DiscourseTypeScriptSdk() {
         "name": "id",
         "schema": "integer",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": 0
       }
     ],
     "responses": [
@@ -2676,7 +2866,8 @@ export default function DiscourseTypeScriptSdk() {
         "name": "username",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "USERNAME"
       }
     ],
     "responses": [
@@ -2698,7 +2889,8 @@ export default function DiscourseTypeScriptSdk() {
         "name": "flag",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "FLAG"
       },
       {
         "name": "order",
@@ -2755,19 +2947,22 @@ export default function DiscourseTypeScriptSdk() {
         "name": "offset",
         "schema": "integer",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": 0
       },
       {
         "name": "username",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "USERNAME"
       },
       {
         "name": "filter",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "FILTER"
       }
     ],
     "responses": [
@@ -2789,7 +2984,8 @@ export default function DiscourseTypeScriptSdk() {
         "name": "login",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "LOGIN"
       }
     ],
     "responses": [
@@ -2811,19 +3007,22 @@ export default function DiscourseTypeScriptSdk() {
         "name": "token",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "TOKEN"
       },
       {
         "name": "username",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "USERNAME"
       },
       {
         "name": "password",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "PASSWORD"
       }
     ],
     "responses": [
@@ -2845,7 +3044,8 @@ export default function DiscourseTypeScriptSdk() {
         "name": "username",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "USERNAME"
       }
     ],
     "responses": [
@@ -2867,6 +3067,8 @@ export default function DiscourseTypeScriptSdk() {
       parameters={250}
       difficulty="Medium"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/discourse/openapi.yaml"
+      openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/discourse/openapi.yaml"
+      developerDocumentation="docs.discourse.org/"
     />
   );
 }

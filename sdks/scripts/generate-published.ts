@@ -15,6 +15,7 @@ import { getLocalKonfigCliVersion } from "../src/get-local-konfig-cli-version";
 import { hashRawSpecString } from "../src/hash-raw-spec-string";
 import { REGEX_FOR_BROKEN_LINKS } from "../src/collect-from-custom-requests";
 import { generateRepositoryDescription } from "./generate-repository-description";
+import { generateTypescriptSdkFirstRequestCode } from "../src/generate-typescript-sdk-first-request-code";
 
 const publishJsonPath = path.join(path.dirname(__dirname), "publish.json");
 const specDataDirPath = path.join(path.dirname(__dirname), "db", "spec-data");
@@ -139,6 +140,7 @@ function collectAllPublishData() {
       }
 
       const githubUrlPrefix = `https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/${dynamicPath}/`;
+      const githubUiUrlPrefix = `https://github.com/konfig-sdks/openapi-examples/tree/HEAD/${dynamicPath}/`;
 
       const nonEmptyCategories =
         publishData.categories ?? specData.categories ?? [];
@@ -154,6 +156,7 @@ function collectAllPublishData() {
           openapiExamplesDirPath,
           publishData,
           githubUrlPrefix,
+          githubUiUrlPrefix,
           imagePreviewPath,
           faviconPath,
           logoPath,
@@ -395,6 +398,7 @@ async function main() {
       nonEmptyCategories,
       publishData,
       githubUrlPrefix,
+      githubUiUrlPrefix,
       logoPath,
       imagePreviewPath,
       faviconPath,
@@ -481,6 +485,14 @@ async function main() {
       throw Error(`❌ ERROR: apiDescription is empty for ${spec}`);
     }
 
+    const typescriptSdkFirstRequestCode = generateTypescriptSdkFirstRequestCode(
+      {
+        ...specData,
+        ...publishData,
+        methods,
+      }
+    );
+
     const serviceName = getServiceName({ publishData, specData });
     const repositoryDescription = await generateRepositoryDescription(
       publishData.company,
@@ -503,11 +515,13 @@ async function main() {
       originalSpecUrl: specData.openApiRaw,
       logo: `${githubUrlPrefix}${logoPath}`,
       openApiRaw: `${githubUrlPrefix}${openapiFilename}`,
+      openApiGitHubUi: `${githubUiUrlPrefix}${openapiFilename}`,
       previewLinkImage: `${githubUrlPrefix}${imagePreviewPath}`,
       faviconUrl: `${githubUrlPrefix}${faviconPath}`,
       clientNameCamelCase: camelcase(publishData.clientName),
       lastUpdated: now,
       typescriptSdkUsageCode,
+      typescriptSdkFirstRequestCode,
       fixedSpecFileName: fixedSpecFileNames[spec],
       serviceName,
     };

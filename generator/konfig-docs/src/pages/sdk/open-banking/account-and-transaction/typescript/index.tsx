@@ -4,11 +4,13 @@ import { HttpMethodsEnum } from "konfig-lib/dist/forEachOperation";
 import Description from "./_description.mdx";
 // @ts-ignore
 import GettingStarted from "./_getting-started.mdx";
-import { Sdk } from "@site/src/components/Sdk";
+// @ts-ignore
+import FirstRequest from "./_first-request.mdx"
+import { SdkNew } from "@site/src/components/SdkNew";
 
 export default function OpenBankingAccountAndTransactionTypeScriptSdk() {
   return (
-    <Sdk
+    <SdkNew
       sdkName="open-banking-account-and-transaction-typescript-sdk"
       metaDescription="The trusted technology that connects banks, fintechs & technical providers - technology that's helping 6m users take control of their money."
       company="Open Banking"
@@ -16,13 +18,15 @@ export default function OpenBankingAccountAndTransactionTypeScriptSdk() {
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/open-banking/account-and-transaction/logo.svg"
       clientNameCamelCase="openBankingAccountAndTransaction"
       homepage="www.openbanking.org.uk/"
-      lastUpdated={new Date("2024-03-11T20:57:47.980Z")}
+      lastUpdated={new Date("2024-03-13T02:25:22.175Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/open-banking/account-and-transaction/favicon.png"
       // Missing contactUrl
       contactEmail="ServiceDesk@openbanking.org.uk"
       previewLinkImage="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/open-banking/account-and-transaction/imagePreview.png"
       GettingStarted={GettingStarted}
       Description={Description}
+      FirstRequest={FirstRequest}
+      categories={["open_banking"]}
       methods={[
   {
     "url": "/account-access-consents",
@@ -120,7 +124,8 @@ export default function OpenBankingAccountAndTransactionTypeScriptSdk() {
         "name": "consentId",
         "schema": "string",
         "required": true,
-        "description": "ConsentId"
+        "description": "ConsentId",
+        "example": "CONSENTID"
       },
       {
         "name": "xFapiAuthDate",
@@ -194,7 +199,8 @@ export default function OpenBankingAccountAndTransactionTypeScriptSdk() {
         "name": "consentId",
         "schema": "string",
         "required": true,
-        "description": "ConsentId"
+        "description": "ConsentId",
+        "example": "CONSENTID"
       },
       {
         "name": "xFapiAuthDate",
@@ -336,7 +342,8 @@ export default function OpenBankingAccountAndTransactionTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "AccountId"
+        "description": "AccountId",
+        "example": "ACCOUNTID"
       },
       {
         "name": "xFapiAuthDate",
@@ -410,7 +417,8 @@ export default function OpenBankingAccountAndTransactionTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "AccountId"
+        "description": "AccountId",
+        "example": "ACCOUNTID"
       },
       {
         "name": "xFapiAuthDate",
@@ -484,7 +492,8 @@ export default function OpenBankingAccountAndTransactionTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "AccountId"
+        "description": "AccountId",
+        "example": "ACCOUNTID"
       },
       {
         "name": "xFapiAuthDate",
@@ -562,7 +571,8 @@ export default function OpenBankingAccountAndTransactionTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "AccountId"
+        "description": "AccountId",
+        "example": "ACCOUNTID"
       },
       {
         "name": "xFapiAuthDate",
@@ -640,7 +650,8 @@ export default function OpenBankingAccountAndTransactionTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "AccountId"
+        "description": "AccountId",
+        "example": "ACCOUNTID"
       },
       {
         "name": "xFapiAuthDate",
@@ -718,7 +729,8 @@ export default function OpenBankingAccountAndTransactionTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "AccountId"
+        "description": "AccountId",
+        "example": "ACCOUNTID"
       },
       {
         "name": "xFapiAuthDate",
@@ -796,7 +808,8 @@ export default function OpenBankingAccountAndTransactionTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "AccountId"
+        "description": "AccountId",
+        "example": "ACCOUNTID"
       },
       {
         "name": "xFapiAuthDate",
@@ -874,7 +887,8 @@ export default function OpenBankingAccountAndTransactionTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "AccountId"
+        "description": "AccountId",
+        "example": "ACCOUNTID"
       },
       {
         "name": "xFapiAuthDate",
@@ -952,7 +966,8 @@ export default function OpenBankingAccountAndTransactionTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "AccountId"
+        "description": "AccountId",
+        "example": "ACCOUNTID"
       },
       {
         "name": "xFapiAuthDate",
@@ -1030,7 +1045,8 @@ export default function OpenBankingAccountAndTransactionTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "AccountId"
+        "description": "AccountId",
+        "example": "ACCOUNTID"
       },
       {
         "name": "xFapiAuthDate",
@@ -1108,7 +1124,8 @@ export default function OpenBankingAccountAndTransactionTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "AccountId"
+        "description": "AccountId",
+        "example": "ACCOUNTID"
       },
       {
         "name": "xFapiAuthDate",
@@ -1196,13 +1213,15 @@ export default function OpenBankingAccountAndTransactionTypeScriptSdk() {
         "name": "statementId",
         "schema": "string",
         "required": true,
-        "description": "StatementId"
+        "description": "StatementId",
+        "example": "STATEMENTID"
       },
       {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "AccountId"
+        "description": "AccountId",
+        "example": "ACCOUNTID"
       },
       {
         "name": "xFapiAuthDate",
@@ -1280,13 +1299,15 @@ export default function OpenBankingAccountAndTransactionTypeScriptSdk() {
         "name": "statementId",
         "schema": "string",
         "required": true,
-        "description": "StatementId"
+        "description": "StatementId",
+        "example": "STATEMENTID"
       },
       {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "AccountId"
+        "description": "AccountId",
+        "example": "ACCOUNTID"
       },
       {
         "name": "xFapiAuthDate",
@@ -1364,13 +1385,15 @@ export default function OpenBankingAccountAndTransactionTypeScriptSdk() {
         "name": "statementId",
         "schema": "string",
         "required": true,
-        "description": "StatementId"
+        "description": "StatementId",
+        "example": "STATEMENTID"
       },
       {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "AccountId"
+        "description": "AccountId",
+        "example": "ACCOUNTID"
       },
       {
         "name": "xFapiAuthDate",
@@ -1448,7 +1471,8 @@ export default function OpenBankingAccountAndTransactionTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "AccountId"
+        "description": "AccountId",
+        "example": "ACCOUNTID"
       },
       {
         "name": "xFapiAuthDate",
@@ -2272,6 +2296,8 @@ export default function OpenBankingAccountAndTransactionTypeScriptSdk() {
       parameters={175}
       difficulty="Hard"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/open-banking/account-and-transaction/openapi.yaml"
+      openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/open-banking/account-and-transaction/openapi.yaml"
+      developerDocumentation="openbanking.atlassian.net/wiki/spaces/DZ/pages/16385802/Specifications"
     />
   );
 }

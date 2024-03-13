@@ -4,11 +4,13 @@ import { HttpMethodsEnum } from "konfig-lib/dist/forEachOperation";
 import Description from "./_description.mdx";
 // @ts-ignore
 import GettingStarted from "./_getting-started.mdx";
-import { Sdk } from "@site/src/components/Sdk";
+// @ts-ignore
+import FirstRequest from "./_first-request.mdx"
+import { SdkNew } from "@site/src/components/SdkNew";
 
 export default function BrexOnboardingTypeScriptSdk() {
   return (
-    <Sdk
+    <SdkNew
       sdkName="brex-onboarding-typescript-sdk"
       metaDescription="Brex is the AI-powered spend platform. We transform finance teams from reactive no-sayers to proactive growth drivers. With Brex, companies spend with confidence by empowering employees to make smarter financial decisions from anywhere. Brex provides corporate cards, business accounts, and global payments, plus intuitive software for travel and expenses, that make it easy to plan and track all company spend in one place, in real time. Over 20,000 companies from startups to global enterprises — including DoorDash, Flexport, and Compass — use Brex to proactively control spend, reduce costs, and increase efficiency on a global scale."
       company="Brex"
@@ -16,13 +18,15 @@ export default function BrexOnboardingTypeScriptSdk() {
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/brex/onboarding/logo.png"
       clientNameCamelCase="brexOnboarding"
       homepage="brex.com"
-      lastUpdated={new Date("2024-03-11T06:43:11.466Z")}
+      lastUpdated={new Date("2024-03-13T02:25:22.175Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/brex/onboarding/favicon.png"
       contactUrl="https://brex.com"
       contactEmail="developer-access@brex.com"
       previewLinkImage="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/brex/onboarding/imagePreview.jpg"
       GettingStarted={GettingStarted}
       Description={Description}
+      FirstRequest={FirstRequest}
+      categories={["finance","payments","online_payments","fintech","automation","global_payments","travel_expenses","banking","collaboration"]}
       methods={[
   {
     "url": "/v1/referrals",
@@ -66,7 +70,8 @@ export default function BrexOnboardingTypeScriptSdk() {
         "name": "referral_code",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "REFERRAL_CODE"
       },
       {
         "name": "applicant",
@@ -110,7 +115,8 @@ export default function BrexOnboardingTypeScriptSdk() {
         "name": "id",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "ID"
       }
     ],
     "responses": [
@@ -140,13 +146,15 @@ export default function BrexOnboardingTypeScriptSdk() {
         "name": "id",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "ID"
       },
       {
         "name": "type",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "TYPE"
       }
     ],
     "responses": [
@@ -176,6 +184,8 @@ export default function BrexOnboardingTypeScriptSdk() {
       parameters={8}
       difficulty="Easy"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/brex/onboarding/openapi.yaml"
+      openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/brex/onboarding/openapi.yaml"
+      developerDocumentation="developer.brex.com/openapi/onboarding_api/"
     />
   );
 }

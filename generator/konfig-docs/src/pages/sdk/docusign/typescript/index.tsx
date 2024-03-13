@@ -4,11 +4,13 @@ import { HttpMethodsEnum } from "konfig-lib/dist/forEachOperation";
 import Description from "./_description.mdx";
 // @ts-ignore
 import GettingStarted from "./_getting-started.mdx";
-import { Sdk } from "@site/src/components/Sdk";
+// @ts-ignore
+import FirstRequest from "./_first-request.mdx"
+import { SdkNew } from "@site/src/components/SdkNew";
 
 export default function DocusignTypeScriptSdk() {
   return (
-    <Sdk
+    <SdkNew
       sdkName="docusign-typescript-sdk"
       metaDescription="DocuSign makes it easy to send, sign and manage documents securely. With DocuSign, individuals and organizations can streamline the document signing process, reduce paperwork, and increase efficiency. DocuSign offers electronic signature solutions that are trusted by millions worldwide, enabling users to sign documents anytime, anywhere, on any device."
       company="Docusign"
@@ -16,13 +18,15 @@ export default function DocusignTypeScriptSdk() {
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/docusign/logo.png"
       clientNameCamelCase="docusign"
       homepage="docusign.com"
-      lastUpdated={new Date("2024-03-11T06:04:39.099Z")}
+      lastUpdated={new Date("2024-03-13T02:25:22.175Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/docusign/favicon.png"
       contactUrl="https://developers.docusign.com/"
       contactEmail="devcenter@docusign.com"
       previewLinkImage="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/docusign/imagePreview.png"
       GettingStarted={GettingStarted}
       Description={Description}
+      FirstRequest={FirstRequest}
+      categories={["security","collaboration","electronic_signature","document_management"]}
       methods={[
   {
     "url": "/service_information",
@@ -184,7 +188,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "redactUserData",
@@ -216,7 +221,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "includeAccountSettings",
@@ -248,7 +254,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "includeCharges",
@@ -280,7 +287,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "fromDate",
@@ -318,13 +326,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "invoiceId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the invoice."
+        "description": "The ID of the invoice.",
+        "example": "INVOICEID"
       }
     ],
     "responses": [
@@ -350,7 +360,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       }
     ],
     "responses": [
@@ -376,7 +387,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "fromDate",
@@ -414,7 +426,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "paymentAmount",
@@ -445,13 +458,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "paymentId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the payment."
+        "description": "The ID of the payment.",
+        "example": "PAYMENTID"
       }
     ],
     "responses": [
@@ -477,7 +492,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "includeCreditCardInformation",
@@ -533,7 +549,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "previewBillingPlan",
@@ -675,7 +692,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       }
     ],
     "responses": [
@@ -701,7 +719,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       }
     ],
     "responses": [
@@ -727,7 +746,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "downgradeEventType",
@@ -783,7 +803,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "amount",
@@ -854,7 +875,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "brands",
@@ -885,7 +907,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "excludeDistributorBrand",
@@ -923,7 +946,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "brandCompany",
@@ -1034,13 +1058,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "brandId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the brand."
+        "description": "The ID of the brand.",
+        "example": "BRANDID"
       }
     ],
     "responses": [
@@ -1066,13 +1092,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "brandId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the brand."
+        "description": "The ID of the brand.",
+        "example": "BRANDID"
       },
       {
         "name": "includeExternalReferences",
@@ -1110,13 +1138,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "brandId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the brand."
+        "description": "The ID of the brand.",
+        "example": "BRANDID"
       },
       {
         "name": "replaceBrand",
@@ -1233,13 +1263,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "brandId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the brand."
+        "description": "The ID of the brand.",
+        "example": "BRANDID"
       }
     ],
     "responses": [
@@ -1265,19 +1297,22 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "brandId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the brand."
+        "description": "The ID of the brand.",
+        "example": "BRANDID"
       },
       {
         "name": "logoType",
         "schema": "string",
         "required": true,
-        "description": "The type of logo. Valid values are:\n\n- `primary` \n- `secondary` \n- `email`"
+        "description": "The type of logo. Valid values are:\n\n- `primary` \n- `secondary` \n- `email`",
+        "example": "LOGOTYPE"
       }
     ],
     "responses": [
@@ -1303,19 +1338,22 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "brandId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the brand."
+        "description": "The ID of the brand.",
+        "example": "BRANDID"
       },
       {
         "name": "logoType",
         "schema": "string",
         "required": true,
-        "description": "The type of logo. Valid values are:\n\n- `primary` \n- `secondary` \n- `email`"
+        "description": "The type of logo. Valid values are:\n\n- `primary` \n- `secondary` \n- `email`",
+        "example": "LOGOTYPE"
       }
     ],
     "responses": [
@@ -1341,19 +1379,22 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "brandId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the brand."
+        "description": "The ID of the brand.",
+        "example": "BRANDID"
       },
       {
         "name": "logoType",
         "schema": "string",
         "required": true,
-        "description": "The type of logo. Valid values are:\n\n- `primary` \n- `secondary` \n- `email`"
+        "description": "The type of logo. Valid values are:\n\n- `primary` \n- `secondary` \n- `email`",
+        "example": "LOGOTYPE"
       }
     ],
     "responses": [
@@ -1379,13 +1420,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "brandId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the brand."
+        "description": "The ID of the brand.",
+        "example": "BRANDID"
       }
     ],
     "responses": [
@@ -1411,19 +1454,22 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "brandId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the brand."
+        "description": "The ID of the brand.",
+        "example": "BRANDID"
       },
       {
         "name": "resourceContentType",
         "schema": "string",
         "required": true,
-        "description": "The type of brand resource file to return. Valid values are:\n\n- `sending`\n- `signing`\n- `email`\n- `signing_captive`"
+        "description": "The type of brand resource file to return. Valid values are:\n\n- `sending`\n- `signing`\n- `email`\n- `signing_captive`",
+        "example": "RESOURCECONTENTTYPE"
       },
       {
         "name": "langcode",
@@ -1461,25 +1507,29 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "brandId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the brand."
+        "description": "The ID of the brand.",
+        "example": "BRANDID"
       },
       {
         "name": "resourceContentType",
         "schema": "string",
         "required": true,
-        "description": "The type of brand resource file that you are updating. Valid values are:\n\n- `sending`\n- `signing`\n- `email`\n- `signing_captive`"
+        "description": "The type of brand resource file that you are updating. Valid values are:\n\n- `sending`\n- `signing`\n- `email`\n- `signing_captive`",
+        "example": "RESOURCECONTENTTYPE"
       },
       {
         "name": "file.xml",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "FILE.XML"
       }
     ],
     "responses": [
@@ -1505,7 +1555,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "batchIds",
@@ -1579,13 +1630,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "bulkSendBatchId",
         "schema": "string",
         "required": true,
-        "description": "The batch ID."
+        "description": "The batch ID.",
+        "example": "BULKSENDBATCHID"
       }
     ],
     "responses": [
@@ -1611,13 +1664,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "bulkSendBatchId",
         "schema": "string",
         "required": true,
-        "description": "The batch ID."
+        "description": "The batch ID.",
+        "example": "BULKSENDBATCHID"
       },
       {
         "name": "batchName",
@@ -1648,19 +1703,22 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "bulkAction",
         "schema": "string",
         "required": true,
-        "description": "The action to apply. Valid values:\n* `resend`\n* `correct`\n* `void`\n"
+        "description": "The action to apply. Valid values:\n* `resend`\n* `correct`\n* `void`\n",
+        "example": "BULKACTION"
       },
       {
         "name": "bulkSendBatchId",
         "schema": "string",
         "required": true,
-        "description": "The batch ID."
+        "description": "The batch ID.",
+        "example": "BULKSENDBATCHID"
       },
       {
         "name": "action",
@@ -1701,13 +1759,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "bulkSendBatchId",
         "schema": "string",
         "required": true,
-        "description": "The batch ID."
+        "description": "The batch ID.",
+        "example": "BULKSENDBATCHID"
       },
       {
         "name": "count",
@@ -1775,7 +1835,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       }
     ],
     "responses": [
@@ -1801,7 +1862,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the account."
+        "description": "The ID of the account.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "bulkCopies",
@@ -1842,13 +1904,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "bulkSendListId",
         "schema": "string",
         "required": true,
-        "description": "The GUID of the bulk send list. This property is created after you post a new bulk send list."
+        "description": "The GUID of the bulk send list. This property is created after you post a new bulk send list.",
+        "example": "BULKSENDLISTID"
       }
     ],
     "responses": [
@@ -1874,13 +1938,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "bulkSendListId",
         "schema": "string",
         "required": true,
-        "description": "The GUID of the bulk send list. This property is created after you post a new bulk send list."
+        "description": "The GUID of the bulk send list. This property is created after you post a new bulk send list.",
+        "example": "BULKSENDLISTID"
       }
     ],
     "responses": [
@@ -1906,13 +1972,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "bulkSendListId",
         "schema": "string",
         "required": true,
-        "description": "The GUID of the bulk send list. This property is created after you post a new bulk send list."
+        "description": "The GUID of the bulk send list. This property is created after you post a new bulk send list.",
+        "example": "BULKSENDLISTID"
       },
       {
         "name": "bulkCopies",
@@ -1953,13 +2021,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "bulkSendListId",
         "schema": "string",
         "required": true,
-        "description": "The GUID of the bulk send list. This property is created after you post a new bulk send list."
+        "description": "The GUID of the bulk send list. This property is created after you post a new bulk send list.",
+        "example": "BULKSENDLISTID"
       },
       {
         "name": "batchName",
@@ -1995,13 +2065,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "bulkSendListId",
         "schema": "string",
         "required": true,
-        "description": "The GUID of the bulk send list. This property is created after you post a new bulk send list."
+        "description": "The GUID of the bulk send list. This property is created after you post a new bulk send list.",
+        "example": "BULKSENDLISTID"
       },
       {
         "name": "batchName",
@@ -2037,13 +2109,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "recipientPart",
         "schema": "string",
         "required": true,
-        "description": "Signature is the only supported value. "
+        "description": "Signature is the only supported value. ",
+        "example": "RECIPIENTPART"
       },
       {
         "name": "captiveRecipients",
@@ -2074,7 +2148,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "chunkedUploadId",
@@ -2110,13 +2185,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "chunkedUploadId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the chunked upload. "
+        "description": "The ID of the chunked upload. ",
+        "example": "CHUNKEDUPLOADID"
       }
     ],
     "responses": [
@@ -2142,13 +2219,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "chunkedUploadId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the chunked upload. "
+        "description": "The ID of the chunked upload. ",
+        "example": "CHUNKEDUPLOADID"
       },
       {
         "name": "include",
@@ -2180,13 +2259,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "(Required) The external account number (int) or account ID GUID."
+        "description": "(Required) The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "chunkedUploadId",
         "schema": "string",
         "required": true,
-        "description": "(Required) The ID of the chunked upload to commit."
+        "description": "(Required) The ID of the chunked upload to commit.",
+        "example": "CHUNKEDUPLOADID"
       },
       {
         "name": "action",
@@ -2218,19 +2299,22 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "chunkedUploadId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the chunked upload. "
+        "description": "The ID of the chunked upload. ",
+        "example": "CHUNKEDUPLOADID"
       },
       {
         "name": "chunkedUploadPartSeq",
         "schema": "string",
         "required": true,
-        "description": "The sequence or order of the part in the chunked upload. By default, the sequence of the first part that is uploaded as part of the Create request is `0`.\n\n**Note:** You can add parts out of order. However, the chunked upload must consist of a contiguous series of one or more parts before you can successfully commit it."
+        "description": "The sequence or order of the part in the chunked upload. By default, the sequence of the first part that is uploaded as part of the Create request is `0`.\n\n**Note:** You can add parts out of order. However, the chunked upload must consist of a contiguous series of one or more parts before you can successfully commit it.",
+        "example": "CHUNKEDUPLOADPARTSEQ"
       },
       {
         "name": "chunkedUploadId",
@@ -2266,7 +2350,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       }
     ],
     "responses": [
@@ -2292,7 +2377,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "allowEnvelopePublish",
@@ -2533,7 +2619,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "allowEnvelopePublish",
@@ -2774,13 +2861,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "connectId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the custom Connect configuration being accessed."
+        "description": "The ID of the custom Connect configuration being accessed.",
+        "example": "CONNECTID"
       }
     ],
     "responses": [
@@ -2806,13 +2895,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "connectId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the custom Connect configuration being accessed."
+        "description": "The ID of the custom Connect configuration being accessed.",
+        "example": "CONNECTID"
       }
     ],
     "responses": [
@@ -2838,13 +2929,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "connectId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the custom Connect configuration being accessed."
+        "description": "The ID of the custom Connect configuration being accessed.",
+        "example": "CONNECTID"
       },
       {
         "name": "count",
@@ -2906,13 +2999,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "connectId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the custom Connect configuration being accessed."
+        "description": "The ID of the custom Connect configuration being accessed.",
+        "example": "CONNECTID"
       },
       {
         "name": "count",
@@ -2974,13 +3069,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "envelopeId",
         "schema": "string",
         "required": true,
-        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n"
+        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n",
+        "example": "ENVELOPEID"
       }
     ],
     "responses": [
@@ -3006,7 +3103,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "config",
@@ -3042,7 +3140,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "envelopeIds",
@@ -3078,7 +3177,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "fromDate",
@@ -3116,13 +3216,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "failureId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the Connect post failure. Use `all` to delete all failures for the account."
+        "description": "The ID of the Connect post failure. Use `all` to delete all failures for the account.",
+        "example": "FAILUREID"
       }
     ],
     "responses": [
@@ -3148,7 +3250,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       }
     ],
     "responses": [
@@ -3174,7 +3277,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "fromDate",
@@ -3212,13 +3316,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "logId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the Connect log entry."
+        "description": "The ID of the Connect log entry.",
+        "example": "LOGID"
       }
     ],
     "responses": [
@@ -3244,13 +3350,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "logId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the Connect log entry."
+        "description": "The ID of the Connect log entry.",
+        "example": "LOGID"
       },
       {
         "name": "additionalInfo",
@@ -3282,7 +3390,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       }
     ],
     "responses": [
@@ -3308,7 +3417,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       }
     ],
     "responses": [
@@ -3334,7 +3444,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "authorizationServerUrl",
@@ -3385,7 +3496,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "authorizationServerUrl",
@@ -3436,7 +3548,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "langCode",
@@ -3468,13 +3581,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "langCode",
         "schema": "string",
         "required": true,
-        "description": "The code for the signer language version of the disclosure that you want to retrieve. The following languages are supported:\n\n- Arabic (`ar`)\n- Bulgarian (`bg`)\n- Czech (`cs`)\n- Chinese Simplified (`zh_CN`)\n- Chinese Traditional (`zh_TW`)\n- Croatian (`hr`)\n- Danish (`da`)\n- Dutch (`nl`)\n- English US (`en`)\n- English UK (`en_GB`)\n- Estonian (`et`)\n- Farsi (`fa`)\n- Finnish (`fi`)\n- French (`fr`)\n- French Canadian (`fr_CA`)\n- German (`de`)\n- Greek (`el`)\n- Hebrew (`he`)\n- Hindi (`hi`)\n- Hungarian (`hu`)\n- Bahasa Indonesian (`id`)\n- Italian (`it`)\n- Japanese (`ja`)\n- Korean (`ko`)\n- Latvian (`lv`)\n- Lithuanian (`lt`)\n- Bahasa Melayu (`ms`)\n- Norwegian (`no`)\n- Polish (`pl`)\n- Portuguese (`pt`)\n- Portuguese Brazil (`pt_BR`)\n- Romanian (`ro`)\n- Russian (`ru`)\n- Serbian (`sr`)\n- Slovak (`sk`)\n- Slovenian (`sl`)\n- Spanish (`es`)\n- Spanish Latin America (`es_MX`)\n- Swedish (`sv`)\n- Thai (`th`)\n- Turkish (`tr`)\n- Ukrainian (`uk`)\n- Vietnamese (`vi`)\n\nAdditionally, you can automatically detect the browser language being used by the viewer and display the disclosure in that language by setting the value to `browser`."
+        "description": "The code for the signer language version of the disclosure that you want to retrieve. The following languages are supported:\n\n- Arabic (`ar`)\n- Bulgarian (`bg`)\n- Czech (`cs`)\n- Chinese Simplified (`zh_CN`)\n- Chinese Traditional (`zh_TW`)\n- Croatian (`hr`)\n- Danish (`da`)\n- Dutch (`nl`)\n- English US (`en`)\n- English UK (`en_GB`)\n- Estonian (`et`)\n- Farsi (`fa`)\n- Finnish (`fi`)\n- French (`fr`)\n- French Canadian (`fr_CA`)\n- German (`de`)\n- Greek (`el`)\n- Hebrew (`he`)\n- Hindi (`hi`)\n- Hungarian (`hu`)\n- Bahasa Indonesian (`id`)\n- Italian (`it`)\n- Japanese (`ja`)\n- Korean (`ko`)\n- Latvian (`lv`)\n- Lithuanian (`lt`)\n- Bahasa Melayu (`ms`)\n- Norwegian (`no`)\n- Polish (`pl`)\n- Portuguese (`pt`)\n- Portuguese Brazil (`pt_BR`)\n- Romanian (`ro`)\n- Russian (`ru`)\n- Serbian (`sr`)\n- Slovak (`sk`)\n- Slovenian (`sl`)\n- Spanish (`es`)\n- Spanish Latin America (`es_MX`)\n- Swedish (`sv`)\n- Thai (`th`)\n- Turkish (`tr`)\n- Ukrainian (`uk`)\n- Vietnamese (`vi`)\n\nAdditionally, you can automatically detect the browser language being used by the viewer and display the disclosure in that language by setting the value to `browser`.",
+        "example": "LANGCODE"
       }
     ],
     "responses": [
@@ -3500,13 +3615,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "langCode",
         "schema": "string",
         "required": true,
-        "description": "The code for the signer language version of the disclosure that you want to update. The following languages are supported:\n\n- Arabic (`ar`)\n- Bulgarian (`bg`)\n- Czech (`cs`)\n- Chinese Simplified (`zh_CN`)\n- Chinese Traditional (`zh_TW`)\n- Croatian (`hr`)\n- Danish (`da`)\n- Dutch (`nl`)\n- English US (`en`)\n- English UK (`en_GB`)\n- Estonian (`et`)\n- Farsi (`fa`)\n- Finnish (`fi`)\n- French (`fr`)\n- French Canadian (`fr_CA`)\n- German (`de`)\n- Greek (`el`)\n- Hebrew (`he`)\n- Hindi (`hi`)\n- Hungarian (`hu`)\n- Bahasa Indonesian (`id`)\n- Italian (`it`)\n- Japanese (`ja`)\n- Korean (`ko`)\n- Latvian (`lv`)\n- Lithuanian (`lt`)\n- Bahasa Melayu (`ms`)\n- Norwegian (`no`)\n- Polish (`pl`)\n- Portuguese (`pt`)\n- Portuguese Brazil (`pt_BR`)\n- Romanian (`ro`)\n- Russian (`ru`)\n- Serbian (`sr`)\n- Slovak (`sk`)\n- Slovenian (`sl`)\n- Spanish (`es`)\n- Spanish Latin America (`es_MX`)\n- Swedish (`sv`)\n- Thai (`th`)\n- Turkish (`tr`)\n- Ukrainian (`uk`)\n- Vietnamese (`vi`)\n\nAdditionally, you can automatically detect the browser language being used by the viewer and display the disclosure in that language by setting the value to `browser`."
+        "description": "The code for the signer language version of the disclosure that you want to update. The following languages are supported:\n\n- Arabic (`ar`)\n- Bulgarian (`bg`)\n- Czech (`cs`)\n- Chinese Simplified (`zh_CN`)\n- Chinese Traditional (`zh_TW`)\n- Croatian (`hr`)\n- Danish (`da`)\n- Dutch (`nl`)\n- English US (`en`)\n- English UK (`en_GB`)\n- Estonian (`et`)\n- Farsi (`fa`)\n- Finnish (`fi`)\n- French (`fr`)\n- French Canadian (`fr_CA`)\n- German (`de`)\n- Greek (`el`)\n- Hebrew (`he`)\n- Hindi (`hi`)\n- Hungarian (`hu`)\n- Bahasa Indonesian (`id`)\n- Italian (`it`)\n- Japanese (`ja`)\n- Korean (`ko`)\n- Latvian (`lv`)\n- Lithuanian (`lt`)\n- Bahasa Melayu (`ms`)\n- Norwegian (`no`)\n- Polish (`pl`)\n- Portuguese (`pt`)\n- Portuguese Brazil (`pt_BR`)\n- Romanian (`ro`)\n- Russian (`ru`)\n- Serbian (`sr`)\n- Slovak (`sk`)\n- Slovenian (`sl`)\n- Spanish (`es`)\n- Spanish Latin America (`es_MX`)\n- Swedish (`sv`)\n- Thai (`th`)\n- Turkish (`tr`)\n- Ukrainian (`uk`)\n- Vietnamese (`vi`)\n\nAdditionally, you can automatically detect the browser language being used by the viewer and display the disclosure in that language by setting the value to `browser`.",
+        "example": "LANGCODE"
       },
       {
         "name": "includeMetadata",
@@ -3698,7 +3815,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "contactList",
@@ -3729,7 +3847,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "contactList",
@@ -3760,7 +3879,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "contactList",
@@ -3791,13 +3911,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "contactId",
         "schema": "string",
         "required": true,
-        "description": "The ID of a contact person in the account's address book."
+        "description": "The ID of a contact person in the account's address book.",
+        "example": "CONTACTID"
       }
     ],
     "responses": [
@@ -3823,13 +3945,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "contactId",
         "schema": "string",
         "required": true,
-        "description": "The ID of a contact person in the account's address book.\n\n**Note:** To return all contacts, omit this parameter. It is not required."
+        "description": "The ID of a contact person in the account's address book.\n\n**Note:** To return all contacts, omit this parameter. It is not required.",
+        "example": "CONTACTID"
       },
       {
         "name": "cloudProvider",
@@ -3861,7 +3985,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       }
     ],
     "responses": [
@@ -3887,7 +4012,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "applyToTemplates",
@@ -3959,13 +4085,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "customFieldId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the custom field."
+        "description": "The ID of the custom field.",
+        "example": "CUSTOMFIELDID"
       },
       {
         "name": "applyToTemplates",
@@ -3997,13 +4125,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "customFieldId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the custom field."
+        "description": "The ID of the custom field.",
+        "example": "CUSTOMFIELDID"
       },
       {
         "name": "applyToTemplates",
@@ -4075,7 +4205,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "acStatus",
@@ -4287,7 +4418,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "cdseMode",
@@ -4782,13 +4914,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "envelopeId",
         "schema": "string",
         "required": true,
-        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n"
+        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n",
+        "example": "ENVELOPEID"
       },
       {
         "name": "advancedUpdate",
@@ -4826,13 +4960,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "envelopeId",
         "schema": "string",
         "required": true,
-        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n"
+        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n",
+        "example": "ENVELOPEID"
       },
       {
         "name": "advancedUpdate",
@@ -5265,13 +5401,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "envelopeId",
         "schema": "string",
         "required": true,
-        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n"
+        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n",
+        "example": "ENVELOPEID"
       },
       {
         "name": "attachments",
@@ -5302,13 +5440,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "envelopeId",
         "schema": "string",
         "required": true,
-        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n"
+        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n",
+        "example": "ENVELOPEID"
       }
     ],
     "responses": [
@@ -5334,13 +5474,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "envelopeId",
         "schema": "string",
         "required": true,
-        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n"
+        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n",
+        "example": "ENVELOPEID"
       },
       {
         "name": "attachments",
@@ -5371,19 +5513,22 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "attachmentId",
         "schema": "string",
         "required": true,
-        "description": "The unique identifier for the attachment."
+        "description": "The unique identifier for the attachment.",
+        "example": "ATTACHMENTID"
       },
       {
         "name": "envelopeId",
         "schema": "string",
         "required": true,
-        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n"
+        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n",
+        "example": "ENVELOPEID"
       }
     ],
     "responses": [
@@ -5409,19 +5554,22 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "attachmentId",
         "schema": "string",
         "required": true,
-        "description": "The unique identifier for the attachment."
+        "description": "The unique identifier for the attachment.",
+        "example": "ATTACHMENTID"
       },
       {
         "name": "envelopeId",
         "schema": "string",
         "required": true,
-        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n"
+        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n",
+        "example": "ENVELOPEID"
       },
       {
         "name": "accessControl",
@@ -5482,13 +5630,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "envelopeId",
         "schema": "string",
         "required": true,
-        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n"
+        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n",
+        "example": "ENVELOPEID"
       }
     ],
     "responses": [
@@ -5514,13 +5664,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "envelopeId",
         "schema": "string",
         "required": true,
-        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n"
+        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n",
+        "example": "ENVELOPEID"
       },
       {
         "name": "encoding",
@@ -5552,13 +5704,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "envelopeId",
         "schema": "string",
         "required": true,
-        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n"
+        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n",
+        "example": "ENVELOPEID"
       },
       {
         "name": "listCustomFields",
@@ -5594,13 +5748,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "envelopeId",
         "schema": "string",
         "required": true,
-        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n"
+        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n",
+        "example": "ENVELOPEID"
       }
     ],
     "responses": [
@@ -5626,13 +5782,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "envelopeId",
         "schema": "string",
         "required": true,
-        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n"
+        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n",
+        "example": "ENVELOPEID"
       },
       {
         "name": "listCustomFields",
@@ -5668,13 +5826,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "envelopeId",
         "schema": "string",
         "required": true,
-        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n"
+        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n",
+        "example": "ENVELOPEID"
       },
       {
         "name": "listCustomFields",
@@ -5710,13 +5870,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "envelopeId",
         "schema": "string",
         "required": true,
-        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n"
+        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n",
+        "example": "ENVELOPEID"
       }
     ],
     "responses": [
@@ -5742,13 +5904,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "envelopeId",
         "schema": "string",
         "required": true,
-        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n"
+        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n",
+        "example": "ENVELOPEID"
       },
       {
         "name": "updateDocgenFormfieldsOnly",
@@ -5785,13 +5949,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "envelopeId",
         "schema": "string",
         "required": true,
-        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n"
+        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n",
+        "example": "ENVELOPEID"
       },
       {
         "name": "accessControlListBase64",
@@ -6262,13 +6428,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "envelopeId",
         "schema": "string",
         "required": true,
-        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n"
+        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n",
+        "example": "ENVELOPEID"
       },
       {
         "name": "documentsByUserid",
@@ -6330,13 +6498,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "envelopeId",
         "schema": "string",
         "required": true,
-        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n"
+        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n",
+        "example": "ENVELOPEID"
       },
       {
         "name": "accessControlListBase64",
@@ -6807,19 +6977,22 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "documentId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the document to retrieve. Alternatively, you can use one of the following special keywords:\n\n- `combined`: Retrieves all of the documents as a single PDF file.\n  When the query parameter `certificate` is **true,** the certificate of completion is included in the PDF file.\n  When the query parameter `certificate` is **false,** the certificate of completion is not included in the PDF file.\n- `archive`: Retrieves a ZIP archive that contains all of the PDF documents and the certificate of completion.\n- `certificate`: Retrieves only the certificate of completion as a PDF file.\n- `portfolio`: Retrieves the envelope documents as a [PDF portfolio](https://helpx.adobe.com/acrobat/using/overview-pdf-portfolios.html)."
+        "description": "The ID of the document to retrieve. Alternatively, you can use one of the following special keywords:\n\n- `combined`: Retrieves all of the documents as a single PDF file.\n  When the query parameter `certificate` is **true,** the certificate of completion is included in the PDF file.\n  When the query parameter `certificate` is **false,** the certificate of completion is not included in the PDF file.\n- `archive`: Retrieves a ZIP archive that contains all of the PDF documents and the certificate of completion.\n- `certificate`: Retrieves only the certificate of completion as a PDF file.\n- `portfolio`: Retrieves the envelope documents as a [PDF portfolio](https://helpx.adobe.com/acrobat/using/overview-pdf-portfolios.html).",
+        "example": "DOCUMENTID"
       },
       {
         "name": "envelopeId",
         "schema": "string",
         "required": true,
-        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n"
+        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n",
+        "example": "ENVELOPEID"
       },
       {
         "name": "certificate",
@@ -6899,19 +7072,22 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "documentId",
         "schema": "string",
         "required": true,
-        "description": "The unique ID of the document within the envelope.\n\nUnlike other IDs in the eSignature API,\nyou specify the `documentId` yourself.\nTypically the first document has the ID\n`1`, the second document `2`, and so on,\nbut you can use any numbering scheme\nthat fits within a 32-bit signed integer\n(1 through 2147483647).\n\n\nTab objects have a `documentId` property\nthat specifies the document on which to place\nthe tab.\n"
+        "description": "The unique ID of the document within the envelope.\n\nUnlike other IDs in the eSignature API,\nyou specify the `documentId` yourself.\nTypically the first document has the ID\n`1`, the second document `2`, and so on,\nbut you can use any numbering scheme\nthat fits within a 32-bit signed integer\n(1 through 2147483647).\n\n\nTab objects have a `documentId` property\nthat specifies the document on which to place\nthe tab.\n",
+        "example": "DOCUMENTID"
       },
       {
         "name": "envelopeId",
         "schema": "string",
         "required": true,
-        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n"
+        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n",
+        "example": "ENVELOPEID"
       }
     ],
     "responses": [
@@ -6937,19 +7113,22 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "documentId",
         "schema": "string",
         "required": true,
-        "description": "The unique ID of the document within the envelope.\n\nUnlike other IDs in the eSignature API,\nyou specify the `documentId` yourself.\nTypically the first document has the ID\n`1`, the second document `2`, and so on,\nbut you can use any numbering scheme\nthat fits within a 32-bit signed integer\n(1 through 2147483647).\n\n\nTab objects have a `documentId` property\nthat specifies the document on which to place\nthe tab.\n"
+        "description": "The unique ID of the document within the envelope.\n\nUnlike other IDs in the eSignature API,\nyou specify the `documentId` yourself.\nTypically the first document has the ID\n`1`, the second document `2`, and so on,\nbut you can use any numbering scheme\nthat fits within a 32-bit signed integer\n(1 through 2147483647).\n\n\nTab objects have a `documentId` property\nthat specifies the document on which to place\nthe tab.\n",
+        "example": "DOCUMENTID"
       },
       {
         "name": "envelopeId",
         "schema": "string",
         "required": true,
-        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n"
+        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n",
+        "example": "ENVELOPEID"
       },
       {
         "name": "documentFields",
@@ -6980,19 +7159,22 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "documentId",
         "schema": "string",
         "required": true,
-        "description": "The unique ID of the document within the envelope.\n\nUnlike other IDs in the eSignature API,\nyou specify the `documentId` yourself.\nTypically the first document has the ID\n`1`, the second document `2`, and so on,\nbut you can use any numbering scheme\nthat fits within a 32-bit signed integer\n(1 through 2147483647).\n\n\nTab objects have a `documentId` property\nthat specifies the document on which to place\nthe tab.\n"
+        "description": "The unique ID of the document within the envelope.\n\nUnlike other IDs in the eSignature API,\nyou specify the `documentId` yourself.\nTypically the first document has the ID\n`1`, the second document `2`, and so on,\nbut you can use any numbering scheme\nthat fits within a 32-bit signed integer\n(1 through 2147483647).\n\n\nTab objects have a `documentId` property\nthat specifies the document on which to place\nthe tab.\n",
+        "example": "DOCUMENTID"
       },
       {
         "name": "envelopeId",
         "schema": "string",
         "required": true,
-        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n"
+        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n",
+        "example": "ENVELOPEID"
       }
     ],
     "responses": [
@@ -7018,19 +7200,22 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "documentId",
         "schema": "string",
         "required": true,
-        "description": "The unique ID of the document within the envelope.\n\nUnlike other IDs in the eSignature API,\nyou specify the `documentId` yourself.\nTypically the first document has the ID\n`1`, the second document `2`, and so on,\nbut you can use any numbering scheme\nthat fits within a 32-bit signed integer\n(1 through 2147483647).\n\n\nTab objects have a `documentId` property\nthat specifies the document on which to place\nthe tab.\n"
+        "description": "The unique ID of the document within the envelope.\n\nUnlike other IDs in the eSignature API,\nyou specify the `documentId` yourself.\nTypically the first document has the ID\n`1`, the second document `2`, and so on,\nbut you can use any numbering scheme\nthat fits within a 32-bit signed integer\n(1 through 2147483647).\n\n\nTab objects have a `documentId` property\nthat specifies the document on which to place\nthe tab.\n",
+        "example": "DOCUMENTID"
       },
       {
         "name": "envelopeId",
         "schema": "string",
         "required": true,
-        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n"
+        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n",
+        "example": "ENVELOPEID"
       },
       {
         "name": "documentFields",
@@ -7061,19 +7246,22 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "documentId",
         "schema": "string",
         "required": true,
-        "description": "The unique ID of the document within the envelope.\n\nUnlike other IDs in the eSignature API,\nyou specify the `documentId` yourself.\nTypically the first document has the ID\n`1`, the second document `2`, and so on,\nbut you can use any numbering scheme\nthat fits within a 32-bit signed integer\n(1 through 2147483647).\n\n\nTab objects have a `documentId` property\nthat specifies the document on which to place\nthe tab.\n"
+        "description": "The unique ID of the document within the envelope.\n\nUnlike other IDs in the eSignature API,\nyou specify the `documentId` yourself.\nTypically the first document has the ID\n`1`, the second document `2`, and so on,\nbut you can use any numbering scheme\nthat fits within a 32-bit signed integer\n(1 through 2147483647).\n\n\nTab objects have a `documentId` property\nthat specifies the document on which to place\nthe tab.\n",
+        "example": "DOCUMENTID"
       },
       {
         "name": "envelopeId",
         "schema": "string",
         "required": true,
-        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n"
+        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n",
+        "example": "ENVELOPEID"
       },
       {
         "name": "documentFields",
@@ -7104,19 +7292,22 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "documentId",
         "schema": "string",
         "required": true,
-        "description": "The GUID of the document.\n\nExample: c671747c-xxxx-xxxx-xxxx-4a4a48e23744"
+        "description": "The GUID of the document.\n\nExample: c671747c-xxxx-xxxx-xxxx-4a4a48e23744",
+        "example": "DOCUMENTID"
       },
       {
         "name": "envelopeId",
         "schema": "string",
         "required": true,
-        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n"
+        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n",
+        "example": "ENVELOPEID"
       }
     ],
     "responses": [
@@ -7142,19 +7333,22 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "documentId",
         "schema": "string",
         "required": true,
-        "description": "The unique ID of the document within the envelope.\n\nUnlike other IDs in the eSignature API,\nyou specify the `documentId` yourself.\nTypically the first document has the ID\n`1`, the second document `2`, and so on,\nbut you can use any numbering scheme\nthat fits within a 32-bit signed integer\n(1 through 2147483647).\n\n\nTab objects have a `documentId` property\nthat specifies the document on which to place\nthe tab.\n"
+        "description": "The unique ID of the document within the envelope.\n\nUnlike other IDs in the eSignature API,\nyou specify the `documentId` yourself.\nTypically the first document has the ID\n`1`, the second document `2`, and so on,\nbut you can use any numbering scheme\nthat fits within a 32-bit signed integer\n(1 through 2147483647).\n\n\nTab objects have a `documentId` property\nthat specifies the document on which to place\nthe tab.\n",
+        "example": "DOCUMENTID"
       },
       {
         "name": "envelopeId",
         "schema": "string",
         "required": true,
-        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n"
+        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n",
+        "example": "ENVELOPEID"
       },
       {
         "name": "count",
@@ -7222,25 +7416,29 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "documentId",
         "schema": "string",
         "required": true,
-        "description": "The unique ID of the document within the envelope.\n\nUnlike other IDs in the eSignature API,\nyou specify the `documentId` yourself.\nTypically the first document has the ID\n`1`, the second document `2`, and so on,\nbut you can use any numbering scheme\nthat fits within a 32-bit signed integer\n(1 through 2147483647).\n\n\nTab objects have a `documentId` property\nthat specifies the document on which to place\nthe tab.\n"
+        "description": "The unique ID of the document within the envelope.\n\nUnlike other IDs in the eSignature API,\nyou specify the `documentId` yourself.\nTypically the first document has the ID\n`1`, the second document `2`, and so on,\nbut you can use any numbering scheme\nthat fits within a 32-bit signed integer\n(1 through 2147483647).\n\n\nTab objects have a `documentId` property\nthat specifies the document on which to place\nthe tab.\n",
+        "example": "DOCUMENTID"
       },
       {
         "name": "envelopeId",
         "schema": "string",
         "required": true,
-        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n"
+        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n",
+        "example": "ENVELOPEID"
       },
       {
         "name": "pageNumber",
         "schema": "string",
         "required": true,
-        "description": "The page number being accessed."
+        "description": "The page number being accessed.",
+        "example": "PAGENUMBER"
       }
     ],
     "responses": [
@@ -7266,25 +7464,29 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "documentId",
         "schema": "string",
         "required": true,
-        "description": "The unique ID of the document within the envelope.\n\nUnlike other IDs in the eSignature API,\nyou specify the `documentId` yourself.\nTypically the first document has the ID\n`1`, the second document `2`, and so on,\nbut you can use any numbering scheme\nthat fits within a 32-bit signed integer\n(1 through 2147483647).\n\n\nTab objects have a `documentId` property\nthat specifies the document on which to place\nthe tab.\n"
+        "description": "The unique ID of the document within the envelope.\n\nUnlike other IDs in the eSignature API,\nyou specify the `documentId` yourself.\nTypically the first document has the ID\n`1`, the second document `2`, and so on,\nbut you can use any numbering scheme\nthat fits within a 32-bit signed integer\n(1 through 2147483647).\n\n\nTab objects have a `documentId` property\nthat specifies the document on which to place\nthe tab.\n",
+        "example": "DOCUMENTID"
       },
       {
         "name": "envelopeId",
         "schema": "string",
         "required": true,
-        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n"
+        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n",
+        "example": "ENVELOPEID"
       },
       {
         "name": "pageNumber",
         "schema": "string",
         "required": true,
-        "description": "The page number being accessed."
+        "description": "The page number being accessed.",
+        "example": "PAGENUMBER"
       },
       {
         "name": "dpi",
@@ -7334,25 +7536,29 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "documentId",
         "schema": "string",
         "required": true,
-        "description": "The unique ID of the document within the envelope.\n\nUnlike other IDs in the eSignature API,\nyou specify the `documentId` yourself.\nTypically the first document has the ID\n`1`, the second document `2`, and so on,\nbut you can use any numbering scheme\nthat fits within a 32-bit signed integer\n(1 through 2147483647).\n\n\nTab objects have a `documentId` property\nthat specifies the document on which to place\nthe tab.\n"
+        "description": "The unique ID of the document within the envelope.\n\nUnlike other IDs in the eSignature API,\nyou specify the `documentId` yourself.\nTypically the first document has the ID\n`1`, the second document `2`, and so on,\nbut you can use any numbering scheme\nthat fits within a 32-bit signed integer\n(1 through 2147483647).\n\n\nTab objects have a `documentId` property\nthat specifies the document on which to place\nthe tab.\n",
+        "example": "DOCUMENTID"
       },
       {
         "name": "envelopeId",
         "schema": "string",
         "required": true,
-        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n"
+        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n",
+        "example": "ENVELOPEID"
       },
       {
         "name": "pageNumber",
         "schema": "string",
         "required": true,
-        "description": "The page number being accessed."
+        "description": "The page number being accessed.",
+        "example": "PAGENUMBER"
       },
       {
         "name": "password",
@@ -7388,25 +7594,29 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "documentId",
         "schema": "string",
         "required": true,
-        "description": "The unique ID of the document within the envelope.\n\nUnlike other IDs in the eSignature API,\nyou specify the `documentId` yourself.\nTypically the first document has the ID\n`1`, the second document `2`, and so on,\nbut you can use any numbering scheme\nthat fits within a 32-bit signed integer\n(1 through 2147483647).\n\n\nTab objects have a `documentId` property\nthat specifies the document on which to place\nthe tab.\n"
+        "description": "The unique ID of the document within the envelope.\n\nUnlike other IDs in the eSignature API,\nyou specify the `documentId` yourself.\nTypically the first document has the ID\n`1`, the second document `2`, and so on,\nbut you can use any numbering scheme\nthat fits within a 32-bit signed integer\n(1 through 2147483647).\n\n\nTab objects have a `documentId` property\nthat specifies the document on which to place\nthe tab.\n",
+        "example": "DOCUMENTID"
       },
       {
         "name": "envelopeId",
         "schema": "string",
         "required": true,
-        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n"
+        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n",
+        "example": "ENVELOPEID"
       },
       {
         "name": "pageNumber",
         "schema": "string",
         "required": true,
-        "description": "The page number being accessed."
+        "description": "The page number being accessed.",
+        "example": "PAGENUMBER"
       }
     ],
     "responses": [
@@ -7432,19 +7642,22 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "documentId",
         "schema": "string",
         "required": true,
-        "description": "The unique ID of the document within the envelope.\n\nUnlike other IDs in the eSignature API,\nyou specify the `documentId` yourself.\nTypically the first document has the ID\n`1`, the second document `2`, and so on,\nbut you can use any numbering scheme\nthat fits within a 32-bit signed integer\n(1 through 2147483647).\n\n\nTab objects have a `documentId` property\nthat specifies the document on which to place\nthe tab.\n"
+        "description": "The unique ID of the document within the envelope.\n\nUnlike other IDs in the eSignature API,\nyou specify the `documentId` yourself.\nTypically the first document has the ID\n`1`, the second document `2`, and so on,\nbut you can use any numbering scheme\nthat fits within a 32-bit signed integer\n(1 through 2147483647).\n\n\nTab objects have a `documentId` property\nthat specifies the document on which to place\nthe tab.\n",
+        "example": "DOCUMENTID"
       },
       {
         "name": "envelopeId",
         "schema": "string",
         "required": true,
-        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n"
+        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n",
+        "example": "ENVELOPEID"
       },
       {
         "name": "displayAnchorPrefix",
@@ -7525,19 +7738,22 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "documentId",
         "schema": "string",
         "required": true,
-        "description": "The unique ID of the document within the envelope.\n\nUnlike other IDs in the eSignature API,\nyou specify the `documentId` yourself.\nTypically the first document has the ID\n`1`, the second document `2`, and so on,\nbut you can use any numbering scheme\nthat fits within a 32-bit signed integer\n(1 through 2147483647).\n\n\nTab objects have a `documentId` property\nthat specifies the document on which to place\nthe tab.\n"
+        "description": "The unique ID of the document within the envelope.\n\nUnlike other IDs in the eSignature API,\nyou specify the `documentId` yourself.\nTypically the first document has the ID\n`1`, the second document `2`, and so on,\nbut you can use any numbering scheme\nthat fits within a 32-bit signed integer\n(1 through 2147483647).\n\n\nTab objects have a `documentId` property\nthat specifies the document on which to place\nthe tab.\n",
+        "example": "DOCUMENTID"
       },
       {
         "name": "envelopeId",
         "schema": "string",
         "required": true,
-        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n"
+        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n",
+        "example": "ENVELOPEID"
       },
       {
         "name": "approveTabs",
@@ -7758,19 +7974,22 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "documentId",
         "schema": "string",
         "required": true,
-        "description": "The unique ID of the document within the envelope.\n\nUnlike other IDs in the eSignature API,\nyou specify the `documentId` yourself.\nTypically the first document has the ID\n`1`, the second document `2`, and so on,\nbut you can use any numbering scheme\nthat fits within a 32-bit signed integer\n(1 through 2147483647).\n\n\nTab objects have a `documentId` property\nthat specifies the document on which to place\nthe tab.\n"
+        "description": "The unique ID of the document within the envelope.\n\nUnlike other IDs in the eSignature API,\nyou specify the `documentId` yourself.\nTypically the first document has the ID\n`1`, the second document `2`, and so on,\nbut you can use any numbering scheme\nthat fits within a 32-bit signed integer\n(1 through 2147483647).\n\n\nTab objects have a `documentId` property\nthat specifies the document on which to place\nthe tab.\n",
+        "example": "DOCUMENTID"
       },
       {
         "name": "envelopeId",
         "schema": "string",
         "required": true,
-        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n"
+        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n",
+        "example": "ENVELOPEID"
       },
       {
         "name": "includeMetadata",
@@ -7808,19 +8027,22 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "documentId",
         "schema": "string",
         "required": true,
-        "description": "The unique ID of the document within the envelope.\n\nUnlike other IDs in the eSignature API,\nyou specify the `documentId` yourself.\nTypically the first document has the ID\n`1`, the second document `2`, and so on,\nbut you can use any numbering scheme\nthat fits within a 32-bit signed integer\n(1 through 2147483647).\n\n\nTab objects have a `documentId` property\nthat specifies the document on which to place\nthe tab.\n"
+        "description": "The unique ID of the document within the envelope.\n\nUnlike other IDs in the eSignature API,\nyou specify the `documentId` yourself.\nTypically the first document has the ID\n`1`, the second document `2`, and so on,\nbut you can use any numbering scheme\nthat fits within a 32-bit signed integer\n(1 through 2147483647).\n\n\nTab objects have a `documentId` property\nthat specifies the document on which to place\nthe tab.\n",
+        "example": "DOCUMENTID"
       },
       {
         "name": "envelopeId",
         "schema": "string",
         "required": true,
-        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n"
+        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n",
+        "example": "ENVELOPEID"
       },
       {
         "name": "approveTabs",
@@ -8041,19 +8263,22 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "documentId",
         "schema": "string",
         "required": true,
-        "description": "The unique ID of the document within the envelope.\n\nUnlike other IDs in the eSignature API,\nyou specify the `documentId` yourself.\nTypically the first document has the ID\n`1`, the second document `2`, and so on,\nbut you can use any numbering scheme\nthat fits within a 32-bit signed integer\n(1 through 2147483647).\n\n\nTab objects have a `documentId` property\nthat specifies the document on which to place\nthe tab.\n"
+        "description": "The unique ID of the document within the envelope.\n\nUnlike other IDs in the eSignature API,\nyou specify the `documentId` yourself.\nTypically the first document has the ID\n`1`, the second document `2`, and so on,\nbut you can use any numbering scheme\nthat fits within a 32-bit signed integer\n(1 through 2147483647).\n\n\nTab objects have a `documentId` property\nthat specifies the document on which to place\nthe tab.\n",
+        "example": "DOCUMENTID"
       },
       {
         "name": "envelopeId",
         "schema": "string",
         "required": true,
-        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n"
+        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n",
+        "example": "ENVELOPEID"
       },
       {
         "name": "approveTabs",
@@ -8274,19 +8499,22 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "documentId",
         "schema": "string",
         "required": true,
-        "description": "The unique ID of the document within the envelope.\n\nUnlike other IDs in the eSignature API,\nyou specify the `documentId` yourself.\nTypically the first document has the ID\n`1`, the second document `2`, and so on,\nbut you can use any numbering scheme\nthat fits within a 32-bit signed integer\n(1 through 2147483647).\n\n\nTab objects have a `documentId` property\nthat specifies the document on which to place\nthe tab.\n"
+        "description": "The unique ID of the document within the envelope.\n\nUnlike other IDs in the eSignature API,\nyou specify the `documentId` yourself.\nTypically the first document has the ID\n`1`, the second document `2`, and so on,\nbut you can use any numbering scheme\nthat fits within a 32-bit signed integer\n(1 through 2147483647).\n\n\nTab objects have a `documentId` property\nthat specifies the document on which to place\nthe tab.\n",
+        "example": "DOCUMENTID"
       },
       {
         "name": "envelopeId",
         "schema": "string",
         "required": true,
-        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n"
+        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n",
+        "example": "ENVELOPEID"
       },
       {
         "name": "include",
@@ -8318,19 +8546,22 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "documentId",
         "schema": "string",
         "required": true,
-        "description": "The unique ID of the document within the envelope.\n\nUnlike other IDs in the eSignature API,\nyou specify the `documentId` yourself.\nTypically the first document has the ID\n`1`, the second document `2`, and so on,\nbut you can use any numbering scheme\nthat fits within a 32-bit signed integer\n(1 through 2147483647).\n\n\nTab objects have a `documentId` property\nthat specifies the document on which to place\nthe tab.\n"
+        "description": "The unique ID of the document within the envelope.\n\nUnlike other IDs in the eSignature API,\nyou specify the `documentId` yourself.\nTypically the first document has the ID\n`1`, the second document `2`, and so on,\nbut you can use any numbering scheme\nthat fits within a 32-bit signed integer\n(1 through 2147483647).\n\n\nTab objects have a `documentId` property\nthat specifies the document on which to place\nthe tab.\n",
+        "example": "DOCUMENTID"
       },
       {
         "name": "envelopeId",
         "schema": "string",
         "required": true,
-        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n"
+        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n",
+        "example": "ENVELOPEID"
       },
       {
         "name": "preserveTemplateRecipient",
@@ -8367,25 +8598,29 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "documentId",
         "schema": "string",
         "required": true,
-        "description": "The unique ID of the document within the envelope.\n\nUnlike other IDs in the eSignature API,\nyou specify the `documentId` yourself.\nTypically the first document has the ID\n`1`, the second document `2`, and so on,\nbut you can use any numbering scheme\nthat fits within a 32-bit signed integer\n(1 through 2147483647).\n\n\nTab objects have a `documentId` property\nthat specifies the document on which to place\nthe tab.\n"
+        "description": "The unique ID of the document within the envelope.\n\nUnlike other IDs in the eSignature API,\nyou specify the `documentId` yourself.\nTypically the first document has the ID\n`1`, the second document `2`, and so on,\nbut you can use any numbering scheme\nthat fits within a 32-bit signed integer\n(1 through 2147483647).\n\n\nTab objects have a `documentId` property\nthat specifies the document on which to place\nthe tab.\n",
+        "example": "DOCUMENTID"
       },
       {
         "name": "envelopeId",
         "schema": "string",
         "required": true,
-        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n"
+        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n",
+        "example": "ENVELOPEID"
       },
       {
         "name": "templateId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the template."
+        "description": "The ID of the template.",
+        "example": "TEMPLATEID"
       }
     ],
     "responses": [
@@ -8411,13 +8646,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "envelopeId",
         "schema": "string",
         "required": true,
-        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n"
+        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n",
+        "example": "ENVELOPEID"
       }
     ],
     "responses": [
@@ -8443,13 +8680,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "envelopeId",
         "schema": "string",
         "required": true,
-        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n"
+        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n",
+        "example": "ENVELOPEID"
       }
     ],
     "responses": [
@@ -8475,13 +8714,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "envelopeId",
         "schema": "string",
         "required": true,
-        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n"
+        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n",
+        "example": "ENVELOPEID"
       },
       {
         "name": "bccEmailAddresses",
@@ -8522,13 +8763,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "envelopeId",
         "schema": "string",
         "required": true,
-        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n"
+        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n",
+        "example": "ENVELOPEID"
       },
       {
         "name": "bccEmailAddresses",
@@ -8569,13 +8812,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "envelopeId",
         "schema": "string",
         "required": true,
-        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n"
+        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n",
+        "example": "ENVELOPEID"
       }
     ],
     "responses": [
@@ -8601,13 +8846,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "envelopeId",
         "schema": "string",
         "required": true,
-        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n"
+        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n",
+        "example": "ENVELOPEID"
       }
     ],
     "responses": [
@@ -8633,13 +8880,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "envelopeId",
         "schema": "string",
         "required": true,
-        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n"
+        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n",
+        "example": "ENVELOPEID"
       }
     ],
     "responses": [
@@ -8665,13 +8914,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "envelopeId",
         "schema": "string",
         "required": true,
-        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n"
+        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n",
+        "example": "ENVELOPEID"
       }
     ],
     "responses": [
@@ -8697,13 +8948,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "envelopeId",
         "schema": "string",
         "required": true,
-        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n"
+        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n",
+        "example": "ENVELOPEID"
       },
       {
         "name": "lockDurationInSeconds",
@@ -8754,13 +9007,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "envelopeId",
         "schema": "string",
         "required": true,
-        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n"
+        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n",
+        "example": "ENVELOPEID"
       },
       {
         "name": "lockDurationInSeconds",
@@ -8811,13 +9066,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "envelopeId",
         "schema": "string",
         "required": true,
-        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n"
+        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n",
+        "example": "ENVELOPEID"
       }
     ],
     "responses": [
@@ -8843,13 +9100,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "envelopeId",
         "schema": "string",
         "required": true,
-        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n"
+        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n",
+        "example": "ENVELOPEID"
       },
       {
         "name": "expirations",
@@ -8890,13 +9149,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "envelopeId",
         "schema": "string",
         "required": true,
-        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n"
+        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n",
+        "example": "ENVELOPEID"
       },
       {
         "name": "agents",
@@ -8992,13 +9253,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "envelopeId",
         "schema": "string",
         "required": true,
-        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n"
+        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n",
+        "example": "ENVELOPEID"
       },
       {
         "name": "includeAnchorTabLocations",
@@ -9048,13 +9311,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "envelopeId",
         "schema": "string",
         "required": true,
-        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n"
+        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n",
+        "example": "ENVELOPEID"
       },
       {
         "name": "resendEnvelope",
@@ -9156,13 +9421,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "envelopeId",
         "schema": "string",
         "required": true,
-        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n"
+        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n",
+        "example": "ENVELOPEID"
       },
       {
         "name": "combineSameOrderRecipients",
@@ -9276,19 +9543,22 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "envelopeId",
         "schema": "string",
         "required": true,
-        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n"
+        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n",
+        "example": "ENVELOPEID"
       },
       {
         "name": "recipientId",
         "schema": "string",
         "required": true,
-        "description": "A local reference used to map\nrecipients to other objects, such as specific\ndocument tabs.\n\nA `recipientId` must be\neither an integer or a GUID,\nand the `recipientId` must be\nunique within an envelope.\n\nFor example, many envelopes assign the first recipient\na `recipientId` of `1`.\n"
+        "description": "A local reference used to map\nrecipients to other objects, such as specific\ndocument tabs.\n\nA `recipientId` must be\neither an integer or a GUID,\nand the `recipientId` must be\nunique within an envelope.\n\nFor example, many envelopes assign the first recipient\na `recipientId` of `1`.\n",
+        "example": "RECIPIENTID"
       }
     ],
     "responses": [
@@ -9314,19 +9584,22 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "envelopeId",
         "schema": "string",
         "required": true,
-        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n"
+        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n",
+        "example": "ENVELOPEID"
       },
       {
         "name": "recipientId",
         "schema": "string",
         "required": true,
-        "description": "A local reference used to map\nrecipients to other objects, such as specific\ndocument tabs.\n\nA `recipientId` must be\neither an integer or a GUID,\nand the `recipientId` must be\nunique within an envelope.\n\nFor example, many envelopes assign the first recipient\na `recipientId` of `1`.\n"
+        "description": "A local reference used to map\nrecipients to other objects, such as specific\ndocument tabs.\n\nA `recipientId` must be\neither an integer or a GUID,\nand the `recipientId` must be\nunique within an envelope.\n\nFor example, many envelopes assign the first recipient\na `recipientId` of `1`.\n",
+        "example": "RECIPIENTID"
       },
       {
         "name": "langCode",
@@ -9358,25 +9631,29 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "envelopeId",
         "schema": "string",
         "required": true,
-        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n"
+        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n",
+        "example": "ENVELOPEID"
       },
       {
         "name": "langCode",
         "schema": "string",
         "required": true,
-        "description": "(Optional) The code for the signer language version of the disclosure that you want to retrieve, as a path parameter. The following languages are supported:\n\n- Arabic (`ar`)\n- Bulgarian (`bg`)\n- Czech (`cs`)\n- Chinese Simplified (`zh_CN`)\n- Chinese Traditional (`zh_TW`)\n- Croatian (`hr`)\n- Danish (`da`)\n- Dutch (`nl`)\n- English US (`en`)\n- English UK (`en_GB`)\n- Estonian (`et`)\n- Farsi (`fa`)\n- Finnish (`fi`)\n- French (`fr`)\n- French Canadian (`fr_CA`)\n- German (`de`)\n- Greek (`el`)\n- Hebrew (`he`)\n- Hindi (`hi`)\n- Hungarian (`hu`)\n- Bahasa Indonesian (`id`)\n- Italian (`it`)\n- Japanese (`ja`)\n- Korean (`ko`)\n- Latvian (`lv`)\n- Lithuanian (`lt`)\n- Bahasa Melayu (`ms`)\n- Norwegian (`no`)\n- Polish (`pl`)\n- Portuguese (`pt`)\n- Portuguese Brazil (`pt_BR`)\n- Romanian (`ro`)\n- Russian (`ru`)\n- Serbian (`sr`)\n- Slovak (`sk`)\n- Slovenian (`sl`)\n- Spanish (`es`)\n- Spanish Latin America (`es_MX`)\n- Swedish (`sv`)\n- Thai (`th`)\n- Turkish (`tr`)\n- Ukrainian (`uk`) \n- Vietnamese (`vi`)\n\nAdditionally, you can automatically detect the browser language being used by the viewer and display the disclosure in that language by setting the value to `browser`."
+        "description": "(Optional) The code for the signer language version of the disclosure that you want to retrieve, as a path parameter. The following languages are supported:\n\n- Arabic (`ar`)\n- Bulgarian (`bg`)\n- Czech (`cs`)\n- Chinese Simplified (`zh_CN`)\n- Chinese Traditional (`zh_TW`)\n- Croatian (`hr`)\n- Danish (`da`)\n- Dutch (`nl`)\n- English US (`en`)\n- English UK (`en_GB`)\n- Estonian (`et`)\n- Farsi (`fa`)\n- Finnish (`fi`)\n- French (`fr`)\n- French Canadian (`fr_CA`)\n- German (`de`)\n- Greek (`el`)\n- Hebrew (`he`)\n- Hindi (`hi`)\n- Hungarian (`hu`)\n- Bahasa Indonesian (`id`)\n- Italian (`it`)\n- Japanese (`ja`)\n- Korean (`ko`)\n- Latvian (`lv`)\n- Lithuanian (`lt`)\n- Bahasa Melayu (`ms`)\n- Norwegian (`no`)\n- Polish (`pl`)\n- Portuguese (`pt`)\n- Portuguese Brazil (`pt_BR`)\n- Romanian (`ro`)\n- Russian (`ru`)\n- Serbian (`sr`)\n- Slovak (`sk`)\n- Slovenian (`sl`)\n- Spanish (`es`)\n- Spanish Latin America (`es_MX`)\n- Swedish (`sv`)\n- Thai (`th`)\n- Turkish (`tr`)\n- Ukrainian (`uk`) \n- Vietnamese (`vi`)\n\nAdditionally, you can automatically detect the browser language being used by the viewer and display the disclosure in that language by setting the value to `browser`.",
+        "example": "LANGCODE"
       },
       {
         "name": "recipientId",
         "schema": "string",
         "required": true,
-        "description": "A local reference used to map\nrecipients to other objects, such as specific\ndocument tabs.\n\nA `recipientId` must be\neither an integer or a GUID,\nand the `recipientId` must be\nunique within an envelope.\n\nFor example, many envelopes assign the first recipient\na `recipientId` of `1`.\n"
+        "description": "A local reference used to map\nrecipients to other objects, such as specific\ndocument tabs.\n\nA `recipientId` must be\neither an integer or a GUID,\nand the `recipientId` must be\nunique within an envelope.\n\nFor example, many envelopes assign the first recipient\na `recipientId` of `1`.\n",
+        "example": "RECIPIENTID"
       },
       {
         "name": "langCode",
@@ -9408,19 +9685,22 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "envelopeId",
         "schema": "string",
         "required": true,
-        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n"
+        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n",
+        "example": "ENVELOPEID"
       },
       {
         "name": "recipientId",
         "schema": "string",
         "required": true,
-        "description": "A local reference used to map\nrecipients to other objects, such as specific\ndocument tabs.\n\nA `recipientId` must be\neither an integer or a GUID,\nand the `recipientId` must be\nunique within an envelope.\n\nFor example, many envelopes assign the first recipient\na `recipientId` of `1`.\n"
+        "description": "A local reference used to map\nrecipients to other objects, such as specific\ndocument tabs.\n\nA `recipientId` must be\neither an integer or a GUID,\nand the `recipientId` must be\nunique within an envelope.\n\nFor example, many envelopes assign the first recipient\na `recipientId` of `1`.\n",
+        "example": "RECIPIENTID"
       }
     ],
     "responses": [
@@ -9446,19 +9726,22 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "envelopeId",
         "schema": "string",
         "required": true,
-        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n"
+        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n",
+        "example": "ENVELOPEID"
       },
       {
         "name": "recipientId",
         "schema": "string",
         "required": true,
-        "description": "A local reference used to map\nrecipients to other objects, such as specific\ndocument tabs.\n\nA `recipientId` must be\neither an integer or a GUID,\nand the `recipientId` must be\nunique within an envelope.\n\nFor example, many envelopes assign the first recipient\na `recipientId` of `1`.\n"
+        "description": "A local reference used to map\nrecipients to other objects, such as specific\ndocument tabs.\n\nA `recipientId` must be\neither an integer or a GUID,\nand the `recipientId` must be\nunique within an envelope.\n\nFor example, many envelopes assign the first recipient\na `recipientId` of `1`.\n",
+        "example": "RECIPIENTID"
       },
       {
         "name": "documentVisibility",
@@ -9489,19 +9772,22 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The account ID."
+        "description": "The account ID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "envelopeId",
         "schema": "string",
         "required": true,
-        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n"
+        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n",
+        "example": "ENVELOPEID"
       },
       {
         "name": "recipientId",
         "schema": "string",
         "required": true,
-        "description": "The `recipientIdGuid`."
+        "description": "The `recipientIdGuid`.",
+        "example": "RECIPIENTID"
       }
     ],
     "responses": [
@@ -9527,19 +9813,22 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "envelopeId",
         "schema": "string",
         "required": true,
-        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n"
+        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n",
+        "example": "ENVELOPEID"
       },
       {
         "name": "recipientId",
         "schema": "string",
         "required": true,
-        "description": "A local reference used to map\nrecipients to other objects, such as specific\ndocument tabs.\n\nA `recipientId` must be\neither an integer or a GUID,\nand the `recipientId` must be\nunique within an envelope.\n\nFor example, many envelopes assign the first recipient\na `recipientId` of `1`.\n"
+        "description": "A local reference used to map\nrecipients to other objects, such as specific\ndocument tabs.\n\nA `recipientId` must be\neither an integer or a GUID,\nand the `recipientId` must be\nunique within an envelope.\n\nFor example, many envelopes assign the first recipient\na `recipientId` of `1`.\n",
+        "example": "RECIPIENTID"
       },
       {
         "name": "includeChrome",
@@ -9571,19 +9860,22 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "envelopeId",
         "schema": "string",
         "required": true,
-        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n"
+        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n",
+        "example": "ENVELOPEID"
       },
       {
         "name": "recipientId",
         "schema": "string",
         "required": true,
-        "description": "A local reference used to map\nrecipients to other objects, such as specific\ndocument tabs.\n\nA `recipientId` must be\neither an integer or a GUID,\nand the `recipientId` must be\nunique within an envelope.\n\nFor example, many envelopes assign the first recipient\na `recipientId` of `1`.\n"
+        "description": "A local reference used to map\nrecipients to other objects, such as specific\ndocument tabs.\n\nA `recipientId` must be\neither an integer or a GUID,\nand the `recipientId` must be\nunique within an envelope.\n\nFor example, many envelopes assign the first recipient\na `recipientId` of `1`.\n",
+        "example": "RECIPIENTID"
       }
     ],
     "responses": [
@@ -9609,19 +9901,22 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "envelopeId",
         "schema": "string",
         "required": true,
-        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n"
+        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n",
+        "example": "ENVELOPEID"
       },
       {
         "name": "recipientId",
         "schema": "string",
         "required": true,
-        "description": "A local reference used to map\nrecipients to other objects, such as specific\ndocument tabs.\n\nA `recipientId` must be\neither an integer or a GUID,\nand the `recipientId` must be\nunique within an envelope.\n\nFor example, many envelopes assign the first recipient\na `recipientId` of `1`.\n"
+        "description": "A local reference used to map\nrecipients to other objects, such as specific\ndocument tabs.\n\nA `recipientId` must be\neither an integer or a GUID,\nand the `recipientId` must be\nunique within an envelope.\n\nFor example, many envelopes assign the first recipient\na `recipientId` of `1`.\n",
+        "example": "RECIPIENTID"
       }
     ],
     "responses": [
@@ -9647,19 +9942,22 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "envelopeId",
         "schema": "string",
         "required": true,
-        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n"
+        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n",
+        "example": "ENVELOPEID"
       },
       {
         "name": "recipientId",
         "schema": "string",
         "required": true,
-        "description": "A local reference used to map\nrecipients to other objects, such as specific\ndocument tabs.\n\nA `recipientId` must be\neither an integer or a GUID,\nand the `recipientId` must be\nunique within an envelope.\n\nFor example, many envelopes assign the first recipient\na `recipientId` of `1`.\n"
+        "description": "A local reference used to map\nrecipients to other objects, such as specific\ndocument tabs.\n\nA `recipientId` must be\neither an integer or a GUID,\nand the `recipientId` must be\nunique within an envelope.\n\nFor example, many envelopes assign the first recipient\na `recipientId` of `1`.\n",
+        "example": "RECIPIENTID"
       },
       {
         "name": "includeChrome",
@@ -9691,19 +9989,22 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "envelopeId",
         "schema": "string",
         "required": true,
-        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n"
+        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n",
+        "example": "ENVELOPEID"
       },
       {
         "name": "recipientId",
         "schema": "string",
         "required": true,
-        "description": "A local reference used to map\nrecipients to other objects, such as specific\ndocument tabs.\n\nA `recipientId` must be\neither an integer or a GUID,\nand the `recipientId` must be\nunique within an envelope.\n\nFor example, many envelopes assign the first recipient\na `recipientId` of `1`.\n"
+        "description": "A local reference used to map\nrecipients to other objects, such as specific\ndocument tabs.\n\nA `recipientId` must be\neither an integer or a GUID,\nand the `recipientId` must be\nunique within an envelope.\n\nFor example, many envelopes assign the first recipient\na `recipientId` of `1`.\n",
+        "example": "RECIPIENTID"
       }
     ],
     "responses": [
@@ -9729,19 +10030,22 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "envelopeId",
         "schema": "string",
         "required": true,
-        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n"
+        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n",
+        "example": "ENVELOPEID"
       },
       {
         "name": "recipientId",
         "schema": "string",
         "required": true,
-        "description": "A local reference used to map\nrecipients to other objects, such as specific\ndocument tabs.\n\nA `recipientId` must be\neither an integer or a GUID,\nand the `recipientId` must be\nunique within an envelope.\n\nFor example, many envelopes assign the first recipient\na `recipientId` of `1`.\n"
+        "description": "A local reference used to map\nrecipients to other objects, such as specific\ndocument tabs.\n\nA `recipientId` must be\neither an integer or a GUID,\nand the `recipientId` must be\nunique within an envelope.\n\nFor example, many envelopes assign the first recipient\na `recipientId` of `1`.\n",
+        "example": "RECIPIENTID"
       },
       {
         "name": "approveTabs",
@@ -9962,19 +10266,22 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "envelopeId",
         "schema": "string",
         "required": true,
-        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n"
+        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n",
+        "example": "ENVELOPEID"
       },
       {
         "name": "recipientId",
         "schema": "string",
         "required": true,
-        "description": "A local reference used to map\nrecipients to other objects, such as specific\ndocument tabs.\n\nA `recipientId` must be\neither an integer or a GUID,\nand the `recipientId` must be\nunique within an envelope.\n\nFor example, many envelopes assign the first recipient\na `recipientId` of `1`.\n"
+        "description": "A local reference used to map\nrecipients to other objects, such as specific\ndocument tabs.\n\nA `recipientId` must be\neither an integer or a GUID,\nand the `recipientId` must be\nunique within an envelope.\n\nFor example, many envelopes assign the first recipient\na `recipientId` of `1`.\n",
+        "example": "RECIPIENTID"
       },
       {
         "name": "includeAnchorTabLocations",
@@ -10012,19 +10319,22 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "envelopeId",
         "schema": "string",
         "required": true,
-        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n"
+        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n",
+        "example": "ENVELOPEID"
       },
       {
         "name": "recipientId",
         "schema": "string",
         "required": true,
-        "description": "A local reference used to map\nrecipients to other objects, such as specific\ndocument tabs.\n\nA `recipientId` must be\neither an integer or a GUID,\nand the `recipientId` must be\nunique within an envelope.\n\nFor example, many envelopes assign the first recipient\na `recipientId` of `1`.\n"
+        "description": "A local reference used to map\nrecipients to other objects, such as specific\ndocument tabs.\n\nA `recipientId` must be\neither an integer or a GUID,\nand the `recipientId` must be\nunique within an envelope.\n\nFor example, many envelopes assign the first recipient\na `recipientId` of `1`.\n",
+        "example": "RECIPIENTID"
       },
       {
         "name": "approveTabs",
@@ -10245,19 +10555,22 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "envelopeId",
         "schema": "string",
         "required": true,
-        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n"
+        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n",
+        "example": "ENVELOPEID"
       },
       {
         "name": "recipientId",
         "schema": "string",
         "required": true,
-        "description": "A local reference used to map\nrecipients to other objects, such as specific\ndocument tabs.\n\nA `recipientId` must be\neither an integer or a GUID,\nand the `recipientId` must be\nunique within an envelope.\n\nFor example, many envelopes assign the first recipient\na `recipientId` of `1`.\n"
+        "description": "A local reference used to map\nrecipients to other objects, such as specific\ndocument tabs.\n\nA `recipientId` must be\neither an integer or a GUID,\nand the `recipientId` must be\nunique within an envelope.\n\nFor example, many envelopes assign the first recipient\na `recipientId` of `1`.\n",
+        "example": "RECIPIENTID"
       },
       {
         "name": "approveTabs",
@@ -10478,19 +10791,22 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "A value that identifies your account. This value is automatically generated by DocuSign for any account you create. Copy the value from the API Account ID field in the [AppsI and Keys](https://support.docusign.com/s/document-item?bundleId=pik1583277475390&topicId=pmp1583277397015.html) page."
+        "description": "A value that identifies your account. This value is automatically generated by DocuSign for any account you create. Copy the value from the API Account ID field in the [AppsI and Keys](https://support.docusign.com/s/document-item?bundleId=pik1583277475390&topicId=pmp1583277397015.html) page.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "envelopeId",
         "schema": "string",
         "required": true,
-        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n"
+        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n",
+        "example": "ENVELOPEID"
       },
       {
         "name": "recipientId",
         "schema": "string",
         "required": true,
-        "description": "A GUID value that DocuSign assigns to identify each recipient in an envelope. This value is globally unique for all recipients, not just those in your account.\n\nThe specified recipient must belong to a workflow that allows the [manual review](https://support.docusign.com/s/document-item?bundleId=pik1583277475390&topicId=eya1583277454804.html) of IDs. In addition, the status of the automatic verification for this recipient must return `Failed` and the value of the `vendorFailureStatusCode` field must be `MANUAL_REVIEW_STARTED` as shown in the following extract of a response to the [GET ENVELOPE](https://raw.githubusercontent.com) method:\n<p>\n\n```\n\"recipientAuthenticationStatus\": {\n       \"identityVerificationResult\": { \n             \"status\": \"Failed\",\n             \"eventTimestamp\": \"2020-09-04T16:59:42.8045667Z\",\n             \"vendorFailureStatusCode\": \"MANUAL_REVIEW_STARTED\"\n        }\n  }\n```"
+        "description": "A GUID value that DocuSign assigns to identify each recipient in an envelope. This value is globally unique for all recipients, not just those in your account.\n\nThe specified recipient must belong to a workflow that allows the [manual review](https://support.docusign.com/s/document-item?bundleId=pik1583277475390&topicId=eya1583277454804.html) of IDs. In addition, the status of the automatic verification for this recipient must return `Failed` and the value of the `vendorFailureStatusCode` field must be `MANUAL_REVIEW_STARTED` as shown in the following extract of a response to the [GET ENVELOPE](https://raw.githubusercontent.com) method:\n<p>\n\n```\n\"recipientAuthenticationStatus\": {\n       \"identityVerificationResult\": { \n             \"status\": \"Failed\",\n             \"eventTimestamp\": \"2020-09-04T16:59:42.8045667Z\",\n             \"vendorFailureStatusCode\": \"MANUAL_REVIEW_STARTED\"\n        }\n  }\n```",
+        "example": "RECIPIENTID"
       }
     ],
     "responses": [
@@ -10516,13 +10832,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "envelopeId",
         "schema": "string",
         "required": true,
-        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n"
+        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n",
+        "example": "ENVELOPEID"
       },
       {
         "name": "documentVisibility",
@@ -10553,13 +10871,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "envelopeId",
         "schema": "string",
         "required": true,
-        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n"
+        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n",
+        "example": "ENVELOPEID"
       },
       {
         "name": "displayAnchorPrefix",
@@ -10640,13 +10960,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "envelopeId",
         "schema": "string",
         "required": true,
-        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n"
+        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n",
+        "example": "ENVELOPEID"
       }
     ],
     "responses": [
@@ -10672,13 +10994,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "envelopeId",
         "schema": "string",
         "required": true,
-        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n"
+        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n",
+        "example": "ENVELOPEID"
       }
     ],
     "responses": [
@@ -10704,13 +11028,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "envelopeId",
         "schema": "string",
         "required": true,
-        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n"
+        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n",
+        "example": "ENVELOPEID"
       },
       {
         "name": "include",
@@ -10742,13 +11068,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "envelopeId",
         "schema": "string",
         "required": true,
-        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n"
+        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n",
+        "example": "ENVELOPEID"
       },
       {
         "name": "preserveTemplateRecipient",
@@ -10785,13 +11113,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "envelopeId",
         "schema": "string",
         "required": true,
-        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n"
+        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n",
+        "example": "ENVELOPEID"
       },
       {
         "name": "beginOnTagger",
@@ -10837,13 +11167,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "envelopeId",
         "schema": "string",
         "required": true,
-        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n"
+        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n",
+        "example": "ENVELOPEID"
       },
       {
         "name": "beginOnTagger",
@@ -10889,13 +11221,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "envelopeId",
         "schema": "string",
         "required": true,
-        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n"
+        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n",
+        "example": "ENVELOPEID"
       },
       {
         "name": "returnUrl",
@@ -10926,13 +11260,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "envelopeId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the draft envelope or template to preview."
+        "description": "The ID of the draft envelope or template to preview.",
+        "example": "ENVELOPEID"
       },
       {
         "name": "assertionId",
@@ -11043,13 +11379,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "envelopeId",
         "schema": "string",
         "required": true,
-        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n"
+        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n",
+        "example": "ENVELOPEID"
       },
       {
         "name": "assertionId",
@@ -11130,13 +11468,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "envelopeId",
         "schema": "string",
         "required": true,
-        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n"
+        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n",
+        "example": "ENVELOPEID"
       },
       {
         "name": "returnUrl",
@@ -11167,13 +11507,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "envelopeId",
         "schema": "string",
         "required": true,
-        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n"
+        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n",
+        "example": "ENVELOPEID"
       },
       {
         "name": "assertionId",
@@ -11284,13 +11626,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "envelopeId",
         "schema": "string",
         "required": true,
-        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n"
+        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n",
+        "example": "ENVELOPEID"
       }
     ],
     "responses": [
@@ -11316,13 +11660,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "envelopeId",
         "schema": "string",
         "required": true,
-        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n"
+        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n",
+        "example": "ENVELOPEID"
       }
     ],
     "responses": [
@@ -11348,13 +11694,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "envelopeId",
         "schema": "string",
         "required": true,
-        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n"
+        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n",
+        "example": "ENVELOPEID"
       },
       {
         "name": "currentWorkflowStepId",
@@ -11405,13 +11753,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "envelopeId",
         "schema": "string",
         "required": true,
-        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n"
+        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n",
+        "example": "ENVELOPEID"
       }
     ],
     "responses": [
@@ -11437,13 +11787,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "envelopeId",
         "schema": "string",
         "required": true,
-        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n"
+        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n",
+        "example": "ENVELOPEID"
       }
     ],
     "responses": [
@@ -11469,13 +11821,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "envelopeId",
         "schema": "string",
         "required": true,
-        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n"
+        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n",
+        "example": "ENVELOPEID"
       },
       {
         "name": "bulkListId",
@@ -11521,13 +11875,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "envelopeId",
         "schema": "string",
         "required": true,
-        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n"
+        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n",
+        "example": "ENVELOPEID"
       },
       {
         "name": "action",
@@ -11598,19 +11954,22 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "envelopeId",
         "schema": "string",
         "required": true,
-        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n"
+        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n",
+        "example": "ENVELOPEID"
       },
       {
         "name": "workflowStepId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the workflow step."
+        "description": "The ID of the workflow step.",
+        "example": "WORKFLOWSTEPID"
       }
     ],
     "responses": [
@@ -11636,19 +11995,22 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "envelopeId",
         "schema": "string",
         "required": true,
-        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n"
+        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n",
+        "example": "ENVELOPEID"
       },
       {
         "name": "workflowStepId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the workflow step."
+        "description": "The ID of the workflow step.",
+        "example": "WORKFLOWSTEPID"
       }
     ],
     "responses": [
@@ -11674,19 +12036,22 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "envelopeId",
         "schema": "string",
         "required": true,
-        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n"
+        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n",
+        "example": "ENVELOPEID"
       },
       {
         "name": "workflowStepId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the workflow step."
+        "description": "The ID of the workflow step.",
+        "example": "WORKFLOWSTEPID"
       },
       {
         "name": "action",
@@ -11757,19 +12122,22 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "envelopeId",
         "schema": "string",
         "required": true,
-        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n"
+        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n",
+        "example": "ENVELOPEID"
       },
       {
         "name": "workflowStepId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the workflow step."
+        "description": "The ID of the workflow step.",
+        "example": "WORKFLOWSTEPID"
       }
     ],
     "responses": [
@@ -11795,19 +12163,22 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "envelopeId",
         "schema": "string",
         "required": true,
-        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n"
+        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n",
+        "example": "ENVELOPEID"
       },
       {
         "name": "workflowStepId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the workflow step."
+        "description": "The ID of the workflow step.",
+        "example": "WORKFLOWSTEPID"
       }
     ],
     "responses": [
@@ -11833,19 +12204,22 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "envelopeId",
         "schema": "string",
         "required": true,
-        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n"
+        "description": "The envelope's GUID. \n\nExample: `93be49ab-xxxx-xxxx-xxxx-f752070d71ec`\n",
+        "example": "ENVELOPEID"
       },
       {
         "name": "workflowStepId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the workflow step."
+        "description": "The ID of the workflow step.",
+        "example": "WORKFLOWSTEPID"
       },
       {
         "name": "resumeDate",
@@ -11886,7 +12260,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "acStatus",
@@ -11994,7 +12369,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "count",
@@ -12032,7 +12408,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "carbonCopyOriginalOwner",
@@ -12108,7 +12485,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "endPosition",
@@ -12169,13 +12547,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "envelopeTransferRuleId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the envelope transfer rule. The system generates this ID when the rule is first created."
+        "description": "The ID of the envelope transfer rule. The system generates this ID when the rule is first created.",
+        "example": "ENVELOPETRANSFERRULEID"
       }
     ],
     "responses": [
@@ -12201,13 +12581,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "envelopeTransferRuleId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the envelope transfer rule. The system generates this ID when the rule is first created."
+        "description": "The ID of the envelope transfer rule. The system generates this ID when the rule is first created.",
+        "example": "ENVELOPETRANSFERRULEID"
       },
       {
         "name": "carbonCopyOriginalOwner",
@@ -12283,7 +12665,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "errorDetails",
@@ -12324,7 +12707,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       }
     ],
     "responses": [
@@ -12350,7 +12734,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "errorDetails",
@@ -12391,7 +12776,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "count",
@@ -12459,13 +12845,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "folderId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the folder."
+        "description": "The ID of the folder.",
+        "example": "FOLDERID"
       },
       {
         "name": "fromDate",
@@ -12539,13 +12927,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "folderId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the folder."
+        "description": "The ID of the folder.",
+        "example": "FOLDERID"
       },
       {
         "name": "envelopeIds",
@@ -12586,7 +12976,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "endPosition",
@@ -12647,7 +13038,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "count",
@@ -12703,7 +13095,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "endPosition",
@@ -12764,7 +13157,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "endPosition",
@@ -12825,13 +13219,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "groupId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the group."
+        "description": "The ID of the group.",
+        "example": "GROUPID"
       },
       {
         "name": "brands",
@@ -12862,13 +13258,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "groupId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the group."
+        "description": "The ID of the group.",
+        "example": "GROUPID"
       }
     ],
     "responses": [
@@ -12894,13 +13292,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "groupId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the group being accessed."
+        "description": "The ID of the group being accessed.",
+        "example": "GROUPID"
       },
       {
         "name": "brands",
@@ -12931,13 +13331,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "groupId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the group being accessed."
+        "description": "The ID of the group being accessed.",
+        "example": "GROUPID"
       },
       {
         "name": "users",
@@ -12968,13 +13370,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "groupId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the group being accessed."
+        "description": "The ID of the group being accessed.",
+        "example": "GROUPID"
       },
       {
         "name": "count",
@@ -13012,13 +13416,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "groupId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the group being accessed."
+        "description": "The ID of the group being accessed.",
+        "example": "GROUPID"
       },
       {
         "name": "users",
@@ -13049,7 +13455,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "identityVerificationWorkflowStatus",
@@ -13081,7 +13488,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       }
     ],
     "responses": [
@@ -13107,7 +13515,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "include",
@@ -13139,7 +13548,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "include",
@@ -13206,13 +13616,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "permissionProfileId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the permission profile.\n\nUse [AccountPermissionProfiles: list](https://raw.githubusercontent.com)\nto get a list of permission profiles and their IDs.\n\nYou can also download a CSV file of all permission profiles\nand their IDs from the **Settings > Permission Profiles** page\nof your eSignature account page.\n"
+        "description": "The ID of the permission profile.\n\nUse [AccountPermissionProfiles: list](https://raw.githubusercontent.com)\nto get a list of permission profiles and their IDs.\n\nYou can also download a CSV file of all permission profiles\nand their IDs from the **Settings > Permission Profiles** page\nof your eSignature account page.\n",
+        "example": "PERMISSIONPROFILEID"
       },
       {
         "name": "moveUsersTo",
@@ -13244,13 +13656,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "permissionProfileId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the permission profile.\n\nUse [AccountPermissionProfiles: list](https://raw.githubusercontent.com)\nto get a list of permission profiles and their IDs.\n\nYou can also download a CSV file of all permission profiles\nand their IDs from the **Settings > Permission Profiles** page\nof your eSignature account page.\n"
+        "description": "The ID of the permission profile.\n\nUse [AccountPermissionProfiles: list](https://raw.githubusercontent.com)\nto get a list of permission profiles and their IDs.\n\nYou can also download a CSV file of all permission profiles\nand their IDs from the **Settings > Permission Profiles** page\nof your eSignature account page.\n",
+        "example": "PERMISSIONPROFILEID"
       },
       {
         "name": "include",
@@ -13282,13 +13696,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "permissionProfileId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the permission profile.\n\nUse [AccountPermissionProfiles: list](https://raw.githubusercontent.com)\nto get a list of permission profiles and their IDs.\n\nYou can also download a CSV file of all permission profiles\nand their IDs from the **Settings > Permission Profiles** page\nof your eSignature account page.\n"
+        "description": "The ID of the permission profile.\n\nUse [AccountPermissionProfiles: list](https://raw.githubusercontent.com)\nto get a list of permission profiles and their IDs.\n\nYou can also download a CSV file of all permission profiles\nand their IDs from the **Settings > Permission Profiles** page\nof your eSignature account page.\n",
+        "example": "PERMISSIONPROFILEID"
       },
       {
         "name": "include",
@@ -13355,7 +13771,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "powerForms",
@@ -13386,7 +13803,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "fromDate",
@@ -13448,7 +13866,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "createdBy",
@@ -13599,13 +14018,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "powerFormId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the PowerForm."
+        "description": "The ID of the PowerForm.",
+        "example": "POWERFORMID"
       }
     ],
     "responses": [
@@ -13631,13 +14052,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "powerFormId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the PowerForm."
+        "description": "The ID of the PowerForm.",
+        "example": "POWERFORMID"
       }
     ],
     "responses": [
@@ -13663,13 +14086,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "powerFormId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the PowerForm."
+        "description": "The ID of the PowerForm.",
+        "example": "POWERFORMID"
       },
       {
         "name": "createdBy",
@@ -13820,13 +14245,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "powerFormId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the PowerForm."
+        "description": "The ID of the PowerForm.",
+        "example": "POWERFORMID"
       },
       {
         "name": "dataLayout",
@@ -13870,7 +14297,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "startPosition",
@@ -13902,7 +14330,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "email",
@@ -13934,7 +14363,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       }
     ],
     "responses": [
@@ -13960,13 +14390,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "searchFolderId",
         "schema": "string",
         "required": true,
-        "description": "Specifies the envelope group that is searched by the request. These are logical groupings, not actual folder names. Valid values are: drafts, awaiting_my_signature, completed, out_for_signature."
+        "description": "Specifies the envelope group that is searched by the request. These are logical groupings, not actual folder names. Valid values are: drafts, awaiting_my_signature, completed, out_for_signature.",
+        "example": "SEARCHFOLDERID"
       },
       {
         "name": "all",
@@ -14040,7 +14472,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       }
     ],
     "responses": [
@@ -14066,7 +14499,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "accessCodeFormat",
@@ -17732,7 +18166,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "count",
@@ -17770,7 +18205,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "accountId",
@@ -17846,13 +18282,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "bccEmailArchiveId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the BCC email archive configuration."
+        "description": "The ID of the BCC email archive configuration.",
+        "example": "BCCEMAILARCHIVEID"
       }
     ],
     "responses": [
@@ -17878,13 +18316,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "bccEmailArchiveId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the BCC email archive configuration."
+        "description": "The ID of the BCC email archive configuration.",
+        "example": "BCCEMAILARCHIVEID"
       },
       {
         "name": "count",
@@ -17922,7 +18362,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       }
     ],
     "responses": [
@@ -17948,7 +18389,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       }
     ],
     "responses": [
@@ -17974,7 +18416,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "apiKey",
@@ -18030,7 +18473,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       }
     ],
     "responses": [
@@ -18056,7 +18500,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "purgeEnvelopes",
@@ -18102,7 +18547,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       }
     ],
     "responses": [
@@ -18128,7 +18574,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "apiEmailNotifications",
@@ -18164,7 +18611,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       }
     ],
     "responses": [
@@ -18190,7 +18638,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "expirePassword",
@@ -18316,7 +18765,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       }
     ],
     "responses": [
@@ -18342,7 +18792,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "allowTabOrder",
@@ -18588,7 +19039,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "count",
@@ -18662,7 +19114,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "itemType",
@@ -18751,7 +19204,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       }
     ],
     "responses": [
@@ -18777,7 +19231,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "stampFormat",
@@ -18821,7 +19276,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "decodeOnly",
@@ -18858,7 +19314,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "accountSignatures",
@@ -18889,13 +19346,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "signatureId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the account stamp."
+        "description": "The ID of the account stamp.",
+        "example": "SIGNATUREID"
       }
     ],
     "responses": [
@@ -18921,13 +19380,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "signatureId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the account stamp."
+        "description": "The ID of the account stamp.",
+        "example": "SIGNATUREID"
       }
     ],
     "responses": [
@@ -18953,13 +19414,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "signatureId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the account stamp."
+        "description": "The ID of the account stamp.",
+        "example": "SIGNATUREID"
       },
       {
         "name": "closeExistingSignature",
@@ -19076,19 +19539,22 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "imageType",
         "schema": "string",
         "required": true,
-        "description": "Specificies the type of image. Valid values:\n\n- `stamp_image`\n- `signature_image`\n- `initials_image`"
+        "description": "Specificies the type of image. Valid values:\n\n- `stamp_image`\n- `signature_image`\n- `initials_image`",
+        "example": "IMAGETYPE"
       },
       {
         "name": "signatureId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the account stamp."
+        "description": "The ID of the account stamp.",
+        "example": "SIGNATUREID"
       }
     ],
     "responses": [
@@ -19114,19 +19580,22 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "imageType",
         "schema": "string",
         "required": true,
-        "description": "Specificies the type of image. Valid values:\n\n- `stamp_image`\n- `signature_image`\n- `initials_image`"
+        "description": "Specificies the type of image. Valid values:\n\n- `stamp_image`\n- `signature_image`\n- `initials_image`",
+        "example": "IMAGETYPE"
       },
       {
         "name": "signatureId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the account stamp."
+        "description": "The ID of the account stamp.",
+        "example": "SIGNATUREID"
       },
       {
         "name": "includeChrome",
@@ -19158,19 +19627,22 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "imageType",
         "schema": "string",
         "required": true,
-        "description": "Specificies the type of image. Valid values:\n\n- `stamp_image`\n- `signature_image`\n- `initials_image`"
+        "description": "Specificies the type of image. Valid values:\n\n- `stamp_image`\n- `signature_image`\n- `initials_image`",
+        "example": "IMAGETYPE"
       },
       {
         "name": "signatureId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the account stamp."
+        "description": "The ID of the account stamp.",
+        "example": "SIGNATUREID"
       },
       {
         "name": "transparentPng",
@@ -19202,7 +19674,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "groups",
@@ -19233,7 +19706,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "groupType",
@@ -19271,7 +19745,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "groups",
@@ -19302,7 +19777,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "groups",
@@ -19333,13 +19809,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "signingGroupId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the [signing group](https://support.docusign.com/s/document-item?bundleId=gav1643676262430&topicId=zgn1578456447934.html).\n"
+        "description": "The ID of the [signing group](https://support.docusign.com/s/document-item?bundleId=gav1643676262430&topicId=zgn1578456447934.html).\n",
+        "example": "SIGNINGGROUPID"
       }
     ],
     "responses": [
@@ -19365,13 +19843,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "signingGroupId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the [signing group](https://support.docusign.com/s/document-item?bundleId=gav1643676262430&topicId=zgn1578456447934.html).\n"
+        "description": "The ID of the [signing group](https://support.docusign.com/s/document-item?bundleId=gav1643676262430&topicId=zgn1578456447934.html).\n",
+        "example": "SIGNINGGROUPID"
       },
       {
         "name": "created",
@@ -19447,13 +19927,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "signingGroupId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the [signing group](https://support.docusign.com/s/document-item?bundleId=gav1643676262430&topicId=zgn1578456447934.html).\n\n**Note:** When you send an envelope to a signing group,\nanyone in the group can open it and sign it with their own signature.\nFor this reason, DocuSign recommends that\nyou do not include non-signer recipients\n(such as carbon copy recipients)\nin the same signing group as signer recipients.\nHowever, you could create a second signing group\nfor the non-signer recipients and change t\nhe default action of Needs to Sign to a different value,\nsuch as Receives a Copy."
+        "description": "The ID of the [signing group](https://support.docusign.com/s/document-item?bundleId=gav1643676262430&topicId=zgn1578456447934.html).\n\n**Note:** When you send an envelope to a signing group,\nanyone in the group can open it and sign it with their own signature.\nFor this reason, DocuSign recommends that\nyou do not include non-signer recipients\n(such as carbon copy recipients)\nin the same signing group as signer recipients.\nHowever, you could create a second signing group\nfor the non-signer recipients and change t\nhe default action of Needs to Sign to a different value,\nsuch as Receives a Copy.",
+        "example": "SIGNINGGROUPID"
       },
       {
         "name": "users",
@@ -19484,13 +19966,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "signingGroupId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the [signing group](https://support.docusign.com/s/document-item?bundleId=gav1643676262430&topicId=zgn1578456447934.html).\n\n**Note:** When you send an envelope to a signing group,\nanyone in the group can open it and sign it with their own signature.\nFor this reason, DocuSign recommends that\nyou do not include non-signer recipients\n(such as carbon copy recipients)\nin the same signing group as signer recipients.\nHowever, you could create a second signing group\nfor the non-signer recipients and change t\nhe default action of Needs to Sign to a different value,\nsuch as Receives a Copy."
+        "description": "The ID of the [signing group](https://support.docusign.com/s/document-item?bundleId=gav1643676262430&topicId=zgn1578456447934.html).\n\n**Note:** When you send an envelope to a signing group,\nanyone in the group can open it and sign it with their own signature.\nFor this reason, DocuSign recommends that\nyou do not include non-signer recipients\n(such as carbon copy recipients)\nin the same signing group as signer recipients.\nHowever, you could create a second signing group\nfor the non-signer recipients and change t\nhe default action of Needs to Sign to a different value,\nsuch as Receives a Copy.",
+        "example": "SIGNINGGROUPID"
       }
     ],
     "responses": [
@@ -19516,13 +20000,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "signingGroupId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the [signing group](https://support.docusign.com/s/document-item?bundleId=gav1643676262430&topicId=zgn1578456447934.html).\n\n**Note:** When you send an envelope to a signing group,\nanyone in the group can open it and sign it with their own signature.\nFor this reason, DocuSign recommends that\nyou do not include non-signer recipients\n(such as carbon copy recipients)\nin the same signing group as signer recipients.\nHowever, you could create a second signing group\nfor the non-signer recipients and change t\nhe default action of Needs to Sign to a different value,\nsuch as Receives a Copy."
+        "description": "The ID of the [signing group](https://support.docusign.com/s/document-item?bundleId=gav1643676262430&topicId=zgn1578456447934.html).\n\n**Note:** When you send an envelope to a signing group,\nanyone in the group can open it and sign it with their own signature.\nFor this reason, DocuSign recommends that\nyou do not include non-signer recipients\n(such as carbon copy recipients)\nin the same signing group as signer recipients.\nHowever, you could create a second signing group\nfor the non-signer recipients and change t\nhe default action of Needs to Sign to a different value,\nsuch as Receives a Copy.",
+        "example": "SIGNINGGROUPID"
       },
       {
         "name": "users",
@@ -19553,7 +20039,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       }
     ],
     "responses": [
@@ -19579,7 +20066,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "customTabOnly",
@@ -19611,7 +20099,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "anchor",
@@ -19907,13 +20396,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "customTabId",
         "schema": "string",
         "required": true,
-        "description": "The DocuSign-generated custom tab ID for the custom tab to be applied. This can only be used when adding new tabs for a recipient. When used, the new tab inherits all the custom tab properties."
+        "description": "The DocuSign-generated custom tab ID for the custom tab to be applied. This can only be used when adding new tabs for a recipient. When used, the new tab inherits all the custom tab properties.",
+        "example": "CUSTOMTABID"
       }
     ],
     "responses": [
@@ -19939,13 +20430,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "customTabId",
         "schema": "string",
         "required": true,
-        "description": "The DocuSign-generated custom tab ID for the custom tab to be applied. This can only be used when adding new tabs for a recipient. When used, the new tab inherits all the custom tab properties."
+        "description": "The DocuSign-generated custom tab ID for the custom tab to be applied. This can only be used when adding new tabs for a recipient. When used, the new tab inherits all the custom tab properties.",
+        "example": "CUSTOMTABID"
       }
     ],
     "responses": [
@@ -19971,13 +20464,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "customTabId",
         "schema": "string",
         "required": true,
-        "description": "The DocuSign-generated custom tab ID for the custom tab to be applied. This can only be used when adding new tabs for a recipient. When used, the new tab inherits all the custom tab properties."
+        "description": "The DocuSign-generated custom tab ID for the custom tab to be applied. This can only be used when adding new tabs for a recipient. When used, the new tab inherits all the custom tab properties.",
+        "example": "CUSTOMTABID"
       },
       {
         "name": "anchor",
@@ -20273,7 +20768,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "count",
@@ -20437,7 +20933,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "(Required) The external account number (int) or account ID GUID."
+        "description": "(Required) The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "description",
@@ -20978,13 +21475,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "templateId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the template."
+        "description": "The ID of the template.",
+        "example": "TEMPLATEID"
       },
       {
         "name": "include",
@@ -21016,13 +21515,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "templateId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the template."
+        "description": "The ID of the template.",
+        "example": "TEMPLATEID"
       },
       {
         "name": "description",
@@ -21563,19 +22064,22 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "templateId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the template."
+        "description": "The ID of the template.",
+        "example": "TEMPLATEID"
       },
       {
         "name": "templatePart",
         "schema": "string",
         "required": true,
-        "description": "Currently, the only defined part is **groups.**"
+        "description": "Currently, the only defined part is **groups.**",
+        "example": "TEMPLATEPART"
       },
       {
         "name": "endPosition",
@@ -21636,19 +22140,22 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "templateId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the template."
+        "description": "The ID of the template.",
+        "example": "TEMPLATEID"
       },
       {
         "name": "templatePart",
         "schema": "string",
         "required": true,
-        "description": "Currently, the only defined part is **groups.**"
+        "description": "Currently, the only defined part is **groups.**",
+        "example": "TEMPLATEPART"
       },
       {
         "name": "endPosition",
@@ -21709,13 +22216,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "templateId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the template."
+        "description": "The ID of the template.",
+        "example": "TEMPLATEID"
       },
       {
         "name": "listCustomFields",
@@ -21751,13 +22260,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "templateId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the template."
+        "description": "The ID of the template.",
+        "example": "TEMPLATEID"
       }
     ],
     "responses": [
@@ -21783,13 +22294,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "templateId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the template."
+        "description": "The ID of the template.",
+        "example": "TEMPLATEID"
       },
       {
         "name": "listCustomFields",
@@ -21825,13 +22338,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "templateId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the template."
+        "description": "The ID of the template.",
+        "example": "TEMPLATEID"
       },
       {
         "name": "listCustomFields",
@@ -21867,13 +22382,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "templateId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the template."
+        "description": "The ID of the template.",
+        "example": "TEMPLATEID"
       },
       {
         "name": "accessControlListBase64",
@@ -22344,13 +22861,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "templateId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the template."
+        "description": "The ID of the template.",
+        "example": "TEMPLATEID"
       },
       {
         "name": "includeTabs",
@@ -22382,13 +22901,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "templateId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the template."
+        "description": "The ID of the template.",
+        "example": "TEMPLATEID"
       },
       {
         "name": "accessControlListBase64",
@@ -22859,19 +23380,22 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "documentId",
         "schema": "string",
         "required": true,
-        "description": "The unique ID of the document within the envelope.\n\nUnlike other IDs in the eSignature API,\nyou specify the `documentId` yourself.\nTypically the first document has the ID\n`1`, the second document `2`, and so on,\nbut you can use any numbering scheme\nthat fits within a 32-bit signed integer\n(1 through 2147483647).\n\n\nTab objects have a `documentId` property\nthat specifies the document on which to place\nthe tab.\n"
+        "description": "The unique ID of the document within the envelope.\n\nUnlike other IDs in the eSignature API,\nyou specify the `documentId` yourself.\nTypically the first document has the ID\n`1`, the second document `2`, and so on,\nbut you can use any numbering scheme\nthat fits within a 32-bit signed integer\n(1 through 2147483647).\n\n\nTab objects have a `documentId` property\nthat specifies the document on which to place\nthe tab.\n",
+        "example": "DOCUMENTID"
       },
       {
         "name": "templateId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the template."
+        "description": "The ID of the template.",
+        "example": "TEMPLATEID"
       },
       {
         "name": "encrypt",
@@ -22915,19 +23439,22 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "documentId",
         "schema": "string",
         "required": true,
-        "description": "The unique ID of the document within the envelope.\n\nUnlike other IDs in the eSignature API,\nyou specify the `documentId` yourself.\nTypically the first document has the ID\n`1`, the second document `2`, and so on,\nbut you can use any numbering scheme\nthat fits within a 32-bit signed integer\n(1 through 2147483647).\n\n\nTab objects have a `documentId` property\nthat specifies the document on which to place\nthe tab.\n"
+        "description": "The unique ID of the document within the envelope.\n\nUnlike other IDs in the eSignature API,\nyou specify the `documentId` yourself.\nTypically the first document has the ID\n`1`, the second document `2`, and so on,\nbut you can use any numbering scheme\nthat fits within a 32-bit signed integer\n(1 through 2147483647).\n\n\nTab objects have a `documentId` property\nthat specifies the document on which to place\nthe tab.\n",
+        "example": "DOCUMENTID"
       },
       {
         "name": "templateId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the template."
+        "description": "The ID of the template.",
+        "example": "TEMPLATEID"
       },
       {
         "name": "isEnvelopeDefinition",
@@ -23404,19 +23931,22 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "documentId",
         "schema": "string",
         "required": true,
-        "description": "The unique ID of the document within the envelope.\n\nUnlike other IDs in the eSignature API,\nyou specify the `documentId` yourself.\nTypically the first document has the ID\n`1`, the second document `2`, and so on,\nbut you can use any numbering scheme\nthat fits within a 32-bit signed integer\n(1 through 2147483647).\n\n\nTab objects have a `documentId` property\nthat specifies the document on which to place\nthe tab.\n"
+        "description": "The unique ID of the document within the envelope.\n\nUnlike other IDs in the eSignature API,\nyou specify the `documentId` yourself.\nTypically the first document has the ID\n`1`, the second document `2`, and so on,\nbut you can use any numbering scheme\nthat fits within a 32-bit signed integer\n(1 through 2147483647).\n\n\nTab objects have a `documentId` property\nthat specifies the document on which to place\nthe tab.\n",
+        "example": "DOCUMENTID"
       },
       {
         "name": "templateId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the template."
+        "description": "The ID of the template.",
+        "example": "TEMPLATEID"
       },
       {
         "name": "documentFields",
@@ -23447,19 +23977,22 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "documentId",
         "schema": "string",
         "required": true,
-        "description": "The unique ID of the document within the envelope.\n\nUnlike other IDs in the eSignature API,\nyou specify the `documentId` yourself.\nTypically the first document has the ID\n`1`, the second document `2`, and so on,\nbut you can use any numbering scheme\nthat fits within a 32-bit signed integer\n(1 through 2147483647).\n\n\nTab objects have a `documentId` property\nthat specifies the document on which to place\nthe tab.\n"
+        "description": "The unique ID of the document within the envelope.\n\nUnlike other IDs in the eSignature API,\nyou specify the `documentId` yourself.\nTypically the first document has the ID\n`1`, the second document `2`, and so on,\nbut you can use any numbering scheme\nthat fits within a 32-bit signed integer\n(1 through 2147483647).\n\n\nTab objects have a `documentId` property\nthat specifies the document on which to place\nthe tab.\n",
+        "example": "DOCUMENTID"
       },
       {
         "name": "templateId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the template."
+        "description": "The ID of the template.",
+        "example": "TEMPLATEID"
       }
     ],
     "responses": [
@@ -23485,19 +24018,22 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "documentId",
         "schema": "string",
         "required": true,
-        "description": "The unique ID of the document within the envelope.\n\nUnlike other IDs in the eSignature API,\nyou specify the `documentId` yourself.\nTypically the first document has the ID\n`1`, the second document `2`, and so on,\nbut you can use any numbering scheme\nthat fits within a 32-bit signed integer\n(1 through 2147483647).\n\n\nTab objects have a `documentId` property\nthat specifies the document on which to place\nthe tab.\n"
+        "description": "The unique ID of the document within the envelope.\n\nUnlike other IDs in the eSignature API,\nyou specify the `documentId` yourself.\nTypically the first document has the ID\n`1`, the second document `2`, and so on,\nbut you can use any numbering scheme\nthat fits within a 32-bit signed integer\n(1 through 2147483647).\n\n\nTab objects have a `documentId` property\nthat specifies the document on which to place\nthe tab.\n",
+        "example": "DOCUMENTID"
       },
       {
         "name": "templateId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the template."
+        "description": "The ID of the template.",
+        "example": "TEMPLATEID"
       },
       {
         "name": "documentFields",
@@ -23528,19 +24064,22 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "documentId",
         "schema": "string",
         "required": true,
-        "description": "The unique ID of the document within the envelope.\n\nUnlike other IDs in the eSignature API,\nyou specify the `documentId` yourself.\nTypically the first document has the ID\n`1`, the second document `2`, and so on,\nbut you can use any numbering scheme\nthat fits within a 32-bit signed integer\n(1 through 2147483647).\n\n\nTab objects have a `documentId` property\nthat specifies the document on which to place\nthe tab.\n"
+        "description": "The unique ID of the document within the envelope.\n\nUnlike other IDs in the eSignature API,\nyou specify the `documentId` yourself.\nTypically the first document has the ID\n`1`, the second document `2`, and so on,\nbut you can use any numbering scheme\nthat fits within a 32-bit signed integer\n(1 through 2147483647).\n\n\nTab objects have a `documentId` property\nthat specifies the document on which to place\nthe tab.\n",
+        "example": "DOCUMENTID"
       },
       {
         "name": "templateId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the template."
+        "description": "The ID of the template.",
+        "example": "TEMPLATEID"
       },
       {
         "name": "documentFields",
@@ -23571,19 +24110,22 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "documentId",
         "schema": "string",
         "required": true,
-        "description": "The unique ID of the document within the envelope.\n\nUnlike other IDs in the eSignature API,\nyou specify the `documentId` yourself.\nTypically the first document has the ID\n`1`, the second document `2`, and so on,\nbut you can use any numbering scheme\nthat fits within a 32-bit signed integer\n(1 through 2147483647).\n\n\nTab objects have a `documentId` property\nthat specifies the document on which to place\nthe tab.\n"
+        "description": "The unique ID of the document within the envelope.\n\nUnlike other IDs in the eSignature API,\nyou specify the `documentId` yourself.\nTypically the first document has the ID\n`1`, the second document `2`, and so on,\nbut you can use any numbering scheme\nthat fits within a 32-bit signed integer\n(1 through 2147483647).\n\n\nTab objects have a `documentId` property\nthat specifies the document on which to place\nthe tab.\n",
+        "example": "DOCUMENTID"
       },
       {
         "name": "templateId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the template."
+        "description": "The ID of the template.",
+        "example": "TEMPLATEID"
       }
     ],
     "responses": [
@@ -23609,19 +24151,22 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "(Required) The external account number (int) or account ID GUID."
+        "description": "(Required) The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "documentId",
         "schema": "string",
         "required": true,
-        "description": "(Required) The ID of the document."
+        "description": "(Required) The ID of the document.",
+        "example": "DOCUMENTID"
       },
       {
         "name": "templateId",
         "schema": "string",
         "required": true,
-        "description": "(Required) The ID of the template."
+        "description": "(Required) The ID of the template.",
+        "example": "TEMPLATEID"
       },
       {
         "name": "count",
@@ -23689,25 +24234,29 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "documentId",
         "schema": "string",
         "required": true,
-        "description": "The unique ID of the document within the envelope.\n\nUnlike other IDs in the eSignature API,\nyou specify the `documentId` yourself.\nTypically the first document has the ID\n`1`, the second document `2`, and so on,\nbut you can use any numbering scheme\nthat fits within a 32-bit signed integer\n(1 through 2147483647).\n\n\nTab objects have a `documentId` property\nthat specifies the document on which to place\nthe tab.\n"
+        "description": "The unique ID of the document within the envelope.\n\nUnlike other IDs in the eSignature API,\nyou specify the `documentId` yourself.\nTypically the first document has the ID\n`1`, the second document `2`, and so on,\nbut you can use any numbering scheme\nthat fits within a 32-bit signed integer\n(1 through 2147483647).\n\n\nTab objects have a `documentId` property\nthat specifies the document on which to place\nthe tab.\n",
+        "example": "DOCUMENTID"
       },
       {
         "name": "pageNumber",
         "schema": "string",
         "required": true,
-        "description": "The page number being accessed."
+        "description": "The page number being accessed.",
+        "example": "PAGENUMBER"
       },
       {
         "name": "templateId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the template."
+        "description": "The ID of the template.",
+        "example": "TEMPLATEID"
       },
       {
         "name": "password",
@@ -23743,25 +24292,29 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "documentId",
         "schema": "string",
         "required": true,
-        "description": "The unique ID of the document within the envelope.\n\nUnlike other IDs in the eSignature API,\nyou specify the `documentId` yourself.\nTypically the first document has the ID\n`1`, the second document `2`, and so on,\nbut you can use any numbering scheme\nthat fits within a 32-bit signed integer\n(1 through 2147483647).\n\n\nTab objects have a `documentId` property\nthat specifies the document on which to place\nthe tab.\n"
+        "description": "The unique ID of the document within the envelope.\n\nUnlike other IDs in the eSignature API,\nyou specify the `documentId` yourself.\nTypically the first document has the ID\n`1`, the second document `2`, and so on,\nbut you can use any numbering scheme\nthat fits within a 32-bit signed integer\n(1 through 2147483647).\n\n\nTab objects have a `documentId` property\nthat specifies the document on which to place\nthe tab.\n",
+        "example": "DOCUMENTID"
       },
       {
         "name": "pageNumber",
         "schema": "string",
         "required": true,
-        "description": "The page number being accessed."
+        "description": "The page number being accessed.",
+        "example": "PAGENUMBER"
       },
       {
         "name": "templateId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the template."
+        "description": "The ID of the template.",
+        "example": "TEMPLATEID"
       },
       {
         "name": "dpi",
@@ -23811,25 +24364,29 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "documentId",
         "schema": "string",
         "required": true,
-        "description": "The unique ID of the document within the envelope.\n\nUnlike other IDs in the eSignature API,\nyou specify the `documentId` yourself.\nTypically the first document has the ID\n`1`, the second document `2`, and so on,\nbut you can use any numbering scheme\nthat fits within a 32-bit signed integer\n(1 through 2147483647).\n\n\nTab objects have a `documentId` property\nthat specifies the document on which to place\nthe tab.\n"
+        "description": "The unique ID of the document within the envelope.\n\nUnlike other IDs in the eSignature API,\nyou specify the `documentId` yourself.\nTypically the first document has the ID\n`1`, the second document `2`, and so on,\nbut you can use any numbering scheme\nthat fits within a 32-bit signed integer\n(1 through 2147483647).\n\n\nTab objects have a `documentId` property\nthat specifies the document on which to place\nthe tab.\n",
+        "example": "DOCUMENTID"
       },
       {
         "name": "pageNumber",
         "schema": "string",
         "required": true,
-        "description": "The page number being accessed."
+        "description": "The page number being accessed.",
+        "example": "PAGENUMBER"
       },
       {
         "name": "templateId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the template."
+        "description": "The ID of the template.",
+        "example": "TEMPLATEID"
       },
       {
         "name": "password",
@@ -23865,25 +24422,29 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "documentId",
         "schema": "string",
         "required": true,
-        "description": "The unique ID of the document within the envelope.\n\nUnlike other IDs in the eSignature API,\nyou specify the `documentId` yourself.\nTypically the first document has the ID\n`1`, the second document `2`, and so on,\nbut you can use any numbering scheme\nthat fits within a 32-bit signed integer\n(1 through 2147483647).\n\n\nTab objects have a `documentId` property\nthat specifies the document on which to place\nthe tab.\n"
+        "description": "The unique ID of the document within the envelope.\n\nUnlike other IDs in the eSignature API,\nyou specify the `documentId` yourself.\nTypically the first document has the ID\n`1`, the second document `2`, and so on,\nbut you can use any numbering scheme\nthat fits within a 32-bit signed integer\n(1 through 2147483647).\n\n\nTab objects have a `documentId` property\nthat specifies the document on which to place\nthe tab.\n",
+        "example": "DOCUMENTID"
       },
       {
         "name": "pageNumber",
         "schema": "string",
         "required": true,
-        "description": "The page number being accessed."
+        "description": "The page number being accessed.",
+        "example": "PAGENUMBER"
       },
       {
         "name": "templateId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the template."
+        "description": "The ID of the template.",
+        "example": "TEMPLATEID"
       }
     ],
     "responses": [
@@ -23909,19 +24470,22 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "documentId",
         "schema": "string",
         "required": true,
-        "description": "The unique ID of the document within the envelope.\n\nUnlike other IDs in the eSignature API,\nyou specify the `documentId` yourself.\nTypically the first document has the ID\n`1`, the second document `2`, and so on,\nbut you can use any numbering scheme\nthat fits within a 32-bit signed integer\n(1 through 2147483647).\n\n\nTab objects have a `documentId` property\nthat specifies the document on which to place\nthe tab.\n"
+        "description": "The unique ID of the document within the envelope.\n\nUnlike other IDs in the eSignature API,\nyou specify the `documentId` yourself.\nTypically the first document has the ID\n`1`, the second document `2`, and so on,\nbut you can use any numbering scheme\nthat fits within a 32-bit signed integer\n(1 through 2147483647).\n\n\nTab objects have a `documentId` property\nthat specifies the document on which to place\nthe tab.\n",
+        "example": "DOCUMENTID"
       },
       {
         "name": "templateId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the template."
+        "description": "The ID of the template.",
+        "example": "TEMPLATEID"
       },
       {
         "name": "displayAnchorPrefix",
@@ -24002,19 +24566,22 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "documentId",
         "schema": "string",
         "required": true,
-        "description": "The unique ID of the document within the envelope.\n\nUnlike other IDs in the eSignature API,\nyou specify the `documentId` yourself.\nTypically the first document has the ID\n`1`, the second document `2`, and so on,\nbut you can use any numbering scheme\nthat fits within a 32-bit signed integer\n(1 through 2147483647).\n\n\nTab objects have a `documentId` property\nthat specifies the document on which to place\nthe tab.\n"
+        "description": "The unique ID of the document within the envelope.\n\nUnlike other IDs in the eSignature API,\nyou specify the `documentId` yourself.\nTypically the first document has the ID\n`1`, the second document `2`, and so on,\nbut you can use any numbering scheme\nthat fits within a 32-bit signed integer\n(1 through 2147483647).\n\n\nTab objects have a `documentId` property\nthat specifies the document on which to place\nthe tab.\n",
+        "example": "DOCUMENTID"
       },
       {
         "name": "templateId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the template."
+        "description": "The ID of the template.",
+        "example": "TEMPLATEID"
       },
       {
         "name": "approveTabs",
@@ -24235,19 +24802,22 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "documentId",
         "schema": "string",
         "required": true,
-        "description": "The unique ID of the document within the envelope.\n\nUnlike other IDs in the eSignature API,\nyou specify the `documentId` yourself.\nTypically the first document has the ID\n`1`, the second document `2`, and so on,\nbut you can use any numbering scheme\nthat fits within a 32-bit signed integer\n(1 through 2147483647).\n\n\nTab objects have a `documentId` property\nthat specifies the document on which to place\nthe tab.\n"
+        "description": "The unique ID of the document within the envelope.\n\nUnlike other IDs in the eSignature API,\nyou specify the `documentId` yourself.\nTypically the first document has the ID\n`1`, the second document `2`, and so on,\nbut you can use any numbering scheme\nthat fits within a 32-bit signed integer\n(1 through 2147483647).\n\n\nTab objects have a `documentId` property\nthat specifies the document on which to place\nthe tab.\n",
+        "example": "DOCUMENTID"
       },
       {
         "name": "templateId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the template."
+        "description": "The ID of the template.",
+        "example": "TEMPLATEID"
       },
       {
         "name": "pageNumbers",
@@ -24279,19 +24849,22 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "documentId",
         "schema": "string",
         "required": true,
-        "description": "The unique ID of the document within the envelope.\n\nUnlike other IDs in the eSignature API,\nyou specify the `documentId` yourself.\nTypically the first document has the ID\n`1`, the second document `2`, and so on,\nbut you can use any numbering scheme\nthat fits within a 32-bit signed integer\n(1 through 2147483647).\n\n\nTab objects have a `documentId` property\nthat specifies the document on which to place\nthe tab.\n"
+        "description": "The unique ID of the document within the envelope.\n\nUnlike other IDs in the eSignature API,\nyou specify the `documentId` yourself.\nTypically the first document has the ID\n`1`, the second document `2`, and so on,\nbut you can use any numbering scheme\nthat fits within a 32-bit signed integer\n(1 through 2147483647).\n\n\nTab objects have a `documentId` property\nthat specifies the document on which to place\nthe tab.\n",
+        "example": "DOCUMENTID"
       },
       {
         "name": "templateId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the template."
+        "description": "The ID of the template.",
+        "example": "TEMPLATEID"
       },
       {
         "name": "approveTabs",
@@ -24512,19 +25085,22 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "documentId",
         "schema": "string",
         "required": true,
-        "description": "The unique ID of the document within the envelope.\n\nUnlike other IDs in the eSignature API,\nyou specify the `documentId` yourself.\nTypically the first document has the ID\n`1`, the second document `2`, and so on,\nbut you can use any numbering scheme\nthat fits within a 32-bit signed integer\n(1 through 2147483647).\n\n\nTab objects have a `documentId` property\nthat specifies the document on which to place\nthe tab.\n"
+        "description": "The unique ID of the document within the envelope.\n\nUnlike other IDs in the eSignature API,\nyou specify the `documentId` yourself.\nTypically the first document has the ID\n`1`, the second document `2`, and so on,\nbut you can use any numbering scheme\nthat fits within a 32-bit signed integer\n(1 through 2147483647).\n\n\nTab objects have a `documentId` property\nthat specifies the document on which to place\nthe tab.\n",
+        "example": "DOCUMENTID"
       },
       {
         "name": "templateId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the template."
+        "description": "The ID of the template.",
+        "example": "TEMPLATEID"
       },
       {
         "name": "approveTabs",
@@ -24745,13 +25321,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "templateId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the template."
+        "description": "The ID of the template.",
+        "example": "TEMPLATEID"
       }
     ],
     "responses": [
@@ -24777,13 +25355,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "templateId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the template."
+        "description": "The ID of the template.",
+        "example": "TEMPLATEID"
       },
       {
         "name": "lockDurationInSeconds",
@@ -24834,13 +25414,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "templateId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the template."
+        "description": "The ID of the template.",
+        "example": "TEMPLATEID"
       }
     ],
     "responses": [
@@ -24866,13 +25448,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "templateId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the template."
+        "description": "The ID of the template.",
+        "example": "TEMPLATEID"
       },
       {
         "name": "lockDurationInSeconds",
@@ -24923,13 +25507,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "templateId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the template."
+        "description": "The ID of the template.",
+        "example": "TEMPLATEID"
       },
       {
         "name": "lockDurationInSeconds",
@@ -24980,13 +25566,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "templateId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the template."
+        "description": "The ID of the template.",
+        "example": "TEMPLATEID"
       }
     ],
     "responses": [
@@ -25012,13 +25600,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "templateId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the template."
+        "description": "The ID of the template.",
+        "example": "TEMPLATEID"
       },
       {
         "name": "expirations",
@@ -25064,13 +25654,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "templateId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the template."
+        "description": "The ID of the template.",
+        "example": "TEMPLATEID"
       },
       {
         "name": "agents",
@@ -25166,13 +25758,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "templateId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the template."
+        "description": "The ID of the template.",
+        "example": "TEMPLATEID"
       },
       {
         "name": "includeAnchorTabLocations",
@@ -25216,13 +25810,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "templateId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the template."
+        "description": "The ID of the template.",
+        "example": "TEMPLATEID"
       },
       {
         "name": "resendEnvelope",
@@ -25324,13 +25920,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "templateId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the template."
+        "description": "The ID of the template.",
+        "example": "TEMPLATEID"
       },
       {
         "name": "resendEnvelope",
@@ -25432,19 +26030,22 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "recipientId",
         "schema": "string",
         "required": true,
-        "description": "A local reference used to map\nrecipients to other objects, such as specific\ndocument tabs.\n\nA `recipientId` must be\neither an integer or a GUID,\nand the `recipientId` must be\nunique within an envelope.\n\nFor example, many envelopes assign the first recipient\na `recipientId` of `1`.\n"
+        "description": "A local reference used to map\nrecipients to other objects, such as specific\ndocument tabs.\n\nA `recipientId` must be\neither an integer or a GUID,\nand the `recipientId` must be\nunique within an envelope.\n\nFor example, many envelopes assign the first recipient\na `recipientId` of `1`.\n",
+        "example": "RECIPIENTID"
       },
       {
         "name": "templateId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the template."
+        "description": "The ID of the template.",
+        "example": "TEMPLATEID"
       },
       {
         "name": "agents",
@@ -25540,19 +26141,22 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "recipientId",
         "schema": "string",
         "required": true,
-        "description": "A local reference used to map\nrecipients to other objects, such as specific\ndocument tabs.\n\nA `recipientId` must be\neither an integer or a GUID,\nand the `recipientId` must be\nunique within an envelope.\n\nFor example, many envelopes assign the first recipient\na `recipientId` of `1`.\n"
+        "description": "A local reference used to map\nrecipients to other objects, such as specific\ndocument tabs.\n\nA `recipientId` must be\neither an integer or a GUID,\nand the `recipientId` must be\nunique within an envelope.\n\nFor example, many envelopes assign the first recipient\na `recipientId` of `1`.\n",
+        "example": "RECIPIENTID"
       },
       {
         "name": "templateId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the template."
+        "description": "The ID of the template.",
+        "example": "TEMPLATEID"
       }
     ],
     "responses": [
@@ -25578,19 +26182,22 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "recipientId",
         "schema": "string",
         "required": true,
-        "description": "A local reference used to map\nrecipients to other objects, such as specific\ndocument tabs.\n\nA `recipientId` must be\neither an integer or a GUID,\nand the `recipientId` must be\nunique within an envelope.\n\nFor example, many envelopes assign the first recipient\na `recipientId` of `1`.\n"
+        "description": "A local reference used to map\nrecipients to other objects, such as specific\ndocument tabs.\n\nA `recipientId` must be\neither an integer or a GUID,\nand the `recipientId` must be\nunique within an envelope.\n\nFor example, many envelopes assign the first recipient\na `recipientId` of `1`.\n",
+        "example": "RECIPIENTID"
       },
       {
         "name": "templateId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the template."
+        "description": "The ID of the template.",
+        "example": "TEMPLATEID"
       },
       {
         "name": "documentVisibility",
@@ -25621,19 +26228,22 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "recipientId",
         "schema": "string",
         "required": true,
-        "description": "A local reference used to map\nrecipients to other objects, such as specific\ndocument tabs.\n\nA `recipientId` must be\neither an integer or a GUID,\nand the `recipientId` must be\nunique within an envelope.\n\nFor example, many envelopes assign the first recipient\na `recipientId` of `1`.\n"
+        "description": "A local reference used to map\nrecipients to other objects, such as specific\ndocument tabs.\n\nA `recipientId` must be\neither an integer or a GUID,\nand the `recipientId` must be\nunique within an envelope.\n\nFor example, many envelopes assign the first recipient\na `recipientId` of `1`.\n",
+        "example": "RECIPIENTID"
       },
       {
         "name": "templateId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the template."
+        "description": "The ID of the template.",
+        "example": "TEMPLATEID"
       },
       {
         "name": "approveTabs",
@@ -25854,19 +26464,22 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "recipientId",
         "schema": "string",
         "required": true,
-        "description": "A local reference used to map\nrecipients to other objects, such as specific\ndocument tabs.\n\nA `recipientId` must be\neither an integer or a GUID,\nand the `recipientId` must be\nunique within an envelope.\n\nFor example, many envelopes assign the first recipient\na `recipientId` of `1`.\n"
+        "description": "A local reference used to map\nrecipients to other objects, such as specific\ndocument tabs.\n\nA `recipientId` must be\neither an integer or a GUID,\nand the `recipientId` must be\nunique within an envelope.\n\nFor example, many envelopes assign the first recipient\na `recipientId` of `1`.\n",
+        "example": "RECIPIENTID"
       },
       {
         "name": "templateId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the template."
+        "description": "The ID of the template.",
+        "example": "TEMPLATEID"
       },
       {
         "name": "includeAnchorTabLocations",
@@ -25904,19 +26517,22 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "recipientId",
         "schema": "string",
         "required": true,
-        "description": "A local reference used to map\nrecipients to other objects, such as specific\ndocument tabs.\n\nA `recipientId` must be\neither an integer or a GUID,\nand the `recipientId` must be\nunique within an envelope.\n\nFor example, many envelopes assign the first recipient\na `recipientId` of `1`.\n"
+        "description": "A local reference used to map\nrecipients to other objects, such as specific\ndocument tabs.\n\nA `recipientId` must be\neither an integer or a GUID,\nand the `recipientId` must be\nunique within an envelope.\n\nFor example, many envelopes assign the first recipient\na `recipientId` of `1`.\n",
+        "example": "RECIPIENTID"
       },
       {
         "name": "templateId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the template."
+        "description": "The ID of the template.",
+        "example": "TEMPLATEID"
       },
       {
         "name": "approveTabs",
@@ -26137,19 +26753,22 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "recipientId",
         "schema": "string",
         "required": true,
-        "description": "A local reference used to map\nrecipients to other objects, such as specific\ndocument tabs.\n\nA `recipientId` must be\neither an integer or a GUID,\nand the `recipientId` must be\nunique within an envelope.\n\nFor example, many envelopes assign the first recipient\na `recipientId` of `1`.\n"
+        "description": "A local reference used to map\nrecipients to other objects, such as specific\ndocument tabs.\n\nA `recipientId` must be\neither an integer or a GUID,\nand the `recipientId` must be\nunique within an envelope.\n\nFor example, many envelopes assign the first recipient\na `recipientId` of `1`.\n",
+        "example": "RECIPIENTID"
       },
       {
         "name": "templateId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the template."
+        "description": "The ID of the template.",
+        "example": "TEMPLATEID"
       },
       {
         "name": "approveTabs",
@@ -26370,13 +26989,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "templateId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the template."
+        "description": "The ID of the template.",
+        "example": "TEMPLATEID"
       },
       {
         "name": "documentVisibility",
@@ -26407,13 +27028,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "templateId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the template."
+        "description": "The ID of the template.",
+        "example": "TEMPLATEID"
       },
       {
         "name": "displayAnchorPrefix",
@@ -26494,13 +27117,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "templateId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the template."
+        "description": "The ID of the template.",
+        "example": "TEMPLATEID"
       },
       {
         "name": "returnUrl",
@@ -26531,13 +27156,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "templateId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the template."
+        "description": "The ID of the template.",
+        "example": "TEMPLATEID"
       },
       {
         "name": "assertionId",
@@ -26618,13 +27245,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "templateId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the template."
+        "description": "The ID of the template.",
+        "example": "TEMPLATEID"
       }
     ],
     "responses": [
@@ -26650,13 +27279,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "templateId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the template."
+        "description": "The ID of the template.",
+        "example": "TEMPLATEID"
       }
     ],
     "responses": [
@@ -26682,13 +27313,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "templateId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the template."
+        "description": "The ID of the template.",
+        "example": "TEMPLATEID"
       },
       {
         "name": "currentWorkflowStepId",
@@ -26739,13 +27372,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "templateId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the template."
+        "description": "The ID of the template.",
+        "example": "TEMPLATEID"
       }
     ],
     "responses": [
@@ -26771,13 +27406,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "templateId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the template."
+        "description": "The ID of the template.",
+        "example": "TEMPLATEID"
       }
     ],
     "responses": [
@@ -26803,13 +27440,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "templateId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the template."
+        "description": "The ID of the template.",
+        "example": "TEMPLATEID"
       },
       {
         "name": "bulkListId",
@@ -26855,13 +27494,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "templateId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the template."
+        "description": "The ID of the template.",
+        "example": "TEMPLATEID"
       },
       {
         "name": "action",
@@ -26932,19 +27573,22 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "templateId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the template."
+        "description": "The ID of the template.",
+        "example": "TEMPLATEID"
       },
       {
         "name": "workflowStepId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the workflow step."
+        "description": "The ID of the workflow step.",
+        "example": "WORKFLOWSTEPID"
       }
     ],
     "responses": [
@@ -26970,19 +27614,22 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "templateId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the template."
+        "description": "The ID of the template.",
+        "example": "TEMPLATEID"
       },
       {
         "name": "workflowStepId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the workflow step."
+        "description": "The ID of the workflow step.",
+        "example": "WORKFLOWSTEPID"
       }
     ],
     "responses": [
@@ -27008,19 +27655,22 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "templateId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the template."
+        "description": "The ID of the template.",
+        "example": "TEMPLATEID"
       },
       {
         "name": "workflowStepId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the workflow step."
+        "description": "The ID of the workflow step.",
+        "example": "WORKFLOWSTEPID"
       },
       {
         "name": "action",
@@ -27091,19 +27741,22 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "templateId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the template."
+        "description": "The ID of the template.",
+        "example": "TEMPLATEID"
       },
       {
         "name": "workflowStepId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the workflow step."
+        "description": "The ID of the workflow step.",
+        "example": "WORKFLOWSTEPID"
       }
     ],
     "responses": [
@@ -27129,19 +27782,22 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "templateId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the template."
+        "description": "The ID of the template.",
+        "example": "TEMPLATEID"
       },
       {
         "name": "workflowStepId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the workflow step."
+        "description": "The ID of the workflow step.",
+        "example": "WORKFLOWSTEPID"
       }
     ],
     "responses": [
@@ -27167,19 +27823,22 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "templateId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the template."
+        "description": "The ID of the template.",
+        "example": "TEMPLATEID"
       },
       {
         "name": "workflowStepId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the workflow step."
+        "description": "The ID of the workflow step.",
+        "example": "WORKFLOWSTEPID"
       },
       {
         "name": "resumeDate",
@@ -27220,7 +27879,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       }
     ],
     "responses": [
@@ -27246,7 +27906,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "delete",
@@ -27283,7 +27944,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "(Required) The external account number (int) or account ID GUID."
+        "description": "(Required) The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "additionalInfo",
@@ -27387,7 +28049,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "newUsers",
@@ -27418,7 +28081,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "allowAllLanguages",
@@ -27485,13 +28149,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "userId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the user to access.\n\n**Note:** Users can only access their own information. A user, even one with Admin rights, cannot access another user's settings."
+        "description": "The ID of the user to access.\n\n**Note:** Users can only access their own information. A user, even one with Admin rights, cannot access another user's settings.",
+        "example": "USERID"
       },
       {
         "name": "additionalInfo",
@@ -27529,13 +28195,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "userId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the user to access.\n\n**Note:** Users can only access their own information. A user, even one with Admin rights, cannot access another user's settings."
+        "description": "The ID of the user to access.\n\n**Note:** Users can only access their own information. A user, even one with Admin rights, cannot access another user's settings.",
+        "example": "USERID"
       },
       {
         "name": "allowAllLanguages",
@@ -27787,13 +28455,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "userId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the principal user."
+        "description": "The ID of the principal user.",
+        "example": "USERID"
       },
       {
         "name": "agentUser",
@@ -27839,19 +28509,22 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "authorizationId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the user authorization."
+        "description": "The ID of the user authorization.",
+        "example": "AUTHORIZATIONID"
       },
       {
         "name": "userId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the principal user."
+        "description": "The ID of the principal user.",
+        "example": "USERID"
       }
     ],
     "responses": [
@@ -27877,19 +28550,22 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "authorizationId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the user authorization."
+        "description": "The ID of the user authorization.",
+        "example": "AUTHORIZATIONID"
       },
       {
         "name": "userId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the principal user."
+        "description": "The ID of the principal user.",
+        "example": "USERID"
       }
     ],
     "responses": [
@@ -27915,19 +28591,22 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "authorizationId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the user authorization."
+        "description": "The ID of the user authorization.",
+        "example": "AUTHORIZATIONID"
       },
       {
         "name": "userId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the principal user."
+        "description": "The ID of the principal user.",
+        "example": "USERID"
       },
       {
         "name": "endDate",
@@ -27963,13 +28642,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "userId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the principal user."
+        "description": "The ID of the principal user.",
+        "example": "USERID"
       },
       {
         "name": "authorizations",
@@ -28000,13 +28681,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "userId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the principal user."
+        "description": "The ID of the principal user.",
+        "example": "USERID"
       },
       {
         "name": "activeOnly",
@@ -28074,13 +28757,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "userId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the principal user."
+        "description": "The ID of the principal user.",
+        "example": "USERID"
       },
       {
         "name": "authorizations",
@@ -28111,13 +28796,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "userId",
         "schema": "string",
         "required": true,
-        "description": "The user who is acting as the agent."
+        "description": "The user who is acting as the agent.",
+        "example": "USERID"
       },
       {
         "name": "activeOnly",
@@ -28185,13 +28872,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "userId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the user to access.\n\n**Note:** Users can only access their own information. A user, even one with Admin rights, cannot access another user's settings."
+        "description": "The ID of the user to access.\n\n**Note:** Users can only access their own information. A user, even one with Admin rights, cannot access another user's settings.",
+        "example": "USERID"
       },
       {
         "name": "storageProviders",
@@ -28222,13 +28911,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "userId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the user to access.\n\n**Note:** Users can only access their own information. A user, even one with Admin rights, cannot access another user's settings."
+        "description": "The ID of the user to access.\n\n**Note:** Users can only access their own information. A user, even one with Admin rights, cannot access another user's settings.",
+        "example": "USERID"
       },
       {
         "name": "redirectUrl",
@@ -28260,13 +28951,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "userId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the user to access.\n\n**Note:** Users can only access their own information. A user, even one with Admin rights, cannot access another user's settings."
+        "description": "The ID of the user to access.\n\n**Note:** Users can only access their own information. A user, even one with Admin rights, cannot access another user's settings.",
+        "example": "USERID"
       },
       {
         "name": "storageProviders",
@@ -28297,19 +28990,22 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "serviceId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the service to access. \n\nValid values are the service name (\"Box\") or the numerical serviceId (\"4136\")."
+        "description": "The ID of the service to access. \n\nValid values are the service name (\"Box\") or the numerical serviceId (\"4136\").",
+        "example": "SERVICEID"
       },
       {
         "name": "userId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the user to access.\n\n**Note:** Users can only access their own information. A user, even one with Admin rights, cannot access another user's settings."
+        "description": "The ID of the user to access.\n\n**Note:** Users can only access their own information. A user, even one with Admin rights, cannot access another user's settings.",
+        "example": "USERID"
       }
     ],
     "responses": [
@@ -28335,19 +29031,22 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "serviceId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the service to access. \n\nValid values are the service name (\"Box\") or the numerical serviceId (\"4136\")."
+        "description": "The ID of the service to access. \n\nValid values are the service name (\"Box\") or the numerical serviceId (\"4136\").",
+        "example": "SERVICEID"
       },
       {
         "name": "userId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the user to access.\n\n**Note:** Users can only access their own information. A user, even one with Admin rights, cannot access another user's settings."
+        "description": "The ID of the user to access.\n\n**Note:** Users can only access their own information. A user, even one with Admin rights, cannot access another user's settings.",
+        "example": "USERID"
       },
       {
         "name": "redirectUrl",
@@ -28379,19 +29078,22 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "serviceId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the service to access. \n\nValid values are the service name (\"Box\") or the numerical serviceId (\"4136\")."
+        "description": "The ID of the service to access. \n\nValid values are the service name (\"Box\") or the numerical serviceId (\"4136\").",
+        "example": "SERVICEID"
       },
       {
         "name": "userId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the user to access.\n\n**Note:** Users can only access their own information. A user, even one with Admin rights, cannot access another user's settings."
+        "description": "The ID of the user to access.\n\n**Note:** Users can only access their own information. A user, even one with Admin rights, cannot access another user's settings.",
+        "example": "USERID"
       },
       {
         "name": "cloudStorageFolderPath",
@@ -28453,25 +29155,29 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "folderId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the folder."
+        "description": "The ID of the folder.",
+        "example": "FOLDERID"
       },
       {
         "name": "serviceId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the service to access. \n\nValid values are the service name (\"Box\") or the numerical serviceId (\"4136\")."
+        "description": "The ID of the service to access. \n\nValid values are the service name (\"Box\") or the numerical serviceId (\"4136\").",
+        "example": "SERVICEID"
       },
       {
         "name": "userId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the user to access.\n\n**Note:** Users can only access their own information. A user, even one with Admin rights, cannot access another user's settings."
+        "description": "The ID of the user to access.\n\n**Note:** Users can only access their own information. A user, even one with Admin rights, cannot access another user's settings.",
+        "example": "USERID"
       },
       {
         "name": "cloudStorageFolderPath",
@@ -28539,13 +29245,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "userId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the user to access.\n\n**Note:** Users can only access their own information. A user, even one with Admin rights, cannot access another user's settings."
+        "description": "The ID of the user to access.\n\n**Note:** Users can only access their own information. A user, even one with Admin rights, cannot access another user's settings.",
+        "example": "USERID"
       },
       {
         "name": "customSettings",
@@ -28576,13 +29284,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "userId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the user to access.\n\n**Note:** Users can only access their own information. A user, even one with Admin rights, cannot access another user's settings."
+        "description": "The ID of the user to access.\n\n**Note:** Users can only access their own information. A user, even one with Admin rights, cannot access another user's settings.",
+        "example": "USERID"
       }
     ],
     "responses": [
@@ -28608,13 +29318,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "userId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the user to access.\n\n**Note:** Users can only access their own information. A user, even one with Admin rights, cannot access another user's settings."
+        "description": "The ID of the user to access.\n\n**Note:** Users can only access their own information. A user, even one with Admin rights, cannot access another user's settings.",
+        "example": "USERID"
       },
       {
         "name": "customSettings",
@@ -28645,13 +29357,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "userId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the user to access.\n\n**Note:** Users can only access their own information. A user, even one with Admin rights, cannot access another user's settings."
+        "description": "The ID of the user to access.\n\n**Note:** Users can only access their own information. A user, even one with Admin rights, cannot access another user's settings.",
+        "example": "USERID"
       }
     ],
     "responses": [
@@ -28677,13 +29391,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "userId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the user to access.\n\n**Note:** Users can only access their own information. A user, even one with Admin rights, cannot access another user's settings."
+        "description": "The ID of the user to access.\n\n**Note:** Users can only access their own information. A user, even one with Admin rights, cannot access another user's settings.",
+        "example": "USERID"
       },
       {
         "name": "title",
@@ -28769,13 +29485,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "userId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the user to access.\n\n**Note:** Users can only access their own information. A user, even one with Admin rights, cannot access another user's settings."
+        "description": "The ID of the user to access.\n\n**Note:** Users can only access their own information. A user, even one with Admin rights, cannot access another user's settings.",
+        "example": "USERID"
       }
     ],
     "responses": [
@@ -28801,13 +29519,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "userId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the user to access.\n\n**Note:** Users can only access their own information. A user, even one with Admin rights, cannot access another user's settings."
+        "description": "The ID of the user to access.\n\n**Note:** Users can only access their own information. A user, even one with Admin rights, cannot access another user's settings.",
+        "example": "USERID"
       },
       {
         "name": "encoding",
@@ -28839,13 +29559,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "userId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the user to access.\n\n**Note:** Users can only access their own information. A user, even one with Admin rights, cannot access another user's settings."
+        "description": "The ID of the user to access.\n\n**Note:** Users can only access their own information. A user, even one with Admin rights, cannot access another user's settings.",
+        "example": "USERID"
       }
     ],
     "responses": [
@@ -28871,13 +29593,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "userId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the user to access.\n\n**Note:** Users can only access their own information. A user, even one with Admin rights, cannot access another user's settings."
+        "description": "The ID of the user to access.\n\n**Note:** Users can only access their own information. A user, even one with Admin rights, cannot access another user's settings.",
+        "example": "USERID"
       }
     ],
     "responses": [
@@ -28903,13 +29627,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "userId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the user to access.\n\n**Note:** Users can only access their own information. A user, even one with Admin rights, cannot access another user's settings."
+        "description": "The ID of the user to access.\n\n**Note:** Users can only access their own information. A user, even one with Admin rights, cannot access another user's settings.",
+        "example": "USERID"
       },
       {
         "name": "allowAllLanguages",
@@ -29616,13 +30342,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "userId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the user to access.\n\n**Note:** Users can only access their own information. A user, even one with Admin rights, cannot access another user's settings."
+        "description": "The ID of the user to access.\n\n**Note:** Users can only access their own information. A user, even one with Admin rights, cannot access another user's settings.",
+        "example": "USERID"
       },
       {
         "name": "stampType",
@@ -29654,13 +30382,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "userId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the user to access.\n\n**Note:** Users can only access their own information. A user, even one with Admin rights, cannot access another user's settings."
+        "description": "The ID of the user to access.\n\n**Note:** Users can only access their own information. A user, even one with Admin rights, cannot access another user's settings.",
+        "example": "USERID"
       },
       {
         "name": "userSignatures",
@@ -29691,13 +30421,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "userId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the user to access.\n\n**Note:** Users can only access their own information. A user, even one with Admin rights, cannot access another user's settings."
+        "description": "The ID of the user to access.\n\n**Note:** Users can only access their own information. A user, even one with Admin rights, cannot access another user's settings.",
+        "example": "USERID"
       },
       {
         "name": "userSignatures",
@@ -29728,19 +30460,22 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "signatureId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the account stamp."
+        "description": "The ID of the account stamp.",
+        "example": "SIGNATUREID"
       },
       {
         "name": "userId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the user to access.\n\n**Note:** Users can only access their own information. A user, even one with Admin rights, cannot access another user's settings."
+        "description": "The ID of the user to access.\n\n**Note:** Users can only access their own information. A user, even one with Admin rights, cannot access another user's settings.",
+        "example": "USERID"
       }
     ],
     "responses": [
@@ -29766,19 +30501,22 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "signatureId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the account stamp."
+        "description": "The ID of the account stamp.",
+        "example": "SIGNATUREID"
       },
       {
         "name": "userId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the user to access.\n\n**Note:** Users can only access their own information. A user, even one with Admin rights, cannot access another user's settings."
+        "description": "The ID of the user to access.\n\n**Note:** Users can only access their own information. A user, even one with Admin rights, cannot access another user's settings.",
+        "example": "USERID"
       }
     ],
     "responses": [
@@ -29804,19 +30542,22 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "signatureId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the account stamp."
+        "description": "The ID of the account stamp.",
+        "example": "SIGNATUREID"
       },
       {
         "name": "userId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the user to access.\n\n**Note:** Users can only access their own information. A user, even one with Admin rights, cannot access another user's settings."
+        "description": "The ID of the user to access.\n\n**Note:** Users can only access their own information. A user, even one with Admin rights, cannot access another user's settings.",
+        "example": "USERID"
       },
       {
         "name": "closeExistingSignature",
@@ -29923,25 +30664,29 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "imageType",
         "schema": "string",
         "required": true,
-        "description": "Specificies the type of image. Valid values:\n\n- `stamp_image`\n- `signature_image`\n- `initials_image`"
+        "description": "Specificies the type of image. Valid values:\n\n- `stamp_image`\n- `signature_image`\n- `initials_image`",
+        "example": "IMAGETYPE"
       },
       {
         "name": "signatureId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the account stamp."
+        "description": "The ID of the account stamp.",
+        "example": "SIGNATUREID"
       },
       {
         "name": "userId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the user to access.\n\n**Note:** Users can only access their own information. A user, even one with Admin rights, cannot access another user's settings."
+        "description": "The ID of the user to access.\n\n**Note:** Users can only access their own information. A user, even one with Admin rights, cannot access another user's settings.",
+        "example": "USERID"
       }
     ],
     "responses": [
@@ -29967,25 +30712,29 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "imageType",
         "schema": "string",
         "required": true,
-        "description": "Specificies the type of image. Valid values:\n\n- `stamp_image`\n- `signature_image`\n- `initials_image`"
+        "description": "Specificies the type of image. Valid values:\n\n- `stamp_image`\n- `signature_image`\n- `initials_image`",
+        "example": "IMAGETYPE"
       },
       {
         "name": "signatureId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the account stamp."
+        "description": "The ID of the account stamp.",
+        "example": "SIGNATUREID"
       },
       {
         "name": "userId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the user to access.\n\n**Note:** Users can only access their own information. A user, even one with Admin rights, cannot access another user's settings."
+        "description": "The ID of the user to access.\n\n**Note:** Users can only access their own information. A user, even one with Admin rights, cannot access another user's settings.",
+        "example": "USERID"
       },
       {
         "name": "includeChrome",
@@ -30017,25 +30766,29 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "imageType",
         "schema": "string",
         "required": true,
-        "description": "Specificies the type of image. Valid values:\n\n- `stamp_image`\n- `signature_image`\n- `initials_image`"
+        "description": "Specificies the type of image. Valid values:\n\n- `stamp_image`\n- `signature_image`\n- `initials_image`",
+        "example": "IMAGETYPE"
       },
       {
         "name": "signatureId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the account stamp."
+        "description": "The ID of the account stamp.",
+        "example": "SIGNATUREID"
       },
       {
         "name": "userId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the user to access.\n\n**Note:** Users can only access their own information. A user, even one with Admin rights, cannot access another user's settings."
+        "description": "The ID of the user to access.\n\n**Note:** Users can only access their own information. A user, even one with Admin rights, cannot access another user's settings.",
+        "example": "USERID"
       },
       {
         "name": "transparentPng",
@@ -30067,7 +30820,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "envelopeId",
@@ -30103,7 +30857,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       }
     ],
     "responses": [
@@ -30129,7 +30884,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "displayAngle",
@@ -30200,7 +30956,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "displayAngle",
@@ -30271,7 +31028,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       }
     ],
     "responses": [
@@ -30297,7 +31055,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "billableAccountId",
@@ -30388,13 +31147,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "workspaceId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the workspace."
+        "description": "The ID of the workspace.",
+        "example": "WORKSPACEID"
       }
     ],
     "responses": [
@@ -30420,13 +31181,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "workspaceId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the workspace."
+        "description": "The ID of the workspace.",
+        "example": "WORKSPACEID"
       }
     ],
     "responses": [
@@ -30452,13 +31215,15 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "workspaceId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the workspace."
+        "description": "The ID of the workspace.",
+        "example": "WORKSPACEID"
       },
       {
         "name": "billableAccountId",
@@ -30549,19 +31314,22 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "folderId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the folder."
+        "description": "The ID of the folder.",
+        "example": "FOLDERID"
       },
       {
         "name": "workspaceId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the workspace."
+        "description": "The ID of the workspace.",
+        "example": "WORKSPACEID"
       },
       {
         "name": "items",
@@ -30592,19 +31360,22 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "folderId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the folder."
+        "description": "The ID of the folder.",
+        "example": "FOLDERID"
       },
       {
         "name": "workspaceId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the workspace."
+        "description": "The ID of the workspace.",
+        "example": "WORKSPACEID"
       },
       {
         "name": "count",
@@ -30672,19 +31443,22 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "folderId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the folder."
+        "description": "The ID of the folder.",
+        "example": "FOLDERID"
       },
       {
         "name": "workspaceId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the workspace."
+        "description": "The ID of the workspace.",
+        "example": "WORKSPACEID"
       }
     ],
     "responses": [
@@ -30710,25 +31484,29 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "fileId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the file."
+        "description": "The ID of the file.",
+        "example": "FILEID"
       },
       {
         "name": "folderId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the folder."
+        "description": "The ID of the folder.",
+        "example": "FOLDERID"
       },
       {
         "name": "workspaceId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the workspace."
+        "description": "The ID of the workspace.",
+        "example": "WORKSPACEID"
       },
       {
         "name": "isDownload",
@@ -30766,25 +31544,29 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "fileId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the file."
+        "description": "The ID of the file.",
+        "example": "FILEID"
       },
       {
         "name": "folderId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the folder."
+        "description": "The ID of the folder.",
+        "example": "FOLDERID"
       },
       {
         "name": "workspaceId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the workspace."
+        "description": "The ID of the workspace.",
+        "example": "WORKSPACEID"
       }
     ],
     "responses": [
@@ -30810,25 +31592,29 @@ export default function DocusignTypeScriptSdk() {
         "name": "accountId",
         "schema": "string",
         "required": true,
-        "description": "The external account number (int) or account ID GUID."
+        "description": "The external account number (int) or account ID GUID.",
+        "example": "ACCOUNTID"
       },
       {
         "name": "fileId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the file."
+        "description": "The ID of the file.",
+        "example": "FILEID"
       },
       {
         "name": "folderId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the folder."
+        "description": "The ID of the folder.",
+        "example": "FOLDERID"
       },
       {
         "name": "workspaceId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the workspace."
+        "description": "The ID of the workspace.",
+        "example": "WORKSPACEID"
       },
       {
         "name": "count",
@@ -30922,7 +31708,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "billingPlanId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the billing plan being accessed."
+        "description": "The ID of the billing plan being accessed.",
+        "example": "BILLINGPLANID"
       }
     ],
     "responses": [
@@ -31166,7 +31953,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "jurisdictionId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the jurisdiction.\nThe following jurisdictions\nare supported:\n\n-  `5 - California`\n-  `6 - Colorado`\n-  `9 - Florida`\n-  `10 - Georgia`\n-  `12 - Idaho`\n-  `13 - Illinois`\n-  `14 - Indiana`\n-  `15 - Iowa`\n-  `17 - Kentucky`\n-  `23 - Minnesota`\n-  `25 - Missouri`\n-  `30 - New Jersey`\n-  `32 - New York`\n-  `33 - North Carolina`\n-  `35 - Ohio`\n-  `37 - Oregon`\n-  `38 - Pennsylvania`\n-  `40 - South Carolina`\n-  `43 - Texas`\n-  `44 - Utah`\n-  `47 - Washington`\n-  `48 - West Virginia`\n-  `49 - Wisconsin`\n-  `62 - Florida Commissioner of Deeds`\n"
+        "description": "The ID of the jurisdiction.\nThe following jurisdictions\nare supported:\n\n-  `5 - California`\n-  `6 - Colorado`\n-  `9 - Florida`\n-  `10 - Georgia`\n-  `12 - Idaho`\n-  `13 - Illinois`\n-  `14 - Indiana`\n-  `15 - Iowa`\n-  `17 - Kentucky`\n-  `23 - Minnesota`\n-  `25 - Missouri`\n-  `30 - New Jersey`\n-  `32 - New York`\n-  `33 - North Carolina`\n-  `35 - Ohio`\n-  `37 - Oregon`\n-  `38 - Pennsylvania`\n-  `40 - South Carolina`\n-  `43 - Texas`\n-  `44 - Utah`\n-  `47 - Washington`\n-  `48 - West Virginia`\n-  `49 - Wisconsin`\n-  `62 - Florida Commissioner of Deeds`\n",
+        "example": "JURISDICTIONID"
       }
     ],
     "responses": [
@@ -31192,7 +31980,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "jurisdictionId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the jurisdiction.\nThe following jurisdictions\nare supported:\n\n-  `5 - California`\n-  `6 - Colorado`\n-  `9 - Florida`\n-  `10 - Georgia`\n-  `12 - Idaho`\n-  `13 - Illinois`\n-  `14 - Indiana`\n-  `15 - Iowa`\n-  `17 - Kentucky`\n-  `23 - Minnesota`\n-  `25 - Missouri`\n-  `30 - New Jersey`\n-  `32 - New York`\n-  `33 - North Carolina`\n-  `35 - Ohio`\n-  `37 - Oregon`\n-  `38 - Pennsylvania`\n-  `40 - South Carolina`\n-  `43 - Texas`\n-  `44 - Utah`\n-  `47 - Washington`\n-  `48 - West Virginia`\n-  `49 - Wisconsin`\n-  `62 - Florida Commissioner of Deeds`\n"
+        "description": "The ID of the jurisdiction.\nThe following jurisdictions\nare supported:\n\n-  `5 - California`\n-  `6 - Colorado`\n-  `9 - Florida`\n-  `10 - Georgia`\n-  `12 - Idaho`\n-  `13 - Illinois`\n-  `14 - Indiana`\n-  `15 - Iowa`\n-  `17 - Kentucky`\n-  `23 - Minnesota`\n-  `25 - Missouri`\n-  `30 - New Jersey`\n-  `32 - New York`\n-  `33 - North Carolina`\n-  `35 - Ohio`\n-  `37 - Oregon`\n-  `38 - Pennsylvania`\n-  `40 - South Carolina`\n-  `43 - Texas`\n-  `44 - Utah`\n-  `47 - Washington`\n-  `48 - West Virginia`\n-  `49 - Wisconsin`\n-  `62 - Florida Commissioner of Deeds`\n",
+        "example": "JURISDICTIONID"
       }
     ],
     "responses": [
@@ -31218,7 +32007,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "jurisdictionId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the jurisdiction.\nThe following jurisdictions\nare supported:\n\n-  `5 - California`\n-  `6 - Colorado`\n-  `9 - Florida`\n-  `10 - Georgia`\n-  `12 - Idaho`\n-  `13 - Illinois`\n-  `14 - Indiana`\n-  `15 - Iowa`\n-  `17 - Kentucky`\n-  `23 - Minnesota`\n-  `25 - Missouri`\n-  `30 - New Jersey`\n-  `32 - New York`\n-  `33 - North Carolina`\n-  `35 - Ohio`\n-  `37 - Oregon`\n-  `38 - Pennsylvania`\n-  `40 - South Carolina`\n-  `43 - Texas`\n-  `44 - Utah`\n-  `47 - Washington`\n-  `48 - West Virginia`\n-  `49 - Wisconsin`\n-  `62 - Florida Commissioner of Deeds`\n"
+        "description": "The ID of the jurisdiction.\nThe following jurisdictions\nare supported:\n\n-  `5 - California`\n-  `6 - Colorado`\n-  `9 - Florida`\n-  `10 - Georgia`\n-  `12 - Idaho`\n-  `13 - Illinois`\n-  `14 - Indiana`\n-  `15 - Iowa`\n-  `17 - Kentucky`\n-  `23 - Minnesota`\n-  `25 - Missouri`\n-  `30 - New Jersey`\n-  `32 - New York`\n-  `33 - North Carolina`\n-  `35 - Ohio`\n-  `37 - Oregon`\n-  `38 - Pennsylvania`\n-  `40 - South Carolina`\n-  `43 - Texas`\n-  `44 - Utah`\n-  `47 - Washington`\n-  `48 - West Virginia`\n-  `49 - Wisconsin`\n-  `62 - Florida Commissioner of Deeds`\n",
+        "example": "JURISDICTIONID"
       },
       {
         "name": "commissionExpiration",
@@ -31343,7 +32133,8 @@ export default function DocusignTypeScriptSdk() {
         "name": "requestLogId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the log entry."
+        "description": "The ID of the log entry.",
+        "example": "REQUESTLOGID"
       }
     ],
     "responses": [
@@ -31423,6 +32214,8 @@ export default function DocusignTypeScriptSdk() {
       parameters={4443}
       difficulty="Very Hard"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/docusign/openapi.yaml"
+      openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/docusign/openapi.yaml"
+      developerDocumentation="developers.docusign.com/docs/esign-rest-api/reference/"
     />
   );
 }

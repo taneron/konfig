@@ -4,11 +4,13 @@ import { HttpMethodsEnum } from "konfig-lib/dist/forEachOperation";
 import Description from "./_description.mdx";
 // @ts-ignore
 import GettingStarted from "./_getting-started.mdx";
-import { Sdk } from "@site/src/components/Sdk";
+// @ts-ignore
+import FirstRequest from "./_first-request.mdx"
+import { SdkNew } from "@site/src/components/SdkNew";
 
 export default function TheNewYorkTimesBooksTypeScriptSdk() {
   return (
-    <Sdk
+    <SdkNew
       sdkName="nytimes-typescript-sdk"
       metaDescription="Live news, investigations, opinion, photos and video by the journalists of The New York Times from more than 150 countries around the world. Subscribe for coverage of U.S. and international news, politics, business, technology, science, health, arts, sports and more."
       company="The New York Times"
@@ -16,13 +18,15 @@ export default function TheNewYorkTimesBooksTypeScriptSdk() {
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/the-new-york-times/books/logo.png"
       clientNameCamelCase="nyt"
       homepage="developer.nytimes.com"
-      lastUpdated={new Date("2024-03-11T06:04:39.099Z")}
+      lastUpdated={new Date("2024-03-13T02:25:22.175Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/the-new-york-times/books/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
       previewLinkImage="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/the-new-york-times/books/imagePreview.png"
       GettingStarted={GettingStarted}
       Description={Description}
+      FirstRequest={FirstRequest}
+      categories={["news"]}
       methods={[
   {
     "url": "/lists.json",
@@ -36,7 +40,9 @@ export default function TheNewYorkTimesBooksTypeScriptSdk() {
         "name": "list",
         "schema": "string",
         "required": true,
-        "description": "The name of the Times best sellers list (hardcover-fiction, paperback-nonfiction, ...).\nThe /lists/names service returns all the list names.\nThe encoded list names are lower case with hyphens instead of spaces (e.g. e-book-fiction, instead of E-Book Fiction)."
+        "description": "The name of the Times best sellers list (hardcover-fiction, paperback-nonfiction, ...).\nThe /lists/names service returns all the list names.\nThe encoded list names are lower case with hyphens instead of spaces (e.g. e-book-fiction, instead of E-Book Fiction).",
+        "example": "LIST",
+        "default": "hardcover-fiction"
       },
       {
         "name": "bestsellersDate",
@@ -73,13 +79,15 @@ export default function TheNewYorkTimesBooksTypeScriptSdk() {
         "name": "date",
         "schema": "string",
         "required": true,
-        "description": "YYYY-MM-DD or \"current\"\n\nThe date the best sellers list was published on NYTimes.com.  Use \"current\" to get latest list."
+        "description": "YYYY-MM-DD or \"current\"\n\nThe date the best sellers list was published on NYTimes.com.  Use \"current\" to get latest list.",
+        "example": "DATE"
       },
       {
         "name": "list",
         "schema": "string",
         "required": true,
-        "description": "Name of the Best Sellers List (e.g. hardcover-fiction). You can get the full list of names from the /lists/names.json service."
+        "description": "Name of the Best Sellers List (e.g. hardcover-fiction). You can get the full list of names from the /lists/names.json service.",
+        "example": "LIST"
       },
       {
         "name": "offset",
@@ -250,6 +258,8 @@ export default function TheNewYorkTimesBooksTypeScriptSdk() {
       parameters={20}
       difficulty="Very Easy"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/the-new-york-times/books/openapi.yaml"
+      openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/the-new-york-times/books/openapi.yaml"
+      
     />
   );
 }

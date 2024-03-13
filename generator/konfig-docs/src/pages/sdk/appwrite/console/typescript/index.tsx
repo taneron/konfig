@@ -4,11 +4,13 @@ import { HttpMethodsEnum } from "konfig-lib/dist/forEachOperation";
 import Description from "./_description.mdx";
 // @ts-ignore
 import GettingStarted from "./_getting-started.mdx";
-import { Sdk } from "@site/src/components/Sdk";
+// @ts-ignore
+import FirstRequest from "./_first-request.mdx"
+import { SdkNew } from "@site/src/components/SdkNew";
 
 export default function AppwriteConsoleTypeScriptSdk() {
   return (
-    <Sdk
+    <SdkNew
       sdkName="appwrite-console-typescript-sdk"
       metaDescription="Appwrite's open-source development platform lets you build any application at any scale, own your data, and use your preferred coding languages and tools.
 
@@ -18,13 +20,15 @@ Build like a team of hundreds."
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/appwrite/console/logo.png"
       clientNameCamelCase="appwriteConsole"
       homepage="appwrite.io"
-      lastUpdated={new Date("2024-03-11T17:44:14.970Z")}
+      lastUpdated={new Date("2024-03-13T02:25:22.175Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/appwrite/console/favicon.png"
       contactUrl="https://appwrite.io/support"
       contactEmail="team@appwrite.io"
       previewLinkImage="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/appwrite/console/imagePreview.png"
       GettingStarted={GettingStarted}
       Description={Description}
+      FirstRequest={FirstRequest}
+      categories={["developer_tools","open_source","storage","platform","data_ownership","db","database","auth","functions"]}
       methods={[
   {
     "url": "/account",
@@ -68,19 +72,22 @@ Build like a team of hundreds."
         "name": "userId",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "USERID"
       },
       {
         "name": "email",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "EMAIL"
       },
       {
         "name": "password",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "PASSWORD"
       },
       {
         "name": "name",
@@ -108,13 +115,15 @@ Build like a team of hundreds."
         "name": "email",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "EMAIL"
       },
       {
         "name": "password",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "PASSWORD"
       }
     ],
     "responses": [
@@ -136,7 +145,8 @@ Build like a team of hundreds."
         "name": "queries",
         "schema": "array",
         "required": false,
-        "description": "Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: userId, provider, providerUid, providerEmail, providerAccessTokenExpiry"
+        "description": "Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: userId, provider, providerUid, providerEmail, providerAccessTokenExpiry",
+        "default": []
       }
     ],
     "responses": [
@@ -158,7 +168,8 @@ Build like a team of hundreds."
         "name": "identityId",
         "schema": "string",
         "required": true,
-        "description": "Identity ID."
+        "description": "Identity ID.",
+        "example": "IDENTITYID"
       }
     ],
     "responses": [
@@ -195,7 +206,8 @@ Build like a team of hundreds."
         "name": "queries",
         "schema": "array",
         "required": false,
-        "description": "Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Only supported methods are limit and offset"
+        "description": "Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Only supported methods are limit and offset",
+        "default": []
       }
     ],
     "responses": [
@@ -217,7 +229,8 @@ Build like a team of hundreds."
         "name": "mfa",
         "schema": "boolean",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": true
       }
     ],
     "responses": [
@@ -239,13 +252,15 @@ Build like a team of hundreds."
         "name": "type",
         "schema": "string",
         "required": true,
-        "description": "Type of authenticator."
+        "description": "Type of authenticator.",
+        "example": "TYPE"
       },
       {
         "name": "otp",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "OTP"
       }
     ],
     "responses": [
@@ -267,7 +282,8 @@ Build like a team of hundreds."
         "name": "type",
         "schema": "string",
         "required": true,
-        "description": "Type of authenticator. Must be `totp`"
+        "description": "Type of authenticator. Must be `totp`",
+        "example": "TYPE"
       }
     ],
     "responses": [
@@ -289,13 +305,15 @@ Build like a team of hundreds."
         "name": "type",
         "schema": "string",
         "required": true,
-        "description": "Type of authenticator."
+        "description": "Type of authenticator.",
+        "example": "TYPE"
       },
       {
         "name": "otp",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "OTP"
       }
     ],
     "responses": [
@@ -317,7 +335,8 @@ Build like a team of hundreds."
         "name": "factor",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "FACTOR"
       }
     ],
     "responses": [
@@ -339,13 +358,15 @@ Build like a team of hundreds."
         "name": "challengeId",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "CHALLENGEID"
       },
       {
         "name": "otp",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "OTP"
       }
     ],
     "responses": [
@@ -427,7 +448,8 @@ Build like a team of hundreds."
         "name": "name",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "NAME"
       }
     ],
     "responses": [
@@ -449,7 +471,8 @@ Build like a team of hundreds."
         "name": "password",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "PASSWORD"
       },
       {
         "name": "oldPassword",
@@ -477,13 +500,15 @@ Build like a team of hundreds."
         "name": "phone",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "PHONE"
       },
       {
         "name": "password",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "PASSWORD"
       }
     ],
     "responses": [
@@ -542,13 +567,15 @@ Build like a team of hundreds."
         "name": "email",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "EMAIL"
       },
       {
         "name": "url",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "URL"
       }
     ],
     "responses": [
@@ -570,19 +597,22 @@ Build like a team of hundreds."
         "name": "userId",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "USERID"
       },
       {
         "name": "secret",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "SECRET"
       },
       {
         "name": "password",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "PASSWORD"
       }
     ],
     "responses": [
@@ -649,13 +679,15 @@ Build like a team of hundreds."
         "name": "email",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "EMAIL"
       },
       {
         "name": "password",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "PASSWORD"
       }
     ],
     "responses": [
@@ -677,13 +709,15 @@ Build like a team of hundreds."
         "name": "userId",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "USERID"
       },
       {
         "name": "secret",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "SECRET"
       }
     ],
     "responses": [
@@ -705,25 +739,29 @@ Build like a team of hundreds."
         "name": "provider",
         "schema": "string",
         "required": true,
-        "description": "OAuth2 Provider. Currently, supported providers are: amazon, apple, auth0, authentik, autodesk, bitbucket, bitly, box, dailymotion, discord, disqus, dropbox, etsy, facebook, github, gitlab, google, linkedin, microsoft, notion, oidc, okta, paypal, paypalSandbox, podio, salesforce, slack, spotify, stripe, tradeshift, tradeshiftBox, twitch, wordpress, yahoo, yammer, yandex, zoho, zoom."
+        "description": "OAuth2 Provider. Currently, supported providers are: amazon, apple, auth0, authentik, autodesk, bitbucket, bitly, box, dailymotion, discord, disqus, dropbox, etsy, facebook, github, gitlab, google, linkedin, microsoft, notion, oidc, okta, paypal, paypalSandbox, podio, salesforce, slack, spotify, stripe, tradeshift, tradeshiftBox, twitch, wordpress, yahoo, yammer, yandex, zoho, zoom.",
+        "example": "PROVIDER"
       },
       {
         "name": "success",
         "schema": "string",
         "required": false,
-        "description": "URL to redirect back to your app after a successful login attempt.  Only URLs from hostnames in your project's platform list are allowed. This requirement helps to prevent an [open redirect](https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html) attack against your project API."
+        "description": "URL to redirect back to your app after a successful login attempt.  Only URLs from hostnames in your project's platform list are allowed. This requirement helps to prevent an [open redirect](https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html) attack against your project API.",
+        "default": ""
       },
       {
         "name": "failure",
         "schema": "string",
         "required": false,
-        "description": "URL to redirect back to your app after a failed login attempt.  Only URLs from hostnames in your project's platform list are allowed. This requirement helps to prevent an [open redirect](https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html) attack against your project API."
+        "description": "URL to redirect back to your app after a failed login attempt.  Only URLs from hostnames in your project's platform list are allowed. This requirement helps to prevent an [open redirect](https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html) attack against your project API.",
+        "default": ""
       },
       {
         "name": "scopes",
         "schema": "array",
         "required": false,
-        "description": "A list of custom OAuth2 scopes. Check each provider internal docs for a list of supported scopes. Maximum of 100 scopes are allowed, each 4096 characters long."
+        "description": "A list of custom OAuth2 scopes. Check each provider internal docs for a list of supported scopes. Maximum of 100 scopes are allowed, each 4096 characters long.",
+        "default": []
       }
     ],
     "responses": [
@@ -745,13 +783,15 @@ Build like a team of hundreds."
         "name": "userId",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "USERID"
       },
       {
         "name": "secret",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "SECRET"
       }
     ],
     "responses": [
@@ -773,13 +813,15 @@ Build like a team of hundreds."
         "name": "userId",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "USERID"
       },
       {
         "name": "secret",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "SECRET"
       }
     ],
     "responses": [
@@ -801,7 +843,8 @@ Build like a team of hundreds."
         "name": "sessionId",
         "schema": "string",
         "required": true,
-        "description": "Session ID. Use the string 'current' to delete the current device session."
+        "description": "Session ID. Use the string 'current' to delete the current device session.",
+        "example": "SESSIONID"
       }
     ],
     "responses": [
@@ -823,7 +866,8 @@ Build like a team of hundreds."
         "name": "sessionId",
         "schema": "string",
         "required": true,
-        "description": "Session ID. Use the string 'current' to get the current device session."
+        "description": "Session ID. Use the string 'current' to get the current device session.",
+        "example": "SESSIONID"
       }
     ],
     "responses": [
@@ -845,7 +889,8 @@ Build like a team of hundreds."
         "name": "sessionId",
         "schema": "string",
         "required": true,
-        "description": "Session ID. Use the string 'current' to update the current device session."
+        "description": "Session ID. Use the string 'current' to update the current device session.",
+        "example": "SESSIONID"
       }
     ],
     "responses": [
@@ -882,13 +927,15 @@ Build like a team of hundreds."
         "name": "targetId",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "TARGETID"
       },
       {
         "name": "identifier",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "IDENTIFIER"
       },
       {
         "name": "providerId",
@@ -916,7 +963,8 @@ Build like a team of hundreds."
         "name": "targetId",
         "schema": "string",
         "required": true,
-        "description": "Target ID."
+        "description": "Target ID.",
+        "example": "TARGETID"
       }
     ],
     "responses": [
@@ -938,13 +986,15 @@ Build like a team of hundreds."
         "name": "targetId",
         "schema": "string",
         "required": true,
-        "description": "Target ID."
+        "description": "Target ID.",
+        "example": "TARGETID"
       },
       {
         "name": "identifier",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "IDENTIFIER"
       }
     ],
     "responses": [
@@ -966,13 +1016,15 @@ Build like a team of hundreds."
         "name": "userId",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "USERID"
       },
       {
         "name": "email",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "EMAIL"
       },
       {
         "name": "phrase",
@@ -1000,13 +1052,15 @@ Build like a team of hundreds."
         "name": "userId",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "USERID"
       },
       {
         "name": "email",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "EMAIL"
       },
       {
         "name": "url",
@@ -1040,25 +1094,29 @@ Build like a team of hundreds."
         "name": "provider",
         "schema": "string",
         "required": true,
-        "description": "OAuth2 Provider. Currently, supported providers are: amazon, apple, auth0, authentik, autodesk, bitbucket, bitly, box, dailymotion, discord, disqus, dropbox, etsy, facebook, github, gitlab, google, linkedin, microsoft, notion, oidc, okta, paypal, paypalSandbox, podio, salesforce, slack, spotify, stripe, tradeshift, tradeshiftBox, twitch, wordpress, yahoo, yammer, yandex, zoho, zoom."
+        "description": "OAuth2 Provider. Currently, supported providers are: amazon, apple, auth0, authentik, autodesk, bitbucket, bitly, box, dailymotion, discord, disqus, dropbox, etsy, facebook, github, gitlab, google, linkedin, microsoft, notion, oidc, okta, paypal, paypalSandbox, podio, salesforce, slack, spotify, stripe, tradeshift, tradeshiftBox, twitch, wordpress, yahoo, yammer, yandex, zoho, zoom.",
+        "example": "PROVIDER"
       },
       {
         "name": "success",
         "schema": "string",
         "required": false,
-        "description": "URL to redirect back to your app after a successful login attempt.  Only URLs from hostnames in your project's platform list are allowed. This requirement helps to prevent an [open redirect](https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html) attack against your project API."
+        "description": "URL to redirect back to your app after a successful login attempt.  Only URLs from hostnames in your project's platform list are allowed. This requirement helps to prevent an [open redirect](https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html) attack against your project API.",
+        "default": ""
       },
       {
         "name": "failure",
         "schema": "string",
         "required": false,
-        "description": "URL to redirect back to your app after a failed login attempt.  Only URLs from hostnames in your project's platform list are allowed. This requirement helps to prevent an [open redirect](https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html) attack against your project API."
+        "description": "URL to redirect back to your app after a failed login attempt.  Only URLs from hostnames in your project's platform list are allowed. This requirement helps to prevent an [open redirect](https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html) attack against your project API.",
+        "default": ""
       },
       {
         "name": "scopes",
         "schema": "array",
         "required": false,
-        "description": "A list of custom OAuth2 scopes. Check each provider internal docs for a list of supported scopes. Maximum of 100 scopes are allowed, each 4096 characters long."
+        "description": "A list of custom OAuth2 scopes. Check each provider internal docs for a list of supported scopes. Maximum of 100 scopes are allowed, each 4096 characters long.",
+        "default": []
       }
     ],
     "responses": [
@@ -1080,13 +1138,15 @@ Build like a team of hundreds."
         "name": "userId",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "USERID"
       },
       {
         "name": "phone",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "PHONE"
       }
     ],
     "responses": [
@@ -1108,7 +1168,8 @@ Build like a team of hundreds."
         "name": "url",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "URL"
       }
     ],
     "responses": [
@@ -1130,13 +1191,15 @@ Build like a team of hundreds."
         "name": "userId",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "USERID"
       },
       {
         "name": "secret",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "SECRET"
       }
     ],
     "responses": [
@@ -1173,13 +1236,15 @@ Build like a team of hundreds."
         "name": "userId",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "USERID"
       },
       {
         "name": "secret",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "SECRET"
       }
     ],
     "responses": [
@@ -1201,25 +1266,29 @@ Build like a team of hundreds."
         "name": "code",
         "schema": "string",
         "required": true,
-        "description": "Browser Code."
+        "description": "Browser Code.",
+        "example": "CODE"
       },
       {
         "name": "width",
         "schema": "integer",
         "required": false,
-        "description": "Image width. Pass an integer between 0 to 2000. Defaults to 100."
+        "description": "Image width. Pass an integer between 0 to 2000. Defaults to 100.",
+        "default": 100
       },
       {
         "name": "height",
         "schema": "integer",
         "required": false,
-        "description": "Image height. Pass an integer between 0 to 2000. Defaults to 100."
+        "description": "Image height. Pass an integer between 0 to 2000. Defaults to 100.",
+        "default": 100
       },
       {
         "name": "quality",
         "schema": "integer",
         "required": false,
-        "description": "Image quality. Pass an integer between 0 to 100. Defaults to 100."
+        "description": "Image quality. Pass an integer between 0 to 100. Defaults to 100.",
+        "default": 100
       }
     ],
     "responses": [
@@ -1241,25 +1310,29 @@ Build like a team of hundreds."
         "name": "code",
         "schema": "string",
         "required": true,
-        "description": "Credit Card Code. Possible values: amex, argencard, cabal, censosud, diners, discover, elo, hipercard, jcb, mastercard, naranja, targeta-shopping, union-china-pay, visa, mir, maestro."
+        "description": "Credit Card Code. Possible values: amex, argencard, cabal, censosud, diners, discover, elo, hipercard, jcb, mastercard, naranja, targeta-shopping, union-china-pay, visa, mir, maestro.",
+        "example": "CODE"
       },
       {
         "name": "width",
         "schema": "integer",
         "required": false,
-        "description": "Image width. Pass an integer between 0 to 2000. Defaults to 100."
+        "description": "Image width. Pass an integer between 0 to 2000. Defaults to 100.",
+        "default": 100
       },
       {
         "name": "height",
         "schema": "integer",
         "required": false,
-        "description": "Image height. Pass an integer between 0 to 2000. Defaults to 100."
+        "description": "Image height. Pass an integer between 0 to 2000. Defaults to 100.",
+        "default": 100
       },
       {
         "name": "quality",
         "schema": "integer",
         "required": false,
-        "description": "Image quality. Pass an integer between 0 to 100. Defaults to 100."
+        "description": "Image quality. Pass an integer between 0 to 100. Defaults to 100.",
+        "default": 100
       }
     ],
     "responses": [
@@ -1281,7 +1354,8 @@ Build like a team of hundreds."
         "name": "url",
         "schema": "string",
         "required": true,
-        "description": "Website URL which you want to fetch the favicon from."
+        "description": "Website URL which you want to fetch the favicon from.",
+        "example": "URL"
       }
     ],
     "responses": [
@@ -1303,25 +1377,29 @@ Build like a team of hundreds."
         "name": "code",
         "schema": "string",
         "required": true,
-        "description": "Country Code. ISO Alpha-2 country code format."
+        "description": "Country Code. ISO Alpha-2 country code format.",
+        "example": "CODE"
       },
       {
         "name": "width",
         "schema": "integer",
         "required": false,
-        "description": "Image width. Pass an integer between 0 to 2000. Defaults to 100."
+        "description": "Image width. Pass an integer between 0 to 2000. Defaults to 100.",
+        "default": 100
       },
       {
         "name": "height",
         "schema": "integer",
         "required": false,
-        "description": "Image height. Pass an integer between 0 to 2000. Defaults to 100."
+        "description": "Image height. Pass an integer between 0 to 2000. Defaults to 100.",
+        "default": 100
       },
       {
         "name": "quality",
         "schema": "integer",
         "required": false,
-        "description": "Image quality. Pass an integer between 0 to 100. Defaults to 100."
+        "description": "Image quality. Pass an integer between 0 to 100. Defaults to 100.",
+        "default": 100
       }
     ],
     "responses": [
@@ -1343,19 +1421,22 @@ Build like a team of hundreds."
         "name": "url",
         "schema": "string",
         "required": true,
-        "description": "Image URL which you want to crop."
+        "description": "Image URL which you want to crop.",
+        "example": "URL"
       },
       {
         "name": "width",
         "schema": "integer",
         "required": false,
-        "description": "Resize preview image width, Pass an integer between 0 to 2000. Defaults to 400."
+        "description": "Resize preview image width, Pass an integer between 0 to 2000. Defaults to 400.",
+        "default": 400
       },
       {
         "name": "height",
         "schema": "integer",
         "required": false,
-        "description": "Resize preview image height, Pass an integer between 0 to 2000. Defaults to 400."
+        "description": "Resize preview image height, Pass an integer between 0 to 2000. Defaults to 400.",
+        "default": 400
       }
     ],
     "responses": [
@@ -1377,25 +1458,29 @@ Build like a team of hundreds."
         "name": "name",
         "schema": "string",
         "required": false,
-        "description": "Full Name. When empty, current user name or email will be used. Max length: 128 chars."
+        "description": "Full Name. When empty, current user name or email will be used. Max length: 128 chars.",
+        "default": ""
       },
       {
         "name": "width",
         "schema": "integer",
         "required": false,
-        "description": "Image width. Pass an integer between 0 to 2000. Defaults to 100."
+        "description": "Image width. Pass an integer between 0 to 2000. Defaults to 100.",
+        "default": 500
       },
       {
         "name": "height",
         "schema": "integer",
         "required": false,
-        "description": "Image height. Pass an integer between 0 to 2000. Defaults to 100."
+        "description": "Image height. Pass an integer between 0 to 2000. Defaults to 100.",
+        "default": 500
       },
       {
         "name": "background",
         "schema": "string",
         "required": false,
-        "description": "Changes background color. By default a random color will be picked and stay will persistent to the given name."
+        "description": "Changes background color. By default a random color will be picked and stay will persistent to the given name.",
+        "default": ""
       }
     ],
     "responses": [
@@ -1417,25 +1502,29 @@ Build like a team of hundreds."
         "name": "text",
         "schema": "string",
         "required": true,
-        "description": "Plain text to be converted to QR code image."
+        "description": "Plain text to be converted to QR code image.",
+        "example": "TEXT"
       },
       {
         "name": "size",
         "schema": "integer",
         "required": false,
-        "description": "QR code size. Pass an integer between 1 to 1000. Defaults to 400."
+        "description": "QR code size. Pass an integer between 1 to 1000. Defaults to 400.",
+        "default": 400
       },
       {
         "name": "margin",
         "schema": "integer",
         "required": false,
-        "description": "Margin from edge. Pass an integer between 0 to 10. Defaults to 1."
+        "description": "Margin from edge. Pass an integer between 0 to 10. Defaults to 1.",
+        "default": 1
       },
       {
         "name": "download",
         "schema": "boolean",
         "required": false,
-        "description": "Return resulting image with 'Content-Disposition: attachment ' headers for the browser to start downloading it. Pass 0 for no header, or 1 for otherwise. Default value is set to 0."
+        "description": "Return resulting image with 'Content-Disposition: attachment ' headers for the browser to start downloading it. Pass 0 for no header, or 1 for otherwise. Default value is set to 0.",
+        "default": false
       }
     ],
     "responses": [
@@ -1457,7 +1546,8 @@ Build like a team of hundreds."
         "name": "prompt",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "PROMPT"
       }
     ],
     "responses": [
@@ -1494,13 +1584,15 @@ Build like a team of hundreds."
         "name": "queries",
         "schema": "array",
         "required": false,
-        "description": "Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name"
+        "description": "Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name",
+        "default": []
       },
       {
         "name": "search",
         "schema": "string",
         "required": false,
-        "description": "Search term to filter your list results. Max length: 256 chars."
+        "description": "Search term to filter your list results. Max length: 256 chars.",
+        "default": ""
       }
     ],
     "responses": [
@@ -1522,13 +1614,15 @@ Build like a team of hundreds."
         "name": "databaseId",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "DATABASEID"
       },
       {
         "name": "name",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "NAME"
       },
       {
         "name": "enabled",
@@ -1556,7 +1650,8 @@ Build like a team of hundreds."
         "name": "range",
         "schema": "string",
         "required": false,
-        "description": "`Date range."
+        "description": "`Date range.",
+        "default": "30d"
       }
     ],
     "responses": [
@@ -1578,7 +1673,8 @@ Build like a team of hundreds."
         "name": "databaseId",
         "schema": "string",
         "required": true,
-        "description": "Database ID."
+        "description": "Database ID.",
+        "example": "DATABASEID"
       }
     ],
     "responses": [
@@ -1600,7 +1696,8 @@ Build like a team of hundreds."
         "name": "databaseId",
         "schema": "string",
         "required": true,
-        "description": "Database ID."
+        "description": "Database ID.",
+        "example": "DATABASEID"
       }
     ],
     "responses": [
@@ -1622,13 +1719,15 @@ Build like a team of hundreds."
         "name": "databaseId",
         "schema": "string",
         "required": true,
-        "description": "Database ID."
+        "description": "Database ID.",
+        "example": "DATABASEID"
       },
       {
         "name": "name",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "NAME"
       },
       {
         "name": "enabled",
@@ -1656,19 +1755,22 @@ Build like a team of hundreds."
         "name": "databaseId",
         "schema": "string",
         "required": true,
-        "description": "Database ID."
+        "description": "Database ID.",
+        "example": "DATABASEID"
       },
       {
         "name": "queries",
         "schema": "array",
         "required": false,
-        "description": "Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, enabled, documentSecurity"
+        "description": "Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, enabled, documentSecurity",
+        "default": []
       },
       {
         "name": "search",
         "schema": "string",
         "required": false,
-        "description": "Search term to filter your list results. Max length: 256 chars."
+        "description": "Search term to filter your list results. Max length: 256 chars.",
+        "default": ""
       }
     ],
     "responses": [
@@ -1690,19 +1792,22 @@ Build like a team of hundreds."
         "name": "databaseId",
         "schema": "string",
         "required": true,
-        "description": "Database ID."
+        "description": "Database ID.",
+        "example": "DATABASEID"
       },
       {
         "name": "collectionId",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "COLLECTIONID"
       },
       {
         "name": "name",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "NAME"
       },
       {
         "name": "permissions",
@@ -1742,13 +1847,15 @@ Build like a team of hundreds."
         "name": "databaseId",
         "schema": "string",
         "required": true,
-        "description": "Database ID."
+        "description": "Database ID.",
+        "example": "DATABASEID"
       },
       {
         "name": "collectionId",
         "schema": "string",
         "required": true,
-        "description": "Collection ID."
+        "description": "Collection ID.",
+        "example": "COLLECTIONID"
       }
     ],
     "responses": [
@@ -1770,13 +1877,15 @@ Build like a team of hundreds."
         "name": "databaseId",
         "schema": "string",
         "required": true,
-        "description": "Database ID."
+        "description": "Database ID.",
+        "example": "DATABASEID"
       },
       {
         "name": "collectionId",
         "schema": "string",
         "required": true,
-        "description": "Collection ID."
+        "description": "Collection ID.",
+        "example": "COLLECTIONID"
       }
     ],
     "responses": [
@@ -1798,19 +1907,22 @@ Build like a team of hundreds."
         "name": "databaseId",
         "schema": "string",
         "required": true,
-        "description": "Database ID."
+        "description": "Database ID.",
+        "example": "DATABASEID"
       },
       {
         "name": "collectionId",
         "schema": "string",
         "required": true,
-        "description": "Collection ID."
+        "description": "Collection ID.",
+        "example": "COLLECTIONID"
       },
       {
         "name": "name",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "NAME"
       },
       {
         "name": "permissions",
@@ -1850,19 +1962,22 @@ Build like a team of hundreds."
         "name": "databaseId",
         "schema": "string",
         "required": true,
-        "description": "Database ID."
+        "description": "Database ID.",
+        "example": "DATABASEID"
       },
       {
         "name": "collectionId",
         "schema": "string",
         "required": true,
-        "description": "Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection)."
+        "description": "Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).",
+        "example": "COLLECTIONID"
       },
       {
         "name": "queries",
         "schema": "array",
         "required": false,
-        "description": "Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: key, type, size, required, array, status, error"
+        "description": "Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: key, type, size, required, array, status, error",
+        "default": []
       }
     ],
     "responses": [
@@ -1884,25 +1999,29 @@ Build like a team of hundreds."
         "name": "databaseId",
         "schema": "string",
         "required": true,
-        "description": "Database ID."
+        "description": "Database ID.",
+        "example": "DATABASEID"
       },
       {
         "name": "collectionId",
         "schema": "string",
         "required": true,
-        "description": "Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection)."
+        "description": "Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).",
+        "example": "COLLECTIONID"
       },
       {
         "name": "key",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "KEY"
       },
       {
         "name": "required",
         "schema": "boolean",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": true
       },
       {
         "name": "default",
@@ -1936,31 +2055,36 @@ Build like a team of hundreds."
         "name": "databaseId",
         "schema": "string",
         "required": true,
-        "description": "Database ID."
+        "description": "Database ID.",
+        "example": "DATABASEID"
       },
       {
         "name": "collectionId",
         "schema": "string",
         "required": true,
-        "description": "Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection)."
+        "description": "Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).",
+        "example": "COLLECTIONID"
       },
       {
         "name": "key",
         "schema": "string",
         "required": true,
-        "description": "Attribute Key."
+        "description": "Attribute Key.",
+        "example": "KEY"
       },
       {
         "name": "required",
         "schema": "boolean",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": true
       },
       {
         "name": "default",
         "schema": "boolean",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": true
       }
     ],
     "responses": [
@@ -1982,25 +2106,29 @@ Build like a team of hundreds."
         "name": "databaseId",
         "schema": "string",
         "required": true,
-        "description": "Database ID."
+        "description": "Database ID.",
+        "example": "DATABASEID"
       },
       {
         "name": "collectionId",
         "schema": "string",
         "required": true,
-        "description": "Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection)."
+        "description": "Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).",
+        "example": "COLLECTIONID"
       },
       {
         "name": "key",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "KEY"
       },
       {
         "name": "required",
         "schema": "boolean",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": true
       },
       {
         "name": "default",
@@ -2034,31 +2162,36 @@ Build like a team of hundreds."
         "name": "databaseId",
         "schema": "string",
         "required": true,
-        "description": "Database ID."
+        "description": "Database ID.",
+        "example": "DATABASEID"
       },
       {
         "name": "collectionId",
         "schema": "string",
         "required": true,
-        "description": "Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection)."
+        "description": "Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).",
+        "example": "COLLECTIONID"
       },
       {
         "name": "key",
         "schema": "string",
         "required": true,
-        "description": "Attribute Key."
+        "description": "Attribute Key.",
+        "example": "KEY"
       },
       {
         "name": "required",
         "schema": "boolean",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": true
       },
       {
         "name": "default",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "DEFAULT"
       }
     ],
     "responses": [
@@ -2080,25 +2213,29 @@ Build like a team of hundreds."
         "name": "databaseId",
         "schema": "string",
         "required": true,
-        "description": "Database ID."
+        "description": "Database ID.",
+        "example": "DATABASEID"
       },
       {
         "name": "collectionId",
         "schema": "string",
         "required": true,
-        "description": "Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection)."
+        "description": "Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).",
+        "example": "COLLECTIONID"
       },
       {
         "name": "key",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "KEY"
       },
       {
         "name": "required",
         "schema": "boolean",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": true
       },
       {
         "name": "default",
@@ -2132,31 +2269,36 @@ Build like a team of hundreds."
         "name": "databaseId",
         "schema": "string",
         "required": true,
-        "description": "Database ID."
+        "description": "Database ID.",
+        "example": "DATABASEID"
       },
       {
         "name": "collectionId",
         "schema": "string",
         "required": true,
-        "description": "Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection)."
+        "description": "Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).",
+        "example": "COLLECTIONID"
       },
       {
         "name": "key",
         "schema": "string",
         "required": true,
-        "description": "Attribute Key."
+        "description": "Attribute Key.",
+        "example": "KEY"
       },
       {
         "name": "required",
         "schema": "boolean",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": true
       },
       {
         "name": "default",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "DEFAULT"
       }
     ],
     "responses": [
@@ -2178,19 +2320,22 @@ Build like a team of hundreds."
         "name": "databaseId",
         "schema": "string",
         "required": true,
-        "description": "Database ID."
+        "description": "Database ID.",
+        "example": "DATABASEID"
       },
       {
         "name": "collectionId",
         "schema": "string",
         "required": true,
-        "description": "Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection)."
+        "description": "Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).",
+        "example": "COLLECTIONID"
       },
       {
         "name": "key",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "KEY"
       },
       {
         "name": "elements",
@@ -2202,7 +2347,8 @@ Build like a team of hundreds."
         "name": "required",
         "schema": "boolean",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": true
       },
       {
         "name": "default",
@@ -2236,19 +2382,22 @@ Build like a team of hundreds."
         "name": "databaseId",
         "schema": "string",
         "required": true,
-        "description": "Database ID."
+        "description": "Database ID.",
+        "example": "DATABASEID"
       },
       {
         "name": "collectionId",
         "schema": "string",
         "required": true,
-        "description": "Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection)."
+        "description": "Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).",
+        "example": "COLLECTIONID"
       },
       {
         "name": "key",
         "schema": "string",
         "required": true,
-        "description": "Attribute Key."
+        "description": "Attribute Key.",
+        "example": "KEY"
       },
       {
         "name": "elements",
@@ -2260,13 +2409,15 @@ Build like a team of hundreds."
         "name": "required",
         "schema": "boolean",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": true
       },
       {
         "name": "default",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "DEFAULT"
       }
     ],
     "responses": [
@@ -2288,25 +2439,29 @@ Build like a team of hundreds."
         "name": "databaseId",
         "schema": "string",
         "required": true,
-        "description": "Database ID."
+        "description": "Database ID.",
+        "example": "DATABASEID"
       },
       {
         "name": "collectionId",
         "schema": "string",
         "required": true,
-        "description": "Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection)."
+        "description": "Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).",
+        "example": "COLLECTIONID"
       },
       {
         "name": "key",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "KEY"
       },
       {
         "name": "required",
         "schema": "boolean",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": true
       },
       {
         "name": "min",
@@ -2352,43 +2507,50 @@ Build like a team of hundreds."
         "name": "databaseId",
         "schema": "string",
         "required": true,
-        "description": "Database ID."
+        "description": "Database ID.",
+        "example": "DATABASEID"
       },
       {
         "name": "collectionId",
         "schema": "string",
         "required": true,
-        "description": "Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection)."
+        "description": "Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).",
+        "example": "COLLECTIONID"
       },
       {
         "name": "key",
         "schema": "string",
         "required": true,
-        "description": "Attribute Key."
+        "description": "Attribute Key.",
+        "example": "KEY"
       },
       {
         "name": "required",
         "schema": "boolean",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": true
       },
       {
         "name": "min",
         "schema": "number",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": 0
       },
       {
         "name": "max",
         "schema": "number",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": 0
       },
       {
         "name": "default",
         "schema": "number",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": 0
       }
     ],
     "responses": [
@@ -2410,25 +2572,29 @@ Build like a team of hundreds."
         "name": "databaseId",
         "schema": "string",
         "required": true,
-        "description": "Database ID."
+        "description": "Database ID.",
+        "example": "DATABASEID"
       },
       {
         "name": "collectionId",
         "schema": "string",
         "required": true,
-        "description": "Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection)."
+        "description": "Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).",
+        "example": "COLLECTIONID"
       },
       {
         "name": "key",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "KEY"
       },
       {
         "name": "required",
         "schema": "boolean",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": true
       },
       {
         "name": "min",
@@ -2474,43 +2640,50 @@ Build like a team of hundreds."
         "name": "databaseId",
         "schema": "string",
         "required": true,
-        "description": "Database ID."
+        "description": "Database ID.",
+        "example": "DATABASEID"
       },
       {
         "name": "collectionId",
         "schema": "string",
         "required": true,
-        "description": "Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection)."
+        "description": "Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).",
+        "example": "COLLECTIONID"
       },
       {
         "name": "key",
         "schema": "string",
         "required": true,
-        "description": "Attribute Key."
+        "description": "Attribute Key.",
+        "example": "KEY"
       },
       {
         "name": "required",
         "schema": "boolean",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": true
       },
       {
         "name": "min",
         "schema": "integer",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": 0
       },
       {
         "name": "max",
         "schema": "integer",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": 0
       },
       {
         "name": "default",
         "schema": "integer",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": 0
       }
     ],
     "responses": [
@@ -2532,25 +2705,29 @@ Build like a team of hundreds."
         "name": "databaseId",
         "schema": "string",
         "required": true,
-        "description": "Database ID."
+        "description": "Database ID.",
+        "example": "DATABASEID"
       },
       {
         "name": "collectionId",
         "schema": "string",
         "required": true,
-        "description": "Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection)."
+        "description": "Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).",
+        "example": "COLLECTIONID"
       },
       {
         "name": "key",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "KEY"
       },
       {
         "name": "required",
         "schema": "boolean",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": true
       },
       {
         "name": "default",
@@ -2584,31 +2761,36 @@ Build like a team of hundreds."
         "name": "databaseId",
         "schema": "string",
         "required": true,
-        "description": "Database ID."
+        "description": "Database ID.",
+        "example": "DATABASEID"
       },
       {
         "name": "collectionId",
         "schema": "string",
         "required": true,
-        "description": "Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection)."
+        "description": "Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).",
+        "example": "COLLECTIONID"
       },
       {
         "name": "key",
         "schema": "string",
         "required": true,
-        "description": "Attribute Key."
+        "description": "Attribute Key.",
+        "example": "KEY"
       },
       {
         "name": "required",
         "schema": "boolean",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": true
       },
       {
         "name": "default",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "DEFAULT"
       }
     ],
     "responses": [
@@ -2630,25 +2812,29 @@ Build like a team of hundreds."
         "name": "databaseId",
         "schema": "string",
         "required": true,
-        "description": "Database ID."
+        "description": "Database ID.",
+        "example": "DATABASEID"
       },
       {
         "name": "collectionId",
         "schema": "string",
         "required": true,
-        "description": "Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection)."
+        "description": "Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).",
+        "example": "COLLECTIONID"
       },
       {
         "name": "relatedCollectionId",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "RELATEDCOLLECTIONID"
       },
       {
         "name": "type",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "TYPE"
       },
       {
         "name": "twoWay",
@@ -2694,31 +2880,36 @@ Build like a team of hundreds."
         "name": "databaseId",
         "schema": "string",
         "required": true,
-        "description": "Database ID."
+        "description": "Database ID.",
+        "example": "DATABASEID"
       },
       {
         "name": "collectionId",
         "schema": "string",
         "required": true,
-        "description": "Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection)."
+        "description": "Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).",
+        "example": "COLLECTIONID"
       },
       {
         "name": "key",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "KEY"
       },
       {
         "name": "size",
         "schema": "integer",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": 0
       },
       {
         "name": "required",
         "schema": "boolean",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": true
       },
       {
         "name": "default",
@@ -2758,31 +2949,36 @@ Build like a team of hundreds."
         "name": "databaseId",
         "schema": "string",
         "required": true,
-        "description": "Database ID."
+        "description": "Database ID.",
+        "example": "DATABASEID"
       },
       {
         "name": "collectionId",
         "schema": "string",
         "required": true,
-        "description": "Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection)."
+        "description": "Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).",
+        "example": "COLLECTIONID"
       },
       {
         "name": "key",
         "schema": "string",
         "required": true,
-        "description": "Attribute Key."
+        "description": "Attribute Key.",
+        "example": "KEY"
       },
       {
         "name": "required",
         "schema": "boolean",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": true
       },
       {
         "name": "default",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "DEFAULT"
       }
     ],
     "responses": [
@@ -2804,25 +3000,29 @@ Build like a team of hundreds."
         "name": "databaseId",
         "schema": "string",
         "required": true,
-        "description": "Database ID."
+        "description": "Database ID.",
+        "example": "DATABASEID"
       },
       {
         "name": "collectionId",
         "schema": "string",
         "required": true,
-        "description": "Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection)."
+        "description": "Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).",
+        "example": "COLLECTIONID"
       },
       {
         "name": "key",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "KEY"
       },
       {
         "name": "required",
         "schema": "boolean",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": true
       },
       {
         "name": "default",
@@ -2856,31 +3056,36 @@ Build like a team of hundreds."
         "name": "databaseId",
         "schema": "string",
         "required": true,
-        "description": "Database ID."
+        "description": "Database ID.",
+        "example": "DATABASEID"
       },
       {
         "name": "collectionId",
         "schema": "string",
         "required": true,
-        "description": "Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection)."
+        "description": "Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).",
+        "example": "COLLECTIONID"
       },
       {
         "name": "key",
         "schema": "string",
         "required": true,
-        "description": "Attribute Key."
+        "description": "Attribute Key.",
+        "example": "KEY"
       },
       {
         "name": "required",
         "schema": "boolean",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": true
       },
       {
         "name": "default",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "DEFAULT"
       }
     ],
     "responses": [
@@ -2902,19 +3107,22 @@ Build like a team of hundreds."
         "name": "databaseId",
         "schema": "string",
         "required": true,
-        "description": "Database ID."
+        "description": "Database ID.",
+        "example": "DATABASEID"
       },
       {
         "name": "collectionId",
         "schema": "string",
         "required": true,
-        "description": "Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection)."
+        "description": "Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).",
+        "example": "COLLECTIONID"
       },
       {
         "name": "key",
         "schema": "string",
         "required": true,
-        "description": "Attribute Key."
+        "description": "Attribute Key.",
+        "example": "KEY"
       }
     ],
     "responses": [
@@ -2936,19 +3144,22 @@ Build like a team of hundreds."
         "name": "databaseId",
         "schema": "string",
         "required": true,
-        "description": "Database ID."
+        "description": "Database ID.",
+        "example": "DATABASEID"
       },
       {
         "name": "collectionId",
         "schema": "string",
         "required": true,
-        "description": "Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection)."
+        "description": "Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).",
+        "example": "COLLECTIONID"
       },
       {
         "name": "key",
         "schema": "string",
         "required": true,
-        "description": "Attribute Key."
+        "description": "Attribute Key.",
+        "example": "KEY"
       }
     ],
     "responses": [
@@ -2970,19 +3181,22 @@ Build like a team of hundreds."
         "name": "databaseId",
         "schema": "string",
         "required": true,
-        "description": "Database ID."
+        "description": "Database ID.",
+        "example": "DATABASEID"
       },
       {
         "name": "collectionId",
         "schema": "string",
         "required": true,
-        "description": "Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection)."
+        "description": "Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).",
+        "example": "COLLECTIONID"
       },
       {
         "name": "key",
         "schema": "string",
         "required": true,
-        "description": "Attribute Key."
+        "description": "Attribute Key.",
+        "example": "KEY"
       },
       {
         "name": "onDelete",
@@ -3009,19 +3223,22 @@ Build like a team of hundreds."
         "name": "databaseId",
         "schema": "string",
         "required": true,
-        "description": "Database ID."
+        "description": "Database ID.",
+        "example": "DATABASEID"
       },
       {
         "name": "collectionId",
         "schema": "string",
         "required": true,
-        "description": "Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection)."
+        "description": "Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).",
+        "example": "COLLECTIONID"
       },
       {
         "name": "queries",
         "schema": "array",
         "required": false,
-        "description": "Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long."
+        "description": "Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long.",
+        "default": []
       }
     ],
     "responses": [
@@ -3043,19 +3260,22 @@ Build like a team of hundreds."
         "name": "databaseId",
         "schema": "string",
         "required": true,
-        "description": "Database ID."
+        "description": "Database ID.",
+        "example": "DATABASEID"
       },
       {
         "name": "collectionId",
         "schema": "string",
         "required": true,
-        "description": "Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). Make sure to define attributes before creating documents."
+        "description": "Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection). Make sure to define attributes before creating documents.",
+        "example": "COLLECTIONID"
       },
       {
         "name": "documentId",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "DOCUMENTID"
       },
       {
         "name": "data",
@@ -3089,19 +3309,22 @@ Build like a team of hundreds."
         "name": "databaseId",
         "schema": "string",
         "required": true,
-        "description": "Database ID."
+        "description": "Database ID.",
+        "example": "DATABASEID"
       },
       {
         "name": "collectionId",
         "schema": "string",
         "required": true,
-        "description": "Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection)."
+        "description": "Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).",
+        "example": "COLLECTIONID"
       },
       {
         "name": "documentId",
         "schema": "string",
         "required": true,
-        "description": "Document ID."
+        "description": "Document ID.",
+        "example": "DOCUMENTID"
       }
     ],
     "responses": [
@@ -3123,25 +3346,29 @@ Build like a team of hundreds."
         "name": "databaseId",
         "schema": "string",
         "required": true,
-        "description": "Database ID."
+        "description": "Database ID.",
+        "example": "DATABASEID"
       },
       {
         "name": "collectionId",
         "schema": "string",
         "required": true,
-        "description": "Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection)."
+        "description": "Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).",
+        "example": "COLLECTIONID"
       },
       {
         "name": "documentId",
         "schema": "string",
         "required": true,
-        "description": "Document ID."
+        "description": "Document ID.",
+        "example": "DOCUMENTID"
       },
       {
         "name": "queries",
         "schema": "array",
         "required": false,
-        "description": "Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long."
+        "description": "Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long.",
+        "default": []
       }
     ],
     "responses": [
@@ -3163,19 +3390,22 @@ Build like a team of hundreds."
         "name": "databaseId",
         "schema": "string",
         "required": true,
-        "description": "Database ID."
+        "description": "Database ID.",
+        "example": "DATABASEID"
       },
       {
         "name": "collectionId",
         "schema": "string",
         "required": true,
-        "description": "Collection ID."
+        "description": "Collection ID.",
+        "example": "COLLECTIONID"
       },
       {
         "name": "documentId",
         "schema": "string",
         "required": true,
-        "description": "Document ID."
+        "description": "Document ID.",
+        "example": "DOCUMENTID"
       },
       {
         "name": "data",
@@ -3207,25 +3437,29 @@ Build like a team of hundreds."
         "name": "databaseId",
         "schema": "string",
         "required": true,
-        "description": "Database ID."
+        "description": "Database ID.",
+        "example": "DATABASEID"
       },
       {
         "name": "collectionId",
         "schema": "string",
         "required": true,
-        "description": "Collection ID."
+        "description": "Collection ID.",
+        "example": "COLLECTIONID"
       },
       {
         "name": "documentId",
         "schema": "string",
         "required": true,
-        "description": "Document ID."
+        "description": "Document ID.",
+        "example": "DOCUMENTID"
       },
       {
         "name": "queries",
         "schema": "array",
         "required": false,
-        "description": "Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Only supported methods are limit and offset"
+        "description": "Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Only supported methods are limit and offset",
+        "default": []
       }
     ],
     "responses": [
@@ -3247,19 +3481,22 @@ Build like a team of hundreds."
         "name": "databaseId",
         "schema": "string",
         "required": true,
-        "description": "Database ID."
+        "description": "Database ID.",
+        "example": "DATABASEID"
       },
       {
         "name": "collectionId",
         "schema": "string",
         "required": true,
-        "description": "Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection)."
+        "description": "Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).",
+        "example": "COLLECTIONID"
       },
       {
         "name": "queries",
         "schema": "array",
         "required": false,
-        "description": "Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: key, type, status, attributes, error"
+        "description": "Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: key, type, status, attributes, error",
+        "default": []
       }
     ],
     "responses": [
@@ -3281,25 +3518,29 @@ Build like a team of hundreds."
         "name": "databaseId",
         "schema": "string",
         "required": true,
-        "description": "Database ID."
+        "description": "Database ID.",
+        "example": "DATABASEID"
       },
       {
         "name": "collectionId",
         "schema": "string",
         "required": true,
-        "description": "Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection)."
+        "description": "Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).",
+        "example": "COLLECTIONID"
       },
       {
         "name": "key",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "KEY"
       },
       {
         "name": "type",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "TYPE"
       },
       {
         "name": "attributes",
@@ -3333,19 +3574,22 @@ Build like a team of hundreds."
         "name": "databaseId",
         "schema": "string",
         "required": true,
-        "description": "Database ID."
+        "description": "Database ID.",
+        "example": "DATABASEID"
       },
       {
         "name": "collectionId",
         "schema": "string",
         "required": true,
-        "description": "Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection)."
+        "description": "Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).",
+        "example": "COLLECTIONID"
       },
       {
         "name": "key",
         "schema": "string",
         "required": true,
-        "description": "Index Key."
+        "description": "Index Key.",
+        "example": "KEY"
       }
     ],
     "responses": [
@@ -3367,19 +3611,22 @@ Build like a team of hundreds."
         "name": "databaseId",
         "schema": "string",
         "required": true,
-        "description": "Database ID."
+        "description": "Database ID.",
+        "example": "DATABASEID"
       },
       {
         "name": "collectionId",
         "schema": "string",
         "required": true,
-        "description": "Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection)."
+        "description": "Collection ID. You can create a new collection using the Database service [server integration](https://appwrite.io/docs/server/databases#databasesCreateCollection).",
+        "example": "COLLECTIONID"
       },
       {
         "name": "key",
         "schema": "string",
         "required": true,
-        "description": "Index Key."
+        "description": "Index Key.",
+        "example": "KEY"
       }
     ],
     "responses": [
@@ -3401,19 +3648,22 @@ Build like a team of hundreds."
         "name": "databaseId",
         "schema": "string",
         "required": true,
-        "description": "Database ID."
+        "description": "Database ID.",
+        "example": "DATABASEID"
       },
       {
         "name": "collectionId",
         "schema": "string",
         "required": true,
-        "description": "Collection ID."
+        "description": "Collection ID.",
+        "example": "COLLECTIONID"
       },
       {
         "name": "queries",
         "schema": "array",
         "required": false,
-        "description": "Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Only supported methods are limit and offset"
+        "description": "Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Only supported methods are limit and offset",
+        "default": []
       }
     ],
     "responses": [
@@ -3435,19 +3685,22 @@ Build like a team of hundreds."
         "name": "databaseId",
         "schema": "string",
         "required": true,
-        "description": "Database ID."
+        "description": "Database ID.",
+        "example": "DATABASEID"
       },
       {
         "name": "range",
         "schema": "string",
         "required": false,
-        "description": "Date range."
+        "description": "Date range.",
+        "default": "30d"
       },
       {
         "name": "collectionId",
         "schema": "string",
         "required": true,
-        "description": "Collection ID."
+        "description": "Collection ID.",
+        "example": "COLLECTIONID"
       }
     ],
     "responses": [
@@ -3469,13 +3722,15 @@ Build like a team of hundreds."
         "name": "databaseId",
         "schema": "string",
         "required": true,
-        "description": "Database ID."
+        "description": "Database ID.",
+        "example": "DATABASEID"
       },
       {
         "name": "queries",
         "schema": "array",
         "required": false,
-        "description": "Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Only supported methods are limit and offset"
+        "description": "Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Only supported methods are limit and offset",
+        "default": []
       }
     ],
     "responses": [
@@ -3497,13 +3752,15 @@ Build like a team of hundreds."
         "name": "databaseId",
         "schema": "string",
         "required": true,
-        "description": "Database ID."
+        "description": "Database ID.",
+        "example": "DATABASEID"
       },
       {
         "name": "range",
         "schema": "string",
         "required": false,
-        "description": "`Date range."
+        "description": "`Date range.",
+        "default": "30d"
       }
     ],
     "responses": [
@@ -3525,13 +3782,15 @@ Build like a team of hundreds."
         "name": "queries",
         "schema": "array",
         "required": false,
-        "description": "Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, enabled, runtime, deployment, schedule, scheduleNext, schedulePrevious, timeout, entrypoint, commands, installationId"
+        "description": "Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, enabled, runtime, deployment, schedule, scheduleNext, schedulePrevious, timeout, entrypoint, commands, installationId",
+        "default": []
       },
       {
         "name": "search",
         "schema": "string",
         "required": false,
-        "description": "Search term to filter your list results. Max length: 256 chars."
+        "description": "Search term to filter your list results. Max length: 256 chars.",
+        "default": ""
       }
     ],
     "responses": [
@@ -3553,19 +3812,22 @@ Build like a team of hundreds."
         "name": "functionId",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "FUNCTIONID"
       },
       {
         "name": "name",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "NAME"
       },
       {
         "name": "runtime",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "RUNTIME"
       },
       {
         "name": "execute",
@@ -3704,7 +3966,8 @@ Build like a team of hundreds."
         "name": "range",
         "schema": "string",
         "required": false,
-        "description": "Date range."
+        "description": "Date range.",
+        "default": "30d"
       }
     ],
     "responses": [
@@ -3726,7 +3989,8 @@ Build like a team of hundreds."
         "name": "functionId",
         "schema": "string",
         "required": true,
-        "description": "Function ID."
+        "description": "Function ID.",
+        "example": "FUNCTIONID"
       }
     ],
     "responses": [
@@ -3748,7 +4012,8 @@ Build like a team of hundreds."
         "name": "functionId",
         "schema": "string",
         "required": true,
-        "description": "Function ID."
+        "description": "Function ID.",
+        "example": "FUNCTIONID"
       }
     ],
     "responses": [
@@ -3770,13 +4035,15 @@ Build like a team of hundreds."
         "name": "functionId",
         "schema": "string",
         "required": true,
-        "description": "Function ID."
+        "description": "Function ID.",
+        "example": "FUNCTIONID"
       },
       {
         "name": "name",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "NAME"
       },
       {
         "name": "runtime",
@@ -3882,19 +4149,22 @@ Build like a team of hundreds."
         "name": "functionId",
         "schema": "string",
         "required": true,
-        "description": "Function ID."
+        "description": "Function ID.",
+        "example": "FUNCTIONID"
       },
       {
         "name": "queries",
         "schema": "array",
         "required": false,
-        "description": "Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: size, buildId, activate, entrypoint, commands"
+        "description": "Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: size, buildId, activate, entrypoint, commands",
+        "default": []
       },
       {
         "name": "search",
         "schema": "string",
         "required": false,
-        "description": "Search term to filter your list results. Max length: 256 chars."
+        "description": "Search term to filter your list results. Max length: 256 chars.",
+        "default": ""
       }
     ],
     "responses": [
@@ -3916,7 +4186,8 @@ Build like a team of hundreds."
         "name": "functionId",
         "schema": "string",
         "required": true,
-        "description": "Function ID."
+        "description": "Function ID.",
+        "example": "FUNCTIONID"
       },
       {
         "name": "entrypoint",
@@ -3934,13 +4205,15 @@ Build like a team of hundreds."
         "name": "code",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "CODE"
       },
       {
         "name": "activate",
         "schema": "boolean",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": true
       }
     ],
     "responses": [
@@ -3962,13 +4235,15 @@ Build like a team of hundreds."
         "name": "functionId",
         "schema": "string",
         "required": true,
-        "description": "Function ID."
+        "description": "Function ID.",
+        "example": "FUNCTIONID"
       },
       {
         "name": "deploymentId",
         "schema": "string",
         "required": true,
-        "description": "Deployment ID."
+        "description": "Deployment ID.",
+        "example": "DEPLOYMENTID"
       }
     ],
     "responses": [
@@ -3990,13 +4265,15 @@ Build like a team of hundreds."
         "name": "functionId",
         "schema": "string",
         "required": true,
-        "description": "Function ID."
+        "description": "Function ID.",
+        "example": "FUNCTIONID"
       },
       {
         "name": "deploymentId",
         "schema": "string",
         "required": true,
-        "description": "Deployment ID."
+        "description": "Deployment ID.",
+        "example": "DEPLOYMENTID"
       }
     ],
     "responses": [
@@ -4018,13 +4295,15 @@ Build like a team of hundreds."
         "name": "functionId",
         "schema": "string",
         "required": true,
-        "description": "Function ID."
+        "description": "Function ID.",
+        "example": "FUNCTIONID"
       },
       {
         "name": "deploymentId",
         "schema": "string",
         "required": true,
-        "description": "Deployment ID."
+        "description": "Deployment ID.",
+        "example": "DEPLOYMENTID"
       }
     ],
     "responses": [
@@ -4046,19 +4325,22 @@ Build like a team of hundreds."
         "name": "functionId",
         "schema": "string",
         "required": true,
-        "description": "Function ID."
+        "description": "Function ID.",
+        "example": "FUNCTIONID"
       },
       {
         "name": "deploymentId",
         "schema": "string",
         "required": true,
-        "description": "Deployment ID."
+        "description": "Deployment ID.",
+        "example": "DEPLOYMENTID"
       },
       {
         "name": "buildId",
         "schema": "string",
         "required": true,
-        "description": "Build unique ID."
+        "description": "Build unique ID.",
+        "example": "BUILDID"
       }
     ],
     "responses": [
@@ -4080,13 +4362,15 @@ Build like a team of hundreds."
         "name": "functionId",
         "schema": "string",
         "required": true,
-        "description": "Function ID."
+        "description": "Function ID.",
+        "example": "FUNCTIONID"
       },
       {
         "name": "deploymentId",
         "schema": "string",
         "required": true,
-        "description": "Deployment ID."
+        "description": "Deployment ID.",
+        "example": "DEPLOYMENTID"
       }
     ],
     "responses": [
@@ -4108,19 +4392,22 @@ Build like a team of hundreds."
         "name": "functionId",
         "schema": "string",
         "required": true,
-        "description": "Function ID."
+        "description": "Function ID.",
+        "example": "FUNCTIONID"
       },
       {
         "name": "queries",
         "schema": "array",
         "required": false,
-        "description": "Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: trigger, status, responseStatusCode, duration"
+        "description": "Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: trigger, status, responseStatusCode, duration",
+        "default": []
       },
       {
         "name": "search",
         "schema": "string",
         "required": false,
-        "description": "Search term to filter your list results. Max length: 256 chars."
+        "description": "Search term to filter your list results. Max length: 256 chars.",
+        "default": ""
       }
     ],
     "responses": [
@@ -4142,7 +4429,8 @@ Build like a team of hundreds."
         "name": "functionId",
         "schema": "string",
         "required": true,
-        "description": "Function ID."
+        "description": "Function ID.",
+        "example": "FUNCTIONID"
       },
       {
         "name": "body",
@@ -4189,13 +4477,15 @@ Build like a team of hundreds."
         "name": "functionId",
         "schema": "string",
         "required": true,
-        "description": "Function ID."
+        "description": "Function ID.",
+        "example": "FUNCTIONID"
       },
       {
         "name": "executionId",
         "schema": "string",
         "required": true,
-        "description": "Execution ID."
+        "description": "Execution ID.",
+        "example": "EXECUTIONID"
       }
     ],
     "responses": [
@@ -4217,13 +4507,15 @@ Build like a team of hundreds."
         "name": "functionId",
         "schema": "string",
         "required": true,
-        "description": "Function ID."
+        "description": "Function ID.",
+        "example": "FUNCTIONID"
       },
       {
         "name": "range",
         "schema": "string",
         "required": false,
-        "description": "Date range."
+        "description": "Date range.",
+        "default": "30d"
       }
     ],
     "responses": [
@@ -4245,7 +4537,8 @@ Build like a team of hundreds."
         "name": "functionId",
         "schema": "string",
         "required": true,
-        "description": "Function unique ID."
+        "description": "Function unique ID.",
+        "example": "FUNCTIONID"
       }
     ],
     "responses": [
@@ -4267,19 +4560,22 @@ Build like a team of hundreds."
         "name": "functionId",
         "schema": "string",
         "required": true,
-        "description": "Function unique ID."
+        "description": "Function unique ID.",
+        "example": "FUNCTIONID"
       },
       {
         "name": "key",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "KEY"
       },
       {
         "name": "value",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "VALUE"
       }
     ],
     "responses": [
@@ -4301,13 +4597,15 @@ Build like a team of hundreds."
         "name": "functionId",
         "schema": "string",
         "required": true,
-        "description": "Function unique ID."
+        "description": "Function unique ID.",
+        "example": "FUNCTIONID"
       },
       {
         "name": "variableId",
         "schema": "string",
         "required": true,
-        "description": "Variable unique ID."
+        "description": "Variable unique ID.",
+        "example": "VARIABLEID"
       }
     ],
     "responses": [
@@ -4329,13 +4627,15 @@ Build like a team of hundreds."
         "name": "functionId",
         "schema": "string",
         "required": true,
-        "description": "Function unique ID."
+        "description": "Function unique ID.",
+        "example": "FUNCTIONID"
       },
       {
         "name": "variableId",
         "schema": "string",
         "required": true,
-        "description": "Variable unique ID."
+        "description": "Variable unique ID.",
+        "example": "VARIABLEID"
       }
     ],
     "responses": [
@@ -4357,19 +4657,22 @@ Build like a team of hundreds."
         "name": "functionId",
         "schema": "string",
         "required": true,
-        "description": "Function unique ID."
+        "description": "Function unique ID.",
+        "example": "FUNCTIONID"
       },
       {
         "name": "variableId",
         "schema": "string",
         "required": true,
-        "description": "Variable unique ID."
+        "description": "Variable unique ID.",
+        "example": "VARIABLEID"
       },
       {
         "name": "key",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "KEY"
       },
       {
         "name": "value",
@@ -4539,7 +4842,8 @@ Build like a team of hundreds."
         "name": "threshold",
         "schema": "integer",
         "required": false,
-        "description": "Queue size threshold. When hit (equal or higher), endpoint returns server error. Default value is 5000."
+        "description": "Queue size threshold. When hit (equal or higher), endpoint returns server error. Default value is 5000.",
+        "default": 5000
       }
     ],
     "responses": [
@@ -4561,7 +4865,8 @@ Build like a team of hundreds."
         "name": "threshold",
         "schema": "integer",
         "required": false,
-        "description": "Queue size threshold. When hit (equal or higher), endpoint returns server error. Default value is 5000."
+        "description": "Queue size threshold. When hit (equal or higher), endpoint returns server error. Default value is 5000.",
+        "default": 5000
       }
     ],
     "responses": [
@@ -4583,13 +4888,15 @@ Build like a team of hundreds."
         "name": "name",
         "schema": "string",
         "required": false,
-        "description": "Queue name for which to check the queue size"
+        "description": "Queue name for which to check the queue size",
+        "default": "database_db_main"
       },
       {
         "name": "threshold",
         "schema": "integer",
         "required": false,
-        "description": "Queue size threshold. When hit (equal or higher), endpoint returns server error. Default value is 5000."
+        "description": "Queue size threshold. When hit (equal or higher), endpoint returns server error. Default value is 5000.",
+        "default": 5000
       }
     ],
     "responses": [
@@ -4611,7 +4918,8 @@ Build like a team of hundreds."
         "name": "threshold",
         "schema": "integer",
         "required": false,
-        "description": "Queue size threshold. When hit (equal or higher), endpoint returns server error. Default value is 5000."
+        "description": "Queue size threshold. When hit (equal or higher), endpoint returns server error. Default value is 5000.",
+        "default": 5000
       }
     ],
     "responses": [
@@ -4633,13 +4941,15 @@ Build like a team of hundreds."
         "name": "name",
         "schema": "string",
         "required": true,
-        "description": "The name of the queue"
+        "description": "The name of the queue",
+        "example": "NAME"
       },
       {
         "name": "threshold",
         "schema": "integer",
         "required": false,
-        "description": "Queue size threshold. When hit (equal or higher), endpoint returns server error. Default value is 5000."
+        "description": "Queue size threshold. When hit (equal or higher), endpoint returns server error. Default value is 5000.",
+        "default": 5000
       }
     ],
     "responses": [
@@ -4661,7 +4971,8 @@ Build like a team of hundreds."
         "name": "threshold",
         "schema": "integer",
         "required": false,
-        "description": "Queue size threshold. When hit (equal or higher), endpoint returns server error. Default value is 5000."
+        "description": "Queue size threshold. When hit (equal or higher), endpoint returns server error. Default value is 5000.",
+        "default": 5000
       }
     ],
     "responses": [
@@ -4683,7 +4994,8 @@ Build like a team of hundreds."
         "name": "threshold",
         "schema": "integer",
         "required": false,
-        "description": "Queue size threshold. When hit (equal or higher), endpoint returns server error. Default value is 5000."
+        "description": "Queue size threshold. When hit (equal or higher), endpoint returns server error. Default value is 5000.",
+        "default": 5000
       }
     ],
     "responses": [
@@ -4705,7 +5017,8 @@ Build like a team of hundreds."
         "name": "threshold",
         "schema": "integer",
         "required": false,
-        "description": "Queue size threshold. When hit (equal or higher), endpoint returns server error. Default value is 5000."
+        "description": "Queue size threshold. When hit (equal or higher), endpoint returns server error. Default value is 5000.",
+        "default": 5000
       }
     ],
     "responses": [
@@ -4727,7 +5040,8 @@ Build like a team of hundreds."
         "name": "threshold",
         "schema": "integer",
         "required": false,
-        "description": "Queue size threshold. When hit (equal or higher), endpoint returns server error. Default value is 5000."
+        "description": "Queue size threshold. When hit (equal or higher), endpoint returns server error. Default value is 5000.",
+        "default": 5000
       }
     ],
     "responses": [
@@ -4749,7 +5063,8 @@ Build like a team of hundreds."
         "name": "threshold",
         "schema": "integer",
         "required": false,
-        "description": "Queue size threshold. When hit (equal or higher), endpoint returns server error. Default value is 5000."
+        "description": "Queue size threshold. When hit (equal or higher), endpoint returns server error. Default value is 5000.",
+        "default": 5000
       }
     ],
     "responses": [
@@ -4771,7 +5086,8 @@ Build like a team of hundreds."
         "name": "threshold",
         "schema": "integer",
         "required": false,
-        "description": "Queue size threshold. When hit (equal or higher), endpoint returns server error. Default value is 5000."
+        "description": "Queue size threshold. When hit (equal or higher), endpoint returns server error. Default value is 5000.",
+        "default": 5000
       }
     ],
     "responses": [
@@ -4793,7 +5109,8 @@ Build like a team of hundreds."
         "name": "threshold",
         "schema": "integer",
         "required": false,
-        "description": "Queue size threshold. When hit (equal or higher), endpoint returns server error. Default value is 5000."
+        "description": "Queue size threshold. When hit (equal or higher), endpoint returns server error. Default value is 5000.",
+        "default": 5000
       }
     ],
     "responses": [
@@ -4815,7 +5132,8 @@ Build like a team of hundreds."
         "name": "threshold",
         "schema": "integer",
         "required": false,
-        "description": "Queue size threshold. When hit (equal or higher), endpoint returns server error. Default value is 5000."
+        "description": "Queue size threshold. When hit (equal or higher), endpoint returns server error. Default value is 5000.",
+        "default": 5000
       }
     ],
     "responses": [
@@ -5002,13 +5320,15 @@ Build like a team of hundreds."
         "name": "queries",
         "schema": "array",
         "required": false,
-        "description": "Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: scheduledAt, deliveredAt, deliveredTotal, status, description, providerType"
+        "description": "Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: scheduledAt, deliveredAt, deliveredTotal, status, description, providerType",
+        "default": []
       },
       {
         "name": "search",
         "schema": "string",
         "required": false,
-        "description": "Search term to filter your list results. Max length: 256 chars."
+        "description": "Search term to filter your list results. Max length: 256 chars.",
+        "default": ""
       }
     ],
     "responses": [
@@ -5030,19 +5350,22 @@ Build like a team of hundreds."
         "name": "messageId",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "MESSAGEID"
       },
       {
         "name": "subject",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "SUBJECT"
       },
       {
         "name": "content",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "CONTENT"
       },
       {
         "name": "topics",
@@ -5118,7 +5441,8 @@ Build like a team of hundreds."
         "name": "messageId",
         "schema": "string",
         "required": true,
-        "description": "Message ID."
+        "description": "Message ID.",
+        "example": "MESSAGEID"
       },
       {
         "name": "topics",
@@ -5190,19 +5514,22 @@ Build like a team of hundreds."
         "name": "title",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "TITLE"
       },
       {
         "name": "messageId",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "MESSAGEID"
       },
       {
         "name": "body",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "BODY"
       },
       {
         "name": "topics",
@@ -5302,7 +5629,8 @@ Build like a team of hundreds."
         "name": "messageId",
         "schema": "string",
         "required": true,
-        "description": "Message ID."
+        "description": "Message ID.",
+        "example": "MESSAGEID"
       },
       {
         "name": "title",
@@ -5399,13 +5727,15 @@ Build like a team of hundreds."
         "name": "messageId",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "MESSAGEID"
       },
       {
         "name": "content",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "CONTENT"
       },
       {
         "name": "topics",
@@ -5457,7 +5787,8 @@ Build like a team of hundreds."
         "name": "messageId",
         "schema": "string",
         "required": true,
-        "description": "Message ID."
+        "description": "Message ID.",
+        "example": "MESSAGEID"
       },
       {
         "name": "topics",
@@ -5509,7 +5840,8 @@ Build like a team of hundreds."
         "name": "messageId",
         "schema": "string",
         "required": true,
-        "description": "Message ID."
+        "description": "Message ID.",
+        "example": "MESSAGEID"
       }
     ],
     "responses": [
@@ -5531,7 +5863,8 @@ Build like a team of hundreds."
         "name": "messageId",
         "schema": "string",
         "required": true,
-        "description": "Message ID."
+        "description": "Message ID.",
+        "example": "MESSAGEID"
       }
     ],
     "responses": [
@@ -5553,13 +5886,15 @@ Build like a team of hundreds."
         "name": "messageId",
         "schema": "string",
         "required": true,
-        "description": "Message ID."
+        "description": "Message ID.",
+        "example": "MESSAGEID"
       },
       {
         "name": "queries",
         "schema": "array",
         "required": false,
-        "description": "Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Only supported methods are limit and offset"
+        "description": "Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Only supported methods are limit and offset",
+        "default": []
       }
     ],
     "responses": [
@@ -5581,13 +5916,15 @@ Build like a team of hundreds."
         "name": "messageId",
         "schema": "string",
         "required": true,
-        "description": "Message ID."
+        "description": "Message ID.",
+        "example": "MESSAGEID"
       },
       {
         "name": "queries",
         "schema": "array",
         "required": false,
-        "description": "Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: userId, providerId, identifier, providerType"
+        "description": "Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: userId, providerId, identifier, providerType",
+        "default": []
       }
     ],
     "responses": [
@@ -5609,13 +5946,15 @@ Build like a team of hundreds."
         "name": "queries",
         "schema": "array",
         "required": false,
-        "description": "Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, provider, type, enabled"
+        "description": "Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, provider, type, enabled",
+        "default": []
       },
       {
         "name": "search",
         "schema": "string",
         "required": false,
-        "description": "Search term to filter your list results. Max length: 256 chars."
+        "description": "Search term to filter your list results. Max length: 256 chars.",
+        "default": ""
       }
     ],
     "responses": [
@@ -5637,13 +5976,15 @@ Build like a team of hundreds."
         "name": "providerId",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "PROVIDERID"
       },
       {
         "name": "name",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "NAME"
       },
       {
         "name": "authKey",
@@ -5701,7 +6042,8 @@ Build like a team of hundreds."
         "name": "providerId",
         "schema": "string",
         "required": true,
-        "description": "Provider ID."
+        "description": "Provider ID.",
+        "example": "PROVIDERID"
       },
       {
         "name": "name",
@@ -5758,13 +6100,15 @@ Build like a team of hundreds."
         "name": "providerId",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "PROVIDERID"
       },
       {
         "name": "name",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "NAME"
       },
       {
         "name": "serviceAccountJSON",
@@ -5798,7 +6142,8 @@ Build like a team of hundreds."
         "name": "providerId",
         "schema": "string",
         "required": true,
-        "description": "Provider ID."
+        "description": "Provider ID.",
+        "example": "PROVIDERID"
       },
       {
         "name": "name",
@@ -5835,13 +6180,15 @@ Build like a team of hundreds."
         "name": "providerId",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "PROVIDERID"
       },
       {
         "name": "name",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "NAME"
       },
       {
         "name": "apiKey",
@@ -5911,7 +6258,8 @@ Build like a team of hundreds."
         "name": "providerId",
         "schema": "string",
         "required": true,
-        "description": "Provider ID."
+        "description": "Provider ID.",
+        "example": "PROVIDERID"
       },
       {
         "name": "name",
@@ -5978,13 +6326,15 @@ Build like a team of hundreds."
         "name": "providerId",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "PROVIDERID"
       },
       {
         "name": "name",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "NAME"
       },
       {
         "name": "from",
@@ -6030,7 +6380,8 @@ Build like a team of hundreds."
         "name": "providerId",
         "schema": "string",
         "required": true,
-        "description": "Provider ID."
+        "description": "Provider ID.",
+        "example": "PROVIDERID"
       },
       {
         "name": "name",
@@ -6077,13 +6428,15 @@ Build like a team of hundreds."
         "name": "providerId",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "PROVIDERID"
       },
       {
         "name": "name",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "NAME"
       },
       {
         "name": "apiKey",
@@ -6141,7 +6494,8 @@ Build like a team of hundreds."
         "name": "providerId",
         "schema": "string",
         "required": true,
-        "description": "Provider ID."
+        "description": "Provider ID.",
+        "example": "PROVIDERID"
       },
       {
         "name": "name",
@@ -6198,19 +6552,22 @@ Build like a team of hundreds."
         "name": "providerId",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "PROVIDERID"
       },
       {
         "name": "name",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "NAME"
       },
       {
         "name": "host",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "HOST"
       },
       {
         "name": "port",
@@ -6298,7 +6655,8 @@ Build like a team of hundreds."
         "name": "providerId",
         "schema": "string",
         "required": true,
-        "description": "Provider ID."
+        "description": "Provider ID.",
+        "example": "PROVIDERID"
       },
       {
         "name": "name",
@@ -6385,13 +6743,15 @@ Build like a team of hundreds."
         "name": "providerId",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "PROVIDERID"
       },
       {
         "name": "name",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "NAME"
       },
       {
         "name": "from",
@@ -6437,7 +6797,8 @@ Build like a team of hundreds."
         "name": "providerId",
         "schema": "string",
         "required": true,
-        "description": "Provider ID."
+        "description": "Provider ID.",
+        "example": "PROVIDERID"
       },
       {
         "name": "name",
@@ -6484,13 +6845,15 @@ Build like a team of hundreds."
         "name": "providerId",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "PROVIDERID"
       },
       {
         "name": "name",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "NAME"
       },
       {
         "name": "from",
@@ -6536,7 +6899,8 @@ Build like a team of hundreds."
         "name": "providerId",
         "schema": "string",
         "required": true,
-        "description": "Provider ID."
+        "description": "Provider ID.",
+        "example": "PROVIDERID"
       },
       {
         "name": "name",
@@ -6583,13 +6947,15 @@ Build like a team of hundreds."
         "name": "providerId",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "PROVIDERID"
       },
       {
         "name": "name",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "NAME"
       },
       {
         "name": "from",
@@ -6635,7 +7001,8 @@ Build like a team of hundreds."
         "name": "providerId",
         "schema": "string",
         "required": true,
-        "description": "Provider ID."
+        "description": "Provider ID.",
+        "example": "PROVIDERID"
       },
       {
         "name": "name",
@@ -6682,13 +7049,15 @@ Build like a team of hundreds."
         "name": "providerId",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "PROVIDERID"
       },
       {
         "name": "name",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "NAME"
       },
       {
         "name": "from",
@@ -6734,7 +7103,8 @@ Build like a team of hundreds."
         "name": "providerId",
         "schema": "string",
         "required": true,
-        "description": "Provider ID."
+        "description": "Provider ID.",
+        "example": "PROVIDERID"
       },
       {
         "name": "name",
@@ -6781,7 +7151,8 @@ Build like a team of hundreds."
         "name": "providerId",
         "schema": "string",
         "required": true,
-        "description": "Provider ID."
+        "description": "Provider ID.",
+        "example": "PROVIDERID"
       }
     ],
     "responses": [
@@ -6803,7 +7174,8 @@ Build like a team of hundreds."
         "name": "providerId",
         "schema": "string",
         "required": true,
-        "description": "Provider ID."
+        "description": "Provider ID.",
+        "example": "PROVIDERID"
       }
     ],
     "responses": [
@@ -6825,13 +7197,15 @@ Build like a team of hundreds."
         "name": "providerId",
         "schema": "string",
         "required": true,
-        "description": "Provider ID."
+        "description": "Provider ID.",
+        "example": "PROVIDERID"
       },
       {
         "name": "queries",
         "schema": "array",
         "required": false,
-        "description": "Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Only supported methods are limit and offset"
+        "description": "Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Only supported methods are limit and offset",
+        "default": []
       }
     ],
     "responses": [
@@ -6853,13 +7227,15 @@ Build like a team of hundreds."
         "name": "subscriberId",
         "schema": "string",
         "required": true,
-        "description": "Subscriber ID."
+        "description": "Subscriber ID.",
+        "example": "SUBSCRIBERID"
       },
       {
         "name": "queries",
         "schema": "array",
         "required": false,
-        "description": "Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Only supported methods are limit and offset"
+        "description": "Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Only supported methods are limit and offset",
+        "default": []
       }
     ],
     "responses": [
@@ -6881,13 +7257,15 @@ Build like a team of hundreds."
         "name": "queries",
         "schema": "array",
         "required": false,
-        "description": "Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, description, emailTotal, smsTotal, pushTotal"
+        "description": "Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, description, emailTotal, smsTotal, pushTotal",
+        "default": []
       },
       {
         "name": "search",
         "schema": "string",
         "required": false,
-        "description": "Search term to filter your list results. Max length: 256 chars."
+        "description": "Search term to filter your list results. Max length: 256 chars.",
+        "default": ""
       }
     ],
     "responses": [
@@ -6909,13 +7287,15 @@ Build like a team of hundreds."
         "name": "topicId",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "TOPICID"
       },
       {
         "name": "name",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "NAME"
       },
       {
         "name": "subscribe",
@@ -6943,7 +7323,8 @@ Build like a team of hundreds."
         "name": "topicId",
         "schema": "string",
         "required": true,
-        "description": "Topic ID."
+        "description": "Topic ID.",
+        "example": "TOPICID"
       }
     ],
     "responses": [
@@ -6965,7 +7346,8 @@ Build like a team of hundreds."
         "name": "topicId",
         "schema": "string",
         "required": true,
-        "description": "Topic ID."
+        "description": "Topic ID.",
+        "example": "TOPICID"
       }
     ],
     "responses": [
@@ -6987,7 +7369,8 @@ Build like a team of hundreds."
         "name": "topicId",
         "schema": "string",
         "required": true,
-        "description": "Topic ID."
+        "description": "Topic ID.",
+        "example": "TOPICID"
       },
       {
         "name": "name",
@@ -7019,13 +7402,15 @@ Build like a team of hundreds."
         "name": "topicId",
         "schema": "string",
         "required": true,
-        "description": "Topic ID."
+        "description": "Topic ID.",
+        "example": "TOPICID"
       },
       {
         "name": "queries",
         "schema": "array",
         "required": false,
-        "description": "Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Only supported methods are limit and offset"
+        "description": "Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Only supported methods are limit and offset",
+        "default": []
       }
     ],
     "responses": [
@@ -7047,19 +7432,22 @@ Build like a team of hundreds."
         "name": "topicId",
         "schema": "string",
         "required": true,
-        "description": "Topic ID. The topic ID subscribed to."
+        "description": "Topic ID. The topic ID subscribed to.",
+        "example": "TOPICID"
       },
       {
         "name": "queries",
         "schema": "array",
         "required": false,
-        "description": "Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, provider, type, enabled"
+        "description": "Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, provider, type, enabled",
+        "default": []
       },
       {
         "name": "search",
         "schema": "string",
         "required": false,
-        "description": "Search term to filter your list results. Max length: 256 chars."
+        "description": "Search term to filter your list results. Max length: 256 chars.",
+        "default": ""
       }
     ],
     "responses": [
@@ -7081,19 +7469,22 @@ Build like a team of hundreds."
         "name": "topicId",
         "schema": "string",
         "required": true,
-        "description": "Topic ID. The topic ID to subscribe to."
+        "description": "Topic ID. The topic ID to subscribe to.",
+        "example": "TOPICID"
       },
       {
         "name": "subscriberId",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "SUBSCRIBERID"
       },
       {
         "name": "targetId",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "TARGETID"
       }
     ],
     "responses": [
@@ -7115,13 +7506,15 @@ Build like a team of hundreds."
         "name": "topicId",
         "schema": "string",
         "required": true,
-        "description": "Topic ID. The topic ID subscribed to."
+        "description": "Topic ID. The topic ID subscribed to.",
+        "example": "TOPICID"
       },
       {
         "name": "subscriberId",
         "schema": "string",
         "required": true,
-        "description": "Subscriber ID."
+        "description": "Subscriber ID.",
+        "example": "SUBSCRIBERID"
       }
     ],
     "responses": [
@@ -7143,13 +7536,15 @@ Build like a team of hundreds."
         "name": "topicId",
         "schema": "string",
         "required": true,
-        "description": "Topic ID. The topic ID subscribed to."
+        "description": "Topic ID. The topic ID subscribed to.",
+        "example": "TOPICID"
       },
       {
         "name": "subscriberId",
         "schema": "string",
         "required": true,
-        "description": "Subscriber ID."
+        "description": "Subscriber ID.",
+        "example": "SUBSCRIBERID"
       }
     ],
     "responses": [
@@ -7171,13 +7566,15 @@ Build like a team of hundreds."
         "name": "queries",
         "schema": "array",
         "required": false,
-        "description": "Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/databases#querying-documents). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: status, stage, source, resources, statusCounters, resourceData, errors"
+        "description": "Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/databases#querying-documents). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: status, stage, source, resources, statusCounters, resourceData, errors",
+        "default": []
       },
       {
         "name": "search",
         "schema": "string",
         "required": false,
-        "description": "Search term to filter your list results. Max length: 256 chars."
+        "description": "Search term to filter your list results. Max length: 256 chars.",
+        "default": ""
       }
     ],
     "responses": [
@@ -7205,19 +7602,22 @@ Build like a team of hundreds."
         "name": "endpoint",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "ENDPOINT"
       },
       {
         "name": "projectId",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "PROJECTID"
       },
       {
         "name": "apiKey",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "APIKEY"
       }
     ],
     "responses": [
@@ -7245,19 +7645,22 @@ Build like a team of hundreds."
         "name": "endpoint",
         "schema": "string",
         "required": true,
-        "description": "Source's Appwrite Endpoint"
+        "description": "Source's Appwrite Endpoint",
+        "example": "ENDPOINT"
       },
       {
         "name": "projectId",
         "schema": "string",
         "required": true,
-        "description": "Source's Project ID"
+        "description": "Source's Project ID",
+        "example": "PROJECTID"
       },
       {
         "name": "key",
         "schema": "string",
         "required": true,
-        "description": "Source's API Key"
+        "description": "Source's API Key",
+        "example": "KEY"
       }
     ],
     "responses": [
@@ -7285,7 +7688,8 @@ Build like a team of hundreds."
         "name": "serviceAccount",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "SERVICEACCOUNT"
       }
     ],
     "responses": [
@@ -7328,7 +7732,8 @@ Build like a team of hundreds."
         "name": "projectId",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "PROJECTID"
       }
     ],
     "responses": [
@@ -7371,7 +7776,8 @@ Build like a team of hundreds."
         "name": "serviceAccount",
         "schema": "string",
         "required": true,
-        "description": "JSON of the Firebase service account credentials"
+        "description": "JSON of the Firebase service account credentials",
+        "example": "SERVICEACCOUNT"
       }
     ],
     "responses": [
@@ -7399,7 +7805,8 @@ Build like a team of hundreds."
         "name": "projectId",
         "schema": "string",
         "required": true,
-        "description": "Project ID"
+        "description": "Project ID",
+        "example": "PROJECTID"
       }
     ],
     "responses": [
@@ -7427,37 +7834,43 @@ Build like a team of hundreds."
         "name": "subdomain",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "SUBDOMAIN"
       },
       {
         "name": "region",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "REGION"
       },
       {
         "name": "adminSecret",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "ADMINSECRET"
       },
       {
         "name": "database",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "DATABASE"
       },
       {
         "name": "username",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "USERNAME"
       },
       {
         "name": "password",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "PASSWORD"
       },
       {
         "name": "port",
@@ -7491,43 +7904,50 @@ Build like a team of hundreds."
         "name": "subdomain",
         "schema": "string",
         "required": true,
-        "description": "Source's Subdomain."
+        "description": "Source's Subdomain.",
+        "example": "SUBDOMAIN"
       },
       {
         "name": "region",
         "schema": "string",
         "required": true,
-        "description": "Source's Region."
+        "description": "Source's Region.",
+        "example": "REGION"
       },
       {
         "name": "adminSecret",
         "schema": "string",
         "required": true,
-        "description": "Source's Admin Secret."
+        "description": "Source's Admin Secret.",
+        "example": "ADMINSECRET"
       },
       {
         "name": "database",
         "schema": "string",
         "required": true,
-        "description": "Source's Database Name."
+        "description": "Source's Database Name.",
+        "example": "DATABASE"
       },
       {
         "name": "username",
         "schema": "string",
         "required": true,
-        "description": "Source's Database Username."
+        "description": "Source's Database Username.",
+        "example": "USERNAME"
       },
       {
         "name": "password",
         "schema": "string",
         "required": true,
-        "description": "Source's Database Password."
+        "description": "Source's Database Password.",
+        "example": "PASSWORD"
       },
       {
         "name": "port",
         "schema": "integer",
         "required": false,
-        "description": "Source's Database Port."
+        "description": "Source's Database Port.",
+        "default": 5432
       }
     ],
     "responses": [
@@ -7555,31 +7975,36 @@ Build like a team of hundreds."
         "name": "endpoint",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "ENDPOINT"
       },
       {
         "name": "apiKey",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "APIKEY"
       },
       {
         "name": "databaseHost",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "DATABASEHOST"
       },
       {
         "name": "username",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "USERNAME"
       },
       {
         "name": "password",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "PASSWORD"
       },
       {
         "name": "port",
@@ -7613,37 +8038,43 @@ Build like a team of hundreds."
         "name": "endpoint",
         "schema": "string",
         "required": true,
-        "description": "Source's Supabase Endpoint."
+        "description": "Source's Supabase Endpoint.",
+        "example": "ENDPOINT"
       },
       {
         "name": "apiKey",
         "schema": "string",
         "required": true,
-        "description": "Source's API Key."
+        "description": "Source's API Key.",
+        "example": "APIKEY"
       },
       {
         "name": "databaseHost",
         "schema": "string",
         "required": true,
-        "description": "Source's Database Host."
+        "description": "Source's Database Host.",
+        "example": "DATABASEHOST"
       },
       {
         "name": "username",
         "schema": "string",
         "required": true,
-        "description": "Source's Database Username."
+        "description": "Source's Database Username.",
+        "example": "USERNAME"
       },
       {
         "name": "password",
         "schema": "string",
         "required": true,
-        "description": "Source's Database Password."
+        "description": "Source's Database Password.",
+        "example": "PASSWORD"
       },
       {
         "name": "port",
         "schema": "integer",
         "required": false,
-        "description": "Source's Database Port."
+        "description": "Source's Database Port.",
+        "default": 5432
       }
     ],
     "responses": [
@@ -7665,7 +8096,8 @@ Build like a team of hundreds."
         "name": "migrationId",
         "schema": "string",
         "required": true,
-        "description": "Migration ID."
+        "description": "Migration ID.",
+        "example": "MIGRATIONID"
       }
     ],
     "responses": [
@@ -7687,7 +8119,8 @@ Build like a team of hundreds."
         "name": "migrationId",
         "schema": "string",
         "required": true,
-        "description": "Migration unique ID."
+        "description": "Migration unique ID.",
+        "example": "MIGRATIONID"
       }
     ],
     "responses": [
@@ -7709,7 +8142,8 @@ Build like a team of hundreds."
         "name": "migrationId",
         "schema": "string",
         "required": true,
-        "description": "Migration unique ID."
+        "description": "Migration unique ID.",
+        "example": "MIGRATIONID"
       }
     ],
     "responses": [
@@ -7731,19 +8165,22 @@ Build like a team of hundreds."
         "name": "startDate",
         "schema": "string",
         "required": true,
-        "description": "Starting date for the usage"
+        "description": "Starting date for the usage",
+        "example": "STARTDATE"
       },
       {
         "name": "endDate",
         "schema": "string",
         "required": true,
-        "description": "End date for the usage"
+        "description": "End date for the usage",
+        "example": "ENDDATE"
       },
       {
         "name": "period",
         "schema": "string",
         "required": false,
-        "description": "Period used"
+        "description": "Period used",
+        "default": "1d"
       }
     ],
     "responses": [
@@ -7780,13 +8217,15 @@ Build like a team of hundreds."
         "name": "key",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "KEY"
       },
       {
         "name": "value",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "VALUE"
       }
     ],
     "responses": [
@@ -7808,7 +8247,8 @@ Build like a team of hundreds."
         "name": "variableId",
         "schema": "string",
         "required": true,
-        "description": "Variable unique ID."
+        "description": "Variable unique ID.",
+        "example": "VARIABLEID"
       }
     ],
     "responses": [
@@ -7830,7 +8270,8 @@ Build like a team of hundreds."
         "name": "variableId",
         "schema": "string",
         "required": true,
-        "description": "Variable unique ID."
+        "description": "Variable unique ID.",
+        "example": "VARIABLEID"
       }
     ],
     "responses": [
@@ -7852,13 +8293,15 @@ Build like a team of hundreds."
         "name": "variableId",
         "schema": "string",
         "required": true,
-        "description": "Variable unique ID."
+        "description": "Variable unique ID.",
+        "example": "VARIABLEID"
       },
       {
         "name": "key",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "KEY"
       },
       {
         "name": "value",
@@ -7886,13 +8329,15 @@ Build like a team of hundreds."
         "name": "queries",
         "schema": "array",
         "required": false,
-        "description": "Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, teamId"
+        "description": "Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, teamId",
+        "default": []
       },
       {
         "name": "search",
         "schema": "string",
         "required": false,
-        "description": "Search term to filter your list results. Max length: 256 chars."
+        "description": "Search term to filter your list results. Max length: 256 chars.",
+        "default": ""
       }
     ],
     "responses": [
@@ -7920,19 +8365,22 @@ Build like a team of hundreds."
         "name": "projectId",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "PROJECTID"
       },
       {
         "name": "name",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "NAME"
       },
       {
         "name": "teamId",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "TEAMID"
       },
       {
         "name": "region",
@@ -8008,7 +8456,8 @@ Build like a team of hundreds."
         "name": "projectId",
         "schema": "string",
         "required": true,
-        "description": "Project unique ID."
+        "description": "Project unique ID.",
+        "example": "PROJECTID"
       }
     ],
     "responses": [
@@ -8030,7 +8479,8 @@ Build like a team of hundreds."
         "name": "projectId",
         "schema": "string",
         "required": true,
-        "description": "Project unique ID."
+        "description": "Project unique ID.",
+        "example": "PROJECTID"
       }
     ],
     "responses": [
@@ -8052,7 +8502,8 @@ Build like a team of hundreds."
         "name": "projectId",
         "schema": "string",
         "required": true,
-        "description": "Project unique ID."
+        "description": "Project unique ID.",
+        "example": "PROJECTID"
       },
       {
         "name": "description",
@@ -8064,7 +8515,8 @@ Build like a team of hundreds."
         "name": "name",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "NAME"
       },
       {
         "name": "logo",
@@ -8134,19 +8586,22 @@ Build like a team of hundreds."
         "name": "projectId",
         "schema": "string",
         "required": true,
-        "description": "Project unique ID."
+        "description": "Project unique ID.",
+        "example": "PROJECTID"
       },
       {
         "name": "api",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "API"
       },
       {
         "name": "status",
         "schema": "boolean",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": true
       }
     ],
     "responses": [
@@ -8168,13 +8623,15 @@ Build like a team of hundreds."
         "name": "projectId",
         "schema": "string",
         "required": true,
-        "description": "Project unique ID."
+        "description": "Project unique ID.",
+        "example": "PROJECTID"
       },
       {
         "name": "status",
         "schema": "boolean",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": true
       }
     ],
     "responses": [
@@ -8196,13 +8653,15 @@ Build like a team of hundreds."
         "name": "projectId",
         "schema": "string",
         "required": true,
-        "description": "Project unique ID."
+        "description": "Project unique ID.",
+        "example": "PROJECTID"
       },
       {
         "name": "duration",
         "schema": "integer",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": 0
       }
     ],
     "responses": [
@@ -8224,13 +8683,15 @@ Build like a team of hundreds."
         "name": "projectId",
         "schema": "string",
         "required": true,
-        "description": "Project unique ID."
+        "description": "Project unique ID.",
+        "example": "PROJECTID"
       },
       {
         "name": "limit",
         "schema": "integer",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": 0
       }
     ],
     "responses": [
@@ -8252,13 +8713,15 @@ Build like a team of hundreds."
         "name": "projectId",
         "schema": "string",
         "required": true,
-        "description": "Project unique ID."
+        "description": "Project unique ID.",
+        "example": "PROJECTID"
       },
       {
         "name": "limit",
         "schema": "integer",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": 0
       }
     ],
     "responses": [
@@ -8280,13 +8743,15 @@ Build like a team of hundreds."
         "name": "projectId",
         "schema": "string",
         "required": true,
-        "description": "Project unique ID."
+        "description": "Project unique ID.",
+        "example": "PROJECTID"
       },
       {
         "name": "enabled",
         "schema": "boolean",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": true
       }
     ],
     "responses": [
@@ -8308,13 +8773,15 @@ Build like a team of hundreds."
         "name": "projectId",
         "schema": "string",
         "required": true,
-        "description": "Project unique ID."
+        "description": "Project unique ID.",
+        "example": "PROJECTID"
       },
       {
         "name": "limit",
         "schema": "integer",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": 0
       }
     ],
     "responses": [
@@ -8336,13 +8803,15 @@ Build like a team of hundreds."
         "name": "projectId",
         "schema": "string",
         "required": true,
-        "description": "Project unique ID."
+        "description": "Project unique ID.",
+        "example": "PROJECTID"
       },
       {
         "name": "enabled",
         "schema": "boolean",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": true
       }
     ],
     "responses": [
@@ -8364,19 +8833,22 @@ Build like a team of hundreds."
         "name": "projectId",
         "schema": "string",
         "required": true,
-        "description": "Project unique ID."
+        "description": "Project unique ID.",
+        "example": "PROJECTID"
       },
       {
         "name": "method",
         "schema": "string",
         "required": true,
-        "description": "Auth Method. Possible values: email-password,magic-url,email-otp,anonymous,invites,jwt,phone"
+        "description": "Auth Method. Possible values: email-password,magic-url,email-otp,anonymous,invites,jwt,phone",
+        "example": "METHOD"
       },
       {
         "name": "status",
         "schema": "boolean",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": true
       }
     ],
     "responses": [
@@ -8398,7 +8870,8 @@ Build like a team of hundreds."
         "name": "projectId",
         "schema": "string",
         "required": true,
-        "description": "Project unique ID."
+        "description": "Project unique ID.",
+        "example": "PROJECTID"
       }
     ],
     "responses": [
@@ -8420,13 +8893,15 @@ Build like a team of hundreds."
         "name": "projectId",
         "schema": "string",
         "required": true,
-        "description": "Project unique ID."
+        "description": "Project unique ID.",
+        "example": "PROJECTID"
       },
       {
         "name": "name",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "NAME"
       },
       {
         "name": "scopes",
@@ -8460,13 +8935,15 @@ Build like a team of hundreds."
         "name": "projectId",
         "schema": "string",
         "required": true,
-        "description": "Project unique ID."
+        "description": "Project unique ID.",
+        "example": "PROJECTID"
       },
       {
         "name": "keyId",
         "schema": "string",
         "required": true,
-        "description": "Key unique ID."
+        "description": "Key unique ID.",
+        "example": "KEYID"
       }
     ],
     "responses": [
@@ -8488,13 +8965,15 @@ Build like a team of hundreds."
         "name": "projectId",
         "schema": "string",
         "required": true,
-        "description": "Project unique ID."
+        "description": "Project unique ID.",
+        "example": "PROJECTID"
       },
       {
         "name": "keyId",
         "schema": "string",
         "required": true,
-        "description": "Key unique ID."
+        "description": "Key unique ID.",
+        "example": "KEYID"
       }
     ],
     "responses": [
@@ -8516,19 +8995,22 @@ Build like a team of hundreds."
         "name": "projectId",
         "schema": "string",
         "required": true,
-        "description": "Project unique ID."
+        "description": "Project unique ID.",
+        "example": "PROJECTID"
       },
       {
         "name": "keyId",
         "schema": "string",
         "required": true,
-        "description": "Key unique ID."
+        "description": "Key unique ID.",
+        "example": "KEYID"
       },
       {
         "name": "name",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "NAME"
       },
       {
         "name": "scopes",
@@ -8562,13 +9044,15 @@ Build like a team of hundreds."
         "name": "projectId",
         "schema": "string",
         "required": true,
-        "description": "Project unique ID."
+        "description": "Project unique ID.",
+        "example": "PROJECTID"
       },
       {
         "name": "provider",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "PROVIDER"
       },
       {
         "name": "appId",
@@ -8608,7 +9092,8 @@ Build like a team of hundreds."
         "name": "projectId",
         "schema": "string",
         "required": true,
-        "description": "Project unique ID."
+        "description": "Project unique ID.",
+        "example": "PROJECTID"
       }
     ],
     "responses": [
@@ -8630,19 +9115,22 @@ Build like a team of hundreds."
         "name": "projectId",
         "schema": "string",
         "required": true,
-        "description": "Project unique ID."
+        "description": "Project unique ID.",
+        "example": "PROJECTID"
       },
       {
         "name": "type",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "TYPE"
       },
       {
         "name": "name",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "NAME"
       },
       {
         "name": "key",
@@ -8682,13 +9170,15 @@ Build like a team of hundreds."
         "name": "projectId",
         "schema": "string",
         "required": true,
-        "description": "Project unique ID."
+        "description": "Project unique ID.",
+        "example": "PROJECTID"
       },
       {
         "name": "platformId",
         "schema": "string",
         "required": true,
-        "description": "Platform unique ID."
+        "description": "Platform unique ID.",
+        "example": "PLATFORMID"
       }
     ],
     "responses": [
@@ -8710,13 +9200,15 @@ Build like a team of hundreds."
         "name": "projectId",
         "schema": "string",
         "required": true,
-        "description": "Project unique ID."
+        "description": "Project unique ID.",
+        "example": "PROJECTID"
       },
       {
         "name": "platformId",
         "schema": "string",
         "required": true,
-        "description": "Platform unique ID."
+        "description": "Platform unique ID.",
+        "example": "PLATFORMID"
       }
     ],
     "responses": [
@@ -8738,19 +9230,22 @@ Build like a team of hundreds."
         "name": "projectId",
         "schema": "string",
         "required": true,
-        "description": "Project unique ID."
+        "description": "Project unique ID.",
+        "example": "PROJECTID"
       },
       {
         "name": "platformId",
         "schema": "string",
         "required": true,
-        "description": "Platform unique ID."
+        "description": "Platform unique ID.",
+        "example": "PLATFORMID"
       },
       {
         "name": "name",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "NAME"
       },
       {
         "name": "key",
@@ -8790,19 +9285,22 @@ Build like a team of hundreds."
         "name": "projectId",
         "schema": "string",
         "required": true,
-        "description": "Project unique ID."
+        "description": "Project unique ID.",
+        "example": "PROJECTID"
       },
       {
         "name": "service",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "SERVICE"
       },
       {
         "name": "status",
         "schema": "boolean",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": true
       }
     ],
     "responses": [
@@ -8824,13 +9322,15 @@ Build like a team of hundreds."
         "name": "projectId",
         "schema": "string",
         "required": true,
-        "description": "Project unique ID."
+        "description": "Project unique ID.",
+        "example": "PROJECTID"
       },
       {
         "name": "status",
         "schema": "boolean",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": true
       }
     ],
     "responses": [
@@ -8852,13 +9352,15 @@ Build like a team of hundreds."
         "name": "projectId",
         "schema": "string",
         "required": true,
-        "description": "Project unique ID."
+        "description": "Project unique ID.",
+        "example": "PROJECTID"
       },
       {
         "name": "enabled",
         "schema": "boolean",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": true
       },
       {
         "name": "senderName",
@@ -8928,7 +9430,8 @@ Build like a team of hundreds."
         "name": "projectId",
         "schema": "string",
         "required": true,
-        "description": "Project unique ID."
+        "description": "Project unique ID.",
+        "example": "PROJECTID"
       },
       {
         "name": "emails",
@@ -8940,13 +9443,15 @@ Build like a team of hundreds."
         "name": "senderName",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "SENDERNAME"
       },
       {
         "name": "senderEmail",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "SENDEREMAIL"
       },
       {
         "name": "replyTo",
@@ -8958,7 +9463,8 @@ Build like a team of hundreds."
         "name": "host",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "HOST"
       },
       {
         "name": "port",
@@ -9004,13 +9510,15 @@ Build like a team of hundreds."
         "name": "projectId",
         "schema": "string",
         "required": true,
-        "description": "Project unique ID."
+        "description": "Project unique ID.",
+        "example": "PROJECTID"
       },
       {
         "name": "teamId",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "TEAMID"
       }
     ],
     "responses": [
@@ -9032,19 +9540,22 @@ Build like a team of hundreds."
         "name": "projectId",
         "schema": "string",
         "required": true,
-        "description": "Project unique ID."
+        "description": "Project unique ID.",
+        "example": "PROJECTID"
       },
       {
         "name": "type",
         "schema": "string",
         "required": true,
-        "description": "Template type"
+        "description": "Template type",
+        "example": "TYPE"
       },
       {
         "name": "locale",
         "schema": "string",
         "required": true,
-        "description": "Template locale"
+        "description": "Template locale",
+        "example": "LOCALE"
       }
     ],
     "responses": [
@@ -9066,19 +9577,22 @@ Build like a team of hundreds."
         "name": "projectId",
         "schema": "string",
         "required": true,
-        "description": "Project unique ID."
+        "description": "Project unique ID.",
+        "example": "PROJECTID"
       },
       {
         "name": "type",
         "schema": "string",
         "required": true,
-        "description": "Template type"
+        "description": "Template type",
+        "example": "TYPE"
       },
       {
         "name": "locale",
         "schema": "string",
         "required": true,
-        "description": "Template locale"
+        "description": "Template locale",
+        "example": "LOCALE"
       }
     ],
     "responses": [
@@ -9100,31 +9614,36 @@ Build like a team of hundreds."
         "name": "projectId",
         "schema": "string",
         "required": true,
-        "description": "Project unique ID."
+        "description": "Project unique ID.",
+        "example": "PROJECTID"
       },
       {
         "name": "type",
         "schema": "string",
         "required": true,
-        "description": "Template type"
+        "description": "Template type",
+        "example": "TYPE"
       },
       {
         "name": "locale",
         "schema": "string",
         "required": true,
-        "description": "Template locale"
+        "description": "Template locale",
+        "example": "LOCALE"
       },
       {
         "name": "subject",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "SUBJECT"
       },
       {
         "name": "message",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "MESSAGE"
       },
       {
         "name": "senderName",
@@ -9164,19 +9683,22 @@ Build like a team of hundreds."
         "name": "projectId",
         "schema": "string",
         "required": true,
-        "description": "Project unique ID."
+        "description": "Project unique ID.",
+        "example": "PROJECTID"
       },
       {
         "name": "type",
         "schema": "string",
         "required": true,
-        "description": "Template type"
+        "description": "Template type",
+        "example": "TYPE"
       },
       {
         "name": "locale",
         "schema": "string",
         "required": true,
-        "description": "Template locale"
+        "description": "Template locale",
+        "example": "LOCALE"
       }
     ],
     "responses": [
@@ -9198,19 +9720,22 @@ Build like a team of hundreds."
         "name": "projectId",
         "schema": "string",
         "required": true,
-        "description": "Project unique ID."
+        "description": "Project unique ID.",
+        "example": "PROJECTID"
       },
       {
         "name": "type",
         "schema": "string",
         "required": true,
-        "description": "Template type"
+        "description": "Template type",
+        "example": "TYPE"
       },
       {
         "name": "locale",
         "schema": "string",
         "required": true,
-        "description": "Template locale"
+        "description": "Template locale",
+        "example": "LOCALE"
       }
     ],
     "responses": [
@@ -9232,25 +9757,29 @@ Build like a team of hundreds."
         "name": "projectId",
         "schema": "string",
         "required": true,
-        "description": "Project unique ID."
+        "description": "Project unique ID.",
+        "example": "PROJECTID"
       },
       {
         "name": "type",
         "schema": "string",
         "required": true,
-        "description": "Template type"
+        "description": "Template type",
+        "example": "TYPE"
       },
       {
         "name": "locale",
         "schema": "string",
         "required": true,
-        "description": "Template locale"
+        "description": "Template locale",
+        "example": "LOCALE"
       },
       {
         "name": "message",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "MESSAGE"
       }
     ],
     "responses": [
@@ -9272,7 +9801,8 @@ Build like a team of hundreds."
         "name": "projectId",
         "schema": "string",
         "required": true,
-        "description": "Project unique ID."
+        "description": "Project unique ID.",
+        "example": "PROJECTID"
       }
     ],
     "responses": [
@@ -9294,19 +9824,22 @@ Build like a team of hundreds."
         "name": "projectId",
         "schema": "string",
         "required": true,
-        "description": "Project unique ID."
+        "description": "Project unique ID.",
+        "example": "PROJECTID"
       },
       {
         "name": "security",
         "schema": "boolean",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": true
       },
       {
         "name": "name",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "NAME"
       },
       {
         "name": "enabled",
@@ -9324,7 +9857,8 @@ Build like a team of hundreds."
         "name": "url",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "URL"
       },
       {
         "name": "httpUser",
@@ -9358,13 +9892,15 @@ Build like a team of hundreds."
         "name": "projectId",
         "schema": "string",
         "required": true,
-        "description": "Project unique ID."
+        "description": "Project unique ID.",
+        "example": "PROJECTID"
       },
       {
         "name": "webhookId",
         "schema": "string",
         "required": true,
-        "description": "Webhook unique ID."
+        "description": "Webhook unique ID.",
+        "example": "WEBHOOKID"
       }
     ],
     "responses": [
@@ -9386,13 +9922,15 @@ Build like a team of hundreds."
         "name": "projectId",
         "schema": "string",
         "required": true,
-        "description": "Project unique ID."
+        "description": "Project unique ID.",
+        "example": "PROJECTID"
       },
       {
         "name": "webhookId",
         "schema": "string",
         "required": true,
-        "description": "Webhook unique ID."
+        "description": "Webhook unique ID.",
+        "example": "WEBHOOKID"
       }
     ],
     "responses": [
@@ -9414,25 +9952,29 @@ Build like a team of hundreds."
         "name": "projectId",
         "schema": "string",
         "required": true,
-        "description": "Project unique ID."
+        "description": "Project unique ID.",
+        "example": "PROJECTID"
       },
       {
         "name": "webhookId",
         "schema": "string",
         "required": true,
-        "description": "Webhook unique ID."
+        "description": "Webhook unique ID.",
+        "example": "WEBHOOKID"
       },
       {
         "name": "security",
         "schema": "boolean",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": true
       },
       {
         "name": "name",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "NAME"
       },
       {
         "name": "enabled",
@@ -9450,7 +9992,8 @@ Build like a team of hundreds."
         "name": "url",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "URL"
       },
       {
         "name": "httpUser",
@@ -9484,13 +10027,15 @@ Build like a team of hundreds."
         "name": "projectId",
         "schema": "string",
         "required": true,
-        "description": "Project unique ID."
+        "description": "Project unique ID.",
+        "example": "PROJECTID"
       },
       {
         "name": "webhookId",
         "schema": "string",
         "required": true,
-        "description": "Webhook unique ID."
+        "description": "Webhook unique ID.",
+        "example": "WEBHOOKID"
       }
     ],
     "responses": [
@@ -9512,13 +10057,15 @@ Build like a team of hundreds."
         "name": "queries",
         "schema": "array",
         "required": false,
-        "description": "Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/databases#querying-documents). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: domain, resourceType, resourceId, url"
+        "description": "Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/databases#querying-documents). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: domain, resourceType, resourceId, url",
+        "default": []
       },
       {
         "name": "search",
         "schema": "string",
         "required": false,
-        "description": "Search term to filter your list results. Max length: 256 chars."
+        "description": "Search term to filter your list results. Max length: 256 chars.",
+        "default": ""
       }
     ],
     "responses": [
@@ -9540,13 +10087,15 @@ Build like a team of hundreds."
         "name": "domain",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "DOMAIN"
       },
       {
         "name": "resourceType",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "RESOURCETYPE"
       },
       {
         "name": "resourceId",
@@ -9574,7 +10123,8 @@ Build like a team of hundreds."
         "name": "ruleId",
         "schema": "string",
         "required": true,
-        "description": "Rule ID."
+        "description": "Rule ID.",
+        "example": "RULEID"
       }
     ],
     "responses": [
@@ -9596,7 +10146,8 @@ Build like a team of hundreds."
         "name": "ruleId",
         "schema": "string",
         "required": true,
-        "description": "Rule ID."
+        "description": "Rule ID.",
+        "example": "RULEID"
       }
     ],
     "responses": [
@@ -9618,7 +10169,8 @@ Build like a team of hundreds."
         "name": "ruleId",
         "schema": "string",
         "required": true,
-        "description": "Rule ID."
+        "description": "Rule ID.",
+        "example": "RULEID"
       }
     ],
     "responses": [
@@ -9640,13 +10192,15 @@ Build like a team of hundreds."
         "name": "queries",
         "schema": "array",
         "required": false,
-        "description": "Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: enabled, name, fileSecurity, maximumFileSize, encryption, antivirus"
+        "description": "Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: enabled, name, fileSecurity, maximumFileSize, encryption, antivirus",
+        "default": []
       },
       {
         "name": "search",
         "schema": "string",
         "required": false,
-        "description": "Search term to filter your list results. Max length: 256 chars."
+        "description": "Search term to filter your list results. Max length: 256 chars.",
+        "default": ""
       }
     ],
     "responses": [
@@ -9668,13 +10222,15 @@ Build like a team of hundreds."
         "name": "bucketId",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "BUCKETID"
       },
       {
         "name": "name",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "NAME"
       },
       {
         "name": "permissions",
@@ -9744,7 +10300,8 @@ Build like a team of hundreds."
         "name": "bucketId",
         "schema": "string",
         "required": true,
-        "description": "Bucket unique ID."
+        "description": "Bucket unique ID.",
+        "example": "BUCKETID"
       }
     ],
     "responses": [
@@ -9766,7 +10323,8 @@ Build like a team of hundreds."
         "name": "bucketId",
         "schema": "string",
         "required": true,
-        "description": "Bucket unique ID."
+        "description": "Bucket unique ID.",
+        "example": "BUCKETID"
       }
     ],
     "responses": [
@@ -9788,13 +10346,15 @@ Build like a team of hundreds."
         "name": "bucketId",
         "schema": "string",
         "required": true,
-        "description": "Bucket unique ID."
+        "description": "Bucket unique ID.",
+        "example": "BUCKETID"
       },
       {
         "name": "name",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "NAME"
       },
       {
         "name": "permissions",
@@ -9864,19 +10424,22 @@ Build like a team of hundreds."
         "name": "bucketId",
         "schema": "string",
         "required": true,
-        "description": "Storage bucket unique ID. You can create a new storage bucket using the Storage service [server integration](https://appwrite.io/docs/server/storage#createBucket)."
+        "description": "Storage bucket unique ID. You can create a new storage bucket using the Storage service [server integration](https://appwrite.io/docs/server/storage#createBucket).",
+        "example": "BUCKETID"
       },
       {
         "name": "queries",
         "schema": "array",
         "required": false,
-        "description": "Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, signature, mimeType, sizeOriginal, chunksTotal, chunksUploaded"
+        "description": "Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, signature, mimeType, sizeOriginal, chunksTotal, chunksUploaded",
+        "default": []
       },
       {
         "name": "search",
         "schema": "string",
         "required": false,
-        "description": "Search term to filter your list results. Max length: 256 chars."
+        "description": "Search term to filter your list results. Max length: 256 chars.",
+        "default": ""
       }
     ],
     "responses": [
@@ -9898,19 +10461,22 @@ Build like a team of hundreds."
         "name": "bucketId",
         "schema": "string",
         "required": true,
-        "description": "Storage bucket unique ID. You can create a new storage bucket using the Storage service [server integration](https://appwrite.io/docs/server/storage#createBucket)."
+        "description": "Storage bucket unique ID. You can create a new storage bucket using the Storage service [server integration](https://appwrite.io/docs/server/storage#createBucket).",
+        "example": "BUCKETID"
       },
       {
         "name": "fileId",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "FILEID"
       },
       {
         "name": "file",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "FILE"
       },
       {
         "name": "permissions",
@@ -9938,13 +10504,15 @@ Build like a team of hundreds."
         "name": "bucketId",
         "schema": "string",
         "required": true,
-        "description": "Storage bucket unique ID. You can create a new storage bucket using the Storage service [server integration](https://appwrite.io/docs/server/storage#createBucket)."
+        "description": "Storage bucket unique ID. You can create a new storage bucket using the Storage service [server integration](https://appwrite.io/docs/server/storage#createBucket).",
+        "example": "BUCKETID"
       },
       {
         "name": "fileId",
         "schema": "string",
         "required": true,
-        "description": "File ID."
+        "description": "File ID.",
+        "example": "FILEID"
       }
     ],
     "responses": [
@@ -9966,13 +10534,15 @@ Build like a team of hundreds."
         "name": "bucketId",
         "schema": "string",
         "required": true,
-        "description": "Storage bucket unique ID. You can create a new storage bucket using the Storage service [server integration](https://appwrite.io/docs/server/storage#createBucket)."
+        "description": "Storage bucket unique ID. You can create a new storage bucket using the Storage service [server integration](https://appwrite.io/docs/server/storage#createBucket).",
+        "example": "BUCKETID"
       },
       {
         "name": "fileId",
         "schema": "string",
         "required": true,
-        "description": "File ID."
+        "description": "File ID.",
+        "example": "FILEID"
       }
     ],
     "responses": [
@@ -9994,13 +10564,15 @@ Build like a team of hundreds."
         "name": "bucketId",
         "schema": "string",
         "required": true,
-        "description": "Storage bucket unique ID. You can create a new storage bucket using the Storage service [server integration](https://appwrite.io/docs/server/storage#createBucket)."
+        "description": "Storage bucket unique ID. You can create a new storage bucket using the Storage service [server integration](https://appwrite.io/docs/server/storage#createBucket).",
+        "example": "BUCKETID"
       },
       {
         "name": "fileId",
         "schema": "string",
         "required": true,
-        "description": "File unique ID."
+        "description": "File unique ID.",
+        "example": "FILEID"
       },
       {
         "name": "name",
@@ -10032,13 +10604,15 @@ Build like a team of hundreds."
         "name": "bucketId",
         "schema": "string",
         "required": true,
-        "description": "Storage bucket ID. You can create a new storage bucket using the Storage service [server integration](https://appwrite.io/docs/server/storage#createBucket)."
+        "description": "Storage bucket ID. You can create a new storage bucket using the Storage service [server integration](https://appwrite.io/docs/server/storage#createBucket).",
+        "example": "BUCKETID"
       },
       {
         "name": "fileId",
         "schema": "string",
         "required": true,
-        "description": "File ID."
+        "description": "File ID.",
+        "example": "FILEID"
       }
     ],
     "responses": [
@@ -10060,79 +10634,92 @@ Build like a team of hundreds."
         "name": "bucketId",
         "schema": "string",
         "required": true,
-        "description": "Storage bucket unique ID. You can create a new storage bucket using the Storage service [server integration](https://appwrite.io/docs/server/storage#createBucket)."
+        "description": "Storage bucket unique ID. You can create a new storage bucket using the Storage service [server integration](https://appwrite.io/docs/server/storage#createBucket).",
+        "example": "BUCKETID"
       },
       {
         "name": "fileId",
         "schema": "string",
         "required": true,
-        "description": "File ID"
+        "description": "File ID",
+        "example": "FILEID"
       },
       {
         "name": "width",
         "schema": "integer",
         "required": false,
-        "description": "Resize preview image width, Pass an integer between 0 to 4000."
+        "description": "Resize preview image width, Pass an integer between 0 to 4000.",
+        "default": 0
       },
       {
         "name": "height",
         "schema": "integer",
         "required": false,
-        "description": "Resize preview image height, Pass an integer between 0 to 4000."
+        "description": "Resize preview image height, Pass an integer between 0 to 4000.",
+        "default": 0
       },
       {
         "name": "gravity",
         "schema": "string",
         "required": false,
-        "description": "Image crop gravity. Can be one of center,top-left,top,top-right,left,right,bottom-left,bottom,bottom-right"
+        "description": "Image crop gravity. Can be one of center,top-left,top,top-right,left,right,bottom-left,bottom,bottom-right",
+        "default": "center"
       },
       {
         "name": "quality",
         "schema": "integer",
         "required": false,
-        "description": "Preview image quality. Pass an integer between 0 to 100. Defaults to 100."
+        "description": "Preview image quality. Pass an integer between 0 to 100. Defaults to 100.",
+        "default": 100
       },
       {
         "name": "borderWidth",
         "schema": "integer",
         "required": false,
-        "description": "Preview image border in pixels. Pass an integer between 0 to 100. Defaults to 0."
+        "description": "Preview image border in pixels. Pass an integer between 0 to 100. Defaults to 0.",
+        "default": 0
       },
       {
         "name": "borderColor",
         "schema": "string",
         "required": false,
-        "description": "Preview image border color. Use a valid HEX color, no # is needed for prefix."
+        "description": "Preview image border color. Use a valid HEX color, no # is needed for prefix.",
+        "default": ""
       },
       {
         "name": "borderRadius",
         "schema": "integer",
         "required": false,
-        "description": "Preview image border radius in pixels. Pass an integer between 0 to 4000."
+        "description": "Preview image border radius in pixels. Pass an integer between 0 to 4000.",
+        "default": 0
       },
       {
         "name": "opacity",
         "schema": "number",
         "required": false,
-        "description": "Preview image opacity. Only works with images having an alpha channel (like png). Pass a number between 0 to 1."
+        "description": "Preview image opacity. Only works with images having an alpha channel (like png). Pass a number between 0 to 1.",
+        "default": 1
       },
       {
         "name": "rotation",
         "schema": "integer",
         "required": false,
-        "description": "Preview image rotation in degrees. Pass an integer between -360 and 360."
+        "description": "Preview image rotation in degrees. Pass an integer between -360 and 360.",
+        "default": 0
       },
       {
         "name": "background",
         "schema": "string",
         "required": false,
-        "description": "Preview image background color. Only works with transparent images (png). Use a valid HEX color, no # is needed for prefix."
+        "description": "Preview image background color. Only works with transparent images (png). Use a valid HEX color, no # is needed for prefix.",
+        "default": ""
       },
       {
         "name": "output",
         "schema": "string",
         "required": false,
-        "description": "Output format type (jpeg, jpg, png, gif and webp)."
+        "description": "Output format type (jpeg, jpg, png, gif and webp).",
+        "default": ""
       }
     ],
     "responses": [
@@ -10154,13 +10741,15 @@ Build like a team of hundreds."
         "name": "bucketId",
         "schema": "string",
         "required": true,
-        "description": "Storage bucket unique ID. You can create a new storage bucket using the Storage service [server integration](https://appwrite.io/docs/server/storage#createBucket)."
+        "description": "Storage bucket unique ID. You can create a new storage bucket using the Storage service [server integration](https://appwrite.io/docs/server/storage#createBucket).",
+        "example": "BUCKETID"
       },
       {
         "name": "fileId",
         "schema": "string",
         "required": true,
-        "description": "File ID."
+        "description": "File ID.",
+        "example": "FILEID"
       }
     ],
     "responses": [
@@ -10182,7 +10771,8 @@ Build like a team of hundreds."
         "name": "range",
         "schema": "string",
         "required": false,
-        "description": "Date range."
+        "description": "Date range.",
+        "default": "30d"
       }
     ],
     "responses": [
@@ -10204,13 +10794,15 @@ Build like a team of hundreds."
         "name": "bucketId",
         "schema": "string",
         "required": true,
-        "description": "Bucket ID."
+        "description": "Bucket ID.",
+        "example": "BUCKETID"
       },
       {
         "name": "range",
         "schema": "string",
         "required": false,
-        "description": "Date range."
+        "description": "Date range.",
+        "default": "30d"
       }
     ],
     "responses": [
@@ -10232,13 +10824,15 @@ Build like a team of hundreds."
         "name": "queries",
         "schema": "array",
         "required": false,
-        "description": "Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, total, billingPlan"
+        "description": "Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, total, billingPlan",
+        "default": []
       },
       {
         "name": "search",
         "schema": "string",
         "required": false,
-        "description": "Search term to filter your list results. Max length: 256 chars."
+        "description": "Search term to filter your list results. Max length: 256 chars.",
+        "default": ""
       }
     ],
     "responses": [
@@ -10260,13 +10854,15 @@ Build like a team of hundreds."
         "name": "teamId",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "TEAMID"
       },
       {
         "name": "name",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "NAME"
       },
       {
         "name": "roles",
@@ -10294,7 +10890,8 @@ Build like a team of hundreds."
         "name": "teamId",
         "schema": "string",
         "required": true,
-        "description": "Team ID."
+        "description": "Team ID.",
+        "example": "TEAMID"
       }
     ],
     "responses": [
@@ -10316,7 +10913,8 @@ Build like a team of hundreds."
         "name": "teamId",
         "schema": "string",
         "required": true,
-        "description": "Team ID."
+        "description": "Team ID.",
+        "example": "TEAMID"
       }
     ],
     "responses": [
@@ -10338,13 +10936,15 @@ Build like a team of hundreds."
         "name": "teamId",
         "schema": "string",
         "required": true,
-        "description": "Team ID."
+        "description": "Team ID.",
+        "example": "TEAMID"
       },
       {
         "name": "name",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "NAME"
       }
     ],
     "responses": [
@@ -10366,13 +10966,15 @@ Build like a team of hundreds."
         "name": "teamId",
         "schema": "string",
         "required": true,
-        "description": "Team ID."
+        "description": "Team ID.",
+        "example": "TEAMID"
       },
       {
         "name": "queries",
         "schema": "array",
         "required": false,
-        "description": "Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Only supported methods are limit and offset"
+        "description": "Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Only supported methods are limit and offset",
+        "default": []
       }
     ],
     "responses": [
@@ -10394,19 +10996,22 @@ Build like a team of hundreds."
         "name": "teamId",
         "schema": "string",
         "required": true,
-        "description": "Team ID."
+        "description": "Team ID.",
+        "example": "TEAMID"
       },
       {
         "name": "queries",
         "schema": "array",
         "required": false,
-        "description": "Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: userId, teamId, invited, joined, confirm"
+        "description": "Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: userId, teamId, invited, joined, confirm",
+        "default": []
       },
       {
         "name": "search",
         "schema": "string",
         "required": false,
-        "description": "Search term to filter your list results. Max length: 256 chars."
+        "description": "Search term to filter your list results. Max length: 256 chars.",
+        "default": ""
       }
     ],
     "responses": [
@@ -10428,7 +11033,8 @@ Build like a team of hundreds."
         "name": "teamId",
         "schema": "string",
         "required": true,
-        "description": "Team ID."
+        "description": "Team ID.",
+        "example": "TEAMID"
       },
       {
         "name": "email",
@@ -10486,13 +11092,15 @@ Build like a team of hundreds."
         "name": "teamId",
         "schema": "string",
         "required": true,
-        "description": "Team ID."
+        "description": "Team ID.",
+        "example": "TEAMID"
       },
       {
         "name": "membershipId",
         "schema": "string",
         "required": true,
-        "description": "Membership ID."
+        "description": "Membership ID.",
+        "example": "MEMBERSHIPID"
       }
     ],
     "responses": [
@@ -10514,13 +11122,15 @@ Build like a team of hundreds."
         "name": "teamId",
         "schema": "string",
         "required": true,
-        "description": "Team ID."
+        "description": "Team ID.",
+        "example": "TEAMID"
       },
       {
         "name": "membershipId",
         "schema": "string",
         "required": true,
-        "description": "Membership ID."
+        "description": "Membership ID.",
+        "example": "MEMBERSHIPID"
       }
     ],
     "responses": [
@@ -10542,13 +11152,15 @@ Build like a team of hundreds."
         "name": "teamId",
         "schema": "string",
         "required": true,
-        "description": "Team ID."
+        "description": "Team ID.",
+        "example": "TEAMID"
       },
       {
         "name": "membershipId",
         "schema": "string",
         "required": true,
-        "description": "Membership ID."
+        "description": "Membership ID.",
+        "example": "MEMBERSHIPID"
       },
       {
         "name": "roles",
@@ -10576,25 +11188,29 @@ Build like a team of hundreds."
         "name": "teamId",
         "schema": "string",
         "required": true,
-        "description": "Team ID."
+        "description": "Team ID.",
+        "example": "TEAMID"
       },
       {
         "name": "membershipId",
         "schema": "string",
         "required": true,
-        "description": "Membership ID."
+        "description": "Membership ID.",
+        "example": "MEMBERSHIPID"
       },
       {
         "name": "userId",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "USERID"
       },
       {
         "name": "secret",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "SECRET"
       }
     ],
     "responses": [
@@ -10616,7 +11232,8 @@ Build like a team of hundreds."
         "name": "teamId",
         "schema": "string",
         "required": true,
-        "description": "Team ID."
+        "description": "Team ID.",
+        "example": "TEAMID"
       }
     ],
     "responses": [
@@ -10638,7 +11255,8 @@ Build like a team of hundreds."
         "name": "teamId",
         "schema": "string",
         "required": true,
-        "description": "Team ID."
+        "description": "Team ID.",
+        "example": "TEAMID"
       },
       {
         "name": "prefs",
@@ -10666,13 +11284,15 @@ Build like a team of hundreds."
         "name": "queries",
         "schema": "array",
         "required": false,
-        "description": "Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, email, phone, status, passwordUpdate, registration, emailVerification, phoneVerification, labels"
+        "description": "Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, email, phone, status, passwordUpdate, registration, emailVerification, phoneVerification, labels",
+        "default": []
       },
       {
         "name": "search",
         "schema": "string",
         "required": false,
-        "description": "Search term to filter your list results. Max length: 256 chars."
+        "description": "Search term to filter your list results. Max length: 256 chars.",
+        "default": ""
       }
     ],
     "responses": [
@@ -10694,7 +11314,8 @@ Build like a team of hundreds."
         "name": "userId",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "USERID"
       },
       {
         "name": "email",
@@ -10740,19 +11361,22 @@ Build like a team of hundreds."
         "name": "userId",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "USERID"
       },
       {
         "name": "email",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "EMAIL"
       },
       {
         "name": "password",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "PASSWORD"
       },
       {
         "name": "name",
@@ -10780,19 +11404,22 @@ Build like a team of hundreds."
         "name": "userId",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "USERID"
       },
       {
         "name": "email",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "EMAIL"
       },
       {
         "name": "password",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "PASSWORD"
       },
       {
         "name": "name",
@@ -10820,13 +11447,15 @@ Build like a team of hundreds."
         "name": "queries",
         "schema": "array",
         "required": false,
-        "description": "Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: userId, provider, providerUid, providerEmail, providerAccessTokenExpiry"
+        "description": "Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: userId, provider, providerUid, providerEmail, providerAccessTokenExpiry",
+        "default": []
       },
       {
         "name": "search",
         "schema": "string",
         "required": false,
-        "description": "Search term to filter your list results. Max length: 256 chars."
+        "description": "Search term to filter your list results. Max length: 256 chars.",
+        "default": ""
       }
     ],
     "responses": [
@@ -10848,7 +11477,8 @@ Build like a team of hundreds."
         "name": "identityId",
         "schema": "string",
         "required": true,
-        "description": "Identity ID."
+        "description": "Identity ID.",
+        "example": "IDENTITYID"
       }
     ],
     "responses": [
@@ -10870,19 +11500,22 @@ Build like a team of hundreds."
         "name": "userId",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "USERID"
       },
       {
         "name": "email",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "EMAIL"
       },
       {
         "name": "password",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "PASSWORD"
       },
       {
         "name": "name",
@@ -10910,19 +11543,22 @@ Build like a team of hundreds."
         "name": "userId",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "USERID"
       },
       {
         "name": "email",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "EMAIL"
       },
       {
         "name": "password",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "PASSWORD"
       },
       {
         "name": "name",
@@ -10950,49 +11586,57 @@ Build like a team of hundreds."
         "name": "userId",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "USERID"
       },
       {
         "name": "email",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "EMAIL"
       },
       {
         "name": "password",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "PASSWORD"
       },
       {
         "name": "passwordSalt",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "PASSWORDSALT"
       },
       {
         "name": "passwordCpu",
         "schema": "integer",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": 0
       },
       {
         "name": "passwordMemory",
         "schema": "integer",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": 0
       },
       {
         "name": "passwordParallel",
         "schema": "integer",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": 0
       },
       {
         "name": "passwordLength",
         "schema": "integer",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": 0
       },
       {
         "name": "name",
@@ -11020,37 +11664,43 @@ Build like a team of hundreds."
         "name": "userId",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "USERID"
       },
       {
         "name": "email",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "EMAIL"
       },
       {
         "name": "password",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "PASSWORD"
       },
       {
         "name": "passwordSalt",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "PASSWORDSALT"
       },
       {
         "name": "passwordSaltSeparator",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "PASSWORDSALTSEPARATOR"
       },
       {
         "name": "passwordSignerKey",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "PASSWORDSIGNERKEY"
       },
       {
         "name": "name",
@@ -11078,19 +11728,22 @@ Build like a team of hundreds."
         "name": "userId",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "USERID"
       },
       {
         "name": "email",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "EMAIL"
       },
       {
         "name": "password",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "PASSWORD"
       },
       {
         "name": "passwordVersion",
@@ -11124,7 +11777,8 @@ Build like a team of hundreds."
         "name": "range",
         "schema": "string",
         "required": false,
-        "description": "Date range."
+        "description": "Date range.",
+        "default": "30d"
       }
     ],
     "responses": [
@@ -11146,7 +11800,8 @@ Build like a team of hundreds."
         "name": "userId",
         "schema": "string",
         "required": true,
-        "description": "User ID."
+        "description": "User ID.",
+        "example": "USERID"
       }
     ],
     "responses": [
@@ -11168,7 +11823,8 @@ Build like a team of hundreds."
         "name": "userId",
         "schema": "string",
         "required": true,
-        "description": "User ID."
+        "description": "User ID.",
+        "example": "USERID"
       }
     ],
     "responses": [
@@ -11190,13 +11846,15 @@ Build like a team of hundreds."
         "name": "userId",
         "schema": "string",
         "required": true,
-        "description": "User ID."
+        "description": "User ID.",
+        "example": "USERID"
       },
       {
         "name": "email",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "EMAIL"
       }
     ],
     "responses": [
@@ -11218,7 +11876,8 @@ Build like a team of hundreds."
         "name": "userId",
         "schema": "string",
         "required": true,
-        "description": "User ID."
+        "description": "User ID.",
+        "example": "USERID"
       },
       {
         "name": "labels",
@@ -11246,13 +11905,15 @@ Build like a team of hundreds."
         "name": "userId",
         "schema": "string",
         "required": true,
-        "description": "User ID."
+        "description": "User ID.",
+        "example": "USERID"
       },
       {
         "name": "queries",
         "schema": "array",
         "required": false,
-        "description": "Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Only supported methods are limit and offset"
+        "description": "Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Only supported methods are limit and offset",
+        "default": []
       }
     ],
     "responses": [
@@ -11274,7 +11935,8 @@ Build like a team of hundreds."
         "name": "userId",
         "schema": "string",
         "required": true,
-        "description": "User ID."
+        "description": "User ID.",
+        "example": "USERID"
       }
     ],
     "responses": [
@@ -11296,13 +11958,15 @@ Build like a team of hundreds."
         "name": "userId",
         "schema": "string",
         "required": true,
-        "description": "User ID."
+        "description": "User ID.",
+        "example": "USERID"
       },
       {
         "name": "mfa",
         "schema": "boolean",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": true
       }
     ],
     "responses": [
@@ -11324,13 +11988,15 @@ Build like a team of hundreds."
         "name": "userId",
         "schema": "string",
         "required": true,
-        "description": "User ID."
+        "description": "User ID.",
+        "example": "USERID"
       },
       {
         "name": "type",
         "schema": "string",
         "required": true,
-        "description": "Type of authenticator."
+        "description": "Type of authenticator.",
+        "example": "TYPE"
       }
     ],
     "responses": [
@@ -11352,7 +12018,8 @@ Build like a team of hundreds."
         "name": "userId",
         "schema": "string",
         "required": true,
-        "description": "User ID."
+        "description": "User ID.",
+        "example": "USERID"
       }
     ],
     "responses": [
@@ -11374,7 +12041,8 @@ Build like a team of hundreds."
         "name": "userId",
         "schema": "string",
         "required": true,
-        "description": "User ID."
+        "description": "User ID.",
+        "example": "USERID"
       }
     ],
     "responses": [
@@ -11396,7 +12064,8 @@ Build like a team of hundreds."
         "name": "userId",
         "schema": "string",
         "required": true,
-        "description": "User ID."
+        "description": "User ID.",
+        "example": "USERID"
       }
     ],
     "responses": [
@@ -11418,7 +12087,8 @@ Build like a team of hundreds."
         "name": "userId",
         "schema": "string",
         "required": true,
-        "description": "User ID."
+        "description": "User ID.",
+        "example": "USERID"
       }
     ],
     "responses": [
@@ -11440,13 +12110,15 @@ Build like a team of hundreds."
         "name": "userId",
         "schema": "string",
         "required": true,
-        "description": "User ID."
+        "description": "User ID.",
+        "example": "USERID"
       },
       {
         "name": "name",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "NAME"
       }
     ],
     "responses": [
@@ -11468,13 +12140,15 @@ Build like a team of hundreds."
         "name": "userId",
         "schema": "string",
         "required": true,
-        "description": "User ID."
+        "description": "User ID.",
+        "example": "USERID"
       },
       {
         "name": "password",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "PASSWORD"
       }
     ],
     "responses": [
@@ -11496,13 +12170,15 @@ Build like a team of hundreds."
         "name": "userId",
         "schema": "string",
         "required": true,
-        "description": "User ID."
+        "description": "User ID.",
+        "example": "USERID"
       },
       {
         "name": "number",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "NUMBER"
       }
     ],
     "responses": [
@@ -11524,7 +12200,8 @@ Build like a team of hundreds."
         "name": "userId",
         "schema": "string",
         "required": true,
-        "description": "User ID."
+        "description": "User ID.",
+        "example": "USERID"
       }
     ],
     "responses": [
@@ -11546,7 +12223,8 @@ Build like a team of hundreds."
         "name": "userId",
         "schema": "string",
         "required": true,
-        "description": "User ID."
+        "description": "User ID.",
+        "example": "USERID"
       },
       {
         "name": "prefs",
@@ -11574,7 +12252,8 @@ Build like a team of hundreds."
         "name": "userId",
         "schema": "string",
         "required": true,
-        "description": "User ID."
+        "description": "User ID.",
+        "example": "USERID"
       }
     ],
     "responses": [
@@ -11596,7 +12275,8 @@ Build like a team of hundreds."
         "name": "userId",
         "schema": "string",
         "required": true,
-        "description": "User ID."
+        "description": "User ID.",
+        "example": "USERID"
       }
     ],
     "responses": [
@@ -11618,7 +12298,8 @@ Build like a team of hundreds."
         "name": "userId",
         "schema": "string",
         "required": true,
-        "description": "User ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars."
+        "description": "User ID. Choose a custom ID or generate a random ID with `ID.unique()`. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.",
+        "example": "USERID"
       }
     ],
     "responses": [
@@ -11640,13 +12321,15 @@ Build like a team of hundreds."
         "name": "userId",
         "schema": "string",
         "required": true,
-        "description": "User ID."
+        "description": "User ID.",
+        "example": "USERID"
       },
       {
         "name": "sessionId",
         "schema": "string",
         "required": true,
-        "description": "Session ID."
+        "description": "Session ID.",
+        "example": "SESSIONID"
       }
     ],
     "responses": [
@@ -11668,13 +12351,15 @@ Build like a team of hundreds."
         "name": "userId",
         "schema": "string",
         "required": true,
-        "description": "User ID."
+        "description": "User ID.",
+        "example": "USERID"
       },
       {
         "name": "status",
         "schema": "boolean",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": true
       }
     ],
     "responses": [
@@ -11696,13 +12381,15 @@ Build like a team of hundreds."
         "name": "userId",
         "schema": "string",
         "required": true,
-        "description": "User ID."
+        "description": "User ID.",
+        "example": "USERID"
       },
       {
         "name": "queries",
         "schema": "array",
         "required": false,
-        "description": "Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, email, phone, status, passwordUpdate, registration, emailVerification, phoneVerification, labels"
+        "description": "Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: name, email, phone, status, passwordUpdate, registration, emailVerification, phoneVerification, labels",
+        "default": []
       }
     ],
     "responses": [
@@ -11724,25 +12411,29 @@ Build like a team of hundreds."
         "name": "userId",
         "schema": "string",
         "required": true,
-        "description": "User ID."
+        "description": "User ID.",
+        "example": "USERID"
       },
       {
         "name": "targetId",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "TARGETID"
       },
       {
         "name": "providerType",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "PROVIDERTYPE"
       },
       {
         "name": "identifier",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "IDENTIFIER"
       },
       {
         "name": "providerId",
@@ -11776,13 +12467,15 @@ Build like a team of hundreds."
         "name": "userId",
         "schema": "string",
         "required": true,
-        "description": "User ID."
+        "description": "User ID.",
+        "example": "USERID"
       },
       {
         "name": "targetId",
         "schema": "string",
         "required": true,
-        "description": "Target ID."
+        "description": "Target ID.",
+        "example": "TARGETID"
       }
     ],
     "responses": [
@@ -11804,13 +12497,15 @@ Build like a team of hundreds."
         "name": "userId",
         "schema": "string",
         "required": true,
-        "description": "User ID."
+        "description": "User ID.",
+        "example": "USERID"
       },
       {
         "name": "targetId",
         "schema": "string",
         "required": true,
-        "description": "Target ID."
+        "description": "Target ID.",
+        "example": "TARGETID"
       }
     ],
     "responses": [
@@ -11832,13 +12527,15 @@ Build like a team of hundreds."
         "name": "userId",
         "schema": "string",
         "required": true,
-        "description": "User ID."
+        "description": "User ID.",
+        "example": "USERID"
       },
       {
         "name": "targetId",
         "schema": "string",
         "required": true,
-        "description": "Target ID."
+        "description": "Target ID.",
+        "example": "TARGETID"
       },
       {
         "name": "identifier",
@@ -11875,7 +12572,8 @@ Build like a team of hundreds."
         "name": "userId",
         "schema": "string",
         "required": true,
-        "description": "User ID."
+        "description": "User ID.",
+        "example": "USERID"
       },
       {
         "name": "length",
@@ -11907,13 +12605,15 @@ Build like a team of hundreds."
         "name": "userId",
         "schema": "string",
         "required": true,
-        "description": "User ID."
+        "description": "User ID.",
+        "example": "USERID"
       },
       {
         "name": "emailVerification",
         "schema": "boolean",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": true
       }
     ],
     "responses": [
@@ -11935,13 +12635,15 @@ Build like a team of hundreds."
         "name": "userId",
         "schema": "string",
         "required": true,
-        "description": "User ID."
+        "description": "User ID.",
+        "example": "USERID"
       },
       {
         "name": "phoneVerification",
         "schema": "boolean",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": true
       }
     ],
     "responses": [
@@ -11963,13 +12665,15 @@ Build like a team of hundreds."
         "name": "installationId",
         "schema": "string",
         "required": true,
-        "description": "Installation Id"
+        "description": "Installation Id",
+        "example": "INSTALLATIONID"
       },
       {
         "name": "search",
         "schema": "string",
         "required": false,
-        "description": "Search term to filter your list results. Max length: 256 chars."
+        "description": "Search term to filter your list results. Max length: 256 chars.",
+        "default": ""
       }
     ],
     "responses": [
@@ -11991,19 +12695,22 @@ Build like a team of hundreds."
         "name": "installationId",
         "schema": "string",
         "required": true,
-        "description": "Installation Id"
+        "description": "Installation Id",
+        "example": "INSTALLATIONID"
       },
       {
         "name": "name",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "NAME"
       },
       {
         "name": "private",
         "schema": "boolean",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": true
       }
     ],
     "responses": [
@@ -12025,13 +12732,15 @@ Build like a team of hundreds."
         "name": "installationId",
         "schema": "string",
         "required": true,
-        "description": "Installation Id"
+        "description": "Installation Id",
+        "example": "INSTALLATIONID"
       },
       {
         "name": "providerRepositoryId",
         "schema": "string",
         "required": true,
-        "description": "Repository Id"
+        "description": "Repository Id",
+        "example": "PROVIDERREPOSITORYID"
       }
     ],
     "responses": [
@@ -12053,13 +12762,15 @@ Build like a team of hundreds."
         "name": "installationId",
         "schema": "string",
         "required": true,
-        "description": "Installation Id"
+        "description": "Installation Id",
+        "example": "INSTALLATIONID"
       },
       {
         "name": "providerRepositoryId",
         "schema": "string",
         "required": true,
-        "description": "Repository Id"
+        "description": "Repository Id",
+        "example": "PROVIDERREPOSITORYID"
       }
     ],
     "responses": [
@@ -12081,13 +12792,15 @@ Build like a team of hundreds."
         "name": "installationId",
         "schema": "string",
         "required": true,
-        "description": "Installation Id"
+        "description": "Installation Id",
+        "example": "INSTALLATIONID"
       },
       {
         "name": "providerRepositoryId",
         "schema": "string",
         "required": true,
-        "description": "Repository Id"
+        "description": "Repository Id",
+        "example": "PROVIDERREPOSITORYID"
       },
       {
         "name": "providerRootDirectory",
@@ -12114,19 +12827,22 @@ Build like a team of hundreds."
         "name": "installationId",
         "schema": "string",
         "required": true,
-        "description": "Installation Id"
+        "description": "Installation Id",
+        "example": "INSTALLATIONID"
       },
       {
         "name": "repositoryId",
         "schema": "string",
         "required": true,
-        "description": "VCS Repository Id"
+        "description": "VCS Repository Id",
+        "example": "REPOSITORYID"
       },
       {
         "name": "providerPullRequestId",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "PROVIDERPULLREQUESTID"
       }
     ],
     "responses": [
@@ -12148,13 +12864,15 @@ Build like a team of hundreds."
         "name": "queries",
         "schema": "array",
         "required": false,
-        "description": "Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: provider, organization"
+        "description": "Array of query strings generated using the Query class provided by the SDK. [Learn more about queries](https://appwrite.io/docs/queries). Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: provider, organization",
+        "default": []
       },
       {
         "name": "search",
         "schema": "string",
         "required": false,
-        "description": "Search term to filter your list results. Max length: 256 chars."
+        "description": "Search term to filter your list results. Max length: 256 chars.",
+        "default": ""
       }
     ],
     "responses": [
@@ -12176,7 +12894,8 @@ Build like a team of hundreds."
         "name": "installationId",
         "schema": "string",
         "required": true,
-        "description": "Installation Id"
+        "description": "Installation Id",
+        "example": "INSTALLATIONID"
       }
     ],
     "responses": [
@@ -12198,7 +12917,8 @@ Build like a team of hundreds."
         "name": "installationId",
         "schema": "string",
         "required": true,
-        "description": "Installation Id"
+        "description": "Installation Id",
+        "example": "INSTALLATIONID"
       }
     ],
     "responses": [
@@ -12220,6 +12940,8 @@ Build like a team of hundreds."
       parameters={1106}
       difficulty="Very Hard"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/appwrite/console/openapi.yaml"
+      openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/appwrite/console/openapi.yaml"
+      developerDocumentation="appwrite.io/docs/references#api"
     />
   );
 }

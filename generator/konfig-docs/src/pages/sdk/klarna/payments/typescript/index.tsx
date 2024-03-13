@@ -4,11 +4,13 @@ import { HttpMethodsEnum } from "konfig-lib/dist/forEachOperation";
 import Description from "./_description.mdx";
 // @ts-ignore
 import GettingStarted from "./_getting-started.mdx";
-import { Sdk } from "@site/src/components/Sdk";
+// @ts-ignore
+import FirstRequest from "./_first-request.mdx"
+import { SdkNew } from "@site/src/components/SdkNew";
 
 export default function KlarnaPaymentsTypeScriptSdk() {
   return (
-    <Sdk
+    <SdkNew
       sdkName="klarna-payments-typescript-sdk"
       metaDescription="Klarna is a Swedish bank that provides online financial services such as payment solutions for online storefronts. It offers customers the ability to buy now and pay later, as well as other financing options. Klarna has gained popularity for its smooth checkout experience and customer-friendly payment options."
       company="Klarna"
@@ -16,13 +18,15 @@ export default function KlarnaPaymentsTypeScriptSdk() {
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/klarna/payments/logo.png"
       clientNameCamelCase="klarnaPayments"
       homepage="klarna.com"
-      lastUpdated={new Date("2024-03-11T06:04:39.099Z")}
+      lastUpdated={new Date("2024-03-13T02:25:22.175Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/klarna/payments/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
       previewLinkImage="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/klarna/payments/imagePreview.png"
       GettingStarted={GettingStarted}
       Description={Description}
+      FirstRequest={FirstRequest}
+      categories={["finance","payments","online_payments","fintech","checkout_experience"]}
       methods={[
   {
     "url": "/payments/v1/sessions",
@@ -36,7 +40,8 @@ export default function KlarnaPaymentsTypeScriptSdk() {
         "name": "acquiring_channel",
         "schema": "string",
         "required": false,
-        "description": ""
+        "description": "",
+        "example": "ECOMMERCE"
       },
       {
         "name": "attachment",
@@ -60,7 +65,8 @@ export default function KlarnaPaymentsTypeScriptSdk() {
         "name": "client_token",
         "schema": "string",
         "required": false,
-        "description": ""
+        "description": "",
+        "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.ewogICJzZXNzaW9uX2lkIiA6ICIw"
       },
       {
         "name": "custom_payment_method_ids",
@@ -84,31 +90,36 @@ export default function KlarnaPaymentsTypeScriptSdk() {
         "name": "expires_at",
         "schema": "string",
         "required": false,
-        "description": ""
+        "description": "",
+        "example": "2038-01-19T03:14:07.000Z"
       },
       {
         "name": "locale",
         "schema": "string",
         "required": false,
-        "description": ""
+        "description": "",
+        "example": "en-US"
       },
       {
         "name": "merchant_data",
         "schema": "string",
         "required": false,
-        "description": ""
+        "description": "",
+        "example": "{\"order_specific\":[{\"substore\":\"Women's Fashion\",\"product_name\":\"Women Sweatshirt\"}]}"
       },
       {
         "name": "merchant_reference1",
         "schema": "string",
         "required": false,
-        "description": ""
+        "description": "",
+        "example": "ON4711"
       },
       {
         "name": "merchant_reference2",
         "schema": "string",
         "required": false,
-        "description": ""
+        "description": "",
+        "example": "hdt53h-zdgg6-hdaff2"
       },
       {
         "name": "merchant_urls",
@@ -126,7 +137,8 @@ export default function KlarnaPaymentsTypeScriptSdk() {
         "name": "order_amount",
         "schema": "integer",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": 2000
       },
       {
         "name": "order_lines",
@@ -138,7 +150,8 @@ export default function KlarnaPaymentsTypeScriptSdk() {
         "name": "order_tax_amount",
         "schema": "integer",
         "required": false,
-        "description": ""
+        "description": "",
+        "example": 333
       },
       {
         "name": "payment_method_categories",
@@ -150,13 +163,15 @@ export default function KlarnaPaymentsTypeScriptSdk() {
         "name": "purchase_country",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "GB"
       },
       {
         "name": "purchase_currency",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "GBP"
       },
       {
         "name": "shipping_address",
@@ -168,13 +183,15 @@ export default function KlarnaPaymentsTypeScriptSdk() {
         "name": "status",
         "schema": "string",
         "required": false,
-        "description": ""
+        "description": "",
+        "example": "complete"
       },
       {
         "name": "intent",
         "schema": "string",
         "required": false,
-        "description": ""
+        "description": "",
+        "example": "buy"
       }
     ],
     "responses": [
@@ -204,7 +221,8 @@ export default function KlarnaPaymentsTypeScriptSdk() {
         "name": "sessionId",
         "schema": "string",
         "required": true,
-        "description": "session_id"
+        "description": "session_id",
+        "example": "SESSION_ID"
       }
     ],
     "responses": [
@@ -234,12 +252,14 @@ export default function KlarnaPaymentsTypeScriptSdk() {
         "name": "sessionId",
         "schema": "string",
         "required": true,
-        "description": "session_id"
+        "description": "session_id",
+        "example": "SESSION_ID"
       },
       {
         "name": "acquiring_channel",
         "schema": "string",
-        "description": ""
+        "description": "",
+        "example": "ECOMMERCE"
       },
       {
         "name": "attachment",
@@ -259,7 +279,8 @@ export default function KlarnaPaymentsTypeScriptSdk() {
       {
         "name": "client_token",
         "schema": "string",
-        "description": ""
+        "description": "",
+        "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.ewogICJzZXNzaW9uX2lkIiA6ICIw"
       },
       {
         "name": "custom_payment_method_ids",
@@ -279,27 +300,32 @@ export default function KlarnaPaymentsTypeScriptSdk() {
       {
         "name": "expires_at",
         "schema": "string",
-        "description": ""
+        "description": "",
+        "example": "2038-01-19T03:14:07.000Z"
       },
       {
         "name": "locale",
         "schema": "string",
-        "description": ""
+        "description": "",
+        "example": "en-GB"
       },
       {
         "name": "merchant_data",
         "schema": "string",
-        "description": ""
+        "description": "",
+        "example": "{\"order_specific\":[{\"substore\":\"Women's Fashion\",\"product_name\":\"Women Sweatshirt\"}]}"
       },
       {
         "name": "merchant_reference1",
         "schema": "string",
-        "description": ""
+        "description": "",
+        "example": "ON4711"
       },
       {
         "name": "merchant_reference2",
         "schema": "string",
-        "description": ""
+        "description": "",
+        "example": "hdt53h-zdgg6-hdaff2"
       },
       {
         "name": "merchant_urls",
@@ -314,7 +340,8 @@ export default function KlarnaPaymentsTypeScriptSdk() {
       {
         "name": "order_amount",
         "schema": "integer",
-        "description": ""
+        "description": "",
+        "example": 2000
       },
       {
         "name": "order_lines",
@@ -324,7 +351,8 @@ export default function KlarnaPaymentsTypeScriptSdk() {
       {
         "name": "order_tax_amount",
         "schema": "integer",
-        "description": ""
+        "description": "",
+        "example": 333
       },
       {
         "name": "payment_method_categories",
@@ -334,12 +362,14 @@ export default function KlarnaPaymentsTypeScriptSdk() {
       {
         "name": "purchase_country",
         "schema": "string",
-        "description": ""
+        "description": "",
+        "example": "GB"
       },
       {
         "name": "purchase_currency",
         "schema": "string",
-        "description": ""
+        "description": "",
+        "example": "GBP"
       },
       {
         "name": "shipping_address",
@@ -349,12 +379,14 @@ export default function KlarnaPaymentsTypeScriptSdk() {
       {
         "name": "status",
         "schema": "string",
-        "description": ""
+        "description": "",
+        "example": "complete"
       },
       {
         "name": "intent",
         "schema": "string",
-        "description": ""
+        "description": "",
+        "example": "buy"
       }
     ],
     "responses": [
@@ -388,7 +420,8 @@ export default function KlarnaPaymentsTypeScriptSdk() {
         "name": "authorizationToken",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "AUTHORIZATIONTOKEN"
       }
     ],
     "responses": [
@@ -418,7 +451,8 @@ export default function KlarnaPaymentsTypeScriptSdk() {
         "name": "authorizationToken",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "AUTHORIZATIONTOKEN"
       },
       {
         "name": "authorization_token",
@@ -430,7 +464,8 @@ export default function KlarnaPaymentsTypeScriptSdk() {
         "name": "auto_capture",
         "schema": "boolean",
         "required": false,
-        "description": ""
+        "description": "",
+        "default": false
       },
       {
         "name": "billing_address",
@@ -454,25 +489,29 @@ export default function KlarnaPaymentsTypeScriptSdk() {
         "name": "locale",
         "schema": "string",
         "required": false,
-        "description": ""
+        "description": "",
+        "example": "en-GB"
       },
       {
         "name": "merchant_data",
         "schema": "string",
         "required": false,
-        "description": ""
+        "description": "",
+        "example": "{\"order_specific\":[{\"substore\":\"Women's Fashion\",\"product_name\":\"Women Sweatshirt\"}]}"
       },
       {
         "name": "merchant_reference1",
         "schema": "string",
         "required": false,
-        "description": ""
+        "description": "",
+        "example": "ON4711"
       },
       {
         "name": "merchant_reference2",
         "schema": "string",
         "required": false,
-        "description": ""
+        "description": "",
+        "example": "hdt53h-zdgg6-hdaff2"
       },
       {
         "name": "merchant_urls",
@@ -484,7 +523,8 @@ export default function KlarnaPaymentsTypeScriptSdk() {
         "name": "order_amount",
         "schema": "integer",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": 2000
       },
       {
         "name": "order_lines",
@@ -496,7 +536,8 @@ export default function KlarnaPaymentsTypeScriptSdk() {
         "name": "order_tax_amount",
         "schema": "integer",
         "required": false,
-        "description": ""
+        "description": "",
+        "example": 333
       },
       {
         "name": "payment_method_categories",
@@ -508,13 +549,15 @@ export default function KlarnaPaymentsTypeScriptSdk() {
         "name": "purchase_country",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "GB"
       },
       {
         "name": "purchase_currency",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "GBP"
       },
       {
         "name": "shipping_address",
@@ -526,7 +569,8 @@ export default function KlarnaPaymentsTypeScriptSdk() {
         "name": "status",
         "schema": "string",
         "required": false,
-        "description": ""
+        "description": "",
+        "example": "complete"
       }
     ],
     "responses": [
@@ -564,13 +608,15 @@ export default function KlarnaPaymentsTypeScriptSdk() {
         "name": "authorizationToken",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "AUTHORIZATIONTOKEN"
       },
       {
         "name": "description",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "DESCRIPTION"
       },
       {
         "name": "billing_address",
@@ -588,25 +634,29 @@ export default function KlarnaPaymentsTypeScriptSdk() {
         "name": "intended_use",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "INTENDED_USE"
       },
       {
         "name": "locale",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "en-GB"
       },
       {
         "name": "purchase_country",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "GB"
       },
       {
         "name": "purchase_currency",
         "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "GBP"
       }
     ],
     "responses": [
@@ -644,6 +694,8 @@ export default function KlarnaPaymentsTypeScriptSdk() {
       parameters={78}
       difficulty="Easy"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/klarna/payments/openapi.yaml"
+      openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/klarna/payments/openapi.yaml"
+      
     />
   );
 }

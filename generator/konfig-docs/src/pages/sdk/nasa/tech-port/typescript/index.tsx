@@ -4,11 +4,13 @@ import { HttpMethodsEnum } from "konfig-lib/dist/forEachOperation";
 import Description from "./_description.mdx";
 // @ts-ignore
 import GettingStarted from "./_getting-started.mdx";
-import { Sdk } from "@site/src/components/Sdk";
+// @ts-ignore
+import FirstRequest from "./_first-request.mdx"
+import { SdkNew } from "@site/src/components/SdkNew";
 
 export default function NasaTechPortTypeScriptSdk() {
   return (
-    <Sdk
+    <SdkNew
       sdkName="nasa-tech-port-typescript-sdk"
       metaDescription="NASA, the National Aeronautics and Space Administration, is an independent agency of the U.S. federal government responsible for the civilian space program, as well as aeronautics and aerospace research. NASA conducts space exploration missions, scientific research, and technology development to expand our understanding of the universe."
       company="NASA"
@@ -16,13 +18,15 @@ export default function NasaTechPortTypeScriptSdk() {
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/nasa/techport/logo.png"
       clientNameCamelCase="nasaTechPort"
       homepage="techport.nasa.gov/home"
-      lastUpdated={new Date("2024-03-11T06:04:39.099Z")}
+      lastUpdated={new Date("2024-03-13T02:25:22.175Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/nasa/techport/favicon.png"
       contactUrl="https://techport.nasa.gov"
       contactEmail="hq-techport@mail.nasa.gov"
       previewLinkImage="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/nasa/techport/imagePreview.png"
       GettingStarted={GettingStarted}
       Description={Description}
+      FirstRequest={FirstRequest}
+      categories={["space","government","aeronautics","science"]}
       methods={[
   {
     "url": "/api",
@@ -55,7 +59,8 @@ export default function NasaTechPortTypeScriptSdk() {
         "name": "updatedSince",
         "schema": "string",
         "required": true,
-        "description": "ISO 8601 full-date in the format YYYY-MM-DD. Filters the list of available ID values by their lastUpdated parameter."
+        "description": "ISO 8601 full-date in the format YYYY-MM-DD. Filters the list of available ID values by their lastUpdated parameter.",
+        "example": "UPDATEDSINCE"
       }
     ],
     "responses": [
@@ -131,7 +136,8 @@ export default function NasaTechPortTypeScriptSdk() {
         "name": "projectId",
         "schema": "integer",
         "required": true,
-        "description": "ID of project to fetch"
+        "description": "ID of project to fetch",
+        "example": 0
       }
     ],
     "responses": [
@@ -202,7 +208,8 @@ export default function NasaTechPortTypeScriptSdk() {
         "name": "organizationId",
         "schema": "integer",
         "required": true,
-        "description": "Organization Id."
+        "description": "Organization Id.",
+        "example": 0
       }
     ],
     "responses": [
@@ -228,6 +235,8 @@ export default function NasaTechPortTypeScriptSdk() {
       parameters={9}
       difficulty="Easy"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/nasa/techport/openapi.yaml"
+      openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/nasa/techport/openapi.yaml"
+      
     />
   );
 }
