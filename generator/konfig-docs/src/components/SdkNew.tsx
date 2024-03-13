@@ -165,41 +165,17 @@ function AboutCompany({
         <div className="shadow-inner w-fit rounded-md border p-4">
           <img className="max-w-[200px]" src={logo} alt={company} />
         </div>
-        <div className="flex items-end gap-4">
-          <h2 className="mt-4 mb-0 text-3xl text-slate-800">About {company}</h2>
-          <a
-            className="flex w-fit items-center group/link text-slate-400 hover:text-slate-700 hover:no-underline"
-            target="_blank"
-            href={`https://${homepage}`}
-          >
-            <div>{homepage}</div>
-            <IconExternalLink height="11.5" />
-          </a>
-        </div>
+        <h2 className="mt-4 mb-0 text-3xl text-slate-800">About {company}</h2>
         <p className="mt-2 max-w-[800px]">{metaDescription}</p>
       </div>
       <div className="mt-4 flex gap-2">
-        <a
-          href={openApiGitHubUi}
-          className="hover:no-underline"
-          target="_blank"
-        >
-          <button className="border hover:shadow-xl hover:bg-blue-50 border-blue-600 text-blue-600 transition-all hover:border-blue-800 hover:text-blue-800 rounded-md px-2 py-1 items-center flex gap-2">
-            <span className="font-semibold">OpenAPI</span>
-            <IconExternalLink className="h-5" />
-          </button>
-        </a>
+        <ExternalLinkButton label={homepage} url={homepage} />
+        <ExternalLinkButton label={"OpenAPI"} url={openApiGitHubUi} />
         {developerDocumentation && (
-          <a
-            href={`https://${developerDocumentation}`}
-            className="hover:no-underline"
-            target="_blank"
-          >
-            <button className="border hover:shadow-xl hover:bg-blue-50 border-blue-600 text-blue-600 transition-all hover:border-blue-800 hover:text-blue-800 rounded-md px-2 py-1 items-center flex gap-2">
-              <span className="font-semibold">API Documentation</span>
-              <IconExternalLink className="h-5" />
-            </button>
-          </a>
+          <ExternalLinkButton
+            label="API Documentation"
+            url={developerDocumentation}
+          />
         )}
       </div>
       <div className="mt-4">
@@ -215,6 +191,18 @@ function AboutCompany({
         </div>
       </div>
     </div>
+  );
+}
+
+function ExternalLinkButton({ url, label }: { url: string; label: string }) {
+  const withHttps = url.startsWith("https://") ? url : `https://${url}`;
+  return (
+    <a href={withHttps} className="hover:no-underline" target="_blank">
+      <button className="border hover:shadow-xl hover:bg-blue-50 border-blue-700 text-blue-700 transition-all hover:border-blue-900 hover:text-blue-900 rounded-md px-2 py-1 items-center flex gap-2">
+        <span className="font-semibold">{label}</span>
+        <IconExternalLink className="h-5" />
+      </button>
+    </a>
   );
 }
 
