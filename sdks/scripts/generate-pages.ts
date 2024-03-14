@@ -183,20 +183,11 @@ function addToRedirectsJson({
   //     "/sdk/company" redirects to "/sdk/company/typescript" if there is no service
   // Also include a version with and without an ending slash
   if (service !== undefined) {
-    const companyRedirectPath = `/sdk/${company}`
     const serviceRedirectPath = `/sdk/${company}/${service}`
-    const redirectTarget = `${serviceRedirectPath}/typescript/`
-    redirectsJson[companyRedirectPath] = redirectTarget
-    redirectsJson[companyRedirectPath + '/'] = redirectTarget
     redirectsJson[serviceRedirectPath] = `${serviceRedirectPath}/typescript/`
     redirectsJson[
       serviceRedirectPath + '/'
     ] = `${serviceRedirectPath}/typescript/`
-  } else {
-    const redirectPath = `/sdk/${company}`
-    const redirectTarget = `${redirectPath}/typescript/`
-    redirectsJson[redirectPath] = redirectTarget
-    redirectsJson[redirectPath + '/'] = redirectTarget
   }
 }
 
