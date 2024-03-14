@@ -38,16 +38,16 @@ import fetch from "cross-fetch"; // required 'fetch'
  */
 export type CustomRequest = (
   | {
-    url: string;
-    defaultUrlForBrokenLinks?: string;
-    regex?: string;
-    type: "GET";
-  }
+      url: string;
+      defaultUrlForBrokenLinks?: string;
+      regex?: string;
+      type: "GET";
+    }
   | { url: string; body: string }
   | {
-    lambda: (browser: PuppeteerBrowser) => Promise<string>;
-    defaultUrlForBrokenLinks?: string;
-  }
+      lambda: (browser: PuppeteerBrowser) => Promise<string>;
+      defaultUrlForBrokenLinks?: string;
+    }
 ) & {
   securitySchemes?: SecuritySchemes;
   apiBaseUrl?: string;
@@ -633,18 +633,8 @@ const customRequests: Record<string, CustomRequest> = {
     url: "https://raw.githubusercontent.com/appwrite/appwrite/main/app/config/specs/open-api3-latest-console.json",
   },
   "asana.com": {
-    lambda: async () => {
-      const response = await fetch(
-        "https://raw.githubusercontent.com/Asana/openapi/master/defs/asana_oas.yaml"
-      );
-      let rawSpecString = await response.text();
-      // we need to remove the extra space in the description so that its rendered as a link in markdown
-      const toReplace = `[OpenAPI spec]
-    (https://raw.githubusercontent.com/Asana/openapi/master/defs/asana_oas.yaml).`
-      const replacement = `[OpenAPI spec](https://raw.githubusercontent.com/Asana/openapi/master/defs/asana_oas.yaml).`
-      rawSpecString = rawSpecString.replaceAll(toReplace, replacement);
-      return rawSpecString;
-    },
+    type: "GET",
+    url: "https://raw.githubusercontent.com/Asana/openapi/master/defs/asana_oas.yaml",
   },
   "hsbc.com_AccountInformationCE": {
     lambda: async (browser) => {
@@ -1014,7 +1004,7 @@ async function processCustomRequest({
   let rawSpecStringCurrent: string | null = null;
   if (
     lastFetched !== undefined &&
-    process.env.FILTER_CUSTOMER === undefined &&
+    process.env.FILTER_CUSTOM === undefined &&
     lastFetched > new Date(Date.now() - 1000 * 60 * 60 * 24)
   ) {
     console.log(`Skip fetching ${key} due to last fetched being recent`);
