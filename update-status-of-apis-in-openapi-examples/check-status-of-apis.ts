@@ -93,6 +93,7 @@ const STATUS_LOG_FILENAME = "status_log.yaml";
 async function main() {
   const OPENAPI_EXAMPLES_PATH = path.join(
     path.dirname(__dirname),
+    "sdks",
     "openapi-examples"
   );
 
