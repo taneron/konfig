@@ -6,23 +6,26 @@
  * For an explanation of the new pSEO page, see the ticket here:
  * https://www.notion.so/konfigthis/Restructure-pSEO-pages-based-on-Zapier-5ff64f53351a4ae2bf728e338b56e57d?pvs=4
  */
-import React, { PropsWithChildren, useEffect, useState } from "react";
-import { Sdk, SdkMethod } from "./Sdk";
-import Layout from "@theme/Layout";
-import Head from "@docusaurus/Head";
+import React, { useEffect, useState } from 'react'
+import { Sdk, SdkMethod } from './Sdk'
+import Layout from '@theme/Layout'
+import Head from '@docusaurus/Head'
 import {
   IconArrowsDownUp,
-  IconChevronRight,
   IconExternalLink,
   IconPencil,
-} from "@tabler/icons-react";
-import { TsIcon } from "./TsIcon";
-import { useSdkSignup } from "../util/use-sdk-signup";
-import clsx from "clsx";
-import { LoadingIcon } from "./LoadingIcon";
-import { Method } from "./SdkComponentProps";
+} from '@tabler/icons-react'
+import { TsIcon } from './TsIcon'
+import { useSdkSignup } from '../util/use-sdk-signup'
+import clsx from 'clsx'
+import { LoadingIcon } from './LoadingIcon'
+import { Method } from './SdkComponentProps'
+import { Breadcrumbs } from './Breadcrumbs'
+import { LogoBox } from './LogoBox'
+import useContentLoaded from '../util/use-content-loaded'
+import { HowKonfigWorks } from './HowKonfigWorks'
 
-type InputPropsFromOriginalSdkComponent = React.ComponentProps<typeof Sdk>;
+type InputPropsFromOriginalSdkComponent = React.ComponentProps<typeof Sdk>
 
 export function SdkNew({
   serviceName,
@@ -41,17 +44,17 @@ export function SdkNew({
   developerDocumentation,
 }: InputPropsFromOriginalSdkComponent) {
   const serviceNameSubstring =
-    serviceName !== undefined ? ` ${serviceName}` : "";
-  const description = `Explore the ${company}${serviceNameSubstring} TypeScript SDK. Discover SDK ${methods.length} methods to integrate ${company}'s${serviceNameSubstring} API into your application.`;
+    serviceName !== undefined ? ` ${serviceName}` : ''
+  const description = `Explore the ${company}${serviceNameSubstring} TypeScript SDK. Discover SDK ${methods.length} methods to integrate ${company}'s${serviceNameSubstring} API into your application.`
   if (FirstRequest === undefined) {
     throw new Error(
-      "FirstRequest is required for the SdkNew component. It is used to render the 'MakeYourFirstRequest' section."
-    );
+      "FirstRequest is required for the SdkNew component. It is used to render the 'MakeYourFirstRequest' section.",
+    )
   }
   if (categories === undefined) {
-    throw new Error("categories is required for the SdkNew component");
+    throw new Error('categories is required for the SdkNew component')
   }
-  const title = `Integrate ${company}'s${serviceNameSubstring} API using Konfig's ${language} SDK`;
+  const title = `Integrate ${company}'s${serviceNameSubstring} API using Konfig's ${language} SDK`
   /*
 Easily Integrate
             <br />
@@ -108,41 +111,42 @@ Easily Integrate
       <BottomCTA
         company={company}
         language={language}
-        serviceNane={serviceName}
+        serviceName={serviceName}
         serviceNameSubString={serviceNameSubstring}
       />
     </Layout>
-  );
+  )
 }
 
 function BottomCTA({
   company,
   language,
-  serviceNane,
+  serviceName,
   serviceNameSubString,
 }: {
-  company: string;
-  language: string;
-  serviceNane?: string;
-  serviceNameSubString?: string;
+  company: string
+  language: string
+  serviceName?: string
+  serviceNameSubString?: string
 }) {
   return (
-    <div className="py-16 px-8 md:px-48 bg-gradient-to-tl from-[var(--ifm-color-primary-darkest)] to-[var(--ifm-color-primary)]">
-      <h2 className="text-3xl text-white">
+    <div className="py-32 px-8 md:px-48 bg-gradient-to-tl from-[var(--ifm-color-primary-darkest)] to-[var(--ifm-color-primary)]">
+      <h2 className="text-3xl sm:text-4xl text-white">
         Start integrating {company}'s{serviceNameSubString} API with Konfig
       </h2>
       <SignupForm
+        bottomCTA
         company={company}
         language={language}
-        serviceName={serviceNane}
+        serviceName={serviceName}
         serviceNameSubString={serviceNameSubString}
         doNotShowQuestion
       />
     </div>
-  );
+  )
 }
 
-function AboutCompany({
+export function AboutCompany({
   company,
   logo,
   metaDescription,
@@ -151,30 +155,28 @@ function AboutCompany({
   openApiGitHubUi,
   developerDocumentation,
 }: {
-  company: string;
-  logo: string;
-  metaDescription: string;
-  homepage: string;
-  categories: string[];
-  openApiGitHubUi: string;
-  developerDocumentation?: string;
+  company: string
+  logo: string
+  metaDescription: string
+  homepage: string
+  categories: string[]
+  openApiGitHubUi?: string
+  developerDocumentation?: string
 }) {
   return (
-    <div className="py-20 px-8 md:px-32">
+    <div className="py-20 px-8 md:px-32 bg-white">
       <div className="w-fit">
-        <div className="shadow-inner w-fit rounded-md border p-4">
-          <img
-            className="max-w-[200px] max-h-[80px]"
-            src={logo}
-            alt={company}
-          />
+        <div className="shadow-inner max-w-[200px] max-h-[80px] rounded-md border p-4">
+          <img className="w-full h-full" src={logo} alt={company} />
         </div>
         <h2 className="mt-4 mb-0 text-3xl text-slate-800">About {company}</h2>
         <p className="mt-2 max-w-[800px]">{metaDescription}</p>
       </div>
       <div className="mt-4 flex gap-2">
         <ExternalLinkButton label={homepage} url={homepage} />
-        <ExternalLinkButton label={"OpenAPI"} url={openApiGitHubUi} />
+        {openApiGitHubUi && (
+          <ExternalLinkButton label={'OpenAPI'} url={openApiGitHubUi} />
+        )}
         {developerDocumentation && (
           <ExternalLinkButton
             label="API Documentation"
@@ -187,114 +189,31 @@ function AboutCompany({
         <div className="flex gap-x-4 gap-y-2 flex-wrap">
           {categories.map((category) => {
             return (
-              <button className="z-10 flex items-center gap-1 border font-medium rounded-md px-2 py-1 transition-all bg-slate-50 hover:bg-slate-100 border-slate-300 text-slate-600 hover:text-slate-800">
+              <button
+                key={category}
+                className="z-10 flex items-center gap-1 border font-medium rounded-md px-2 py-1 transition-all bg-slate-50 hover:bg-slate-100 border-slate-300 text-slate-600 hover:text-slate-800"
+              >
                 <span>{category}</span>
               </button>
-            );
+            )
           })}
         </div>
       </div>
     </div>
-  );
+  )
 }
 
 function ExternalLinkButton({ url, label }: { url: string; label: string }) {
-  const withHttps = url.startsWith("https://") ? url : `https://${url}`;
+  const withHttps = url.startsWith('https://') ? url : `https://${url}`
+  const withoutHttps = label.startsWith('https://') ? label.slice(8) : label
   return (
     <a href={withHttps} className="hover:no-underline" target="_blank">
       <button className="border hover:shadow-xl hover:bg-blue-50 border-blue-700 text-blue-700 transition-all hover:border-blue-900 hover:text-blue-900 rounded-md px-2 py-1 items-center flex gap-2">
-        <span className="font-semibold">{label}</span>
+        <span className="font-semibold">{withoutHttps}</span>
         <IconExternalLink className="h-5" />
       </button>
     </a>
-  );
-}
-
-function HowKonfigWorks() {
-  return (
-    <div className="py-20 px-3 bg-gradient-to-br from-[rgb(8,17,25)] to-[hsl(243_75%_20%)]">
-      <h2 className="text-2xl sm:text-3xl text-white text-center font-bold">
-        How Konfig Works
-      </h2>
-      <p className="px-8 mx-auto text-base sm:text-xl text-center max-w-[550px] text-[hsl(243_75%_95%)]">
-        Konfig collects APIs and automatically generates SDKs so you can focus
-        on building your application.
-      </p>
-      <div className="flex flex-col lg:flex-row gap-4 lg:gap-24 px-16 py-20 items-center">
-        <div className="shadow-xl  lg:w-[500px] shrink-0 rounded-md overflow-hidden">
-          <a
-            target="_blank"
-            href="https://github.com/konfig-sdks/openapi-examples"
-          >
-            <img src="/img/openapi-examples.png" alt="openapi-examples" />
-          </a>
-        </div>
-        <div className="grow-0">
-          <h3 className="text-[hsl(243_75%_97%)] text-2xl leading-tight sm:text-3xl">
-            Konfig maintains the highest quality collection of OpenAPI
-            Specifications on the internet in a{" "}
-            <a
-              target="_blank"
-              className="text-white hover:text-white hover:no-underline border-b-2 hover:border-b-4 border-b-[hsl(243_75%_70%)]"
-              href="https://github.com/konfig-sdks/openapi-examples"
-            >
-              GitHub repository
-            </a>
-          </h3>
-          <p className="text-xl text-[hsl(243_75%_95%)]">
-            We pull OpenAPI Specifications from public sources, fix any errors,
-            and make sure they pass our{" "}
-            <a
-              className="text-white hover:text-white hover:no-underline border-b hover:border-b-2 border-b-[hsl(243_75%_70%)]"
-              href="/docs/lint-rules/"
-            >
-              lint rules
-            </a>
-            . We continually make sure the repository is up-to-date and collect
-            up-time and response time metrics for every API.
-          </p>
-        </div>
-      </div>
-      <div className="flex flex-col lg:flex-row gap-4 lg:gap-24 px-16 py-20 items-center">
-        <div className="shadow-xl  lg:w-[500px] shrink-0 rounded-md overflow-hidden">
-          <img
-            src="/img/openapi-examples-to-konfig.png"
-            alt="openapi-examples-to-konfig"
-          />
-        </div>
-        <div className="grow-0">
-          <h3 className="text-[hsl(243_75%_97%)] text-2xl leading-tight sm:text-3xl">
-            Generates SDKs from{" "}
-            <span className="font-mono whitespace-nowrap">
-              openapi-examples
-            </span>
-          </h3>
-          <p className="text-xl text-[hsl(243_75%_95%)]">
-            Our SDK generator is trusted by growing API companies and goes
-            through a rigorous testing process to ensure the generated SDKs are
-            high-quality and easy to use.
-          </p>
-        </div>
-      </div>
-      <div className="flex flex-col lg:flex-row gap-4 lg:gap-24 px-16 py-20 items-center">
-        <div className="shadow-xl  lg:w-[500px] shrink-0 rounded-md overflow-hidden">
-          <img
-            src="/img/konfig-to-package-managers.png"
-            alt="konfig-to-package-managers"
-          />
-        </div>
-        <div className="grow-0">
-          <h3 className="text-[hsl(243_75%_97%)] text-2xl leading-tight sm:text-3xl">
-            Publishes to standard package managers
-          </h3>
-          <p className="text-xl text-[hsl(243_75%_95%)]">
-            We publish to standard package managers like npm, PyPI, and Maven so
-            you can easily integrate the SDK into your application.
-          </p>
-        </div>
-      </div>
-    </div>
-  );
+  )
 }
 
 function MakeYourFirstRequest({
@@ -306,17 +225,17 @@ function MakeYourFirstRequest({
   methods,
   clientNameCamelCase,
 }: {
-  GettingStarted: React.ComponentType;
-  FirstRequest: React.ComponentType;
-  company: string;
-  serviceNameSubstring?: string;
-  language: string;
-  methods: Method[];
-  clientNameCamelCase: string;
+  GettingStarted: React.ComponentType
+  FirstRequest: React.ComponentType
+  company: string
+  serviceNameSubstring?: string
+  language: string
+  methods: Method[]
+  clientNameCamelCase: string
 }) {
-  const [amountToShow, setAmountToShow] = useState(6);
-  const numberOfMethods = methods.length;
-  methods = methods.slice(0, amountToShow);
+  const [amountToShow, setAmountToShow] = useState(6)
+  const numberOfMethods = methods.length
+  methods = methods.slice(0, amountToShow)
   return (
     <div className="bg-white pt-10 pb-20 px-3">
       <h2 className="text-2xl mb-0 sm:text-3xl text-slate-800 text-center font-bold">
@@ -343,17 +262,17 @@ function MakeYourFirstRequest({
       </h2>
       <div className="container">
         <div className="grid gap-4 grid-cols-1 md:grid-cols-2">
-          {methods.map((method) => {
+          {methods.map((method, i) => {
             return (
-              <div className="h-fit">
+              <div key={i} className="h-fit">
                 <SdkMethod {...{ ...method, company, clientNameCamelCase }} />
               </div>
-            );
+            )
           })}
         </div>
         <button
           onClick={() => {
-            setAmountToShow((amount) => amount + 6);
+            setAmountToShow((amount) => amount + 6)
           }}
           aria-hidden={amountToShow >= numberOfMethods}
           className="aria-hidden:hidden mt-4 mx-auto group flex gap-3 hover:gap-2 items-center transition-all bg-gradient-to-br text-white w-fit text-center font-semibold px-3 py-2 from-blue-600 to-blue-800 rounded-md text-1xl"
@@ -362,7 +281,7 @@ function MakeYourFirstRequest({
         </button>
       </div>
     </div>
-  );
+  )
 }
 
 function TrustedBy() {
@@ -390,7 +309,7 @@ function TrustedBy() {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
 function HeroSection({
@@ -400,18 +319,16 @@ function HeroSection({
   serviceName,
   logo,
 }: {
-  language: string;
-  company: string;
-  serviceName?: string;
-  serviceNameSubstring?: string;
-  logo: string;
+  language: string
+  company: string
+  serviceName?: string
+  serviceNameSubstring?: string
+  logo: string
 }) {
-  const [showGraphic, setShowGraphic] = useState(false);
-  useEffect(() => {
-    setTimeout(() => {
-      setShowGraphic(true);
-    }, 500);
-  }, []);
+  const [showGraphic, setShowGraphic] = useState(false)
+  useContentLoaded(() => {
+    setShowGraphic(true)
+  })
   return (
     <div className="mx-auto max-w-[375px] px-3 sm:max-w-none sm:px-8 lg:px-20 py-12">
       <div className="mx-auto flex flex-col items-center sm:max-w-[625px] lg:max-w-none lg:flex-row gap-2 lg:gap-20">
@@ -420,9 +337,9 @@ function HeroSection({
             Easily Integrate
             <br />
             <span className="text-white">
-              {" "}
-              {company}'s{serviceNameSubstring} API{" "}
-            </span>{" "}
+              {' '}
+              {company}'s{serviceNameSubstring} API{' '}
+            </span>{' '}
             using <span className="text-white">Konfig's {language} SDK</span>
           </h1>
           <SignupForm
@@ -436,12 +353,10 @@ function HeroSection({
           aria-hidden={!showGraphic}
           className="opacity-1 aria-hidden:opacity-0 flex items-center flex-col lg:min-w-[400px] xl:min-w-[540px] transition-all duration-1000"
         >
-          <div className="my-5 p-4 shadow-xl rounded-sm w-fit bg-gradient-to-br relative from-white to-slate-300">
-            <img className="sm:h-16" src={logo} alt={`${company} logo`} />
-          </div>
+          <LogoBox logo={logo} company={company} />
           <IconArrowsDownUp className="text-blue-200" />
-          <div className="my-5 flex items-center bg-white shadow-xl rounded-sm">
-            <div className="bg-blue-200 rounded-sm">
+          <div className="my-5 flex items-center bg-white shadow-xl rounded-md">
+            <div className="bg-blue-200 rounded-tl-md rounded-bl-md">
               <TsIcon className="h-36" />
             </div>
             <div className="px-4 text-sm md:text-base lg:text-xl">
@@ -457,7 +372,7 @@ function HeroSection({
         </div>
       </div>
     </div>
-  );
+  )
 }
 
 function SignupForm({
@@ -466,32 +381,45 @@ function SignupForm({
   language,
   serviceNameSubString,
   doNotShowQuestion,
+  bottomCTA,
 }: {
-  company: string;
-  serviceName?: string;
-  language: string;
-  serviceNameSubString?: string;
-  doNotShowQuestion?: boolean;
+  company: string
+  serviceName?: string
+  language: string
+  serviceNameSubString?: string
+  doNotShowQuestion?: boolean
+  bottomCTA?: boolean
 }) {
-  const { setEmail, signedUp, signedUpEmail, loading, handleSubmit, email } =
-    useSdkSignup({
-      company,
-      serviceName,
-      language,
-    });
+  const {
+    setEmail,
+    signedUp,
+    signedUpEmail,
+    loading,
+    handleSubmit,
+    email,
+  } = useSdkSignup({
+    company,
+    serviceName,
+    language,
+  })
 
   return (
     <form
       onSubmit={handleSubmit}
       id="signup"
-      className="p-8 rounded-md bg-blue-100 ring-1 transition-all hover:scale-[1.01] hover:shadow-lg shadow-md mb-8"
+      data-windowed={!bottomCTA}
+      className="data-[windowed=true]:py-4 data-[windowed=true]:px-8 rounded-md data-[windowed=true]:bg-blue-100 data-[windowed=true]:ring-1 data-[windowed=true]:transition-all data-[windowed=true]:hover:scale-[1.01] data-[windowed=true]:hover:shadow-lg data-[windowed=true]:shadow-md data-[windowed=true]:my-8"
     >
       <div className="flex flex-col">
         {((!signedUp && !doNotShowQuestion) || signedUp) && (
           <h2
-            className={clsx("text-base md:text-lg text-blue-900 font-bold", {
-              "mb-3": !signedUp,
-            })}
+            data-bottom={bottomCTA}
+            className={clsx(
+              'text-base md:text-lg text-blue-900 data-[bottom=true]:text-white font-bold',
+              {
+                'mb-3': !signedUp,
+              },
+            )}
           >
             {signedUp
               ? `Thanks for signing up for access to ${company}'s ${language} SDK 🎉!`
@@ -500,10 +428,22 @@ function SignupForm({
         )}
         {signedUp ? (
           <>
-            <p className="mb-4">{`Your email, ${signedUpEmail}, has been successfully registered for access to the ${language} SDK. We will notify you by email soon.`}</p>
-            <p className="mb-0">
-              For inquiries or support, please contact us at{" "}
-              <a href="mailto:sdks@konfigthis.com">sdks@konfigthis.com</a>
+            <p
+              data-bottom={bottomCTA}
+              className="mb-4 data-[bottom=true]:text-white"
+            >{`Your email, ${signedUpEmail}, has been successfully registered for access to the ${language} SDK. We will notify you by email soon.`}</p>
+            <p
+              data-bottom={bottomCTA}
+              className="mb-0 data-[bottom=true]:text-white"
+            >
+              For inquiries or support, please contact us at{' '}
+              <a
+                data-bottom={bottomCTA}
+                href="mailto:sdks@konfigthis.com"
+                className="data-[bottom=true]:text-blue-100 font-bold"
+              >
+                sdks@konfigthis.com
+              </a>
             </p>
           </>
         ) : null}
@@ -511,7 +451,7 @@ function SignupForm({
           <input
             type="email"
             name="email"
-            className="rounded-md px-2 py-1 w-full mb-2"
+            className="rounded-md border px-2 py-1 w-full mb-2"
             placeholder="Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -539,74 +479,5 @@ function SignupForm({
         )}
       </div>
     </form>
-  );
-}
-
-/**
- * Responsive breadcrumbs for the pSEO page.
- */
-function Breadcrumbs({
-  company,
-  language,
-  serviceName,
-}: {
-  company: string;
-  language: string;
-  serviceName?: string;
-}) {
-  return (
-    <div className="text-white mx-auto px-3 max-w-[375px] sm:max-w-none sm:px-8 text-lg font-semibold">
-      {/* Desktop */}
-      <nav className="hidden lg:block">
-        <ol className="px-0 flex gap-1 list-none items-center">
-          <li>
-            <BreadcrumbLink href="/sdk">SDKs</BreadcrumbLink>
-          </li>
-          <BreadcrumbSeparator />
-          <li>
-            <BreadcrumbNonLink>{company}</BreadcrumbNonLink>
-          </li>
-          <BreadcrumbSeparator />
-          {serviceName && (
-            <>
-              <li>
-                <BreadcrumbNonLink>{serviceName}</BreadcrumbNonLink>
-              </li>
-              <BreadcrumbSeparator />
-            </>
-          )}
-          <li>
-            <BreadcrumbNonLink>{language}</BreadcrumbNonLink>
-          </li>
-        </ol>
-      </nav>
-      {/* Mobile */}
-      <nav className="sm:mx-auto w-fit flex gap-1 lg:hidden">
-        <BreadcrumbNonLink>{company}</BreadcrumbNonLink>+
-        <BreadcrumbNonLink>{language}</BreadcrumbNonLink>
-      </nav>
-    </div>
-  );
-}
-
-function BreadcrumbLink({
-  children,
-  href,
-}: PropsWithChildren<{ href: string }>) {
-  return (
-    <a
-      className="text-white border-b border-b-blue-200 hover:border-b-2 hover:no-underline hover:text-white"
-      href={href}
-    >
-      {children}
-    </a>
-  );
-}
-
-function BreadcrumbNonLink({ children }: PropsWithChildren<{}>) {
-  return <span className="text-blue-200">{children}</span>;
-}
-
-function BreadcrumbSeparator() {
-  return <IconChevronRight className="h-5 text-blue-300" />;
+  )
 }
