@@ -16,6 +16,7 @@ export default function OneDocTypeScriptSdk() {
       company="OneDoc"
       // Missing serviceName
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/onedoc/logo.png"
+      companyKebabCase="one-doc"
       clientNameCamelCase="oneDoc"
       homepage="onedoc.com"
       lastUpdated={new Date("2024-03-13T02:25:22.175Z")}

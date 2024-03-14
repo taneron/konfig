@@ -16,6 +16,7 @@ export default function PostmarkTypeScriptSdk() {
       company="Postmark"
       // Missing serviceName
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/postmark/logo.svg"
+      companyKebabCase="postmark"
       clientNameCamelCase="postmark"
       homepage="postmarkapp.com"
       lastUpdated={new Date("2024-03-13T02:25:22.175Z")}

@@ -100,6 +100,7 @@ export default function Dev() {
       favicon="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/dev/favicon.png"
       sdks={sdks}
       homepage="dev.to"
+      companyKebabCase="dev"
       categories={allCategories}
       metaDescription={`DEV is a community of software developers where they can share knowledge, collaborate, and learn from each other. It's a platform for writing, reading, and discussing code and software development topics. DEV also provides resources, tools, and opportunities for developers to grow their skills and network with industry professionals.`}
     />

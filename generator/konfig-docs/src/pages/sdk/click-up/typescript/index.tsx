@@ -16,6 +16,7 @@ export default function ClickUpTypeScriptSdk() {
       company="ClickUp"
       // Missing serviceName
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/clickup/logo.png"
+      companyKebabCase="click-up"
       clientNameCamelCase="clickUp"
       homepage="clickup.com"
       lastUpdated={new Date("2024-03-13T16:59:14.076Z")}

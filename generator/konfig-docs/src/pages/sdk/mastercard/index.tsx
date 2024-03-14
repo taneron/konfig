@@ -61,6 +61,7 @@ export default function Mastercard() {
       favicon="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/mastercard/favicon.png"
       sdks={sdks}
       homepage="finicity.com"
+      companyKebabCase="mastercard"
       categories={allCategories}
       metaDescription={`Mastercard is a global payment technology company that connects billions of consumers, financial institutions, merchants, governments, and businesses worldwide, enabling them to use electronic forms of payment securely and efficiently.`}
     />

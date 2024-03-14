@@ -33,6 +33,7 @@ type APIProps = {
   categories: string[]
   metaDescription: string
   sdks: Sdk[]
+  companyKebabCase: string
 }
 
 export function Company({
@@ -44,6 +45,7 @@ export function Company({
   homepage,
   categories,
   metaDescription,
+  companyKebabCase,
 }: APIProps) {
   const title = `${company} SDKs`
   const description = `Explore SDKs for ${company}. Start using Konfig SDKs, the easiest way to integrate ${company} into your application.`
@@ -60,7 +62,7 @@ export function Company({
         className="bg-slate-100"
       >
         <div className="pt-8 pb-24 bg-gradient-to-tl from-[var(--ifm-color-primary-darkest)] to-[var(--ifm-color-primary)]">
-          <Breadcrumbs company={company} />
+          <Breadcrumbs companyKebabCase={companyKebabCase} company={company} />
           <HeroSection
             logo={logo}
             company={company}
@@ -234,7 +236,7 @@ function SdkLinkItem({
               <a
                 className="flex w-fit items-center group/link text-slate-400 hover:text-slate-700 text-xs sm:text-sm hover:no-underline"
                 target="_blank"
-                href={developerDocumentation}
+                href={`https://${developerDocumentation}`}
               >
                 <div>{service !== undefined ? `${service} ` : ``}API Docs</div>
                 <IconExternalLink height="11.5" />

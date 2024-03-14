@@ -16,6 +16,7 @@ export default function KlarnaCheckoutTypeScriptSdk() {
       company="Klarna"
       serviceName="Checkout"
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/klarna/checkout/logo.png"
+      companyKebabCase="klarna"
       clientNameCamelCase="klarnaCheckout"
       homepage="klarna.com"
       lastUpdated={new Date("2024-03-13T17:47:38.295Z")}

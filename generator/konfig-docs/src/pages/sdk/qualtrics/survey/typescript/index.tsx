@@ -16,6 +16,7 @@ export default function QualtricsSurveyTypeScriptSdk() {
       company="Qualtrics"
       serviceName="Survey"
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/qualtrics/survey/logo.svg"
+      companyKebabCase="qualtrics"
       clientNameCamelCase="qualtrics"
       homepage="api.qualtrics.com"
       lastUpdated={new Date("2024-03-13T02:25:22.175Z")}

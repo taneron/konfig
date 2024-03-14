@@ -76,6 +76,7 @@ export default function Multiwoven() {
       favicon="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/multiwoven/favicon.png"
       sdks={sdks}
       homepage="www.multiwoven.com/"
+      companyKebabCase="multiwoven"
       categories={allCategories}
       metaDescription={`Open-source Reverse ETL that makes data segmentation, sync and activation both easy and fully secure.`}
     />

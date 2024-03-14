@@ -16,6 +16,7 @@ export default function SpotifyTypeScriptSdk() {
       company="Spotify"
       // Missing serviceName
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/spotify/logo.png"
+      companyKebabCase="spotify"
       clientNameCamelCase="spotify"
       homepage="developer.spotify.com"
       lastUpdated={new Date("2024-03-13T22:23:48.955Z")}

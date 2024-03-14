@@ -16,6 +16,7 @@ export default function WikimediaTypeScriptSdk() {
       company="Wikimedia"
       // Missing serviceName
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/wikimedia/logo.png"
+      companyKebabCase="wikimedia"
       clientNameCamelCase="wikimedia"
       homepage="wikimedia.org"
       lastUpdated={new Date("2024-03-13T02:25:22.175Z")}

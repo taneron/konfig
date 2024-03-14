@@ -24,6 +24,7 @@ Flightpath: Plan for the future with flexible financial modeling tools built for
       company="Baremetrics"
       // Missing serviceName
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/baremetrics/logo.png"
+      companyKebabCase="baremetrics"
       clientNameCamelCase="baremetrics"
       homepage="baremetrics.com"
       lastUpdated={new Date("2024-03-13T17:55:08.060Z")}

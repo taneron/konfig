@@ -127,6 +127,7 @@ export default function Asana() {
       favicon="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/asana/favicon.png"
       sdks={sdks}
       homepage="asana.com"
+      companyKebabCase="asana"
       categories={allCategories}
       metaDescription={`Asana helps teams orchestrate their work, from small projects to strategic initiatives. Headquartered in San Francisco, CA, Asana has more than 131,000 paying customers and millions of free organizations across 190 countries. Global customers such as Amazon, Japan Airlines, Sky, and Affirm rely on Asana to manage everything from company objectives to digital transformation to product launches and marketing campaigns. For more information, visit www.asana.com.`}
     />

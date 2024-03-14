@@ -70,6 +70,7 @@ export default function Terminal() {
       favicon="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/terminal/favicon.png"
       sdks={sdks}
       homepage="withterminal.com"
+      companyKebabCase="terminal"
       categories={allCategories}
       metaDescription={`Terminal is Plaid for Telematics in commercial trucking. Companies building the next generation of insurance products, financial services and fleet software for trucking use our Universal API to access GPS data, speeding data and vehicle stats.Check us out at https://withterminal.com`}
     />

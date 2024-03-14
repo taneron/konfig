@@ -88,6 +88,7 @@ export default function Hsbc() {
       favicon="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/hsbc/accountinformationce/favicon.png"
       sdks={sdks}
       homepage="hsbc.com"
+      companyKebabCase="hsbc"
       categories={allCategories}
       metaDescription={`HSBC, also known as The Hongkong and Shanghai Banking Corporation, is a multinational banking and financial services organization. It offers a wide range of services including retail banking, wealth management, commercial banking, and global banking and markets. HSBC operates in numerous countries and territories, serving millions of customers worldwide with its comprehensive banking solutions.`}
     />

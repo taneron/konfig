@@ -58,6 +58,7 @@ export default function Nasa() {
       favicon="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/nasa/techport/favicon.png"
       sdks={sdks}
       homepage="techport.nasa.gov/home"
+      companyKebabCase="nasa"
       categories={allCategories}
       metaDescription={`NASA, the National Aeronautics and Space Administration, is an independent agency of the U.S. federal government responsible for the civilian space program, as well as aeronautics and aerospace research. NASA conducts space exploration missions, scientific research, and technology development to expand our understanding of the universe.`}
     />

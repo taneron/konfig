@@ -49,6 +49,7 @@ export default function Wikimedia() {
       favicon="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/wikimedia/favicon.ico"
       sdks={sdks}
       homepage="wikimedia.org"
+      companyKebabCase="wikimedia"
       categories={allCategories}
       metaDescription={`Wikimedia is a global movement whose mission is to bring free educational content to the world.`}
     />

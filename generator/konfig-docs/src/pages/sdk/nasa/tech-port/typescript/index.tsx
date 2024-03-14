@@ -16,6 +16,7 @@ export default function NasaTechPortTypeScriptSdk() {
       company="NASA"
       serviceName="TechPort"
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/nasa/techport/logo.png"
+      companyKebabCase="nasa"
       clientNameCamelCase="nasaTechPort"
       homepage="techport.nasa.gov/home"
       lastUpdated={new Date("2024-03-13T02:25:22.175Z")}

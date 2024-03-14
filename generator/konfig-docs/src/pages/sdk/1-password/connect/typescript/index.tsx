@@ -20,6 +20,7 @@ As an integral layer of the Identity and Access Management (IAM) stack, 1Passwor
       company="1Password"
       serviceName="Connect"
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/1-password/connect/logo.png"
+      companyKebabCase="1-password"
       clientNameCamelCase="onePasswordConnect"
       homepage="1password.com"
       lastUpdated={new Date("2024-03-13T17:47:38.295Z")}

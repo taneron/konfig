@@ -310,6 +310,7 @@ export default function ${camelcase(codeFriendlyCompanyName, {
       favicon="${faviconUrl}"
       sdks={sdks}
       homepage="${homepage}"
+      companyKebabCase="${kebabcase(company)}"
       categories={allCategories}
       metaDescription={\`${metaDescription}\`}
     />
@@ -385,6 +386,7 @@ export default function ${camelcase(codeFriendlyCompanyName, {
           : '// Missing serviceName'
       }
       logo="${logo}"
+      companyKebabCase="${kebabcase(company)}"
       clientNameCamelCase="${clientNameCamelCase}"
       homepage="${homepage}"
       lastUpdated={new Date("${lastUpdated}")}

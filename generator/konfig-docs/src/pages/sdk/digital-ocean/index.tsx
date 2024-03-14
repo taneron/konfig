@@ -70,6 +70,7 @@ export default function DigitalOcean() {
       favicon="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/digitalocean/favicon.png"
       sdks={sdks}
       homepage="digitalocean.com"
+      companyKebabCase="digital-ocean"
       categories={allCategories}
       metaDescription={`DigitalOcean is a cloud infrastructure provider that offers virtual servers, storage, networking, and more to help developers deploy and scale applications quickly and easily. Known for its simplicity and developer-friendly tools, DigitalOcean is used by startup companies, independent developers, and enterprises alike to power a wide range of web applications and services.`}
     />

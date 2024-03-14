@@ -26,6 +26,7 @@ we're building a suite of audio / video models to change how we live, work, and 
       company="sync. labs"
       // Missing serviceName
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/sync-labs/logo.png"
+      companyKebabCase="sync-labs"
       clientNameCamelCase="syncLabs"
       homepage="synclabs.so"
       lastUpdated={new Date("2024-03-13T17:47:38.295Z")}

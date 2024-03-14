@@ -16,6 +16,7 @@ export default function SlackWebTypeScriptSdk() {
       company="Slack"
       serviceName="Web"
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/slack/web/logo.png"
+      companyKebabCase="slack"
       clientNameCamelCase="slackWeb"
       homepage="slack.dev"
       lastUpdated={new Date("2024-03-13T02:25:22.175Z")}

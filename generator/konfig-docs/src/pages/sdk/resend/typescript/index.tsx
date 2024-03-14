@@ -16,6 +16,7 @@ export default function ResendTypeScriptSdk() {
       company="Resend"
       // Missing serviceName
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/resend/logo.png"
+      companyKebabCase="resend"
       clientNameCamelCase="resend"
       homepage="resend.com"
       lastUpdated={new Date("2024-03-13T02:25:22.175Z")}

@@ -16,6 +16,7 @@ export default function DocusignTypeScriptSdk() {
       company="Docusign"
       // Missing serviceName
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/docusign/logo.png"
+      companyKebabCase="docusign"
       clientNameCamelCase="docusign"
       homepage="docusign.com"
       lastUpdated={new Date("2024-03-13T17:47:38.295Z")}

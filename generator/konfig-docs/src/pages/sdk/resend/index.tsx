@@ -58,6 +58,7 @@ export default function Resend() {
       favicon="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/resend/favicon.png"
       sdks={sdks}
       homepage="resend.com"
+      companyKebabCase="resend"
       categories={allCategories}
       metaDescription={`Email for developers`}
     />

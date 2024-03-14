@@ -94,6 +94,7 @@ export default function ClickUp() {
       favicon="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/clickup/favicon.png"
       sdks={sdks}
       homepage="clickup.com"
+      companyKebabCase="click-up"
       categories={allCategories}
       metaDescription={`ClickUp is a productivity platform that allows teams to manage tasks, documents, goals, and chat all in one place. With customizable features and integrations, ClickUp aims to streamline workflows and improve collaboration within organizations of all sizes.`}
     />

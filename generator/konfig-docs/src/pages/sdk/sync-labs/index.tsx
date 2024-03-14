@@ -64,6 +64,7 @@ export default function SyncLabs() {
       favicon="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/sync-labs/favicon.png"
       sdks={sdks}
       homepage="synclabs.so"
+      companyKebabCase="sync-labs"
       categories={allCategories}
       metaDescription={`building generative models to modify + synthesize humans in video. 
 

@@ -16,6 +16,7 @@ export default function SoundCloudTypeScriptSdk() {
       company="SoundCloud"
       // Missing serviceName
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/soundcloud/logo.jpg"
+      companyKebabCase="sound-cloud"
       clientNameCamelCase="soundCloud"
       homepage="developers.soundcloud.com"
       lastUpdated={new Date("2024-03-13T17:55:08.060Z")}

@@ -49,6 +49,7 @@ export default function X() {
       favicon="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/x/favicon.ico"
       sdks={sdks}
       homepage="developer.x.com"
+      companyKebabCase="x"
       categories={allCategories}
       metaDescription={`Publish & analyze posts, optimize ads, & create unique customer experiences with the X API, X Ads API, & X Embeds.`}
     />

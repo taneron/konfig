@@ -70,6 +70,7 @@ export default function Hetzner() {
       favicon="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/hetzner/favicon.png"
       sdks={sdks}
       homepage="hetzner.com"
+      companyKebabCase="hetzner"
       categories={allCategories}
       metaDescription={`Hetzner provides reliable and efficient cloud hosting and data center services. With state-of-the-art infrastructure and a focus on security and performance, Hetzner caters to a wide range of businesses looking for scalable and dependable hosting solutions. From dedicated servers to cloud storage and virtual private servers, Hetzner offers a comprehensive suite of services to meet the diverse needs of its clients.`}
     />

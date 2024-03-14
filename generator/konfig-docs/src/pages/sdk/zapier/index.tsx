@@ -112,6 +112,7 @@ export default function Zapier() {
       favicon="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/zapier/embed/favicon.png"
       sdks={sdks}
       homepage="zapier.com"
+      companyKebabCase="zapier"
       categories={allCategories}
       metaDescription={`Zapier is a tool that allows users to connect and automate workflows between different apps and services. With Zapier, users can create "Zaps" that integrate various applications to streamline tasks and improve efficiency. It offers a wide range of integrations, making it easy for users to set up automated actions without the need for coding skills.`}
     />

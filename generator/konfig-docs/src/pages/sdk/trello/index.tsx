@@ -49,6 +49,7 @@ export default function Trello() {
       favicon="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/trello/favicon.ico"
       sdks={sdks}
       homepage="developer.atlassian.com/cloud/trello"
+      companyKebabCase="trello"
       categories={allCategories}
       metaDescription={`Trello is a collaboration tool that organizes your projects into boards. In one glance, Trello tells you what's being worked on, who's working on what, and where something is in a process.`}
     />

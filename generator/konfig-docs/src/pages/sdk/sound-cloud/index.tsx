@@ -49,6 +49,7 @@ export default function SoundCloud() {
       favicon="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/soundcloud/favicon.jpeg"
       sdks={sdks}
       homepage="developers.soundcloud.com"
+      companyKebabCase="sound-cloud"
       categories={allCategories}
       metaDescription={`Discover and play over 320 million music tracks. Join the world’s largest online community of artists, bands, DJs, and audio creators.`}
     />

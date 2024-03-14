@@ -79,6 +79,7 @@ export default function Baremetrics() {
       favicon="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/baremetrics/favicon.png"
       sdks={sdks}
       homepage="baremetrics.com"
+      companyKebabCase="baremetrics"
       categories={allCategories}
       metaDescription={`Baremetrics provides real-time subscription metrics for teams built with Stripe, Shopify Partners, Braintree, Recurly, Chargebee, Google Play, and App Store Connect. 
 

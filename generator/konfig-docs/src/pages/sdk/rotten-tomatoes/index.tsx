@@ -70,6 +70,7 @@ export default function RottenTomatoes() {
       favicon="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/rotten-tomatoes/favicon.png"
       sdks={sdks}
       homepage="developer.fandango.com/rotten_tomatoes"
+      companyKebabCase="rotten-tomatoes"
       categories={allCategories}
       metaDescription={`Rotten Tomatoes, home of the Tomatometer, is the most trusted measurement of quality for Movies & TV. The definitive site for Reviews, Trailers, Showtimes, and Tickets.`}
     />

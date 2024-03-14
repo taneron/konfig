@@ -1,17 +1,19 @@
-import { IconChevronRight } from "@tabler/icons-react";
-import React, { PropsWithChildren } from "react";
+import { IconChevronRight } from '@tabler/icons-react'
+import React, { PropsWithChildren } from 'react'
 
 /**
  * Responsive breadcrumbs for the pSEO page.
  */
 export function Breadcrumbs({
   company,
+  companyKebabCase,
   language,
   serviceName,
 }: {
-  company: string;
-  language?: string;
-  serviceName?: string;
+  company: string
+  companyKebabCase: string
+  language?: string
+  serviceName?: string
 }) {
   return (
     <div className="text-white mx-auto px-3 max-w-[375px] sm:max-w-none sm:px-8 text-lg font-semibold">
@@ -24,7 +26,7 @@ export function Breadcrumbs({
           <BreadcrumbSeparator />
           <li>
             {language ? (
-              <BreadcrumbLink href={`/sdk/${company}`}>
+              <BreadcrumbLink href={`/sdk/${companyKebabCase}`}>
                 {company}
               </BreadcrumbLink>
             ) : (
@@ -53,7 +55,7 @@ export function Breadcrumbs({
         <BreadcrumbNonLink>{language}</BreadcrumbNonLink>
       </nav>
     </div>
-  );
+  )
 }
 
 function BreadcrumbLink({
@@ -67,13 +69,13 @@ function BreadcrumbLink({
     >
       {children}
     </a>
-  );
+  )
 }
 
 function BreadcrumbNonLink({ children }: PropsWithChildren<{}>) {
-  return <span className="text-blue-200">{children}</span>;
+  return <span className="text-blue-200">{children}</span>
 }
 
 function BreadcrumbSeparator() {
-  return <IconChevronRight className="h-5 text-blue-300" />;
+  return <IconChevronRight className="h-5 text-blue-300" />
 }

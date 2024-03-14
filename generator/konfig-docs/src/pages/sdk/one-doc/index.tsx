@@ -61,6 +61,7 @@ export default function OneDoc() {
       favicon="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/onedoc/favicon.png"
       sdks={sdks}
       homepage="onedoc.com"
+      companyKebabCase="one-doc"
       categories={allCategories}
       metaDescription={`Onedoc is an innovative API solution for developers, offering a simple and secure way to create and manage PDF documents using familiar technologies like React.`}
     />

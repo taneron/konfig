@@ -124,6 +124,7 @@ export default function Notion() {
       favicon="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/notion/favicon.png"
       sdks={sdks}
       homepage="developers.notion.com"
+      companyKebabCase="notion"
       categories={allCategories}
       metaDescription={`Notion is a new tool that blends your everyday work apps into one. It's the all-in-one workspace for you and your team.`}
     />

@@ -16,6 +16,7 @@ export default function ShutterstockTypeScriptSdk() {
       company="Shutterstock"
       // Missing serviceName
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/shutterstock/logo.png"
+      companyKebabCase="shutterstock"
       clientNameCamelCase="shutterstock"
       homepage="developers.shutterstock.com"
       lastUpdated={new Date("2024-03-13T02:25:22.175Z")}

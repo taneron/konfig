@@ -49,6 +49,7 @@ export default function Ticketmaster() {
       favicon="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/ticketmaster/discovery/favicon.ico"
       sdks={sdks}
       homepage="developer.ticketmaster.com/products-and-docs/apis/discovery-api/v2/"
+      companyKebabCase="ticketmaster"
       categories={allCategories}
       metaDescription={`Tap into the Ticketmaster open developer network which gives you the flexibility and scale to bring unforgettable live events to fans. It’s our technology – your way.`}
     />

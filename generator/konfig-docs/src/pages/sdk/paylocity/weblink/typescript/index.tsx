@@ -16,6 +16,7 @@ export default function PaylocityWeblinkTypeScriptSdk() {
       company="Paylocity"
       serviceName="Weblink"
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/paylocity/weblink/logo.jpg"
+      companyKebabCase="paylocity"
       clientNameCamelCase="paylocity"
       homepage="developer.paylocity.com"
       lastUpdated={new Date("2024-03-13T02:25:22.175Z")}

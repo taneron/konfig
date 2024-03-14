@@ -16,6 +16,7 @@ export default function DiscourseTypeScriptSdk() {
       company="Discourse"
       // Missing serviceName
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/discourse/logo.png"
+      companyKebabCase="discourse"
       clientNameCamelCase="discourse"
       homepage="discourse.org"
       lastUpdated={new Date("2024-03-13T02:25:22.175Z")}

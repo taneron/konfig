@@ -49,6 +49,7 @@ export default function YouNeedABudget() {
       favicon="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/you-need-a-budget/favicon.png"
       sdks={sdks}
       homepage="api.youneedabudget.com"
+      companyKebabCase="you-need-a-budget"
       categories={allCategories}
       metaDescription={`Working hard with nothing to show for it? Use your money more efficiently and control your spending and saving with the YNAB app.`}
     />

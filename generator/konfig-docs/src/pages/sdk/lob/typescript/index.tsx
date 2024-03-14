@@ -16,6 +16,7 @@ export default function LobTypeScriptSdk() {
       company="Lob"
       // Missing serviceName
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/lob/logo.svg"
+      companyKebabCase="lob"
       clientNameCamelCase="lob"
       homepage="lob.com"
       lastUpdated={new Date("2024-03-13T02:25:22.175Z")}

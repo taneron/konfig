@@ -16,6 +16,7 @@ export default function TicketmasterDiscoveryTypeScriptSdk() {
       company="Ticketmaster"
       serviceName="Discovery"
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/ticketmaster/discovery/logo.png"
+      companyKebabCase="ticketmaster"
       clientNameCamelCase="ticketmaster"
       homepage="developer.ticketmaster.com/products-and-docs/apis/discovery-api/v2/"
       lastUpdated={new Date("2024-03-13T02:25:22.175Z")}

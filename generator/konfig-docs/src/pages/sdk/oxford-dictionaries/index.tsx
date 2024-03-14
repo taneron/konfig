@@ -70,6 +70,7 @@ export default function OxfordDictionaries() {
       favicon="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/oxford-dictionaries/favicon.png"
       sdks={sdks}
       homepage="developer.oxforddictionaries.com"
+      companyKebabCase="oxford-dictionaries"
       categories={allCategories}
       metaDescription={`Oxford Dictionaries, part of the Oxford Language Division, is a leading authority on the English language. It offers a wide range of language resources, including dictionaries, thesauruses, grammar guides, and language learning tools. Oxford Dictionaries provides accurate and up-to-date definitions, word origins, and usage examples to support language comprehension and communication.`}
     />

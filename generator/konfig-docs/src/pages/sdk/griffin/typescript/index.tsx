@@ -20,6 +20,7 @@ Griffin is authorised (with restrictions) by the PRA and FCA and backed by leadi
       company="Griffin"
       // Missing serviceName
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/griffin/logo.webp"
+      companyKebabCase="griffin"
       clientNameCamelCase="griffin"
       homepage="griffin.com"
       lastUpdated={new Date("2024-03-13T17:47:38.295Z")}

@@ -16,6 +16,7 @@ export default function ZoomMeetingTypeScriptSdk() {
       company="Zoom"
       serviceName="Meeting"
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/zoom/meeting/logo.png"
+      companyKebabCase="zoom"
       clientNameCamelCase="zoomMeeting"
       homepage="zoom.us/"
       lastUpdated={new Date("2024-03-13T02:25:22.175Z")}

@@ -82,6 +82,7 @@ export default function Clever() {
       favicon="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/clever/favicon.png"
       sdks={sdks}
       homepage="clever.com"
+      companyKebabCase="clever"
       categories={allCategories}
       metaDescription={`We believe technology is a powerful lever to make education equitable for all and the fastest way to improve educational outcomes now. 
 

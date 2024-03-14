@@ -16,6 +16,7 @@ export default function NotionTypeScriptSdk() {
       company="Notion"
       // Missing serviceName
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/notion/logo.png"
+      companyKebabCase="notion"
       clientNameCamelCase="notion"
       homepage="developers.notion.com"
       lastUpdated={new Date("2024-03-13T17:55:08.060Z")}

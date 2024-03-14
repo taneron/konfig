@@ -58,6 +58,7 @@ export default function Svix() {
       favicon="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/svix/favicon.png"
       sdks={sdks}
       homepage="svix.com"
+      companyKebabCase="svix"
       categories={allCategories}
       metaDescription={`Svix is a platform that simplifies webhook processing for developers. By providing a reliable infrastructure and powerful tools, Svix enables developers to easily send and receive webhooks, ensuring seamless communication between services and applications.`}
     />

@@ -49,6 +49,7 @@ export default function Qualtrics() {
       favicon="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/qualtrics/survey/favicon.png"
       sdks={sdks}
       homepage="api.qualtrics.com"
+      companyKebabCase="qualtrics"
       categories={allCategories}
       metaDescription={`Know what your customers and employees need, when they need it, and deliver it every time with powerful, AI driven Experience Management (XM) software.`}
     />

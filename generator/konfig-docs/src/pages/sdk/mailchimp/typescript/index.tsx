@@ -16,6 +16,7 @@ export default function MailchimpTypeScriptSdk() {
       company="Mailchimp"
       // Missing serviceName
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/mailchimp/logo.png"
+      companyKebabCase="mailchimp"
       clientNameCamelCase="mailchimp"
       homepage="mailchimp.com/"
       lastUpdated={new Date("2024-03-13T17:55:08.060Z")}

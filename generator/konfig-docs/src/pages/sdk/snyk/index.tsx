@@ -49,6 +49,7 @@ export default function Snyk() {
       favicon="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/snyk/favicon.ico"
       sdks={sdks}
       homepage="docs.snyk.io/snyk-api/snyk-rest-api-overview"
+      companyKebabCase="snyk"
       categories={allCategories}
       metaDescription={`Snyk helps software-driven businesses develop fast and stay secure. Continuously find and fix vulnerabilities for npm, Maven, NuGet, RubyGems, PyPI and more.`}
     />

@@ -49,6 +49,7 @@ export default function GoDaddy() {
       favicon="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/godaddy/domains/favicon.png"
       sdks={sdks}
       homepage="developer.godaddy.com"
+      companyKebabCase="go-daddy"
       categories={allCategories}
       metaDescription={`All the help and tools you need to grow online: Websites, Domains, Digital and Social Marketing - plus GoDaddy Guides with you every step of the way.`}
     />

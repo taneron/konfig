@@ -49,6 +49,7 @@ export default function UniCourt() {
       favicon="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/unicourt/favicon.png"
       sdks={sdks}
       homepage="unicourt.com"
+      companyKebabCase="uni-court"
       categories={allCategories}
       metaDescription={`UniCourt is a leader in making court data more accessible and useful. We provide real-time access to court data from state, federal, and local courts, as well as analytics, case management, and automation tools for legal professionals.`}
     />

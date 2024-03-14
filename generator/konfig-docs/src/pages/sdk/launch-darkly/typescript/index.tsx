@@ -16,6 +16,7 @@ export default function LaunchDarklyTypeScriptSdk() {
       company="LaunchDarkly"
       // Missing serviceName
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/launchdarkly/logo.png"
+      companyKebabCase="launch-darkly"
       clientNameCamelCase="launchDarkly"
       homepage="launchdarkly.com"
       lastUpdated={new Date("2024-03-13T17:47:38.295Z")}

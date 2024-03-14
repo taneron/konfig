@@ -52,6 +52,7 @@ export default function Xkcd() {
       favicon="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/xkcd/favicon.png"
       sdks={sdks}
       homepage="xkcd.com/"
+      companyKebabCase="xkcd"
       categories={allCategories}
       metaDescription={`xkcd is a webcomic of romance, sarcasm, math, and language. It delivers a mix of humor and intelligence through its stick-figure comics that explore various topics such as science, technology, and pop culture in a witty and insightful manner.`}
     />

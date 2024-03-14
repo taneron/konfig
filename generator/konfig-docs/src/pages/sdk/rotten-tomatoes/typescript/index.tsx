@@ -17,6 +17,7 @@ export default function RottenTomatoesTypeScriptSdk() {
       doesNotHaveApiDescription={true}
       // Missing serviceName
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/rotten-tomatoes/logo.png"
+      companyKebabCase="rotten-tomatoes"
       clientNameCamelCase="rottenTomatoes"
       homepage="developer.fandango.com/rotten_tomatoes"
       lastUpdated={new Date("2024-03-13T02:25:22.175Z")}

@@ -16,6 +16,7 @@ export default function HetznerTypeScriptSdk() {
       company="Hetzner"
       // Missing serviceName
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/hetzner/logo.png"
+      companyKebabCase="hetzner"
       clientNameCamelCase="hetzner"
       homepage="hetzner.com"
       lastUpdated={new Date("2024-03-13T17:47:38.295Z")}

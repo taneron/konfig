@@ -55,6 +55,7 @@ export default function StackExchange() {
       favicon="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/stack-exchange/favicon.ico"
       sdks={sdks}
       homepage="api.stackexchange.com"
+      companyKebabCase="stack-exchange"
       categories={allCategories}
       metaDescription={`We make Stack Overflow and 170+ other community-powered Q&A sites.`}
     />

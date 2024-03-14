@@ -193,6 +193,7 @@ export default function Appwrite() {
       favicon="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/appwrite/client/favicon.png"
       sdks={sdks}
       homepage="appwrite.io"
+      companyKebabCase="appwrite"
       categories={allCategories}
       metaDescription={`Appwrite's open-source development platform lets you build any application at any scale, own your data, and use your preferred coding languages and tools.
 

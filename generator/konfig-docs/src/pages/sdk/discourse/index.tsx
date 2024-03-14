@@ -82,6 +82,7 @@ export default function Discourse() {
       favicon="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/discourse/favicon.png"
       sdks={sdks}
       homepage="discourse.org"
+      companyKebabCase="discourse"
       categories={allCategories}
       metaDescription={`Discourse is a modern forum software designed for community engagement and discussion. It offers a user-friendly interface, powerful moderation tools, and extensive customization options. Discourse fosters healthy conversations, promotes user participation, and provides a platform for sharing knowledge and ideas across diverse communities.`}
     />

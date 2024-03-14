@@ -67,6 +67,7 @@ export default function Mailchimp() {
       favicon="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/mailchimp/favicon.png"
       sdks={sdks}
       homepage="mailchimp.com/"
+      companyKebabCase="mailchimp"
       categories={allCategories}
       metaDescription={`Mailchimp is a marketing platform for small businesses. It offers an all-in-one marketing solution that includes email marketing, ads, landing pages, and automation. With Mailchimp, businesses can design and send targeted campaigns, analyze their performance, and grow their audience.`}
     />

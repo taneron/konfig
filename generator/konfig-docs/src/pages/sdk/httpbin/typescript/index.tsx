@@ -16,6 +16,7 @@ export default function HttpbinTypeScriptSdk() {
       company="httpbin"
       // Missing serviceName
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/httpbin/logo.svg"
+      companyKebabCase="httpbin"
       clientNameCamelCase="httpbin"
       homepage="httpbin.org"
       lastUpdated={new Date("2024-03-13T17:47:38.295Z")}

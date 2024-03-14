@@ -16,6 +16,7 @@ export default function YouNeedABudgetTypeScriptSdk() {
       company="You Need A Budget"
       // Missing serviceName
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/you-need-a-budget/logo.png"
+      companyKebabCase="you-need-a-budget"
       clientNameCamelCase="ynab"
       homepage="api.youneedabudget.com"
       lastUpdated={new Date("2024-03-13T02:25:22.175Z")}

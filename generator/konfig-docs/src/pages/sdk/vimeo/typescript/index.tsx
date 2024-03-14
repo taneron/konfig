@@ -16,6 +16,7 @@ export default function VimeoTypeScriptSdk() {
       company="Vimeo"
       // Missing serviceName
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/vimeo/logo.avif"
+      companyKebabCase="vimeo"
       clientNameCamelCase="vimeo"
       homepage="developer.vimeo.com"
       lastUpdated={new Date("2024-03-13T16:59:14.076Z")}

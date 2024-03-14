@@ -16,6 +16,7 @@ export default function TerminalTypeScriptSdk() {
       company="Terminal"
       // Missing serviceName
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/terminal/logo.png"
+      companyKebabCase="terminal"
       clientNameCamelCase="terminal"
       homepage="withterminal.com"
       lastUpdated={new Date("2024-03-13T16:59:14.076Z")}

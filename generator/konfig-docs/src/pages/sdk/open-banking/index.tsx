@@ -52,6 +52,7 @@ export default function OpenBanking() {
       favicon="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/open-banking/account-and-transaction/favicon.png"
       sdks={sdks}
       homepage="www.openbanking.org.uk/"
+      companyKebabCase="open-banking"
       categories={allCategories}
       metaDescription={`The trusted technology that connects banks, fintechs & technical providers - technology that's helping 6m users take control of their money.`}
     />

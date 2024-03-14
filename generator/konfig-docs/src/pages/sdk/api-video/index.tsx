@@ -82,6 +82,7 @@ export default function ApiVideo() {
       favicon="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/api-video/favicon.png"
       sdks={sdks}
       homepage="api.video"
+      companyKebabCase="api-video"
       categories={allCategories}
       metaDescription={`Deliver high-quality videos directly from your website, software, or app. 
 

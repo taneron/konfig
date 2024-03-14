@@ -49,6 +49,7 @@ export default function Spotify() {
       favicon="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/spotify/favicon.ico"
       sdks={sdks}
       homepage="developer.spotify.com"
+      companyKebabCase="spotify"
       categories={allCategories}
       metaDescription={`Spotify is a digital music service that gives you access to millions of songs.`}
     />

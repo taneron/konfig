@@ -67,6 +67,7 @@ export default function Meilisearch() {
       favicon="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/meilisearch/favicon.png"
       sdks={sdks}
       homepage="www.meilisearch.com/"
+      companyKebabCase="meilisearch"
       categories={allCategories}
       metaDescription={`Meilisearch is a powerful, fast, open-source, and easy-to-use search engine that provides instant search results for large datasets. It offers features like typo-tolerance, faceting, filters, and customizable ranking to enhance search experiences for developers and users alike.`}
     />

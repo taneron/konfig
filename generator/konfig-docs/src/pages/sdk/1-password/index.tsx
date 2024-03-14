@@ -100,6 +100,7 @@ export default function Sdk1Password() {
       favicon="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/1-password/connect/favicon.png"
       sdks={sdks}
       homepage="1password.com"
+      companyKebabCase="1-password"
       categories={allCategories}
       metaDescription={`Trusted by more than 100,000 businesses to protect their data, 1Password gives you complete control over passwords and other sensitive business information. 
 

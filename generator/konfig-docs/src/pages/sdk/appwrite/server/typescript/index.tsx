@@ -18,6 +18,7 @@ Build like a team of hundreds.`}
       company="Appwrite"
       serviceName="Server"
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/appwrite/server/logo.png"
+      companyKebabCase="appwrite"
       clientNameCamelCase="appwriteServer"
       homepage="appwrite.io"
       lastUpdated={new Date("2024-03-13T02:25:22.175Z")}

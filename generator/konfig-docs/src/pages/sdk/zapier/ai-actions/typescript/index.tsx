@@ -17,6 +17,7 @@ export default function ZapierAiActionsTypeScriptSdk() {
       doesNotHaveApiDescription={true}
       serviceName="AI Actions"
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/zapier/ai-actions/logo.png"
+      companyKebabCase="zapier"
       clientNameCamelCase="zapierActions"
       homepage="zapier.com"
       lastUpdated={new Date("2024-03-13T02:25:22.175Z")}

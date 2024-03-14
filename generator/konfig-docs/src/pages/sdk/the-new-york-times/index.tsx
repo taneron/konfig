@@ -49,6 +49,7 @@ export default function TheNewYorkTimes() {
       favicon="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/the-new-york-times/books/favicon.png"
       sdks={sdks}
       homepage="developer.nytimes.com"
+      companyKebabCase="the-new-york-times"
       categories={allCategories}
       metaDescription={`Live news, investigations, opinion, photos and video by the journalists of The New York Times from more than 150 countries around the world. Subscribe for coverage of U.S. and international news, politics, business, technology, science, health, arts, sports and more.`}
     />

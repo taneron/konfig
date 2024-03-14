@@ -16,6 +16,7 @@ export default function JustEatTypeScriptSdk() {
       company="Just Eat"
       // Missing serviceName
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/just-eat/logo.png"
+      companyKebabCase="just-eat"
       clientNameCamelCase="justEat"
       homepage="developers.just-eat.com/"
       lastUpdated={new Date("2024-03-13T16:59:14.076Z")}

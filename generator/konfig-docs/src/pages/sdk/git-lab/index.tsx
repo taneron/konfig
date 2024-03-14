@@ -67,6 +67,7 @@ export default function GitLab() {
       favicon="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/gitlab/favicon.png"
       sdks={sdks}
       homepage="gitlab.com"
+      companyKebabCase="git-lab"
       categories={allCategories}
       metaDescription={`GitLab is a complete DevOps platform, delivered as a single application, that provides teams a way to collaborate, build, and deploy their software. With GitLab, you can automate the entire DevOps lifecycle from planning and creating code to testing, releasing, and monitoring applications.`}
     />

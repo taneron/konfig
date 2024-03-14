@@ -49,6 +49,7 @@ export default function Vimeo() {
       favicon="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/vimeo/favicon.jpg"
       sdks={sdks}
       homepage="developer.vimeo.com"
+      companyKebabCase="vimeo"
       categories={allCategories}
       metaDescription={`Join the world's leading professional video platform and grow your business with easy-to-use, high-quality video creation, hosting, and marketing tools.`}
     />

@@ -70,6 +70,7 @@ export default function ElevenLabs() {
       favicon="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/elevenlabs/favicon.png"
       sdks={sdks}
       homepage="elevenlabs.com"
+      companyKebabCase="eleven-labs"
       categories={allCategories}
       metaDescription={`Elevate your projects with the fastest & most powerful text to speech & voice API. Quickly generate AI voices in multiple languages for your chatbots, agents, LLMs, websites, apps and more.`}
     />

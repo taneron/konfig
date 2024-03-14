@@ -16,6 +16,7 @@ export default function KlarnaPaymentsTypeScriptSdk() {
       company="Klarna"
       serviceName="Payments"
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/klarna/payments/logo.png"
+      companyKebabCase="klarna"
       clientNameCamelCase="klarnaPayments"
       homepage="klarna.com"
       lastUpdated={new Date("2024-03-13T02:25:22.175Z")}

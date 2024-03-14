@@ -16,6 +16,7 @@ export default function BrexExpensesTypeScriptSdk() {
       company="Brex"
       serviceName="Expenses"
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/brex/expenses/logo.png"
+      companyKebabCase="brex"
       clientNameCamelCase="brexExpenses"
       homepage="brex.com"
       lastUpdated={new Date("2024-03-13T17:47:38.295Z")}

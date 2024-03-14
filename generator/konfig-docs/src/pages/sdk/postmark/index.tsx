@@ -49,6 +49,7 @@ export default function Postmark() {
       favicon="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/postmark/favicon.png"
       sdks={sdks}
       homepage="postmarkapp.com"
+      companyKebabCase="postmark"
       categories={allCategories}
       metaDescription={`Send transactional and marketing emails and get them to the inbox on time, every time. Postmark is a fast and reliable email delivery service for developers.`}
     />

@@ -100,6 +100,7 @@ export default function CircleCi() {
       favicon="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/circleci/favicon.png"
       sdks={sdks}
       homepage="circleci.com"
+      companyKebabCase="circle-ci"
       categories={allCategories}
       metaDescription={`CircleCI is the software delivery engine for teams who want to ship software faster and with confidence. 
 We do this today by building the world's best platform for Continuous Integration and Continuous Delivery (CI/CD). Ultimately, we plan to map every source of change for software teams, so they can accelerate innovation and growth. 

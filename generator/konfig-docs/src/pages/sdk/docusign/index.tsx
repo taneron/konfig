@@ -61,6 +61,7 @@ export default function Docusign() {
       favicon="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/docusign/favicon.png"
       sdks={sdks}
       homepage="docusign.com"
+      companyKebabCase="docusign"
       categories={allCategories}
       metaDescription={`DocuSign makes it easy to send, sign and manage documents securely. With DocuSign, individuals and organizations can streamline the document signing process, reduce paperwork, and increase efficiency. DocuSign offers electronic signature solutions that are trusted by millions worldwide, enabling users to sign documents anytime, anywhere, on any device.`}
     />

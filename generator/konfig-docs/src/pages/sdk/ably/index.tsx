@@ -49,6 +49,7 @@ export default function Ably() {
       favicon="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/ably/platform/favicon.ico"
       sdks={sdks}
       homepage="ably.com"
+      companyKebabCase="ably"
       categories={allCategories}
       metaDescription={`Ably provides a suite of APIs to build, extend, and deliver powerful digital experiences in realtime. Organizations like Toyota, Bloomberg, HubSpot, and Hopin depend on Ably’s platform to offload the growing complexity of business-critical realtime data synchronization at global scale.`}
     />

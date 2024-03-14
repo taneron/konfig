@@ -55,6 +55,7 @@ export default function SendGrid() {
       favicon="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/sendgrid/favicon.png"
       sdks={sdks}
       homepage="sendgrid.com/en-us"
+      companyKebabCase="send-grid"
       categories={allCategories}
       metaDescription={`SendGrid is a cloud-based email delivery service that assists businesses in sending transactional and marketing emails. With a focus on reliability and deliverability, SendGrid helps developers send emails efficiently and effectively to their audiences.`}
     />

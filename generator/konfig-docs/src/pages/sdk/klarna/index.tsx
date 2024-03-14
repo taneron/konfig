@@ -106,6 +106,7 @@ export default function Klarna() {
       favicon="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/klarna/checkout/favicon.png"
       sdks={sdks}
       homepage="klarna.com"
+      companyKebabCase="klarna"
       categories={allCategories}
       metaDescription={`Klarna is a Swedish fintech company that provides online financial services such as payment solutions for online storefronts, direct payments, and more. Klarna's 'buy now, pay later' options make shopping easier for customers, allowing them to defer payments or pay in installments. The company has gained popularity for its smooth and secure checkout process, enhancing the overall shopping experience for consumers worldwide.`}
     />

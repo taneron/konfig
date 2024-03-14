@@ -91,6 +91,7 @@ export default function Griffin() {
       favicon="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/griffin/favicon.png"
       sdks={sdks}
       homepage="griffin.com"
+      companyKebabCase="griffin"
       categories={allCategories}
       metaDescription={`Griffin is the bank you can build on. We make it simple, quick and cost-effective to build and launch financial products. 
 

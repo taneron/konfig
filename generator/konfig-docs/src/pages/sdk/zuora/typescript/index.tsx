@@ -16,6 +16,7 @@ export default function ZuoraTypeScriptSdk() {
       company="Zuora"
       // Missing serviceName
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/zuora/logo.png"
+      companyKebabCase="zuora"
       clientNameCamelCase="zuora"
       homepage="zuora.com"
       lastUpdated={new Date("2024-03-13T02:25:22.175Z")}

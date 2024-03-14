@@ -52,6 +52,7 @@ export default function Lob() {
       favicon="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/lob/favicon.png"
       sdks={sdks}
       homepage="lob.com"
+      companyKebabCase="lob"
       categories={allCategories}
       metaDescription={`Lob provides a suite of APIs to deliver mail, including address verification, mail tracking, and more. Our print & mail API is used by companies large and small to send postcards, letters, and checks.`}
     />

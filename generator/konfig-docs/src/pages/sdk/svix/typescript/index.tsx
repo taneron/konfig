@@ -16,6 +16,7 @@ export default function SvixTypeScriptSdk() {
       company="Svix"
       // Missing serviceName
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/svix/logo.png"
+      companyKebabCase="svix"
       clientNameCamelCase="svix"
       homepage="svix.com"
       lastUpdated={new Date("2024-03-13T02:25:22.175Z")}

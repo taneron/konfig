@@ -16,6 +16,7 @@ export default function HsbcAccountInformationCeTypeScriptSdk() {
       company="HSBC"
       serviceName="AccountInformationCE"
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/hsbc/accountinformationce/logo.png"
+      companyKebabCase="hsbc"
       clientNameCamelCase="hsbcAccountInformationCe"
       homepage="hsbc.com"
       lastUpdated={new Date("2024-03-13T17:47:38.295Z")}

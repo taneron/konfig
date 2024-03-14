@@ -16,6 +16,7 @@ export default function AsanaTypeScriptSdk() {
       company="Asana"
       // Missing serviceName
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/asana/logo.png"
+      companyKebabCase="asana"
       clientNameCamelCase="asana"
       homepage="asana.com"
       lastUpdated={new Date("2024-03-13T17:47:38.295Z")}

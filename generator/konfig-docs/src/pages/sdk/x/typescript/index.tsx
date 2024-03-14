@@ -16,6 +16,7 @@ export default function XTypeScriptSdk() {
       company="X"
       // Missing serviceName
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/x/logo.jpg"
+      companyKebabCase="x"
       clientNameCamelCase="x"
       homepage="developer.x.com"
       lastUpdated={new Date("2024-03-13T02:25:22.175Z")}

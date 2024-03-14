@@ -16,6 +16,7 @@ export default function SnykTypeScriptSdk() {
       company="Snyk"
       // Missing serviceName
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/snyk/logo.png"
+      companyKebabCase="snyk"
       clientNameCamelCase="snyk"
       homepage="docs.snyk.io/snyk-api/snyk-rest-api-overview"
       lastUpdated={new Date("2024-03-13T17:55:08.060Z")}

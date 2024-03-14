@@ -16,6 +16,7 @@ export default function WhatsAppBusinessTypeScriptSdk() {
       company="WhatsApp"
       serviceName="Business"
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/whatsapp/business/logo.png"
+      companyKebabCase="whats-app"
       clientNameCamelCase="whatsAppBusiness"
       homepage="developers.facebook.com/docs/whatsapp"
       lastUpdated={new Date("2024-03-13T02:25:22.175Z")}

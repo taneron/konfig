@@ -55,6 +55,7 @@ export default function Slack() {
       favicon="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/slack/web/favicon.png"
       sdks={sdks}
       homepage="slack.dev"
+      companyKebabCase="slack"
       categories={allCategories}
       metaDescription={`Slack is a popular messaging platform designed for teams and workplaces. It offers real-time messaging, file sharing, and collaboration tools to help teams communicate and work together effectively. Users can create channels for different topics, send direct messages, and integrate with other apps for seamless workflow management.`}
     />

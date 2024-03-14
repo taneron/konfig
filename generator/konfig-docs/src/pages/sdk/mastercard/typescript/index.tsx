@@ -16,6 +16,7 @@ export default function MastercardTypeScriptSdk() {
       company="Mastercard"
       // Missing serviceName
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/mastercard/logo.png"
+      companyKebabCase="mastercard"
       clientNameCamelCase="mastercard"
       homepage="finicity.com"
       lastUpdated={new Date("2024-03-13T02:25:22.175Z")}

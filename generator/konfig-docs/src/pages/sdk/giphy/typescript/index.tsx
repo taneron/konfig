@@ -16,6 +16,7 @@ export default function GiphyTypeScriptSdk() {
       company="Giphy"
       // Missing serviceName
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/giphy/logo.png"
+      companyKebabCase="giphy"
       clientNameCamelCase="giphy"
       homepage="giphy.com"
       lastUpdated={new Date("2024-03-13T02:25:22.175Z")}

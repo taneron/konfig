@@ -58,6 +58,7 @@ export default function Flickr() {
       favicon="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/flickr/favicon.png"
       sdks={sdks}
       homepage="flickr.com"
+      companyKebabCase="flickr"
       categories={allCategories}
       metaDescription={`Flickr is an image hosting and video hosting website, web services suite, and online community platform. It was one of the earliest Web 2.0 applications. Flickr allows users to share and embed personal photographs and videos, and to interact with other members through commenting, groups, and more.`}
     />

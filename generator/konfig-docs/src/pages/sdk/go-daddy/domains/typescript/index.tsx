@@ -16,6 +16,7 @@ export default function GoDaddyDomainsTypeScriptSdk() {
       company="GoDaddy"
       serviceName="Domains"
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/godaddy/domains/logo.png"
+      companyKebabCase="go-daddy"
       clientNameCamelCase="goDaddy"
       homepage="developer.godaddy.com"
       lastUpdated={new Date("2024-03-13T17:55:08.060Z")}

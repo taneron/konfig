@@ -16,6 +16,7 @@ export default function OpenBankingAccountAndTransactionTypeScriptSdk() {
       company="Open Banking"
       serviceName="Account and Transaction"
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/open-banking/account-and-transaction/logo.svg"
+      companyKebabCase="open-banking"
       clientNameCamelCase="openBankingAccountAndTransaction"
       homepage="www.openbanking.org.uk/"
       lastUpdated={new Date("2024-03-13T02:25:22.175Z")}

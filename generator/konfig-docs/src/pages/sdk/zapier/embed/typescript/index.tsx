@@ -16,6 +16,7 @@ export default function ZapierEmbedTypeScriptSdk() {
       company="Zapier"
       serviceName="Embed"
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/zapier/embed/logo.png"
+      companyKebabCase="zapier"
       clientNameCamelCase="zapierEmbed"
       homepage="zapier.com"
       lastUpdated={new Date("2024-03-13T17:47:38.295Z")}

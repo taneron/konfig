@@ -55,6 +55,7 @@ export default function WhatsApp() {
       favicon="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/whatsapp/business/favicon.png"
       sdks={sdks}
       homepage="developers.facebook.com/docs/whatsapp"
+      companyKebabCase="whats-app"
       categories={allCategories}
       metaDescription={`Use WhatsApp Messenger to stay in touch with friends and family. WhatsApp is free and offers simple, secure, reliable messaging and calling, available on phones all over the world.`}
     />

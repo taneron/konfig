@@ -16,6 +16,7 @@ export default function DigitalOceanTypeScriptSdk() {
       company="DigitalOcean"
       // Missing serviceName
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/digitalocean/logo.png"
+      companyKebabCase="digital-ocean"
       clientNameCamelCase="digitalOcean"
       homepage="digitalocean.com"
       lastUpdated={new Date("2024-03-13T17:47:38.295Z")}

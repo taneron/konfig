@@ -42,6 +42,7 @@ export function SdkNew({
   categories,
   openApiGitHubUi,
   developerDocumentation,
+  companyKebabCase,
 }: InputPropsFromOriginalSdkComponent) {
   const serviceNameSubstring =
     serviceName !== undefined ? ` ${serviceName}` : ''
@@ -77,6 +78,7 @@ Easily Integrate
       </Head>
       <div className="pt-8 bg-gradient-to-tl from-[var(--ifm-color-primary-darkest)] to-[var(--ifm-color-primary)]">
         <Breadcrumbs
+          companyKebabCase={companyKebabCase}
           serviceName={serviceName}
           company={company}
           language={language}

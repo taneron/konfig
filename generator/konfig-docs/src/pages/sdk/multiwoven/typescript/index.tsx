@@ -16,6 +16,7 @@ export default function MultiwovenTypeScriptSdk() {
       company="Multiwoven"
       // Missing serviceName
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/multiwoven/logo.png"
+      companyKebabCase="multiwoven"
       clientNameCamelCase="multiwoven"
       homepage="www.multiwoven.com/"
       lastUpdated={new Date("2024-03-13T17:55:08.060Z")}

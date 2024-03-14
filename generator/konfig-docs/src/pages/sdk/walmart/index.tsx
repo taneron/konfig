@@ -49,6 +49,7 @@ export default function Walmart() {
       favicon="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/walmart/content-management/favicon.png"
       sdks={sdks}
       homepage="developer.walmart.com/"
+      companyKebabCase="walmart"
       categories={allCategories}
       metaDescription={`Walmart is the world's largest retailer, and the Walmart Open API provides access to our extensive product catalog, thus enabling digital businesses to create new and innovative shopping experiences.`}
     />

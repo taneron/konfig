@@ -16,6 +16,7 @@ export default function MeilisearchTypeScriptSdk() {
       company="Meilisearch"
       // Missing serviceName
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/meilisearch/logo.png"
+      companyKebabCase="meilisearch"
       clientNameCamelCase="meilisearch"
       homepage="www.meilisearch.com/"
       lastUpdated={new Date("2024-03-13T16:59:14.076Z")}

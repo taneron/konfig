@@ -16,6 +16,7 @@ export default function XkcdTypeScriptSdk() {
       company="xkcd"
       // Missing serviceName
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/xkcd/logo.png"
+      companyKebabCase="xkcd"
       clientNameCamelCase="xkcd"
       homepage="xkcd.com/"
       lastUpdated={new Date("2024-03-13T22:23:48.955Z")}

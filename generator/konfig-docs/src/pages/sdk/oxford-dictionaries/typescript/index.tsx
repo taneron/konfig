@@ -16,6 +16,7 @@ export default function OxfordDictionariesTypeScriptSdk() {
       company="Oxford Dictionaries"
       // Missing serviceName
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/oxford-dictionaries/logo.png"
+      companyKebabCase="oxford-dictionaries"
       clientNameCamelCase="oxfordDictionaries"
       homepage="developer.oxforddictionaries.com"
       lastUpdated={new Date("2024-03-13T17:55:08.060Z")}

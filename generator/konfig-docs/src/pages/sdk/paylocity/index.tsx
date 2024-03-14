@@ -52,6 +52,7 @@ export default function Paylocity() {
       favicon="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/paylocity/weblink/favicon.jpg"
       sdks={sdks}
       homepage="developer.paylocity.com"
+      companyKebabCase="paylocity"
       categories={allCategories}
       metaDescription={`Paylocity is the HR & Payroll provider that frees you from the tasks of today, so together, we can spend more time focused on the promise of tomorrow.`}
     />

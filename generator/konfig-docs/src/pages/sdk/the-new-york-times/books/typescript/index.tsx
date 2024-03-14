@@ -16,6 +16,7 @@ export default function TheNewYorkTimesBooksTypeScriptSdk() {
       company="The New York Times"
       serviceName="Books"
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/the-new-york-times/books/logo.png"
+      companyKebabCase="the-new-york-times"
       clientNameCamelCase="nyt"
       homepage="developer.nytimes.com"
       lastUpdated={new Date("2024-03-13T02:25:22.175Z")}
