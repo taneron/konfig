@@ -146,7 +146,7 @@ function fixReadMe(
   data: Published
 ) {
   const serviceNameQuery = data.serviceName
-    ? `& serviceName=${data.serviceName} `
+    ? `&serviceName=${data.serviceName}`
     : "";
   const capitalizedLang = capitalizedLanguage[language];
   const signupLink = `https://konfigthis.com/sdk-sign-up?company=${data.company}${serviceNameQuery}&language=${capitalizedLang}`.replaceAll(" ", "%20");
