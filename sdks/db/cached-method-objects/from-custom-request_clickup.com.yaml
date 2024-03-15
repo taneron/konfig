@@ -1,4 +1,4 @@
-hash: 7c7d9c4830c78f6a25b838e8f8230106f07f8dde0ee3a1d3ce283873de907b02
+hash: 1b69fd2cfcdb4bf3f4aab8368a86ad3d5f16fc95f2ae7864fe953e6fc8220645
 methodObjects:
   - url: /task/{task_id}/attachment
     method: uploadFileToTaskAsAttachment
@@ -2417,6 +2417,16 @@ methodObjects:
           To return task descriptions in Markdown format, use
           `?include_markdown_description=true`.
         example: true
+      - name: customItems
+        schema: array
+        description: >-
+          Filter by custom task types. For example: \
+           \
+          `?custom_items[]=0&custom_items[]=1300` \
+           \
+          Including `0` returns tasks. Including `1` returns Milestones.
+          Including any other number returns the custom task type as defined in
+          your Workspace.
     responses:
       - statusCode: '200'
         description: ''

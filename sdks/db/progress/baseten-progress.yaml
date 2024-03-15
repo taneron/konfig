@@ -2,10 +2,18 @@ examples: {}
 examples_2: {}
 examples_3: {}
 operationIds:
+  /v1/models:
+    get: Model_getAllModels
+  /v1/models/{model_id}:
+    get: Model_getModelById
+  /v1/models/{model_id}/deployments:
+    get: Model_getAllDeployments
   /v1/models/{model_id}/deployments/development:
     get: Deployment_getDevelopmentDetails
   /v1/models/{model_id}/deployments/development/autoscaling_settings:
     patch: AutoscalingSetting_updateDevelopmentSetting
+  /v1/models/{model_id}/deployments/development/promote:
+    post: Model_deployPromote
   /v1/models/{model_id}/deployments/production:
     get: Deployment_getProductionDetails
   /v1/models/{model_id}/deployments/production/autoscaling_settings:
@@ -14,14 +22,24 @@ operationIds:
     get: Deployment_detailsGet
   /v1/models/{model_id}/deployments/{deployment_id}/autoscaling_settings:
     patch: AutoscalingSetting_updateDeploymentSettings
+  /v1/models/{model_id}/deployments/{deployment_id}/promote:
+    post: Model_deploymentPromote
   /v1/secrets:
     get: Secret_getAllSecrets
     post: Secret_upsertNewSecret
 operationTags:
+  /v1/models:
+    get: Model
+  /v1/models/{model_id}:
+    get: Model
+  /v1/models/{model_id}/deployments:
+    get: Model
   /v1/models/{model_id}/deployments/development:
     get: Deployment
   /v1/models/{model_id}/deployments/development/autoscaling_settings:
     patch: AutoscalingSetting
+  /v1/models/{model_id}/deployments/development/promote:
+    post: Model
   /v1/models/{model_id}/deployments/production:
     get: Deployment
   /v1/models/{model_id}/deployments/production/autoscaling_settings:
@@ -30,6 +48,8 @@ operationTags:
     get: Deployment
   /v1/models/{model_id}/deployments/{deployment_id}/autoscaling_settings:
     patch: AutoscalingSetting
+  /v1/models/{model_id}/deployments/{deployment_id}/promote:
+    post: Model
   /v1/secrets:
     get: Secret
     post: Secret

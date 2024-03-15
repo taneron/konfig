@@ -1,5 +1,37 @@
-hash: c158f2dc4db612e1d7c762178fd3ff8ce9f4ef80b7bcae9cba94db6283a58322
+hash: bf5265c7502b0d6b9de51d26eba597534515cc64443aa160e42f139d33294d40
 methodObjects:
+  - url: /v1/oauth/token
+    method: generateAccess
+    httpMethod: post
+    tag: Token
+    typeScriptTag: token
+    description: Create a token
+    parameters:
+      - name: code
+        schema: string
+        required: true
+        description: ''
+        example: CODE
+      - name: grant_type
+        schema: string
+        required: true
+        description: ''
+        example: GRANT_TYPE
+        default: '"authorization_code"'
+      - name: redirect_uri
+        schema: string
+        required: true
+        description: ''
+        example: REDIRECT_URI
+      - name: external_account
+        schema: object
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
   - url: /v1/blocks/{block_id}/children
     method: getChildren
     httpMethod: get
@@ -590,7 +622,7 @@ methodObjects:
         description: ''
       - statusCode: '429'
         description: ''
-numberOfSchemas: 55
+numberOfSchemas: 58
 apiDescription: >-
   Notion is a new tool that blends your everyday work apps into one. It's the
   all-in-one workspace for you and your team.

@@ -114,7 +114,7 @@ rawSpecString: |
       cross-domain communication from the browser. All responses have a wildcard
       same-origin which makes them completely public and accessible to everyone,
       including any code on any site.
-    version: 1.20.0
+    version: 1.21.0
     x-logo:
       altText: Svix Logo
       url: https://www.svix.com/static/img/brand-padded.svg
@@ -124,7 +124,7 @@ rawSpecString: |
     - url: https://api.us.svix.com/
       description: The Svix US region
   paths:
-    /api/v1/auth/app-portal-access/{app_id}/:
+    /api/v1/auth/app-portal-access/{app_id}:
       post:
         tags:
           - Authentication
@@ -306,7 +306,7 @@ rawSpecString: |
             lang: Shell
             source: |-
               curl -X 'POST' \
-                'https://api.eu.svix.com/api/v1/auth/app-portal-access/{app_id}/' \
+                'https://api.eu.svix.com/api/v1/auth/app-portal-access/{app_id}' \
                 -H 'Authorization: Bearer AUTH_TOKEN' \
                 -H 'Accept: application/json' \
                 -H 'Content-Type: application/json' \
@@ -314,7 +314,7 @@ rawSpecString: |
                       "featureFlags": [],
                       "expiry": null
                   }'
-    /api/v1/auth/dashboard-access/{app_id}/:
+    /api/v1/auth/dashboard-access/{app_id}:
       post:
         tags:
           - Authentication
@@ -455,11 +455,11 @@ rawSpecString: |
             lang: Shell
             source: |-
               curl -X 'POST' \
-                'https://api.eu.svix.com/api/v1/auth/dashboard-access/{app_id}/' \
+                'https://api.eu.svix.com/api/v1/auth/dashboard-access/{app_id}' \
                 -H 'Authorization: Bearer AUTH_TOKEN' \
                 -H 'Accept: application/json' \
                 -H 'Content-Type: application/json'
-    /api/v1/auth/logout/:
+    /api/v1/auth/logout:
       post:
         tags:
           - Authentication
@@ -561,11 +561,11 @@ rawSpecString: |
             lang: Shell
             source: |-
               curl -X 'POST' \
-                'https://api.eu.svix.com/api/v1/auth/logout/' \
+                'https://api.eu.svix.com/api/v1/auth/logout' \
                 -H 'Authorization: Bearer AUTH_TOKEN' \
                 -H 'Accept: application/json' \
                 -H 'Content-Type: application/json'
-    /api/v1/auth/app/{app_id}/expire-all/:
+    /api/v1/auth/app/{app_id}/expire-all:
       post:
         tags:
           - Authentication
@@ -721,14 +721,14 @@ rawSpecString: |
             lang: Shell
             source: |-
               curl -X 'POST' \
-                'https://api.eu.svix.com/api/v1/auth/app/{app_id}/expire-all/' \
+                'https://api.eu.svix.com/api/v1/auth/app/{app_id}/expire-all' \
                 -H 'Authorization: Bearer AUTH_TOKEN' \
                 -H 'Accept: application/json' \
                 -H 'Content-Type: application/json' \
                 -d '{
                       "expiry": 60
                   }'
-    /api/v1/app/:
+    /api/v1/app:
       get:
         tags:
           - Application
@@ -858,7 +858,7 @@ rawSpecString: |
             lang: Shell
             source: |-
               curl -X 'GET' \
-                'https://api.eu.svix.com/api/v1/app/' \
+                'https://api.eu.svix.com/api/v1/app' \
                 -H 'Authorization: Bearer AUTH_TOKEN' \
                 -H 'Accept: application/json' \
                 -H 'Content-Type: application/json'
@@ -1046,7 +1046,7 @@ rawSpecString: |
             lang: Shell
             source: |-
               curl -X 'POST' \
-                'https://api.eu.svix.com/api/v1/app/' \
+                'https://api.eu.svix.com/api/v1/app' \
                 -H 'Authorization: Bearer AUTH_TOKEN' \
                 -H 'Accept: application/json' \
                 -H 'Content-Type: application/json' \
@@ -1055,7 +1055,7 @@ rawSpecString: |
                       "rateLimit": null,
                       "uid": "unique-app-identifier"
                   }'
-    /api/v1/app/{app_id}/:
+    /api/v1/app/{app_id}:
       get:
         tags:
           - Application
@@ -1164,7 +1164,7 @@ rawSpecString: |
             lang: Shell
             source: |-
               curl -X 'GET' \
-                'https://api.eu.svix.com/api/v1/app/{app_id}/' \
+                'https://api.eu.svix.com/api/v1/app/{app_id}' \
                 -H 'Authorization: Bearer AUTH_TOKEN' \
                 -H 'Accept: application/json' \
                 -H 'Content-Type: application/json'
@@ -1350,7 +1350,7 @@ rawSpecString: |
             lang: Shell
             source: |-
               curl -X 'PUT' \
-                'https://api.eu.svix.com/api/v1/app/{app_id}/' \
+                'https://api.eu.svix.com/api/v1/app/{app_id}' \
                 -H 'Authorization: Bearer AUTH_TOKEN' \
                 -H 'Accept: application/json' \
                 -H 'Content-Type: application/json' \
@@ -1463,7 +1463,7 @@ rawSpecString: |
             lang: Shell
             source: |-
               curl -X 'DELETE' \
-                'https://api.eu.svix.com/api/v1/app/{app_id}/' \
+                'https://api.eu.svix.com/api/v1/app/{app_id}' \
                 -H 'Authorization: Bearer AUTH_TOKEN' \
                 -H 'Accept: application/json' \
                 -H 'Content-Type: application/json'
@@ -1632,7 +1632,7 @@ rawSpecString: |
             lang: Shell
             source: |-
               curl -X 'PATCH' \
-                'https://api.eu.svix.com/api/v1/app/{app_id}/' \
+                'https://api.eu.svix.com/api/v1/app/{app_id}' \
                 -H 'Authorization: Bearer AUTH_TOKEN' \
                 -H 'Accept: application/json' \
                 -H 'Content-Type: application/json' \
@@ -1640,7 +1640,7 @@ rawSpecString: |
                       "rateLimit": null,
                       "uid": "unique-app-identifier"
                   }'
-    /api/v1/app/{app_id}/endpoint/:
+    /api/v1/app/{app_id}/endpoint:
       get:
         tags:
           - Endpoint
@@ -1786,7 +1786,7 @@ rawSpecString: |
             lang: Shell
             source: |-
               curl -X 'GET' \
-                'https://api.eu.svix.com/api/v1/app/{app_id}/endpoint/' \
+                'https://api.eu.svix.com/api/v1/app/{app_id}/endpoint' \
                 -H 'Authorization: Bearer AUTH_TOKEN' \
                 -H 'Accept: application/json' \
                 -H 'Content-Type: application/json'
@@ -2039,7 +2039,7 @@ rawSpecString: |
             lang: Shell
             source: |-
               curl -X 'POST' \
-                'https://api.eu.svix.com/api/v1/app/{app_id}/endpoint/' \
+                'https://api.eu.svix.com/api/v1/app/{app_id}/endpoint' \
                 -H 'Authorization: Bearer AUTH_TOKEN' \
                 -H 'Accept: application/json' \
                 -H 'Content-Type: application/json' \
@@ -2054,7 +2054,7 @@ rawSpecString: |
                       "channels": ["project_123", "group_2"],
                       "secret": "whsec_C2FVsBQIhrscChlQIMV+b5sSYspob7oD"
                   }'
-    /api/v1/app/{app_id}/endpoint/{endpoint_id}/:
+    /api/v1/app/{app_id}/endpoint/{endpoint_id}:
       get:
         tags:
           - Endpoint
@@ -2187,7 +2187,7 @@ rawSpecString: |
             lang: Shell
             source: |-
               curl -X 'GET' \
-                'https://api.eu.svix.com/api/v1/app/{app_id}/endpoint/{endpoint_id}/' \
+                'https://api.eu.svix.com/api/v1/app/{app_id}/endpoint/{endpoint_id}' \
                 -H 'Authorization: Bearer AUTH_TOKEN' \
                 -H 'Accept: application/json' \
                 -H 'Content-Type: application/json'
@@ -2443,7 +2443,7 @@ rawSpecString: |
             lang: Shell
             source: |-
               curl -X 'PUT' \
-                'https://api.eu.svix.com/api/v1/app/{app_id}/endpoint/{endpoint_id}/' \
+                'https://api.eu.svix.com/api/v1/app/{app_id}/endpoint/{endpoint_id}' \
                 -H 'Authorization: Bearer AUTH_TOKEN' \
                 -H 'Accept: application/json' \
                 -H 'Content-Type: application/json' \
@@ -2573,7 +2573,7 @@ rawSpecString: |
             lang: Shell
             source: |-
               curl -X 'DELETE' \
-                'https://api.eu.svix.com/api/v1/app/{app_id}/endpoint/{endpoint_id}/' \
+                'https://api.eu.svix.com/api/v1/app/{app_id}/endpoint/{endpoint_id}' \
                 -H 'Authorization: Bearer AUTH_TOKEN' \
                 -H 'Accept: application/json' \
                 -H 'Content-Type: application/json'
@@ -2801,7 +2801,7 @@ rawSpecString: |
             lang: Shell
             source: |-
               curl -X 'PATCH' \
-                'https://api.eu.svix.com/api/v1/app/{app_id}/endpoint/{endpoint_id}/' \
+                'https://api.eu.svix.com/api/v1/app/{app_id}/endpoint/{endpoint_id}' \
                 -H 'Authorization: Bearer AUTH_TOKEN' \
                 -H 'Accept: application/json' \
                 -H 'Content-Type: application/json' \
@@ -2813,7 +2813,7 @@ rawSpecString: |
                       "channels": null,
                       "secret": "whsec_C2FVsBQIhrscChlQIMV+b5sSYspob7oD"
                   }'
-    /api/v1/app/{app_id}/endpoint/{endpoint_id}/secret/:
+    /api/v1/app/{app_id}/endpoint/{endpoint_id}/secret:
       get:
         tags:
           - Endpoint
@@ -2961,11 +2961,11 @@ rawSpecString: |
             lang: Shell
             source: |-
               curl -X 'GET' \
-                'https://api.eu.svix.com/api/v1/app/{app_id}/endpoint/{endpoint_id}/secret/' \
+                'https://api.eu.svix.com/api/v1/app/{app_id}/endpoint/{endpoint_id}/secret' \
                 -H 'Authorization: Bearer AUTH_TOKEN' \
                 -H 'Accept: application/json' \
                 -H 'Content-Type: application/json'
-    /api/v1/app/{app_id}/endpoint/{endpoint_id}/secret/rotate/:
+    /api/v1/app/{app_id}/endpoint/{endpoint_id}/secret/rotate:
       post:
         tags:
           - Endpoint
@@ -3137,14 +3137,14 @@ rawSpecString: |
             lang: Shell
             source: |-
               curl -X 'POST' \
-                'https://api.eu.svix.com/api/v1/app/{app_id}/endpoint/{endpoint_id}/secret/rotate/' \
+                'https://api.eu.svix.com/api/v1/app/{app_id}/endpoint/{endpoint_id}/secret/rotate' \
                 -H 'Authorization: Bearer AUTH_TOKEN' \
                 -H 'Accept: application/json' \
                 -H 'Content-Type: application/json' \
                 -d '{
                       "key": "whsec_C2FVsBQIhrscChlQIMV+b5sSYspob7oD"
                   }'
-    /api/v1/app/{app_id}/endpoint/{endpoint_id}/stats/:
+    /api/v1/app/{app_id}/endpoint/{endpoint_id}/stats:
       get:
         tags:
           - Endpoint
@@ -3297,11 +3297,11 @@ rawSpecString: |
             lang: Shell
             source: |-
               curl -X 'GET' \
-                'https://api.eu.svix.com/api/v1/app/{app_id}/endpoint/{endpoint_id}/stats/' \
+                'https://api.eu.svix.com/api/v1/app/{app_id}/endpoint/{endpoint_id}/stats' \
                 -H 'Authorization: Bearer AUTH_TOKEN' \
                 -H 'Accept: application/json' \
                 -H 'Content-Type: application/json'
-    /api/v1/app/{app_id}/endpoint/{endpoint_id}/recover/:
+    /api/v1/app/{app_id}/endpoint/{endpoint_id}/recover:
       post:
         tags:
           - Endpoint
@@ -3477,14 +3477,14 @@ rawSpecString: |
             lang: Shell
             source: |-
               curl -X 'POST' \
-                'https://api.eu.svix.com/api/v1/app/{app_id}/endpoint/{endpoint_id}/recover/' \
+                'https://api.eu.svix.com/api/v1/app/{app_id}/endpoint/{endpoint_id}/recover' \
                 -H 'Authorization: Bearer AUTH_TOKEN' \
                 -H 'Accept: application/json' \
                 -H 'Content-Type: application/json' \
                 -d '{
                       "until": null
                   }'
-    /api/v1/app/{app_id}/endpoint/{endpoint_id}/replay-missing/:
+    /api/v1/app/{app_id}/endpoint/{endpoint_id}/replay-missing:
       post:
         tags:
           - Endpoint
@@ -3662,14 +3662,14 @@ rawSpecString: |
             lang: Shell
             source: |-
               curl -X 'POST' \
-                'https://api.eu.svix.com/api/v1/app/{app_id}/endpoint/{endpoint_id}/replay-missing/' \
+                'https://api.eu.svix.com/api/v1/app/{app_id}/endpoint/{endpoint_id}/replay-missing' \
                 -H 'Authorization: Bearer AUTH_TOKEN' \
                 -H 'Accept: application/json' \
                 -H 'Content-Type: application/json' \
                 -d '{
                       "until": null
                   }'
-    /api/v1/app/{app_id}/endpoint/{endpoint_id}/headers/:
+    /api/v1/app/{app_id}/endpoint/{endpoint_id}/headers:
       get:
         tags:
           - Endpoint
@@ -3810,7 +3810,7 @@ rawSpecString: |
             lang: Shell
             source: |-
               curl -X 'GET' \
-                'https://api.eu.svix.com/api/v1/app/{app_id}/endpoint/{endpoint_id}/headers/' \
+                'https://api.eu.svix.com/api/v1/app/{app_id}/endpoint/{endpoint_id}/headers' \
                 -H 'Authorization: Bearer AUTH_TOKEN' \
                 -H 'Accept: application/json' \
                 -H 'Content-Type: application/json'
@@ -3977,7 +3977,7 @@ rawSpecString: |
             lang: Shell
             source: |-
               curl -X 'PUT' \
-                'https://api.eu.svix.com/api/v1/app/{app_id}/endpoint/{endpoint_id}/headers/' \
+                'https://api.eu.svix.com/api/v1/app/{app_id}/endpoint/{endpoint_id}/headers' \
                 -H 'Authorization: Bearer AUTH_TOKEN' \
                 -H 'Accept: application/json' \
                 -H 'Content-Type: application/json' \
@@ -4147,14 +4147,14 @@ rawSpecString: |
             lang: Shell
             source: |-
               curl -X 'PATCH' \
-                'https://api.eu.svix.com/api/v1/app/{app_id}/endpoint/{endpoint_id}/headers/' \
+                'https://api.eu.svix.com/api/v1/app/{app_id}/endpoint/{endpoint_id}/headers' \
                 -H 'Authorization: Bearer AUTH_TOKEN' \
                 -H 'Accept: application/json' \
                 -H 'Content-Type: application/json' \
                 -d '{
                       "headers": {"X-Example":"123","X-Foobar":"Bar"}
                   }'
-    /api/v1/app/{app_id}/endpoint/{endpoint_id}/transformation/:
+    /api/v1/app/{app_id}/endpoint/{endpoint_id}/transformation:
       get:
         tags:
           - Endpoint
@@ -4295,7 +4295,7 @@ rawSpecString: |
             lang: Shell
             source: |-
               curl -X 'GET' \
-                'https://api.eu.svix.com/api/v1/app/{app_id}/endpoint/{endpoint_id}/transformation/' \
+                'https://api.eu.svix.com/api/v1/app/{app_id}/endpoint/{endpoint_id}/transformation' \
                 -H 'Authorization: Bearer AUTH_TOKEN' \
                 -H 'Accept: application/json' \
                 -H 'Content-Type: application/json'
@@ -4465,14 +4465,14 @@ rawSpecString: |
             lang: Shell
             source: |-
               curl -X 'PATCH' \
-                'https://api.eu.svix.com/api/v1/app/{app_id}/endpoint/{endpoint_id}/transformation/' \
+                'https://api.eu.svix.com/api/v1/app/{app_id}/endpoint/{endpoint_id}/transformation' \
                 -H 'Authorization: Bearer AUTH_TOKEN' \
                 -H 'Accept: application/json' \
                 -H 'Content-Type: application/json' \
                 -d '{
                       "code": null
                   }'
-    /api/v1/app/{app_id}/endpoint/{endpoint_id}/send-example/:
+    /api/v1/app/{app_id}/endpoint/{endpoint_id}/send-example:
       post:
         tags:
           - Endpoint
@@ -4648,14 +4648,14 @@ rawSpecString: |
             lang: Shell
             source: |-
               curl -X 'POST' \
-                'https://api.eu.svix.com/api/v1/app/{app_id}/endpoint/{endpoint_id}/send-example/' \
+                'https://api.eu.svix.com/api/v1/app/{app_id}/endpoint/{endpoint_id}/send-example' \
                 -H 'Authorization: Bearer AUTH_TOKEN' \
                 -H 'Accept: application/json' \
                 -H 'Content-Type: application/json' \
                 -d '{
                       "eventType": "user.signup"
                   }'
-    /api/v1/event-type/:
+    /api/v1/event-type:
       get:
         tags:
           - Event Type
@@ -4809,7 +4809,7 @@ rawSpecString: |
             lang: Shell
             source: |-
               curl -X 'GET' \
-                'https://api.eu.svix.com/api/v1/event-type/' \
+                'https://api.eu.svix.com/api/v1/event-type' \
                 -H 'Authorization: Bearer AUTH_TOKEN' \
                 -H 'Accept: application/json' \
                 -H 'Content-Type: application/json'
@@ -5009,7 +5009,7 @@ rawSpecString: |
             lang: Shell
             source: |-
               curl -X 'POST' \
-                'https://api.eu.svix.com/api/v1/event-type/' \
+                'https://api.eu.svix.com/api/v1/event-type' \
                 -H 'Authorization: Bearer AUTH_TOKEN' \
                 -H 'Accept: application/json' \
                 -H 'Content-Type: application/json' \
@@ -5020,7 +5020,7 @@ rawSpecString: |
                       "schemas": {"1":{"description":"An invoice was paid by a user","properties":{"invoiceId":{"description":"The invoice id","type":"string"},"userId":{"description":"The user id","type":"string"}},"required":["invoiceId","userId"],"title":"Invoice Paid Event","type":"object"}},
                       "featureFlag": "cool-new-feature"
                   }'
-    /api/v1/event-type/import/openapi/:
+    /api/v1/event-type/import/openapi:
       post:
         tags:
           - Event Type
@@ -5200,7 +5200,7 @@ rawSpecString: |
             lang: Shell
             source: |-
               curl -X 'POST' \
-                'https://api.eu.svix.com/api/v1/event-type/import/openapi/' \
+                'https://api.eu.svix.com/api/v1/event-type/import/openapi' \
                 -H 'Authorization: Bearer AUTH_TOKEN' \
                 -H 'Accept: application/json' \
                 -H 'Content-Type: application/json' \
@@ -5208,7 +5208,7 @@ rawSpecString: |
                       "spec": {"info":{"title":"Webhook Example","version":"1.0.0"},"openapi":"3.1.0","webhooks":{"pet.new":{"post":{"requestBody":{"content":{"application/json":{"schema":{"properties":{"id":{"format":"int64","type":"integer"},"name":{"type":"string"},"tag":{"type":"string"}},"required":["id","name"]}}},"description":"Information about a new pet in the system"},"responses":{"200":{"description":"Return a 200 status to indicate that the data was received successfully"}}}}}},
                       "specRaw": {"info":{"title":"Webhook Example","version":"1.0.0"},"openapi":"3.1.0","webhooks":{"pet.new":{"post":{"requestBody":{"content":{"application/json":{"schema":{"properties":{"id":{"format":"int64","type":"integer"},"name":{"type":"string"},"tag":{"type":"string"}},"required":["id","name"]}}},"description":"Information about a new pet in the system"},"responses":{"200":{"description":"Return a 200 status to indicate that the data was received successfully"}}}}}}
                   }'
-    /api/v1/event-type/{event_type_name}/:
+    /api/v1/event-type/{event_type_name}:
       get:
         tags:
           - Event Type
@@ -5322,7 +5322,7 @@ rawSpecString: |
             lang: Shell
             source: |-
               curl -X 'GET' \
-                'https://api.eu.svix.com/api/v1/event-type/{event_type_name}/' \
+                'https://api.eu.svix.com/api/v1/event-type/{event_type_name}' \
                 -H 'Authorization: Bearer AUTH_TOKEN' \
                 -H 'Accept: application/json' \
                 -H 'Content-Type: application/json'
@@ -5521,7 +5521,7 @@ rawSpecString: |
             lang: Shell
             source: |-
               curl -X 'PUT' \
-                'https://api.eu.svix.com/api/v1/event-type/{event_type_name}/' \
+                'https://api.eu.svix.com/api/v1/event-type/{event_type_name}' \
                 -H 'Authorization: Bearer AUTH_TOKEN' \
                 -H 'Accept: application/json' \
                 -H 'Content-Type: application/json' \
@@ -5659,7 +5659,7 @@ rawSpecString: |
             lang: Shell
             source: |-
               curl -X 'DELETE' \
-                'https://api.eu.svix.com/api/v1/event-type/{event_type_name}/' \
+                'https://api.eu.svix.com/api/v1/event-type/{event_type_name}' \
                 -H 'Authorization: Bearer AUTH_TOKEN' \
                 -H 'Accept: application/json' \
                 -H 'Content-Type: application/json'
@@ -5828,7 +5828,7 @@ rawSpecString: |
             lang: Shell
             source: |-
               curl -X 'PATCH' \
-                'https://api.eu.svix.com/api/v1/event-type/{event_type_name}/' \
+                'https://api.eu.svix.com/api/v1/event-type/{event_type_name}' \
                 -H 'Authorization: Bearer AUTH_TOKEN' \
                 -H 'Accept: application/json' \
                 -H 'Content-Type: application/json' \
@@ -5836,7 +5836,7 @@ rawSpecString: |
                       "schemas": {"description":"An invoice was paid by a user","properties":{"invoiceId":{"description":"The invoice id","type":"string"},"userId":{"description":"The user id","type":"string"}},"required":["invoiceId","userId"],"title":"Invoice Paid Event","type":"object"},
                       "featureFlag": "cool-new-feature"
                   }'
-    /api/v1/background-task/:
+    /api/v1/background-task:
       get:
         tags:
           - Background Tasks
@@ -5937,7 +5937,7 @@ rawSpecString: |
                   $ref: '#/components/schemas/HttpErrorOut'
         security:
           - HTTPBearer: []
-    /api/v1/background-task/{task_id}/:
+    /api/v1/background-task/{task_id}:
       get:
         tags:
           - Background Tasks
@@ -6002,7 +6002,7 @@ rawSpecString: |
                   $ref: '#/components/schemas/HttpErrorOut'
         security:
           - HTTPBearer: []
-    /api/v1/app/{app_id}/msg/:
+    /api/v1/app/{app_id}/msg:
       get:
         tags:
           - Message
@@ -6219,7 +6219,7 @@ rawSpecString: |
             lang: Shell
             source: |-
               curl -X 'GET' \
-                'https://api.eu.svix.com/api/v1/app/{app_id}/msg/' \
+                'https://api.eu.svix.com/api/v1/app/{app_id}/msg' \
                 -H 'Authorization: Bearer AUTH_TOKEN' \
                 -H 'Accept: application/json' \
                 -H 'Content-Type: application/json'
@@ -6494,7 +6494,7 @@ rawSpecString: |
             lang: Shell
             source: |-
               curl -X 'POST' \
-                'https://api.eu.svix.com/api/v1/app/{app_id}/msg/' \
+                'https://api.eu.svix.com/api/v1/app/{app_id}/msg' \
                 -H 'Authorization: Bearer AUTH_TOKEN' \
                 -H 'Accept: application/json' \
                 -H 'Content-Type: application/json' \
@@ -6508,7 +6508,7 @@ rawSpecString: |
                       "tags": ["my_tag", "other"],
                       "transformationsParams": null
                   }'
-    /api/v1/app/{app_id}/msg/{msg_id}/:
+    /api/v1/app/{app_id}/msg/{msg_id}:
       get:
         tags:
           - Message
@@ -6637,11 +6637,11 @@ rawSpecString: |
             lang: Shell
             source: |-
               curl -X 'GET' \
-                'https://api.eu.svix.com/api/v1/app/{app_id}/msg/{msg_id}/' \
+                'https://api.eu.svix.com/api/v1/app/{app_id}/msg/{msg_id}' \
                 -H 'Authorization: Bearer AUTH_TOKEN' \
                 -H 'Accept: application/json' \
                 -H 'Content-Type: application/json'
-    /api/v1/app/{app_id}/msg/{msg_id}/content/:
+    /api/v1/app/{app_id}/msg/{msg_id}/content:
       delete:
         tags:
           - Message
@@ -6764,11 +6764,11 @@ rawSpecString: |
             lang: Shell
             source: |-
               curl -X 'DELETE' \
-                'https://api.eu.svix.com/api/v1/app/{app_id}/msg/{msg_id}/content/' \
+                'https://api.eu.svix.com/api/v1/app/{app_id}/msg/{msg_id}/content' \
                 -H 'Authorization: Bearer AUTH_TOKEN' \
                 -H 'Accept: application/json' \
                 -H 'Content-Type: application/json'
-    /api/v1/app/{app_id}/attempt/endpoint/{endpoint_id}/:
+    /api/v1/app/{app_id}/attempt/endpoint/{endpoint_id}:
       get:
         tags:
           - Message Attempt
@@ -7030,11 +7030,11 @@ rawSpecString: |
             lang: Shell
             source: |-
               curl -X 'GET' \
-                'https://api.eu.svix.com/api/v1/app/{app_id}/attempt/endpoint/{endpoint_id}/' \
+                'https://api.eu.svix.com/api/v1/app/{app_id}/attempt/endpoint/{endpoint_id}' \
                 -H 'Authorization: Bearer AUTH_TOKEN' \
                 -H 'Accept: application/json' \
                 -H 'Content-Type: application/json'
-    /api/v1/app/{app_id}/attempt/msg/{msg_id}/:
+    /api/v1/app/{app_id}/attempt/msg/{msg_id}:
       get:
         tags:
           - Message Attempt
@@ -7298,11 +7298,11 @@ rawSpecString: |
             lang: Shell
             source: |-
               curl -X 'GET' \
-                'https://api.eu.svix.com/api/v1/app/{app_id}/attempt/msg/{msg_id}/' \
+                'https://api.eu.svix.com/api/v1/app/{app_id}/attempt/msg/{msg_id}' \
                 -H 'Authorization: Bearer AUTH_TOKEN' \
                 -H 'Accept: application/json' \
                 -H 'Content-Type: application/json'
-    /api/v1/app/{app_id}/endpoint/{endpoint_id}/msg/:
+    /api/v1/app/{app_id}/endpoint/{endpoint_id}/msg:
       get:
         tags:
           - Message Attempt
@@ -7558,11 +7558,11 @@ rawSpecString: |
             lang: Shell
             source: |-
               curl -X 'GET' \
-                'https://api.eu.svix.com/api/v1/app/{app_id}/endpoint/{endpoint_id}/msg/' \
+                'https://api.eu.svix.com/api/v1/app/{app_id}/endpoint/{endpoint_id}/msg' \
                 -H 'Authorization: Bearer AUTH_TOKEN' \
                 -H 'Accept: application/json' \
                 -H 'Content-Type: application/json'
-    /api/v1/app/{app_id}/msg/{msg_id}/endpoint/:
+    /api/v1/app/{app_id}/msg/{msg_id}/endpoint:
       get:
         tags:
           - Message Attempt
@@ -7732,11 +7732,11 @@ rawSpecString: |
             lang: Shell
             source: |-
               curl -X 'GET' \
-                'https://api.eu.svix.com/api/v1/app/{app_id}/msg/{msg_id}/endpoint/' \
+                'https://api.eu.svix.com/api/v1/app/{app_id}/msg/{msg_id}/endpoint' \
                 -H 'Authorization: Bearer AUTH_TOKEN' \
                 -H 'Accept: application/json' \
                 -H 'Content-Type: application/json'
-    /api/v1/app/{app_id}/msg/{msg_id}/endpoint/{endpoint_id}/attempt/:
+    /api/v1/app/{app_id}/msg/{msg_id}/endpoint/{endpoint_id}/attempt:
       get:
         tags:
           - Message Attempt
@@ -8009,11 +8009,11 @@ rawSpecString: |
             lang: Shell
             source: |-
               curl -X 'GET' \
-                'https://api.eu.svix.com/api/v1/app/{app_id}/msg/{msg_id}/endpoint/{endpoint_id}/attempt/' \
+                'https://api.eu.svix.com/api/v1/app/{app_id}/msg/{msg_id}/endpoint/{endpoint_id}/attempt' \
                 -H 'Authorization: Bearer AUTH_TOKEN' \
                 -H 'Accept: application/json' \
                 -H 'Content-Type: application/json'
-    /api/v1/app/{app_id}/msg/{msg_id}/attempt/:
+    /api/v1/app/{app_id}/msg/{msg_id}/attempt:
       get:
         tags:
           - Message Attempt
@@ -8278,11 +8278,11 @@ rawSpecString: |
             lang: Shell
             source: |-
               curl -X 'GET' \
-                'https://api.eu.svix.com/api/v1/app/{app_id}/msg/{msg_id}/attempt/' \
+                'https://api.eu.svix.com/api/v1/app/{app_id}/msg/{msg_id}/attempt' \
                 -H 'Authorization: Bearer AUTH_TOKEN' \
                 -H 'Accept: application/json' \
                 -H 'Content-Type: application/json'
-    /api/v1/app/{app_id}/msg/{msg_id}/attempt/{attempt_id}/:
+    /api/v1/app/{app_id}/msg/{msg_id}/attempt/{attempt_id}:
       get:
         tags:
           - Message Attempt
@@ -8432,11 +8432,11 @@ rawSpecString: |
             lang: Shell
             source: |-
               curl -X 'GET' \
-                'https://api.eu.svix.com/api/v1/app/{app_id}/msg/{msg_id}/attempt/{attempt_id}/' \
+                'https://api.eu.svix.com/api/v1/app/{app_id}/msg/{msg_id}/attempt/{attempt_id}' \
                 -H 'Authorization: Bearer AUTH_TOKEN' \
                 -H 'Accept: application/json' \
                 -H 'Content-Type: application/json'
-    /api/v1/app/{app_id}/msg/{msg_id}/attempt/{attempt_id}/content/:
+    /api/v1/app/{app_id}/msg/{msg_id}/attempt/{attempt_id}/content:
       delete:
         tags:
           - Message Attempt
@@ -8582,11 +8582,11 @@ rawSpecString: |
             lang: Shell
             source: |-
               curl -X 'DELETE' \
-                'https://api.eu.svix.com/api/v1/app/{app_id}/msg/{msg_id}/attempt/{attempt_id}/content/' \
+                'https://api.eu.svix.com/api/v1/app/{app_id}/msg/{msg_id}/attempt/{attempt_id}/content' \
                 -H 'Authorization: Bearer AUTH_TOKEN' \
                 -H 'Accept: application/json' \
                 -H 'Content-Type: application/json'
-    /api/v1/app/{app_id}/msg/{msg_id}/endpoint/{endpoint_id}/resend/:
+    /api/v1/app/{app_id}/msg/{msg_id}/endpoint/{endpoint_id}/resend:
       post:
         tags:
           - Message Attempt
@@ -8729,11 +8729,11 @@ rawSpecString: |
             lang: Shell
             source: |-
               curl -X 'POST' \
-                'https://api.eu.svix.com/api/v1/app/{app_id}/msg/{msg_id}/endpoint/{endpoint_id}/resend/' \
+                'https://api.eu.svix.com/api/v1/app/{app_id}/msg/{msg_id}/endpoint/{endpoint_id}/resend' \
                 -H 'Authorization: Bearer AUTH_TOKEN' \
                 -H 'Accept: application/json' \
                 -H 'Content-Type: application/json'
-    /api/v1/stats/usage/app/:
+    /api/v1/stats/usage/app:
       post:
         tags:
           - Statistics
@@ -8891,14 +8891,14 @@ rawSpecString: |
             lang: Shell
             source: |-
               curl -X 'POST' \
-                'https://api.eu.svix.com/api/v1/stats/usage/app/' \
+                'https://api.eu.svix.com/api/v1/stats/usage/app' \
                 -H 'Authorization: Bearer AUTH_TOKEN' \
                 -H 'Accept: application/json' \
                 -H 'Content-Type: application/json' \
                 -d '{
                       "appIds": null
                   }'
-    /api/v1/stats/usage/event-types/:
+    /api/v1/stats/usage/event-types:
       put:
         tags:
           - Statistics
@@ -9016,11 +9016,11 @@ rawSpecString: |
             lang: Shell
             source: |-
               curl -X 'PUT' \
-                'https://api.eu.svix.com/api/v1/stats/usage/event-types/' \
+                'https://api.eu.svix.com/api/v1/stats/usage/event-types' \
                 -H 'Authorization: Bearer AUTH_TOKEN' \
                 -H 'Accept: application/json' \
                 -H 'Content-Type: application/json'
-    /api/v1/app/{app_id}/integration/:
+    /api/v1/app/{app_id}/integration:
       get:
         tags:
           - Integration
@@ -9164,7 +9164,7 @@ rawSpecString: |
             lang: Shell
             source: |-
               curl -X 'GET' \
-                'https://api.eu.svix.com/api/v1/app/{app_id}/integration/' \
+                'https://api.eu.svix.com/api/v1/app/{app_id}/integration' \
                 -H 'Authorization: Bearer AUTH_TOKEN' \
                 -H 'Accept: application/json' \
                 -H 'Content-Type: application/json'
@@ -9328,14 +9328,14 @@ rawSpecString: |
             lang: Shell
             source: |-
               curl -X 'POST' \
-                'https://api.eu.svix.com/api/v1/app/{app_id}/integration/' \
+                'https://api.eu.svix.com/api/v1/app/{app_id}/integration' \
                 -H 'Authorization: Bearer AUTH_TOKEN' \
                 -H 'Accept: application/json' \
                 -H 'Content-Type: application/json' \
                 -d '{
                       "name": "Example Integration"
                   }'
-    /api/v1/app/{app_id}/integration/{integ_id}/:
+    /api/v1/app/{app_id}/integration/{integ_id}:
       get:
         tags:
           - Integration
@@ -9465,7 +9465,7 @@ rawSpecString: |
             lang: Shell
             source: |-
               curl -X 'GET' \
-                'https://api.eu.svix.com/api/v1/app/{app_id}/integration/{integ_id}/' \
+                'https://api.eu.svix.com/api/v1/app/{app_id}/integration/{integ_id}' \
                 -H 'Authorization: Bearer AUTH_TOKEN' \
                 -H 'Accept: application/json' \
                 -H 'Content-Type: application/json'
@@ -9636,7 +9636,7 @@ rawSpecString: |
             lang: Shell
             source: |-
               curl -X 'PUT' \
-                'https://api.eu.svix.com/api/v1/app/{app_id}/integration/{integ_id}/' \
+                'https://api.eu.svix.com/api/v1/app/{app_id}/integration/{integ_id}' \
                 -H 'Authorization: Bearer AUTH_TOKEN' \
                 -H 'Accept: application/json' \
                 -H 'Content-Type: application/json' \
@@ -9756,11 +9756,11 @@ rawSpecString: |
             lang: Shell
             source: |-
               curl -X 'DELETE' \
-                'https://api.eu.svix.com/api/v1/app/{app_id}/integration/{integ_id}/' \
+                'https://api.eu.svix.com/api/v1/app/{app_id}/integration/{integ_id}' \
                 -H 'Authorization: Bearer AUTH_TOKEN' \
                 -H 'Accept: application/json' \
                 -H 'Content-Type: application/json'
-    /api/v1/app/{app_id}/integration/{integ_id}/key/:
+    /api/v1/app/{app_id}/integration/{integ_id}/key:
       get:
         tags:
           - Integration
@@ -9894,11 +9894,11 @@ rawSpecString: |
             lang: Shell
             source: |-
               curl -X 'GET' \
-                'https://api.eu.svix.com/api/v1/app/{app_id}/integration/{integ_id}/key/' \
+                'https://api.eu.svix.com/api/v1/app/{app_id}/integration/{integ_id}/key' \
                 -H 'Authorization: Bearer AUTH_TOKEN' \
                 -H 'Accept: application/json' \
                 -H 'Content-Type: application/json'
-    /api/v1/app/{app_id}/integration/{integ_id}/key/rotate/:
+    /api/v1/app/{app_id}/integration/{integ_id}/key/rotate:
       post:
         tags:
           - Integration
@@ -10044,11 +10044,11 @@ rawSpecString: |
             lang: Shell
             source: |-
               curl -X 'POST' \
-                'https://api.eu.svix.com/api/v1/app/{app_id}/integration/{integ_id}/key/rotate/' \
+                'https://api.eu.svix.com/api/v1/app/{app_id}/integration/{integ_id}/key/rotate' \
                 -H 'Authorization: Bearer AUTH_TOKEN' \
                 -H 'Accept: application/json' \
                 -H 'Content-Type: application/json'
-    /api/v1/health/:
+    /api/v1/health:
       get:
         tags:
           - Health
@@ -10105,7 +10105,7 @@ rawSpecString: |
             lang: Shell
             source: |-
               curl -X 'GET' \
-                'https://api.eu.svix.com/api/v1/health/' \
+                'https://api.eu.svix.com/api/v1/health' \
                 -H 'Authorization: Bearer AUTH_TOKEN' \
                 -H 'Accept: application/json' \
                 -H 'Content-Type: application/json'
@@ -12785,7 +12785,8 @@ rawSpecString: |
         type: object
         properties:
           customColor:
-            $ref: '#/components/schemas/Color'
+            type: string
+            format: color
             nullable: true
           customLogoUrl:
             type: string
@@ -12831,8 +12832,6 @@ rawSpecString: |
           showUseSvixPlay:
             default: true
             type: boolean
-      Color:
-        type: string
       CustomThemeOverride:
         type: object
         properties:
@@ -12874,31 +12873,40 @@ rawSpecString: |
         type: object
         properties:
           primary:
-            $ref: '#/components/schemas/Color'
+            type: string
+            format: color
             nullable: true
           backgroundPrimary:
-            $ref: '#/components/schemas/Color'
+            type: string
+            format: color
             nullable: true
           backgroundSecondary:
-            $ref: '#/components/schemas/Color'
+            type: string
+            format: color
             nullable: true
           backgroundHover:
-            $ref: '#/components/schemas/Color'
+            type: string
+            format: color
             nullable: true
           textPrimary:
-            $ref: '#/components/schemas/Color'
+            type: string
+            format: color
             nullable: true
           textDanger:
-            $ref: '#/components/schemas/Color'
+            type: string
+            format: color
             nullable: true
           interactiveAccent:
-            $ref: '#/components/schemas/Color'
+            type: string
+            format: color
             nullable: true
           navigationAccent:
-            $ref: '#/components/schemas/Color'
+            type: string
+            format: color
             nullable: true
           buttonPrimary:
-            $ref: '#/components/schemas/Color'
+            type: string
+            format: color
             nullable: true
       EnvironmentOut:
         type: object
@@ -12924,7 +12932,8 @@ rawSpecString: |
         type: object
         properties:
           customColor:
-            $ref: '#/components/schemas/Color'
+            type: string
+            format: color
             nullable: true
           customLogoUrl:
             type: string
@@ -13007,7 +13016,8 @@ rawSpecString: |
         type: object
         properties:
           customColor:
-            $ref: '#/components/schemas/Color'
+            type: string
+            format: color
             nullable: true
           customLogoUrl:
             type: string

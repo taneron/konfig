@@ -14,12 +14,12 @@
   "endpoints": 72,
   "sdkMethods": 197,
   "schemas": 335,
-  "parameters": 541,
+  "parameters": 542,
   "originalCustomRequest": {
     "lambda": true
   },
   "customRequestSpecFilename": "clickup.com.yaml",
-  "difficultyScore": 482.75,
+  "difficultyScore": 483,
   "difficulty": "Hard",
   "company": "ClickUp",
   "sdkName": "click-up-{language}-sdk",
@@ -3432,6 +3432,11 @@
           "schema": "boolean",
           "description": "To return task descriptions in Markdown format, use `?include_markdown_description=true`.",
           "example": true
+        },
+        {
+          "name": "customItems",
+          "schema": "array",
+          "description": "Filter by custom task types. For example: \\\n \\\n`?custom_items[]=0&custom_items[]=1300` \\\n \\\nIncluding `0` returns tasks. Including `1` returns Milestones. Including any other number returns the custom task type as defined in your Workspace."
         }
       ],
       "responses": [
@@ -5703,7 +5708,7 @@
   "previewLinkImage": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/clickup/imagePreview.png",
   "faviconUrl": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/clickup/favicon.png",
   "clientNameCamelCase": "clickUp",
-  "lastUpdated": "2024-03-13T16:59:14.076Z",
+  "lastUpdated": "2024-03-15T18:50:00.907Z",
   "typescriptSdkUsageCode": "import { ClickUp } from 'click-up-typescript-sdk';\n\nconst clickUp = new ClickUp({\n    /*\n     * When testing the ClickUp API in your web browser, you can use a [mock server](/developer-portal/trytheapi/#using-the-mock-server) which accepts any value in the **Authorization** header.\\\n     *  \\\n     * Or you can use your own ClickUp account by generating a [personal token](/developer-portal/authentication#personal-token).\\\n     *  \\\n     * When developing an app for other people to use, you can use an [OAuth flow](/developer-portal/authentication#oauth-flow).\\\n     *  \\\n     * ***Note:** OAuth tokens are not supported when using the **Try It** feature.*\n     */\n    authorizationToken: \"AUTHORIZATION\",\n})",
   "typescriptSdkFirstRequestCode": "// Create Task Attachment\nconst uploadFileToTaskAsAttachmentResponse = clickUp.attachments.uploadFileToTaskAsAttachment({\n    taskId: \"9hv\"\n    customTaskIds: true\n    teamId: 123\n})",
   "fixedSpecFileName": "click-up-fixed-spec.yaml"

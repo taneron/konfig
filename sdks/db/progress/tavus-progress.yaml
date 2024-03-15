@@ -1,0 +1,61 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+operationIds:
+  /v2/replicas:
+    get: Replicas_list
+    post: Replicas_createNewReplica
+  /v2/replicas/{replica_id}:
+    delete: Replicas_deleteByReplicaId
+    get: Replicas_getReplicaById
+  /v2/replicas/{replica_id}/name:
+    patch: Replicas_renameReplicaById
+  /v2/videos:
+    get: Videos_getAll
+    post: Videos_createVideoFromReplicaAndScript
+  /v2/videos/{video_id}:
+    delete: Videos_deleteByVideoId
+    get: Videos_getByVideoId
+  /v2/videos/{video_id}/name:
+    patch: Videos_updateName
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /v2/replicas:
+    post:
+      application/json: ReplicasCreateNewReplicaRequest
+  /v2/replicas/{replica_id}/name:
+    patch:
+      application/json: ReplicasRenameReplicaByIdRequest
+  /v2/videos:
+    post:
+      application/json: VideosCreateVideoFromReplicaAndScriptRequest
+  /v2/videos/{video_id}/name:
+    patch:
+      application/json: VideosUpdateNameRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /v2/replicas:
+    get:
+      '200':
+        application/json: ReplicasListResponse
+    post:
+      '200':
+        application/json: ReplicasCreateNewReplicaResponse
+  /v2/replicas/{replica_id}:
+    get:
+      '200':
+        application/json: ReplicasGetReplicaByIdResponse
+  /v2/videos:
+    get:
+      '200':
+        application/json: VideosGetAllResponse
+    post:
+      '200':
+        application/json: VideosCreateVideoFromReplicaAndScriptResponse
+  /v2/videos/{video_id}:
+    get:
+      '200':
+        application/json: VideosGetByVideoIdResponse
+securityParameters: {}
+validServerUrls: {}

@@ -1,4 +1,4 @@
-hash: b1dd6d8970154a2ce18b940e75685dbebe9acb082a40ac6f333b9eeab95c39f0
+hash: d55fdf56e544158e18787377c7f64a734f0935285f58019e9fa448596b3eac0a
 methodObjects:
   - url: /v1/secrets
     method: getAllSecrets
@@ -32,6 +32,36 @@ methodObjects:
         description: >-
           A Baseten secret. Note that we do not support retrieving secret
           values.
+  - url: /v1/models
+    method: getAllModels
+    httpMethod: get
+    tag: Model
+    typeScriptTag: model
+    description: Gets all models
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: A list of models.
+  - url: /v1/models/{model_id}
+    method: getModelById
+    httpMethod: get
+    tag: Model
+    typeScriptTag: model
+    description: Gets a model by ID
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: A model.
+  - url: /v1/models/{model_id}/deployments
+    method: getAllDeployments
+    httpMethod: get
+    tag: Model
+    typeScriptTag: model
+    description: Gets all deployments of a model
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: A list of deployments of a model.
   - url: /v1/models/{model_id}/deployments/development
     method: getDevelopmentDetails
     httpMethod: get
@@ -152,5 +182,33 @@ methodObjects:
     responses:
       - statusCode: '200'
         description: The response to a request to update autoscaling settings.
-numberOfSchemas: 9
+  - url: /v1/models/{model_id}/deployments/development/promote
+    method: deployPromote
+    httpMethod: post
+    tag: Model
+    typeScriptTag: model
+    description: Promotes a development deployment to production
+    parameters:
+      - name: scale_down_previous_production
+        schema: boolean
+        description: ''
+        default: true
+    responses:
+      - statusCode: '200'
+        description: A deployment of a model.
+  - url: /v1/models/{model_id}/deployments/{deployment_id}/promote
+    method: deploymentPromote
+    httpMethod: post
+    tag: Model
+    typeScriptTag: model
+    description: Promotes a deployment to production
+    parameters:
+      - name: scale_down_previous_production
+        schema: boolean
+        description: ''
+        default: true
+    responses:
+      - statusCode: '200'
+        description: A deployment of a model.
+numberOfSchemas: 13
 apiDescription: REST API for management of Baseten resources

@@ -1,0 +1,268 @@
+{
+  "securitySchemes": {
+    "apiKey": {
+      "in": "header",
+      "name": "x-api-key",
+      "type": "apiKey"
+    }
+  },
+  "apiBaseUrl": "https://tavusapi.com",
+  "apiVersion": "1.0.0",
+  "apiTitle": "Tavus Developer API Collection",
+  "endpoints": 6,
+  "sdkMethods": 14,
+  "schemas": 10,
+  "parameters": 10,
+  "originalCustomRequest": {
+    "lambda": true
+  },
+  "customRequestSpecFilename": "tavus.io.yaml",
+  "difficultyScore": 16.5,
+  "difficulty": "Easy",
+  "company": "Tavus",
+  "sdkName": "tavus-{language}-sdk",
+  "clientName": "Tavus",
+  "metaDescription": "We're an AI video research company making personalized video possible at scale. Generate videos of yourself, and never record again! Available via web app & developer APIs.",
+  "apiStatusUrls": "inherit",
+  "homepage": "www.tavus.io/",
+  "developerDocumentation": "docs.tavusapi.com/api-reference",
+  "categories": [
+    "video",
+    "ai",
+    "personalized_video"
+  ],
+  "apiDescription": "We're an AI video research company making personalized video possible at scale. Generate videos of yourself, and never record again! Available via web app & developer APIs.",
+  "methods": [
+    {
+      "url": "/v2/replicas",
+      "method": "list",
+      "httpMethod": "get",
+      "tag": "Replicas",
+      "typeScriptTag": "replicas",
+      "description": "List Replicas",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v2/replicas",
+      "method": "createNewReplica",
+      "httpMethod": "post",
+      "tag": "Replicas",
+      "typeScriptTag": "replicas",
+      "description": "Create Replica",
+      "parameters": [
+        {
+          "name": "callback_url",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "replica_name",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "train_video_url",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "TRAIN_VIDEO_URL"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v2/replicas/{replica_id}",
+      "method": "deleteByReplicaId",
+      "httpMethod": "delete",
+      "tag": "Replicas",
+      "typeScriptTag": "replicas",
+      "description": "Delete Replica",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v2/replicas/{replica_id}",
+      "method": "getReplicaById",
+      "httpMethod": "get",
+      "tag": "Replicas",
+      "typeScriptTag": "replicas",
+      "description": "Get Replica",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v2/replicas/{replica_id}/name",
+      "method": "renameReplicaById",
+      "httpMethod": "patch",
+      "tag": "Replicas",
+      "typeScriptTag": "replicas",
+      "description": "Rename Replica",
+      "parameters": [
+        {
+          "name": "replica_name",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "REPLICA_NAME"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v2/videos",
+      "method": "getAll",
+      "httpMethod": "get",
+      "tag": "Videos",
+      "typeScriptTag": "videos",
+      "description": "List Videos",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v2/videos",
+      "method": "createVideoFromReplicaAndScript",
+      "httpMethod": "post",
+      "tag": "Videos",
+      "typeScriptTag": "videos",
+      "description": "Generate Video",
+      "parameters": [
+        {
+          "name": "background_source_url",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "background_url",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "replica_id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "r783537ef5"
+        },
+        {
+          "name": "script",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "Hello from Tavus! Enjoy your new replica"
+        },
+        {
+          "name": "video_name",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "My First Video"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v2/videos/{video_id}",
+      "method": "deleteByVideoId",
+      "httpMethod": "delete",
+      "tag": "Videos",
+      "typeScriptTag": "videos",
+      "description": "Delete Video",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v2/videos/{video_id}",
+      "method": "getByVideoId",
+      "httpMethod": "get",
+      "tag": "Videos",
+      "typeScriptTag": "videos",
+      "description": "Get Video",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v2/videos/{video_id}/name",
+      "method": "updateName",
+      "httpMethod": "patch",
+      "tag": "Videos",
+      "typeScriptTag": "videos",
+      "description": "Rename Video",
+      "parameters": [
+        {
+          "name": "video_name",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "VIDEO_NAME"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "repositoryDescription": "We're an AI video research company making personalized video possible at scale. Generate videos of yourself, and never record again! Available via web app & developer APIs. Tavus's {language} SDK generated by Konfig (https://konfigthis.com/).",
+  "logo": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/tavus/logo.png",
+  "openApiRaw": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/tavus/openapi.yaml",
+  "openApiGitHubUi": "https://github.com/konfig-sdks/openapi-examples/tree/HEAD/tavus/openapi.yaml",
+  "previewLinkImage": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/tavus/imagePreview.webp",
+  "faviconUrl": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/tavus/favicon.png",
+  "clientNameCamelCase": "tavus",
+  "lastUpdated": "2024-03-15T18:50:00.907Z",
+  "typescriptSdkUsageCode": "import { Tavus } from 'tavus-typescript-sdk';\n\nconst tavus = new Tavus({\n    apiKey: \"X_API_KEY\",\n})",
+  "typescriptSdkFirstRequestCode": "// List Replicas\nconst listResponse = tavus.replicas.list()",
+  "fixedSpecFileName": "tavus-fixed-spec.yaml"
+}
