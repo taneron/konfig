@@ -738,7 +738,45 @@ const customRequests: Record<string, CustomRequest> = {
       return rawSpecString;
     },
   },
+  "tavus.io": {
+    lambda: async () => {
+      const urls = [
+        "https://docs.tavusapi.com/api-reference/phoenix-replica-model/create-replica",
+        "https://docs.tavusapi.com/api-reference/phoenix-replica-model/get-replica",
+        "https://docs.tavusapi.com/api-reference/phoenix-replica-model/get-replicas",
+        "https://docs.tavusapi.com/api-reference/phoenix-replica-model/delete-replica",
+        "https://docs.tavusapi.com/api-reference/phoenix-replica-model/patch-replica-name",
+        "https://docs.tavusapi.com/api-reference/video-request/create-video",
+        "https://docs.tavusapi.com/api-reference/video-request/get-video",
+        "https://docs.tavusapi.com/api-reference/video-request/get-videos",
+        "https://docs.tavusapi.com/api-reference/video-request/delete-video",
+        "https://docs.tavusapi.com/api-reference/video-request/patch-video-name"
+      ]
+      return downloadOpenApiSpecFromMintlify({ urls });
+    },
+  },
 };
+
+async function downloadOpenApiSpecFromMintlify({
+  urls
+}: {
+  urls: string[];
+}): Promise<string> {
+  const specs: object[] = [];
+  const regex = /<script\s+id="__NEXT_DATA__"\s+type="application\/json">([\s\S]*?)<\/script>/;
+  for (const url of urls) {
+    const html = await fetch(url).then((res) => res.text());
+    const match = regex.exec(html);
+    if (match === null || match.length < 2) throw Error(`Error: Did not find a regex match for ${url}`);
+    const rawJson = match[1];
+    const json = JSON.parse(rawJson);
+    specs.push(json.props.pageProps.pageData.apiReferenceData.metadata.spec);
+  }
+  const mergedSpec = deepmerge.all(specs, {
+    arrayMerge: (destination, source) => source,
+  });
+  return JSON.stringify(mergedSpec);
+}
 
 async function downloadOpenApiSpecFromReadme({
   urls,

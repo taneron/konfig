@@ -99,7 +99,7 @@ info:
     ### Change page size
 
 
-    You can request a different number of results (between 1 and 100, inclusive)
+    You can request a different number of results (between 1 and 200, inclusive)
     by using the `page[size]` query parameter:
 
 
@@ -1614,7 +1614,7 @@ paths:
             - type: integer
               format: int64
             - minimum: 1
-              maximum: 101
+              maximum: 201
           name: page[size]
           title: size
           required: false
@@ -1624,7 +1624,7 @@ paths:
             type: integer
             format: int64
             minimum: 1
-            maximum: 100
+            maximum: 200
         - example: djE6NL0DfDTSUk67KJKCi-L5Zg
           name: page[before]
           title: before
@@ -1849,7 +1849,7 @@ paths:
             - type: integer
               format: int64
             - minimum: 1
-              maximum: 101
+              maximum: 201
           name: page[size]
           title: size
           required: false
@@ -1859,7 +1859,7 @@ paths:
             type: integer
             format: int64
             minimum: 1
-            maximum: 100
+            maximum: 200
         - example: djE6NL0DfDTSUk67KJKCi-L5Zg
           name: page[after]
           title: after
@@ -2392,7 +2392,7 @@ paths:
             - type: integer
               format: int64
             - minimum: 1
-              maximum: 101
+              maximum: 201
           name: page[size]
           title: size
           required: false
@@ -2402,7 +2402,7 @@ paths:
             type: integer
             format: int64
             minimum: 1
-            maximum: 100
+            maximum: 200
         - example: djE6NL0DfDTSUk67KJKCi-L5Zg
           name: page[before]
           title: before
@@ -3309,7 +3309,7 @@ paths:
             - type: integer
               format: int64
             - minimum: 1
-              maximum: 101
+              maximum: 201
           name: page[size]
           title: size
           required: false
@@ -3319,7 +3319,7 @@ paths:
             type: integer
             format: int64
             minimum: 1
-            maximum: 100
+            maximum: 200
         - example: djE6NL0DfDTSUk67KJKCi-L5Zg
           name: page[before]
           title: before
@@ -3548,7 +3548,7 @@ paths:
             - type: integer
               format: int64
             - minimum: 1
-              maximum: 101
+              maximum: 201
           name: page[size]
           title: size
           required: false
@@ -3558,7 +3558,7 @@ paths:
             type: integer
             format: int64
             minimum: 1
-            maximum: 100
+            maximum: 200
         - example: djE6NL0DfDTSUk67KJKCi-L5Zg
           name: page[before]
           title: before
@@ -5030,7 +5030,7 @@ paths:
             - type: integer
               format: int64
             - minimum: 1
-              maximum: 101
+              maximum: 201
           name: page[size]
           title: size
           required: false
@@ -5040,7 +5040,7 @@ paths:
             type: integer
             format: int64
             minimum: 1
-            maximum: 100
+            maximum: 200
         - example: djE6NL0DfDTSUk67KJKCi-L5Zg
           name: page[after]
           title: after
@@ -5343,7 +5343,7 @@ paths:
             - type: integer
               format: int64
             - minimum: 1
-              maximum: 101
+              maximum: 201
           name: page[size]
           title: size
           required: false
@@ -5353,7 +5353,7 @@ paths:
             type: integer
             format: int64
             minimum: 1
-            maximum: 100
+            maximum: 200
         - example: djE6NL0DfDTSUk67KJKCi-L5Zg
           name: page[after]
           title: after
@@ -5438,10 +5438,6 @@ paths:
                             trading-address:
                               type: object
                               properties:
-                                building-name:
-                                  type: string
-                                building-number:
-                                  type: string
                                 street-name:
                                   type: string
                                 city:
@@ -5459,13 +5455,36 @@ paths:
                                   example: GB
                                   minLength: 2
                               required:
-                                - building-name
-                                - building-number
                                 - street-name
                                 - city
                                 - postal-code
                                 - country-code
                               title: trading-address
+                              anyOf:
+                                - type: object
+                                  properties:
+                                    building-name:
+                                      type: string
+                                    building-number:
+                                      type: string
+                                  required:
+                                    - building-name
+                                    - building-number
+                                  title: both building-name and building-number
+                                - type: object
+                                  properties:
+                                    building-name:
+                                      type: string
+                                  required:
+                                    - building-name
+                                  title: only building-name
+                                - type: object
+                                  properties:
+                                    building-number:
+                                      type: string
+                                  required:
+                                    - building-number
+                                  title: only building-number
                             claim-type:
                               enum:
                                 - sole-trader
@@ -5858,10 +5877,6 @@ paths:
                             business-address:
                               type: object
                               properties:
-                                building-name:
-                                  type: string
-                                building-number:
-                                  type: string
                                 street-name:
                                   type: string
                                 city:
@@ -5879,13 +5894,36 @@ paths:
                                   example: GB
                                   minLength: 2
                               required:
-                                - building-name
-                                - building-number
                                 - street-name
                                 - city
                                 - postal-code
                                 - country-code
                               title: business-address
+                              anyOf:
+                                - type: object
+                                  properties:
+                                    building-name:
+                                      type: string
+                                    building-number:
+                                      type: string
+                                  required:
+                                    - building-name
+                                    - building-number
+                                  title: both building-name and building-number
+                                - type: object
+                                  properties:
+                                    building-name:
+                                      type: string
+                                  required:
+                                    - building-name
+                                  title: only building-name
+                                - type: object
+                                  properties:
+                                    building-number:
+                                      type: string
+                                  required:
+                                    - building-number
+                                  title: only building-number
                             claim-type:
                               enum:
                                 - business-address
@@ -7359,10 +7397,6 @@ paths:
                             trading-address:
                               type: object
                               properties:
-                                building-name:
-                                  type: string
-                                building-number:
-                                  type: string
                                 street-name:
                                   type: string
                                 city:
@@ -7380,13 +7414,36 @@ paths:
                                   example: GB
                                   minLength: 2
                               required:
-                                - building-name
-                                - building-number
                                 - street-name
                                 - city
                                 - postal-code
                                 - country-code
                               title: trading-address
+                              anyOf:
+                                - type: object
+                                  properties:
+                                    building-name:
+                                      type: string
+                                    building-number:
+                                      type: string
+                                  required:
+                                    - building-name
+                                    - building-number
+                                  title: both building-name and building-number
+                                - type: object
+                                  properties:
+                                    building-name:
+                                      type: string
+                                  required:
+                                    - building-name
+                                  title: only building-name
+                                - type: object
+                                  properties:
+                                    building-number:
+                                      type: string
+                                  required:
+                                    - building-number
+                                  title: only building-number
                             claim-type:
                               enum:
                                 - trading-address
@@ -7495,16 +7552,26 @@ paths:
                               properties:
                                 building-name:
                                   type: string
+                                building-number:
+                                  type: string
                               required:
                                 - building-name
-                              title: building-name
+                                - building-number
+                              title: both building-name and building-number
+                            - type: object
+                              properties:
+                                building-name:
+                                  type: string
+                              required:
+                                - building-name
+                              title: only building-name
                             - type: object
                               properties:
                                 building-number:
                                   type: string
                               required:
                                 - building-number
-                              title: building-number
+                              title: only building-number
                   links:
                     type: object
                     properties:
@@ -7596,10 +7663,6 @@ paths:
                     trading-address:
                       type: object
                       properties:
-                        building-name:
-                          type: string
-                        building-number:
-                          type: string
                         street-name:
                           type: string
                         city:
@@ -7617,13 +7680,36 @@ paths:
                           example: GB
                           minLength: 2
                       required:
-                        - building-name
-                        - building-number
                         - street-name
                         - city
                         - postal-code
                         - country-code
                       title: trading-address
+                      anyOf:
+                        - type: object
+                          properties:
+                            building-name:
+                              type: string
+                            building-number:
+                              type: string
+                          required:
+                            - building-name
+                            - building-number
+                          title: both building-name and building-number
+                        - type: object
+                          properties:
+                            building-name:
+                              type: string
+                          required:
+                            - building-name
+                          title: only building-name
+                        - type: object
+                          properties:
+                            building-number:
+                              type: string
+                          required:
+                            - building-number
+                          title: only building-number
                     claim-type:
                       enum:
                         - sole-trader
@@ -8008,10 +8094,6 @@ paths:
                     business-address:
                       type: object
                       properties:
-                        building-name:
-                          type: string
-                        building-number:
-                          type: string
                         street-name:
                           type: string
                         city:
@@ -8029,13 +8111,36 @@ paths:
                           example: GB
                           minLength: 2
                       required:
-                        - building-name
-                        - building-number
                         - street-name
                         - city
                         - postal-code
                         - country-code
                       title: business-address
+                      anyOf:
+                        - type: object
+                          properties:
+                            building-name:
+                              type: string
+                            building-number:
+                              type: string
+                          required:
+                            - building-name
+                            - building-number
+                          title: both building-name and building-number
+                        - type: object
+                          properties:
+                            building-name:
+                              type: string
+                          required:
+                            - building-name
+                          title: only building-name
+                        - type: object
+                          properties:
+                            building-number:
+                              type: string
+                          required:
+                            - building-number
+                          title: only building-number
                     claim-type:
                       enum:
                         - business-address
@@ -9473,10 +9578,6 @@ paths:
                     trading-address:
                       type: object
                       properties:
-                        building-name:
-                          type: string
-                        building-number:
-                          type: string
                         street-name:
                           type: string
                         city:
@@ -9494,13 +9595,36 @@ paths:
                           example: GB
                           minLength: 2
                       required:
-                        - building-name
-                        - building-number
                         - street-name
                         - city
                         - postal-code
                         - country-code
                       title: trading-address
+                      anyOf:
+                        - type: object
+                          properties:
+                            building-name:
+                              type: string
+                            building-number:
+                              type: string
+                          required:
+                            - building-name
+                            - building-number
+                          title: both building-name and building-number
+                        - type: object
+                          properties:
+                            building-name:
+                              type: string
+                          required:
+                            - building-name
+                          title: only building-name
+                        - type: object
+                          properties:
+                            building-number:
+                              type: string
+                          required:
+                            - building-number
+                          title: only building-number
                     claim-type:
                       enum:
                         - trading-address
@@ -9609,16 +9733,26 @@ paths:
                       properties:
                         building-name:
                           type: string
+                        building-number:
+                          type: string
                       required:
                         - building-name
-                      title: building-name
+                        - building-number
+                      title: both building-name and building-number
+                    - type: object
+                      properties:
+                        building-name:
+                          type: string
+                      required:
+                        - building-name
+                      title: only building-name
                     - type: object
                       properties:
                         building-number:
                           type: string
                       required:
                         - building-number
-                      title: building-number
+                      title: only building-number
         required: true
       responses:
         '201':
@@ -9676,10 +9810,6 @@ paths:
                       trading-address:
                         type: object
                         properties:
-                          building-name:
-                            type: string
-                          building-number:
-                            type: string
                           street-name:
                             type: string
                           city:
@@ -9697,13 +9827,36 @@ paths:
                             example: GB
                             minLength: 2
                         required:
-                          - building-name
-                          - building-number
                           - street-name
                           - city
                           - postal-code
                           - country-code
                         title: trading-address
+                        anyOf:
+                          - type: object
+                            properties:
+                              building-name:
+                                type: string
+                              building-number:
+                                type: string
+                            required:
+                              - building-name
+                              - building-number
+                            title: both building-name and building-number
+                          - type: object
+                            properties:
+                              building-name:
+                                type: string
+                            required:
+                              - building-name
+                            title: only building-name
+                          - type: object
+                            properties:
+                              building-number:
+                                type: string
+                            required:
+                              - building-number
+                            title: only building-number
                       claim-type:
                         enum:
                           - sole-trader
@@ -10090,10 +10243,6 @@ paths:
                       business-address:
                         type: object
                         properties:
-                          building-name:
-                            type: string
-                          building-number:
-                            type: string
                           street-name:
                             type: string
                           city:
@@ -10111,13 +10260,36 @@ paths:
                             example: GB
                             minLength: 2
                         required:
-                          - building-name
-                          - building-number
                           - street-name
                           - city
                           - postal-code
                           - country-code
                         title: business-address
+                        anyOf:
+                          - type: object
+                            properties:
+                              building-name:
+                                type: string
+                              building-number:
+                                type: string
+                            required:
+                              - building-name
+                              - building-number
+                            title: both building-name and building-number
+                          - type: object
+                            properties:
+                              building-name:
+                                type: string
+                            required:
+                              - building-name
+                            title: only building-name
+                          - type: object
+                            properties:
+                              building-number:
+                                type: string
+                            required:
+                              - building-number
+                            title: only building-number
                       claim-type:
                         enum:
                           - business-address
@@ -11563,10 +11735,6 @@ paths:
                       trading-address:
                         type: object
                         properties:
-                          building-name:
-                            type: string
-                          building-number:
-                            type: string
                           street-name:
                             type: string
                           city:
@@ -11584,13 +11752,36 @@ paths:
                             example: GB
                             minLength: 2
                         required:
-                          - building-name
-                          - building-number
                           - street-name
                           - city
                           - postal-code
                           - country-code
                         title: trading-address
+                        anyOf:
+                          - type: object
+                            properties:
+                              building-name:
+                                type: string
+                              building-number:
+                                type: string
+                            required:
+                              - building-name
+                              - building-number
+                            title: both building-name and building-number
+                          - type: object
+                            properties:
+                              building-name:
+                                type: string
+                            required:
+                              - building-name
+                            title: only building-name
+                          - type: object
+                            properties:
+                              building-number:
+                                type: string
+                            required:
+                              - building-number
+                            title: only building-number
                       claim-type:
                         enum:
                           - trading-address
@@ -11699,16 +11890,26 @@ paths:
                         properties:
                           building-name:
                             type: string
+                          building-number:
+                            type: string
                         required:
                           - building-name
-                        title: building-name
+                          - building-number
+                        title: both building-name and building-number
+                      - type: object
+                        properties:
+                          building-name:
+                            type: string
+                        required:
+                          - building-name
+                        title: only building-name
                       - type: object
                         properties:
                           building-number:
                             type: string
                         required:
                           - building-number
-                        title: building-number
+                        title: only building-number
         '400':
           description: >-
             Responds with bad-request if the body does not conform to the
@@ -11743,7 +11944,7 @@ paths:
             - type: integer
               format: int64
             - minimum: 1
-              maximum: 101
+              maximum: 201
           name: page[size]
           title: size
           required: false
@@ -11753,7 +11954,7 @@ paths:
             type: integer
             format: int64
             minimum: 1
-            maximum: 100
+            maximum: 200
         - example: djE6NL0DfDTSUk67KJKCi-L5Zg
           name: page[after]
           title: after
@@ -12024,7 +12225,7 @@ paths:
             - type: integer
               format: int64
             - minimum: 1
-              maximum: 101
+              maximum: 201
           name: page[size]
           title: size
           required: false
@@ -12034,7 +12235,7 @@ paths:
             type: integer
             format: int64
             minimum: 1
-            maximum: 100
+            maximum: 200
         - example: djE6NL0DfDTSUk67KJKCi-L5Zg
           name: page[after]
           title: after
@@ -12252,7 +12453,7 @@ paths:
             - type: integer
               format: int64
             - minimum: 1
-              maximum: 101
+              maximum: 201
           name: page[size]
           title: size
           required: false
@@ -12262,7 +12463,7 @@ paths:
             type: integer
             format: int64
             minimum: 1
-            maximum: 100
+            maximum: 200
         - example: djE6NL0DfDTSUk67KJKCi-L5Zg
           name: page[after]
           title: after
@@ -13366,7 +13567,7 @@ paths:
             - type: integer
               format: int64
             - minimum: 1
-              maximum: 101
+              maximum: 201
           name: page[size]
           title: size
           required: false
@@ -13376,7 +13577,7 @@ paths:
             type: integer
             format: int64
             minimum: 1
-            maximum: 100
+            maximum: 200
         - example: djE6NL0DfDTSUk67KJKCi-L5Zg
           name: page[after]
           title: after
@@ -13603,7 +13804,7 @@ paths:
             - type: integer
               format: int64
             - minimum: 1
-              maximum: 101
+              maximum: 201
           name: page[size]
           title: size
           required: false
@@ -13613,7 +13814,7 @@ paths:
             type: integer
             format: int64
             minimum: 1
-            maximum: 100
+            maximum: 200
         - in: query
           name: include
           description: >-
@@ -14874,7 +15075,7 @@ paths:
             - type: integer
               format: int64
             - minimum: 1
-              maximum: 101
+              maximum: 201
           name: page[size]
           title: size
           required: false
@@ -14884,7 +15085,7 @@ paths:
             type: integer
             format: int64
             minimum: 1
-            maximum: 100
+            maximum: 200
         - example: djE6NL0DfDTSUk67KJKCi-L5Zg
           name: page[before]
           title: before
@@ -15171,7 +15372,7 @@ paths:
             - type: integer
               format: int64
             - minimum: 1
-              maximum: 101
+              maximum: 201
           name: page[size]
           title: size
           required: false
@@ -15181,7 +15382,7 @@ paths:
             type: integer
             format: int64
             minimum: 1
-            maximum: 100
+            maximum: 200
         - example: djE6NL0DfDTSUk67KJKCi-L5Zg
           name: page[after]
           title: after
@@ -15673,10 +15874,6 @@ paths:
                           trading-address:
                             type: object
                             properties:
-                              building-name:
-                                type: string
-                              building-number:
-                                type: string
                               street-name:
                                 type: string
                               city:
@@ -15694,13 +15891,36 @@ paths:
                                 example: GB
                                 minLength: 2
                             required:
-                              - building-name
-                              - building-number
                               - street-name
                               - city
                               - postal-code
                               - country-code
                             title: trading-address
+                            anyOf:
+                              - type: object
+                                properties:
+                                  building-name:
+                                    type: string
+                                  building-number:
+                                    type: string
+                                required:
+                                  - building-name
+                                  - building-number
+                                title: both building-name and building-number
+                              - type: object
+                                properties:
+                                  building-name:
+                                    type: string
+                                required:
+                                  - building-name
+                                title: only building-name
+                              - type: object
+                                properties:
+                                  building-number:
+                                    type: string
+                                required:
+                                  - building-number
+                                title: only building-number
                           claim-type:
                             enum:
                               - sole-trader
@@ -16093,10 +16313,6 @@ paths:
                           business-address:
                             type: object
                             properties:
-                              building-name:
-                                type: string
-                              building-number:
-                                type: string
                               street-name:
                                 type: string
                               city:
@@ -16114,13 +16330,36 @@ paths:
                                 example: GB
                                 minLength: 2
                             required:
-                              - building-name
-                              - building-number
                               - street-name
                               - city
                               - postal-code
                               - country-code
                             title: business-address
+                            anyOf:
+                              - type: object
+                                properties:
+                                  building-name:
+                                    type: string
+                                  building-number:
+                                    type: string
+                                required:
+                                  - building-name
+                                  - building-number
+                                title: both building-name and building-number
+                              - type: object
+                                properties:
+                                  building-name:
+                                    type: string
+                                required:
+                                  - building-name
+                                title: only building-name
+                              - type: object
+                                properties:
+                                  building-number:
+                                    type: string
+                                required:
+                                  - building-number
+                                title: only building-number
                           claim-type:
                             enum:
                               - business-address
@@ -17586,10 +17825,6 @@ paths:
                           trading-address:
                             type: object
                             properties:
-                              building-name:
-                                type: string
-                              building-number:
-                                type: string
                               street-name:
                                 type: string
                               city:
@@ -17607,13 +17842,36 @@ paths:
                                 example: GB
                                 minLength: 2
                             required:
-                              - building-name
-                              - building-number
                               - street-name
                               - city
                               - postal-code
                               - country-code
                             title: trading-address
+                            anyOf:
+                              - type: object
+                                properties:
+                                  building-name:
+                                    type: string
+                                  building-number:
+                                    type: string
+                                required:
+                                  - building-name
+                                  - building-number
+                                title: both building-name and building-number
+                              - type: object
+                                properties:
+                                  building-name:
+                                    type: string
+                                required:
+                                  - building-name
+                                title: only building-name
+                              - type: object
+                                properties:
+                                  building-number:
+                                    type: string
+                                required:
+                                  - building-number
+                                title: only building-number
                           claim-type:
                             enum:
                               - trading-address
@@ -17722,16 +17980,26 @@ paths:
                             properties:
                               building-name:
                                 type: string
+                              building-number:
+                                type: string
                             required:
                               - building-name
-                            title: building-name
+                              - building-number
+                            title: both building-name and building-number
+                          - type: object
+                            properties:
+                              building-name:
+                                type: string
+                            required:
+                              - building-name
+                            title: only building-name
                           - type: object
                             properties:
                               building-number:
                                 type: string
                             required:
                               - building-number
-                            title: building-number
+                            title: only building-number
               required:
                 - display-name
                 - legal-person-type
@@ -17943,7 +18211,7 @@ paths:
             - type: integer
               format: int64
             - minimum: 1
-              maximum: 101
+              maximum: 201
           name: page[size]
           title: size
           required: false
@@ -17953,7 +18221,7 @@ paths:
             type: integer
             format: int64
             minimum: 1
-            maximum: 100
+            maximum: 200
         - example: djE6NL0DfDTSUk67KJKCi-L5Zg
           name: page[after]
           title: after
@@ -18390,10 +18658,6 @@ paths:
                               trading-address:
                                 type: object
                                 properties:
-                                  building-name:
-                                    type: string
-                                  building-number:
-                                    type: string
                                   street-name:
                                     type: string
                                   city:
@@ -18413,13 +18677,36 @@ paths:
                                     example: GB
                                     minLength: 2
                                 required:
-                                  - building-name
-                                  - building-number
                                   - street-name
                                   - city
                                   - postal-code
                                   - country-code
                                 title: trading-address
+                                anyOf:
+                                  - type: object
+                                    properties:
+                                      building-name:
+                                        type: string
+                                      building-number:
+                                        type: string
+                                    required:
+                                      - building-name
+                                      - building-number
+                                    title: both building-name and building-number
+                                  - type: object
+                                    properties:
+                                      building-name:
+                                        type: string
+                                    required:
+                                      - building-name
+                                    title: only building-name
+                                  - type: object
+                                    properties:
+                                      building-number:
+                                        type: string
+                                    required:
+                                      - building-number
+                                    title: only building-number
                               claim-type:
                                 enum:
                                   - sole-trader
@@ -18816,10 +19103,6 @@ paths:
                               business-address:
                                 type: object
                                 properties:
-                                  building-name:
-                                    type: string
-                                  building-number:
-                                    type: string
                                   street-name:
                                     type: string
                                   city:
@@ -18839,13 +19122,36 @@ paths:
                                     example: GB
                                     minLength: 2
                                 required:
-                                  - building-name
-                                  - building-number
                                   - street-name
                                   - city
                                   - postal-code
                                   - country-code
                                 title: business-address
+                                anyOf:
+                                  - type: object
+                                    properties:
+                                      building-name:
+                                        type: string
+                                      building-number:
+                                        type: string
+                                    required:
+                                      - building-name
+                                      - building-number
+                                    title: both building-name and building-number
+                                  - type: object
+                                    properties:
+                                      building-name:
+                                        type: string
+                                    required:
+                                      - building-name
+                                    title: only building-name
+                                  - type: object
+                                    properties:
+                                      building-number:
+                                        type: string
+                                    required:
+                                      - building-number
+                                    title: only building-number
                               claim-type:
                                 enum:
                                   - business-address
@@ -20331,10 +20637,6 @@ paths:
                               trading-address:
                                 type: object
                                 properties:
-                                  building-name:
-                                    type: string
-                                  building-number:
-                                    type: string
                                   street-name:
                                     type: string
                                   city:
@@ -20354,13 +20656,36 @@ paths:
                                     example: GB
                                     minLength: 2
                                 required:
-                                  - building-name
-                                  - building-number
                                   - street-name
                                   - city
                                   - postal-code
                                   - country-code
                                 title: trading-address
+                                anyOf:
+                                  - type: object
+                                    properties:
+                                      building-name:
+                                        type: string
+                                      building-number:
+                                        type: string
+                                    required:
+                                      - building-name
+                                      - building-number
+                                    title: both building-name and building-number
+                                  - type: object
+                                    properties:
+                                      building-name:
+                                        type: string
+                                    required:
+                                      - building-name
+                                    title: only building-name
+                                  - type: object
+                                    properties:
+                                      building-number:
+                                        type: string
+                                    required:
+                                      - building-number
+                                    title: only building-number
                               claim-type:
                                 enum:
                                   - trading-address
@@ -20469,16 +20794,26 @@ paths:
                                 properties:
                                   building-name:
                                     type: string
+                                  building-number:
+                                    type: string
                                 required:
                                   - building-name
-                                title: building-name
+                                  - building-number
+                                title: both building-name and building-number
+                              - type: object
+                                properties:
+                                  building-name:
+                                    type: string
+                                required:
+                                  - building-name
+                                title: only building-name
                               - type: object
                                 properties:
                                   building-number:
                                     type: string
                                 required:
                                   - building-number
-                                title: building-number
+                                title: only building-number
                   required:
                     - display-name
                     - claims
@@ -20624,10 +20959,6 @@ paths:
                                 trading-address:
                                   type: object
                                   properties:
-                                    building-name:
-                                      type: string
-                                    building-number:
-                                      type: string
                                     street-name:
                                       type: string
                                     city:
@@ -20647,13 +20978,36 @@ paths:
                                       example: GB
                                       minLength: 2
                                   required:
-                                    - building-name
-                                    - building-number
                                     - street-name
                                     - city
                                     - postal-code
                                     - country-code
                                   title: trading-address
+                                  anyOf:
+                                    - type: object
+                                      properties:
+                                        building-name:
+                                          type: string
+                                        building-number:
+                                          type: string
+                                      required:
+                                        - building-name
+                                        - building-number
+                                      title: both building-name and building-number
+                                    - type: object
+                                      properties:
+                                        building-name:
+                                          type: string
+                                      required:
+                                        - building-name
+                                      title: only building-name
+                                    - type: object
+                                      properties:
+                                        building-number:
+                                          type: string
+                                      required:
+                                        - building-number
+                                      title: only building-number
                                 claim-type:
                                   enum:
                                     - sole-trader
@@ -21056,10 +21410,6 @@ paths:
                                 business-address:
                                   type: object
                                   properties:
-                                    building-name:
-                                      type: string
-                                    building-number:
-                                      type: string
                                     street-name:
                                       type: string
                                     city:
@@ -21079,13 +21429,36 @@ paths:
                                       example: GB
                                       minLength: 2
                                   required:
-                                    - building-name
-                                    - building-number
                                     - street-name
                                     - city
                                     - postal-code
                                     - country-code
                                   title: business-address
+                                  anyOf:
+                                    - type: object
+                                      properties:
+                                        building-name:
+                                          type: string
+                                        building-number:
+                                          type: string
+                                      required:
+                                        - building-name
+                                        - building-number
+                                      title: both building-name and building-number
+                                    - type: object
+                                      properties:
+                                        building-name:
+                                          type: string
+                                      required:
+                                        - building-name
+                                      title: only building-name
+                                    - type: object
+                                      properties:
+                                        building-number:
+                                          type: string
+                                      required:
+                                        - building-number
+                                      title: only building-number
                                 claim-type:
                                   enum:
                                     - business-address
@@ -22575,10 +22948,6 @@ paths:
                                 trading-address:
                                   type: object
                                   properties:
-                                    building-name:
-                                      type: string
-                                    building-number:
-                                      type: string
                                     street-name:
                                       type: string
                                     city:
@@ -22598,13 +22967,36 @@ paths:
                                       example: GB
                                       minLength: 2
                                   required:
-                                    - building-name
-                                    - building-number
                                     - street-name
                                     - city
                                     - postal-code
                                     - country-code
                                   title: trading-address
+                                  anyOf:
+                                    - type: object
+                                      properties:
+                                        building-name:
+                                          type: string
+                                        building-number:
+                                          type: string
+                                      required:
+                                        - building-name
+                                        - building-number
+                                      title: both building-name and building-number
+                                    - type: object
+                                      properties:
+                                        building-name:
+                                          type: string
+                                      required:
+                                        - building-name
+                                      title: only building-name
+                                    - type: object
+                                      properties:
+                                        building-number:
+                                          type: string
+                                      required:
+                                        - building-number
+                                      title: only building-number
                                 claim-type:
                                   enum:
                                     - trading-address
@@ -22713,16 +23105,26 @@ paths:
                                   properties:
                                     building-name:
                                       type: string
+                                    building-number:
+                                      type: string
                                   required:
                                     - building-name
-                                  title: building-name
+                                    - building-number
+                                  title: both building-name and building-number
+                                - type: object
+                                  properties:
+                                    building-name:
+                                      type: string
+                                  required:
+                                    - building-name
+                                  title: only building-name
                                 - type: object
                                   properties:
                                     building-number:
                                       type: string
                                   required:
                                     - building-number
-                                  title: building-number
+                                  title: only building-number
                     required:
                       - display-name
                       - subject-association
@@ -23009,7 +23411,7 @@ paths:
             - type: integer
               format: int64
             - minimum: 1
-              maximum: 101
+              maximum: 201
           name: page[size]
           title: size
           required: false
@@ -23019,7 +23421,7 @@ paths:
             type: integer
             format: int64
             minimum: 1
-            maximum: 100
+            maximum: 200
         - example: djE6NL0DfDTSUk67KJKCi-L5Zg
           name: page[after]
           title: after
@@ -24404,7 +24806,7 @@ paths:
             - type: integer
               format: int64
             - minimum: 1
-              maximum: 101
+              maximum: 201
           name: page[size]
           title: size
           required: false
@@ -24414,7 +24816,7 @@ paths:
             type: integer
             format: int64
             minimum: 1
-            maximum: 100
+            maximum: 200
         - example: djE6NL0DfDTSUk67KJKCi-L5Zg
           name: page[after]
           title: after
@@ -24537,7 +24939,7 @@ paths:
             - type: integer
               format: int64
             - minimum: 1
-              maximum: 101
+              maximum: 201
           name: page[size]
           title: size
           required: false
@@ -24547,7 +24949,7 @@ paths:
             type: integer
             format: int64
             minimum: 1
-            maximum: 100
+            maximum: 200
         - example: djE6NL0DfDTSUk67KJKCi-L5Zg
           name: page[after]
           title: after
