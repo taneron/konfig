@@ -1,0 +1,319 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+operationIds:
+  /auth/api-key:
+    post: ApiKey_generateNewApiKey
+  /balance:
+    get: Balance_getAccountBalance
+  /balance/transfer:
+    post: Balance_transferFunds
+  /balance/withdraw:
+    post: Balance_withdrawFunds
+  /bank/resolve:
+    post: BankAccount_verifyAndReturnDetails
+  /bank/supported:
+    get: Bank_getSupportedBanks
+  /callbackurl:
+    get: Webhook_getCallbackUrl
+    put: Webhook_subscribeWebhookCallback
+  /currency/minimum-allowed:
+    get: Currency_getMinimumAllowed
+  /currency/rate:
+    get: Rates_getCurrentRates
+  /currency/supported:
+    get: Currency_listSupportedCurrencies
+  /payment:
+    post: Payment_createNewPayment
+  /payment/resolve:
+    get: Payment_resolveOverpaidTransaction
+  /payment/{paymentId}:
+    get: Payment_getSingle
+  /transaction:
+    get: Transaction_getUserTransactions
+  /transaction/summary:
+    get: Transaction_getUserTransactionSummary
+  /transaction/{transactionId}:
+    get: Transaction_getDetails
+  /v1/balance:
+    get: Balance_getAccountBalance
+  /v1/currency/rates:
+    get: Rates_getConversionRates
+  /v1/merchants:
+    get: Merchants_getRecord
+    patch: Merchants_updateRecord
+  /v1/mock/payment:
+    post: MockPayment_requestSubmission
+  /v1/transactions/summary:
+    get: Transactions_getMerchantTransactionSummary
+  /v1/voucher:
+    patch: Voucher_redeemAndWithdraw
+  /v1/voucher-fee:
+    get: VoucherFee_getFee
+  /v1/voucher-min-max:
+    get: VoucherMinmaxAmount_getMinMaxAmount
+  /v1/voucher/get-many:
+    get: Voucher_getMultipleRecords
+  /v1/vouchers:
+    get: Voucher_getRecord
+    patch: Voucher_redeemExistingUnused
+    post: Voucher_createPayment
+  /wallet:
+    get: Wallet_getAddresses
+  /wallet/supported/config:
+    get: Wallet_getSupportedConfig
+  /wallet/transfer:
+    post: Wallet_executeTransfer
+operationTags:
+  /auth/api-key:
+    post: ApiKey
+  /balance:
+    get: Balance
+  /balance/transfer:
+    post: Balance
+  /balance/withdraw:
+    post: Balance
+  /bank/resolve:
+    post: BankAccount
+  /bank/supported:
+    get: Bank
+  /callbackurl:
+    get: Webhook
+    put: Webhook
+  /currency/minimum-allowed:
+    get: Currency
+  /currency/rate:
+    get: Rates
+  /currency/supported:
+    get: Currency
+  /payment:
+    post: Payment
+  /payment/resolve:
+    get: Payment
+  /payment/{paymentId}:
+    get: Payment
+  /transaction:
+    get: Transaction
+  /transaction/summary:
+    get: Transaction
+  /transaction/{transactionId}:
+    get: Transaction
+  /wallet:
+    get: Wallet
+  /wallet/supported/config:
+    get: Wallet
+  /wallet/transfer:
+    post: Wallet
+renameTags: {}
+requestSchemaNames:
+  /auth/api-key:
+    post:
+      application/json: ApiKeyGenerateNewApiKeyRequest
+  /balance/transfer:
+    post:
+      application/json: BalanceTransferFundsRequest
+  /balance/withdraw:
+    post:
+      application/json: BalanceWithdrawFundsRequest
+  /bank/resolve:
+    post:
+      application/json: BankAccountVerifyAndReturnDetailsRequest
+  /callbackurl:
+    put:
+      application/json: WebhookSubscribeWebhookCallbackRequest
+  /payment:
+    post:
+      application/json: PaymentCreateNewPaymentRequest
+  /v1/merchants:
+    patch:
+      application/json: MerchantsUpdateRecordRequest
+  /v1/mock/payment:
+    post:
+      application/json: MockPaymentRequestSubmissionRequest
+  /v1/voucher:
+    patch:
+      application/json: VoucherRedeemAndWithdrawRequest
+  /v1/vouchers:
+    patch:
+      application/json: VoucherRedeemExistingUnusedRequest
+    post:
+      application/json: VoucherCreatePaymentRequest
+  /wallet/transfer:
+    post:
+      application/json: WalletExecuteTransferRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /auth/api-key:
+    post:
+      '200':
+        application/json: ApiKeyGenerateNewApiKeyResponse
+  /balance:
+    get:
+      '200':
+        application/json: BalanceGetAccountBalance200Response
+  /balance/transfer:
+    post:
+      '200':
+        application/json: BalanceTransferFundsResponse
+  /balance/withdraw:
+    post:
+      '200':
+        application/json: BalanceWithdrawFundsResponse
+  /bank/resolve:
+    post:
+      '200':
+        application/json: BankAccountVerifyAndReturnDetailsResponse
+  /bank/supported:
+    get:
+      '200':
+        application/json: BankGetSupportedBanksResponse
+  /callbackurl:
+    get:
+      '200':
+        application/json: WebhookGetCallbackUrlResponse
+    put:
+      '200':
+        application/json: WebhookSubscribeWebhookCallbackResponse
+  /currency/minimum-allowed:
+    get:
+      '200':
+        application/json: CurrencyGetMinimumAllowedResponse
+  /currency/rate:
+    get:
+      '200':
+        application/json: RatesGetCurrentRatesResponse
+  /currency/supported:
+    get:
+      '200':
+        application/json: CurrencyListSupportedCurrenciesResponse
+  /payment:
+    post:
+      '200':
+        application/json: PaymentCreateNewPaymentResponse
+  /payment/resolve:
+    get:
+      '200':
+        application/json: PaymentResolveOverpaidTransactionResponse
+  /payment/{paymentId}:
+    get:
+      '200':
+        application/json: PaymentGetSingleResponse
+  /transaction:
+    get:
+      '200':
+        application/json: TransactionGetUserTransactionsResponse
+  /transaction/summary:
+    get:
+      '200':
+        application/json: TransactionGetUserTransactionSummaryResponse
+  /transaction/{transactionId}:
+    get:
+      '200':
+        application/json: TransactionGetDetailsResponse
+  /v1/balance:
+    get:
+      '200':
+        application/json: BalanceGetAccountBalanceResponse
+  /v1/currency/rates:
+    get:
+      '200':
+        application/json: RatesGetConversionRatesResponse
+  /v1/merchants:
+    get:
+      '200':
+        application/json: MerchantsGetRecordResponse
+    patch:
+      '200':
+        application/json: MerchantsUpdateRecordResponse
+  /v1/mock/payment:
+    post:
+      '201':
+        application/json: MockPaymentRequestSubmissionResponse
+      '400':
+        application/json: MockPaymentRequestSubmission400Response
+  /v1/transactions/summary:
+    get:
+      '200':
+        application/json: TransactionsGetMerchantTransactionSummaryResponse
+  /v1/voucher:
+    patch:
+      '200':
+        application/json: VoucherRedeemAndWithdrawResponse
+      '400':
+        application/json: VoucherRedeemAndWithdraw400Response
+      '404':
+        application/json: VoucherRedeemAndWithdraw404Response
+  /v1/voucher-fee:
+    get:
+      '200':
+        application/json: VoucherFeeGetFeeResponse
+  /v1/voucher-min-max:
+    get:
+      '200':
+        application/json: VoucherMinmaxAmountGetMinMaxAmountResponse
+  /v1/voucher/get-many:
+    get:
+      '200':
+        application/json: VoucherGetMultipleRecordsResponse
+      '400':
+        application/json: VoucherGetMultipleRecords400Response
+  /v1/vouchers:
+    get:
+      '200':
+        application/json: VoucherGetRecordResponse
+      '404':
+        application/json: VoucherGetRecord404Response
+    patch:
+      '200':
+        application/json: VoucherRedeemExistingUnusedResponse
+      '400':
+        application/json: VoucherRedeemExistingUnused400Response
+      '404':
+        application/json: VoucherRedeemExistingUnused404Response
+    post:
+      '201':
+        application/json: VoucherCreatePaymentResponse
+      '400':
+        application/json: VoucherCreatePayment400Response
+  /wallet:
+    get:
+      '200':
+        application/json: WalletGetAddressesResponse
+  /wallet/supported/config:
+    get:
+      '200':
+        application/json: WalletGetSupportedConfigResponse
+  /wallet/transfer:
+    post:
+      '200':
+        application/json: WalletExecuteTransferResponse
+securityParameters:
+  accountNumber:
+    query: false
+  amount:
+    query: false
+  country:
+    query: false
+  currency:
+    query: false
+  duration:
+    query: false
+  id:
+    query: false
+  limit:
+    query: false
+  memo:
+    query: false
+  network:
+    query: false
+  option:
+    query: false
+  page:
+    query: false
+  pageSize:
+    query: false
+  paymentStatus:
+    query: false
+  type:
+    query: false
+validServerUrls: {}
