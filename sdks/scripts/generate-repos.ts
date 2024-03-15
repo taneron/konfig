@@ -89,7 +89,7 @@ function generateSdkRepository(
     return result;
   }
 
-  const imagePreviewFile = fs.readdirSync(openapiExamplesSdkDir).find((file) => file.match(/imagePreview\.(jpg|png|jpeg)/));
+  const imagePreviewFile = fs.readdirSync(openapiExamplesSdkDir).find((file) => file.match(/imagePreview\.(jpg|png|jpeg|webp)/));
   if (!imagePreviewFile) {
     result.reason = "Image preview not found in openapi-examples directory.";
     return result;
