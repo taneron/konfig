@@ -1,0 +1,56 @@
+examples: {}
+examples_2: {}
+examples_3:
+  /v1/logs:
+    post:
+      '200':
+        application/json: {}
+ignoreObjectsWithNoProperties: true
+operationIds:
+  /v1/apps/self:
+    get: Apps_getAppForApiKey
+  /v1/apps/update:
+    put: Apps_updateProperties
+  /v1/chat/completions:
+    post: Chat_performCompletionRequest
+  /v1/completions:
+    post: Completions_performTextRequest
+  /v1/logs/:
+    post: Logs_getMatchingLogs
+  /v1/logs/{log_id}:
+    get: Logs_getById
+  /v1/logs/{log_id}/rating:
+    post: Logs_rateById
+  /v1/models/active:
+    get: Models_listActiveModels
+  /v1/models/all:
+    get: Models_getAllModels
+  /v1/models/rank:
+    post: Models_getRankOfBest
+  /v1/models/{model_id}/toggle:
+    put: Models_toggleModelForApp
+operationTags: {}
+renameTags: {}
+requestSchemaNames: {}
+responseDescriptions: {}
+responseSchemaNames:
+  /v1/logs:
+    post:
+      '200':
+        application/json: LogsGetMatchingLogsResponse
+  /v1/models/active:
+    get:
+      '200':
+        application/json: ModelsListActiveModelsResponse
+  /v1/models/all:
+    get:
+      '200':
+        application/json: ModelsGetAllModelsResponse
+securityParameters:
+  enable:
+    query: false
+  page:
+    query: false
+  size:
+    query: false
+validServerUrls: {}

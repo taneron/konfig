@@ -755,6 +755,25 @@ const customRequests: Record<string, CustomRequest> = {
       return downloadOpenApiSpecFromMintlify({ urls });
     },
   },
+  "pulze.ai": {
+    lambda: async () => {
+      const urls = [
+        "https://docs.pulze.ai/api-reference/chat-completions",
+        "https://docs.pulze.ai/api-reference/completions",
+        "https://docs.pulze.ai/api-reference/rank-models",
+        "https://docs.pulze.ai/api-reference/logs-list",
+        "https://docs.pulze.ai/api-reference/logs-by-id",
+        "https://docs.pulze.ai/api-reference/logs-rate",
+        "https://docs.pulze.ai/api-reference/self",
+        "https://docs.pulze.ai/api-reference/apps-update",
+        "https://docs.pulze.ai/api-reference/active-models",
+        "https://docs.pulze.ai/api-reference/all-available-models",
+        "https://docs.pulze.ai/api-reference/toggle-model"
+      ]
+      return downloadOpenApiSpecFromMintlify({ urls });
+    },
+    apiBaseUrl: "https://api.pulze.ai"
+  }
 };
 
 async function downloadOpenApiSpecFromMintlify({

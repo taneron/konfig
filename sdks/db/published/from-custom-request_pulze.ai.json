@@ -1,0 +1,665 @@
+{
+  "securitySchemes": {
+    "HTTPBearer": {
+      "scheme": "bearer",
+      "type": "http"
+    }
+  },
+  "apiBaseUrl": "https://api.pulze.ai",
+  "apiVersion": "0.1.0",
+  "apiTitle": "Pulze.ai API",
+  "endpoints": 11,
+  "sdkMethods": 11,
+  "schemas": 104,
+  "parameters": 70,
+  "originalCustomRequest": {
+    "lambda": true
+  },
+  "customRequestSpecFilename": "pulze.ai.yaml",
+  "difficultyScore": 79,
+  "difficulty": "Easy",
+  "company": "Pulze.ai",
+  "sdkName": "pulze-ai-{language}-sdk",
+  "clientName": "PulzeAi",
+  "metaDescription": "At Pulze it's our mission to supercharge today's workforce with AI to maximize the world's prosperity. We are doing so by enabling companies of any size to securely leverage Large Language Models (LLM) and easily build AI features into their apps. Our enterprise platform has access to all best in class LLMs and can route user requests to the most relevant model to get the highest quality response at the best price thanks to our smart meta model. End users can leverage pre-built applications, such as our Marketing AI product, or build custom apps on top of the Pulze Platform.\n\nWe are a VC Funded, early stage startup based in San Francisco.",
+  "apiStatusUrls": "inherit",
+  "homepage": "www.pulze.ai/",
+  "developerDocumentation": "docs.pulze.ai/",
+  "categories": [
+    "ai",
+    "developer_tools",
+    "llm"
+  ],
+  "apiDescription": "At Pulze it's our mission to supercharge today's workforce with AI to maximize the world's prosperity. We are doing so by enabling companies of any size to securely leverage Large Language Models (LLM) and easily build AI features into their apps. Our enterprise platform has access to all best in class LLMs and can route user requests to the most relevant model to get the highest quality response at the best price thanks to our smart meta model. End users can leverage pre-built applications, such as our Marketing AI product, or build custom apps on top of the Pulze Platform.\n\nWe are a VC Funded, early stage startup based in San Francisco.",
+  "methods": [
+    {
+      "url": "/v1/chat/completions",
+      "method": "performCompletionRequest",
+      "httpMethod": "post",
+      "tag": "chat",
+      "typeScriptTag": "chat",
+      "description": "Chat Completions",
+      "parameters": [
+        {
+          "name": "best_of",
+          "schema": "integer",
+          "description": "",
+          "default": 1
+        },
+        {
+          "name": "false",
+          "schema": "integer",
+          "description": "",
+          "default": 1
+        },
+        {
+          "name": "frequency_penalty",
+          "schema": "number",
+          "description": "",
+          "default": 0
+        },
+        {
+          "name": "logit_bias",
+          "schema": "object",
+          "description": ""
+        },
+        {
+          "name": "logprobs",
+          "schema": "integer",
+          "description": ""
+        },
+        {
+          "name": "max_tokens",
+          "schema": "integer",
+          "description": ""
+        },
+        {
+          "name": "messages",
+          "schema": "array",
+          "description": "",
+          "default": []
+        },
+        {
+          "name": "model",
+          "schema": "string",
+          "description": "",
+          "default": "pulze"
+        },
+        {
+          "name": "presence_penalty",
+          "schema": "number",
+          "description": "",
+          "default": 0
+        },
+        {
+          "name": "prompt",
+          "schema": "undefined",
+          "description": ""
+        },
+        {
+          "name": "stop",
+          "schema": "undefined",
+          "description": "",
+          "default": ""
+        },
+        {
+          "name": "stream",
+          "schema": "boolean",
+          "description": "",
+          "default": false
+        },
+        {
+          "name": "suffix",
+          "schema": "string",
+          "description": "",
+          "default": ""
+        },
+        {
+          "name": "temperature",
+          "schema": "number",
+          "description": "",
+          "default": 1
+        },
+        {
+          "name": "tool_choice",
+          "schema": "undefined",
+          "description": "",
+          "default": "none"
+        },
+        {
+          "name": "tools",
+          "schema": "array",
+          "description": ""
+        },
+        {
+          "name": "top_p",
+          "schema": "number",
+          "description": "",
+          "default": 1
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": "The response returned to the user by the Chat Completions endpoint"
+        },
+        {
+          "statusCode": "422",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/completions",
+      "method": "performTextRequest",
+      "httpMethod": "post",
+      "tag": "completions",
+      "typeScriptTag": "completions",
+      "description": "Completions",
+      "parameters": [
+        {
+          "name": "best_of",
+          "schema": "integer",
+          "description": "",
+          "default": 1
+        },
+        {
+          "name": "false",
+          "schema": "integer",
+          "description": "",
+          "default": 1
+        },
+        {
+          "name": "frequency_penalty",
+          "schema": "number",
+          "description": "",
+          "default": 0
+        },
+        {
+          "name": "logit_bias",
+          "schema": "object",
+          "description": ""
+        },
+        {
+          "name": "logprobs",
+          "schema": "integer",
+          "description": ""
+        },
+        {
+          "name": "max_tokens",
+          "schema": "integer",
+          "description": ""
+        },
+        {
+          "name": "messages",
+          "schema": "array",
+          "description": "",
+          "default": []
+        },
+        {
+          "name": "model",
+          "schema": "string",
+          "description": "",
+          "default": "pulze"
+        },
+        {
+          "name": "presence_penalty",
+          "schema": "number",
+          "description": "",
+          "default": 0
+        },
+        {
+          "name": "prompt",
+          "schema": "undefined",
+          "description": ""
+        },
+        {
+          "name": "stop",
+          "schema": "undefined",
+          "description": "",
+          "default": ""
+        },
+        {
+          "name": "stream",
+          "schema": "boolean",
+          "description": "",
+          "default": false
+        },
+        {
+          "name": "suffix",
+          "schema": "string",
+          "description": "",
+          "default": ""
+        },
+        {
+          "name": "temperature",
+          "schema": "number",
+          "description": "",
+          "default": 1
+        },
+        {
+          "name": "tool_choice",
+          "schema": "undefined",
+          "description": "",
+          "default": "none"
+        },
+        {
+          "name": "tools",
+          "schema": "array",
+          "description": ""
+        },
+        {
+          "name": "top_p",
+          "schema": "number",
+          "description": "",
+          "default": 1
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": "The response returned to the user by the (text) Completions endpoint"
+        },
+        {
+          "statusCode": "422",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/models/rank",
+      "method": "getRankOfBest",
+      "httpMethod": "post",
+      "tag": "models",
+      "typeScriptTag": "models",
+      "description": "Get Rank Of Best Models For Payload",
+      "parameters": [
+        {
+          "name": "best_of",
+          "schema": "integer",
+          "description": "",
+          "default": 1
+        },
+        {
+          "name": "false",
+          "schema": "integer",
+          "description": "",
+          "default": 1
+        },
+        {
+          "name": "frequency_penalty",
+          "schema": "number",
+          "description": "",
+          "default": 0
+        },
+        {
+          "name": "logit_bias",
+          "schema": "object",
+          "description": ""
+        },
+        {
+          "name": "logprobs",
+          "schema": "integer",
+          "description": ""
+        },
+        {
+          "name": "max_tokens",
+          "schema": "integer",
+          "description": ""
+        },
+        {
+          "name": "messages",
+          "schema": "array",
+          "description": "",
+          "default": []
+        },
+        {
+          "name": "model",
+          "schema": "string",
+          "description": "",
+          "default": "pulze"
+        },
+        {
+          "name": "presence_penalty",
+          "schema": "number",
+          "description": "",
+          "default": 0
+        },
+        {
+          "name": "prompt",
+          "schema": "undefined",
+          "description": ""
+        },
+        {
+          "name": "stop",
+          "schema": "undefined",
+          "description": "",
+          "default": ""
+        },
+        {
+          "name": "stream",
+          "schema": "boolean",
+          "description": "",
+          "default": false
+        },
+        {
+          "name": "suffix",
+          "schema": "string",
+          "description": "",
+          "default": ""
+        },
+        {
+          "name": "temperature",
+          "schema": "number",
+          "description": "",
+          "default": 1
+        },
+        {
+          "name": "tool_choice",
+          "schema": "undefined",
+          "description": "",
+          "default": "none"
+        },
+        {
+          "name": "tools",
+          "schema": "array",
+          "description": ""
+        },
+        {
+          "name": "top_p",
+          "schema": "number",
+          "description": "",
+          "default": 1
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "422",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/logs/{log_id}",
+      "method": "getById",
+      "httpMethod": "get",
+      "tag": "logs",
+      "typeScriptTag": "logs",
+      "description": "Get Log By Id",
+      "parameters": [
+        {
+          "name": "logId",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "LOG_ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "422",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/logs/{log_id}/rating",
+      "method": "rateById",
+      "httpMethod": "post",
+      "tag": "logs",
+      "typeScriptTag": "logs",
+      "description": "Rate Log By Id",
+      "parameters": [
+        {
+          "name": "logId",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "LOG_ID"
+        },
+        {
+          "name": "feedback",
+          "schema": "string",
+          "description": "",
+          "default": ""
+        },
+        {
+          "name": "good_answer",
+          "schema": "boolean",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "422",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/apps/self",
+      "method": "getAppForApiKey",
+      "httpMethod": "get",
+      "tag": "apps",
+      "typeScriptTag": "apps",
+      "description": "Get App For Api Key",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/apps/update",
+      "method": "updateProperties",
+      "httpMethod": "put",
+      "tag": "apps",
+      "typeScriptTag": "apps",
+      "description": "Update App And Models",
+      "parameters": [
+        {
+          "name": "description",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "DESCRIPTION"
+        },
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "ID"
+        },
+        {
+          "name": "policies",
+          "schema": "object",
+          "required": true,
+          "description": ""
+        },
+        {
+          "name": "prompt_id",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "weights",
+          "schema": "object",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "422",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/models/active",
+      "method": "listActiveModels",
+      "httpMethod": "get",
+      "tag": "models",
+      "typeScriptTag": "models",
+      "description": "Get Active Models For App",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/models/all",
+      "method": "getAllModels",
+      "httpMethod": "get",
+      "tag": "models",
+      "typeScriptTag": "models",
+      "description": "Get All Available Models For App",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/models/{model_id}/toggle",
+      "method": "toggleModelForApp",
+      "httpMethod": "put",
+      "tag": "models",
+      "typeScriptTag": "models",
+      "description": "Toggle Model For App",
+      "parameters": [
+        {
+          "name": "modelId",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "MODEL_ID"
+        },
+        {
+          "name": "enable",
+          "schema": "boolean",
+          "description": "",
+          "default": true
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "422",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/logs",
+      "method": "getMatchingLogs",
+      "httpMethod": "post",
+      "tag": "logs",
+      "typeScriptTag": "logs",
+      "description": "Get Logs For App",
+      "parameters": [
+        {
+          "name": "page",
+          "schema": "integer",
+          "description": "",
+          "default": 1
+        },
+        {
+          "name": "size",
+          "schema": "integer",
+          "description": "",
+          "default": 50
+        },
+        {
+          "name": "app_ids",
+          "schema": "array",
+          "required": false,
+          "description": "",
+          "default": []
+        },
+        {
+          "name": "date_from",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "DATE_FROM"
+        },
+        {
+          "name": "date_to",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "labels",
+          "schema": "object",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "params",
+          "schema": "array",
+          "required": false,
+          "description": "",
+          "default": []
+        },
+        {
+          "name": "query",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "default": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "422",
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "repositoryDescription": "Pulze uses AI to supercharge workforce productivity by offering a platform with access to top Large Language Models for building AI features into apps. Based in San Francisco, we cater to companies of all sizes. Pulze.ai's {language} SDK generated by Konfig (https://konfigthis.com/).",
+  "logo": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/pulze-ai/logo.png",
+  "openApiRaw": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/pulze-ai/openapi.yaml",
+  "openApiGitHubUi": "https://github.com/konfig-sdks/openapi-examples/tree/HEAD/pulze-ai/openapi.yaml",
+  "previewLinkImage": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/pulze-ai/imagePreview.jpg",
+  "faviconUrl": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/pulze-ai/favicon.png",
+  "clientNameCamelCase": "pulzeAi",
+  "lastUpdated": "2024-03-15T20:52:11.701Z",
+  "typescriptSdkUsageCode": "import { PulzeAi } from 'pulze-ai-typescript-sdk';\n\nconst pulzeAi = new PulzeAi({\n    token: \"TOKEN\",\n})",
+  "typescriptSdkFirstRequestCode": "// Chat Completions\nconst performCompletionRequestResponse = pulzeAi.chat.performCompletionRequest({\n    best_of: 1\n    false: 1\n    messages: []\n    model: \"pulze\"\n    temperature: 1\n    tool_choice: \"none\"\n    top_p: 1\n})",
+  "fixedSpecFileName": "pulze-ai-fixed-spec.yaml"
+}
