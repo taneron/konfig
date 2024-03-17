@@ -9,13 +9,13 @@ servers:
 tags:
   - name: Voucher
   - name: Balance
-  - name: Wallet
   - name: Payment
   - name: Transaction
+  - name: Wallet
   - name: Merchants
   - name: Rates
-  - name: Webhook
   - name: Currency
+  - name: Webhook
   - name: Mock Payment
   - name: Transactions
   - name: Voucher fee
@@ -1056,12 +1056,10 @@ components:
           type: string
         merchantFee:
           description: >-
-            In USD (optional). Can be supplied if the merchant want to withdraw
-            a portion of the voucher amount into their Ventogram balance. This
-            must be a fraction or all of voucher value (ie received amount -
-            voucher fee)
-          enum:
-            - USD
+            In USD (optional) with a precision of 2 decimal places (max). Can be
+            supplied if the merchant want to withdraw a portion of the voucher
+            amount into their Ventogram balance. This must be a fraction or all
+            of voucher value (ie received amount - voucher fee)
           type: string
         network:
           description: Supported crypto network

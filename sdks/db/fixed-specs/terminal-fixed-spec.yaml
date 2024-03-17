@@ -12,7 +12,6 @@ info:
   version: 1.0.0
   contact: {}
   x-konfig-ignore:
-    object-with-no-properties: true
     potential-incorrect-type: true
 servers:
   - url: https://api.sandbox.withterminal.com/tsp/v1
@@ -107,7 +106,7 @@ paths:
           in: query
           schema:
             type: string
-            example: sed Lorem ut proident
+            example: ad consectetur nostrud eu
       responses:
         '200':
           description: ''
@@ -135,18 +134,18 @@ paths:
                     - Tag Name
                     - Tag Name
                   backfill:
-                    days: -61132418.01556799
+                    days: 39664318.60875788
                     startFrom: '2021-01-06T03:24:53.000Z'
                   company:
                     dotNumbers:
-                      - enim mollit
-                      - nulla Excepteur
-                    name: eu occaecat nostrud
+                      - cillum est amet
+                      - in sunt veniam in c
+                    name: officia laborum ut quis proident
                   credentials:
-                    database: m
-                    password: Lorem occaecat proident
-                    username: sunt ipsum amet
-                  externalId: Ut
+                    database: Duis tempor
+                    password: in proident sint
+                    username: ipsum
+                  externalId: fugiat Duis ex
                   provider: geotab
                   syncMode: automatic
       responses:
@@ -200,12 +199,12 @@ paths:
               Update Current Connection:
                 value:
                   tags:
-                    - nulla mollit commodo Duis
-                    - nisi Excepteur deserunt
+                    - anim aliquip
+                    - in nisi
                   company:
                     name: Acme Inc.
-                  externalId: est sed
-                  status: consequat eiusmod
+                  externalId: ea commodo
+                  status: labore cillum ea
                   syncMode: automatic
       responses:
         '200':
@@ -331,7 +330,7 @@ paths:
       summary: Passthrough
       operationId: DataManagement_makePassthroughRequest
       description: >-
-        Make an authenticated request to the underlying telematics provider.
+        Make an authenticated request to the underlying telematics provider. 
 
 
         This endpoint helps ensure that you are never limited by Terminal. You
@@ -683,13 +682,13 @@ paths:
           in: query
           schema:
             type: string
-            example: '1993-03-13'
+            example: '1978-09-29'
         - description: Only include daily logs from on or before a specific date
           name: endDate
           in: query
           schema:
             type: string
-            example: '1993-03-13'
+            example: '1978-09-29'
         - description: Only include records that were last modified after a provided date.
           name: modifiedAfter
           in: query
@@ -743,7 +742,7 @@ paths:
         Get all vehicle IFTA reports for the requested time span.
 
 
-        Currently can only increment by full months.
+        Currently can only increment by full months. 
 
 
         _Note:_ data may change for a few days after the month. We will continue
@@ -835,13 +834,13 @@ paths:
           in: query
           schema:
             type: string
-            example: '2000-11-26'
+            example: '1999-02-22'
         - description: Timestamp to end when the issue was last observed
           name: lastReportedBefore
           in: query
           schema:
             type: string
-            example: '2000-11-26'
+            example: '1999-02-22'
         - description: Expand related resources to see all details
           name: expand
           in: query
@@ -859,13 +858,13 @@ paths:
           in: query
           schema:
             type: string
-            example: inaccessible_data
+            example: invalid_source_id
         - description: Filter issues to a specific status
           name: status
           in: query
           schema:
             type: string
-            example: ongoing
+            example: resolved
       responses:
         '200':
           description: ''
@@ -877,21 +876,13 @@ paths:
         required: true
         schema:
           type: string
-          example: sed Lorem ut proident
+          example: ad consectetur nostrud eu
     post:
       tags:
         - Issues
       summary: Resolve Issue
       operationId: Issues_markResolved
       description: Mark an issue's status as `resolved` until the issue is observed again.
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/IssuesMarkResolvedRequest'
-            examples:
-              Resolve Issue:
-                value: &ref_0 {}
       responses:
         '200':
           description: ''
@@ -1201,7 +1192,7 @@ paths:
         List the latest location of the vehicles in the connected account.
 
         This endpoint will call the provider's API in real time to get the
-        latest location of the vehicle.
+        latest location of the vehicle. 
 
         _Please note: this endpoint will exclude vehicles that have no last
         known location._
@@ -1563,7 +1554,7 @@ components:
           properties:
             days:
               type: number
-              example: -61132418.01556799
+              example: 39664318.60875788
             startFrom:
               type: string
               example: '2021-01-06T03:24:53.000Z'
@@ -1574,28 +1565,28 @@ components:
               type: array
               items:
                 type: string
-                example: enim mollit
+                example: cillum est amet
               example:
-                - enim mollit
-                - nulla Excepteur
+                - cillum est amet
+                - in sunt veniam in c
             name:
               type: string
-              example: eu occaecat nostrud
+              example: officia laborum ut quis proident
         credentials:
           type: object
           properties:
             database:
               type: string
-              example: m
+              example: Duis tempor
             password:
               type: string
-              example: Lorem occaecat proident
+              example: in proident sint
             username:
               type: string
-              example: sunt ipsum amet
+              example: ipsum
         externalId:
           type: string
-          example: Ut
+          example: fugiat Duis ex
         provider:
           type: string
           example: geotab
@@ -1609,10 +1600,10 @@ components:
           type: array
           items:
             type: string
-            example: nulla mollit commodo Duis
+            example: anim aliquip
           example:
-            - nulla mollit commodo Duis
-            - nisi Excepteur deserunt
+            - anim aliquip
+            - in nisi
         company:
           type: object
           properties:
@@ -1621,10 +1612,10 @@ components:
               example: Acme Inc.
         externalId:
           type: string
-          example: est sed
+          example: ea commodo
         status:
           type: string
-          example: consequat eiusmod
+          example: labore cillum ea
         syncMode:
           type: string
           example: automatic
@@ -1649,9 +1640,5 @@ components:
         path:
           type: string
           example: /reports
-    IssuesMarkResolvedRequest:
-      type: object
-      properties: {}
-      example: *ref_0
 security:
   - bearerAuth: []

@@ -98,7 +98,7 @@ rawSpecString: |
             in: query
             schema:
               type: string
-              example: sed Lorem ut proident
+              example: ad consectetur nostrud eu
             description: Filter connections by tag
         responses:
           '200':
@@ -126,7 +126,7 @@ rawSpecString: |
                     properties:
                       days:
                         type: number
-                        example: -61132418.01556799
+                        example: 39664318.60875788
                       startFrom:
                         type: string
                         example: '2021-01-06T03:24:53.000Z'
@@ -137,28 +137,28 @@ rawSpecString: |
                         type: array
                         items:
                           type: string
-                          example: enim mollit
+                          example: cillum est amet
                         example:
-                          - enim mollit
-                          - nulla Excepteur
+                          - cillum est amet
+                          - in sunt veniam in c
                       name:
                         type: string
-                        example: eu occaecat nostrud
+                        example: officia laborum ut quis proident
                   credentials:
                     type: object
                     properties:
                       database:
                         type: string
-                        example: m
+                        example: Duis tempor
                       password:
                         type: string
-                        example: Lorem occaecat proident
+                        example: in proident sint
                       username:
                         type: string
-                        example: sunt ipsum amet
+                        example: ipsum
                   externalId:
                     type: string
-                    example: Ut
+                    example: fugiat Duis ex
                   provider:
                     type: string
                     example: geotab
@@ -177,18 +177,18 @@ rawSpecString: |
                 Create Connection:
                   value:
                     backfill:
-                      days: -61132418.01556799
+                      days: 39664318.60875788
                       startFrom: '2021-01-06T03:24:53.000Z'
                     company:
                       dotNumbers:
-                        - enim mollit
-                        - nulla Excepteur
-                      name: eu occaecat nostrud
+                        - cillum est amet
+                        - in sunt veniam in c
+                      name: officia laborum ut quis proident
                     credentials:
-                      database: m
-                      password: Lorem occaecat proident
-                      username: sunt ipsum amet
-                    externalId: Ut
+                      database: Duis tempor
+                      password: in proident sint
+                      username: ipsum
+                    externalId: fugiat Duis ex
                     provider: geotab
                     syncMode: automatic
                     tags:
@@ -249,10 +249,10 @@ rawSpecString: |
                         example: Acme Inc.
                   externalId:
                     type: string
-                    example: est sed
+                    example: ea commodo
                   status:
                     type: string
-                    example: consequat eiusmod
+                    example: labore cillum ea
                   syncMode:
                     type: string
                     example: automatic
@@ -260,21 +260,21 @@ rawSpecString: |
                     type: array
                     items:
                       type: string
-                      example: nulla mollit commodo Duis
+                      example: anim aliquip
                     example:
-                      - nulla mollit commodo Duis
-                      - nisi Excepteur deserunt
+                      - anim aliquip
+                      - in nisi
               examples:
                 Update Current Connection:
                   value:
                     company:
                       name: Acme Inc.
-                    externalId: est sed
-                    status: consequat eiusmod
+                    externalId: ea commodo
+                    status: labore cillum ea
                     syncMode: automatic
                     tags:
-                      - nulla mollit commodo Duis
-                      - nisi Excepteur deserunt
+                      - anim aliquip
+                      - in nisi
         responses:
           '200':
             description: ''
@@ -402,7 +402,7 @@ rawSpecString: |
           - Data Management
         summary: Passthrough
         description: >-
-          Make an authenticated request to the underlying telematics provider.
+          Make an authenticated request to the underlying telematics provider. 
 
 
           This endpoint helps ensure that you are never limited by Terminal. You
@@ -767,13 +767,13 @@ rawSpecString: |
             in: query
             schema:
               type: string
-              example: '1993-03-13'
+              example: '1978-09-29'
             description: Only include daily logs from on or after a specific date
           - name: endDate
             in: query
             schema:
               type: string
-              example: '1993-03-13'
+              example: '1978-09-29'
             description: Only include daily logs from on or before a specific date
           - name: modifiedAfter
             in: query
@@ -827,7 +827,7 @@ rawSpecString: |
           Get all vehicle IFTA reports for the requested time span.
 
 
-          Currently can only increment by full months.
+          Currently can only increment by full months. 
 
 
           _Note:_ data may change for a few days after the month. We will continue
@@ -919,13 +919,13 @@ rawSpecString: |
             in: query
             schema:
               type: string
-              example: '2000-11-26'
+              example: '1999-02-22'
             description: Timestamp to start when the issue was last observed
           - name: lastReportedBefore
             in: query
             schema:
               type: string
-              example: '2000-11-26'
+              example: '1999-02-22'
             description: Timestamp to end when the issue was last observed
           - name: expand
             in: query
@@ -943,13 +943,13 @@ rawSpecString: |
             in: query
             schema:
               type: string
-              example: inaccessible_data
+              example: invalid_source_id
             description: Filter issues to a specific error code
           - name: status
             in: query
             schema:
               type: string
-              example: ongoing
+              example: resolved
             description: Filter issues to a specific status
         responses:
           '200':
@@ -961,15 +961,6 @@ rawSpecString: |
         summary: Resolve Issue
         description: Mark an issue's status as `resolved` until the issue is observed again.
         operationId: resolveIssue
-        requestBody:
-          content:
-            application/json:
-              schema:
-                type: object
-                properties: {}
-              examples:
-                Resolve Issue:
-                  value: {}
         responses:
           '200':
             description: ''
@@ -979,7 +970,7 @@ rawSpecString: |
           required: true
           schema:
             type: string
-            example: sed Lorem ut proident
+            example: ad consectetur nostrud eu
           description: '(Required) '
     /providers:
       get:
@@ -1286,7 +1277,7 @@ rawSpecString: |
           List the latest location of the vehicles in the connected account.
 
           This endpoint will call the provider's API in real time to get the
-          latest location of the vehicle.
+          latest location of the vehicle. 
 
           _Please note: this endpoint will exclude vehicles that have no last
           known location._

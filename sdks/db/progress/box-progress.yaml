@@ -32,6 +32,8 @@ operationIds:
     get: DevicePinners_getPinnerInfo
   /enterprises/{enterprise_id}/device_pinners:
     get: DevicePinners_listPinnerInfo
+  /file_activities:
+    get: FileActivities_listByFileId
   /file_requests/{file_request_id}:
     delete: FileRequests_deletePermanently
     get: FileRequests_getInformation
@@ -706,7 +708,13 @@ responseSchemaNames:
 securityParameters:
   access_token:
     query: false
+  activity_types:
+    query: false
   ancestor_folder_ids:
+    query: false
+  annotation_fields:
+    query: false
+  app_activity_fields:
     query: false
   assign_to_id:
     query: false
@@ -719,6 +727,8 @@ securityParameters:
   boxapi:
     header: false
   client_id:
+    query: false
+  comment_fields:
     query: false
   content-md5:
     header: false
@@ -747,6 +757,8 @@ securityParameters:
   disposition_after:
     query: false
   disposition_before:
+    query: false
+  enable_replies:
     query: false
   event_type:
     query: false
@@ -818,6 +830,8 @@ securityParameters:
     query: false
   redirect_uri:
     query: false
+  reply_limit:
+    query: false
   resolved_for_id:
     query: false
   resolved_for_type:
@@ -842,6 +856,8 @@ securityParameters:
     query: false
   stream_type:
     query: false
+  task_fields:
+    query: false
   tos_id:
     query: false
   tos_type:
@@ -861,6 +877,8 @@ securityParameters:
   user_type:
     query: false
   version:
+    query: false
+  versions_fields:
     query: false
   x-rep-hints:
     header: false
