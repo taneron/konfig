@@ -8,12 +8,12 @@ All REST API resources are authenticated with either [personal or service access
 
 LaunchDarkly also has SDK keys, mobile keys, and client-side IDs that are used by our server-side SDKs, mobile SDKs, and JavaScript-based SDKs, respectively. **These keys cannot be used to access our REST API**. These keys are environment-specific, and can only perform read-only operations such as fetching feature flag settings.
 
-| Auth mechanism                                                                                  | Allowed resources                                                                                     | Use cases                                          |
+| Auth mechanism | Allowed resources | Use cases                                          |
 | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | -------------------------------------------------- |
 | [Personal or service access tokens](https://docs.launchdarkly.com/home/account-security/api-access-tokens) | Can be customized on a per-token basis                                                                | Building scripts, custom integrations, data export. |
-| SDK keys                                                                                        | Can only access read-only resources specific to server-side SDKs. Restricted to a single environment. | Server-side SDKs                     |
-| Mobile keys                                                                                     | Can only access read-only resources specific to mobile SDKs, and only for flags marked available to mobile keys. Restricted to a single environment.           | Mobile SDKs                                        |
-| Client-side ID                                                                                  | Can only access read-only resources specific to JavaScript-based client-side SDKs, and only for flags marked available to client-side. Restricted to a single environment.           | Client-side JavaScript                             |
+| SDK keys | Can only access read-only resources specific to server-side SDKs. Restricted to a single environment. | Server-side SDKs                     |
+| Mobile keys | Can only access read-only resources specific to mobile SDKs, and only for flags marked available to mobile keys. Restricted to a single environment.           | Mobile SDKs                                        |
+| Client-side ID | Can only access read-only resources specific to JavaScript-based client-side SDKs, and only for flags marked available to client-side. Restricted to a single environment.           | Client-side JavaScript                             |
 
 > #### Keep your access tokens and SDK keys private
 >
@@ -233,7 +233,7 @@ The `code` indicates the general class of error. The `message` is a human-readab
 
 ### HTTP status error response codes
 
-| Code | Definition        | Description                                                                                       | Possible Solution                                                |
+| Code | Definition        | Description | Possible Solution                                                |
 | ---- | ----------------- | ------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
 | 400  | Invalid request       | The request cannot be understood.                                    | Ensure JSON syntax in request body is correct.                   |
 | 401  | Invalid access token      | Requestor is unauthorized or does not have permission for this API call.                                                | Ensure your API access token is valid and has the appropriate permissions.                                     |
@@ -242,7 +242,7 @@ The `code` indicates the general class of error. The `message` is a human-readab
 | 405  | Method not allowed | The request method is not allowed on this resource. | Ensure that the HTTP verb is correct. |
 | 409  | Conflict          | The API request can not be completed because it conflicts with a concurrent API request. | Retry your request.                                              |
 | 422  | Unprocessable entity | The API request can not be completed because the update description can not be understood. | Ensure that the request body is correct for the type of patch you are using, either JSON patch or semantic patch.
-| 429  | Too many requests | Read [Rate limiting](https://apidocs.launchdarkly.com).                                               | Wait and try again later.                                        |
+| 429  | Too many requests | Read [Rate limiting](https://apidocs.launchdarkly.com). | Wait and try again later.                                        |
 
 ## CORS
 
@@ -269,7 +269,7 @@ We use several rate limiting strategies to ensure the availability of our APIs. 
 
 Authenticated requests are subject to a global limit. This is the maximum number of calls that your account can make to the API per ten seconds. All service and personal access tokens on the account share this limit, so exceeding the limit with one access token will impact other tokens. Calls that are subject to global rate limits may return the headers below:
 
-| Header name                    | Description                                                                      |
+| Header name                    | Description |
 | ------------------------------ | -------------------------------------------------------------------------------- |
 | `X-Ratelimit-Global-Remaining` | The maximum number of requests the account is permitted to make per ten seconds. |
 | `X-Ratelimit-Reset`            | The time at which the current rate limit window resets in epoch milliseconds.    |
@@ -280,7 +280,7 @@ We do not publicly document the specific number of calls that can be made global
 
 Some authenticated routes have custom rate limits. These also reset every ten seconds. Any service or personal access tokens hitting the same route share this limit, so exceeding the limit with one access token may impact other tokens. Calls that are subject to route-level rate limits return the headers below:
 
-| Header name                   | Description                                                                                           |
+| Header name                   | Description |
 | ----------------------------- | ----------------------------------------------------------------------------------------------------- |
 | `X-Ratelimit-Route-Remaining` | The maximum number of requests to the current route the account is permitted to make per ten seconds. |
 | `X-Ratelimit-Reset`           | The time at which the current rate limit window resets in epoch milliseconds.                         |

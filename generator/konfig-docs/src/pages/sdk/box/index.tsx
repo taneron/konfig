@@ -4,7 +4,7 @@ import { Company } from '../../../components/Company';
 const sdks = [
   {
     "name": "Box",
-    "numberOfMethods": 263,
+    "numberOfMethods": 264,
     "categories": [
       "collaboration",
       "storage",
@@ -24,7 +24,7 @@ const sdks = [
   },
   {
     "name": "Box",
-    "numberOfMethods": 263,
+    "numberOfMethods": 264,
     "categories": [
       "collaboration",
       "storage",
@@ -44,7 +44,7 @@ const sdks = [
   },
   {
     "name": "Box",
-    "numberOfMethods": 263,
+    "numberOfMethods": 264,
     "categories": [
       "collaboration",
       "storage",

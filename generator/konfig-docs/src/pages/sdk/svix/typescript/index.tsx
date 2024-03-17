@@ -19,7 +19,7 @@ export default function SvixTypeScriptSdk() {
       companyKebabCase="svix"
       clientNameCamelCase="svix"
       homepage="svix.com"
-      lastUpdated={new Date("2024-03-14T08:10:33.678Z")}
+      lastUpdated={new Date("2024-03-15T18:50:00.907Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/svix/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
@@ -31,7 +31,7 @@ export default function SvixTypeScriptSdk() {
       methods={[
   {
     "url": "/api/v1/auth/app-portal-access/{app_id}",
-    "method": "obtainMagicLinkAndCode",
+    "method": "generateMagicLinks",
     "httpMethod": HttpMethodsEnum.POST,
     "tag": "Authentication",
     "typeScriptTag": "authentication",
@@ -99,7 +99,7 @@ export default function SvixTypeScriptSdk() {
   },
   {
     "url": "/api/v1/auth/dashboard-access/{app_id}",
-    "method": "generateMagicLink",
+    "method": "getMagicLinks",
     "httpMethod": HttpMethodsEnum.POST,
     "tag": "Authentication",
     "typeScriptTag": "authentication",
@@ -155,7 +155,7 @@ export default function SvixTypeScriptSdk() {
   },
   {
     "url": "/api/v1/auth/logout",
-    "method": "revokeToken",
+    "method": "logoutToken",
     "httpMethod": HttpMethodsEnum.POST,
     "tag": "Authentication",
     "typeScriptTag": "authentication",
@@ -204,7 +204,7 @@ export default function SvixTypeScriptSdk() {
   },
   {
     "url": "/api/v1/auth/app/{app_id}/expire-all",
-    "method": "expireAppTokens",
+    "method": "expireAllTokens",
     "httpMethod": HttpMethodsEnum.POST,
     "tag": "Authentication",
     "typeScriptTag": "authentication",
@@ -586,7 +586,7 @@ export default function SvixTypeScriptSdk() {
   },
   {
     "url": "/api/v1/app/{app_id}",
-    "method": "updateApp",
+    "method": "updateApplicationById",
     "httpMethod": HttpMethodsEnum.PUT,
     "tag": "Application",
     "typeScriptTag": "application",
@@ -735,7 +735,7 @@ export default function SvixTypeScriptSdk() {
   },
   {
     "url": "/api/v1/app/{app_id}/endpoint",
-    "method": "createNew",
+    "method": "createOrUpdate",
     "httpMethod": HttpMethodsEnum.POST,
     "tag": "Endpoint",
     "typeScriptTag": "endpoint",
@@ -927,7 +927,7 @@ export default function SvixTypeScriptSdk() {
   },
   {
     "url": "/api/v1/app/{app_id}/endpoint/{endpoint_id}",
-    "method": "getEndpoint",
+    "method": "getDetails",
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "Endpoint",
     "typeScriptTag": "endpoint",
@@ -1096,7 +1096,7 @@ export default function SvixTypeScriptSdk() {
   },
   {
     "url": "/api/v1/app/{app_id}/endpoint/{endpoint_id}",
-    "method": "updateEndpoint",
+    "method": "updateEndpointById",
     "httpMethod": HttpMethodsEnum.PUT,
     "tag": "Endpoint",
     "typeScriptTag": "endpoint",
@@ -1229,7 +1229,7 @@ export default function SvixTypeScriptSdk() {
   },
   {
     "url": "/api/v1/app/{app_id}/endpoint/{endpoint_id}/secret",
-    "method": "getSecret",
+    "method": "getSigningSecret",
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "Endpoint",
     "typeScriptTag": "endpoint",
@@ -1357,7 +1357,7 @@ export default function SvixTypeScriptSdk() {
   },
   {
     "url": "/api/v1/app/{app_id}/endpoint/{endpoint_id}/stats",
-    "method": "getStats",
+    "method": "getStatistics",
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "Endpoint",
     "typeScriptTag": "endpoint",
@@ -1425,7 +1425,7 @@ export default function SvixTypeScriptSdk() {
   },
   {
     "url": "/api/v1/app/{app_id}/endpoint/{endpoint_id}/recover",
-    "method": "resendFailedWebhooks",
+    "method": "resendFailedMessages",
     "httpMethod": HttpMethodsEnum.POST,
     "tag": "Endpoint",
     "typeScriptTag": "endpoint",
@@ -1703,7 +1703,7 @@ export default function SvixTypeScriptSdk() {
   },
   {
     "url": "/api/v1/app/{app_id}/endpoint/{endpoint_id}/headers",
-    "method": "updateHeaders",
+    "method": "setWebhookHeaders",
     "httpMethod": HttpMethodsEnum.PUT,
     "tag": "Endpoint",
     "typeScriptTag": "endpoint",
@@ -1897,7 +1897,7 @@ export default function SvixTypeScriptSdk() {
   },
   {
     "url": "/api/v1/app/{app_id}/endpoint/{endpoint_id}/send-example",
-    "method": "sendExampleMessage",
+    "method": "sendExampleMessageType",
     "httpMethod": HttpMethodsEnum.POST,
     "tag": "Endpoint",
     "typeScriptTag": "endpoint",
@@ -1967,7 +1967,7 @@ export default function SvixTypeScriptSdk() {
   },
   {
     "url": "/api/v1/event-type",
-    "method": "getList",
+    "method": "list",
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "Event Type",
     "typeScriptTag": "eventType",
@@ -2289,7 +2289,7 @@ export default function SvixTypeScriptSdk() {
   },
   {
     "url": "/api/v1/event-type/{event_type_name}",
-    "method": "archiveType",
+    "method": "archive",
     "httpMethod": HttpMethodsEnum.DELETE,
     "tag": "Event Type",
     "typeScriptTag": "eventType",
@@ -2346,7 +2346,7 @@ export default function SvixTypeScriptSdk() {
   },
   {
     "url": "/api/v1/event-type/{event_type_name}",
-    "method": "getByName",
+    "method": "getEventType",
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "Event Type",
     "typeScriptTag": "eventType",
@@ -2397,7 +2397,7 @@ export default function SvixTypeScriptSdk() {
   },
   {
     "url": "/api/v1/event-type/{event_type_name}",
-    "method": "partiallyUpdateType",
+    "method": "partiallyUpdateEventType",
     "httpMethod": HttpMethodsEnum.PATCH,
     "tag": "Event Type",
     "typeScriptTag": "eventType",
@@ -2488,7 +2488,7 @@ export default function SvixTypeScriptSdk() {
   },
   {
     "url": "/api/v1/event-type/{event_type_name}",
-    "method": "updateType",
+    "method": "updateEventTypeName",
     "httpMethod": HttpMethodsEnum.PUT,
     "tag": "Event Type",
     "typeScriptTag": "eventType",
@@ -2592,7 +2592,7 @@ export default function SvixTypeScriptSdk() {
   },
   {
     "url": "/api/v1/background-task",
-    "method": "listRecentTasks",
+    "method": "getPastTasks",
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "Background Tasks",
     "typeScriptTag": "backgroundTasks",
@@ -2661,7 +2661,7 @@ export default function SvixTypeScriptSdk() {
   },
   {
     "url": "/api/v1/background-task/{task_id}",
-    "method": "getTaskById",
+    "method": "getById",
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "Background Tasks",
     "typeScriptTag": "backgroundTasks",
@@ -2807,7 +2807,7 @@ export default function SvixTypeScriptSdk() {
   },
   {
     "url": "/api/v1/app/{app_id}/msg",
-    "method": "createNew",
+    "method": "createNewMsg",
     "httpMethod": HttpMethodsEnum.POST,
     "tag": "Message",
     "typeScriptTag": "message",
@@ -3178,7 +3178,7 @@ export default function SvixTypeScriptSdk() {
   },
   {
     "url": "/api/v1/app/{app_id}/attempt/msg/{msg_id}",
-    "method": "listByMsgAttemptedDestinations",
+    "method": "listByMsg",
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "Message Attempt",
     "typeScriptTag": "messageAttempt",
@@ -3580,7 +3580,7 @@ export default function SvixTypeScriptSdk() {
   },
   {
     "url": "/api/v1/app/{app_id}/msg/{msg_id}/attempt",
-    "method": "listByMsgAttemptedDestinations",
+    "method": "listByMsgAttempt",
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "Message Attempt",
     "typeScriptTag": "messageAttempt",
@@ -3692,7 +3692,7 @@ export default function SvixTypeScriptSdk() {
   },
   {
     "url": "/api/v1/app/{app_id}/msg/{msg_id}/attempt/{attempt_id}",
-    "method": "getByDestination",
+    "method": "getByAttempt",
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "Message Attempt",
     "typeScriptTag": "messageAttempt",
@@ -3822,7 +3822,7 @@ export default function SvixTypeScriptSdk() {
   },
   {
     "url": "/api/v1/app/{app_id}/msg/{msg_id}/endpoint/{endpoint_id}/resend",
-    "method": "resendMessageToEndpoint",
+    "method": "resendWebhook",
     "httpMethod": HttpMethodsEnum.POST,
     "tag": "Message Attempt",
     "typeScriptTag": "messageAttempt",
@@ -3892,7 +3892,7 @@ export default function SvixTypeScriptSdk() {
   },
   {
     "url": "/api/v1/stats/usage/app",
-    "method": "calculateMessageDestinations",
+    "method": "calculateMessageDestinationsForApps",
     "httpMethod": HttpMethodsEnum.POST,
     "tag": "Statistics",
     "typeScriptTag": "statistics",
@@ -3961,7 +3961,7 @@ export default function SvixTypeScriptSdk() {
   },
   {
     "url": "/api/v1/stats/usage/event-types",
-    "method": "calculateEventTypesForAllApps",
+    "method": "calculateEventTypesForApps",
     "httpMethod": HttpMethodsEnum.PUT,
     "tag": "Statistics",
     "typeScriptTag": "statistics",
@@ -4004,7 +4004,7 @@ export default function SvixTypeScriptSdk() {
   },
   {
     "url": "/api/v1/app/{app_id}/integration",
-    "method": "listIntegrations",
+    "method": "list",
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "Integration",
     "typeScriptTag": "integration",
@@ -4245,7 +4245,7 @@ export default function SvixTypeScriptSdk() {
   },
   {
     "url": "/api/v1/app/{app_id}/integration/{integ_id}",
-    "method": "updateIntegration",
+    "method": "updateIntegrationById",
     "httpMethod": HttpMethodsEnum.PUT,
     "tag": "Integration",
     "typeScriptTag": "integration",
@@ -4368,7 +4368,7 @@ export default function SvixTypeScriptSdk() {
   },
   {
     "url": "/api/v1/app/{app_id}/integration/{integ_id}/key/rotate",
-    "method": "rotateIntegrationKey",
+    "method": "rotateKey",
     "httpMethod": HttpMethodsEnum.POST,
     "tag": "Integration",
     "typeScriptTag": "integration",
@@ -4431,7 +4431,7 @@ export default function SvixTypeScriptSdk() {
   },
   {
     "url": "/api/v1/health",
-    "method": "checkServerStatus",
+    "method": "checkStatus",
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "Health",
     "typeScriptTag": "health",
@@ -4477,10 +4477,10 @@ export default function SvixTypeScriptSdk() {
       language="TypeScript"
       apiTitle="Svix API"
       apiBaseUrl="https://api.eu.svix.com/"
-      apiVersion="1.20.0"
+      apiVersion="1.21.0"
       endpoints={40}
       sdkMethods={59}
-      schemas={121}
+      schemas={120}
       parameters={266}
       difficulty="Hard"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/svix/openapi.yaml"

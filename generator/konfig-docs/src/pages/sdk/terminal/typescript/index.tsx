@@ -19,7 +19,7 @@ export default function TerminalTypeScriptSdk() {
       companyKebabCase="terminal"
       clientNameCamelCase="terminal"
       homepage="withterminal.com"
-      lastUpdated={new Date("2024-03-14T08:38:56.572Z")}
+      lastUpdated={new Date("2024-03-17T23:48:01.149Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/terminal/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
@@ -87,7 +87,7 @@ export default function TerminalTypeScriptSdk() {
         "name": "tag",
         "schema": "string",
         "description": "Filter connections by tag",
-        "example": "amet pariatur"
+        "example": "ad consectetur nostrud eu"
       }
     ],
     "responses": [
@@ -133,7 +133,7 @@ export default function TerminalTypeScriptSdk() {
         "name": "externalId",
         "schema": "string",
         "description": "",
-        "example": "esse adipisicing"
+        "example": "fugiat Duis ex"
       },
       {
         "name": "provider",
@@ -196,8 +196,8 @@ export default function TerminalTypeScriptSdk() {
         "schema": "array",
         "description": "",
         "example": [
-          "tempor esse laborum Duis",
-          "qui dolor occaecat"
+          "anim aliquip",
+          "in nisi"
         ]
       },
       {
@@ -209,13 +209,13 @@ export default function TerminalTypeScriptSdk() {
         "name": "externalId",
         "schema": "string",
         "description": "",
-        "example": "labore nisi"
+        "example": "ea commodo"
       },
       {
         "name": "status",
         "schema": "string",
         "description": "",
-        "example": "Excepteur velit incididunt occaecat aliqua"
+        "example": "labore cillum ea"
       },
       {
         "name": "syncMode",
@@ -680,13 +680,13 @@ export default function TerminalTypeScriptSdk() {
         "name": "startDate",
         "schema": "string",
         "description": "Only include daily logs from on or after a specific date",
-        "example": "1972-01-02"
+        "example": "1978-09-29"
       },
       {
         "name": "endDate",
         "schema": "string",
         "description": "Only include daily logs from on or before a specific date",
-        "example": "1972-01-02"
+        "example": "1978-09-29"
       },
       {
         "name": "modifiedAfter",
@@ -814,13 +814,13 @@ export default function TerminalTypeScriptSdk() {
         "name": "lastReportedAfter",
         "schema": "string",
         "description": "Timestamp to start when the issue was last observed",
-        "example": "1980-09-09"
+        "example": "1999-02-22"
       },
       {
         "name": "lastReportedBefore",
         "schema": "string",
         "description": "Timestamp to end when the issue was last observed",
-        "example": "1980-09-09"
+        "example": "1999-02-22"
       },
       {
         "name": "expand",
@@ -838,13 +838,13 @@ export default function TerminalTypeScriptSdk() {
         "name": "errorCode",
         "schema": "string",
         "description": "Filter issues to a specific error code",
-        "example": "inaccessible_data"
+        "example": "invalid_source_id"
       },
       {
         "name": "status",
         "schema": "string",
         "description": "Filter issues to a specific status",
-        "example": "ongoing"
+        "example": "resolved"
       }
     ],
     "responses": [
@@ -1484,7 +1484,7 @@ export default function TerminalTypeScriptSdk() {
       apiVersion="1.0.0"
       endpoints={26}
       sdkMethods={35}
-      schemas={6}
+      schemas={5}
       parameters={164}
       difficulty="Easy"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/terminal/openapi.yaml"

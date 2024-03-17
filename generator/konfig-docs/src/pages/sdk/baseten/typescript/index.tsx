@@ -19,7 +19,7 @@ export default function BasetenTypeScriptSdk() {
       companyKebabCase="baseten"
       clientNameCamelCase="baseten"
       homepage="baseten.co"
-      lastUpdated={new Date("2024-03-14T08:10:33.678Z")}
+      lastUpdated={new Date("2024-03-15T18:50:00.907Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/baseten/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
@@ -71,6 +71,51 @@ export default function BasetenTypeScriptSdk() {
       {
         "statusCode": "200",
         "description": "A Baseten secret. Note that we do not support retrieving secret values."
+      }
+    ]
+  },
+  {
+    "url": "/v1/models",
+    "method": "getAllModels",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "Model",
+    "typeScriptTag": "model",
+    "description": "Gets all models",
+    "parameters": [],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": "A list of models."
+      }
+    ]
+  },
+  {
+    "url": "/v1/models/{model_id}",
+    "method": "getModelById",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "Model",
+    "typeScriptTag": "model",
+    "description": "Gets a model by ID",
+    "parameters": [],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": "A model."
+      }
+    ]
+  },
+  {
+    "url": "/v1/models/{model_id}/deployments",
+    "method": "getAllDeployments",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "Model",
+    "typeScriptTag": "model",
+    "description": "Gets all deployments of a model",
+    "parameters": [],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": "A list of deployments of a model."
       }
     ]
   },
@@ -256,6 +301,50 @@ export default function BasetenTypeScriptSdk() {
         "description": "The response to a request to update autoscaling settings."
       }
     ]
+  },
+  {
+    "url": "/v1/models/{model_id}/deployments/development/promote",
+    "method": "deployPromote",
+    "httpMethod": HttpMethodsEnum.POST,
+    "tag": "Model",
+    "typeScriptTag": "model",
+    "description": "Promotes a development deployment to production",
+    "parameters": [
+      {
+        "name": "scale_down_previous_production",
+        "schema": "boolean",
+        "description": "",
+        "default": true
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": "A deployment of a model."
+      }
+    ]
+  },
+  {
+    "url": "/v1/models/{model_id}/deployments/{deployment_id}/promote",
+    "method": "deploymentPromote",
+    "httpMethod": HttpMethodsEnum.POST,
+    "tag": "Model",
+    "typeScriptTag": "model",
+    "description": "Promotes a deployment to production",
+    "parameters": [
+      {
+        "name": "scale_down_previous_production",
+        "schema": "boolean",
+        "description": "",
+        "default": true
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": "A deployment of a model."
+      }
+    ]
   }
 ]
     }
@@ -263,10 +352,10 @@ export default function BasetenTypeScriptSdk() {
       apiTitle="Baseten management API"
       apiBaseUrl="https://api.baseten.co"
       apiVersion="1.0.0"
-      endpoints={7}
-      sdkMethods={14}
-      schemas={9}
-      parameters={17}
+      endpoints={12}
+      sdkMethods={23}
+      schemas={13}
+      parameters={19}
       difficulty="Easy"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/baseten/openapi.yaml"
       openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/baseten/openapi.yaml"
