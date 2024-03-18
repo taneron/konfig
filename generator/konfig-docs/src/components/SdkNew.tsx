@@ -6,26 +6,26 @@
  * For an explanation of the new pSEO page, see the ticket here:
  * https://www.notion.so/konfigthis/Restructure-pSEO-pages-based-on-Zapier-5ff64f53351a4ae2bf728e338b56e57d?pvs=4
  */
-import React, { useEffect, useState } from 'react'
-import { Sdk, SdkMethod } from './Sdk'
-import Layout from '@theme/Layout'
-import Head from '@docusaurus/Head'
+import React, { useEffect, useState } from "react";
+import { Sdk, SdkMethod } from "./Sdk";
+import Layout from "@theme/Layout";
+import Head from "@docusaurus/Head";
 import {
   IconArrowsDownUp,
   IconExternalLink,
   IconPencil,
-} from '@tabler/icons-react'
-import { TsIcon } from './TsIcon'
-import { useSdkSignup } from '../util/use-sdk-signup'
-import clsx from 'clsx'
-import { LoadingIcon } from './LoadingIcon'
-import { Method } from './SdkComponentProps'
-import { Breadcrumbs } from './Breadcrumbs'
-import { LogoBox } from './LogoBox'
-import useContentLoaded from '../util/use-content-loaded'
-import { HowKonfigWorks } from './HowKonfigWorks'
+} from "@tabler/icons-react";
+import { TsIcon } from "./TsIcon";
+import { useSdkSignup } from "../util/use-sdk-signup";
+import clsx from "clsx";
+import { LoadingIcon } from "./LoadingIcon";
+import { Method } from "./SdkComponentProps";
+import { Breadcrumbs } from "./Breadcrumbs";
+import { LogoBox } from "./LogoBox";
+import useContentLoaded from "../util/use-content-loaded";
+import { HowKonfigWorks } from "./HowKonfigWorks";
 
-type InputPropsFromOriginalSdkComponent = React.ComponentProps<typeof Sdk>
+type InputPropsFromOriginalSdkComponent = React.ComponentProps<typeof Sdk>;
 
 export function SdkNew({
   serviceName,
@@ -45,17 +45,17 @@ export function SdkNew({
   companyKebabCase,
 }: InputPropsFromOriginalSdkComponent) {
   const serviceNameSubstring =
-    serviceName !== undefined ? ` ${serviceName}` : ''
-  const description = `Explore the ${company}${serviceNameSubstring} TypeScript SDK. Discover SDK ${methods.length} methods to integrate ${company}'s${serviceNameSubstring} API into your application.`
+    serviceName !== undefined ? ` ${serviceName}` : "";
+  const description = `Explore the ${company}${serviceNameSubstring} TypeScript SDK. Discover SDK ${methods.length} methods to integrate ${company}'s${serviceNameSubstring} API into your application.`;
   if (FirstRequest === undefined) {
     throw new Error(
-      "FirstRequest is required for the SdkNew component. It is used to render the 'MakeYourFirstRequest' section.",
-    )
+      "FirstRequest is required for the SdkNew component. It is used to render the 'MakeYourFirstRequest' section."
+    );
   }
   if (categories === undefined) {
-    throw new Error('categories is required for the SdkNew component')
+    throw new Error("categories is required for the SdkNew component");
   }
-  const title = `Integrate ${company}'s${serviceNameSubstring} API using Konfig's ${language} SDK`
+  const title = `Integrate ${company}'s${serviceNameSubstring} API using Konfig's ${language} SDK`;
   /*
 Easily Integrate
             <br />
@@ -117,7 +117,7 @@ Easily Integrate
         serviceNameSubString={serviceNameSubstring}
       />
     </Layout>
-  )
+  );
 }
 
 function BottomCTA({
@@ -126,10 +126,10 @@ function BottomCTA({
   serviceName,
   serviceNameSubString,
 }: {
-  company: string
-  language: string
-  serviceName?: string
-  serviceNameSubString?: string
+  company: string;
+  language: string;
+  serviceName?: string;
+  serviceNameSubString?: string;
 }) {
   return (
     <div className="py-32 px-8 md:px-48 bg-gradient-to-tl from-[var(--ifm-color-primary-darkest)] to-[var(--ifm-color-primary)]">
@@ -145,7 +145,7 @@ function BottomCTA({
         doNotShowQuestion
       />
     </div>
-  )
+  );
 }
 
 export function AboutCompany({
@@ -157,13 +157,13 @@ export function AboutCompany({
   openApiGitHubUi,
   developerDocumentation,
 }: {
-  company: string
-  logo: string
-  metaDescription: string
-  homepage: string
-  categories: string[]
-  openApiGitHubUi?: string
-  developerDocumentation?: string
+  company: string;
+  logo: string;
+  metaDescription: string;
+  homepage: string;
+  categories: string[];
+  openApiGitHubUi?: string;
+  developerDocumentation?: string;
 }) {
   return (
     <div className="py-20 px-8 md:px-32 bg-white">
@@ -178,10 +178,10 @@ export function AboutCompany({
         <h2 className="mt-4 mb-0 text-3xl text-slate-800">About {company}</h2>
         <p className="mt-2 max-w-[800px]">{metaDescription}</p>
       </div>
-      <div className="mt-4 flex gap-2">
+      <div className="mt-4 flex gap-2 flex-wrap">
         <ExternalLinkButton label={homepage} url={homepage} />
         {openApiGitHubUi && (
-          <ExternalLinkButton label={'OpenAPI'} url={openApiGitHubUi} />
+          <ExternalLinkButton label={"OpenAPI"} url={openApiGitHubUi} />
         )}
         {developerDocumentation && (
           <ExternalLinkButton
@@ -197,29 +197,33 @@ export function AboutCompany({
             return (
               <button
                 key={category}
-                className="z-10 flex items-center gap-1 border font-medium rounded-md px-2 py-1 transition-all bg-slate-50 hover:bg-slate-100 border-slate-300 text-slate-600 hover:text-slate-800"
+                className="z-10 flex text-sm lg:text-base items-center gap-1 border font-medium rounded-md px-2 py-1 transition-all bg-slate-50 hover:bg-slate-100 border-slate-300 text-slate-600 hover:text-slate-800"
               >
                 <span>{category}</span>
               </button>
-            )
+            );
           })}
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 function ExternalLinkButton({ url, label }: { url: string; label: string }) {
-  const withHttps = url.startsWith('https://') ? url : `https://${url}`
-  const withoutHttps = label.startsWith('https://') ? label.slice(8) : label
+  const withHttps = url.startsWith("https://") ? url : `https://${url}`;
+  const withoutHttps = label.startsWith("https://") ? label.slice(8) : label;
   return (
-    <a href={withHttps} className="hover:no-underline" target="_blank">
+    <a
+      href={withHttps}
+      className="hover:no-underline text-sm lg:text-base"
+      target="_blank"
+    >
       <button className="border hover:shadow-xl hover:bg-blue-50 border-blue-700 text-blue-700 transition-all hover:border-blue-900 hover:text-blue-900 rounded-md px-2 py-1 items-center flex gap-2">
-        <span className="font-semibold">{withoutHttps}</span>
+        <span className="font-semibold whitespace-nowrap">{withoutHttps}</span>
         <IconExternalLink className="h-5" />
       </button>
     </a>
-  )
+  );
 }
 
 function MakeYourFirstRequest({
@@ -231,17 +235,17 @@ function MakeYourFirstRequest({
   methods,
   clientNameCamelCase,
 }: {
-  GettingStarted: React.ComponentType
-  FirstRequest: React.ComponentType
-  company: string
-  serviceNameSubstring?: string
-  language: string
-  methods: Method[]
-  clientNameCamelCase: string
+  GettingStarted: React.ComponentType;
+  FirstRequest: React.ComponentType;
+  company: string;
+  serviceNameSubstring?: string;
+  language: string;
+  methods: Method[];
+  clientNameCamelCase: string;
 }) {
-  const [amountToShow, setAmountToShow] = useState(6)
-  const numberOfMethods = methods.length
-  methods = methods.slice(0, amountToShow)
+  const [amountToShow, setAmountToShow] = useState(6);
+  const numberOfMethods = methods.length;
+  methods = methods.slice(0, amountToShow);
   return (
     <div className="bg-white pt-10 pb-20 px-3">
       <h2 className="text-2xl mb-0 sm:text-3xl text-slate-800 text-center font-bold">
@@ -273,12 +277,12 @@ function MakeYourFirstRequest({
               <div key={i} className="h-fit">
                 <SdkMethod {...{ ...method, company, clientNameCamelCase }} />
               </div>
-            )
+            );
           })}
         </div>
         <button
           onClick={() => {
-            setAmountToShow((amount) => amount + 6)
+            setAmountToShow((amount) => amount + 6);
           }}
           aria-hidden={amountToShow >= numberOfMethods}
           className="aria-hidden:hidden mt-4 mx-auto group flex gap-3 hover:gap-2 items-center transition-all bg-gradient-to-br text-white w-fit text-center font-semibold px-3 py-2 from-blue-600 to-blue-800 rounded-md text-1xl"
@@ -287,7 +291,7 @@ function MakeYourFirstRequest({
         </button>
       </div>
     </div>
-  )
+  );
 }
 
 function TrustedBy() {
@@ -315,7 +319,7 @@ function TrustedBy() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 function HeroSection({
@@ -325,16 +329,16 @@ function HeroSection({
   serviceName,
   logo,
 }: {
-  language: string
-  company: string
-  serviceName?: string
-  serviceNameSubstring?: string
-  logo: string
+  language: string;
+  company: string;
+  serviceName?: string;
+  serviceNameSubstring?: string;
+  logo: string;
 }) {
-  const [showGraphic, setShowGraphic] = useState(false)
+  const [showGraphic, setShowGraphic] = useState(false);
   useContentLoaded(() => {
-    setShowGraphic(true)
-  })
+    setShowGraphic(true);
+  });
   return (
     <div className="mx-auto max-w-[375px] px-3 sm:max-w-none sm:px-8 lg:px-20 py-12">
       <div className="mx-auto flex flex-col items-center sm:max-w-[625px] lg:max-w-none lg:flex-row gap-2 lg:gap-20">
@@ -343,9 +347,9 @@ function HeroSection({
             Easily Integrate
             <br />
             <span className="text-white">
-              {' '}
-              {company}'s{serviceNameSubstring} API{' '}
-            </span>{' '}
+              {" "}
+              {company}'s{serviceNameSubstring} API{" "}
+            </span>{" "}
             using <span className="text-white">Konfig's {language} SDK</span>
           </h1>
           <SignupForm
@@ -378,7 +382,7 @@ function HeroSection({
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 function SignupForm({
@@ -389,25 +393,19 @@ function SignupForm({
   doNotShowQuestion,
   bottomCTA,
 }: {
-  company: string
-  serviceName?: string
-  language: string
-  serviceNameSubString?: string
-  doNotShowQuestion?: boolean
-  bottomCTA?: boolean
+  company: string;
+  serviceName?: string;
+  language: string;
+  serviceNameSubString?: string;
+  doNotShowQuestion?: boolean;
+  bottomCTA?: boolean;
 }) {
-  const {
-    setEmail,
-    signedUp,
-    signedUpEmail,
-    loading,
-    handleSubmit,
-    email,
-  } = useSdkSignup({
-    company,
-    serviceName,
-    language,
-  })
+  const { setEmail, signedUp, signedUpEmail, loading, handleSubmit, email } =
+    useSdkSignup({
+      company,
+      serviceName,
+      language,
+    });
 
   return (
     <form
@@ -421,10 +419,10 @@ function SignupForm({
           <h2
             data-bottom={bottomCTA}
             className={clsx(
-              'text-base md:text-lg text-blue-900 data-[bottom=true]:text-white font-bold',
+              "text-base md:text-lg text-blue-900 data-[bottom=true]:text-white font-bold",
               {
-                'mb-3': !signedUp,
-              },
+                "mb-3": !signedUp,
+              }
             )}
           >
             {signedUp
@@ -442,7 +440,7 @@ function SignupForm({
               data-bottom={bottomCTA}
               className="mb-0 data-[bottom=true]:text-white"
             >
-              For inquiries or support, please contact us at{' '}
+              For inquiries or support, please contact us at{" "}
               <a
                 data-bottom={bottomCTA}
                 href="mailto:sdks@konfigthis.com"
@@ -485,5 +483,5 @@ function SignupForm({
         )}
       </div>
     </form>
-  )
+  );
 }
