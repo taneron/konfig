@@ -1,0 +1,161 @@
+examples: {}
+examples_2: {}
+examples_3:
+  /payment/reverse:
+    post:
+      '200':
+        application/json: {}
+      default:
+        application/json: {}
+ignoreObjectsWithNoProperties: true
+ignorePotentialIncorrectType: true
+operationIds:
+  /card-batches/:
+    get: CardBatch_getAll
+  /card-batches/{cardBatchId}:
+    get: CardBatch_getDetails
+  /card-batches/{cardBatchId}/settle:
+    post: CardBatch_settleBatch
+  /card-terminals/:
+    get: CardTerminal_getAll
+  /card-transactions/:
+    get: CardTransaction_collectTransactions
+  /card-transactions/{cardTransactionId}:
+    get: CardTransaction_getById
+  /connection-test:
+    get: General_testConnectivityToHelcimApi
+  /customers/:
+    get: Customer_list
+    post: Customer_createNewCustomer
+  /customers/{customerId}:
+    get: Customer_getCustomer
+    put: Customer_updateDetails
+  /customers/{customerId}/bank-accounts:
+    get: Customer_getBankAccounts
+  /customers/{customerId}/bank-accounts/{bankAccountId}:
+    get: Customer_getBankAccount
+  /customers/{customerId}/bank-accounts/{bankAccountId}/default:
+    patch: Customer_setBankAccountDefault
+  /customers/{customerId}/cards:
+    get: Customer_getCards
+  /customers/{customerId}/cards/{cardId}:
+    get: Customer_getCardDetails
+  /helcim-pay/initialize:
+    post: HelcimPay_createCheckoutSession
+  /invoices/:
+    get: Invoice_list
+    post: Invoice_createNew
+  /invoices/{invoiceId}:
+    get: Invoice_getById
+    put: Invoice_updateDetails
+  /payment/capture:
+    post: Payment_processCaptureTransaction
+  /payment/preauth:
+    post: Payment_processPreauthTransaction
+  /payment/purchase:
+    post: Payment_processPurchaseTransaction
+  /payment/refund:
+    post: Payment_processRefundTransaction
+  /payment/reverse:
+    post: Payment_reverseTransaction
+  /payment/verify:
+    post: Payment_verifyTransaction
+  /payment/withdraw:
+    post: Payment_processWithdrawalTransaction
+operationTags: {}
+renameTags: {}
+requestSchemaNames: {}
+responseDescriptions: {}
+responseSchemaNames:
+  /card-batches:
+    get:
+      '200':
+        application/json: CardBatchGetAllResponse
+  /card-terminals:
+    get:
+      '200':
+        application/json: CardTerminalGetAllResponse
+  /card-transactions:
+    get:
+      '200':
+        application/json: CardTransactionCollectTransactionsResponse
+  /connection-test:
+    get:
+      '200':
+        application/json: GeneralTestConnectivityToHelcimApiResponse
+      '400':
+        application/json: GeneralTestConnectivityToHelcimApi400Response
+      '401':
+        application/json: GeneralTestConnectivityToHelcimApi401Response
+      '403':
+        application/json: GeneralTestConnectivityToHelcimApi403Response
+  /customers:
+    get:
+      '200':
+        application/json: CustomerListResponse
+  /customers/{customerId}/bank-accounts:
+    get:
+      '200':
+        application/json: CustomerGetBankAccountsResponse
+  /customers/{customerId}/bank-accounts/{bankAccountId}:
+    get:
+      '200':
+        application/json: CustomerGetBankAccountResponse
+  /customers/{customerId}/bank-accounts/{bankAccountId}/default:
+    patch:
+      '200':
+        application/json: CustomerSetBankAccountDefaultResponse
+  /customers/{customerId}/cards:
+    get:
+      '200':
+        application/json: CustomerGetCardsResponse
+  /customers/{customerId}/cards/{cardId}:
+    get:
+      '200':
+        application/json: CustomerGetCardDetailsResponse
+  /invoices:
+    get:
+      '200':
+        application/json: InvoiceListResponse
+  /payment/reverse:
+    post:
+      '200':
+        application/json: PaymentReverseTransactionResponse
+      default:
+        application/json: PaymentReverseTransactiondefaultResponse
+securityParameters:
+  bankToken:
+    query: false
+  batchNumber:
+    query: false
+  cardBatchId:
+    query: false
+  cardToken:
+    query: false
+  collect-stats:
+    query: false
+  customerCode:
+    query: false
+  dateEnd:
+    query: false
+  dateFrom:
+    query: false
+  dateStart:
+    query: false
+  dateTo:
+    query: false
+  idempotency-key:
+    header: false
+  invoiceNumber:
+    query: false
+  ready:
+    query: false
+  search:
+    query: false
+  terminalId:
+    query: false
+  verified:
+    query: false
+  withConvenienceFee:
+    query: false
+validServerUrls: {}

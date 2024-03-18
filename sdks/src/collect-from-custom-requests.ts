@@ -849,7 +849,42 @@ const customRequests: Record<string, CustomRequest> = {
       ]
       return downloadOpenApiSpecFromReadme({ urls });
     },
-  }
+  }, 
+  "helcim.com": {
+    lambda: async () => {
+      const urls = [
+        "https://devdocs.helcim.com/reference/connectiontest",
+        "https://devdocs.helcim.com/reference/purchase",
+        "https://devdocs.helcim.com/reference/preauth",
+        "https://devdocs.helcim.com/reference/capture",
+        "https://devdocs.helcim.com/reference/verify",
+        "https://devdocs.helcim.com/reference/refund",
+        "https://devdocs.helcim.com/reference/reverse",
+        "https://devdocs.helcim.com/reference/withdraw",
+        "https://devdocs.helcim.com/reference/get-card-batches",
+        "https://devdocs.helcim.com/reference/get-card-batch",
+        "https://devdocs.helcim.com/reference/settle-card-batch",
+        "https://devdocs.helcim.com/reference/get-card-transactions",
+        "https://devdocs.helcim.com/reference/get-card-transaction",
+        "https://devdocs.helcim.com/reference/get-customers",
+        "https://devdocs.helcim.com/reference/create-customer",
+        "https://devdocs.helcim.com/reference/get-customer",
+        "https://devdocs.helcim.com/reference/update-customer",
+        "https://devdocs.helcim.com/reference/get-customer-cards",
+        "https://devdocs.helcim.com/reference/get-customer-card",
+        "https://devdocs.helcim.com/reference/get-customer-bank-accounts",
+        "https://devdocs.helcim.com/reference/get-customer-bank-account",
+        "https://devdocs.helcim.com/reference/set-customer-bank-account-default",
+        "https://devdocs.helcim.com/reference/create-invoice",
+        "https://devdocs.helcim.com/reference/get-invoice",
+        "https://devdocs.helcim.com/reference/get-invoices",
+        "https://devdocs.helcim.com/reference/update-invoice",
+        "https://devdocs.helcim.com/reference/card-terminals",
+        "https://devdocs.helcim.com/reference/checkout-init",
+      ]
+      return downloadOpenApiSpecFromReadme({ urls });
+    },
+  }, 
 };
 
 async function downloadOpenApiSpecFromMintlify({
