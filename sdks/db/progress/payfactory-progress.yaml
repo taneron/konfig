@@ -1,0 +1,166 @@
+examples: {}
+examples_2: {}
+examples_3:
+  /v1/Application/Details/{appId}:
+    get:
+      '401':
+        application/json: {}
+  /v1/Application/StartUnderwriting/{appId}:
+    post:
+      '401':
+        application/json: {}
+  /v1/Application/Status/{appId}:
+    get:
+      '401':
+        application/json: {}
+  /v1/Application/Submit:
+    post:
+      '401':
+        application/json: {}
+  /v1/ApplicationForm/session:
+    post:
+      '401':
+        application/json: {}
+  /v1/ApplicationForm/session/{sessionId}:
+    get:
+      '401':
+        application/json: {}
+    put:
+      '401':
+        application/json: {}
+  /v1/Reporting/AchTransactions/{referenceId}:
+    get:
+      '401':
+        application/json: {}
+  /v1/Reporting/Deposits:
+    get:
+      '401':
+        application/json: {}
+  /v1/Reporting/Deposits/{numberOfDeposits}:
+    get:
+      '401':
+        application/json: {}
+  /v1/Reporting/Deposits/{referenceId}:
+    get:
+      '401':
+        application/json: {}
+  /v1/Transaction/Metadata:
+    post:
+      '200':
+        application/json: {}
+      '401':
+        application/json: {}
+  /v1/Transaction/MetadataBulk:
+    post:
+      '200':
+        application/json: {}
+      '401':
+        application/json: {}
+ignoreObjectsWithNoProperties: true
+ignorePotentialIncorrectType: true
+operationIds:
+  /v1/Application/Delete/{appId}:
+    delete: Application_removeById
+  /v1/Application/Details/{appId}:
+    get: Application_getApplicationDetails
+  /v1/Application/StartUnderwriting/{appId}:
+    post: Application_startUnderwritingProcess
+  /v1/Application/Status/{appId}:
+    get: Application_getApplicationStatus
+  /v1/Application/Submit:
+    post: Application_createNewApplication
+  /v1/ApplicationForm/session:
+    post: ApplicationForm_createSession
+  /v1/ApplicationForm/session/{sessionId}:
+    get: ApplicationForm_getSessionInfo
+    put: ApplicationForm_updateSessionActivity
+  /v1/Document/Upload/{type}/{appId}:
+    post: Document_uploadAgreement
+  /v1/Reporting/AchTransactions/{referenceId}:
+    get: Reporting_getAchTransactionsByReferenceId
+  /v1/Reporting/Deposits:
+    get: Reporting_getDeposits
+  /v1/Reporting/Deposits/{numberOfDeposits}:
+    get: Reporting_getDepositsByCount
+  /v1/Reporting/Deposits/{referenceId}:
+    get: Reporting_getDepositsByReferenceId
+  /v1/Transaction/Metadata:
+    post: Transaction_createMetadata
+  /v1/Transaction/MetadataBulk:
+    post: Transaction_createMetadataBulk
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /v1/Document/Upload/{type}/{appId}:
+    post:
+      multipart/form-data: DocumentUploadAgreementRequest
+  /v1/Transaction/MetadataBulk:
+    post:
+      application/json: TransactionCreateMetadataBulkRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /v1/Application/Details/{appId}:
+    get:
+      '401':
+        application/json: ApplicationGetApplicationDetailsResponse
+  /v1/Application/StartUnderwriting/{appId}:
+    post:
+      '401':
+        application/json: ApplicationStartUnderwritingProcessResponse
+  /v1/Application/Status/{appId}:
+    get:
+      '401':
+        application/json: ApplicationGetApplicationStatusResponse
+  /v1/Application/Submit:
+    post:
+      '401':
+        application/json: ApplicationCreateNewApplicationResponse
+  /v1/ApplicationForm/session:
+    post:
+      '401':
+        application/json: ApplicationFormCreateSessionResponse
+  /v1/ApplicationForm/session/{sessionId}:
+    get:
+      '401':
+        application/json: ApplicationFormGetSessionInfoResponse
+    put:
+      '401':
+        application/json: ApplicationFormUpdateSessionActivityResponse
+  /v1/Reporting/AchTransactions/{referenceId}:
+    get:
+      '200':
+        application/json: ReportingGetAchTransactionsByReferenceIdResponse
+      '401':
+        application/json: ReportingGetAchTransactionsByReferenceId401Response
+  /v1/Reporting/Deposits:
+    get:
+      '200':
+        application/json: ReportingGetDepositsResponse
+      '401':
+        application/json: ReportingGetDeposits401Response
+  /v1/Reporting/Deposits/{numberOfDeposits}:
+    get:
+      '200':
+        application/json: ReportingGetDepositsByCountResponse
+      '401':
+        application/json: ReportingGetDepositsByCount401Response
+  /v1/Reporting/Deposits/{referenceId}:
+    get:
+      '200':
+        application/json: ReportingGetDepositsByReferenceIdResponse
+      '401':
+        application/json: ReportingGetDepositsByReferenceId401Response
+  /v1/Transaction/Metadata:
+    post:
+      '200':
+        application/json: TransactionCreateMetadataResponse
+      '401':
+        application/json: TransactionCreateMetadata401Response
+  /v1/Transaction/MetadataBulk:
+    post:
+      '200':
+        application/json: TransactionCreateMetadataBulkResponse
+      '401':
+        application/json: TransactionCreateMetadataBulk401Response
+securityParameters: {}
+validServerUrls: {}

@@ -833,7 +833,23 @@ const customRequests: Record<string, CustomRequest> = {
     type: "GET",
     url: "https://api2.crowd4cash.ch/swagger/v2/swagger.json",
     apiBaseUrl: "https://api2.crowd4cash.ch/",
-  },     
+  },
+  "payfactory.io": {
+    lambda: async () => {
+      const urls = [
+        "https://payfactory.readme.io/reference/get_v1-application-status-appid",
+        "https://payfactory.readme.io/reference/get_v1-application-details-appid",
+        "https://payfactory.readme.io/reference/get_v1-applicationform-session-sessionid",
+        "https://payfactory.readme.io/reference/put_v1-applicationform-session-sessionid",
+        "https://payfactory.readme.io/reference/post_v1-applicationform-session",
+        "https://payfactory.readme.io/reference/get_v1-reporting-deposits-referenceid",
+        "https://payfactory.readme.io/reference/get_v1-reporting-achtransactions-referenceid",
+        "https://payfactory.readme.io/reference/post_v1-transaction-metadata",
+        "https://payfactory.readme.io/reference/post_v1-transaction-metadatabulk"
+      ]
+      return downloadOpenApiSpecFromReadme({ urls });
+    },
+  }
 };
 
 async function downloadOpenApiSpecFromMintlify({
