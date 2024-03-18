@@ -1,40 +1,40 @@
-import Head from '@docusaurus/Head'
-import Layout from '@theme/Layout'
-import React, { useState } from 'react'
-import { Breadcrumbs } from './Breadcrumbs'
-import { LogoBox } from './LogoBox'
-import { useSdkSignup } from '../util/use-sdk-signup'
-import clsx from 'clsx'
-import { LoadingIcon } from './LoadingIcon'
+import Head from "@docusaurus/Head";
+import Layout from "@theme/Layout";
+import React, { useEffect, useState } from "react";
+import { Breadcrumbs } from "./Breadcrumbs";
+import { LogoBox } from "./LogoBox";
+import { useSdkSignup } from "../util/use-sdk-signup";
+import clsx from "clsx";
+import { LoadingIcon } from "./LoadingIcon";
 import {
   IconChevronDown,
   IconChevronRight,
   IconExternalLink,
   IconPencil,
-} from '@tabler/icons-react'
-import useContentLoaded from '../util/use-content-loaded'
-import { TsIcon } from './TsIcon'
-import { AboutCompany } from './SdkNew'
-import PythonIcon from './PythonIcon'
-import JavaIcon from './JavaIcon'
-import { Sdk } from '../util/Sdk'
-import { HowKonfigWorks } from './HowKonfigWorks'
+} from "@tabler/icons-react";
+import useContentLoaded from "../util/use-content-loaded";
+import { TsIcon } from "./TsIcon";
+import { AboutCompany } from "./SdkNew";
+import PythonIcon from "./PythonIcon";
+import JavaIcon from "./JavaIcon";
+import { Sdk } from "../util/Sdk";
+import { HowKonfigWorks } from "./HowKonfigWorks";
 
 /**
  * https://zapier.com/apps/salesforce/integrations
  */
 
 type APIProps = {
-  company: string
-  previewLinkImage: string
-  logo: string
-  favicon: string
-  homepage: string
-  categories: string[]
-  metaDescription: string
-  sdks: Sdk[]
-  companyKebabCase: string
-}
+  company: string;
+  previewLinkImage: string;
+  logo: string;
+  favicon: string;
+  homepage: string;
+  categories: string[];
+  metaDescription: string;
+  sdks: Sdk[];
+  companyKebabCase: string;
+};
 
 export function Company({
   company,
@@ -47,8 +47,8 @@ export function Company({
   metaDescription,
   companyKebabCase,
 }: APIProps) {
-  const title = `${company} SDKs`
-  const description = `Explore SDKs for ${company}. Start using Konfig SDKs, the easiest way to integrate ${company} into your application.`
+  const title = `${company} SDKs`;
+  const description = `Explore SDKs for ${company}. Start using Konfig SDKs, the easiest way to integrate ${company} into your application.`;
   return (
     <Layout title={title} description={description}>
       <Head>
@@ -81,7 +81,7 @@ export function Company({
         <BottomCTA company={company} />
       </div>
     </Layout>
-  )
+  );
 }
 
 function BottomCTA({ company }: { company: string }) {
@@ -94,7 +94,7 @@ function BottomCTA({ company }: { company: string }) {
         <SignupForm bottomCTA company={company} doNotShowQuestion />
       </div>
     </div>
-  )
+  );
 }
 
 function SDKs({
@@ -102,20 +102,21 @@ function SDKs({
   favicon,
   company,
 }: {
-  sdks: APIProps['sdks']
-  favicon: string
-  company: string
+  sdks: APIProps["sdks"];
+  favicon: string;
+  company: string;
 }) {
-  const [amountToShow, setAmountToShow] = useState(3)
-  const numberOfSdks = sdks.length
-  sdks = sdks.slice(0, amountToShow)
+  const [amountToShow, setAmountToShow] = useState(3);
+  const numberOfSdks = sdks.length;
+  sdks = sdks.slice(0, amountToShow);
+
   return (
-    <div className="mx-3 sm:mx-auto sm:w-[480px] md:w-[600px] lg:w-[768px] flex flex-col bg-gradient-to-b from-slate-50 to-white relative px-8 py-10 top-[-75px] rounded-sm bg-white shadow-xl">
+    <div className="mx-3 sm:mx-auto sm:w-[480px] md:w-[600px] transition-all duration-500 lg:w-[768px] flex flex-col bg-gradient-to-b from-slate-50 to-white relative px-8 py-10 top-[-75px] rounded-sm bg-white shadow-xl">
       <div className="absolute flex flex-col z-0 inset-0 m-auto w-fit text-blue-300 font-bold text-sm top-[-50px]">
         <div>
-          Explore {numberOfSdks} SDKs for{' '}
-          {numberOfSdks === 3 ? '' : numberOfSdks / 3}
-          {numberOfSdks === 3 ? company : ' APIs'} 👀
+          Explore {numberOfSdks} SDKs for{" "}
+          {numberOfSdks === 3 ? "" : numberOfSdks / 3}
+          {numberOfSdks === 3 ? company : " APIs"} 👀
         </div>
         <IconChevronDown className="mx-auto" />
       </div>
@@ -130,7 +131,7 @@ function SDKs({
             language,
             name,
           },
-          i,
+          i
         ) => {
           return (
             <SdkLinkItem
@@ -144,13 +145,13 @@ function SDKs({
               isLastItem={i === sdks.length - 1}
               service={name}
             />
-          )
-        },
+          );
+        }
       )}
       {amountToShow < numberOfSdks && (
         <button
           onClick={() => {
-            setAmountToShow((amount) => amount + 3)
+            setAmountToShow((amount) => amount + 3);
           }}
           aria-hidden={amountToShow >= numberOfSdks}
           className="aria-hidden:hidden mt-4 mx-auto group flex gap-3 hover:gap-2 items-center transition-all bg-gradient-to-br text-white w-fit text-center font-semibold px-3 py-2 from-blue-600 to-blue-800 rounded-md text-1xl cursor-pointer z-10"
@@ -159,19 +160,19 @@ function SDKs({
         </button>
       )}
     </div>
-  )
+  );
 }
 
 function CategoryFilter({ category }: { category: string }) {
   return (
-    <button
+    <div
       className={clsx(
-        'z-10 flex items-center gap-1 border font-medium rounded-md text-xs px-2 py-1 transition-all bg-slate-50 border-slate-300 text-slate-600',
+        "z-10 flex items-center gap-1 border font-medium rounded-md text-xs px-2 py-1 transition-all bg-slate-50 border-slate-300 text-slate-600"
       )}
     >
       <span>{category}</span>
-    </button>
-  )
+    </div>
+  );
 }
 
 function SdkLinkItem({
@@ -185,33 +186,33 @@ function SdkLinkItem({
   language,
   service,
 }: {
-  index: string
-  link: string
-  favicon: string
-  categories: string[]
-  isLastItem: boolean
-  openApiGitHubUi?: string
-  developerDocumentation?: string
-  language: string
-  service?: string
+  index: string;
+  link: string;
+  favicon: string;
+  categories: string[];
+  isLastItem: boolean;
+  openApiGitHubUi?: string;
+  developerDocumentation?: string;
+  language: string;
+  service?: string;
 }) {
   return (
     <a
-      className={clsx('hover:no-underline z-10', {
-        'cursor-not-allowed': language !== 'TypeScript',
+      className={clsx("hover:no-underline z-10", {
+        "cursor-not-allowed": language !== "TypeScript",
       })}
-      href={language === 'TypeScript' ? link : undefined}
+      href={language === "TypeScript" ? link : undefined}
     >
       <div
         className={clsx(
-          'group hover:bg-slate-200 px-4 py-6 flex items-center gap-6 justify-between',
+          "group hover:bg-slate-200 px-4 py-6 flex flex-row items-center gap-6 justify-between",
           {
-            'border-b': !isLastItem,
-          },
+            "border-b": !isLastItem,
+          }
         )}
       >
-        <div className="flex flex-col gap-2">
-          <div className="flex gap-2 items-center">
+        <div className="flex flex-col gap-2 text-left w-full">
+          <div className="flex flex-row gap-2 items-center">
             <div className="shrink-0 h-4 w-4">
               <img className="w-full h-full object-cover" src={favicon} />
             </div>
@@ -219,19 +220,21 @@ function SdkLinkItem({
               {index}
             </div>
             <div className="shrink-0 h-5 w-5">
-              {language === 'Python' ? (
+              {language === "Python" ? (
                 <PythonIcon />
-              ) : language === 'Java' ? (
+              ) : language === "Java" ? (
                 <JavaIcon />
               ) : (
                 <TsIcon />
               )}
             </div>
           </div>
-          <div className="flex gap-2 items-center flex-wrap">
+          <div className="flex flex-row gap-2 items-center flex-wrap">
             {categories.map((category) => {
-              return <CategoryFilter category={category} />
+              return <CategoryFilter category={category} />;
             })}
+          </div>
+          <div className="flex flex-row gap-2 items-center flex-wrap">
             {developerDocumentation && (
               <a
                 className="flex w-fit items-center group/link text-slate-400 hover:text-slate-700 text-xs sm:text-sm hover:no-underline"
@@ -252,7 +255,7 @@ function SdkLinkItem({
                 <IconExternalLink height="11.5" />
               </a>
             )}
-            {language !== 'TypeScript' && (
+            {language !== "TypeScript" && (
               <div className="text-slate-400 text-xs sm:text-sm">
                 Coming soon!
               </div>
@@ -262,7 +265,7 @@ function SdkLinkItem({
         <IconChevronRight className="shrink-0 text-slate-400 group-hover:text-slate-500 relative group-hover:translate-x-1 group-hover:scale-110 transition-all" />
       </div>
     </a>
-  )
+  );
 }
 
 function HeroSection({
@@ -270,14 +273,14 @@ function HeroSection({
   company,
   metaDescription,
 }: {
-  logo: string
-  company: string
-  metaDescription: string
+  logo: string;
+  company: string;
+  metaDescription: string;
 }) {
-  const [showContent, setShowContent] = useState(false)
+  const [showContent, setShowContent] = useState(false);
   useContentLoaded(() => {
-    setShowContent(true)
-  })
+    setShowContent(true);
+  });
 
   return (
     <div
@@ -300,7 +303,7 @@ function HeroSection({
         <SignupForm company={company} />
       </div>
     </div>
-  )
+  );
 }
 
 function SignupForm({
@@ -308,20 +311,14 @@ function SignupForm({
   doNotShowQuestion,
   bottomCTA,
 }: {
-  company: string
-  doNotShowQuestion?: boolean
-  bottomCTA?: boolean
+  company: string;
+  doNotShowQuestion?: boolean;
+  bottomCTA?: boolean;
 }) {
-  const {
-    setEmail,
-    signedUp,
-    signedUpEmail,
-    loading,
-    handleSubmit,
-    email,
-  } = useSdkSignup({
-    company,
-  })
+  const { setEmail, signedUp, signedUpEmail, loading, handleSubmit, email } =
+    useSdkSignup({
+      company,
+    });
 
   return (
     <form
@@ -335,10 +332,10 @@ function SignupForm({
           <h2
             data-bottom={bottomCTA}
             className={clsx(
-              'text-base md:text-lg text-blue-900 data-[bottom=true]:text-white font-bold',
+              "text-base md:text-lg text-blue-900 data-[bottom=true]:text-white font-bold",
               {
-                'mb-3': !signedUp,
-              },
+                "mb-3": !signedUp,
+              }
             )}
           >
             {signedUp
@@ -356,7 +353,7 @@ function SignupForm({
               data-bottom={bottomCTA}
               className="mb-0 data-[bottom=true]:text-white"
             >
-              For inquiries or support, please contact us at{' '}
+              For inquiries or support, please contact us at{" "}
               <a
                 data-bottom={bottomCTA}
                 href="mailto:sdks@konfigthis.com"
@@ -397,5 +394,5 @@ function SignupForm({
         )}
       </div>
     </form>
-  )
+  );
 }

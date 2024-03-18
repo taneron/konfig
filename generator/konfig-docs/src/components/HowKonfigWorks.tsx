@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 
 export function HowKonfigWorks() {
   return (
@@ -11,18 +11,22 @@ export function HowKonfigWorks() {
         on building your application.
       </p>
       <div className="flex flex-col lg:flex-row gap-4 lg:gap-24 px-16 py-20 items-center">
-        <div className="shadow-xl  lg:w-[500px] shrink-0 rounded-md overflow-hidden">
+        <div className="shadow-xl shrink-0 rounded-md overflow-hidden">
           <a
             target="_blank"
             href="https://github.com/konfig-sdks/openapi-examples"
           >
-            <img src="/img/openapi-examples.png" alt="openapi-examples" />
+            <img
+              className="lg:w-[500px] lg:h-[368px]"
+              src="/img/openapi-examples.png"
+              alt="openapi-examples"
+            />
           </a>
         </div>
         <div className="grow-0">
           <h3 className="text-[hsl(243_75%_97%)] text-2xl leading-tight sm:text-3xl">
             Konfig maintains the highest quality collection of OpenAPI
-            Specifications on the internet in a{' '}
+            Specifications on the internet in a{" "}
             <a
               target="_blank"
               className="text-white hover:text-white hover:no-underline border-b-2 hover:border-b-4 border-b-[hsl(243_75%_70%)]"
@@ -33,7 +37,7 @@ export function HowKonfigWorks() {
           </h3>
           <p className="text-xl text-[hsl(243_75%_95%)]">
             We pull OpenAPI Specifications from public sources, fix any errors,
-            and make sure they pass our{' '}
+            and make sure they pass our{" "}
             <a
               className="text-white hover:text-white hover:no-underline border-b hover:border-b-2 border-b-[hsl(243_75%_70%)]"
               href="/docs/lint-rules/"
@@ -54,7 +58,7 @@ export function HowKonfigWorks() {
         </div>
         <div className="grow-0">
           <h3 className="text-[hsl(243_75%_97%)] text-2xl leading-tight sm:text-3xl">
-            Generates SDKs from{' '}
+            Generates SDKs from{" "}
             <span className="font-mono whitespace-nowrap">
               openapi-examples
             </span>
@@ -84,5 +88,5 @@ export function HowKonfigWorks() {
         </div>
       </div>
     </div>
-  )
+  );
 }
