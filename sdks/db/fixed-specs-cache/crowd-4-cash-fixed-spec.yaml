@@ -1,0 +1,3727 @@
+publishJson:
+  company: Crowd4Cash
+  serviceName: false
+  sdkName: crowd-4-cash-{language}-sdk
+  clientName: Crowd4Cash
+  metaDescription: >-
+    Swiss FinTech for private persons and SME. Crowd Solutions is the provider
+    of Crowd4Cash.ch the innovative Crowdlending platform. 
+
+
+    Crowd4Cash brings investors and borrower together. For better returns for
+    the investors and lower interest rates for borrower. 100% online, easy and
+    simply fair!
+  apiStatusUrls: inherit
+  homepage: crowd4cash.ch/
+  developerDocumentation: api2.crowd4cash.ch/index.html
+  categories:
+    - finance
+    - payments
+    - fintech
+    - crowdfunding
+rawSpecString: |
+  openapi: 3.0.1
+  info:
+    title: C4C REST API
+    description: Access to the Crowd4Cash Crowdlending Platform through an API
+    termsOfService: https://crowd4cash.ch/api2.license.html
+    contact:
+      name: Crowd Solutions AG
+      url: https://crowd4cash.ch
+      email: info@crowd4cash.ch
+    version: 2.0.0
+  paths:
+    /Authenticate:
+      post:
+        tags:
+          - Authentication
+        summary: Authenticate yourself and get an access token
+        requestBody:
+          description: Your username and password
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Login'
+        responses:
+          '200':
+            description: Successfully Authenticated
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Token'
+          '400':
+            description: Invalid Login
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Error'
+    /Loan:
+      post:
+        tags:
+          - Application
+        summary: Apply for a regular loan - 100% online application
+        description: >-
+          **Note**: Approval and funding times vary, but typically it takes only
+          24 hours.
+        requestBody:
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoanApplication'
+        responses:
+          '200':
+            description: Successful Loan Application
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/ApplicationResult'
+          '400':
+            description: Bad Request
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Error'
+          '401':
+            description: Unauthorized
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Error'
+        security:
+          - Bearer: []
+    /IntermediaryLoan:
+      post:
+        tags:
+          - Application
+        summary: Apply for a loan on behalf of your partners e.g. garages/shops/stores
+        description: >-
+          **Note**: Each successful application creates a binding obligation on
+          you. Once you apply you may not retract the application.
+        requestBody:
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IntermediaryLoanApplication'
+        responses:
+          '200':
+            description: Successful Loan Application
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/ApplicationResult'
+          '400':
+            description: Bad Request
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Error'
+          '401':
+            description: Unauthorized
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Error'
+        security:
+          - Bearer: []
+      put:
+        tags:
+          - Application
+        summary: >-
+          Set the definitive Handover Date (a date when the item is handed over to
+          the customer)
+        description: >-
+          **Note**: It's valid only for loans made indirectly through the
+          intermediary.
+        requestBody:
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IntermediaryLoanHandoverDate'
+        responses:
+          '200':
+            description: Success
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/ApplicationResult'
+          '400':
+            description: Bad Request
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Error'
+          '401':
+            description: Unauthorized
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Error'
+        security:
+          - Bearer: []
+    /RentalLoan:
+      post:
+        tags:
+          - Application
+        summary: Apply for a rental loan
+        description: >-
+          **Note**: Each successful application creates a binding obligation on
+          you. Once you apply you may not retract the application.
+        requestBody:
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RentalLoanApplication'
+        responses:
+          '200':
+            description: Successful Loan Application
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/RentalApplicationResult'
+          '400':
+            description: Bad Request
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Error'
+          '401':
+            description: Unauthorized
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Error'
+        security:
+          - Bearer: []
+    /Opportunities:
+      get:
+        tags:
+          - Opportunities
+        summary: Get available investment opportunities
+        description: >-
+          __Note__: C4C offers a private, secure and uncomplicated way for the
+          investors to discover, analyze, review and invest.
+        parameters:
+          - name: Rating
+            in: query
+            description: >-
+              Evaluation of the credit risk based on a borrower's credit history,
+              quality of the collateral, and the likelihood of repayment e.g. AA
+            schema:
+              $ref: '#/components/schemas/LoanRating'
+          - name: LoanAmount
+            in: query
+            description: Loan amount e.g. 25000
+            schema:
+              type: number
+              format: double
+          - name: LoanType
+            in: query
+            description: Type of the loan e.g. Private, SME
+            schema:
+              type: string
+          - name: AvailableAmount
+            in: query
+            description: >-
+              Available amount to be invested at the moment of our API consuming
+              e.g. 2000
+            schema:
+              type: number
+              format: double
+          - name: InterestRate
+            in: query
+            description: Interest rate of the loan in % e.g. 5.6
+            schema:
+              type: number
+              format: double
+          - name: Duration
+            in: query
+            description: Duration in months e.g. 24
+            schema:
+              type: integer
+              format: int32
+          - name: Insurance
+            in: query
+            description: Is loan issured? - Yes, No
+            schema:
+              $ref: '#/components/schemas/YN'
+          - name: Collateral
+            in: query
+            description: Is loan collaterialized? - Yes, No
+            schema:
+              $ref: '#/components/schemas/YN'
+          - name: BorrowerAge
+            in: query
+            description: Age of the borrower e.g. 42
+            schema:
+              type: integer
+              format: int32
+          - name: BorrowerNationality
+            in: query
+            description: Nationality of the borrower, e.g Switzerland, Liechtenstein ...
+            schema:
+              type: string
+        responses:
+          '200':
+            description: Investment Opportunities List
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Opportunity'
+          '400':
+            description: Bad Request
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Error'
+          '401':
+            description: Unauthorized
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Error'
+          '404':
+            description: No opportunities at the moment
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Error'
+        security:
+          - Bearer: []
+    /Bid:
+      post:
+        tags:
+          - Bidding
+        summary: Place a bid on certain loan
+        description: >-
+          **Note**: Each successful bid creates a binding obligation on you. Once
+          you place you may not retract your bid.
+        requestBody:
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Bid'
+        responses:
+          '200':
+            description: Successful Bidding
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/BiddingResult'
+          '400':
+            description: Bad Request
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Error'
+        security:
+          - Bearer: []
+    /Bids:
+      post:
+        tags:
+          - Bidding
+        summary: Place bids on behalf of your connected investor(s)
+        description: >-
+          **Note**: Crowd4Cash allows you to invest as agent on behalf of other
+          investors. You can submit multiple bids on the same request.
+        requestBody:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ConnectorBid'
+        responses:
+          '200':
+            description: Successful Bidding
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/MultipleBiddingResult'
+          '400':
+            description: Bad Request
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Error'
+        security:
+          - Bearer: []
+    /Contracts:
+      get:
+        tags:
+          - Contracts
+        summary: Get all your contracts
+        responses:
+          '200':
+            description: Loan Agreements List
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Contract'
+          '400':
+            description: Bad Request
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Error'
+          '401':
+            description: Unauthorized
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Error'
+          '404':
+            description: No loan agreements found
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Error'
+        security:
+          - Bearer: []
+    /Contracts/{loanId}:
+      get:
+        tags:
+          - Contracts
+        summary: Get specific contract
+        parameters:
+          - name: loanId
+            in: path
+            required: true
+            schema:
+              type: integer
+              format: int32
+        responses:
+          '200':
+            description: Loan Agreement
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Contract'
+          '400':
+            description: Bad Request
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Error'
+          '401':
+            description: Unauthorized
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Error'
+          '404':
+            description: No loan agreement found
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Error'
+        security:
+          - Bearer: []
+    /Contracts/{partnerId}/{loanId}:
+      get:
+        tags:
+          - Contracts
+        summary: Get specific intermediary loan contract
+        parameters:
+          - name: partnerId
+            in: path
+            required: true
+            schema:
+              type: integer
+              format: int32
+          - name: loanId
+            in: path
+            required: true
+            schema:
+              type: integer
+              format: int32
+        responses:
+          '200':
+            description: Loan Agreement
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Contract'
+          '400':
+            description: Bad Request
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Error'
+          '401':
+            description: Unauthorized
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Error'
+          '404':
+            description: No loan agreement found
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Error'
+        security:
+          - Bearer: []
+    /Contracts/RentalLoan/{loanId}:
+      get:
+        tags:
+          - Contracts
+        summary: Get specific rental loan contract
+        parameters:
+          - name: loanId
+            in: path
+            required: true
+            schema:
+              type: integer
+              format: int32
+        responses:
+          '200':
+            description: Loan Agreement
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Contract'
+          '400':
+            description: Bad Request
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Error'
+          '401':
+            description: Unauthorized
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Error'
+          '404':
+            description: No loan agreement found
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Error'
+        security:
+          - Bearer: []
+    /Portfolio:
+      get:
+        tags:
+          - Portfolio
+        summary: Get your investment portfolio
+        parameters:
+          - name: from
+            in: query
+            schema:
+              type: string
+          - name: to
+            in: query
+            schema:
+              type: string
+        responses:
+          '200':
+            description: Investment Portfolio Info
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Portfolio'
+          '400':
+            description: Bad Request
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Error'
+        security:
+          - Bearer: []
+    /CustomPortfolio:
+      get:
+        tags:
+          - Portfolio
+        summary: Get your customized investment portfolio
+        description: >-
+          __Note__: If the standard portfolio doesn't suit your needs, please
+          [contact C4C](https://crowd4cash.ch/contact) to request customization
+        parameters:
+          - name: from
+            in: query
+            description: ''
+            schema:
+              type: string
+          - name: to
+            in: query
+            description: ''
+            schema:
+              type: string
+        responses:
+          '200':
+            description: Investment Portfolio Info
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Portfolio'
+          '400':
+            description: Bad Request
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Error'
+        security:
+          - Bearer: []
+    /Connector:
+      get:
+        tags:
+          - Reports
+        summary: >-
+          Get your connector account summary and investments of the connected
+          investors
+        description: >-
+          __Note__: It's valid only for investments made indirectly through
+          connector
+        responses:
+          '200':
+            description: Investments List
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/ConnectorReport'
+          '400':
+            description: Bad Request
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Error'
+        security:
+          - Bearer: []
+    /Intermediary:
+      get:
+        tags:
+          - Reports
+        summary: Get your intermediary account summary and your partner loans data
+        description: >-
+          __Note__: It's valid only for loans made indirectly through the
+          intermediary
+        responses:
+          '200':
+            description: Account Overview
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/IntermediaryReport'
+          '400':
+            description: Bad Request
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Error'
+        security:
+          - Bearer: []
+    /Rental:
+      get:
+        tags:
+          - Reports
+        summary: Get your rental account summary and your loans data
+        description: '__Note__: It''s valid only for loans made through this API'
+        responses:
+          '200':
+            description: Account Overview
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/RentalReport'
+          '400':
+            description: Bad Request
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Error'
+        security:
+          - Bearer: []
+    /Loans:
+      get:
+        tags:
+          - Loans
+        summary: Get a complete C4C loan data dataset for your credit analyses
+        description: >-
+          **Note**: In order to consume this endpoint we need to grant a special
+          access to your account. Please [contact
+          us](https://crowd4cash.ch/contact) for further information.
+        parameters:
+          - name: PageNumber
+            in: query
+            description: Page number you want to access
+            required: true
+            schema:
+              type: integer
+              format: int32
+          - name: PageSize
+            in: query
+            description: Number of items per page. Max is 20
+            required: true
+            schema:
+              type: integer
+              format: int32
+          - name: loanstatus
+            in: query
+            description: Status values that need to be considered for filter
+            required: true
+            schema:
+              $ref: '#/components/schemas/Status'
+        responses:
+          '200':
+            description: Loan Data Dataset
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/PagedList'
+          '400':
+            description: Bad Request
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Error'
+          '401':
+            description: Unauthorized
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Error'
+        security:
+          - Bearer: []
+  components:
+    schemas:
+      AccountDetails:
+        type: object
+        properties:
+          availableCash:
+            type: number
+            description: Receivables that are not paid to investor
+            format: double
+            example: 250.32
+          availableCashCurrency:
+            type: string
+            description: Currency
+            nullable: true
+            example: CHF
+          accountValue:
+            type: number
+            description: Current principal balance + available cash
+            format: double
+            example: 4750.32
+          investedAmount:
+            type: number
+            description: Current principal balance
+            format: double
+            example: 4500
+          numberOfInvestments:
+            type: integer
+            description: Current number of investments
+            format: int32
+            example: 5
+          losses:
+            type: number
+            description: The sum of "bad debt" and "default"
+            format: double
+            example: 250
+        additionalProperties: false
+      AccountStatement:
+        type: object
+        properties:
+          entries:
+            type: array
+            items:
+              $ref: '#/components/schemas/AccountStatementEntry'
+            nullable: true
+        additionalProperties: false
+        description: Information about the payment of the instalments by the borrower
+      AccountStatementEntry:
+        type: object
+        properties:
+          annuityNumber:
+            type: integer
+            description: Number of the borrower instalment
+            format: int32
+            example: 5320
+          dueDate:
+            type: string
+            description: Instalment due date
+            nullable: true
+            example: 26.02.2021
+          messageDate:
+            type: string
+            description: A date when the instalment is paid by borrower
+            nullable: true
+            example: 01.03.2021
+          matchingDate:
+            type: string
+            description: A date when payment is booked in C4C system
+            nullable: true
+            example: 01.03.2021
+          amount:
+            type: number
+            description: An amount paid by the borrower
+            format: double
+            example: 945.78
+        additionalProperties: false
+        description: Information about the each payment by the borrower
+      AccountSummary:
+        type: object
+        properties:
+          openingBalance:
+            type: number
+            description: Balance at the beggining of the month
+            format: double
+            example: 0
+          interest:
+            type: number
+            description: >-
+              Interest that investor receives for all investments during the
+              months
+            format: double
+            example: 50.3
+          defaultInterest:
+            type: number
+            description: Interest that investor receives for the late payments
+            format: double
+            example: 10.25
+          principal:
+            type: number
+            description: Principal paid to investor during the month
+            format: double
+            example: 150
+          investments:
+            type: number
+            description: Investor's investments during the month
+            format: double
+            example: 6000
+          commission:
+            type: number
+            description: Commission paid by investor during the month
+            format: double
+            example: 10
+          deposits:
+            type: number
+            description: Paid bids by investor during the months
+            format: double
+            example: 600
+          withdrawals:
+            type: number
+            description: >-
+              Deposits returned to investor during the month, due to cancelation
+              of the agreement by the borrower
+            format: double
+            example: 0
+          closingBalance:
+            type: number
+            description: Balance at the end of the month
+            format: double
+            example: 0
+        additionalProperties: false
+      ActiveBid:
+        type: object
+        properties:
+          pseudonym:
+            type: string
+            description: Investor pseudonym
+            nullable: true
+          dateCreated:
+            type: string
+            description: Bidding date
+            nullable: true
+          amount:
+            type: number
+            description: Bid amount
+            format: double
+        additionalProperties: false
+        description: Offers made by the other investors
+      AmortizationSchedule:
+        type: object
+        properties:
+          payments:
+            type: array
+            items:
+              $ref: '#/components/schemas/SchedulePayment'
+            nullable: true
+        additionalProperties: false
+        description: Complete table of monthly payments to investor
+      ApplicationResult:
+        type: object
+        properties:
+          result:
+            type: string
+            description: Success or Error
+            nullable: true
+          message:
+            type: string
+            description: Message of the action
+            nullable: true
+          loanId:
+            type: integer
+            description: ID of the newly created loan
+            format: int32
+          esr:
+            type: string
+            description: ESR of the newly created loan
+            nullable: true
+          error:
+            type: string
+            description: If no error, it's empty
+            nullable: true
+        additionalProperties: false
+        description: ''
+      AutoInvestSettings:
+        type: object
+        properties:
+          automaticBuilder:
+            $ref: '#/components/schemas/AutomaticBuilder'
+          manualBuilder:
+            $ref: '#/components/schemas/ManualBuilder'
+        additionalProperties: false
+      AutomaticBuilder:
+        type: object
+        properties:
+          builderOption:
+            $ref: '#/components/schemas/AutomaticBuilderOption'
+        additionalProperties: false
+      AutomaticBuilderOption:
+        type: object
+        properties:
+          id:
+            type: integer
+            description: Id of the automatic portfolio builder
+            format: int32
+            example: 370
+          investmentCurrently:
+            type: number
+            description: Current investment using automatic autoinvest
+            format: double
+            example: 6000
+          totalAmountForInvestment:
+            type: number
+            description: Total amount that can be invested using automatic autoinvest
+            format: double
+            example: 10000
+          originators:
+            type: string
+            description: Who's create/update the automatic portfolio builder?
+            nullable: true
+            example: Crowd Solutions AG
+          interestRateFrom:
+            type: number
+            description: Minimum interest rate of the loan in which investor wants to invest
+            format: double
+            example: 4
+          interestRateTo:
+            type: number
+            description: Mаџимум interest rate of the loan in which investor wants to invest
+            format: double
+            example: 8
+          maximumPerBid:
+            type: number
+            description: Maximum bid amount per loan
+            format: double
+            example: 2500
+          minimumPerBid:
+            type: number
+            description: Minimum bid amount per loan
+            format: double
+            example: 500
+          reinvest:
+            type: boolean
+            description: Can investments be reinvested? - yes, no
+          investmentLevel:
+            type: string
+            description: Investment level - conservative, balanced, growth
+            nullable: true
+            example: balanced
+          secondaryMarket:
+            type: boolean
+            description: Can investment be sold on the secondary market? - yes, no
+          isActive:
+            type: boolean
+            description: Is automatic portfolio builder active? - yes, no
+          durationFrom:
+            type: integer
+            description: Date when automatic autoinvest starts to be used
+            format: int32
+          durationTo:
+            type: integer
+            description: Date when automatic autoinvest ends to be used
+            format: int32
+          currency:
+            type: string
+            description: Currency
+            nullable: true
+            example: CHF
+        additionalProperties: false
+      Bid:
+        required:
+          - amount
+          - loanId
+        type: object
+        properties:
+          loanId:
+            type: integer
+            description: Loan ID which you want to invest in
+            format: int32
+          amount:
+            type: number
+            description: Amount of the bid
+            format: double
+        additionalProperties: false
+        description: Placing a bid on certain loan
+      BiddingResult:
+        type: object
+        properties:
+          result:
+            type: string
+            description: Success or Error
+            nullable: true
+          error:
+            type: string
+            description: If no error, it's empty
+            nullable: true
+        additionalProperties: false
+      Company:
+        type: object
+        properties:
+          legalForm:
+            type: string
+            description: Legal form of the company
+            nullable: true
+            example: Public limited company, Cooperative, Association, Foundation etc.
+          yearEstablished:
+            type: integer
+            description: Year established in the commercial resgister
+            format: int32
+            nullable: true
+            example: 1996
+          city:
+            type: string
+            description: Company headquarter
+            nullable: true
+            example: Egerkingen
+          sector:
+            type: string
+            description: Business sector
+            nullable: true
+            example: Cars, Construction sector, Education, Agriculture and Forestry, etc
+          numberOfEmployees:
+            type: integer
+            description: Number of employees
+            format: int32
+            nullable: true
+            example: 125
+        additionalProperties: false
+        description: A company that takes out a loan
+      ConnectedInvestor:
+        type: object
+        properties:
+          investorId:
+            type: integer
+            description: Id of the investor
+            format: int32
+            example: 570
+          investorType:
+            type: string
+            description: Type of the investor Private/Company
+            nullable: true
+            example: Company
+          investorName:
+            type: string
+            description: Name of the investor
+            nullable: true
+            example: Connected AG
+          pendingInvestmentsCount:
+            type: integer
+            description: Number of pending investments
+            format: int32
+            example: 6
+          pendingInvestmentsTotal:
+            type: number
+            description: Total amount of pending investments
+            format: double
+            example: 27000
+          activeInvestmentsCount:
+            type: integer
+            description: Number of active investments
+            format: int32
+            example: 14
+          activeInvestmentsTotal:
+            type: number
+            description: Total amount of active investments
+            format: double
+            example: 62000
+        additionalProperties: false
+        description: An investor whose investments are made indirectly through connector
+      ConnectorBid:
+        required:
+          - amount
+          - investorId
+          - loanId
+        type: object
+        properties:
+          investorId:
+            type: integer
+            description: Investor ID
+            format: int32
+            example: 570
+          loanId:
+            type: integer
+            description: Loan ID on which you want to place a bid on behalf of your investors
+            format: int32
+            example: 3201
+          amount:
+            type: number
+            description: Amount of the bid
+            format: double
+            example: 12000
+        additionalProperties: false
+        description: A bid that connector places on behalf of connected investors
+      ConnectorInvestment:
+        type: object
+        properties:
+          investorId:
+            type: integer
+            description: Id of the investor
+            format: int32
+            example: 570
+          investorName:
+            type: string
+            description: Name of the investor
+            nullable: true
+            example: Connected AG
+          bidAmount:
+            type: number
+            description: Amount of the bid
+            format: double
+            example: 12000
+          bidDate:
+            type: string
+            description: Date when the bid is placed
+            nullable: true
+            example: 20.10.2021
+          loanId:
+            type: integer
+            description: Id of the loan
+            format: int32
+            example: 3201
+          loanAmount:
+            type: number
+            description: Amount of the loan
+            format: double
+            example: 24000
+          loanDuration:
+            type: integer
+            description: Duration of the loan in months
+            format: int32
+            example: 48
+          loanInterest:
+            type: number
+            description: Interest rate of the loan
+            format: double
+            example: 5.25
+          loanRating:
+            type: string
+            description: Rating of the loan - AA, A, B, C, D
+            nullable: true
+            example: AA
+        additionalProperties: false
+        description: An investment made by the connector on behalf of connected investor
+      ConnectorReport:
+        type: object
+        properties:
+          connectorSummary:
+            $ref: '#/components/schemas/ConnectorSummary'
+          connectorInvestments:
+            type: array
+            items:
+              $ref: '#/components/schemas/ConnectorInvestment'
+            nullable: true
+        additionalProperties: false
+        description: Report of investments of connected investors related to a connector
+      ConnectorSummary:
+        type: object
+        properties:
+          connectorName:
+            type: string
+            description: Name of the connector
+            nullable: true
+            example: Connector AG
+          pendingInvestmentsCount:
+            type: integer
+            description: Number of pending investments
+            format: int32
+            example: 12
+          pendingInvestmentsTotal:
+            type: number
+            description: Total amount of pending investments
+            format: double
+            example: 54000
+          activeInvestmentsCount:
+            type: integer
+            description: Number of active investments
+            format: int32
+            example: 28
+          activeInvestmentsTotal:
+            type: number
+            description: Total amount of active investments
+            format: double
+            example: 124000
+          connectedInvestors:
+            type: array
+            items:
+              $ref: '#/components/schemas/ConnectedInvestor'
+            description: List of connected investors
+            nullable: true
+        additionalProperties: false
+        description: Connector account details
+      Contract:
+        type: object
+        properties:
+          loanId:
+            type: integer
+            description: ID of the loan you have invested in
+            format: int32
+          contractName:
+            type: string
+            description: Name of the file (.PDF)
+            nullable: true
+          contractFile:
+            type: string
+            description: >-
+              String representation of the contract that is encoded with base-64
+              digits
+            nullable: true
+        additionalProperties: false
+        description: Your loan agreement
+      Crif:
+        type: object
+        properties:
+          creditScore:
+            type: integer
+            description: Credit score of the borrower in Crif
+            format: int32
+          checkingDate:
+            type: string
+            description: Date when borrower score is checked
+            nullable: true
+        additionalProperties: false
+        description: Borrower's credit report
+      EarlyRepayment:
+        type: object
+        properties:
+          paymentDate:
+            type: string
+            description: date when the loan has been paid off
+            nullable: true
+            example: 12.07.2022
+          principalBalance:
+            type: number
+            description: the amount due and owed to satisfy the payoff of the loan
+            format: double
+            example: 4666.77
+          interest:
+            type: number
+            description: Gross interest amount
+            format: double
+            example: 24.71
+          investorCommission:
+            type: number
+            description: investor commission amount
+            format: double
+            example: 1
+          totalAmount:
+            type: number
+            description: a total amount that has been paid earlier to the investor
+            format: double
+            example: 4690.48
+        additionalProperties: false
+        description: Early repayment details
+      Error:
+        type: object
+        properties:
+          type:
+            type: string
+            description: Error type
+            nullable: true
+          message:
+            type: string
+            description: Error reason
+            nullable: true
+        additionalProperties: false
+        description: Error message in response to a client's request made to the API
+      Expenses:
+        type: object
+        properties:
+          taxAtSource:
+            type: number
+            description: Tax to be paid
+            format: double
+            example: 2515
+          housingCondition:
+            type: string
+            description: ''
+            nullable: true
+            example: >-
+              Single, Single sharing an apartment, Partnership without sharing an
+              apartment, Single parent, etc.
+          residentalSituation:
+            type: string
+            description: Residential situation
+            nullable: true
+            example: Tenant, Homeowner
+          monthlyRent:
+            type: number
+            description: Monthly rental cost
+            format: double
+            example: 1805
+          payCostSolely:
+            type: string
+            description: Are the rental costs shared?
+            nullable: true
+            example: Yes, No
+          monthlyCostPortion:
+            type: number
+            description: Part of the rental costs (if shared)
+            format: double
+            example: 900
+          monthlyMortgage:
+            type: number
+            description: Monthly cost for homeowners
+            format: double
+            example: 500
+          mortgageAmount:
+            type: number
+            description: Amount of mortgage outstanding
+            format: double
+            example: 0
+          anotherLoan:
+            type: string
+            description: Are there any other open loans?
+            nullable: true
+            example: Yes, No
+          anotherLoanLender:
+            type: string
+            description: Name of lender of the outstanding loan
+            nullable: true
+            example: PostFinance
+          anotherLoanAmount:
+            type: number
+            description: Amount of the outstanding loan
+            format: double
+            example: 2378.25
+          anotherLoanInterestRate:
+            type: number
+            description: Interest rate of the outstanding loan
+            format: double
+            example: 7.85
+          anotherLoanMonthlyPayment:
+            type: number
+            description: Monthly payment of the outstanding loan
+            format: double
+            example: 215.29
+          insuranceMonthlyCost:
+            type: number
+            description: Cost of insurances on a monthly basis
+            format: double
+            example: 614.1
+          privateTransportMonthlyCost:
+            type: number
+            description: >-
+              Cost of private transportation on a monthly basis (cost of leasing
+              etc.)
+            format: double
+            example: 518.4
+          publicTransportMonthlyCost:
+            type: number
+            description: Cost of public transportation on a monthly basis
+            format: double
+            example: 300
+          dependentChildren:
+            type: string
+            description: Are there any dependent children?
+            nullable: true
+            example: Yes, No
+          childrenYoungerThanTen:
+            type: integer
+            description: Number of children younger than ten years?
+            format: int32
+            example: 1
+          childrenOlderThanTen:
+            type: integer
+            description: Number of children older than ten years?
+            format: int32
+            example: 1
+          alimonyOrChildSupport:
+            type: string
+            description: Are there any alimony or external child support
+            nullable: true
+            example: Yes, No
+          alimonyOrChildSupportAmount:
+            type: number
+            description: Amount of alimony or external child support (if yes)
+            format: double
+            example: 0
+          furtherRecurringMonthlyCost:
+            type: string
+            description: Are there any other recurring monthly cost?
+            nullable: true
+            example: Yes, No
+          furtherRecurringMonthlyCost1Amount:
+            type: number
+            description: Amount of any other recurruing monthly cost (if yes)
+            format: double
+            example: 300
+          furtherRecurringMonthlyCost1Description:
+            type: string
+            description: Description of any other recurruing monthly cost (if yes)
+            nullable: true
+            example: Business meal expenses
+          furtherRecurringMonthlyCost2Amount:
+            type: number
+            description: Amount of any other recurruing monthly cost (if yes)
+            format: double
+            example: 500
+          furtherRecurringMonthlyCost2Description:
+            type: string
+            description: Description of any other recurruing monthly cost (if yes)
+            nullable: true
+            example: Cleaning expenses
+        additionalProperties: false
+        description: Monthly expenses of the borrower
+      Financial:
+        type: object
+        properties:
+          liquidFunds_Year1:
+            type: number
+            description: Liquid funds at the end of Year 1
+            format: double
+          liquidFunds_Year2:
+            type: number
+            description: Liquid funds at the end of Year 2
+            format: double
+          accountsReceivable_Year1:
+            type: number
+            description: Accounts receivable at the end of Year 1
+            format: double
+          accountsReceivable_Year2:
+            type: number
+            description: Accounts receivable at the end of Year 2
+            format: double
+          stocks_Year1:
+            type: number
+            description: Stocks at the end of Year 1
+            format: double
+          stocks_Year2:
+            type: number
+            description: Stocks at the end of Year 2
+            format: double
+          currentAssets_Other_Year1:
+            type: number
+            description: Other current assets at the end of Year 1
+            format: double
+          currentAssets_Other_Year2:
+            type: number
+            description: Other current assets at the end of Year 2
+            format: double
+          currentAssets_Year1_SUM:
+            type: number
+            description: Total current assets at the end of Year 1
+            format: double
+          currentAssets_Year2_SUM:
+            type: number
+            description: Total current assets at the end of Year 2
+            format: double
+          machinesAndSystems_Year1:
+            type: number
+            description: Machines and systems at the end of Year 1
+            format: double
+          machinesAndSystems_Year2:
+            type: number
+            description: Machines and systems at the end of Year 2
+            format: double
+          facilitiesAndVehiclePark_Year1:
+            type: number
+            description: Facilities and vehicle at the end of Year 1
+            format: double
+          facilitiesAndVehiclePark_Year2:
+            type: number
+            description: Facilities and vehicle at the end of Year 2
+            format: double
+          fixedAssets_Other_Year1:
+            type: number
+            description: Other fixed assets at the end of Year 1
+            format: double
+          fixedAssets_Other_Year2:
+            type: number
+            description: Other fixed assets at the end of Year 2
+            format: double
+          fixedAssets_Year1_SUM:
+            type: number
+            description: Total fixed assets at the end of Year 1
+            format: double
+          fixedAssets_Year2_SUM:
+            type: number
+            description: Total fixed assets at the end of Year 2
+            format: double
+          accountsPayable_Year1:
+            type: number
+            description: Accounts payable at the end of Year 1
+            format: double
+          accountsPayable_Year2:
+            type: number
+            description: Accounts payable at the end of Year 2
+            format: double
+          totalAssets_Year1:
+            type: number
+            description: Total assets at the end of Year 1
+            format: double
+          totalAssets_Year2:
+            type: number
+            description: Total assets at the end of Year 2
+            format: double
+          shortTermLoans_Year1:
+            type: number
+            description: Short term loans at the end of Year 1
+            format: double
+          shortTermLoans_Year2:
+            type: number
+            description: Short term loans at the end of Year 2
+            format: double
+          curentLiabilities_Other_Year1:
+            type: number
+            description: Other current liabilities at the end of Year 1
+            format: double
+          curentLiabilities_Other_Year2:
+            type: number
+            description: Other current liabilities at the end of Year 2
+            format: double
+          curentLiabilities_Year1_SUM:
+            type: number
+            description: Total current liabilities at the end of Year 1
+            format: double
+          curentLiabilities_Year2_SUM:
+            type: number
+            description: Total current liabilities at the end of Year 2
+            format: double
+          longTermLoans_Year1:
+            type: number
+            description: Long term loans at the end of Year 1
+            format: double
+          longTermLoans_Year2:
+            type: number
+            description: Long term loans at the end of Year 2
+            format: double
+          accruals_Year1:
+            type: number
+            description: Accruals at the end of Year 1
+            format: double
+          accruals_Year2:
+            type: number
+            description: Accruals at the end of Year 2
+            format: double
+          longTermLiabilities_Other_Year1:
+            type: number
+            description: Other long term laiabilities at the end of Year 1
+            format: double
+          longTermLiabilities_Other_Year2:
+            type: number
+            description: Other long term laiabilities at the end of Year 2
+            format: double
+          longTermLiabilities_Year1_SUM:
+            type: number
+            description: Total long term laiabilities at the end of Year 1
+            format: double
+          longTermLiabilities_Year2_SUM:
+            type: number
+            description: Total long term laiabilities at the end of Year 2
+            format: double
+          equity_Year1:
+            type: number
+            description: Equity at the end of Year 1
+            format: double
+          equity_Year2:
+            type: number
+            description: Equity at the end of Year 2
+            format: double
+          totalLiabilities_Year1_SUM:
+            type: number
+            description: Total laiabilitie at the end of Year 1
+            format: double
+          totalLiabilities_Year2_SUM:
+            type: number
+            description: Total laiabilitie at the end of Year 2
+            format: double
+          salesProceeds_Year1:
+            type: number
+            description: Sales Year 1
+            format: double
+          salesProceeds_Year2:
+            type: number
+            description: Sales Year 2
+            format: double
+          costOfGoods_Year1:
+            type: number
+            description: Cost of goods Year 1
+            format: double
+          costOfGoods_Year2:
+            type: number
+            description: Cost of goods Year 2
+            format: double
+          grossProfit_Year1_SUM:
+            type: number
+            description: Gross profit Year 1
+            format: double
+          grossProfit_Year2_SUM:
+            type: number
+            description: Gross profit Year 2
+            format: double
+          operatingExpenses_Year1:
+            type: number
+            description: Operating expenses Year 1
+            format: double
+          operatingExpenses_Year2:
+            type: number
+            description: Operating expenses Year 2
+            format: double
+          ebidta_Year1_SUM:
+            type: number
+            description: Ebidta Year 1
+            format: double
+          ebidta_Year2_SUM:
+            type: number
+            description: Ebidta Year 2
+            format: double
+          depreciation_Year1:
+            type: number
+            description: Depreciation Year 1
+            format: double
+          depreciation_Year2:
+            type: number
+            description: Depreciation Year 2
+            format: double
+          ebit_Year1_SUM:
+            type: number
+            description: Ebit Year 1
+            format: double
+          ebit_Year2_SUM:
+            type: number
+            description: Ebit Year 2
+            format: double
+          financialExpenses_Year1:
+            type: number
+            description: Financial expenses Year 1
+            format: double
+          financialExpenses_Year2:
+            type: number
+            description: Financial expenses Year 2
+            format: double
+          netIncomeBeforeTaxes_Year1_SUM:
+            type: number
+            description: Net income before tax Year 1
+            format: double
+          netIncomeBeforeTaxes_Year2_SUM:
+            type: number
+            description: Net income before tax Year 2
+            format: double
+          incomeTaxes_Year1:
+            type: number
+            description: Income taxes Year 1
+            format: double
+          incomeTaxes_Year2:
+            type: number
+            description: Income taxes Year 2
+            format: double
+          netProfit_Year1_SUM:
+            type: number
+            description: Net profit Year 1
+            format: double
+          netProfit_Year2_SUM:
+            type: number
+            description: Net profit Year 2
+            format: double
+          beginningOfYearFinancials_Year1:
+            type: number
+            description: Financials at the beginning of Year 1
+            format: double
+          beginningOfYearFinancials_Year2:
+            type: number
+            description: Financials at the beginning of Year 2
+            format: double
+          cashFlowOperating_Year1:
+            type: number
+            description: Cash flow of operating activities Year 1
+            format: double
+          cashFlowOperating_Year2:
+            type: number
+            description: Cash flow of operating activities Year 2
+            format: double
+          cashFlowInvesting_Year1:
+            type: number
+            description: Cash flow of investing activities Year 1
+            format: double
+          cashFlowInvesting_Year2:
+            type: number
+            description: Cash flow of investing activities Year 2
+            format: double
+          cashFlowFinancing_Year1:
+            type: number
+            description: Cash flow of finansing activities Year 1
+            format: double
+          cashFlowFinancing_Year2:
+            type: number
+            description: Cash flow of finansing activities Year 2
+            format: double
+          cashFlow_Year1_SUM:
+            type: number
+            description: Total cash flow Year 1
+            format: double
+          cashFlow_Year2_SUM:
+            type: number
+            description: Total cash flow Year 2
+            format: double
+          endOfYearFinancials_Year1_SUM:
+            type: number
+            description: Financials at the end of Year 1
+            format: double
+          endOfYearFinancials_Year2_SUM:
+            type: number
+            description: Financials at the end of Year 2
+            format: double
+        additionalProperties: false
+        description: Company financial data in the last two years
+      Income:
+        type: object
+        properties:
+          profession:
+            type: string
+            description: Profession description
+            nullable: true
+            example: Health insurance specialist, Doctor, Marketing specialist, etc.
+          employmentType:
+            type: string
+            description: Type of employment
+            nullable: true
+            example: Employed With Open-Ended Contract, Selfemployed
+          employmentRelationshipUnderNotice:
+            type: string
+            description: Is the employment under notice
+            nullable: true
+            example: Yes, No
+          workSince:
+            type: string
+            description: Date since started with the current employer
+            nullable: true
+            example: ' 01.10.2015'
+          numberOfSalaries:
+            type: integer
+            description: Number of salaries paid out to borrower
+            format: int32
+          monthlyNetIncome:
+            type: number
+            description: Monthly net income of the borrower
+            format: double
+            example: 14991.66
+          bonusAverage:
+            type: number
+            description: Average bonus of the last 3 years
+            format: double
+            example: 7000
+          additionalIncome:
+            type: string
+            description: Additional income included?
+            nullable: true
+            example: Yes, No
+          additionalIncomeType:
+            type: string
+            description: Source of additional income
+            nullable: true
+            example: Rent
+          additionalIncomeAmount:
+            type: number
+            description: Amount of the additional income
+            format: double
+            example: 1000
+          partnerIncome:
+            type: string
+            description: Include partner income?
+            nullable: true
+            example: Yes, No
+          partnerProfession:
+            type: string
+            description: Profession description (Partner)
+            nullable: true
+            example: Health insurance specialist, Doctor, Marketing specialist, etc.
+          partnerWorkSince:
+            type: string
+            description: Date since started with the current employer (Partner)
+            nullable: true
+            example: ' 01.06.2018'
+          partnerNumberOfSalaries:
+            type: integer
+            description: Number of salaries paid out to partner
+            format: int32
+          partnerMonthlyNetIncome:
+            type: number
+            description: Monthly net income of the partner
+            format: double
+            example: 6548.45
+          partnerBonusAverage:
+            type: number
+            description: Average bonus of partner of the last three years
+            format: double
+            example: 2000
+        additionalProperties: false
+        description: Monthly income of the borrower
+      IntermediaryLoan:
+        type: object
+        properties:
+          loanId:
+            type: integer
+            description: Loan Id
+            format: int32
+            example: 443
+          partnerId:
+            type: integer
+            description: Partner Id
+            format: int32
+            example: 2538
+          partnerName:
+            type: string
+            description: Name of the partner
+            nullable: true
+            example: Auto Center Bühler GmbH
+          dateCreated:
+            type: string
+            description: Date of applicaton
+            nullable: true
+            example: 04.06.2022
+          dateApproved:
+            type: string
+            description: Date of approval
+            nullable: true
+            example: 12.06.2022
+          loanAmount:
+            type: number
+            description: Loan amount total
+            format: double
+            example: 155000
+          interestRate:
+            type: number
+            description: Interest rate of the loan
+            format: double
+            example: 5.25
+          duration:
+            type: integer
+            description: Duration in months
+            format: int32
+            example: 12
+          loanRating:
+            type: string
+            description: Rating of the loan - AA, A, B, C, D
+            nullable: true
+            example: AA
+          loanStatus:
+            type: string
+            description: Status of the loan
+            nullable: true
+            example: Active
+          lastPaymentDate:
+            type: string
+            description: Date of last payment received by the investor
+            nullable: true
+            example: 10.12.2022
+          performanceStatus:
+            type: string
+            description: Payment status - performing, late 1 to 15 days, Defaulted
+            nullable: true
+            example: Performing
+          daysLate:
+            type: integer
+            description: Number od days late
+            format: int32
+            example: 0
+          collateral:
+            type: string
+            description: Is loan collaterialized? - Yes, No
+            nullable: true
+            example: 'Yes'
+          collateralType:
+            type: string
+            description: Collater Type - Real estate, Vehicle, Guarantor, Stock
+            nullable: true
+            example: Vehicle
+          insurance:
+            type: string
+            description: Is loan insured? - Yes, No
+            nullable: true
+            example: 'No'
+          totalPrincipalRemaining:
+            type: number
+            description: Unpaid Principal
+            format: double
+            example: 110233.625
+          numberOfUnpaidAnnuities:
+            type: integer
+            description: Number of annuities that have been not paid yet.
+            format: int32
+            example: 4
+          totalRepaidPrincipal:
+            type: number
+            description: Currently paid principal
+            format: double
+            example: 44766.375
+          totalRepaidInterest:
+            type: number
+            description: Currently paid interest
+            format: double
+            example: 11147.345
+          disbursementDate:
+            type: string
+            description: Date when the loan is paid to borrower
+            nullable: true
+            example: 20.06.2012
+          maturityDate:
+            type: string
+            description: Date of the last instalment
+            nullable: true
+            example: 26.06.2023
+          notes:
+            type: string
+            description: Description of the loan purpose
+            nullable: true
+            example: >-
+              Due to a worse year in 2018, liquidity has been weakened and certain
+              renewals in the company are needed.
+          link:
+            type: string
+            description: Web page where loan is desplayed in UI
+            nullable: true
+            example: https://crowd4cash.ch/loan-details/443
+        additionalProperties: false
+        description: A loan that was made on behalf of your partner
+      IntermediaryLoanApplication:
+        required:
+          - identificationNumber
+          - serialNumber
+        type: object
+        properties:
+          partnerId:
+            type: integer
+            description: >-
+              ID of the partner that is buying an item. This ID can be taken from
+              the Report endpoint and Intermediary route.
+            format: int32
+            example: 12225
+          purchaseItem:
+            type: string
+            description: Description of the item you buy e.g. Car
+            nullable: true
+            example: Car
+          itemStatus:
+            type: string
+            description: Status of the item
+            nullable: true
+            example: Rented
+          itemName:
+            type: string
+            description: Name of the item
+            nullable: true
+            example: BMW 318D e90
+          itemType:
+            type: string
+            description: Type of the item e.g. SUV, Van, Saloon, Cabriolet etc.
+            nullable: true
+            example: Saloon
+          itemBrand:
+            type: string
+            description: Brand of the item
+            nullable: true
+            example: BMW
+          itemModel:
+            type: string
+            description: Model of the item
+            nullable: true
+            example: 318D
+          itemColor:
+            type: string
+            description: Color of the item
+            nullable: true
+            example: Black
+          itemMarketValue:
+            type: number
+            description: >-
+              Market value of the item you want to buy. Please notice that the
+              Loan Amount will be 80% of this value.
+            format: double
+            example: 10000
+          manufactureDate:
+            type: string
+            description: Date when the car was manufactured
+            nullable: true
+            example: 13.05.2020
+          firstRegistration:
+            type: string
+            description: Date when the item was registered very first time
+            nullable: true
+            example: 15.01.2021
+          mileage:
+            type: string
+            description: Mileage of the item
+            nullable: true
+            example: 24000 km
+          itemCertificate:
+            type: string
+            description: Certificate of the item
+            nullable: true
+            example: 1AA123
+          serialNumber:
+            maxLength: 17
+            minLength: 17
+            type: string
+            description: Serial number (aka VIN or Chassis No.)
+            example: WBAVB12345KS12345
+          identificationNumber:
+            maxLength: 11
+            minLength: 9
+            type: string
+            description: Identification number (aka Stammnummer)
+            example: 630.830.709
+          rentalAmount:
+            type: number
+            description: Rental amount per month
+            format: double
+            example: 420
+          handoverDate:
+            type: string
+            description: >-
+              The expected/approximate handover date (date when the car is
+              expected to be handed over to the subscriber). Expected format:
+              dd.MM.yyyy
+            nullable: true
+            example: 23.01.2023
+        additionalProperties: false
+        description: >-
+          A loan application that is submitted by the intermediary company on
+          behalf of their partner(s)
+      IntermediaryLoanHandoverDate:
+        type: object
+        properties:
+          loanId:
+            type: integer
+            description: Loan ID
+            format: int32
+            example: 4989
+          handoverDate:
+            type: string
+            description: The date when the car is handed over to the subscriber
+            nullable: true
+            example: 25.01.2023
+        additionalProperties: false
+        description: Handover Date Update
+      IntermediaryPartner:
+        type: object
+        properties:
+          partnerId:
+            type: integer
+            description: Id of the partner
+            format: int32
+            example: 2342
+          partnerName:
+            type: string
+            description: Name of the partner
+            nullable: true
+            example: Autorama AG
+          legalForm:
+            type: string
+            description: legal form of the partner
+            nullable: true
+            example: GmbH
+          yearEstablished:
+            type: string
+            description: when the company was established
+            nullable: true
+            example: '2017'
+          address:
+            type: string
+            description: Street address of the garage/shop/store
+            nullable: true
+          houseNumber:
+            type: string
+            description: House number of the garage/shop/store
+            nullable: true
+          zip:
+            type: string
+            description: Zip code of the garage/shop/store
+            nullable: true
+          city:
+            type: string
+            description: City where the garage/shop/store resides
+            nullable: true
+          phone:
+            type: string
+            description: Phone number of the garage/shop/store
+            nullable: true
+          iban:
+            type: string
+            description: IBAN of the company
+            nullable: true
+          numberOfLoans:
+            type: integer
+            description: total number of loans
+            format: int32
+            example: 5
+          allowedLimitAmount:
+            type: number
+            description: limit allowed by C4C e.g. 200'000.00 CHF
+            format: double
+            example: 200000
+          usedLimitAmount:
+            type: number
+            description: An amount that is already used out e.g. 150'000.00 CHF
+            format: double
+            example: 150000
+          remainingLimitAmount:
+            type: number
+            description: available amount e.g. 50'000.00 CHF
+            format: double
+            example: 50000
+        additionalProperties: false
+        description: rental location that is the borrower itself e.g. garage/shop/store
+      IntermediaryReport:
+        type: object
+        properties:
+          intermediarySummary:
+            $ref: '#/components/schemas/IntermediarySummary'
+        additionalProperties: false
+      IntermediarySummary:
+        type: object
+        properties:
+          intermediaryName:
+            type: string
+            description: Name of the intermediary company
+            nullable: true
+            example: Carify AG
+          numberOfPartners:
+            type: integer
+            description: Number of partners aka garages
+            format: int32
+          numberOfLoans:
+            type: integer
+            description: Number of loan applications
+            format: int32
+          loansTotalAmount:
+            type: number
+            description: A sum of all partner loans
+            format: double
+          partners:
+            type: array
+            items:
+              $ref: '#/components/schemas/IntermediaryPartner'
+            description: List of your partners (garages/shops/stores)
+            nullable: true
+          loans:
+            type: array
+            items:
+              $ref: '#/components/schemas/IntermediaryLoan'
+            description: List of your partner loan(s)
+            nullable: true
+        additionalProperties: false
+        description: A rental company like Carify which rents user and new cars
+      Investment:
+        type: object
+        properties:
+          id:
+            type: integer
+            description: Investment ID - auto-generated
+            format: int32
+            example: 3321
+          dateCreated:
+            type: string
+            description: Date when the loan application is submitted
+            nullable: true
+            example: 02.01.2021
+          dateApproved:
+            type: string
+            description: Date when the loan is approved
+            nullable: true
+            example: 08.01.2021
+          loanAmount:
+            type: number
+            description: Loan amount
+            format: double
+            example: 5000
+          lastPaymentDate:
+            type: string
+            description: Date of last payment received by the investor
+            nullable: true
+            example: 02.03.2021
+          interestRate:
+            type: number
+            description: Interest rate of the loan
+            format: double
+            example: 7.5
+          paymentFrequency:
+            type: string
+            description: Payment frequency defines how often payments will be made
+            nullable: true
+            example: Monthly
+          duration:
+            type: integer
+            description: Duration in months
+            format: int32
+            example: 36
+          borrowerType:
+            type: string
+            description: Type of the borrower - Private or SME
+            nullable: true
+            example: Private
+          biddingType:
+            type: string
+            description: Type of the loan - Private or SME
+            nullable: true
+            example: Private loan
+          loanType:
+            type: string
+            description: Loan type - POS loan, Private and SME
+            nullable: true
+            example: POS loan
+          loanPurpose:
+            type: string
+            description: Purpose of the loan
+            nullable: true
+            example: Furnishing
+          loanRating:
+            type: string
+            description: Rating of the loan - AA, A, B, C, D
+            nullable: true
+            example: B
+          loanStatus:
+            type: string
+            description: Status of the loan
+            nullable: true
+            example: Active
+          performanceStatus:
+            type: string
+            description: Payment status - performing, late 1 to 15 days, Defaulted
+            nullable: true
+            example: Performing
+          daysLate:
+            type: integer
+            description: Number od days late
+            format: int32
+            example: 0
+          collateral:
+            type: string
+            description: Is loan collaterialized? - Yes, No
+            nullable: true
+            example: 'Yes'
+          collateralType:
+            type: string
+            description: Collater Type - Real estate, Vehicle, Guarantor, Stock
+            nullable: true
+            example: Vehicle
+          insurance:
+            type: string
+            description: Is loan insured? - Yes, No
+            nullable: true
+            example: 'Yes'
+          totalPrincipalRemaining:
+            type: number
+            description: Unpaid Principal
+            format: double
+            example: 4098.5
+          totalRepaidPrincipal:
+            type: number
+            description: Currently paid principal
+            format: double
+            example: 901.5
+          totalRepaidInterest:
+            type: number
+            description: Currently paid interest
+            format: double
+            example: 60
+          biddingEnd:
+            type: string
+            description: End date of the project
+            nullable: true
+            example: 20.01.2021
+          investmentDate:
+            type: string
+            description: Date when the bid is placed
+            format: date-time
+            example: 26.03.2024
+          purchaseDate:
+            type: string
+            description: Date when the bid is paid by the investor
+            nullable: true
+          disbursementDate:
+            type: string
+            description: Date when the loan is paid to borrower
+            format: date-time
+            example: 26.03.2024
+          maturityDate:
+            type: string
+            description: Date of the last instalment
+            format: date-time
+            example: 26.03.2024
+          share:
+            type: number
+            description: Share of outstanding Principal held by Fund
+            format: double
+            example: 0.25
+          vFac:
+            type: number
+            description: Value Factor
+            format: double
+            example: 1
+          loanPosition:
+            type: number
+            description: Current Principal Balance according to Vfac
+            format: double
+            readOnly: true
+            example: 120.6531
+          autoInvestId:
+            type: integer
+            description: Auto Invest Id. It can be null if auto invest is turned off
+            format: int32
+            nullable: true
+            example: null
+          notes:
+            type: string
+            description: Description of the loan purpose
+            nullable: true
+            example: >-
+              Due to a worse year in 2018, liquidity has been weakened and certain
+              renewals in the company are needed.
+          link:
+            type: string
+            description: Web page where loan is desplayed in UI
+            nullable: true
+            example: https://crowd4cash.ch/loan-details/2444
+          bid:
+            $ref: '#/components/schemas/Bid'
+          borrowerPrivate:
+            $ref: '#/components/schemas/Private'
+          borrowerCompany:
+            $ref: '#/components/schemas/Company'
+          income:
+            $ref: '#/components/schemas/Income'
+          expense:
+            $ref: '#/components/schemas/Expenses'
+          crif:
+            $ref: '#/components/schemas/Crif'
+          questionnaire:
+            $ref: '#/components/schemas/Questionnaire'
+          financial:
+            $ref: '#/components/schemas/Financial'
+          amortizationSchedule:
+            $ref: '#/components/schemas/AmortizationSchedule'
+          earlyRepayment:
+            $ref: '#/components/schemas/EarlyRepayment'
+          accountStatement:
+            $ref: '#/components/schemas/AccountStatement'
+          technicalData:
+            $ref: '#/components/schemas/TechnicalData'
+        additionalProperties: false
+      InvestorAccount:
+        type: object
+        properties:
+          accountSummary:
+            $ref: '#/components/schemas/AccountSummary'
+          transactions:
+            type: array
+            items:
+              $ref: '#/components/schemas/Transacions'
+            nullable: true
+          accountDetails:
+            $ref: '#/components/schemas/AccountDetails'
+          autoInvestSettings:
+            $ref: '#/components/schemas/AutoInvestSettings'
+        additionalProperties: false
+        description: Investor account details and settings
+      Loan:
+        type: object
+        properties:
+          id:
+            type: integer
+            description: Loan Id
+            format: int32
+            example: 443
+          dateCreated:
+            type: string
+            description: Date of applicaton
+            nullable: true
+            example: 04.06.2019
+          dateApproved:
+            type: string
+            description: Date of approval
+            nullable: true
+            example: 12.06.2019
+          loanAmount:
+            type: number
+            description: Loan amount total
+            format: double
+            example: 155000
+          lastPaymentDate:
+            type: string
+            description: Date of last payment received by the investor
+            nullable: true
+            example: 02.03.2021
+          interestRate:
+            type: number
+            description: Interest rate of the loan
+            format: double
+            example: 5.25
+          paymentFrequency:
+            type: string
+            description: Payment frequency defines how often payments will be made
+            nullable: true
+            example: Monthly
+          duration:
+            type: integer
+            description: Duration in months
+            format: int32
+            example: 60
+          borrowerType:
+            type: string
+            description: Type of the borrower - Private or SME
+            nullable: true
+            example: SME
+          biddingType:
+            type: string
+            description: Type of the loan - Private or SME
+            nullable: true
+            example: SME Loan
+          loanType:
+            type: string
+            description: Loan type - POS loan, Private and SME
+            nullable: true
+            example: POS loan
+          loanPurpose:
+            type: string
+            description: Purpose of the loan
+            nullable: true
+            example: Expansion
+          loanRating:
+            type: string
+            description: Rating of the loan - AA, A, B, C, D
+            nullable: true
+            example: AA
+          loanStatus:
+            type: string
+            description: Status of the loan
+            nullable: true
+            example: Active
+          performanceStatus:
+            type: string
+            description: Payment status - performing, late 1 to 15 days, Defaulted
+            nullable: true
+            example: Performing
+          daysLate:
+            type: integer
+            description: Number od days late
+            format: int32
+            example: 0
+          collateral:
+            type: string
+            description: Is loan collaterialized? - Yes, No
+            nullable: true
+            example: 'Yes'
+          collateralType:
+            type: string
+            description: Collater Type - Real estate, Vehicle, Guarantor, Stock
+            nullable: true
+            example: Vehicle
+          insurance:
+            type: string
+            description: Is loan insured? - Yes, No
+            nullable: true
+            example: 'No'
+          totalPrincipalRemaining:
+            type: number
+            description: Unpaid Principal
+            format: double
+            example: 110233.625
+          totalRepaidPrincipal:
+            type: number
+            description: Currently paid principal
+            format: double
+            example: 44766.375
+          totalRepaidInterest:
+            type: number
+            description: Currently paid interest
+            format: double
+            example: 11147.345
+          biddingEnd:
+            type: string
+            description: End date of the project
+            nullable: true
+            example: 17.06.2019
+          disbursementDate:
+            type: string
+            description: Date when the loan is paid to borrower
+            format: date-time
+            example: 20.06.2019
+          maturityDate:
+            type: string
+            description: Date of the last instalment
+            format: date-time
+            example: 26.06.2024
+          notes:
+            type: string
+            description: Description of the loan purpose
+            nullable: true
+            example: >-
+              Due to a worse year in 2018, liquidity has been weakened and certain
+              renewals in the company are needed.
+          link:
+            type: string
+            description: Web page where loan is desplayed in UI
+            nullable: true
+            example: https://crowd4cash.ch/loan-details/443
+          bids:
+            type: array
+            items:
+              $ref: '#/components/schemas/ActiveBid'
+            nullable: true
+          borrowerPrivate:
+            $ref: '#/components/schemas/Private'
+          borrowerCompany:
+            $ref: '#/components/schemas/Company'
+          income:
+            $ref: '#/components/schemas/Income'
+          expenses:
+            $ref: '#/components/schemas/Expenses'
+          crif:
+            $ref: '#/components/schemas/Crif'
+          questionnaire:
+            $ref: '#/components/schemas/Questionnaire'
+          financial:
+            $ref: '#/components/schemas/Financial'
+          amortizationSchedule:
+            $ref: '#/components/schemas/AmortizationSchedule'
+          accountStatement:
+            $ref: '#/components/schemas/AccountStatement'
+          technicalData:
+            $ref: '#/components/schemas/TechnicalData'
+        additionalProperties: false
+        description: Loan entity
+      LoanApplication:
+        type: object
+        additionalProperties: false
+        description: Regular loan application
+      LoanRating:
+        enum:
+          - AA
+          - A
+          - B
+          - C
+          - D
+        type: string
+        description: Enumeration type for Loan Rating
+      Login:
+        required:
+          - password
+          - username
+        type: object
+        properties:
+          username:
+            minLength: 1
+            type: string
+            description: Your C4C username
+          password:
+            minLength: 1
+            type: string
+            description: Your C4C password
+        additionalProperties: false
+        description: ''
+      ManualBuilder:
+        type: object
+        properties:
+          builderOption:
+            $ref: '#/components/schemas/ManualBuilderOption'
+          rules:
+            type: array
+            items:
+              $ref: '#/components/schemas/ManualOptionRule'
+            nullable: true
+        additionalProperties: false
+      ManualBuilderOption:
+        type: object
+        properties:
+          id:
+            type: integer
+            description: Id of the manual portfolio builder
+            format: int32
+            example: 370
+          investmentCurrently:
+            type: number
+            description: Current investment using manual autoinvest
+            format: double
+            example: 5000
+          originators:
+            type: string
+            description: Who's create the manual portfolio builder?
+            nullable: true
+            example: Tom Test
+          isActive:
+            type: boolean
+            description: Is manual portfolio builder active? - yes, no
+        additionalProperties: false
+      ManualOptionRule:
+        type: object
+        properties:
+          loanRating:
+            type: string
+            nullable: true
+            example: B
+          totalAmountForInvestment:
+            type: number
+            description: Total amount that can be invested using manual autoinvest
+            format: double
+            example: 10000
+          minimumInterestRate:
+            type: number
+            description: Minimum interest rate of the loan in which investor wants to invest
+            format: double
+            example: 4
+          minimumPerBid:
+            type: number
+            description: Minimum bid amount per loan
+            format: double
+            example: 500
+          maximumPerBid:
+            type: number
+            description: Maximum bid amount per loan
+            format: double
+            example: 3500
+          reinvest:
+            type: boolean
+            description: Can investments be reinvested? - yes, no
+          secondaryMarket:
+            type: boolean
+            description: Can investment be sold on the secondary market? - yes, no
+          durationFrom:
+            type: integer
+            description: Date when manual autoinvest starts to be used
+            format: int32
+          durationTo:
+            type: integer
+            description: Date when manual autoinvest ends to be used
+            format: int32
+          isEnabled:
+            type: boolean
+            description: Is manual autoinvest enabled? yes. no
+          currency:
+            type: string
+            description: Currency
+            nullable: true
+            example: CHF
+        additionalProperties: false
+      MultipleBiddingResult:
+        type: object
+        properties:
+          result:
+            type: string
+            description: Success or Error
+            nullable: true
+          error:
+            type: string
+            description: If no error, it's empty
+            nullable: true
+        additionalProperties: false
+      Opportunity:
+        type: object
+        properties:
+          id:
+            type: integer
+            description: Loan ID
+            format: int32
+            example: 2913
+          dateCreated:
+            type: string
+            description: Date when the loan application has been submitted.
+            nullable: true
+            example: 09.02.2021
+          dateApproved:
+            type: string
+            description: Date when the loan application has been reviewed and approved.
+            nullable: true
+            example: 10.02.2021
+          loanAmount:
+            type: number
+            description: An amount the borrower promises to repay
+            format: double
+            example: 5000
+          interestRate:
+            type: number
+            description: Interest rate in %
+            format: double
+            example: 7.25
+          paymentFrequency:
+            type: string
+            description: Payment frequency defines how often payments will be made
+            nullable: true
+            example: Monthly
+          duration:
+            type: integer
+            description: Duration in months
+            format: int32
+            example: 3
+          borrowerType:
+            type: string
+            description: Borrower Type (Private or SME)
+            nullable: true
+            example: Private
+          biddingType:
+            type: string
+            description: Loan type
+            nullable: true
+            example: Short-term loan
+          loanType:
+            type: string
+            description: Loan type e.g. POS loan, Private or SME
+            nullable: true
+            example: POS loan
+          loanPurpose:
+            type: string
+            description: >-
+              Loan purpose category e.g. Education, Furnishing, Vehicle purchase,
+              Wedding, Taxes, Refinancing etc.
+            nullable: true
+            example: Education
+          loanRating:
+            type: string
+            description: Crowd4Cash Rating
+            nullable: true
+            example: A
+          loanStatus:
+            type: string
+            description: Loan status e.g. In funding, Funded, Active, Closed, Defaulted etc.
+            nullable: true
+            example: In funding
+          performanceStatus:
+            type: string
+            description: >-
+              Payment status e.g. Performing, Late 1 to 15 days, Late 16 to 30
+              days, Late more than 120 days, Defaulted, Cancelled, Finished
+              prematurely, Paid off, etc.
+            nullable: true
+            example: Performing
+          collateral:
+            type: string
+            description: Is oan collaterialized?
+            nullable: true
+            example: 'Yes'
+          collateralType:
+            type: string
+            description: Collater Type - Real estate, Vehicle, Guarantor, Stock
+            nullable: true
+            example: Vehicle
+          insurance:
+            type: string
+            description: Is loan insured?
+            nullable: true
+            example: 'Yes'
+          openAmount:
+            type: number
+            description: An amount that is not funded yet
+            format: double
+            example: 2000
+          biddingEnd:
+            type: string
+            description: End date of the project
+            nullable: true
+            example: 28.02.2021
+          notes:
+            type: string
+            description: Description of the loan purpose
+            nullable: true
+            example: >-
+              The borrower wants to buy a car and has decided to pay for it in
+              cash. This gives him more financial flexibility at comparable costs
+              compared to a leasing solution.
+          link:
+            type: string
+            description: Web page where loan is displayed in UI
+            nullable: true
+            example: https://crowd4cash.ch/loan-details/2913
+          borrowerPrivate:
+            $ref: '#/components/schemas/Private'
+          borrowerCompany:
+            $ref: '#/components/schemas/Company'
+          income:
+            $ref: '#/components/schemas/Income'
+          expenses:
+            $ref: '#/components/schemas/Expenses'
+          questionnaire:
+            $ref: '#/components/schemas/Questionnaire'
+          financial:
+            $ref: '#/components/schemas/Financial'
+          technicalData:
+            $ref: '#/components/schemas/TechnicalData'
+          bids:
+            type: array
+            items:
+              $ref: '#/components/schemas/ActiveBid'
+            nullable: true
+        additionalProperties: false
+        description: Investment opportunity
+      PagedList:
+        type: object
+        properties:
+          loans:
+            type: array
+            items:
+              $ref: '#/components/schemas/Loan'
+            nullable: true
+          currentPage:
+            type: integer
+            format: int32
+            readOnly: true
+          totalPages:
+            type: integer
+            format: int32
+            readOnly: true
+          pageSize:
+            type: integer
+            format: int32
+          totalLoansCount:
+            type: integer
+            format: int32
+            readOnly: true
+          hasPreviousPage:
+            type: boolean
+            readOnly: true
+          hasNextPage:
+            type: boolean
+            readOnly: true
+        additionalProperties: false
+      Portfolio:
+        type: object
+        properties:
+          investorAccount:
+            $ref: '#/components/schemas/InvestorAccount'
+          investments:
+            type: array
+            items:
+              $ref: '#/components/schemas/Investment'
+            nullable: true
+        additionalProperties: false
+      Private:
+        type: object
+        properties:
+          borrowerId:
+            type: integer
+            description: Id of the borrower
+            format: int32
+            example: 25
+          zip:
+            type: string
+            description: Zip of the borrower
+            nullable: true
+            example: '8200'
+          city:
+            type: string
+            description: City of the borrower
+            nullable: true
+            example: ' Schaffhausen'
+          age:
+            type: integer
+            description: Age of the borrower
+            format: int32
+            example: 37
+          gender:
+            type: string
+            description: Gender of borrower
+            nullable: true
+            example: Male, Female, null
+          category:
+            type: string
+            description: Borrower type
+            nullable: true
+            example: Private, SME
+          housingCondition:
+            type: string
+            description: >-
+              Description of the housing conditon (used to calculate the living
+              costs)
+            nullable: true
+            example: >-
+              Single, Single sharing an apartment, Partnership without sharing an
+              apartment, Single parent, etc.
+          residentialSituation:
+            type: string
+            description: Residential situation
+            nullable: true
+            example: Tenant, Homeowner
+          nationality:
+            type: string
+            description: Nationality
+            nullable: true
+            example: Switzerland, Liechtenstein
+          children:
+            type: integer
+            description: Number of children
+            format: int32
+            example: 2
+          profession:
+            type: string
+            description: Profession description
+            nullable: true
+            example: Health insurance specialist, Doctor, Marketing specialist, etc.
+          workSince:
+            type: string
+            description: Date since started with the current employer
+            nullable: true
+            example: ' 01.10.2015'
+          solvency:
+            type: string
+            description: Check in economical database successful
+            nullable: true
+            example: OK, NOK
+          monthlyNetIncome:
+            type: number
+            description: Monthly net income of the borrower
+            format: double
+            example: 14991.66
+          partnerIncome:
+            type: number
+            description: Income of the partner (if parter as a second borrower included)
+            format: double
+            example: 6548.45
+          availableAmount:
+            type: number
+            description: Income minus expenses
+            format: double
+            example: 7459.16
+          availableAmountPercentage:
+            type: number
+            description: >-
+              Relation of monthly payment with available amount (how much of the
+              available amount is covered by the monthly payment)
+            format: double
+            example: 11.38
+          monthlyPayment:
+            type: number
+            description: Monthly payment of the requested loan
+            format: double
+            example: 849.59
+          collectionProcedures:
+            type: string
+            description: Are there any collection procedures in the last three years
+            nullable: true
+            example: Yes, No
+        additionalProperties: false
+        description: A person who takes out a loan
+      Questionnaire:
+        type: object
+        properties:
+          knownIssues:
+            type: string
+            description: Are there any current known issues with your services or product?
+            nullable: true
+            example: Yes, No
+          knownIssuesDescription:
+            type: string
+            description: Description of known issues (if yes)
+            nullable: true
+          majorIssues:
+            type: string
+            description: >-
+              Were there any major issues in your company connected to your
+              services/ products (like third party liability or any bigger
+              lawsuits)?
+            nullable: true
+            example: Yes, No
+          majorIssuesDescription:
+            type: string
+            description: Description of major issues (if yes)
+            nullable: true
+          financialRecovery:
+            type: string
+            description: >-
+              Did you undergo any financial restructuring or financial recovery
+              (or do you plan any in the foreseeable future)?
+            nullable: true
+            example: Yes, No
+          financialRecoveryDescription:
+            type: string
+            description: Description of financial recovery (if yes)
+            nullable: true
+          optionTeam:
+            type: string
+            description: >-
+              How long is your current management team active in this role in the
+              company?
+            nullable: true
+            example: More than 5 years, Between 1 and 5 years, Less than 1 year
+          optionAudit:
+            type: string
+            description: Is your company subject of an external audit?
+            nullable: true
+            example: No external audit, Limited audit, Ordinary audit
+          optionRevenue:
+            type: string
+            description: How much of your revenue is related to the top 3 clients?
+            nullable: true
+            example: Under 25%, Between 25% and 50%, Between 50% and 75%, Above 75%
+          optionPrice:
+            type: string
+            description: >-
+              What was the price trend of your services/ products in the last few
+              years?
+            nullable: true
+            example: >-
+              More than 10% decrease, Decrease between 5% and 10%, Decrease
+              between 0% and 5%, Stable, Increase between 0% and 5%, Increase
+              between 5% and 10%, More than 10% increase
+          marketEstimation:
+            type: string
+            description: What is your market estimation in the next few years?
+            nullable: true
+            example: >-
+              The market is competitive and only well-positioned and established
+              companies  have appropriate future prospects.
+          marketPosition:
+            type: string
+            description: What is your position in the market?
+            nullable: true
+            example: >-
+              We are positioned in several areas, which means that we are not
+              dependent on one customer segment.
+          marketRisk:
+            type: string
+            description: What are the highest risks for your company in the next three years?
+            nullable: true
+            example: >-
+              The greatest risk lies in having capable and good quality staff; the
+              labor market is currently weak. However, we can train and motivate
+              young employees.
+          currentRevenue:
+            type: string
+            description: >-
+              What are your expectations related to revenue and net profit in the
+              current fiscal year?
+            nullable: true
+            example: >-
+              High increase, Slight increase, Stable, Slight decrease, High
+              decrease
+          revenueGrowth:
+            type: string
+            description: >-
+              What are your expectations related to revenue growth in the current
+              fiscal year?
+            nullable: true
+            example: >-
+              High increase, Slight increase, Stable, Slight decrease, High
+              decrease
+          ebitdaMargin:
+            type: string
+            description: >-
+              What are your expectations related to the EBITDA margin in the next
+              three years?
+            nullable: true
+            example: >-
+              High increase, Slight increase, Stable, Slight decrease, High
+              decrease
+        additionalProperties: false
+        description: >-
+          Information about the major issues, market possition, growth of the
+          company
+      RentalApplicationResult:
+        type: object
+        properties:
+          result:
+            type: string
+            description: Success or Error
+            nullable: true
+          message:
+            type: string
+            description: Message of the action
+            nullable: true
+          loanId:
+            type: integer
+            description: ID of the newly created loan
+            format: int32
+          esr:
+            type: string
+            description: ESR of the newly created loan
+            nullable: true
+          rentalAmountWithInsurance:
+            type: number
+            description: Monthly payment on a loan with insurance premium amount added
+            format: double
+          error:
+            type: string
+            description: If no error, it's empty
+            nullable: true
+        additionalProperties: false
+        description: ''
+      RentalLoan:
+        type: object
+        properties:
+          loanId:
+            type: integer
+            description: Loan Id
+            format: int32
+            example: 443
+          renteeId:
+            type: integer
+            description: Rentee Id
+            format: int32
+            example: 2538
+          firstName:
+            type: string
+            description: First name of the rentee
+            nullable: true
+            example: Anna
+          lastName:
+            type: string
+            description: Last name of the rentee
+            nullable: true
+            example: Anna
+          dateCreated:
+            type: string
+            description: Date of applicaton
+            nullable: true
+            example: 04.06.2022
+          dateApproved:
+            type: string
+            description: Date of approval
+            nullable: true
+            example: 12.06.2022
+          loanAmount:
+            type: number
+            description: Loan amount total
+            format: double
+            example: 155000
+          interestRate:
+            type: number
+            description: Interest rate of the loan
+            format: double
+            example: 5.25
+          duration:
+            type: integer
+            description: Duration in months
+            format: int32
+            example: 12
+          loanRating:
+            type: string
+            description: Rating of the loan - AA, A, B, C, D
+            nullable: true
+            example: AA
+          loanStatus:
+            type: string
+            description: Status of the loan
+            nullable: true
+            example: Active
+          lastPaymentDate:
+            type: string
+            description: Date of last payment received by the investor
+            nullable: true
+            example: 10.12.2022
+          performanceStatus:
+            type: string
+            description: Payment status - performing, late 1 to 15 days, Defaulted
+            nullable: true
+            example: Performing
+          daysLate:
+            type: integer
+            description: Number od days late
+            format: int32
+            example: 0
+          collateral:
+            type: string
+            description: Is loan collaterialized? - Yes, No
+            nullable: true
+            example: 'Yes'
+          collateralType:
+            type: string
+            description: Collater Type - Real estate, Vehicle, Guarantor, Stock
+            nullable: true
+            example: Vehicle
+          insurance:
+            type: string
+            description: Is loan insured? - Yes, No
+            nullable: true
+            example: 'No'
+          totalPrincipalRemaining:
+            type: number
+            description: Unpaid Principal
+            format: double
+            example: 110233.625
+          numberOfUnpaidAnnuities:
+            type: integer
+            description: Number of annuities that have been not paid yet.
+            format: int32
+            example: 4
+          totalRepaidPrincipal:
+            type: number
+            description: Currently paid principal
+            format: double
+            example: 44766.375
+          totalRepaidInterest:
+            type: number
+            description: Currently paid interest
+            format: double
+            example: 11147.345
+          disbursementDate:
+            type: string
+            description: Date when the loan is paid to borrower
+            nullable: true
+            example: 20.06.2012
+          maturityDate:
+            type: string
+            description: Date of the last instalment
+            nullable: true
+            example: 26.06.2023
+          notes:
+            type: string
+            description: Description of the loan purpose
+            nullable: true
+            example: >-
+              Due to a worse year in 2018, liquidity has been weakened and certain
+              renewals in the company are needed.
+          link:
+            type: string
+            description: Web page where loan is desplayed in UI
+            nullable: true
+            example: https://crowd4cash.ch/loan-details/443
+        additionalProperties: false
+        description: A loan that was made on behalf of your partner
+      RentalLoanApplication:
+        required:
+          - contractFile
+          - contractFileExtension
+          - idBackExtension
+          - idBackPhoto
+          - idFrontExtension
+          - idFrontPhoto
+          - itemMarketValue
+          - itemName
+          - purchaseItem
+          - rentalAmount
+          - renteeEmail
+          - renteeFirstName
+          - renteeGender
+          - renteeLastName
+          - renteeMobilePhoneNumber
+          - selfieExtension
+          - selfiePhoto
+        type: object
+        properties:
+          apiRequester:
+            type: string
+            description: Name or E-mail of the user who makes the API call
+            nullable: true
+            example: Otto Schneider
+          renteeGender:
+            minLength: 1
+            type: string
+            description: Rentee gender acronym. M stands for male and F for female.
+            example: F
+          renteeFirstName:
+            minLength: 1
+            type: string
+            description: First name of the rentee
+            example: Emma
+          renteeLastName:
+            minLength: 1
+            type: string
+            description: Last name of the rentee
+            example: Müller
+          renteeBirthdate:
+            type: string
+            description: 'Birthdate of the rentee. Expected format: dd.MM.yyyy'
+            nullable: true
+            example: 23.09.1972
+          renteeEmail:
+            minLength: 1
+            type: string
+            description: E-mail address of the rentee
+            example: username@domainname.ch
+          renteeMobilePhoneNumber:
+            minLength: 1
+            type: string
+            description: Rentee mobile phone number - the last 8 digits only
+            example: '91100201'
+          renteeStreetAddress:
+            type: string
+            description: Street address of the rentee
+            nullable: true
+            example: Täfernstrasse
+          renteeHouseNumber:
+            type: string
+            description: House number of the rentee
+            nullable: true
+            example: '4'
+          renteeZipCode:
+            type: string
+            description: Zip code of the rentee
+            nullable: true
+            example: '5405'
+          renteeCity:
+            type: string
+            description: City of the rentee
+            nullable: true
+            example: Dättwil
+          purchaseItem:
+            minLength: 1
+            type: string
+            description: Description of the item you buy
+            example: Electric Scooter
+          itemStatus:
+            type: string
+            description: Status of the item
+            nullable: true
+            example: Rented
+          itemName:
+            minLength: 1
+            type: string
+            description: Name of the item
+            example: Vespino Go, 500W
+          itemType:
+            type: string
+            description: Type of the item e.g. Electric Scooter, E-Motorcycle etc.
+            nullable: true
+            example: Electric Scooter
+          itemBrand:
+            type: string
+            description: Brand of the item
+            nullable: true
+            example: Piaggio
+          itemModel:
+            type: string
+            description: Model of the item
+            nullable: true
+            example: Vespino Go
+          itemColor:
+            type: string
+            description: Color of the item
+            nullable: true
+            example: Green
+          itemMarketValue:
+            type: number
+            description: Market value of the item that is rented.
+            format: double
+            example: 10000
+          serialNumber:
+            type: string
+            description: Serial number (aka VIN or Chassis No.)
+            nullable: true
+            example: WBAVB12345KS12345
+          identificationNumber:
+            type: string
+            description: Identification number (aka Stammnummer)
+            nullable: true
+            example: 630.830.709
+          rentalAmount:
+            type: number
+            description: Rental amount per month
+            format: double
+            example: 500
+          rentDate:
+            type: string
+            description: 'The first date of the rental period. Expected format: dd.MM.yyyy'
+            nullable: true
+            example: 23.01.2023
+          idFrontPhoto:
+            minLength: 1
+            type: string
+            description: >-
+              Front Side of the Identity Document (National ID, Passport or
+              Permit). Please notice that you must first convert it to Base64 and
+              then send to our API.
+            example: /9j/4AAQSkZJRgABAQEASABIAAD/...
+          idFrontExtension:
+            minLength: 1
+            type: string
+            description: Front Side file extension.
+            example: jpg
+          idBackPhoto:
+            minLength: 1
+            type: string
+            description: >-
+              Back Side of the Identity Document (National ID, Passport or
+              Permit). Please notice that you must first convert it to Base64 and
+              then send to our API.
+            example: /9j/4AAQSkZJRgABAQEASABIAAD/...
+          idBackExtension:
+            minLength: 1
+            type: string
+            description: Back Side file extension.
+            example: jpg
+          selfiePhoto:
+            minLength: 1
+            type: string
+            description: >-
+              Selfie of the Rentee. Please notice that you must first convert it
+              to Base64 and then send to our API.
+            example: /9j/4AAQSkZJRgABAQEASABIAAD/...
+          selfieExtension:
+            minLength: 1
+            type: string
+            description: Selfie file extension.
+            example: jpg
+          contractFile:
+            minLength: 1
+            type: string
+            description: >-
+              Copy of the Contract. Please notice that you must first convert it
+              to Base64 and then send to our API.
+            example: JVBERi0xLjUKJeLjz9MKMyAwIG9...
+          contractFileExtension:
+            minLength: 1
+            type: string
+            description: Contract file extension.
+            example: pdf
+        additionalProperties: false
+        description: >-
+          A loan application that is submitted by the rental on behalf of their
+          rentee(s)
+      RentalReport:
+        type: object
+        properties:
+          rentalSummary:
+            $ref: '#/components/schemas/RentalSummary'
+        additionalProperties: false
+      RentalSummary:
+        type: object
+        properties:
+          rentalName:
+            type: string
+            description: Name of the rental company
+            nullable: true
+            example: Carify AG
+          numberOfRentees:
+            type: integer
+            description: Number of rentees
+            format: int32
+          numberOfLoans:
+            type: integer
+            description: Number of loan applications
+            format: int32
+          loansTotalAmount:
+            type: number
+            description: A sum of all partner loans
+            format: double
+          rentees:
+            type: array
+            items:
+              $ref: '#/components/schemas/Rentee'
+            description: List of your rentees
+            nullable: true
+          loans:
+            type: array
+            items:
+              $ref: '#/components/schemas/RentalLoan'
+            description: List of your partner loan(s)
+            nullable: true
+        additionalProperties: false
+        description: A rental company like Carify which rents user and new cars
+      Rentee:
+        type: object
+        properties:
+          renteeId:
+            type: integer
+            description: Id of the rentee
+            format: int32
+            example: 2342
+          gender:
+            type: string
+            description: Rentee gender acronym. M stands for male and F for female.
+            nullable: true
+            example: F
+          firstName:
+            type: string
+            description: First name of the rentee
+            nullable: true
+            example: Anna
+          lastName:
+            type: string
+            description: Last name of the rentee
+            nullable: true
+            example: Müller
+          birthdate:
+            type: string
+            description: Birthdate of the rentee
+            nullable: true
+          email:
+            type: string
+            description: E-mail address of the rentee
+            nullable: true
+          mobilePhone:
+            type: string
+            description: Mobile phone number of the rentee
+            nullable: true
+          streetAddress:
+            type: string
+            description: Street address of the garage/shop/store
+            nullable: true
+          houseNumber:
+            type: string
+            description: House number of the garage/shop/store
+            nullable: true
+          zipCode:
+            type: string
+            description: Zip code of the rentee
+            nullable: true
+          city:
+            type: string
+            description: City where the rentee resides
+            nullable: true
+          iban:
+            type: string
+            description: IBAN of the rentee
+            nullable: true
+        additionalProperties: false
+        description: rental location that is the borrower itself e.g. garage/shop/store
+      SchedulePayment:
+        type: object
+        properties:
+          annuityNumber:
+            type: integer
+            description: Number of the investor instalment
+            format: int32
+            example: 5320
+          annuityDate:
+            type: string
+            description: Instalment due date
+            nullable: true
+            example: 26.02.2021
+          annuityAmount:
+            type: number
+            description: An amount the investor receives each month
+            format: double
+            example: 235.78
+          principalPortion:
+            type: number
+            description: The principal part of the instalment
+            format: double
+            example: 200.57
+          interestPortion:
+            type: number
+            description: The interest part of the instalment
+            format: double
+            example: 35.21
+          insuranceFee:
+            type: number
+            description: The insurance fee amount
+            format: double
+            example: 2.52
+          administrativeFee:
+            type: number
+            description: The administrative fee amount
+            format: double
+            example: 1.2
+          commissionPortion:
+            type: number
+            description: Monthly commission that investor pays
+            format: double
+            example: 3.79
+          netIncome:
+            type: number
+            description: >-
+              Monthly net income of the investor (monthly interest - monthly
+              commission)
+            format: double
+            example: 31.45
+          principalBalance:
+            type: number
+            description: The amount of principal on the loan
+            format: double
+            example: 6500
+          annuityStatus:
+            type: string
+            description: The status of the instalment
+            nullable: true
+            example: paid, unpaid, late
+          isPaid:
+            type: string
+            description: Is instalment is paid?
+            nullable: true
+            example: Yes, No
+          datePaid:
+            type: string
+            description: A date when the instalment is paid.
+            nullable: true
+            example: 01.03.2021
+          note:
+            type: string
+            description: Some explanation of the instalment
+            nullable: true
+            example: The customer pays regularly, but is two instalments behind schedule.
+        additionalProperties: false
+        description: Information regarding each monthly payment
+      Status:
+        enum:
+          - All
+          - Funded
+          - Active
+          - Closed
+          - Defaulted
+        type: string
+        description: Loan status
+      TechnicalData:
+        type: object
+        properties:
+          ipAddress:
+            type: string
+            description: Client Ip address
+            nullable: true
+            example: 212.60.48.254
+          userAgent:
+            type: string
+            description: >-
+              Gets the raw user agent string of the client browser that has been
+              provided.
+            nullable: true
+            example: >-
+              Mozilla/5.0 (Windows NT 10.0; Win64; x64), AppleWebKit/537.36
+              (KHTML, like Gecko), Chrome/64.0.3282.140, Safari/537.36,
+              Edge/18.17763
+          urlReferrer:
+            type: string
+            description: URL of the client's previous request that linked to our website
+            nullable: true
+            example: www.google.ch, www.bing.com, www.crowd4cash.ch/login
+          browserType:
+            type: string
+            description: Client browser
+            nullable: true
+            example: Chrome75
+          browserName:
+            type: string
+            description: Name of the browser
+            nullable: true
+            example: Chrome
+          browserVersion:
+            type: string
+            description: Version of the browser
+            nullable: true
+            example: '75'
+          platform:
+            type: string
+            description: Operating System
+            nullable: true
+            example: WinNT
+          isBeta:
+            type: string
+            description: Does borrower use a beta version of the browser?
+            nullable: true
+            example: Yes, No
+          isMobileDevice:
+            type: string
+            description: Does client connect by mobile device?
+            nullable: true
+            example: Yes, No
+          mobileDeviceManufacturer:
+            type: string
+            description: Manufacturer of the mobile device
+            nullable: true
+            example: Samsug, Apple, Huawei, unknown
+          mobileDeviceModel:
+            type: string
+            description: Model of the mobile device
+            nullable: true
+            example: S10
+          isDoNotTrackEnabled:
+            type: string
+            description: Is the "Do Not Track" setting in their web browser enabled?
+            nullable: true
+            example: Yes, No
+          emailHost:
+            type: string
+            description: Host of the client email
+            nullable: true
+            example: Yahoo, Gmail, Other
+          isNameInEmail:
+            type: string
+            description: Is name of the client a part of the email?
+            nullable: true
+            example: Yes, No
+          isNameOrAddressLowercased:
+            type: string
+            description: Is the name or the address lowercased?
+            nullable: true
+            example: Yes, No
+          channel:
+            type: string
+            description: How they found us?
+            nullable: true
+            example: Direct, Organic, Other, Can not be tracked
+        additionalProperties: false
+        description: Technical data related to the client's use of the website
+      Token:
+        type: object
+        properties:
+          value:
+            type: string
+            description: C4C Token
+            nullable: true
+            example: '{token}'
+          expiryDate:
+            type: string
+            description: By when you can use the token
+            format: date-time
+        additionalProperties: false
+      Transacions:
+        type: object
+        properties:
+          transactionId:
+            type: string
+            description: Id of the transaction
+            nullable: true
+            example: '12567'
+          transactionDate:
+            type: string
+            description: Date when the transaction is made
+            nullable: true
+            example: 12.03.2021
+          transactionType:
+            type: string
+            description: Type of the transaction - deposit, interest, withdrawal, etc.
+            nullable: true
+            example: Investment
+          loanId:
+            type: integer
+            description: Loan Id
+            format: int32
+            example: 430
+          amount:
+            type: number
+            description: Amount of the transaction
+            format: double
+            example: 800
+          currency:
+            type: string
+            description: Currency
+            nullable: true
+            example: CHF
+          remarks:
+            type: string
+            description: Description of the transaction
+            nullable: true
+            example: Investment in Loan Id 430
+        additionalProperties: false
+      YN:
+        enum:
+          - 'No'
+          - 'Yes'
+        type: string
+        description: Enumeration type for Yes and No
+    securitySchemes:
+      Bearer:
+        type: apiKey
+        description: >-
+          Standard Authorization header using the Bearer scheme. Example: "Bearer
+          {token}"
+        name: Authorization
+        in: header
+  servers:
+    - url: https://api2.crowd4cash.ch/
+konfigCliVersion: 1.38.30

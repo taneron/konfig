@@ -1,0 +1,81 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignoreObjectsWithNoProperties: true
+ignorePotentialIncorrectType: true
+operationIds:
+  /Authenticate:
+    post: Authentication_getToken
+  /Bid:
+    post: Bidding_placeBid
+  /Bids:
+    post: Bidding_submitBids
+  /Connector:
+    get: Reports_getConnectorInvestments
+  /Contracts:
+    get: Contracts_getAll
+  /Contracts/RentalLoan/{loanId}:
+    get: Contracts_getLoanContract
+  /Contracts/{loanId}:
+    get: Contracts_getSpecific
+  /Contracts/{partnerId}/{loanId}:
+    get: Contracts_getSpecificIntermediaryLoanContract
+  /CustomPortfolio:
+    get: Portfolio_getCustomizedPortfolio
+  /Intermediary:
+    get: Reports_getIntermediaryData
+  /IntermediaryLoan:
+    post: Application_submitPartnerLoanApplication
+    put: Application_setDefinitiveHandoverDate
+  /Loan:
+    post: Application_submitLoanApplication
+  /Loans:
+    get: Loans_getLoanData
+  /Opportunities:
+    get: Opportunities_getAvailableInvestments
+  /Portfolio:
+    get: Portfolio_getInvestments
+  /Rental:
+    get: Reports_rentalAccountSummary
+  /RentalLoan:
+    post: Application_submitRentalLoanApplication
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /Bids:
+    post:
+      application/json: BiddingSubmitBidsRequest
+responseDescriptions: {}
+responseSchemaNames: {}
+securityParameters:
+  AvailableAmount:
+    query: false
+  BorrowerAge:
+    query: false
+  BorrowerNationality:
+    query: false
+  Collateral:
+    query: false
+  Duration:
+    query: false
+  Insurance:
+    query: false
+  InterestRate:
+    query: false
+  LoanAmount:
+    query: false
+  LoanType:
+    query: false
+  PageNumber:
+    query: false
+  PageSize:
+    query: false
+  Rating:
+    query: false
+  from:
+    query: false
+  loanstatus:
+    query: false
+  to:
+    query: false
+validServerUrls: {}

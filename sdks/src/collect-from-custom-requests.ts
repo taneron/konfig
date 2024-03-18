@@ -829,6 +829,11 @@ const customRequests: Record<string, CustomRequest> = {
     type: "GET",
     url: "https://raw.githubusercontent.com/crowdsecurity/crowdsec/master/pkg/models/localapi_swagger.yaml",
   },
+  "crowd4cash.ch": {
+    type: "GET",
+    url: "https://api2.crowd4cash.ch/swagger/v2/swagger.json",
+    apiBaseUrl: "https://api2.crowd4cash.ch/",
+  },     
 };
 
 async function downloadOpenApiSpecFromMintlify({
