@@ -1,0 +1,1140 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Swagger CrowdSec
+  description: CrowdSec local API
+  contact:
+    email: contact@crowdsec.net
+paths:
+  /decisions/stream:
+    get:
+      description: >-
+        Returns a list of new/expired decisions. Intended for bouncers that need
+        to "stream" decisions
+      summary: getDecisionsStream
+      tags:
+        - bouncers
+      operationId: getDecisionsStream
+      deprecated: false
+      parameters:
+        - name: startup
+          in: query
+          required: false
+          description: >-
+            If true, means that the bouncers is starting and a full list must be
+            provided
+          schema:
+            type: boolean
+        - name: scopes
+          in: query
+          required: false
+          description: Comma separated scopes of decisions to fetch
+          schema:
+            type: string
+        - name: origins
+          in: query
+          required: false
+          description: >-
+            Comma separated name of origins. If provided, then only the
+            decisions originating from provided origins would be returned.
+          schema:
+            type: string
+        - name: scenarios_containing
+          in: query
+          required: false
+          description: >-
+            Comma separated words. If provided, only the decisions created by
+            scenarios containing any of the provided word would be returned.
+          schema:
+            type: string
+        - name: scenarios_not_containing
+          in: query
+          required: false
+          description: >-
+            Comma separated words. If provided, only the decisions created by
+            scenarios, not containing any of the provided word would be
+            returned.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DecisionsStreamResponse'
+        '400':
+          description: 400 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+        - APIKeyAuthorizer: []
+    head:
+      description: >-
+        Returns a list of new/expired decisions. Intended for bouncers that need
+        to "stream" decisions
+      summary: GetDecisionsStream
+      tags:
+        - bouncers
+      operationId: headDecisionsStream
+      deprecated: false
+      parameters:
+        - name: startup
+          in: query
+          required: false
+          description: >-
+            If true, means that the bouncer is starting and a full list must be
+            provided
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: successful operation
+          headers: {}
+        '400':
+          description: 400 response
+      security:
+        - APIKeyAuthorizer: []
+  /decisions:
+    get:
+      description: Returns information about existing decisions
+      summary: getDecisions
+      tags:
+        - bouncers
+      operationId: getDecisions
+      deprecated: false
+      parameters:
+        - name: scope
+          in: query
+          required: false
+          description: >-
+            scope to which the decision applies (ie.
+            IP/Range/Username/Session/...)
+          schema:
+            type: string
+        - name: value
+          in: query
+          required: false
+          description: the value to match for in the specified scope
+          schema:
+            type: string
+        - name: type
+          in: query
+          required: false
+          description: type of decision
+          schema:
+            type: string
+        - name: ip
+          in: query
+          required: false
+          description: IP to search for (shorthand for scope=ip&value=)
+          schema:
+            type: string
+        - name: range
+          in: query
+          required: false
+          description: range to search for (shorthand for scope=range&value=)
+          schema:
+            type: string
+        - name: contains
+          in: query
+          required: false
+          description: >-
+            indicate if you're looking for a decision that contains the value,
+            or that is contained within the value
+          schema:
+            type: boolean
+        - name: origins
+          in: query
+          required: false
+          description: >-
+            Comma separated name of origins. If provided, then only the
+            decisions originating from provided origins would be returned.
+          schema:
+            type: string
+        - name: scenarios_containing
+          in: query
+          required: false
+          description: >-
+            Comma separated words. If provided, only the decisions created by
+            scenarios containing any of the provided word would be returned.
+          schema:
+            type: string
+        - name: scenarios_not_containing
+          in: query
+          required: false
+          description: >-
+            Comma separated words. If provided, only the decisions created by
+            scenarios, not containing any of the provided word would be
+            returned.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetDecisionsResponse'
+        '400':
+          description: 400 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    head:
+      description: Returns information about existing decisions
+      summary: GetDecisions
+      tags:
+        - bouncers
+      operationId: headDecisions
+      deprecated: false
+      parameters:
+        - name: scope
+          in: query
+          required: false
+          description: >-
+            scope to which the decision applies (ie.
+            IP/Range/Username/Session/...)
+          schema:
+            type: string
+        - name: value
+          in: query
+          required: false
+          description: the value to match for in the specified scope
+          schema:
+            type: string
+        - name: type
+          in: query
+          required: false
+          description: type of decision
+          schema:
+            type: string
+        - name: ip
+          in: query
+          required: false
+          description: IP to search for (shorthand for scope=ip&value=)
+          schema:
+            type: string
+        - name: range
+          in: query
+          required: false
+          description: range to search for (shorthand for scope=range&value=)
+          schema:
+            type: string
+        - name: contains
+          in: query
+          required: false
+          description: >-
+            indicate if you're looking for a decision that contains the value,
+            or that is contained within the value
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: successful operation
+        '400':
+          description: 400 response
+      security:
+        - APIKeyAuthorizer: []
+    delete:
+      description: Delete decisions(s) for given filters (only from cscli)
+      summary: deleteDecisions
+      tags:
+        - watchers
+      operationId: deleteDecisions
+      deprecated: false
+      parameters:
+        - name: scope
+          in: query
+          required: false
+          description: >-
+            scope to which the decision applies (ie.
+            IP/Range/Username/Session/...)
+          schema:
+            type: string
+        - name: value
+          in: query
+          required: false
+          description: the value to match for in the specified scope
+          schema:
+            type: string
+        - name: type
+          in: query
+          required: false
+          description: type of decision
+          schema:
+            type: string
+        - name: ip
+          in: query
+          required: false
+          description: IP to search for (shorthand for scope=ip&value=)
+          schema:
+            type: string
+        - name: range
+          in: query
+          required: false
+          description: range to search for (shorthand for scope=range&value=)
+          schema:
+            type: string
+        - name: scenario
+          in: query
+          required: false
+          description: scenario to search
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteDecisionResponse'
+        '400':
+          description: 400 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+        - JWTAuthorizer: []
+  /decisions/{decision_id}:
+    delete:
+      description: Delete decision for given decision ID (only from cscli)
+      summary: DeleteDecision
+      tags:
+        - watchers
+      operationId: DeleteDecision
+      deprecated: false
+      parameters:
+        - name: decision_id
+          in: path
+          required: true
+          description: ''
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteDecisionResponse'
+        '404':
+          description: 404 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+        - JWTAuthorizer: []
+  /watchers:
+    post:
+      description: This method is used when installing crowdsec (cscli->APIL)
+      summary: RegisterWatcher
+      tags:
+        - watchers
+      operationId: RegisterWatcher
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WatcherRegistrationRequest'
+        description: Information about the watcher to be registered
+        required: true
+      responses:
+        '201':
+          description: Watcher Created
+          headers: {}
+        '400':
+          description: 400 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /watchers/login:
+    post:
+      description: Authenticate current to get session ID
+      summary: AuthenticateWatcher
+      tags:
+        - watchers
+      operationId: AuthenticateWatcher
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WatcherAuthRequest'
+        description: Information about the watcher to be reset
+        required: true
+      responses:
+        '200':
+          description: Login successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WatcherAuthResponse'
+        '403':
+          description: 403 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /alerts:
+    post:
+      description: Push alerts to API
+      summary: pushAlerts
+      tags:
+        - watchers
+      operationId: pushAlerts
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddAlertsRequest'
+        description: Push alerts to the API
+        required: true
+      responses:
+        '201':
+          description: Alert(s) created
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddAlertsResponse'
+        '400':
+          description: 400 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+        - JWTAuthorizer: []
+    get:
+      description: Allows to search for alerts
+      summary: searchAlerts
+      tags:
+        - watchers
+      operationId: searchAlerts
+      deprecated: false
+      parameters:
+        - name: scope
+          in: query
+          required: false
+          description: show alerts for this scope
+          schema:
+            type: string
+        - name: value
+          in: query
+          required: false
+          description: show alerts for this value (used with scope)
+          schema:
+            type: string
+        - name: scenario
+          in: query
+          required: false
+          description: show alerts for this scenario
+          schema:
+            type: string
+        - name: ip
+          in: query
+          required: false
+          description: IP to search for (shorthand for scope=ip&value=)
+          schema:
+            type: string
+        - name: range
+          in: query
+          required: false
+          description: range to search for (shorthand for scope=range&value=)
+          schema:
+            type: string
+        - name: since
+          in: query
+          required: false
+          description: >-
+            search alerts newer than delay (format must be compatible with
+            time.ParseDuration)
+          schema:
+            type: string
+            format: date-time
+        - name: until
+          in: query
+          description: >-
+            search alerts older than delay (format must be compatible with
+            time.ParseDuration)
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: simulated
+          in: query
+          required: false
+          description: >-
+            if set to true, decisions in simulation mode will be returned as
+            well
+          schema:
+            type: boolean
+        - name: has_active_decision
+          in: query
+          required: false
+          description: only return alerts with decisions not expired yet
+          schema:
+            type: boolean
+        - name: decision_type
+          in: query
+          required: false
+          description: restrict results to alerts with decisions matching given type
+          schema:
+            type: string
+        - name: limit
+          in: query
+          required: false
+          description: number of alerts to return
+          schema:
+            type: number
+        - name: origin
+          in: query
+          required: false
+          description: restrict results to this origin (ie. lists,CAPI,cscli)
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetAlertsResponse'
+        '400':
+          description: 400 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+        - JWTAuthorizer: []
+    head:
+      description: Allows to search for alerts
+      summary: searchAlerts
+      tags:
+        - watchers
+      operationId: headAlerts
+      deprecated: false
+      parameters:
+        - name: scope
+          in: query
+          required: false
+          description: show alerts for this scope
+          schema:
+            type: string
+        - name: value
+          in: query
+          required: false
+          description: show alerts for this value (used with scope)
+          schema:
+            type: string
+        - name: scenario
+          in: query
+          required: false
+          description: show alerts for this scenario
+          schema:
+            type: string
+        - name: ip
+          in: query
+          required: false
+          description: IP to search for (shorthand for scope=ip&value=)
+          schema:
+            type: string
+        - name: range
+          in: query
+          required: false
+          description: range to search for (shorthand for scope=range&value=)
+          schema:
+            type: string
+        - name: since
+          in: query
+          required: false
+          description: >-
+            search alerts newer than delay (format must be compatible with
+            time.ParseDuration)
+          schema:
+            type: string
+            format: date-time
+        - name: until
+          in: query
+          description: >-
+            search alerts older than delay (format must be compatible with
+            time.ParseDuration)
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: simulated
+          in: query
+          required: false
+          description: >-
+            if set to true, decisions in simulation mode will be returned as
+            well
+          schema:
+            type: boolean
+        - name: has_active_decision
+          in: query
+          required: false
+          description: only return alerts with decisions not expired yet
+          schema:
+            type: boolean
+        - name: decision_type
+          in: query
+          required: false
+          description: restrict results to alerts with decisions matching given type
+          schema:
+            type: string
+        - name: limit
+          in: query
+          required: false
+          description: number of alerts to return
+          schema:
+            type: number
+        - name: origin
+          in: query
+          required: false
+          description: restrict results to this origin (ie. lists,CAPI,cscli)
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          headers: {}
+        '400':
+          description: 400 response
+      security:
+        - JWTAuthorizer: []
+    delete:
+      description: Allows to delete alerts
+      summary: deleteAlerts
+      tags:
+        - watchers
+      operationId: deleteAlerts
+      deprecated: false
+      parameters:
+        - name: scope
+          in: query
+          required: false
+          description: delete alerts for this scope
+          schema:
+            type: string
+        - name: value
+          in: query
+          required: false
+          description: delete alerts for this value (used with scope)
+          schema:
+            type: string
+        - name: scenario
+          in: query
+          required: false
+          description: delete alerts for this scenario
+          schema:
+            type: string
+        - name: ip
+          in: query
+          required: false
+          description: delete Alerts with IP (shorthand for scope=ip&value=)
+          schema:
+            type: string
+        - name: range
+          in: query
+          required: false
+          description: delete alerts concerned by range (shorthand for scope=range&value=)
+          schema:
+            type: string
+        - name: since
+          in: query
+          required: false
+          description: delete alerts added after YYYY-mm-DD-HH:MM:SS
+          schema:
+            type: string
+            format: date-time
+        - name: until
+          in: query
+          required: false
+          description: delete alerts added before YYYY-mm-DD-HH:MM:SS
+          schema:
+            type: string
+            format: date-time
+        - name: has_active_decision
+          in: query
+          required: false
+          description: delete only alerts with decisions not expired yet
+          schema:
+            type: boolean
+        - name: alert_source
+          in: query
+          required: false
+          description: delete only alerts with matching source (ie. cscli/crowdsec)
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteAlertsResponse'
+        '400':
+          description: 400 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+        - JWTAuthorizer: []
+  /alerts/{alert_id}:
+    get:
+      description: Get alert by ID
+      summary: GetAlertByID
+      tags:
+        - watchers
+      operationId: GetAlertbyID
+      deprecated: false
+      parameters:
+        - name: alert_id
+          in: path
+          required: true
+          description: ''
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Alert'
+        '400':
+          description: 400 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+        - JWTAuthorizer: []
+    head:
+      description: Get alert by ID
+      summary: GetAlertByID
+      tags:
+        - watchers
+      operationId: HeadAlertbyID
+      deprecated: false
+      parameters:
+        - name: alert_id
+          in: path
+          required: true
+          description: ''
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          headers: {}
+        '400':
+          description: 400 response
+      security:
+        - JWTAuthorizer: []
+    delete:
+      description: Delete alert for given alert ID (only from cscli)
+      summary: DeleteAlert
+      tags:
+        - watchers
+      operationId: DeleteAlert
+      deprecated: false
+      parameters:
+        - name: alert_id
+          in: path
+          required: true
+          description: ''
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteAlertsResponse'
+        '404':
+          description: 404 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+        - JWTAuthorizer: []
+tags:
+  - name: bouncers
+    description: 'Operations about decisions : bans, captcha, rate-limit etc.'
+  - name: watchers
+    description: 'Operations about watchers : cscli & crowdsec'
+externalDocs:
+  url: https://github.com/crowdsecurity/crowdsec
+  description: Find out more about CrowdSec
+servers:
+  - url: https://127.0.0.1/v1
+  - url: http://127.0.0.1/v1
+components:
+  securitySchemes:
+    JWTAuthorizer:
+      type: apiKey
+      name: 'Authorization: Bearer'
+      in: header
+    APIKeyAuthorizer:
+      type: apiKey
+      name: X-Api-Key
+      in: header
+  schemas:
+    WatcherRegistrationRequest:
+      title: WatcherRegistrationRequest
+      type: object
+      properties:
+        machine_id:
+          type: string
+        password:
+          type: string
+          format: password
+      required:
+        - machine_id
+        - password
+    WatcherAuthRequest:
+      title: WatcherAuthRequest
+      type: object
+      properties:
+        machine_id:
+          type: string
+        password:
+          type: string
+          format: password
+        scenarios:
+          description: the list of scenarios enabled on the watcher
+          type: array
+          items:
+            type: string
+      required:
+        - machine_id
+        - password
+    WatcherAuthResponse:
+      title: WatcherAuthResponse
+      description: the response of a successful authentication
+      type: object
+      properties:
+        code:
+          type: integer
+        expire:
+          type: string
+        token:
+          type: string
+    Alert:
+      title: Alert
+      type: object
+      properties:
+        id:
+          description: only relevant for GET, ignored in POST requests
+          type: integer
+          readOnly: true
+        uuid:
+          description: >-
+            only relevant for LAPI->CAPI, ignored for cscli->LAPI and
+            crowdsec->LAPI
+          type: string
+          readOnly: true
+        machine_id:
+          description: >-
+            only relevant for LAPI->CAPI, ignored for cscli->LAPI and
+            crowdsec->LAPI
+          type: string
+          readOnly: true
+        created_at:
+          description: only relevant for GET, ignored in POST requests
+          type: string
+          readOnly: true
+        scenario:
+          type: string
+        scenario_hash:
+          type: string
+        scenario_version:
+          type: string
+        message:
+          description: a human readable message
+          type: string
+        events_count:
+          type: integer
+          format: int32
+        start_at:
+          type: string
+        stop_at:
+          type: string
+        capacity:
+          type: integer
+          format: int32
+        leakspeed:
+          type: string
+        simulated:
+          type: boolean
+        events:
+          description: the Meta of the events leading to overflow
+          type: array
+          items:
+            $ref: '#/components/schemas/Event'
+        remediation:
+          type: boolean
+        decisions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Decision'
+        source:
+          $ref: '#/components/schemas/Source'
+        meta:
+          $ref: '#/components/schemas/Meta'
+        labels:
+          type: array
+          items:
+            type: string
+      required:
+        - scenario
+        - scenario_hash
+        - scenario_version
+        - message
+        - events_count
+        - start_at
+        - stop_at
+        - capacity
+        - leakspeed
+        - simulated
+        - events
+        - source
+    Source:
+      title: Source
+      type: object
+      properties:
+        scope:
+          description: 'the scope of a source : ip,range,username,etc'
+          type: string
+        value:
+          description: 'the value of a source : the ip, the range, the username,etc'
+          type: string
+        ip:
+          description: provided as a convenience when the source is an IP
+          type: string
+        range:
+          description: provided as a convenience when the source is an IP
+          type: string
+        as_number:
+          description: provided as a convenience when the source is an IP
+          type: string
+        as_name:
+          description: provided as a convenience when the source is an IP
+          type: string
+        cn:
+          type: string
+        latitude:
+          type: number
+          format: float
+        longitude:
+          type: number
+          format: float
+      required:
+        - scope
+        - value
+    Metrics:
+      title: Metrics
+      type: object
+      properties:
+        apil_version:
+          description: the local version of crowdsec/apil
+          type: string
+        bouncers:
+          type: array
+          items:
+            $ref: '#/components/schemas/MetricsBouncerInfo'
+        machines:
+          type: array
+          items:
+            $ref: '#/components/schemas/MetricsAgentInfo'
+      required:
+        - apil_version
+        - bouncers
+        - machines
+    MetricsBouncerInfo:
+      title: MetricsBouncerInfo
+      description: >-
+        Software version info (so we can warn users about out-of-date software).
+        The software name and the version are "guessed" from the user-agent
+      type: object
+      properties:
+        custom_name:
+          type: string
+          description: name of the component
+        name:
+          type: string
+          description: bouncer type (firewall, php ...)
+        version:
+          type: string
+          description: software version
+        last_pull:
+          type: string
+          description: last bouncer pull date
+    MetricsAgentInfo:
+      title: MetricsAgentInfo
+      description: >-
+        Software version info (so we can warn users about out-of-date software).
+        The software name and the version are "guessed" from the user-agent
+      type: object
+      properties:
+        name:
+          type: string
+          description: name of the component
+        version:
+          type: string
+          description: software version
+        last_update:
+          type: string
+          description: last agent update date
+        last_push:
+          type: string
+          description: last agent push date
+    Decision:
+      title: Decision
+      type: object
+      properties:
+        id:
+          description: (only relevant for GET ops) the unique id
+          type: integer
+          readOnly: true
+        uuid:
+          description: >-
+            only relevant for LAPI->CAPI, ignored for cscli->LAPI and
+            crowdsec->LAPI
+          type: string
+          readOnly: true
+        origin:
+          description: 'the origin of the decision : cscli, crowdsec'
+          type: string
+        type:
+          description: >-
+            the type of decision, might be 'ban', 'captcha' or something custom.
+            Ignored when watcher (cscli/crowdsec) is pushing to APIL.
+          type: string
+        scope:
+          description: >-
+            the scope of decision : does it apply to an IP, a range, a username,
+            etc
+          type: string
+        value:
+          description: 'the value of the decision scope : an IP, a range, a username, etc'
+          type: string
+        duration:
+          description: the duration of the decisions
+          type: string
+        until:
+          type: string
+          description: the date until the decisions must be active
+        scenario:
+          type: string
+        simulated:
+          type: boolean
+          description: true if the decision result from a scenario in simulation mode
+          readOnly: true
+      required:
+        - origin
+        - type
+        - scope
+        - value
+        - duration
+        - scenario
+    DeleteDecisionResponse:
+      title: DeleteDecisionResponse
+      type: object
+      properties:
+        nbDeleted:
+          type: string
+          description: number of deleted decisions
+    AddAlertsRequest:
+      title: AddAlertsRequest
+      type: array
+      items:
+        $ref: '#/components/schemas/Alert'
+    AddAlertsResponse:
+      title: AddAlertsResponse
+      type: array
+      items:
+        type: string
+        description: alert_id
+    GetAlertsResponse:
+      title: AlertsResponse
+      type: array
+      items:
+        $ref: '#/components/schemas/Alert'
+    DeleteAlertsResponse:
+      title: DeleteAlertsResponse
+      type: object
+      properties:
+        nbDeleted:
+          type: string
+          description: number of deleted alerts
+    DecisionsStreamResponse:
+      title: DecisionsStreamResponse
+      type: object
+      properties:
+        new:
+          $ref: '#/components/schemas/GetDecisionsResponse'
+        deleted:
+          $ref: '#/components/schemas/GetDecisionsResponse'
+    Event:
+      title: Event
+      type: object
+      properties:
+        timestamp:
+          type: string
+        meta:
+          $ref: '#/components/schemas/Meta'
+      required:
+        - timestamp
+        - meta
+    GetDecisionsResponse:
+      title: GetDecisionsResponse
+      type: array
+      items:
+        $ref: '#/components/schemas/Decision'
+    Meta:
+      title: Meta
+      description: the Meta data of the Alert itself
+      type: array
+      items:
+        type: object
+        properties:
+          key:
+            type: string
+          value:
+            type: string
+    ErrorResponse:
+      type: object
+      required:
+        - message
+      properties:
+        message:
+          type: string
+          description: Error message
+        errors:
+          type: string
+          description: more detail on individual errors
+      title: error response
+      description: error response return by the API

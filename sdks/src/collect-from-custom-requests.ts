@@ -825,6 +825,10 @@ const customRequests: Record<string, CustomRequest> = {
       return downloadOpenApiSpecFromMintlify({ urls });
     },
   },
+  "crowdsec.net": {
+    type: "GET",
+    url: "https://raw.githubusercontent.com/crowdsecurity/crowdsec/master/pkg/models/localapi_swagger.yaml",
+  },
 };
 
 async function downloadOpenApiSpecFromMintlify({
