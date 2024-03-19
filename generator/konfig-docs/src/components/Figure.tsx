@@ -6,7 +6,7 @@ export function Figure({
 }: PropsWithChildren<{ caption: ReactNode }>) {
   const child = getChildImage(children);
   return (
-    <figure className="flex flex-col items-center">
+    <figure className="flex flex-col items-center mb-4">
       {/* w-full is to ensure putting a code block inside figure doesn't overflow off the page */}
       {/* flex flex-col items-center is to center the inner div */}
       {
