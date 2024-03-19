@@ -19,7 +19,7 @@ export default function DigitalOceanTypeScriptSdk() {
       companyKebabCase="digital-ocean"
       clientNameCamelCase="digitalOcean"
       homepage="digitalocean.com"
-      lastUpdated={new Date("2024-03-14T08:10:33.678Z")}
+      lastUpdated={new Date("2024-03-19T00:01:13.595Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/digitalocean/favicon.png"
       // Missing contactUrl
       contactEmail="api-engineering@digitalocean.com"
@@ -5102,6 +5102,78 @@ export default function DigitalOceanTypeScriptSdk() {
       },
       {
         "statusCode": "404",
+        "description": ""
+      },
+      {
+        "statusCode": "429",
+        "description": ""
+      },
+      {
+        "statusCode": "500",
+        "description": ""
+      },
+      {
+        "statusCode": "default",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "url": "/v2/databases/metrics/credentials",
+    "method": "getClustersMetricsCredentials",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "Databases",
+    "typeScriptTag": "databases",
+    "description": "Retrieve Database Clusters' Metrics Endpoint Credentials",
+    "parameters": [],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "401",
+        "description": ""
+      },
+      {
+        "statusCode": "404",
+        "description": ""
+      },
+      {
+        "statusCode": "429",
+        "description": ""
+      },
+      {
+        "statusCode": "500",
+        "description": ""
+      },
+      {
+        "statusCode": "default",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "url": "/v2/databases/metrics/credentials",
+    "method": "updateMetricsCredentials",
+    "httpMethod": HttpMethodsEnum.PUT,
+    "tag": "Databases",
+    "typeScriptTag": "databases",
+    "description": "Update Database Clusters' Metrics Endpoint Credentials",
+    "parameters": [
+      {
+        "name": "credentials",
+        "schema": "object",
+        "description": ""
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "204",
+        "description": ""
+      },
+      {
+        "statusCode": "401",
         "description": ""
       },
       {
@@ -15491,9 +15563,9 @@ export default function DigitalOceanTypeScriptSdk() {
       apiTitle="DigitalOcean API"
       apiBaseUrl="https://api.digitalocean.com"
       apiVersion="2.0"
-      endpoints={189}
-      sdkMethods={300}
-      schemas={486}
+      endpoints={190}
+      sdkMethods={302}
+      schemas={490}
       parameters={617}
       difficulty="Very Hard"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/digitalocean/openapi.yaml"

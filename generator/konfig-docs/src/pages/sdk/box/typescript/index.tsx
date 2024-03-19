@@ -19,7 +19,7 @@ export default function BoxTypeScriptSdk() {
       companyKebabCase="box"
       clientNameCamelCase="box"
       homepage="box.com"
-      lastUpdated={new Date("2024-03-17T23:48:01.149Z")}
+      lastUpdated={new Date("2024-03-19T00:01:13.595Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/box/favicon.png"
       contactUrl="https://box.dev"
       contactEmail="devrel@box.com"
@@ -12565,105 +12565,6 @@ export default function BoxTypeScriptSdk() {
         "description": "A generic error"
       }
     ]
-  },
-  {
-    "url": "/file_activities",
-    "method": "listByFileId",
-    "httpMethod": HttpMethodsEnum.GET,
-    "tag": "File activities",
-    "typeScriptTag": "fileActivities",
-    "description": "List file activities",
-    "parameters": [
-      {
-        "name": "fileId",
-        "schema": "string",
-        "required": true,
-        "description": "File ID for which to retrieve activity",
-        "example": "888578620991"
-      },
-      {
-        "name": "activityTypes",
-        "schema": "array",
-        "description": "Comma-separated list of activity types to return. This field is ignored if marker is passed in. Defaults to all activity types.",
-        "example": "comment,task,annotation,versions,app_activity"
-      },
-      {
-        "name": "commentFields",
-        "schema": "array",
-        "description": "fields that are required for comments",
-        "example": "tagged_message,message,created_at,created_by,modified_at,permissions"
-      },
-      {
-        "name": "versionsFields",
-        "schema": "array",
-        "description": "fields that are required for versions",
-        "example": "created_by,end,start,type"
-      },
-      {
-        "name": "annotationFields",
-        "schema": "array",
-        "description": "fields that are required for annotations",
-        "example": "file_version,description,created_at,created_by,modified_at,permissions,target,status"
-      },
-      {
-        "name": "taskFields",
-        "schema": "array",
-        "description": "fields that are required for tasks",
-        "example": "description,created_at,created_by,modified_at,permissions,completion_rule,status"
-      },
-      {
-        "name": "appActivityFields",
-        "schema": "array",
-        "description": "fields that are required for `app_activity`",
-        "example": "rendered_text,occurred_at,created_by,activity_template,app"
-      },
-      {
-        "name": "replyLimit",
-        "schema": "string",
-        "description": "maximum number of replies the response should contain per each top level activity[annotation, comment]",
-        "example": 1
-      },
-      {
-        "name": "status",
-        "schema": "string",
-        "description": "Used to filter an annotation or a comment based on the status",
-        "example": "open"
-      },
-      {
-        "name": "enableReplies",
-        "schema": "boolean",
-        "description": "Whether or not replies should be returned",
-        "example": true
-      },
-      {
-        "name": "limit",
-        "schema": "integer",
-        "required": false,
-        "description": "The maximum number of items to return per page.",
-        "example": 1000
-      },
-      {
-        "name": "marker",
-        "schema": "string",
-        "required": false,
-        "description": "Defines the position marker at which to begin returning results. This is\nused when paginating using marker-based pagination.\n\nThis requires `usemarker` to be set to `true`.",
-        "example": "JV9IRGZmieiBasejOG9yDCRNgd2ymoZIbjsxbJMjIs3kioVii"
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": "A list of file activities"
-      },
-      {
-        "statusCode": "404",
-        "description": "A generic error"
-      },
-      {
-        "statusCode": "default",
-        "description": "A generic error"
-      }
-    ]
   }
 ]
     }
@@ -12671,10 +12572,10 @@ export default function BoxTypeScriptSdk() {
       apiTitle="Box Platform API"
       apiBaseUrl="https://api.box.com/2.0"
       apiVersion="2.0.0"
-      endpoints={164}
-      sdkMethods={264}
-      schemas={332}
-      parameters={804}
+      endpoints={163}
+      sdkMethods={263}
+      schemas={301}
+      parameters={792}
       difficulty="Very Hard"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/box/openapi.yaml"
       openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/box/openapi.yaml"

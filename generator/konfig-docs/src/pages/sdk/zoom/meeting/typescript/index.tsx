@@ -19,7 +19,7 @@ export default function ZoomMeetingTypeScriptSdk() {
       companyKebabCase="zoom"
       clientNameCamelCase="zoomMeeting"
       homepage="zoom.us/"
-      lastUpdated={new Date("2024-03-14T08:10:33.678Z")}
+      lastUpdated={new Date("2024-03-19T00:01:13.595Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/zoom/meeting/favicon.png"
       contactUrl="https://developer.zoom.us/"
       // Missing contactEmail
@@ -78,7 +78,7 @@ export default function ZoomMeetingTypeScriptSdk() {
         "name": "groupId",
         "schema": "string",
         "required": false,
-        "description": "The group ID. To get a group ID, use the [List groups](https://developers.zoom.us/docs/api/rest/reference/zoom-api/methods/#operation/groups) API.",
+        "description": "The group ID. To get a group ID, use the [List groups](https://developers.zoom.us/docs/api/rest/reference/scim-api/methods/#operation/groupSCIM2List) API.",
         "example": "pvFIYKSDTum9iCDOOtQL4w"
       }
     ],
@@ -1175,7 +1175,7 @@ export default function ZoomMeetingTypeScriptSdk() {
     "httpMethod": HttpMethodsEnum.POST,
     "tag": "Devices",
     "typeScriptTag": "devices",
-    "description": "Add new device",
+    "description": "Add a new device",
     "parameters": [
       {
         "name": "device_name",
@@ -1239,6 +1239,20 @@ export default function ZoomMeetingTypeScriptSdk() {
         "required": false,
         "description": "",
         "example": "personal rooms"
+      },
+      {
+        "name": "zdm_group_id",
+        "schema": "string",
+        "required": false,
+        "description": "",
+        "example": "ff49588c-92c4-4406-99e6-1942d8a61a7b"
+      },
+      {
+        "name": "extension_number",
+        "schema": "string",
+        "required": false,
+        "description": "",
+        "example": "802"
       }
     ],
     "responses": [
@@ -1248,7 +1262,40 @@ export default function ZoomMeetingTypeScriptSdk() {
       },
       {
         "statusCode": "400",
-        "description": "**HTTP Status Code:** `400` <br>\n Bad Request\n\n**Error Code:** `30055001` <br>\nzoom room does not exist. \n\n**Error Code:** `30055002` <br>\nrequired param can not be empty or null.\n\n**Error Code:** `30055003` <br>\ndevice type does not support.\n\n**Error Code:** `30055004` <br>\nmodel or vendor not exist.\n\n**Error Code:** `30055005` <br>\ntag length can not be more than 64.\n\n**Error Code:** `30055006` <br>\ndevice has already exist.\n\n**Error Code:** `30055007` <br>\ninvalid mac address.\n\n**Error Code:** `30055008` <br>\nno permission.\n\n**Error Code:** `30055009` <br>\nemail does not have plan.\n\n"
+        "description": "**HTTP Status Code:** `400` <br>\n Bad Request \n\n **Error Code:** `30055001` <br>\n zoom room does not exist.  <br>\n**Error Code:** `30055002` <br>\n required param can not be empty or null. <br>\n**Error Code:** `30055003` <br>\n device type does not support. <br>\n**Error Code:** `30055004` <br>\n model or vendor not exist. <br>\n**Error Code:** `30055005` <br>\n tag length can not be more than 64. <br>\n**Error Code:** `30055006` <br>\n device has already exist. <br>\n**Error Code:** `30055007` <br>\n invalid mac address. <br>\n**Error Code:** `30055008` <br>\n no permission. <br>\n**Error Code:** `30055009` <br>\n email does not have plan. <br>\n"
+      }
+    ]
+  },
+  {
+    "url": "/devices/zpa/upgrade",
+    "method": "upgradeZpaOsApp",
+    "httpMethod": HttpMethodsEnum.POST,
+    "tag": "Devices",
+    "typeScriptTag": "devices",
+    "description": "upgrade zpa os/app",
+    "parameters": [
+      {
+        "name": "zdm_group_id",
+        "schema": "string",
+        "required": true,
+        "description": "",
+        "example": "ff49588c-92c4-4406-99e6-1942d8a61a7b"
+      },
+      {
+        "name": "data",
+        "schema": "undefined",
+        "required": true,
+        "description": ""
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "202",
+        "description": "The upgrade request has been accepted and is currently being processed."
+      },
+      {
+        "statusCode": "400",
+        "description": "**HTTP Status Code:** `400` <br>\n Bad Request  \n\n **Error Code:** `30052029` <br>\n Missing required input: firmware_versions. <br>\n**Error Code:** `30055020` <br>\n Upgrade type dose not exist. <br>\n**Error Code:** `30055018` <br>\n Zdm group id dose not exist. <br>\n**Error Code:** `30052030` <br>\n Missing required input: app_version. <br>\n"
       }
     ]
   },
@@ -1874,11 +1921,11 @@ export default function ZoomMeetingTypeScriptSdk() {
       },
       {
         "statusCode": "400",
-        "description": "**HTTP Status Code:** `400` <br>\n Bad Request \n\n **Error Code:** `1010` <br>\n User not found on this account: {accountId}.<br> <br>\n**Error Code:** `3000` <br>\n Cannot access webinar info. <br>\n**Error Code:** `3161` <br>\n Meeting hosting and scheduling capabilities are not allowed for your user account. <br>\n"
+        "description": "**HTTP Status Code:** `400` <br>\n Bad Request  \n\n **Error Code:** `3000` <br>\n Cannot access webinar info. <br>\n**Error Code:** `3161` <br>\n Your user account is not allowed meeting hosting and scheduling capabilities. <br>\n"
       },
       {
         "statusCode": "404",
-        "description": "**HTTP Status Code:** `404` <br>\n Not Found \n\n **Error Code:** `1001` <br>\n User not exist: {userId}.<br> <br>\n**Error Code:** `3001` <br>\n Meeting {meetingId} is not found or has expired. <br>\n"
+        "description": "**HTTP Status Code:** `404` <br>\n Not Found  \n\n **Error Code:** `3001` <br>\n Meeting does not exist: {meetingId}. <br>\n"
       }
     ]
   },
@@ -1989,15 +2036,15 @@ export default function ZoomMeetingTypeScriptSdk() {
       },
       {
         "statusCode": "400",
-        "description": "**HTTP Status Code:** `400` <br>\n Bad Request \n\n **Error Code:** `1010` <br>\n User not found on this account: {accountId} <br>\n**Error Code:** `3000` <br>\n Cannot access meeting information. <br>\n**Error Code:** `3003` <br>\n You are not the meeting host. <br>\n**Error Code:** `3000` <br>\n * Instant meetings do not support the \"schedule_for\" parameter. You cannot schedule an instant meeting for another user. \n* Users in \"{0}\" have been blocked from joining meetings and webinars. To unblock them, go to the \"Settings\" page in the Zoom web portal and update the \"Block users in specific domains from joining meetings and webinars\" setting. \n* Prescheduling is only available for scheduled meetings (type 2) and recurring meetings with no fixed time (type 3). \n* You cannot schedule a meeting for \"{0}\". \n* You cannot update or delete meetings that have started using this method. \n* Unable to schedule for a user outside of your account for a meeting with continuous chat. <br>\n**Error Code:** `3161` <br>\n Meeting hosting and scheduling capabilities are not allowed for your user account. <br>\n**Error Code:** `300` <br>\n * The value that you entered for the schedule_for field is invalid. Enter a valid value and try again. <br> \n* Invalid enforce_login_domains, separate multiple domains by semicolon. <br>\n"
+        "description": "**HTTP Status Code:** `400` <br>\n Bad Request  \n\n **Error Code:** `3161` <br>\n Your user account is not allowed meeting hosting and scheduling capabilities. <br>\n**Error Code:** `300` <br>\n The value that you entered in the `schedule_for` field is invalid. Enter a valid value and try again. <br>\n**Error Code:** `300` <br>\n Invalid `enforce_login_domains`. Separate multiple domains with semicolons. <br>\n**Error Code:** `3000` <br>\n Cannot access webinar info. <br>\n**Error Code:** `3000` <br>\n Instant meetings do not support the `schedule_for` parameter, and you can't schedule an instant meeting for another user. <br>\n**Error Code:** `3000` <br>\n Users in '{userId}' have been blocked from joining meetings and webinars. To unblock them, go to the **Settings** page in the Zoom web portal and update **Block users in specific domains from joining meetings and webinars**. <br>\n**Error Code:** `3000` <br>\n You cannot schedule a meeting for {userId} <br>\n**Error Code:** `3000` <br>\n Prescheduling is only available for scheduled meetings (type 2) and recurring meetings with no fixed time (type 3). <br>\n**Error Code:** `3000` <br>\n Unable to schedule for a user outside of your account for a meeting with continuous chat. <br>\n"
       },
       {
         "statusCode": "404",
-        "description": "**HTTP Status Code:** `404` <br>\n Not Found \n\n **Error Code:** `1001` <br>\n User does not exist: {userId}.<br> <br>\n**Error Code:** `3001` <br>\n A meeting with this {meetingId} is not found or has expired. <br>\n"
+        "description": "**HTTP Status Code:** `404` <br>\n Not Found  \n\n **Error Code:** `3001` <br>\n Meeting does not exist: {meetingId}. <br>\n"
       },
       {
         "statusCode": "429",
-        "description": "**HTTP Status Code:** `429` <br>\n Too Many Requests \n\n "
+        "description": "**HTTP Status Code:** `429` <br>\n Too Many Requests  \n\n "
       }
     ]
   },
@@ -2223,6 +2270,13 @@ export default function ZoomMeetingTypeScriptSdk() {
         "required": true,
         "description": "The meeting's ID. \n\n When storing this value in your database, you must store it as a long format integer and **not** an integer. Meeting IDs can exceed 10 digits.",
         "example": 85746065
+      },
+      {
+        "name": "bypassWaitingRoom",
+        "schema": "boolean",
+        "required": false,
+        "description": "Whether to bypass the waiting room.",
+        "example": true
       }
     ],
     "responses": [
@@ -2232,11 +2286,11 @@ export default function ZoomMeetingTypeScriptSdk() {
       },
       {
         "statusCode": "400",
-        "description": "**HTTP Status Code:** `400` <br>\n Bad Request\n\n**Error Code:** `300` <br>\nInvalid meeting ID.\n\n**Error Code:** `3000` <br>\nCannot access Webinar information.\n\n**Error Code:** `124` <br>\nThis API only supports OAuth2 authorization.\n\n**Error Code:** `3000` <br>\nNot allowed to start local recording. To use this feature, enable the \"Local Recording\" setting in the \"Settings\" page of the Zoom web portal.\n\n**Error Code:** `3161` <br>\nMeeting hosting and scheduling capabilities are not allowed for your user account.\n\n"
+        "description": "**HTTP Status Code:** `400` <br>\n Bad Request  \n\n **Error Code:** `300` <br>\n Invalid meeting ID. <br>\n**Error Code:** `3000` <br>\n Cannot access Webinar information. <br>\n**Error Code:** `124` <br>\n This API only supports OAuth2 authorization. <br>\n**Error Code:** `3000` <br>\n Not allowed to start local recording. To use this feature, enable the \"Local Recording\" setting in the \"Settings\" page of the Zoom web portal. <br>\n**Error Code:** `3161` <br>\n Meeting hosting and scheduling capabilities are not allowed for your user account. <br>\n"
       },
       {
         "statusCode": "404",
-        "description": "**HTTP Status Code:** `404` <br>\n Not Found\n\n**Error Code:** `300` <br>\nMeeting ID does not exist.\n\n**Error Code:** `3001` <br>\nMeeting does not exist: {meetingId}\n\n"
+        "description": "**HTTP Status Code:** `404` <br>\n Not Found  \n\n **Error Code:** `300` <br>\n Meeting ID does not exist. <br>\n**Error Code:** `3001` <br>\n Meeting does not exist: {meetingId}. <br>\n"
       }
     ]
   },
@@ -3596,14 +3650,21 @@ export default function ZoomMeetingTypeScriptSdk() {
         "name": "to",
         "schema": "string",
         "required": false,
-        "description": "The end data.",
+        "description": "The end date.",
         "example": "2023-01-16"
+      },
+      {
+        "name": "timezone",
+        "schema": "string",
+        "required": false,
+        "description": "The timezone to assign to the `from` and `to` value. For a list of supported timezones and their formats, see our [timezone list](https://developers.zoom.us/docs/api/rest/other-references/abbreviation-lists/#timezones).",
+        "example": "America/Los_Angeles"
       }
     ],
     "responses": [
       {
         "statusCode": "200",
-        "description": "Pagination Object."
+        "description": "Pagination object."
       },
       {
         "statusCode": "400",
@@ -3722,15 +3783,38 @@ export default function ZoomMeetingTypeScriptSdk() {
       },
       {
         "statusCode": "400",
-        "description": "**HTTP Status Code:** `400` <br>\n Bad Request \n\n **Error Code:** `3000` <br>\n * Instant meetings do not support the schedule_for parameter; you cannot schedule an instant meeting for another user.<br>\n* Users in '{0}' have been blocked from joining meetings and webinars. To unblock them, go to the Settings page in the Zoom web portal and update 'Block users in specific domains from joining meetings and webinars'.<br> \n* You cannot schedule a meeting for {0}. <br>\n**Error Code:** `3161` <br>\n Meeting hosting and scheduling capabilities are not allowed for your user account. <br>\n**Error Code:** `300` <br>\n * The value that you entered for the schedule_for field is invalid. Enter a valid value and try again. <br> \n* Invalid enforce_login_domains, separate multiple domains by semicolon. <br>\n"
+        "description": "**HTTP Status Code:** `400` <br>\n Bad Request  \n\n **Error Code:** `3161` <br>\n Your user account is not allowed meeting hosting and scheduling capabilities. <br>\n**Error Code:** `3000` <br>\n Instant meetings do not support the `schedule_for` parameter, and you can't schedule an instant meeting for another user. <br>\n**Error Code:** `3000` <br>\n Users in '{userId}' have been blocked from joining meetings and webinars. To unblock them, go to the **Settings** page in the Zoom web portal and update **Block users in specific domains from joining meetings and webinars**. <br>\n**Error Code:** `3000` <br>\n You cannot schedule a meeting for {userId} <br>\n**Error Code:** `300` <br>\n The value that you entered in the `schedule_for` field is invalid. Enter a valid value and try again. <br>\n**Error Code:** `300` <br>\n Invalid `enforce_login_domains`. Separate multiple domains with semicolons. <br>\n"
       },
       {
         "statusCode": "404",
-        "description": "**HTTP Status Code:** `404` <br>\n Not Found \n\n **Error Code:** `1001` <br>\n User {userId} not exist or not belong to this account. <br>\n"
+        "description": "**HTTP Status Code:** `404` <br>\n Not Found  \n\n **Error Code:** `1001` <br>\n User does not exist: {userId}. <br>\n"
       },
       {
         "statusCode": "429",
-        "description": "**HTTP Status Code:** `429` <br>\n Too Many Requests \n\n "
+        "description": "**HTTP Status Code:** `429` <br>\n Too Many Requests  \n\n "
+      }
+    ]
+  },
+  {
+    "url": "/users/{userId}/upcoming_meetings",
+    "method": "listUpcomingMeetings",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "Meetings",
+    "typeScriptTag": "meetings",
+    "description": "List upcoming meetings",
+    "parameters": [
+      {
+        "name": "userId",
+        "schema": "string",
+        "required": true,
+        "description": "The user's user ID or email address. For user-level apps, pass [the `me` value](https://developers.zoom.us/docs/api/rest/using-zoom-apis/#the-me-keyword).",
+        "example": "30R7kT7bTIKSNUFEuH_Qlg"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
       }
     ]
   },
@@ -4064,9 +4148,10 @@ export default function ZoomMeetingTypeScriptSdk() {
     "parameters": [
       {
         "name": "meetingId",
-        "schema": "undefined",
+        "schema": "string",
         "required": true,
-        "description": "The meeting's ID or universally unique ID (UUID). \n* If you provide a meeting ID, the API will return a response for the latest meeting instance. \n* If you provide a meeting UUID that begins with a `/` character or contains the `//` characters, you **must** [double encode](https://marketplace.zoom.us/docs/api-reference/using-zoom-apis/#meeting-id-and-uuid) the meeting UUID before making an API request."
+        "description": "The meeting's ID or universally unique ID (UUID). \n* If you provide a meeting ID, the API will return a response for the latest meeting instance. \n* If you provide a meeting UUID that begins with a `/` character or contains the `//` characters, you **must** double-encode the meeting UUID before making an API request.",
+        "example": "MEETINGID"
       }
     ],
     "responses": [
@@ -4076,11 +4161,42 @@ export default function ZoomMeetingTypeScriptSdk() {
       },
       {
         "statusCode": "400",
-        "description": "**HTTP Status Code:** `400` <br>\n Bad Request\n\n**Error Code:** `200` <br>\nNo permission.<br>\n\n"
+        "description": "**HTTP Status Code:** `400` <br>\n Bad Request  \n\n **Error Code:** `200` <br>\n No permission.<br> <br>\n"
       },
       {
         "statusCode": "404",
-        "description": "**HTTP Status Code:** `404` <br>\n Not Found\n\n**Error Code:** `1001` <br>\nUser does not exist: {userId}.<br>\n\n**Error Code:** `3001` <br>\nMeeting {meetingId} not found or has expired.<br>\n\n"
+        "description": "**HTTP Status Code:** `404` <br>\n Not Found  \n\n **Error Code:** `1001` <br>\n User does not exist: {userId}.<br> <br>\n**Error Code:** `3001` <br>\n Meeting {meetingId} not found or has expired.<br> <br>\n"
+      }
+    ]
+  },
+  {
+    "url": "/report/meetings/{meetingId}/survey",
+    "method": "getMeetingSurveyReport",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "Reports",
+    "typeScriptTag": "reports",
+    "description": "Get meeting survey report",
+    "parameters": [
+      {
+        "name": "meetingId",
+        "schema": "string",
+        "required": true,
+        "description": "The meeting's ID or universally unique ID (UUID). \n* If you provide a meeting ID, the API will return a response for the latest meeting instance. \n* If you provide a meeting UUID that begins with a `/` character or contains the `//` characters, you **must** double-encode the meeting UUID before making an API request.",
+        "example": "MEETINGID"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": "**HTTP Status Code:** `400` <br>\n Bad Request  \n\n **Error Code:** `1010` <br>\n User does not belong to this account:{accountId}.<br> <br>\n**Error Code:** `12702` <br>\n Can not access a webinar a year ago.<br> <br>\n**Error Code:** `200` <br>\n No permission.<br> <br>\n"
+      },
+      {
+        "statusCode": "404",
+        "description": "**HTTP Status Code:** `404` <br>\n Not Found  \n\n **Error Code:** `3001` <br>\n Webinar  {webinarId} not found or has expired.<br> <br>\n"
       }
     ]
   },
@@ -4538,7 +4654,7 @@ export default function ZoomMeetingTypeScriptSdk() {
         "name": "webinarId",
         "schema": "string",
         "required": true,
-        "description": "The webinar's ID or universally unique ID (UUID). \n* If you provide a webinar ID, the API will return a response for the latest webinar instance. \n* If you provide a webinar UUID that begins with a `/` character or contains the `//` characters, you **must** [double encode](https://marketplace.zoom.us/docs/api-reference/using-zoom-apis/#meeting-id-and-uuid) the webinar UUID before making an API request.",
+        "description": "The webinar's ID or universally unique ID (UUID). \n* If you provide a webinar ID, the API will return a response for the latest webinar instance. \n* If you provide a webinar UUID that begins with a `/` character or contains the `//` characters, you **must** double-encode the webinar UUID before making an API request.",
         "example": "ABCDE12345"
       }
     ],
@@ -4549,11 +4665,42 @@ export default function ZoomMeetingTypeScriptSdk() {
       },
       {
         "statusCode": "400",
-        "description": "**HTTP Status Code:** `400` <br>\n Bad Request\n\n**Error Code:** `200` <br>\nNo permission.<br>\n\n"
+        "description": "**HTTP Status Code:** `400` <br>\n Bad Request  \n\n **Error Code:** `200` <br>\n No permission.<br> <br>\n"
       },
       {
         "statusCode": "404",
-        "description": "**HTTP Status Code:** `404` <br>\n Not Found\n\n**Error Code:** `1001` <br>\nUser does not exist: {userId}.<br>\n\n**Error Code:** `3001` <br>\nWebinar  {webinarId} not found or has expired.<br>\n\n"
+        "description": "**HTTP Status Code:** `404` <br>\n Not Found  \n\n **Error Code:** `1001` <br>\n User does not exist: {userId}.<br> <br>\n**Error Code:** `3001` <br>\n Webinar  {webinarId} not found or has expired.<br> <br>\n"
+      }
+    ]
+  },
+  {
+    "url": "/report/webinars/{webinarId}/survey",
+    "method": "getWebinarSurveyReport",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "Reports",
+    "typeScriptTag": "reports",
+    "description": "Get webinar survey report",
+    "parameters": [
+      {
+        "name": "webinarId",
+        "schema": "string",
+        "required": true,
+        "description": "The webinar's ID or universally unique ID (UUID). \n* If you provide a webinar ID, the API returns a response for the latest webinar instance. \n* If you provide a webinar UUID that begins with a `/` character or contains the `//` characters, you **must** double-encode the webinar UUID before making an API request.",
+        "example": "ABCDE12345"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": "**HTTP Status Code:** `400` <br>\n Bad Request  \n\n **Error Code:** `1010` <br>\n User does not belong to this account:{accountId}.<br> <br>\n**Error Code:** `12702` <br>\n Can not access a webinar a year ago.<br> <br>\n**Error Code:** `200` <br>\n No permission.<br> <br>\n"
+      },
+      {
+        "statusCode": "404",
+        "description": "**HTTP Status Code:** `404` <br>\n Not Found  \n\n **Error Code:** `3001` <br>\n Webinar  {webinarId} not found or has expired.<br> <br>\n"
       }
     ]
   },
@@ -7899,10 +8046,10 @@ export default function ZoomMeetingTypeScriptSdk() {
       apiTitle="Zoom Meeting API"
       apiBaseUrl="https://api.zoom.us/v2"
       apiVersion="2"
-      endpoints={112}
-      sdkMethods={164}
-      schemas={165}
-      parameters={606}
+      endpoints={116}
+      sdkMethods={168}
+      schemas={169}
+      parameters={615}
       difficulty="Hard"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/zoom/meeting/openapi.yaml"
       openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/zoom/meeting/openapi.yaml"

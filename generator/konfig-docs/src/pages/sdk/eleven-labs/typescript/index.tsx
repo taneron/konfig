@@ -19,7 +19,7 @@ export default function ElevenLabsTypeScriptSdk() {
       companyKebabCase="eleven-labs"
       clientNameCamelCase="elevenLabs"
       homepage="elevenlabs.com"
-      lastUpdated={new Date("2024-03-15T18:50:00.907Z")}
+      lastUpdated={new Date("2024-03-19T00:01:13.595Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/elevenlabs/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
@@ -2226,6 +2226,173 @@ export default function ElevenLabsTypeScriptSdk() {
     ]
   },
   {
+    "url": "/admin/n8enylacgd/vanity-link/{vanity_link_id}/update",
+    "method": "editVanityLink",
+    "httpMethod": HttpMethodsEnum.POST,
+    "tag": "admin",
+    "typeScriptTag": "admin",
+    "description": "Edit Vanity Link",
+    "parameters": [
+      {
+        "name": "vanityLinkId",
+        "schema": "string",
+        "required": true,
+        "description": "",
+        "example": "VANITY_LINK_ID"
+      },
+      {
+        "name": "vanity_slug",
+        "schema": "string",
+        "required": true,
+        "description": "",
+        "example": "VANITY_SLUG"
+      },
+      {
+        "name": "target_url",
+        "schema": "string",
+        "required": true,
+        "description": "",
+        "example": "TARGET_URL"
+      },
+      {
+        "name": "comment",
+        "schema": "string",
+        "required": true,
+        "description": "",
+        "example": "COMMENT"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "422",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "url": "/admin/n8enylacgd/vanity-link/{vanity_link_id}/delete",
+    "method": "removeVanityLink",
+    "httpMethod": HttpMethodsEnum.POST,
+    "tag": "admin",
+    "typeScriptTag": "admin",
+    "description": "Delete Vanity Link",
+    "parameters": [
+      {
+        "name": "vanityLinkId",
+        "schema": "string",
+        "required": true,
+        "description": "",
+        "example": "VANITY_LINK_ID"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "422",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "url": "/admin/n8enylacgd/vanity-links",
+    "method": "getAllVanityLinks",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "admin",
+    "typeScriptTag": "admin",
+    "description": "Get All Vanity Links",
+    "parameters": [],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "422",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "url": "/admin/n8enylacgd/vanity-link/{slug}",
+    "method": "getVanityLink",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "admin",
+    "typeScriptTag": "admin",
+    "description": "Get Vanity Link",
+    "parameters": [
+      {
+        "name": "slug",
+        "schema": "string",
+        "required": true,
+        "description": "",
+        "example": "SLUG"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "422",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "url": "/admin/n8enylacgd/coupon/{promocode}/archive",
+    "method": "archiveCouponPromocodePost",
+    "httpMethod": HttpMethodsEnum.POST,
+    "tag": "admin",
+    "typeScriptTag": "admin",
+    "description": "Archive Coupon",
+    "parameters": [
+      {
+        "name": "promocode",
+        "schema": "string",
+        "required": true,
+        "description": "",
+        "example": "PROMOCODE"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "422",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "url": "/admin/n8enylacgd/coupons",
+    "method": "getAllCoupons",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "admin",
+    "typeScriptTag": "admin",
+    "description": "Get All Coupons",
+    "parameters": [],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "422",
+        "description": ""
+      }
+    ]
+  },
+  {
     "url": "/docs",
     "method": "toMintlifyDocsGet",
     "httpMethod": HttpMethodsEnum.GET,
@@ -2279,10 +2446,10 @@ export default function ElevenLabsTypeScriptSdk() {
       apiTitle="ElevenLabs API Documentation"
       apiBaseUrl="https://api.elevenlabs.io"
       apiVersion="1.0"
-      endpoints={45}
-      sdkMethods={50}
-      schemas={73}
-      parameters={188}
+      endpoints={51}
+      sdkMethods={56}
+      schemas={80}
+      parameters={195}
       difficulty="Medium"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/elevenlabs/openapi.yaml"
       openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/elevenlabs/openapi.yaml"

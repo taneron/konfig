@@ -4,7 +4,7 @@ import { Company } from '../../../components/Company';
 const sdks = [
   {
     "name": "DigitalOcean",
-    "numberOfMethods": 300,
+    "numberOfMethods": 302,
     "categories": [
       "cloud",
       "data_center",
@@ -22,7 +22,7 @@ const sdks = [
   },
   {
     "name": "DigitalOcean",
-    "numberOfMethods": 300,
+    "numberOfMethods": 302,
     "categories": [
       "cloud",
       "data_center",
@@ -40,7 +40,7 @@ const sdks = [
   },
   {
     "name": "DigitalOcean",
-    "numberOfMethods": 300,
+    "numberOfMethods": 302,
     "categories": [
       "cloud",
       "data_center",
