@@ -1,4 +1,4 @@
-hash: 4ee7623f9ae22f53f8e218e6f5424ee121e576aac0b7465a66569e9b59db2b71
+hash: e61fea89bbc9179d599dc6eb7933897e6ebc27fd98c0ebb5ab1c7dbb0093a9c8
 methodObjects:
   - url: /authorize
     method: authorize
@@ -10776,85 +10776,7 @@ methodObjects:
         description: A generic error
       - statusCode: default
         description: A generic error
-  - url: /file_activities
-    method: listByFileId
-    httpMethod: get
-    tag: File activities
-    typeScriptTag: fileActivities
-    description: List file activities
-    parameters:
-      - name: fileId
-        schema: string
-        required: true
-        description: File ID for which to retrieve activity
-        example: '888578620991'
-      - name: activityTypes
-        schema: array
-        description: >-
-          Comma-separated list of activity types to return. This field is
-          ignored if marker is passed in. Defaults to all activity types.
-        example: comment,task,annotation,versions,app_activity
-      - name: commentFields
-        schema: array
-        description: fields that are required for comments
-        example: tagged_message,message,created_at,created_by,modified_at,permissions
-      - name: versionsFields
-        schema: array
-        description: fields that are required for versions
-        example: created_by,end,start,type
-      - name: annotationFields
-        schema: array
-        description: fields that are required for annotations
-        example: >-
-          file_version,description,created_at,created_by,modified_at,permissions,target,status
-      - name: taskFields
-        schema: array
-        description: fields that are required for tasks
-        example: >-
-          description,created_at,created_by,modified_at,permissions,completion_rule,status
-      - name: appActivityFields
-        schema: array
-        description: fields that are required for `app_activity`
-        example: rendered_text,occurred_at,created_by,activity_template,app
-      - name: replyLimit
-        schema: string
-        description: >-
-          maximum number of replies the response should contain per each top
-          level activity[annotation, comment]
-        example: 1
-      - name: status
-        schema: string
-        description: Used to filter an annotation or a comment based on the status
-        example: open
-      - name: enableReplies
-        schema: boolean
-        description: Whether or not replies should be returned
-        example: true
-      - name: limit
-        schema: integer
-        required: false
-        description: The maximum number of items to return per page.
-        example: 1000
-      - name: marker
-        schema: string
-        required: false
-        description: >-
-          Defines the position marker at which to begin returning results. This
-          is
-
-          used when paginating using marker-based pagination.
-
-
-          This requires `usemarker` to be set to `true`.
-        example: JV9IRGZmieiBasejOG9yDCRNgd2ymoZIbjsxbJMjIs3kioVii
-    responses:
-      - statusCode: '200'
-        description: A list of file activities
-      - statusCode: '404'
-        description: A generic error
-      - statusCode: default
-        description: A generic error
-numberOfSchemas: 332
+numberOfSchemas: 301
 apiDescription: >-
   [Box Platform](https://box.dev) provides functionality to provide access to
   content stored within [Box](https://box.com). It provides endpoints for basic

@@ -885,6 +885,36 @@ const customRequests: Record<string, CustomRequest> = {
       return downloadOpenApiSpecFromReadme({ urls });
     },
   }, 
+  "2c2p.com": {
+    lambda: async () => {
+      const urls = [
+        "https://developer.2c2p.com/reference/post_payment-4-3-applepay-merchantvalidation",
+        "https://developer.2c2p.com/reference/post_payment-4-3-cache-cleancache",
+        "https://developer.2c2p.com/reference/post_payment-4-3-canceltransaction",
+        "https://developer.2c2p.com/reference/post_payment-4-3-cardinstallmentplaninfo",
+        "https://developer.2c2p.com/reference/post_payment-4-3-cardtokeninfo",
+        "https://developer.2c2p.com/reference/post_payment-4-3-exchangerate",
+        "https://developer.2c2p.com/reference/post_payment-4-3-exchangerate-secure",
+        "https://developer.2c2p.com/reference/post_payment-4-3-exchangerate-apmmccexchangerate",
+        "https://developer.2c2p.com/reference/post_payment-4-3-initialization",
+        "https://developer.2c2p.com/reference/post_payment-4-3-loyaltypointinfo",
+        "https://developer.2c2p.com/reference/post_payment-4-3-payment",
+        "https://developer.2c2p.com/reference/post_payment-4-3-paymentinquiry",
+        "https://developer.2c2p.com/reference/post_payment-4-3-paymentinstruction",
+        "https://developer.2c2p.com/reference/post_payment-4-3-paymentnotification",
+        "https://developer.2c2p.com/reference/post_payment-4-3-paymentoption",
+        "https://developer.2c2p.com/reference/post_payment-4-3-paymentoptiondetails",
+        "https://developer.2c2p.com/reference/post_payment-4-3-paymentsimulate",
+        "https://developer.2c2p.com/reference/post_payment-4-3-paymenttoken",
+        "https://developer.2c2p.com/reference/post_payment-4-3-redirectbackend",
+        "https://developer.2c2p.com/reference/post_payment-4-3-redirectfrontend",
+        "https://developer.2c2p.com/reference/post_payment-4-3-transactionstatus",
+        "https://developer.2c2p.com/reference/post_payment-4-3-userpreference",
+      ]
+      return downloadOpenApiSpecFromReadme({ urls });
+    }
+  },
+
 };
 
 async function downloadOpenApiSpecFromMintlify({

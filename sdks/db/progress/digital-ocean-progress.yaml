@@ -117,6 +117,9 @@ operationIds:
   /v2/databases:
     get: Databases_listClusters
     post: Databases_createCluster
+  /v2/databases/metrics/credentials:
+    get: Databases_getClustersMetricsCredentials
+    put: Databases_updateMetricsCredentials
   /v2/databases/options:
     get: Databases_listOptions
   /v2/databases/{database_cluster_uuid}:
@@ -584,6 +587,10 @@ responseSchemaNames:
     post:
       '201':
         application/json: DatabasesCreateClusterResponse
+  /v2/databases/metrics/credentials:
+    get:
+      '200':
+        application/json: DatabasesGetClustersMetricsCredentialsResponse
   /v2/databases/{database_cluster_uuid}/backups:
     get:
       '200':

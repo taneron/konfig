@@ -13,6 +13,8 @@ operationIds:
   /devices:
     get: Devices_list
     post: Devices_createNewDevice
+  /devices/zpa/upgrade:
+    post: Devices_upgradeZpaOsApp
   /devices/{deviceId}:
     delete: Devices_removeDeviceZMD
     get: Devices_getDetail
@@ -148,6 +150,8 @@ operationIds:
     get: Reports_getMeetingPollReports
   /report/meetings/{meetingId}/qa:
     get: Reports_getMeetingQaReport
+  /report/meetings/{meetingId}/survey:
+    get: Reports_getMeetingSurveyReport
   /report/operationlogs:
     get: Reports_getOperationLogsReport
   /report/telephone:
@@ -166,6 +170,8 @@ operationIds:
     get: Reports_getWebinarPollReports
   /report/webinars/{webinarId}/qa:
     get: Reports_getWebinarQAReport
+  /report/webinars/{webinarId}/survey:
+    get: Reports_getWebinarSurveyReport
   /sip_phones:
     get: SipPhone_list
     post: SipPhone_enableUserSipPhone
@@ -201,6 +207,8 @@ operationIds:
     delete: Tsp_deleteUserTspAccount
     get: Tsp_getUserTspAccount
     patch: Tsp_updateUserTspAccount
+  /users/{userId}/upcoming_meetings:
+    get: Meetings_listUpcomingMeetings
   /users/{userId}/webinar_templates:
     get: Webinars_listWebinarTemplates
     post: Webinars_createWebinarTemplate
@@ -285,6 +293,9 @@ requestSchemaNames:
   /devices:
     post:
       application/json: DevicesCreateNewDeviceRequest
+  /devices/zpa/upgrade:
+    post:
+      application/json: DevicesUpgradeZpaOsAppRequest
   /devices/{deviceId}:
     patch:
       application/json: DevicesUpdateDeviceNameRequest
@@ -667,6 +678,10 @@ responseSchemaNames:
     get:
       '200':
         application/json: ReportsGetMeetingQaReportResponse
+  /report/meetings/{meetingId}/survey:
+    get:
+      '200':
+        application/json: ReportsGetMeetingSurveyReportResponse
   /report/operationlogs:
     get:
       '200':
@@ -703,6 +718,10 @@ responseSchemaNames:
     get:
       '200':
         application/json: ReportsGetWebinarQaReportResponse
+  /report/webinars/{webinarId}/survey:
+    get:
+      '200':
+        application/json: ReportsGetWebinarSurveyReportResponse
   /sip_phones:
     get:
       '200':
@@ -758,6 +777,10 @@ responseSchemaNames:
     get:
       '200':
         application/json: TspGetUserTspAccountResponse
+  /users/{userId}/upcoming_meetings:
+    get:
+      '200':
+        application/json: MeetingsListUpcomingMeetingsResponse
   /users/{userId}/webinar_templates:
     get:
       '200':
@@ -876,6 +899,8 @@ securityParameters:
     query: false
   billing_id:
     query: false
+  bypass_waiting_room:
+    query: false
   cancel_meeting_reminder:
     query: false
   cancel_webinar_reminder:
@@ -937,6 +962,8 @@ securityParameters:
   show_previous_occurrences:
     query: false
   status:
+    query: false
+  timezone:
     query: false
   to:
     query: false

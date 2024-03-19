@@ -1,4 +1,4 @@
-hash: 97d76290429b636517ee059573008dbc0550db26a75a8de948939dfe8c4b5af7
+hash: 010255dc2a008510ecf779d60e29e836bbccb1535e34a9b602588d72cee3add0
 methodObjects:
   - url: /archive_files
     method: meetingFilesList
@@ -51,7 +51,7 @@ methodObjects:
         required: false
         description: >-
           The group ID. To get a group ID, use the [List
-          groups](https://developers.zoom.us/docs/api/rest/reference/zoom-api/methods/#operation/groups)
+          groups](https://developers.zoom.us/docs/api/rest/reference/scim-api/methods/#operation/groupSCIM2List)
           API.
         example: pvFIYKSDTum9iCDOOtQL4w
     responses:
@@ -1309,7 +1309,7 @@ methodObjects:
     httpMethod: post
     tag: Devices
     typeScriptTag: devices
-    description: Add new device
+    description: Add a new device
     parameters:
       - name: device_name
         schema: string
@@ -1356,43 +1356,78 @@ methodObjects:
         required: false
         description: ''
         example: personal rooms
+      - name: zdm_group_id
+        schema: string
+        required: false
+        description: ''
+        example: ff49588c-92c4-4406-99e6-1942d8a61a7b
+      - name: extension_number
+        schema: string
+        required: false
+        description: ''
+        example: '802'
     responses:
       - statusCode: '202'
         description: |-
           **HTTP Status:** `202` **Accepted**
           Request processed successfully.
       - statusCode: '400'
-        description: |+
+        description: |
           **HTTP Status Code:** `400` <br>
-           Bad Request
+           Bad Request 
 
-          **Error Code:** `30055001` <br>
-          zoom room does not exist. 
-
+           **Error Code:** `30055001` <br>
+           zoom room does not exist.  <br>
           **Error Code:** `30055002` <br>
-          required param can not be empty or null.
-
+           required param can not be empty or null. <br>
           **Error Code:** `30055003` <br>
-          device type does not support.
-
+           device type does not support. <br>
           **Error Code:** `30055004` <br>
-          model or vendor not exist.
-
+           model or vendor not exist. <br>
           **Error Code:** `30055005` <br>
-          tag length can not be more than 64.
-
+           tag length can not be more than 64. <br>
           **Error Code:** `30055006` <br>
-          device has already exist.
-
+           device has already exist. <br>
           **Error Code:** `30055007` <br>
-          invalid mac address.
-
+           invalid mac address. <br>
           **Error Code:** `30055008` <br>
-          no permission.
-
+           no permission. <br>
           **Error Code:** `30055009` <br>
-          email does not have plan.
+           email does not have plan. <br>
+  - url: /devices/zpa/upgrade
+    method: upgradeZpaOsApp
+    httpMethod: post
+    tag: Devices
+    typeScriptTag: devices
+    description: upgrade zpa os/app
+    parameters:
+      - name: zdm_group_id
+        schema: string
+        required: true
+        description: ''
+        example: ff49588c-92c4-4406-99e6-1942d8a61a7b
+      - name: data
+        schema: undefined
+        required: true
+        description: ''
+    responses:
+      - statusCode: '202'
+        description: >-
+          The upgrade request has been accepted and is currently being
+          processed.
+      - statusCode: '400'
+        description: |
+          **HTTP Status Code:** `400` <br>
+           Bad Request  
 
+           **Error Code:** `30052029` <br>
+           Missing required input: firmware_versions. <br>
+          **Error Code:** `30055020` <br>
+           Upgrade type dose not exist. <br>
+          **Error Code:** `30055018` <br>
+           Zdm group id dose not exist. <br>
+          **Error Code:** `30052030` <br>
+           Missing required input: app_version. <br>
   - url: /devices/{deviceId}
     method: removeDeviceZmd
     httpMethod: delete
@@ -2059,23 +2094,19 @@ methodObjects:
       - statusCode: '400'
         description: |
           **HTTP Status Code:** `400` <br>
-           Bad Request 
+           Bad Request  
 
-           **Error Code:** `1010` <br>
-           User not found on this account: {accountId}.<br> <br>
-          **Error Code:** `3000` <br>
+           **Error Code:** `3000` <br>
            Cannot access webinar info. <br>
           **Error Code:** `3161` <br>
-           Meeting hosting and scheduling capabilities are not allowed for your user account. <br>
+           Your user account is not allowed meeting hosting and scheduling capabilities. <br>
       - statusCode: '404'
         description: |
           **HTTP Status Code:** `404` <br>
-           Not Found 
+           Not Found  
 
-           **Error Code:** `1001` <br>
-           User not exist: {userId}.<br> <br>
-          **Error Code:** `3001` <br>
-           Meeting {meetingId} is not found or has expired. <br>
+           **Error Code:** `3001` <br>
+           Meeting does not exist: {meetingId}. <br>
   - url: /meetings/{meetingId}
     method: updateDetails
     httpMethod: patch
@@ -2158,53 +2189,39 @@ methodObjects:
            
           Meeting updated.
       - statusCode: '400'
-        description: >
+        description: |
           **HTTP Status Code:** `400` <br>
-           Bad Request 
+           Bad Request  
 
-           **Error Code:** `1010` <br>
-           User not found on this account: {accountId} <br>
-          **Error Code:** `3000` <br>
-           Cannot access meeting information. <br>
-          **Error Code:** `3003` <br>
-           You are not the meeting host. <br>
-          **Error Code:** `3000` <br>
-           * Instant meetings do not support the "schedule_for" parameter. You cannot schedule an instant meeting for another user. 
-          * Users in "{0}" have been blocked from joining meetings and webinars.
-          To unblock them, go to the "Settings" page in the Zoom web portal and
-          update the "Block users in specific domains from joining meetings and
-          webinars" setting. 
-
-          * Prescheduling is only available for scheduled meetings (type 2) and
-          recurring meetings with no fixed time (type 3). 
-
-          * You cannot schedule a meeting for "{0}". 
-
-          * You cannot update or delete meetings that have started using this
-          method. 
-
-          * Unable to schedule for a user outside of your account for a meeting
-          with continuous chat. <br>
-
-          **Error Code:** `3161` <br>
-           Meeting hosting and scheduling capabilities are not allowed for your user account. <br>
+           **Error Code:** `3161` <br>
+           Your user account is not allowed meeting hosting and scheduling capabilities. <br>
           **Error Code:** `300` <br>
-           * The value that you entered for the schedule_for field is invalid. Enter a valid value and try again. <br> 
-          * Invalid enforce_login_domains, separate multiple domains by
-          semicolon. <br>
+           The value that you entered in the `schedule_for` field is invalid. Enter a valid value and try again. <br>
+          **Error Code:** `300` <br>
+           Invalid `enforce_login_domains`. Separate multiple domains with semicolons. <br>
+          **Error Code:** `3000` <br>
+           Cannot access webinar info. <br>
+          **Error Code:** `3000` <br>
+           Instant meetings do not support the `schedule_for` parameter, and you can't schedule an instant meeting for another user. <br>
+          **Error Code:** `3000` <br>
+           Users in '{userId}' have been blocked from joining meetings and webinars. To unblock them, go to the **Settings** page in the Zoom web portal and update **Block users in specific domains from joining meetings and webinars**. <br>
+          **Error Code:** `3000` <br>
+           You cannot schedule a meeting for {userId} <br>
+          **Error Code:** `3000` <br>
+           Prescheduling is only available for scheduled meetings (type 2) and recurring meetings with no fixed time (type 3). <br>
+          **Error Code:** `3000` <br>
+           Unable to schedule for a user outside of your account for a meeting with continuous chat. <br>
       - statusCode: '404'
         description: |
           **HTTP Status Code:** `404` <br>
-           Not Found 
+           Not Found  
 
-           **Error Code:** `1001` <br>
-           User does not exist: {userId}.<br> <br>
-          **Error Code:** `3001` <br>
-           A meeting with this {meetingId} is not found or has expired. <br>
+           **Error Code:** `3001` <br>
+           Meeting does not exist: {meetingId}. <br>
       - statusCode: '429'
         description: |-
           **HTTP Status Code:** `429` <br>
-           Too Many Requests 
+           Too Many Requests  
 
            
   - url: /meetings/{meetingId}/batch_polls
@@ -2544,52 +2561,38 @@ methodObjects:
 
            When storing this value in your database, you must store it as a long format integer and **not** an integer. Meeting IDs can exceed 10 digits.
         example: 85746065
+      - name: bypassWaitingRoom
+        schema: boolean
+        required: false
+        description: Whether to bypass the waiting room.
+        example: true
     responses:
       - statusCode: '200'
         description: Information about the meeting's local recorder join token.
       - statusCode: '400'
-        description: >+
+        description: |
           **HTTP Status Code:** `400` <br>
-           Bad Request
+           Bad Request  
 
-          **Error Code:** `300` <br>
-
-          Invalid meeting ID.
-
-
+           **Error Code:** `300` <br>
+           Invalid meeting ID. <br>
           **Error Code:** `3000` <br>
-
-          Cannot access Webinar information.
-
-
+           Cannot access Webinar information. <br>
           **Error Code:** `124` <br>
-
-          This API only supports OAuth2 authorization.
-
-
+           This API only supports OAuth2 authorization. <br>
           **Error Code:** `3000` <br>
-
-          Not allowed to start local recording. To use this feature, enable the
-          "Local Recording" setting in the "Settings" page of the Zoom web
-          portal.
-
-
+           Not allowed to start local recording. To use this feature, enable the "Local Recording" setting in the "Settings" page of the Zoom web portal. <br>
           **Error Code:** `3161` <br>
-
-          Meeting hosting and scheduling capabilities are not allowed for your
-          user account.
-
+           Meeting hosting and scheduling capabilities are not allowed for your user account. <br>
       - statusCode: '404'
-        description: |+
+        description: |
           **HTTP Status Code:** `404` <br>
-           Not Found
+           Not Found  
 
-          **Error Code:** `300` <br>
-          Meeting ID does not exist.
-
+           **Error Code:** `300` <br>
+           Meeting ID does not exist. <br>
           **Error Code:** `3001` <br>
-          Meeting does not exist: {meetingId}
-
+           Meeting does not exist: {meetingId}. <br>
   - url: /meetings/{meetingId}/livestream
     method: getLivestreamDetails
     httpMethod: get
@@ -4240,11 +4243,19 @@ methodObjects:
       - name: to
         schema: string
         required: false
-        description: The end data.
+        description: The end date.
         example: '2023-01-16'
+      - name: timezone
+        schema: string
+        required: false
+        description: >-
+          The timezone to assign to the `from` and `to` value. For a list of
+          supported timezones and their formats, see our [timezone
+          list](https://developers.zoom.us/docs/api/rest/other-references/abbreviation-lists/#timezones).
+        example: America/Los_Angeles
     responses:
       - statusCode: '200'
-        description: Pagination Object.
+        description: Pagination object.
       - statusCode: '400'
         description: |
           **HTTP Status Code:** `400` <br>
@@ -4333,38 +4344,53 @@ methodObjects:
       - statusCode: '201'
         description: Meeting object.
       - statusCode: '400'
-        description: >
+        description: |
           **HTTP Status Code:** `400` <br>
-           Bad Request 
+           Bad Request  
 
-           **Error Code:** `3000` <br>
-           * Instant meetings do not support the schedule_for parameter; you cannot schedule an instant meeting for another user.<br>
-          * Users in '{0}' have been blocked from joining meetings and webinars.
-          To unblock them, go to the Settings page in the Zoom web portal and
-          update 'Block users in specific domains from joining meetings and
-          webinars'.<br> 
-
-          * You cannot schedule a meeting for {0}. <br>
-
-          **Error Code:** `3161` <br>
-           Meeting hosting and scheduling capabilities are not allowed for your user account. <br>
+           **Error Code:** `3161` <br>
+           Your user account is not allowed meeting hosting and scheduling capabilities. <br>
+          **Error Code:** `3000` <br>
+           Instant meetings do not support the `schedule_for` parameter, and you can't schedule an instant meeting for another user. <br>
+          **Error Code:** `3000` <br>
+           Users in '{userId}' have been blocked from joining meetings and webinars. To unblock them, go to the **Settings** page in the Zoom web portal and update **Block users in specific domains from joining meetings and webinars**. <br>
+          **Error Code:** `3000` <br>
+           You cannot schedule a meeting for {userId} <br>
           **Error Code:** `300` <br>
-           * The value that you entered for the schedule_for field is invalid. Enter a valid value and try again. <br> 
-          * Invalid enforce_login_domains, separate multiple domains by
-          semicolon. <br>
+           The value that you entered in the `schedule_for` field is invalid. Enter a valid value and try again. <br>
+          **Error Code:** `300` <br>
+           Invalid `enforce_login_domains`. Separate multiple domains with semicolons. <br>
       - statusCode: '404'
         description: |
           **HTTP Status Code:** `404` <br>
-           Not Found 
+           Not Found  
 
            **Error Code:** `1001` <br>
-           User {userId} not exist or not belong to this account. <br>
+           User does not exist: {userId}. <br>
       - statusCode: '429'
         description: |-
           **HTTP Status Code:** `429` <br>
-           Too Many Requests 
+           Too Many Requests  
 
            
+  - url: /users/{userId}/upcoming_meetings
+    method: listUpcomingMeetings
+    httpMethod: get
+    tag: Meetings
+    typeScriptTag: meetings
+    description: List upcoming meetings
+    parameters:
+      - name: userId
+        schema: string
+        required: true
+        description: >-
+          The user's user ID or email address. For user-level apps, pass [the
+          `me`
+          value](https://developers.zoom.us/docs/api/rest/using-zoom-apis/#the-me-keyword).
+        example: 30R7kT7bTIKSNUFEuH_Qlg
+    responses:
+      - statusCode: '200'
+        description: ''
   - url: /users/{userId}/pac
     method: listAccounts
     httpMethod: get
@@ -4726,7 +4752,7 @@ methodObjects:
     description: Get meeting Q&A report
     parameters:
       - name: meetingId
-        schema: undefined
+        schema: string
         required: true
         description: >-
           The meeting's ID or universally unique ID (UUID). 
@@ -4735,31 +4761,69 @@ methodObjects:
           latest meeting instance. 
 
           * If you provide a meeting UUID that begins with a `/` character or
-          contains the `//` characters, you **must** [double
-          encode](https://marketplace.zoom.us/docs/api-reference/using-zoom-apis/#meeting-id-and-uuid)
-          the meeting UUID before making an API request.
+          contains the `//` characters, you **must** double-encode the meeting
+          UUID before making an API request.
+        example: MEETINGID
     responses:
       - statusCode: '200'
         description: ''
       - statusCode: '400'
-        description: |+
+        description: |
           **HTTP Status Code:** `400` <br>
-           Bad Request
+           Bad Request  
 
-          **Error Code:** `200` <br>
-          No permission.<br>
-
+           **Error Code:** `200` <br>
+           No permission.<br> <br>
       - statusCode: '404'
-        description: |+
+        description: |
           **HTTP Status Code:** `404` <br>
-           Not Found
+           Not Found  
 
-          **Error Code:** `1001` <br>
-          User does not exist: {userId}.<br>
-
+           **Error Code:** `1001` <br>
+           User does not exist: {userId}.<br> <br>
           **Error Code:** `3001` <br>
-          Meeting {meetingId} not found or has expired.<br>
+           Meeting {meetingId} not found or has expired.<br> <br>
+  - url: /report/meetings/{meetingId}/survey
+    method: getMeetingSurveyReport
+    httpMethod: get
+    tag: Reports
+    typeScriptTag: reports
+    description: Get meeting survey report
+    parameters:
+      - name: meetingId
+        schema: string
+        required: true
+        description: >-
+          The meeting's ID or universally unique ID (UUID). 
 
+          * If you provide a meeting ID, the API will return a response for the
+          latest meeting instance. 
+
+          * If you provide a meeting UUID that begins with a `/` character or
+          contains the `//` characters, you **must** double-encode the meeting
+          UUID before making an API request.
+        example: MEETINGID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: |
+          **HTTP Status Code:** `400` <br>
+           Bad Request  
+
+           **Error Code:** `1010` <br>
+           User does not belong to this account:{accountId}.<br> <br>
+          **Error Code:** `12702` <br>
+           Can not access a webinar a year ago.<br> <br>
+          **Error Code:** `200` <br>
+           No permission.<br> <br>
+      - statusCode: '404'
+        description: |
+          **HTTP Status Code:** `404` <br>
+           Not Found  
+
+           **Error Code:** `3001` <br>
+           Webinar  {webinarId} not found or has expired.<br> <br>
   - url: /report/operationlogs
     method: getOperationLogsReport
     httpMethod: get
@@ -5295,32 +5359,69 @@ methodObjects:
           latest webinar instance. 
 
           * If you provide a webinar UUID that begins with a `/` character or
-          contains the `//` characters, you **must** [double
-          encode](https://marketplace.zoom.us/docs/api-reference/using-zoom-apis/#meeting-id-and-uuid)
-          the webinar UUID before making an API request.
+          contains the `//` characters, you **must** double-encode the webinar
+          UUID before making an API request.
         example: ABCDE12345
     responses:
       - statusCode: '200'
         description: ''
       - statusCode: '400'
-        description: |+
+        description: |
           **HTTP Status Code:** `400` <br>
-           Bad Request
+           Bad Request  
 
-          **Error Code:** `200` <br>
-          No permission.<br>
-
+           **Error Code:** `200` <br>
+           No permission.<br> <br>
       - statusCode: '404'
-        description: |+
+        description: |
           **HTTP Status Code:** `404` <br>
-           Not Found
+           Not Found  
 
-          **Error Code:** `1001` <br>
-          User does not exist: {userId}.<br>
-
+           **Error Code:** `1001` <br>
+           User does not exist: {userId}.<br> <br>
           **Error Code:** `3001` <br>
-          Webinar  {webinarId} not found or has expired.<br>
+           Webinar  {webinarId} not found or has expired.<br> <br>
+  - url: /report/webinars/{webinarId}/survey
+    method: getWebinarSurveyReport
+    httpMethod: get
+    tag: Reports
+    typeScriptTag: reports
+    description: Get webinar survey report
+    parameters:
+      - name: webinarId
+        schema: string
+        required: true
+        description: >-
+          The webinar's ID or universally unique ID (UUID). 
 
+          * If you provide a webinar ID, the API returns a response for the
+          latest webinar instance. 
+
+          * If you provide a webinar UUID that begins with a `/` character or
+          contains the `//` characters, you **must** double-encode the webinar
+          UUID before making an API request.
+        example: ABCDE12345
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: |
+          **HTTP Status Code:** `400` <br>
+           Bad Request  
+
+           **Error Code:** `1010` <br>
+           User does not belong to this account:{accountId}.<br> <br>
+          **Error Code:** `12702` <br>
+           Can not access a webinar a year ago.<br> <br>
+          **Error Code:** `200` <br>
+           No permission.<br> <br>
+      - statusCode: '404'
+        description: |
+          **HTTP Status Code:** `404` <br>
+           Not Found  
+
+           **Error Code:** `3001` <br>
+           Webinar  {webinarId} not found or has expired.<br> <br>
   - url: /sip_phones
     method: list
     httpMethod: get
@@ -8759,5 +8860,5 @@ methodObjects:
     responses:
       - statusCode: '200'
         description: ''
-numberOfSchemas: 165
+numberOfSchemas: 169
 apiDescription: 'The Zoom Meeting APIs let developers to access information from Zoom. '

@@ -1,6 +1,30 @@
 examples: {}
 examples_2: {}
 examples_3:
+  /admin/n8enylacgd/coupon/{promocode}/archive:
+    post:
+      '200':
+        application/json: {}
+  /admin/n8enylacgd/coupons:
+    get:
+      '200':
+        application/json: {}
+  /admin/n8enylacgd/vanity-link/{slug}:
+    get:
+      '200':
+        application/json: {}
+  /admin/n8enylacgd/vanity-link/{vanity_link_id}/delete:
+    post:
+      '200':
+        application/json: {}
+  /admin/n8enylacgd/vanity-link/{vanity_link_id}/update:
+    post:
+      '200':
+        application/json: {}
+  /admin/n8enylacgd/vanity-links:
+    get:
+      '200':
+        application/json: {}
   /docs:
     get:
       '200':
@@ -58,6 +82,18 @@ examples_3:
         application/json: {}
 ignoreObjectsWithNoProperties: true
 operationIds:
+  /admin/n8enylacgd/coupon/{promocode}/archive:
+    post: Admin_archiveCouponPromocodePost
+  /admin/n8enylacgd/coupons:
+    get: Admin_getAllCoupons
+  /admin/n8enylacgd/vanity-link/{slug}:
+    get: Admin_getVanityLink
+  /admin/n8enylacgd/vanity-link/{vanity_link_id}/delete:
+    post: Admin_removeVanityLink
+  /admin/n8enylacgd/vanity-link/{vanity_link_id}/update:
+    post: Admin_editVanityLink
+  /admin/n8enylacgd/vanity-links:
+    get: Admin_getAllVanityLinks
   /admin/{admin_url_prefix}/sso-provider:
     get: Workspace_getSsoProviderAdmin
   /docs:
@@ -160,6 +196,30 @@ renameTags: {}
 requestSchemaNames: {}
 responseDescriptions: {}
 responseSchemaNames:
+  /admin/n8enylacgd/coupon/{promocode}/archive:
+    post:
+      '200':
+        application/json: AdminArchiveCouponPromocodePostResponse
+  /admin/n8enylacgd/coupons:
+    get:
+      '200':
+        application/json: AdminGetAllCouponsResponse
+  /admin/n8enylacgd/vanity-link/{slug}:
+    get:
+      '200':
+        application/json: AdminGetVanityLinkResponse
+  /admin/n8enylacgd/vanity-link/{vanity_link_id}/delete:
+    post:
+      '200':
+        application/json: AdminRemoveVanityLinkResponse
+  /admin/n8enylacgd/vanity-link/{vanity_link_id}/update:
+    post:
+      '200':
+        application/json: AdminEditVanityLinkResponse
+  /admin/n8enylacgd/vanity-links:
+    get:
+      '200':
+        application/json: AdminGetAllVanityLinksResponse
   /docs:
     get:
       '200':

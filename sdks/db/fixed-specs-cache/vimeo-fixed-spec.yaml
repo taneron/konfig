@@ -266,9 +266,8 @@ rawSpecString: |
           Get all the user's videos that can be added to or removed from a
           showcase
         description: >-
-          This endpoint returns every video belonging to the authenticated user
-          that can be added to or removed from the specified showcase. The user
-          must be the owner of the showcase.
+          This method returns every video belonging to the authenticated user that
+          can be added to or removed from the specified showcase.
         operationId: get_available_showcase_videos
         tags:
           - Showcases\Showcase videos
@@ -350,7 +349,7 @@ rawSpecString: |
                     $ref: '#/components/schemas/video'
           '403':
             description: >-
-              Error code 3433: The authenticated user can't add videos to this
+              Error code 3200: The authenticated user can't add videos to this
               showcase.
             content:
               application/vnd.vimeo.video+json:
@@ -18941,9 +18940,7 @@ rawSpecString: |
     /users/{user_id}/albums/{album_id}/custom_thumbnails:
       get:
         summary: Get all the custom thumbnails of a showcase
-        description: >-
-          This method returns every custom thumbnail of the specified showcase.
-          The authenticated user must be the owner of the showcase.
+        description: This method returns every custom thumbnail of the specified showcase.
         operationId: get_showcase_custom_thumbs
         tags:
           - Showcases\Custom showcase thumbnails
@@ -48985,4 +48982,4 @@ rawSpecString: |
         - stats
         - upload
         - video_files
-konfigCliVersion: 1.38.30
+konfigCliVersion: 1.38.31

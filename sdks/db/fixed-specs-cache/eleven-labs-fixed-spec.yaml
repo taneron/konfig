@@ -2902,6 +2902,151 @@ rawSpecString: |
               application/json:
                 schema:
                   $ref: '#/components/schemas/HTTPValidationError'
+    /admin/n8enylacgd/vanity-link/{vanity_link_id}/update:
+      post:
+        tags:
+          - admin
+        summary: Edit Vanity Link
+        operationId: >-
+          edit_vanity_link_admin_n8enylacgd_vanity_link__vanity_link_id__update_post
+        parameters:
+          - required: true
+            schema:
+              type: string
+              title: Vanity Link Id
+            name: vanity_link_id
+            in: path
+        requestBody:
+          content:
+            application/json:
+              schema:
+                $ref: >-
+                  #/components/schemas/Body_edit_vanity_link_admin_n8enylacgd_vanity_link__vanity_link_id__update_post
+          required: true
+        responses:
+          '200':
+            description: Successful Response
+            content:
+              application/json:
+                schema: {}
+          '422':
+            description: Validation Error
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/HTTPValidationError'
+    /admin/n8enylacgd/vanity-link/{vanity_link_id}/delete:
+      post:
+        tags:
+          - admin
+        summary: Delete Vanity Link
+        operationId: >-
+          delete_vanity_link_admin_n8enylacgd_vanity_link__vanity_link_id__delete_post
+        parameters:
+          - required: true
+            schema:
+              type: string
+              title: Vanity Link Id
+            name: vanity_link_id
+            in: path
+        responses:
+          '200':
+            description: Successful Response
+            content:
+              application/json:
+                schema: {}
+          '422':
+            description: Validation Error
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/HTTPValidationError'
+    /admin/n8enylacgd/vanity-links:
+      get:
+        tags:
+          - admin
+        summary: Get All Vanity Links
+        operationId: get_all_vanity_links_admin_n8enylacgd_vanity_links_get
+        responses:
+          '200':
+            description: Successful Response
+            content:
+              application/json:
+                schema: {}
+          '422':
+            description: Validation Error
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/HTTPValidationError'
+    /admin/n8enylacgd/vanity-link/{slug}:
+      get:
+        tags:
+          - admin
+        summary: Get Vanity Link
+        operationId: get_vanity_link_admin_n8enylacgd_vanity_link__slug__get
+        parameters:
+          - required: true
+            schema:
+              type: string
+              title: Slug
+            name: slug
+            in: path
+        responses:
+          '200':
+            description: Successful Response
+            content:
+              application/json:
+                schema: {}
+          '422':
+            description: Validation Error
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/HTTPValidationError'
+    /admin/n8enylacgd/coupon/{promocode}/archive:
+      post:
+        tags:
+          - admin
+        summary: Archive Coupon
+        operationId: archive_coupon_admin_n8enylacgd_coupon__promocode__archive_post
+        parameters:
+          - required: true
+            schema:
+              type: string
+              title: Promocode
+            name: promocode
+            in: path
+        responses:
+          '200':
+            description: Successful Response
+            content:
+              application/json:
+                schema: {}
+          '422':
+            description: Validation Error
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/HTTPValidationError'
+    /admin/n8enylacgd/coupons:
+      get:
+        tags:
+          - admin
+        summary: Get All Coupons
+        operationId: get_all_coupons_admin_n8enylacgd_coupons_get
+        responses:
+          '200':
+            description: Successful Response
+            content:
+              application/json:
+                schema: {}
+          '422':
+            description: Validation Error
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/HTTPValidationError'
     /docs:
       get:
         summary: Redirect To Mintlify
@@ -3587,6 +3732,29 @@ rawSpecString: |
           - pronunciation_dictionary_locators
         title: >-
           Body_Update_Pronunciation_Dictionaries_v1_projects__project_id__update_pronunciation_dictionaries_post
+      Body_edit_vanity_link_admin_n8enylacgd_vanity_link__vanity_link_id__update_post:
+        properties:
+          vanity_slug:
+            type: string
+            title: Vanity Slug
+            description: >-
+              The new slug for the vanity link. For example, if you want the
+              vanity link to be /blog/NEW_SLUG, enter NEW_SLUG.
+          target_url:
+            type: string
+            title: Target URL
+            description: The new URL that the vanity link should redirect to.
+          comment:
+            type: string
+            title: Comment
+            description: A new comment or description for the vanity link.
+        type: object
+        required:
+          - vanity_slug
+          - target_url
+          - comment
+        title: >-
+          Body_edit_vanity_link_admin_n8enylacgd_vanity_link__vanity_link_id__update_post
       ChapterResponseModel:
         properties:
           chapter_id:
@@ -5043,4 +5211,4 @@ rawSpecString: |
         please contact our sales team.
   servers:
     - url: https://api.elevenlabs.io
-konfigCliVersion: 1.38.30
+konfigCliVersion: 1.38.31

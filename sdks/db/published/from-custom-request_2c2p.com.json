@@ -1,0 +1,880 @@
+{
+  "securitySchemes": {},
+  "apiBaseUrl": "https://sandbox-pgw.2c2p.com",
+  "apiVersion": "4.3",
+  "apiDescription": "Rest API for PGW payment purpose - LATEST",
+  "apiTitle": "PGW Payment API 4.3",
+  "endpoints": 22,
+  "sdkMethods": 22,
+  "schemas": 71,
+  "parameters": 80,
+  "originalCustomRequest": {
+    "lambda": true
+  },
+  "customRequestSpecFilename": "2c2p.com.yaml",
+  "difficultyScore": 76.5,
+  "difficulty": "Easy",
+  "company": "2C2P",
+  "sdkName": "2c2p-{language}-sdk",
+  "clientName": "2C2P",
+  "metaDescription": "2C2P is a global payments platform helping businesses securely accept payments across online, mobile and in-store channels. The company is headquartered in Singapore and operates across Southeast Asia, North Asia, Europe and the US. It is the preferred payments platform provider of regional airlines, travel companies and global retailers.",
+  "apiStatusUrls": "inherit",
+  "homepage": "2c2p.com/",
+  "developerDocumentation": "developer.2c2p.com/",
+  "categories": [
+    "finance",
+    "payments",
+    "online_payments",
+    "fintech"
+  ],
+  "category": "Payment Processing",
+  "methods": [
+    {
+      "url": "/payment/4.3/applepay/merchantvalidation",
+      "method": "validateMerchant",
+      "httpMethod": "post",
+      "tag": "ApplePay",
+      "typeScriptTag": "applePay",
+      "description": "",
+      "parameters": [
+        {
+          "name": "validationUrl",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "paymentToken",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "PAYMENTTOKEN"
+        },
+        {
+          "name": "locale",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "clientID",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "browserDetails",
+          "schema": "object",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/payment/4.3/cache/cleancache",
+      "method": "cleanCache",
+      "httpMethod": "post",
+      "tag": "Cache",
+      "typeScriptTag": "cache",
+      "description": "",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": "Success"
+        }
+      ]
+    },
+    {
+      "url": "/payment/4.3/canceltransaction",
+      "method": "post",
+      "httpMethod": "post",
+      "tag": "CancelTransaction",
+      "typeScriptTag": "cancelTransaction",
+      "description": "",
+      "parameters": [
+        {
+          "name": "paymentToken",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "PAYMENTTOKEN"
+        },
+        {
+          "name": "locale",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "clientID",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "browserDetails",
+          "schema": "object",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/payment/4.3/cardinstallmentplaninfo",
+      "method": "create",
+      "httpMethod": "post",
+      "tag": "CardInstallmentPlanInfo",
+      "typeScriptTag": "cardInstallmentPlanInfo",
+      "description": "",
+      "parameters": [
+        {
+          "name": "cardNo",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "bankCode",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "paymentToken",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "PAYMENTTOKEN"
+        },
+        {
+          "name": "locale",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "clientID",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "browserDetails",
+          "schema": "object",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/payment/4.3/cardtokeninfo",
+      "method": "getCardTokenInfo",
+      "httpMethod": "post",
+      "tag": "CardTokenInfo",
+      "typeScriptTag": "cardTokenInfo",
+      "description": "",
+      "parameters": [
+        {
+          "name": "paymentToken",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "PAYMENTTOKEN"
+        },
+        {
+          "name": "locale",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "clientID",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "browserDetails",
+          "schema": "object",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/payment/4.3/exchangerate",
+      "method": "getRate",
+      "httpMethod": "post",
+      "tag": "ExchangeRate",
+      "typeScriptTag": "exchangeRate",
+      "description": "",
+      "parameters": [
+        {
+          "name": "bin",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "paymentToken",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "PAYMENTTOKEN"
+        },
+        {
+          "name": "locale",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "clientID",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "browserDetails",
+          "schema": "object",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/payment/4.3/exchangerate/secure",
+      "method": "requestEndpoint",
+      "httpMethod": "post",
+      "tag": "ExchangeRate",
+      "typeScriptTag": "exchangeRate",
+      "description": "JWT Request Endpoint",
+      "parameters": [
+        {
+          "name": "payload",
+          "schema": "string",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/payment/4.3/exchangerate/apmmccexchangerate",
+      "method": "apmMcc",
+      "httpMethod": "post",
+      "tag": "ExchangeRate",
+      "typeScriptTag": "exchangeRate",
+      "description": "APM MCC Exchange Rate",
+      "parameters": [
+        {
+          "name": "paymentToken",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "PAYMENTTOKEN"
+        },
+        {
+          "name": "locale",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "clientID",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "browserDetails",
+          "schema": "object",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/payment/4.3/initialization",
+      "method": "requestCreation",
+      "httpMethod": "post",
+      "tag": "Initialization",
+      "typeScriptTag": "initialization",
+      "description": "",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/payment/4.3/loyaltypointinfo",
+      "method": "postLoyaltyPointInfo",
+      "httpMethod": "post",
+      "tag": "LoyaltyPointInfo",
+      "typeScriptTag": "loyaltyPointInfo",
+      "description": "",
+      "parameters": [
+        {
+          "name": "providerID",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "profileID",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "referenceID",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "cardNo",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "expiryMonth",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "expiryYear",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "paymentToken",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "PAYMENTTOKEN"
+        },
+        {
+          "name": "locale",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "clientID",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "browserDetails",
+          "schema": "object",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/payment/4.3/payment",
+      "method": "createPayment",
+      "httpMethod": "post",
+      "tag": "Payment",
+      "typeScriptTag": "payment",
+      "description": "",
+      "parameters": [
+        {
+          "name": "payment",
+          "schema": "object",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "responseReturnUrl",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "clientIP",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "paymentToken",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "PAYMENTTOKEN"
+        },
+        {
+          "name": "locale",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "clientID",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "browserDetails",
+          "schema": "object",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/payment/4.3/paymentinquiry",
+      "method": "postPaymentDetails",
+      "httpMethod": "post",
+      "tag": "PaymentInquiry",
+      "typeScriptTag": "paymentInquiry",
+      "description": "",
+      "parameters": [
+        {
+          "name": "payload",
+          "schema": "string",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/payment/4.3/paymentinstruction",
+      "method": "submitInstruction",
+      "httpMethod": "post",
+      "tag": "PaymentInstruction",
+      "typeScriptTag": "paymentInstruction",
+      "description": "",
+      "parameters": [
+        {
+          "name": "payload",
+          "schema": "string",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/payment/4.3/paymentnotification",
+      "method": "processNotification",
+      "httpMethod": "post",
+      "tag": "PaymentNotification",
+      "typeScriptTag": "paymentNotification",
+      "description": "",
+      "parameters": [
+        {
+          "name": "plateform",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "recipientID",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "recipientName",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "paymentToken",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "PAYMENTTOKEN"
+        },
+        {
+          "name": "locale",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "clientID",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "browserDetails",
+          "schema": "object",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/payment/4.3/paymentoption",
+      "method": "createPaymentOption",
+      "httpMethod": "post",
+      "tag": "PaymentOption",
+      "typeScriptTag": "paymentOption",
+      "description": "",
+      "parameters": [
+        {
+          "name": "paymentToken",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "PAYMENTTOKEN"
+        },
+        {
+          "name": "locale",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "clientID",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "browserDetails",
+          "schema": "object",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/payment/4.3/paymentoptiondetails",
+      "method": "postOptionDetails",
+      "httpMethod": "post",
+      "tag": "PaymentOptionDetails",
+      "typeScriptTag": "paymentOptionDetails",
+      "description": "",
+      "parameters": [
+        {
+          "name": "categoryCode",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "CATEGORYCODE"
+        },
+        {
+          "name": "groupCode",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "GROUPCODE"
+        },
+        {
+          "name": "paymentToken",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "PAYMENTTOKEN"
+        },
+        {
+          "name": "locale",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "clientID",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "browserDetails",
+          "schema": "object",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/payment/4.3/paymentsimulate",
+      "method": "executePaymentSimulation",
+      "httpMethod": "post",
+      "tag": "PaymentSimulate",
+      "typeScriptTag": "paymentSimulate",
+      "description": "",
+      "parameters": [
+        {
+          "name": "payload",
+          "schema": "string",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/payment/4.3/paymenttoken",
+      "method": "generateToken",
+      "httpMethod": "post",
+      "tag": "PaymentToken",
+      "typeScriptTag": "paymentToken",
+      "description": "",
+      "parameters": [
+        {
+          "name": "payload",
+          "schema": "string",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/payment/4.3/redirectbackend",
+      "method": "postPaymentRedirect",
+      "httpMethod": "post",
+      "tag": "RedirectBackEnd",
+      "typeScriptTag": "redirectBackEnd",
+      "description": "",
+      "parameters": [
+        {
+          "name": "paymentResponse",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "isLeaveApp",
+          "schema": "string",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": "Success"
+        }
+      ]
+    },
+    {
+      "url": "/payment/4.3/redirectfrontend",
+      "method": "postPaymentRedirect",
+      "httpMethod": "post",
+      "tag": "RedirectFrontEnd",
+      "typeScriptTag": "redirectFrontEnd",
+      "description": "",
+      "parameters": [
+        {
+          "name": "payResponse",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "isLeaveApp",
+          "schema": "string",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": "Success"
+        }
+      ]
+    },
+    {
+      "url": "/payment/4.3/transactionstatus",
+      "method": "updateTransactionStatus",
+      "httpMethod": "post",
+      "tag": "TransactionStatus",
+      "typeScriptTag": "transactionStatus",
+      "description": "",
+      "parameters": [
+        {
+          "name": "additionalInfo",
+          "schema": "boolean",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "paymentToken",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "PAYMENTTOKEN"
+        },
+        {
+          "name": "locale",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "clientID",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "browserDetails",
+          "schema": "object",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/payment/4.3/userpreference",
+      "method": "saveUserPreference",
+      "httpMethod": "post",
+      "tag": "UserPreference",
+      "typeScriptTag": "userPreference",
+      "description": "",
+      "parameters": [
+        {
+          "name": "paymentToken",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "PAYMENTTOKEN"
+        },
+        {
+          "name": "locale",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "clientID",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "browserDetails",
+          "schema": "object",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "repositoryDescription": "2C2P is a global payments platform helping businesses securely accept payments across online, mobile and in-store channels. The company is headquartered in Singapore and operates across Southeast Asia, North Asia, Europe and the US. It is the preferred payments platform provider of regional airlines, travel companies and global retailers.",
+  "logo": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/2-c-2-p/logo.png",
+  "openApiRaw": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/2-c-2-p/openapi.yaml",
+  "openApiGitHubUi": "https://github.com/konfig-sdks/openapi-examples/tree/HEAD/2-c-2-p/openapi.yaml",
+  "previewLinkImage": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/2-c-2-p/imagePreview.webp",
+  "faviconUrl": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/2-c-2-p/favicon.png",
+  "clientNameCamelCase": "2C2P",
+  "lastUpdated": "2024-03-19T00:01:13.595Z",
+  "typescriptSdkUsageCode": "import { 2C2P } from '2c2p-typescript-sdk';\n\nconst 2C2P = new 2C2P()",
+  "typescriptSdkFirstRequestCode": "// \nconst validateMerchantResponse = 2C2P.applePay.validateMerchant({\n    paymentToken: \"PAYMENTTOKEN\"\n})",
+  "fixedSpecFileName": "2c2p-fixed-spec.yaml"
+}

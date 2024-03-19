@@ -1,4 +1,4 @@
-hash: 3511fac6bd77c20d10cf611ff9e0ed764ad2b888ecb32bf5114f399621be1ae6
+hash: 83b1c18328dca072d4387c03be09616f1a346e8b25ad54bd53b53d2d431ebf0c
 methodObjects:
   - url: /v1/history
     method: getGeneratedAudioMetadata
@@ -1803,6 +1803,113 @@ methodObjects:
         description: ''
       - statusCode: '422'
         description: ''
+  - url: /admin/n8enylacgd/vanity-link/{vanity_link_id}/update
+    method: editVanityLink
+    httpMethod: post
+    tag: admin
+    typeScriptTag: admin
+    description: Edit Vanity Link
+    parameters:
+      - name: vanityLinkId
+        schema: string
+        required: true
+        description: ''
+        example: VANITY_LINK_ID
+      - name: vanity_slug
+        schema: string
+        required: true
+        description: ''
+        example: VANITY_SLUG
+      - name: target_url
+        schema: string
+        required: true
+        description: ''
+        example: TARGET_URL
+      - name: comment
+        schema: string
+        required: true
+        description: ''
+        example: COMMENT
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '422'
+        description: ''
+  - url: /admin/n8enylacgd/vanity-link/{vanity_link_id}/delete
+    method: removeVanityLink
+    httpMethod: post
+    tag: admin
+    typeScriptTag: admin
+    description: Delete Vanity Link
+    parameters:
+      - name: vanityLinkId
+        schema: string
+        required: true
+        description: ''
+        example: VANITY_LINK_ID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '422'
+        description: ''
+  - url: /admin/n8enylacgd/vanity-links
+    method: getAllVanityLinks
+    httpMethod: get
+    tag: admin
+    typeScriptTag: admin
+    description: Get All Vanity Links
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '422'
+        description: ''
+  - url: /admin/n8enylacgd/vanity-link/{slug}
+    method: getVanityLink
+    httpMethod: get
+    tag: admin
+    typeScriptTag: admin
+    description: Get Vanity Link
+    parameters:
+      - name: slug
+        schema: string
+        required: true
+        description: ''
+        example: SLUG
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '422'
+        description: ''
+  - url: /admin/n8enylacgd/coupon/{promocode}/archive
+    method: archiveCouponPromocodePost
+    httpMethod: post
+    tag: admin
+    typeScriptTag: admin
+    description: Archive Coupon
+    parameters:
+      - name: promocode
+        schema: string
+        required: true
+        description: ''
+        example: PROMOCODE
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '422'
+        description: ''
+  - url: /admin/n8enylacgd/coupons
+    method: getAllCoupons
+    httpMethod: get
+    tag: admin
+    typeScriptTag: admin
+    description: Get All Coupons
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '422'
+        description: ''
   - url: /docs
     method: toMintlifyDocsGet
     httpMethod: get
@@ -1837,7 +1944,7 @@ methodObjects:
         description: ''
       - statusCode: '422'
         description: ''
-numberOfSchemas: 73
+numberOfSchemas: 80
 apiDescription: >-
   This is the documentation for the ElevenLabs API. You can use this API to use
   our service programmatically, this is done by using your xi-api-key. <br/> You
