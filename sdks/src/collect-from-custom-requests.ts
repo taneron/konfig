@@ -914,7 +914,49 @@ const customRequests: Record<string, CustomRequest> = {
       return downloadOpenApiSpecFromReadme({ urls });
     }
   },
-
+  "tremendous.com": {
+    lambda: async () => {
+      const urls = [
+        "https://developers.tremendous.com/reference/list-rewards",
+        "https://developers.tremendous.com/reference/get-reward",
+        "https://developers.tremendous.com/reference/generate-reward-link",
+        "https://developers.tremendous.com/reference/generate-reward-token",
+        "https://developers.tremendous.com/reference/resend-reward",
+        "https://developers.tremendous.com/reference/list-orders",
+        "https://developers.tremendous.com/reference/create-order",
+        "https://developers.tremendous.com/reference/get-order",
+        "https://developers.tremendous.com/reference/approve-order",
+        "https://developers.tremendous.com/reference/reject-order",
+        "https://developers.tremendous.com/reference/list-products",
+        "https://developers.tremendous.com/reference/get-product",
+        "https://developers.tremendous.com/reference/list-campaigns",
+        "https://developers.tremendous.com/reference/get-campaign",
+        "https://developers.tremendous.com/reference/list-funding-sources",
+        "https://developers.tremendous.com/reference/get-funding-source",
+        "https://developers.tremendous.com/reference/list-invoices",
+        "https://developers.tremendous.com/reference/create-invoice",
+        "https://developers.tremendous.com/reference/get-invoice",
+        "https://developers.tremendous.com/reference/delete-invoices",
+        "https://developers.tremendous.com/reference/download-invoice-pdf",
+        "https://developers.tremendous.com/reference/download-invoice-csv",
+        "https://developers.tremendous.com/reference/list-balance-transactions",
+        "https://developers.tremendous.com/reference/list-organizations",
+        "https://developers.tremendous.com/reference/create-organization",
+        "https://developers.tremendous.com/reference/get-organization",
+        "https://developers.tremendous.com/reference/create-api-key",
+        "https://developers.tremendous.com/reference/list-members",
+        "https://developers.tremendous.com/reference/create-member",
+        "https://developers.tremendous.com/reference/get-member",
+        "https://developers.tremendous.com/reference/list-fields",
+        "https://developers.tremendous.com/reference/list-webhooks",
+        "https://developers.tremendous.com/reference/create-webhook",
+        "https://developers.tremendous.com/reference/get-webhook",
+        "https://developers.tremendous.com/reference/simulate-webhook",
+        "https://developers.tremendous.com/reference/list-webhook-events"
+      ]
+      return downloadOpenApiSpecFromReadme({ urls });
+    }
+  },
 };
 
 async function downloadOpenApiSpecFromMintlify({

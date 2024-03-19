@@ -1,0 +1,545 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignoreObjectsWithNoProperties: true
+ignorePotentialIncorrectType: true
+operationIds:
+  /balance_transactions:
+    get: BalanceTransactions_listAll
+  /campaigns:
+    get: Campaigns_getAll
+  /campaigns/{id}:
+    get: Campaigns_getById
+  /fields:
+    get: Fields_getCustomFields
+  /funding_sources:
+    get: FundingSources_getAll
+  /funding_sources/{id}:
+    get: FundingSources_getById
+  /invoices:
+    get: Invoices_getAll
+    post: Invoices_createAndFundAccountBalance
+  /invoices/{id}:
+    delete: Invoices_removeInvoice
+    get: Invoices_getById
+  /invoices/{id}/csv:
+    get: Invoices_getCsv
+  /invoices/{id}/pdf:
+    get: Invoices_getPdf
+  /members:
+    get: Members_listMembers
+    post: Members_createNewMember
+  /members/{id}:
+    get: Members_getMember
+  /order_approvals/{id}/approve:
+    post: Orders_approveOrderById
+  /order_approvals/{id}/reject:
+    post: Orders_rejectById
+  /orders:
+    get: Orders_getList
+    post: Orders_createOrder
+  /orders/{id}:
+    get: Orders_getOrderById
+  /organizations:
+    get: Organizations_getList
+    post: Organizations_createNewOrganization
+  /organizations/create_api_key:
+    post: Organizations_createApiKey
+  /organizations/{id}:
+    get: Organizations_getOrganization
+  /products:
+    get: Products_getList
+  /products/{id}:
+    get: Products_getById
+  /rewards:
+    get: Rewards_listAllRewards
+  /rewards/{id}:
+    get: Rewards_getSingleReward
+  /rewards/{id}/generate_embed_token:
+    post: Rewards_generateEmbedToken
+  /rewards/{id}/generate_link:
+    post: Rewards_generateLink
+  /rewards/{id}/resend:
+    post: Rewards_resendRewardById
+  /webhooks:
+    get: Webhooks_getDetails
+    post: Webhooks_createWebhook
+  /webhooks/{id}:
+    get: Webhooks_getDetails
+  /webhooks/{id}/events:
+    get: Webhooks_listEvents
+  /webhooks/{id}/simulate:
+    post: Webhooks_triggerEvent
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /invoices:
+    post:
+      application/json: InvoicesCreateAndFundAccountBalanceRequest
+  /members:
+    post:
+      application/json: MembersCreateNewMemberRequest
+  /orders:
+    post:
+      application/json: OrdersCreateOrderRequest
+  /organizations:
+    post:
+      application/json: OrganizationsCreateNewOrganizationRequest
+  /webhooks:
+    post:
+      application/json: WebhooksCreateWebhookRequest
+  /webhooks/{id}/simulate:
+    post:
+      application/json: WebhooksTriggerEventRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /balance_transactions:
+    get:
+      '200':
+        application/json: BalanceTransactionsListAllResponse
+      '401':
+        application/json: BalanceTransactionsListAll401Response
+      '422':
+        application/json: BalanceTransactionsListAll422Response
+      '429':
+        application/json: BalanceTransactionsListAll429Response
+      '500':
+        application/json: BalanceTransactionsListAll500Response
+  /campaigns:
+    get:
+      '200':
+        application/json: CampaignsGetAllResponse
+      '401':
+        application/json: CampaignsGetAll401Response
+      '429':
+        application/json: CampaignsGetAll429Response
+      '500':
+        application/json: CampaignsGetAll500Response
+  /campaigns/{id}:
+    get:
+      '200':
+        application/json: CampaignsGetByIdResponse
+      '401':
+        application/json: CampaignsGetById401Response
+      '404':
+        application/json: CampaignsGetById404Response
+      '429':
+        application/json: CampaignsGetById429Response
+      '500':
+        application/json: CampaignsGetById500Response
+  /fields:
+    get:
+      '200':
+        application/json: FieldsGetCustomFieldsResponse
+      '401':
+        application/json: FieldsGetCustomFields401Response
+      '429':
+        application/json: FieldsGetCustomFields429Response
+      '500':
+        application/json: FieldsGetCustomFields500Response
+  /funding_sources:
+    get:
+      '200':
+        application/json: FundingSourcesGetAllResponse
+      '401':
+        application/json: FundingSourcesGetAll401Response
+      '429':
+        application/json: FundingSourcesGetAll429Response
+      '500':
+        application/json: FundingSourcesGetAll500Response
+  /funding_sources/{id}:
+    get:
+      '200':
+        application/json: FundingSourcesGetByIdResponse
+      '401':
+        application/json: FundingSourcesGetById401Response
+      '404':
+        application/json: FundingSourcesGetById404Response
+      '429':
+        application/json: FundingSourcesGetById429Response
+      '500':
+        application/json: FundingSourcesGetById500Response
+  /invoices:
+    get:
+      '200':
+        application/json: InvoicesGetAllResponse
+      '401':
+        application/json: InvoicesGetAll401Response
+      '429':
+        application/json: InvoicesGetAll429Response
+      '500':
+        application/json: InvoicesGetAll500Response
+    post:
+      '200':
+        application/json: InvoicesCreateAndFundAccountBalanceResponse
+      '400':
+        application/json: InvoicesCreateAndFundAccountBalance400Response
+      '401':
+        application/json: InvoicesCreateAndFundAccountBalance401Response
+      '429':
+        application/json: InvoicesCreateAndFundAccountBalance429Response
+      '500':
+        application/json: InvoicesCreateAndFundAccountBalance500Response
+  /invoices/{id}:
+    delete:
+      '200':
+        application/json: InvoicesRemoveInvoiceResponse
+      '401':
+        application/json: InvoicesRemoveInvoice401Response
+      '404':
+        application/json: InvoicesRemoveInvoice404Response
+      '429':
+        application/json: InvoicesRemoveInvoice429Response
+      '500':
+        application/json: InvoicesRemoveInvoice500Response
+    get:
+      '200':
+        application/json: InvoicesGetByIdResponse
+      '401':
+        application/json: InvoicesGetById401Response
+      '404':
+        application/json: InvoicesGetById404Response
+      '429':
+        application/json: InvoicesGetById429Response
+      '500':
+        application/json: InvoicesGetById500Response
+  /invoices/{id}/csv:
+    get:
+      '200':
+        text/csv: InvoicesGetCsvResponse
+      '400':
+        application/json: InvoicesGetCsv400Response
+      '401':
+        application/json: InvoicesGetCsv401Response
+      '404':
+        application/json: InvoicesGetCsv404Response
+      '429':
+        application/json: InvoicesGetCsv429Response
+      '500':
+        application/json: InvoicesGetCsv500Response
+  /invoices/{id}/pdf:
+    get:
+      '200':
+        application/pdf: InvoicesGetPdfResponse
+      '401':
+        application/json: InvoicesGetPdf401Response
+      '404':
+        application/json: InvoicesGetPdf404Response
+      '429':
+        application/json: InvoicesGetPdf429Response
+      '500':
+        application/json: InvoicesGetPdf500Response
+  /members:
+    get:
+      '200':
+        application/json: MembersListMembersResponse
+      '401':
+        application/json: MembersListMembers401Response
+      '429':
+        application/json: MembersListMembers429Response
+      '500':
+        application/json: MembersListMembers500Response
+    post:
+      '200':
+        application/json: MembersCreateNewMemberResponse
+      '400':
+        application/json: MembersCreateNewMember400Response
+      '401':
+        application/json: MembersCreateNewMember401Response
+      '429':
+        application/json: MembersCreateNewMember429Response
+      '500':
+        application/json: MembersCreateNewMember500Response
+  /members/{id}:
+    get:
+      '200':
+        application/json: MembersGetMemberResponse
+      '401':
+        application/json: MembersGetMember401Response
+      '404':
+        application/json: MembersGetMember404Response
+      '429':
+        application/json: MembersGetMember429Response
+      '500':
+        application/json: MembersGetMember500Response
+  /order_approvals/{id}/approve:
+    post:
+      '200':
+        application/json: OrdersApproveOrderByIdResponse
+      '401':
+        application/json: OrdersApproveOrderById401Response
+      '402':
+        application/json: OrdersApproveOrderById402Response
+      '403':
+        application/json: OrdersApproveOrderById403Response
+      '404':
+        application/json: OrdersApproveOrderById404Response
+      '422':
+        application/json: OrdersApproveOrderById422Response
+      '429':
+        application/json: OrdersApproveOrderById429Response
+      '500':
+        application/json: OrdersApproveOrderById500Response
+  /order_approvals/{id}/reject:
+    post:
+      '200':
+        application/json: OrdersRejectByIdResponse
+      '401':
+        application/json: OrdersRejectById401Response
+      '403':
+        application/json: OrdersRejectById403Response
+      '404':
+        application/json: OrdersRejectById404Response
+      '422':
+        application/json: OrdersRejectById422Response
+      '429':
+        application/json: OrdersRejectById429Response
+      '500':
+        application/json: OrdersRejectById500Response
+  /orders:
+    get:
+      '200':
+        application/json: OrdersGetListResponse
+      '401':
+        application/json: OrdersGetList401Response
+      '429':
+        application/json: OrdersGetList429Response
+      '500':
+        application/json: OrdersGetList500Response
+    post:
+      '200':
+        application/json: OrdersCreateOrderResponse
+      '201':
+        application/json: OrdersCreateOrder201Response
+      '202':
+        application/json: OrdersCreateOrder202Response
+      '400':
+        application/json: OrdersCreateOrder400Response
+      '401':
+        application/json: OrdersCreateOrder401Response
+      '402':
+        application/json: OrdersCreateOrder402Response
+      '422':
+        application/json: OrdersCreateOrder422Response
+      '429':
+        application/json: OrdersCreateOrder429Response
+      '500':
+        application/json: OrdersCreateOrder500Response
+  /orders/{id}:
+    get:
+      '200':
+        application/json: OrdersGetOrderByIdResponse
+      '401':
+        application/json: OrdersGetOrderById401Response
+      '404':
+        application/json: OrdersGetOrderById404Response
+      '429':
+        application/json: OrdersGetOrderById429Response
+      '500':
+        application/json: OrdersGetOrderById500Response
+  /organizations:
+    get:
+      '200':
+        application/json: OrganizationsGetListResponse
+      '401':
+        application/json: OrganizationsGetList401Response
+      '429':
+        application/json: OrganizationsGetList429Response
+      '500':
+        application/json: OrganizationsGetList500Response
+    post:
+      '200':
+        application/json: OrganizationsCreateNewOrganizationResponse
+      '400':
+        application/json: OrganizationsCreateNewOrganization400Response
+      '401':
+        application/json: OrganizationsCreateNewOrganization401Response
+      '429':
+        application/json: OrganizationsCreateNewOrganization429Response
+      '500':
+        application/json: OrganizationsCreateNewOrganization500Response
+  /organizations/create_api_key:
+    post:
+      '200':
+        application/json: OrganizationsCreateApiKeyResponse
+      '401':
+        application/json: OrganizationsCreateApiKey401Response
+      '404':
+        application/json: OrganizationsCreateApiKey404Response
+      '429':
+        application/json: OrganizationsCreateApiKey429Response
+      '500':
+        application/json: OrganizationsCreateApiKey500Response
+  /organizations/{id}:
+    get:
+      '200':
+        application/json: OrganizationsGetOrganizationResponse
+      '401':
+        application/json: OrganizationsGetOrganization401Response
+      '404':
+        application/json: OrganizationsGetOrganization404Response
+      '429':
+        application/json: OrganizationsGetOrganization429Response
+      '500':
+        application/json: OrganizationsGetOrganization500Response
+  /products:
+    get:
+      '200':
+        application/json: ProductsGetListResponse
+      '401':
+        application/json: ProductsGetList401Response
+      '429':
+        application/json: ProductsGetList429Response
+      '500':
+        application/json: ProductsGetList500Response
+  /products/{id}:
+    get:
+      '200':
+        application/json: ProductsGetByIdResponse
+      '401':
+        application/json: ProductsGetById401Response
+      '404':
+        application/json: ProductsGetById404Response
+      '429':
+        application/json: ProductsGetById429Response
+      '500':
+        application/json: ProductsGetById500Response
+  /rewards:
+    get:
+      '200':
+        application/json: RewardsListAllRewardsResponse
+      '401':
+        application/json: RewardsListAllRewards401Response
+      '429':
+        application/json: RewardsListAllRewards429Response
+      '500':
+        application/json: RewardsListAllRewards500Response
+  /rewards/{id}:
+    get:
+      '200':
+        application/json: RewardsGetSingleRewardResponse
+      '401':
+        application/json: RewardsGetSingleReward401Response
+      '404':
+        application/json: RewardsGetSingleReward404Response
+      '429':
+        application/json: RewardsGetSingleReward429Response
+      '500':
+        application/json: RewardsGetSingleReward500Response
+  /rewards/{id}/generate_embed_token:
+    post:
+      '200':
+        application/json: RewardsGenerateEmbedTokenResponse
+      '401':
+        application/json: RewardsGenerateEmbedToken401Response
+      '404':
+        application/json: RewardsGenerateEmbedToken404Response
+      '429':
+        application/json: RewardsGenerateEmbedToken429Response
+      '500':
+        application/json: RewardsGenerateEmbedToken500Response
+  /rewards/{id}/generate_link:
+    post:
+      '200':
+        application/json: RewardsGenerateLinkResponse
+      '401':
+        application/json: RewardsGenerateLink401Response
+      '403':
+        application/json: RewardsGenerateLink403Response
+      '404':
+        application/json: RewardsGenerateLink404Response
+      '429':
+        application/json: RewardsGenerateLink429Response
+      '500':
+        application/json: RewardsGenerateLink500Response
+  /rewards/{id}/resend:
+    post:
+      '200':
+        application/json: RewardsResendRewardByIdResponse
+      '401':
+        application/json: RewardsResendRewardById401Response
+      '404':
+        application/json: RewardsResendRewardById404Response
+      '422':
+        application/json: RewardsResendRewardById422Response
+      '429':
+        application/json: RewardsResendRewardById429Response
+      '500':
+        application/json: RewardsResendRewardById500Response
+  /webhooks:
+    get:
+      '200':
+        application/json: WebhooksGetDetailsResponse
+      '401':
+        application/json: WebhooksGetDetails401Response
+      '429':
+        application/json: WebhooksGetDetails429Response
+      '500':
+        application/json: WebhooksGetDetails500Response
+    post:
+      '200':
+        application/json: WebhooksCreateWebhookResponse
+      '400':
+        application/json: WebhooksCreateWebhook400Response
+      '401':
+        application/json: WebhooksCreateWebhook401Response
+      '429':
+        application/json: WebhooksCreateWebhook429Response
+      '500':
+        application/json: WebhooksCreateWebhook500Response
+  /webhooks/{id}:
+    get:
+      '200':
+        application/json: WebhooksGetDetails200Response
+      '401':
+        application/json: WebhooksGetDetails401Response
+      '404':
+        application/json: WebhooksGetDetails404Response
+      '429':
+        application/json: WebhooksGetDetails429Response
+      '500':
+        application/json: WebhooksGetDetails500Response
+  /webhooks/{id}/events:
+    get:
+      '200':
+        application/json: WebhooksListEventsResponse
+      '401':
+        application/json: WebhooksListEvents401Response
+      '404':
+        application/json: WebhooksListEvents404Response
+      '429':
+        application/json: WebhooksListEvents429Response
+      '500':
+        application/json: WebhooksListEvents500Response
+  /webhooks/{id}/simulate:
+    post:
+      '200':
+        text/html: WebhooksTriggerEventResponse
+      '401':
+        application/json: WebhooksTriggerEvent401Response
+      '404':
+        application/json: WebhooksTriggerEvent404Response
+      '422':
+        application/json: WebhooksTriggerEvent422Response
+      '429':
+        application/json: WebhooksTriggerEvent429Response
+      '500':
+        application/json: WebhooksTriggerEvent500Response
+securityParameters:
+  campaign_id:
+    query: false
+  country:
+    query: false
+  created_at[gte]:
+    query: false
+  created_at[lte]:
+    query: false
+  currency:
+    query: false
+  external_id:
+    query: false
+  limit:
+    query: false
+  offset:
+    query: false
+validServerUrls: {}
