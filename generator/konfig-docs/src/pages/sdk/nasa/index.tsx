@@ -14,7 +14,7 @@ const sdks = [
     "index": "tech-port/typescript",
     "language": "TypeScript",
     "link": "/sdk/nasa/tech-port/typescript/",
-    "openapiGitHubUi": "https://github.com/konfig-sdks/openapi-examples/tree/HEAD/nasa/techport/openapi.yaml"
+    "openapiGitHubUi": "https://github.com/konfig-sdks/openapi-examples/tree/HEAD/nasa/tech-port/openapi.yaml"
   },
   {
     "name": "TechPort",
@@ -28,7 +28,7 @@ const sdks = [
     "index": "tech-port/python",
     "language": "Python",
     "link": "/sdk/nasa/tech-port/python/",
-    "openapiGitHubUi": "https://github.com/konfig-sdks/openapi-examples/tree/HEAD/nasa/techport/openapi.yaml"
+    "openapiGitHubUi": "https://github.com/konfig-sdks/openapi-examples/tree/HEAD/nasa/tech-port/openapi.yaml"
   },
   {
     "name": "TechPort",
@@ -42,7 +42,7 @@ const sdks = [
     "index": "tech-port/java",
     "language": "Java",
     "link": "/sdk/nasa/tech-port/java/",
-    "openapiGitHubUi": "https://github.com/konfig-sdks/openapi-examples/tree/HEAD/nasa/techport/openapi.yaml"
+    "openapiGitHubUi": "https://github.com/konfig-sdks/openapi-examples/tree/HEAD/nasa/tech-port/openapi.yaml"
   }
 ];
 
@@ -53,9 +53,9 @@ export default function Nasa() {
   return (
     <Company
       company="NASA"
-      previewLinkImage="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/nasa/techport/imagePreview.png"
-      logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/nasa/techport/logo.png"
-      favicon="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/nasa/techport/favicon.png"
+      previewLinkImage="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/nasa/tech-port/imagePreview.png"
+      logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/nasa/tech-port/logo.png"
+      favicon="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/nasa/tech-port/favicon.png"
       sdks={sdks}
       homepage="techport.nasa.gov/home"
       companyKebabCase="nasa"

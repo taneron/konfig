@@ -15,15 +15,15 @@ export default function HsbcAccountInformationCeTypeScriptSdk() {
       metaDescription={`HSBC, also known as The Hongkong and Shanghai Banking Corporation, is a multinational banking and financial services organization. It offers a wide range of services including retail banking, wealth management, commercial banking, and global banking and markets. HSBC operates in numerous countries and territories, serving millions of customers worldwide with its comprehensive banking solutions.`}
       company="HSBC"
       serviceName="AccountInformationCE"
-      logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/hsbc/accountinformationce/logo.png"
+      logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/hsbc/account-information-ce/logo.png"
       companyKebabCase="hsbc"
       clientNameCamelCase="hsbcAccountInformationCe"
       homepage="hsbc.com"
-      lastUpdated={new Date("2024-03-14T08:10:33.678Z")}
-      faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/hsbc/accountinformationce/favicon.png"
+      lastUpdated={new Date("2024-03-19T23:12:03.314Z")}
+      faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/hsbc/account-information-ce/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
-      previewLinkImage="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/hsbc/accountinformationce/imagePreview.png"
+      previewLinkImage="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/hsbc/account-information-ce/imagePreview.png"
       GettingStarted={GettingStarted}
       Description={Description}
       FirstRequest={FirstRequest}
@@ -1105,8 +1105,8 @@ export default function HsbcAccountInformationCeTypeScriptSdk() {
       schemas={205}
       parameters={80}
       difficulty="Medium"
-      openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/hsbc/accountinformationce/openapi.yaml"
-      openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/hsbc/accountinformationce/openapi.yaml"
+      openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/hsbc/account-information-ce/openapi.yaml"
+      openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/hsbc/account-information-ce/openapi.yaml"
       developerDocumentation="develop.hsbc.com/ob-api-documentation/account-information-ce-hsbcnet/endpoints"
     />
   );

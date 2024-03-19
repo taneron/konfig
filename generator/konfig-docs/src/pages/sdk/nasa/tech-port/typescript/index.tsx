@@ -15,15 +15,15 @@ export default function NasaTechPortTypeScriptSdk() {
       metaDescription={`NASA, the National Aeronautics and Space Administration, is an independent agency of the U.S. federal government responsible for the civilian space program, as well as aeronautics and aerospace research. NASA conducts space exploration missions, scientific research, and technology development to expand our understanding of the universe.`}
       company="NASA"
       serviceName="TechPort"
-      logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/nasa/techport/logo.png"
+      logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/nasa/tech-port/logo.png"
       companyKebabCase="nasa"
       clientNameCamelCase="nasaTechPort"
       homepage="techport.nasa.gov/home"
-      lastUpdated={new Date("2024-03-15T00:48:29.728Z")}
-      faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/nasa/techport/favicon.png"
+      lastUpdated={new Date("2024-03-19T23:12:03.314Z")}
+      faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/nasa/tech-port/favicon.png"
       contactUrl="https://techport.nasa.gov"
       contactEmail="hq-techport@mail.nasa.gov"
-      previewLinkImage="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/nasa/techport/imagePreview.png"
+      previewLinkImage="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/nasa/tech-port/imagePreview.png"
       GettingStarted={GettingStarted}
       Description={Description}
       FirstRequest={FirstRequest}
@@ -235,8 +235,8 @@ export default function NasaTechPortTypeScriptSdk() {
       schemas={27}
       parameters={9}
       difficulty="Easy"
-      openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/nasa/techport/openapi.yaml"
-      openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/nasa/techport/openapi.yaml"
+      openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/nasa/tech-port/openapi.yaml"
+      openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/nasa/tech-port/openapi.yaml"
       
     />
   );

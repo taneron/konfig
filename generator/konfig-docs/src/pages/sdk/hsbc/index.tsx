@@ -24,7 +24,7 @@ const sdks = [
     "language": "TypeScript",
     "link": "/sdk/hsbc/account-information-ce/typescript/",
     "developerDocumentation": "develop.hsbc.com/ob-api-documentation/account-information-ce-hsbcnet/endpoints",
-    "openapiGitHubUi": "https://github.com/konfig-sdks/openapi-examples/tree/HEAD/hsbc/accountinformationce/openapi.yaml"
+    "openapiGitHubUi": "https://github.com/konfig-sdks/openapi-examples/tree/HEAD/hsbc/account-information-ce/openapi.yaml"
   },
   {
     "name": "AccountInformationCE",
@@ -48,7 +48,7 @@ const sdks = [
     "language": "Python",
     "link": "/sdk/hsbc/account-information-ce/python/",
     "developerDocumentation": "develop.hsbc.com/ob-api-documentation/account-information-ce-hsbcnet/endpoints",
-    "openapiGitHubUi": "https://github.com/konfig-sdks/openapi-examples/tree/HEAD/hsbc/accountinformationce/openapi.yaml"
+    "openapiGitHubUi": "https://github.com/konfig-sdks/openapi-examples/tree/HEAD/hsbc/account-information-ce/openapi.yaml"
   },
   {
     "name": "AccountInformationCE",
@@ -72,7 +72,7 @@ const sdks = [
     "language": "Java",
     "link": "/sdk/hsbc/account-information-ce/java/",
     "developerDocumentation": "develop.hsbc.com/ob-api-documentation/account-information-ce-hsbcnet/endpoints",
-    "openapiGitHubUi": "https://github.com/konfig-sdks/openapi-examples/tree/HEAD/hsbc/accountinformationce/openapi.yaml"
+    "openapiGitHubUi": "https://github.com/konfig-sdks/openapi-examples/tree/HEAD/hsbc/account-information-ce/openapi.yaml"
   }
 ];
 
@@ -83,9 +83,9 @@ export default function Hsbc() {
   return (
     <Company
       company="HSBC"
-      previewLinkImage="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/hsbc/accountinformationce/imagePreview.png"
-      logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/hsbc/accountinformationce/logo.png"
-      favicon="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/hsbc/accountinformationce/favicon.png"
+      previewLinkImage="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/hsbc/account-information-ce/imagePreview.png"
+      logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/hsbc/account-information-ce/logo.png"
+      favicon="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/hsbc/account-information-ce/favicon.png"
       sdks={sdks}
       homepage="hsbc.com"
       companyKebabCase="hsbc"
