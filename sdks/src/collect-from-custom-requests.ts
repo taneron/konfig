@@ -1042,6 +1042,24 @@ const customRequests: Record<string, CustomRequest> = {
       return downloadOpenApiSpecFromReadme({ urls });
     },
   },
+  "coalesce.io": {
+    lambda: async () => {
+      const urls = [
+        "https://docs.coalesce.io/reference/startrun",
+        "https://docs.coalesce.io/reference/job-status",
+        "https://docs.coalesce.io/reference/rerun-failed-refresh-job",
+        "https://docs.coalesce.io/reference/cancelrun",
+        "https://docs.coalesce.io/reference/getenvironments",
+        "https://docs.coalesce.io/reference/getenvironment",
+        "https://docs.coalesce.io/reference/getnodes",
+        "https://docs.coalesce.io/reference/getnode",
+        "https://docs.coalesce.io/reference/getruns",
+        "https://docs.coalesce.io/reference/getrun",
+        "https://docs.coalesce.io/reference/getrunresults",
+      ];
+      return downloadOpenApiSpecFromReadme({ urls });
+    },
+  },
 };
 
 async function downloadOpenApiSpecFromMintlify({

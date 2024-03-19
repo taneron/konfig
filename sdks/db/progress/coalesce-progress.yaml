@@ -1,0 +1,93 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignoreObjectsWithNoProperties: true
+operationIds:
+  /api/v1/environments:
+    get: Environments_listInformation
+  /api/v1/environments/{environmentID}:
+    get: Environments_getInformation
+  /api/v1/environments/{environmentID}/nodes:
+    get: Nodes_list
+  /api/v1/environments/{environmentID}/nodes/{nodeID}:
+    get: Nodes_getInformation
+  /api/v1/runs:
+    get: Runs_listInformation
+  /api/v1/runs/{runID}:
+    get: Runs_getRunDetails
+  /api/v1/runs/{runID}/results:
+    get: Runs_listResults
+  /scheduler/cancelRun:
+    post: Jobs_cancelJobRun
+  /scheduler/rerun:
+    post: Jobs_triggerRerun
+  /scheduler/runStatus:
+    get: Jobs_getStatusUpdates
+  /scheduler/startRun:
+    post: Jobs_initiateRun
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /scheduler/cancelRun:
+    post:
+      application/json: JobsCancelJobRunRequest
+  /scheduler/rerun:
+    post:
+      application/json: JobsTriggerRerunRequest
+  /scheduler/startRun:
+    post:
+      application/json: JobsInitiateRunRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /scheduler/cancelRun:
+    post:
+      '204':
+        application/json: JobsCancelJobRunResponse
+      '400':
+        application/json: JobsCancelJobRun400Response
+      '401':
+        application/json: JobsCancelJobRun401Response
+  /scheduler/rerun:
+    post:
+      '200':
+        application/json: JobsTriggerRerunResponse
+      '400':
+        application/json: JobsTriggerRerun400Response
+      '401':
+        application/json: JobsTriggerRerun401Response
+  /scheduler/runStatus:
+    get:
+      '200':
+        application/json: JobsGetStatusUpdatesResponse
+      '400':
+        application/json: JobsGetStatusUpdates400Response
+      '401':
+        application/json: JobsGetStatusUpdates401Response
+  /scheduler/startRun:
+    post:
+      '200':
+        application/json: JobsInitiateRunResponse
+      '400':
+        application/json: JobsInitiateRun400Response
+      '401':
+        application/json: JobsInitiateRun401Response
+securityParameters:
+  detail:
+    query: false
+  environmentID:
+    query: false
+  limit:
+    query: false
+  orderBy:
+    query: false
+  orderByDirection:
+    query: false
+  runCounter:
+    query: false
+  runStatus:
+    query: false
+  runType:
+    query: false
+  startingFrom:
+    query: false
+validServerUrls: {}
