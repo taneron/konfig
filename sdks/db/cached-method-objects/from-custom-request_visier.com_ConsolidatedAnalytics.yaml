@@ -1,0 +1,224 @@
+hash: 5a22f835916671bb9a379e2a19e629897529c88a553f7b780f2a8e2d5c2c7286
+methodObjects:
+  - url: /v1alpha/admin/consolidated-analytics/tenants
+    method: listTenants
+    httpMethod: get
+    tag: ConsolidatedAnalyticsV1Alpha
+    typeScriptTag: consolidatedAnalyticsV1Alpha
+    description: Retrieve a list of all consolidated analytics tenants
+    parameters:
+      - name: limit
+        schema: integer
+        description: >-
+          The maximum number of tenants to return. The maximum value is 1000.
+          Default is 400.
+      - name: start
+        schema: integer
+        description: The starting index of the first tenant to return. Default is 0.
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: The response structure for errors.
+  - url: /v1alpha/admin/consolidated-analytics/tenants
+    method: createTenant
+    httpMethod: post
+    tag: ConsolidatedAnalyticsV1Alpha
+    typeScriptTag: consolidatedAnalyticsV1Alpha
+    description: Create a consolidated analytics tenant
+    parameters:
+      - name: tenantCode
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: The response structure for errors.
+  - url: /v1alpha/admin/consolidated-analytics/tenants/:tenantId/excluded-sources
+    method: removeExcludedSources
+    httpMethod: delete
+    tag: ConsolidatedAnalyticsV1Alpha
+    typeScriptTag: consolidatedAnalyticsV1Alpha
+    description: Remove excluded sources from a consolidated analytics tenants
+    parameters:
+      - name: tenantId
+        schema: string
+        description: >-
+          The ID of the tenant. For example, WFF_{XXX}~CA{YYY} where {XXX} is
+          the administrating tenant code and {YYY}
+           is the consolidated analytic tenant code.
+      - name: excludedSources
+        schema: array
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: The response structure for errors.
+  - url: /v1alpha/admin/consolidated-analytics/tenants/:tenantId/excluded-sources
+    method: listExcludedSources
+    httpMethod: get
+    tag: ConsolidatedAnalyticsV1Alpha
+    typeScriptTag: consolidatedAnalyticsV1Alpha
+    description: Retrieve a consolidated analytics tenant's excluded sources
+    parameters:
+      - name: tenantId
+        schema: string
+        description: >-
+          The ID of the tenant. For example, WFF_{XXX}~CA{YYY} where {XXX} is
+          the administrating tenant code and {YYY}
+           is the consolidated analytic tenant code.
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: The response structure for errors.
+  - url: /v1alpha/admin/consolidated-analytics/tenants/:tenantId/excluded-sources
+    method: addExcludedSources
+    httpMethod: patch
+    tag: ConsolidatedAnalyticsV1Alpha
+    typeScriptTag: consolidatedAnalyticsV1Alpha
+    description: Add excluded sources to a consolidated analytics tenant
+    parameters:
+      - name: tenantId
+        schema: string
+        description: >-
+          The ID of the tenant. For example, WFF_{XXX}~CA{YYY} where {XXX} is
+          the administrating tenant code and {YYY}
+           is the consolidated analytic tenant code.
+      - name: excludedSources
+        schema: array
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: The response structure for errors.
+  - url: /v1alpha/admin/consolidated-analytics/tenants/:tenantId/excluded-sources
+    method: setExcludedSources
+    httpMethod: put
+    tag: ConsolidatedAnalyticsV1Alpha
+    typeScriptTag: consolidatedAnalyticsV1Alpha
+    description: Set a consolidated analytics tenant's excluded sources
+    parameters:
+      - name: tenantId
+        schema: string
+        description: >-
+          The ID of the tenant. For example, WFF_{XXX}~CA{YYY} where {XXX} is
+          the administrating tenant code and {YYY}
+           is the consolidated analytic tenant code.
+      - name: excludedSources
+        schema: array
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: The response structure for errors.
+  - url: /v1alpha/admin/consolidated-analytics/tenants/:tenantId/source-tenants
+    method: removeSourceTenants
+    httpMethod: delete
+    tag: ConsolidatedAnalyticsV1Alpha
+    typeScriptTag: consolidatedAnalyticsV1Alpha
+    description: Remove source tenants from a consolidated analytics tenants
+    parameters:
+      - name: tenantId
+        schema: string
+        description: >-
+          The ID of the tenant. For example, WFF_{XXX}~CA{YYY} where {XXX} is
+          the administrating tenant code and {YYY}
+           is the consolidated analytic tenant code.
+      - name: limit
+        schema: integer
+        description: >-
+          The maximum number of source tenants to return. The maximum value is
+          1000. Default is 400.
+      - name: tenantCodes
+        schema: array
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: The response structure for errors.
+  - url: /v1alpha/admin/consolidated-analytics/tenants/:tenantId/source-tenants
+    method: listSourceTenants
+    httpMethod: get
+    tag: ConsolidatedAnalyticsV1Alpha
+    typeScriptTag: consolidatedAnalyticsV1Alpha
+    description: Retrieve a consolidated analytics tenant's source tenants
+    parameters:
+      - name: tenantId
+        schema: string
+        description: >-
+          The ID of the tenant. For example, WFF_{XXX}~CA{YYY} where {XXX} is
+          the administrating tenant code and {YYY}
+           is the consolidated analytic tenant code.
+      - name: limit
+        schema: integer
+        description: >-
+          The maximum number of source tenants to return. The maximum value is
+          1000. Default is 400.
+      - name: start
+        schema: integer
+        description: The starting index of the first source tenant to return. Default is 0.
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: The response structure for errors.
+  - url: /v1alpha/admin/consolidated-analytics/tenants/:tenantId/source-tenants
+    method: addSourceTenants
+    httpMethod: patch
+    tag: ConsolidatedAnalyticsV1Alpha
+    typeScriptTag: consolidatedAnalyticsV1Alpha
+    description: Add source tenants to a consolidated analytics tenant
+    parameters:
+      - name: tenantId
+        schema: string
+        description: >-
+          The ID of the tenant. For example, WFF_{XXX}~CA{YYY} where {XXX} is
+          the administrating tenant code and {YYY}
+           is the consolidated analytic tenant code.
+      - name: limit
+        schema: integer
+        description: >-
+          The maximum number of source tenants to return. The maximum value is
+          1000. Default is 400.
+      - name: tenantCodes
+        schema: array
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: The response structure for errors.
+  - url: /v1alpha/admin/consolidated-analytics/tenants/:tenantId/source-tenants
+    method: setSourceTenants
+    httpMethod: put
+    tag: ConsolidatedAnalyticsV1Alpha
+    typeScriptTag: consolidatedAnalyticsV1Alpha
+    description: Set a consolidated analytics tenant's source tenants
+    parameters:
+      - name: tenantId
+        schema: string
+        description: >-
+          The ID of the tenant. For example, WFF_{XXX}~CA{YYY} where {XXX} is
+          the administrating tenant code and {YYY}
+           is the consolidated analytic tenant code.
+      - name: limit
+        schema: integer
+        description: >-
+          The maximum number of source tenants to return. The maximum value is
+          1000. Default is 400.
+      - name: tenantCodes
+        schema: array
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: The response structure for errors.
+numberOfSchemas: 8
+apiDescription: Visier APIs for managing consolidated analytics (CA) tenants.

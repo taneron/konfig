@@ -1,0 +1,660 @@
+{
+  "securitySchemes": {
+    "CookieAuth": {
+      "type": "apiKey",
+      "name": "VisierASIDToken",
+      "in": "cookie"
+    },
+    "ApiKeyAuth": {
+      "type": "apiKey",
+      "name": "apikey",
+      "in": "header"
+    },
+    "BearerAuth": {
+      "type": "http",
+      "scheme": "bearer"
+    },
+    "OAuth2Auth": {
+      "type": "oauth2",
+      "flows": {
+        "authorizationCode": {
+          "authorizationUrl": "/v1/auth/oauth2/authorize",
+          "tokenUrl": "/v1/auth/oauth2/token",
+          "scopes": {
+            "read": "Grants read access",
+            "write": "Grants write access"
+          }
+        },
+        "password": {
+          "tokenUrl": "/v1/auth/oauth2/token",
+          "scopes": {
+            "read": "Grants read access",
+            "write": "Grants write access"
+          }
+        }
+      }
+    }
+  },
+  "apiBaseUrl": "https://{vanity-name}.api.visier.io",
+  "apiVersion": "22222222.99201.1200",
+  "apiDescription": "Visier APIs for managing tenants",
+  "apiTitle": "Visier Tenant Management APIs",
+  "endpoints": 9,
+  "sdkMethods": 13,
+  "schemas": 21,
+  "parameters": 59,
+  "originalCustomRequest": {
+    "type": "GET",
+    "url": "https://raw.githubusercontent.com/visier/openapi-clients/main/res/tenant-management-apis.yaml",
+    "servers": [
+      {
+        "url": "https://{vanity-name}.api.visier.io",
+        "variables": {
+          "vanity-name": {
+            "default": "vanity"
+          }
+        }
+      }
+    ]
+  },
+  "customRequestSpecFilename": "visier.com_TenantManagement.yaml",
+  "difficultyScore": 38.25,
+  "difficulty": "Easy",
+  "company": "Visier",
+  "serviceName": "TenantManagement",
+  "sdkName": "visier-tenant-management-{language}-sdk",
+  "clientName": "VisierTenantManagement",
+  "metaDescription": "Visier is the people impact platform that puts the right insights in the right hands, at the right time, throughout the business. \n\nWe help organizations of all sizes unlock the power of their people data for business impact. This includes enterprises using our category-leading people analytics software, partners embedding our solution into existing apps, and developers building on the Visier platform.\n\nAs the global leader in people analytics, Visier has over 25,000 customers in 75 countries around the world, including enterprises like BASF, Bridgestone, Electronic Arts, McKesson, MerckKGaA, and more. Visier is headquartered in Vancouver, BC with offices and team members worldwide.",
+  "apiStatusUrls": false,
+  "homepage": "visier.com",
+  "developerDocumentation": "docs.visier.com/developer/apis/apis.htm",
+  "categories": [
+    "enterprise_software",
+    "people_analytics",
+    "business_impact",
+    "team_management",
+    "workforce_insights",
+    "human_resources",
+    "workforce_intelligence",
+    "workforce_analytics",
+    "hr_metrics",
+    "hr_analytics",
+    "hr_dashboard",
+    "hr_reporting",
+    "workforce_planning",
+    "human_capital_management",
+    "workforce_solutions",
+    "talent_acquisition_analytics"
+  ],
+  "category": "HR Talent & Recruitment",
+  "methods": [
+    {
+      "url": "/v1/admin/tenants",
+      "method": "getTenants",
+      "httpMethod": "get",
+      "tag": "TenantManagementV1",
+      "typeScriptTag": "tenantManagementV1",
+      "description": "Retrieve a list of all analytic tenants",
+      "parameters": [
+        {
+          "name": "limit",
+          "schema": "integer",
+          "description": "The limit of analytic tenant details to retrieve."
+        },
+        {
+          "name": "start",
+          "schema": "integer",
+          "description": "The index to start retrieving results from, also known as offset. The index begins at 0."
+        },
+        {
+          "name": "details",
+          "schema": "boolean",
+          "description": "If true, the response returns information about the data version and modules."
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "default",
+          "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
+        }
+      ]
+    },
+    {
+      "url": "/v1/admin/tenants",
+      "method": "addTenant",
+      "httpMethod": "post",
+      "tag": "TenantManagementV1",
+      "typeScriptTag": "tenantManagementV1",
+      "description": "Add an analytic tenant",
+      "parameters": [
+        {
+          "name": "tenantCode",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "tenantDisplayName",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "purchasedModules",
+          "schema": "array",
+          "description": ""
+        },
+        {
+          "name": "industryCode",
+          "schema": "integer",
+          "description": ""
+        },
+        {
+          "name": "embeddableDomains",
+          "schema": "array",
+          "description": ""
+        },
+        {
+          "name": "customProperties",
+          "schema": "array",
+          "description": ""
+        },
+        {
+          "name": "ssoInstanceIssuers",
+          "schema": "array",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "default",
+          "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
+        }
+      ]
+    },
+    {
+      "url": "/v1/admin/tenants/:tenantId",
+      "method": "deleteTenant",
+      "httpMethod": "delete",
+      "tag": "TenantManagementV1",
+      "typeScriptTag": "tenantManagementV1",
+      "description": "Deprovision an analytic tenant",
+      "parameters": [
+        {
+          "name": "tenantId",
+          "schema": "string",
+          "description": "The ID of the tenant. For example, WFF_{XXX}~{YYY} where {XXX} is the administrating tenant code and {YYY}\n is the analytic tenant code."
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "default",
+          "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
+        }
+      ]
+    },
+    {
+      "url": "/v1/admin/tenants/:tenantId",
+      "method": "getTenant",
+      "httpMethod": "get",
+      "tag": "TenantManagementV1",
+      "typeScriptTag": "tenantManagementV1",
+      "description": "Retrieve an analytic tenant's details",
+      "parameters": [
+        {
+          "name": "tenantId",
+          "schema": "string",
+          "description": "The ID of the tenant. For example, WFF_{XXX}~{YYY} where {XXX} is the administrating tenant code and {YYY}\n is the analytic tenant code."
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "default",
+          "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
+        }
+      ]
+    },
+    {
+      "url": "/v1/admin/tenants/:tenantId",
+      "method": "updateTenant",
+      "httpMethod": "put",
+      "tag": "TenantManagementV1",
+      "typeScriptTag": "tenantManagementV1",
+      "description": "Update an analytic tenant",
+      "parameters": [
+        {
+          "name": "tenantId",
+          "schema": "string",
+          "description": "The ID of the tenant to update."
+        },
+        {
+          "name": "tenantDisplayName",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "industryCode",
+          "schema": "integer",
+          "description": ""
+        },
+        {
+          "name": "purchasedModules",
+          "schema": "array",
+          "description": ""
+        },
+        {
+          "name": "embeddableDomains",
+          "schema": "array",
+          "description": ""
+        },
+        {
+          "name": "customProperties",
+          "schema": "object",
+          "description": ""
+        },
+        {
+          "name": "ssoInstanceIssuers",
+          "schema": "array",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "default",
+          "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
+        }
+      ]
+    },
+    {
+      "url": "/v1/admin/tenants/:tenantId/disable",
+      "method": "disableTenant",
+      "httpMethod": "put",
+      "tag": "TenantManagementV1",
+      "typeScriptTag": "tenantManagementV1",
+      "description": "Disable an analytic tenant",
+      "parameters": [
+        {
+          "name": "tenantId",
+          "schema": "string",
+          "description": "The ID of the tenant. For example, WFF_{XXX}~{YYY} where {XXX} is the administrating tenant code and {YYY}\n is the analytic tenant code."
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "default",
+          "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
+        }
+      ]
+    },
+    {
+      "url": "/v1/admin/tenants/:tenantId/enable",
+      "method": "enableTenant",
+      "httpMethod": "put",
+      "tag": "TenantManagementV1",
+      "typeScriptTag": "tenantManagementV1",
+      "description": "Enable an analytic tenant",
+      "parameters": [
+        {
+          "name": "tenantId",
+          "schema": "string",
+          "description": "The ID of the tenant. For example, WFF_{XXX}~{YYY} where {XXX} is the administrating tenant code and {YYY}\n is the analytic tenant code."
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "default",
+          "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
+        }
+      ]
+    },
+    {
+      "url": "/v1/op/validation/tenants",
+      "method": "validateTenants",
+      "httpMethod": "get",
+      "tag": "TenantManagementV1",
+      "typeScriptTag": "tenantManagementV1",
+      "description": "Validate metric values for all analytic tenants",
+      "parameters": [
+        {
+          "name": "limit",
+          "schema": "integer",
+          "description": "The limit of analytic tenant details to retrieve."
+        },
+        {
+          "name": "start",
+          "schema": "integer",
+          "description": "The index to start retrieving results from, also known as offset. The index begins at 0."
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "default",
+          "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
+        }
+      ]
+    },
+    {
+      "url": "/v1/op/validation/tenants/:tenantId",
+      "method": "validateTenant",
+      "httpMethod": "get",
+      "tag": "TenantManagementV1",
+      "typeScriptTag": "tenantManagementV1",
+      "description": "Validate an analytic tenant's metric values",
+      "parameters": [
+        {
+          "name": "tenantId",
+          "schema": "string",
+          "description": "The ID of the tenant. For example, WFF_{XXX}~{YYY} where {XXX} is the administrating tenant code and {YYY}\n is the analytic tenant code."
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "default",
+          "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
+        }
+      ]
+    },
+    {
+      "url": "/v2/admin/tenants",
+      "method": "listTenants",
+      "httpMethod": "get",
+      "tag": "TenantManagement",
+      "typeScriptTag": "tenantManagement",
+      "description": "Retrieve a list of all analytic tenants",
+      "parameters": [
+        {
+          "name": "limit",
+          "schema": "integer",
+          "description": "The maximum number of tenants to return. Default is 400."
+        },
+        {
+          "name": "start",
+          "schema": "integer",
+          "description": "The starting index of the first tenant to return. Default is 0."
+        },
+        {
+          "name": "mask",
+          "schema": "string",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "default",
+          "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
+        }
+      ]
+    },
+    {
+      "url": "/v2/admin/tenants",
+      "method": "createTenant",
+      "httpMethod": "post",
+      "tag": "TenantManagement",
+      "typeScriptTag": "tenantManagement",
+      "description": "Add an analytic tenant",
+      "parameters": [
+        {
+          "name": "tenantCode",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "tenantDisplayName",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "tenantShortName",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "vanityUrlName",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "industryCode",
+          "schema": "integer",
+          "description": ""
+        },
+        {
+          "name": "primaryBusinessLocation",
+          "schema": "object",
+          "description": ""
+        },
+        {
+          "name": "purchasedModules",
+          "schema": "array",
+          "description": ""
+        },
+        {
+          "name": "embeddableDomains",
+          "schema": "array",
+          "description": ""
+        },
+        {
+          "name": "customProperties",
+          "schema": "array",
+          "description": ""
+        },
+        {
+          "name": "ssoInstanceIssuers",
+          "schema": "array",
+          "description": ""
+        },
+        {
+          "name": "homeAnalysisId",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "homeAnalysisByUserGroup",
+          "schema": "array",
+          "description": ""
+        },
+        {
+          "name": "updateAction",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "enabled",
+          "schema": "boolean",
+          "description": ""
+        },
+        {
+          "name": "clickThroughLink",
+          "schema": "string",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "default",
+          "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
+        }
+      ]
+    },
+    {
+      "url": "/v2/admin/tenants/:tenantId",
+      "method": "updateTenant",
+      "httpMethod": "put",
+      "tag": "TenantManagement",
+      "typeScriptTag": "tenantManagement",
+      "description": "Update an analytic tenant",
+      "parameters": [
+        {
+          "name": "tenantCode",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "tenantDisplayName",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "tenantShortName",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "vanityUrlName",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "industryCode",
+          "schema": "integer",
+          "description": ""
+        },
+        {
+          "name": "primaryBusinessLocation",
+          "schema": "object",
+          "description": ""
+        },
+        {
+          "name": "purchasedModules",
+          "schema": "array",
+          "description": ""
+        },
+        {
+          "name": "embeddableDomains",
+          "schema": "array",
+          "description": ""
+        },
+        {
+          "name": "customProperties",
+          "schema": "array",
+          "description": ""
+        },
+        {
+          "name": "ssoInstanceIssuers",
+          "schema": "array",
+          "description": ""
+        },
+        {
+          "name": "homeAnalysisId",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "homeAnalysisByUserGroup",
+          "schema": "array",
+          "description": ""
+        },
+        {
+          "name": "updateAction",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "enabled",
+          "schema": "boolean",
+          "description": ""
+        },
+        {
+          "name": "clickThroughLink",
+          "schema": "string",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "default",
+          "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
+        }
+      ]
+    },
+    {
+      "url": "/v2/admin/tenants/{tenantId}",
+      "method": "tenantInfo",
+      "httpMethod": "get",
+      "tag": "TenantManagement",
+      "typeScriptTag": "tenantManagement",
+      "description": "Retrieve an analytic tenant's details",
+      "parameters": [
+        {
+          "name": "tenantId",
+          "schema": "string",
+          "required": true,
+          "description": "The ID of the tenant to retrieve.",
+          "example": "TENANTID"
+        },
+        {
+          "name": "mask",
+          "schema": "string",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "default",
+          "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
+        }
+      ]
+    }
+  ],
+  "repositoryDescription": "Visier is a global leader in people analytics software, empowering organizations worldwide to leverage their people data for business impact. With 25,000+ customers in 75 countries, Visier serves enterprises like BASF, Bridgestone, Electronic Arts, McKesson, and more.",
+  "logo": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/visier/tenant-management/logo.png",
+  "openApiRaw": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/visier/tenant-management/openapi.yaml",
+  "openApiGitHubUi": "https://github.com/konfig-sdks/openapi-examples/tree/HEAD/visier/tenant-management/openapi.yaml",
+  "previewLinkImage": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/visier/tenant-management/imagePreview.jpg",
+  "faviconUrl": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/visier/tenant-management/favicon.png",
+  "clientNameCamelCase": "visierTenantManagement",
+  "lastUpdated": "2024-03-19T23:14:00.000Z",
+  "typescriptSdkUsageCode": "import { VisierTenantManagement } from 'visier-tenant-management-typescript-sdk';\n\nconst visierTenantManagement = new VisierTenantManagement({\n    cookieAuth: \"VISIER_ASID_TOKEN\",\n    apiKeyAuth: \"APIKEY\",\n    token: \"TOKEN\",\n    username: \"USERNAME\",\n    password: \"PASSWORD\",\n})",
+  "typescriptSdkFirstRequestCode": "// Retrieve a list of all analytic tenants\nconst getTenantsResponse = visierTenantManagement.tenantManagementV1.getTenants()",
+  "fixedSpecFileName": "visier-tenant-management-fixed-spec.yaml"
+}

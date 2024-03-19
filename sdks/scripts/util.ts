@@ -234,7 +234,7 @@ export function getNumberOfParameters(spec: Spec): number {
 export function generateSdkDynamicPath(company: string, serviceName?: string) {
   const companyKebabCase = kebabcase(company.toLowerCase());
   const serviceKebabCase =
-    serviceName !== undefined ? kebabcase(serviceName.toLowerCase()) : null;
+    serviceName !== undefined ? kebabcase(serviceName).toLowerCase() : null;
   const servicePath = serviceKebabCase ? `/${serviceKebabCase}` : "";
   return `${companyKebabCase}${servicePath}`;
 }

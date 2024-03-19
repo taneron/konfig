@@ -207,7 +207,9 @@ async function ensureImagePreviewExists(
 ) {
   // if file with name "imagePreview.png" exists, then return
   const files = fs.readdirSync(companyServicePath);
-  const imagePreviewFiles = files.filter((file) => file === "imagePreview.png");
+  const imagePreviewFiles = files.filter((file) =>
+    file.startsWith("imagePreview")
+  );
   if (imagePreviewFiles.length > 0) {
     return;
   }

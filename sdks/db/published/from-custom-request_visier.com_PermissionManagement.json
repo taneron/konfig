@@ -1,0 +1,404 @@
+{
+  "securitySchemes": {
+    "CookieAuth": {
+      "type": "apiKey",
+      "name": "VisierASIDToken",
+      "in": "cookie"
+    },
+    "ApiKeyAuth": {
+      "type": "apiKey",
+      "name": "apikey",
+      "in": "header"
+    },
+    "BearerAuth": {
+      "type": "http",
+      "scheme": "bearer"
+    },
+    "OAuth2Auth": {
+      "type": "oauth2",
+      "flows": {
+        "authorizationCode": {
+          "authorizationUrl": "/v1/auth/oauth2/authorize",
+          "tokenUrl": "/v1/auth/oauth2/token",
+          "scopes": {
+            "read": "Grants read access",
+            "write": "Grants write access"
+          }
+        },
+        "password": {
+          "tokenUrl": "/v1/auth/oauth2/token",
+          "scopes": {
+            "read": "Grants read access",
+            "write": "Grants write access"
+          }
+        }
+      }
+    }
+  },
+  "apiBaseUrl": "https://{vanity-name}.api.visier.io",
+  "apiVersion": "22222222.99201.1200",
+  "apiDescription": "Visier APIs for managing permissions within an organization",
+  "apiTitle": "Visier Permission Management APIs",
+  "endpoints": 7,
+  "sdkMethods": 10,
+  "schemas": 33,
+  "parameters": 19,
+  "originalCustomRequest": {
+    "type": "GET",
+    "url": "https://raw.githubusercontent.com/visier/openapi-clients/main/res/permission-management-apis.yaml",
+    "servers": [
+      {
+        "url": "https://{vanity-name}.api.visier.io",
+        "variables": {
+          "vanity-name": {
+            "default": "vanity"
+          }
+        }
+      }
+    ]
+  },
+  "customRequestSpecFilename": "visier.com_PermissionManagement.yaml",
+  "difficultyScore": 30.75,
+  "difficulty": "Easy",
+  "company": "Visier",
+  "serviceName": "PermissionManagement",
+  "sdkName": "visier-permission-management-{language}-sdk",
+  "clientName": "VisierPermissionManagement",
+  "metaDescription": "Visier is the people impact platform that puts the right insights in the right hands, at the right time, throughout the business. \n\nWe help organizations of all sizes unlock the power of their people data for business impact. This includes enterprises using our category-leading people analytics software, partners embedding our solution into existing apps, and developers building on the Visier platform.\n\nAs the global leader in people analytics, Visier has over 25,000 customers in 75 countries around the world, including enterprises like BASF, Bridgestone, Electronic Arts, McKesson, MerckKGaA, and more. Visier is headquartered in Vancouver, BC with offices and team members worldwide.",
+  "apiStatusUrls": false,
+  "homepage": "visier.com",
+  "developerDocumentation": "docs.visier.com/developer/apis/apis.htm",
+  "categories": [
+    "enterprise_software",
+    "people_analytics",
+    "business_impact",
+    "team_management",
+    "workforce_insights",
+    "human_resources",
+    "workforce_intelligence",
+    "workforce_analytics",
+    "hr_metrics",
+    "hr_analytics",
+    "hr_dashboard",
+    "hr_reporting",
+    "workforce_planning",
+    "human_capital_management",
+    "workforce_solutions",
+    "talent_acquisition_analytics"
+  ],
+  "category": "Analytics",
+  "methods": [
+    {
+      "url": "/v1/admin/capabilities",
+      "method": "getCapabilities",
+      "httpMethod": "get",
+      "tag": "PermissionManagement",
+      "typeScriptTag": "permissionManagement",
+      "description": "Retrieve a list of all permission capabilities",
+      "parameters": [
+        {
+          "name": "tenantCode",
+          "schema": "string",
+          "description": "Specify the tenant to retrieve the capabilities from."
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "default",
+          "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
+        }
+      ]
+    },
+    {
+      "url": "/v1/admin/capabilities/{capabilityId}",
+      "method": "getCapability",
+      "httpMethod": "get",
+      "tag": "PermissionManagement",
+      "typeScriptTag": "permissionManagement",
+      "description": "Retrieve a permission capability's details",
+      "parameters": [
+        {
+          "name": "capabilityId",
+          "schema": "string",
+          "required": true,
+          "description": "The unique identifier of the capability you want to retrieve.",
+          "example": "CAPABILITYID"
+        },
+        {
+          "name": "tenantCode",
+          "schema": "string",
+          "description": "Specify the tenant to retrieve a capability from."
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "default",
+          "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
+        }
+      ]
+    },
+    {
+      "url": "/v1/admin/content-packages",
+      "method": "getContentPackages",
+      "httpMethod": "get",
+      "tag": "PermissionManagement",
+      "typeScriptTag": "permissionManagement",
+      "description": "Retrieve a list of all content packages",
+      "parameters": [
+        {
+          "name": "tenantCode",
+          "schema": "string",
+          "description": "Specify the tenant to retrieve the content packages from."
+        },
+        {
+          "name": "searchString",
+          "schema": "string",
+          "description": "Optional search string to return only content packages whose display name or description contains that search string.\n If searchString is empty or not provided, the response returns a list of all content packages."
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "default",
+          "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
+        }
+      ]
+    },
+    {
+      "url": "/v1/admin/content-packages/{contentPackageId}",
+      "method": "getContentPackage",
+      "httpMethod": "get",
+      "tag": "PermissionManagement",
+      "typeScriptTag": "permissionManagement",
+      "description": "Retrieve a content package's details",
+      "parameters": [
+        {
+          "name": "contentPackageId",
+          "schema": "string",
+          "required": true,
+          "description": "The unique identifier of the content package you want to retrieve.",
+          "example": "CONTENTPACKAGEID"
+        },
+        {
+          "name": "tenantCode",
+          "schema": "string",
+          "description": "Specify the tenant to retrieve a content package from."
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "default",
+          "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
+        }
+      ]
+    },
+    {
+      "url": "/v1/admin/data-security-objects",
+      "method": "getDataSecurityObjects",
+      "httpMethod": "get",
+      "tag": "PermissionManagement",
+      "typeScriptTag": "permissionManagement",
+      "description": "Retrieve a list of data security objects",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "array",
+          "description": "The unique identifiers of the data security objects (analytic objects) to retrieve.\n Default is all data security objects."
+        },
+        {
+          "name": "includeDetails",
+          "schema": "boolean",
+          "description": "If true, the response includes the analytic objects (display name, ID, and object type), related objects,\n securable properties, and securable dimensions. If false, the response only includes analytic objects\n (display name, ID, and object type). Default is false."
+        },
+        {
+          "name": "tenantCode",
+          "schema": "string",
+          "description": "Specify the tenant to retrieve data security objects from."
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "default",
+          "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
+        }
+      ]
+    },
+    {
+      "url": "/v1/admin/permissions",
+      "method": "deletePermissions",
+      "httpMethod": "delete",
+      "tag": "PermissionManagement",
+      "typeScriptTag": "permissionManagement",
+      "description": "Delete permissions",
+      "parameters": [
+        {
+          "name": "tenantCode",
+          "schema": "string",
+          "description": "Specify the tenant to delete permissions from."
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "default",
+          "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
+        }
+      ]
+    },
+    {
+      "url": "/v1/admin/permissions",
+      "method": "getPermissions",
+      "httpMethod": "get",
+      "tag": "PermissionManagement",
+      "typeScriptTag": "permissionManagement",
+      "description": "Retrieve a list of all permissions",
+      "parameters": [
+        {
+          "name": "tenantCode",
+          "schema": "string",
+          "description": "Specify the tenant to retrieve the permissions from."
+        },
+        {
+          "name": "includeDetails",
+          "schema": "boolean",
+          "description": "If true, returns the permission's details. If false, only returns the permissions' ID, display name,\n and description. Default is false."
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": "List of available permissions"
+        },
+        {
+          "statusCode": "default",
+          "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
+        }
+      ]
+    },
+    {
+      "url": "/v1/admin/permissions",
+      "method": "createPermissions",
+      "httpMethod": "post",
+      "tag": "PermissionManagement",
+      "typeScriptTag": "permissionManagement",
+      "description": "Create permissions",
+      "parameters": [
+        {
+          "name": "tenantCode",
+          "schema": "string",
+          "description": "Specify the tenant to create permissions in."
+        },
+        {
+          "name": "permissions",
+          "schema": "array",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "default",
+          "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
+        }
+      ]
+    },
+    {
+      "url": "/v1/admin/permissions",
+      "method": "updatePermissions",
+      "httpMethod": "put",
+      "tag": "PermissionManagement",
+      "typeScriptTag": "permissionManagement",
+      "description": "Update permissions",
+      "parameters": [
+        {
+          "name": "tenantCode",
+          "schema": "string",
+          "description": "Specify the tenant to update permissions in."
+        },
+        {
+          "name": "permissions",
+          "schema": "array",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "default",
+          "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
+        }
+      ]
+    },
+    {
+      "url": "/v1/admin/permissions/{permissionId}",
+      "method": "getPermission",
+      "httpMethod": "get",
+      "tag": "PermissionManagement",
+      "typeScriptTag": "permissionManagement",
+      "description": "Retrieve a permission's details",
+      "parameters": [
+        {
+          "name": "permissionId",
+          "schema": "string",
+          "required": true,
+          "description": "The unique identifier of the permission you want to retrieve.",
+          "example": "PERMISSIONID"
+        },
+        {
+          "name": "tenantCode",
+          "schema": "string",
+          "description": "Specify the tenant to retrieve a permission from."
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "default",
+          "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
+        }
+      ]
+    }
+  ],
+  "repositoryDescription": "Visier is a global leader in people analytics, empowering organizations with data-driven insights for business impact. With over 25,000 customers in 75 countries, Visier provides category-leading software to enterprises, partners, and developers worldwide.",
+  "logo": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/visier/permission-management/logo.png",
+  "openApiRaw": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/visier/permission-management/openapi.yaml",
+  "openApiGitHubUi": "https://github.com/konfig-sdks/openapi-examples/tree/HEAD/visier/permission-management/openapi.yaml",
+  "previewLinkImage": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/visier/permission-management/imagePreview.jpg",
+  "faviconUrl": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/visier/permission-management/favicon.png",
+  "clientNameCamelCase": "visierPermissionManagement",
+  "lastUpdated": "2024-03-19T23:14:00.000Z",
+  "typescriptSdkUsageCode": "import { VisierPermissionManagement } from 'visier-permission-management-typescript-sdk';\n\nconst visierPermissionManagement = new VisierPermissionManagement({\n    cookieAuth: \"VISIER_ASID_TOKEN\",\n    apiKeyAuth: \"APIKEY\",\n    token: \"TOKEN\",\n    username: \"USERNAME\",\n    password: \"PASSWORD\",\n})",
+  "typescriptSdkFirstRequestCode": "// Retrieve a list of all permission capabilities\nconst getCapabilitiesResponse = visierPermissionManagement.permissionManagement.getCapabilities()",
+  "fixedSpecFileName": "visier-permission-management-fixed-spec.yaml"
+}

@@ -1,0 +1,33 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+operationIds:
+  /v1alpha/data/upload/files/{filename}:
+    put: DataUpload_fileToVisier
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /v1/op/data-transfer-sessions/{transferSessionId}/add:
+    put:
+      application/json: DataIntakePushDataRequest
+  /v1alpha/data/upload/files/{filename}:
+    put:
+      '*/*': DataUploadFileToVisierRequest
+responseDescriptions: {}
+responseSchemaNames: {}
+securityParameters:
+  jobs:
+    query: false
+  limit:
+    query: false
+  sequence:
+    query: false
+  sourceId:
+    query: false
+  start:
+    query: false
+  tenantCode:
+    query: false
+validServerUrls:
+  https://{vanity-name}.api.visier.io:
+    url: https://{vanity-name}.api.visier.io

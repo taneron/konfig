@@ -1,0 +1,37 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+fixOnlyOneTagName: false
+operationIds: {}
+operationTags: {}
+renameTags: {}
+requestSchemaNames: {}
+responseDescriptions: {}
+responseSchemaNames:
+  /v1/admin/visierSecureTicket:
+    post:
+      '200':
+        application/json: AuthenticationTicketAuthenticationResponse
+        text/plain: AuthenticationTicketAuthentication200Response
+  /v1/admin/visierSecureToken:
+    post:
+      '200':
+        application/json: AuthenticationAsidTokenAuthenticationResponse
+        text/plain: AuthenticationAsidTokenAuthentication200Response
+  /v1/auth/oauth2/token:
+    post:
+      '200':
+        application/json: AuthenticationOAuth2Token200Response
+        application/jwt: AuthenticationOAuth2TokenResponse
+securityParameters:
+  client_id:
+    query: false
+  redirect_uri:
+    query: false
+  response_type:
+    query: false
+  scope:
+    query: false
+validServerUrls:
+  https://{vanity-name}.api.visier.io:
+    url: https://{vanity-name}.api.visier.io

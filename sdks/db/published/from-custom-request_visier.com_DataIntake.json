@@ -1,0 +1,398 @@
+{
+  "securitySchemes": {
+    "CookieAuth": {
+      "type": "apiKey",
+      "name": "VisierASIDToken",
+      "in": "cookie"
+    },
+    "ApiKeyAuth": {
+      "type": "apiKey",
+      "name": "apikey",
+      "in": "header"
+    },
+    "BearerAuth": {
+      "type": "http",
+      "scheme": "bearer"
+    },
+    "OAuth2Auth": {
+      "type": "oauth2",
+      "flows": {
+        "authorizationCode": {
+          "authorizationUrl": "/v1/auth/oauth2/authorize",
+          "tokenUrl": "/v1/auth/oauth2/token",
+          "scopes": {
+            "read": "Grants read access",
+            "write": "Grants write access"
+          }
+        },
+        "password": {
+          "tokenUrl": "/v1/auth/oauth2/token",
+          "scopes": {
+            "read": "Grants read access",
+            "write": "Grants write access"
+          }
+        }
+      }
+    }
+  },
+  "apiBaseUrl": "https://{vanity-name}.api.visier.io",
+  "apiVersion": "22222222.99201.1200",
+  "apiDescription": "Visier APIs for sending raw or untransformed source data to Visier",
+  "apiTitle": "Visier Data Intake APIs",
+  "endpoints": 9,
+  "sdkMethods": 9,
+  "schemas": 19,
+  "parameters": 21,
+  "originalCustomRequest": {
+    "type": "GET",
+    "url": "https://raw.githubusercontent.com/visier/openapi-clients/main/res/data-intake-apis.yaml",
+    "servers": [
+      {
+        "url": "https://{vanity-name}.api.visier.io",
+        "variables": {
+          "vanity-name": {
+            "default": "vanity"
+          }
+        }
+      }
+    ]
+  },
+  "customRequestSpecFilename": "visier.com_DataIntake.yaml",
+  "difficultyScore": 22.75,
+  "difficulty": "Easy",
+  "company": "Visier",
+  "serviceName": "DataIntake",
+  "sdkName": "visier-data-intake-{language}-sdk",
+  "clientName": "VisierDataIntake",
+  "metaDescription": "Visier is the people impact platform that puts the right insights in the right hands, at the right time, throughout the business. \n\nWe help organizations of all sizes unlock the power of their people data for business impact. This includes enterprises using our category-leading people analytics software, partners embedding our solution into existing apps, and developers building on the Visier platform.\n\nAs the global leader in people analytics, Visier has over 25,000 customers in 75 countries around the world, including enterprises like BASF, Bridgestone, Electronic Arts, McKesson, MerckKGaA, and more. Visier is headquartered in Vancouver, BC with offices and team members worldwide.",
+  "apiStatusUrls": false,
+  "homepage": "visier.com",
+  "developerDocumentation": "docs.visier.com/developer/apis/apis.htm",
+  "categories": [
+    "enterprise_software",
+    "people_analytics",
+    "business_impact",
+    "team_management",
+    "workforce_insights",
+    "human_resources",
+    "workforce_intelligence",
+    "workforce_analytics",
+    "hr_metrics",
+    "hr_analytics",
+    "hr_dashboard",
+    "hr_reporting",
+    "workforce_planning",
+    "human_capital_management",
+    "workforce_solutions",
+    "talent_acquisition_analytics"
+  ],
+  "category": "Analytics",
+  "methods": [
+    {
+      "url": "/v1/op/data-sources",
+      "method": "getSources",
+      "httpMethod": "get",
+      "tag": "DataIntake",
+      "typeScriptTag": "dataIntake",
+      "description": "Retrieve a list of sources",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": "The existing sources."
+        },
+        {
+          "statusCode": "default",
+          "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
+        }
+      ]
+    },
+    {
+      "url": "/v1/op/data-transfer-sessions",
+      "method": "startTransfer",
+      "httpMethod": "post",
+      "tag": "DataIntake",
+      "typeScriptTag": "dataIntake",
+      "description": "Start a transfer session",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "default",
+          "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
+        }
+      ]
+    },
+    {
+      "url": "/v1/op/data-transfer-sessions/{transferSessionId}/add",
+      "method": "pushData",
+      "httpMethod": "put",
+      "tag": "DataIntake",
+      "typeScriptTag": "dataIntake",
+      "description": "Transfer data to sources via JSON",
+      "parameters": [
+        {
+          "name": "transferSessionId",
+          "schema": "string",
+          "required": true,
+          "description": "The transfer session ID returned after the data transfer session starts.",
+          "example": "TRANSFERSESSIONID"
+        },
+        {
+          "name": "sourceId",
+          "schema": "string",
+          "description": "The unique identifier associated with the source you want to transfer data to."
+        },
+        {
+          "name": "sequence",
+          "schema": "integer",
+          "description": "The unique sequence number associated with a batch of records."
+        },
+        {
+          "name": "tenantCode",
+          "schema": "string",
+          "description": "The code of the tenant you want to transfer data to. For example, WFF_j1r or WFF_j1r~c7o."
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "default",
+          "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
+        }
+      ]
+    },
+    {
+      "url": "/v1/op/data-transfer-sessions/{transferSessionId}/cancel",
+      "method": "pushDataCancel",
+      "httpMethod": "put",
+      "tag": "DataIntake",
+      "typeScriptTag": "dataIntake",
+      "description": "Cancel a transfer session",
+      "parameters": [
+        {
+          "name": "transferSessionId",
+          "schema": "string",
+          "required": true,
+          "description": "The transfer session ID to cancel.",
+          "example": "TRANSFERSESSIONID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "default",
+          "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
+        }
+      ]
+    },
+    {
+      "url": "/v1/op/data-transfer-sessions/{transferSessionId}/upload",
+      "method": "uploadData",
+      "httpMethod": "put",
+      "tag": "DataIntake",
+      "typeScriptTag": "dataIntake",
+      "description": "Transfer data to sources via file upload",
+      "parameters": [
+        {
+          "name": "transferSessionId",
+          "schema": "string",
+          "required": true,
+          "description": "The transfer session ID returned after the data transfer session starts.",
+          "example": "TRANSFERSESSIONID"
+        },
+        {
+          "name": "sourceId",
+          "schema": "string",
+          "description": "The unique identifier associated with the source you want to transfer data to."
+        },
+        {
+          "name": "sequence",
+          "schema": "string",
+          "description": "The unique sequence number associated with a batch of records."
+        },
+        {
+          "name": "tenantCode",
+          "schema": "string",
+          "description": "The code of the tenant you want to transfer data to. For example, WFF_j1r or WFF_j1r~c7o."
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "default",
+          "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
+        }
+      ]
+    },
+    {
+      "url": "/v1/op/jobs/processing-jobs/{receivingJobId}",
+      "method": "getProcessingJobsByParentReceivingJobId",
+      "httpMethod": "get",
+      "tag": "DataIntake",
+      "typeScriptTag": "dataIntake",
+      "description": "Retrieve processing job statuses by receiving job ID",
+      "parameters": [
+        {
+          "name": "receivingJobId",
+          "schema": "string",
+          "required": true,
+          "description": "The receiving job ID.",
+          "example": "RECEIVINGJOBID"
+        },
+        {
+          "name": "tenantCode",
+          "schema": "string",
+          "description": "The tenant code of the tenant you want to retrieve the processing jobs for. Use this if you are only interested in the results for one analytic tenant."
+        },
+        {
+          "name": "limit",
+          "schema": "integer",
+          "description": "The limit of processing jobs to retrieve per page."
+        },
+        {
+          "name": "start",
+          "schema": "integer",
+          "description": "The index to start retrieving results from, also known as offset. The index begins at 0."
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "default",
+          "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
+        }
+      ]
+    },
+    {
+      "url": "/v1/op/jobs/receiving-jobs",
+      "method": "pushDataComplete",
+      "httpMethod": "post",
+      "tag": "DataIntake",
+      "typeScriptTag": "dataIntake",
+      "description": "Complete a transfer session",
+      "parameters": [
+        {
+          "name": "transferSessionId",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "processingData",
+          "schema": "boolean",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "default",
+          "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
+        }
+      ]
+    },
+    {
+      "url": "/v1/op/jobs/receiving-jobs/{receivingJobId}",
+      "method": "receivingJobStatus",
+      "httpMethod": "get",
+      "tag": "DataIntake",
+      "typeScriptTag": "dataIntake",
+      "description": "Retrieve a receiving job’s status",
+      "parameters": [
+        {
+          "name": "receivingJobId",
+          "schema": "string",
+          "required": true,
+          "description": "The **dataReceivingJobId** provided after a data transfer session completes. See **`/v1/op/jobs/receiving-jobs`**.",
+          "example": "RECEIVINGJOBID"
+        },
+        {
+          "name": "jobs",
+          "schema": "boolean",
+          "description": "If true, returns the status of receiving jobs spawned by the receiving job specified by receivingJobId."
+        },
+        {
+          "name": "tenantCode",
+          "schema": "string",
+          "description": "The tenant code of the tenant you want to retrieve the receiving jobs for. Use this if you are only interested in the results for one analytic tenant."
+        },
+        {
+          "name": "start",
+          "schema": "integer",
+          "description": "The index to start retrieving results from, also known as offset. The index begins at 0."
+        },
+        {
+          "name": "limit",
+          "schema": "integer",
+          "description": "The number of job statuses to return per page."
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "default",
+          "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
+        }
+      ]
+    },
+    {
+      "url": "/v1alpha/data/upload/files/{filename}",
+      "method": "fileToVisier",
+      "httpMethod": "put",
+      "tag": "DataUpload",
+      "typeScriptTag": "dataUpload",
+      "description": "Upload a data file to Visier",
+      "parameters": [
+        {
+          "name": "filename",
+          "schema": "string",
+          "required": true,
+          "description": "The filename of the data file to upload, including the file extension (such as .zip or .csv).",
+          "example": "FILENAME"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "307",
+          "description": "Redirect to Visier's upload infrastructure."
+        },
+        {
+          "statusCode": "default",
+          "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
+        }
+      ]
+    }
+  ],
+  "repositoryDescription": "Visier is a global leader in people analytics, helping organizations unlock the power of their people data for business impact with category-leading software used by over 25,000 customers in 75 countries worldwide. Visier's {language} SDK for DataIntake API generated by Konfig (https://konfigthis.com/).",
+  "logo": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/visier/data-intake/logo.png",
+  "openApiRaw": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/visier/data-intake/openapi.yaml",
+  "openApiGitHubUi": "https://github.com/konfig-sdks/openapi-examples/tree/HEAD/visier/data-intake/openapi.yaml",
+  "previewLinkImage": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/visier/data-intake/imagePreview.jpg",
+  "faviconUrl": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/visier/data-intake/favicon.png",
+  "clientNameCamelCase": "visierDataIntake",
+  "lastUpdated": "2024-03-19T23:14:00.000Z",
+  "typescriptSdkUsageCode": "import { VisierDataIntake } from 'visier-data-intake-typescript-sdk';\n\nconst visierDataIntake = new VisierDataIntake({\n    cookieAuth: \"VISIER_ASID_TOKEN\",\n    apiKeyAuth: \"APIKEY\",\n    token: \"TOKEN\",\n    username: \"USERNAME\",\n    password: \"PASSWORD\",\n})",
+  "typescriptSdkFirstRequestCode": "// Retrieve a list of sources\nconst getSourcesResponse = visierDataIntake.dataIntake.getSources()",
+  "fixedSpecFileName": "visier-data-intake-fixed-spec.yaml"
+}

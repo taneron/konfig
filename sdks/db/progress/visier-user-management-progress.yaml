@@ -1,0 +1,54 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignoreObjectsWithNoProperties: true
+operationIds: {}
+operationTags: {}
+renameTags: {}
+requestSchemaNames: {}
+responseDescriptions: {}
+responseSchemaNames:
+  /v1/admin/users/reports/application-logs:
+    get:
+      '200':
+        application/vnd.ms-excel: UserManagementGetApplicationLogsXlsxResponse
+  /v1/admin/users/reports/permission-assignments:
+    get:
+      '200':
+        application/vnd.ms-excel: UserManagementGetUserPermissionsXlsxResponse
+  /v1/admin/users/reports/permissions-list:
+    get:
+      '200':
+        application/vnd.ms-excel: UserManagementGetAllPermissionsXlsxResponse
+  /v1/admin/users/reports/profile-assignments:
+    get:
+      '200':
+        application/vnd.ms-excel: UserManagementGetProfileAssignmentsXlsxResponse
+  /v1/admin/users/{userId}/reports/data-security:
+    get:
+      '200':
+        application/vnd.ms-excel: UserManagementGetDataSecurityReportXlsxResponse
+securityParameters:
+  assignedPermissions:
+    query: false
+  assignedProfiles:
+    query: false
+  assignedUserGroups:
+    query: false
+  endTime:
+    query: false
+  includeUserGroups:
+    query: false
+  limit:
+    query: false
+  start:
+    query: false
+  startTime:
+    query: false
+  tenantCode:
+    query: false
+  tenantFilter:
+    query: false
+validServerUrls:
+  https://{vanity-name}.api.visier.io:
+    url: https://{vanity-name}.api.visier.io

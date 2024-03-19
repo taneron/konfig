@@ -1,0 +1,270 @@
+hash: 110146023715f1109dfae8041cd784abc9996770c8adfaaf73aa03bfc071b873
+methodObjects:
+  - url: /v1/admin/capabilities
+    method: getCapabilities
+    httpMethod: get
+    tag: PermissionManagement
+    typeScriptTag: permissionManagement
+    description: Retrieve a list of all permission capabilities
+    parameters:
+      - name: tenantCode
+        schema: string
+        description: Specify the tenant to retrieve the capabilities from.
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: >-
+          The `Status` type defines a logical error model that is suitable for
+          different programming environments, including REST APIs and RPC APIs.
+          It is used by [gRPC](https://github.com/grpc). Each `Status` message
+          contains three pieces of data: error code, error message, and error
+          details. You can find out more about this error model and how to work
+          with it in the [API Design
+          Guide](https://cloud.google.com/apis/design/errors).
+  - url: /v1/admin/capabilities/{capabilityId}
+    method: getCapability
+    httpMethod: get
+    tag: PermissionManagement
+    typeScriptTag: permissionManagement
+    description: Retrieve a permission capability's details
+    parameters:
+      - name: capabilityId
+        schema: string
+        required: true
+        description: The unique identifier of the capability you want to retrieve.
+        example: CAPABILITYID
+      - name: tenantCode
+        schema: string
+        description: Specify the tenant to retrieve a capability from.
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: >-
+          The `Status` type defines a logical error model that is suitable for
+          different programming environments, including REST APIs and RPC APIs.
+          It is used by [gRPC](https://github.com/grpc). Each `Status` message
+          contains three pieces of data: error code, error message, and error
+          details. You can find out more about this error model and how to work
+          with it in the [API Design
+          Guide](https://cloud.google.com/apis/design/errors).
+  - url: /v1/admin/content-packages
+    method: getContentPackages
+    httpMethod: get
+    tag: PermissionManagement
+    typeScriptTag: permissionManagement
+    description: Retrieve a list of all content packages
+    parameters:
+      - name: tenantCode
+        schema: string
+        description: Specify the tenant to retrieve the content packages from.
+      - name: searchString
+        schema: string
+        description: >-
+          Optional search string to return only content packages whose display
+          name or description contains that search string.
+           If searchString is empty or not provided, the response returns a list of all content packages.
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: >-
+          The `Status` type defines a logical error model that is suitable for
+          different programming environments, including REST APIs and RPC APIs.
+          It is used by [gRPC](https://github.com/grpc). Each `Status` message
+          contains three pieces of data: error code, error message, and error
+          details. You can find out more about this error model and how to work
+          with it in the [API Design
+          Guide](https://cloud.google.com/apis/design/errors).
+  - url: /v1/admin/content-packages/{contentPackageId}
+    method: getContentPackage
+    httpMethod: get
+    tag: PermissionManagement
+    typeScriptTag: permissionManagement
+    description: Retrieve a content package's details
+    parameters:
+      - name: contentPackageId
+        schema: string
+        required: true
+        description: The unique identifier of the content package you want to retrieve.
+        example: CONTENTPACKAGEID
+      - name: tenantCode
+        schema: string
+        description: Specify the tenant to retrieve a content package from.
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: >-
+          The `Status` type defines a logical error model that is suitable for
+          different programming environments, including REST APIs and RPC APIs.
+          It is used by [gRPC](https://github.com/grpc). Each `Status` message
+          contains three pieces of data: error code, error message, and error
+          details. You can find out more about this error model and how to work
+          with it in the [API Design
+          Guide](https://cloud.google.com/apis/design/errors).
+  - url: /v1/admin/data-security-objects
+    method: getDataSecurityObjects
+    httpMethod: get
+    tag: PermissionManagement
+    typeScriptTag: permissionManagement
+    description: Retrieve a list of data security objects
+    parameters:
+      - name: id
+        schema: array
+        description: >-
+          The unique identifiers of the data security objects (analytic objects)
+          to retrieve.
+           Default is all data security objects.
+      - name: includeDetails
+        schema: boolean
+        description: >-
+          If true, the response includes the analytic objects (display name, ID,
+          and object type), related objects,
+           securable properties, and securable dimensions. If false, the response only includes analytic objects
+           (display name, ID, and object type). Default is false.
+      - name: tenantCode
+        schema: string
+        description: Specify the tenant to retrieve data security objects from.
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: >-
+          The `Status` type defines a logical error model that is suitable for
+          different programming environments, including REST APIs and RPC APIs.
+          It is used by [gRPC](https://github.com/grpc). Each `Status` message
+          contains three pieces of data: error code, error message, and error
+          details. You can find out more about this error model and how to work
+          with it in the [API Design
+          Guide](https://cloud.google.com/apis/design/errors).
+  - url: /v1/admin/permissions
+    method: deletePermissions
+    httpMethod: delete
+    tag: PermissionManagement
+    typeScriptTag: permissionManagement
+    description: Delete permissions
+    parameters:
+      - name: tenantCode
+        schema: string
+        description: Specify the tenant to delete permissions from.
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: >-
+          The `Status` type defines a logical error model that is suitable for
+          different programming environments, including REST APIs and RPC APIs.
+          It is used by [gRPC](https://github.com/grpc). Each `Status` message
+          contains three pieces of data: error code, error message, and error
+          details. You can find out more about this error model and how to work
+          with it in the [API Design
+          Guide](https://cloud.google.com/apis/design/errors).
+  - url: /v1/admin/permissions
+    method: getPermissions
+    httpMethod: get
+    tag: PermissionManagement
+    typeScriptTag: permissionManagement
+    description: Retrieve a list of all permissions
+    parameters:
+      - name: tenantCode
+        schema: string
+        description: Specify the tenant to retrieve the permissions from.
+      - name: includeDetails
+        schema: boolean
+        description: >-
+          If true, returns the permission's details. If false, only returns the
+          permissions' ID, display name,
+           and description. Default is false.
+    responses:
+      - statusCode: '200'
+        description: List of available permissions
+      - statusCode: default
+        description: >-
+          The `Status` type defines a logical error model that is suitable for
+          different programming environments, including REST APIs and RPC APIs.
+          It is used by [gRPC](https://github.com/grpc). Each `Status` message
+          contains three pieces of data: error code, error message, and error
+          details. You can find out more about this error model and how to work
+          with it in the [API Design
+          Guide](https://cloud.google.com/apis/design/errors).
+  - url: /v1/admin/permissions
+    method: createPermissions
+    httpMethod: post
+    tag: PermissionManagement
+    typeScriptTag: permissionManagement
+    description: Create permissions
+    parameters:
+      - name: tenantCode
+        schema: string
+        description: Specify the tenant to create permissions in.
+      - name: permissions
+        schema: array
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: >-
+          The `Status` type defines a logical error model that is suitable for
+          different programming environments, including REST APIs and RPC APIs.
+          It is used by [gRPC](https://github.com/grpc). Each `Status` message
+          contains three pieces of data: error code, error message, and error
+          details. You can find out more about this error model and how to work
+          with it in the [API Design
+          Guide](https://cloud.google.com/apis/design/errors).
+  - url: /v1/admin/permissions
+    method: updatePermissions
+    httpMethod: put
+    tag: PermissionManagement
+    typeScriptTag: permissionManagement
+    description: Update permissions
+    parameters:
+      - name: tenantCode
+        schema: string
+        description: Specify the tenant to update permissions in.
+      - name: permissions
+        schema: array
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: >-
+          The `Status` type defines a logical error model that is suitable for
+          different programming environments, including REST APIs and RPC APIs.
+          It is used by [gRPC](https://github.com/grpc). Each `Status` message
+          contains three pieces of data: error code, error message, and error
+          details. You can find out more about this error model and how to work
+          with it in the [API Design
+          Guide](https://cloud.google.com/apis/design/errors).
+  - url: /v1/admin/permissions/{permissionId}
+    method: getPermission
+    httpMethod: get
+    tag: PermissionManagement
+    typeScriptTag: permissionManagement
+    description: Retrieve a permission's details
+    parameters:
+      - name: permissionId
+        schema: string
+        required: true
+        description: The unique identifier of the permission you want to retrieve.
+        example: PERMISSIONID
+      - name: tenantCode
+        schema: string
+        description: Specify the tenant to retrieve a permission from.
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: >-
+          The `Status` type defines a logical error model that is suitable for
+          different programming environments, including REST APIs and RPC APIs.
+          It is used by [gRPC](https://github.com/grpc). Each `Status` message
+          contains three pieces of data: error code, error message, and error
+          details. You can find out more about this error model and how to work
+          with it in the [API Design
+          Guide](https://cloud.google.com/apis/design/errors).
+numberOfSchemas: 33
+apiDescription: Visier APIs for managing permissions within an organization

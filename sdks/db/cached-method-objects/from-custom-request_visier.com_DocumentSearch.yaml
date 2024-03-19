@@ -1,0 +1,29 @@
+hash: 7919dcee384bdeb2fd4fd3e7f9e38cab5dd5de80ebe4f44ce11f9e1a33691839
+methodObjects:
+  - url: /v1alpha/search/simple/document-headers
+    method: simpleSearchDocumentHeaders
+    httpMethod: get
+    tag: DocumentSearch
+    typeScriptTag: documentSearch
+    description: Perform a simple search for Visier document headers
+    parameters:
+      - name: q
+        schema: string
+        description: The search query string.
+      - name: limit
+        schema: integer
+        description: The maximum number of results to return. Defaults to 100.
+      - name: offset
+        schema: integer
+        description: >-
+          The index to start retrieving results from, also known as offset.
+          Defaults to 0.
+    responses:
+      - statusCode: '200'
+        description: >-
+          The response body structure for Simple document header search
+          operations.
+      - statusCode: default
+        description: The response structure for errors.
+numberOfSchemas: 5
+apiDescription: Visier API for searching for Visier documents

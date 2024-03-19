@@ -1,0 +1,808 @@
+{
+  "securitySchemes": {
+    "CookieAuth": {
+      "type": "apiKey",
+      "name": "VisierASIDToken",
+      "in": "cookie"
+    },
+    "ApiKeyAuth": {
+      "type": "apiKey",
+      "name": "apikey",
+      "in": "header"
+    },
+    "BearerAuth": {
+      "type": "http",
+      "scheme": "bearer"
+    },
+    "OAuth2Auth": {
+      "type": "oauth2",
+      "flows": {
+        "authorizationCode": {
+          "authorizationUrl": "/v1/auth/oauth2/authorize",
+          "tokenUrl": "/v1/auth/oauth2/token",
+          "scopes": {
+            "read": "Grants read access",
+            "write": "Grants write access"
+          }
+        },
+        "password": {
+          "tokenUrl": "/v1/auth/oauth2/token",
+          "scopes": {
+            "read": "Grants read access",
+            "write": "Grants write access"
+          }
+        }
+      }
+    }
+  },
+  "apiBaseUrl": "https://{vanity-name}.api.visier.io",
+  "apiVersion": "22222222.99201.1200",
+  "apiDescription": "Visier APIs for data and job handling",
+  "apiTitle": "Visier Data and Job Handling APIs",
+  "endpoints": 20,
+  "sdkMethods": 21,
+  "schemas": 97,
+  "parameters": 57,
+  "originalCustomRequest": {
+    "type": "GET",
+    "url": "https://raw.githubusercontent.com/visier/openapi-clients/main/res/data-handling-apis.yaml",
+    "servers": [
+      {
+        "url": "https://{vanity-name}.api.visier.io",
+        "variables": {
+          "vanity-name": {
+            "default": "vanity"
+          }
+        }
+      }
+    ]
+  },
+  "customRequestSpecFilename": "visier.com_DataHandling.yaml",
+  "difficultyScore": 83.25,
+  "difficulty": "Easy",
+  "company": "Visier",
+  "serviceName": "DataHandling",
+  "sdkName": "visier-data-handling-{language}-sdk",
+  "clientName": "VisierDataHandling",
+  "metaDescription": "Visier is the people impact platform that puts the right insights in the right hands, at the right time, throughout the business. \n\nWe help organizations of all sizes unlock the power of their people data for business impact. This includes enterprises using our category-leading people analytics software, partners embedding our solution into existing apps, and developers building on the Visier platform.\n\nAs the global leader in people analytics, Visier has over 25,000 customers in 75 countries around the world, including enterprises like BASF, Bridgestone, Electronic Arts, McKesson, MerckKGaA, and more. Visier is headquartered in Vancouver, BC with offices and team members worldwide.",
+  "apiStatusUrls": false,
+  "homepage": "visier.com",
+  "developerDocumentation": "docs.visier.com/developer/apis/apis.htm",
+  "categories": [
+    "enterprise_software",
+    "people_analytics",
+    "business_impact",
+    "team_management",
+    "workforce_insights",
+    "human_resources",
+    "workforce_intelligence",
+    "workforce_analytics",
+    "hr_metrics",
+    "hr_analytics",
+    "hr_dashboard",
+    "hr_reporting",
+    "workforce_planning",
+    "human_capital_management",
+    "workforce_solutions",
+    "talent_acquisition_analytics"
+  ],
+  "category": "Analytics",
+  "methods": [
+    {
+      "url": "/v1/op/data-connector-credentials",
+      "method": "dataConnectorCredentials",
+      "httpMethod": "get",
+      "tag": "DataAndJobHandling",
+      "typeScriptTag": "dataAndJobHandling",
+      "description": "Retrieve a list of all data connector credentials",
+      "parameters": [
+        {
+          "name": "tenantCode",
+          "schema": "string",
+          "description": "The tenant code of a specific analytic tenant that you want to retrieve for."
+        },
+        {
+          "name": "limit",
+          "schema": "integer",
+          "description": "The limit to retrieve."
+        },
+        {
+          "name": "start",
+          "schema": "integer",
+          "description": "The index to start retrieving results from, also known as offset. The index begins at 0."
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "default",
+          "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
+        }
+      ]
+    },
+    {
+      "url": "/v1/op/data-connector-credentials",
+      "method": "createConnectorCredential",
+      "httpMethod": "post",
+      "tag": "DataAndJobHandling",
+      "typeScriptTag": "dataAndJobHandling",
+      "description": "Create a connector credential",
+      "parameters": [
+        {
+          "name": "tenantCode",
+          "schema": "string",
+          "description": "The tenant code of a specific analytic tenant that you want to create the credential for."
+        },
+        {
+          "name": "dataProviderAuthParams",
+          "schema": "object",
+          "description": ""
+        },
+        {
+          "name": "dataProviderBasicInformation",
+          "schema": "object",
+          "description": ""
+        },
+        {
+          "name": "dataProviderMetadata",
+          "schema": "object",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "default",
+          "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
+        }
+      ]
+    },
+    {
+      "url": "/v1/op/data-connectors",
+      "method": "dataConnectors",
+      "httpMethod": "get",
+      "tag": "DataAndJobHandling",
+      "typeScriptTag": "dataAndJobHandling",
+      "description": "Retrieve a list of all data connectors",
+      "parameters": [
+        {
+          "name": "tenantCode",
+          "schema": "string",
+          "description": "The tenant code of a specific analytic tenant that you want to retrieve for."
+        },
+        {
+          "name": "limit",
+          "schema": "integer",
+          "description": "The limit to retrieve."
+        },
+        {
+          "name": "start",
+          "schema": "integer",
+          "description": "The index to start retrieving results from, also known as offset. The index begins at 0."
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "default",
+          "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
+        }
+      ]
+    },
+    {
+      "url": "/v1/op/data-connectors/assignCredentials",
+      "method": "assignConnectorCredential",
+      "httpMethod": "post",
+      "tag": "DataAndJobHandling",
+      "typeScriptTag": "dataAndJobHandling",
+      "description": "Assign connector credentials to data connectors",
+      "parameters": [
+        {
+          "name": "connectors",
+          "schema": "array",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "default",
+          "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
+        }
+      ]
+    },
+    {
+      "url": "/v1/op/data-versions/disable",
+      "method": "disableDv",
+      "httpMethod": "put",
+      "tag": "DataAndJobHandling",
+      "typeScriptTag": "dataAndJobHandling",
+      "description": "Disable data versions for a list of analytic tenants",
+      "parameters": [
+        {
+          "name": "model",
+          "schema": "object",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "default",
+          "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
+        }
+      ]
+    },
+    {
+      "url": "/v1/op/data/startExtractAndLoad",
+      "method": "startExtraction",
+      "httpMethod": "post",
+      "tag": "DataAndJobHandling",
+      "typeScriptTag": "dataAndJobHandling",
+      "description": "Trigger extraction jobs",
+      "parameters": [
+        {
+          "name": "model",
+          "schema": "object",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "default",
+          "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
+        }
+      ]
+    },
+    {
+      "url": "/v1/op/data/startload",
+      "method": "startLoad",
+      "httpMethod": "post",
+      "tag": "DataAndJobHandling",
+      "typeScriptTag": "dataAndJobHandling",
+      "description": "Start the data load for an analytic tenant",
+      "parameters": [
+        {
+          "name": "model",
+          "schema": "object",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "default",
+          "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
+        }
+      ]
+    },
+    {
+      "url": "/v1/op/data/uploads",
+      "method": "retrieveDataUploads",
+      "httpMethod": "get",
+      "tag": "DataAndJobHandling",
+      "typeScriptTag": "dataAndJobHandling",
+      "description": "Retrieve data uploads",
+      "parameters": [
+        {
+          "name": "uploadJobId",
+          "schema": "string",
+          "description": "The job ID of an upload job. Use this if you are interested in the data uploads for a specific upload job."
+        },
+        {
+          "name": "tenantCode",
+          "schema": "integer",
+          "description": "The tenant code of a specific analytic tenant that you want to retrieve the data uploads for."
+        },
+        {
+          "name": "limit",
+          "schema": "integer",
+          "description": "The limit of analytic tenants to retrieve data uploads for. This parameter is not used if the tenantCode parameter is specified."
+        },
+        {
+          "name": "start",
+          "schema": "integer",
+          "description": "The index to start retrieving results from, also known as offset. The index begins at 0."
+        },
+        {
+          "name": "numberOfDataUploads",
+          "schema": "integer",
+          "description": "The maximum number of latest enabled data uploads to retrieve for each analytic tenant. The maximum value is 5."
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "default",
+          "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
+        }
+      ]
+    },
+    {
+      "url": "/v1/op/data/uploads/exclude",
+      "method": "excludeDataUplaods",
+      "httpMethod": "put",
+      "tag": "DataAndJobHandling",
+      "typeScriptTag": "dataAndJobHandling",
+      "description": "Exclude data uploads",
+      "parameters": [
+        {
+          "name": "model",
+          "schema": "object",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "default",
+          "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
+        }
+      ]
+    },
+    {
+      "url": "/v1/op/data/uploads/include",
+      "method": "includeDataUploads",
+      "httpMethod": "put",
+      "tag": "DataAndJobHandling",
+      "typeScriptTag": "dataAndJobHandling",
+      "description": "Include data uploads",
+      "parameters": [
+        {
+          "name": "model",
+          "schema": "object",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "default",
+          "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
+        }
+      ]
+    },
+    {
+      "url": "/v1/op/job-status/jobs",
+      "method": "jobStatus",
+      "httpMethod": "get",
+      "tag": "DataAndJobHandling",
+      "typeScriptTag": "dataAndJobHandling",
+      "description": "Retrieve the statuses of all jobs",
+      "parameters": [
+        {
+          "name": "startTime",
+          "schema": "string",
+          "description": "The start time from which to retrieve job statuses."
+        },
+        {
+          "name": "endTime",
+          "schema": "string",
+          "description": "The end time from which to retrieve job statuses."
+        },
+        {
+          "name": "status",
+          "schema": "string",
+          "description": "The specific status to restrict the list of job to."
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "default",
+          "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
+        }
+      ]
+    },
+    {
+      "url": "/v1/op/job-status/jobs/:jobId",
+      "method": "jobIdStatus",
+      "httpMethod": "get",
+      "tag": "DataAndJobHandling",
+      "typeScriptTag": "dataAndJobHandling",
+      "description": "Retrieve a specific job's status",
+      "parameters": [
+        {
+          "name": "jobId",
+          "schema": "string",
+          "description": "The unique ID of the job to retrieve the status for."
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "default",
+          "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
+        }
+      ]
+    },
+    {
+      "url": "/v1/op/jobs/cancel",
+      "method": "cancelJobs",
+      "httpMethod": "post",
+      "tag": "DataAndJobHandling",
+      "typeScriptTag": "dataAndJobHandling",
+      "description": "Cancel a list of jobs",
+      "parameters": [
+        {
+          "name": "jobIds",
+          "schema": "array",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "default",
+          "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
+        }
+      ]
+    },
+    {
+      "url": "/v1/op/jobs/dispatching-jobs/:jobId",
+      "method": "dispatchingJobStatus",
+      "httpMethod": "get",
+      "tag": "DataAndJobHandling",
+      "typeScriptTag": "dataAndJobHandling",
+      "description": "Retrieve a dispatching job's status",
+      "parameters": [
+        {
+          "name": "jobId",
+          "schema": "string",
+          "description": "The ID of the job you want to retrieve."
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "default",
+          "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
+        }
+      ]
+    },
+    {
+      "url": "/v1/op/jobs/dispatching-jobs/:jobId/extraction-jobs",
+      "method": "extractionJobAndStatus",
+      "httpMethod": "get",
+      "tag": "DataAndJobHandling",
+      "typeScriptTag": "dataAndJobHandling",
+      "description": "Retrieve a dispatching job's extraction jobs with their statuses",
+      "parameters": [
+        {
+          "name": "dispatchingJobId",
+          "schema": "string",
+          "description": "The ID of the dispatching job that generated the extraction jobs."
+        },
+        {
+          "name": "tenantCode",
+          "schema": "string",
+          "description": "The tenant code of a specific analytic tenant that you want to retrieve the extraction job status for.\n Use this if you are only interested in the results for one analytic tenant."
+        },
+        {
+          "name": "limit",
+          "schema": "integer",
+          "description": "The limit of extraction job statuses to retrieve."
+        },
+        {
+          "name": "start",
+          "schema": "integer",
+          "description": "The index to start retrieving results from, also known as offset. The index begins at 0."
+        },
+        {
+          "name": "jobId",
+          "schema": "string",
+          "description": "The ID of the dispatching job you want to retrieve."
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "default",
+          "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
+        }
+      ]
+    },
+    {
+      "url": "/v1/op/jobs/dispatching-jobs/:jobId/processing-jobs",
+      "method": "processingJobAndStatus",
+      "httpMethod": "get",
+      "tag": "DataAndJobHandling",
+      "typeScriptTag": "dataAndJobHandling",
+      "description": "Retrieve a dispatching job's processing jobs with their statuses",
+      "parameters": [
+        {
+          "name": "dispatchingJobId",
+          "schema": "string",
+          "description": "The ID of the dispatching job that generated the extraction jobs."
+        },
+        {
+          "name": "tenantCode",
+          "schema": "string",
+          "description": "The tenant code of a specific analytic tenant that you want to retrieve the extraction job status for.\n Use this if you are only interested in the results for one analytic tenant."
+        },
+        {
+          "name": "limit",
+          "schema": "integer",
+          "description": "The limit of extraction job statuses to retrieve."
+        },
+        {
+          "name": "start",
+          "schema": "integer",
+          "description": "The index to start retrieving results from, also known as offset. The index begins at 0."
+        },
+        {
+          "name": "jobId",
+          "schema": "string",
+          "description": "The ID of the dispatching job you want to retrieve."
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "default",
+          "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
+        }
+      ]
+    },
+    {
+      "url": "/v1/op/jobs/dispatching-jobs/:jobId/receiving-jobs",
+      "method": "receivingJobAndStatus",
+      "httpMethod": "get",
+      "tag": "DataAndJobHandling",
+      "typeScriptTag": "dataAndJobHandling",
+      "description": "Retrieve a dispatching job's receiving jobs with their statuses",
+      "parameters": [
+        {
+          "name": "dispatchingJobId",
+          "schema": "string",
+          "description": "The ID of the dispatching job that generated the extraction jobs."
+        },
+        {
+          "name": "tenantCode",
+          "schema": "string",
+          "description": "The tenant code of a specific analytic tenant that you want to retrieve the extraction job status for.\n Use this if you are only interested in the results for one analytic tenant."
+        },
+        {
+          "name": "limit",
+          "schema": "integer",
+          "description": "The limit of extraction job statuses to retrieve."
+        },
+        {
+          "name": "start",
+          "schema": "integer",
+          "description": "The index to start retrieving results from, also known as offset. The index begins at 0."
+        },
+        {
+          "name": "jobId",
+          "schema": "string",
+          "description": "The ID of the dispatching job you want to retrieve."
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "default",
+          "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
+        }
+      ]
+    },
+    {
+      "url": "/v1/op/jobs/receiving-jobs/:receivingJobId",
+      "method": "receivingJobStatus",
+      "httpMethod": "get",
+      "tag": "DataAndJobHandling",
+      "typeScriptTag": "dataAndJobHandling",
+      "description": "Retrieve a receiving job's status",
+      "parameters": [
+        {
+          "name": "jobs",
+          "schema": "boolean",
+          "description": "If \"true\", returns the status of receiving jobs spawned by the receiving job specified by jobId."
+        },
+        {
+          "name": "tenantCode",
+          "schema": "string",
+          "description": "The tenant code of the tenant you want to retrieve the receiving jobs for. Use this if you are only interested\n in the results for one analytic tenant."
+        },
+        {
+          "name": "start",
+          "schema": "integer",
+          "description": "The index to start retrieving results from, also known as offset. The index begins at 0."
+        },
+        {
+          "name": "limit",
+          "schema": "integer",
+          "description": "The number of job statuses to return per page."
+        },
+        {
+          "name": "receivingJobId",
+          "schema": "string",
+          "description": "The jobId provided after sending data to Visier."
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "default",
+          "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
+        }
+      ]
+    },
+    {
+      "url": "v1/op/data-versions",
+      "method": "latestEnabledDv",
+      "httpMethod": "get",
+      "tag": "DataAndJobHandling",
+      "typeScriptTag": "dataAndJobHandling",
+      "description": "Retrieve the latest enabled data versions for all analytic tenants",
+      "parameters": [
+        {
+          "name": "tenantCode",
+          "schema": "string",
+          "description": "The tenant code of a specific analytic tenant that you want to retrieve data versions for.\n Use this if you are only interested in the results for one analytic tenant."
+        },
+        {
+          "name": "limit",
+          "schema": "integer",
+          "description": "The limit of analytic tenants to retrieve data versions for.\n This parameter is not used if the tenantCode parameter is specified."
+        },
+        {
+          "name": "start",
+          "schema": "integer",
+          "description": "The index to start retrieving results from, also known as offset. The index begins at 0."
+        },
+        {
+          "name": "numberOfVersions",
+          "schema": "integer",
+          "description": "The number of latest enabled data versions to retrieve. The maximum value is 5."
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "default",
+          "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
+        }
+      ]
+    },
+    {
+      "url": "v1/op/jobs/processing-jobs/:receivingJobId",
+      "method": "processingJobStatus",
+      "httpMethod": "get",
+      "tag": "DataAndJobHandling",
+      "typeScriptTag": "dataAndJobHandling",
+      "description": "Retrieve processing job statuses by receiving job ID",
+      "parameters": [
+        {
+          "name": "tenantCode",
+          "schema": "string",
+          "description": "The tenant code of the tenant you want to retrieve the processing jobs for.\n Use this if you are only interested in the results for one analytic tenant."
+        },
+        {
+          "name": "limit",
+          "schema": "integer",
+          "description": "The limit of processing jobs to retrieve per page."
+        },
+        {
+          "name": "start",
+          "schema": "integer",
+          "description": "The index to start retrieving results from, also known as offset. The index begins at 0."
+        },
+        {
+          "name": "receivingJobId",
+          "schema": "string",
+          "description": "The receiving job ID"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "default",
+          "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
+        }
+      ]
+    },
+    {
+      "url": "/v1/op/data-connector-credentials/:id",
+      "method": "deleteConnectorCredential",
+      "httpMethod": "delete",
+      "tag": "DataAndJobHandling",
+      "typeScriptTag": "dataAndJobHandling",
+      "description": "Delete a connector credential",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "description": "The credentialId of the credential you want to delete."
+        },
+        {
+          "name": "tenantCode",
+          "schema": "string",
+          "description": "The tenant code of the analytic tenant in which the credential you're deleting."
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "default",
+          "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
+        }
+      ]
+    }
+  ],
+  "repositoryDescription": "Visier is a global leader in people analytics, providing software solutions to unlock the power of people data for business impact. With over 25,000 customers in 75 countries, Visier is trusted by enterprises worldwide. Visier's {language} SDK for DataHandling API generated by Konfig (https://konfigthis.com/).",
+  "logo": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/visier/data-handling/logo.png",
+  "openApiRaw": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/visier/data-handling/openapi.yaml",
+  "openApiGitHubUi": "https://github.com/konfig-sdks/openapi-examples/tree/HEAD/visier/data-handling/openapi.yaml",
+  "previewLinkImage": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/visier/data-handling/imagePreview.jpg",
+  "faviconUrl": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/visier/data-handling/favicon.png",
+  "clientNameCamelCase": "visierDataHandling",
+  "lastUpdated": "2024-03-19T23:14:00.000Z",
+  "typescriptSdkUsageCode": "import { VisierDataHandling } from 'visier-data-handling-typescript-sdk';\n\nconst visierDataHandling = new VisierDataHandling({\n    cookieAuth: \"VISIER_ASID_TOKEN\",\n    apiKeyAuth: \"APIKEY\",\n    token: \"TOKEN\",\n    username: \"USERNAME\",\n    password: \"PASSWORD\",\n})",
+  "typescriptSdkFirstRequestCode": "// Retrieve a list of all data connector credentials\nconst dataConnectorCredentialsResponse = visierDataHandling.dataAndJobHandling.dataConnectorCredentials()",
+  "fixedSpecFileName": "visier-data-handling-fixed-spec.yaml"
+}

@@ -91,12 +91,12 @@ function collectAllPublishData() {
       const serviceName = getServiceName({ publishData, specData });
       const serviceKebabCase =
         serviceName !== undefined
-          ? kebabcase(serviceName.toLowerCase())
+          ? kebabcase(serviceName).toLowerCase()
           : undefined;
 
       const dynamicPath = generateSdkDynamicPath(
         publishData.company,
-        serviceKebabCase
+        serviceName
       );
 
       // find existence of files in openapi-examples

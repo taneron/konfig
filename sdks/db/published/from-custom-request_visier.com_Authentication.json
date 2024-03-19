@@ -1,0 +1,239 @@
+{
+  "securitySchemes": {
+    "BasicAuth": {
+      "type": "http",
+      "scheme": "basic"
+    },
+    "ApiKeyAuth": {
+      "type": "apiKey",
+      "name": "apikey",
+      "in": "header"
+    }
+  },
+  "apiBaseUrl": "https://{vanity-name}.api.visier.io",
+  "apiVersion": "22222222.99201.1200",
+  "apiDescription": "Visier APIs for generating authentication tokens",
+  "apiTitle": "Visier Authentication APIs",
+  "endpoints": 4,
+  "sdkMethods": 4,
+  "schemas": 11,
+  "parameters": 15,
+  "originalCustomRequest": {
+    "type": "GET",
+    "url": "https://raw.githubusercontent.com/visier/openapi-clients/main/res/authentication-apis.yaml",
+    "servers": [
+      {
+        "url": "https://{vanity-name}.api.visier.io",
+        "variables": {
+          "vanity-name": {
+            "default": "vanity"
+          }
+        }
+      }
+    ]
+  },
+  "customRequestSpecFilename": "visier.com_Authentication.yaml",
+  "difficultyScore": 10.25,
+  "difficulty": "Very Easy",
+  "company": "Visier",
+  "serviceName": "Authentication",
+  "sdkName": "visier-authentication-{language}-sdk",
+  "clientName": "VisierAuthentication",
+  "metaDescription": "Visier is the people impact platform that puts the right insights in the right hands, at the right time, throughout the business. \n\nWe help organizations of all sizes unlock the power of their people data for business impact. This includes enterprises using our category-leading people analytics software, partners embedding our solution into existing apps, and developers building on the Visier platform.\n\nAs the global leader in people analytics, Visier has over 25,000 customers in 75 countries around the world, including enterprises like BASF, Bridgestone, Electronic Arts, McKesson, MerckKGaA, and more. Visier is headquartered in Vancouver, BC with offices and team members worldwide.",
+  "apiStatusUrls": false,
+  "homepage": "visier.com",
+  "developerDocumentation": "docs.visier.com/developer/apis/apis.htm",
+  "categories": [
+    "enterprise_software",
+    "people_analytics",
+    "business_impact",
+    "team_management",
+    "workforce_insights",
+    "human_resources",
+    "workforce_intelligence",
+    "workforce_analytics",
+    "hr_metrics",
+    "hr_analytics",
+    "hr_dashboard",
+    "hr_reporting",
+    "workforce_planning",
+    "human_capital_management",
+    "workforce_solutions",
+    "talent_acquisition_analytics"
+  ],
+  "category": "Analytics",
+  "methods": [
+    {
+      "url": "/v1/admin/visierSecureTicket",
+      "method": "ticketAuthentication",
+      "httpMethod": "post",
+      "tag": "Authentication",
+      "typeScriptTag": "authentication",
+      "description": "Generate a legacy Visier secure ticket",
+      "parameters": [
+        {
+          "name": "username",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "password",
+          "schema": "string",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "default",
+          "description": "The response structure for errors."
+        }
+      ]
+    },
+    {
+      "url": "/v1/admin/visierSecureToken",
+      "method": "asidTokenAuthentication",
+      "httpMethod": "post",
+      "tag": "Authentication",
+      "typeScriptTag": "authentication",
+      "description": "Generate a Visier authentication token",
+      "parameters": [
+        {
+          "name": "username",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "password",
+          "schema": "string",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "default",
+          "description": "The response structure for errors."
+        }
+      ]
+    },
+    {
+      "url": "/v1/auth/oauth2/authorize",
+      "method": "oAuth2Authorize",
+      "httpMethod": "get",
+      "tag": "Authentication",
+      "typeScriptTag": "authentication",
+      "description": "Initiate an OAuth2 authorization code flow.",
+      "parameters": [
+        {
+          "name": "redirectUri",
+          "schema": "string",
+          "required": false,
+          "description": "The optional URI to redirect to after authorization."
+        },
+        {
+          "name": "responseType",
+          "schema": "string",
+          "required": true,
+          "description": "The response type. Must be `code`.",
+          "example": "RESPONSE_TYPE"
+        },
+        {
+          "name": "clientId",
+          "schema": "string",
+          "required": true,
+          "description": "The ID of the pre-registered client application.",
+          "example": "CLIENT_ID"
+        },
+        {
+          "name": "scope",
+          "schema": "string",
+          "required": false,
+          "description": "The OAuth 2.0 scope of the authorization request. Defaults to `read`."
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "default",
+          "description": "The response structure for errors."
+        },
+        {
+          "statusCode": "3XX",
+          "description": "Redirect to authorization page."
+        }
+      ]
+    },
+    {
+      "url": "/v1/auth/oauth2/token",
+      "method": "oAuth2Token",
+      "httpMethod": "post",
+      "tag": "Authentication",
+      "typeScriptTag": "authentication",
+      "description": "Generate a JSON Web Token (JWT) for the specified user.",
+      "parameters": [
+        {
+          "name": "grant_type",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "client_id",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "redirect_uri",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "code",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "username",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "password",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "asid_token",
+          "schema": "string",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "default",
+          "description": "The response structure for errors."
+        }
+      ]
+    }
+  ],
+  "repositoryDescription": "Visier empowers businesses with people analytics to drive impactful decision-making worldwide, serving over 25,000 customers in 75 countries. Headquartered in Vancouver, Visier is the leading global platform for unlocking the power of people data. Visier's {language} SDK for Authentication API generated by Konfig (https://konfigthis.com/).",
+  "logo": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/visier/authentication/logo.png",
+  "openApiRaw": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/visier/authentication/openapi.yaml",
+  "openApiGitHubUi": "https://github.com/konfig-sdks/openapi-examples/tree/HEAD/visier/authentication/openapi.yaml",
+  "previewLinkImage": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/visier/authentication/imagePreview.jpg",
+  "faviconUrl": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/visier/authentication/favicon.png",
+  "clientNameCamelCase": "visierAuthentication",
+  "lastUpdated": "2024-03-19T23:12:03.314Z",
+  "typescriptSdkUsageCode": "import { VisierAuthentication } from 'visier-authentication-typescript-sdk';\n\nconst visierAuthentication = new VisierAuthentication({\n    username: \"USERNAME\",\n    password: \"PASSWORD\",\n    apiKeyAuth: \"APIKEY\",\n})",
+  "typescriptSdkFirstRequestCode": "// Generate a legacy Visier secure ticket\nconst ticketAuthenticationResponse = visierAuthentication.authentication.ticketAuthentication()",
+  "fixedSpecFileName": "visier-authentication-fixed-spec.yaml"
+}

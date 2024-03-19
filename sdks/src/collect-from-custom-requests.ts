@@ -494,6 +494,11 @@ const customRequests: Record<string, CustomRequest> = {
     servers: [
       {
         url: "https://{vanity-name}.api.visier.io",
+        variables: {
+          "vanity-name": {
+            default: "vanity",
+          },
+        },
       },
     ],
   },
@@ -503,6 +508,11 @@ const customRequests: Record<string, CustomRequest> = {
     servers: [
       {
         url: "https://{vanity-name}.api.visier.io",
+        variables: {
+          "vanity-name": {
+            default: "vanity",
+          },
+        },
       },
     ],
   },
@@ -512,6 +522,11 @@ const customRequests: Record<string, CustomRequest> = {
     servers: [
       {
         url: "https://{vanity-name}.api.visier.io",
+        variables: {
+          "vanity-name": {
+            default: "vanity",
+          },
+        },
       },
     ],
   },
@@ -521,6 +536,11 @@ const customRequests: Record<string, CustomRequest> = {
     servers: [
       {
         url: "https://{vanity-name}.api.visier.io",
+        variables: {
+          "vanity-name": {
+            default: "vanity",
+          },
+        },
       },
     ],
   },
@@ -530,6 +550,11 @@ const customRequests: Record<string, CustomRequest> = {
     servers: [
       {
         url: "https://{vanity-name}.api.visier.io",
+        variables: {
+          "vanity-name": {
+            default: "vanity",
+          },
+        },
       },
     ],
   },
@@ -539,6 +564,11 @@ const customRequests: Record<string, CustomRequest> = {
     servers: [
       {
         url: "https://{vanity-name}.api.visier.io",
+        variables: {
+          "vanity-name": {
+            default: "vanity",
+          },
+        },
       },
     ],
   },
@@ -548,6 +578,11 @@ const customRequests: Record<string, CustomRequest> = {
     servers: [
       {
         url: "https://{vanity-name}.api.visier.io",
+        variables: {
+          "vanity-name": {
+            default: "vanity",
+          },
+        },
       },
     ],
   },
@@ -557,6 +592,11 @@ const customRequests: Record<string, CustomRequest> = {
     servers: [
       {
         url: "https://{vanity-name}.api.visier.io",
+        variables: {
+          "vanity-name": {
+            default: "vanity",
+          },
+        },
       },
     ],
   },
@@ -566,6 +606,11 @@ const customRequests: Record<string, CustomRequest> = {
     servers: [
       {
         url: "https://{vanity-name}.api.visier.io",
+        variables: {
+          "vanity-name": {
+            default: "vanity",
+          },
+        },
       },
     ],
   },
@@ -575,6 +620,11 @@ const customRequests: Record<string, CustomRequest> = {
     servers: [
       {
         url: "https://{vanity-name}.api.visier.io",
+        variables: {
+          "vanity-name": {
+            default: "vanity",
+          },
+        },
       },
     ],
   },

@@ -1,0 +1,378 @@
+{
+  "securitySchemes": {},
+  "apiBaseUrl": "https://{vanity-name}.api.visier.io",
+  "apiVersion": "22222222.99201.1200",
+  "apiDescription": "Visier APIs for managing consolidated analytics (CA) tenants.",
+  "apiTitle": "Visier Consolidated Analytics APIs",
+  "endpoints": 3,
+  "sdkMethods": 10,
+  "schemas": 8,
+  "parameters": 22,
+  "originalCustomRequest": {
+    "type": "GET",
+    "url": "https://raw.githubusercontent.com/visier/openapi-clients/main/res/consolidated-analytics-apis.yaml",
+    "servers": [
+      {
+        "url": "https://{vanity-name}.api.visier.io",
+        "variables": {
+          "vanity-name": {
+            "default": "vanity"
+          }
+        }
+      }
+    ]
+  },
+  "customRequestSpecFilename": "visier.com_ConsolidatedAnalytics.yaml",
+  "difficultyScore": 19.5,
+  "difficulty": "Easy",
+  "company": "Visier",
+  "serviceName": "ConsolidatedAnalytics",
+  "sdkName": "visier-consolidated-analytics-{language}-sdk",
+  "clientName": "VisierConsolidatedAnalytics",
+  "metaDescription": "Visier is the people impact platform that puts the right insights in the right hands, at the right time, throughout the business. \n\nWe help organizations of all sizes unlock the power of their people data for business impact. This includes enterprises using our category-leading people analytics software, partners embedding our solution into existing apps, and developers building on the Visier platform.\n\nAs the global leader in people analytics, Visier has over 25,000 customers in 75 countries around the world, including enterprises like BASF, Bridgestone, Electronic Arts, McKesson, MerckKGaA, and more. Visier is headquartered in Vancouver, BC with offices and team members worldwide.",
+  "apiStatusUrls": false,
+  "homepage": "visier.com",
+  "developerDocumentation": "docs.visier.com/developer/apis/apis.htm",
+  "categories": [
+    "enterprise_software",
+    "people_analytics",
+    "business_impact",
+    "team_management",
+    "workforce_insights",
+    "human_resources",
+    "workforce_intelligence",
+    "workforce_analytics",
+    "hr_metrics",
+    "hr_analytics",
+    "hr_dashboard",
+    "hr_reporting",
+    "workforce_planning",
+    "human_capital_management",
+    "workforce_solutions",
+    "talent_acquisition_analytics"
+  ],
+  "category": "Analytics",
+  "methods": [
+    {
+      "url": "/v1alpha/admin/consolidated-analytics/tenants",
+      "method": "listTenants",
+      "httpMethod": "get",
+      "tag": "ConsolidatedAnalyticsV1Alpha",
+      "typeScriptTag": "consolidatedAnalyticsV1Alpha",
+      "description": "Retrieve a list of all consolidated analytics tenants",
+      "parameters": [
+        {
+          "name": "limit",
+          "schema": "integer",
+          "description": "The maximum number of tenants to return. The maximum value is 1000. Default is 400."
+        },
+        {
+          "name": "start",
+          "schema": "integer",
+          "description": "The starting index of the first tenant to return. Default is 0."
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "default",
+          "description": "The response structure for errors."
+        }
+      ]
+    },
+    {
+      "url": "/v1alpha/admin/consolidated-analytics/tenants",
+      "method": "createTenant",
+      "httpMethod": "post",
+      "tag": "ConsolidatedAnalyticsV1Alpha",
+      "typeScriptTag": "consolidatedAnalyticsV1Alpha",
+      "description": "Create a consolidated analytics tenant",
+      "parameters": [
+        {
+          "name": "tenantCode",
+          "schema": "string",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "default",
+          "description": "The response structure for errors."
+        }
+      ]
+    },
+    {
+      "url": "/v1alpha/admin/consolidated-analytics/tenants/:tenantId/excluded-sources",
+      "method": "removeExcludedSources",
+      "httpMethod": "delete",
+      "tag": "ConsolidatedAnalyticsV1Alpha",
+      "typeScriptTag": "consolidatedAnalyticsV1Alpha",
+      "description": "Remove excluded sources from a consolidated analytics tenants",
+      "parameters": [
+        {
+          "name": "tenantId",
+          "schema": "string",
+          "description": "The ID of the tenant. For example, WFF_{XXX}~CA{YYY} where {XXX} is the administrating tenant code and {YYY}\n is the consolidated analytic tenant code."
+        },
+        {
+          "name": "excludedSources",
+          "schema": "array",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "default",
+          "description": "The response structure for errors."
+        }
+      ]
+    },
+    {
+      "url": "/v1alpha/admin/consolidated-analytics/tenants/:tenantId/excluded-sources",
+      "method": "listExcludedSources",
+      "httpMethod": "get",
+      "tag": "ConsolidatedAnalyticsV1Alpha",
+      "typeScriptTag": "consolidatedAnalyticsV1Alpha",
+      "description": "Retrieve a consolidated analytics tenant's excluded sources",
+      "parameters": [
+        {
+          "name": "tenantId",
+          "schema": "string",
+          "description": "The ID of the tenant. For example, WFF_{XXX}~CA{YYY} where {XXX} is the administrating tenant code and {YYY}\n is the consolidated analytic tenant code."
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "default",
+          "description": "The response structure for errors."
+        }
+      ]
+    },
+    {
+      "url": "/v1alpha/admin/consolidated-analytics/tenants/:tenantId/excluded-sources",
+      "method": "addExcludedSources",
+      "httpMethod": "patch",
+      "tag": "ConsolidatedAnalyticsV1Alpha",
+      "typeScriptTag": "consolidatedAnalyticsV1Alpha",
+      "description": "Add excluded sources to a consolidated analytics tenant",
+      "parameters": [
+        {
+          "name": "tenantId",
+          "schema": "string",
+          "description": "The ID of the tenant. For example, WFF_{XXX}~CA{YYY} where {XXX} is the administrating tenant code and {YYY}\n is the consolidated analytic tenant code."
+        },
+        {
+          "name": "excludedSources",
+          "schema": "array",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "default",
+          "description": "The response structure for errors."
+        }
+      ]
+    },
+    {
+      "url": "/v1alpha/admin/consolidated-analytics/tenants/:tenantId/excluded-sources",
+      "method": "setExcludedSources",
+      "httpMethod": "put",
+      "tag": "ConsolidatedAnalyticsV1Alpha",
+      "typeScriptTag": "consolidatedAnalyticsV1Alpha",
+      "description": "Set a consolidated analytics tenant's excluded sources",
+      "parameters": [
+        {
+          "name": "tenantId",
+          "schema": "string",
+          "description": "The ID of the tenant. For example, WFF_{XXX}~CA{YYY} where {XXX} is the administrating tenant code and {YYY}\n is the consolidated analytic tenant code."
+        },
+        {
+          "name": "excludedSources",
+          "schema": "array",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "default",
+          "description": "The response structure for errors."
+        }
+      ]
+    },
+    {
+      "url": "/v1alpha/admin/consolidated-analytics/tenants/:tenantId/source-tenants",
+      "method": "removeSourceTenants",
+      "httpMethod": "delete",
+      "tag": "ConsolidatedAnalyticsV1Alpha",
+      "typeScriptTag": "consolidatedAnalyticsV1Alpha",
+      "description": "Remove source tenants from a consolidated analytics tenants",
+      "parameters": [
+        {
+          "name": "tenantId",
+          "schema": "string",
+          "description": "The ID of the tenant. For example, WFF_{XXX}~CA{YYY} where {XXX} is the administrating tenant code and {YYY}\n is the consolidated analytic tenant code."
+        },
+        {
+          "name": "limit",
+          "schema": "integer",
+          "description": "The maximum number of source tenants to return. The maximum value is 1000. Default is 400."
+        },
+        {
+          "name": "tenantCodes",
+          "schema": "array",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "default",
+          "description": "The response structure for errors."
+        }
+      ]
+    },
+    {
+      "url": "/v1alpha/admin/consolidated-analytics/tenants/:tenantId/source-tenants",
+      "method": "listSourceTenants",
+      "httpMethod": "get",
+      "tag": "ConsolidatedAnalyticsV1Alpha",
+      "typeScriptTag": "consolidatedAnalyticsV1Alpha",
+      "description": "Retrieve a consolidated analytics tenant's source tenants",
+      "parameters": [
+        {
+          "name": "tenantId",
+          "schema": "string",
+          "description": "The ID of the tenant. For example, WFF_{XXX}~CA{YYY} where {XXX} is the administrating tenant code and {YYY}\n is the consolidated analytic tenant code."
+        },
+        {
+          "name": "limit",
+          "schema": "integer",
+          "description": "The maximum number of source tenants to return. The maximum value is 1000. Default is 400."
+        },
+        {
+          "name": "start",
+          "schema": "integer",
+          "description": "The starting index of the first source tenant to return. Default is 0."
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "default",
+          "description": "The response structure for errors."
+        }
+      ]
+    },
+    {
+      "url": "/v1alpha/admin/consolidated-analytics/tenants/:tenantId/source-tenants",
+      "method": "addSourceTenants",
+      "httpMethod": "patch",
+      "tag": "ConsolidatedAnalyticsV1Alpha",
+      "typeScriptTag": "consolidatedAnalyticsV1Alpha",
+      "description": "Add source tenants to a consolidated analytics tenant",
+      "parameters": [
+        {
+          "name": "tenantId",
+          "schema": "string",
+          "description": "The ID of the tenant. For example, WFF_{XXX}~CA{YYY} where {XXX} is the administrating tenant code and {YYY}\n is the consolidated analytic tenant code."
+        },
+        {
+          "name": "limit",
+          "schema": "integer",
+          "description": "The maximum number of source tenants to return. The maximum value is 1000. Default is 400."
+        },
+        {
+          "name": "tenantCodes",
+          "schema": "array",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "default",
+          "description": "The response structure for errors."
+        }
+      ]
+    },
+    {
+      "url": "/v1alpha/admin/consolidated-analytics/tenants/:tenantId/source-tenants",
+      "method": "setSourceTenants",
+      "httpMethod": "put",
+      "tag": "ConsolidatedAnalyticsV1Alpha",
+      "typeScriptTag": "consolidatedAnalyticsV1Alpha",
+      "description": "Set a consolidated analytics tenant's source tenants",
+      "parameters": [
+        {
+          "name": "tenantId",
+          "schema": "string",
+          "description": "The ID of the tenant. For example, WFF_{XXX}~CA{YYY} where {XXX} is the administrating tenant code and {YYY}\n is the consolidated analytic tenant code."
+        },
+        {
+          "name": "limit",
+          "schema": "integer",
+          "description": "The maximum number of source tenants to return. The maximum value is 1000. Default is 400."
+        },
+        {
+          "name": "tenantCodes",
+          "schema": "array",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "default",
+          "description": "The response structure for errors."
+        }
+      ]
+    }
+  ],
+  "repositoryDescription": "Visier is a global leader in people analytics, empowering businesses of all sizes with actionable insights to optimize human capital. With over 25,000 customers in 75 countries, Visier's platform is used by enterprises worldwide for data-driven decisions.",
+  "logo": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/visier/consolidated-analytics/logo.png",
+  "openApiRaw": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/visier/consolidated-analytics/openapi.yaml",
+  "openApiGitHubUi": "https://github.com/konfig-sdks/openapi-examples/tree/HEAD/visier/consolidated-analytics/openapi.yaml",
+  "previewLinkImage": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/visier/consolidated-analytics/imagePreview.jpg",
+  "faviconUrl": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/visier/consolidated-analytics/favicon.png",
+  "clientNameCamelCase": "visierConsolidatedAnalytics",
+  "lastUpdated": "2024-03-19T23:14:00.000Z",
+  "typescriptSdkUsageCode": "import { VisierConsolidatedAnalytics } from 'visier-consolidated-analytics-typescript-sdk';\n\nconst visierConsolidatedAnalytics = new VisierConsolidatedAnalytics()",
+  "typescriptSdkFirstRequestCode": "// Retrieve a list of all consolidated analytics tenants\nconst listTenantsResponse = visierConsolidatedAnalytics.consolidatedAnalyticsV1Alpha.listTenants()",
+  "fixedSpecFileName": "visier-consolidated-analytics-fixed-spec.yaml"
+}

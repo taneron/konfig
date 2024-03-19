@@ -1,0 +1,144 @@
+hash: 9a11c11475f5c38368b5872b08dfbe7e7ba4bbbc097b6002299154ef530efbcc
+methodObjects:
+  - url: /v1/admin/calculation-concepts
+    method: getCalculationConcepts
+    httpMethod: get
+    tag: ObjectConfiguration
+    typeScriptTag: objectConfiguration
+    description: Retrieve all calculation concepts
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: >-
+          The `Status` type defines a logical error model that is suitable for
+          different programming environments, including REST APIs and RPC APIs.
+          It is used by [gRPC](https://github.com/grpc). Each `Status` message
+          contains three pieces of data: error code, error message, and error
+          details. You can find out more about this error model and how to work
+          with it in the [API Design
+          Guide](https://cloud.google.com/apis/design/errors).
+  - url: /v1/admin/calculation-concepts/{conceptId}
+    method: getCalculationConcept
+    httpMethod: get
+    tag: ObjectConfiguration
+    typeScriptTag: objectConfiguration
+    description: Retrieve the configuration of a calculation concept
+    parameters:
+      - name: conceptId
+        schema: string
+        required: true
+        description: The ID of the concept to retrieve the configuration for.
+        example: CONCEPTID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: >-
+          The `Status` type defines a logical error model that is suitable for
+          different programming environments, including REST APIs and RPC APIs.
+          It is used by [gRPC](https://github.com/grpc). Each `Status` message
+          contains three pieces of data: error code, error message, and error
+          details. You can find out more about this error model and how to work
+          with it in the [API Design
+          Guide](https://cloud.google.com/apis/design/errors).
+  - url: /v1/admin/calculation-concepts/{conceptId}/configure
+    method: mapCalculationConcept
+    httpMethod: put
+    tag: ObjectConfiguration
+    typeScriptTag: objectConfiguration
+    description: Map dimension members to nodes in a calculation concept
+    parameters:
+      - name: conceptId
+        schema: string
+        required: true
+        description: The UUID of the concept to configure.
+        example: CONCEPTID
+      - name: perspectivesToMap
+        schema: array
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: >-
+          The `Status` type defines a logical error model that is suitable for
+          different programming environments, including REST APIs and RPC APIs.
+          It is used by [gRPC](https://github.com/grpc). Each `Status` message
+          contains three pieces of data: error code, error message, and error
+          details. You can find out more about this error model and how to work
+          with it in the [API Design
+          Guide](https://cloud.google.com/apis/design/errors).
+  - url: /v1/admin/selection-concepts
+    method: getSelectionConcepts
+    httpMethod: get
+    tag: ObjectConfiguration
+    typeScriptTag: objectConfiguration
+    description: Retrieve all selection concepts
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: >-
+          The `Status` type defines a logical error model that is suitable for
+          different programming environments, including REST APIs and RPC APIs.
+          It is used by [gRPC](https://github.com/grpc). Each `Status` message
+          contains three pieces of data: error code, error message, and error
+          details. You can find out more about this error model and how to work
+          with it in the [API Design
+          Guide](https://cloud.google.com/apis/design/errors).
+  - url: /v1/admin/selection-concepts/{conceptId}
+    method: getSelectionConcept
+    httpMethod: get
+    tag: ObjectConfiguration
+    typeScriptTag: objectConfiguration
+    description: Retrieve the configuration of a selection concept
+    parameters:
+      - name: conceptId
+        schema: string
+        required: true
+        description: The ID of the concept to retrieve the configuration for.
+        example: CONCEPTID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: >-
+          The `Status` type defines a logical error model that is suitable for
+          different programming environments, including REST APIs and RPC APIs.
+          It is used by [gRPC](https://github.com/grpc). Each `Status` message
+          contains three pieces of data: error code, error message, and error
+          details. You can find out more about this error model and how to work
+          with it in the [API Design
+          Guide](https://cloud.google.com/apis/design/errors).
+  - url: /v1/admin/selection-concepts/{conceptId}/configure
+    method: mapSelectionConcept
+    httpMethod: put
+    tag: ObjectConfiguration
+    typeScriptTag: objectConfiguration
+    description: Map dimension members to a selection concept
+    parameters:
+      - name: conceptId
+        schema: string
+        required: true
+        description: The UUID of the concept to configure.
+        example: CONCEPTID
+      - name: analyticObjectFiltersToMap
+        schema: array
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: default
+        description: >-
+          The `Status` type defines a logical error model that is suitable for
+          different programming environments, including REST APIs and RPC APIs.
+          It is used by [gRPC](https://github.com/grpc). Each `Status` message
+          contains three pieces of data: error code, error message, and error
+          details. You can find out more about this error model and how to work
+          with it in the [API Design
+          Guide](https://cloud.google.com/apis/design/errors).
+numberOfSchemas: 16
+apiDescription: Visier APIs for managing objects in studio experience
