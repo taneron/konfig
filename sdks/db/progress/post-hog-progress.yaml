@@ -1,0 +1,628 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+operationIds:
+  /api/organizations/:
+    get: Organizations_list
+    post: Organizations_createOrganization
+  /api/organizations/{id}/:
+    delete: Organizations_removeById
+    get: Organizations_getById
+    put: Organizations_updateById
+  /api/organizations/{organization_id}/batch_exports/:
+    get: Organizations_batchExportsList
+    post: Organizations_createBatchExport
+  /api/organizations/{organization_id}/batch_exports/{id}/:
+    delete: Organizations_deleteBatchExport
+    get: Organizations_getBatchExportsById
+    patch: Organizations_updateBatchExport
+    put: Organizations_updateBatchExport
+  /api/organizations/{organization_id}/batch_exports/{id}/backfill/:
+    post: Organizations_triggerBackfill
+  /api/organizations/{organization_id}/batch_exports/{id}/pause/:
+    post: Organizations_pauseBatchExport
+  /api/organizations/{organization_id}/batch_exports/{id}/unpause/:
+    post: Organizations_unpauseBatchExport
+  /api/organizations/{organization_id}/domains/{id}/:
+    patch: Organizations_updateDomainById
+  /api/organizations/{organization_id}/domains/{id}/verify/:
+    post: Organizations_verifyDomainPost
+  /api/organizations/{organization_id}/invites/bulk/:
+    post: Organizations_bulkInviteCreate
+  /api/organizations/{organization_id}/members/{user__uuid}/:
+    patch: Organizations_updateMemberByUuid
+  /api/organizations/{organization_id}/pipeline_destinations/:
+    get: Organizations_listPipelineDestinations
+    post: Organizations_createPipelineDestinations
+  /api/organizations/{organization_id}/pipeline_destinations/activity/:
+    get: Organizations_getPipelineDestinationsActivity
+  /api/organizations/{organization_id}/pipeline_destinations/exports_unsubscribe_configs/:
+    get: Organizations_getPipelineDestinationsExportsUnsubscribeConfigs
+  /api/organizations/{organization_id}/pipeline_destinations/repository/:
+    get: Organizations_getPipelineDestinationRepository
+  /api/organizations/{organization_id}/pipeline_destinations/unused/:
+    get: Organizations_getPipelineDestinationsUnused
+  /api/organizations/{organization_id}/pipeline_destinations/{id}/:
+    delete: Organizations_removePipelineDestination
+    get: Organizations_getPipelineDestinations
+    patch: Organizations_updatePipelineDestination
+    put: Organizations_pipelineDestinationsUpdate
+  /api/organizations/{organization_id}/pipeline_destinations/{id}/check_for_updates/:
+    get: Organizations_checkForUpdates
+  /api/organizations/{organization_id}/pipeline_destinations/{id}/source/:
+    get: Organizations_getPipelineDestinationsSource
+  /api/organizations/{organization_id}/pipeline_destinations/{id}/update_source/:
+    patch: Organizations_updatePipelineDestinationSourcePartialUpdate
+  /api/organizations/{organization_id}/pipeline_destinations/{id}/upgrade/:
+    post: Organizations_upgradePipelineDestination
+  /api/organizations/{organization_id}/pipeline_frontend_apps/:
+    get: Organizations_listPipelineFrontendApps
+    post: Organizations_createPipelineFrontendApps
+  /api/organizations/{organization_id}/pipeline_frontend_apps/activity/:
+    get: Organizations_getPipelineFrontendAppsActivity
+  /api/organizations/{organization_id}/pipeline_frontend_apps/exports_unsubscribe_configs/:
+    get: Organizations_getPipelineFrontendAppExportsUnsubscribeConfigs
+  /api/organizations/{organization_id}/pipeline_frontend_apps/repository/:
+    get: Organizations_getPipelineFrontendAppsRepository
+  /api/organizations/{organization_id}/pipeline_frontend_apps/unused/:
+    get: Organizations_getPipelineFrontendAppsUnused
+  /api/organizations/{organization_id}/pipeline_frontend_apps/{id}/:
+    delete: Organizations_removePipelineFrontendApps
+    get: Organizations_getPipelineFrontendAppsById
+    patch: Organizations_updatePipelineFrontendAppsById
+    put: Organizations_updatePipelineFrontendAppById
+  /api/organizations/{organization_id}/pipeline_frontend_apps/{id}/check_for_updates/:
+    get: Organizations_pipelineFrontendAppsCheckForUpdatesRetrieve
+  /api/organizations/{organization_id}/pipeline_frontend_apps/{id}/source/:
+    get: Organizations_getPipelineFrontendAppsSource
+  /api/organizations/{organization_id}/pipeline_frontend_apps/{id}/update_source/:
+    patch: Organizations_pipelineFrontendAppsUpdateSourcePatch
+  /api/organizations/{organization_id}/pipeline_frontend_apps/{id}/upgrade/:
+    post: Organizations_upgradePipelineFrontendApp
+  /api/organizations/{organization_id}/pipeline_import_apps/:
+    get: Organizations_getPipelineImportApps
+    post: Organizations_importPipelineApps
+  /api/organizations/{organization_id}/pipeline_import_apps/activity/:
+    get: Organizations_getPipelineImportAppsActivity
+  /api/organizations/{organization_id}/pipeline_import_apps/exports_unsubscribe_configs/:
+    get: Organizations_pipelineImportAppsExportsUnsubscribeConfigsRetrieve
+  /api/organizations/{organization_id}/pipeline_import_apps/repository/:
+    get: Organizations_getPipelineImportAppsRepository
+  /api/organizations/{organization_id}/pipeline_import_apps/unused/:
+    get: Organizations_getUnusedPipelineImportApps
+  /api/organizations/{organization_id}/pipeline_import_apps/{id}/:
+    delete: Organizations_deletePipelineImportApp
+    get: Organizations_getPipelineImportApp
+    patch: Organizations_updatePipelineImportAppsConfigs
+    put: Organizations_pipelineImportAppsUpdate
+  /api/organizations/{organization_id}/pipeline_import_apps/{id}/check_for_updates/:
+    get: Organizations_pipelineImportAppsCheckForUpdatesRetrieve
+  /api/organizations/{organization_id}/pipeline_import_apps/{id}/source/:
+    get: Organizations_getPipelineImportAppsSource
+  /api/organizations/{organization_id}/pipeline_import_apps/{id}/update_source/:
+    patch: Organizations_updatePipelineImportAppSource
+  /api/organizations/{organization_id}/pipeline_import_apps/{id}/upgrade/:
+    post: Organizations_upgradePipelineImportApp
+  /api/organizations/{organization_id}/pipeline_transformations/:
+    get: Organizations_getPipelineTransformations
+    post: Organizations_createPipelineTransformation
+  /api/organizations/{organization_id}/pipeline_transformations/activity/:
+    get: Organizations_getPipelineTransformationsActivity
+  /api/organizations/{organization_id}/pipeline_transformations/exports_unsubscribe_configs/:
+    get: Organizations_getPipelineTransformationExportsUnsubscribeConfigs
+  /api/organizations/{organization_id}/pipeline_transformations/repository/:
+    get: Organizations_getPipelineTransformationsRepository
+  /api/organizations/{organization_id}/pipeline_transformations/unused/:
+    get: Organizations_getUnusedPipelineTransformations
+  /api/organizations/{organization_id}/pipeline_transformations/{id}/:
+    delete: Organizations_deletePipelineTransformation
+    get: Organizations_getPipelineTransformation
+    patch: Organizations_updatePipelineTransformationById
+    put: Organizations_updatePipelineTransformationById
+  /api/organizations/{organization_id}/pipeline_transformations/{id}/check_for_updates/:
+    get: Organizations_getPipelineTransformationCheckForUpdates
+  /api/organizations/{organization_id}/pipeline_transformations/{id}/source/:
+    get: Organizations_pipelineTransformationsSourceRetrieve
+  /api/organizations/{organization_id}/pipeline_transformations/{id}/update_source/:
+    patch: Organizations_updatePipelineTransformationSourcePartialUpdate
+  /api/organizations/{organization_id}/pipeline_transformations/{id}/upgrade/:
+    post: Organizations_upgradePipelineTransformation
+  /api/organizations/{organization_id}/plugins/activity/:
+    get: Organizations_getPluginsActivity
+  /api/organizations/{organization_id}/plugins/exports_unsubscribe_configs/:
+    get: Organizations_getPluginsExportsUnsubscribeConfigs
+  /api/organizations/{organization_id}/plugins/repository/:
+    get: Organizations_getPluginsRepository
+  /api/organizations/{organization_id}/plugins/unused/:
+    get: Organizations_getPluginsUnused
+  /api/organizations/{organization_id}/plugins/{id}/:
+    patch: Organizations_updatePluginById
+  /api/organizations/{organization_id}/plugins/{id}/check_for_updates/:
+    get: Organizations_pluginsCheckForUpdates
+  /api/organizations/{organization_id}/plugins/{id}/source/:
+    get: Organizations_pluginsSourceRetrieve
+  /api/organizations/{organization_id}/plugins/{id}/update_source/:
+    patch: Organizations_updatePluginSource
+  /api/organizations/{organization_id}/plugins/{id}/upgrade/:
+    post: Organizations_upgradePlugin
+  /api/organizations/{organization_id}/projects/:
+    get: Organizations_getProjects
+    post: Organizations_createProject
+  /api/organizations/{organization_id}/projects/{id}/:
+    delete: Organizations_deleteProjectById
+    get: Organizations_getProjectsById
+    patch: Organizations_updateProject
+    put: Organizations_updateProjectById
+  /api/organizations/{organization_id}/projects/{id}/is_generating_demo_data/:
+    get: Organizations_getIsGeneratingDemoData
+  /api/organizations/{organization_id}/projects/{id}/reset_token/:
+    patch: Organizations_projectsResetTokenPartialUpdate
+  /api/organizations/{organization_id}/roles/{id}/:
+    patch: Organizations_updateRoleById
+  /api/organizations/{organization_id}/roles/{role_id}/role_memberships/:
+    get: Organizations_listRoleMemberships
+    post: Organizations_createRoleMemberships
+  /api/organizations/{organization_id}/roles/{role_id}/role_memberships/{id}/:
+    delete: Organizations_removeRoleMembership
+  /api/projects/{project_id}/actions/people/:
+    get: Actions_getPeople
+  /api/projects/{project_id}/actions/{id}/:
+    patch: Actions_updateById
+  /api/projects/{project_id}/actions/{id}/count/:
+    get: Actions_getActionCount
+  /api/projects/{project_id}/activity_log/:
+    get: Activitylog_getActivityLog
+  /api/projects/{project_id}/activity_log/bookmark_activity_notification/:
+    post: Activitylog_createBookmarkActivityNotification
+  /api/projects/{project_id}/activity_log/important_changes/:
+    get: Activitylog_getImportantChanges
+  /api/projects/{project_id}/annotations/{id}/:
+    patch: Annotations_crudById
+  /api/projects/{project_id}/app_metrics/{id}/:
+    get: Appmetrics_getAppMetricsById
+  /api/projects/{project_id}/app_metrics/{id}/error_details/:
+    get: Appmetrics_getErrorDetails
+  /api/projects/{project_id}/app_metrics/{plugin_config_id}/historical_exports/:
+    get: Appmetrics_getHistoricalExports
+  /api/projects/{project_id}/app_metrics/{plugin_config_id}/historical_exports/{id}/:
+    get: Appmetrics_getHistoricalExportsById
+  /api/projects/{project_id}/batch_exports/:
+    get: Batchexports_getMultipleRuns
+    post: Batchexports_createNewRun
+  /api/projects/{project_id}/batch_exports/{batch_export_id}/logs/:
+    get: Batchexports_getLogs
+  /api/projects/{project_id}/batch_exports/{batch_export_id}/runs/:
+    get: Batchexports_getRuns
+  /api/projects/{project_id}/batch_exports/{batch_export_id}/runs/{id}/:
+    get: Batchexports_getRunsRetrieve
+  /api/projects/{project_id}/batch_exports/{batch_export_id}/runs/{run_id}/logs/:
+    get: Batchexports_getLogs
+  /api/projects/{project_id}/batch_exports/{id}/:
+    delete: Batchexports_deleteById
+    get: Batchexports_getMultipleRuns
+    patch: Batchexports_updateByIdPatch
+    put: Batchexports_updateByIdPatch
+  /api/projects/{project_id}/batch_exports/{id}/backfill/:
+    post: Batchexports_triggerBackfill
+  /api/projects/{project_id}/batch_exports/{id}/pause/:
+    post: Batchexports_pauseAction
+  /api/projects/{project_id}/batch_exports/{id}/unpause/:
+    post: Batchexports_unpauseAction
+  /api/projects/{project_id}/cohorts/{id}/:
+    patch: Cohorts_updateDetails
+  /api/projects/{project_id}/cohorts/{id}/duplicate_as_static_cohort/:
+    get: Cohorts_duplicateAsStaticCohortRetrieve
+  /api/projects/{project_id}/cohorts/{id}/persons/:
+    get: Cohorts_listPersons
+  /api/projects/{project_id}/dashboard_templates/:
+    get: Dashboardtemplates_getList
+    post: Dashboardtemplates_createOrUpdate
+  /api/projects/{project_id}/dashboard_templates/json_schema/:
+    get: Dashboardtemplates_getJsonSchema
+  /api/projects/{project_id}/dashboard_templates/{id}/:
+    delete: Dashboardtemplates_removeById
+    get: Dashboardtemplates_getById
+    patch: Dashboardtemplates_updateByIdPatch
+    put: Dashboardtemplates_updateById
+  /api/projects/{project_id}/dashboards/create_from_template_json/:
+    post: Dashboards_createFromTemplateJsonPost
+  /api/projects/{project_id}/dashboards/{dashboard_id}/collaborators/:
+    get: Dashboards_listCollaborators
+    post: Dashboards_addCollaborator
+  /api/projects/{project_id}/dashboards/{dashboard_id}/collaborators/{user__uuid}/:
+    delete: Dashboards_deleteCollaboratorByUuid
+  /api/projects/{project_id}/dashboards/{dashboard_id}/sharing/:
+    get: Dashboards_sharingList
+  /api/projects/{project_id}/dashboards/{id}/:
+    patch: Dashboards_updateById
+  /api/projects/{project_id}/dashboards/{id}/move_tile/:
+    patch: Dashboards_moveTilePatch
+  /api/projects/{project_id}/early_access_feature/:
+    get: Earlyaccessfeature_getEarlyAccessFeature
+    post: Earlyaccessfeature_createOrUpdate
+  /api/projects/{project_id}/early_access_feature/{id}/:
+    delete: Earlyaccessfeature_deleteById
+    get: Earlyaccessfeature_getData
+    patch: Earlyaccessfeature_updateContent
+    put: Earlyaccessfeature_updateContent
+  /api/projects/{project_id}/event_definitions/:
+    get: Eventdefinitions_list
+  /api/projects/{project_id}/event_definitions/{id}/:
+    delete: Eventdefinitions_deleteById
+    get: Eventdefinitions_getById
+    patch: Eventdefinitions_updateByIdPatch
+    put: Eventdefinitions_updateById
+  /api/projects/{project_id}/events/values/:
+    get: Events_getValues
+  /api/projects/{project_id}/experiments/requires_flag_implementation/:
+    get: Experiments_getRequiresFlagImplementation
+  /api/projects/{project_id}/experiments/{id}/:
+    patch: Experiments_updateExperimentById
+  /api/projects/{project_id}/experiments/{id}/results/:
+    get: Experiments_getResults
+  /api/projects/{project_id}/experiments/{id}/secondary_results/:
+    get: Experiments_getSecondaryResults
+  /api/projects/{project_id}/explicit_members/:
+    get: Explicitmembers_getMembers
+    post: Explicitmembers_createOrUpdateMembers
+  /api/projects/{project_id}/explicit_members/{parent_membership__user__uuid}/:
+    delete: Explicitmembers_deleteExplicitMembers
+    get: Explicitmembers_getMembersByParentMembershipUserUuid
+    patch: Explicitmembers_updateParentMembershipUserUuid
+    put: Explicitmembers_updateParentMembershipUserUuid
+  /api/projects/{project_id}/exports/{id}/content/:
+    get: Exports_contentRetrieve
+  /api/projects/{project_id}/feature_flags/:
+    get: Featureflags_getFeatureFlags
+    post: Featureflags_createFeatureFlag
+  /api/projects/{project_id}/feature_flags/activity/:
+    get: Featureflags_getFeatureFlagsActivity
+  /api/projects/{project_id}/feature_flags/evaluation_reasons/:
+    get: Featureflags_getEvaluationReasons
+  /api/projects/{project_id}/feature_flags/local_evaluation/:
+    get: Featureflags_localEvaluationRetrieve
+  /api/projects/{project_id}/feature_flags/my_flags/:
+    get: Featureflags_readMyFlags
+  /api/projects/{project_id}/feature_flags/user_blast_radius/:
+    post: Featureflags_createFeatureFlagUserBlastRadius
+  /api/projects/{project_id}/feature_flags/{feature_flag_id}/role_access/:
+    get: Featureflags_getRoleAccess
+    post: Featureflags_roleAccessCreate
+  /api/projects/{project_id}/feature_flags/{feature_flag_id}/role_access/{id}/:
+    delete: Featureflags_deleteRoleAccess
+    get: Featureflags_getRoleAccessById
+  /api/projects/{project_id}/feature_flags/{id}/:
+    delete: Featureflags_deleteFeatureFlag
+    get: Featureflags_readFeatureFlagById
+    patch: Featureflags_updateFeatureFlagById
+    put: Featureflags_createOrUpdateFlag
+  /api/projects/{project_id}/feature_flags/{id}/activity/:
+    get: Featureflags_getFeatureFlagActivity
+  /api/projects/{project_id}/feature_flags/{id}/create_static_cohort_for_flag/:
+    post: Featureflags_createStaticCohortForFlag
+  /api/projects/{project_id}/feature_flags/{id}/dashboard/:
+    post: Featureflags_createOrUpdateDashboard
+  /api/projects/{project_id}/feature_flags/{id}/enrich_usage_dashboard/:
+    post: Featureflags_enrichUsageDashboardCreate
+  /api/projects/{project_id}/groups/find/:
+    get: Groups_getGroupsFind
+  /api/projects/{project_id}/groups/property_definitions/:
+    get: Groups_getPropertyDefinitions
+  /api/projects/{project_id}/groups/property_values/:
+    get: Groups_getPropertyValues
+  /api/projects/{project_id}/groups/related/:
+    get: Groups_getRelatedGroups
+  /api/projects/{project_id}/groups_types/:
+    get: Groupstypes_list
+  /api/projects/{project_id}/groups_types/update_metadata/:
+    patch: Groupstypes_updateMetadataPatch
+  /api/projects/{project_id}/insights/activity/:
+    get: Insights_getActivityData
+  /api/projects/{project_id}/insights/cancel/:
+    post: Insights_cancelCreate
+  /api/projects/{project_id}/insights/funnel/:
+    get: Insights_getFunnelSummary
+    post: Funnel_createOrUpdate
+  /api/projects/{project_id}/insights/funnel/correlation/:
+    get: Insights_funnelCorrelationRetrieve
+    post: Insights_funnelCorrelationCreate
+  /api/projects/{project_id}/insights/my_last_viewed/:
+    get: Insights_listLastViewed
+  /api/projects/{project_id}/insights/path/:
+    get: Insights_getPath
+    post: Insights_createOrUpdatePath
+  /api/projects/{project_id}/insights/retention/:
+    get: Insights_projectRetentionGet
+    post: Insights_createRetention
+  /api/projects/{project_id}/insights/timing/:
+    post: Insights_createTimingInsight
+  /api/projects/{project_id}/insights/trend/:
+    get: Insights_getTrend
+    post: Trend_createOrUpdatePath
+  /api/projects/{project_id}/insights/{id}/:
+    patch: Insights_updateInsightPath
+  /api/projects/{project_id}/insights/{id}/activity/:
+    get: Insights_getActivityData
+  /api/projects/{project_id}/insights/{id}/viewed/:
+    post: Insights_markAsViewed
+  /api/projects/{project_id}/insights/{insight_id}/sharing/:
+    get: Insights_getSharing
+  /api/projects/{project_id}/notebooks/activity/:
+    get: Notebooks_getActivityList
+  /api/projects/{project_id}/notebooks/{short_id}/:
+    patch: Notebooks_updateNotebook
+  /api/projects/{project_id}/notebooks/{short_id}/activity/:
+    get: Notebooks_getActivityList
+  /api/projects/{project_id}/persons/activity/:
+    get: Persons_getActivity
+  /api/projects/{project_id}/persons/cohorts/:
+    get: Persons_listCohorts
+  /api/projects/{project_id}/persons/funnel/:
+    get: Persons_getFunnel
+    post: Persons_createOrUpdateFunnel
+  /api/projects/{project_id}/persons/funnel/correlation/:
+    get: Persons_funnelCorrelationRetrieve
+    post: Persons_createOrUpdateFunnelCorrelation
+  /api/projects/{project_id}/persons/lifecycle/:
+    get: Persons_getLifecyclePath
+  /api/projects/{project_id}/persons/path/:
+    get: Persons_getPath
+    post: Persons_createOrUpdatePath
+  /api/projects/{project_id}/persons/retention/:
+    get: Persons_retentionRetrieve
+  /api/projects/{project_id}/persons/stickiness/:
+    get: Persons_getStickiness
+  /api/projects/{project_id}/persons/trends/:
+    get: Persons_getTrends
+  /api/projects/{project_id}/persons/values/:
+    get: Persons_getValues
+  /api/projects/{project_id}/persons/{id}/:
+    patch: Persons_updatePersonById
+  /api/projects/{project_id}/persons/{id}/activity/:
+    get: Persons_getActivity
+  /api/projects/{project_id}/persons/{id}/delete_property/:
+    post: Persons_deletePropertyApi
+  /api/projects/{project_id}/persons/{id}/properties_timeline/:
+    get: Persons_getPropertiesTimeline
+  /api/projects/{project_id}/persons/{id}/split/:
+    post: Persons_createOrUpdateSplit
+  /api/projects/{project_id}/persons/{id}/update_property/:
+    post: Persons_createOrUpdateProperty
+  /api/projects/{project_id}/pipeline_destination_configs/:
+    get: Pipelinedestinationconfigs_getList
+    post: Pipelinedestinationconfigs_createOrUpdate
+  /api/projects/{project_id}/pipeline_destination_configs/rearrange/:
+    patch: Pipelinedestinationconfigs_rearrangePartialUpdate
+  /api/projects/{project_id}/pipeline_destination_configs/{id}/:
+    delete: Pipelinedestinationconfigs_deleteById
+    get: Pipelinedestinationconfigs_get
+    patch: Pipelinedestinationconfigs_patchById
+    put: Pipelinedestinationconfigs_updateById
+  /api/projects/{project_id}/pipeline_destination_configs/{id}/frontend/:
+    get: Pipelinedestinationconfigs_getFrontend
+  /api/projects/{project_id}/pipeline_destination_configs/{id}/job/:
+    post: Pipelinedestinationconfigs_createJob
+  /api/projects/{project_id}/pipeline_frontend_apps_configs/:
+    get: Pipelinefrontendappsconfigs_get
+    post: Pipelinefrontendappsconfigs_createOrUpdate
+  /api/projects/{project_id}/pipeline_frontend_apps_configs/rearrange/:
+    patch: Pipelinefrontendappsconfigs_rearrangePartialUpdate
+  /api/projects/{project_id}/pipeline_frontend_apps_configs/{id}/:
+    delete: Pipelinefrontendappsconfigs_deleteById
+    get: Pipelinefrontendappsconfigs_getById
+    patch: Pipelinefrontendappsconfigs_updateByIdPatch
+    put: Pipelinefrontendappsconfigs_updateById
+  /api/projects/{project_id}/pipeline_frontend_apps_configs/{id}/frontend/:
+    get: Pipelinefrontendappsconfigs_getFrontend
+  /api/projects/{project_id}/pipeline_frontend_apps_configs/{id}/job/:
+    post: Pipelinefrontendappsconfigs_createJob
+  /api/projects/{project_id}/pipeline_import_apps_configs/:
+    get: Pipelineimportappsconfigs_getPipelineImportAppsConfigsList
+    post: Pipelineimportappsconfigs_postPipelineImportAppsConfigs
+  /api/projects/{project_id}/pipeline_import_apps_configs/rearrange/:
+    patch: Pipelineimportappsconfigs_rearrangePartialUpdate
+  /api/projects/{project_id}/pipeline_import_apps_configs/{id}/:
+    delete: Pipelineimportappsconfigs_deleteById
+    get: Pipelineimportappsconfigs_getById
+    patch: Pipelineimportappsconfigs_patchById
+    put: Pipelineimportappsconfigs_updatePipelineImportAppsConfigsById
+  /api/projects/{project_id}/pipeline_import_apps_configs/{id}/frontend/:
+    get: Pipelineimportappsconfigs_frontendRetrieve
+  /api/projects/{project_id}/pipeline_import_apps_configs/{id}/job/:
+    post: Pipelineimportappsconfigs_createJob
+  /api/projects/{project_id}/pipeline_transformation_configs/:
+    get: Pipelinetransformationconfigs_list
+    post: Pipelinetransformationconfigs_createOrUpdate
+  /api/projects/{project_id}/pipeline_transformation_configs/rearrange/:
+    patch: Pipelinetransformationconfigs_rearrangePartialUpdate
+  /api/projects/{project_id}/pipeline_transformation_configs/{id}/:
+    delete: Pipelinetransformationconfigs_deleteById
+    get: Pipelinetransformationconfigs_getById
+    patch: Pipelinetransformationconfigs_patchById
+    put: Pipelinetransformationconfigs_updateById
+  /api/projects/{project_id}/pipeline_transformation_configs/{id}/frontend/:
+    get: Pipelinetransformationconfigs_frontendRetrieve
+  /api/projects/{project_id}/pipeline_transformation_configs/{id}/job/:
+    post: Pipelinetransformationconfigs_createJob
+  /api/projects/{project_id}/plugin_configs/:
+    get: Pluginconfigs_getByProjectId
+    post: Pluginconfigs_createOrUpdate
+  /api/projects/{project_id}/plugin_configs/rearrange/:
+    patch: Pluginconfigs_rearrangePatch
+  /api/projects/{project_id}/plugin_configs/{id}/:
+    delete: Pluginconfigs_deleteById
+    get: Pluginconfigs_getByProjectId
+    patch: Pluginconfigs_updateByIdPatch
+    put: Pluginconfigs_updateByProjectId
+  /api/projects/{project_id}/plugin_configs/{id}/frontend/:
+    get: Pluginconfigs_getFrontend
+  /api/projects/{project_id}/plugin_configs/{id}/job/:
+    post: Pluginconfigs_createJob
+  /api/projects/{project_id}/plugin_configs/{plugin_config_id}/logs/:
+    get: Pluginconfigs_getLogs
+  /api/projects/{project_id}/property_definitions/:
+    get: Propertydefinitions_getByProjectIdPropertyDefinitions
+  /api/projects/{project_id}/property_definitions/seen_together/:
+    get: Propertydefinitions_getEventNamesSeenTogether
+  /api/projects/{project_id}/property_definitions/{id}/:
+    delete: Propertydefinitions_deleteById
+    get: Propertydefinitions_getById
+    patch: Propertydefinitions_patchByIdProperty
+    put: Propertydefinitions_putByIdCamelCase
+  /api/projects/{project_id}/query/draft_sql/:
+    get: Query_draftSqlRetrieve
+  /api/projects/{project_id}/session_recording_playlists/:
+    get: Sessionrecordingplaylists_list
+    post: Sessionrecordingplaylists_createOrUpdate
+  /api/projects/{project_id}/session_recording_playlists/{short_id}/:
+    delete: Sessionrecordingplaylists_deleteById
+    get: Sessionrecordingplaylists_getByShortId
+    patch: Sessionrecordingplaylists_updateShortId
+    put: Sessionrecordingplaylists_updateRecordingPlaylist
+  /api/projects/{project_id}/session_recording_playlists/{short_id}/recordings/:
+    get: Sessionrecordingplaylists_getRecordings
+  /api/projects/{project_id}/session_recording_playlists/{short_id}/recordings/{session_recording_id}/:
+    delete: Sessionrecordingplaylists_deleteRecording
+    post: Sessionrecordingplaylists_createRecording
+  /api/projects/{project_id}/session_recordings/:
+    get: Sessionrecordings_getMultiple
+  /api/projects/{project_id}/session_recordings/error_clusters/:
+    get: Sessionrecordings_getErrorClusters
+  /api/projects/{project_id}/session_recordings/matching_events/:
+    get: Sessionrecordings_getSessionRecordingMatchingEvents
+  /api/projects/{project_id}/session_recordings/properties/:
+    get: Sessionrecordings_getProperties
+  /api/projects/{project_id}/session_recordings/{id}/:
+    delete: Sessionrecordings_deleteById
+    get: Sessionrecordings_getById
+  /api/projects/{project_id}/session_recordings/{id}/persist/:
+    post: Sessionrecordings_persistSessionRecording
+  /api/projects/{project_id}/session_recordings/{id}/similar_sessions/:
+    get: Sessionrecordings_getSimilarSessions
+  /api/projects/{project_id}/session_recordings/{id}/snapshots/:
+    get: Sessionrecordings_snapshotsRetrieve
+  /api/projects/{project_id}/session_recordings/{id}/summarize/:
+    post: Sessionrecordings_summarizeCreate
+  /api/projects/{project_id}/session_recordings/{recording_id}/sharing/:
+    get: Sessionrecordings_getSharing
+  /api/projects/{project_id}/subscriptions/{id}/:
+    patch: Subscriptions_updateById
+  /api/projects/{project_id}/surveys/responses_count/:
+    get: Surveys_getResponsesCount
+  /api/projects/{project_id}/surveys/{id}/:
+    patch: Surveys_updateSurveyById
+  /api/users/{uuid}/:
+    patch: Users_patchUuid
+  /api/users/{uuid}/request_email_verification/:
+    post: Users_requestEmailVerificationCreate
+  /api/users/{uuid}/scene_personalisation/:
+    post: Users_createScenePersonalisation
+  /api/users/{uuid}/start_2fa_setup/:
+    get: Users_start2faSetupRetrieve
+  /api/users/{uuid}/validate_2fa/:
+    post: Users_validate2faCreate
+  /api/users/{uuid}/verify_email/:
+    post: Users_verifyEmailCreate
+operationTags: {}
+renameTags: {}
+requestSchemaNames: {}
+responseDescriptions: {}
+responseSchemaNames:
+  /api/projects/{project_id}/dashboards/{dashboard_id}/collaborators:
+    get:
+      '200':
+        application/json: DashboardsListCollaboratorsResponse
+  /api/projects/{project_id}/dashboards/{dashboard_id}/sharing:
+    get:
+      '200':
+        application/json: DashboardsSharingListResponse
+  /api/projects/{project_id}/explicit_members:
+    get:
+      '200':
+        application/json: ExplicitmembersGetMembersResponse
+  /api/projects/{project_id}/groups_types:
+    get:
+      '200':
+        application/json: GroupstypesListResponse
+  /api/projects/{project_id}/insights/{insight_id}/sharing:
+    get:
+      '200':
+        application/json: InsightsGetSharingResponse
+  /api/projects/{project_id}/session_recordings/{recording_id}/sharing:
+    get:
+      '200':
+        application/json: SessionrecordingsGetSharingResponse
+securityParameters:
+  $unset:
+    query: false
+  after:
+    query: false
+  before:
+    query: false
+  contains:
+    query: false
+  created_by:
+    query: false
+  cursor:
+    query: false
+  date_from:
+    query: false
+  date_to:
+    query: false
+  delete_events:
+    query: false
+  distinct_id:
+    query: false
+  email:
+    query: false
+  event:
+    query: false
+  event_names:
+    query: false
+  excluded_properties:
+    query: false
+  filter_by_event_names:
+    query: false
+  format:
+    query: false
+  from_dashboard:
+    query: false
+  group_key:
+    query: false
+  group_type_index:
+    query: false
+  id:
+    query: false
+  is_feature_flag:
+    query: false
+  is_numerical:
+    query: false
+  is_staff:
+    query: false
+  key:
+    query: false
+  limit:
+    query: false
+  offset:
+    query: false
+  person_id:
+    query: false
+  properties:
+    query: false
+  refresh:
+    query: false
+  search:
+    query: false
+  select:
+    query: false
+  short_id:
+    query: false
+  type:
+    query: false
+  user:
+    query: false
+  value:
+    query: false
+  where:
+    query: false
+validServerUrls: {}

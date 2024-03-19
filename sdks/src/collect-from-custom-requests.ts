@@ -51,6 +51,10 @@ export type CustomRequest = (
 ) & {
   securitySchemes?: SecuritySchemes;
   apiBaseUrl?: string;
+  servers?: {
+    url: string;
+    description?: string;
+  }[];
 
   // for overriding "openapi" property
   // NOTE:
@@ -242,6 +246,20 @@ const customRequests: Record<string, CustomRequest> = {
   "1password.com_Partnership": {
     type: "GET",
     url: "https://i.1password.com/media/1password-partnership-api/partnership-api.yml",
+  },
+  "posthog.com": {
+    type: "GET",
+    url: "https://app.posthog.com/api/schema/",
+    servers: [
+      {
+        url: "https://app.posthog.com",
+        description: "US Cloud",
+      },
+      {
+        url: "https://eu.posthog.com",
+        description: "EU Cloud",
+      },
+    ],
   },
   "1password.com_Connect": {
     type: "GET",
@@ -845,11 +863,11 @@ const customRequests: Record<string, CustomRequest> = {
         "https://payfactory.readme.io/reference/get_v1-reporting-deposits-referenceid",
         "https://payfactory.readme.io/reference/get_v1-reporting-achtransactions-referenceid",
         "https://payfactory.readme.io/reference/post_v1-transaction-metadata",
-        "https://payfactory.readme.io/reference/post_v1-transaction-metadatabulk"
-      ]
+        "https://payfactory.readme.io/reference/post_v1-transaction-metadatabulk",
+      ];
       return downloadOpenApiSpecFromReadme({ urls });
     },
-  }, 
+  },
   "helcim.com": {
     lambda: async () => {
       const urls = [
@@ -881,10 +899,10 @@ const customRequests: Record<string, CustomRequest> = {
         "https://devdocs.helcim.com/reference/update-invoice",
         "https://devdocs.helcim.com/reference/card-terminals",
         "https://devdocs.helcim.com/reference/checkout-init",
-      ]
+      ];
       return downloadOpenApiSpecFromReadme({ urls });
     },
-  }, 
+  },
   "2c2p.com": {
     lambda: async () => {
       const urls = [
@@ -910,9 +928,9 @@ const customRequests: Record<string, CustomRequest> = {
         "https://developer.2c2p.com/reference/post_payment-4-3-redirectfrontend",
         "https://developer.2c2p.com/reference/post_payment-4-3-transactionstatus",
         "https://developer.2c2p.com/reference/post_payment-4-3-userpreference",
-      ]
+      ];
       return downloadOpenApiSpecFromReadme({ urls });
-    }
+    },
   },
   "tremendous.com": {
     lambda: async () => {
@@ -952,10 +970,10 @@ const customRequests: Record<string, CustomRequest> = {
         "https://developers.tremendous.com/reference/create-webhook",
         "https://developers.tremendous.com/reference/get-webhook",
         "https://developers.tremendous.com/reference/simulate-webhook",
-        "https://developers.tremendous.com/reference/list-webhook-events"
-      ]
+        "https://developers.tremendous.com/reference/list-webhook-events",
+      ];
       return downloadOpenApiSpecFromReadme({ urls });
-    }
+    },
   },
 };
 
@@ -1315,6 +1333,9 @@ async function processCustomRequest({
     if (customRequest.apiBaseUrl !== undefined) {
       apiBaseUrl = customRequest.apiBaseUrl;
       spec.spec.servers = [{ url: apiBaseUrl }];
+    } else if (customRequest.servers !== undefined) {
+      spec.spec.servers = customRequest.servers;
+      apiBaseUrl = customRequest.servers[0].url;
     } else {
       throw Error(`❌ ${key} is missing apiBaseUrl.`);
     }
