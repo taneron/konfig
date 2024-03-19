@@ -1,0 +1,58 @@
+{
+  "securitySchemes": {
+    "CookieAuth": {
+      "type": "apiKey",
+      "name": "VisierASIDToken",
+      "in": "cookie"
+    },
+    "ApiKeyAuth": {
+      "type": "apiKey",
+      "name": "apikey",
+      "in": "header"
+    },
+    "BearerAuth": {
+      "type": "http",
+      "scheme": "bearer"
+    },
+    "OAuth2Auth": {
+      "type": "oauth2",
+      "flows": {
+        "authorizationCode": {
+          "authorizationUrl": "/v1/auth/oauth2/authorize",
+          "tokenUrl": "/v1/auth/oauth2/token",
+          "scopes": {
+            "read": "Grants read access",
+            "write": "Grants write access"
+          }
+        },
+        "password": {
+          "tokenUrl": "/v1/auth/oauth2/token",
+          "scopes": {
+            "read": "Grants read access",
+            "write": "Grants write access"
+          }
+        }
+      }
+    }
+  },
+  "apiBaseUrl": "https://{vanity-name}.api.visier.io",
+  "apiVersion": "22222222.99201.1200",
+  "apiDescription": "Visier APIs for data and job handling",
+  "apiTitle": "Visier Data and Job Handling APIs",
+  "endpoints": 20,
+  "sdkMethods": 21,
+  "schemas": 96,
+  "parameters": 57,
+  "originalCustomRequest": {
+    "type": "GET",
+    "url": "https://raw.githubusercontent.com/visier/openapi-clients/main/res/data-handling-apis.yaml",
+    "servers": [
+      {
+        "url": "https://{vanity-name}.api.visier.io"
+      }
+    ]
+  },
+  "customRequestSpecFilename": "visier.com_DataHandling.yaml",
+  "difficultyScore": 83.25,
+  "difficulty": "Easy"
+}

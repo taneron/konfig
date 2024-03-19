@@ -1,0 +1,43 @@
+processed:
+  securitySchemes:
+    CookieAuth:
+      type: apiKey
+      name: VisierASIDToken
+      in: cookie
+    ApiKeyAuth:
+      type: apiKey
+      name: apikey
+      in: header
+    BearerAuth:
+      type: http
+      scheme: bearer
+    OAuth2Auth:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: /v1/auth/oauth2/authorize
+          tokenUrl: /v1/auth/oauth2/token
+          scopes:
+            read: Grants read access
+            write: Grants write access
+        password:
+          tokenUrl: /v1/auth/oauth2/token
+          scopes:
+            read: Grants read access
+            write: Grants write access
+  apiBaseUrl: https://{vanity-name}.api.visier.io
+  apiVersion: 22222222.99201.1200
+  apiDescription: Visier API for searching for Visier documents
+  apiTitle: Visier Document Search API
+  endpoints: 1
+  sdkMethods: 1
+  schemas: 5
+  parameters: 3
+  originalCustomRequest:
+    type: GET
+    url: >-
+      https://raw.githubusercontent.com/visier/openapi-clients/main/res/document-search-apis.yaml
+    servers:
+      - url: https://{vanity-name}.api.visier.io
+  customRequestSpecFilename: visier.com_ModelQuery.yaml
+  difficultyScore: 4.25

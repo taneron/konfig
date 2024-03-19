@@ -54,6 +54,10 @@ export type CustomRequest = (
   servers?: {
     url: string;
     description?: string;
+    variables?: Record<
+      string,
+      { default: string; description?: string; enum?: string[] }
+    >;
   }[];
 
   // for overriding "openapi" property
@@ -469,6 +473,110 @@ const customRequests: Record<string, CustomRequest> = {
       }
       throw Error("Expecting oasDefinition to be defined");
     },
+  },
+  "visier.com_Authentication": {
+    type: "GET",
+    url: "https://raw.githubusercontent.com/visier/openapi-clients/main/res/authentication-apis.yaml",
+    servers: [
+      {
+        url: "https://{vanity-name}.api.visier.io",
+        variables: {
+          "vanity-name": {
+            default: "vanity",
+          },
+        },
+      },
+    ],
+  },
+  "visier.com_ConsolidatedAnalytics": {
+    type: "GET",
+    url: "https://raw.githubusercontent.com/visier/openapi-clients/main/res/consolidated-analytics-apis.yaml",
+    servers: [
+      {
+        url: "https://{vanity-name}.api.visier.io",
+      },
+    ],
+  },
+  "visier.com_DataHandling": {
+    type: "GET",
+    url: "https://raw.githubusercontent.com/visier/openapi-clients/main/res/data-handling-apis.yaml",
+    servers: [
+      {
+        url: "https://{vanity-name}.api.visier.io",
+      },
+    ],
+  },
+  "visier.com_DataIntake": {
+    type: "GET",
+    url: "https://raw.githubusercontent.com/visier/openapi-clients/main/res/data-intake-apis.yaml",
+    servers: [
+      {
+        url: "https://{vanity-name}.api.visier.io",
+      },
+    ],
+  },
+  "visier.com_DocumentSearch": {
+    type: "GET",
+    url: "https://raw.githubusercontent.com/visier/openapi-clients/main/res/document-search-apis.yaml",
+    servers: [
+      {
+        url: "https://{vanity-name}.api.visier.io",
+      },
+    ],
+  },
+  "visier.com_ModelQuery": {
+    type: "GET",
+    url: "https://raw.githubusercontent.com/visier/openapi-clients/main/res/document-search-apis.yaml",
+    servers: [
+      {
+        url: "https://{vanity-name}.api.visier.io",
+      },
+    ],
+  },
+  "visier.com_ObjectConfiguration": {
+    type: "GET",
+    url: "https://raw.githubusercontent.com/visier/openapi-clients/main/res/object-configuration-apis.yaml",
+    servers: [
+      {
+        url: "https://{vanity-name}.api.visier.io",
+      },
+    ],
+  },
+  "visier.com_PermissionManagement": {
+    type: "GET",
+    url: "https://raw.githubusercontent.com/visier/openapi-clients/main/res/permission-management-apis.yaml",
+    servers: [
+      {
+        url: "https://{vanity-name}.api.visier.io",
+      },
+    ],
+  },
+  "visier.com_ProfileManagement": {
+    type: "GET",
+    url: "https://raw.githubusercontent.com/visier/openapi-clients/main/res/profile-management-apis.yaml",
+    servers: [
+      {
+        url: "https://{vanity-name}.api.visier.io",
+      },
+    ],
+  },
+  "visier.com_TenantManagement": {
+    type: "GET",
+    url: "https://raw.githubusercontent.com/visier/openapi-clients/main/res/tenant-management-apis.yaml",
+    servers: [
+      {
+        url: "https://{vanity-name}.api.visier.io",
+      },
+    ],
+  },
+  "visier.com_UserManagement": {
+    type: "GET",
+    url: "https://raw.githubusercontent.com/visier/openapi-clients/main/res/user-management-apis.yaml",
+    servers: [
+      {
+        url: "https://{vanity-name}.api.visier.io",
+      },
+    ],
   },
   "soundcloud.com": {
     type: "GET",
@@ -1037,7 +1145,7 @@ const customRequests: Record<string, CustomRequest> = {
         "https://developer.fastspring.com/reference/getjobbyid",
         "https://developer.fastspring.com/reference/getjobs",
         "https://developer.fastspring.com/reference/resetcache",
-        "https://developer.fastspring.com/reference/downloadreport"
+        "https://developer.fastspring.com/reference/downloadreport",
       ];
       return downloadOpenApiSpecFromReadme({ urls });
     },

@@ -1,0 +1,43 @@
+processed:
+  securitySchemes:
+    CookieAuth:
+      type: apiKey
+      name: VisierASIDToken
+      in: cookie
+    ApiKeyAuth:
+      type: apiKey
+      name: apikey
+      in: header
+    BearerAuth:
+      type: http
+      scheme: bearer
+    OAuth2Auth:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: /v1/auth/oauth2/authorize
+          tokenUrl: /v1/auth/oauth2/token
+          scopes:
+            read: Grants read access
+            write: Grants write access
+        password:
+          tokenUrl: /v1/auth/oauth2/token
+          scopes:
+            read: Grants read access
+            write: Grants write access
+  apiBaseUrl: https://{vanity-name}.api.visier.io
+  apiVersion: 22222222.99201.1200
+  apiDescription: Visier APIs for managing tenants
+  apiTitle: Visier Tenant Management APIs
+  endpoints: 9
+  sdkMethods: 13
+  schemas: 21
+  parameters: 59
+  originalCustomRequest:
+    type: GET
+    url: >-
+      https://raw.githubusercontent.com/visier/openapi-clients/main/res/tenant-management-apis.yaml
+    servers:
+      - url: https://{vanity-name}.api.visier.io
+  customRequestSpecFilename: visier.com_TenantManagement.yaml
+  difficultyScore: 38.25

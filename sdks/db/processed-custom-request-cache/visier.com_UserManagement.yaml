@@ -1,0 +1,43 @@
+processed:
+  securitySchemes:
+    CookieAuth:
+      type: apiKey
+      name: VisierASIDToken
+      in: cookie
+    ApiKeyAuth:
+      type: apiKey
+      name: apikey
+      in: header
+    BearerAuth:
+      type: http
+      scheme: bearer
+    OAuth2Auth:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: /v1/auth/oauth2/authorize
+          tokenUrl: /v1/auth/oauth2/token
+          scopes:
+            read: Grants read access
+            write: Grants write access
+        password:
+          tokenUrl: /v1/auth/oauth2/token
+          scopes:
+            read: Grants read access
+            write: Grants write access
+  apiBaseUrl: https://{vanity-name}.api.visier.io
+  apiVersion: 22222222.99201.1200
+  apiDescription: Visier APIs for managing users within an organization
+  apiTitle: Visier User Management APIs
+  endpoints: 14
+  sdkMethods: 22
+  schemas: 48
+  parameters: 57
+  originalCustomRequest:
+    type: GET
+    url: >-
+      https://raw.githubusercontent.com/visier/openapi-clients/main/res/user-management-apis.yaml
+    servers:
+      - url: https://{vanity-name}.api.visier.io
+  customRequestSpecFilename: visier.com_UserManagement.yaml
+  difficultyScore: 60.25
