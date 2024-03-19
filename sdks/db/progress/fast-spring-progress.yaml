@@ -1,0 +1,222 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignorePotentialIncorrectType: true
+operationIds:
+  /accounts:
+    get: Accounts_getByParameter
+    post: Accounts_createNewAccount
+  /accounts/{account_id}:
+    get: Accounts_getAccountById
+    post: Accounts_updateAccountById
+  /accounts/{account_id}/authenticate:
+    get: Accounts_getAuthenticatedManagementUrl
+  /coupons:
+    post: Coupons_createNewCoupon
+  /coupons/{coupon_id}:
+    get: Coupons_getDetails
+    post: Coupons_assignCodesToCoupon
+  /coupons/{coupon_id}/codes:
+    delete: Coupons_deleteAssociatedCodes
+    get: Coupons_getCodesAssignedToCoupon
+  /data/v1/downloads/{id}:
+    get: Data_downloadReportById
+  /data/v1/jobs:
+    get: Data_getJobInformation
+  /data/v1/jobs/{id}:
+    get: Data_getJobInformation
+  /data/v1/revenue:
+    post: Data_generateRevenueReport
+  /data/v1/subscription:
+    post: Data_generateSubscriptionReport
+  /data/v1/util/cache:
+    get: Data_resetCacheForServiceEndPoints
+  /events/processed:
+    get: Events_getProcessedEvents
+  /events/unprocessed:
+    get: Events_getUnprocessedEvents
+  /events/{event_id}:
+    post: Events_updateEventById
+  /orders:
+    post: Orders_updateTagsAndAttributes
+  /orders/{order_id}:
+    get: Orders_getById
+  /orders?begin={begin_date}&end={end_date}&limit={limit}&page={page}:
+    get: Orders_getByDateRange
+  /orders?begin={begin_date}&end={end_date}&returns={return}:
+    get: Orders_getOrdersWithReturns
+  /orders?end={end_date}:
+    get: Orders_getByEndDate
+  /orders?products={product_path}&begin={begin_date}&end={end_date}:
+    get: Orders_getByProductPathAndDateRange
+  /orders?products={product_path}&limit={limit}&page={page}:
+    get: Orders_getByProductPath
+  /products:
+    get: Products_getAllProductIds
+    post: Products_createAndUpdate
+  /products/offers/{product_path}:
+    get: Products_getAllOffersByType
+    post: Products_createOrUpdateOffers
+  /products/price:
+    get: Products_getAllProductPrices
+  /products/price/{id}:
+    get: Products_getPriceById
+  /products/price/{id}?country={country}:
+    get: Products_getProductPriceByCountry
+  /products/price/{id}?country={country}&currency={currency}:
+    get: Products_getProductPriceByCountryAndCurrency
+  /products/price?country={country}:
+    get: Products_getAllProductPricesByCountry
+  /products/price?country={country}&currency={currency}:
+    get: Products_getAllProductPricesByCountryAndCurrency
+  /products/{id}:
+    delete: Products_deleteProductById
+  /products/{product_path}:
+    get: Products_getByProductPath
+  /quotes:
+    get: Quotes_getAllQuotes
+    post: Quotes_createNewQuote
+  /quotes/{id}:
+    delete: Quotes_deleteQuoteById
+    get: Quotes_getById
+    put: Quotes_updateQuoteById
+  /quotes/{id}/cancel:
+    post: Quotes_cancelQuoteById
+  /returns:
+    post: Returns_createNewReturn
+  /returns/{id}:
+    get: Returns_getById
+  /sessions:
+    post: Sessions_createNewSession
+  /subscriptions:
+    get: Subscriptions_getAllSubscriptions
+    post: Subscriptions_updateSubscription
+  /subscriptions/charge:
+    post: Subscriptions_rebillManagedSubscription
+  /subscriptions/estimate:
+    post: Subscriptions_previewPlanChange
+  /subscriptions/{subscription_id}:
+    delete: Subscriptions_cancelSubscriptionById
+    get: Subscriptions_getById
+    post: Subscriptions_resumeSubscription
+  /subscriptions/{subscription_id}/convert:
+    post: Subscriptions_convertExpiredTrialWithoutPaymentMethod
+  /subscriptions/{subscription_id}/entries:
+    get: Subscriptions_getEntries
+  /subscriptions/{subscription_id}/history:
+    get: Subscriptions_getPlanChangeHistory
+  /subscriptions/{subscription_id}/pause:
+    post: Subscriptions_pauseSubscription
+  /subscriptions/{subscription_id}/resume:
+    post: Subscriptions_removeScheduledPause
+  /webhooks/keys:
+    post: Webhooks_updateWebhookKeySecret
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /quotes/{id}:
+    put:
+      application/json: QuotesUpdateQuoteByIdRequest
+  /webhooks/keys:
+    post:
+      application/json: WebhooksUpdateWebhookKeySecretRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /accounts:
+    get:
+      '200':
+        application/json: AccountsGetByParameterResponse
+  /data/v1/downloads/{id}:
+    get:
+      '200':
+        text/plain: DataDownloadReportByIdResponse
+  /data/v1/revenue:
+    post:
+      '200':
+        application/json: DataGenerateRevenueReportResponse
+  /data/v1/subscription:
+    post:
+      '200':
+        application/json: DataGenerateSubscriptionReportResponse
+  /data/v1/util/cache:
+    get:
+      '200':
+        text/plain: DataResetCacheForServiceEndPointsResponse
+  /orders:
+    post:
+      '200':
+        application/json: OrdersUpdateTagsAndAttributesResponse
+  /products:
+    post:
+      '200':
+        application/json: ProductsCreateAndUpdateResponse
+  /products/offers/{product_path}:
+    post:
+      '200':
+        application/json: ProductsCreateOrUpdateOffersResponse
+  /webhooks/keys:
+    post:
+      '200':
+        application/json: WebhooksUpdateWebhookKeySecretResponse
+      '400':
+        application/json: WebhooksUpdateWebhookKeySecret400Response
+securityParameters:
+  accountId:
+    query: false
+  begin:
+    query: false
+  createdBegin:
+    query: false
+  createdEmail:
+    query: false
+  createdEnd:
+    query: false
+  custom:
+    query: false
+  days:
+    query: false
+  email:
+    query: false
+  end:
+    query: false
+  event:
+    query: false
+  expiredBefore:
+    query: false
+  expiresBegin:
+    query: false
+  expiresEnd:
+    query: false
+  global:
+    query: false
+  limit:
+    query: false
+  onlyQuoteId:
+    query: false
+  order:
+    query: false
+  orderID:
+    query: false
+  orderReference:
+    query: false
+  page:
+    query: false
+  products:
+    query: false
+  refunds:
+    query: false
+  scope:
+    query: false
+  searchParam:
+    query: false
+  status:
+    query: false
+  statuses:
+    query: false
+  subscriptionId:
+    query: false
+  subscriptions:
+    query: false
+  type:
+    query: false
+validServerUrls: {}
