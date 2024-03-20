@@ -1,0 +1,166 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignoreObjectsWithNoProperties: true
+ignorePotentialIncorrectType: true
+operationIds:
+  /v1/account/settings:
+    get: Account_listSettings
+  /v1/account/settings/images:
+    get: Account_listImages
+    post: Account_createImage
+  /v1/account/settings/images/{label_image_id}:
+    delete: Account_deleteImageById
+    get: Account_getImageById
+    put: Account_updateImageById
+  /v1/batches/external_batch_id/{external_batch_id}:
+    get: Batches_getByExternalId
+  /v1/batches/{batch_id}:
+    get: Batches_getById
+  /v1/batches/{batch_id}/add:
+    post: Batches_addToBatch
+  /v1/batches/{batch_id}/errors:
+    get: Batches_getErrors
+  /v1/batches/{batch_id}/remove:
+    post: Batches_removeFromBatch
+  /v1/carriers/{carrier_id}:
+    delete: Carriers_disconnectById
+    get: Carriers_getById
+  /v1/carriers/{carrier_id}/add_funds:
+    put: Carriers_addFundsToCarrier
+  /v1/carriers/{carrier_id}/options:
+    get: Carriers_getOptions
+  /v1/carriers/{carrier_id}/packages:
+    get: Carriers_listPackageTypes
+  /v1/carriers/{carrier_id}/services:
+    get: Carriers_listServices
+  /v1/connections/carriers/{carrier_name}/{carrier_id}/settings:
+    get: Carrieraccounts_getSettings
+    put: Carrieraccounts_updateSettings
+  /v1/environment/webhooks/{webhook_id}:
+    get: Webhooks_getById
+  /v1/insurance/shipsurance/add_funds:
+    patch: Insurance_autoFundAccount
+  /v1/insurance/shipsurance/balance:
+    get: Insurance_getFundsBalance
+  /v1/labels/external_shipment_id/{external_shipment_id}:
+    get: Labels_getByExternalShipmentId
+  /v1/labels/rates/{rate_id}:
+    post: Labels_purchaseLabelWithRateId
+  /v1/labels/shipment/{shipment_id}:
+    post: Labels_purchaseLabelWithShipmentId
+  /v1/labels/{label_id}:
+    get: Labels_getById
+  /v1/labels/{label_id}/return:
+    post: Labels_createReturnLabel
+  /v1/labels/{label_id}/track:
+    get: Labels_getTrackingInfo
+  /v1/manifests/requests/{manifest_request_id}:
+    get: Manifests_getRequestById
+  /v1/manifests/{manifest_id}:
+    get: Manifests_getById
+  /v1/packages:
+    get: Packagetypes_listCustomPackageTypes
+    post: Packagetypes_createCustomPackageType
+  /v1/packages/{package_id}:
+    delete: Packagetypes_deleteCustomPackageById
+    get: Packagetypes_getById
+    put: Packagetypes_updateCustomPackageTypeById
+  /v1/pickups:
+    get: Packagepickups_listScheduledPickups
+  /v1/pickups/{pickup_id}:
+    delete: Packagepickups_removeScheduledPickup
+    get: Packagepickups_getById
+  /v1/rates/bulk:
+    post: Rates_getBulkShipmentRates
+  /v1/rates/{rate_id}:
+    get: Rates_getById
+  /v1/service_points/list:
+    post: Servicepoints_getByLocation
+  /v1/service_points/{carrier_code}/{country_code}/{service_point_id}:
+    get: Servicepoints_getById
+  /v1/shipments/external_shipment_id/{external_shipment_id}:
+    get: Shipments_getByExternalId
+  /v1/shipments/tags:
+    put: Shipments_updateTags
+  /v1/shipments/{shipment_id}:
+    get: Shipments_getById
+  /v1/shipments/{shipment_id}/rates:
+    get: Shipments_getRatesForShipment
+  /v1/shipments/{shipment_id}/tags:
+    get: Shipments_getTagsById
+  /v1/tokens/ephemeral:
+    post: Tokens_generateEphemeralToken
+  /v1/tracking:
+    get: Tracking_infoRetrieval
+  /v1/warehouses/{warehouse_id}:
+    get: Warehouses_getById
+  /v1/warehouses/{warehouse_id}/settings:
+    put: Warehouses_updateSettings
+operationTags: {}
+renameTags: {}
+requestSchemaNames: {}
+responseDescriptions: {}
+responseSchemaNames: {}
+securityParameters:
+  batch_id:
+    query: false
+  batch_number:
+    query: false
+  carrier_code:
+    query: false
+  carrier_id:
+    query: false
+  created_at_end:
+    query: false
+  created_at_start:
+    query: false
+  download:
+    query: false
+  label_download_type:
+    query: false
+  label_ids:
+    query: false
+  label_status:
+    query: false
+  modified_at_end:
+    query: false
+  modified_at_start:
+    query: false
+  page:
+    query: false
+  page_size:
+    query: false
+  pagesize:
+    query: false
+  rate_id:
+    query: false
+  redirect:
+    query: false
+  rotation:
+    query: false
+  sales_order_id:
+    query: false
+  service_code:
+    query: false
+  ship_date_end:
+    query: false
+  ship_date_start:
+    query: false
+  shipment_id:
+    query: false
+  shipment_status:
+    query: false
+  sort_by:
+    query: false
+  sort_dir:
+    query: false
+  status:
+    query: false
+  tag:
+    query: false
+  tracking_number:
+    query: false
+  warehouse_id:
+    query: false
+validServerUrls: {}

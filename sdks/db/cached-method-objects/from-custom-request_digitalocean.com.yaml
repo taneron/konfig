@@ -1,4 +1,4 @@
-hash: 71e942e16cb8ddb791d1fd40f41fed49c9eda1a5563ac48442a6cb2543057151
+hash: 16a87aa09d8ba0f424f316708477b839d59b9c8426428dfd08ff7533bca75977
 methodObjects:
   - url: /v2/1-clicks
     method: list
@@ -8328,6 +8328,8 @@ methodObjects:
     responses:
       - statusCode: '204'
         description: ''
+      - statusCode: '400'
+        description: ''
       - statusCode: '401'
         description: ''
       - statusCode: '404'
@@ -8354,6 +8356,8 @@ methodObjects:
         example: 6372321
     responses:
       - statusCode: '200'
+        description: ''
+      - statusCode: '400'
         description: ''
       - statusCode: '401'
         description: ''
@@ -8695,12 +8699,10 @@ methodObjects:
     description: Delete a Volume Snapshot
     parameters:
       - name: snapshotId
-        schema: undefined
+        schema: string
         required: true
-        description: >-
-          Either the ID of an existing snapshot. This will be an integer for a
-          Droplet snapshot or a string for a volume snapshot.
-        example: 6372321
+        description: The unique identifier for the snapshot.
+        example: fbe805e8-866b-11e6-96bf-000f53315a41
     responses:
       - statusCode: '204'
         description: ''
@@ -8722,12 +8724,10 @@ methodObjects:
     description: Retrieve an Existing Volume Snapshot
     parameters:
       - name: snapshotId
-        schema: undefined
+        schema: string
         required: true
-        description: >-
-          Either the ID of an existing snapshot. This will be an integer for a
-          Droplet snapshot or a string for a volume snapshot.
-        example: 6372321
+        description: The unique identifier for the snapshot.
+        example: fbe805e8-866b-11e6-96bf-000f53315a41
     responses:
       - statusCode: '200'
         description: ''

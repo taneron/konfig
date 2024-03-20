@@ -18859,8 +18859,12 @@ rawSpecString: |
               - report:read:admin
             openapi_authorization: []
         extensions:
+          x-permissions:
+            - UsageReport:Read
           x-macro-scopes:
             - report:read:admin
+          x-granular-scopes:
+            - report:read:user_activities:admin
     /report/billing:
       get:
         tags:
@@ -18878,7 +18882,7 @@ rawSpecString: |
 
 
 
-          **Scopes:** `report:read:admin`,`report:master`
+          **Scopes:** `report:read:admin`
 
 
           **[Rate Limit
@@ -18959,12 +18963,14 @@ rawSpecString: |
         security:
           - openapi_oauth:
               - report:read:admin
-              - report:master
             openapi_authorization: []
         extensions:
+          x-permissions:
+            - UsageReport:Read
           x-macro-scopes:
             - report:read:admin
-            - report:master
+          x-granular-scopes:
+            - report:read:billing:admin
     /report/billing/invoices:
       get:
         tags:
@@ -18985,7 +18991,7 @@ rawSpecString: |
 
 
 
-          **Scopes:** `report:read:admin`,`report:master`
+          **Scopes:** `report:read:admin`
 
 
           **[Rate Limit
@@ -19064,12 +19070,14 @@ rawSpecString: |
         security:
           - openapi_oauth:
               - report:read:admin
-              - report:master
             openapi_authorization: []
         extensions:
+          x-permissions:
+            - UsageReport:Read
           x-macro-scopes:
             - report:read:admin
-            - report:master
+          x-granular-scopes:
+            - report:read:billing_invoice:admin
     /report/cloud_recording:
       get:
         tags:
@@ -19487,8 +19495,12 @@ rawSpecString: |
               - report:read:admin
             openapi_authorization: []
         extensions:
+          x-permissions:
+            - UsageReport:Read
           x-macro-scopes:
             - report:read:admin
+          x-granular-scopes:
+            - report:read:meeting:admin
     /report/meetings/{meetingId}/participants:
       get:
         tags:
@@ -19751,8 +19763,12 @@ rawSpecString: |
               - report:read:admin
             openapi_authorization: []
         extensions:
+          x-permissions:
+            - UsageReport:Read
           x-macro-scopes:
             - report:read:admin
+          x-granular-scopes:
+            - report:read:list_meeting_participants:admin
     /report/meetings/{meetingId}/polls:
       get:
         tags:
@@ -19915,8 +19931,12 @@ rawSpecString: |
               - report:read:admin
             openapi_authorization: []
         extensions:
+          x-permissions:
+            - UsageReport:Read
           x-macro-scopes:
             - report:read:admin
+          x-granular-scopes:
+            - report:read:list_meeting_polls:admin
     /report/meetings/{meetingId}/qa:
       get:
         tags:
@@ -20481,8 +20501,12 @@ rawSpecString: |
               - report:read:admin
             openapi_authorization: []
         extensions:
+          x-permissions:
+            - UsageReport:Read
           x-macro-scopes:
             - report:read:admin
+          x-granular-scopes:
+            - report:read:operation_logs:admin
     /report/telephone:
       get:
         tags:
@@ -20758,8 +20782,12 @@ rawSpecString: |
               - report:read:admin
             openapi_authorization: []
         extensions:
+          x-permissions:
+            - UsageReport:Read
           x-macro-scopes:
             - report:read:admin
+          x-granular-scopes:
+            - report:read:telephone:admin
     /report/upcoming_events:
       get:
         tags:
@@ -20942,8 +20970,12 @@ rawSpecString: |
               - report:read:admin
             openapi_authorization: []
         extensions:
+          x-permissions:
+            - UsageReport:Read
           x-macro-scopes:
             - report:read:admin
+          x-granular-scopes:
+            - report:read:upcoming_meetings_webinars:admin
     /report/users:
       get:
         tags:
@@ -21593,8 +21625,12 @@ rawSpecString: |
               - report:read:admin
             openapi_authorization: []
         extensions:
+          x-permissions:
+            - UsageReport:Read
           x-macro-scopes:
             - report:read:admin
+          x-granular-scopes:
+            - report:read:user:admin
     /report/webinars/{webinarId}:
       get:
         tags:
@@ -21779,8 +21815,12 @@ rawSpecString: |
               - report:read:admin
             openapi_authorization: []
         extensions:
+          x-permissions:
+            - UsageReport:Read
           x-macro-scopes:
             - report:read:admin
+          x-granular-scopes:
+            - report:read:webinar:admin
     /report/webinars/{webinarId}/participants:
       get:
         tags:
@@ -22017,8 +22057,12 @@ rawSpecString: |
               - report:read:admin
             openapi_authorization: []
         extensions:
+          x-permissions:
+            - UsageReport:Read
           x-macro-scopes:
             - report:read:admin
+          x-granular-scopes:
+            - report:read:list_webinar_participants:admin
     /report/webinars/{webinarId}/polls:
       get:
         tags:
@@ -22183,8 +22227,12 @@ rawSpecString: |
               - report:read:admin
             openapi_authorization: []
         extensions:
+          x-permissions:
+            - UsageReport:Read
           x-macro-scopes:
             - report:read:admin
+          x-granular-scopes:
+            - report:read:list_webinar_polls:admin
     /report/webinars/{webinarId}/qa:
       get:
         tags:
@@ -37081,7 +37129,6 @@ rawSpecString: |
               pac:read:admin: pac:read:admin
               pac:read: pac:read
               report:read:admin: report:read:admin
-              report:master: report:master
               sip_phone:write:admin: sip_phone:write:admin
               sip_phone:read:admin: sip_phone:read:admin
               tsp:read:admin: tsp:read:admin
