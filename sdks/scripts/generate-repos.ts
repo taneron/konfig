@@ -80,12 +80,6 @@ function generateSdkRepository(
     result.result = "skip";
     result.reason = "Repository already exists. Use -u flag to update existing repositories.";
     return result;
-  } else if (!debug && repoExists) {
-    result = handleErrors(() => cloneRepository(sdkName, repoDir), result, "cloning git repo", verbose);
-    if (result.reason) return result;
-  } else if (!debug) { // repo does not exist
-    result = handleErrors(() => createRepository(sdkName, repoDescription, repoDir), result, "creating git repo", verbose);
-    if (result.reason) return result;
   }
 
   // Copy the OAS into the tmp sdk directory
@@ -114,11 +108,16 @@ function generateSdkRepository(
 
   // Run konfig generate. If any errors occur, delete the repository and abort.
   result = handleErrors(() => execa.sync("konfig", ["generate", "-d"], { cwd: sdkTmpDir }), result, "running konfig generate", verbose);
-  if (result.reason) {
-    if (!debug && !repoExists) deleteRepository(sdkName); // only delete if it was created in this run
-    return result;
-  }
+  if (result.reason) return result;
   fixReadMe(sdkTmpDir, sdkName, language, data);
+
+  if (!debug && repoExists) { // if true, we know updateExisting is true or we would have returned earlier
+    result = handleErrors(() => cloneRepository(sdkName, repoDir), result, "cloning git repo", verbose);
+    if (result.reason) return result;
+  } else if (!debug) { // repo does not exist
+    result = handleErrors(() => createRepository(sdkName, repoDescription, repoDir), result, "creating git repo", verbose);
+    if (result.reason) return result;
+  }
 
   // Copy generated sdk into cloned repository
   copySdkToRepository(sdkTmpDir, sdkRepoDir, language);
@@ -393,7 +392,7 @@ async function main() {
       if (args.companyFilter && !key.includes(args.companyFilter)) return;
       LANGUAGES.forEach((lang) => {
         if (args.languageFilter && lang !== args.languageFilter) return;
-        console.log(`💻 Generating ${lang} SDK for ${key}`);
+        console.log(`🐱 ${key} | ${lang}`);
         if (args.updateAllExisting) {
           result.push(updateExisting(key, lang, allExistingRepos));
         } else {
