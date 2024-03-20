@@ -274,6 +274,10 @@ async function createConfig() {
                   label: "Schedule Demo",
                   to: "/schedule-demo",
                 },
+                {
+                  label: "openapi-examples",
+                  to: "https://github.com/konfig-sdks/openapi-examples",
+                },
               ],
             },
             // {
