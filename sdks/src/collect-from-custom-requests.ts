@@ -1204,6 +1204,10 @@ const customRequests: Record<string, CustomRequest> = {
       return downloadOpenApiSpecFromReadme({ urls });
     },
   },
+  "unstructured.io": {
+    type: "GET",
+    url: "https://raw.githubusercontent.com/Unstructured-IO/unstructured-api/main/openapi.json",
+  },
   "coalesce.io": {
     lambda: async () => {
       const urls = [

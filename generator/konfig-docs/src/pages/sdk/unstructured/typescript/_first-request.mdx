@@ -1,0 +1,19 @@
+```typescript index.ts
+// Pipeline 1
+const createPipelineResponse = unstructured.general.createPipeline({
+    files: {"summary":"File to be partitioned","externalValue":"https://github.com/Unstructured-IO/unstructured/blob/98d3541909f64290b5efb65a226fc3ee8a7cc5ee/example-docs/layout-parser-paper.pdf"}
+    strategy: "hi_res"
+    gz_uncompressed_content_type: "application/pdf"
+    output_format: "application/json"
+    encoding: "utf-8"
+    hi_res_model_name: "yolox"
+    languages: "[eng]"
+    chunking_strategy: "by_title"
+    combine_under_n_chars: 500
+    new_after_n_chars: 1500
+    max_characters: 1500
+    overlap: 25
+    overlap_all: true
+    extract_image_block_types: ["image","table"]
+})
+```

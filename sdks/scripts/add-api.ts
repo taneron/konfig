@@ -423,16 +423,16 @@ async function getCategories(
     fs.readFileSync(path.join(ROOT_FOLDER_PATH, "publish.json"), "utf-8")
   );
 
-  const allCategories = Object.values(publishJson.publish).reduce(
-    (acc, curr) => {
-      if (curr.categories !== undefined && Array.isArray(curr.categories)) {
-        const categories = curr.categories;
-        return acc.concat(categories);
-      }
-      return acc;
-    },
-    [] as string[]
-  );
+  const allCategories = [
+    ...new Set(
+      Object.values(publishJson.publish).reduce((acc, curr) => {
+        if (curr.categories !== undefined && Array.isArray(curr.categories)) {
+          return [...acc, ...curr.categories];
+        }
+        return acc;
+      }, [] as string[])
+    ),
+  ];
 
   console.log("⚪️ Did not find categories in spec data");
 
@@ -445,7 +445,7 @@ async function getCategories(
 
   const categoriesSchema = z.object({
     matchingCategories: z.string().array(),
-    newCategories: z.string().array(),
+    newCategories: z.string().array().optional(),
   });
 
   const oai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
@@ -480,7 +480,7 @@ Here are existing categories: ${allCategories.join(", ")}.
       boxen(matchingCategories.join("\n"), { title: "Matching (✨ AI)" })
     );
   }
-  if (newCategories.length > 0) {
+  if (newCategories && newCategories.length > 0) {
     console.log(boxen(newCategories.join("\n"), { title: "New (✨ AI)" }));
   }
 
@@ -497,7 +497,7 @@ Here are existing categories: ${allCategories.join(", ")}.
 
   const foundCategories = [
     ...matchingCategories,
-    ...newCategories,
+    ...(newCategories ?? []),
     ...(keywordsSnakeCase ?? []),
   ];
 
