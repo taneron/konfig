@@ -638,6 +638,10 @@ const customRequests: Record<string, CustomRequest> = {
     type: "GET",
     url: "https://stoplight.io/api/v1/projects/qualtricsv2/publicapidocs/nodes/reference/surveyDefinitions.json?fromExportButton=true&snapshotType=http_service",
   },
+  "shipengine.com": {
+    type: "GET",
+    url: "https://raw.githubusercontent.com/ShipEngine/shipengine-openapi/master/openapi.yaml",
+  },
   "slack.com_web": {
     lambda: async () => {
       // const url =
