@@ -19,7 +19,7 @@ export default function DigitalOceanTypeScriptSdk() {
       companyKebabCase="digital-ocean"
       clientNameCamelCase="digitalOcean"
       homepage="digitalocean.com"
-      lastUpdated={new Date("2024-03-19T00:01:13.595Z")}
+      lastUpdated={new Date("2024-03-20T00:37:28.388Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/digitalocean/favicon.png"
       // Missing contactUrl
       contactEmail="api-engineering@digitalocean.com"
@@ -13552,6 +13552,10 @@ export default function DigitalOceanTypeScriptSdk() {
         "description": ""
       },
       {
+        "statusCode": "400",
+        "description": ""
+      },
+      {
         "statusCode": "401",
         "description": ""
       },
@@ -13592,6 +13596,10 @@ export default function DigitalOceanTypeScriptSdk() {
     "responses": [
       {
         "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
         "description": ""
       },
       {
@@ -14156,10 +14164,10 @@ export default function DigitalOceanTypeScriptSdk() {
     "parameters": [
       {
         "name": "snapshotId",
-        "schema": "undefined",
+        "schema": "string",
         "required": true,
-        "description": "Either the ID of an existing snapshot. This will be an integer for a Droplet snapshot or a string for a volume snapshot.",
-        "example": 6372321
+        "description": "The unique identifier for the snapshot.",
+        "example": "fbe805e8-866b-11e6-96bf-000f53315a41"
       }
     ],
     "responses": [
@@ -14199,10 +14207,10 @@ export default function DigitalOceanTypeScriptSdk() {
     "parameters": [
       {
         "name": "snapshotId",
-        "schema": "undefined",
+        "schema": "string",
         "required": true,
-        "description": "Either the ID of an existing snapshot. This will be an integer for a Droplet snapshot or a string for a volume snapshot.",
-        "example": 6372321
+        "description": "The unique identifier for the snapshot.",
+        "example": "fbe805e8-866b-11e6-96bf-000f53315a41"
       }
     ],
     "responses": [
