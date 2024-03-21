@@ -27,15 +27,12 @@ jobs:
           path: sdks/openapi-examples
 
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v5
         with:
-          python-version: '3.9'
+          python-version: '3.12'
 
       - name: Install Poetry
-        run: |
-          curl -sSL https://install.python-poetry.org | python3 -
-          source $HOME/.poetry/env
-          poetry --version
+        uses: snok/install-poetry@v1
 
       - name: Install dependencies
         run: poetry install
