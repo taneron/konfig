@@ -342,21 +342,23 @@ function listAllExistingRepositories(): string[] {
 }
 
 async function listRepoStatus() {
+  console.log("Listing all unpublished repositories:")
   const publishedJsons = fs.readdirSync(publishedDir);
   await Promise.all(
     publishedJsons.map(async (file) => {
       const key = file.replace(".json", "");
       const data: Published = JSON.parse(fs.readFileSync(path.join(publishedDir, file), "utf-8"));
-      let result = `- ${key}`;
+      let result = `- ${key}:`;
+      let hasAtLeastOneUnpublished = false;
       LANGUAGES.forEach((lang) => {
         const sdkName = data.sdkName.replace("{language}", lang);
-        if (repositoryExists(sdkName))
-          result += `\n   - ${lang}: ✅`;
-        else
-          result += `\n   - ${lang}: ❌`;
+        if (!repositoryExists(sdkName)) {
+          hasAtLeastOneUnpublished = true;
+          result += ` ${lang} |`
+        }
       });
-      result += "\n";
-      console.log(result);
+      if (hasAtLeastOneUnpublished)
+        console.log(result.slice(0, -1));
     })
   );
 }
