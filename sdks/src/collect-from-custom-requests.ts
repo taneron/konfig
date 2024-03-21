@@ -213,6 +213,14 @@ const customRequests: Record<string, CustomRequest> = {
     type: "GET",
     url: "https://static.developer.mastercard.com/content/open-banking-us/swagger/openbanking-us.yaml",
   },
+  "langfuse.com": {
+    type: "GET",
+    url: "https://cloud.langfuse.com/openapi-server.yml",
+    servers: [
+      { url: "https://cloud.langfuse.com", description: "EU" },
+      { url: "https://us.cloud.langfuse.com", description: "US" },
+    ],
+  },
   "meilisearch.com": {
     type: "GET",
     url: "https://bump.sh/meilisearch/doc/meilisearch.yaml",
