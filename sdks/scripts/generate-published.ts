@@ -140,6 +140,22 @@ function collectAllPublishData() {
         );
       }
 
+      // write metaDescription, homepage, developerDocumentation to about.json
+      if (publishData.metaDescription === undefined) {
+        throw Error(`❌ ERROR: No metaDescription for ${spec}`);
+      }
+      if (publishData.homepage === undefined) {
+        throw Error(`❌ ERROR: No homepage for ${spec}`);
+      }
+      const aboutPath = path.join(openapiExamplesDirPath, "about.json");
+      const aboutData = {
+        description: publishData.metaDescription,
+        homepage: formatUrl(publishData.homepage),
+        developerDocumentation: formatUrl(publishData.developerDocumentation),
+        company: publishData.company,
+      };
+      fs.writeFileSync(aboutPath, JSON.stringify(aboutData, null, 2));
+
       const githubUrlPrefix = `https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/${dynamicPath}/`;
       const githubUiUrlPrefix = `https://github.com/konfig-sdks/openapi-examples/tree/HEAD/${dynamicPath}/`;
 
@@ -169,6 +185,13 @@ function collectAllPublishData() {
       ];
     })
   );
+}
+
+function formatUrl(url: string | undefined) {
+  if (url === undefined) return undefined;
+  return url.startsWith("http")
+    ? url.replace(/\/$/, "")
+    : `https://${url.replace(/\/$/, "")}`;
 }
 
 /**
