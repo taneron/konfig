@@ -1,4 +1,4 @@
-from typing import List
+from typing import Any, List
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 from datetime import datetime
@@ -29,7 +29,7 @@ stream_handler = logging.StreamHandler()
 stream_handler.setFormatter(formatter)
 logger.addHandler(stream_handler)
 
-def parse_status_log(file_path):
+def parse_status_log(file_path: str) -> dict[str, Any]:
     # Load the YAML file
     logging.info(f"Loading YAML file from {file_path}")
     with open(file_path, 'r') as file:
@@ -38,17 +38,16 @@ def parse_status_log(file_path):
     # Extract the timestamps and response times
     if 'logs' not in data:  # Check if 'logs' exists in the data
         logging.error("No 'logs' in the data. Exiting.")
-        return
+        return {}
     if not data['logs']:  # Check if 'logs' is empty
         logging.error("No 'logs' in the data. Exiting.")
-        return
-    logs = list(data['logs'].keys())[0]  # Get the first URL in "logs" property
-    if 'status' in data['logs'][logs]:  # Check if 'status' is in the logs
-        logs = data['logs'][logs]['status']
-    else:
-        logging.error("No 'status' in the logs. Exiting.")
-        return
-    return logs
+        return {}
+
+    all_logs = {}
+    for (url, logs) in data['logs'].items():  # Check if 'status' is in the logs
+        if "status" in logs:
+            all_logs[url] = logs["status"]
+    return all_logs
 
 def filter_non_reachable_and_na(logs):
     return [entry for entry in logs if entry['reachable'] and entry['responseTime'] != "N/A"]
@@ -76,7 +75,7 @@ def filter_outliers(logs):
 
     return filtered_logs
 
-def generate_plot_for_logs(logs):
+def generate_plot_for_logs(logs, average_response_time):
     # Filter out the response times that have a z-score greater than the threshold
     response_times = [parse_response_time(entry['responseTime']) for entry in logs]
     timestamps = [datetime.strptime(entry['timestamp'], '%Y-%m-%dT%H:%M:%S.%fZ') for entry in logs]
@@ -107,38 +106,45 @@ def generate_charts_and_stats(file_path, average_response_time):
     if logs is None:
         return
 
-    # Filter out entries where 'reachable' is not True and response_time is "N/A"
-    logs = filter_non_reachable_and_na(logs)
-    # If none of the entries are reachable, exit
-    if not logs:
-        logging.error("None of the entries are reachable. Exiting.")
-        return
-    # Remove super outlier response times using z-score
-    logs = filter_outliers(logs)
+    for (url, logs) in logs.items():
+        logs = filter_non_reachable_and_na(logs)
+        if not logs:
+            continue
+        logs = filter_outliers(logs)
 
-    plt = generate_plot_for_logs(logs)
+        plt = generate_plot_for_logs(logs, average_response_time)
+        url_without_scheme = url.replace('https://', '').replace('http://', '')
+        file_name = url_without_scheme.replace('/', '-')
+        file_name = file_name.replace('.', '-').replace(':', '-')
+        file_name = f'{file_name}.png'
+        chart_file_path = os.path.join(os.path.dirname(file_path), "response-time-charts", file_name)
 
-    chart_file_path = os.path.join(os.path.dirname(file_path), 'response_time_chart.png')
-    plt.savefig(chart_file_path)  # Save the chart next to the status_log.yaml file
-    plt.close()  # Close the plot after saving to file
-    logging.info(f"Chart generated and saved successfully at {chart_file_path}.")
+        # ensure the directory exists
+        os.makedirs(os.path.dirname(chart_file_path), exist_ok=True)
+
+        plt.savefig(chart_file_path)  # Save the chart next to the status_log.yaml file
+        plt.close()  # Close the plot after saving to file
+        logging.info(f"Chart generated and saved successfully at {chart_file_path}.")
 
 def parse_response_time(response_time):
     if response_time == "N/A":
         return None
     return int(response_time[:-2])
 
-def get_response_times(file_path: str) -> List[int]:
+def get_response_times(file_path: str) -> dict[str, List[int]]:
     logs = parse_status_log(file_path)
-    if logs is None:
-        return []
-    logs = filter_non_reachable_and_na(logs)
-    logs = filter_outliers(logs)
+    all_response_times = {}
+    for (url, logs) in logs.items():
+        if logs is None:
+            continue
+        logs = filter_non_reachable_and_na(logs)
+        logs = filter_outliers(logs)
 
-    response_times = [parse_response_time(entry['responseTime']) for entry in logs]
-    response_times = [response_time for response_time in response_times if response_time is not None]
-    logging.info(f"Found {len(response_times)} response times in {file_path}")
-    return response_times
+        response_times = [parse_response_time(entry['responseTime']) for entry in logs]
+        response_times = [response_time for response_time in response_times if response_time is not None]
+        logging.info(f"Found {len(response_times)} response times in {file_path}")
+        all_response_times[url] = response_times
+    return all_response_times
 
 def all_status_log_files() -> List[str]:
     status_log_files = []
@@ -158,7 +164,8 @@ if __name__ == "__main__":
 
     for file_path in files:
         response_times = get_response_times(file_path)
-        all_response_times += response_times
+        for (url, times) in response_times.items():
+            all_response_times += times
 
     average_response_time = sum(all_response_times) / len(all_response_times)
 
