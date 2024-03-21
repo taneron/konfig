@@ -219,6 +219,92 @@ paths:
     parameters:
       - $ref: '#/components/parameters/model_id'
       - $ref: '#/components/parameters/deployment_id'
+  /v1/models/{model_id}/deployments/development/activate:
+    post:
+      summary: Activates a development deployment
+      description: >-
+        Activates an inactive development deployment and returns the activation
+        status.
+      responses:
+        '200':
+          description: The response to a request to activate a deployment.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActivateResponseV1'
+    parameters:
+      - $ref: '#/components/parameters/model_id'
+  /v1/models/{model_id}/deployments/production/activate:
+    post:
+      summary: Activates a production deployment
+      description: >-
+        Activates an inactive production deployment and returns the activation
+        status.
+      responses:
+        '200':
+          description: The response to a request to activate a deployment.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActivateResponseV1'
+    parameters:
+      - $ref: '#/components/parameters/model_id'
+  /v1/models/{model_id}/deployments/{deployment_id}/activate:
+    post:
+      summary: Activates a deployment
+      description: Activates an inactive deployment and returns the activation status.
+      responses:
+        '200':
+          description: The response to a request to activate a deployment.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActivateResponseV1'
+    parameters:
+      - $ref: '#/components/parameters/model_id'
+      - $ref: '#/components/parameters/deployment_id'
+  /v1/models/{model_id}/deployments/development/deactivate:
+    post:
+      summary: Deactivates a development deployment
+      description: >-
+        Deactivates a development deployment and returns the deactivation
+        status.
+      responses:
+        '200':
+          description: The response to a request to deactivate a deployment.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeactivateResponseV1'
+    parameters:
+      - $ref: '#/components/parameters/model_id'
+  /v1/models/{model_id}/deployments/production/deactivate:
+    post:
+      summary: Deactivates a production deployment
+      description: Deactivates a production deployment and returns the deactivation status.
+      responses:
+        '200':
+          description: The response to a request to deactivate a deployment.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeactivateResponseV1'
+    parameters:
+      - $ref: '#/components/parameters/model_id'
+  /v1/models/{model_id}/deployments/{deployment_id}/deactivate:
+    post:
+      summary: Deactivates a deployment
+      description: Deactivates a deployment and returns the deactivation status.
+      responses:
+        '200':
+          description: The response to a request to deactivate a deployment.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeactivateResponseV1'
+    parameters:
+      - $ref: '#/components/parameters/model_id'
+      - $ref: '#/components/parameters/deployment_id'
 openapi: 3.0.2
 components:
   schemas:
@@ -506,6 +592,26 @@ components:
           title: Scale Down Previous Production
           type: boolean
       title: PromoteRequestV1
+      type: object
+    ActivateResponseV1:
+      description: The response to a request to activate a deployment.
+      properties:
+        success:
+          default: true
+          description: Whether the deployment was successfully activated
+          title: Success
+          type: boolean
+      title: ActivateResponseV1
+      type: object
+    DeactivateResponseV1:
+      description: The response to a request to deactivate a deployment.
+      properties:
+        success:
+          default: true
+          description: Whether the deployment was successfully deactivated
+          title: Success
+          type: boolean
+      title: DeactivateResponseV1
       type: object
   parameters:
     model_id:
