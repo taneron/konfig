@@ -394,6 +394,10 @@ const customRequests: Record<string, CustomRequest> = {
       return downloadOpenApiSpecFromReadme({ urls });
     },
   },
+  "vantage.sh": {
+    type: "GET",
+    url: "https://api.vantage.sh/v2/swagger.json",
+  },
   "seel.com": {
     lambda: async () => {
       const urls = [

@@ -1,0 +1,120 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignorePotentialIncorrectType: true
+operationIds:
+  /access_grants:
+    get: AccessGrants_listAccessible
+    post: AccessGrants_createGrant
+  /access_grants/{access_grant_token}:
+    delete: AccessGrants_delete
+    get: AccessGrants_getSpecificGrant
+    put: AccessGrants_updateGrantToken
+  /business_metrics:
+    get: BusinessMetrics_getAllMetrics
+    post: BusinessMetrics_createNewMetric
+  /business_metrics/{business_metric_token}:
+    delete: BusinessMetrics_deleteExistingMetric
+    get: BusinessMetrics_getMetricById
+    put: BusinessMetrics_updateExistingMetric
+  /business_metrics/{business_metric_token}/values.csv:
+    put: BusinessMetrics_updateValuesCsv
+  /cost_reports:
+    get: Costs_getAllCostReports
+    post: Costs_createReport
+  /cost_reports/{cost_report_token}:
+    delete: Costs_deleteCostReport
+    get: Costs_getCostReport
+    put: Costs_updateReport
+  /costs:
+    get: Costs_listCostReport
+  /dashboards:
+    get: Dashboards_getAll
+    post: Dashboards_createDashboard
+  /dashboards/{dashboard_token}:
+    delete: Dashboards_deleteDashboard
+    get: Dashboards_getSpecificDashboard
+    put: Dashboards_updateDashboard
+  /folders:
+    get: Folders_listCostReports
+    post: Folders_createFolderForCostReports
+  /folders/{folder_token}:
+    delete: Folders_deleteFolderForCostReports
+    get: Folders_getSpecificFolder
+    put: Folders_updateFolderForCostReports
+  /ping:
+    get: Ping_healthCheck
+  /products:
+    get: Prices_listAvailableProducts
+  /products/{id}:
+    get: Prices_getProduct
+  /products/{product_id}/prices:
+    get: Prices_getProductPrices
+  /products/{product_id}/prices/{id}:
+    get: Prices_getProductPrice
+  /report_notifications:
+    get: Notifications_getAllReportNotifications
+    post: Notifications_createReportNotification
+  /report_notifications/{report_notification_token}:
+    delete: Notifications_deleteReportNotification
+    get: Notifications_getReportNotification
+    put: Notifications_updateReportNotification
+  /saved_filters:
+    get: Filters_getCostReportFilters
+    post: Filters_createSavedFilterForCostReports
+  /saved_filters/{saved_filter_token}:
+    delete: Filters_deleteSavedFilter
+    get: Filters_getSavedFilter
+    put: Filters_updateSavedFilterForCostReports
+  /segments:
+    get: Segments_list
+    post: Segments_createSegment
+  /segments/{segment_token}:
+    delete: Segments_removeSegment
+    get: Segments_getSegmentById
+    put: Segments_updateSegmentById
+  /teams:
+    get: Teams_listAccessible
+    post: Teams_createNewTeam
+  /teams/{team_token}:
+    delete: Teams_removeTeam
+    get: Teams_getSpecificTeam
+    put: Teams_updateTeam
+  /users:
+    get: Users_listAccessible
+  /users/{user_token}:
+    get: Users_getSpecificUser
+  /workspaces:
+    get: Workspaces_listAccessible
+  /workspaces/{workspace_token}:
+    get: Workspaces_getSpecificWorkspace
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /business_metrics/{business_metric_token}/values.csv:
+    put:
+      multipart/form-data: BusinessMetricsUpdateValuesCsvRequest
+responseDescriptions: {}
+responseSchemaNames: {}
+securityParameters:
+  cost_report_token:
+    query: false
+  end_date:
+    query: false
+  groupings:
+    query: false
+  limit:
+    query: false
+  name:
+    query: false
+  order:
+    query: false
+  page:
+    query: false
+  provider_id:
+    query: false
+  service_id:
+    query: false
+  start_date:
+    query: false
+validServerUrls: {}

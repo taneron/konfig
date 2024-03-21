@@ -1,0 +1,4237 @@
+openapi: 3.0.0
+info:
+  title: Vantage
+  description: Vantage API
+  termsOfService: https://www.vantage.sh/terms-of-use
+  contact:
+    name: Vantage Support
+    email: support@vantage.sh
+    url: https://www.vantage.sh
+  version: 2.0.0
+security:
+  - oauth2:
+      - read
+tags:
+  - name: Workspaces
+    description: Operations about Workspaces
+  - name: Folders
+    description: Operations about Folders
+  - name: Filters
+    description: Operations about Filters
+  - name: Costs
+    description: Operations about Costs
+  - name: Segments
+    description: Operations about Segments
+  - name: Dashboards
+    description: Operations about Dashboards
+  - name: Teams
+    description: Operations about Teams
+  - name: AccessGrants
+    description: Operations about AccessGrants
+  - name: Notifications
+    description: Operations about Notifications
+  - name: Users
+    description: Operations about Users
+  - name: BusinessMetrics
+    description: Operations about BusinessMetrics
+  - name: Prices
+    description: Operations about Prices
+  - name: Ping
+    description: Operations about Pings
+paths:
+  /workspaces:
+    get:
+      description: Return all Workspaces that the current API token has access to.
+      parameters:
+        - in: query
+          name: page
+          description: The page of results to return.
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - in: query
+          name: limit
+          description: The amount of results to return. The maximum is 1000.
+          required: false
+          schema:
+            type: integer
+            format: int32
+      security:
+        - oauth2:
+            - read
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Workspaces'
+              examples:
+                response:
+                  value:
+                    links:
+                      self: https://api.vantage.com/v2/workspaces
+                      first: https://api.vantage.com/v2/workspaces?page=1
+                      next: null
+                      last: https://api.vantage.com/v2/workspaces?page=1
+                      prev: null
+                    workspaces:
+                      - token: wrkspc_f936ced69bcbf8fa
+                        name: Senger and Sons
+      tags:
+        - Workspaces
+      operationId: getWorkspaces
+  /workspaces/{workspace_token}:
+    get:
+      description: Return a specific Workspace.
+      parameters:
+        - in: path
+          name: workspace_token
+          required: true
+          schema:
+            type: string
+      security:
+        - oauth2:
+            - read
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Workspace'
+              examples:
+                response:
+                  value:
+                    token: wrkspc_be2a1b2c1ebfa3c9
+                    name: Crist-Simonis
+        '404':
+          description: NotFound
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+      tags:
+        - Workspaces
+      operationId: getWorkspace
+  /folders:
+    post:
+      description: Create a Folder for CostReports.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/postFolders'
+        required: true
+      security:
+        - oauth2:
+            - write
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Folder'
+              examples:
+                response:
+                  value:
+                    token: fldr_4aabe6f482c2a9e4
+                    title: New Folder
+                    parent_folder_token: fldr_4d29cbecf2601266
+                    created_at: '2023-09-12T05:06:52Z'
+                    updated_at: '2023-09-12T05:06:52Z'
+                    workspace_token: wrkspc_510cc77828001f9b
+        '400':
+          description: BadRequest
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+      tags:
+        - Folders
+      operationId: createFolder
+    get:
+      description: Return all Folders for CostReports.
+      parameters:
+        - in: query
+          name: page
+          description: The page of results to return.
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - in: query
+          name: limit
+          description: The amount of results to return. The maximum is 1000.
+          required: false
+          schema:
+            type: integer
+            format: int32
+      security:
+        - oauth2:
+            - read
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Folders'
+              examples:
+                response:
+                  value:
+                    links:
+                      self: https://api.vantage.com/v2/folders
+                      first: https://api.vantage.com/v2/folders?page=1
+                      next: null
+                      last: https://api.vantage.com/v2/folders?page=1
+                      prev: null
+                    folders:
+                      - token: fldr_baf37f32280f5444
+                        title: synergy
+                        parent_folder_token: null
+                        created_at: '2023-09-12T05:06:54Z'
+                        updated_at: '2023-09-12T05:06:54Z'
+                        workspace_token: wrkspc_f583a08beb76f679
+                      - token: fldr_625d4591e46f7dfa
+                        title: website
+                        parent_folder_token: fldr_baf37f32280f5444
+                        created_at: '2023-09-12T05:06:54Z'
+                        updated_at: '2023-09-12T05:06:54Z'
+                        workspace_token: wrkspc_f583a08beb76f679
+      tags:
+        - Folders
+      operationId: getFolders
+  /folders/{folder_token}:
+    delete:
+      description: Delete a Folder for CostReports.
+      parameters:
+        - in: path
+          name: folder_token
+          required: true
+          schema:
+            type: string
+      security:
+        - oauth2:
+            - write
+      responses:
+        '204':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Folder'
+        '404':
+          description: NotFound
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+      tags:
+        - Folders
+      operationId: deleteFolder
+    put:
+      description: Update a Folder for CostReports.
+      parameters:
+        - in: path
+          name: folder_token
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/putFolders'
+        required: true
+      security:
+        - oauth2:
+            - write
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Folder'
+              examples:
+                response:
+                  value:
+                    token: fldr_68e18d8d7df0be96
+                    title: New Title
+                    parent_folder_token: fldr_9aa0c735a6b615c6
+                    created_at: '2023-09-12T05:06:53Z'
+                    updated_at: '2023-09-12T05:06:53Z'
+                    workspace_token: wrkspc_e65a48e5d9684439
+        '400':
+          description: BadRequest
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+        '404':
+          description: NotFound
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+      tags:
+        - Folders
+      operationId: updateFolder
+    get:
+      description: Return a specific Folder for CostReports.
+      parameters:
+        - in: path
+          name: folder_token
+          required: true
+          schema:
+            type: string
+      security:
+        - oauth2:
+            - read
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Folder'
+              examples:
+                response:
+                  value:
+                    token: fldr_3653e0f460786b1e
+                    title: intermediate
+                    parent_folder_token: fldr_b6bf120a1d3a794b
+                    created_at: '2023-09-12T05:07:36Z'
+                    updated_at: '2023-09-12T05:07:36Z'
+                    workspace_token: wrkspc_a707105ff54966c3
+        '404':
+          description: NotFound
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+      tags:
+        - Folders
+      operationId: getFolder
+  /saved_filters:
+    post:
+      description: Create a SavedFilter for CostReports.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/postSavedFilters'
+        required: true
+      security:
+        - oauth2:
+            - write
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SavedFilter'
+              examples:
+                response:
+                  value:
+                    token: svd_fltr_84a8a4e35a845f97
+                    title: New Saved Filter
+                    cost_report_tokens: []
+                    filter: (costs.provider = 'datadog')
+                    created_at: '2023-09-12T05:06:52Z'
+                    created_by: usr_4011f2b8a607729d
+                    workspace_token: wrkspc_6f54abb1b2a5aefc
+        '400':
+          description: BadRequest
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+        '422':
+          description: UnprocessableEntity
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+      tags:
+        - Filters
+      operationId: createSavedFilter
+    get:
+      description: Return all SavedFilters that can be applied to a CostReport.
+      parameters:
+        - in: query
+          name: page
+          description: The page of results to return.
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - in: query
+          name: limit
+          description: The amount of results to return. The maximum is 1000.
+          required: false
+          schema:
+            type: integer
+            format: int32
+      security:
+        - oauth2:
+            - read
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SavedFilters'
+              examples:
+                response:
+                  value:
+                    links:
+                      self: https://api.vantage.com/v2/saved_filters
+                      first: https://api.vantage.com/v2/saved_filters?page=1
+                      next: null
+                      last: https://api.vantage.com/v2/saved_filters?page=1
+                      prev: null
+                    saved_filters:
+                      - token: svd_fltr_52a89bb6b1c84380
+                        title: White
+                        cost_report_tokens:
+                          - rprt_fef8f7e70f993108
+                        filter: (costs.provider = 'aws' AND costs.account_id = '74')
+                        created_at: '2023-09-12T05:07:35Z'
+                        created_by: usr_055cb925f37bfa75
+                        workspace_token: wrkspc_c3a582b964a67afd
+      tags:
+        - Filters
+      operationId: getSavedFilters
+  /saved_filters/{saved_filter_token}:
+    delete:
+      description: Delete a SavedFilter for CostReports.
+      parameters:
+        - in: path
+          name: saved_filter_token
+          required: true
+          schema:
+            type: string
+      security:
+        - oauth2:
+            - write
+      responses:
+        '204':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SavedFilter'
+        '404':
+          description: NotFound
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+      tags:
+        - Filters
+      operationId: deleteSavedFilter
+    put:
+      description: Update a SavedFilter for CostReports.
+      parameters:
+        - in: path
+          name: saved_filter_token
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/putSavedFilters'
+        required: true
+      security:
+        - oauth2:
+            - write
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SavedFilter'
+              examples:
+                response:
+                  value:
+                    token: svd_fltr_92c840f4c76c76b3
+                    title: Updated Saved Filter
+                    cost_report_tokens: []
+                    filter: (costs.provider = 'azure')
+                    created_at: '2023-09-12T05:07:35Z'
+                    created_by: usr_fcd9ff9f8aa6bd1f
+                    workspace_token: wrkspc_49c6865bb1f6356f
+        '400':
+          description: BadRequest
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+        '404':
+          description: NotFound
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+        '422':
+          description: UnprocessableEntity
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+      tags:
+        - Filters
+      operationId: updateSavedFilter
+    get:
+      description: Return a specific SavedFilter.
+      parameters:
+        - in: path
+          name: saved_filter_token
+          required: true
+          schema:
+            type: string
+      security:
+        - oauth2:
+            - read
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SavedFilter'
+              examples:
+                response:
+                  value:
+                    token: svd_fltr_7d37f2b3704d1c41
+                    title: Black
+                    cost_report_tokens:
+                      - rprt_267f8c135c20bf99
+                    filter: (costs.provider = 'aws' AND costs.account_id = '57')
+                    created_at: '2023-09-12T05:07:36Z'
+                    created_by: usr_86017037cec4a852
+                    workspace_token: wrkspc_7020b8708f0e6556
+        '404':
+          description: NotFound
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+      tags:
+        - Filters
+      operationId: getSavedFilter
+  /cost_reports:
+    post:
+      description: Create a CostReport.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/postCostReports'
+        required: true
+      security:
+        - oauth2:
+            - write
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CostReport'
+              examples:
+                response:
+                  value:
+                    token: rprt_362b04093c087475
+                    title: New Cost Report
+                    folder_token: fldr_819fe3807f88ff90
+                    saved_filter_tokens:
+                      - svd_fltr_a50b002184902819
+                    business_metric_tokens_with_metadata:
+                      - business_metric_token: bsnss_mtrc_bc0689f1b54094b1
+                        unit_scale: per_thousand
+                    filter: >-
+                      costs.provider = 'aws' AND costs.service = 'Amazon Simple
+                      Storage Service'
+                    groupings: provider,service
+                    settings:
+                      include_credits: false
+                      include_refunds: false
+                      include_discounts: true
+                      include_tax: true
+                      amortize: true
+                      unallocated: false
+                    created_at: '2024-03-19T15:22:51Z'
+                    workspace_token: wrkspc_d50edff4c3ae23b2
+        '400':
+          description: BadRequest
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+        '422':
+          description: UnprocessableEntity
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+      tags:
+        - Costs
+      operationId: createCostReport
+    get:
+      description: Return all CostReports.
+      parameters:
+        - in: query
+          name: page
+          description: The page of results to return.
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - in: query
+          name: limit
+          description: The amount of results to return. The maximum is 1000.
+          required: false
+          schema:
+            type: integer
+            format: int32
+      security:
+        - oauth2:
+            - read
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CostReports'
+              examples:
+                response:
+                  value:
+                    links:
+                      self: https://api.vantage.com/v2/cost_reports
+                      first: https://api.vantage.com/v2/cost_reports?page=1
+                      next: null
+                      last: https://api.vantage.com/v2/cost_reports?page=1
+                      prev: null
+                    cost_reports:
+                      - token: rprt_e97ef22efaa6da12
+                        title: Untitled
+                        folder_token: null
+                        saved_filter_tokens:
+                          - svd_fltr_cc4a422cf86f9e26
+                        business_metric_tokens_with_metadata: []
+                        filter: null
+                        groupings: provider,service
+                        settings:
+                          include_credits: false
+                          include_refunds: false
+                          include_discounts: true
+                          include_tax: true
+                          amortize: true
+                          unallocated: false
+                        created_at: '2024-03-19T15:22:54Z'
+                        workspace_token: wrkspc_3dc89ff43657f255
+      tags:
+        - Costs
+      operationId: getCostReports
+  /cost_reports/{cost_report_token}:
+    delete:
+      description: Delete a CostReport.
+      parameters:
+        - in: path
+          name: cost_report_token
+          required: true
+          schema:
+            type: string
+      security:
+        - oauth2:
+            - write
+      responses:
+        '204':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CostReport'
+        '404':
+          description: NotFound
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+      tags:
+        - Costs
+      operationId: deleteCostReport
+    put:
+      description: Update a CostReport.
+      parameters:
+        - in: path
+          name: cost_report_token
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/putCostReports'
+        required: true
+      security:
+        - oauth2:
+            - write
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CostReport'
+              examples:
+                response:
+                  value:
+                    token: rprt_77fec1422cfc25df
+                    title: Updated Cost Report
+                    folder_token: fldr_54b65b6cb9af21d0
+                    saved_filter_tokens:
+                      - svd_fltr_33736ce7e17d7803
+                    business_metric_tokens_with_metadata:
+                      - business_metric_token: bsnss_mtrc_58c57f66d35a1ad7
+                        unit_scale: per_thousand
+                    filter: costs.provider = 'azure'
+                    groupings: service,account_id
+                    settings:
+                      include_credits: false
+                      include_refunds: false
+                      include_discounts: true
+                      include_tax: true
+                      amortize: true
+                      unallocated: false
+                    created_at: '2024-03-19T15:22:52Z'
+                    workspace_token: wrkspc_ca0b4a774e8fa57c
+        '400':
+          description: BadRequest
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+        '404':
+          description: NotFound
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+      tags:
+        - Costs
+      operationId: updateCostReport
+    get:
+      description: Return a CostReport.
+      parameters:
+        - in: path
+          name: cost_report_token
+          required: true
+          schema:
+            type: string
+      security:
+        - oauth2:
+            - read
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CostReport'
+              examples:
+                response:
+                  value:
+                    token: rprt_16a4d01d67a50631
+                    title: Segment Report
+                    folder_token: fldr_fa3d9420651c11d7
+                    business_metric_tokens_with_metadata: []
+                    filter: null
+                    groupings: null
+                    settings:
+                      include_credits: false
+                      include_refunds: false
+                      include_discounts: true
+                      include_tax: true
+                      amortize: true
+                      unallocated: false
+                    created_at: '2024-03-19T15:22:54Z'
+                    workspace_token: wrkspc_6a917500aba6bca8
+        '404':
+          description: NotFound
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+      tags:
+        - Costs
+      operationId: getCostReport
+  /segments:
+    post:
+      description: Create a Segment.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/postSegments'
+        required: true
+      security:
+        - oauth2:
+            - write
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Segment'
+              examples:
+                response:
+                  value:
+                    token: fltr_sgmt_1e47944f3821d5c3
+                    title: New Segment
+                    parent_segment_token: fltr_sgmt_ac17f90b94f8d00f
+                    description: I'm a Segment.
+                    track_unallocated: false
+                    priority: 100
+                    filter: >-
+                      (costs.provider = 'aws' AND costs.service = 'Amazon Simple
+                      Storage Service')
+                    created_at: '2024-02-02T01:02:08Z'
+                    workspace_token: wrkspc_d5d4814d5e42522c
+        '400':
+          description: BadRequest
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+        '422':
+          description: UnprocessableEntity
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+      tags:
+        - Segments
+      operationId: createSegment
+    get:
+      description: Return all Segments.
+      parameters:
+        - in: query
+          name: page
+          description: The page of results to return.
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - in: query
+          name: limit
+          description: The amount of results to return. The maximum is 1000.
+          required: false
+          schema:
+            type: integer
+            format: int32
+      security:
+        - oauth2:
+            - read
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Segments'
+              examples:
+                response:
+                  value:
+                    links:
+                      self: https://api.vantage.com/v2/segments
+                      first: https://api.vantage.com/v2/segments?page=1
+                      next: null
+                      last: https://api.vantage.com/v2/segments?page=1
+                      prev: null
+                    segments:
+                      - token: fltr_sgmt_0db07f2863f779cc
+                        title: installation
+                        parent_segment_token: null
+                        description: Multi-lateral attitude-oriented process improvement
+                        track_unallocated: false
+                        report_settings:
+                          include_credits: false
+                          include_refunds: false
+                          include_discounts: true
+                          include_tax: true
+                          amortize: true
+                        priority: 100
+                        filter: (costs.provider = 'aws')
+                        created_at: '2024-02-02T01:02:07Z'
+                        workspace_token: wrkspc_7036b752bf43a658
+      tags:
+        - Segments
+      operationId: getSegments
+  /segments/{segment_token}:
+    delete:
+      description: Delete a Segment.
+      parameters:
+        - in: path
+          name: segment_token
+          required: true
+          schema:
+            type: string
+      security:
+        - oauth2:
+            - write
+      responses:
+        '204':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Segment'
+        '404':
+          description: NotFound
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+      tags:
+        - Segments
+      operationId: deleteSegment
+    put:
+      description: Update a Segment.
+      parameters:
+        - in: path
+          name: segment_token
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/putSegments'
+        required: true
+      security:
+        - oauth2:
+            - write
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Segment'
+              examples:
+                response:
+                  value:
+                    token: fltr_sgmt_99969c652d4df258
+                    title: Updated Segment
+                    parent_segment_token: fltr_sgmt_d8d4da2ef1751c13
+                    description: Ameliorated disintermediate challenge
+                    track_unallocated: false
+                    priority: 42
+                    filter: (costs.provider = 'azure')
+                    created_at: '2024-02-02T01:05:01Z'
+                    workspace_token: wrkspc_c144e5f763a5b05e
+        '400':
+          description: BadRequest
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+        '404':
+          description: NotFound
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+      tags:
+        - Segments
+      operationId: updateSegment
+    get:
+      description: Return a Segment.
+      parameters:
+        - in: path
+          name: segment_token
+          required: true
+          schema:
+            type: string
+      security:
+        - oauth2:
+            - read
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Segment'
+              examples:
+                response:
+                  value:
+                    token: fltr_sgmt_d1de6bdb3133d61e
+                    title: benchmark
+                    parent_segment_token: null
+                    description: Synergized bandwidth-monitored help-desk
+                    track_unallocated: false
+                    report_settings:
+                      include_credits: false
+                      include_refunds: false
+                      include_discounts: true
+                      include_tax: true
+                      amortize: true
+                    priority: 100
+                    filter: (costs.provider = 'aws')
+                    created_at: '2024-02-02T01:02:09Z'
+                    workspace_token: wrkspc_5c9b1211804105ff
+        '404':
+          description: NotFound
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+      tags:
+        - Segments
+      operationId: getSegment
+  /dashboards:
+    post:
+      description: Create a Dashboard.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/postDashboards'
+        required: true
+      security:
+        - oauth2:
+            - write
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dashboard'
+              examples:
+                response:
+                  value:
+                    token: dshbrd_40d2a85e60872ee4
+                    title: New Dashboard
+                    widget_tokens:
+                      - rprt_d1262358f4d2de03
+                    saved_filter_tokens:
+                      - svd_fltr_03bae07fb40ef1e0
+                    date_bin: week
+                    date_interval: this_month
+                    start_date: '2023-08-01'
+                    end_date: '2023-08-31'
+                    created_at: '2023-08-15T00:00:00Z'
+                    updated_at: '2023-08-15T00:00:00Z'
+                    workspace_token: wrkspc_7c586d05929f60b4
+        '400':
+          description: BadRequest
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+      tags:
+        - Dashboards
+        - Costs
+      operationId: createDashboard
+    get:
+      description: Return all Dashboards.
+      parameters:
+        - in: query
+          name: page
+          description: The page of results to return.
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - in: query
+          name: limit
+          description: The amount of results to return. The maximum is 1000.
+          required: false
+          schema:
+            type: integer
+            format: int32
+      security:
+        - oauth2:
+            - read
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dashboards'
+              examples:
+                response:
+                  value:
+                    links:
+                      self: https://api.vantage.com/v2/dashboards
+                      first: https://api.vantage.com/v2/dashboards?page=1
+                      next: null
+                      last: https://api.vantage.com/v2/dashboards?page=1
+                      prev: null
+                    dashboards:
+                      - token: dshbrd_0e00316c1b6ccdf5
+                        title: O Jerusalem!
+                        widget_tokens:
+                          - rprt_63e2ca172354d16a
+                        saved_filter_tokens:
+                          - svd_fltr_447e67636b3c789a
+                        date_bin: null
+                        date_interval: null
+                        start_date: null
+                        end_date: null
+                        created_at: '2024-03-04T18:49:33Z'
+                        updated_at: '2024-03-04T18:49:33Z'
+                        workspace_token: wrkspc_d42986a4825b18c7
+      tags:
+        - Dashboards
+        - Costs
+      operationId: getDashboards
+  /dashboards/{dashboard_token}:
+    delete:
+      description: Delete a Dashboard.
+      parameters:
+        - in: path
+          name: dashboard_token
+          required: true
+          schema:
+            type: string
+      security:
+        - oauth2:
+            - write
+      responses:
+        '204':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dashboard'
+        '404':
+          description: NotFound
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+      tags:
+        - Dashboards
+        - Costs
+      operationId: deleteDashboard
+    put:
+      description: Update a Dashboard.
+      parameters:
+        - in: path
+          name: dashboard_token
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/putDashboards'
+        required: true
+      security:
+        - oauth2:
+            - write
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dashboard'
+              examples:
+                response:
+                  value:
+                    token: dshbrd_43f0df22a2b28fc1
+                    title: Updated Dashboard
+                    widget_tokens:
+                      - rprt_1f78a31ae74c183f
+                    saved_filter_tokens:
+                      - svd_fltr_c90a915a9b8c4128
+                    date_bin: week
+                    date_interval: this_month
+                    start_date: '2023-08-01'
+                    end_date: '2023-08-31'
+                    created_at: '2024-03-04T18:49:32Z'
+                    updated_at: '2023-08-15T00:00:00Z'
+                    workspace_token: wrkspc_1f7d72cc9302b876
+        '400':
+          description: BadRequest
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+        '404':
+          description: NotFound
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+      tags:
+        - Dashboards
+        - Costs
+      operationId: updateDashboard
+    get:
+      description: Return a specific Dashboard.
+      parameters:
+        - in: path
+          name: dashboard_token
+          required: true
+          schema:
+            type: string
+      security:
+        - oauth2:
+            - read
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dashboard'
+              examples:
+                response:
+                  value:
+                    links:
+                      self: https://api.vantage.com/v2/dashboards
+                      first: https://api.vantage.com/v2/dashboards?page=1
+                      next: null
+                      last: https://api.vantage.com/v2/dashboards?page=1
+                      prev: null
+                    dashboards:
+                      - token: dshbrd_77736ea6e502a481
+                        title: The Road Less Traveled
+                        widget_tokens:
+                          - rprt_7d955d7fbe334706
+                        saved_filter_tokens:
+                          - svd_fltr_cd8f90c99b33dfa6
+                        date_bin: null
+                        date_interval: null
+                        start_date: null
+                        end_date: null
+                        created_at: '2024-03-04T18:49:33Z'
+                        updated_at: '2024-03-04T18:49:33Z'
+                        workspace_token: wrkspc_863089db412905d9
+        '404':
+          description: NotFound
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+      tags:
+        - Dashboards
+        - Costs
+      operationId: getDashboard
+  /costs:
+    get:
+      description: Return all Costs for a CostReport.
+      parameters:
+        - in: query
+          name: cost_report_token
+          description: The CostReport token.
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: start_date
+          description: First date you would like to filter costs from. ISO 8601 formatted.
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: end_date
+          description: Last date you would like to filter costs to. ISO 8601 formatted.
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: groupings
+          description: >-
+            Group the results by specific field(s). Defaults to provider,
+            service, account_id. Valid groupings: account_id,
+            billing_account_id, charge_type, cost_category, cost_subcategory,
+            provider, region, resource_id, service, tagged, tag:<tag_value>. If
+            providing multiple groupings, join as comma separated values:
+            groupings=provider,service,region
+          required: false
+          style: form
+          explode: false
+          schema:
+            type: array
+            items:
+              type: string
+        - in: query
+          name: order
+          description: Whether to order costs by date in an ascending or descending manner.
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+            default: desc
+        - in: query
+          name: limit
+          description: The amount of results to return. The maximum is 1000.
+          required: false
+          schema:
+            type: integer
+            format: int32
+      security:
+        - oauth2:
+            - read
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Costs'
+              examples:
+                response:
+                  value:
+                    links:
+                      self: >-
+                        https://api.vantage.com/v2/costs?cost_report_token=rprt_ea7dbb4f5783d677
+                      first: >-
+                        https://api.vantage.com/v2/costs?cost_report_token=rprt_ea7dbb4f5783d677&page=1
+                      next: null
+                      last: >-
+                        https://api.vantage.com/v2/costs?cost_report_token=rprt_ea7dbb4f5783d677&page=1
+                      prev: null
+                    total_cost:
+                      amount: '500.0'
+                      currency: USD
+                    costs:
+                      - accrued_at: '2023-06-05'
+                        amount: '100.0'
+                        currency: USD
+                        provider: aws
+                        account_id: mock_56789
+                        service: AmazonSNS
+                      - accrued_at: '2023-06-04'
+                        amount: '100.0'
+                        currency: USD
+                        provider: aws
+                        account_id: mock_56789
+                        service: AmazonSNS
+                      - accrued_at: '2023-06-03'
+                        amount: '100.0'
+                        currency: USD
+                        provider: aws
+                        account_id: mock_56789
+                        service: AmazonSNS
+                      - accrued_at: '2023-06-02'
+                        amount: '100.0'
+                        currency: USD
+                        provider: aws
+                        account_id: mock_56789
+                        service: AmazonSNS
+                      - accrued_at: '2023-06-01'
+                        amount: '100.0'
+                        currency: USD
+                        provider: aws
+                        account_id: mock_56789
+                        service: AmazonSNS
+        '400':
+          description: BadRequest
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+        '402':
+          description: PaymentRequired
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+        '404':
+          description: NotFound
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+      tags:
+        - Costs
+      operationId: getCosts
+  /teams:
+    post:
+      description: Create a new Team.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/postTeams'
+        required: true
+      security:
+        - oauth2:
+            - write
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Team'
+              examples:
+                response:
+                  value:
+                    token: team_8467157535a30221
+                    name: New Team
+                    description: New Team Description
+                    workspace_tokens:
+                      - wrkspc_52b6e5e663b4cde1
+                    user_tokens:
+                      - usr_a00e614b5843c234
+        '400':
+          description: BadRequest
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+        '404':
+          description: NotFound
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+        '422':
+          description: UnprocessableEntity
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+      tags:
+        - Teams
+      operationId: createTeam
+    get:
+      description: Return all Teams that the current API token has access to.
+      parameters:
+        - in: query
+          name: page
+          description: The page of results to return.
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - in: query
+          name: limit
+          description: The amount of results to return. The maximum is 1000.
+          required: false
+          schema:
+            type: integer
+            format: int32
+      security:
+        - oauth2:
+            - read
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Teams'
+              examples:
+                response:
+                  value:
+                    links:
+                      self: https://api.vantage.com/v2/teams
+                      first: https://api.vantage.com/v2/teams?page=1
+                      next: null
+                      last: https://api.vantage.com/v2/teams?page=1
+                      prev: null
+                    teams:
+                      - token: team_2d4733920ec4385e
+                        name: New Mexico people
+                        description: Consequuntur ratione.
+                        workspace_tokens:
+                          - wrkspc_08026aa5fb4c90f8
+                        user_tokens:
+                          - usr_c59398553e838116
+      tags:
+        - Teams
+      operationId: getTeams
+  /teams/{team_token}:
+    delete:
+      description: Delete a Team.
+      parameters:
+        - in: path
+          name: team_token
+          required: true
+          schema:
+            type: string
+      security:
+        - oauth2:
+            - write
+      responses:
+        '204':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Team'
+        '400':
+          description: BadRequest
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+        '404':
+          description: NotFound
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+        '422':
+          description: UnprocessableEntity
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+      tags:
+        - Teams
+      operationId: deleteTeam
+    put:
+      description: Update a Team.
+      parameters:
+        - in: path
+          name: team_token
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/putTeams'
+        required: true
+      security:
+        - oauth2:
+            - write
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Team'
+              examples:
+                response:
+                  value:
+                    token: team_d617e73dcc6b57c5
+                    name: Updated Team
+                    description: Updated Team Description
+                    workspace_tokens:
+                      - wrkspc_efc4284a56772481
+                    user_tokens:
+                      - usr_d268561e520c7aac
+        '400':
+          description: BadRequest
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+        '404':
+          description: NotFound
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+        '422':
+          description: UnprocessableEntity
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+      tags:
+        - Teams
+      operationId: updateTeam
+    get:
+      description: Return a specific Team.
+      parameters:
+        - in: path
+          name: team_token
+          required: true
+          schema:
+            type: string
+      security:
+        - oauth2:
+            - read
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Team'
+              examples:
+                response:
+                  value:
+                    token: team_081e09bbb812d369
+                    name: Missouri cats
+                    description: Voluptas et.
+                    workspace_tokens:
+                      - wrkspc_ddc003a2f0171bf8
+                    user_tokens:
+                      - usr_7c309915e847cfc6
+        '404':
+          description: NotFound
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+      tags:
+        - Teams
+      operationId: getTeam
+  /access_grants:
+    post:
+      description: Create an Access Grant.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/postAccessGrants'
+        required: true
+      security:
+        - oauth2:
+            - write
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessGrant'
+              examples:
+                response:
+                  value:
+                    token: rsrc_accss_grnt_9f8aeb3cedda3831
+                    resource_token: rprt_3b935d26cba36fb0
+                    access: denied
+                    team_token: team_26865e16e46028ae
+                    created_at: '2024-01-18T17:39:37Z'
+                    created_by: usr_2fc38883da3726b9
+        '400':
+          description: BadRequest
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+        '404':
+          description: NotFound
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+        '406':
+          description: NotAcceptable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+        '422':
+          description: UnprocessableEntity
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+      tags:
+        - AccessGrants
+      operationId: createAccessGrant
+    get:
+      description: Return all Access Grants that the current API token has access to.
+      parameters:
+        - in: query
+          name: page
+          description: The page of results to return.
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - in: query
+          name: limit
+          description: The amount of results to return. The maximum is 1000.
+          required: false
+          schema:
+            type: integer
+            format: int32
+      security:
+        - oauth2:
+            - read
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessGrants'
+              examples:
+                response:
+                  value:
+                    links:
+                      self: https://api.vantage.com/v2/access_grants
+                      first: https://api.vantage.com/v2/access_grants?page=1
+                      next: null
+                      last: https://api.vantage.com/v2/access_grants?page=1
+                      prev: null
+                    access_grants:
+                      - token: rsrc_accss_grnt_c40f15062b6d5c37
+                        resource_token: rprt_5a269d316483b01c
+                        access: denied
+                        team_token: team_fd5c524ba104712b
+                        created_at: '2024-01-18T17:39:37Z'
+                        created_by: usr_eb8ce6bdc1fa31d5
+                      - token: rsrc_accss_grnt_9723e984e93d8907
+                        resource_token: dshbrd_a08561ec24875ac9
+                        access: allowed
+                        team_token: team_fd5c524ba104712b
+                        created_at: '2024-01-18T17:39:37Z'
+                        created_by: usr_eb8ce6bdc1fa31d5
+                      - token: rsrc_accss_grnt_eee5c4fd777d4dc8
+                        resource_token: fldr_9d4ad1a769131c58
+                        access: allowed
+                        team_token: team_fd5c524ba104712b
+                        created_at: '2024-01-18T17:39:38Z'
+                        created_by: usr_eb8ce6bdc1fa31d5
+      tags:
+        - AccessGrants
+      operationId: getAccessGrants
+  /access_grants/{access_grant_token}:
+    delete:
+      description: Delete an Access Grant.
+      parameters:
+        - in: path
+          name: access_grant_token
+          required: true
+          schema:
+            type: string
+      security:
+        - oauth2:
+            - write
+      responses:
+        '204':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessGrant'
+        '404':
+          description: NotFound
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+      tags:
+        - AccessGrants
+      operationId: deleteAccessGrant
+    put:
+      description: Update an AccessGrant.
+      parameters:
+        - in: path
+          name: access_grant_token
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/putAccessGrants'
+        required: true
+      security:
+        - oauth2:
+            - write
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessGrant'
+              examples:
+                response:
+                  value:
+                    token: rsrc_accss_grnt_eea11f0d35318b0d
+                    resource_token: rprt_e84d7760ab2dd7dc
+                    access: allowed
+                    team_token: team_25fc4aa890869602
+                    created_at: '2024-01-18T17:39:36Z'
+                    created_by: usr_57ed2fa2a7b30166
+        '400':
+          description: BadRequest
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+        '404':
+          description: NotFound
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+      tags:
+        - AccessGrants
+      operationId: updateAccessGrant
+    get:
+      description: Return a specific Access Grant.
+      parameters:
+        - in: path
+          name: access_grant_token
+          required: true
+          schema:
+            type: string
+      security:
+        - oauth2:
+            - read
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessGrant'
+              examples:
+                response:
+                  value:
+                    token: rsrc_accss_grnt_07ed83a5069b91c4
+                    resource_token: rprt_b8df14aa8a4ad5c7
+                    access: denied
+                    team_token: team_14bd13a8bccb8406
+                    created_at: '2024-01-18T17:39:36Z'
+                    created_by: usr_0e1cb254743b26cb
+        '404':
+          description: NotFound
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+      tags:
+        - AccessGrants
+      operationId: getAccessGrant
+  /report_notifications:
+    post:
+      description: Create a ReportNotification.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/postReportNotifications'
+        required: true
+      security:
+        - oauth2:
+            - write
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReportNotification'
+              examples:
+                response:
+                  value:
+                    token: rprt_ntfctn_8ce31b43a149cd2e
+                    title: New Report Notification
+                    cost_report_token: rprt_933010600676b02f
+                    user_tokens:
+                      - usr_45e7d17e9f402226
+                    frequency: daily
+                    change: percentage
+        '400':
+          description: BadRequest
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+        '422':
+          description: UnprocessableEntity
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+      tags:
+        - Notifications
+      operationId: createReportNotification
+    get:
+      description: Return all ReportNotifications.
+      parameters:
+        - in: query
+          name: page
+          description: The page of results to return.
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - in: query
+          name: limit
+          description: The amount of results to return. The maximum is 1000.
+          required: false
+          schema:
+            type: integer
+            format: int32
+      security:
+        - oauth2:
+            - read
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReportNotifications'
+              examples:
+                response:
+                  value:
+                    links:
+                      self: https://api.vantage.com/v2/report_notifications
+                      first: https://api.vantage.com/v2/report_notifications?page=1
+                      next: null
+                      last: https://api.vantage.com/v2/report_notifications?page=1
+                      prev: null
+                    report_notifications:
+                      - token: rprt_ntfctn_7c09ca27d07d8d1e
+                        title: Test Notification
+                        cost_report_token: rprt_ba0a5a5201390d72
+                        user_tokens:
+                          - usr_27edb13f3beac3cb
+                        frequency: weekly
+                        change: percentage
+      tags:
+        - Notifications
+      operationId: getReportNotifications
+  /report_notifications/{report_notification_token}:
+    delete:
+      description: Delete a ReportNotification.
+      parameters:
+        - in: path
+          name: report_notification_token
+          required: true
+          schema:
+            type: string
+      security:
+        - oauth2:
+            - write
+      responses:
+        '204':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReportNotification'
+        '404':
+          description: NotFound
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+      tags:
+        - Notifications
+      operationId: deleteReportNotification
+    put:
+      description: Update a ReportNotification.
+      parameters:
+        - in: path
+          name: report_notification_token
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/putReportNotifications'
+        required: true
+      security:
+        - oauth2:
+            - write
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReportNotification'
+              examples:
+                response:
+                  value:
+                    token: rprt_ntfctn_b36b208a90ee87f6
+                    title: Updated Report Notification
+                    cost_report_token: rprt_07b88c04aa6bed8c
+                    user_tokens:
+                      - usr_35ed19fadcfed8c9
+                    frequency: weekly
+                    change: dollars
+        '400':
+          description: BadRequest
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+        '404':
+          description: NotFound
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+      tags:
+        - Notifications
+      operationId: updateReportNotification
+    get:
+      description: Return a ReportNotification.
+      parameters:
+        - in: path
+          name: report_notification_token
+          required: true
+          schema:
+            type: string
+      security:
+        - oauth2:
+            - read
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReportNotification'
+              examples:
+                response:
+                  value:
+                    token: rprt_ntfctn_21b4287a212406b1
+                    title: Test Notification
+                    cost_report_token: rprt_d084c84455edc606
+                    user_tokens:
+                      - usr_56d53f802edba3e6
+                    frequency: weekly
+                    change: percentage
+        '404':
+          description: NotFound
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+      tags:
+        - Notifications
+      operationId: getReportNotification
+  /users:
+    get:
+      description: Return all Users that the current API token has access to.
+      parameters:
+        - in: query
+          name: page
+          description: The page of results to return.
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - in: query
+          name: limit
+          description: The amount of results to return. The maximum is 1000.
+          required: false
+          schema:
+            type: integer
+            format: int32
+      security:
+        - oauth2:
+            - read
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Users'
+              examples:
+                response:
+                  value:
+                    links:
+                      self: https://api.vantage.com/v2/users
+                      first: https://api.vantage.com/v2/users?page=1
+                      next: null
+                      last: https://api.vantage.com/v2/users?page=1
+                      prev: null
+                    users:
+                      - token: usr_3f30f56e7773e72b
+                        name: Pres. Sudie Kuvalis
+                        email: kuvalis.sudie.pres@mckenzie-herman.net
+                        role: Owner
+                      - token: usr_dc69dfedf704d4ea
+                        name: Carisa Tromp
+                        email: carisa.tromp@morissette.co
+                        role: Viewer
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+      tags:
+        - Users
+      operationId: getUsers
+  /users/{user_token}:
+    get:
+      description: Return a specific User.
+      parameters:
+        - in: path
+          name: user_token
+          required: true
+          schema:
+            type: string
+      security:
+        - oauth2:
+            - read
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+              examples:
+                response:
+                  value:
+                    token: usr_92c7273af4de2fb4
+                    name: Miss Shirlene Weissnat
+                    email: miss.shirlene.weissnat@west-howe.net
+                    role: Owner
+        '404':
+          description: NotFound
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+      tags:
+        - Users
+      operationId: getUser
+  /business_metrics:
+    post:
+      description: Create a new Business Metric.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/postBusinessMetrics'
+        required: true
+      security:
+        - oauth2:
+            - write
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BusinessMetric'
+              examples:
+                response:
+                  value:
+                    token: bsnss_mtrc_5cb1416ffdb71e45
+                    title: New Biz Metric
+                    created_by_token: usr_c7ed8af27690461d
+                    cost_report_tokens_with_metadata:
+                      - cost_report_token: rprt_d9456b5218e47888
+                        unit_scale: per_thousand
+                    values:
+                      - date: '2024-01-03T00:00:00Z'
+                        amount: '300.0'
+                      - date: '2024-01-02T00:00:00Z'
+                        amount: '200.0'
+                      - date: '2024-01-01T00:00:00Z'
+                        amount: '100.0'
+        '400':
+          description: BadRequest
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+        '404':
+          description: NotFound
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+        '422':
+          description: UnprocessableEntity
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+      tags:
+        - BusinessMetrics
+      operationId: createBusinessMetric
+    get:
+      description: Return all Business Metrics that the current API token has access to.
+      parameters:
+        - in: query
+          name: page
+          description: The page of results to return.
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - in: query
+          name: limit
+          description: The amount of results to return. The maximum is 1000.
+          required: false
+          schema:
+            type: integer
+            format: int32
+      security:
+        - oauth2:
+            - read
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BusinessMetrics'
+              examples:
+                response:
+                  value:
+                    business_metrics:
+                      - token: bsnss_mtrc_59f5539480219769
+                        title: Biz Metric
+                        created_by_token: null
+                        cost_report_tokens_with_metadata: []
+                        values: []
+      tags:
+        - BusinessMetrics
+      operationId: getBusinessMetrics
+  /business_metrics/{business_metric_token}:
+    delete:
+      description: Deletes an existing BusinessMetric.
+      parameters:
+        - in: path
+          name: business_metric_token
+          required: true
+          schema:
+            type: string
+      security:
+        - oauth2:
+            - write
+      responses:
+        '204':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BusinessMetric'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+        '404':
+          description: NotFound
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+      tags:
+        - BusinessMetrics
+      operationId: deleteBusinessMetric
+    put:
+      description: Updates an existing BusinessMetric.
+      parameters:
+        - in: path
+          name: business_metric_token
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/putBusinessMetrics'
+        required: true
+      security:
+        - oauth2:
+            - write
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BusinessMetric'
+              examples:
+                response:
+                  value:
+                    token: bsnss_mtrc_892d49c3863e90a6
+                    title: New Title
+                    created_by_token: null
+                    cost_report_tokens_with_metadata:
+                      - cost_report_token: rprt_8914e211c6bad755
+                        unit_scale: per_thousand
+                    values:
+                      - date: '2024-01-03T00:00:00Z'
+                        amount: '600.0'
+                      - date: '2024-01-02T00:00:00Z'
+                        amount: '500.0'
+                      - date: '2024-01-01T00:00:00Z'
+                        amount: '400.0'
+        '400':
+          description: BadRequest
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+        '404':
+          description: NotFound
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+        '422':
+          description: UnprocessableEntity
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+      tags:
+        - BusinessMetrics
+      operationId: updateBusinessMetric
+    get:
+      description: Return a specific Business Metric.
+      parameters:
+        - in: path
+          name: business_metric_token
+          required: true
+          schema:
+            type: string
+      security:
+        - oauth2:
+            - read
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BusinessMetric'
+              examples:
+                response:
+                  value:
+                    token: bsnss_mtrc_fef64b1f7e56165f
+                    title: Biz Metric
+                    created_by_token: null
+                    cost_report_tokens_with_metadata: []
+                    values: []
+        '404':
+          description: NotFound
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+      tags:
+        - BusinessMetrics
+      operationId: getBusinessMetric
+  /business_metrics/{business_metric_token}/values.csv:
+    put:
+      description: Updates the values for an existing BusinessMetric from a CSV file.
+      parameters:
+        - in: path
+          name: business_metric_token
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                csv:
+                  description: CSV file containing BusinessMetric dates and amounts
+                  type: string
+                  format: binary
+              required:
+                - csv
+        required: true
+      security:
+        - oauth2:
+            - write
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BusinessMetric'
+              examples:
+                response:
+                  value:
+                    token: bsnss_mtrc_6bc29b57fecf9ab5
+                    title: Biz Metric
+                    created_by_token: null
+                    cost_report_tokens: []
+                    values:
+                      - date: '2024-01-03T00:00:00Z'
+                        amount: '300.3'
+                      - date: '2024-01-02T00:00:00Z'
+                        amount: '200.2'
+                      - date: '2024-01-01T00:00:00Z'
+                        amount: '100.1'
+        '400':
+          description: BadRequest
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+        '404':
+          description: NotFound
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+        '422':
+          description: UnprocessableEntity
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+      tags:
+        - BusinessMetrics
+      operationId: updateBusinessMetricValuesCSV
+  /products:
+    get:
+      description: >-
+        Return available Products for a Service. For example, with a Provider of
+        AWS and a Service of EC2, Products will be a list of all EC2 Instances.
+        By default, this endpoint returns all Products across all Services and
+        Providers but has optional query parameters for filtering listed below.
+      parameters:
+        - in: query
+          name: provider_id
+          description: >-
+            Query by Provider to list all Products across all Services for a
+            Provider. e.g. aws
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: service_id
+          description: >-
+            Query by Service to list all Products for a specific provider
+            service. e.g. aws-ec2
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: name
+          description: >-
+            Query by name of the Product to see a list of products which match
+            that name. e.g. m5a.16xlarge
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: page
+          description: The page of results to return.
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - in: query
+          name: limit
+          description: The amount of results to return. The maximum is 1000
+          required: false
+          schema:
+            type: integer
+            format: int32
+      security:
+        - oauth2:
+            - read
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Products'
+              examples:
+                response:
+                  value:
+                    links:
+                      self: https://api.vantage.com/v1/products
+                      first: https://api.vantage.com/v1/products?page=1
+                      next: null
+                      last: https://api.vantage.com/v1/products?page=1
+                      prev: null
+                    products:
+                      - id: aws-ec2-m5d_16xlarge
+                        category: compute
+                        name: m5d.16xlarge
+                        service_id: aws-ec2
+                        provider_id: aws
+                        details:
+                          gpu: 0
+                          name: M5 General Purpose 16xlarge
+                          vcpu: 64
+                          memory: 256
+                          clock_speed_ghz: 3.1
+                          physical_processor_description: Intel Xeon Platinum 8175 (Skylake)
+                          network_performance_description: 20 Gigabit
+                      - id: aws-ec2-c5a_8xlarge
+                        category: compute
+                        name: c5a.8xlarge
+                        service_id: aws-ec2
+                        provider_id: aws
+                        details:
+                          gpu: 0
+                          name: C5A 8xlarge
+                          vcpu: 64
+                          memory: 256
+                      - id: aws-ec2-c5a_4large
+                        category: compute
+                        name: c5a.4large
+                        service_id: aws-ec2
+                        provider_id: aws
+                        details:
+                          gpu: 0
+                          name: C5A 4large
+                          vcpu: 64
+                          memory: 4
+                      - id: aws-s3-standard
+                        category: object_storage
+                        name: standard
+                        service_id: aws-s3
+                        provider_id: aws
+                        details: {}
+      tags:
+        - Prices
+      operationId: getProducts
+  /products/{id}:
+    get:
+      description: Return a product
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      security:
+        - oauth2:
+            - read
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+              examples:
+                response:
+                  value:
+                    id: aws-ec2-m5d_16xlarge
+                    category: compute
+                    name: m5d.16xlarge
+                    service_id: aws-ec2
+                    provider_id: aws
+                    details:
+                      gpu: 0
+                      name: M5 General Purpose 16xlarge
+                      vcpu: 64
+                      memory: 256
+                      clock_speed_ghz: 3.1
+                      physical_processor_description: Intel Xeon Platinum 8175 (Skylake)
+                      network_performance_description: 20 Gigabit
+      tags:
+        - Prices
+      operationId: getProduct
+  /products/{product_id}/prices:
+    get:
+      description: Return available Prices across all Regions for a Product.
+      parameters:
+        - in: path
+          name: product_id
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: page
+          description: The page of results to return.
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - in: query
+          name: limit
+          description: The amount of results to return. The maximum is 1000
+          required: false
+          schema:
+            type: integer
+            format: int32
+      security:
+        - oauth2:
+            - read
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Prices'
+              examples:
+                response:
+                  value:
+                    links:
+                      self: >-
+                        https://api.vantage.com/v1/products/aws-ec2-m5d_16xlarge/prices
+                      first: >-
+                        https://api.vantage.com/v1/products/aws-ec2-m5d_16xlarge/prices?page=1
+                      next: null
+                      last: >-
+                        https://api.vantage.com/v1/products/aws-ec2-m5d_16xlarge/prices?page=1
+                      prev: null
+                    prices:
+                      - id: >-
+                          aws-ec2-m5d_16xlarge-eu_central_1-on_demand-linux_enterprise
+                        unit: hour
+                        region: eu-central-1
+                        rate_type: compute
+                        currency: USD
+                        amount: 27.328
+                        details:
+                          platform: linux-enterprise
+                          lifecycle: on-demand
+                      - id: >-
+                          aws-ec2-m5d_16xlarge-us_east_1-on_demand-linux_enterprise
+                        unit: hour
+                        region: us-east-1
+                        rate_type: compute
+                        currency: USD
+                        amount: 3.616
+                        details:
+                          platform: linux-enterprise
+                          lifecycle: on-demand
+                      - id: aws-ec2-m5d_16xlarge-us_east_1-on_demand-rhel
+                        unit: hour
+                        region: us-east-1
+                        rate_type: compute
+                        currency: USD
+                        amount: 3.746
+                        details:
+                          platform: rhel
+                          lifecycle: on-demand
+      tags:
+        - Prices
+      operationId: getPrices
+  /products/{product_id}/prices/{id}:
+    get:
+      description: Returns a price
+      parameters:
+        - in: path
+          name: product_id
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      security:
+        - oauth2:
+            - read
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Price'
+              examples:
+                response:
+                  value:
+                    id: >-
+                      aws-ec2-m5d_16xlarge-eu_central_1-on_demand-linux_enterprise
+                    unit: hour
+                    region: eu-central-1
+                    rate_type: compute
+                    currency: USD
+                    amount: 27.328
+                    details:
+                      platform: linux-enterprise
+                      lifecycle: on-demand
+      tags:
+        - Prices
+      operationId: getPrice
+  /ping:
+    get:
+      description: >-
+        This is a health check endpoint that can be used to determine Vantage
+        API healthiness. It will return 200 if everything is running smoothly.
+      security:
+        - oauth2:
+            - read
+      responses:
+        '200':
+          description: >-
+            This is a health check endpoint that can be used to determine
+            Vantage API healthiness. It will return 200 if everything is running
+            smoothly.
+      tags:
+        - Ping
+      operationId: ping
+servers:
+  - url: https://api.vantage.sh/v2
+components:
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://console.vantage.sh/account/profile
+          scopes:
+            read: Grants read access
+            write: Grants write access
+  schemas:
+    Workspaces:
+      type: object
+      properties:
+        links:
+          type: object
+        workspaces:
+          type: array
+          items:
+            $ref: '#/components/schemas/Workspace'
+      description: Workspaces model
+    Workspace:
+      type: object
+      properties:
+        token:
+          type: string
+        name:
+          type: string
+          example: Acme Corp.
+          description: The name of the Workspace.
+      description: Workspace model
+    Errors:
+      type: object
+      properties:
+        links:
+          type: object
+        errors:
+          type: array
+          items:
+            type: string
+      description: Errors model
+    postFolders:
+      type: object
+      properties:
+        title:
+          type: string
+          description: The title of the Folder.
+        parent_folder_token:
+          type: string
+          description: The token of the parent Folder.
+        saved_filter_tokens:
+          type: array
+          description: >-
+            The tokens of the SavedFilters to apply to any Cost Report contained
+            within the Folder.
+          items:
+            type: string
+        workspace_token:
+          type: string
+          description: >-
+            The token of the Workspace to add the Folder to. Ignored if
+            'parent_folder_token' is set. Required if the API token is
+            associated with multiple Workspaces.
+      required:
+        - title
+      description: Create a Folder for CostReports.
+    Folder:
+      type: object
+      properties:
+        token:
+          type: string
+        title:
+          type: string
+          example: Platform Team Reports
+          description: The title of the Folder.
+        parent_folder_token:
+          type: string
+          description: The token for the parent Folder, if any.
+        saved_filter_tokens:
+          type: array
+          items:
+            type: string
+          description: The tokens for the SavedFilters assigned to the Folder.
+        created_at:
+          type: string
+          example: '2023-08-04T00:00:00Z'
+          description: >-
+            The date and time, in UTC, the Folder was created. ISO 8601
+            Formatted.
+        updated_at:
+          type: string
+          example: '2023-08-04T00:00:00Z'
+          description: >-
+            The date and time, in UTC, the Folder was last updated at. ISO 8601
+            Formatted.
+        workspace_token:
+          type: string
+          description: The token for the Workspace the Folder is a part of.
+      description: Folder model
+    Folders:
+      type: object
+      properties:
+        links:
+          type: object
+        folders:
+          type: array
+          items:
+            $ref: '#/components/schemas/Folder'
+      description: Folders model
+    putFolders:
+      type: object
+      properties:
+        title:
+          type: string
+          description: The title of the Folder.
+        parent_folder_token:
+          type: string
+          description: The token of the parent Folder.
+        saved_filter_tokens:
+          type: array
+          description: >-
+            The tokens of the SavedFilters to apply to any Cost Report contained
+            within the Folder.
+          items:
+            type: string
+      description: Update a Folder for CostReports.
+    postSavedFilters:
+      type: object
+      properties:
+        title:
+          type: string
+          description: The title of the SavedFilter.
+        workspace_token:
+          type: string
+          description: >-
+            The Workspace to associate the SavedFilter with. Required if the API
+            token is associated with multiple Workspaces.
+        filter:
+          type: string
+          description: >-
+            The filter query language to apply to the SavedFilter, which
+            subsequently gets applied to a CostReport. Additional documentation
+            available at https://docs.vantage.sh/vql.
+      required:
+        - title
+      description: Create a SavedFilter for CostReports.
+    SavedFilter:
+      type: object
+      properties:
+        token:
+          type: string
+        title:
+          type: string
+          example: Platform Team Reports
+          description: The title of the SavedFilter.
+        cost_report_tokens:
+          type: array
+          items:
+            type: string
+            example:
+              - rprt_abcd1234
+              - rprt_efgh5678
+          description: The tokens for any CostReports the SavedFilter is applied to.
+        filter:
+          type: string
+          example: costs.provider = 'azure'
+          description: >-
+            The SavedFilter's filter, applied to any relevant CostReports.
+            Additional documentation available at https://docs.vantage.sh/vql.
+        created_at:
+          type: string
+          example: '2023-08-04T00:00:00Z'
+          description: >-
+            The date and time, in UTC, the report was created. ISO 8601
+            Formatted.
+        created_by:
+          type: string
+          description: The User who created the SavedFilter.
+        workspace_token:
+          type: string
+          description: The token for the Workspace the SavedFilter is a part of.
+      description: SavedFilter model
+    SavedFilters:
+      type: object
+      properties:
+        links:
+          type: object
+        saved_filters:
+          type: array
+          items:
+            $ref: '#/components/schemas/SavedFilter'
+      description: SavedFilters model
+    putSavedFilters:
+      type: object
+      properties:
+        title:
+          type: string
+          description: The title of the SavedFilter.
+        filter:
+          type: string
+          description: >-
+            The filter query language to apply to the SavedFilter, which
+            subsequently gets applied to a CostReport. Additional documentation
+            available at https://docs.vantage.sh/vql.
+      description: Update a SavedFilter for CostReports.
+    postCostReports:
+      type: object
+      properties:
+        title:
+          type: string
+          description: The title of the CostReport.
+        workspace_token:
+          type: string
+          description: >-
+            The token of the Workspace to add the Cost Report to. Ignored if
+            'folder_token' is set. Required if the API token is associated with
+            multiple Workspaces.
+        groupings:
+          type: string
+          description: >-
+            Grouping values for aggregating costs on the report. Valid
+            groupings: account_id, billing_account_id, charge_type,
+            cost_category, cost_subcategory, provider, region, resource_id,
+            service, tagged, tag:<tag_value>. If providing multiple groupings,
+            join as comma separated values: groupings=provider,service,region
+        filter:
+          type: string
+          description: >-
+            The filter query language to apply to the CostReport. Additional
+            documentation available at https://docs.vantage.sh/vql.
+        saved_filter_tokens:
+          type: array
+          description: The tokens of the SavedFilters to apply to the CostReport.
+          items:
+            type: string
+        business_metric_tokens_with_metadata:
+          type: array
+          description: >-
+            The tokens for any BusinessMetrics to attach to the CostReport, and
+            the unit scale.
+          items:
+            type: object
+            properties:
+              business_metric_token:
+                type: string
+                description: The token of the BusinessMetric to attach to the CostReport.
+              unit_scale:
+                type: string
+                description: >-
+                  Determines the scale of the BusinessMetric's values within the
+                  CostReport.
+                enum:
+                  - per_unit
+                  - per_hundred
+                  - per_thousand
+                  - per_million
+                  - per_billion
+                default: per_unit
+            required:
+              - business_metric_token
+        folder_token:
+          type: string
+          description: >-
+            The token of the Folder to add the CostReport to. Determines the
+            Workspace the report is assigned to.
+        settings:
+          type: object
+          description: Report settings.
+          properties:
+            include_credits:
+              type: boolean
+              description: Report will include credits.
+              default: false
+            include_refunds:
+              type: boolean
+              description: Report will include refunds.
+              default: false
+            include_discounts:
+              type: boolean
+              description: Report will include discounts.
+              default: true
+            include_tax:
+              type: boolean
+              description: Report will include tax.
+              default: true
+            amortize:
+              type: boolean
+              description: Report will amortize.
+              default: true
+            unallocated:
+              type: boolean
+              description: Report will show unallocated costs.
+              default: false
+      required:
+        - title
+      description: Create a CostReport.
+    CostReport:
+      type: object
+      properties:
+        token:
+          type: string
+        title:
+          type: string
+          example: Production Environment
+          description: The title of the CostReport.
+        folder_token:
+          type: string
+          description: The token for the Folder the CostReport is a part of.
+        saved_filter_tokens:
+          type: array
+          items:
+            type: string
+          description: The tokens for the SavedFilters assigned to the CostReport.
+        business_metric_tokens_with_metadata:
+          type: array
+          items:
+            type: string
+          description: >-
+            The tokens for the BusinessMetrics assigned to the CostReport, and
+            the unit scale.
+        filter:
+          type: string
+          description: >-
+            The filter applied to the CostReport. Additional documentation
+            available at https://docs.vantage.sh/vql.
+        groupings:
+          type: string
+          example: provider, service
+          description: The grouping aggregations applied to the filtered data.
+        settings:
+          type: object
+          properties:
+            include_credits:
+              type: boolean
+              default: false
+              description: Report will include credits.
+            include_refunds:
+              type: boolean
+              default: false
+              description: Report will include refunds.
+            include_discounts:
+              type: boolean
+              default: true
+              description: Report will include discounts.
+            include_tax:
+              type: boolean
+              default: true
+              description: Report will include tax.
+            amortize:
+              type: boolean
+              default: true
+              description: Report will amortize.
+            unallocated:
+              type: boolean
+              default: false
+              description: Report will show unallocated costs.
+          description: Report settings.
+        created_at:
+          type: string
+          example: '2021-07-09T00:00:00Z'
+          description: >-
+            The date and time, in UTC, the report was created. ISO 8601
+            Formatted.
+        workspace_token:
+          type: string
+          description: The token for the Workspace the CostReport is a part of.
+      description: CostReport model
+    CostReports:
+      type: object
+      properties:
+        links:
+          type: object
+        cost_reports:
+          type: array
+          items:
+            $ref: '#/components/schemas/CostReport'
+      description: CostReports model
+    putCostReports:
+      type: object
+      properties:
+        title:
+          type: string
+          description: The title of the CostReport.
+        groupings:
+          type: string
+          description: >-
+            Grouping values for aggregating costs on the report. Valid
+            groupings: account_id, billing_account_id, charge_type,
+            cost_category, cost_subcategory, provider, region, resource_id,
+            service, tagged, tag:<tag_value>. If providing multiple groupings,
+            join as comma separated values: groupings=provider,service,region
+        filter:
+          type: string
+          description: >-
+            The filter query language to apply to the CostReport. Additional
+            documentation available at https://docs.vantage.sh/vql.
+        saved_filter_tokens:
+          type: array
+          description: The tokens of the SavedFilters to apply to the CostReport.
+          items:
+            type: string
+        business_metric_tokens_with_metadata:
+          type: array
+          description: >-
+            The tokens for any BusinessMetrics to attach to the CostReport, and
+            the unit scale.
+          items:
+            type: object
+            properties:
+              business_metric_token:
+                type: string
+                description: The token of the BusinessMetric to attach to the CostReport.
+              unit_scale:
+                type: string
+                description: >-
+                  Determines the scale of the BusinessMetric's values within the
+                  CostReport.
+                enum:
+                  - per_unit
+                  - per_hundred
+                  - per_thousand
+                  - per_million
+                  - per_billion
+                default: per_unit
+            required:
+              - business_metric_token
+        folder_token:
+          type: string
+          description: >-
+            The token of the Folder to add the CostReport to. Determines the
+            Workspace the report is assigned to.
+        settings:
+          type: object
+          description: Report settings.
+          properties:
+            include_credits:
+              type: boolean
+              description: Report will include credits.
+            include_refunds:
+              type: boolean
+              description: Report will include refunds.
+            include_discounts:
+              type: boolean
+              description: Report will include discounts.
+            include_tax:
+              type: boolean
+              description: Report will include tax.
+            amortize:
+              type: boolean
+              description: Report will amortize.
+            unallocated:
+              type: boolean
+              description: Report will show unallocated costs.
+      description: Update a CostReport.
+    postSegments:
+      type: object
+      properties:
+        title:
+          type: string
+          description: The title of the Segment.
+        description:
+          type: string
+          description: The description of the Segment.
+        priority:
+          type: integer
+          format: int32
+          description: The priority of the Segment.
+        track_unallocated:
+          type: boolean
+          description: >-
+            Track Unallocated Costs which are not assigned to any of the created
+            Segments.
+          default: false
+        report_settings:
+          type: object
+          description: Report settings configurable on top-level Segments.
+          properties:
+            include_credits:
+              type: boolean
+              description: Reports created under this Segment will include credits.
+            include_refunds:
+              type: boolean
+              description: Reports created under this Segment will include refunds.
+            include_discounts:
+              type: boolean
+              description: Reports created under this Segment will include discounts.
+            include_tax:
+              type: boolean
+              description: Reports created under this Segment will include tax.
+            amortize:
+              type: boolean
+              description: Reports created under this Segment will amortize.
+        workspace_token:
+          type: string
+          description: >-
+            The token of the Workspace to add the Segment to. Ignored if
+            'segment_token' is set. Required if the API token is associated with
+            multiple Workspaces.
+        filter:
+          type: string
+          description: >-
+            The filter query language to apply to the Segment. Additional
+            documentation available at https://docs.vantage.sh/vql.
+        parent_segment_token:
+          type: string
+          description: >-
+            The token of the parent Segment this new Segment belongs to.
+            Determines the Workspace the segment is assigned to.
+      required:
+        - title
+      description: Create a Segment.
+    Segment:
+      type: object
+      properties:
+        token:
+          type: string
+        title:
+          type: string
+          example: OPEX
+          description: The title of the Segment.
+        parent_segment_token:
+          type: string
+          description: The token of the parent Segment of this Segment.
+        description:
+          type: string
+          example: Operating expenses
+          description: The description of the Segment.
+        track_unallocated:
+          type: boolean
+          example: false
+          description: >-
+            Track Unallocated Costs which are not assigned to any of the created
+            Segments.
+        report_settings:
+          type: object
+          properties:
+            include_credits:
+              type: boolean
+            include_refunds:
+              type: boolean
+            include_discounts:
+              type: boolean
+            include_tax:
+              type: boolean
+            amortize:
+              type: boolean
+          description: Report settings configurable on top-level Segments.
+        priority:
+          type: integer
+          format: int32
+          example: 100
+          description: >-
+            Costs are assigned in priority order across all Segments with
+            assigned filters.
+        filter:
+          type: string
+          description: >-
+            The filter applied to the Segment. Additional documentation
+            available at https://docs.vantage.sh/vql.
+        created_at:
+          type: string
+          example: '2021-07-09T00:00:00Z'
+          description: >-
+            The date and time, in UTC, the Segment was created. ISO 8601
+            Formatted.
+        workspace_token:
+          type: string
+          description: The token for the Workspace the Segment is a part of.
+      description: Segment model
+    Segments:
+      type: object
+      properties:
+        links:
+          type: object
+        segments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Segment'
+      description: Segments model
+    putSegments:
+      type: object
+      properties:
+        title:
+          type: string
+          description: The title of the Segment.
+        description:
+          type: string
+          description: The description of the Segment.
+        priority:
+          type: integer
+          format: int32
+          description: The priority of the Segment.
+        track_unallocated:
+          type: boolean
+          description: >-
+            Track Unallocated Costs which are not assigned to any of the created
+            Segments.
+          default: false
+        report_settings:
+          type: object
+          description: Report settings configurable on top-level Segments.
+          properties:
+            include_credits:
+              type: boolean
+              description: Reports created under this Segment will include credits.
+            include_refunds:
+              type: boolean
+              description: Reports created under this Segment will include refunds.
+            include_discounts:
+              type: boolean
+              description: Reports created under this Segment will include discounts.
+            include_tax:
+              type: boolean
+              description: Reports created under this Segment will include tax.
+            amortize:
+              type: boolean
+              description: Reports created under this Segment will amortize.
+        filter:
+          type: string
+          description: >-
+            The filter query language to apply to the Segment. Additional
+            documentation available at https://docs.vantage.sh/vql.
+        parent_segment_token:
+          type: string
+          description: >-
+            The token of the parent Segment this new Segment belongs to.
+            Determines the Workspace the segment is assigned to.
+      description: Update a Segment.
+    postDashboards:
+      type: object
+      properties:
+        title:
+          type: string
+          description: The title of the Dashboard.
+        widget_tokens:
+          type: array
+          description: >-
+            The tokens of the widgets to add to the Dashboard. Currently only
+            supports CostReport tokens.
+          items:
+            type: string
+        saved_filter_tokens:
+          type: array
+          description: The tokens of the Saved Filters used in the Dashboard.
+          items:
+            type: string
+        date_bin:
+          type: string
+          description: Determines how to group costs in the Dashboard.
+          enum:
+            - cumulative
+            - day
+            - week
+            - month
+        date_interval:
+          type: string
+          description: >-
+            Determines the date range in the Dashboard. Incompatible with
+            'start_date' and 'end_date' parameters.
+          enum:
+            - this_month
+            - last_7_days
+            - last_30_days
+            - last_month
+            - last_3_months
+            - last_6_months
+            - custom
+            - last_12_months
+            - last_24_months
+            - last_36_months
+            - next_month
+            - next_3_months
+            - next_6_months
+            - next_12_months
+        start_date:
+          type: string
+          description: >-
+            The start date for the date range for costs in the Dashboard. ISO
+            8601 Formatted. Incompatible with 'date_interval' parameter.
+        end_date:
+          type: string
+          description: >-
+            The end date for the date range for costs in the Dashboard. ISO 8601
+            Formatted. Incompatible with 'date_interval' parameter.
+        workspace_token:
+          type: string
+          description: >-
+            The token of the Workspace to add the Dashboard to. Required if the
+            API token is associated with multiple Workspaces.
+      required:
+        - title
+        - end_date
+      description: Create a Dashboard.
+    Dashboard:
+      type: object
+      properties:
+        token:
+          type: string
+          example: dshbrd_abcd1234567890
+        title:
+          type: string
+          example: AWS Dashboard
+          description: The title of the Dashboard.
+        widget_tokens:
+          type: array
+          items:
+            type: string
+          description: >-
+            The tokens of the widgets displayed in the Dashboard. Currently only
+            supports CostReport tokens.
+        saved_filter_tokens:
+          type: array
+          items:
+            type: string
+          description: The tokens of the Saved Filters used in the Dashboard.
+        date_bin:
+          type: string
+          enum:
+            - cumulative
+            - day
+            - week
+            - month
+          description: Determines how to group costs in the Dashboard.
+        date_interval:
+          type: string
+          enum:
+            - this_month
+            - last_7_days
+            - last_30_days
+            - last_month
+            - last_3_months
+            - last_6_months
+            - custom
+            - last_12_months
+            - last_24_months
+            - last_36_months
+            - next_month
+            - next_3_months
+            - next_6_months
+            - next_12_months
+          description: >-
+            Determines the date range in the Dashboard. Guaranteed to be set to
+            'custom' if 'start_date' and 'end_date' are set.
+        start_date:
+          type: string
+          example: '2023-08-04'
+          description: >-
+            The start date for the date range for CostReports in the Dashboard.
+            ISO 8601 Formatted. Overwrites 'date_interval' if set.
+        end_date:
+          type: string
+          example: '2023-09-04'
+          description: >-
+            The end date for the date range for CostReports in the Dashboard.
+            ISO 8601 Formatted. Overwrites 'date_interval' if set.
+        created_at:
+          type: string
+          example: '2023-08-04T00:00:00Z'
+          description: >-
+            The date and time, in UTC, the Dashboard was created. ISO 8601
+            Formatted.
+        updated_at:
+          type: string
+          example: '2023-08-04T00:00:00Z'
+          description: >-
+            The date and time, in UTC, the Dashboard was created. ISO 8601
+            Formatted.
+        workspace_token:
+          type: string
+          example: wrkspc_abcd1234567890
+          description: The token for the Workspace the Dashboard is a part of.
+      description: Dashboard model
+    Dashboards:
+      type: object
+      properties:
+        links:
+          type: object
+        dashboards:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dashboard'
+      description: Dashboards model
+    putDashboards:
+      type: object
+      properties:
+        title:
+          type: string
+          description: The title of the Dashboard.
+        widget_tokens:
+          type: array
+          description: >-
+            The tokens of the widgets to add to the Dashboard. Currently only
+            supports CostReport tokens.
+          items:
+            type: string
+        saved_filter_tokens:
+          type: array
+          description: The tokens of the Saved Filters used in the Dashboard.
+          items:
+            type: string
+        date_bin:
+          type: string
+          description: Determines how to group costs in the Dashboard.
+          enum:
+            - cumulative
+            - day
+            - week
+            - month
+        date_interval:
+          type: string
+          description: >-
+            Determines the date range in the Dashboard. Incompatible with
+            'start_date' and 'end_date' parameters.
+          enum:
+            - this_month
+            - last_7_days
+            - last_30_days
+            - last_month
+            - last_3_months
+            - last_6_months
+            - custom
+            - last_12_months
+            - last_24_months
+            - last_36_months
+            - next_month
+            - next_3_months
+            - next_6_months
+            - next_12_months
+        start_date:
+          type: string
+          description: >-
+            The start date for the date range for costs in the Dashboard. ISO
+            8601 Formatted. Incompatible with 'date_interval' parameter.
+        end_date:
+          type: string
+          description: >-
+            The end date for the date range for costs in the Dashboard. ISO 8601
+            Formatted. Incompatible with 'date_interval' parameter.
+      required:
+        - end_date
+      description: Update a Dashboard.
+    Costs:
+      type: object
+      properties:
+        links:
+          type: object
+        total_cost:
+          type: string
+          description: >-
+            The sum of all costs for the CostReport for the requested period,
+            rounded to 2 decimal places, alongside the ISO 4217 currency code.
+        costs:
+          type: array
+          items:
+            $ref: '#/components/schemas/Cost'
+      description: Costs model
+    Cost:
+      type: object
+      properties:
+        links:
+          type: object
+        accrued_at:
+          type: string
+          example: 2023-09-05+00:00
+          description: The date the cost was accrued. ISO 8601 Formatted.
+        amount:
+          type: string
+          example: '4.25'
+          description: The amount of the cost.
+        currency:
+          type: string
+          example: USD
+          description: The currency of the cost.
+        provider:
+          type: string
+          example: aws
+          enum:
+            - aws
+            - azure
+            - gcp
+            - snowflake
+            - databricks
+            - mongo
+            - datadog
+            - fastly
+            - new_relic
+            - opencost
+            - open_ai
+            - oracle
+            - confluent
+            - planetscale
+            - coralogix
+            - kubernetes
+          description: The cost provider which incurred the cost.
+        billing_account_id:
+          type: string
+          example: '9109237192'
+          description: The cost provider's billing account id that incurred the cost.
+        account_id:
+          type: string
+          example: '9109237192'
+          description: The cost provider's account id that incurred the cost.
+        service:
+          type: string
+          example: Amazon Elastic Compute Cloud - Compute
+          description: The service which incurred the cost.
+        region:
+          type: string
+          example: us-east-1
+          description: The region which incurred the cost.
+        resource_id:
+          type: string
+          example: arn:aws:ec2:us-east-1:123456789012:instance/i-1234567890abcdef0
+          description: The resource id which incurred the cost.
+        tag:
+          type: string
+          example: production
+          description: |-
+            The tag attached to the cost that was incurred.
+            DEPRECATED: does not support multiple tags.
+        tags:
+          type: array
+          items:
+            type: string
+            example:
+              - environment:production
+              - aws:ecs:serviceName:frontend
+          description: The tag pairs attached to the cost that was incurred.
+        cost_category:
+          type: string
+          example: Data Transfer
+          description: The category for the cost.
+        cost_subcategory:
+          type: string
+          example: DataTransfer-Regional-Bytes
+          description: The subcategory for the cost.
+    postTeams:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the Team.
+        description:
+          type: string
+          description: The description of the Team.
+        workspace_tokens:
+          type: array
+          description: The Workspace tokens to associate to the Team.
+          items:
+            type: string
+        user_tokens:
+          type: array
+          description: The User tokens to associate to the Team.
+          items:
+            type: string
+        user_emails:
+          type: array
+          description: The User emails to associate to the Team.
+          items:
+            type: string
+        role:
+          type: string
+          description: >-
+            The role to assign to the provided Users. Defaults to 'editor' which
+            has editor permissions.
+          enum:
+            - owner
+            - editor
+            - viewer
+      required:
+        - name
+      description: Create a new Team.
+    Team:
+      type: object
+      properties:
+        token:
+          type: string
+        name:
+          type: string
+          example: Cost Savers
+          description: The name of the Team.
+        description:
+          type: string
+          example: The Team that saves costs
+          description: The description of the Team.
+        workspace_tokens:
+          type: array
+          items:
+            type: string
+            example:
+              - wrkspc_abcd1234
+              - wrkspc_efgh5678
+          description: The tokens for any Workspaces that the Team belongs to
+        user_emails:
+          type: array
+          items:
+            type: string
+            example:
+              - wileycoyote@acme.com
+              - roadrunner@acme.com
+          description: The email addresses for Users that belong to the Team
+        user_tokens:
+          type: array
+          items:
+            type: string
+            example:
+              - usr_abcd1234
+              - usr_efgh5678
+          description: The tokens for Users that belong to the Team
+      description: Team model
+    Teams:
+      type: object
+      properties:
+        links:
+          type: object
+        teams:
+          type: array
+          items:
+            $ref: '#/components/schemas/Team'
+      description: Teams model
+    putTeams:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the Team.
+        description:
+          type: string
+          description: The description of the Team.
+        workspace_tokens:
+          type: array
+          description: The Workspace tokens to associate to the Team.
+          items:
+            type: string
+        user_tokens:
+          type: array
+          description: The User tokens to associate to the Team.
+          items:
+            type: string
+        user_emails:
+          type: array
+          description: The User emails to associate to the Team.
+          items:
+            type: string
+        role:
+          type: string
+          description: >-
+            The role to assign to the provided Users. Defaults to 'editor' which
+            has editor permissions.
+          enum:
+            - owner
+            - editor
+            - viewer
+      description: Update a Team.
+    postAccessGrants:
+      type: object
+      properties:
+        resource_token:
+          type: string
+          description: The token of the resource for which you are granting access.
+        team_token:
+          type: string
+          description: The token of the Team you want to grant access to.
+        access:
+          type: string
+          description: The access level you want to grant. Defaults to 'allowed'.
+          enum:
+            - denied
+            - allowed
+      required:
+        - resource_token
+        - team_token
+      description: Create an Access Grant.
+    AccessGrant:
+      type: object
+      properties:
+        token:
+          type: string
+        resource_token:
+          type: string
+          example: rprt_abcd1234
+          description: The token for any resource the AccessGrant is applied to.
+        access:
+          type: string
+          description: The access status of the AccessGrant.
+        team_token:
+          type: string
+          description: The Team token for which an AccessGrant is applied to.
+        created_at:
+          type: string
+          example: '2023-08-04T00:00:00Z'
+          description: >-
+            The date and time, in UTC, the AccessGrant was created. ISO 8601
+            Formatted.
+        created_by:
+          type: string
+          description: The token for the User who created the AccessGrant.
+      description: AccessGrant model
+    AccessGrants:
+      type: object
+      properties:
+        links:
+          type: object
+        access_grants:
+          type: array
+          items:
+            $ref: '#/components/schemas/AccessGrant'
+      description: AccessGrants model
+    putAccessGrants:
+      type: object
+      properties:
+        access:
+          type: string
+          description: Allowed or denied access to resource.
+          enum:
+            - denied
+            - allowed
+      required:
+        - access
+      description: Update an AccessGrant.
+    postReportNotifications:
+      type: object
+      properties:
+        title:
+          type: string
+          description: The title of the ReportNotification.
+        cost_report_token:
+          type: string
+          description: The CostReport token.
+        workspace_token:
+          type: string
+          description: >-
+            The token of the Workspace to add the ReportNotification to.
+            Required if the API token is associated with multiple Workspaces.
+        user_tokens:
+          type: array
+          description: The Users that receive the notification.
+          items:
+            type: string
+        recipient_channels:
+          type: array
+          description: The Slack or Microsoft Teams channels that receive the notification.
+          items:
+            type: string
+        frequency:
+          type: string
+          description: >-
+            The frequency the ReportNotification is sent. Possible values:
+            daily, weekly, monthly.
+        change:
+          type: string
+          description: >-
+            The type of change the ReportNotification is tracking. Possible
+            values: percentage, dollars.
+      required:
+        - title
+        - cost_report_token
+        - frequency
+        - change
+      description: Create a ReportNotification.
+    ReportNotification:
+      type: object
+      properties:
+        token:
+          type: string
+        title:
+          type: string
+          example: Acme Report Notification
+          description: The title of the ReportNotification.
+        cost_report_token:
+          type: string
+          example: rprt_abcd1234
+          description: The token for a CostReport the ReportNotification is applied to.
+        user_tokens:
+          type: array
+          items:
+            type: string
+            example:
+              - usr_abcd1234
+              - usr_efgh5678
+          description: The Users that receive the notification.
+        recipient_channels:
+          type: array
+          items:
+            type: string
+            example:
+              - '#notifications-channel'
+          description: The Slack or Microsoft Teams channels that receive the notification.
+        frequency:
+          type: string
+          example: weekly
+          enum:
+            - daily
+            - weekly
+            - monthly
+          description: The frequency the ReportNotification is sent.
+        change:
+          type: string
+          example: percentage
+          enum:
+            - percentage
+            - dollars
+          description: The type of change the ReportNotification is tracking.
+      description: ReportNotification model
+    ReportNotifications:
+      type: object
+      properties:
+        links:
+          type: object
+        report_notifications:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReportNotification'
+      description: ReportNotifications model
+    putReportNotifications:
+      type: object
+      properties:
+        title:
+          type: string
+          description: The title of the ReportNotification.
+        cost_report_token:
+          type: string
+          description: The CostReport token.
+        user_tokens:
+          type: array
+          description: The Users that receive the notification.
+          items:
+            type: string
+        recipient_channels:
+          type: array
+          description: The Slack or Microsoft Teams channels that receive the notification.
+          items:
+            type: string
+        frequency:
+          type: string
+          description: >-
+            The frequency the ReportNotification is sent. Possible values:
+            daily, weekly, monthly.
+        change:
+          type: string
+          description: >-
+            The type of change the ReportNotification is tracking. Possible
+            values: percentage, dollars.
+      description: Update a ReportNotification.
+    Users:
+      type: object
+      properties:
+        links:
+          type: object
+        users:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+      description: Users model
+    User:
+      type: object
+      properties:
+        token:
+          type: string
+        name:
+          type: string
+          example: John Doe
+          description: The name of the User.
+        email:
+          type: string
+          example: john_doe@acme.com
+          description: The email of the User.
+        role:
+          type: string
+          example: Admin
+          description: The role of the User.
+      description: User model
+    postBusinessMetrics:
+      type: object
+      properties:
+        title:
+          type: string
+          description: The title of the Business Metric.
+        cost_report_tokens_with_metadata:
+          type: array
+          description: >-
+            The tokens for any CostReports that use the BusinessMetric, and the
+            unit scale.
+          items:
+            type: object
+            properties:
+              cost_report_token:
+                type: string
+                description: The token of the CostReport the BusinessMetric is attached to.
+              unit_scale:
+                type: string
+                description: >-
+                  Determines the scale of the BusinessMetric's values within the
+                  CostReport.
+                enum:
+                  - per_unit
+                  - per_hundred
+                  - per_thousand
+                  - per_million
+                  - per_billion
+                default: per_unit
+            required:
+              - cost_report_token
+        values:
+          type: array
+          description: The dates and amounts for the BusinessMetric.
+          items:
+            type: object
+            properties:
+              date:
+                type: string
+                format: date-time
+              amount:
+                type: number
+                format: double
+            required:
+              - date
+              - amount
+      required:
+        - title
+      description: Create a new Business Metric.
+    BusinessMetric:
+      type: object
+      properties:
+        token:
+          type: string
+          example: bsnss_mtrc_1234
+          description: The token of the BusinessMetric.
+        title:
+          type: string
+          example: Total Revenue
+          description: The title of the BusinessMetric.
+        created_by_token:
+          type: string
+          example: usr_1234
+          description: The token of the User who created the BusinessMetric.
+        cost_report_tokens_with_metadata:
+          type: array
+          items:
+            type: string
+            example:
+              - cost_report_token: rprt_1234
+                unit_scale: per_hundred
+          description: >-
+            The tokens for any CostReports that use the BusinessMetric, and the
+            unit scale.
+        values:
+          type: array
+          items:
+            type: string
+            example:
+              - date: '2024-03-01'
+                amount: '100.123'
+          description: The dates and amounts for the BusinessMetric
+      description: BusinessMetric model
+    BusinessMetrics:
+      type: object
+      properties:
+        business_metrics:
+          type: array
+          items:
+            $ref: '#/components/schemas/BusinessMetric'
+      description: BusinessMetrics model
+    putBusinessMetrics:
+      type: object
+      properties:
+        title:
+          type: string
+          description: The title of the BusinessMetric.
+        cost_report_tokens_with_metadata:
+          type: array
+          description: >-
+            The tokens for any CostReports that use the BusinessMetric, and the
+            unit scale.
+          items:
+            type: object
+            properties:
+              cost_report_token:
+                type: string
+                description: The token of the CostReport the BusinessMetric is attached to.
+              unit_scale:
+                type: string
+                description: >-
+                  Determines the scale of the BusinessMetric's values within the
+                  CostReport.
+                enum:
+                  - per_unit
+                  - per_hundred
+                  - per_thousand
+                  - per_million
+                  - per_billion
+                default: per_unit
+            required:
+              - cost_report_token
+        values:
+          type: array
+          description: The dates and amounts for the BusinessMetric.
+          items:
+            type: object
+            properties:
+              date:
+                type: string
+                format: date-time
+              amount:
+                type: number
+                format: double
+            required:
+              - date
+              - amount
+      description: Updates an existing BusinessMetric.
+    Products:
+      type: object
+      properties:
+        links:
+          type: object
+        products:
+          type: array
+          items:
+            $ref: '#/components/schemas/Product'
+      description: Products model
+    Product:
+      type: object
+      properties:
+        id:
+          type: string
+        category:
+          type: string
+          example: compute
+          description: The category of the cloud product
+        name:
+          type: string
+          example: EC2
+          description: The common name of the product.
+        service_id:
+          type: string
+          example: aws-ec2
+          description: A unique slug for the service the product belongs to.
+        provider_id:
+          type: string
+          example: aws
+          description: A unique slug for the provider the product belongs to.
+        details:
+          type: object
+          example:
+            gpu: 0
+            name: M5 General Purpose 16xlarge
+            vcpu: 64
+            memory: 256
+            clock_speed_ghz: 3.1
+            physical_processor_description: Intel Xeon Platinum 8175 (Skylake)
+            network_performance_description: 20 Gigabit
+          description: An object of metadata about the product.
+      description: Product model
+    Prices:
+      type: object
+      properties:
+        links:
+          type: object
+        prices:
+          type: array
+          items:
+            $ref: '#/components/schemas/Price'
+      description: Prices model
+    Price:
+      type: object
+      properties:
+        id:
+          type: string
+        unit:
+          type: string
+          example: hour
+          description: The unit in which the amount is billed.
+        region:
+          type: string
+          example: us-east-1
+          description: The region the price is specific to.
+        rate_type:
+          type: string
+          example: compute
+          description: >-
+            The part of the product the price applies to. (compute, transfer,
+            etc..)
+        currency:
+          type: string
+          example: USD
+          description: The currency of the amount.
+        amount:
+          type: number
+          example: '1.324'
+          description: The amount of money this specific product price costs.
+        details:
+          type: object
+          example:
+            platform: linux-enterprise
+            lifecycle: on-demand
+          description: Service specific metadata.
+      description: Price model
