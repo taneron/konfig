@@ -1,4 +1,4 @@
-hash: d55fdf56e544158e18787377c7f64a734f0935285f58019e9fa448596b3eac0a
+hash: 479fc9dfab281133e786eededeaec76cda671c682bc63c86009b8a27c3265799
 methodObjects:
   - url: /v1/secrets
     method: getAllSecrets
@@ -210,5 +210,65 @@ methodObjects:
     responses:
       - statusCode: '200'
         description: A deployment of a model.
-numberOfSchemas: 13
+  - url: /v1/models/{model_id}/deployments/development/activate
+    method: activateDevelopmentDeployment
+    httpMethod: post
+    tag: Deployment
+    typeScriptTag: deployment
+    description: Activates a development deployment
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: The response to a request to activate a deployment.
+  - url: /v1/models/{model_id}/deployments/production/activate
+    method: activateProduction
+    httpMethod: post
+    tag: Deployment
+    typeScriptTag: deployment
+    description: Activates a production deployment
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: The response to a request to activate a deployment.
+  - url: /v1/models/{model_id}/deployments/{deployment_id}/activate
+    method: activateStatus
+    httpMethod: post
+    tag: Deployment
+    typeScriptTag: deployment
+    description: Activates a deployment
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: The response to a request to activate a deployment.
+  - url: /v1/models/{model_id}/deployments/development/deactivate
+    method: deactivateDevelopment
+    httpMethod: post
+    tag: Deployment
+    typeScriptTag: deployment
+    description: Deactivates a development deployment
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: The response to a request to deactivate a deployment.
+  - url: /v1/models/{model_id}/deployments/production/deactivate
+    method: deactivateProductionDeployment
+    httpMethod: post
+    tag: Deployment
+    typeScriptTag: deployment
+    description: Deactivates a production deployment
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: The response to a request to deactivate a deployment.
+  - url: /v1/models/{model_id}/deployments/{deployment_id}/deactivate
+    method: deactivateDeploymentStatus
+    httpMethod: post
+    tag: Deployment
+    typeScriptTag: deployment
+    description: Deactivates a deployment
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: The response to a request to deactivate a deployment.
+numberOfSchemas: 15
 apiDescription: REST API for management of Baseten resources

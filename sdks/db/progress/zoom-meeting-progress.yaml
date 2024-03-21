@@ -13,8 +13,16 @@ operationIds:
   /devices:
     get: Devices_list
     post: Devices_createNewDevice
+  /devices/groups:
+    get: Devices_listZdmGroupInfo
+  /devices/zpa/assignment:
+    post: Devices_assignDeviceZpaAssignment
   /devices/zpa/upgrade:
     post: Devices_upgradeZpaOsApp
+  /devices/zpa/vendors/{vendor}/mac_addresses/{macAddress}:
+    delete: Devices_removeZpaDeviceByVendorAndMacAddress
+  /devices/zpa/zdm_groups/{zdmGroupId}/versions:
+    get: Devices_getZpaVersionInfo
   /devices/{deviceId}:
     delete: Devices_removeDeviceZMD
     get: Devices_getDetail
@@ -293,6 +301,9 @@ requestSchemaNames:
   /devices:
     post:
       application/json: DevicesCreateNewDeviceRequest
+  /devices/zpa/assignment:
+    post:
+      application/json: DevicesAssignDeviceZpaAssignmentRequest
   /devices/zpa/upgrade:
     post:
       application/json: DevicesUpgradeZpaOsAppRequest
@@ -478,6 +489,14 @@ responseSchemaNames:
     get:
       '200':
         application/json: DevicesListResponse
+  /devices/groups:
+    get:
+      '200':
+        application/json: DevicesListZdmGroupInfoResponse
+  /devices/zpa/zdm_groups/{zdmGroupId}/versions:
+    get:
+      '200':
+        application/json: DevicesGetZpaVersionInfoResponse
   /devices/{deviceId}:
     get:
       '200':

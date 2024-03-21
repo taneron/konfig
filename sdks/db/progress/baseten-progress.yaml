@@ -10,18 +10,30 @@ operationIds:
     get: Model_getAllDeployments
   /v1/models/{model_id}/deployments/development:
     get: Deployment_getDevelopmentDetails
+  /v1/models/{model_id}/deployments/development/activate:
+    post: Deployment_activateDevelopmentDeployment
   /v1/models/{model_id}/deployments/development/autoscaling_settings:
     patch: AutoscalingSetting_updateDevelopmentSetting
+  /v1/models/{model_id}/deployments/development/deactivate:
+    post: Deployment_deactivateDevelopment
   /v1/models/{model_id}/deployments/development/promote:
     post: Model_deployPromote
   /v1/models/{model_id}/deployments/production:
     get: Deployment_getProductionDetails
+  /v1/models/{model_id}/deployments/production/activate:
+    post: Deployment_activateProduction
   /v1/models/{model_id}/deployments/production/autoscaling_settings:
     patch: AutoscalingSetting_updateStatus
+  /v1/models/{model_id}/deployments/production/deactivate:
+    post: Deployment_deactivateProductionDeployment
   /v1/models/{model_id}/deployments/{deployment_id}:
     get: Deployment_detailsGet
+  /v1/models/{model_id}/deployments/{deployment_id}/activate:
+    post: Deployment_activateStatus
   /v1/models/{model_id}/deployments/{deployment_id}/autoscaling_settings:
     patch: AutoscalingSetting_updateDeploymentSettings
+  /v1/models/{model_id}/deployments/{deployment_id}/deactivate:
+    post: Deployment_deactivateDeploymentStatus
   /v1/models/{model_id}/deployments/{deployment_id}/promote:
     post: Model_deploymentPromote
   /v1/secrets:
@@ -36,18 +48,30 @@ operationTags:
     get: Model
   /v1/models/{model_id}/deployments/development:
     get: Deployment
+  /v1/models/{model_id}/deployments/development/activate:
+    post: Deployment
   /v1/models/{model_id}/deployments/development/autoscaling_settings:
     patch: AutoscalingSetting
+  /v1/models/{model_id}/deployments/development/deactivate:
+    post: Deployment
   /v1/models/{model_id}/deployments/development/promote:
     post: Model
   /v1/models/{model_id}/deployments/production:
     get: Deployment
+  /v1/models/{model_id}/deployments/production/activate:
+    post: Deployment
   /v1/models/{model_id}/deployments/production/autoscaling_settings:
     patch: AutoscalingSetting
+  /v1/models/{model_id}/deployments/production/deactivate:
+    post: Deployment
   /v1/models/{model_id}/deployments/{deployment_id}:
     get: Deployment
+  /v1/models/{model_id}/deployments/{deployment_id}/activate:
+    post: Deployment
   /v1/models/{model_id}/deployments/{deployment_id}/autoscaling_settings:
     patch: AutoscalingSetting
+  /v1/models/{model_id}/deployments/{deployment_id}/deactivate:
+    post: Deployment
   /v1/models/{model_id}/deployments/{deployment_id}/promote:
     post: Model
   /v1/secrets:

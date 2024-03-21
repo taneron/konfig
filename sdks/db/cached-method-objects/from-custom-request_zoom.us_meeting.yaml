@@ -1,4 +1,4 @@
-hash: b9218173dfdeeb5e3128c4e2da8a46f5687267ad2e5125cbd55ee2d3ee853132
+hash: 52241c0328a2980900d9dd2943a3138c41018c141e1b6aaf7d483c70826e4c55
 methodObjects:
   - url: /archive_files
     method: meetingFilesList
@@ -1394,6 +1394,93 @@ methodObjects:
            no permission. <br>
           **Error Code:** `30055009` <br>
            email does not have plan. <br>
+  - url: /devices/groups
+    method: listZdmGroupInfo
+    httpMethod: get
+    tag: Devices
+    typeScriptTag: devices
+    description: Get zdm group info
+    parameters:
+      - name: pageSize
+        schema: integer
+        required: false
+        description: |-
+          The total number of records returned from a single API call.
+          Default - 30.
+          Max -100.
+        example: 30
+      - name: nextPageToken
+        schema: string
+        required: false
+        description: >-
+          Use the next page token to paginate through large result sets. A next
+          page token is returned whenever the set of available results exceeds
+          the current page size. This token's expiration period token is 15
+          minutes.
+        example: BJLYC6PABbAHdjwSkGVQeeR6B1juwHqj3G2
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: |
+          **HTTP Status Code:** `400` <br>
+           Bad Request  
+
+           **Error Code:** `30051037` <br>
+           Invalid parameters. <br>
+      - statusCode: '403'
+        description: |
+          **HTTP Status Code:** `403` <br>
+           Forbidden  
+
+           **Error Code:** `30055008` <br>
+           No permission. <br>
+  - url: /devices/zpa/assignment
+    method: assignDeviceZpaAssignment
+    httpMethod: post
+    tag: Devices
+    typeScriptTag: devices
+    description: Assign a device to a user or commonarea
+    parameters:
+      - name: extension_number
+        schema: string
+        required: false
+        description: ''
+        example: '802'
+      - name: mac_address
+        schema: string
+        required: true
+        description: ''
+        example: 64167ffc0ed7
+      - name: vendor
+        schema: string
+        required: true
+        description: ''
+        example: poly
+    responses:
+      - statusCode: '204'
+        description: >-
+          **HTTP Status Code:** `204` **No Content**   Request processed
+          successfully.
+      - statusCode: '400'
+        description: |
+          **HTTP Status Code:** `400` <br>
+           Bad Request  
+
+           **Error Code:** `30055003` <br>
+           Device vendor does not support. <br>
+          **Error Code:** `30055007` <br>
+           Mac address is wrong. <br>
+          **Error Code:** `30051039` <br>
+           Device not exists. <br>
+          **Error Code:** `30055002` <br>
+           AUTO RECEPTIONIST user can not assign to device. <br>
+          **Error Code:** `30055009` <br>
+           User not have phone plan. <br>
+          **Error Code:** `30052024` <br>
+           Extension number not exists. <br>
+          **Error Code:** `30055002` <br>
+           Missing required input. <br>
   - url: /devices/zpa/upgrade
     method: upgradeZpaOsApp
     httpMethod: post
@@ -1428,6 +1515,75 @@ methodObjects:
            Zdm group id dose not exist. <br>
           **Error Code:** `30052030` <br>
            Missing required input: app_version. <br>
+  - url: /devices/zpa/vendors/{vendor}/mac_addresses/{macAddress}
+    method: removeZpaDeviceByVendorAndMacAddress
+    httpMethod: delete
+    tag: Devices
+    typeScriptTag: devices
+    description: Delete ZPA device by vendor and mac address
+    parameters:
+      - name: vendor
+        schema: string
+        required: true
+        description: The device's manufacturer.
+        example: Poly
+      - name: macAddress
+        schema: string
+        required: true
+        description: The device's mac address.
+        example: 64167ffc0ed7
+    responses:
+      - statusCode: '204'
+        description: >-
+          **HTTP Status Code:** `204` **No Content** Device deleted
+          successfully.
+      - statusCode: '400'
+        description: |
+          **HTTP Status Code:** `400` <br>
+           Bad Request  
+
+           **Error Code:** `30052026` <br>
+           Device is not ZPA. <br>
+          **Error Code:** `30055003` <br>
+           Device vendor does not support. <br>
+          **Error Code:** `30055007` <br>
+           Mac address is wrong. <br>
+      - statusCode: '404'
+        description: |
+          **HTTP Status Code:** `404` <br>
+           Not Found  
+
+           **Error Code:** `30051039` <br>
+           Zdm device not found. <br>
+  - url: /devices/zpa/zdm_groups/{zdmGroupId}/versions
+    method: getZpaVersionInfo
+    httpMethod: get
+    tag: Devices
+    typeScriptTag: devices
+    description: Get ZPA version info
+    parameters:
+      - name: zdmGroupId
+        schema: string
+        required: true
+        description: The Zoom Device Management (ZDM) group ID.
+        example: ff49588c-92c4-4406-99e6-1942d8a61a7b
+    responses:
+      - statusCode: '200'
+        description: Information about the version list.
+      - statusCode: '400'
+        description: |
+          **HTTP Status Code:** `400` <br>
+           Bad Request  
+
+           **Error Code:** `30051037` <br>
+           * AccountId is empty. <br>
+      - statusCode: '404'
+        description: |
+          **HTTP Status Code:** `404` <br>
+           Not Found  
+
+           **Error Code:** `30052027` <br>
+           * ZdmGroup not found. <br>
   - url: /devices/{deviceId}
     method: removeDeviceZmd
     httpMethod: delete
@@ -8860,5 +9016,5 @@ methodObjects:
     responses:
       - statusCode: '200'
         description: ''
-numberOfSchemas: 169
+numberOfSchemas: 172
 apiDescription: 'The Zoom Meeting APIs let developers to access information from Zoom. '

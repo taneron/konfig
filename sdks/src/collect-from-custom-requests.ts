@@ -394,6 +394,42 @@ const customRequests: Record<string, CustomRequest> = {
       return downloadOpenApiSpecFromReadme({ urls });
     },
   },
+  "seal.com": {
+    lambda: async () => {
+      const urls = [
+        "https://developer.seel.com/reference/createmerchant",
+        "https://developer.seel.com/reference/listmerchants",
+        "https://developer.seel.com/reference/updatemerchant",
+        "https://developer.seel.com/reference/getmerchant",
+        "https://developer.seel.com/reference/createquote",
+        "https://developer.seel.com/reference/getquote",
+        "https://developer.seel.com/reference/createproduct",
+        "https://developer.seel.com/reference/createproductbatch",
+        "https://developer.seel.com/reference/getproduct",
+        "https://developer.seel.com/reference/updateproduct",
+        "https://developer.seel.com/reference/deleteproduct",
+        "https://developer.seel.com/reference/getproductplans",
+        "https://developer.seel.com/reference/createorder",
+        "https://developer.seel.com/reference/createorderbatch",
+        "https://developer.seel.com/reference/updateorder",
+        "https://developer.seel.com/reference/getorder",
+        "https://developer.seel.com/reference/cancelorder",
+        "https://developer.seel.com/reference/createfulfillment",
+        "https://developer.seel.com/reference/listfulfillments",
+        "https://developer.seel.com/reference/updatefulfillment",
+        "https://developer.seel.com/reference/getfulfillment",
+        "https://developer.seel.com/reference/cancelfulfillment",
+        "https://developer.seel.com/reference/listcontracts",
+        "https://developer.seel.com/reference/getcontract",
+        "https://developer.seel.com/reference/listclaims",
+        "https://developer.seel.com/reference/getclaim",
+        "https://developer.seel.com/reference/listinvoices",
+        "https://developer.seel.com/reference/getinvoice",
+        "https://developer.seel.com/reference/createevent",
+      ];
+      return downloadOpenApiSpecFromReadme({ urls });
+    },
+  },
   "notion.com": {
     lambda: async () => {
       const urls = [

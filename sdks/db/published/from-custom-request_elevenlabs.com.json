@@ -4,17 +4,17 @@
   "apiVersion": "1.0",
   "apiDescription": "This is the documentation for the ElevenLabs API. You can use this API to use our service programmatically, this is done by using your xi-api-key. <br/> You can view your xi-api-key using the 'Profile' tab on https://elevenlabs.io. Our API is experimental so all endpoints are subject to change.",
   "apiTitle": "ElevenLabs API Documentation",
-  "endpoints": 51,
-  "sdkMethods": 56,
-  "schemas": 80,
-  "parameters": 195,
+  "endpoints": 52,
+  "sdkMethods": 57,
+  "schemas": 82,
+  "parameters": 204,
   "originalCustomRequest": {
     "type": "GET",
     "url": "https://api.elevenlabs.io/openapi.json",
     "apiBaseUrl": "https://api.elevenlabs.io"
   },
   "customRequestSpecFilename": "elevenlabs.com.yaml",
-  "difficultyScore": 135.25,
+  "difficultyScore": 139.5,
   "difficulty": "Medium",
   "company": "ElevenLabs",
   "sdkName": "eleven-labs-{language}-sdk",
@@ -196,12 +196,81 @@
           "schema": "array",
           "required": true,
           "description": ""
+        },
+        {
+          "name": "output_format",
+          "schema": "string",
+          "required": false,
+          "description": ""
         }
       ],
       "responses": [
         {
           "statusCode": "200",
           "description": "Successful Response"
+        },
+        {
+          "statusCode": "422",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/shared-sound-effects",
+      "method": "getList",
+      "httpMethod": "get",
+      "tag": "sound-effects-history",
+      "typeScriptTag": "soundEffectsHistory",
+      "description": "Get Shared Sound Effects",
+      "parameters": [
+        {
+          "name": "pageSize",
+          "schema": "integer",
+          "required": false,
+          "description": "How many sound effects to return at maximum. Can not exceed 100, defaults to 30.",
+          "default": 30
+        },
+        {
+          "name": "category",
+          "schema": "string",
+          "required": false,
+          "description": "Sound effect category used for filtering.",
+          "example": "Nature"
+        },
+        {
+          "name": "search",
+          "schema": "string",
+          "required": false,
+          "description": "Search term used for filtering",
+          "example": "Cold water"
+        },
+        {
+          "name": "sort",
+          "schema": "string",
+          "required": false,
+          "description": "Sort criteria. Can be one of: created_date, download_count, like_count, trending. Defaults to trending.",
+          "example": "trending_score"
+        },
+        {
+          "name": "featured",
+          "schema": "boolean",
+          "required": false,
+          "description": "Filter featured sound effects.",
+          "example": true,
+          "default": false
+        },
+        {
+          "name": "page",
+          "schema": "integer",
+          "required": false,
+          "description": "",
+          "default": 0
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
         },
         {
           "statusCode": "422",
@@ -460,6 +529,13 @@
           "default": 0
         },
         {
+          "name": "outputFormat",
+          "schema": "string",
+          "required": false,
+          "description": "Output format of the generated audio. Must be one of:\nmp3_22050_32 - output format, mp3 with 22.05kHz sample rate at 32kbps.\nmp3_44100_32 - output format, mp3 with 44.1kHz sample rate at 32kbps.\nmp3_44100_64 - output format, mp3 with 44.1kHz sample rate at 64kbps.\nmp3_44100_96 - output format, mp3 with 44.1kHz sample rate at 96kbps.\nmp3_44100_128 - default output format, mp3 with 44.1kHz sample rate at 128kbps.\nmp3_44100_192 - output format, mp3 with 44.1kHz sample rate at 192kbps. Requires you to be subscribed to Creator tier or above.\npcm_16000 - PCM format (S16LE) with 16kHz sample rate.\npcm_22050 - PCM format (S16LE) with 22.05kHz sample rate.\npcm_24000 - PCM format (S16LE) with 24kHz sample rate.\npcm_44100 - PCM format (S16LE) with 44.1kHz sample rate. Requires you to be subscribed to Pro tier or above.\nulaw_8000 - μ-law format (sometimes written mu-law, often approximated as u-law) with 8kHz sample rate. Note that this format is commonly used for Twilio audio inputs.\n",
+          "default": "mp3_44100_128"
+        },
+        {
           "name": "xiApiKey",
           "schema": "string",
           "required": false,
@@ -518,6 +594,13 @@
           "required": false,
           "description": "You can turn on latency optimizations at some cost of quality. The best possible final latency varies by model. Possible values:\n0 - default mode (no latency optimizations)\n1 - normal latency optimizations (about 50% of possible latency improvement of option 3)\n2 - strong latency optimizations (about 75% of possible latency improvement of option 3)\n3 - max latency optimizations\n4 - max latency optimizations, but also with text normalizer turned off for even more latency savings (best latency, but can mispronounce eg numbers and dates).\n\nDefaults to 0.\n",
           "default": 0
+        },
+        {
+          "name": "outputFormat",
+          "schema": "string",
+          "required": false,
+          "description": "Output format of the generated audio. Must be one of:\nmp3_22050_32 - output format, mp3 with 22.05kHz sample rate at 32kbps.\nmp3_44100_32 - output format, mp3 with 44.1kHz sample rate at 32kbps.\nmp3_44100_64 - output format, mp3 with 44.1kHz sample rate at 64kbps.\nmp3_44100_96 - output format, mp3 with 44.1kHz sample rate at 96kbps.\nmp3_44100_128 - default output format, mp3 with 44.1kHz sample rate at 128kbps.\nmp3_44100_192 - output format, mp3 with 44.1kHz sample rate at 192kbps. Requires you to be subscribed to Creator tier or above.\npcm_16000 - PCM format (S16LE) with 16kHz sample rate.\npcm_22050 - PCM format (S16LE) with 22.05kHz sample rate.\npcm_24000 - PCM format (S16LE) with 24kHz sample rate.\npcm_44100 - PCM format (S16LE) with 44.1kHz sample rate. Requires you to be subscribed to Pro tier or above.\nulaw_8000 - μ-law format (sometimes written mu-law, often approximated as u-law) with 8kHz sample rate. Note that this format is commonly used for Twilio audio inputs.\n",
+          "default": "mp3_44100_128"
         },
         {
           "name": "xiApiKey",
@@ -2452,7 +2535,7 @@
   "previewLinkImage": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/elevenlabs/imagePreview.png",
   "faviconUrl": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/elevenlabs/favicon.png",
   "clientNameCamelCase": "elevenLabs",
-  "lastUpdated": "2024-03-19T00:01:13.595Z",
+  "lastUpdated": "2024-03-21T03:39:02.740Z",
   "typescriptSdkUsageCode": "import { ElevenLabs } from 'eleven-labs-typescript-sdk';\n\nconst elevenLabs = new ElevenLabs()",
   "typescriptSdkFirstRequestCode": "// Get Generated Items\nconst getGeneratedAudioMetadataResponse = elevenLabs.speechHistory.getGeneratedAudioMetadata({\n    pageSize: 100\n})",
   "fixedSpecFileName": "eleven-labs-fixed-spec.yaml"

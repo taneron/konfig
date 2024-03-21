@@ -295,6 +295,88 @@ rawSpecString: |
               application/json:
                 schema:
                   $ref: '#/components/schemas/HTTPValidationError'
+    /v1/shared-sound-effects:
+      get:
+        tags:
+          - sound-effects-history
+        summary: Get Shared Sound Effects
+        description: Returns a list of shared sound effects.
+        operationId: Get_shared_sound_effects_v1_shared_sound_effects_get
+        parameters:
+          - description: >-
+              How many sound effects to return at maximum. Can not exceed 100,
+              defaults to 30.
+            required: false
+            schema:
+              type: integer
+              title: Page Size
+              description: >-
+                How many sound effects to return at maximum. Can not exceed 100,
+                defaults to 30.
+              default: 30
+            name: page_size
+            in: query
+          - description: Sound effect category used for filtering.
+            required: false
+            schema:
+              type: string
+              title: Category
+              description: Sound effect category used for filtering.
+            example: Nature
+            name: category
+            in: query
+          - description: Search term used for filtering
+            required: false
+            schema:
+              type: string
+              title: Search
+              description: Search term used for filtering
+            example: Cold water
+            name: search
+            in: query
+          - description: >-
+              Sort criteria. Can be one of: created_date, download_count,
+              like_count, trending. Defaults to trending.
+            required: false
+            schema:
+              type: string
+              title: Sort
+              description: >-
+                Sort criteria. Can be one of: created_date, download_count,
+                like_count, trending. Defaults to trending.
+            example: trending_score
+            name: sort
+            in: query
+          - description: Filter featured sound effects.
+            required: false
+            schema:
+              type: boolean
+              title: Featured
+              description: Filter featured sound effects.
+              default: false
+            example: true
+            name: featured
+            in: query
+          - required: false
+            schema:
+              type: integer
+              title: Page
+              default: 0
+            name: page
+            in: query
+        responses:
+          '200':
+            description: Successful Response
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/GetSharedSoundEffectsResponseModel'
+          '422':
+            description: Validation Error
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/HTTPValidationError'
     /v1/voices/{voice_id}/samples/{sample_id}:
       delete:
         tags:
@@ -847,6 +929,79 @@ rawSpecString: |
               default: 0
             name: optimize_streaming_latency
             in: query
+          - description: >
+              Output format of the generated audio. Must be one of:
+
+              mp3_22050_32 - output format, mp3 with 22.05kHz sample rate at
+              32kbps.
+
+              mp3_44100_32 - output format, mp3 with 44.1kHz sample rate at
+              32kbps.
+
+              mp3_44100_64 - output format, mp3 with 44.1kHz sample rate at
+              64kbps.
+
+              mp3_44100_96 - output format, mp3 with 44.1kHz sample rate at
+              96kbps.
+
+              mp3_44100_128 - default output format, mp3 with 44.1kHz sample rate
+              at 128kbps.
+
+              mp3_44100_192 - output format, mp3 with 44.1kHz sample rate at
+              192kbps. Requires you to be subscribed to Creator tier or above.
+
+              pcm_16000 - PCM format (S16LE) with 16kHz sample rate.
+
+              pcm_22050 - PCM format (S16LE) with 22.05kHz sample rate.
+
+              pcm_24000 - PCM format (S16LE) with 24kHz sample rate.
+
+              pcm_44100 - PCM format (S16LE) with 44.1kHz sample rate. Requires
+              you to be subscribed to Pro tier or above.
+
+              ulaw_8000 - μ-law format (sometimes written mu-law, often
+              approximated as u-law) with 8kHz sample rate. Note that this format
+              is commonly used for Twilio audio inputs.
+            required: false
+            schema:
+              type: string
+              title: Output format of the generated audio.
+              description: >
+                Output format of the generated audio. Must be one of:
+
+                mp3_22050_32 - output format, mp3 with 22.05kHz sample rate at
+                32kbps.
+
+                mp3_44100_32 - output format, mp3 with 44.1kHz sample rate at
+                32kbps.
+
+                mp3_44100_64 - output format, mp3 with 44.1kHz sample rate at
+                64kbps.
+
+                mp3_44100_96 - output format, mp3 with 44.1kHz sample rate at
+                96kbps.
+
+                mp3_44100_128 - default output format, mp3 with 44.1kHz sample
+                rate at 128kbps.
+
+                mp3_44100_192 - output format, mp3 with 44.1kHz sample rate at
+                192kbps. Requires you to be subscribed to Creator tier or above.
+
+                pcm_16000 - PCM format (S16LE) with 16kHz sample rate.
+
+                pcm_22050 - PCM format (S16LE) with 22.05kHz sample rate.
+
+                pcm_24000 - PCM format (S16LE) with 24kHz sample rate.
+
+                pcm_44100 - PCM format (S16LE) with 44.1kHz sample rate. Requires
+                you to be subscribed to Pro tier or above.
+
+                ulaw_8000 - μ-law format (sometimes written mu-law, often
+                approximated as u-law) with 8kHz sample rate. Note that this
+                format is commonly used for Twilio audio inputs.
+              default: mp3_44100_128
+            name: output_format
+            in: query
           - description: >-
               Your API key. This is required by most endpoints to access our API
               programatically. You can view your xi-api-key using the 'Profile'
@@ -951,6 +1106,79 @@ rawSpecString: |
                 Defaults to 0.
               default: 0
             name: optimize_streaming_latency
+            in: query
+          - description: >
+              Output format of the generated audio. Must be one of:
+
+              mp3_22050_32 - output format, mp3 with 22.05kHz sample rate at
+              32kbps.
+
+              mp3_44100_32 - output format, mp3 with 44.1kHz sample rate at
+              32kbps.
+
+              mp3_44100_64 - output format, mp3 with 44.1kHz sample rate at
+              64kbps.
+
+              mp3_44100_96 - output format, mp3 with 44.1kHz sample rate at
+              96kbps.
+
+              mp3_44100_128 - default output format, mp3 with 44.1kHz sample rate
+              at 128kbps.
+
+              mp3_44100_192 - output format, mp3 with 44.1kHz sample rate at
+              192kbps. Requires you to be subscribed to Creator tier or above.
+
+              pcm_16000 - PCM format (S16LE) with 16kHz sample rate.
+
+              pcm_22050 - PCM format (S16LE) with 22.05kHz sample rate.
+
+              pcm_24000 - PCM format (S16LE) with 24kHz sample rate.
+
+              pcm_44100 - PCM format (S16LE) with 44.1kHz sample rate. Requires
+              you to be subscribed to Pro tier or above.
+
+              ulaw_8000 - μ-law format (sometimes written mu-law, often
+              approximated as u-law) with 8kHz sample rate. Note that this format
+              is commonly used for Twilio audio inputs.
+            required: false
+            schema:
+              type: string
+              title: Output format of the generated audio.
+              description: >
+                Output format of the generated audio. Must be one of:
+
+                mp3_22050_32 - output format, mp3 with 22.05kHz sample rate at
+                32kbps.
+
+                mp3_44100_32 - output format, mp3 with 44.1kHz sample rate at
+                32kbps.
+
+                mp3_44100_64 - output format, mp3 with 44.1kHz sample rate at
+                64kbps.
+
+                mp3_44100_96 - output format, mp3 with 44.1kHz sample rate at
+                96kbps.
+
+                mp3_44100_128 - default output format, mp3 with 44.1kHz sample
+                rate at 128kbps.
+
+                mp3_44100_192 - output format, mp3 with 44.1kHz sample rate at
+                192kbps. Requires you to be subscribed to Creator tier or above.
+
+                pcm_16000 - PCM format (S16LE) with 16kHz sample rate.
+
+                pcm_22050 - PCM format (S16LE) with 22.05kHz sample rate.
+
+                pcm_24000 - PCM format (S16LE) with 24kHz sample rate.
+
+                pcm_44100 - PCM format (S16LE) with 44.1kHz sample rate. Requires
+                you to be subscribed to Pro tier or above.
+
+                ulaw_8000 - μ-law format (sometimes written mu-law, often
+                approximated as u-law) with 8kHz sample rate. Note that this
+                format is commonly used for Twilio audio inputs.
+              default: mp3_44100_128
+            name: output_format
             in: query
           - description: >-
               Your API key. This is required by most endpoints to access our API
@@ -3435,6 +3663,10 @@ rawSpecString: |
               A list of history items to download, you can get IDs of history
               items and other metadata using the GET
               https://api.elevenlabs.io/v1/history endpoint.
+          output_format:
+            type: string
+            title: Output Format
+            description: Output format to transcode the audio file, can be wav or default.
         type: object
         required:
           - history_item_ids
@@ -4140,6 +4372,25 @@ rawSpecString: |
           - created_by
           - creation_time_unix
         title: GetPronunciationDictionaryMetadataResponseModel
+      GetSharedSoundEffectsResponseModel:
+        properties:
+          shared_sound_effects:
+            items:
+              $ref: '#/components/schemas/SharedSoundEffectResponseModel'
+            type: array
+            title: Shared Sound Effects
+          last_sort_id:
+            type: string
+            title: Last Sort Id
+          has_more:
+            type: boolean
+            title: Has More
+        type: object
+        required:
+          - shared_sound_effects
+          - last_sort_id
+          - has_more
+        title: GetSharedSoundEffectsResponseModel
       GetSpeechHistoryResponseModel:
         properties:
           history:
@@ -4623,6 +4874,49 @@ rawSpecString: |
           - size_bytes
           - hash
         title: SampleResponseModel
+      SharedSoundEffectResponseModel:
+        properties:
+          public_user_id:
+            type: string
+            title: Public User Id
+          history_item_id:
+            type: string
+            title: History Item Id
+          generation_id:
+            type: string
+            title: Generation Id
+          text:
+            type: string
+            title: Text
+          category:
+            type: string
+            title: Category
+          labels:
+            additionalProperties:
+              type: string
+            type: object
+            title: Labels
+          download_count:
+            type: integer
+            title: Download Count
+          like_count:
+            type: integer
+            title: Like Count
+          featured:
+            type: boolean
+            title: Featured
+        type: object
+        required:
+          - public_user_id
+          - history_item_id
+          - generation_id
+          - text
+          - category
+          - labels
+          - download_count
+          - like_count
+          - featured
+        title: SharedSoundEffectResponseModel
       SpeechHistoryItemResponseModel:
         properties:
           history_item_id:
@@ -5211,4 +5505,4 @@ rawSpecString: |
         please contact our sales team.
   servers:
     - url: https://api.elevenlabs.io
-konfigCliVersion: 1.38.32
+konfigCliVersion: 1.38.33

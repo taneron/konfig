@@ -4747,6 +4747,193 @@ rawSpecString: |
             - ZoomRooms:Edit
           x-macro-scopes:
             - device:write:admin
+    /devices/groups:
+      get:
+        tags:
+          - Devices
+        summary: Get zdm group info
+        description: >-
+          Get Zoom Device Manager (ZDM) group information for an account.
+
+
+          **Scopes:** `device:read:admin`
+
+
+          **[Rate Limit
+          Label](https://marketplace.zoom.us/docs/api-reference/rate-limits#rate-limits):**
+          `MEDIUM`
+        operationId: Getzdmgroupinfo
+        parameters:
+          - name: page_size
+            in: query
+            description: |-
+              The total number of records returned from a single API call.
+              Default - 30.
+              Max -100.
+            required: false
+            schema:
+              type: integer
+              example: 30
+          - name: next_page_token
+            in: query
+            description: >-
+              Use the next page token to paginate through large result sets. A
+              next page token is returned whenever the set of available results
+              exceeds the current page size. This token's expiration period token
+              is 15 minutes.
+            required: false
+            schema:
+              type: string
+              example: BJLYC6PABbAHdjwSkGVQeeR6B1juwHqj3G2
+        responses:
+          '200':
+            description: >-
+              **HTTP Status Code:** `200` **OK**  Version detail returned
+              successfully.
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    groups:
+                      type: array
+                      description: All ZDM group information under current account.
+                      items:
+                        type: object
+                        properties:
+                          zdm_group_id:
+                            type: string
+                            description: The ZDM group's unique ID.
+                            example: ff49588c-92c4-4406-99e6-1942d8a61a7b
+                          name:
+                            type: string
+                            description: The ZDM group's name.
+                            example: HeFei-group
+                          description:
+                            type: string
+                            description: The ZDM group's describe.
+                            example: Group in Hefei region
+                    next_page_token:
+                      type: string
+                      description: >-
+                        Use the next page token to paginate through a large set of
+                        results. A next page token is returned whenever the set of
+                        available results exceeds the current page size. This
+                        token's expiration period is 15 minutes.
+                      example: RaO87FrnwXvFQta5aV8sU5C3c9O8s9Nraq2
+                    page_size:
+                      type: integer
+                      description: >-
+                        The total number of records returned from a single API
+                        call.
+                      example: 30
+          '400':
+            description: |
+              **HTTP Status Code:** `400` <br>
+               Bad Request  
+
+               **Error Code:** `30051037` <br>
+               Invalid parameters. <br>
+          '403':
+            description: |
+              **HTTP Status Code:** `403` <br>
+               Forbidden  
+
+               **Error Code:** `30055008` <br>
+               No permission. <br>
+        security:
+          - openapi_oauth:
+              - device:read:admin
+            openapi_authorization: []
+        extensions:
+          x-permissions:
+            - ZoomRooms:Read
+            - MoileDeviceManagement:Read
+          x-macro-scopes:
+            - device:read:admin
+          x-granular-scopes:
+            - device:read:list_groups:admin
+            - device:read:list_groups:master
+    /devices/zpa/assignment:
+      post:
+        tags:
+          - Devices
+        summary: Assign a device to a user or commonarea
+        description: >-
+          Assign a device to a user or common area, or move a device to another
+          user or common area, or remove a device.
+
+
+          **Prerequisites:**
+
+          * Device must be enrolled in Zoom Device Management (ZDM).
+
+
+          **Scopes:** `device:write:admin`
+
+
+          **[Rate Limit
+          Label](https://marketplace.zoom.us/docs/api-reference/rate-limits#rate-limits):**
+          `MEDIUM`
+        operationId: Assigndevicetoauser/commonarea
+        requestBody:
+          content:
+            application/json:
+              schema:
+                required:
+                  - mac_address
+                  - vendor
+                type: object
+                properties:
+                  extension_number:
+                    type: string
+                    description: The extension number.
+                    example: '802'
+                  mac_address:
+                    type: string
+                    description: The device's mac address.
+                    example: 64167ffc0ed7
+                  vendor:
+                    type: string
+                    description: The device's manufacturer.
+                    example: poly
+        responses:
+          '204':
+            description: >-
+              **HTTP Status Code:** `204` **No Content**   Request processed
+              successfully.
+          '400':
+            description: |
+              **HTTP Status Code:** `400` <br>
+               Bad Request  
+
+               **Error Code:** `30055003` <br>
+               Device vendor does not support. <br>
+              **Error Code:** `30055007` <br>
+               Mac address is wrong. <br>
+              **Error Code:** `30051039` <br>
+               Device not exists. <br>
+              **Error Code:** `30055002` <br>
+               AUTO RECEPTIONIST user can not assign to device. <br>
+              **Error Code:** `30055009` <br>
+               User not have phone plan. <br>
+              **Error Code:** `30052024` <br>
+               Extension number not exists. <br>
+              **Error Code:** `30055002` <br>
+               Missing required input. <br>
+        security:
+          - openapi_oauth:
+              - device:write:admin
+            openapi_authorization: []
+        extensions:
+          x-permissions:
+            - MobileDeviceManagement:Edit
+            - ZoomRooms:Edit
+          x-macro-scopes:
+            - device:write:admin
+          x-granular-scopes:
+            - device:write:zpa_device:admin
+            - device:write:zpa_device:master
     /devices/zpa/upgrade:
       post:
         tags:
@@ -4858,6 +5045,169 @@ rawSpecString: |
           x-granular-scopes:
             - device:write:zpa_os_or_app:admin
             - device:write:zpa_os_or_app:master
+    /devices/zpa/vendors/{vendor}/mac_addresses/{macAddress}:
+      delete:
+        tags:
+          - Devices
+        summary: Delete ZPA device by vendor and mac address
+        description: >-
+          Remove a ZPA device from the device manager, by vendor and mac address.
+
+
+          **Scopes:** `device:write:admin`
+
+
+          **[Rate Limit
+          Label](https://marketplace.zoom.us/docs/api-reference/rate-limits#rate-limits):**
+          `MEDIUM`
+        operationId: DeleteZpaDeviceByVendorAndMacAddress
+        parameters:
+          - name: vendor
+            in: path
+            description: The device's manufacturer.
+            required: true
+            schema:
+              type: string
+              example: Poly
+          - name: macAddress
+            in: path
+            description: The device's mac address.
+            required: true
+            schema:
+              type: string
+              example: 64167ffc0ed7
+        responses:
+          '204':
+            description: >-
+              **HTTP Status Code:** `204` **No Content** Device deleted
+              successfully.
+          '400':
+            description: |
+              **HTTP Status Code:** `400` <br>
+               Bad Request  
+
+               **Error Code:** `30052026` <br>
+               Device is not ZPA. <br>
+              **Error Code:** `30055003` <br>
+               Device vendor does not support. <br>
+              **Error Code:** `30055007` <br>
+               Mac address is wrong. <br>
+          '404':
+            description: |
+              **HTTP Status Code:** `404` <br>
+               Not Found  
+
+               **Error Code:** `30051039` <br>
+               Zdm device not found. <br>
+        security:
+          - openapi_oauth:
+              - device:write:admin
+            openapi_authorization: []
+        extensions:
+          x-permissions:
+            - ZoomRooms:Edit
+            - MobileDeviceManagement:Edit
+          x-macro-scopes:
+            - device:write:admin
+          x-granular-scopes:
+            - device:delete:zpa_device:admin
+            - device:delete:zpa_device:master
+    /devices/zpa/zdm_groups/{zdmGroupId}/versions:
+      get:
+        tags:
+          - Devices
+        summary: Get ZPA version info
+        description: >-
+          Get ZPA firmware and app version information that can be upgraded for
+          devices.
+
+
+          **Scopes:** `device:read:admin`
+
+
+          **[Rate Limit
+          Label](https://marketplace.zoom.us/docs/api-reference/rate-limits#rate-limits):**
+          `MEDIUM`
+        operationId: GetZpaVersioninfo
+        parameters:
+          - name: zdmGroupId
+            in: path
+            description: The Zoom Device Management (ZDM) group ID.
+            required: true
+            schema:
+              type: string
+              example: ff49588c-92c4-4406-99e6-1942d8a61a7b
+        responses:
+          '200':
+            description: >-
+              **HTTP Status Code:** `200` **OK**  Version detail returned
+              successfully.
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    firmware_versions:
+                      type: array
+                      description: List of firmware that can be upgraded.
+                      items:
+                        type: object
+                        properties:
+                          vendor:
+                            type: string
+                            description: The device's manufacturer.
+                            example: AudioCodes
+                          model:
+                            type: string
+                            description: The device's model name.
+                            example: C470HD
+                          version:
+                            type: string
+                            description: The package version.
+                            example: 1.19.552
+                          warn_info:
+                            type: string
+                            description: The prompt information for this version.
+                            example: >-
+                              You are about to perform an Android operating system
+                              upgrade. The change is permanent and cannot be
+                              reversed.
+                        description: Details of firmware that the vendor can upgrade.
+                    app_versions:
+                      type: array
+                      description: List of app versions that can be upgraded.
+                      items:
+                        type: string
+                        description: The app version.
+                        example: 5.16.5.3920
+                  description: Information about the version list.
+          '400':
+            description: |
+              **HTTP Status Code:** `400` <br>
+               Bad Request  
+
+               **Error Code:** `30051037` <br>
+               * AccountId is empty. <br>
+          '404':
+            description: |
+              **HTTP Status Code:** `404` <br>
+               Not Found  
+
+               **Error Code:** `30052027` <br>
+               * ZdmGroup not found. <br>
+        security:
+          - openapi_oauth:
+              - device:read:admin
+            openapi_authorization: []
+        extensions:
+          x-permissions:
+            - ZoomRooms:Read
+            - MoileDeviceManagement:Read
+          x-macro-scopes:
+            - device:read:admin
+          x-granular-scopes:
+            - device:read:list_zpa_versions:admin
+            - device:read:list_zpa_versions:master
     /devices/{deviceId}:
       get:
         tags:
@@ -37149,4 +37499,4 @@ rawSpecString: |
               webinar:write:admin:sip_dialing: webinar:write:admin:sip_dialing
               webinar:write:sip_dialing: webinar:write:sip_dialing
             extensions: {}
-konfigCliVersion: 1.38.32
+konfigCliVersion: 1.38.33
