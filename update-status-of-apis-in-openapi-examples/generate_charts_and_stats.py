@@ -81,7 +81,7 @@ def filter_outliers(logs):
 def parse_timestamp(timestamp: str) -> datetime:
     return datetime.strptime(timestamp, '%Y-%m-%dT%H:%M:%S.%fZ')
 
-def generate_plot_for_logs(logs, average_response_time):
+def generate_plot_for_logs(url, logs, average_response_time):
     # Filter out the response times that have a z-score greater than the threshold
     response_times = [parse_response_time(entry['responseTime']) for entry in logs]
     timestamps = [parse_timestamp(entry['timestamp']) for entry in logs]
@@ -98,7 +98,7 @@ def generate_plot_for_logs(logs, average_response_time):
     plt.plot_date(mdates.date2num(df['timestamp']), df['rolling_avg_24h'], linestyle='-', alpha=1, markersize=0)  # 24-hour rolling average is not transparent
     plt.xlabel('Time', fontsize=12)  # Increase the font size of the x-axis label
     plt.ylabel('Response Time (ms)', fontsize=12)  # Increase the font size of the y-axis label
-    plt.title('Response Time Over Time (4-Hour and 24-Hour Rolling Averages)', fontsize=14)  # Increase the font size of the title
+    plt.title(f'Response Time Over Time for {url} (4-Hour and 24-Hour Rolling Averages)', fontsize=14)  # Increase the font size of the title
     plt.xticks(rotation=45, fontsize=10)  # Increase the font size of the x-axis tick labels
     plt.yticks(fontsize=10)  # Increase the font size of the y-axis tick labels
     plt.grid(True)  # Add grid lines
@@ -119,10 +119,10 @@ def generate_charts_and_stats(file_path, average_response_time):
         logs = filter_outliers(logs)
         logs = filter_past_three_months(logs)
 
-        plt = generate_plot_for_logs(logs, average_response_time)
+        plt = generate_plot_for_logs(url, logs, average_response_time)
+        # url encode the URL
         url_without_scheme = url.replace('https://', '').replace('http://', '')
-        file_name = url_without_scheme.replace('/', '-')
-        file_name = file_name.replace('.', '-').replace(':', '-')
+        file_name = url_without_scheme.encode('utf-8').hex()
         file_name = f'{file_name}.png'
         chart_file_path = os.path.join(os.path.dirname(file_path), "response-time-charts", file_name)
 
