@@ -1,0 +1,2970 @@
+openapi: 3.0.0
+info:
+  title: Seel API
+  description: Seel API
+  version: 1.3.0
+servers:
+  - url: https://api-test.seel.com/v1
+    description: Test server
+  - url: https://api.seel.com/v1
+    description: Production server
+paths:
+  /{partner}/merchants:
+    post:
+      summary: Create a merchant
+      operationId: createMerchant
+      tags:
+        - Merchant
+      parameters:
+        - $ref: '#/components/parameters/api_key'
+        - $ref: '#/components/parameters/api_version'
+        - $ref: '#/components/parameters/content_type'
+        - $ref: '#/components/parameters/partner'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                shop_id:
+                  type: string
+                  example: shop123
+                  description: >-
+                    The identifier for the shop or store within the partner's
+                    platform.
+                admin_domain:
+                  type: string
+                  example: shop.myshopify.com
+                  description: >-
+                    The original subdomain domain for the shop provided by the
+                    ecommerce platform, e.g. subdomain.myshopify.com
+                shop_domain:
+                  type: string
+                  example: www.myshop.com
+                  description: >-
+                    The custom domain name assigned to the shop, e.g.
+                    www.myshop.com.
+                shop_platform:
+                  type: string
+                  example: Shopify
+                  description: >-
+                    The source ecommerce platform for the shop, e.g. Shopify,
+                    BigCommerce.
+                shop_currency:
+                  type: string
+                  example: USD
+                  description: >-
+                    3-letter ISO 4217 currency code for the primary currency
+                    used in the shop, e.g. USD, EUR.
+                shop_name:
+                  type: string
+                  example: My Shop
+                  description: The registered business name for the shop.
+                contact_name:
+                  type: string
+                  example: My Shop
+                  description: The registered business name for the merchant.
+                contact_email:
+                  type: string
+                  example: contact@myshop.com
+                  description: The contact email address on file for the merchant.
+                contact_phone_number:
+                  type: string
+                  example: 555-1234
+                  description: The phone number on file for the merchant.
+                seel_services:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      type:
+                        type: string
+                        example: seel-ra
+                        description: >-
+                          The product type for the service, e.g. seel-ra,
+                          seel-gsp.
+                      is_enabled:
+                        type: boolean
+                        example: true
+                        description: >-
+                          Boolean indicating if the service is currently enabled
+                          ('true') or disabled ('false') for the merchant.
+                      is_default_on:
+                        type: boolean
+                        example: true
+                        description: >-
+                          Default opt-in setting for the service widget. 'true'
+                          means opted in by default. 'false' means opted out by
+                          default.
+                    required:
+                      - type
+                      - is_default_on
+              required:
+                - seel_services
+                - shop_id
+                - admin_domain
+                - shop_domain
+                - shop_platform
+                - shop_currency
+                - shop_name
+                - contact_name
+                - contact_email
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Merchant'
+    get:
+      summary: List merchants
+      operationId: listMerchants
+      tags:
+        - Merchant
+      parameters:
+        - $ref: '#/components/parameters/api_key'
+        - $ref: '#/components/parameters/api_version'
+        - $ref: '#/components/parameters/content_type'
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/page_size'
+        - $ref: '#/components/parameters/partner'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  page:
+                    type: integer
+                    description: Current page number.
+                    example: 0
+                  page_size:
+                    type: integer
+                    description: Number of merchants per page.
+                    example: 0
+                  total:
+                    type: integer
+                    description: Total number of merchants.
+                    example: 0
+                  merchants:
+                    type: array
+                    description: List of merchants.
+                    items:
+                      $ref: '#/components/schemas/Merchant'
+  /{partner}/merchants/{merchant_id}:
+    post:
+      summary: Update a merchant
+      operationId: updateMerchant
+      tags:
+        - Merchant
+      parameters:
+        - name: merchant_id
+          in: path
+          description: ID of the merchant
+          required: true
+          schema:
+            type: string
+        - $ref: '#/components/parameters/api_key'
+        - $ref: '#/components/parameters/api_version'
+        - $ref: '#/components/parameters/content_type'
+        - $ref: '#/components/parameters/partner'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                shop_id:
+                  type: string
+                  example: shop123
+                  description: >-
+                    The identifier for the shop or store within the partner's
+                    platform.
+                admin_domain:
+                  type: string
+                  example: shop.myshopify.com
+                  description: >-
+                    The original subdomain domain for the shop provided by the
+                    ecommerce platform, e.g. subdomain.myshopify.com
+                shop_domain:
+                  type: string
+                  example: www.myshop.com
+                  description: >-
+                    The custom domain name assigned to the shop, e.g.
+                    www.myshop.com.
+                shop_platform:
+                  type: string
+                  example: Shopify
+                  description: >-
+                    The source ecommerce platform for the shop, e.g. Shopify,
+                    BigCommerce.
+                shop_currency:
+                  type: string
+                  example: USD
+                  description: >-
+                    3-letter ISO 4217 currency code for the primary currency
+                    used in the shop, e.g. USD, EUR.
+                shop_name:
+                  type: string
+                  example: My Shop
+                  description: The registered business name for the shop.
+                contact_name:
+                  type: string
+                  example: My Shop
+                  description: The registered business name for the merchant.
+                contact_email:
+                  type: string
+                  example: contact@myshop.com
+                  description: The contact email address on file for the merchant.
+                contact_phone_number:
+                  type: string
+                  example: 555-1234
+                  description: The phone number on file for the merchant.
+                seel_services:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      type:
+                        type: string
+                        example: seel-ra
+                        description: >-
+                          The product type for the service, e.g. seel-ra,
+                          seel-gsp.
+                      is_enabled:
+                        type: boolean
+                        example: true
+                        description: >-
+                          Boolean indicating if the service is currently enabled
+                          ('true') or disabled ('false') for the merchant.
+                      is_default_on:
+                        type: string
+                        example: 'on'
+                        description: >-
+                          Default opt-in setting for the service widget. 'true'
+                          means opted in by default. 'false' means opted out by
+                          default.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Merchant'
+    get:
+      summary: Get a merchant
+      operationId: getMerchant
+      tags:
+        - Merchant
+      parameters:
+        - name: merchant_id
+          in: path
+          description: ID of the merchant
+          required: true
+          schema:
+            type: string
+        - $ref: '#/components/parameters/api_key'
+        - $ref: '#/components/parameters/api_version'
+        - $ref: '#/components/parameters/partner'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Merchant'
+  /{partner}/quotes:
+    post:
+      summary: Create a quote
+      operationId: createQuote
+      tags:
+        - Quote
+      parameters:
+        - $ref: '#/components/parameters/partner'
+        - $ref: '#/components/parameters/api_key'
+        - $ref: '#/components/parameters/api_version'
+        - $ref: '#/components/parameters/content_type'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                cart_id:
+                  type: string
+                  description: The ID of a cart.
+                  example: '223128'
+                merchant_id:
+                  type: string
+                  description: The unique identifier for the merchant within Seel's system.
+                  example: '223128'
+                session_id:
+                  type: string
+                  description: The ID of the shopping session.
+                  example: '223128'
+                device_id:
+                  type: string
+                  description: The ID of the client device.
+                  example: device123
+                client_ip:
+                  type: string
+                  description: The IP address of the client.
+                  example: 127.0.0.1
+                type:
+                  type: string
+                  description: The type of the quote.
+                  example: seel-ra
+                line_items:
+                  type: array
+                  description: The list of items included in the quote.
+                  items:
+                    $ref: '#/components/schemas/Item'
+                shipping_address:
+                  $ref: '#/components/schemas/Address'
+                customer:
+                  $ref: '#/components/schemas/Customer'
+                extra_info:
+                  type: object
+                  description: Additional information for the quote
+                  example: {}
+              required:
+                - line_items
+                - session_id
+                - shipping_address
+                - customer
+                - type
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Quote'
+  /{partner}/quotes/{quote_id}:
+    get:
+      summary: Get a quote
+      operationId: getQuote
+      tags:
+        - Quote
+      parameters:
+        - name: quote_id
+          in: path
+          description: ID of the quote
+          required: true
+          schema:
+            type: string
+            default: '2023051501242226386401725266'
+        - $ref: '#/components/parameters/api_key'
+        - $ref: '#/components/parameters/api_version'
+        - $ref: '#/components/parameters/partner'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Quote'
+  /{partner}/products:
+    post:
+      summary: Create a product
+      operationId: createProduct
+      tags:
+        - Product
+      parameters:
+        - $ref: '#/components/parameters/partner'
+        - $ref: '#/components/parameters/api_key'
+        - $ref: '#/components/parameters/api_version'
+        - $ref: '#/components/parameters/content_type'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                merchant_id:
+                  type: string
+                  description: The unique identifier for the merchant within Seel's system.
+                  example: M12345
+                variant_id:
+                  type: string
+                  description: >-
+                    Variant id, the unique identifier of a product SKU. Use
+                    'product_id' if the product doesn't have any variants.
+                  example: V789
+                product_id:
+                  type: string
+                  description: Product id.
+                  example: P001
+                product_title:
+                  type: string
+                  description: Name of the product.
+                  example: Example Product
+                variant_title:
+                  type: string
+                  description: Title of the variant.
+                  example: Variant A
+                brand_name:
+                  type: string
+                  description: The Product Brand or Vendor.
+                  example: Acme
+                manufacturer:
+                  type: string
+                  description: Manufacturer of the item.
+                  example: Acme Corp
+                category_1:
+                  type: string
+                  description: Main product category.
+                  example: Electronics
+                category_2:
+                  type: string
+                  description: Secondary product category.
+                  example: Gadgets
+                category_3:
+                  type: string
+                  description: Tertiary product category.
+                  example: Smartphones
+                category_4:
+                  type: string
+                  description: Fourth level product category.
+                  example: Android
+                product_description:
+                  type: string
+                  description: Text description of the product.
+                  example: This is an example product.
+                image_url:
+                  type: string
+                  format: uri
+                  description: URL of the product image.
+                  example: https://example.com/product.jpg
+                price:
+                  type: number
+                  format: double
+                  description: List price of the product.
+                  example: 199.99
+                currency:
+                  type: string
+                  description: Currency of the price (e.g. USD, EUR).
+                  example: USD
+                requires_shipping:
+                  type: boolean
+                  description: Whether the product requires shipping.
+                  example: true
+                model_number:
+                  type: string
+                  description: Manufacturer model number.
+                  example: 123XYZ
+                condition:
+                  type: string
+                  description: Condition - new, used, refurbished.
+                  example: new
+                sku:
+                  type: string
+                  description: Stock keeping unit.
+                  example: SKU123
+                identifiers:
+                  type: object
+                  properties:
+                    serial_number:
+                      type: string
+                      description: Serial number of a specific product unit.
+                      example: SN123456
+                    gtin:
+                      type: string
+                      description: Global Trade Item Number identifier.
+                      example: GTIN123456
+                    upc:
+                      type: string
+                      description: Universal Product Code identifier.
+                      example: UPC789012
+                    isbn:
+                      type: string
+                      description: International Standard Book Number identifier.
+                      example: ISBN345678
+                    barcode:
+                      type: string
+                      description: Barcode identifying the product.
+                      example: '1234567890'
+                manufacturer_warranty:
+                  type: object
+                  properties:
+                    url:
+                      type: string
+                      format: uri
+                      description: >-
+                        A URL linking to the full details of the manufacturer's
+                        warranty, probably on the manufacturer's website.
+                      example: https://example.com/warranty-info
+                    term_length:
+                      type: number
+                      description: >-
+                        The length of the manufacturer warranty coverage in
+                        months.
+                      example: 12
+                  description: >-
+                    Information about the manufacturer's warranty. This is
+                    optional, but if you can provide it please do as it can
+                    significantly speed up the warranty matching process.
+                dimensions:
+                  type: object
+                  properties:
+                    length:
+                      type: number
+                      description: Length of the product in centimeters.
+                      example: 15
+                    width:
+                      type: number
+                      description: Width of the product in centimeters.
+                      example: 10
+                    height:
+                      type: number
+                      description: Height of the product in centimeters.
+                      example: 5
+                    unit:
+                      type: string
+                      description: Unit of measurement (e.g., cm, in, ft, m).
+                      example: cm
+                  description: Product dimensions.
+                weight:
+                  type: object
+                  properties:
+                    value:
+                      type: number
+                      description: Weight of the product.
+                      example: 500
+                    unit:
+                      type: string
+                      description: Unit of weight (e.g., g, oz, lb, kg).
+                      example: g
+                  description: Product weight.
+                product_attributes:
+                  type: object
+                  properties:
+                    color:
+                      type: string
+                      description: Color of the product.
+                      example: Black
+                    size:
+                      type: string
+                      description: Size of the product.
+                      example: Medium
+                  description: Other product attributes.
+                created_ts:
+                  type: string
+                  format: date-time
+                  description: Timestamp when the product was created.
+                  example: '2023-08-28T10:00:00Z'
+                updated_ts:
+                  type: string
+                  format: date-time
+                  description: Timestamp when the product was updated.
+                  example: '2023-08-28T12:30:00Z'
+              required:
+                - product_id
+                - product_title
+                - brand_name
+                - price
+                - currency
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+  /{partner}/products/batch:
+    post:
+      summary: Batch create products
+      operationId: createProductBatch
+      tags:
+        - Product
+      parameters:
+        - $ref: '#/components/parameters/api_key'
+        - $ref: '#/components/parameters/api_version'
+        - $ref: '#/components/parameters/content_type'
+        - $ref: '#/components/parameters/partner'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: List of products.
+              properties:
+                products:
+                  type: array
+                  description: The list of products.
+                  items:
+                    $ref: '#/components/schemas/Product'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  products:
+                    type: array
+                    description: The list of products.
+                    items:
+                      $ref: '#/components/schemas/Product'
+  /{partner}/products/{product_id}:
+    get:
+      summary: Get a product
+      operationId: getProduct
+      tags:
+        - Product
+      parameters:
+        - name: product_id
+          in: path
+          description: ID of the product
+          required: true
+          schema:
+            type: string
+            default: '2023051501242226386401725266'
+        - $ref: '#/components/parameters/api_key'
+        - $ref: '#/components/parameters/api_version'
+        - $ref: '#/components/parameters/partner'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+    post:
+      summary: Update a product
+      operationId: updateProduct
+      tags:
+        - Product
+      parameters:
+        - name: product_id
+          in: path
+          description: ID of the product
+          required: true
+          schema:
+            type: string
+            default: '2023051501242226386401725266'
+        - $ref: '#/components/parameters/partner'
+        - $ref: '#/components/parameters/api_key'
+        - $ref: '#/components/parameters/api_version'
+        - $ref: '#/components/parameters/content_type'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                merchant_id:
+                  type: string
+                  description: The unique identifier for the merchant within Seel's system.
+                  example: M12345
+                variant_id:
+                  type: string
+                  description: >-
+                    Variant id, the unique identifier of a product SKU. Use
+                    'product_id' if the product doesn't have any variants.
+                  example: V789
+                product_id:
+                  type: string
+                  description: Product id.
+                  example: P001
+                product_title:
+                  type: string
+                  description: Name of the product.
+                  example: Example Product
+                variant_title:
+                  type: string
+                  description: Title of the variant.
+                  example: Variant A
+                brand_name:
+                  type: string
+                  description: The Product Brand or Vendor.
+                  example: Acme
+                manufacturer:
+                  type: string
+                  description: Manufacturer of the item.
+                  example: Acme Corp
+                category_1:
+                  type: string
+                  description: Main product category.
+                  example: Electronics
+                category_2:
+                  type: string
+                  description: Secondary product category.
+                  example: Gadgets
+                category_3:
+                  type: string
+                  description: Tertiary product category.
+                  example: Smartphones
+                category_4:
+                  type: string
+                  description: Fourth level product category.
+                  example: Android
+                product_description:
+                  type: string
+                  description: Text description of the product.
+                  example: This is an example product.
+                image_url:
+                  type: string
+                  format: uri
+                  description: URL of the product image.
+                  example: https://example.com/product.jpg
+                price:
+                  type: number
+                  format: double
+                  description: List price of the product.
+                  example: 199.99
+                currency:
+                  type: string
+                  description: Currency of the price (e.g. USD, EUR).
+                  example: USD
+                requires_shipping:
+                  type: boolean
+                  description: Whether the product requires shipping.
+                  example: true
+                model_number:
+                  type: string
+                  description: Manufacturer model number.
+                  example: 123XYZ
+                condition:
+                  type: string
+                  description: Condition - new, used, refurbished.
+                  example: new
+                sku:
+                  type: string
+                  description: Stock keeping unit.
+                  example: SKU123
+                identifiers:
+                  type: object
+                  properties:
+                    serial_number:
+                      type: string
+                      description: Serial number of a specific product unit.
+                      example: SN123456
+                    gtin:
+                      type: string
+                      description: Global Trade Item Number identifier.
+                      example: GTIN123456
+                    upc:
+                      type: string
+                      description: Universal Product Code identifier.
+                      example: UPC789012
+                    isbn:
+                      type: string
+                      description: International Standard Book Number identifier.
+                      example: ISBN345678
+                    barcode:
+                      type: string
+                      description: Barcode identifying the product.
+                      example: '1234567890'
+                manufacturer_warranty:
+                  type: object
+                  properties:
+                    url:
+                      type: string
+                      format: uri
+                      description: >-
+                        A URL linking to the full details of the manufacturer's
+                        warranty, probably on the manufacturer's website.
+                      example: https://example.com/warranty-info
+                    term_length:
+                      type: number
+                      description: >-
+                        The length of the manufacturer warranty coverage in
+                        months.
+                      example: 12
+                  description: >-
+                    Information about the manufacturer's warranty. This is
+                    optional, but if you can provide it please do as it can
+                    significantly speed up the warranty matching process.
+                dimensions:
+                  type: object
+                  properties:
+                    length:
+                      type: number
+                      description: Length of the product in centimeters.
+                      example: 15
+                    width:
+                      type: number
+                      description: Width of the product in centimeters.
+                      example: 10
+                    height:
+                      type: number
+                      description: Height of the product in centimeters.
+                      example: 5
+                    unit:
+                      type: string
+                      description: Unit of measurement (e.g., cm, in, ft, m).
+                      example: cm
+                  description: Product dimensions.
+                weight:
+                  type: object
+                  properties:
+                    value:
+                      type: number
+                      description: Weight of the product.
+                      example: 500
+                    unit:
+                      type: string
+                      description: Unit of weight (e.g., g, oz, lb, kg).
+                      example: g
+                  description: Product weight.
+                product_attributes:
+                  type: object
+                  properties:
+                    color:
+                      type: string
+                      description: Color of the product.
+                      example: Black
+                    size:
+                      type: string
+                      description: Size of the product.
+                      example: Medium
+                  description: Other product attributes.
+                created_ts:
+                  type: string
+                  format: date-time
+                  description: Timestamp when the product was created.
+                  example: '2023-08-28T10:00:00Z'
+                updated_ts:
+                  type: string
+                  format: date-time
+                  description: Timestamp when the product was updated.
+                  example: '2023-08-28T12:30:00Z'
+              required:
+                - product_id
+                - product_title
+                - brand_name
+                - price
+                - currency
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+    delete:
+      summary: Delete a product
+      operationId: deleteProduct
+      tags:
+        - Product
+      parameters:
+        - name: product_id
+          in: path
+          description: ID of the product
+          required: true
+          schema:
+            type: string
+        - $ref: '#/components/parameters/api_key'
+        - $ref: '#/components/parameters/api_version'
+        - $ref: '#/components/parameters/partner'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+  /{partner}/products/{product_id}/plans:
+    get:
+      summary: Get product plans
+      operationId: getProductPlans
+      tags:
+        - Product
+      parameters:
+        - name: product_id
+          in: path
+          description: ID of the product
+          required: true
+          schema:
+            type: string
+            default: '2023051501242226386401725266'
+        - $ref: '#/components/parameters/api_key'
+        - $ref: '#/components/parameters/api_version'
+        - $ref: '#/components/parameters/partner'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                description: List of product plans.
+                items:
+                  $ref: '#/components/schemas/ProductPlan'
+  /{partner}/orders:
+    post:
+      summary: Create an order
+      operationId: createOrder
+      tags:
+        - Order
+      parameters:
+        - $ref: '#/components/parameters/api_key'
+        - $ref: '#/components/parameters/api_version'
+        - $ref: '#/components/parameters/content_type'
+        - $ref: '#/components/parameters/partner'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                order_id:
+                  type: string
+                  description: The unique identifier for the order in the system.
+                  example: order12345
+                order_number:
+                  type: string
+                  description: >-
+                    The reference number that is visible to the merchant and
+                    shopper. Use the order ID value if there is no separate
+                    order number.
+                  example: '#12345'
+                session_id:
+                  type: string
+                  description: Shopping session ID of the order
+                  example: '12345678'
+                cart_id:
+                  type: string
+                  description: Cart ID of the order
+                  example: cart_000001
+                merchant_id:
+                  type: string
+                  description: Merchant ID of the order
+                  example: merchant_000001
+                device_id:
+                  type: string
+                  description: The ID of the client device.
+                  example: device123
+                client_ip:
+                  type: string
+                  description: The IP address of the client.
+                  example: 127.0.0.1
+                created_ts:
+                  type: string
+                  description: Order created timestamp in milliseconds
+                  example: '1686049398000'
+                line_items:
+                  type: array
+                  description: The list of items included in the order.
+                  items:
+                    $ref: '#/components/schemas/Item'
+                shipping_address:
+                  $ref: '#/components/schemas/Address'
+                customer:
+                  $ref: '#/components/schemas/Customer'
+                seel_services:
+                  type: array
+                  description: The list of Seel services of the order.
+                  items:
+                    type: object
+                    properties:
+                      type:
+                        type: string
+                        description: Cover type of the service
+                        example: seel-ra
+                      price:
+                        type: number
+                        format: double
+                        description: Price of the service
+                        example: 1.99
+                      quote_id:
+                        type: string
+                        description: Quote ID of the service
+                        example: '2023051501242226386401725266'
+                      extra_info:
+                        type: object
+                        description: Additional information for the service
+                        example: {}
+                extra_info:
+                  type: object
+                  description: Additional information for the order
+                  example: {}
+              required:
+                - order_id
+                - order_number
+                - session_id
+                - created_ts
+                - line_items
+                - shipping_address
+                - customer
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+  /{partner}/orders/batch:
+    post:
+      summary: Batch create orders
+      operationId: createOrderBatch
+      tags:
+        - Order
+      parameters:
+        - $ref: '#/components/parameters/api_key'
+        - $ref: '#/components/parameters/api_version'
+        - $ref: '#/components/parameters/content_type'
+        - $ref: '#/components/parameters/partner'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: List of orders.
+              properties:
+                orders:
+                  type: array
+                  description: The list of orders.
+                  items:
+                    $ref: '#/components/schemas/Order'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  orders:
+                    type: array
+                    description: The list of orders.
+                    items:
+                      $ref: '#/components/schemas/Order'
+  /{partner}/orders/{order_id}:
+    post:
+      summary: Update an order
+      operationId: updateOrder
+      tags:
+        - Order
+      parameters:
+        - name: order_id
+          in: path
+          description: ID of the order
+          required: true
+          schema:
+            type: string
+        - $ref: '#/components/parameters/api_key'
+        - $ref: '#/components/parameters/api_version'
+        - $ref: '#/components/parameters/content_type'
+        - $ref: '#/components/parameters/partner'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                updated_ts:
+                  type: string
+                  description: Order updated timestamp in milliseconds
+                  example: '1680749645592'
+                line_items:
+                  type: array
+                  description: The list of items included in the order.
+                  items:
+                    $ref: '#/components/schemas/Item'
+                shipping_address:
+                  $ref: '#/components/schemas/Address'
+                customer:
+                  $ref: '#/components/schemas/Customer'
+                extra_info:
+                  type: object
+                  description: Additional information for the order
+                  example: {}
+              required:
+                - updated_ts
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+    get:
+      summary: Get an order
+      operationId: getOrder
+      tags:
+        - Order
+      parameters:
+        - name: order_id
+          in: path
+          description: ID of the order
+          required: true
+          schema:
+            type: string
+        - $ref: '#/components/parameters/api_key'
+        - $ref: '#/components/parameters/api_version'
+        - $ref: '#/components/parameters/partner'
+      responses:
+        '200':
+          description: Get an order
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+  /{partner}/orders/{order_id}/cancel:
+    post:
+      summary: Cancel an order
+      operationId: cancelOrder
+      tags:
+        - Order
+      parameters:
+        - name: order_id
+          in: path
+          description: ID of the order
+          required: true
+          schema:
+            type: string
+        - $ref: '#/components/parameters/api_key'
+        - $ref: '#/components/parameters/api_version'
+        - $ref: '#/components/parameters/partner'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+  /{partner}/orders/{order_id}/fulfillments:
+    post:
+      summary: Create a fulfillment
+      operationId: createFulfillment
+      tags:
+        - Fulfillment
+      parameters:
+        - name: order_id
+          in: path
+          description: ID of the order
+          required: true
+          schema:
+            type: string
+        - $ref: '#/components/parameters/api_key'
+        - $ref: '#/components/parameters/api_version'
+        - $ref: '#/components/parameters/content_type'
+        - $ref: '#/components/parameters/partner'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Fulfillment'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Fulfillment'
+    get:
+      summary: List fulfillments
+      operationId: listFulfillments
+      tags:
+        - Fulfillment
+      parameters:
+        - name: order_id
+          in: path
+          description: ID of the order
+          required: true
+          schema:
+            type: string
+        - $ref: '#/components/parameters/api_key'
+        - $ref: '#/components/parameters/api_version'
+        - $ref: '#/components/parameters/content_type'
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/page_size'
+        - $ref: '#/components/parameters/partner'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  page:
+                    type: integer
+                    description: Current page number.
+                    example: 0
+                  page_size:
+                    type: integer
+                    description: Number of fulfillments per page.
+                    example: 0
+                  total:
+                    type: integer
+                    description: Total number of fulfillments.
+                    example: 0
+                  fulfillments:
+                    type: array
+                    description: List of fulfillments.
+                    items:
+                      $ref: '#/components/schemas/Fulfillment'
+  /{partner}/orders/{order_id}/fulfillments/{fulfillment_id}:
+    post:
+      summary: Update a fulfillment
+      operationId: updateFulfillment
+      tags:
+        - Fulfillment
+      parameters:
+        - name: order_id
+          in: path
+          description: ID of the order
+          required: true
+          schema:
+            type: string
+        - name: fulfillment_id
+          in: path
+          description: ID of the fulfillment
+          required: true
+          schema:
+            type: string
+        - $ref: '#/components/parameters/api_key'
+        - $ref: '#/components/parameters/api_version'
+        - $ref: '#/components/parameters/content_type'
+        - $ref: '#/components/parameters/partner'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                updated_ts:
+                  type: string
+                  format: date-time
+                  description: Fulfillment updated timestamp in milliseconds
+                  example: '1686049398000'
+                tracking_number:
+                  type: string
+                  description: The tracking number of the fulfillment
+                  example: YT1231232113
+                carrier:
+                  type: string
+                  description: The shipping carrier of the fulfillment
+                  example: USPS
+                tracking_url:
+                  type: string
+                  description: The tracking url of the fulfillment
+                  example: https://tools.usps.com/go/TrackConfirmAction_input
+                shipment_status:
+                  type: string
+                  description: The shipping status of the fulfillment
+                  example: delivered
+                  enum:
+                    - shipped
+                    - delivered
+                line_items:
+                  type: array
+                  description: The list of items included in the fulfillment.
+                  items:
+                    type: object
+                    properties:
+                      line_item_id:
+                        type: string
+                        description: The id of the line item.
+                        example: '12345678'
+                      quantity:
+                        type: integer
+                        description: The quantity of the line item.
+                        example: 1
+                    required:
+                      - line_item_id
+                      - quantity
+              required:
+                - updated_ts
+                - tracking_number
+                - carrier
+                - shipment_status
+                - line_items
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Fulfillment'
+    get:
+      summary: Get a fulfillment
+      operationId: getFulfillment
+      tags:
+        - Fulfillment
+      parameters:
+        - name: order_id
+          in: path
+          description: ID of the order
+          required: true
+          schema:
+            type: string
+        - name: fulfillment_id
+          in: path
+          description: ID of the fulfillment
+          required: true
+          schema:
+            type: string
+        - $ref: '#/components/parameters/api_key'
+        - $ref: '#/components/parameters/api_version'
+        - $ref: '#/components/parameters/partner'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Fulfillment'
+  /{partner}/orders/{order_id}/fulfillments/{fulfillment_id}/cancel:
+    post:
+      summary: Cancel a fulfillment
+      operationId: cancelFulfillment
+      tags:
+        - Fulfillment
+      parameters:
+        - name: order_id
+          in: path
+          description: ID of the order
+          required: true
+          schema:
+            type: string
+        - name: fulfillment_id
+          in: path
+          description: ID of the fulfillment
+          required: true
+          schema:
+            type: string
+        - $ref: '#/components/parameters/api_key'
+        - $ref: '#/components/parameters/api_version'
+        - $ref: '#/components/parameters/partner'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Fulfillment'
+  /{partner}/contracts:
+    get:
+      summary: List contracts
+      operationId: listContracts
+      tags:
+        - Contract
+      parameters:
+        - $ref: '#/components/parameters/api_key'
+        - $ref: '#/components/parameters/api_version'
+        - $ref: '#/components/parameters/content_type'
+        - $ref: '#/components/parameters/order_id'
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/page_size'
+        - $ref: '#/components/parameters/partner'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  page:
+                    type: integer
+                    description: Current page number.
+                    example: 0
+                  page_size:
+                    type: integer
+                    description: Number of contracts per page.
+                    example: 0
+                  total:
+                    type: integer
+                    description: Total number of contracts.
+                    example: 0
+                  contracts:
+                    type: array
+                    description: List of contracts.
+                    items:
+                      $ref: '#/components/schemas/Contract'
+  /{partner}/contracts/{contract_id}:
+    get:
+      summary: Get a contract
+      operationId: getContract
+      tags:
+        - Contract
+      parameters:
+        - name: contract_id
+          in: path
+          description: ID of the contract
+          required: true
+          schema:
+            type: string
+        - $ref: '#/components/parameters/api_key'
+        - $ref: '#/components/parameters/api_version'
+        - $ref: '#/components/parameters/partner'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Contract'
+  /{partner}/claims:
+    get:
+      summary: List claims
+      operationId: listClaims
+      tags:
+        - Claim
+      parameters:
+        - $ref: '#/components/parameters/api_key'
+        - $ref: '#/components/parameters/api_version'
+        - $ref: '#/components/parameters/content_type'
+        - $ref: '#/components/parameters/order_id'
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/page_size'
+        - $ref: '#/components/parameters/partner'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  page:
+                    type: integer
+                    description: Current page number.
+                    example: 0
+                  page_size:
+                    type: integer
+                    description: Number of claims per page.
+                    example: 0
+                  total:
+                    type: integer
+                    description: Total number of claims.
+                    example: 0
+                  claims:
+                    type: array
+                    description: List of claims.
+                    items:
+                      $ref: '#/components/schemas/Claim'
+  /{partner}/claims/{claim_id}:
+    get:
+      summary: Get a claim
+      operationId: getClaim
+      tags:
+        - Claim
+      parameters:
+        - name: claim_id
+          in: path
+          description: ID of the claim
+          required: true
+          schema:
+            type: string
+        - $ref: '#/components/parameters/api_key'
+        - $ref: '#/components/parameters/api_version'
+        - $ref: '#/components/parameters/partner'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Claim'
+  /{partner}/invoices:
+    get:
+      summary: List invoices
+      operationId: listInvoices
+      tags:
+        - Invoice
+      parameters:
+        - $ref: '#/components/parameters/api_key'
+        - $ref: '#/components/parameters/api_version'
+        - $ref: '#/components/parameters/content_type'
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/page_size'
+        - $ref: '#/components/parameters/partner'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  page:
+                    type: integer
+                    description: Current page number.
+                    example: 0
+                  page_size:
+                    type: integer
+                    description: Number of invoices per page.
+                    example: 0
+                  total:
+                    type: integer
+                    description: Total number of invoices.
+                    example: 0
+                  invoices:
+                    type: array
+                    description: List of invoices.
+                    items:
+                      $ref: '#/components/schemas/Invoice'
+  /{partner}/invoices/{invoice_id}:
+    get:
+      summary: Get an invoice
+      operationId: getInvoice
+      tags:
+        - Invoice
+      parameters:
+        - name: invoice_id
+          in: path
+          description: ID of the invoice
+          required: true
+          schema:
+            type: string
+            example: '12345'
+        - $ref: '#/components/parameters/api_key'
+        - $ref: '#/components/parameters/api_version'
+        - $ref: '#/components/parameters/partner'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Invoice'
+  /{partner}/events:
+    post:
+      summary: Create events
+      operationId: createEvent
+      tags:
+        - Event
+      parameters:
+        - $ref: '#/components/parameters/api_key'
+        - $ref: '#/components/parameters/api_version'
+        - $ref: '#/components/parameters/content_type'
+        - $ref: '#/components/parameters/partner'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                session_id:
+                  type: string
+                  description: Session ID
+                  example: '1680749645592'
+                event_ts:
+                  type: string
+                  description: Event created timestamp in milliseconds
+                  example: '1680749645592'
+                customer_id:
+                  type: string
+                  description: Customer ID
+                  example: '229413056'
+                device_id:
+                  type: string
+                  description: Device ID
+                  example: 3kGv6F1i8L
+                client_ip:
+                  type: string
+                  description: Browser IP address
+                  example: 64.64.230.190
+                event_source:
+                  type: string
+                  description: Event source
+                  example: web
+                event_type:
+                  type: string
+                  description: Event type
+                  example: cart_add
+                  enum:
+                    - product_page_enter
+                    - product_page_exit
+                    - product_share
+                    - favorite_add
+                    - favorite_remove
+                    - cart_add
+                    - cart_remove
+                    - ra_checked
+                    - ra_unchecked
+                    - checkout_begin
+                    - checkout_complete
+                event_info:
+                  type: object
+                  description: >-
+                    Each event_type has its own unique schema. For specific
+                    details, please refer to the custom pixel guide.
+                  example: {}
+              required:
+                - session_id
+                - customer_id
+                - event_source
+                - event_type
+                - event_info
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Event'
+components:
+  schemas:
+    Merchant:
+      type: object
+      properties:
+        merchant_id:
+          type: string
+          example: abc123
+          description: The unique identifier for the merchant within Seel's system.
+        shop_id:
+          type: string
+          example: shop123
+          description: The identifier for the shop or store within the partner's platform.
+        admin_domain:
+          type: string
+          example: shop.myshopify.com
+          description: >-
+            The original subdomain domain for the shop provided by the ecommerce
+            platform, e.g. subdomain.myshopify.com
+        shop_domain:
+          type: string
+          example: www.myshop.com
+          description: The custom domain name assigned to the shop, e.g. www.myshop.com.
+        shop_platform:
+          type: string
+          example: Shopify
+          description: >-
+            The source ecommerce platform for the shop, e.g. Shopify,
+            BigCommerce.
+        shop_currency:
+          type: string
+          example: USD
+          description: >-
+            3-letter ISO 4217 currency code for the primary currency used in the
+            shop, e.g. USD, EUR.
+        shop_name:
+          type: string
+          example: My Shop
+          description: The registered business name for the shop.
+        contact_name:
+          type: string
+          example: My Shop
+          description: The registered business name for the merchant.
+        contact_email:
+          type: string
+          example: contact@myshop.com
+          description: The contact email address on file for the merchant.
+        contact_phone_number:
+          type: string
+          example: 555-1234
+          description: The phone number on file for the merchant.
+        seel_services:
+          type: array
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+                example: seel-ra
+                description: The product type for the service, e.g. seel-ra, seel-gsp.
+              is_enabled:
+                type: boolean
+                example: true
+                description: >-
+                  Boolean indicating if the service is currently enabled
+                  ('true') or disabled ('false') for the merchant.
+              is_default_on:
+                type: string
+                example: 'on'
+                description: >-
+                  Default opt-in setting for the service widget. 'true' means
+                  opted in by default. 'false' means opted out by default.
+              disabled_reason:
+                type: string
+                example: excessive_loss_ratio
+                description: >-
+                  The reason why the service is disabled for this merchant if
+                  applicable.
+              updated_ts:
+                type: string
+                format: date-time
+                description: The timestamp when the enabled service status was updated.
+                example: '1686049398000'
+        created_ts:
+          type: string
+          format: date-time
+          description: The timestamp when the merchant was created.
+          example: '1686049398000'
+        updated_ts:
+          type: string
+          format: date-time
+          description: The timestamp when the merchant was last updated.
+          example: '1686049398000'
+    Quote:
+      type: object
+      properties:
+        quote_id:
+          type: string
+          description: The ID of the quote.
+          example: '223128'
+        cart_id:
+          type: string
+          description: The ID of a cart.
+          example: '223128'
+        merchant_id:
+          type: string
+          description: The unique identifier for the merchant within Seel's system.
+          example: '223128'
+        session_id:
+          type: string
+          description: The ID of the session.
+          example: '223128'
+        device_id:
+          type: string
+          description: The ID of the client device.
+          example: device123
+        client_ip:
+          type: string
+          description: The IP address of the client.
+          example: 127.0.0.1
+        type:
+          type: string
+          description: The type of the quote.
+          example: seel-ra
+        price:
+          type: number
+          format: double
+          description: The price of the quote.
+          example: 1.99
+        currency:
+          type: string
+          description: The three-letter currency code (ISO 4217 format), i.e. USD etc.
+          example: USD
+        status:
+          type: string
+          description: The status of the quote.
+          example: accepted
+          enum:
+            - accepted
+            - rejected
+        created_ts:
+          type: string
+          format: date-time
+          description: Quote created timestamp in milliseconds
+          example: '1686049398000'
+        line_items:
+          type: array
+          description: The list of items included in the quote.
+          items:
+            $ref: '#/components/schemas/Item'
+        shipping_address:
+          $ref: '#/components/schemas/Address'
+        customer:
+          $ref: '#/components/schemas/Customer'
+        extra_info:
+          type: object
+          description: Additional information for the order
+          example: {}
+    Order:
+      type: object
+      properties:
+        order_id:
+          type: string
+          description: The unique identifier for the order in the system.
+          example: '223128'
+        order_number:
+          type: string
+          description: >-
+            The reference number that is visible to the merchant and shopper.
+            Use the order ID value if there is no separate order number.
+          example: '223128'
+        cart_id:
+          type: string
+          description: The ID of a cart.
+          example: '223128'
+        merchant_id:
+          type: string
+          description: The unique identifier for the merchant within Seel's system.
+          example: '223128'
+        session_id:
+          type: string
+          description: The ID of the session.
+          example: '223128'
+        device_id:
+          type: string
+          description: The ID of the client device.
+          example: device123
+        client_ip:
+          type: string
+          description: The IP address of the client.
+          example: 127.0.0.1
+        created_ts:
+          type: string
+          format: date-time
+          description: Order created timestamp in milliseconds
+          example: '1686049398000'
+        cancelled_ts:
+          type: string
+          format: date-time
+          description: Order cancelled timestamp in milliseconds
+          example: '1686049398000'
+        updated_ts:
+          type: string
+          format: date-time
+          description: Order updated timestamp in milliseconds
+          example: '1686049398000'
+        line_items:
+          type: array
+          description: The list of items included in the quote.
+          items:
+            $ref: '#/components/schemas/Item'
+        shipping_address:
+          $ref: '#/components/schemas/Address'
+        fulfillments:
+          type: array
+          description: The list of fulfillments for the order.
+          items:
+            $ref: '#/components/schemas/Fulfillment'
+        seel_services:
+          type: array
+          description: The list of Seel services of the order.
+          items:
+            $ref: '#/components/schemas/SeelService'
+        refunds:
+          type: array
+          description: The list of refunds for the order.
+          items:
+            $ref: '#/components/schemas/OrderRefund'
+        customer:
+          $ref: '#/components/schemas/Customer'
+        extra_info:
+          type: object
+          description: Additional information for the order
+          example: {}
+    OrderRefund:
+      type: object
+      properties:
+        refund_id:
+          type: string
+          description: The unique identifier of the claim.
+          example: '2023010112345678'
+        created_ts:
+          type: string
+          format: date-time
+          nullable: true
+          description: The timestamp in milliseconds when the contract was created.
+          example: '1686049398000'
+        refund_amount:
+          type: number
+          format: double
+          description: The refund amount.
+          example: 19.99
+        refund_reason:
+          type: string
+          description: The refund reason.
+          example: refund reason
+        line_items:
+          type: array
+          description: Items related to the refund
+          items:
+            type: object
+            properties:
+              line_item_id:
+                type: string
+              quantity:
+                type: integer
+    Contract:
+      type: object
+      properties:
+        contract_id:
+          type: string
+          description: The unique identifier of the contract.
+          example: '2023010112345678'
+        order_id:
+          type: string
+          description: The identifier of the order associated with the contract.
+          example: '2023010112345678'
+        quote_id:
+          type: string
+          description: The identifier of the quote associated with the contract.
+          example: '2023010112345678'
+        customer:
+          $ref: '#/components/schemas/Customer'
+        premium:
+          type: number
+          format: double
+          description: The premium (i.e., cost) of the contract.
+          example: 1.99
+        premium_tax:
+          type: number
+          format: double
+          description: The tax applied to the contract premium.
+          example: 0.99
+        currency:
+          type: string
+          description: The currency of the contract.
+          example: USD
+        status:
+          type: string
+          description: The current status of the contract (e.g., "active", "cancelled").
+          example: active
+          enum:
+            - active
+            - cancelled
+            - pending
+        cancelled_ts:
+          type: string
+          format: date-time
+          nullable: true
+          description: >-
+            The timestamp in millisecond when the contract was cancelled (if
+            applicable).
+          example: '1686049398000'
+        created_ts:
+          type: string
+          format: date-time
+          nullable: true
+          description: The timestamp in millisecond when the contract was created.
+          example: '1686049398000'
+        updated_ts:
+          type: string
+          format: date-time
+          nullable: true
+          description: The timestamp in millisecond when the contract was updated.
+          example: '1686049398000'
+        covered_items:
+          type: array
+          items:
+            type: object
+            properties:
+              line_item_id:
+                type: string
+                description: The line item id covered by the contract.
+              quantity:
+                type: integer
+                description: The quantity of the line item covered by the contract.
+              product_id:
+                type: string
+                description: The ID of the product.
+                example: 43f6d61d-9f19-45aa-a941-a43dfe8d0045
+              variant_id:
+                type: string
+                description: The ID of the product variant.
+                example: 91232f4c-0acd-4229-a418-bc03c5777359
+              tracking_number:
+                type: string
+                description: The tracking number associated with the asset shipment.
+              carrier:
+                type: string
+                description: The carrier used to ship the asset.
+              covered_value:
+                type: number
+                format: double
+                description: The value covered by the contract.
+    Claim:
+      type: object
+      properties:
+        claim_id:
+          type: string
+          description: The unique identifier of the claim.
+          example: '2023010112345678'
+        order_id:
+          type: string
+          description: The identifier of the order associated with the claim.
+          example: '2023010112345678'
+        contract_id:
+          type: string
+          description: The identifier of the contract associated with the claim.
+          example: '20230101123456781234'
+        payout_amount:
+          type: number
+          format: double
+          description: The settled amount of the claim.
+          example: 19.99
+        status:
+          type: string
+          description: The status of the claim.
+          example: pending
+          enum:
+            - pending
+            - accepted
+            - rejected
+        claim_type:
+          type: string
+          description: The status of the claim.
+          example: return
+          enum:
+            - return
+            - loss
+            - damage
+            - delay
+            - theft
+        reject_reason:
+          type: string
+          description: The reject reason of the claim.
+          example: reject reason
+        claim_details:
+          type: array
+          description: Items related to the claim
+          example:
+            - line_item_id: '12345678'
+              quantity: 2
+              reason: not_fit
+          items:
+            type: object
+            properties:
+              claim_items:
+                type: array
+                description: Items related to the claim
+                example:
+                  - line_item_id: '12345678'
+                    quantity: 1
+                    reason: not_fit
+                items:
+                  type: object
+                  properties:
+                    line_item_id:
+                      type: string
+                      description: The line item id covered by the contract.
+                    quantity:
+                      type: integer
+                      description: The quantity of the line item covered by the contract.
+                    reason:
+                      type: string
+                      description: The reason of the claim.
+              fulfillment_id:
+                type: string
+                description: This field exists when claim_type is delay, loss or theft.
+                example: '202014102341'
+        updated_ts:
+          type: string
+          format: date-time
+          nullable: true
+          description: >-
+            The timestamp in milliseconds when the contract was cancelled (if
+            applicable).
+          example: '1686049398000'
+        created_ts:
+          type: string
+          format: date-time
+          nullable: true
+          description: The timestamp in milliseconds when the contract was created.
+          example: '1686049398000'
+    Invoice:
+      type: object
+      properties:
+        invoice_id:
+          type: string
+          description: The ID of the invoice.
+          example: '12345'
+        merchant_id:
+          type: string
+          description: The ID of the merchant.
+          example: '12345'
+        billing_cycle:
+          type: integer
+          description: The number of the billing cycle.
+          example: 1
+        billing_date:
+          type: string
+          description: The date when the merchant was charged for contracts sold.
+          example: '1686049398000'
+        billing_start_date:
+          type: string
+          description: The start date of the billing cycle.
+          example: '1686049398000'
+        billing_end_date:
+          type: string
+          description: The end date of the billing cycle.
+          example: '1686049398000'
+        currency:
+          type: string
+          description: The three-letter currency code (ISO 4217 format).
+          example: USD
+        status:
+          type: string
+          description: The status of the invoice.
+          example: unpaid
+          enum:
+            - unpaid
+            - paid
+        invoice_amount:
+          type: number
+          format: double
+          description: The amount of the invoice.
+          example: 190
+        invoice_link:
+          type: string
+          description: URL of the invoice
+          example: https://invoicelinke.com
+        invoice_items:
+          type: array
+          description: A list of contracts associated with this invoice.
+          items:
+            type: object
+            properties:
+              contract_id:
+                type: string
+                description: The ID of the contract sold during the billing cycle.
+              order_id:
+                type: string
+                description: The ID of the order.
+              order_number:
+                type: string
+                description: Order number
+              product_type:
+                type: string
+                description: The protection plan name.
+                example: buyer protection
+              created_ts:
+                type: string
+                format: date-time
+                description: The timestamp when the contract was purchased.
+              cancelled_ts:
+                type: string
+                format: date-time
+                description: The timestamp when the contract was cancelled.
+              amount_collected:
+                type: number
+                format: double
+                description: >-
+                  The protection cost of the contract to collect from the
+                  merchant.
+                example: 9.99
+              amount_reconciled:
+                type: number
+                format: double
+                description: The amount refunded due to contract cancellation.
+                example: 9.99
+    Customer:
+      type: object
+      properties:
+        customer_id:
+          type: string
+          description: The unique identifier for the customer
+          example: cus_123
+        first_name:
+          type: string
+          description: The first name of the customer
+          example: John
+        last_name:
+          type: string
+          description: The last name of the customer
+          example: Doe
+        email:
+          type: string
+          description: The email address of the customer
+          example: johndoe@test.com
+        phone:
+          type: string
+          description: The phone number of the customer
+          example: '615246789'
+        extra_info:
+          type: object
+          description: Extra information about the product.
+          properties: {}
+      required:
+        - customer_id
+        - email
+    Address:
+      type: object
+      properties:
+        address_1:
+          type: string
+          description: The first line of the shipping address
+          example: 123 Main St
+        address_2:
+          type: string
+          description: The second line of the shipping address
+          example: Apt 1001
+        city:
+          type: string
+          description: The city of the shipping address
+          example: San Francisco
+        state:
+          type: string
+          description: The state or province code of the shipping address
+          example: CA
+        zipcode:
+          type: string
+          description: The zipcode of the shipping address
+          example: '94105'
+        country:
+          type: string
+          description: ISO 3166-1 alpha-2 country code of the shipping address
+          example: US
+      required:
+        - country
+        - zipcode
+        - state
+        - city
+        - address_1
+    Item:
+      type: object
+      properties:
+        line_item_id:
+          type: string
+          description: The ID of the item.
+          example: 43f6d61d-9f19-45aa-a941-a43dfe8d0045
+        product_id:
+          type: string
+          description: The ID of the product.
+          example: 43f6d61d-9f19-45aa-a941-a43dfe8d0045
+        product_title:
+          type: string
+          description: The title of the product.
+          example: title_1
+        product_description:
+          type: string
+          description: The description of the product.
+          example: description_1
+        variant_id:
+          type: string
+          description: The ID of the product variant.
+          example: 91232f4c-0acd-4229-a418-bc03c5777359
+        variant_title:
+          type: string
+          description: The title of the product variant.
+          example: variant_title
+        sku:
+          type: string
+          description: The sku of the product variant.
+          example: sku
+        seller_id:
+          type: string
+          description: The ID of the seller.
+          example: 91232f4c-0acd-4229-a418-bc03c5777359
+        seller_name:
+          type: string
+          description: The name of the seller.
+          example: seller name
+        brand_name:
+          type: string
+          description: The brand name of the product.
+          example: brand
+        quantity:
+          type: integer
+          description: The quantity of the product.
+          example: 1
+        price:
+          type: number
+          format: double
+          description: The price of the product.
+          example: 34.33
+        allocated_discounts:
+          type: number
+          format: double
+          description: The allocated discounts of the product.
+          example: 10
+        sales_tax:
+          type: number
+          format: double
+          description: The sales tax of the product.
+          example: 4.33
+        retail_price:
+          type: number
+          format: double
+          description: The retail price of the product.
+          example: 34.33
+        final_price:
+          type: number
+          format: double
+          description: The final price of the product.
+          example: 28.66
+        currency:
+          type: string
+          description: The currency of the price.
+          example: USD
+        requires_shipping:
+          type: boolean
+          description: Whether the item requires shipping or not.
+          example: true
+        product_url:
+          type: string
+          description: The URL of the product.
+          example: image_url
+        image_url:
+          type: string
+          description: The URL of the product image.
+          example: image_url
+        category_1:
+          type: string
+          description: The main category of the product.
+          example: main category
+        category_2:
+          type: string
+          description: The sub category of the product.
+          example: sub category 2
+        category_3:
+          type: string
+          description: The sub category of the product.
+          example: sub category 3
+        category_4:
+          type: string
+          description: The sub category of the product.
+          example: sub category 4
+        is_final_sale:
+          type: boolean
+          description: Whether the item is final sale or not.
+          example: true
+        condition:
+          type: string
+          description: The physical condition of the item (e.g. new, used, refurbished)
+          example: new
+          enum:
+            - new
+            - used
+            - refurbished
+        product_attributes:
+          $ref: '#/components/schemas/ProductAttributes'
+        shipping_origin:
+          type: object
+          description: Shipping origin
+          properties:
+            address_1:
+              type: string
+              description: The first line of the shipping address
+              example: 123 Main St
+            address_2:
+              type: string
+              description: The second line of the shipping address
+              example: Apt 1001
+            city:
+              type: string
+              description: The city of the shipping address
+              example: San Francisco
+            state:
+              type: string
+              description: The state or province code of the shipping address
+              example: CA
+            zipcode:
+              type: string
+              description: The zipcode of the shipping address
+              example: '94105'
+            country:
+              type: string
+              description: ISO 3166-1 alpha-2 country code of the shipping address
+              example: US
+          required:
+            - country
+        extra_info:
+          type: object
+          description: Extra information about the product.
+          example: {}
+      required:
+        - line_item_id
+        - product_id
+        - product_title
+        - category_1
+        - category_2
+        - condition
+        - requires_shipping
+        - is_final_sale
+        - quantity
+        - currency
+        - final_price
+        - price
+        - sales_tax
+        - allocated_discounts
+    ProductAttributes:
+      type: object
+      properties:
+        color:
+          type: string
+          description: The color of the product.
+          example: black
+        size:
+          type: string
+          description: The size of the product.
+          example: large
+    ShippingDetails:
+      type: object
+      properties:
+        weight_g:
+          type: number
+          format: double
+          description: >-
+            The weight of the line item in grams. Used to calculate shipping
+            costs.
+          example: 19.99
+        length_cm:
+          type: number
+          format: double
+          description: The length of the line item package in centimeters.
+          example: 19.99
+        height_cm:
+          type: number
+          format: double
+          description: The height of the line item package in centimeters.
+          example: 19.99
+        width_cm:
+          type: number
+          format: double
+          description: The width of the line item package in centimeters.
+          example: 19.99
+        shipping_cost:
+          type: number
+          format: double
+          description: >-
+            The calculated shipping cost for delivering this particular line
+            item
+          example: 10.99
+    Fulfillment:
+      type: object
+      properties:
+        fulfillment_id:
+          type: string
+          description: Fulfillment ID
+          example: fulfillment_id
+        created_ts:
+          type: string
+          format: date-time
+          description: Fulfillment created timestamp in milliseconds
+          example: '1686049398000'
+        updated_ts:
+          type: string
+          format: date-time
+          description: Fulfillment updated timestamp in milliseconds
+          example: '1686049398000'
+        tracking_number:
+          type: string
+          description: The tracking number of the fulfillment
+          example: YT1231232113
+        carrier:
+          type: string
+          description: The shipping carrier of the fulfillment
+          example: USPS
+        tracking_url:
+          type: string
+          description: The tracking url of the fulfillment
+          example: https://tools.usps.com/go/TrackConfirmAction_input
+        shipment_status:
+          type: string
+          description: The shipping status of the fulfillment
+          example: delivered
+          enum:
+            - shipped
+            - delivered
+        line_items:
+          type: array
+          description: The list of items included in the fulfillment.
+          items:
+            type: object
+            properties:
+              line_item_id:
+                type: string
+                description: The id of the line item.
+                example: '12345678'
+              quantity:
+                type: integer
+                description: The quantity of the line item.
+                example: 1
+            required:
+              - line_item_id
+              - quantity
+      required:
+        - fulfillment_id
+        - created_ts
+        - updated_ts
+        - carrier
+        - tracking_number
+        - shipment_status
+        - line_items
+    SeelService:
+      type: object
+      properties:
+        contract_id:
+          type: string
+          description: Cover ID
+          example: '12345678'
+        quote_id:
+          type: string
+          description: The identifier of the quote associated with the contract.
+          example: '2023010112345678'
+        created_ts:
+          type: string
+          format: date-time
+          description: Service created timestamp in milliseconds
+          example: '1686049398000'
+        type:
+          type: string
+          description: Cover type of the service
+          example: seel-ra
+        price:
+          type: number
+          format: double
+          description: Price of the service
+          example: 1.99
+        status:
+          type: string
+          description: The status of the service
+          example: active
+          enum:
+            - active
+            - cancelled
+            - pending
+        covered_items:
+          type: array
+          description: The covered items
+          items:
+            type: object
+            properties:
+              line_item_id:
+                type: string
+                description: The id of the item
+                example: '12345678'
+              quantity:
+                type: integer
+                description: The quantity of the item.
+                example: 1
+        extra_info:
+          type: object
+          description: Additional information for the service
+          example: {}
+    EventInfo:
+      type: object
+      properties:
+        cart_id:
+          type: string
+          description: Cart ID
+          example: '1234567'
+        items:
+          type: array
+          description: The list of items associated with the event.
+          items:
+            $ref: '#/components/schemas/Item'
+        extra_info:
+          type: object
+          description: Additional information for the event
+          example: {}
+    Event:
+      type: object
+      properties:
+        event_id:
+          type: string
+          description: Event ID
+          example: '2680749645592'
+        session_id:
+          type: string
+          description: Session ID
+          example: '1680749645592'
+        event_ts:
+          type: string
+          description: Event created timestamp
+          example: '1680749645592'
+        customer_id:
+          type: string
+          description: Customer ID
+          example: '229413056'
+        device_id:
+          type: string
+          description: Device ID
+          example: 3kGv6F1i8L
+        browser_ip:
+          type: string
+          description: Browser IP address
+          example: 64.64.230.190
+        event_source:
+          type: string
+          description: Event source
+          example: web
+        event_type:
+          type: string
+          description: Event type
+          example: cart_add
+          enum:
+            - product_page_enter
+            - product_page_exit
+            - product_share
+            - favorite_add
+            - favorite_remove
+            - cart_add
+            - cart_remove
+            - ra_checked
+            - ra_unchecked
+            - checkout_begin
+            - checkout_complete
+        event_info:
+          type: object
+          example: {}
+    Product:
+      type: object
+      properties:
+        merchant_id:
+          type: string
+          description: The unique identifier for the merchant within Seel's system.
+          example: M12345
+        variant_id:
+          type: string
+          description: >-
+            Variant id, the unique identifier of a product SKU. Use 'product_id'
+            if the product doesn't have any variants.
+          example: V789
+        product_id:
+          type: string
+          description: Product id.
+          example: P001
+        product_title:
+          type: string
+          description: Name of the product.
+          example: Example Product
+        variant_title:
+          type: string
+          description: Title of the variant.
+          example: Variant A
+        brand_name:
+          type: string
+          description: The Product Brand or Vendor.
+          example: Acme
+        manufacturer:
+          type: string
+          description: Manufacturer of the item.
+          example: Acme Corp
+        category_1:
+          type: string
+          description: Main product category.
+          example: Electronics
+        category_2:
+          type: string
+          description: Secondary product category.
+          example: Gadgets
+        category_3:
+          type: string
+          description: Tertiary product category.
+          example: Smartphones
+        category_4:
+          type: string
+          description: Fourth level product category.
+          example: Android
+        product_description:
+          type: string
+          description: Text description of the product.
+          example: This is an example product.
+        image_url:
+          type: string
+          format: uri
+          description: URL of the product image.
+          example: https://example.com/product.jpg
+        price:
+          type: number
+          format: double
+          description: List price of the product.
+          example: 199.99
+        currency:
+          type: string
+          description: Currency of the price (e.g. USD, EUR).
+          example: USD
+        requires_shipping:
+          type: boolean
+          description: Whether the product requires shipping.
+          example: true
+        model_number:
+          type: string
+          description: Manufacturer model number.
+          example: 123XYZ
+        condition:
+          type: string
+          description: Condition - new, used, refurbished.
+          example: new
+        sku:
+          type: string
+          description: Stock keeping unit.
+          example: SKU123
+        identifiers:
+          type: object
+          properties:
+            serial_number:
+              type: string
+              description: Serial number of a specific product unit.
+              example: SN123456
+            gtin:
+              type: string
+              description: Global Trade Item Number identifier.
+              example: GTIN123456
+            upc:
+              type: string
+              description: Universal Product Code identifier.
+              example: UPC789012
+            isbn:
+              type: string
+              description: International Standard Book Number identifier.
+              example: ISBN345678
+            barcode:
+              type: string
+              description: Barcode identifying the product.
+              example: '1234567890'
+        manufacturer_warranty:
+          type: object
+          properties:
+            url:
+              type: string
+              format: uri
+              description: >-
+                A URL linking to the full details of the manufacturer's
+                warranty, probably on the manufacturer's website.
+              example: https://example.com/warranty-info
+            term_length:
+              type: number
+              description: The length of the manufacturer warranty coverage in months.
+              example: 12
+          description: >-
+            Information about the manufacturer's warranty. This is optional, but
+            if you can provide it please do as it can significantly speed up the
+            warranty matching process.
+        dimensions:
+          type: object
+          properties:
+            length:
+              type: number
+              description: Length of the product in centimeters.
+              example: 15
+            width:
+              type: number
+              description: Width of the product in centimeters.
+              example: 10
+            height:
+              type: number
+              description: Height of the product in centimeters.
+              example: 5
+            unit:
+              type: string
+              description: Unit of measurement (e.g., cm, in, ft, m).
+              example: cm
+          description: Product dimensions.
+        weight:
+          type: object
+          properties:
+            value:
+              type: number
+              description: Weight of the product.
+              example: 500
+            unit:
+              type: string
+              description: Unit of weight (e.g., g, oz, lb, kg).
+              example: g
+          description: Product weight.
+        product_attributes:
+          type: object
+          properties:
+            color:
+              type: string
+              description: Color of the product.
+              example: Black
+            size:
+              type: string
+              description: Size of the product.
+              example: Medium
+          description: Other product attributes.
+        created_ts:
+          type: string
+          format: date-time
+          description: Timestamp when the product was created.
+          example: '2023-08-28T10:00:00Z'
+        updated_ts:
+          type: string
+          format: date-time
+          description: Timestamp when the product was updated.
+          example: '2023-08-28T12:30:00Z'
+        enabled_services:
+          type: array
+          items:
+            type: object
+            properties:
+              service_type:
+                type: string
+                description: Service type (e.g., extended-warranty, buyback-guarantee).
+                example: extended-warranty
+              is_enabled:
+                type: boolean
+                description: Enable/disable selling of the service type on this product.
+                example: true
+              created_ts:
+                type: string
+                format: date-time
+                description: Timestamp when the service was created.
+                example: '2023-08-28T10:30:00Z'
+              updated_ts:
+                type: string
+                format: date-time
+                description: Timestamp when the service was last updated.
+                example: '2023-08-28T10:30:00Z'
+            description: Information about enabled services for this product.
+      required:
+        - product_id
+        - product_title
+        - brand_name
+        - price
+        - currency
+      additionalProperties: false
+    ProductPlan:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ID of the protection plan.
+          example: '12345'
+        name:
+          type: string
+          description: Name of the protection plan.
+          example: 1 year warranty
+        description:
+          type: string
+          description: Description of the protection plan.
+          example: This plan provides coverage for one year.
+        price:
+          type: number
+          format: double
+          description: Price of the plan.
+          example: 49.99
+        currency:
+          type: string
+          description: The three-letter currency code (ISO 4217 format).
+          example: USD
+        image_url:
+          type: string
+          format: uri
+          description: >-
+            The imageUrl for the warranty plan. Use this as the product image
+            for the warranty plan SKU(s) in your store.
+          example: https://example.com/warranty.jpg
+        url:
+          type: string
+          format: uri
+          description: >-
+            A link to the extended warranty plan terms and information. Any
+            offer display must include a “Learn More” or “See Plan Details”
+            call-to-action that enables the customer to see exactly what the
+            warranty plan covers.
+          example: https://example.com/warranty-terms
+        term_length:
+          type: integer
+          description: The length of term in months.
+          example: 12
+        coverage_starts:
+          type: string
+          description: >-
+            "immediate" - right after purchase
+
+            "after" - coverage starts after the manufacturer's warranty has
+            expired
+          example: immediate
+        coverage_includes:
+          type: string
+          description: >-
+            "base”, which means the extended warranty is a base plan covering
+            mechanical and electrical failures through normal use,
+
+            or “adh”, which means the plan includes coverage for accidental
+            damage (i.e. “Accidental Damage in Handling”)
+          example: base
+        service_type:
+          type: string
+          description: >-
+            “replacement” (the damaged item is replaced by a new or refurbished
+            equivalent),
+
+            “repair_depot” (the customer mails the damaged item to a repair
+            facility), or
+
+            “repair_onsite” (a repair technician goes out to the customer’s home
+            to repair the item)
+          example: replacement
+        replacement_type:
+          type: string
+          description: >-
+            Indicates whether the damaged item will be replaced by a “new” or
+            “refurbished” item.
+          example: new
+        deductible:
+          type: number
+          format: double
+          description: >-
+            The amount of the deductible charged to the customer during a claim,
+            if there is one. For most Extend protection plans, there is no
+            deductible.
+          example: 0
+      required:
+        - id
+        - name
+        - price
+        - currency
+        - term_length
+        - coverage_starts
+        - coverage_includes
+        - service_type
+        - replacement_type
+        - deductible
+  parameters:
+    api_key:
+      name: X-Seel-API-Key
+      in: header
+      description: Your Seel API key
+      required: true
+      schema:
+        type: string
+        default: e2b4f9c8d3a7e6d2f5b0c4a1d8e9b6
+      example: e2b4f9c8d3a7e6d2f5b0c4a1d8e9b6
+    api_version:
+      name: X-Seel-API-Version
+      in: header
+      description: Version of the Seel API to use
+      required: true
+      schema:
+        type: string
+        default: 1.3.0
+      example: 1.3.0
+    content_type:
+      name: Content-Type
+      in: header
+      description: application/json
+      required: true
+      schema:
+        type: string
+        default: application/json
+      example: application/json
+    order_id:
+      name: order_id
+      in: query
+      description: Query by order ID
+      required: false
+      schema:
+        type: string
+    page:
+      name: page
+      in: query
+      description: Query by page, default 0
+      required: false
+      example: 0
+      schema:
+        type: integer
+        default: 0
+    page_size:
+      name: page_size
+      in: query
+      description: Query by page_size, default 100
+      required: false
+      example: 100
+      schema:
+        type: integer
+        default: 100
+    partner:
+      name: partner
+      in: path
+      description: partner name
+      required: true
+      schema:
+        type: string
+        default: seel
+      example: seel
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: true
+  samples-enabled: true
+_id: 65b8ba34c84f0600704354c4

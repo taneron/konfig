@@ -394,7 +394,7 @@ const customRequests: Record<string, CustomRequest> = {
       return downloadOpenApiSpecFromReadme({ urls });
     },
   },
-  "seal.com": {
+  "seel.com": {
     lambda: async () => {
       const urls = [
         "https://developer.seel.com/reference/createmerchant",

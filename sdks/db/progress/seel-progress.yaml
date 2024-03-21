@@ -1,0 +1,138 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignorePotentialIncorrectType: true
+operationIds:
+  /{partner}/claims:
+    get: Claim_getAllClaims
+  /{partner}/claims/{claim_id}:
+    get: Claim_getById
+  /{partner}/contracts:
+    get: Contract_listContracts
+  /{partner}/contracts/{contract_id}:
+    get: Contract_getById
+  /{partner}/events:
+    post: Event_createNewEvent
+  /{partner}/invoices:
+    get: Invoice_listInvoices
+  /{partner}/invoices/{invoice_id}:
+    get: Invoice_getInvoiceById
+  /{partner}/merchants:
+    get: Merchant_listAllMerchants
+    post: Merchant_createNewMerchant
+  /{partner}/merchants/{merchant_id}:
+    get: Merchant_getMerchantDetails
+    post: Merchant_updateMerchantDetails
+  /{partner}/orders:
+    post: Order_createNewOrder
+  /{partner}/orders/batch:
+    post: Order_batchCreateOrders
+  /{partner}/orders/{order_id}:
+    get: Order_getById
+    post: Order_updateOrderDetails
+  /{partner}/orders/{order_id}/cancel:
+    post: Order_cancelOrderById
+  /{partner}/orders/{order_id}/fulfillments:
+    get: Fulfillment_listFulfillments
+    post: Fulfillment_createNewFulfillment
+  /{partner}/orders/{order_id}/fulfillments/{fulfillment_id}:
+    get: Fulfillment_getDetails
+    post: Fulfillment_updateFulfillmentDetails
+  /{partner}/orders/{order_id}/fulfillments/{fulfillment_id}/cancel:
+    post: Fulfillment_cancelFulfillment
+  /{partner}/products:
+    post: Product_addNewProduct
+  /{partner}/products/batch:
+    post: Product_batchCreateProducts
+  /{partner}/products/{product_id}:
+    delete: Product_removeProductById
+    get: Product_getProductById
+    post: Product_updateProductDetails
+  /{partner}/products/{product_id}/plans:
+    get: Product_listPlans
+  /{partner}/quotes:
+    post: Quote_generateQuote
+  /{partner}/quotes/{quote_id}:
+    get: Quote_getById
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /{partner}/events:
+    post:
+      application/json: EventCreateNewEventRequest
+  /{partner}/merchants:
+    post:
+      application/json: MerchantCreateNewMerchantRequest
+  /{partner}/merchants/{merchant_id}:
+    post:
+      application/json: MerchantUpdateMerchantDetailsRequest
+  /{partner}/orders:
+    post:
+      application/json: OrderCreateNewOrderRequest
+  /{partner}/orders/batch:
+    post:
+      application/json: OrderBatchCreateOrdersRequest
+  /{partner}/orders/{order_id}:
+    post:
+      application/json: OrderUpdateOrderDetailsRequest
+  /{partner}/orders/{order_id}/fulfillments/{fulfillment_id}:
+    post:
+      application/json: FulfillmentUpdateFulfillmentDetailsRequest
+  /{partner}/products:
+    post:
+      application/json: ProductAddNewProductRequest
+  /{partner}/products/batch:
+    post:
+      application/json: ProductBatchCreateProductsRequest
+  /{partner}/products/{product_id}:
+    post:
+      application/json: ProductUpdateProductDetailsRequest
+  /{partner}/quotes:
+    post:
+      application/json: QuoteGenerateQuoteRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /{partner}/claims:
+    get:
+      '200':
+        application/json: ClaimGetAllClaimsResponse
+  /{partner}/contracts:
+    get:
+      '200':
+        application/json: ContractListContractsResponse
+  /{partner}/invoices:
+    get:
+      '200':
+        application/json: InvoiceListInvoicesResponse
+  /{partner}/merchants:
+    get:
+      '200':
+        application/json: MerchantListAllMerchantsResponse
+  /{partner}/orders/batch:
+    post:
+      '200':
+        application/json: OrderBatchCreateOrdersResponse
+  /{partner}/orders/{order_id}/fulfillments:
+    get:
+      '200':
+        application/json: FulfillmentListFulfillmentsResponse
+  /{partner}/products/batch:
+    post:
+      '200':
+        application/json: ProductBatchCreateProductsResponse
+  /{partner}/products/{product_id}/plans:
+    get:
+      '200':
+        application/json: ProductListPlansResponse
+securityParameters:
+  X-Seel-API-Key:
+    header: false
+  X-Seel-API-Version:
+    header: false
+  order_id:
+    query: false
+  page:
+    query: false
+  page_size:
+    query: false
+validServerUrls: {}
