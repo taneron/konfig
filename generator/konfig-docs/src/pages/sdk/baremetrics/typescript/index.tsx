@@ -27,7 +27,7 @@ Flightpath: Plan for the future with flexible financial modeling tools built for
       companyKebabCase="baremetrics"
       clientNameCamelCase="baremetrics"
       homepage="baremetrics.com"
-      lastUpdated={new Date("2024-03-21T03:39:02.740Z")}
+      lastUpdated={new Date("2024-03-21T17:22:57.081Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/baremetrics/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
@@ -2214,6 +2214,43 @@ Flightpath: Plan for the future with flexible financial modeling tools built for
     ]
   },
   {
+    "url": "/v1/cancellation_insights/events/{id}",
+    "method": "updateEventById",
+    "httpMethod": HttpMethodsEnum.PUT,
+    "tag": "Event",
+    "typeScriptTag": "event",
+    "description": "Update Event",
+    "parameters": [
+      {
+        "name": "id",
+        "schema": "string",
+        "required": true,
+        "description": "",
+        "example": "ID"
+      },
+      {
+        "name": "reason_id",
+        "schema": "string",
+        "description": ""
+      },
+      {
+        "name": "comment",
+        "schema": "string",
+        "description": ""
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": ""
+      }
+    ]
+  },
+  {
     "url": "/v1/cancellation_insights/reasons/{id}",
     "method": "deleteById",
     "httpMethod": HttpMethodsEnum.DELETE,
@@ -2309,6 +2346,25 @@ Flightpath: Plan for the future with flexible financial modeling tools built for
   },
   {
     "url": "/v1/cancellation_insights/reasons",
+    "method": "listReasons",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "Reason",
+    "typeScriptTag": "reason",
+    "description": "List Reasons",
+    "parameters": [],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "url": "/v1/cancellation_insights/reasons",
     "method": "createNewReason",
     "httpMethod": HttpMethodsEnum.POST,
     "tag": "CancellationInsight",
@@ -2347,9 +2403,9 @@ Flightpath: Plan for the future with flexible financial modeling tools built for
       apiBaseUrl="https://api.baremetrics.com"
       apiVersion="1.0"
       endpoints={41}
-      sdkMethods={62}
-      schemas={145}
-      parameters={161}
+      sdkMethods={64}
+      schemas={150}
+      parameters={164}
       difficulty="Medium"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/baremetrics/openapi.yaml"
       openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/baremetrics/openapi.yaml"

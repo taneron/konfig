@@ -240,7 +240,9 @@ function getTypescriptTag(tag: string) {
   const withoutParentheses = tag.replace(/[()]/g, "");
   // remove backslashes ("\"") from tag
   const withoutBackslashes = withoutParentheses.replace(/\\/g, "");
-  return camelcase(withoutBackslashes);
+  // handle "nvidia / reranking"
+  const withoutSpaces = withoutBackslashes.replace(/\//g, "_");
+  return camelcase(withoutSpaces);
 }
 
 function getMethodName({
