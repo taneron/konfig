@@ -1,0 +1,301 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignoreObjectsWithNoProperties: true
+operationIds:
+  /v2/apps:
+    get: Apps_listAll
+    post: Apps_createNewApp
+  /v2/apps/{app_id}:
+    get: Apps_getById
+  /v2/apps/{app_id}/ach-account:
+    get: Apps_getAchAccount
+    put: Apps_addAchAccount
+  /v2/apps/{app_id}/compliance:
+    get: Apps_getComplianceInfo
+    put: Apps_updateComplianceInfo
+  /v2/apps/{app_id}/deposit:
+    post: Apps_depositFunds
+  /v2/apps/{app_id}/withdraw:
+    post: Apps_withdrawFunds
+  /v2/checkout-sessions:
+    get: Checkoutsessions_listAll
+    post: Checkoutsessions_createSession
+  /v2/checkout-sessions/{checkout_session_id}:
+    get: Checkoutsessions_getById
+  /v2/disputes:
+    get: Disputes_getAll
+  /v2/disputes/{dispute_id}:
+    get: Disputes_getById
+  /v2/disputes/{dispute_id}/evidence:
+    post: Disputes_addEvidenceFile
+  /v2/disputes/{dispute_id}/submit:
+    post: Disputes_submitDispute
+  /v2/flows:
+    get: Flows_listAll
+    post: Flows_createNewFlow
+  /v2/flows/{flow_id}:
+    get: Flows_getById
+  /v2/organization-transfers:
+    get: Transfers_getAll
+    post: Transfers_createOrganizationTransfer
+  /v2/organization-transfers/{transfer_id}:
+    get: Transfers_getById
+  /v2/payment-customers:
+    get: Paymentcustomers_listAll
+    post: Paymentcustomers_createCustomer
+  /v2/payment-customers/{payment_customer_id}:
+    get: Paymentcustomers_getById
+  /v2/payment-intents:
+    get: Paymentintents_listAll
+    post: Paymentintents_createIntent
+  /v2/payment-intents/{payment_intent_id}:
+    get: Paymentintents_getById
+  /v2/payment-intents/{payment_intent_id}/confirm:
+    post: Paymentintents_confirmIntent
+  /v2/payment-methods:
+    get: Paymentmethods_listAllPaymentCustomer
+  /v2/payment-methods/{payment_method_id}:
+    get: Paymentmethods_getById
+  /v2/payment-methods/{payment_method_id}/attach:
+    post: Paymentmethods_attachPaymentMethod
+  /v2/payment-methods/{payment_method_id}/detach:
+    post: Paymentmethods_detachPaymentMethod
+  /v2/payments:
+    post: Payments_createTransaction
+  /v2/payout-links:
+    get: Payoutlinks_listAll
+    post: Payoutlinks_createPayoutLink
+  /v2/payout-links/{payout_link_id}:
+    delete: Payoutlinks_cancelLink
+    get: Payoutlinks_getPayoutLink
+  /v2/payout-requests:
+    get: Payoutrequests_getAllPayouts
+    post: Payoutrequests_submitRequest
+  /v2/payout-requests/{payout_request_id}:
+    get: Payoutrequests_getPayoutById
+  /v2/payouts:
+    post: Payouts_createPayout
+  /v2/payouts/send-payout:
+    post: Payouts_sendPayout
+  /v2/refunds:
+    get: Refunds_getAll
+    post: Refunds_createRefund
+  /v2/refunds/{refund_id}:
+    get: Refunds_getById
+  /v2/transactions:
+    get: Transactions_listAll
+  /v2/transactions/{transaction_id}:
+    get: Transactions_getById
+  /v2/transfer-batches:
+    get: Transferbatches_listAll
+    post: Transferbatches_createBatch
+  /v2/transfer-batches/{transfer_batch_id}:
+    get: Transferbatches_getById
+  /v2/transfers:
+    get: Transfers_listAll
+    post: Transfers_createTransfer
+  /v2/transfers/{transfer_id}:
+    get: Transfers_getById
+  /v2/users:
+    get: Users_listAllUsers
+    post: Users_createNewUser
+  /v2/users/{user_id}:
+    delete: Users_removeUser
+    get: Users_getUserById
+    patch: Users_updateUserObject
+  /v2/users/{user_id}/compliance:
+    put: Users_submitComplianceInfo
+  /v2/users/{user_id}/payout-methods:
+    get: Users_listPayoutMethods
+    put: Users_addPayoutMethod
+  /v2/users/{user_id}/send-verification-token:
+    post: Users_sendVerificationToken
+  /v2/users/{user_id}/verify:
+    post: Users_verifyUserToken
+operationTags:
+  /v2/payment-intents/{payment_intent_id}/confirm:
+    post: payment-intents
+renameTags: {}
+requestSchemaNames:
+  /v2/apps:
+    post:
+      application/json: AppsCreateNewAppRequest
+  /v2/apps/{app_id}/ach-account:
+    put:
+      application/json: AppsAddAchAccountRequest
+  /v2/apps/{app_id}/deposit:
+    post:
+      application/json: AppsDepositFundsRequest
+  /v2/apps/{app_id}/withdraw:
+    post:
+      application/json: AppsWithdrawFundsRequest
+  /v2/checkout-sessions:
+    post:
+      application/json: CheckoutsessionsCreateSessionRequest
+  /v2/disputes/{dispute_id}/evidence:
+    post:
+      multipart/form-data: DisputesAddEvidenceFileRequest
+  /v2/disputes/{dispute_id}/submit:
+    post:
+      application/json: DisputesSubmitDisputeRequest
+  /v2/flows:
+    post:
+      application/json: FlowsCreateNewFlowRequest
+  /v2/organization-transfers:
+    post:
+      application/json: TransfersCreateOrganizationTransferRequest
+  /v2/payment-intents:
+    post:
+      application/json: PaymentintentsCreateIntentRequest
+  /v2/payment-intents/{payment_intent_id}/confirm:
+    post:
+      application/json: PaymentintentsConfirmIntentRequest
+  /v2/payment-methods/{payment_method_id}/attach:
+    post:
+      application/json: PaymentmethodsAttachPaymentMethodRequest
+  /v2/payment-methods/{payment_method_id}/detach:
+    post:
+      application/json: PaymentmethodsDetachPaymentMethodRequest
+  /v2/payments:
+    post:
+      application/json: PaymentsCreateTransactionRequest
+  /v2/payout-links:
+    post:
+      application/json: PayoutlinksCreatePayoutLinkRequest
+  /v2/payout-requests:
+    post:
+      application/json: PayoutrequestsSubmitRequestRequest
+  /v2/payouts:
+    post:
+      application/json: PayoutsCreatePayoutRequest
+  /v2/payouts/send-payout:
+    post:
+      application/json: PayoutsSendPayoutRequest
+  /v2/refunds:
+    post:
+      application/json: RefundsCreateRefundRequest
+  /v2/transfer-batches:
+    post:
+      application/json: TransferbatchesCreateBatchRequest
+      application/xml: TransferbatchesCreateBatchRequest1
+  /v2/transfers:
+    post:
+      application/json: TransfersCreateTransferRequest
+  /v2/users:
+    post:
+      application/json: UsersCreateNewUserRequest
+  /v2/users/{user_id}:
+    patch:
+      application/json: UsersUpdateUserObjectRequest
+  /v2/users/{user_id}/compliance:
+    put:
+      application/json: UsersSubmitComplianceInfoRequest
+  /v2/users/{user_id}/payout-methods:
+    put:
+      application/json: UsersAddPayoutMethodRequest
+  /v2/users/{user_id}/send-verification-token:
+    post:
+      application/json: UsersSendVerificationTokenRequest
+  /v2/users/{user_id}/verify:
+    post:
+      application/json: UsersVerifyUserTokenRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /v2/apps:
+    get:
+      '200':
+        application/json: AppsListAllResponse
+  /v2/apps/{app_id}/ach-account:
+    get:
+      '200':
+        application/json: AppsGetAchAccountResponse
+    put:
+      '200':
+        application/json: AppsAddAchAccountResponse
+  /v2/checkout-sessions:
+    get:
+      '200':
+        application/json: CheckoutsessionsListAllResponse
+  /v2/disputes:
+    get:
+      '200':
+        application/json: DisputesGetAllResponse
+  /v2/flows:
+    get:
+      '200':
+        application/json: FlowsListAllResponse
+  /v2/organization-transfers:
+    get:
+      '200':
+        application/json: TransfersGetAllResponse
+  /v2/payment-customers:
+    get:
+      '200':
+        application/json: PaymentcustomersListAllResponse
+    post:
+      '200':
+        application/json: PaymentcustomersCreateCustomerResponse
+  /v2/payment-intents:
+    get:
+      '200':
+        application/json: PaymentintentsListAllResponse
+  /v2/payment-intents/{payment_intent_id}:
+    get:
+      '404':
+        application/json: PaymentintentsGetByIdResponse
+  /v2/payment-methods:
+    get:
+      '200':
+        application/json: PaymentmethodsListAllPaymentCustomerResponse
+  /v2/payout-links:
+    get:
+      '200':
+        application/json: PayoutlinksListAllResponse
+  /v2/payout-requests:
+    get:
+      '200':
+        application/json: PayoutrequestsGetAllPayoutsResponse
+  /v2/refunds:
+    get:
+      '200':
+        application/json: RefundsGetAllResponse
+  /v2/transactions:
+    get:
+      '200':
+        application/json: TransactionsListAllResponse
+  /v2/transfer-batches:
+    get:
+      '200':
+        application/json: TransferbatchesListAllResponse
+    post:
+      '200':
+        application/json: TransferbatchesCreateBatchResponse
+  /v2/transfer-batches/{transfer_batch_id}:
+    get:
+      '200':
+        application/json: TransferbatchesGetByIdResponse
+  /v2/transfers:
+    get:
+      '200':
+        application/json: TransfersListAllResponse
+  /v2/users:
+    get:
+      '200':
+        application/json: UsersListAllUsersResponse
+  /v2/users/{user_id}/payout-methods:
+    get:
+      '200':
+        application/json: UsersListPayoutMethodsResponse
+securityParameters:
+  customer_id:
+    query: false
+  ending_before:
+    query: false
+  limit:
+    query: false
+  starting_after:
+    query: false
+  user_id:
+    query: false
+validServerUrls: {}
