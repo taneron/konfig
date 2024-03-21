@@ -27,6 +27,7 @@ operationIds:
     get: Event_getEventById
     put: Event_updateEventById
   /v1/cancellation_insights/reasons:
+    get: Reason_listReasons
     post: CancellationInsight_createNewReason
   /v1/cancellation_insights/reasons/{id}:
     delete: Reason_deleteById
@@ -132,6 +133,7 @@ operationTags:
     get: Event
     put: Event
   /v1/cancellation_insights/reasons:
+    get: Reason
     post: CancellationInsight
   /v1/cancellation_insights/reasons/{id}:
     delete: Reason
@@ -357,6 +359,11 @@ responseSchemaNames:
       '400':
         application/json: EventUpdateEventById400Response
   /v1/cancellation_insights/reasons:
+    get:
+      '200':
+        application/json: ReasonListReasonsResponse
+      '400':
+        application/json: ReasonListReasons400Response
     post:
       '200':
         application/json: CancellationInsightCreateNewReasonResponse

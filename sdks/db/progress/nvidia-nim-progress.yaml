@@ -1,0 +1,140 @@
+examples: {}
+examples_2: {}
+examples_3:
+  /biology/mit/diffdock:
+    post:
+      '200':
+        application/json: {}
+  /biology/nvidia/esmfold:
+    post:
+      '200':
+        application/json: {}
+  /biology/nvidia/molmim/generate:
+    post:
+      '200':
+        application/json: {}
+  /genomics/nvidia/deepvariant:
+    post:
+      '200':
+        application/json: {}
+  /genomics/nvidia/fq2bam:
+    post:
+      '200':
+        application/json: {}
+ignoreObjectsWithNoProperties: true
+operationIds:
+  /biology/nvidia/esmfold:
+    post: Default_proteinStructurePredictionNoAln
+  /chat/completions:
+    post: Chat_generateModelResponse
+  /genai/stabilityai/sdxl:
+    post: Inference_stabilityPrediction
+  /genai/stabilityai/sdxl-turbo:
+    post: Inference_stabilityPrediction
+  /genai/stabilityai/stable-video-diffusion:
+    post: Inference_stableVideoDiffusionPost
+  /genomics/nvidia/deepvariant:
+    post: Default_runParabricksUvcInference
+  /medicalimaging/nvidia/vista-3d:
+    post: Models_runInferenceVista3d
+  /nvidia/ai-weather-forecasting:
+    post: Forecast_inferenceSubmission
+  /nvidia/cuopt:
+    post: CuOptApi_managedServiceEndpoint
+  /retrieval/nvidia/reranking:
+    post: NvidiaReranking_passageRanking
+  /status/{requestId}:
+    get: CuOptApi_functionResultGet
+  /vlm/adept/fuyu-8b:
+    post: MultimodalApi_requestModelResponse
+  /vlm/google/deplot:
+    post: MultimodalApi_requestModelInference
+  /vlm/microsoft/kosmos-2:
+    post: MultimodalApi_requestModelResponse
+  /vlm/nvidia/neva-22b:
+    post: MultimodalApi_invokeModelInference
+operationTags:
+  /genai/stabilityai/sdxl:
+    post: Inference
+  /genai/stabilityai/sdxl-turbo:
+    post: Inference
+  /genai/stabilityai/stable-video-diffusion:
+    post: Inference
+renameTags: {}
+requestSchemaNames:
+  /nvidia/cuopt:
+    post:
+      application/json: CuOptApiManagedServiceEndpointRequest
+  /retrieval/nvidia/embeddings:
+    post:
+      application/json: CreateEmbeddingRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /biology/mit/diffdock:
+    post:
+      '200':
+        application/json: MolecularDockingResponse
+  /biology/nvidia/esmfold:
+    post:
+      '200':
+        application/json: DefaultProteinStructurePredictionNoAlnResponse
+  /biology/nvidia/molmim/generate:
+    post:
+      '200':
+        application/json: MoleculeGenerateResponse
+  /genomics/nvidia/deepvariant:
+    post:
+      '200':
+        application/json: DefaultRunParabricksUvcInferenceResponse
+  /genomics/nvidia/fq2bam:
+    post:
+      '200':
+        application/json: ParabricksFq2BamResponse
+  /medicalimaging/nvidia/vista-3d:
+    post:
+      '200':
+        application/octet-stream: ModelsRunInferenceVista3DResponse
+  /nvidia/cuopt:
+    post:
+      '200':
+        application/json: CuOptApiManagedServiceEndpointResponse
+      '202':
+        application/json: CuOptApiManagedServiceEndpoint202Response
+      '400':
+        application/json: CuOptApiManagedServiceEndpoint400Response
+      '409':
+        application/json: CuOptApiManagedServiceEndpoint409Response
+      '422':
+        application/json: CuOptApiManagedServiceEndpoint422Response
+      '500':
+        application/json: CuOptApiManagedServiceEndpoint500Response
+  /retrieval/nvidia/embeddings:
+    post:
+      '200':
+        application/json: CreateEmbeddingResponse
+      '400':
+        application/json: CreateEmbedding400Response
+  /status/{requestId}:
+    get:
+      '202':
+        application/json: CuOptApiFunctionResultGetResponse
+  /vlm/adept/fuyu-8b:
+    post:
+      '202':
+        application/json: MultimodalApiRequestModelResponseResponse
+  /vlm/google/deplot:
+    post:
+      '202':
+        application/json: MultimodalApiRequestModelInferenceResponse
+  /vlm/microsoft/kosmos-2:
+    post:
+      '202':
+        application/json: MultimodalApiRequestModelResponse202Response
+  /vlm/nvidia/neva-22b:
+    post:
+      '202':
+        application/json: MultimodalApiInvokeModelInferenceResponse
+securityParameters:
+  NVCF-INPUT-ASSET-REFERENCES:
+    header: false
+validServerUrls: {}

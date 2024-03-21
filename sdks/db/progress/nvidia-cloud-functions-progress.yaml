@@ -1,0 +1,128 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignoreObjectsWithNoProperties: true
+operationIds:
+  /health/**:
+    get: Health_getInfo
+  /v2/nvcf/assets:
+    get: AssetManagement_listAssets
+    post: AssetManagement_createAssetAndUrl
+  /v2/nvcf/assets/{assetId}:
+    delete: AssetManagement_deleteAssetById
+    get: AssetManagement_showDetails
+  /v2/nvcf/authorizations/functions/{functionId}:
+    delete: AuthorizedAccounts_deleteAllExtraForFunction
+    get: AuthorizedAccounts_listForFunction
+    post: AuthorizedAccounts_authorizeFunctionAccounts
+  /v2/nvcf/authorizations/functions/{functionId}/add:
+    patch: AuthorizedAccounts_addAccountToFunction
+  /v2/nvcf/authorizations/functions/{functionId}/remove:
+    patch: AuthorizedAccounts_removeFromFunctionAuthorization
+  /v2/nvcf/authorizations/functions/{functionId}/versions/{functionVersionId}:
+    delete: AuthorizedAccounts_deleteExtraForFunctionVersion
+    get: AuthorizedAccounts_functionVersionAuthorizations
+    post: AuthorizedAccounts_authorizeFunctionAccounts
+  /v2/nvcf/authorizations/functions/{functionId}/versions/{functionVersionId}/add:
+    patch: AuthorizedAccounts_addAccountToFunctionVersion
+  /v2/nvcf/authorizations/functions/{functionId}/versions/{functionVersionId}/remove:
+    patch: AuthorizedAccounts_removePartyForVersion
+  /v2/nvcf/clusterGroups:
+    get: ClusterGroupsAndGpUs_list
+  /v2/nvcf/deployments/functions/{functionId}/versions/{functionVersionId}:
+    delete: FunctionDeployment_deleteByIdAndVersion
+    get: FunctionDeployment_details
+    post: FunctionDeployment_initiateDeploymentForVersion
+    put: FunctionDeployment_updateSpecs
+  /v2/nvcf/exec/functions/{functionId}:
+    post: EnvelopeFunctionInvocation_callFunction
+  /v2/nvcf/exec/functions/{functionId}/versions/{versionId}:
+    post: EnvelopeFunctionInvocation_invokeFunction
+  /v2/nvcf/exec/status/{requestId}:
+    get: EnvelopeFunctionInvocation_pollForResultUsingFunctionInvocationRequest
+  /v2/nvcf/functions:
+    get: FunctionManagement_listFunctions
+    post: FunctionManagement_registerNewFunction
+  /v2/nvcf/functions/ids:
+    get: FunctionManagement_listFunctionIds
+  /v2/nvcf/functions/{functionId}/versions:
+    get: FunctionManagement_listFunctionVersions
+    post: FunctionManagement_createFunctionVersion
+  /v2/nvcf/functions/{functionId}/versions/{functionVersionId}:
+    delete: FunctionManagement_deleteFunctionVersion
+    get: FunctionManagement_getVersionDetails
+  /v2/nvcf/pexec/functions/{functionId}:
+    post: FunctionInvocation_invokeFunction
+  /v2/nvcf/pexec/functions/{functionId}/versions/{versionId}:
+    post: FunctionInvocation_invokeFunction
+  /v2/nvcf/pexec/status/{requestId}:
+    get: FunctionInvocation_pollForResultUsingFunctionInvocationRequest
+  /v2/nvcf/queues/functions/{functionId}:
+    get: QueueDetails_functionQueuesDetails
+  /v2/nvcf/queues/functions/{functionId}/versions/{versionId}:
+    get: QueueDetails_getAllQueuesDetails
+  /v2/nvcf/queues/{requestId}/position:
+    get: QueueDetails_getQueuePositionByRequestId
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /v2/nvcf/pexec/functions/{functionId}:
+    post:
+      application/json: FunctionInvocationInvokeFunctionRequest
+  /v2/nvcf/pexec/functions/{functionId}/versions/{versionId}:
+    post:
+      application/json: FunctionInvocationInvokeFunctionRequest1
+responseDescriptions: {}
+responseSchemaNames:
+  /v2/nvcf/pexec/functions/{functionId}:
+    post:
+      '200':
+        application/json: FunctionInvocationInvokeFunction200Response
+        text/event-stream: FunctionInvocationInvokeFunctionResponse
+      '202':
+        application/json: FunctionInvocationInvokeFunction202Response
+      '302':
+        application/json: FunctionInvocationInvokeFunction302Response
+      '402':
+        application/json: FunctionInvocationInvokeFunction402Response
+      '403':
+        application/json: FunctionInvocationInvokeFunction403Response
+  /v2/nvcf/pexec/functions/{functionId}/versions/{versionId}:
+    post:
+      '200':
+        application/json: FunctionInvocationInvokeFunction200Response
+        text/event-stream: FunctionInvocationInvokeFunction200Response1
+      '202':
+        application/json: FunctionInvocationInvokeFunction202Response
+      '302':
+        application/json: FunctionInvocationInvokeFunction302Response
+      '402':
+        application/json: FunctionInvocationInvokeFunction402Response
+      '403':
+        application/json: FunctionInvocationInvokeFunction403Response
+  /v2/nvcf/pexec/status/{requestId}:
+    get:
+      '200':
+        application/json: FunctionInvocationPollForResultUsingFunctionInvocationRequestResponse
+      '202':
+        application/json: >-
+          FunctionInvocationPollForResultUsingFunctionInvocationRequest202Response
+      '302':
+        application/json: >-
+          FunctionInvocationPollForResultUsingFunctionInvocationRequest302Response
+      '402':
+        application/json: >-
+          FunctionInvocationPollForResultUsingFunctionInvocationRequest402Response
+      '403':
+        application/json: >-
+          FunctionInvocationPollForResultUsingFunctionInvocationRequest403Response
+securityParameters:
+  NVCF-INPUT-ASSET-REFERENCES:
+    header: false
+  NVCF-POLL-SECONDS:
+    header: false
+  graceful:
+    query: false
+  visibility:
+    query: false
+validServerUrls: {}

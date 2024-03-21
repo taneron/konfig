@@ -1,0 +1,873 @@
+hash: 69dd5f1ffe83e6df004becef1160c78b41b6ecdf6cc457b67af24f989ba58086
+methodObjects:
+  - url: /v2/nvcf/deployments/functions/{functionId}/versions/{functionVersionId}
+    method: deleteByIdAndVersion
+    httpMethod: delete
+    tag: Function Deployment
+    typeScriptTag: functionDeployment
+    description: Delete Function Deployment
+    parameters:
+      - name: functionId
+        schema: string
+        required: true
+        description: Function id
+        example: FUNCTIONID
+      - name: functionVersionId
+        schema: string
+        required: true
+        description: Function version id
+        example: FUNCTIONVERSIONID
+      - name: graceful
+        schema: boolean
+        required: false
+        description: Query param to deactivate function for graceful shutdown
+        default: false
+    responses:
+      - statusCode: '200'
+        description: Response body with function details
+  - url: /v2/nvcf/deployments/functions/{functionId}/versions/{functionVersionId}
+    method: details
+    httpMethod: get
+    tag: Function Deployment
+    typeScriptTag: functionDeployment
+    description: Get Function Deployment Details
+    parameters:
+      - name: functionId
+        schema: string
+        required: true
+        description: Function id
+        example: FUNCTIONID
+      - name: functionVersionId
+        schema: string
+        required: true
+        description: Function version id
+        example: FUNCTIONVERSIONID
+    responses:
+      - statusCode: '200'
+        description: Function Deployment Response
+  - url: /v2/nvcf/deployments/functions/{functionId}/versions/{functionVersionId}
+    method: initiateDeploymentForVersion
+    httpMethod: post
+    tag: Function Deployment
+    typeScriptTag: functionDeployment
+    description: Deploy Function
+    parameters:
+      - name: functionId
+        schema: string
+        required: true
+        description: Function id
+        example: FUNCTIONID
+      - name: functionVersionId
+        schema: string
+        required: true
+        description: Function version id
+        example: FUNCTIONVERSIONID
+      - name: deploymentSpecifications
+        schema: array
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: Function Deployment Response
+  - url: /v2/nvcf/deployments/functions/{functionId}/versions/{functionVersionId}
+    method: updateSpecs
+    httpMethod: put
+    tag: Function Deployment
+    typeScriptTag: functionDeployment
+    description: Update Function Deployment
+    parameters:
+      - name: functionId
+        schema: string
+        required: true
+        description: Function id
+        example: FUNCTIONID
+      - name: functionVersionId
+        schema: string
+        required: true
+        description: Function version id
+        example: FUNCTIONVERSIONID
+      - name: deploymentSpecifications
+        schema: array
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: Function Deployment Response
+  - url: /v2/nvcf/pexec/functions/{functionId}
+    method: invokeFunction
+    httpMethod: post
+    tag: Function Invocation
+    typeScriptTag: functionInvocation
+    description: Call Function
+    parameters:
+      - name: nvcfInputAssetReferences
+        schema: array
+        required: false
+        description: ''
+      - name: functionId
+        schema: string
+        required: true
+        description: ''
+        example: FUNCTIONID
+      - name: nvcfPollSeconds
+        schema: integer
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '202'
+        description: ''
+      - statusCode: '302'
+        description: ''
+      - statusCode: '402'
+        description: ''
+      - statusCode: '403'
+        description: ''
+  - url: /v2/nvcf/pexec/functions/{functionId}/versions/{versionId}
+    method: invokeFunction
+    httpMethod: post
+    tag: Function Invocation
+    typeScriptTag: functionInvocation
+    description: Call Function
+    parameters:
+      - name: nvcfInputAssetReferences
+        schema: array
+        required: false
+        description: ''
+      - name: functionId
+        schema: string
+        required: true
+        description: ''
+        example: FUNCTIONID
+      - name: versionId
+        schema: string
+        required: true
+        description: ''
+        example: VERSIONID
+      - name: nvcfPollSeconds
+        schema: integer
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '202'
+        description: ''
+      - statusCode: '302'
+        description: ''
+      - statusCode: '402'
+        description: ''
+      - statusCode: '403'
+        description: ''
+  - url: /v2/nvcf/exec/functions/{functionId}
+    method: callFunction
+    httpMethod: post
+    tag: Envelope Function Invocation
+    typeScriptTag: envelopeFunctionInvocation
+    description: Call Function
+    parameters:
+      - name: functionId
+        schema: string
+        required: true
+        description: ''
+        example: FUNCTIONID
+      - name: requestBody
+        schema: object
+        required: true
+        description: ''
+      - name: requestHeader
+        schema: object
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: >-
+          Response body with result from a request for executing a job/task as a
+          cloud function using a GPU powered spot/on-demand instance.
+      - statusCode: '202'
+        description: >-
+          Response body with result from a request for executing a job/task as a
+          cloud function using a GPU powered spot/on-demand instance.
+      - statusCode: '302'
+        description: >-
+          Response body with result from a request for executing a job/task as a
+          cloud function using a GPU powered spot/on-demand instance.
+      - statusCode: '402'
+        description: >-
+          Response body with result from a request for executing a job/task as a
+          cloud function using a GPU powered spot/on-demand instance.
+      - statusCode: '403'
+        description: >-
+          Response body with result from a request for executing a job/task as a
+          cloud function using a GPU powered spot/on-demand instance.
+  - url: /v2/nvcf/exec/functions/{functionId}/versions/{versionId}
+    method: invokeFunction
+    httpMethod: post
+    tag: Envelope Function Invocation
+    typeScriptTag: envelopeFunctionInvocation
+    description: Call Function
+    parameters:
+      - name: functionId
+        schema: string
+        required: true
+        description: ''
+        example: FUNCTIONID
+      - name: versionId
+        schema: string
+        required: true
+        description: ''
+        example: VERSIONID
+      - name: requestBody
+        schema: object
+        required: true
+        description: ''
+      - name: requestHeader
+        schema: object
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: >-
+          Response body with result from a request for executing a job/task as a
+          cloud function using a GPU powered spot/on-demand instance.
+      - statusCode: '202'
+        description: >-
+          Response body with result from a request for executing a job/task as a
+          cloud function using a GPU powered spot/on-demand instance.
+      - statusCode: '302'
+        description: >-
+          Response body with result from a request for executing a job/task as a
+          cloud function using a GPU powered spot/on-demand instance.
+      - statusCode: '402'
+        description: >-
+          Response body with result from a request for executing a job/task as a
+          cloud function using a GPU powered spot/on-demand instance.
+      - statusCode: '403'
+        description: >-
+          Response body with result from a request for executing a job/task as a
+          cloud function using a GPU powered spot/on-demand instance.
+  - url: /v2/nvcf/functions/{functionId}/versions
+    method: listFunctionVersions
+    httpMethod: get
+    tag: Function Management
+    typeScriptTag: functionManagement
+    description: List Function Versions
+    parameters:
+      - name: functionId
+        schema: string
+        required: true
+        description: Function id
+        example: FUNCTIONID
+    responses:
+      - statusCode: '200'
+        description: Response body containing list of functions
+  - url: /v2/nvcf/functions/{functionId}/versions
+    method: createFunctionVersion
+    httpMethod: post
+    tag: Function Management
+    typeScriptTag: functionManagement
+    description: Create Function Version
+    parameters:
+      - name: functionId
+        schema: string
+        required: true
+        description: Function id
+        example: FUNCTIONID
+      - name: name
+        schema: string
+        required: true
+        description: ''
+        example: NAME
+      - name: inferenceUrl
+        schema: string
+        required: true
+        description: ''
+        example: INFERENCEURL
+      - name: healthUri
+        schema: string
+        required: false
+        description: ''
+      - name: inferencePort
+        schema: integer
+        required: false
+        description: ''
+      - name: containerArgs
+        schema: string
+        required: false
+        description: ''
+      - name: containerEnvironment
+        schema: array
+        required: false
+        description: ''
+      - name: models
+        schema: array
+        required: false
+        description: ''
+      - name: containerImage
+        schema: string
+        required: false
+        description: ''
+      - name: helmChart
+        schema: string
+        required: false
+        description: ''
+      - name: helmChartServiceName
+        schema: string
+        required: false
+        description: ''
+      - name: resources
+        schema: array
+        required: false
+        description: ''
+      - name: apiBodyFormat
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: Response body for create function request.
+  - url: /v2/nvcf/functions
+    method: listFunctions
+    httpMethod: get
+    tag: Function Management
+    typeScriptTag: functionManagement
+    description: List Functions
+    parameters:
+      - name: visibility
+        schema: array
+        required: false
+        description: >-
+          Query param 'visibility' indicates the kind of functions to be
+          included  in the response. 
+        default:
+          - authorized
+          - private
+          - public
+    responses:
+      - statusCode: '200'
+        description: Response body containing list of functions
+  - url: /v2/nvcf/functions
+    method: registerNewFunction
+    httpMethod: post
+    tag: Function Management
+    typeScriptTag: functionManagement
+    description: Create Function
+    parameters:
+      - name: name
+        schema: string
+        required: true
+        description: ''
+        example: NAME
+      - name: inferenceUrl
+        schema: string
+        required: true
+        description: ''
+        example: INFERENCEURL
+      - name: healthUri
+        schema: string
+        required: false
+        description: ''
+      - name: inferencePort
+        schema: integer
+        required: false
+        description: ''
+      - name: containerArgs
+        schema: string
+        required: false
+        description: ''
+      - name: containerEnvironment
+        schema: array
+        required: false
+        description: ''
+      - name: models
+        schema: array
+        required: false
+        description: ''
+      - name: containerImage
+        schema: string
+        required: false
+        description: ''
+      - name: helmChart
+        schema: string
+        required: false
+        description: ''
+      - name: helmChartServiceName
+        schema: string
+        required: false
+        description: ''
+      - name: resources
+        schema: array
+        required: false
+        description: ''
+      - name: apiBodyFormat
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: Response body for create function request.
+  - url: >-
+      /v2/nvcf/authorizations/functions/{functionId}/versions/{functionVersionId}
+    method: deleteExtraForFunctionVersion
+    httpMethod: delete
+    tag: Authorized Accounts
+    typeScriptTag: authorizedAccounts
+    description: Delete All Extra Authorizations For Function Version
+    parameters:
+      - name: functionId
+        schema: string
+        required: true
+        description: Function id
+        example: FUNCTIONID
+      - name: functionVersionId
+        schema: string
+        required: true
+        description: Function version
+        example: FUNCTIONVERSIONID
+    responses:
+      - statusCode: '200'
+        description: Parties authorized to invoke function
+  - url: >-
+      /v2/nvcf/authorizations/functions/{functionId}/versions/{functionVersionId}
+    method: functionVersionAuthorizations
+    httpMethod: get
+    tag: Authorized Accounts
+    typeScriptTag: authorizedAccounts
+    description: Get Account Authorizations For Function Version
+    parameters:
+      - name: functionId
+        schema: string
+        required: true
+        description: Function id
+        example: FUNCTIONID
+      - name: functionVersionId
+        schema: string
+        required: true
+        description: Function version
+        example: FUNCTIONVERSIONID
+    responses:
+      - statusCode: '200'
+        description: Parties authorized to invoke function
+  - url: >-
+      /v2/nvcf/authorizations/functions/{functionId}/versions/{functionVersionId}
+    method: authorizeFunctionAccounts
+    httpMethod: post
+    tag: Authorized Accounts
+    typeScriptTag: authorizedAccounts
+    description: Authorize Accounts To Invoke Function Version
+    parameters:
+      - name: functionId
+        schema: string
+        required: true
+        description: Function id
+        example: FUNCTIONID
+      - name: functionVersionId
+        schema: string
+        required: true
+        description: Function version id
+        example: FUNCTIONVERSIONID
+      - name: authorizedParties
+        schema: array
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: Parties authorized to invoke function
+  - url: /v2/nvcf/authorizations/functions/{functionId}
+    method: deleteAllExtraForFunction
+    httpMethod: delete
+    tag: Authorized Accounts
+    typeScriptTag: authorizedAccounts
+    description: Delete All Extra Authorizations For Function
+    parameters:
+      - name: functionId
+        schema: string
+        required: true
+        description: Function id
+        example: FUNCTIONID
+    responses:
+      - statusCode: '200'
+        description: Parties authorized to invoke function
+  - url: /v2/nvcf/authorizations/functions/{functionId}
+    method: listForFunction
+    httpMethod: get
+    tag: Authorized Accounts
+    typeScriptTag: authorizedAccounts
+    description: List Account Authorizations For Function
+    parameters:
+      - name: functionId
+        schema: string
+        required: true
+        description: Function id
+        example: FUNCTIONID
+    responses:
+      - statusCode: '200'
+        description: Parties authorized to invoke function
+  - url: /v2/nvcf/authorizations/functions/{functionId}
+    method: authorizeFunctionAccounts
+    httpMethod: post
+    tag: Authorized Accounts
+    typeScriptTag: authorizedAccounts
+    description: Authorize Accounts To Invoke Function
+    parameters:
+      - name: functionId
+        schema: string
+        required: true
+        description: Function id
+        example: FUNCTIONID
+      - name: authorizedParties
+        schema: array
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: Parties authorized to invoke function
+  - url: /v2/nvcf/assets
+    method: listAssets
+    httpMethod: get
+    tag: Asset Management
+    typeScriptTag: assetManagement
+    description: List Assets
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: Response body containing list of assets of the current nca id
+  - url: /v2/nvcf/assets
+    method: createAssetAndUrl
+    httpMethod: post
+    tag: Asset Management
+    typeScriptTag: assetManagement
+    description: Create Asset
+    parameters:
+      - name: description
+        schema: string
+        required: true
+        description: ''
+        example: DESCRIPTION
+      - name: contentType
+        schema: string
+        required: true
+        description: ''
+        example: CONTENTTYPE
+    responses:
+      - statusCode: '200'
+        description: >-
+          Response body containing asset-id and the corresponding pre-signed URL
+          to upload an asset of specified content-type to AWS S3 bucket.
+  - url: >-
+      /v2/nvcf/authorizations/functions/{functionId}/versions/{functionVersionId}/remove
+    method: removePartyForVersion
+    httpMethod: patch
+    tag: Authorized Accounts
+    typeScriptTag: authorizedAccounts
+    description: Unauthorize Account From Invoking Function Version
+    parameters:
+      - name: functionId
+        schema: string
+        required: true
+        description: Function id
+        example: FUNCTIONID
+      - name: functionVersionId
+        schema: string
+        required: true
+        description: Function version
+        example: FUNCTIONVERSIONID
+      - name: authorizedParty
+        schema: object
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: Parties authorized to invoke function
+  - url: >-
+      /v2/nvcf/authorizations/functions/{functionId}/versions/{functionVersionId}/add
+    method: addAccountToFunctionVersion
+    httpMethod: patch
+    tag: Authorized Accounts
+    typeScriptTag: authorizedAccounts
+    description: Authorize Additional Account To Invoke Function Version
+    parameters:
+      - name: functionId
+        schema: string
+        required: true
+        description: Function id
+        example: FUNCTIONID
+      - name: functionVersionId
+        schema: string
+        required: true
+        description: Function version
+        example: FUNCTIONVERSIONID
+      - name: authorizedParty
+        schema: object
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: Parties authorized to invoke function
+  - url: /v2/nvcf/authorizations/functions/{functionId}/remove
+    method: removeFromFunctionAuthorization
+    httpMethod: patch
+    tag: Authorized Accounts
+    typeScriptTag: authorizedAccounts
+    description: Unauthorize Account From Invoking Function
+    parameters:
+      - name: functionId
+        schema: string
+        required: true
+        description: Function id
+        example: FUNCTIONID
+      - name: authorizedParty
+        schema: object
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: Parties authorized to invoke function
+  - url: /v2/nvcf/authorizations/functions/{functionId}/add
+    method: addAccountToFunction
+    httpMethod: patch
+    tag: Authorized Accounts
+    typeScriptTag: authorizedAccounts
+    description: Authorize Additional Account To Invoke Function
+    parameters:
+      - name: functionId
+        schema: string
+        required: true
+        description: Function id
+        example: FUNCTIONID
+      - name: authorizedParty
+        schema: object
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: Parties authorized to invoke function
+  - url: /v2/nvcf/queues/functions/{functionId}/versions/{versionId}
+    method: getAllQueuesDetails
+    httpMethod: get
+    tag: Queue Details
+    typeScriptTag: queueDetails
+    description: Queue Details
+    parameters:
+      - name: functionId
+        schema: string
+        required: true
+        description: Function id
+        example: FUNCTIONID
+      - name: versionId
+        schema: string
+        required: true
+        description: Function version id
+        example: VERSIONID
+    responses:
+      - statusCode: '200'
+        description: Request queue details of all the functions with same id in an account
+  - url: /v2/nvcf/queues/functions/{functionId}
+    method: functionQueuesDetails
+    httpMethod: get
+    tag: Queue Details
+    typeScriptTag: queueDetails
+    description: Queue Details
+    parameters:
+      - name: functionId
+        schema: string
+        required: true
+        description: Function id
+        example: FUNCTIONID
+    responses:
+      - statusCode: '200'
+        description: Request queue details of all the functions with same id in an account
+  - url: /v2/nvcf/queues/{requestId}/position
+    method: getQueuePositionByRequestId
+    httpMethod: get
+    tag: Queue Details
+    typeScriptTag: queueDetails
+    description: Queue Position
+    parameters:
+      - name: requestId
+        schema: string
+        required: true
+        description: Function invocation request id
+        example: REQUESTID
+    responses:
+      - statusCode: '200'
+        description: Request position in queue for invocation request
+  - url: /v2/nvcf/pexec/status/{requestId}
+    method: pollForResultUsingFunctionInvocationRequest
+    httpMethod: get
+    tag: Function Invocation
+    typeScriptTag: functionInvocation
+    description: Poll For Result Using Function Invocation Request
+    parameters:
+      - name: requestId
+        schema: string
+        required: true
+        description: Function invocation request id
+        example: REQUESTID
+      - name: nvcfPollSeconds
+        schema: integer
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '202'
+        description: ''
+      - statusCode: '302'
+        description: ''
+      - statusCode: '402'
+        description: ''
+      - statusCode: '403'
+        description: ''
+  - url: /v2/nvcf/functions/{functionId}/versions/{functionVersionId}
+    method: deleteFunctionVersion
+    httpMethod: delete
+    tag: Function Management
+    typeScriptTag: functionManagement
+    description: Delete Function
+    parameters:
+      - name: functionId
+        schema: string
+        required: true
+        description: Function id
+        example: FUNCTIONID
+      - name: functionVersionId
+        schema: string
+        required: true
+        description: Version id
+        example: FUNCTIONVERSIONID
+    responses:
+      - statusCode: '204'
+        description: No Content
+  - url: /v2/nvcf/functions/{functionId}/versions/{functionVersionId}
+    method: getVersionDetails
+    httpMethod: get
+    tag: Function Management
+    typeScriptTag: functionManagement
+    description: Get Function Version Details
+    parameters:
+      - name: functionId
+        schema: string
+        required: true
+        description: Function id
+        example: FUNCTIONID
+      - name: functionVersionId
+        schema: string
+        required: true
+        description: 'Version id '
+        example: FUNCTIONVERSIONID
+    responses:
+      - statusCode: '200'
+        description: Response body with function details
+  - url: /v2/nvcf/functions/ids
+    method: listFunctionIds
+    httpMethod: get
+    tag: Function Management
+    typeScriptTag: functionManagement
+    description: List Function Ids
+    parameters:
+      - name: visibility
+        schema: array
+        required: false
+        description: >-
+          Query param 'visibility' indicates the kind of functions to be
+          included  in the response. 
+        default:
+          - authorized
+          - private
+          - public
+    responses:
+      - statusCode: '200'
+        description: Response body containing list of function ids in an account
+  - url: /v2/nvcf/exec/status/{requestId}
+    method: pollForResultUsingFunctionInvocationRequest
+    httpMethod: get
+    tag: Envelope Function Invocation
+    typeScriptTag: envelopeFunctionInvocation
+    description: Poll For Result Using Function Invocation Request
+    parameters:
+      - name: requestId
+        schema: string
+        required: true
+        description: Function invocation request id
+        example: REQUESTID
+    responses:
+      - statusCode: '200'
+        description: >-
+          Response body with result from a request for executing a job/task as a
+          cloud function using a GPU powered spot/on-demand instance.
+      - statusCode: '202'
+        description: >-
+          Response body with result from a request for executing a job/task as a
+          cloud function using a GPU powered spot/on-demand instance.
+      - statusCode: '302'
+        description: >-
+          Response body with result from a request for executing a job/task as a
+          cloud function using a GPU powered spot/on-demand instance.
+      - statusCode: '402'
+        description: >-
+          Response body with result from a request for executing a job/task as a
+          cloud function using a GPU powered spot/on-demand instance.
+      - statusCode: '403'
+        description: >-
+          Response body with result from a request for executing a job/task as a
+          cloud function using a GPU powered spot/on-demand instance.
+  - url: /v2/nvcf/clusterGroups
+    method: list
+    httpMethod: get
+    tag: Cluster Groups and GPUs
+    typeScriptTag: clusterGroupsAndGpUs
+    description: List Cluster Groups
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /v2/nvcf/assets/{assetId}
+    method: deleteAssetById
+    httpMethod: delete
+    tag: Asset Management
+    typeScriptTag: assetManagement
+    description: Delete Asset
+    parameters:
+      - name: assetId
+        schema: string
+        required: true
+        description: Id of the asset to be deleted
+        example: ASSETID
+    responses:
+      - statusCode: '204'
+        description: No Content
+  - url: /v2/nvcf/assets/{assetId}
+    method: showDetails
+    httpMethod: get
+    tag: Asset Management
+    typeScriptTag: assetManagement
+    description: Show Asset Details
+    parameters:
+      - name: assetId
+        schema: string
+        required: true
+        description: Asset id
+        example: ASSETID
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /health/**
+    method: getInfo
+    httpMethod: get
+    tag: Health
+    typeScriptTag: health
+    description: Get Health Information
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+numberOfSchemas: 52
+apiDescription: >-
+  Since its founding in 1993, NVIDIA (NASDAQ: NVDA) has been a pioneer in
+  accelerated computing. The company's invention of the GPU in 1999 sparked the
+  growth of the PC gaming market, redefined computer graphics, ignited the era
+  of modern AI and is fueling the creation of the metaverse. NVIDIA is now a
+  full-stack computing company with data-center-scale offerings that are
+  reshaping industry.

@@ -1184,14 +1184,22 @@ const customRequests: Record<string, CustomRequest> = {
       return downloadOpenApiSpecFromReadme({ urls });
     },
   },
-  // "nvidia.com_NIM": {
-  //   lambda: async () => {
-  //     const urls = await collectEndpointsFromReadme({
-  //       url: "https://docs.api.nvidia.com/nim/reference/google-gemma7b",
-  //     });
-  //     return await downloadOpenApiSpecFromReadme({ urls });
-  //   },
-  // },
+  "nvidia.com_NIM": {
+    lambda: async () => {
+      const urls = await collectEndpointsFromReadme({
+        url: "https://docs.api.nvidia.com/nim/reference/google-gemma7b",
+      });
+      return await downloadOpenApiSpecFromReadme({ urls });
+    },
+  },
+  "nvidia.com_CloudFunctions": {
+    lambda: async () => {
+      const urls = await collectEndpointsFromReadme({
+        url: "https://docs.api.nvidia.com/cloud-functions/reference/getfunctiondeployment",
+      });
+      return await downloadOpenApiSpecFromReadme({ urls });
+    },
+  },
   "unstructured.io": {
     type: "GET",
     url: "https://raw.githubusercontent.com/Unstructured-IO/unstructured-api/main/openapi.json",
