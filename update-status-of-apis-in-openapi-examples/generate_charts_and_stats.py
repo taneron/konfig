@@ -53,7 +53,7 @@ def filter_non_reachable_and_na(logs):
     return [entry for entry in logs if entry['reachable'] and entry['responseTime'] != "N/A"]
 
 def filter_past_three_months(logs):
-    return [entry for entry in logs if entry['timestamp'] > datetime.now() - timedelta(days=90)]
+    return [entry for entry in logs if parse_timestamp(entry['timestamp']) > datetime.now() - timedelta(days=90)]
 
 def filter_outliers(logs):
     # Remove super outlier response times using z-score
@@ -78,10 +78,13 @@ def filter_outliers(logs):
 
     return filtered_logs
 
+def parse_timestamp(timestamp: str) -> datetime:
+    return datetime.strptime(timestamp, '%Y-%m-%dT%H:%M:%S.%fZ')
+
 def generate_plot_for_logs(logs, average_response_time):
     # Filter out the response times that have a z-score greater than the threshold
     response_times = [parse_response_time(entry['responseTime']) for entry in logs]
-    timestamps = [datetime.strptime(entry['timestamp'], '%Y-%m-%dT%H:%M:%S.%fZ') for entry in logs]
+    timestamps = [parse_timestamp(entry['timestamp']) for entry in logs]
 
     # Convert to pandas DataFrame
     df = pd.DataFrame({'timestamp': timestamps, 'response_time': response_times})
@@ -153,7 +156,7 @@ def get_response_times(file_path: str) -> dict[str, List[int]]:
 def all_status_log_files() -> List[str]:
     status_log_files = []
     filter_substring = os.getenv('FILTER', '')
-    for root, dirs, files in os.walk(os.path.join('..', 'sdks', 'openapi-examples')):
+    for root, dirs, files in os.walk(os.path.join(os.path.dirname(os.path.dirname(__file__)), 'sdks', 'openapi-examples')):
         for file in files:
             if file == 'status_log.yaml' and filter_substring in root:
                 status_log_files.append(os.path.join(root, file))
@@ -173,7 +176,7 @@ if __name__ == "__main__":
 
     average_response_time = sum(all_response_times) / len(all_response_times)
 
-    logger.info(f"Average response time from all APIs: {average_response_time} ms")
+    logger.info(f"Average response time from all APIs in openapi-examples: {average_response_time} ms")
 
     for file_path in files:
         generate_charts_and_stats(file_path, average_response_time)
