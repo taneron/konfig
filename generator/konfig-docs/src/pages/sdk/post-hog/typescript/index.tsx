@@ -28,7 +28,7 @@ With over 50k users, we're default alive, growing 97% through word of mouth, and
       companyKebabCase="post-hog"
       clientNameCamelCase="postHog"
       homepage="posthog.com"
-      lastUpdated={new Date("2024-03-19T18:32:39.858Z")}
+      lastUpdated={new Date("2024-03-21T03:39:02.740Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/posthog/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
@@ -111,10 +111,9 @@ With over 50k users, we're default alive, growing 97% through word of mouth, and
       },
       {
         "name": "membership_level",
-        "schema": "integer",
+        "schema": "undefined",
         "required": true,
-        "description": "",
-        "example": 0
+        "description": ""
       },
       {
         "name": "plugins_access_level",
@@ -270,7 +269,7 @@ With over 50k users, we're default alive, growing 97% through word of mouth, and
       },
       {
         "name": "membership_level",
-        "schema": "integer",
+        "schema": "undefined",
         "description": ""
       },
       {
@@ -378,10 +377,9 @@ With over 50k users, we're default alive, growing 97% through word of mouth, and
       },
       {
         "name": "membership_level",
-        "schema": "integer",
+        "schema": "undefined",
         "required": true,
-        "description": "",
-        "example": 0
+        "description": ""
       },
       {
         "name": "plugins_access_level",
@@ -6524,10 +6522,9 @@ With over 50k users, we're default alive, growing 97% through word of mouth, and
       },
       {
         "name": "effective_membership_level",
-        "schema": "integer",
+        "schema": "undefined",
         "required": true,
-        "description": "",
-        "example": 0
+        "description": ""
       },
       {
         "name": "access_control",
@@ -6851,7 +6848,7 @@ With over 50k users, we're default alive, growing 97% through word of mouth, and
       },
       {
         "name": "effective_membership_level",
-        "schema": "integer",
+        "schema": "undefined",
         "description": ""
       },
       {
@@ -7139,10 +7136,9 @@ With over 50k users, we're default alive, growing 97% through word of mouth, and
       },
       {
         "name": "effective_membership_level",
-        "schema": "integer",
+        "schema": "undefined",
         "required": true,
-        "description": "",
-        "example": 0
+        "description": ""
       },
       {
         "name": "access_control",
@@ -7466,7 +7462,7 @@ With over 50k users, we're default alive, growing 97% through word of mouth, and
       },
       {
         "name": "effective_membership_level",
-        "schema": "integer",
+        "schema": "undefined",
         "description": ""
       },
       {

@@ -29,7 +29,7 @@ Or get a free API key and start building, no credit card required, at shipengine
       companyKebabCase="ship-engine"
       clientNameCamelCase="shipEngine"
       homepage="shipengine.com"
-      lastUpdated={new Date("2024-03-20T00:37:28.388Z")}
+      lastUpdated={new Date("2024-03-21T03:39:02.740Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/shipengine/favicon.png"
       contactUrl="https://www.shipengine.com/contact/"
       contactEmail="sales@shipengine.com"
@@ -1617,9 +1617,8 @@ Or get a free API key and start building, no credit card required, at shipengine
       },
       {
         "name": "voided_at",
-        "schema": "string",
-        "description": "",
-        "example": "2018-09-23T15:00:00.000Z"
+        "schema": "undefined",
+        "description": ""
       },
       {
         "name": "label_download_type",
@@ -1648,9 +1647,8 @@ Or get a free API key and start building, no credit card required, at shipengine
       },
       {
         "name": "label_image_id",
-        "schema": "string",
-        "description": "",
-        "example": "img_DtBXupDBxREpHnwEXhTfgK"
+        "schema": "undefined",
+        "description": ""
       },
       {
         "name": "carrier_code",
@@ -1670,12 +1668,12 @@ Or get a free API key and start building, no credit card required, at shipengine
       },
       {
         "name": "form_download",
-        "schema": "object",
+        "schema": "undefined",
         "description": ""
       },
       {
         "name": "insurance_claim",
-        "schema": "object",
+        "schema": "undefined",
         "description": ""
       },
       {
@@ -1919,9 +1917,8 @@ Or get a free API key and start building, no credit card required, at shipengine
       },
       {
         "name": "label_image_id",
-        "schema": "string",
-        "description": "",
-        "example": "img_DtBXupDBxREpHnwEXhTfgK"
+        "schema": "undefined",
+        "description": ""
       }
     ],
     "responses": [
@@ -3759,7 +3756,7 @@ Or get a free API key and start building, no credit card required, at shipengine
       language="TypeScript"
       apiTitle="ShipEngine API"
       apiBaseUrl="https://api.shipengine.com"
-      apiVersion="1.1.202403141503"
+      apiVersion="1.1.202403202303"
       endpoints={67}
       sdkMethods={261}
       schemas={251}

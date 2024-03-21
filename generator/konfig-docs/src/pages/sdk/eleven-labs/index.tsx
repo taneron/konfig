@@ -4,7 +4,7 @@ import { Company } from '../../../components/Company';
 const sdks = [
   {
     "name": "ElevenLabs",
-    "numberOfMethods": 56,
+    "numberOfMethods": 57,
     "categories": [
       "ai",
       "audio_generation",
@@ -22,7 +22,7 @@ const sdks = [
   },
   {
     "name": "ElevenLabs",
-    "numberOfMethods": 56,
+    "numberOfMethods": 57,
     "categories": [
       "ai",
       "audio_generation",
@@ -40,7 +40,7 @@ const sdks = [
   },
   {
     "name": "ElevenLabs",
-    "numberOfMethods": 56,
+    "numberOfMethods": 57,
     "categories": [
       "ai",
       "audio_generation",

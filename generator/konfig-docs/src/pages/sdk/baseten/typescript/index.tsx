@@ -19,7 +19,7 @@ export default function BasetenTypeScriptSdk() {
       companyKebabCase="baseten"
       clientNameCamelCase="baseten"
       homepage="baseten.co"
-      lastUpdated={new Date("2024-03-15T18:50:00.907Z")}
+      lastUpdated={new Date("2024-03-21T03:39:02.740Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/baseten/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
@@ -345,6 +345,96 @@ export default function BasetenTypeScriptSdk() {
         "description": "A deployment of a model."
       }
     ]
+  },
+  {
+    "url": "/v1/models/{model_id}/deployments/development/activate",
+    "method": "activateDevelopmentDeployment",
+    "httpMethod": HttpMethodsEnum.POST,
+    "tag": "Deployment",
+    "typeScriptTag": "deployment",
+    "description": "Activates a development deployment",
+    "parameters": [],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": "The response to a request to activate a deployment."
+      }
+    ]
+  },
+  {
+    "url": "/v1/models/{model_id}/deployments/production/activate",
+    "method": "activateProduction",
+    "httpMethod": HttpMethodsEnum.POST,
+    "tag": "Deployment",
+    "typeScriptTag": "deployment",
+    "description": "Activates a production deployment",
+    "parameters": [],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": "The response to a request to activate a deployment."
+      }
+    ]
+  },
+  {
+    "url": "/v1/models/{model_id}/deployments/{deployment_id}/activate",
+    "method": "activateStatus",
+    "httpMethod": HttpMethodsEnum.POST,
+    "tag": "Deployment",
+    "typeScriptTag": "deployment",
+    "description": "Activates a deployment",
+    "parameters": [],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": "The response to a request to activate a deployment."
+      }
+    ]
+  },
+  {
+    "url": "/v1/models/{model_id}/deployments/development/deactivate",
+    "method": "deactivateDevelopment",
+    "httpMethod": HttpMethodsEnum.POST,
+    "tag": "Deployment",
+    "typeScriptTag": "deployment",
+    "description": "Deactivates a development deployment",
+    "parameters": [],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": "The response to a request to deactivate a deployment."
+      }
+    ]
+  },
+  {
+    "url": "/v1/models/{model_id}/deployments/production/deactivate",
+    "method": "deactivateProductionDeployment",
+    "httpMethod": HttpMethodsEnum.POST,
+    "tag": "Deployment",
+    "typeScriptTag": "deployment",
+    "description": "Deactivates a production deployment",
+    "parameters": [],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": "The response to a request to deactivate a deployment."
+      }
+    ]
+  },
+  {
+    "url": "/v1/models/{model_id}/deployments/{deployment_id}/deactivate",
+    "method": "deactivateDeploymentStatus",
+    "httpMethod": HttpMethodsEnum.POST,
+    "tag": "Deployment",
+    "typeScriptTag": "deployment",
+    "description": "Deactivates a deployment",
+    "parameters": [],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": "The response to a request to deactivate a deployment."
+      }
+    ]
   }
 ]
     }
@@ -352,9 +442,9 @@ export default function BasetenTypeScriptSdk() {
       apiTitle="Baseten management API"
       apiBaseUrl="https://api.baseten.co"
       apiVersion="1.0.0"
-      endpoints={12}
-      sdkMethods={23}
-      schemas={13}
+      endpoints={18}
+      sdkMethods={35}
+      schemas={15}
       parameters={19}
       difficulty="Easy"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/baseten/openapi.yaml"

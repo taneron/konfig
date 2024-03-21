@@ -4,7 +4,7 @@ import { Company } from '../../../components/Company';
 const sdks = [
   {
     "name": "Baseten",
-    "numberOfMethods": 13,
+    "numberOfMethods": 19,
     "categories": [
       "ai",
       "ml",
@@ -38,7 +38,7 @@ const sdks = [
   },
   {
     "name": "Baseten",
-    "numberOfMethods": 13,
+    "numberOfMethods": 19,
     "categories": [
       "ai",
       "ml",
@@ -72,7 +72,7 @@ const sdks = [
   },
   {
     "name": "Baseten",
-    "numberOfMethods": 13,
+    "numberOfMethods": 19,
     "categories": [
       "ai",
       "ml",

@@ -19,7 +19,7 @@ export default function ZoomMeetingTypeScriptSdk() {
       companyKebabCase="zoom"
       clientNameCamelCase="zoomMeeting"
       homepage="zoom.us/"
-      lastUpdated={new Date("2024-03-20T00:37:28.388Z")}
+      lastUpdated={new Date("2024-03-21T03:39:02.740Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/zoom/meeting/favicon.png"
       contactUrl="https://developer.zoom.us/"
       // Missing contactEmail
@@ -1267,6 +1267,85 @@ export default function ZoomMeetingTypeScriptSdk() {
     ]
   },
   {
+    "url": "/devices/groups",
+    "method": "listZdmGroupInfo",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "Devices",
+    "typeScriptTag": "devices",
+    "description": "Get zdm group info",
+    "parameters": [
+      {
+        "name": "pageSize",
+        "schema": "integer",
+        "required": false,
+        "description": "The total number of records returned from a single API call.\nDefault - 30.\nMax -100.",
+        "example": 30
+      },
+      {
+        "name": "nextPageToken",
+        "schema": "string",
+        "required": false,
+        "description": "Use the next page token to paginate through large result sets. A next page token is returned whenever the set of available results exceeds the current page size. This token's expiration period token is 15 minutes.",
+        "example": "BJLYC6PABbAHdjwSkGVQeeR6B1juwHqj3G2"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": "**HTTP Status Code:** `400` <br>\n Bad Request  \n\n **Error Code:** `30051037` <br>\n Invalid parameters. <br>\n"
+      },
+      {
+        "statusCode": "403",
+        "description": "**HTTP Status Code:** `403` <br>\n Forbidden  \n\n **Error Code:** `30055008` <br>\n No permission. <br>\n"
+      }
+    ]
+  },
+  {
+    "url": "/devices/zpa/assignment",
+    "method": "assignDeviceZpaAssignment",
+    "httpMethod": HttpMethodsEnum.POST,
+    "tag": "Devices",
+    "typeScriptTag": "devices",
+    "description": "Assign a device to a user or commonarea",
+    "parameters": [
+      {
+        "name": "extension_number",
+        "schema": "string",
+        "required": false,
+        "description": "",
+        "example": "802"
+      },
+      {
+        "name": "mac_address",
+        "schema": "string",
+        "required": true,
+        "description": "",
+        "example": "64167ffc0ed7"
+      },
+      {
+        "name": "vendor",
+        "schema": "string",
+        "required": true,
+        "description": "",
+        "example": "poly"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "204",
+        "description": "**HTTP Status Code:** `204` **No Content**   Request processed successfully."
+      },
+      {
+        "statusCode": "400",
+        "description": "**HTTP Status Code:** `400` <br>\n Bad Request  \n\n **Error Code:** `30055003` <br>\n Device vendor does not support. <br>\n**Error Code:** `30055007` <br>\n Mac address is wrong. <br>\n**Error Code:** `30051039` <br>\n Device not exists. <br>\n**Error Code:** `30055002` <br>\n AUTO RECEPTIONIST user can not assign to device. <br>\n**Error Code:** `30055009` <br>\n User not have phone plan. <br>\n**Error Code:** `30052024` <br>\n Extension number not exists. <br>\n**Error Code:** `30055002` <br>\n Missing required input. <br>\n"
+      }
+    ]
+  },
+  {
     "url": "/devices/zpa/upgrade",
     "method": "upgradeZpaOsApp",
     "httpMethod": HttpMethodsEnum.POST,
@@ -1296,6 +1375,75 @@ export default function ZoomMeetingTypeScriptSdk() {
       {
         "statusCode": "400",
         "description": "**HTTP Status Code:** `400` <br>\n Bad Request  \n\n **Error Code:** `30052029` <br>\n Missing required input: firmware_versions. <br>\n**Error Code:** `30055020` <br>\n Upgrade type dose not exist. <br>\n**Error Code:** `30055018` <br>\n Zdm group id dose not exist. <br>\n**Error Code:** `30052030` <br>\n Missing required input: app_version. <br>\n"
+      }
+    ]
+  },
+  {
+    "url": "/devices/zpa/vendors/{vendor}/mac_addresses/{macAddress}",
+    "method": "removeZpaDeviceByVendorAndMacAddress",
+    "httpMethod": HttpMethodsEnum.DELETE,
+    "tag": "Devices",
+    "typeScriptTag": "devices",
+    "description": "Delete ZPA device by vendor and mac address",
+    "parameters": [
+      {
+        "name": "vendor",
+        "schema": "string",
+        "required": true,
+        "description": "The device's manufacturer.",
+        "example": "Poly"
+      },
+      {
+        "name": "macAddress",
+        "schema": "string",
+        "required": true,
+        "description": "The device's mac address.",
+        "example": "64167ffc0ed7"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "204",
+        "description": "**HTTP Status Code:** `204` **No Content** Device deleted successfully."
+      },
+      {
+        "statusCode": "400",
+        "description": "**HTTP Status Code:** `400` <br>\n Bad Request  \n\n **Error Code:** `30052026` <br>\n Device is not ZPA. <br>\n**Error Code:** `30055003` <br>\n Device vendor does not support. <br>\n**Error Code:** `30055007` <br>\n Mac address is wrong. <br>\n"
+      },
+      {
+        "statusCode": "404",
+        "description": "**HTTP Status Code:** `404` <br>\n Not Found  \n\n **Error Code:** `30051039` <br>\n Zdm device not found. <br>\n"
+      }
+    ]
+  },
+  {
+    "url": "/devices/zpa/zdm_groups/{zdmGroupId}/versions",
+    "method": "getZpaVersionInfo",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "Devices",
+    "typeScriptTag": "devices",
+    "description": "Get ZPA version info",
+    "parameters": [
+      {
+        "name": "zdmGroupId",
+        "schema": "string",
+        "required": true,
+        "description": "The Zoom Device Management (ZDM) group ID.",
+        "example": "ff49588c-92c4-4406-99e6-1942d8a61a7b"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": "Information about the version list."
+      },
+      {
+        "statusCode": "400",
+        "description": "**HTTP Status Code:** `400` <br>\n Bad Request  \n\n **Error Code:** `30051037` <br>\n * AccountId is empty. <br>\n"
+      },
+      {
+        "statusCode": "404",
+        "description": "**HTTP Status Code:** `404` <br>\n Not Found  \n\n **Error Code:** `30052027` <br>\n * ZdmGroup not found. <br>\n"
       }
     ]
   },
@@ -8046,10 +8194,10 @@ export default function ZoomMeetingTypeScriptSdk() {
       apiTitle="Zoom Meeting API"
       apiBaseUrl="https://api.zoom.us/v2"
       apiVersion="2"
-      endpoints={116}
-      sdkMethods={168}
-      schemas={169}
-      parameters={615}
+      endpoints={120}
+      sdkMethods={172}
+      schemas={172}
+      parameters={623}
       difficulty="Hard"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/zoom/meeting/openapi.yaml"
       openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/zoom/meeting/openapi.yaml"
