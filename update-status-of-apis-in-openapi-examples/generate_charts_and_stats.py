@@ -1,7 +1,7 @@
 from typing import Any, List
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
-from datetime import datetime
+from datetime import datetime, timedelta
 import yaml
 import os
 import pandas as pd  # Added import for pandas
@@ -51,6 +51,9 @@ def parse_status_log(file_path: str) -> dict[str, Any]:
 
 def filter_non_reachable_and_na(logs):
     return [entry for entry in logs if entry['reachable'] and entry['responseTime'] != "N/A"]
+
+def filter_past_three_months(logs):
+    return [entry for entry in logs if entry['timestamp'] > datetime.now() - timedelta(days=90)]
 
 def filter_outliers(logs):
     # Remove super outlier response times using z-score
@@ -111,6 +114,7 @@ def generate_charts_and_stats(file_path, average_response_time):
         if not logs:
             continue
         logs = filter_outliers(logs)
+        logs = filter_past_three_months(logs)
 
         plt = generate_plot_for_logs(logs, average_response_time)
         url_without_scheme = url.replace('https://', '').replace('http://', '')
