@@ -231,6 +231,10 @@ const customRequests: Record<string, CustomRequest> = {
       return fetch(url).then((res) => res.text());
     },
   },
+  "dots.dev": {
+    type: "GET",
+    url: "https://raw.githubusercontent.com/Send-Dots/dots-docs-v2/master/docs/v2.yaml",
+  },
   "lob.com": {
     lambda: async () => {
       const response = await fetch(
