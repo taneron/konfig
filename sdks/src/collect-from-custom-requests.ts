@@ -32,6 +32,7 @@ import {
 } from "../scripts/util";
 import { PuppeteerBlocker } from "@cliqz/adblocker-puppeteer";
 import fetch from "cross-fetch"; // required 'fetch'
+import { collectEndpointsFromReadme } from "./collect-endpoints-from-readme";
 
 /**
  * For describing a custom request to get an OAS
@@ -326,71 +327,10 @@ const customRequests: Record<string, CustomRequest> = {
   },
   "baremetrics.com": {
     lambda: async () => {
-      const urls = [
-        "https://developers.baremetrics.com/reference/get-account",
-        "https://developers.baremetrics.com/reference/sources",
-        "https://developers.baremetrics.com/reference/list-plans",
-        "https://developers.baremetrics.com/reference/show-plan",
-        "https://developers.baremetrics.com/reference/update-plan",
-        "https://developers.baremetrics.com/reference/create-plan",
-        "https://developers.baremetrics.com/reference/delete-plan",
-        "https://developers.baremetrics.com/reference/list-customers",
-        "https://developers.baremetrics.com/reference/show-customer",
-        "https://developers.baremetrics.com/reference/list-customer-events",
-        "https://developers.baremetrics.com/reference/update-customer",
-        "https://developers.baremetrics.com/reference/create-customer",
-        "https://developers.baremetrics.com/reference/delete-customer",
-        "https://developers.baremetrics.com/reference/list-subscriptions",
-        "https://developers.baremetrics.com/reference/show-subscription",
-        "https://developers.baremetrics.com/reference/update-subscription",
-        "https://developers.baremetrics.com/reference/cancel-subscription",
-        "https://developers.baremetrics.com/reference/create-subscription",
-        "https://developers.baremetrics.com/reference/delete-subscription",
-        "https://developers.baremetrics.com/reference/list-annotations",
-        "https://developers.baremetrics.com/reference/show-annotation",
-        "https://developers.baremetrics.com/reference/create-annotation",
-        "https://developers.baremetrics.com/reference/delete-annotation",
-        "https://developers.baremetrics.com/reference/list-goals",
-        "https://developers.baremetrics.com/reference/show-goal",
-        "https://developers.baremetrics.com/reference/create-goal",
-        "https://developers.baremetrics.com/reference/delete-goal",
-        "https://developers.baremetrics.com/reference/list-users",
-        "https://developers.baremetrics.com/reference/show-user",
-        "https://developers.baremetrics.com/reference/list-charges",
-        "https://developers.baremetrics.com/reference/show-charge",
-        "https://developers.baremetrics.com/reference/create-charge",
-        "https://developers.baremetrics.com/reference/delete-charge",
-        "https://developers.baremetrics.com/reference/list-refunds",
-        "https://developers.baremetrics.com/reference/show-refund",
-        "https://developers.baremetrics.com/reference/create-refund",
-        "https://developers.baremetrics.com/reference/delete-refund",
-        "https://developers.baremetrics.com/reference/list-events",
-        "https://developers.baremetrics.com/reference/show-event",
-        "https://developers.baremetrics.com/reference/show-summary",
-        "https://developers.baremetrics.com/reference/show-metric",
-        "https://developers.baremetrics.com/reference/show-customers",
-        "https://developers.baremetrics.com/reference/show-plan-breakout",
-        "https://developers.baremetrics.com/reference/show-cohorts",
-        "https://developers.baremetrics.com/reference/list-fields",
-        "https://developers.baremetrics.com/reference/list-segments",
-        "https://developers.baremetrics.com/reference/show-segment",
-        "https://developers.baremetrics.com/reference/search-segment",
-        "https://developers.baremetrics.com/reference/create-segment",
-        "https://developers.baremetrics.com/reference/update-segment",
-        "https://developers.baremetrics.com/reference/delete-segment",
-        "https://developers.baremetrics.com/reference/set-attributes",
-        "https://developers.baremetrics.com/reference/list-attribute-fields",
-        "https://developers.baremetrics.com/reference/create-attribute-field",
-        "https://developers.baremetrics.com/reference/update-attribute-field",
-        "https://developers.baremetrics.com/reference/list-cancellation-insight-events",
-        "https://developers.baremetrics.com/reference/show-event-1",
-        "https://developers.baremetrics.com/reference/update-event",
-        "https://developers.baremetrics.com/reference/create-event",
-        "https://developers.baremetrics.com/reference/show-reason",
-        "https://developers.baremetrics.com/reference/create-reason",
-        "https://developers.baremetrics.com/reference/delete-reason",
-        "https://developers.baremetrics.com/reference/update-reason",
-      ];
+      const urls = await collectEndpointsFromReadme({
+        url: "https://developers.baremetrics.com/reference/get-account",
+      });
+      console.log(urls);
       return downloadOpenApiSpecFromReadme({ urls });
     },
   },
@@ -1244,6 +1184,14 @@ const customRequests: Record<string, CustomRequest> = {
       return downloadOpenApiSpecFromReadme({ urls });
     },
   },
+  // "nvidia.com_NIM": {
+  //   lambda: async () => {
+  //     const urls = await collectEndpointsFromReadme({
+  //       url: "https://docs.api.nvidia.com/nim/reference/google-gemma7b",
+  //     });
+  //     return await downloadOpenApiSpecFromReadme({ urls });
+  //   },
+  // },
   "unstructured.io": {
     type: "GET",
     url: "https://raw.githubusercontent.com/Unstructured-IO/unstructured-api/main/openapi.json",
@@ -1330,7 +1278,7 @@ async function downloadOpenApiSpecFromReadme({
         console.log(`Got oasDefinition for ${url}`);
         specs.push(rawSpec.oasDefinition);
       } else {
-        throw Error(
+        console.warn(
           `Expecting oasDefinition to be defined but it's not for ${url}`
         );
       }
