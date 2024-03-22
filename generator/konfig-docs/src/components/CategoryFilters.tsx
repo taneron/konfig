@@ -86,7 +86,7 @@ export const CategoryFilterControls = observer(
         <Button
           variant="outline"
           size="sm"
-          className="mb-1 w-full"
+          className="mb-2 w-full"
           onClick={() => {
             const anyCategoryIsOpen = allCategories.anyCategoryIsOpen;
             Object.values(allCategories.categories).forEach((category) => {
@@ -103,6 +103,7 @@ export const CategoryFilterControls = observer(
               indented={false}
               category="All Categories"
               subpath="/sdk/category/all"
+              className="font-semibold"
             />
           </li>
           {categories.map(({ parentCategory, subCategories, subpath }, i) => (
@@ -213,8 +214,10 @@ function CategoryLink({
   indented,
   selected = false,
   subpath,
+  className,
 }: {
   category: string;
+  className?: string;
   label?: string;
   selected?: boolean;
   indented?: boolean;
@@ -224,9 +227,10 @@ function CategoryLink({
     <Link
       aria-selected={selected}
       data-indent={indented}
-      className={
-        "pl-12 rounded-md data-[indent=false]:pl-2 aria text-slate-500 hover:text-slate-800 hover:no-underline block py-2 hover:bg-slate-100 transition-all aria-selected:hover:bg-blue-100 aria-selected:bg-blue-100 aria-selected:text-blue-800"
-      }
+      className={cn(
+        "pl-12 rounded-md data-[indent=false]:pl-2 aria text-slate-500 hover:text-slate-800 hover:no-underline block py-2 hover:bg-slate-100 transition-all aria-selected:hover:bg-blue-100 aria-selected:bg-blue-100 aria-selected:text-blue-800",
+        className
+      )}
       href={subpath}
     >
       {label ?? category}
