@@ -1,5 +1,5 @@
 import * as path from "path";
-import * as fs from "fs";
+import * as fs from "fs-extra";
 import kebabcase from "lodash.kebabcase";
 import { Published } from "./util";
 import camelcase from "konfig-lib/dist/util/camelcase";
@@ -34,6 +34,8 @@ function main() {
   );
 
   const sdkDir = path.join(docsDir, "src", "pages", "sdk");
+
+  const categoryDir = path.join(sdkDir, "category");
 
   // delete everything under sdkDir except for "index.tsx" and "sdk-links.json"
   const sdkFiles = fs.readdirSync(sdkDir);
@@ -153,18 +155,87 @@ function main() {
     a.localeCompare(b)
   );
   const formattedCategories = sortedCategories.map(
-    ([parentCategory, subCategories]) => ({ parentCategory, subCategories })
+    ([parentCategory, subCategories]) => ({
+      parentCategory,
+      subCategories: subCategories.map((category) => ({
+        category: category,
+        page: generateSubpathForCategory(category),
+        subpath: `/sdk/category/${generateSubpathForCategory(category)}`,
+      })),
+      page: generateSubpathForCategory(parentCategory),
+      subpath: `/sdk/category/${generateSubpathForCategory(parentCategory)}`,
+    })
   );
   fs.writeFileSync(
     path.join(sdkDir, "categories.json"),
     JSON.stringify(formattedCategories, null, 2)
   );
 
+  // ensure categoryDir exists
+  fs.ensureDirSync(categoryDir);
+
+  // generate all /sdk/category/{category} pages
+  const allPage = generateCategoryPage({ filter: "all" });
+  fs.writeFileSync(path.join(categoryDir, "all.tsx"), allPage);
+  for (const parentCategory of formattedCategories) {
+    const page = generateCategoryPage({
+      filter: parentCategory.parentCategory,
+    });
+    fs.writeFileSync(
+      path.join(categoryDir, `${parentCategory.page}.tsx`),
+      page
+    );
+
+    for (const subCategory of parentCategory.subCategories) {
+      const page = generateCategoryPage({ filter: subCategory.category });
+      fs.writeFileSync(path.join(categoryDir, `${subCategory.page}.tsx`), page);
+    }
+  }
+
+  const companies: {
+    parentCategories: string[];
+    subCategories: string[];
+    favicon: string;
+    metaDescription: string;
+    company: string;
+    numberOfApis: number;
+    difficultyScore: number;
+    subpath: string;
+  }[] = Object.entries(companyApis)
+    .map(([company, apis]) => {
+      const parentCategories: string[] = [];
+      const subCategories: string[] = [];
+      for (const api of apis) {
+        const subCategory = api.category;
+        const parentCategory = getParentCategoryFromCategory(subCategory);
+        parentCategories.push(parentCategory);
+        subCategories.push(subCategory);
+      }
+      const averageDifficultyScore =
+        apis.reduce((acc, api) => acc + api.difficultyScore, 0) / apis.length;
+      // deduplicate parentCategories and subCategories
+      return {
+        parentCategories: [...new Set(parentCategories)],
+        subCategories: [...new Set(subCategories)],
+        favicon: apis[0].faviconUrl,
+        metaDescription: apis[0].metaDescription,
+        company,
+        numberOfApis: apis.length,
+        difficultyScore: averageDifficultyScore,
+        subpath: `/sdk/${kebabcase(company)}`,
+      };
+    })
+    .sort((a, b) => b.difficultyScore - a.difficultyScore);
+
   // write companies.json
-  // fs.writeFileSync(
-  //   path.join(sdkDir, "companies.json"),
-  //   JSON.stringify(companies, null, 2)
-  // );
+  fs.writeFileSync(
+    path.join(sdkDir, "companies.json"),
+    JSON.stringify(companies, null, 2)
+  );
+}
+
+function generateSubpathForCategory(category: string) {
+  return kebabcase(category.replace(/&/g, ""));
 }
 
 function addToSdkLinks({
@@ -225,6 +296,14 @@ function addToRedirectsJson({
       serviceRedirectPath + "/"
     ] = `${serviceRedirectPath}/typescript/`;
   }
+}
+
+function generateCategoryPage({ filter }: { filter: string }) {
+  return `import { SdkDirectory } from "@site/src/components/SdkDirectory";
+
+export default function Sdks() {
+  return <SdkDirectory filter="${filter}" />;
+}`;
 }
 
 function generateGettingStartedMdx({
