@@ -1,6 +1,7 @@
 import * as React from "react";
 import { cn } from "@site/src/util/util";
 import { Button } from "@site/src/components/ui/button";
+import { useHistory } from "@docusaurus/router";
 import {
   CommandDialog,
   CommandEmpty,
@@ -8,9 +9,13 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-  CommandSeparator,
 } from "@site/src/components/ui/command";
 import { DialogProps } from "@radix-ui/react-dialog";
+import companies from "@site/src/pages/sdk/companies.json";
+import { defaultFilter } from "../util/default-filter";
+import { useRef } from "react";
+
+type Company = (typeof companies)[number];
 
 export function CommandMenu({ ...props }: DialogProps) {
   const [open, setOpen] = React.useState(false);
@@ -36,75 +41,111 @@ export function CommandMenu({ ...props }: DialogProps) {
     return () => document.removeEventListener("keydown", down);
   }, []);
 
-  const runCommand = React.useCallback((command: () => unknown) => {
-    setOpen(false);
-    command();
-  }, []);
+  // https://github.com/pacocoursey/cmdk/issues/233#issuecomment-1991365294
+  const listRef = useRef<HTMLDivElement>(null);
+  const scrollId = useRef<ReturnType<typeof setTimeout>>();
 
   return (
     <>
       <Button
         variant="outline"
         className={cn(
-          "relative w-full justify-start rounded-[0.5rem] bg-background text-muted-foreground shadow-none sm:pr-12 lg:w-[480px]"
+          "relative w-full justify-start rounded-[0.5rem] bg-background text-muted-foreground shadow-none sm:pr-12 lg:w-[400px]"
         )}
         onClick={() => setOpen(true)}
         {...props}
       >
-        <span className="hidden lg:inline-flex">Search all Companies...</span>
-        <span className="inline-flex lg:hidden">Search...</span>
+        <span className="hidden lg:inline-flex">
+          Search all APIs by name, use case, and more...
+        </span>
+        <span className="inline-flex lg:hidden">Search all APIs...</span>
         <kbd className="pointer-events-none absolute right-[0.3rem] hidden select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium opacity-100 sm:flex">
           <span className="text-xs">⌘</span>K
         </kbd>
       </Button>
-      <CommandDialog open={open} onOpenChange={setOpen}>
-        <CommandInput placeholder="Type to search..." />
-        <CommandList>
+      <CommandDialog
+        commandProps={{
+          filter: (value, search, keywords) => {
+            let score = defaultFilter(value, search, keywords) * 0.5;
+
+            // if lowercased value equals search or keywords include substring match of search then add 0.5
+            if (
+              value.toLowerCase() === search.toLowerCase() ||
+              keywords.some((keyword) =>
+                keyword.toLowerCase().includes(search.toLowerCase())
+              )
+            ) {
+              score += 0.5;
+            }
+
+            return score;
+          },
+        }}
+        open={open}
+        onOpenChange={setOpen}
+      >
+        <CommandInput
+          onValueChange={() => {
+            // https://github.com/pacocoursey/cmdk/issues/233#issuecomment-1991365294
+
+            // clear pending scroll
+            clearTimeout(scrollId.current);
+
+            // the setTimeout is used to create a new task
+            // this is to make sure that we don't scroll until the user is done typing
+            // you can tweak the timeout duration ofc
+            scrollId.current = setTimeout(() => {
+              // inside your list select the first group and scroll to the top
+              const div = listRef.current;
+              div?.scrollTo({ top: 0 });
+            }, 0);
+          }}
+          placeholder="Type to search all APIs..."
+        />
+        <CommandList ref={listRef}>
           <CommandEmpty>No results found.</CommandEmpty>
-          <CommandItem>API 1</CommandItem>
-          <CommandItem>API 2</CommandItem>
-          <CommandItem>API 3</CommandItem>
-          <CommandItem>API 4</CommandItem>
-          <CommandItem>API 5</CommandItem>
-          <CommandItem>API 6</CommandItem>
-          <CommandItem>API 7</CommandItem>
-          <CommandItem>API 8</CommandItem>
-          <CommandItem>API 9</CommandItem>
-          <CommandItem>API 10</CommandItem>
-          <CommandItem>API 11</CommandItem>
-          <CommandItem>API 12</CommandItem>
-          <CommandItem>API 13</CommandItem>
-          <CommandItem>API 14</CommandItem>
-          <CommandItem>API 15</CommandItem>
-          <CommandItem>API 16</CommandItem>
-          <CommandItem>API 17</CommandItem>
-          <CommandItem>API 18</CommandItem>
-          <CommandItem>API 19</CommandItem>
-          <CommandItem>API 20</CommandItem>
-          <CommandItem>API 21</CommandItem>
-          <CommandItem>API 22</CommandItem>
-          <CommandItem>API 23</CommandItem>
-          <CommandItem>API 24</CommandItem>
-          <CommandItem>API 25</CommandItem>
-          <CommandItem>API 26</CommandItem>
-          <CommandItem>API 27</CommandItem>
-          <CommandItem>API 28</CommandItem>
-          <CommandItem>API 29</CommandItem>
-          <CommandItem>API 30</CommandItem>
-          <CommandItem>API 31</CommandItem>
-          <CommandItem>API 32</CommandItem>
-          <CommandItem>API 33</CommandItem>
-          <CommandItem>API 34</CommandItem>
-          <CommandItem>API 35</CommandItem>
-          <CommandItem>API 36</CommandItem>
-          <CommandItem>API 37</CommandItem>
-          <CommandItem>API 38</CommandItem>
-          <CommandItem>API 39</CommandItem>
-          <CommandItem>API 40</CommandItem>
-          <CommandItem>API 41</CommandItem>
-          <CommandItem>API 42</CommandItem>
+          <CommandGroup>
+            {companies.map((company) => {
+              return <CompanyItem key={company.company} {...company} />;
+            })}
+          </CommandGroup>
         </CommandList>
       </CommandDialog>
     </>
+  );
+}
+
+function CompanyItem({
+  company,
+  favicon,
+  parentCategories,
+  subCategories,
+  keywords,
+  subpath,
+}: Company) {
+  const allKeywords = [
+    company,
+    ...keywords,
+    ...parentCategories,
+    ...subCategories,
+  ];
+  const history = useHistory();
+
+  return (
+    <CommandItem
+      onSelect={() => {
+        history.push(subpath);
+      }}
+      keywords={allKeywords}
+      className="justify-between"
+    >
+      <div className="flex flex-row">
+        <img className="h-4 w-4 mr-2" src={favicon} alt={company} />
+        {company}
+      </div>
+      <div className="overflow-x-scroll text-xs text-muted-foreground">
+        {parentCategories.join(", ")}
+      </div>
+    </CommandItem>
   );
 }

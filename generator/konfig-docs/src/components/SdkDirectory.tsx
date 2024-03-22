@@ -1,13 +1,14 @@
 import Head from "@docusaurus/Head";
 import Layout from "@theme/Layout";
 import React, { useState } from "react";
-import sdkLinksJson from "@site/src/pages/sdk/sdk-links.json";
 import categories from "@site/src/pages/sdk/categories.json";
 import { CommandMenu } from "@site/src/components/CommandMenu";
 import { Button } from "@site/src/components/ui/button";
 import companies from "@site/src/pages/sdk/companies.json";
 import { CategoryFilters, Filter } from "./CategoryFilters";
 import { useMediaQuery } from "../util/use-media-query";
+import { Breadcrumbs } from "./Breadcrumbs";
+import Link from "@docusaurus/Link";
 
 type Company = (typeof companies)[number];
 
@@ -16,11 +17,6 @@ type Company = (typeof companies)[number];
  */
 
 export function SdkDirectory({ filter }: { filter: Filter }) {
-  const numberOfApis = companies.reduce(
-    (acc, company) => acc + company.numberOfApis,
-    0
-  );
-
   const [numberOfCompaniesToShow, setNumberOfCompaniesToShow] = useState(22);
 
   // filter companies by provided filter
@@ -32,13 +28,22 @@ export function SdkDirectory({ filter }: { filter: Filter }) {
     );
   });
 
+  const numberOfApis = filteredCompanies.reduce(
+    (acc, company) => acc + company.numberOfApis,
+    0
+  );
+
   // show a limited number of companies
   const visibleCompanies = filteredCompanies.slice(0, numberOfCompaniesToShow);
 
   return (
     <Layout
       title={filter === "all" ? "Explore All APIs" : `${filter} APIs`}
-      description={`Discover ${sdkLinksJson.length} up-to-date SDKs for ${numberOfApis} public APIs.`}
+      description={`Discover ${
+        numberOfApis * 3
+      } up-to-date SDKs for ${numberOfApis} ${
+        filter !== "all" ? filter : "public"
+      } API${numberOfApis > 1 ? "s" : ""}.`}
     >
       <Head>
         <style>
@@ -53,19 +58,23 @@ export function SdkDirectory({ filter }: { filter: Filter }) {
         <meta property="og:image" content="/img/sdk-explore-link-preview.png" />
       </Head>
       <div className="border-b">
-        <div className="px-3 pt-7 pb-16 md:px-8 md:max-w-6xl mx-auto">
-          {/* <div className="mb-4">
+        <div className="px-3 pt-5 pb-16 md:px-8 md:max-w-6xl mx-auto">
+          <Breadcrumbs className="px-0 sm:px-0 mb-8" dark company={filter} />
+          <div className="mb-4">
             <CommandMenu />
-          </div> */}
-          <div className="flex flex-col md:flex-row gap-4 items-start">
+          </div>
+          <div className="flex flex-col md:flex-row gap-4 md:gap-8 items-start">
             <CategoryFilters filter={filter} categories={categories} />
             <div className="flex-grow">
+              {filter !== "all" && <h1>{filter} APIs</h1>}
               <div className="mb-5">
                 1 -{" "}
                 {Math.min(numberOfCompaniesToShow, filteredCompanies.length)} of{" "}
-                {filteredCompanies.length} Companies
+                {filteredCompanies.length}{" "}
+                {filter === "all" ? "" : `${filter} `}API
+                {numberOfApis > 1 ? "s" : ""}
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-5">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 mb-5">
                 {visibleCompanies.map((company) => (
                   <Company key={company.company} {...company} />
                 ))}
@@ -107,8 +116,8 @@ function Company({
       ? `${metaDescription.substring(0, maxLength)}...`
       : metaDescription;
   return (
-    <a
-      href={subpath}
+    <Link
+      to={subpath}
       className="select-none flex-grow rounded-md hover:no-underline p-4 hover:shadow-xl hover:ring-1 ring-slate-200 transition-shadow"
     >
       <div className="flex flex-row items-start gap-4">
@@ -124,7 +133,7 @@ function Company({
             {subCategories.map((category) => (
               <button
                 key={category}
-                className="z-10 flex text-xs items-center gap-1 border font-medium rounded-md px-2 py-1 transition-all bg-slate-50 hover:bg-slate-100 border-slate-300 text-slate-600 hover:text-slate-800"
+                className="z-10 text-xs border border-slate-200 rounded-md font-medium px-2 py-1 text-slate-500"
               >
                 <span>{category}</span>
               </button>
@@ -132,6 +141,6 @@ function Company({
           </div>
         </div>
       </div>
-    </a>
+    </Link>
   );
 }

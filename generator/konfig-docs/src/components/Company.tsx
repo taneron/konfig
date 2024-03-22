@@ -1,6 +1,6 @@
 import Head from "@docusaurus/Head";
 import Layout from "@theme/Layout";
-import React, { useEffect, useState } from "react";
+import React, { PropsWithChildren, useState } from "react";
 import { Breadcrumbs } from "./Breadcrumbs";
 import { LogoBox } from "./LogoBox";
 import { useSdkSignup } from "../util/use-sdk-signup";
@@ -12,13 +12,13 @@ import {
   IconExternalLink,
   IconPencil,
 } from "@tabler/icons-react";
-import useContentLoaded from "../util/use-content-loaded";
 import { TsIcon } from "./TsIcon";
 import { AboutCompany } from "./SdkNew";
 import PythonIcon from "./PythonIcon";
 import JavaIcon from "./JavaIcon";
 import { Sdk } from "../util/Sdk";
 import { HowKonfigWorks } from "./HowKonfigWorks";
+import Link from "@docusaurus/Link";
 
 /**
  * https://zapier.com/apps/salesforce/integrations
@@ -135,6 +135,7 @@ function SDKs({
         ) => {
           return (
             <SdkLinkItem
+              key={i}
               index={index}
               link={link}
               favicon={favicon}
@@ -197,11 +198,11 @@ function SdkLinkItem({
   service?: string;
 }) {
   return (
-    <a
+    <Link
       className={clsx("hover:no-underline z-10", {
         "cursor-not-allowed": language !== "TypeScript",
       })}
-      href={language === "TypeScript" ? link : undefined}
+      to={language === "TypeScript" ? link : undefined}
     >
       <div
         className={clsx(
@@ -236,24 +237,22 @@ function SdkLinkItem({
           </div> */}
           <div className="flex flex-row gap-2 items-center flex-wrap">
             {developerDocumentation && (
-              <a
+              <JavaScriptAnchorTag
                 className="flex w-fit items-center group/link text-slate-400 hover:text-slate-700 text-xs sm:text-sm hover:no-underline"
-                target="_blank"
                 href={`https://${developerDocumentation}`}
               >
                 <div>{service !== undefined ? `${service} ` : ``}API Docs</div>
                 <IconExternalLink height="11.5" />
-              </a>
+              </JavaScriptAnchorTag>
             )}
             {openApiGitHubUi && (
-              <a
+              <JavaScriptAnchorTag
                 className="flex w-fit items-center group/link text-slate-400 hover:text-slate-700 text-xs sm:text-sm hover:no-underline"
-                target="_blank"
                 href={openApiGitHubUi}
               >
                 <div>OpenAPI</div>
                 <IconExternalLink height="11.5" />
-              </a>
+              </JavaScriptAnchorTag>
             )}
             {language !== "TypeScript" && (
               <div className="text-slate-400 text-xs sm:text-sm">
@@ -264,7 +263,25 @@ function SdkLinkItem({
         </div>
         <IconChevronRight className="shrink-0 text-slate-400 group-hover:text-slate-500 relative group-hover:translate-x-1 group-hover:scale-110 transition-all" />
       </div>
-    </a>
+    </Link>
+  );
+}
+
+function JavaScriptAnchorTag({
+  href,
+  children,
+  className,
+}: PropsWithChildren<{ href: string; className: string }>) {
+  return (
+    <div
+      className={className}
+      onClick={(e) => {
+        e.preventDefault();
+        window.open(href, "_blank");
+      }}
+    >
+      {children}
+    </div>
   );
 }
 
@@ -278,9 +295,6 @@ function HeroSection({
   metaDescription: string;
 }) {
   const [showContent, setShowContent] = useState(false);
-  useContentLoaded(() => {
-    setShowContent(true);
-  });
 
   return (
     <div
@@ -289,7 +303,13 @@ function HeroSection({
     >
       <div className="w-fit mx-auto text-center">
         <div className="w-fit mx-auto text-center rounded-md">
-          <LogoBox logo={logo} company={company} />
+          <LogoBox
+            onLoad={() => {
+              setShowContent(true);
+            }}
+            logo={logo}
+            company={company}
+          />
         </div>
         <h1 className="mt-8 text-white text-5xl sm:text-6xl leading-tight">
           Move faster with {company} SDKs
