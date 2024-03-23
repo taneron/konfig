@@ -143,7 +143,7 @@ function CompanyItem({
         <img className="h-4 w-4 mr-2" src={favicon} alt={company} />
         {company}
       </div>
-      <div className="overflow-x-scroll text-xs text-muted-foreground">
+      <div className="text-xs text-muted-foreground">
         {parentCategories.join(", ")}
       </div>
     </CommandItem>
