@@ -367,6 +367,32 @@ paths:
                 $ref: '#/components/schemas/AnimateExtended'
       tags:
         - animate
+  /verification/send-phone-number-verification-code:
+    post:
+      operationId: VerificationController_sendPhoneNumberVerificationCode
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SendPhoneNumberVerificationCodeDto'
+      responses:
+        '201':
+          description: ''
+  /verification/verify-code:
+    post:
+      operationId: VerificationController_verifyCode
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VerifyCodeDto'
+      responses:
+        '201':
+          description: ''
 info:
   title: Synchronize API
   description: Synchronize API allows you to lipsync a video to any audio in any language.
@@ -412,7 +438,7 @@ components:
         model:
           type: string
           description: The model to use for video generation
-          default: sync-1.5.0
+          default: sync-1.6.0
       required:
         - audioUrl
         - videoUrl
@@ -505,7 +531,7 @@ components:
         model:
           type: string
           description: The model to use for video generation
-          default: sync-1.5.0
+          default: sync-1.6.0
       required:
         - audioUrl
         - videoUrl
@@ -592,7 +618,7 @@ components:
         model:
           type: string
           description: The model to use for video generation.
-          default: sync-1.5.0
+          default: sync-1.6.0
       required:
         - videoUrl
         - targetLanguage
@@ -740,7 +766,7 @@ components:
         model:
           type: string
           description: The model to use for video generation
-          default: sync-1.5.0
+          default: sync-1.6.0
         maxCredits:
           type: number
           description: >-
@@ -803,5 +829,11 @@ components:
         - transcript_url
         - status
         - credits_deducted
+    SendPhoneNumberVerificationCodeDto:
+      type: object
+      properties: {}
+    VerifyCodeDto:
+      type: object
+      properties: {}
 security:
   - apiKey: []

@@ -59,6 +59,7 @@ operationIds:
   /memberships/{membership_gid}:
     delete: Memberships_deleteRecord
     get: Memberships_getMembershipRecord
+    put: Memberships_updateMembershipRecord
   /organization_exports:
     post: OrganizationExports_createExportRequest
   /organization_exports/{organization_export_gid}:
@@ -372,6 +373,9 @@ requestSchemaNames:
   /memberships:
     post:
       application/json: MembershipsCreateNewRecordRequest
+  /memberships/{membership_gid}:
+    put:
+      application/json: MembershipsUpdateMembershipRecordRequest
   /organization_exports:
     post:
       application/json: OrganizationExportsCreateExportRequestRequest
@@ -684,6 +688,9 @@ responseSchemaNames:
     get:
       '200':
         application/json: MembershipsGetMembershipRecordResponse
+    put:
+      '200':
+        application/json: MembershipsUpdateMembershipRecordResponse
   /organization_exports:
     post:
       '201':

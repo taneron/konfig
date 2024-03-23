@@ -28,16 +28,16 @@
   "apiDescription": "This is the interface for interacting with the [Asana Platform](https://developers.asana.com). Our API reference is generated from our [OpenAPI spec](https://raw.githubusercontent.com/Asana/openapi/master/defs/asana_oas.yaml).",
   "apiTitle": "Asana",
   "endpoints": 135,
-  "sdkMethods": 317,
-  "schemas": 423,
-  "parameters": 311,
+  "sdkMethods": 318,
+  "schemas": 430,
+  "parameters": 312,
   "contactUrl": "https://asana.com/support",
   "originalCustomRequest": {
     "type": "GET",
     "url": "https://raw.githubusercontent.com/Asana/openapi/master/defs/asana_oas.yaml"
   },
   "customRequestSpecFilename": "asana.com.yaml",
-  "difficultyScore": 490.25,
+  "difficultyScore": 494,
   "difficulty": "Hard",
   "company": "Asana",
   "sdkName": "asana-{language}-sdk",
@@ -2655,6 +2655,47 @@
             "parent.name",
             "resource_subtype"
           ]
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": "Sadly, sometimes requests to the API are not successful. Failures can\noccur for a wide range of reasons. In all cases, the API should return\nan HTTP Status Code that indicates the nature of the failure,\nwith a response body in JSON format containing additional information.\n\n\nIn the event of a server error the response body will contain an error\nphrase. These phrases are automatically generated using the\n[node-asana-phrase\nlibrary](https://github.com/Asana/node-asana-phrase) and can be used by\nAsana support to quickly look up the incident that caused the server\nerror."
+        },
+        {
+          "statusCode": "401",
+          "description": "Sadly, sometimes requests to the API are not successful. Failures can\noccur for a wide range of reasons. In all cases, the API should return\nan HTTP Status Code that indicates the nature of the failure,\nwith a response body in JSON format containing additional information.\n\n\nIn the event of a server error the response body will contain an error\nphrase. These phrases are automatically generated using the\n[node-asana-phrase\nlibrary](https://github.com/Asana/node-asana-phrase) and can be used by\nAsana support to quickly look up the incident that caused the server\nerror."
+        },
+        {
+          "statusCode": "403",
+          "description": "Sadly, sometimes requests to the API are not successful. Failures can\noccur for a wide range of reasons. In all cases, the API should return\nan HTTP Status Code that indicates the nature of the failure,\nwith a response body in JSON format containing additional information.\n\n\nIn the event of a server error the response body will contain an error\nphrase. These phrases are automatically generated using the\n[node-asana-phrase\nlibrary](https://github.com/Asana/node-asana-phrase) and can be used by\nAsana support to quickly look up the incident that caused the server\nerror."
+        },
+        {
+          "statusCode": "404",
+          "description": "Sadly, sometimes requests to the API are not successful. Failures can\noccur for a wide range of reasons. In all cases, the API should return\nan HTTP Status Code that indicates the nature of the failure,\nwith a response body in JSON format containing additional information.\n\n\nIn the event of a server error the response body will contain an error\nphrase. These phrases are automatically generated using the\n[node-asana-phrase\nlibrary](https://github.com/Asana/node-asana-phrase) and can be used by\nAsana support to quickly look up the incident that caused the server\nerror."
+        },
+        {
+          "statusCode": "500",
+          "description": "Sadly, sometimes requests to the API are not successful. Failures can\noccur for a wide range of reasons. In all cases, the API should return\nan HTTP Status Code that indicates the nature of the failure,\nwith a response body in JSON format containing additional information.\n\n\nIn the event of a server error the response body will contain an error\nphrase. These phrases are automatically generated using the\n[node-asana-phrase\nlibrary](https://github.com/Asana/node-asana-phrase) and can be used by\nAsana support to quickly look up the incident that caused the server\nerror."
+        }
+      ]
+    },
+    {
+      "url": "/memberships/{membership_gid}",
+      "method": "updateMembershipRecord",
+      "httpMethod": "put",
+      "tag": "Memberships",
+      "typeScriptTag": "memberships",
+      "description": "Update a membership",
+      "parameters": [
+        {
+          "name": "data",
+          "schema": "object",
+          "description": ""
         }
       ],
       "responses": [
@@ -14734,7 +14775,7 @@
   "previewLinkImage": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/asana/imagePreview.jpg",
   "faviconUrl": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/asana/favicon.png",
   "clientNameCamelCase": "asana",
-  "lastUpdated": "2024-03-14T08:10:33.678Z",
+  "lastUpdated": "2024-03-23T08:08:42.516Z",
   "typescriptSdkUsageCode": "import { Asana } from 'asana-typescript-sdk';\n\nconst asana = new Asana({\n    // A personal access token allows access to the api for the user who created it. This should be kept a secret and be treated like a password.\n    token: \"TOKEN\",\n    /*\n     * We require that applications designed to access the Asana API on behalf of multiple users implement OAuth 2.0.\n     * Asana supports the Authorization Code Grant flow.\n     */\n    clientId: \"CLIENT_ID\",\n    clientSecret: \"CLIENT_SECRET\",\n    redirectUri: \"REDIRECT_URI\",\n})",
   "typescriptSdkFirstRequestCode": "// Delete an attachment\nconst deleteSpecificResponse = asana.attachments.deleteSpecific()",
   "fixedSpecFileName": "asana-fixed-spec.yaml"

@@ -1,4 +1,4 @@
-hash: 67d5c295d0dacfcc32b6c45fb5b1559ccba8b7fad55a970abe772ac91a298970
+hash: b8515e1ea52a1cd5a63397d9a01b4a3110172e089bab6dc37cb18fcb869dbb37
 methodObjects:
   - url: /api/v1/models
     method: listAllModels
@@ -367,6 +367,28 @@ methodObjects:
         description: ''
       - statusCode: '404'
         description: ''
+  - url: /api/v1/syncs/{sync_id}/sync_runs/{sync_run_id}
+    method: getDetailsBySyncRunId
+    httpMethod: get
+    tag: SyncRun
+    typeScriptTag: syncRun
+    description: Get sync run using sync_run_id for a specific sync
+    parameters:
+      - name: syncId
+        schema: integer
+        required: true
+        description: The ID of the sync.
+        example: 0
+      - name: syncRunId
+        schema: integer
+        required: true
+        description: The ID of the sync_run.
+        example: 0
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: ''
   - url: /api/v1/syncs/{sync_id}/sync_runs/{sync_run_id}/sync_records
     method: listForSyncRun
     httpMethod: get
@@ -395,7 +417,7 @@ methodObjects:
         description: ''
       - statusCode: '404'
         description: ''
-numberOfSchemas: 31
+numberOfSchemas: 33
 apiDescription: >-
   Open-source Reverse ETL that makes data segmentation, sync and activation both
   easy and fully secure.

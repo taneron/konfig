@@ -1,4 +1,4 @@
-hash: ec88a282260fa1cc80b8abfa2feb446b30c66e397a590e2b0757027f4add41d4
+hash: 3014d232464ae8acf25d7cdb5a472bd5332354f42eab00f38d3de19df624c1fe
 methodObjects:
   - url: /public-token/exchange
     method: exchangeToken
@@ -40,7 +40,15 @@ methodObjects:
       - name: tag
         schema: string
         description: Filter connections by tag
-        example: voluptate nostrud deserunt est id
+        example: ullamco consequat commodo consectetur
+      - name: updatedAfter
+        schema: string
+        description: Filter connections that were last updated on or after a given time.
+        example: '2021-01-06T03:24:53.000Z'
+      - name: updatedBefore
+        schema: string
+        description: Filter connections that were last updated on or before a given time.
+        example: '2021-01-06T03:24:53.000Z'
     responses:
       - statusCode: '200'
         description: ''
@@ -69,7 +77,7 @@ methodObjects:
       - name: externalId
         schema: string
         description: ''
-        example: incididunt minim
+        example: in culpa ea consectetur irure
       - name: provider
         schema: string
         description: ''
@@ -114,19 +122,19 @@ methodObjects:
         schema: array
         description: ''
         example:
-          - Excepteur occaecat
-          - tempor
+          - mollit anim
+          - eiusmod in
       - name: company
         schema: object
         description: ''
       - name: externalId
         schema: string
         description: ''
-        example: ipsum
+        example: ''
       - name: status
         schema: string
         description: ''
-        example: elit dolore
+        example: mollit nos
       - name: syncMode
         schema: string
         description: ''
@@ -457,11 +465,11 @@ methodObjects:
       - name: startDate
         schema: string
         description: Only include daily logs from on or after a specific date
-        example: '2015-10-20'
+        example: '1966-06-16'
       - name: endDate
         schema: string
         description: Only include daily logs from on or before a specific date
-        example: '2015-10-20'
+        example: '1966-06-16'
       - name: modifiedAfter
         schema: string
         description: Only include records that were last modified after a provided date.
@@ -557,11 +565,11 @@ methodObjects:
       - name: lastReportedAfter
         schema: string
         description: Timestamp to start when the issue was last observed
-        example: '1947-01-02'
+        example: '1945-02-22'
       - name: lastReportedBefore
         schema: string
         description: Timestamp to end when the issue was last observed
-        example: '1947-01-02'
+        example: '1945-02-22'
       - name: expand
         schema: string
         description: Expand related resources to see all details
@@ -573,11 +581,11 @@ methodObjects:
       - name: errorCode
         schema: string
         description: Filter issues to a specific error code
-        example: missing_safety_configuration
+        example: inaccessible_data
       - name: status
         schema: string
         description: Filter issues to a specific status
-        example: resolved
+        example: ongoing
     responses:
       - statusCode: '200'
         description: ''

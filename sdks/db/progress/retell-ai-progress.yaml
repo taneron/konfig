@@ -1,0 +1,77 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+operationIds:
+  /create-agent:
+    post: Agent_createNewAgent
+  /delete-agent/{agent_id}:
+    delete: Agent_deleteExistingAgent
+  /get-agent/{agent_id}:
+    get: Agent_getDetails
+  /get-call/{call_id}:
+    get: Call_getDetails
+  /list-agents:
+    get: Agent_getAll
+  /list-calls:
+    get: Call_getDetails
+  /register-call:
+    post: Call_establishConnection
+  /update-agent/{agent_id}:
+    patch: Agent_updateExistingAgent
+operationTags:
+  /create-agent:
+    post: Agent
+  /delete-agent/{agent_id}:
+    delete: Agent
+  /get-agent/{agent_id}:
+    get: Agent
+  /get-call/{call_id}:
+    get: Call
+  /list-agents:
+    get: Agent
+  /list-calls:
+    get: Call
+  /register-call:
+    post: Call
+  /update-agent/{agent_id}:
+    patch: Agent
+renameTags: {}
+requestSchemaNames:
+  /create-agent:
+    post:
+      application/json: AgentCreateNewAgentRequest
+  /register-call:
+    post:
+      application/json: CallEstablishConnectionRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /list-agents:
+    get:
+      '200':
+        application/json: AgentGetAllResponse
+  /list-calls:
+    get:
+      '200':
+        application/json: CallGetDetailsResponse
+  /register-call:
+    post:
+      '400':
+        application/json: CallEstablishConnectionResponse
+      '401':
+        application/json: CallEstablishConnection401Response
+      '402':
+        application/json: CallEstablishConnection402Response
+      '422':
+        application/json: CallEstablishConnection422Response
+      '429':
+        application/json: CallEstablishConnection429Response
+      '500':
+        application/json: CallEstablishConnection500Response
+securityParameters:
+  filter_criteria:
+    query: false
+  limit:
+    query: false
+  sort_order:
+    query: false
+validServerUrls: {}

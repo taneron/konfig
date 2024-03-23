@@ -40,6 +40,8 @@ operationIds:
     put: Syncs_updateSpecificSync
   /api/v1/syncs/{sync_id}/sync_runs:
     get: SyncRuns_listBySyncId
+  /api/v1/syncs/{sync_id}/sync_runs/{sync_run_id}:
+    get: SyncRun_getDetailsBySyncRunId
   /api/v1/syncs/{sync_id}/sync_runs/{sync_run_id}/sync_records:
     get: SyncRecords_listForSyncRun
 operationTags: {}
@@ -147,6 +149,12 @@ responseSchemaNames:
         application/json: SyncRunsListBySyncIdResponse
       '404':
         application/json: SyncRunsListBySyncId404Response
+  /api/v1/syncs/{sync_id}/sync_runs/{sync_run_id}:
+    get:
+      '200':
+        application/json: SyncRunGetDetailsBySyncRunIdResponse
+      '404':
+        application/json: SyncRunGetDetailsBySyncRunId404Response
   /api/v1/syncs/{sync_id}/sync_runs/{sync_run_id}/sync_records:
     get:
       '200':

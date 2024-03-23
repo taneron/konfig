@@ -1,0 +1,487 @@
+{
+  "securitySchemes": {
+    "api_key": {
+      "type": "http",
+      "scheme": "bearer",
+      "bearerFormat": "string",
+      "description": "API key for authentication. You can find it in dashboard.",
+      "x-speakeasy-example": "YOUR_API_KEY"
+    }
+  },
+  "apiBaseUrl": "https://api.retellai.com",
+  "apiVersion": "1.0.0",
+  "apiTitle": "Retell SDK",
+  "endpoints": 9,
+  "sdkMethods": 9,
+  "schemas": 14,
+  "parameters": 28,
+  "contactUrl": "https://www.retellai.com/",
+  "contactEmail": "founders@retellai.com",
+  "originalCustomRequest": {
+    "type": "GET",
+    "url": "https://raw.githubusercontent.com/RetellAI/docs/HEAD/openapi.yaml"
+  },
+  "customRequestSpecFilename": "retellai.com.yaml",
+  "difficultyScore": 18,
+  "difficulty": "Easy",
+  "company": "Retell AI",
+  "sdkName": "retell-ai-{language}-sdk",
+  "clientName": "RetellAi",
+  "metaDescription": "API for voice AI. Effortlessly integrate human-like Voice AI into your product. | We are building an API that enables your product to provide an intuitive and engaging way for user interaction - through voice.",
+  "apiStatusUrls": "inherit",
+  "homepage": "retellai.com",
+  "developerDocumentation": "docs.retellai.com/general/introduction",
+  "categories": [
+    "ai",
+    "voice_generation",
+    "llm",
+    "text_to_audio"
+  ],
+  "category": "Text-to-Speech",
+  "apiDescription": "API for voice AI. Effortlessly integrate human-like Voice AI into your product. | We are building an API that enables your product to provide an intuitive and engaging way for user interaction - through voice.",
+  "methods": [
+    {
+      "url": "/register-call",
+      "method": "establishConnection",
+      "httpMethod": "post",
+      "tag": "Call",
+      "typeScriptTag": "call",
+      "description": "Register Call To Get CallId To Establish Connection",
+      "parameters": [
+        {
+          "name": "agent_id",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "oBeDLoLOeuAbiuaMFXRtDOLriTJ5tSxD"
+        },
+        {
+          "name": "audio_websocket_protocol",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "twilio"
+        },
+        {
+          "name": "audio_encoding",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "s16le"
+        },
+        {
+          "name": "sample_rate",
+          "schema": "integer",
+          "required": true,
+          "description": "",
+          "example": 24000
+        },
+        {
+          "name": "end_call_after_silence_ms",
+          "schema": "integer",
+          "required": false,
+          "description": "",
+          "example": 600000
+        },
+        {
+          "name": "from_number",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": 12137771234
+        },
+        {
+          "name": "to_number",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": 12137771235
+        },
+        {
+          "name": "metadata",
+          "schema": "object",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "201",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "402",
+          "description": ""
+        },
+        {
+          "statusCode": "422",
+          "description": ""
+        },
+        {
+          "statusCode": "429",
+          "description": ""
+        },
+        {
+          "statusCode": "500",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/get-call/{call_id}",
+      "method": "getDetails",
+      "httpMethod": "get",
+      "tag": "Call",
+      "typeScriptTag": "call",
+      "description": "Retrieve details of a specific call",
+      "parameters": [
+        {
+          "name": "callId",
+          "schema": "string",
+          "required": true,
+          "description": "The call id to retrieve call history for.",
+          "example": "119c3f8e47135a29e65947eeb34cf12d"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "422",
+          "description": ""
+        },
+        {
+          "statusCode": "500",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/list-calls",
+      "method": "getDetails",
+      "httpMethod": "get",
+      "tag": "Call",
+      "typeScriptTag": "call",
+      "description": "Retrieve call details",
+      "parameters": [
+        {
+          "name": "filterCriteria",
+          "schema": "object",
+          "description": ""
+        },
+        {
+          "name": "sortOrder",
+          "schema": "string",
+          "required": false,
+          "description": "The calls will be sorted by `start_timestamp`, whether to return the calls in ascending or descending order.",
+          "default": "descending"
+        },
+        {
+          "name": "limit",
+          "schema": "integer",
+          "required": false,
+          "description": "Limit the number of calls returned.",
+          "default": 1000
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "500",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/create-agent",
+      "method": "createNewAgent",
+      "httpMethod": "post",
+      "tag": "Agent",
+      "typeScriptTag": "agent",
+      "description": "Create a new agent",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "201",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "422",
+          "description": ""
+        },
+        {
+          "statusCode": "500",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/get-agent/{agent_id}",
+      "method": "getDetails",
+      "httpMethod": "get",
+      "tag": "Agent",
+      "typeScriptTag": "agent",
+      "description": "Retrieve details of a specific agent",
+      "parameters": [
+        {
+          "name": "agentId",
+          "schema": "string",
+          "required": true,
+          "description": "Unique id of the agent to be retrieved.",
+          "example": "16b980523634a6dc504898cda492e939"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "422",
+          "description": ""
+        },
+        {
+          "statusCode": "500",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/list-agents",
+      "method": "getAll",
+      "httpMethod": "get",
+      "tag": "Agent",
+      "typeScriptTag": "agent",
+      "description": "List all agents",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "500",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/update-agent/{agent_id}",
+      "method": "updateExistingAgent",
+      "httpMethod": "patch",
+      "tag": "Agent",
+      "typeScriptTag": "agent",
+      "description": "Update an existing agent",
+      "parameters": [
+        {
+          "name": "agentId",
+          "schema": "string",
+          "required": true,
+          "description": "Unique id of the agent to be updated.",
+          "example": "16b980523634a6dc504898cda492e939"
+        },
+        {
+          "name": "llm_websocket_url",
+          "schema": "string",
+          "description": "",
+          "example": "wss://your-websocket-endpoint"
+        },
+        {
+          "name": "voice_id",
+          "schema": "string",
+          "description": "",
+          "example": "11labs-Adrian"
+        },
+        {
+          "name": "voice_temperature",
+          "schema": "number",
+          "description": "",
+          "example": 1
+        },
+        {
+          "name": "voice_speed",
+          "schema": "number",
+          "description": "",
+          "example": 1
+        },
+        {
+          "name": "responsiveness",
+          "schema": "number",
+          "description": "",
+          "example": 1
+        },
+        {
+          "name": "enable_backchannel",
+          "schema": "boolean",
+          "description": "",
+          "example": true
+        },
+        {
+          "name": "ambient_sound",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "agent_name",
+          "schema": "string",
+          "description": "",
+          "example": "Jarvis"
+        },
+        {
+          "name": "language",
+          "schema": "string",
+          "description": "",
+          "example": "en-US"
+        },
+        {
+          "name": "webhook_url",
+          "schema": "string",
+          "description": "",
+          "example": "https://webhook-url-here"
+        },
+        {
+          "name": "boosted_keywords",
+          "schema": "array",
+          "description": "",
+          "example": [
+            "retell",
+            "kroger"
+          ]
+        },
+        {
+          "name": "format_text",
+          "schema": "boolean",
+          "description": "",
+          "example": true
+        },
+        {
+          "name": "optOutSensitiveDataStorage",
+          "schema": "boolean",
+          "description": "",
+          "example": true
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "422",
+          "description": ""
+        },
+        {
+          "statusCode": "500",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/delete-agent/{agent_id}",
+      "method": "deleteExistingAgent",
+      "httpMethod": "delete",
+      "tag": "Agent",
+      "typeScriptTag": "agent",
+      "description": "Delete an existing agent",
+      "parameters": [
+        {
+          "name": "agentId",
+          "schema": "string",
+          "required": true,
+          "description": "Unique id of the agent to be deleted.",
+          "example": "oBeDLoLOeuAbiuaMFXRtDOLriTJ5tSxD"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "204",
+          "description": "No Content"
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "422",
+          "description": ""
+        },
+        {
+          "statusCode": "500",
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "repositoryDescription": "API for voice AI. Effortlessly integrate human-like Voice AI into your product. | We are building an API that enables your product to provide an intuitive and engaging way for user interaction - through voice. Retell AI's {language} SDK generated by Konfig (https://konfigthis.com/).",
+  "logo": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/retell-ai/logo.png",
+  "openApiRaw": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/retell-ai/openapi.yaml",
+  "openApiGitHubUi": "https://github.com/konfig-sdks/openapi-examples/tree/HEAD/retell-ai/openapi.yaml",
+  "previewLinkImage": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/retell-ai/imagePreview.png",
+  "faviconUrl": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/retell-ai/favicon.png",
+  "clientNameCamelCase": "retellAi",
+  "lastUpdated": "2024-03-23T08:08:42.516Z",
+  "typescriptSdkUsageCode": "import { RetellAi } from 'retell-ai-typescript-sdk';\n\nconst retellAi = new RetellAi({\n    // API key for authentication. You can find it in dashboard.\n    token: \"TOKEN\",\n})",
+  "typescriptSdkFirstRequestCode": "// Register Call To Get CallId To Establish Connection\nconst establishConnectionResponse = retellAi.call.establishConnection({\n    agent_id: \"oBeDLoLOeuAbiuaMFXRtDOLriTJ5tSxD\"\n    audio_websocket_protocol: \"twilio\"\n    audio_encoding: \"s16le\"\n    sample_rate: 24000\n    end_call_after_silence_ms: 600000\n    from_number: 12137771234\n    to_number: 12137771235\n})",
+  "fixedSpecFileName": "retell-ai-fixed-spec.yaml"
+}

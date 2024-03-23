@@ -275,88 +275,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/HTTPValidationError'
-  /v1/shared-sound-effects:
-    get:
-      tags:
-        - sound-effects-history
-      summary: Get Shared Sound Effects
-      description: Returns a list of shared sound effects.
-      operationId: Get_shared_sound_effects_v1_shared_sound_effects_get
-      parameters:
-        - description: >-
-            How many sound effects to return at maximum. Can not exceed 100,
-            defaults to 30.
-          required: false
-          schema:
-            type: integer
-            title: Page Size
-            description: >-
-              How many sound effects to return at maximum. Can not exceed 100,
-              defaults to 30.
-            default: 30
-          name: page_size
-          in: query
-        - description: Sound effect category used for filtering.
-          required: false
-          schema:
-            type: string
-            title: Category
-            description: Sound effect category used for filtering.
-          example: Nature
-          name: category
-          in: query
-        - description: Search term used for filtering
-          required: false
-          schema:
-            type: string
-            title: Search
-            description: Search term used for filtering
-          example: Cold water
-          name: search
-          in: query
-        - description: >-
-            Sort criteria. Can be one of: created_date, download_count,
-            like_count, trending. Defaults to trending.
-          required: false
-          schema:
-            type: string
-            title: Sort
-            description: >-
-              Sort criteria. Can be one of: created_date, download_count,
-              like_count, trending. Defaults to trending.
-          example: trending_score
-          name: sort
-          in: query
-        - description: Filter featured sound effects.
-          required: false
-          schema:
-            type: boolean
-            title: Featured
-            description: Filter featured sound effects.
-            default: false
-          example: true
-          name: featured
-          in: query
-        - required: false
-          schema:
-            type: integer
-            title: Page
-            default: 0
-          name: page
-          in: query
-      responses:
-        '200':
-          description: Successful Response
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GetSharedSoundEffectsResponseModel'
-        '422':
-          description: Validation Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/HTTPValidationError'
   /v1/voices/{voice_id}/samples/{sample_id}:
     delete:
       tags:
@@ -2937,6 +2855,15 @@ paths:
           example: american
           name: accent
           in: query
+        - description: language used for filtering
+          required: false
+          schema:
+            type: string
+            title: Language
+            description: language used for filtering
+          example: en
+          name: language
+          in: query
         - description: search term used for filtering
           required: false
           schema:
@@ -4352,25 +4279,6 @@ components:
         - created_by
         - creation_time_unix
       title: GetPronunciationDictionaryMetadataResponseModel
-    GetSharedSoundEffectsResponseModel:
-      properties:
-        shared_sound_effects:
-          items:
-            $ref: '#/components/schemas/SharedSoundEffectResponseModel'
-          type: array
-          title: Shared Sound Effects
-        last_sort_id:
-          type: string
-          title: Last Sort Id
-        has_more:
-          type: boolean
-          title: Has More
-      type: object
-      required:
-        - shared_sound_effects
-        - last_sort_id
-        - has_more
-      title: GetSharedSoundEffectsResponseModel
     GetSpeechHistoryResponseModel:
       properties:
         history:
@@ -4854,49 +4762,6 @@ components:
         - size_bytes
         - hash
       title: SampleResponseModel
-    SharedSoundEffectResponseModel:
-      properties:
-        public_user_id:
-          type: string
-          title: Public User Id
-        history_item_id:
-          type: string
-          title: History Item Id
-        generation_id:
-          type: string
-          title: Generation Id
-        text:
-          type: string
-          title: Text
-        category:
-          type: string
-          title: Category
-        labels:
-          additionalProperties:
-            type: string
-          type: object
-          title: Labels
-        download_count:
-          type: integer
-          title: Download Count
-        like_count:
-          type: integer
-          title: Like Count
-        featured:
-          type: boolean
-          title: Featured
-      type: object
-      required:
-        - public_user_id
-        - history_item_id
-        - generation_id
-        - text
-        - category
-        - labels
-        - download_count
-        - like_count
-        - featured
-      title: SharedSoundEffectResponseModel
     SpeechHistoryItemResponseModel:
       properties:
         history_item_id:

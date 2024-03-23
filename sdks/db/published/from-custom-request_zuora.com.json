@@ -1,7 +1,7 @@
 {
   "securitySchemes": {},
   "apiBaseUrl": "https://rest.zuora.com",
-  "apiVersion": "2024-03-15",
+  "apiVersion": "2024-03-22",
   "apiDescription": "Welcome to the REST API reference for the Zuora Billing, Payments, and Central Platform!\n\nTo learn about the common use cases of Zuora REST APIs, check out the [REST API Tutorials](https://developer.zuora.com/rest-api/api-guides/overview/).\n\nIn addition to Zuora API Reference, we also provide API references for other Zuora products:\n\n  * [Revenue API Reference](https://developer.zuora.com/api-references/revenue/overview/)\n  * [Collections API Reference](https://developer.zuora.com/api-references/collections/overview/)\n\n    \nThe Zuora REST API provides a broad set of operations and resources that:\n\n  * Enable Web Storefront integration from your website.\n  * Support self-service subscriber sign-ups and account management.\n  * Process revenue schedules through custom revenue rule models.\n  * Enable manipulation of most objects in the Zuora Billing Object Model.\n\nWant to share your opinion on how our API works for you? <a href=\"https://community.zuora.com/t5/Developers/API-Feedback-Form/gpm-p/21399\" target=\"_blank\">Tell us how you feel </a>about using our API and what we can do to make it better.\n\nSome of our older APIs are no longer recommended but still available, not affecting any existing integration. To find related API documentation, see [Older API Reference](https://developer.zuora.com/api-references/older-api/overview/).\n",
   "apiTitle": "API Reference",
   "endpoints": 346,
@@ -21,7 +21,12 @@
   "clientName": "Zuora",
   "metaDescription": "Zuora is a subscription management platform that helps businesses manage their subscription-based services efficiently. It provides tools for billing, revenue recognition, subscription analytics, and more. Zuora empowers companies to launch and scale subscription models, optimize pricing strategies, and enhance customer relationships.",
   "homepage": "zuora.com",
-  "categories": ["finance", "developer_tools", "billing", "payments"],
+  "categories": [
+    "finance",
+    "developer_tools",
+    "billing",
+    "payments"
+  ],
   "category": "Accounting",
   "methods": [
     {
@@ -15109,7 +15114,7 @@
           "name": "country",
           "schema": "string",
           "required": true,
-          "description": "The short name of a country or region where you must comply with e-invoicing requirements. For example, `IN` for India. For the full list of country names and codes, see <a href=\"https://knowledgecenter.zuora.com/Quick_References/Country%2C_State%2C_and_Province_Codes/A_Country_Names_and_Their_ISO_Codes\" target=\"_blank\">ISO Standard Country Codes</a>.\n",
+          "description": "The short name of a country or region where you must comply with e-invoicing requirements. For example, `IN` for India. For the full list of country names and codes, see <a href=\"https://knowledgecenter.zuora.com/Quick_References/Country%2C_State%2C_and_Province_Codes/A_Manage_countries_and_regions#View_countries_or_regions\" target=\"_blank\">View countries or regions</a>.\n",
           "example": "COUNTRY"
         },
         {
@@ -16764,7 +16769,7 @@
           "name": "jobId",
           "schema": "string",
           "required": true,
-          "description": "The ID of the job to retrieve information about. For example, 2c92c8955bd63cc1015bd7c151af02ab",
+          "description": "The ID of the job for which information needs to be retrieved. For example, 2c92c8955bd63cc1015bd7c151af02ab",
           "example": "JOBID"
         }
       ],
@@ -34896,7 +34901,7 @@
         },
         {
           "name": "offset",
-          "schema": "number",
+          "schema": "integer",
           "description": "",
           "default": 0
         },
@@ -34946,7 +34951,7 @@
   "previewLinkImage": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/zuora/imagePreview.png",
   "faviconUrl": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/zuora/favicon.png",
   "clientNameCamelCase": "zuora",
-  "lastUpdated": "2024-03-15T18:50:00.907Z",
+  "lastUpdated": "2024-03-23T08:08:42.516Z",
   "typescriptSdkUsageCode": "import { Zuora } from 'zuora-typescript-sdk';\n\nconst zuora = new Zuora()",
   "typescriptSdkFirstRequestCode": "// Create an OAuth token\nconst createTokenResponse = zuora.oAuth.createToken({\n    client_id: \"CLIENT_ID\"\n    client_secret: \"CLIENT_SECRET\"\n    grant_type: \"GRANT_TYPE\"\n})",
   "fixedSpecFileName": "zuora-fixed-spec.yaml"

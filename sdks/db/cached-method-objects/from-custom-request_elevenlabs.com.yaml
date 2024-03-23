@@ -1,4 +1,4 @@
-hash: 74734990b7235b74ba0eefbe97c88b7ea79a54103f13b2aadc64ebfbf2832b6f
+hash: 0de48380d307900bdea4f896696c854adb86b804a7d774ad9500412ef6d41ace
 methodObjects:
   - url: /v1/history
     method: getGeneratedAudioMetadata
@@ -147,53 +147,6 @@ methodObjects:
     responses:
       - statusCode: '200'
         description: Successful Response
-      - statusCode: '422'
-        description: ''
-  - url: /v1/shared-sound-effects
-    method: getList
-    httpMethod: get
-    tag: sound-effects-history
-    typeScriptTag: soundEffectsHistory
-    description: Get Shared Sound Effects
-    parameters:
-      - name: pageSize
-        schema: integer
-        required: false
-        description: >-
-          How many sound effects to return at maximum. Can not exceed 100,
-          defaults to 30.
-        default: 30
-      - name: category
-        schema: string
-        required: false
-        description: Sound effect category used for filtering.
-        example: Nature
-      - name: search
-        schema: string
-        required: false
-        description: Search term used for filtering
-        example: Cold water
-      - name: sort
-        schema: string
-        required: false
-        description: >-
-          Sort criteria. Can be one of: created_date, download_count,
-          like_count, trending. Defaults to trending.
-        example: trending_score
-      - name: featured
-        schema: boolean
-        required: false
-        description: Filter featured sound effects.
-        example: true
-        default: false
-      - name: page
-        schema: integer
-        required: false
-        description: ''
-        default: 0
-    responses:
-      - statusCode: '200'
-        description: ''
       - statusCode: '422'
         description: ''
   - url: /v1/voices/{voice_id}/samples/{sample_id}
@@ -1845,6 +1798,11 @@ methodObjects:
         required: false
         description: accent used for filtering
         example: american
+      - name: language
+        schema: string
+        required: false
+        description: language used for filtering
+        example: en
       - name: search
         schema: string
         required: false
@@ -2061,7 +2019,7 @@ methodObjects:
         description: ''
       - statusCode: '422'
         description: ''
-numberOfSchemas: 82
+numberOfSchemas: 80
 apiDescription: >-
   This is the documentation for the ElevenLabs API. You can use this API to use
   our service programmatically, this is done by using your xi-api-key. <br/> You
