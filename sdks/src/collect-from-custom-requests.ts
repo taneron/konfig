@@ -1192,6 +1192,14 @@ const customRequests: Record<string, CustomRequest> = {
     type: "GET",
     url: "https://raw.githubusercontent.com/Unstructured-IO/unstructured-api/main/openapi.json",
   },
+  "pay.com": {
+    lambda: async () => {
+      const urls = await collectEndpointsFromReadme({
+        url: "https://apiref.pay.com/reference/delete-a-customer",
+      });
+      return downloadOpenApiSpecFromReadme({ urls });
+    },
+  },
   "coalesce.io": {
     lambda: async () => {
       const urls = [
