@@ -61,7 +61,9 @@ export function SdkDirectory({ filter }: { filter: Filter }) {
         <div className="px-3 pt-5 pb-16 md:px-8 md:max-w-6xl mx-auto">
           <Breadcrumbs className="px-0 sm:px-0 mb-8" dark company={filter} />
           <div className="mb-4">
-            <CommandMenu />
+            <div className="lg:w-fit lg:mx-auto">
+              <CommandMenu />
+            </div>
           </div>
           <div className="flex flex-col md:flex-row gap-4 md:gap-8 items-start">
             <CategoryFilters filter={filter} categories={categories} />

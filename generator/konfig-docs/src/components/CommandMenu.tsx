@@ -50,7 +50,7 @@ export function CommandMenu({ ...props }: DialogProps) {
       <Button
         variant="outline"
         className={cn(
-          "relative w-full justify-start rounded-[0.5rem] bg-background text-muted-foreground shadow-none sm:pr-12 lg:w-[400px]"
+          "relative w-full justify-start font-normal rounded-[0.5rem] bg-white text-slate-500 shadow-none sm:pr-12 lg:w-[700px]"
         )}
         onClick={() => setOpen(true)}
         {...props}
@@ -66,17 +66,15 @@ export function CommandMenu({ ...props }: DialogProps) {
       <CommandDialog
         commandProps={{
           filter: (value, search, keywords) => {
-            let score = defaultFilter(value, search, keywords) * 0.5;
+            const index = [
+              value.toLowerCase(),
+              ...keywords.map((keyword) => keyword.toLowerCase()),
+            ];
 
-            // if lowercased value equals search or keywords include substring match of search then add 0.5
-            if (
-              value.toLowerCase() === search.toLowerCase() ||
-              keywords.some((keyword) =>
-                keyword.toLowerCase().includes(search.toLowerCase())
-              )
-            ) {
-              score += 0.5;
-            }
+            // number of items in index that search substring matches / number of keywords
+            const score =
+              index.filter((item) => item.includes(search.toLowerCase()))
+                .length / index.length;
 
             return score;
           },
@@ -133,6 +131,7 @@ function CompanyItem({
 
   return (
     <CommandItem
+      value={company}
       onSelect={() => {
         history.push(subpath);
       }}
