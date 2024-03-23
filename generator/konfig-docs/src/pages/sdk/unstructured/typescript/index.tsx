@@ -21,7 +21,7 @@ Unstructured captures this unstructured data wherever it lives and transforms it
       companyKebabCase="unstructured"
       clientNameCamelCase="unstructured"
       homepage="unstructured.io"
-      lastUpdated={new Date("2024-03-20T07:06:17.783Z")}
+      lastUpdated={new Date("2024-03-23T08:08:42.516Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/unstructured/favicon.jpg"
       // Missing contactUrl
       // Missing contactEmail
@@ -117,24 +117,29 @@ Unstructured captures this unstructured data wherever it lives and transforms it
         "example": "by_title"
       },
       {
-        "name": "multipage_sections",
-        "schema": "boolean",
-        "description": ""
-      },
-      {
         "name": "combine_under_n_chars",
         "schema": "integer",
         "description": "",
         "example": 500
       },
       {
-        "name": "new_after_n_chars",
+        "name": "include_orig_elements",
+        "schema": "boolean",
+        "description": ""
+      },
+      {
+        "name": "max_characters",
         "schema": "integer",
         "description": "",
         "example": 1500
       },
       {
-        "name": "max_characters",
+        "name": "multipage_sections",
+        "schema": "boolean",
+        "description": ""
+      },
+      {
+        "name": "new_after_n_chars",
         "schema": "integer",
         "description": "",
         "example": 1500
@@ -148,8 +153,7 @@ Unstructured captures this unstructured data wherever it lives and transforms it
       {
         "name": "overlap_all",
         "schema": "boolean",
-        "description": "",
-        "example": true
+        "description": ""
       },
       {
         "name": "extract_image_block_types",
@@ -182,7 +186,7 @@ Unstructured captures this unstructured data wherever it lives and transforms it
       endpoints={1}
       sdkMethods={1}
       schemas={4}
-      parameters={20}
+      parameters={21}
       difficulty="Very Easy"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/unstructured/openapi.yaml"
       openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/unstructured/openapi.yaml"

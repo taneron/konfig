@@ -4,7 +4,7 @@ import { Company } from '../../../components/Company';
 const sdks = [
   {
     "name": "Multiwoven",
-    "numberOfMethods": 24,
+    "numberOfMethods": 25,
     "categories": [
       "open_source",
       "automation",
@@ -24,7 +24,7 @@ const sdks = [
   },
   {
     "name": "Multiwoven",
-    "numberOfMethods": 24,
+    "numberOfMethods": 25,
     "categories": [
       "open_source",
       "automation",
@@ -44,7 +44,7 @@ const sdks = [
   },
   {
     "name": "Multiwoven",
-    "numberOfMethods": 24,
+    "numberOfMethods": 25,
     "categories": [
       "open_source",
       "automation",

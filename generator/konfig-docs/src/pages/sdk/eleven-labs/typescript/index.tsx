@@ -19,7 +19,7 @@ export default function ElevenLabsTypeScriptSdk() {
       companyKebabCase="eleven-labs"
       clientNameCamelCase="elevenLabs"
       homepage="elevenlabs.com"
-      lastUpdated={new Date("2024-03-21T03:39:02.740Z")}
+      lastUpdated={new Date("2024-03-23T08:08:42.516Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/elevenlabs/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
@@ -204,69 +204,6 @@ export default function ElevenLabsTypeScriptSdk() {
       {
         "statusCode": "200",
         "description": "Successful Response"
-      },
-      {
-        "statusCode": "422",
-        "description": ""
-      }
-    ]
-  },
-  {
-    "url": "/v1/shared-sound-effects",
-    "method": "getList",
-    "httpMethod": HttpMethodsEnum.GET,
-    "tag": "sound-effects-history",
-    "typeScriptTag": "soundEffectsHistory",
-    "description": "Get Shared Sound Effects",
-    "parameters": [
-      {
-        "name": "pageSize",
-        "schema": "integer",
-        "required": false,
-        "description": "How many sound effects to return at maximum. Can not exceed 100, defaults to 30.",
-        "default": 30
-      },
-      {
-        "name": "category",
-        "schema": "string",
-        "required": false,
-        "description": "Sound effect category used for filtering.",
-        "example": "Nature"
-      },
-      {
-        "name": "search",
-        "schema": "string",
-        "required": false,
-        "description": "Search term used for filtering",
-        "example": "Cold water"
-      },
-      {
-        "name": "sort",
-        "schema": "string",
-        "required": false,
-        "description": "Sort criteria. Can be one of: created_date, download_count, like_count, trending. Defaults to trending.",
-        "example": "trending_score"
-      },
-      {
-        "name": "featured",
-        "schema": "boolean",
-        "required": false,
-        "description": "Filter featured sound effects.",
-        "example": true,
-        "default": false
-      },
-      {
-        "name": "page",
-        "schema": "integer",
-        "required": false,
-        "description": "",
-        "default": 0
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": ""
       },
       {
         "statusCode": "422",
@@ -2203,6 +2140,13 @@ export default function ElevenLabsTypeScriptSdk() {
         "example": "american"
       },
       {
+        "name": "language",
+        "schema": "string",
+        "required": false,
+        "description": "language used for filtering",
+        "example": "en"
+      },
+      {
         "name": "search",
         "schema": "string",
         "required": false,
@@ -2529,10 +2473,10 @@ export default function ElevenLabsTypeScriptSdk() {
       apiTitle="ElevenLabs API Documentation"
       apiBaseUrl="https://api.elevenlabs.io"
       apiVersion="1.0"
-      endpoints={52}
-      sdkMethods={57}
-      schemas={82}
-      parameters={204}
+      endpoints={51}
+      sdkMethods={56}
+      schemas={80}
+      parameters={199}
       difficulty="Medium"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/elevenlabs/openapi.yaml"
       openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/elevenlabs/openapi.yaml"

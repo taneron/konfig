@@ -19,7 +19,7 @@ export default function MultiwovenTypeScriptSdk() {
       companyKebabCase="multiwoven"
       clientNameCamelCase="multiwoven"
       homepage="www.multiwoven.com/"
-      lastUpdated={new Date("2024-03-14T08:10:33.678Z")}
+      lastUpdated={new Date("2024-03-23T08:08:42.516Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/multiwoven/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
@@ -602,6 +602,40 @@ export default function MultiwovenTypeScriptSdk() {
     ]
   },
   {
+    "url": "/api/v1/syncs/{sync_id}/sync_runs/{sync_run_id}",
+    "method": "getDetailsBySyncRunId",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "SyncRun",
+    "typeScriptTag": "syncRun",
+    "description": "Get sync run using sync_run_id for a specific sync",
+    "parameters": [
+      {
+        "name": "syncId",
+        "schema": "integer",
+        "required": true,
+        "description": "The ID of the sync.",
+        "example": 0
+      },
+      {
+        "name": "syncRunId",
+        "schema": "integer",
+        "required": true,
+        "description": "The ID of the sync_run.",
+        "example": 0
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "404",
+        "description": ""
+      }
+    ]
+  },
+  {
     "url": "/api/v1/syncs/{sync_id}/sync_runs/{sync_run_id}/sync_records",
     "method": "listForSyncRun",
     "httpMethod": HttpMethodsEnum.GET,
@@ -651,10 +685,10 @@ export default function MultiwovenTypeScriptSdk() {
       apiTitle="MultiWoven API"
       apiBaseUrl="https://api.multiwoven.com"
       apiVersion="1.0.0"
-      endpoints={15}
-      sdkMethods={24}
-      schemas={31}
-      parameters={37}
+      endpoints={16}
+      sdkMethods={25}
+      schemas={33}
+      parameters={39}
       difficulty="Easy"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/multiwoven/openapi.yaml"
       openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/multiwoven/openapi.yaml"

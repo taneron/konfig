@@ -19,7 +19,7 @@ export default function ZuoraTypeScriptSdk() {
       companyKebabCase="zuora"
       clientNameCamelCase="zuora"
       homepage="zuora.com"
-      lastUpdated={new Date("2024-03-15T18:50:00.907Z")}
+      lastUpdated={new Date("2024-03-23T08:08:42.516Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/zuora/favicon.png"
       // Missing contactUrl
       contactEmail="docs@zuora.com"
@@ -15114,7 +15114,7 @@ export default function ZuoraTypeScriptSdk() {
         "name": "country",
         "schema": "string",
         "required": true,
-        "description": "The short name of a country or region where you must comply with e-invoicing requirements. For example, `IN` for India. For the full list of country names and codes, see <a href=\"https://knowledgecenter.zuora.com/Quick_References/Country%2C_State%2C_and_Province_Codes/A_Country_Names_and_Their_ISO_Codes\" target=\"_blank\">ISO Standard Country Codes</a>.\n",
+        "description": "The short name of a country or region where you must comply with e-invoicing requirements. For example, `IN` for India. For the full list of country names and codes, see <a href=\"https://knowledgecenter.zuora.com/Quick_References/Country%2C_State%2C_and_Province_Codes/A_Manage_countries_and_regions#View_countries_or_regions\" target=\"_blank\">View countries or regions</a>.\n",
         "example": "COUNTRY"
       },
       {
@@ -16769,7 +16769,7 @@ export default function ZuoraTypeScriptSdk() {
         "name": "jobId",
         "schema": "string",
         "required": true,
-        "description": "The ID of the job to retrieve information about. For example, 2c92c8955bd63cc1015bd7c151af02ab",
+        "description": "The ID of the job for which information needs to be retrieved. For example, 2c92c8955bd63cc1015bd7c151af02ab",
         "example": "JOBID"
       }
     ],
@@ -34901,7 +34901,7 @@ export default function ZuoraTypeScriptSdk() {
       },
       {
         "name": "offset",
-        "schema": "number",
+        "schema": "integer",
         "description": "",
         "default": 0
       },
@@ -34948,7 +34948,7 @@ export default function ZuoraTypeScriptSdk() {
       language="TypeScript"
       apiTitle="API Reference"
       apiBaseUrl="https://rest.zuora.com"
-      apiVersion="2024-03-15"
+      apiVersion="2024-03-22"
       endpoints={346}
       sdkMethods={462}
       schemas={1124}

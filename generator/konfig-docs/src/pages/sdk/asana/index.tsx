@@ -4,7 +4,7 @@ import { Company } from '../../../components/Company';
 const sdks = [
   {
     "name": "Asana",
-    "numberOfMethods": 183,
+    "numberOfMethods": 184,
     "categories": [
       "productivity",
       "collaboration",
@@ -41,7 +41,7 @@ const sdks = [
   },
   {
     "name": "Asana",
-    "numberOfMethods": 183,
+    "numberOfMethods": 184,
     "categories": [
       "productivity",
       "collaboration",
@@ -78,7 +78,7 @@ const sdks = [
   },
   {
     "name": "Asana",
-    "numberOfMethods": 183,
+    "numberOfMethods": 184,
     "categories": [
       "productivity",
       "collaboration",

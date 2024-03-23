@@ -29,7 +29,7 @@ Or get a free API key and start building, no credit card required, at shipengine
       companyKebabCase="ship-engine"
       clientNameCamelCase="shipEngine"
       homepage="shipengine.com"
-      lastUpdated={new Date("2024-03-21T03:39:02.740Z")}
+      lastUpdated={new Date("2024-03-23T08:08:42.516Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/shipengine/favicon.png"
       contactUrl="https://www.shipengine.com/contact/"
       contactEmail="sales@shipengine.com"
@@ -3756,7 +3756,7 @@ Or get a free API key and start building, no credit card required, at shipengine
       language="TypeScript"
       apiTitle="ShipEngine API"
       apiBaseUrl="https://api.shipengine.com"
-      apiVersion="1.1.202403202303"
+      apiVersion="1.1.202403211903"
       endpoints={67}
       sdkMethods={261}
       schemas={251}

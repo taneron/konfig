@@ -29,7 +29,7 @@ we're building a suite of audio / video models to change how we live, work, and 
       companyKebabCase="sync-labs"
       clientNameCamelCase="syncLabs"
       homepage="synclabs.so"
-      lastUpdated={new Date("2024-03-14T08:10:33.678Z")}
+      lastUpdated={new Date("2024-03-23T08:08:42.516Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/sync-labs/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
@@ -118,7 +118,7 @@ we're building a suite of audio / video models to change how we live, work, and 
         "schema": "string",
         "required": false,
         "description": "",
-        "default": "sync-1.5.0"
+        "default": "sync-1.6.0"
       }
     ],
     "responses": [
@@ -230,7 +230,7 @@ we're building a suite of audio / video models to change how we live, work, and 
         "schema": "string",
         "required": false,
         "description": "",
-        "default": "sync-1.5.0"
+        "default": "sync-1.6.0"
       }
     ],
     "responses": [
@@ -342,7 +342,7 @@ we're building a suite of audio / video models to change how we live, work, and 
         "schema": "string",
         "required": false,
         "description": "",
-        "default": "sync-1.5.0"
+        "default": "sync-1.6.0"
       }
     ],
     "responses": [
@@ -532,7 +532,7 @@ we're building a suite of audio / video models to change how we live, work, and 
         "schema": "string",
         "required": false,
         "description": "",
-        "default": "sync-1.5.0"
+        "default": "sync-1.6.0"
       },
       {
         "name": "maxCredits",
@@ -578,6 +578,32 @@ we're building a suite of audio / video models to change how we live, work, and 
         "description": ""
       }
     ]
+  },
+  {
+    "url": "/verification/send-phone-number-verification-code",
+    "method": "sendPhoneNumberVerificationCode",
+    "httpMethod": HttpMethodsEnum.POST,
+    "description": "",
+    "parameters": [],
+    "responses": [
+      {
+        "statusCode": "201",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "url": "/verification/verify-code",
+    "method": "verifyCode",
+    "httpMethod": HttpMethodsEnum.POST,
+    "description": "",
+    "parameters": [],
+    "responses": [
+      {
+        "statusCode": "201",
+        "description": ""
+      }
+    ]
   }
 ]
     }
@@ -585,9 +611,9 @@ we're building a suite of audio / video models to change how we live, work, and 
       apiTitle="Synchronize API"
       apiBaseUrl="https://api.synclabs.so"
       apiVersion="1.0"
-      endpoints={16}
-      sdkMethods={16}
-      schemas={15}
+      endpoints={18}
+      sdkMethods={18}
+      schemas={17}
       parameters={41}
       difficulty="Easy"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/sync-labs/openapi.yaml"

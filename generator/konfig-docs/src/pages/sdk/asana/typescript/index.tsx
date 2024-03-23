@@ -19,7 +19,7 @@ export default function AsanaTypeScriptSdk() {
       companyKebabCase="asana"
       clientNameCamelCase="asana"
       homepage="asana.com"
-      lastUpdated={new Date("2024-03-14T08:10:33.678Z")}
+      lastUpdated={new Date("2024-03-23T08:08:42.516Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/asana/favicon.png"
       contactUrl="https://asana.com/support"
       // Missing contactEmail
@@ -2608,6 +2608,47 @@ export default function AsanaTypeScriptSdk() {
           "parent.name",
           "resource_subtype"
         ]
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": "Sadly, sometimes requests to the API are not successful. Failures can\noccur for a wide range of reasons. In all cases, the API should return\nan HTTP Status Code that indicates the nature of the failure,\nwith a response body in JSON format containing additional information.\n\n\nIn the event of a server error the response body will contain an error\nphrase. These phrases are automatically generated using the\n[node-asana-phrase\nlibrary](https://github.com/Asana/node-asana-phrase) and can be used by\nAsana support to quickly look up the incident that caused the server\nerror."
+      },
+      {
+        "statusCode": "401",
+        "description": "Sadly, sometimes requests to the API are not successful. Failures can\noccur for a wide range of reasons. In all cases, the API should return\nan HTTP Status Code that indicates the nature of the failure,\nwith a response body in JSON format containing additional information.\n\n\nIn the event of a server error the response body will contain an error\nphrase. These phrases are automatically generated using the\n[node-asana-phrase\nlibrary](https://github.com/Asana/node-asana-phrase) and can be used by\nAsana support to quickly look up the incident that caused the server\nerror."
+      },
+      {
+        "statusCode": "403",
+        "description": "Sadly, sometimes requests to the API are not successful. Failures can\noccur for a wide range of reasons. In all cases, the API should return\nan HTTP Status Code that indicates the nature of the failure,\nwith a response body in JSON format containing additional information.\n\n\nIn the event of a server error the response body will contain an error\nphrase. These phrases are automatically generated using the\n[node-asana-phrase\nlibrary](https://github.com/Asana/node-asana-phrase) and can be used by\nAsana support to quickly look up the incident that caused the server\nerror."
+      },
+      {
+        "statusCode": "404",
+        "description": "Sadly, sometimes requests to the API are not successful. Failures can\noccur for a wide range of reasons. In all cases, the API should return\nan HTTP Status Code that indicates the nature of the failure,\nwith a response body in JSON format containing additional information.\n\n\nIn the event of a server error the response body will contain an error\nphrase. These phrases are automatically generated using the\n[node-asana-phrase\nlibrary](https://github.com/Asana/node-asana-phrase) and can be used by\nAsana support to quickly look up the incident that caused the server\nerror."
+      },
+      {
+        "statusCode": "500",
+        "description": "Sadly, sometimes requests to the API are not successful. Failures can\noccur for a wide range of reasons. In all cases, the API should return\nan HTTP Status Code that indicates the nature of the failure,\nwith a response body in JSON format containing additional information.\n\n\nIn the event of a server error the response body will contain an error\nphrase. These phrases are automatically generated using the\n[node-asana-phrase\nlibrary](https://github.com/Asana/node-asana-phrase) and can be used by\nAsana support to quickly look up the incident that caused the server\nerror."
+      }
+    ]
+  },
+  {
+    "url": "/memberships/{membership_gid}",
+    "method": "updateMembershipRecord",
+    "httpMethod": HttpMethodsEnum.PUT,
+    "tag": "Memberships",
+    "typeScriptTag": "memberships",
+    "description": "Update a membership",
+    "parameters": [
+      {
+        "name": "data",
+        "schema": "object",
+        "description": ""
       }
     ],
     "responses": [
@@ -14686,9 +14727,9 @@ export default function AsanaTypeScriptSdk() {
       apiBaseUrl="https://app.asana.com/api/1.0"
       apiVersion="1.0"
       endpoints={135}
-      sdkMethods={317}
-      schemas={423}
-      parameters={311}
+      sdkMethods={318}
+      schemas={430}
+      parameters={312}
       difficulty="Hard"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/asana/openapi.yaml"
       openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/asana/openapi.yaml"

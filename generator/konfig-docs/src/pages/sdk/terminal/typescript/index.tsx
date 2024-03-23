@@ -19,7 +19,7 @@ export default function TerminalTypeScriptSdk() {
       companyKebabCase="terminal"
       clientNameCamelCase="terminal"
       homepage="withterminal.com"
-      lastUpdated={new Date("2024-03-21T03:39:02.740Z")}
+      lastUpdated={new Date("2024-03-23T08:08:42.516Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/terminal/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
@@ -87,7 +87,19 @@ export default function TerminalTypeScriptSdk() {
         "name": "tag",
         "schema": "string",
         "description": "Filter connections by tag",
-        "example": "voluptate nostrud deserunt est id"
+        "example": "ullamco consequat commodo consectetur"
+      },
+      {
+        "name": "updatedAfter",
+        "schema": "string",
+        "description": "Filter connections that were last updated on or after a given time.",
+        "example": "2021-01-06T03:24:53.000Z"
+      },
+      {
+        "name": "updatedBefore",
+        "schema": "string",
+        "description": "Filter connections that were last updated on or before a given time.",
+        "example": "2021-01-06T03:24:53.000Z"
       }
     ],
     "responses": [
@@ -133,7 +145,7 @@ export default function TerminalTypeScriptSdk() {
         "name": "externalId",
         "schema": "string",
         "description": "",
-        "example": "incididunt minim"
+        "example": "in culpa ea consectetur irure"
       },
       {
         "name": "provider",
@@ -196,8 +208,8 @@ export default function TerminalTypeScriptSdk() {
         "schema": "array",
         "description": "",
         "example": [
-          "Excepteur occaecat",
-          "tempor"
+          "mollit anim",
+          "eiusmod in"
         ]
       },
       {
@@ -209,13 +221,13 @@ export default function TerminalTypeScriptSdk() {
         "name": "externalId",
         "schema": "string",
         "description": "",
-        "example": "ipsum"
+        "example": ""
       },
       {
         "name": "status",
         "schema": "string",
         "description": "",
-        "example": "elit dolore"
+        "example": "mollit nos"
       },
       {
         "name": "syncMode",
@@ -680,13 +692,13 @@ export default function TerminalTypeScriptSdk() {
         "name": "startDate",
         "schema": "string",
         "description": "Only include daily logs from on or after a specific date",
-        "example": "2015-10-20"
+        "example": "1966-06-16"
       },
       {
         "name": "endDate",
         "schema": "string",
         "description": "Only include daily logs from on or before a specific date",
-        "example": "2015-10-20"
+        "example": "1966-06-16"
       },
       {
         "name": "modifiedAfter",
@@ -814,13 +826,13 @@ export default function TerminalTypeScriptSdk() {
         "name": "lastReportedAfter",
         "schema": "string",
         "description": "Timestamp to start when the issue was last observed",
-        "example": "1947-01-02"
+        "example": "1945-02-22"
       },
       {
         "name": "lastReportedBefore",
         "schema": "string",
         "description": "Timestamp to end when the issue was last observed",
-        "example": "1947-01-02"
+        "example": "1945-02-22"
       },
       {
         "name": "expand",
@@ -838,13 +850,13 @@ export default function TerminalTypeScriptSdk() {
         "name": "errorCode",
         "schema": "string",
         "description": "Filter issues to a specific error code",
-        "example": "missing_safety_configuration"
+        "example": "inaccessible_data"
       },
       {
         "name": "status",
         "schema": "string",
         "description": "Filter issues to a specific status",
-        "example": "resolved"
+        "example": "ongoing"
       }
     ],
     "responses": [
@@ -1485,7 +1497,7 @@ export default function TerminalTypeScriptSdk() {
       endpoints={26}
       sdkMethods={35}
       schemas={5}
-      parameters={164}
+      parameters={166}
       difficulty="Easy"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/terminal/openapi.yaml"
       openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/terminal/openapi.yaml"

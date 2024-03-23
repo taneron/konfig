@@ -19,7 +19,7 @@ export default function PartnaTypeScriptSdk() {
       companyKebabCase="partna"
       clientNameCamelCase="partna"
       homepage="getpartna.com/"
-      lastUpdated={new Date("2024-03-17T23:48:01.149Z")}
+      lastUpdated={new Date("2024-03-22T23:59:12.331Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/partna/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
@@ -802,7 +802,7 @@ export default function PartnaTypeScriptSdk() {
       },
       {
         "name": "duration",
-        "schema": "number",
+        "schema": "string",
         "description": "Duration of the transaction to be retrieved per page page."
       }
     ],
@@ -843,7 +843,7 @@ export default function PartnaTypeScriptSdk() {
       },
       {
         "name": "duration",
-        "schema": "number",
+        "schema": "string",
         "description": "Duration of the transaction to be retrieved per page page."
       }
     ],
