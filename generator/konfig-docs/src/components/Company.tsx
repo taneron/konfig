@@ -151,7 +151,7 @@ function SDKs({
       {amountToShow < numberOfSdks && (
         <button
           onClick={() => {
-            setAmountToShow((amount) => amount + 3);
+            setAmountToShow(numberOfSdks);
           }}
           aria-hidden={amountToShow >= numberOfSdks}
           className="aria-hidden:hidden mt-4 mx-auto group flex gap-3 hover:gap-2 items-center transition-all bg-gradient-to-br text-white w-fit text-center font-semibold px-3 py-2 from-blue-600 to-blue-800 rounded-md text-1xl cursor-pointer z-10"
