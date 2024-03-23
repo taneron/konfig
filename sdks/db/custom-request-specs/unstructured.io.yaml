@@ -160,38 +160,46 @@ components:
             Use one of the supported strategies to chunk the returned elements.
             Currently supports: by_title
           example: by_title
-        multipage_sections:
-          type: boolean
-          title: Multipage Sections
-          description: >-
-            If chunking strategy is set, determines if sections can span
-            multiple sections. Default: true
         combine_under_n_chars:
           type: integer
           title: Combine Under N Chars
           description: >-
             If chunking strategy is set, combine elements until a section
-            reaches a length of n chars. Default: 500
+            reaches a length of n chars. Default: max_characters
           example: 500
-        new_after_n_chars:
-          type: integer
-          title: New after n chars
+        include_orig_elements:
+          type: boolean
+          title: Original-elements flag
           description: >-
-            If chunking strategy is set, cut off new sections after reaching a
-            length of n chars (soft max). Default: 1500
-          example: 1500
+            When True (the default), the elements used to form a chunk appear in
+            `.metadata.orig_elements` for that chunk. Only applies when chunking
+            is specified using the `chunking_strategy` argument.
         max_characters:
           type: integer
           title: Max Characters
           description: >-
             If chunking strategy is set, cut off new sections after reaching a
-            length of n chars (hard max). Default: 1500
+            length of n chars (hard max). Default: 500
+          example: 1500
+        multipage_sections:
+          type: boolean
+          title: Multipage Sections
+          description: >-
+            If chunking strategy is set, determines if sections can span
+            multiple pages. Only applies to by_title chunking strategy.Default:
+            true
+        new_after_n_chars:
+          type: integer
+          title: New after n chars
+          description: >-
+            If chunking strategy is set, cut off new sections after reaching a
+            length of n chars (soft max). Default: max_characters (off)
           example: 1500
         overlap:
           type: integer
           title: Intra-chunk overlap
           description: >-
-            A prefix of this many trailing characters from prior text-split
+            A prefix of this many trailing characters from the prior text-split
             chunk is applied to second and later chunks formed from oversized
             elements by text-splitting. Default: None
           example: 25
@@ -202,7 +210,6 @@ components:
             When True, overlap is also applied to 'normal' chunks formed by
             combining whole elements. Use with caution as this can introduce
             noise into otherwise clean semantic units. Default: None
-          example: 1500
         extract_image_block_types:
           items:
             type: string
