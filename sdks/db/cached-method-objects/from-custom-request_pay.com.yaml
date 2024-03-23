@@ -1,0 +1,680 @@
+hash: 9dd8e8e8739399163cfa5ecaa4b5fbd3349a05f698cef36b8ad2a85e7e968701
+methodObjects:
+  - url: /v1/sessions/payment
+    method: createPayment
+    httpMethod: post
+    tag: Session
+    typeScriptTag: session
+    description: Create a Payment Session
+    parameters:
+      - name: description
+        schema: string
+        required: false
+        description: ''
+      - name: amount
+        schema: integer
+        required: true
+        description: ''
+        example: 10000
+      - name: currency
+        schema: string
+        required: true
+        description: ''
+        example: usd
+      - name: customer_reference_id
+        schema: string
+        required: true
+        description: ''
+        example: CUSTOMER_REFERENCE_ID
+      - name: automatic_payment_methods
+        schema: boolean
+        required: false
+        description: ''
+      - name: billing_details
+        schema: object
+        required: false
+        description: ''
+      - name: capture
+        schema: boolean
+        required: false
+        description: ''
+      - name: payment_method_options
+        schema: object
+        required: false
+        description: ''
+        example: &ref_0
+          card:
+            accepted_card_brands:
+              - visa
+            accepted_card_categories:
+              - consumer
+            accepted_card_funding:
+              - debit
+            accepted_card_jurisdictions:
+              - domestic
+            duplicate_card_check: true
+            enforce_customer_name_as_cardholder_name: true
+            security_checks:
+              address_line1_check: true
+              address_postal_code_check: true
+              cvv_check: true
+            request_threed_secure: none
+      - name: payment_method_types
+        schema: array
+        required: false
+        description: ''
+      - name: reference
+        schema: string
+        required: false
+        description: ''
+      - name: receipt
+        schema: boolean
+        required: false
+        description: ''
+      - name: receipt_email
+        schema: string
+        required: false
+        description: ''
+      - name: shipping
+        schema: object
+        required: false
+        description: ''
+      - name: setup_future_usage
+        schema: string
+        required: false
+        description: ''
+      - name: statement_descriptor_suffix
+        schema: string
+        required: false
+        description: ''
+      - name: metadata
+        schema: object
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /v1/sessions/payment/{id}
+    method: getPaymentDetails
+    httpMethod: get
+    tag: Session
+    typeScriptTag: session
+    description: Retrieve a Payment Session
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /v1/sessions/setup
+    method: createSetup
+    httpMethod: post
+    tag: Session
+    typeScriptTag: session
+    description: Create a Setup Session
+    parameters:
+      - name: customer_reference_id
+        schema: string
+        required: true
+        description: ''
+        example: CUSTOMER_REFERENCE_ID
+      - name: automatic_payment_methods
+        schema: boolean
+        required: false
+        description: ''
+      - name: billing_details
+        schema: object
+        required: false
+        description: ''
+      - name: payment_method_options
+        schema: object
+        required: false
+        description: ''
+        example: *ref_0
+      - name: payment_method_types
+        schema: array
+        required: false
+        description: ''
+      - name: setup_future_usage
+        schema: string
+        required: false
+        description: ''
+      - name: metadata
+        schema: object
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /v1/sessions/setup/{id}
+    method: getDetails
+    httpMethod: get
+    tag: Session
+    typeScriptTag: session
+    description: Retrieve a Setup Session
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /v1/sessions/payment/{id}/attempts
+    method: getAttempts
+    httpMethod: get
+    tag: Session
+    typeScriptTag: session
+    description: Retrieve Attempts of a Session
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /v1/sessions/setup/{id}/attempts
+    method: getSessionAttempts
+    httpMethod: get
+    tag: Session
+    typeScriptTag: session
+    description: Retrieve Attempts of a Session
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /v1/sessions/authentication/linked
+    method: createLinked
+    httpMethod: post
+    tag: Session
+    typeScriptTag: session
+    description: Create a Linked Session
+    parameters:
+      - name: resource
+        schema: string
+        required: true
+        description: ''
+        example: RESOURCE
+      - name: confirm
+        schema: boolean
+        required: false
+        description: ''
+      - name: return_url
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /v1/sessions/authentication/independent
+    method: createIndependent
+    httpMethod: post
+    tag: Session
+    typeScriptTag: session
+    description: Create an Independent Session
+    parameters:
+      - name: amount
+        schema: integer
+        required: true
+        description: ''
+        example: 10000
+      - name: currency
+        schema: string
+        required: true
+        description: ''
+        example: usd
+      - name: card
+        schema: string
+        required: false
+        description: ''
+      - name: customer_reference_id
+        schema: string
+        required: false
+        description: ''
+      - name: billing_details
+        schema: object
+        required: false
+        description: ''
+      - name: reference
+        schema: string
+        required: false
+        description: ''
+      - name: return_url
+        schema: string
+        required: false
+        description: ''
+      - name: shipping
+        schema: object
+        required: false
+        description: ''
+      - name: metadata
+        schema: object
+        required: false
+        description: ''
+      - name: card_data
+        schema: object
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /v1/attempts/payment/{id}
+    method: getPaymentAttempt
+    httpMethod: get
+    tag: Session
+    typeScriptTag: session
+    description: Retrieve a Payment Session
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /v1/attempts/setup/{id}
+    method: getDetails
+    httpMethod: get
+    tag: Attempt
+    typeScriptTag: attempt
+    description: Retrieve a Setup Attempt
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /v1/charges
+    method: createCharge
+    httpMethod: post
+    tag: Charge
+    typeScriptTag: charge
+    description: Create a Charge
+    parameters:
+      - name: amount
+        schema: integer
+        required: true
+        description: ''
+        example: 10000
+      - name: currency
+        schema: string
+        required: true
+        description: ''
+        example: usd
+      - name: source
+        schema: string
+        required: false
+        description: ''
+      - name: risk_session_id
+        schema: string
+        required: false
+        description: ''
+      - name: customer_reference_id
+        schema: string
+        required: false
+        description: ''
+      - name: payment_method_options
+        schema: object
+        required: false
+        description: ''
+        example: *ref_0
+      - name: receipt
+        schema: boolean
+        required: false
+        description: ''
+      - name: receipt_email
+        schema: string
+        required: false
+        description: ''
+      - name: reference
+        schema: string
+        required: false
+        description: ''
+      - name: shipping
+        schema: object
+        required: false
+        description: ''
+      - name: statement_descriptor_suffix
+        schema: string
+        required: false
+        description: ''
+      - name: metadata
+        schema: object
+        required: false
+        description: ''
+      - name: source_data
+        schema: object
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /v1/charges/{id}
+    method: getDetails
+    httpMethod: get
+    tag: Charge
+    typeScriptTag: charge
+    description: Retrieve a Charge
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /v1/charges/{id}/confirm
+    method: confirmCharge
+    httpMethod: post
+    tag: Charge
+    typeScriptTag: charge
+    description: Confirm a Charge
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /v1/refunds
+    method: paymentMethod
+    httpMethod: post
+    tag: Refund
+    typeScriptTag: refund
+    description: Create a Refund
+    parameters:
+      - name: charge
+        schema: string
+        required: true
+        description: ''
+        example: CHARGE
+      - name: amount_to_refund
+        schema: string
+        required: false
+        description: ''
+        example: '10000'
+      - name: reference
+        schema: string
+        required: false
+        description: ''
+      - name: metadata
+        schema: object
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /v1/refunds/{id}
+    method: getDetails
+    httpMethod: get
+    tag: Refund
+    typeScriptTag: refund
+    description: Retrieve a Refund
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /v1/holds
+    method: createHold
+    httpMethod: post
+    tag: Hold
+    typeScriptTag: hold
+    description: Create a Hold
+    parameters:
+      - name: amount
+        schema: integer
+        required: true
+        description: ''
+        example: 10000
+      - name: currency
+        schema: string
+        required: true
+        description: ''
+        example: usd
+      - name: source
+        schema: string
+        required: false
+        description: ''
+      - name: risk_session_id
+        schema: string
+        required: false
+        description: ''
+      - name: customer_reference_id
+        schema: string
+        required: false
+        description: ''
+      - name: payment_method_options
+        schema: object
+        required: false
+        description: ''
+        example: *ref_0
+      - name: reference
+        schema: string
+        required: false
+        description: ''
+      - name: shipping
+        schema: object
+        required: false
+        description: ''
+      - name: statement_descriptor_suffix
+        schema: string
+        required: false
+        description: ''
+      - name: metadata
+        schema: object
+        required: false
+        description: ''
+      - name: source_data
+        schema: object
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /v1/holds/{id}
+    method: getDetails
+    httpMethod: get
+    tag: Hold
+    typeScriptTag: hold
+    description: Retrieve a Hold
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /v1/holds/{id}/capture
+    method: captureHold
+    httpMethod: post
+    tag: Hold
+    typeScriptTag: hold
+    description: Capture a Hold
+    parameters:
+      - name: amount_to_capture
+        schema: string
+        description: ''
+        example: '10000'
+      - name: reference
+        schema: string
+        description: ''
+      - name: metadata
+        schema: object
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /v1/holds/{id}/cancel
+    method: cancelHold
+    httpMethod: post
+    tag: Hold
+    typeScriptTag: hold
+    description: Cancel a Hold
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /v1/holds/{id}/confirm
+    method: confirmHoldStatus
+    httpMethod: post
+    tag: Hold
+    typeScriptTag: hold
+    description: Confirm a Hold
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /v1/payouts
+    method: createPayout
+    httpMethod: post
+    tag: Payout
+    typeScriptTag: payout
+    description: Create a Payout
+    parameters:
+      - name: amount
+        schema: integer
+        required: true
+        description: ''
+        example: 10000
+      - name: currency
+        schema: string
+        required: true
+        description: ''
+        example: usd
+      - name: destination
+        schema: string
+        required: true
+        description: ''
+        example: pm_card_202779025452569600
+      - name: reference
+        schema: string
+        required: false
+        description: ''
+      - name: statement_descriptor_suffix
+        schema: string
+        required: false
+        description: ''
+      - name: metadata
+        schema: object
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /v1/payouts/{id}
+    method: getDetails
+    httpMethod: get
+    tag: Payout
+    typeScriptTag: payout
+    description: Retrieve a Payout
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /v1/payment_methods
+    method: createPaymentMethod
+    httpMethod: post
+    tag: PaymentMethod
+    typeScriptTag: paymentMethod
+    description: Create a Payment Method
+    parameters:
+      - name: customer_reference_id
+        schema: string
+        required: true
+        description: ''
+        example: CUSTOMER_REFERENCE_ID
+      - name: type
+        schema: string
+        required: true
+        description: ''
+        example: TYPE
+      - name: card
+        schema: object
+        required: false
+        description: ''
+      - name: metadata
+        schema: object
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /v1/payment_methods/{id}
+    method: deleteMethod
+    httpMethod: delete
+    tag: PaymentMethod
+    typeScriptTag: paymentMethod
+    description: Delete a Payment Method
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: OK
+  - url: /v1/payment_methods/{id}
+    method: getDetails
+    httpMethod: get
+    tag: PaymentMethod
+    typeScriptTag: paymentMethod
+    description: Retrieve a Payment Method
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /v1/customers/{reference_id}/payment_methods
+    method: getPaymentMethods
+    httpMethod: get
+    tag: Customer
+    typeScriptTag: customer
+    description: Retrieve Payment Methods
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /v1/customers
+    method: createCustomer
+    httpMethod: post
+    tag: Customer
+    typeScriptTag: customer
+    description: Create a Customer
+    parameters:
+      - name: reference_id
+        schema: string
+        required: true
+        description: ''
+        example: REFERENCE_ID
+      - name: address
+        schema: object
+        required: false
+        description: ''
+      - name: name
+        schema: string
+        required: false
+        description: ''
+      - name: email
+        schema: string
+        required: false
+        description: ''
+      - name: phone
+        schema: string
+        required: false
+        description: ''
+      - name: shipping
+        schema: object
+        required: false
+        description: ''
+      - name: metadata
+        schema: object
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /v1/customers/{reference_id}
+    method: deleteCustomer
+    httpMethod: delete
+    tag: Customer
+    typeScriptTag: customer
+    description: Delete a Customer
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: OK
+  - url: /v1/customers/{reference_id}
+    method: getDetails
+    httpMethod: get
+    tag: Customer
+    typeScriptTag: customer
+    description: Retrieve a Customer
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /v1/customers/{reference_id}
+    method: updateDetails
+    httpMethod: put
+    tag: Customer
+    typeScriptTag: customer
+    description: Update a Customer
+    parameters:
+      - name: default_source
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+numberOfSchemas: 45
+apiDescription: ''

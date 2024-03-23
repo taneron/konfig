@@ -1,0 +1,179 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignoreObjectsWithNoProperties: true
+ignorePotentialIncorrectType: true
+operationIds:
+  /v1/attempts/payment/{id}:
+    get: Session_getPaymentAttempt
+  /v1/attempts/setup/{id}:
+    get: Attempt_getDetails
+  /v1/charges:
+    post: Charge_createCharge
+  /v1/charges/{id}:
+    get: Charge_getDetails
+  /v1/charges/{id}/confirm:
+    post: Charge_confirmCharge
+  /v1/customers:
+    post: Customer_createCustomer
+  /v1/customers/{reference_id}:
+    delete: Customer_deleteCustomer
+    get: Customer_getDetails
+    put: Customer_updateDetails
+  /v1/customers/{reference_id}/payment_methods:
+    get: Customer_getPaymentMethods
+  /v1/holds:
+    post: Hold_createHold
+  /v1/holds/{id}:
+    get: Hold_getDetails
+  /v1/holds/{id}/cancel:
+    post: Hold_cancelHold
+  /v1/holds/{id}/capture:
+    post: Hold_captureHold
+  /v1/holds/{id}/confirm:
+    post: Hold_confirmHoldStatus
+  /v1/payment_methods:
+    post: PaymentMethod_createPaymentMethod
+  /v1/payment_methods/{id}:
+    delete: PaymentMethod_deleteMethod
+    get: PaymentMethod_getDetails
+  /v1/payouts:
+    post: Payout_createPayout
+  /v1/payouts/{id}:
+    get: Payout_getDetails
+  /v1/refunds:
+    post: Refund_paymentMethod
+  /v1/refunds/{id}:
+    get: Refund_getDetails
+  /v1/sessions/authentication/independent:
+    post: Session_createIndependent
+  /v1/sessions/authentication/linked:
+    post: Session_createLinked
+  /v1/sessions/payment:
+    post: Session_createPayment
+  /v1/sessions/payment/{id}:
+    get: Session_getPaymentDetails
+  /v1/sessions/payment/{id}/attempts:
+    get: Session_getAttempts
+  /v1/sessions/setup:
+    post: Session_createSetup
+  /v1/sessions/setup/{id}:
+    get: Session_getDetails
+  /v1/sessions/setup/{id}/attempts:
+    get: Session_getSessionAttempts
+operationTags:
+  /v1/attempts/payment/{id}:
+    get: Session
+  /v1/attempts/setup/{id}:
+    get: Attempt
+  /v1/charges:
+    post: Charge
+  /v1/charges/{id}:
+    get: Charge
+  /v1/charges/{id}/confirm:
+    post: Charge
+  /v1/customers:
+    post: Customer
+  /v1/customers/{reference_id}:
+    delete: Customer
+    get: Customer
+    put: Customer
+  /v1/customers/{reference_id}/payment_methods:
+    get: Customer
+  /v1/holds:
+    post: Hold
+  /v1/holds/{id}:
+    get: Hold
+  /v1/holds/{id}/cancel:
+    post: Hold
+  /v1/holds/{id}/capture:
+    post: Hold
+  /v1/holds/{id}/confirm:
+    post: Hold
+  /v1/payment_methods:
+    post: PaymentMethod
+  /v1/payment_methods/{id}:
+    delete: PaymentMethod
+    get: PaymentMethod
+  /v1/payouts:
+    post: Payout
+  /v1/payouts/{id}:
+    get: Payout
+  /v1/refunds:
+    post: Refund
+  /v1/refunds/{id}:
+    get: Refund
+  /v1/sessions/authentication/independent:
+    post: Session
+  /v1/sessions/authentication/linked:
+    post: Session
+  /v1/sessions/payment:
+    post: Session
+  /v1/sessions/payment/{id}:
+    get: Session
+  /v1/sessions/payment/{id}/attempts:
+    get: Session
+  /v1/sessions/setup:
+    post: Session
+  /v1/sessions/setup/{id}:
+    get: Session
+  /v1/sessions/setup/{id}/attempts:
+    get: Session
+renameTags: {}
+requestSchemaNames:
+  /v1/charges:
+    post:
+      application/json: ChargeCreateChargeRequest
+  /v1/customers:
+    post:
+      application/json: CustomerCreateCustomerRequest
+  /v1/customers/{reference_id}:
+    put:
+      application/json: CustomerUpdateDetailsRequest
+  /v1/holds:
+    post:
+      application/json: HoldCreateHoldRequest
+  /v1/holds/{id}/capture:
+    post:
+      application/json: HoldCaptureHoldRequest
+  /v1/payment_methods:
+    post:
+      application/json: PaymentMethodCreatePaymentMethodRequest
+  /v1/payouts:
+    post:
+      application/json: PayoutCreatePayoutRequest
+  /v1/refunds:
+    post:
+      application/json: RefundPaymentMethodRequest
+  /v1/sessions/authentication/independent:
+    post:
+      application/json: SessionCreateIndependentRequest
+  /v1/sessions/authentication/linked:
+    post:
+      application/json: SessionCreateLinkedRequest
+  /v1/sessions/payment:
+    post:
+      application/json: SessionCreatePaymentRequest
+  /v1/sessions/setup:
+    post:
+      application/json: SessionCreateSetupRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /v1/customers/{reference_id}/payment_methods:
+    get:
+      '200':
+        application/json: CustomerGetPaymentMethodsResponse
+  /v1/sessions/authentication/linked:
+    post:
+      '200':
+        application/xml: SessionCreateLinkedResponse
+  /v1/sessions/payment/{id}/attempts:
+    get:
+      '200':
+        application/json: SessionGetAttemptsResponse
+  /v1/sessions/setup/{id}/attempts:
+    get:
+      '200':
+        application/json: SessionGetSessionAttemptsResponse
+securityParameters: {}
+validServerUrls: {}
