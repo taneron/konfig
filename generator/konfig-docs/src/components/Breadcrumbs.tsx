@@ -82,7 +82,7 @@ function BreadcrumbLink({
   return (
     <Link
       data-dark={dark}
-      className="data-[dark=true]:text-black text-white border-b data-[dark=true]:border-blue-800 border-b-blue-200 hover:border-b-2 hover:no-underline hover:text-white"
+      className="data-[dark=true]:text-black data-[dark=true]:hover:text-black text-white border-b data-[dark=true]:border-blue-800 border-b-blue-200 hover:border-b-2 hover:no-underline hover:text-white"
       to={href}
     >
       {children}

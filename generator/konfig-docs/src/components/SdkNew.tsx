@@ -339,7 +339,7 @@ function HeroSection({
 }) {
   const [showGraphic, setShowGraphic] = useState(false);
   return (
-    <div className="mx-auto max-w-[375px] px-3 sm:max-w-none sm:px-8 lg:px-20 py-12">
+    <div className="mx-auto max-w-[450px] px-3 sm:max-w-none sm:px-8 lg:px-20 py-12">
       <div className="mx-auto flex flex-col items-center sm:max-w-[625px] lg:max-w-none lg:flex-row gap-2 lg:gap-20">
         <div className="text-left sm:text-center lg:text-left lg:w-full">
           <h1 className="mb-8 text-3xl sm:text-4xl leading-tight lg:text-5xl lg:leading-tight text-blue-200">

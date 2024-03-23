@@ -24,7 +24,11 @@ export function LogoBox({
 
   return (
     <div className="my-5 p-4 shadow-xl bg-white rounded-md w-fit ">
-      <img className="sm:h-16" src={logo} alt={`${company} logo`} />
+      <img
+        className="max-h-[100px] sm:h-16 sm:max-h-none "
+        src={logo}
+        alt={`${company} logo`}
+      />
     </div>
   );
 }
