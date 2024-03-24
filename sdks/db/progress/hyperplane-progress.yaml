@@ -1,0 +1,130 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignorePotentialIncorrectType: true
+operationIds:
+  /auth/token:
+    post: Auth_getToken
+  /automl/lookalike:
+    post: AutoMlService_createLookalikeRequest
+  /automl/runs:
+    get: AutoMlService_getAllRuns
+  /automl/runs/{run_id}:
+    get: AutoMlService_getRunSummary
+  /automl/runs/{run_id}/generate_batch_scores:
+    post: AutoMlService_rerunInferenceScores
+  /automl/runs/{run_id}/rescore:
+    post: AutoMlService_rerunInference
+  /automl/runs/{run_id}/status:
+    get: AutoMlService_getRunStatus
+  /automl/runs/{run_id}/status_batch_scores:
+    get: AutoMlService_getRunStatusBatchScores
+  /automl/runs/{run_id}/users:
+    post: AutoMlService_getTopUsersExcludingTraining
+  /automl/users:
+    get: AutoMlService_getAvailableUsers
+  /batch/user/personas:
+    post: Personas_getAllFacetAttributes
+  /client/{access_key_id}:
+    get: Client_getByAccessKey
+  /health:
+    get: Health_checkStatus
+  /module/transaction-enrichment/statistics:
+    get: EnrichedTransactions_getStatistics
+  /module/transaction-enrichment/users:
+    get: EnrichedTransactions_listUsers
+  /persona:
+    get: Personas_listExisting
+    post: Personas_createDefinition
+  /persona/{persona_id}:
+    delete: Personas_deleteDefinition
+    get: Personas_getPersonaStatistics
+  /persona/{persona_id}/percentile_score:
+    get: Personas_getPercentileScore
+  /persona/{persona_id}/users:
+    post: Personas_getRankedUsers
+  /statistics/latest_month:
+    get: Statistics_getLatestMonth
+  /user/{user_id}/cashflow/categories:
+    get: EnrichedTransactions_getUserCashflowCategories
+  /user/{user_id}/cashflow/history:
+    get: EnrichedTransactions_getUserCashflowHistory
+  /user/{user_id}/cashflow/statistics:
+    get: EnrichedTransactions_getUserCashflowStatistics
+  /user/{user_id}/transactions:
+    get: EnrichedTransactions_getHistory
+  /user/{user_id}/transactions/statistics:
+    get: EnrichedTransactions_getUserStatistics
+  /users/{user_id}/personas:
+    get: Personas_listUserPersonas
+operationTags: {}
+renameTags: {}
+requestSchemaNames: {}
+responseDescriptions: {}
+responseSchemaNames:
+  /automl/runs/{run_id}/status:
+    get:
+      '200':
+        application/json: AutoMlServiceGetRunStatusResponse
+  /automl/runs/{run_id}/status_batch_scores:
+    get:
+      '200':
+        application/json: AutoMlServiceGetRunStatusBatchScoresResponse
+  /batch/user/personas:
+    post:
+      '200':
+        application/json: PersonasGetAllFacetAttributesResponse
+  /health:
+    get:
+      '200':
+        application/json: HealthCheckStatusResponse
+  /persona/{persona_id}:
+    delete:
+      '204':
+        application/json: PersonasDeleteDefinitionResponse
+  /statistics/latest_month:
+    get:
+      '200':
+        application/json: StatisticsGetLatestMonthResponse
+  /user/{user_id}/cashflow/statistics:
+    get:
+      '200':
+        application/json: EnrichedTransactionsGetUserCashflowStatisticsResponse
+securityParameters:
+  account_type:
+    query: false
+  aggregation:
+    query: false
+  categories:
+    query: false
+  end_date:
+    query: false
+  facet_types:
+    query: false
+  flow_type:
+    query: false
+  max_amount:
+    query: false
+  min_amount:
+    query: false
+  model_version:
+    query: false
+  module-id:
+    header: false
+  month:
+    query: false
+  page_number:
+    query: false
+  page_size:
+    query: false
+  percentile:
+    query: false
+  persona_score_threshold:
+    query: false
+  search_name:
+    query: false
+  start_date:
+    query: false
+  user_id_prefix:
+    query: false
+validServerUrls: {}
