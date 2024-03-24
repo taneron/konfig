@@ -19,7 +19,7 @@ export default function PartnaTypeScriptSdk() {
       companyKebabCase="partna"
       clientNameCamelCase="partna"
       homepage="getpartna.com/"
-      lastUpdated={new Date("2024-03-22T23:59:12.331Z")}
+      lastUpdated={new Date("2024-03-24T21:30:45.837Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/partna/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
@@ -29,6 +29,47 @@ export default function PartnaTypeScriptSdk() {
       FirstRequest={FirstRequest}
       categories={["developer_tools","finance","payments","africa"]}
       methods={[
+  {
+    "url": "/transaction",
+    "method": "getUserTransactions",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "Transaction",
+    "typeScriptTag": "transaction",
+    "description": "Retrieve user's transaction records",
+    "parameters": [
+      {
+        "name": "currency",
+        "schema": "string",
+        "description": "Currency for which transactions are to be retrieved. When this is not supplied, transactions will be retrieved for all available currencies."
+      },
+      {
+        "name": "type",
+        "schema": "string",
+        "description": "Type of transactions to be retrieved. When this is not supplied, transactions will be retrieved for all available types."
+      },
+      {
+        "name": "page",
+        "schema": "number",
+        "description": "Number of pages to be retrieved."
+      },
+      {
+        "name": "limit",
+        "schema": "number",
+        "description": "Number of transaction records to be retrieved per page page."
+      },
+      {
+        "name": "duration",
+        "schema": "string",
+        "description": "Duration of the transaction to be retrieved per page page."
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      }
+    ]
+  },
   {
     "url": "/v1/balance",
     "method": "getAccountBalance",
@@ -763,47 +804,6 @@ export default function PartnaTypeScriptSdk() {
         "required": true,
         "description": "",
         "example": "CALLBACKURL"
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": ""
-      }
-    ]
-  },
-  {
-    "url": "/transaction",
-    "method": "getUserTransactions",
-    "httpMethod": HttpMethodsEnum.GET,
-    "tag": "Transaction",
-    "typeScriptTag": "transaction",
-    "description": "Retrieve user's transaction records",
-    "parameters": [
-      {
-        "name": "currency",
-        "schema": "string",
-        "description": "Currency for which transactions are to be retrieved. When this is not supplied, transactions will be retrieved for all available currencies."
-      },
-      {
-        "name": "type",
-        "schema": "string",
-        "description": "Type of transactions to be retrieved. When this is not supplied, transactions will be retrieved for all available types."
-      },
-      {
-        "name": "page",
-        "schema": "number",
-        "description": "Number of pages to be retrieved."
-      },
-      {
-        "name": "limit",
-        "schema": "number",
-        "description": "Number of transaction records to be retrieved per page page."
-      },
-      {
-        "name": "duration",
-        "schema": "string",
-        "description": "Duration of the transaction to be retrieved per page page."
       }
     ],
     "responses": [

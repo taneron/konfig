@@ -21,7 +21,7 @@ We are a VC Funded, early stage startup based in San Francisco.`}
       companyKebabCase="pulze-ai"
       clientNameCamelCase="pulzeAi"
       homepage="www.pulze.ai/"
-      lastUpdated={new Date("2024-03-17T23:48:01.149Z")}
+      lastUpdated={new Date("2024-03-24T21:30:45.837Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/pulze-ai/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
@@ -578,6 +578,21 @@ We are a VC Funded, early stage startup based in San Francisco.`}
     ]
   },
   {
+    "url": "/healthz",
+    "method": "getElapsedTimes",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "healthcheck",
+    "typeScriptTag": "healthcheck",
+    "description": "Health Check",
+    "parameters": [],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      }
+    ]
+  },
+  {
     "url": "/v1/logs",
     "method": "getMatchingLogs",
     "httpMethod": HttpMethodsEnum.POST,
@@ -648,6 +663,44 @@ We are a VC Funded, early stage startup based in San Francisco.`}
         "description": ""
       }
     ]
+  },
+  {
+    "url": "/v1/apps",
+    "method": "getList",
+    "httpMethod": HttpMethodsEnum.POST,
+    "tag": "apps",
+    "typeScriptTag": "apps",
+    "description": "Get Apps List",
+    "parameters": [
+      {
+        "name": "page",
+        "schema": "integer",
+        "description": "",
+        "default": 1
+      },
+      {
+        "name": "size",
+        "schema": "integer",
+        "description": "",
+        "default": 50
+      },
+      {
+        "name": "params",
+        "schema": "array",
+        "description": "",
+        "default": []
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "422",
+        "description": ""
+      }
+    ]
   }
 ]
     }
@@ -655,10 +708,10 @@ We are a VC Funded, early stage startup based in San Francisco.`}
       apiTitle="Pulze.ai API"
       apiBaseUrl="https://api.pulze.ai"
       apiVersion="0.1.0"
-      endpoints={11}
-      sdkMethods={11}
-      schemas={104}
-      parameters={70}
+      endpoints={13}
+      sdkMethods={13}
+      schemas={106}
+      parameters={73}
       difficulty="Easy"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/pulze-ai/openapi.yaml"
       openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/pulze-ai/openapi.yaml"
