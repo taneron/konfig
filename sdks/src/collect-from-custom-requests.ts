@@ -177,6 +177,14 @@ const customRequests: Record<string, CustomRequest> = {
     type: "GET",
     url: "https://raw.githubusercontent.com/forem/forem/main/swagger/v1/api_v1.json",
   },
+  "xyte.io": {
+    lambda: async () => {
+      const urls = await collectEndpointsFromReadme({
+        url: "https://dev.xyte.io/reference/api-endpoints-1",
+      });
+      return downloadOpenApiSpecFromReadme({ urls });
+    },
+  },
   "hyperplane.ai": {
     lambda: async () => {
       const urls = await collectEndpointsFromReadme({

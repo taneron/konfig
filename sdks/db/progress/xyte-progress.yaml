@@ -1,0 +1,206 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignoreObjectsWithNoProperties: true
+operationIds:
+  /core/v1/partner/devices:
+    get: Device_listDevices
+  /core/v1/partner/devices/histories:
+    get: Device_getAllDeviceStateHistories
+  /core/v1/partner/devices/{device_id}:
+    delete: Device_deleteDevice
+    get: Device_getInfo
+  /core/v1/partner/devices/{device_id}/commands:
+    get: Device_listCommands
+  /core/v1/partner/devices/{device_id}/config:
+    get: Device_getConfig
+  /core/v1/partner/devices/{device_id}/history:
+    get: Device_getStateHistory
+  /core/v1/partner/devices/{device_id}/telemetries:
+    get: Device_getTelemetries
+  /core/v1/partner/tickets:
+    get: Ticket_list
+  /core/v1/partner/tickets/{ticket_id}:
+    put: Ticket_updateTicketById
+  /core/v1/partner/tickets/{ticket_id} (COPY):
+    get: Ticket_getById
+  /core/v1/partner/tickets/{ticket_id}/message:
+    post: Ticket_addComment
+  /core/v1/partner/tickets/{ticket_id}/resolved:
+    post: Ticket_close
+  /v1/devices:
+    post: Device_createRegistration
+  /v1/devices/{deviceId}:
+    get: Device_getInfo
+    put: Device_updateDevice
+  /v1/devices/{deviceId}/children/telemetries:
+    post: Device_sendChildTelemetries
+  /v1/devices/{deviceId}/cloud_settings:
+    put: Device_updateCloudSettings
+  /v1/devices/{deviceId}/command:
+    get: Device_getCommand
+    post: Device_sendCommand
+  /v1/devices/{deviceId}/config:
+    get: Device_getConfig
+    post: Device_setConfig
+  /v1/devices/{deviceId}/dumps/{dumpId}:
+    put: Device_appendDumpFile
+  /v1/devices/{deviceId}/dumps/{mime-type}/{filename}:
+    post: Device_sendDumpFile
+  /v1/devices/{deviceId}/files:
+    get: Device_getFiles
+  /v1/devices/{deviceId}/files/{fileUuid}:
+    get: Device_getFile
+  /v1/devices/{deviceId}/incidents:
+    get: Device_getIncidents
+    post: Device_openIncident
+  /v1/devices/{deviceId}/incidents/{incidentId}:
+    delete: Device_closeIncident
+  /v1/devices/{deviceId}/license:
+    get: Device_getLicense
+  /v1/devices/{deviceId}/licenses:
+    get: Device_getLicenses
+    post: Device_updateLicense
+  /v1/devices/{deviceId}/space:
+    get: Device_getSpaceInfo
+  /v1/devices/{deviceId}/telemetry:
+    post: Device_sendTelemetry
+  /v1/devices/{parent_id}/children:
+    get: Device_getChildDevices
+    post: Device_registerChildDevice
+operationTags:
+  /core/v1/partner/devices:
+    get: Device
+  /core/v1/partner/devices/histories:
+    get: Device
+  /core/v1/partner/devices/{device_id}:
+    delete: Device
+    get: Device
+  /core/v1/partner/devices/{device_id}/commands:
+    get: Device
+  /core/v1/partner/devices/{device_id}/config:
+    get: Device
+  /core/v1/partner/devices/{device_id}/history:
+    get: Device
+  /core/v1/partner/devices/{device_id}/telemetries:
+    get: Device
+  /core/v1/partner/tickets:
+    get: Ticket
+  /core/v1/partner/tickets/{ticket_id}:
+    put: Ticket
+  /core/v1/partner/tickets/{ticket_id} (COPY):
+    get: Ticket
+  /core/v1/partner/tickets/{ticket_id}/message:
+    post: Ticket
+  /core/v1/partner/tickets/{ticket_id}/resolved:
+    post: Ticket
+  /v1/devices:
+    post: Device
+  /v1/devices/{deviceId}:
+    get: Device
+    put: Device
+  /v1/devices/{deviceId}/children/telemetries:
+    post: Device
+  /v1/devices/{deviceId}/cloud_settings:
+    put: Device
+  /v1/devices/{deviceId}/command:
+    get: Device
+    post: Device
+  /v1/devices/{deviceId}/config:
+    get: Device
+    post: Device
+  /v1/devices/{deviceId}/dumps/{dumpId}:
+    put: Device
+  /v1/devices/{deviceId}/dumps/{mime-type}/{filename}:
+    post: Device
+  /v1/devices/{deviceId}/files:
+    get: Device
+  /v1/devices/{deviceId}/files/{fileUuid}:
+    get: Device
+  /v1/devices/{deviceId}/incidents:
+    get: Device
+    post: Device
+  /v1/devices/{deviceId}/incidents/{incidentId}:
+    delete: Device
+  /v1/devices/{deviceId}/license:
+    get: Device
+  /v1/devices/{deviceId}/licenses:
+    get: Device
+    post: Device
+  /v1/devices/{deviceId}/space:
+    get: Device
+  /v1/devices/{deviceId}/telemetry:
+    post: Device
+  /v1/devices/{parent_id}/children:
+    get: Device
+    post: Device
+renameTags: {}
+requestSchemaNames:
+  /core/v1/partner/tickets/{ticket_id}:
+    put:
+      application/json: TicketUpdateTicketByIdRequest
+  /core/v1/partner/tickets/{ticket_id}/message:
+    post:
+      application/json: TicketAddCommentRequest
+  /v1/devices:
+    post:
+      application/json: DeviceCreateRegistrationRequest
+  /v1/devices/{deviceId}:
+    put:
+      application/json: DeviceUpdateDeviceRequest
+  /v1/devices/{deviceId}/children/telemetries:
+    post:
+      application/json: DeviceSendChildTelemetriesRequest
+  /v1/devices/{deviceId}/cloud_settings:
+    put:
+      application/json: DeviceUpdateCloudSettingsRequest
+  /v1/devices/{deviceId}/command:
+    post:
+      application/json: DeviceSendCommandRequest
+  /v1/devices/{deviceId}/config:
+    post:
+      application/json: DeviceSetConfigRequest
+  /v1/devices/{deviceId}/dumps/{dumpId}:
+    put:
+      application/json: DeviceAppendDumpFileRequest
+  /v1/devices/{deviceId}/dumps/{mime-type}/{filename}:
+    post:
+      application/json: DeviceSendDumpFileRequest
+  /v1/devices/{deviceId}/incidents:
+    post:
+      application/json: DeviceOpenIncidentRequest
+  /v1/devices/{deviceId}/licenses:
+    post:
+      application/json: DeviceUpdateLicenseRequest
+  /v1/devices/{deviceId}/telemetry:
+    post:
+      application/json: DeviceSendTelemetryRequest
+  /v1/devices/{parent_id}/children:
+    post:
+      application/json: DeviceRegisterChildDeviceRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /v1/devices:
+    post:
+      '400':
+        application/json: DeviceCreateRegistrationResponse
+      '422':
+        application/json: DeviceCreateRegistration422Response
+securityParameters:
+  from:
+    query: false
+  mac:
+    query: false
+  model_id:
+    query: false
+  page:
+    query: false
+  sn:
+    query: false
+  status:
+    query: false
+  to:
+    query: false
+validServerUrls:
+  '{url}':
+    url: '{url}'

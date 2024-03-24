@@ -1,0 +1,3420 @@
+openapi: 3.1.0
+info:
+  title: Testing API
+  version: '1'
+  x-api-status-urls: false
+  description: >-
+    Xyte's Device Cloud is the first all-in-one servitization platform designed
+    for device and hardware manufacturers to cloudify, operate, support, and
+    commercialize their connected devices in a unified platform. 
+
+
+    We enable OEMs across different industries to navigate their digital
+    journey, transforming their devices into integrated business solutions that
+    combine hardware, software and services. The only business and commerce
+    platform designed specifically for IoT device manufacturers, our
+    fully-federated Device Cloud empowers OEMs to manage the complete lifecycle
+    of their devices, from the minute they leave the warehouse through
+    aftermarket sales to end customers.
+
+
+    Our out-of-the-box applications for asset management, remote support,
+    ecommerce and subscription management, financing, and a powerful and secure
+    back office suite help OEMs boost revenue and market growth, optimize
+    operational efficiencies, gain instant insights into equipment and device
+    performance, and develop sustainable customer relationships.
+servers:
+  - url: '{url}'
+    variables:
+      url:
+        default: url
+components:
+  securitySchemes:
+    sec0:
+      type: apiKey
+      in: header
+      name: Authorization
+      x-bearer-format: ''
+security:
+  - sec0: []
+paths:
+  /v1/devices:
+    post:
+      summary: Register Device
+      description: ''
+      operationId: register-device
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - sn
+                - firmware_version
+                - hardware_key
+              properties:
+                mac:
+                  type: string
+                  description: MAC address of the device
+                sn:
+                  type: string
+                  description: Unique device serial number
+                cloud_id:
+                  type: string
+                  description: Unique device identifier (must specify this or mac)
+                firmware_version:
+                  type: string
+                  description: Semver based firmware version
+                  default: 1.0.0
+                hardware_key:
+                  type: string
+                  description: Key defined in the model's hardware key section
+                name:
+                  type: string
+                  description: Display name for the end-user
+                details:
+                  type: object
+                  description: Generic JSON object with unconstrained data
+                  properties: {}
+                sub_model:
+                  type: string
+                  description: Additional model details text
+                parent_id:
+                  type: string
+                  description: UUID of the parent device
+            examples:
+              Request Example:
+                value:
+                  hardware_key: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxxx
+                  cloud_id: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxxx
+                  mac: '11:22:33:44:55:66'
+                  sn: '112'
+                  firmware_version: 1.0.1
+                  name: test device
+      responses:
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Hardware key is invalid:
+                  value: |-
+                    {
+                        "error": "Hardware key is invalid"
+                    }
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Hardware key is invalid
+        '422':
+          description: '422'
+          content:
+            application/json:
+              examples:
+                Nano id has already been taken:
+                  value: |-
+                    {
+                        "error": "Cloud id has already been taken"
+
+                    }
+                Serial number has already been taken:
+                  value: |-
+                    {
+                        "error": "Sn has already been taken"
+                    }
+                Firmware version cannot be blank:
+                  value: |-
+                    {
+                    "error": "Firmware version can't be blank"
+                    }
+              schema:
+                oneOf:
+                  - title: Nano id has already been taken
+                    type: object
+                    properties:
+                      error:
+                        type: string
+                        example: Cloud id has already been taken
+                  - title: Serial number has already been taken
+                    type: object
+                    properties:
+                      error:
+                        type: string
+                        example: Sn has already been taken
+                  - title: Firmware version cannot be blank
+                    type: object
+                    properties:
+                      error:
+                        type: string
+                        example: Firmware version can't be blank
+        2XX:
+          description: 2XX
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: |-
+                    {
+                        "id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxxx",
+                        "access_key": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+                        "hub_url": "https://us-1.endpoints.xyte.io",
+                        "hub_url_static_cert": "https://us-1.cssl.endpoints.xyte.io",
+                        "mqtt_hub_url": "mqtt://mqtt-us-1.endpoints.xyte.io:15582"
+                    }
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxxx
+                  access_key:
+                    type: string
+                    example: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+                  hub_url:
+                    type: string
+                    example: https://us-1.endpoints.xyte.io
+                  hub_url_static_cert:
+                    type: string
+                    example: https://us-1.cssl.endpoints.xyte.io
+                  mqtt_hub_url:
+                    type: string
+                    example: mqtt://mqtt-us-1.endpoints.xyte.io:15582
+      deprecated: false
+      security: []
+  /v1/devices/{parent_id}/children:
+    post:
+      summary: Register Child Device
+      description: ''
+      operationId: register-child-device
+      parameters:
+        - name: parent_id
+          in: path
+          description: The ID of the parent device
+          schema:
+            type: string
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - firmware_version
+                - model_id
+              properties:
+                firmware_version:
+                  type: string
+                model_id:
+                  type: string
+                sub_model:
+                  type: string
+                sn:
+                  type: string
+                mac:
+                  type: string
+                name:
+                  type: string
+                details:
+                  type: object
+                  properties: {}
+      responses:
+        '201':
+          description: '201'
+          content:
+            application/json:
+              examples:
+                '- Success':
+                  value: |-
+                    {
+                        "id": "11111111-2222...",
+                        "access_key": "Secret key for this device..."
+                    }
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: 11111111-2222...
+                  access_key:
+                    type: string
+                    example: Secret key for this device...
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                '- Invalid device id or access key':
+                  value: |-
+                    {
+                        "error": "Not authorized"
+                    }
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Not authorized
+        '404':
+          description: '404'
+          content:
+            text/plain:
+              examples:
+                '- Unknown model ID':
+                  value: |-
+                    {
+                        "error": "Model not found"
+                    }
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Model not found
+      deprecated: false
+    get:
+      summary: Get Child Devices
+      description: ''
+      operationId: get-child-devices
+      parameters:
+        - name: parent_id
+          in: path
+          description: The ID of the parent device
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: |-
+                    [
+                      {
+                        "id": "4389c73f-eeea-4fca-8d34-072ec0b5469a",
+                        "sn": "32412",
+                        "mac": null,
+                        "state": null,
+                        "last_seen": "2021-12-08T14:32:11.318Z",
+                        "name": "future guy",
+                        "firmware_version": "1.0.1",
+                        "vendor": "The future",
+                        "model": "T-1000",
+                        "claimed": "Skynet",
+                        "details": {}
+                      },
+                      {},
+                      {}
+                    ]
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      example: 4389c73f-eeea-4fca-8d34-072ec0b5469a
+                    sn:
+                      type: string
+                      example: '32412'
+                    mac: {}
+                    state: {}
+                    last_seen:
+                      type: string
+                      example: '2021-12-08T14:32:11.318Z'
+                    name:
+                      type: string
+                      example: future guy
+                    firmware_version:
+                      type: string
+                      example: 1.0.1
+                    vendor:
+                      type: string
+                      example: The future
+                    model:
+                      type: string
+                      example: T-1000
+                    claimed:
+                      type: string
+                      example: Skynet
+                    details:
+                      type: object
+                      properties: {}
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: |-
+                    {
+                      "error": "Not authorized"
+                    }
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Not authorized
+      deprecated: false
+  /v1/devices/{deviceId}:
+    put:
+      summary: Update Device
+      description: ''
+      operationId: update-device
+      parameters:
+        - name: deviceId
+          in: path
+          schema:
+            type: string
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                firmware_version:
+                  type: string
+                name:
+                  type: string
+                  description: Friendly device name
+                space_version:
+                  type: string
+                  description: >-
+                    Latest version of the space information the device has
+                    applied
+                config_version:
+                  type: string
+                  description: Latest version of the configuration the device has applied
+                details:
+                  type: object
+                  description: >-
+                    Details of the device. Will be visible in a different tab on
+                    the device's view calls 'Details'.
+                  properties: {}
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                '- Success':
+                  value: |-
+                    {
+                        "id": "xxxxxxxxx",
+                        "partner": {
+                            "sn": "xxxxxx",
+                            "mac": "xxxxxxxxxx",
+                            "vendor": "xVision",
+                            "model": "Display - Test Device"
+                        },
+                        "config": {
+                            "version": 0,
+                            "last_updated": "2023-03-02T16:47:41.960Z"
+                        },
+                        "state": {
+                            "temp": 39,
+                            "status": "online",
+                            "eco_mode": false,
+                            "presence": false,
+                            "temp_dir": 4,
+                            "data_rate": 50,
+                            "coffee_used": 10000,
+                            "power_status": true,
+                            "ambient_light": 50,
+                            "data_rate_dir": 0,
+                            "motion_sensor": true,
+                            "coffee_used_dir": 2,
+                            "ambient_light_dir": 5
+                        },
+                        "last_seen": "2023-03-05T13:53:59.840Z",
+                        "custom": {
+                            "prompt": null
+                        },
+                        "name": " test",
+                        "firmware_version": "1.0.1",
+                        "claimed": "test lab",
+                        "details": {
+                            "checking": "Cool"
+                        },
+                        "test": false
+                    }
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: xxxxxxxxx
+                  partner:
+                    type: object
+                    properties:
+                      sn:
+                        type: string
+                        example: xxxxxx
+                      mac:
+                        type: string
+                        example: xxxxxxxxxx
+                      vendor:
+                        type: string
+                        example: xVision
+                      model:
+                        type: string
+                        example: Display - Test Device
+                  config:
+                    type: object
+                    properties:
+                      version:
+                        type: integer
+                        example: 0
+                        default: 0
+                      last_updated:
+                        type: string
+                        example: '2023-03-02T16:47:41.960Z'
+                  state:
+                    type: object
+                    properties:
+                      temp:
+                        type: integer
+                        example: 39
+                        default: 0
+                      status:
+                        type: string
+                        example: online
+                      eco_mode:
+                        type: boolean
+                        example: false
+                        default: true
+                      presence:
+                        type: boolean
+                        example: false
+                        default: true
+                      temp_dir:
+                        type: integer
+                        example: 4
+                        default: 0
+                      data_rate:
+                        type: integer
+                        example: 50
+                        default: 0
+                      coffee_used:
+                        type: integer
+                        example: 10000
+                        default: 0
+                      power_status:
+                        type: boolean
+                        example: true
+                        default: true
+                      ambient_light:
+                        type: integer
+                        example: 50
+                        default: 0
+                      data_rate_dir:
+                        type: integer
+                        example: 0
+                        default: 0
+                      motion_sensor:
+                        type: boolean
+                        example: true
+                        default: true
+                      coffee_used_dir:
+                        type: integer
+                        example: 2
+                        default: 0
+                      ambient_light_dir:
+                        type: integer
+                        example: 5
+                        default: 0
+                  last_seen:
+                    type: string
+                    example: '2023-03-05T13:53:59.840Z'
+                  custom:
+                    type: object
+                    properties:
+                      prompt: {}
+                  name:
+                    type: string
+                    example: ' test'
+                  firmware_version:
+                    type: string
+                    example: 1.0.1
+                  claimed:
+                    type: string
+                    example: test lab
+                  details:
+                    type: object
+                    properties:
+                      checking:
+                        type: string
+                        example: Cool
+                  test:
+                    type: boolean
+                    example: false
+                    default: true
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                '- Invalid device id or access key':
+                  value: |-
+                    {
+                        "error": "Not authorized"
+                    }
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Not authorized
+      deprecated: false
+    get:
+      summary: Get Device Info
+      description: ''
+      operationId: get-device-info
+      parameters:
+        - name: deviceId
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                '- Success':
+                  value: |-
+                    {
+                        "id": "99xxxxx-xxxx-xxxx-xxxx-xxxxxxxxxx",
+                        "partner": {
+                            "sn": "1234",
+                            "mac": "11:22:11:22:33:33",
+                            "vendor": "xVision",
+                            "model": "Phone 550"
+                        },
+                        "config": {
+                            "vol": 100,
+                            "version": 1,
+                            "last_updated": "2022-02-17T09:57:07.216Z"
+                        },
+                        "state": {
+                            "status": "offline"
+                        },
+                        "last_seen": "2022-02-17T09:55:35.250Z",
+                        "custom": {
+                            "prompt": null
+                        },
+                        "name": "Phone 550- Desktop",
+                        "firmware_version": "1.0.2",
+                        "claimed": "xvision lab"
+                    }
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: 99xxxxx-xxxx-xxxx-xxxx-xxxxxxxxxx
+                  partner:
+                    type: object
+                    properties:
+                      sn:
+                        type: string
+                        example: '1234'
+                      mac:
+                        type: string
+                        example: '11:22:11:22:33:33'
+                      vendor:
+                        type: string
+                        example: xVision
+                      model:
+                        type: string
+                        example: Phone 550
+                  config:
+                    type: object
+                    properties:
+                      vol:
+                        type: integer
+                        example: 100
+                        default: 0
+                      version:
+                        type: integer
+                        example: 1
+                        default: 0
+                      last_updated:
+                        type: string
+                        example: '2022-02-17T09:57:07.216Z'
+                  state:
+                    type: object
+                    properties:
+                      status:
+                        type: string
+                        example: offline
+                  last_seen:
+                    type: string
+                    example: '2022-02-17T09:55:35.250Z'
+                  custom:
+                    type: object
+                    properties:
+                      prompt: {}
+                  name:
+                    type: string
+                    example: Phone 550- Desktop
+                  firmware_version:
+                    type: string
+                    example: 1.0.2
+                  claimed:
+                    type: string
+                    example: xvision lab
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                '- Invalid device id or access key':
+                  value: |-
+                    {
+                        "error": "Not authorized"
+                    }
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Not authorized
+      deprecated: false
+  /v1/devices/{deviceId}/cloud_settings:
+    put:
+      summary: Set Cloud Settings
+      description: ''
+      operationId: set-cloud-settings
+      parameters:
+        - name: deviceId
+          in: path
+          schema:
+            type: string
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                property:
+                  type: string
+                  description: The Property you would like to change
+                value:
+                  type: string
+                  description: The value to set for the given propery
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                '- Success':
+                  value: '{success:true}'
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                '- Invalid device id or access key':
+                  value: |-
+                    {
+                        "error": "Not authorized"
+                    }
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Not authorized
+      deprecated: false
+  /v1/devices/{deviceId}/telemetry:
+    post:
+      summary: Send Telemetry
+      description: ''
+      operationId: send-telemetry
+      parameters:
+        - name: deviceId
+          in: path
+          schema:
+            type: string
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - status
+              properties:
+                status:
+                  type: string
+                  default: online
+                timestamp:
+                  type: string
+                  format: date
+                telemetries:
+                  type: string
+                  format: json
+                override:
+                  type: boolean
+            examples:
+              Request Example:
+                value:
+                  status: online
+                  timestamp: '2022-08-04T11:40:22.836Z'
+                  telemetries:
+                    fan_speed: 100.1
+                    connection: 4g
+                    usbc: true
+      responses:
+        '201':
+          description: '201'
+          content:
+            application/json:
+              examples:
+                '- Success':
+                  value: |-
+                    {
+                        "config_version": 0,
+                        "command": false,
+                        "info_version": 0,
+                        "new_licenses": true,
+                        "latest_fw_version": "1.3.4",
+                        "latest_fw_file_id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                        "space_data_version": 4,
+                        "success": true
+                    }
+              schema:
+                type: object
+                properties:
+                  config_version:
+                    type: integer
+                    example: 0
+                    default: 0
+                  command:
+                    type: boolean
+                    example: false
+                    default: true
+                  info_version:
+                    type: integer
+                    example: 0
+                    default: 0
+                  new_licenses:
+                    type: boolean
+                    example: true
+                    default: true
+                  latest_fw_version:
+                    type: string
+                    example: 1.3.4
+                  latest_fw_file_id:
+                    type: string
+                    example: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+                  space_data_version:
+                    type: integer
+                    example: 4
+                    default: 0
+                  success:
+                    type: boolean
+                    example: true
+                    default: true
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: |-
+                    {
+                        "error": "Not authorized"
+                    }
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Not authorized
+        '422':
+          description: '422'
+          content:
+            application/json:
+              examples:
+                '- Error in data':
+                  value: |-
+                    {
+                        "error": "Missing 'telemetries' object"
+                    }
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Missing 'telemetries' object
+      deprecated: false
+  /v1/devices/{deviceId}/children/telemetries:
+    post:
+      summary: Send Child Telemetries
+      description: ''
+      operationId: send-child-telemetries
+      parameters:
+        - name: deviceId
+          in: path
+          schema:
+            type: string
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - RAW_BODY
+              properties:
+                RAW_BODY:
+                  type: object
+                  description: >-
+                    Mapping of child device UUIDs to telemetry data for each
+                    device
+                  properties: {}
+            examples:
+              Request Example:
+                value:
+                  11303e81-5d56-4910-a472-68676375d995:
+                    status: online
+                    telemetries:
+                      speed: 10
+                      fuel: 99
+                  b4adc748-4462-4933-8173-9d40e0a17d22:
+                    status: offline
+      responses:
+        '201':
+          description: '201'
+          content:
+            application/json:
+              examples:
+                '- Success':
+                  value: "{\n\t\"11303e81-5d56-4910-a472-68676375d995\": {\n\t\t\"config_version\": 0,\n\t\t\"command\": false,\n\t\t\"info_version\": 0,\n\t\t\"new_licenses\": false,\n\t\t\"latest_fw_version\": null,\n\t\t\"latest_fw_file_id\": null,\n\t\t\"space_data_version\": 1,\n\t\t\"success\": true\n\t},\n\t\"b4adc748-4462-4933-8173-9d40e0a17d22\": {\n\t\t\"config_version\": 0,\n\t\t\"command\": false,\n\t\t\"info_version\": 0,\n\t\t\"new_licenses\": false,\n\t\t\"latest_fw_version\": null,\n\t\t\"latest_fw_file_id\": null,\n\t\t\"space_data_version\": 2,\n\t\t\"success\": true\n\t}\n}"
+              schema:
+                type: object
+                properties:
+                  11303e81-5d56-4910-a472-68676375d995:
+                    type: object
+                    properties:
+                      config_version:
+                        type: integer
+                        example: 0
+                        default: 0
+                      command:
+                        type: boolean
+                        example: false
+                        default: true
+                      info_version:
+                        type: integer
+                        example: 0
+                        default: 0
+                      new_licenses:
+                        type: boolean
+                        example: false
+                        default: true
+                      latest_fw_version: {}
+                      latest_fw_file_id: {}
+                      space_data_version:
+                        type: integer
+                        example: 1
+                        default: 0
+                      success:
+                        type: boolean
+                        example: true
+                        default: true
+                  b4adc748-4462-4933-8173-9d40e0a17d22:
+                    type: object
+                    properties:
+                      config_version:
+                        type: integer
+                        example: 0
+                        default: 0
+                      command:
+                        type: boolean
+                        example: false
+                        default: true
+                      info_version:
+                        type: integer
+                        example: 0
+                        default: 0
+                      new_licenses:
+                        type: boolean
+                        example: false
+                        default: true
+                      latest_fw_version: {}
+                      latest_fw_file_id: {}
+                      space_data_version:
+                        type: integer
+                        example: 2
+                        default: 0
+                      success:
+                        type: boolean
+                        example: true
+                        default: true
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: |-
+                    {
+                        "error": "Not authorized"
+                    }
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Not authorized
+        '422':
+          description: '422'
+          content:
+            application/json:
+              examples:
+                '- Error in data':
+                  value: "{\n\t\"11303e81-5d56-4910-a472-68676375d995\": {\n\t\t\"error\": \"Common telemetries.speed must be string, number or boolean\"\n\t},\n\t\"b4adc748-4462-4933-8173-9d40e0a17d22\": {\n\t\t\"config_version\": 0,\n\t\t\"command\": false,\n\t\t\"info_version\": 0,\n\t\t\"new_licenses\": false,\n\t\t\"latest_fw_version\": null,\n\t\t\"latest_fw_file_id\": null,\n\t\t\"space_data_version\": 2,\n\t\t\"success\": true\n\t}\n}"
+              schema:
+                type: object
+                properties:
+                  11303e81-5d56-4910-a472-68676375d995:
+                    type: object
+                    properties:
+                      error:
+                        type: string
+                        example: >-
+                          Common telemetries.speed must be string, number or
+                          boolean
+                  b4adc748-4462-4933-8173-9d40e0a17d22:
+                    type: object
+                    properties:
+                      config_version:
+                        type: integer
+                        example: 0
+                        default: 0
+                      command:
+                        type: boolean
+                        example: false
+                        default: true
+                      info_version:
+                        type: integer
+                        example: 0
+                        default: 0
+                      new_licenses:
+                        type: boolean
+                        example: false
+                        default: true
+                      latest_fw_version: {}
+                      latest_fw_file_id: {}
+                      space_data_version:
+                        type: integer
+                        example: 2
+                        default: 0
+                      success:
+                        type: boolean
+                        example: true
+                        default: true
+      deprecated: false
+  /v1/devices/{deviceId}/config:
+    get:
+      summary: Get Config
+      description: ''
+      operationId: get-config
+      parameters:
+        - name: deviceId
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                '- Success':
+                  value: "{\n  \"name\": \"My device\",\n  \"version\": 10,\n  \"last_updated\": \"2020-01-01T01:01:01.000+00:00\",\n  \"config\": {\n  \t  \"network\": {\n   \t\t\t   \"ip\": \"192.168....\",\n   \t\t\t   \"...\": \"...\"\n    },\n    \"other\": {\n     \t \"data\": \"...\"\n    }\n  }\n}"
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    example: My device
+                  version:
+                    type: integer
+                    example: 10
+                    default: 0
+                  last_updated:
+                    type: string
+                    example: '2020-01-01T01:01:01.000+00:00'
+                  config:
+                    type: object
+                    properties:
+                      network:
+                        type: object
+                        properties:
+                          ip:
+                            type: string
+                            example: 192.168....
+                          ...:
+                            type: string
+                            example: ...
+                      other:
+                        type: object
+                        properties:
+                          data:
+                            type: string
+                            example: ...
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                '- Invalid device id or access key':
+                  value: |-
+                    {
+                        "error": "Not authorized"
+                    }
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Not authorized
+      deprecated: false
+    post:
+      summary: Set Config
+      description: ''
+      operationId: set-config
+      parameters:
+        - name: deviceId
+          in: path
+          schema:
+            type: string
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                RAW_BODY:
+                  type: string
+                  description: Put your raw JSON config here
+                  format: json
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                '- Success':
+                  value: |-
+                    {
+                        "success": true,
+                        "version": 11
+                    }
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                    default: true
+                  version:
+                    type: integer
+                    example: 11
+                    default: 0
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                '- Invalid device id or access key':
+                  value: |-
+                    {
+                        "error": "Not authorized"
+                    }
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Not authorized
+        '422':
+          description: '422'
+          content:
+            application/json:
+              examples:
+                '- Can not set lower config version than the one on server':
+                  value: |-
+                    {
+                        "error": "Error setting config with old version, latest is [:version]"
+                    }
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: >-
+                      Error setting config with old version, latest is
+                      [:version]
+      deprecated: false
+  /v1/devices/{deviceId}/command:
+    get:
+      summary: Get Command
+      description: ''
+      operationId: get-command
+      parameters:
+        - name: deviceId
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                ' - Pending command found':
+                  value: |-
+                    {
+                        "id": 50,
+                        "status": "pending",
+                        "name": "upgrade",
+                        "parameters": {
+                            "url": "https://firmware.xyte.io/55sfTacc34Accq.obj",
+                            "version": "1.0.2"
+                        }
+                '- No pending command':
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                '- Invalid device id or access key':
+                  value: |-
+                    {
+                        "error": "Not authorized"
+                    }
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Not authorized
+      deprecated: false
+    post:
+      summary: Update Command
+      description: ''
+      operationId: update-command
+      parameters:
+        - name: deviceId
+          in: path
+          schema:
+            type: string
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - status
+                - id
+              properties:
+                status:
+                  type: string
+                  default: done
+                message:
+                  type: string
+                id:
+                  type: string
+            examples:
+              Request Example:
+                value:
+                  status: done
+                  message: great success!
+                  id: xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                '- Success':
+                  value: |-
+                    {
+                        "success": true
+                    }
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                    default: true
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                '- Invalid device id or access key':
+                  value: |-
+                    {
+                        "error": "Not authorized"
+                    }
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Not authorized
+        '404':
+          description: '404'
+          content:
+            application/json:
+              examples:
+                '- No pending command':
+                  value: |-
+                    {
+                        "error": "no command"
+                    }
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: no command
+        '422':
+          description: '422'
+          content:
+            application/json:
+              examples:
+                ' - Invalid command status supplied':
+                  value: |-
+                    {
+                        "error": "invalid status: done/in-progress/failed"
+                    }
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: 'invalid status: done/in-progress/failed'
+      deprecated: false
+  /v1/devices/{deviceId}/dumps/{mime-type}/{filename}:
+    post:
+      summary: Send Dump
+      description: ''
+      operationId: send-dump
+      parameters:
+        - name: deviceId
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: mime-type
+          in: path
+          schema:
+            type: string
+            default: text/plain
+          required: true
+        - name: filename
+          in: path
+          schema:
+            type: string
+            default: filename
+          required: true
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+            default: text/plain
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - RAW_BODY
+              properties:
+                RAW_BODY:
+                  type: string
+                  description: Raw configuration dump
+                  format: binary
+      responses:
+        '201':
+          description: '201'
+          content:
+            application/json:
+              examples:
+                '- Success':
+                  value: |-
+                    {
+                        "id": "e3fb6648-6e6..."
+                    }
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: e3fb6648-6e6...
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                '- Invalid device id or access key':
+                  value: |-
+                    {
+                        "error": "Not authorized"
+                    }
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Not authorized
+        '422':
+          description: '422'
+          content:
+            application/json:
+              examples:
+                '- Empty dump not allowed':
+                  value: |-
+                    {
+                        "error": "Data can't be blank"
+                    }
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Data can't be blank
+      deprecated: false
+  /v1/devices/{deviceId}/dumps/{dumpId}:
+    put:
+      summary: Append Dump File
+      description: ''
+      operationId: append-dump-file
+      parameters:
+        - name: deviceId
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: dumpId
+          in: path
+          schema:
+            type: string
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - RAW_BODY
+              properties:
+                RAW_BODY:
+                  type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                '- Success':
+                  value: |-
+                    {
+                        "length": 1000
+                    }
+              schema:
+                type: object
+                properties:
+                  length:
+                    type: integer
+                    example: 1000
+                    default: 0
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                '- Invalid device id or access key':
+                  value: |-
+                    {
+                        "error": "Not authorized"
+                    }
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Not authorized
+      deprecated: false
+  /v1/devices/{deviceId}/licenses:
+    get:
+      summary: Get Licenses
+      description: ''
+      operationId: get-licenses
+      parameters:
+        - name: deviceId
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                '- Pending licenses':
+                  value: |-
+                    [
+                    {
+                            "data": "device specific license info...",
+                            "signature": "RSA signature...",
+                            "id": "ec101553-050c...",
+                            "add": true
+                        },
+                        {
+                            "data": "device specific license info...",
+                            "signature": "RSA signature...",
+                            "id": "cf00c764-b37a...",
+                            "remove": true
+                        }
+                      ]
+                '- No license changes required':
+                  value: '[]'
+              schema:
+                oneOf:
+                  - title: '- Pending licenses'
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        data:
+                          type: string
+                          example: device specific license info...
+                        signature:
+                          type: string
+                          example: RSA signature...
+                        id:
+                          type: string
+                          example: ec101553-050c...
+                        add:
+                          type: boolean
+                          example: true
+                          default: true
+                  - title: '- No license changes required'
+                    type: array
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                '- Invalid device id or access key':
+                  value: |-
+                    {
+                        "error": "Not authorized"
+                    }
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Not authorized
+      deprecated: false
+    post:
+      summary: Update License
+      description: ''
+      operationId: update-license
+      parameters:
+        - name: deviceId
+          in: path
+          schema:
+            type: string
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - id
+                - state
+              properties:
+                id:
+                  type: string
+                state:
+                  type: string
+                error:
+                  type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                ' - Success':
+                  value: |-
+                    {
+                        "data": "device specific license info...",
+                        "signature": "49a3dd9d-7858...",
+                        "id": "8ed0a1d8-3b38...",
+                        "expires_at": "2030-01-01T01:00:00Z"
+                    }
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: string
+                    example: device specific license info...
+                  signature:
+                    type: string
+                    example: 49a3dd9d-7858...
+                  id:
+                    type: string
+                    example: 8ed0a1d8-3b38...
+                  expires_at:
+                    type: string
+                    example: '2030-01-01T01:00:00Z'
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                '- Invalid device id or access key':
+                  value: |-
+                    {
+                        "error": "Not authorized"
+                    }
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Not authorized
+        '404':
+          description: '404'
+          content:
+            application/json:
+              examples:
+                '- No license found with this id':
+                  value: |-
+                    {
+                        "error": "Couldn't find License"
+                    }
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Couldn't find License
+        '422':
+          description: '422'
+          content:
+            application/json:
+              examples:
+                '- Invalid state request':
+                  value: |-
+                    {
+                        "error": "State can't switch to error from inuse"
+                    }
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: State can't switch to error from inuse
+      deprecated: false
+  /v1/devices/{deviceId}/license:
+    get:
+      summary: Get License
+      description: ''
+      operationId: get-license
+      parameters:
+        - name: deviceId
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                '- Pending licenses':
+                  value: |-
+                    [
+                    {
+                            "data": "device specific license info...",
+                            "signature": "RSA signature...",
+                            "id": "ec101553-050c...",
+                            "add": true
+                        },
+                        {
+                            "data": "device specific license info...",
+                            "signature": "RSA signature...",
+                            "id": "cf00c764-b37a...",
+                            "remove": true
+                        }
+                      ]
+                '- No license changes required':
+                  value: '[]'
+              schema:
+                oneOf:
+                  - title: '- Pending licenses'
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        data:
+                          type: string
+                          example: device specific license info...
+                        signature:
+                          type: string
+                          example: RSA signature...
+                        id:
+                          type: string
+                          example: ec101553-050c...
+                        add:
+                          type: boolean
+                          example: true
+                          default: true
+                  - title: '- No license changes required'
+                    type: array
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                '- Invalid device id or access key':
+                  value: |-
+                    {
+                        "error": "Not authorized"
+                    }
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Not authorized
+      deprecated: false
+  /v1/devices/{deviceId}/space:
+    get:
+      summary: Get Space Info
+      description: ''
+      operationId: get-space-info
+      parameters:
+        - name: deviceId
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '201':
+          description: '201'
+          content:
+            application/json:
+              examples:
+                '- Success':
+                  value: |-
+                    {
+                        "location": {
+                            "coordinates": {
+                                "lat": 51.165691,
+                                "lng": 10.451526
+                            },
+                            "utc_offset": 60,
+                            "name": "Germany"
+                        },
+                        "temperature_units": "celsius",
+                        "maintenance": false,
+                        "name": "Interactive Class",
+                        "local_time": "2022-03-17T10:55:28+01:00"
+                    }
+              schema:
+                type: object
+                properties:
+                  location:
+                    type: object
+                    properties:
+                      coordinates:
+                        type: object
+                        properties:
+                          lat:
+                            type: number
+                            example: 51.165691
+                            default: 0
+                          lng:
+                            type: number
+                            example: 10.451526
+                            default: 0
+                      utc_offset:
+                        type: integer
+                        example: 60
+                        default: 0
+                      name:
+                        type: string
+                        example: Germany
+                  temperature_units:
+                    type: string
+                    example: celsius
+                  maintenance:
+                    type: boolean
+                    example: false
+                    default: true
+                  name:
+                    type: string
+                    example: Interactive Class
+                  local_time:
+                    type: string
+                    example: '2022-03-17T10:55:28+01:00'
+        '422':
+          description: '422'
+          content:
+            application/json:
+              examples:
+                '- Error in data':
+                  value: |-
+                    {
+                      "error": "Device not in space"
+                    }
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Device not in space
+      deprecated: false
+  /v1/devices/{deviceId}/files/{fileUuid}:
+    get:
+      summary: Get File
+      description: ''
+      operationId: get-file
+      parameters:
+        - name: deviceId
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: fileUuid
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                '- Success':
+                  value: |-
+                    "id": "b0b1a8aa-488f-46a8-b405-2828caaf3927",
+                        "name": "foo 1",
+                        "url": "https://s3-eu-west-1.amazonaws.com/static.staging.syncpro.io/user_uploads/2803eff4-b6b2-4b19-8a36-6ad52076360f-samplefile.png",
+                        "desc": "Foo test",
+                        "file_type": "firmware",
+                        "version": "1.0.1",
+                        "created_at": "2021-08-11T14:38:36.930Z",
+                        "public_notes": "Version 1.0.1 changes"
+                      }
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                '- File not found':
+                  value: |-
+                    {
+                      "error": "File not found"
+                    }
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: File not found
+      deprecated: false
+  /v1/devices/{deviceId}/files:
+    get:
+      summary: Get Files
+      description: ''
+      operationId: get-files
+      parameters:
+        - name: deviceId
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                '- Success':
+                  value: |-
+                    [
+                      {
+                        "id": "b0b1a8aa-488f-46a8-b405-2828caaf3927",
+                        "name": "foo 1",
+                        "url": "https://s3-eu-west-1.amazonaws.com/static.staging.syncpro.io/user_uploads/2803eff4-b6b2-4b19-8a36-6ad52076360f-samplefile.png",
+                        "desc": "Foo test",
+                        "file_type": "firmware",
+                        "version": "1.0.1",
+                        "created_at": "2021-08-11T14:38:36.930Z",
+                        "public_notes": "version 1.0.1 changes"
+                      },
+                        "id": [file_id_2],
+                        "name": [file_name_2],
+                        "url": [file_url_2],
+                        "desc": [file_desc_2],
+                        "file_type": [file_type_2],
+                        "version": [file_version_2],
+                        "created_at": [file_creation_date_2],
+                        "public_notes": [public_notes_2]
+                      },
+                    ]
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                '- File not found':
+                  value: |-
+                    {
+                      "error": "File not found"
+                    }
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: File not found
+      deprecated: false
+  /v1/devices/{deviceId}/incidents:
+    post:
+      summary: Open Incident
+      description: ''
+      operationId: create-incident
+      parameters:
+        - name: deviceId
+          in: path
+          schema:
+            type: string
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - title
+              properties:
+                title:
+                  type: string
+                  description: Short title
+                priority:
+                  type: string
+                  description: Critical, High, Moderate, Low, Planning
+                  default: '3'
+                  enum:
+                    - '1'
+                    - '2'
+                    - '3'
+                    - '4'
+                    - '5'
+                description:
+                  type: string
+                issue:
+                  type: string
+                  description: >-
+                    Short text to uniquely identify the issue (only one incident
+                    of each issue type can be open at a time)
+                  default: Randomly generated tag
+                RAW_BODY:
+                  type: string
+            examples:
+              Request Example:
+                value:
+                  issue: cover_open
+                  priority: 1
+                  title: Device cover is open
+                  description: >-
+                    The top guard cover is open and will prevent any device
+                    operation until closed.
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                '- Success':
+                  value: "{\n\t\"incident_id\": \"eef9bcec-9335....\"\n}"
+              schema:
+                type: object
+                properties:
+                  incident_id:
+                    type: string
+                    example: eef9bcec-9335....
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: |-
+                    {
+                        "error": "Not authorized"
+                    }
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Not authorized
+        '422':
+          description: '422'
+          content:
+            application/json:
+              examples:
+                '- Error in data':
+                  value: "{\n\t\"error\": \"Priority must be between 1 and 5\"\n}"
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Priority must be between 1 and 5
+      deprecated: false
+    get:
+      summary: Get Incidents
+      description: ''
+      operationId: get-incident
+      parameters:
+        - name: deviceId
+          in: path
+          description: Device's unique ID
+          schema:
+            type: string
+          required: true
+      responses:
+        '201':
+          description: '201'
+          content:
+            application/json:
+              examples:
+                '- Success':
+                  value: "{\n\t\"success\": true\n}"
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                    default: true
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: |-
+                    {
+                        "error": "Not authorized"
+                    }
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Not authorized
+        '404':
+          description: '404'
+          content:
+            application/json:
+              examples:
+                '- Error in data':
+                  value: "{\n\t\"error\": \"Incident not found\"\n}"
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Incident not found
+      deprecated: false
+  /v1/devices/{deviceId}/incidents/{incidentId}:
+    delete:
+      summary: Close Incident
+      description: ''
+      operationId: close-incident
+      parameters:
+        - name: deviceId
+          in: path
+          description: Unique Device ID
+          schema:
+            type: string
+          required: true
+        - name: incidentId
+          in: path
+          description: The unique id of the incident to close
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                '- Success':
+                  value: "{\n\t\"success\": true\n}"
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                    default: true
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: |-
+                    {
+                        "error": "Not authorized"
+                    }
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Not authorized
+        '404':
+          description: '404'
+          content:
+            application/json:
+              examples:
+                '- Error in data':
+                  value: "{\n\t\"error\": \"Incident not found\"\n}"
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Incident not found
+      deprecated: false
+  /core/v1/partner/devices:
+    get:
+      summary: List Devices
+      description: ''
+      operationId: partner-list-devices
+      parameters:
+        - name: Authorization
+          in: header
+          description: Partner API key
+          schema:
+            type: string
+        - name: model_id
+          in: query
+          description: Filter by model id
+          schema:
+            type: string
+        - name: sn
+          in: query
+          description: Filter by Serial Number
+          schema:
+            type: string
+        - name: mac
+          in: query
+          description: Filter by MAC address
+          schema:
+            type: string
+        - name: page
+          in: query
+          description: Pagination selector
+          schema:
+            type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                '- Success':
+                  value: |-
+                    {
+                        "data": [
+                            {
+                                "id": "....-03cfda750cfa",
+                                "sn": "123",
+                                "mac": "11:00:00:00:00:00",
+                                "cloud_id": "....",
+                                "status": null,
+                                "last_seen_at": "2022-11-06T09:52:47.546Z",
+                                "details": {},
+                                "state": {},
+                                "model": {
+                                    "id": "....-d75e0abec7d2",
+                                    "name": "model name",
+                                    "sub_model": "sub model"
+                                },
+                                "firmware": {
+                                    "version": "1.0.1"
+                                }
+                            }
+                            ],
+                        "page_info": {
+                            "has_next": false,
+                            "total_count": 32
+                        }
+                    }
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: ....-03cfda750cfa
+                        sn:
+                          type: string
+                          example: '123'
+                        mac:
+                          type: string
+                          example: '11:00:00:00:00:00'
+                        cloud_id:
+                          type: string
+                          example: ....
+                        status: {}
+                        last_seen_at:
+                          type: string
+                          example: '2022-11-06T09:52:47.546Z'
+                        details:
+                          type: object
+                          properties: {}
+                        state:
+                          type: object
+                          properties: {}
+                        model:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              example: ....-d75e0abec7d2
+                            name:
+                              type: string
+                              example: model name
+                            sub_model:
+                              type: string
+                              example: sub model
+                        firmware:
+                          type: object
+                          properties:
+                            version:
+                              type: string
+                              example: 1.0.1
+                  page_info:
+                    type: object
+                    properties:
+                      has_next:
+                        type: boolean
+                        example: false
+                        default: true
+                      total_count:
+                        type: integer
+                        example: 32
+                        default: 0
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Invalid API key:
+                  value: |-
+                    {
+                        "error": "Not authorized"
+                    }
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Not authorized
+      deprecated: false
+  /core/v1/partner/devices/{device_id}:
+    get:
+      summary: Get Device Info
+      description: ''
+      operationId: partner-get-device-info
+      parameters:
+        - name: Authorization
+          in: header
+          description: Partner API key
+          schema:
+            type: string
+        - name: device_id
+          in: path
+          description: Device's unique ID
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                '- Success':
+                  value: |-
+                    {
+                        "data": [
+                            {
+                                "id": "....-03cfda750cfa",
+                                "sn": "123",
+                                "mac": "11:00:00:00:00:00",
+                                "cloud_id": "....",
+                                "status": null,
+                                "last_seen_at": "2022-11-06T09:52:47.546Z",
+                                "details": {},
+                                "state": {},
+                                "model": {
+                                    "id": "....-d75e0abec7d2",
+                                    "name": "model name",
+                                    "sub_model": "sub model"
+                                },
+                                "firmware": {
+                                    "version": "1.0.1"
+                                }
+                            }
+                            ],
+                        "page_info": {
+                            "has_next": false,
+                            "total_count": 32
+                        }
+                    }
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: ....-03cfda750cfa
+                        sn:
+                          type: string
+                          example: '123'
+                        mac:
+                          type: string
+                          example: '11:00:00:00:00:00'
+                        cloud_id:
+                          type: string
+                          example: ....
+                        status: {}
+                        last_seen_at:
+                          type: string
+                          example: '2022-11-06T09:52:47.546Z'
+                        details:
+                          type: object
+                          properties: {}
+                        state:
+                          type: object
+                          properties: {}
+                        model:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              example: ....-d75e0abec7d2
+                            name:
+                              type: string
+                              example: model name
+                            sub_model:
+                              type: string
+                              example: sub model
+                        firmware:
+                          type: object
+                          properties:
+                            version:
+                              type: string
+                              example: 1.0.1
+                  page_info:
+                    type: object
+                    properties:
+                      has_next:
+                        type: boolean
+                        example: false
+                        default: true
+                      total_count:
+                        type: integer
+                        example: 32
+                        default: 0
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Invalid API key:
+                  value: |-
+                    {
+                        "error": "Not authorized"
+                    }
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Not authorized
+      deprecated: false
+    delete:
+      summary: Delete Device
+      description: ''
+      operationId: partner-delete-device
+      parameters:
+        - name: Authorization
+          in: header
+          description: Partner API key
+          schema:
+            type: string
+        - name: device_id
+          in: path
+          description: Device's unique ID
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                '- Success':
+                  value: |-
+                    {
+                        "success": true
+                    }
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                    default: true
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Invalid API key:
+                  value: |-
+                    {
+                        "error": "Not authorized"
+                    }
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Not authorized
+        '404':
+          description: '404'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: |-
+                    {
+                        "error": "Errors::NotFound"
+                    }
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Errors::NotFound
+      deprecated: false
+  /core/v1/partner/devices/{device_id}/telemetries:
+    get:
+      summary: Get Device Telemetries
+      description: ''
+      operationId: partner-get-device-telemetries
+      parameters:
+        - name: Authorization
+          in: header
+          description: Partner API key
+          schema:
+            type: string
+        - name: device_id
+          in: path
+          description: Unique Device ID
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                '- Success':
+                  value: |-
+                    [
+                        {
+                            "created_at": "2024-01-21T17:23:22Z",
+                            "device_timestamp": "2024-01-21T17:23:22Z",
+                            "telemetries": {
+                                "temp": 22,
+                                "input": "hdmi",
+                                "status": "online",
+                                "fan_speed": 5.5
+                            }
+                        }
+                    ]
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    created_at:
+                      type: string
+                      example: '2024-01-21T17:23:22Z'
+                    device_timestamp:
+                      type: string
+                      example: '2024-01-21T17:23:22Z'
+                    telemetries:
+                      type: object
+                      properties:
+                        temp:
+                          type: integer
+                          example: 22
+                          default: 0
+                        input:
+                          type: string
+                          example: hdmi
+                        status:
+                          type: string
+                          example: online
+                        fan_speed:
+                          type: number
+                          example: 5.5
+                          default: 0
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Invalid API key:
+                  value: |-
+                    {
+                        "error": "Not authorized"
+                    }
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Not authorized
+        '404':
+          description: '404'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: |-
+                    {
+                        "error": "Errors::NotFound"
+                    }
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Errors::NotFound
+      deprecated: false
+  /core/v1/partner/devices/{device_id}/config:
+    get:
+      summary: Get Device Configuration
+      description: ''
+      operationId: partner-get-device-configuration
+      parameters:
+        - name: Authorization
+          in: header
+          description: Partner API key
+          schema:
+            type: string
+        - name: device_id
+          in: path
+          description: Unique Device ID
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                '- Success':
+                  value: |-
+                    {
+                        "version": 0,
+                        "last_updated": "2023-01-24T14:05:19Z",
+                        "config": {}
+                    }
+              schema:
+                type: object
+                properties:
+                  version:
+                    type: integer
+                    example: 0
+                    default: 0
+                  last_updated:
+                    type: string
+                    example: '2023-01-24T14:05:19Z'
+                  config:
+                    type: object
+                    properties: {}
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Invalid API key:
+                  value: |-
+                    {
+                        "error": "Not authorized"
+                    }
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Not authorized
+        '404':
+          description: '404'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: |-
+                    {
+                        "error": "Errors::NotFound"
+                    }
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Errors::NotFound
+      deprecated: false
+  /core/v1/partner/devices/{device_id}/commands:
+    get:
+      summary: Get Device Commands
+      description: ''
+      operationId: partner-get-device-commands
+      parameters:
+        - name: Authorization
+          in: header
+          description: Partner API key
+          schema:
+            type: string
+        - name: device_id
+          in: path
+          description: Unique Device ID
+          schema:
+            type: string
+          required: true
+        - name: status
+          in: query
+          description: >-
+            Filter by command status: scheduled, pending, done, failed, aborted,
+            in_progress
+          schema:
+            type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                '- Success':
+                  value: |-
+                    {
+                        "data": [
+                            {
+                                "id": "....-a7b49f736ef1",
+                                "status": "pending",
+                                "name": "reboot",
+                                "parameters": null
+                            }
+                           ],
+                        "page_info": {
+                            "has_next": false,
+                            "total_count": 7
+                        }
+                    }
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: ....-a7b49f736ef1
+                        status:
+                          type: string
+                          example: pending
+                        name:
+                          type: string
+                          example: reboot
+                        parameters: {}
+                  page_info:
+                    type: object
+                    properties:
+                      has_next:
+                        type: boolean
+                        example: false
+                        default: true
+                      total_count:
+                        type: integer
+                        example: 7
+                        default: 0
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Invalid API key:
+                  value: |-
+                    {
+                        "error": "Not authorized"
+                    }
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Not authorized
+        '404':
+          description: '404'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: |-
+                    {
+                        "error": "Errors::NotFound"
+                    }
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Errors::NotFound
+      deprecated: false
+  /core/v1/partner/devices/{device_id}/history:
+    get:
+      summary: Get Device State History
+      description: ''
+      operationId: partner-get-device-state-history
+      parameters:
+        - name: Authorization
+          in: header
+          description: Partner API key
+          schema:
+            type: string
+        - name: device_id
+          in: path
+          description: Unique Device ID
+          schema:
+            type: string
+          required: true
+        - name: status
+          in: query
+          description: 'Filter by state: online, offline, unavailable, error'
+          schema:
+            type: string
+        - name: from
+          in: query
+          description: Query range
+          schema:
+            type: string
+            format: date-time
+            default: beginning of current month
+        - name: to
+          in: query
+          description: Query range
+          schema:
+            type: string
+            format: date-time
+            default: Current time
+        - name: page
+          in: query
+          description: Pagination (500 records per page)
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                '- Success':
+                  value: |-
+                    {
+                        "data": [
+                            {
+                                "created_at": "2024-01-01T00:15:00Z",
+                                "state": {
+                                    "temp": 302,
+                                    "input": "hdmi",
+                                    "power": 48,
+                                    "status": "online",
+                                    "fan_speed": 5.5
+                                }
+                            },
+                        "page_info": {
+                            "has_next": false,
+                            "total_count": 7
+                        }
+                    }
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Invalid API key:
+                  value: |-
+                    {
+                        "error": "Not authorized"
+                    }
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Not authorized
+        '404':
+          description: '404'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: |-
+                    {
+                        "error": "Errors::NotFound"
+                    }
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Errors::NotFound
+      deprecated: false
+  /core/v1/partner/devices/histories:
+    get:
+      summary: Get All Device's State History
+      description: ''
+      operationId: partner-get-all-device-state-histories
+      parameters:
+        - name: Authorization
+          in: header
+          description: Partner API key
+          schema:
+            type: string
+        - name: status
+          in: query
+          description: 'Filter by state: online, offline, unavailable, error'
+          schema:
+            type: string
+        - name: from
+          in: query
+          description: Query range
+          schema:
+            type: string
+            format: date-time
+            default: beginning of current month
+        - name: to
+          in: query
+          description: Query range
+          schema:
+            type: string
+            format: date-time
+            default: Current time
+        - name: page
+          in: query
+          description: Pagination (500 records per page)
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                '- Success':
+                  value: |-
+                    {
+                        "data": [
+                            {
+                                "created_at": "2024-01-01T00:15:00Z",
+                                "state": {
+                                    "temp": 302,
+                                    "input": "hdmi",
+                                    "power": 48,
+                                    "status": "online",
+                                    "fan_speed": 5.5
+                                }
+                            },
+                        "page_info": {
+                            "has_next": false,
+                            "total_count": 7
+                        }
+                    }
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Invalid API key:
+                  value: |-
+                    {
+                        "error": "Not authorized"
+                    }
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Not authorized
+      deprecated: false
+  /core/v1/partner/tickets:
+    get:
+      summary: List Tickets
+      description: ''
+      operationId: partner-tickets-list
+      parameters:
+        - name: Authorization
+          in: header
+          description: Partner API key
+          schema:
+            type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                '- Success':
+                  value: "[\n\t{\n\t\t\"id\": \"a83e7a2e...\",\n\t\t\"title\": \"Device not turning on\",\n\t\t\"description\": \"Light is on but no noise\",\n\t\t\"status\": \"open\",\n\t\t\"created_at\": \"2023-09-03T07:40:54Z\",\n\t\t\"device_id\": \"a3983ff2.....\",\n\t\t\"user_name\": \"Demo User\",\n\t\t\"user_email\": \"demo@xyte.io\"\n\t}\n]"
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      example: a83e7a2e...
+                    title:
+                      type: string
+                      example: Device not turning on
+                    description:
+                      type: string
+                      example: Light is on but no noise
+                    status:
+                      type: string
+                      example: open
+                    created_at:
+                      type: string
+                      example: '2023-09-03T07:40:54Z'
+                    device_id:
+                      type: string
+                      example: a3983ff2.....
+                    user_name:
+                      type: string
+                      example: Demo User
+                    user_email:
+                      type: string
+                      example: demo@xyte.io
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Invalid API key:
+                  value: |-
+                    {
+                        "error": "Not authorized"
+                    }
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Not authorized
+      deprecated: false
+  /core/v1/partner/tickets/{ticket_id} (COPY):
+    get:
+      summary: Get Ticket
+      description: ''
+      operationId: partner-tickets-get
+      parameters:
+        - name: Authorization
+          in: header
+          description: Partner API key
+          schema:
+            type: string
+        - name: ticket_id
+          in: path
+          description: Unique ticket ID
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                '- Success':
+                  value: "{\n\t\"id\": \"b9a53d31...\",\n\t\"title\": \"Ticket title\",\n\t\"description\": \"Ticket description\",\n\t\"status\": \"resolved\",\n\t\"created_at\": \"2023-07-05T11:37:26Z\",\n\t\"device_id\": \"a3983ff2...\",\n\t\"user_name\": \"Demo User\",\n\t\"user_email\": \"demo@xyte.io\",\n\t\"comments\": [\n\t\t{\n\t\t\t\"id\": 1,\n\t\t\t\"text\": \"Can someone help me please?\",\n\t\t\t\"created_at\": \"2023-08-14T06:22:42.310Z\",\n\t\t\t\"system\": false,\n\t\t\t\"user\": \"Demo User\",\n\t\t\t\"owner\": \"Xyte Lab\",\n\t\t\t\"owner_type\": \"organization\"\n\t\t}\n ]\n}"
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: b9a53d31...
+                  title:
+                    type: string
+                    example: Ticket title
+                  description:
+                    type: string
+                    example: Ticket description
+                  status:
+                    type: string
+                    example: resolved
+                  created_at:
+                    type: string
+                    example: '2023-07-05T11:37:26Z'
+                  device_id:
+                    type: string
+                    example: a3983ff2...
+                  user_name:
+                    type: string
+                    example: Demo User
+                  user_email:
+                    type: string
+                    example: demo@xyte.io
+                  comments:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                          default: 0
+                        text:
+                          type: string
+                          example: Can someone help me please?
+                        created_at:
+                          type: string
+                          example: '2023-08-14T06:22:42.310Z'
+                        system:
+                          type: boolean
+                          example: false
+                          default: true
+                        user:
+                          type: string
+                          example: Demo User
+                        owner:
+                          type: string
+                          example: Xyte Lab
+                        owner_type:
+                          type: string
+                          example: organization
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Invalid API key / Ticket not found:
+                  value: |-
+                    {
+                        "error": "Not authorized"
+                    }
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Not authorized
+      deprecated: false
+  /core/v1/partner/tickets/{ticket_id}:
+    put:
+      summary: Update Ticket
+      description: ''
+      operationId: partner-tickets-update
+      parameters:
+        - name: Authorization
+          in: header
+          description: Partner API key
+          schema:
+            type: string
+        - name: ticket_id
+          in: path
+          description: Unique ticket ID
+          schema:
+            type: string
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  description: New ticket title
+                description:
+                  type: string
+                  description: New ticket description
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                '- Success':
+                  value: "{\n\t\"id\": \"b9a53d31...\",\n\t\"title\": \"Ticket title\",\n\t\"description\": \"Ticket description\",\n\t\"status\": \"resolved\",\n\t\"created_at\": \"2023-07-05T11:37:26Z\",\n\t\"device_id\": \"a3983ff2...\",\n\t\"user_name\": \"Demo User\",\n\t\"user_email\": \"demo@xyte.io\",\n\t\"comments\": [\n\t\t{\n\t\t\t\"id\": 1,\n\t\t\t\"text\": \"Can someone help me please?\",\n\t\t\t\"created_at\": \"2023-08-14T06:22:42.310Z\",\n\t\t\t\"system\": false,\n\t\t\t\"user\": \"Demo User\",\n\t\t\t\"owner\": \"Xyte Lab\",\n\t\t\t\"owner_type\": \"organization\"\n\t\t}\n ]\n}"
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: b9a53d31...
+                  title:
+                    type: string
+                    example: Ticket title
+                  description:
+                    type: string
+                    example: Ticket description
+                  status:
+                    type: string
+                    example: resolved
+                  created_at:
+                    type: string
+                    example: '2023-07-05T11:37:26Z'
+                  device_id:
+                    type: string
+                    example: a3983ff2...
+                  user_name:
+                    type: string
+                    example: Demo User
+                  user_email:
+                    type: string
+                    example: demo@xyte.io
+                  comments:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                          default: 0
+                        text:
+                          type: string
+                          example: Can someone help me please?
+                        created_at:
+                          type: string
+                          example: '2023-08-14T06:22:42.310Z'
+                        system:
+                          type: boolean
+                          example: false
+                          default: true
+                        user:
+                          type: string
+                          example: Demo User
+                        owner:
+                          type: string
+                          example: Xyte Lab
+                        owner_type:
+                          type: string
+                          example: organization
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Invalid API key / Ticket not found:
+                  value: |-
+                    {
+                        "error": "Not authorized"
+                    }
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Not authorized
+      deprecated: false
+  /core/v1/partner/tickets/{ticket_id}/resolved:
+    post:
+      summary: Close Ticket
+      description: ''
+      operationId: partner-tickets-close
+      parameters:
+        - name: Authorization
+          in: header
+          description: Partner API key
+          schema:
+            type: string
+        - name: ticket_id
+          in: path
+          description: Unique ticket ID
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                '- Success':
+                  value: "{\n\t\"id\": \"b9a53d31...\",\n\t\"title\": \"Ticket title\",\n\t\"description\": \"Ticket description\",\n\t\"status\": \"resolved\",\n\t\"created_at\": \"2023-07-05T11:37:26Z\",\n\t\"device_id\": \"a3983ff2...\",\n\t\"user_name\": \"Demo User\",\n\t\"user_email\": \"demo@xyte.io\",\n\t\"comments\": [\n\t\t{\n\t\t\t\"id\": 1,\n\t\t\t\"text\": \"Can someone help me please?\",\n\t\t\t\"created_at\": \"2023-08-14T06:22:42.310Z\",\n\t\t\t\"system\": false,\n\t\t\t\"user\": \"Demo User\",\n\t\t\t\"owner\": \"Xyte Lab\",\n\t\t\t\"owner_type\": \"organization\"\n\t\t}\n ]\n}"
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: b9a53d31...
+                  title:
+                    type: string
+                    example: Ticket title
+                  description:
+                    type: string
+                    example: Ticket description
+                  status:
+                    type: string
+                    example: resolved
+                  created_at:
+                    type: string
+                    example: '2023-07-05T11:37:26Z'
+                  device_id:
+                    type: string
+                    example: a3983ff2...
+                  user_name:
+                    type: string
+                    example: Demo User
+                  user_email:
+                    type: string
+                    example: demo@xyte.io
+                  comments:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                          default: 0
+                        text:
+                          type: string
+                          example: Can someone help me please?
+                        created_at:
+                          type: string
+                          example: '2023-08-14T06:22:42.310Z'
+                        system:
+                          type: boolean
+                          example: false
+                          default: true
+                        user:
+                          type: string
+                          example: Demo User
+                        owner:
+                          type: string
+                          example: Xyte Lab
+                        owner_type:
+                          type: string
+                          example: organization
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Invalid API key / Ticket not found:
+                  value: |-
+                    {
+                        "error": "Not authorized"
+                    }
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Not authorized
+        '403':
+          description: '403'
+          content:
+            application/json:
+              examples:
+                Invalid state:
+                  value: "{\n\t\"error\": \"Cannot move from resolved to resolved\"\n}"
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Cannot move from resolved to resolved
+      deprecated: false
+  /core/v1/partner/tickets/{ticket_id}/message:
+    post:
+      summary: Add Comment
+      description: ''
+      operationId: partner-tickets-add-comment
+      parameters:
+        - name: Authorization
+          in: header
+          description: Partner API key
+          schema:
+            type: string
+        - name: ticket_id
+          in: path
+          description: Unique ticket ID
+          schema:
+            type: string
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+                  description: Message to post
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                '- Success':
+                  value: "{\n\t\"id\": \"b9a53d31...\",\n\t\"title\": \"Ticket title\",\n\t\"description\": \"Ticket description\",\n\t\"status\": \"resolved\",\n\t\"created_at\": \"2023-07-05T11:37:26Z\",\n\t\"device_id\": \"a3983ff2...\",\n\t\"user_name\": \"Demo User\",\n\t\"user_email\": \"demo@xyte.io\",\n\t\"comments\": [\n\t\t{\n\t\t\t\"id\": 1,\n\t\t\t\"text\": \"Can someone help me please?\",\n\t\t\t\"created_at\": \"2023-08-14T06:22:42.310Z\",\n\t\t\t\"system\": false,\n\t\t\t\"user\": \"Demo User\",\n\t\t\t\"owner\": \"Xyte Lab\",\n\t\t\t\"owner_type\": \"organization\"\n\t\t}\n ]\n}"
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: b9a53d31...
+                  title:
+                    type: string
+                    example: Ticket title
+                  description:
+                    type: string
+                    example: Ticket description
+                  status:
+                    type: string
+                    example: resolved
+                  created_at:
+                    type: string
+                    example: '2023-07-05T11:37:26Z'
+                  device_id:
+                    type: string
+                    example: a3983ff2...
+                  user_name:
+                    type: string
+                    example: Demo User
+                  user_email:
+                    type: string
+                    example: demo@xyte.io
+                  comments:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                          default: 0
+                        text:
+                          type: string
+                          example: Can someone help me please?
+                        created_at:
+                          type: string
+                          example: '2023-08-14T06:22:42.310Z'
+                        system:
+                          type: boolean
+                          example: false
+                          default: true
+                        user:
+                          type: string
+                          example: Demo User
+                        owner:
+                          type: string
+                          example: Xyte Lab
+                        owner_type:
+                          type: string
+                          example: organization
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Invalid API key / Ticket not found:
+                  value: |-
+                    {
+                        "error": "Not authorized"
+                    }
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Not authorized
+      deprecated: false
+x-readme:
+  headers: []
+  explorer-enabled: true
+  proxy-enabled: true
+  samples-enabled: true
+x-readme-fauxas: true
+_id: 62bc65283c764a0043591441:64f6d165bde1e90068d3e00f
