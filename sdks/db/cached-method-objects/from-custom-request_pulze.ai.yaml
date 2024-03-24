@@ -1,4 +1,4 @@
-hash: 44ea1c4fcb001ae97bdee910171587b7a9dbddd03abce984b69146bca60e2aa2
+hash: aa02e516a3a15a68e2f7131b2a28b50abd02a147a2ac0ad9fbe8541b658310e8
 methodObjects:
   - url: /v1/chat/completions
     method: performCompletionRequest
@@ -351,6 +351,16 @@ methodObjects:
         description: ''
       - statusCode: '422'
         description: ''
+  - url: /healthz
+    method: getElapsedTimes
+    httpMethod: get
+    tag: healthcheck
+    typeScriptTag: healthcheck
+    description: Health Check
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
   - url: /v1/logs
     method: getMatchingLogs
     httpMethod: post
@@ -399,7 +409,31 @@ methodObjects:
         description: ''
       - statusCode: '422'
         description: ''
-numberOfSchemas: 104
+  - url: /v1/apps
+    method: getList
+    httpMethod: post
+    tag: apps
+    typeScriptTag: apps
+    description: Get Apps List
+    parameters:
+      - name: page
+        schema: integer
+        description: ''
+        default: 1
+      - name: size
+        schema: integer
+        description: ''
+        default: 50
+      - name: params
+        schema: array
+        description: ''
+        default: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '422'
+        description: ''
+numberOfSchemas: 106
 apiDescription: >-
   At Pulze it's our mission to supercharge today's workforce with AI to maximize
   the world's prosperity. We are doing so by enabling companies of any size to

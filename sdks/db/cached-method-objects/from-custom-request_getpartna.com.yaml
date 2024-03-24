@@ -1,5 +1,34 @@
-hash: adec9c51b4f3d985a0110e44046584e4ff7f13de1fcba8576deee8d1e9756336
+hash: 9aac0b4abe113b4d3dbefccd46104fea800079879871c9493136721ddd4581f3
 methodObjects:
+  - url: /transaction
+    method: getUserTransactions
+    httpMethod: get
+    tag: Transaction
+    typeScriptTag: transaction
+    description: Retrieve user's transaction records
+    parameters:
+      - name: currency
+        schema: string
+        description: >-
+          Currency for which transactions are to be retrieved. When this is not
+          supplied, transactions will be retrieved for all available currencies.
+      - name: type
+        schema: string
+        description: >-
+          Type of transactions to be retrieved. When this is not supplied,
+          transactions will be retrieved for all available types.
+      - name: page
+        schema: number
+        description: Number of pages to be retrieved.
+      - name: limit
+        schema: number
+        description: Number of transaction records to be retrieved per page page.
+      - name: duration
+        schema: string
+        description: Duration of the transaction to be retrieved per page page.
+    responses:
+      - statusCode: '200'
+        description: ''
   - url: /v1/balance
     method: getAccountBalance
     httpMethod: get
@@ -485,35 +514,6 @@ methodObjects:
         required: true
         description: ''
         example: CALLBACKURL
-    responses:
-      - statusCode: '200'
-        description: ''
-  - url: /transaction
-    method: getUserTransactions
-    httpMethod: get
-    tag: Transaction
-    typeScriptTag: transaction
-    description: Retrieve user's transaction records
-    parameters:
-      - name: currency
-        schema: string
-        description: >-
-          Currency for which transactions are to be retrieved. When this is not
-          supplied, transactions will be retrieved for all available currencies.
-      - name: type
-        schema: string
-        description: >-
-          Type of transactions to be retrieved. When this is not supplied,
-          transactions will be retrieved for all available types.
-      - name: page
-        schema: number
-        description: Number of pages to be retrieved.
-      - name: limit
-        schema: number
-        description: Number of transaction records to be retrieved per page page.
-      - name: duration
-        schema: string
-        description: Duration of the transaction to be retrieved per page page.
     responses:
       - statusCode: '200'
         description: ''

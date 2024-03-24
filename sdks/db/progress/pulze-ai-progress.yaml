@@ -1,12 +1,24 @@
 examples: {}
 examples_2: {}
 examples_3:
+  /healthz:
+    get:
+      '200':
+        application/json: {}
+  /v1/apps:
+    post:
+      '200':
+        application/json: {}
   /v1/logs:
     post:
       '200':
         application/json: {}
 ignoreObjectsWithNoProperties: true
 operationIds:
+  /healthz:
+    get: Healthcheck_getElapsedTimes
+  /v1/apps/:
+    post: Apps_getList
   /v1/apps/self:
     get: Apps_getAppForApiKey
   /v1/apps/update:
@@ -29,11 +41,21 @@ operationIds:
     post: Models_getRankOfBest
   /v1/models/{model_id}/toggle:
     put: Models_toggleModelForApp
-operationTags: {}
+operationTags:
+  /healthz:
+    get: healthcheck
 renameTags: {}
 requestSchemaNames: {}
 responseDescriptions: {}
 responseSchemaNames:
+  /healthz:
+    get:
+      '200':
+        application/json: HealthcheckGetElapsedTimesResponse
+  /v1/apps:
+    post:
+      '200':
+        application/json: AppsGetListResponse
   /v1/logs:
     post:
       '200':
