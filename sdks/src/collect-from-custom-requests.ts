@@ -882,67 +882,18 @@ const customRequests: Record<string, CustomRequest> = {
   },
   "pulze.ai": {
     lambda: async () => {
-      const urls = [
-        "https://docs.pulze.ai/api-reference/chat-completions",
-        "https://docs.pulze.ai/api-reference/completions",
-        "https://docs.pulze.ai/api-reference/rank-models",
-        "https://docs.pulze.ai/api-reference/logs-list",
-        "https://docs.pulze.ai/api-reference/logs-by-id",
-        "https://docs.pulze.ai/api-reference/logs-rate",
-        "https://docs.pulze.ai/api-reference/self",
-        "https://docs.pulze.ai/api-reference/apps-update",
-        "https://docs.pulze.ai/api-reference/active-models",
-        "https://docs.pulze.ai/api-reference/all-available-models",
-        "https://docs.pulze.ai/api-reference/toggle-model",
-      ];
+      const urls = await collectEndpointsFromMintlify({
+        url: "https://docs.pulze.ai/api-reference/chat-completions",
+      });
       return downloadOpenApiSpecFromMintlify({ urls });
     },
     apiBaseUrl: "https://api.pulze.ai",
   },
   "getpartna.com": {
     lambda: async () => {
-      const urls = [
-        "https://docs.getpartna.com/api-reference/endpoint/ventogram/balance/retrieve-merchant-account-balance",
-        "https://docs.getpartna.com/api-reference/endpoint/ventogram/merchants/retrieve-merchant-record",
-        "https://docs.getpartna.com/api-reference/endpoint/ventogram/merchants/update-merchant-record",
-        "https://docs.getpartna.com/api-reference/endpoint/ventogram/mock-payment/make-a-mock-payment",
-        "https://docs.getpartna.com/api-reference/endpoint/ventogram/rates/retrieves-conversion-rates",
-        "https://docs.getpartna.com/api-reference/endpoint/ventogram/transactions/retrieve-merchant-transaction-summary",
-        "https://docs.getpartna.com/api-reference/endpoint/ventogram/voucher/create-a-new-voucher-payment",
-        "https://docs.getpartna.com/api-reference/endpoint/ventogram/voucher/retrieve-voucher-record",
-        "https://docs.getpartna.com/api-reference/endpoint/ventogram/voucher/get-multiple-records",
-        "https://docs.getpartna.com/api-reference/endpoint/ventogram/voucher/redeem-existing-unused-voucher",
-        "https://docs.getpartna.com/api-reference/endpoint/ventogram/voucher/redeem-and-withdraw",
-        "https://docs.getpartna.com/api-reference/endpoint/ventogram/voucher-fee/retrieves-conversion-rates",
-        "https://docs.getpartna.com/api-reference/endpoint/ventogram/voucher-min-max-amount/retrieves-minimum-and-maximum-voucher-amounts",
-        "https://docs.getpartna.com/api-reference/endpoint/biz/create-api-key",
-        "https://docs.getpartna.com/api-reference/endpoint/biz/create-payment",
-        "https://docs.getpartna.com/api-reference/endpoint/biz/get-a-single-payment",
-        "https://docs.getpartna.com/api-reference/endpoint/biz/get-a-transaction",
-        "https://docs.getpartna.com/api-reference/endpoint/biz/get-current-rates",
-        "https://docs.getpartna.com/api-reference/endpoint/biz/get-minimum-amount-allowed",
-        "https://docs.getpartna.com/api-reference/endpoint/biz/get-supported-currencies",
-        "https://docs.getpartna.com/api-reference/endpoint/biz/get-supported-cryptocurrencies-and-network",
-        "https://docs.getpartna.com/api-reference/endpoint/biz/resolve-overpaid-transaction",
-        "https://docs.getpartna.com/api-reference/endpoint/biz/retrieve-subscribed-webhook-url",
-        "https://docs.getpartna.com/api-reference/endpoint/biz/retrieve-users-transaction-records",
-        "https://docs.getpartna.com/api-reference/endpoint/biz/retrieve-users-transaction-summary",
-        "https://docs.getpartna.com/api-reference/endpoint/biz/retrieves-a-users-crypto-wallet-addresses",
-        "https://docs.getpartna.com/api-reference/endpoint/biz/subscribe-to-webhook",
-        "https://docs.getpartna.com/api-reference/endpoint/biz/get-current-rates",
-        "https://docs.getpartna.com/api-reference/endpoint/biz/withdraw-balance",
-        "https://docs.getpartna.com/api-reference/endpoint/biz/get-a-transaction",
-        "https://docs.getpartna.com/api-reference/endpoint/biz/resolve-bank-account",
-        "https://docs.getpartna.com/api-reference/endpoint/biz/get-minimum-amount-allowed",
-        "https://docs.getpartna.com/api-reference/endpoint/biz/retrieve-a-list-of-supported-banks",
-        "https://docs.getpartna.com/api-reference/endpoint/biz/retrieve-subscribed-webhook-url",
-        "https://docs.getpartna.com/api-reference/endpoint/biz/retrieve-users-account-balance",
-        "https://docs.getpartna.com/api-reference/endpoint/biz/retrieve-users-transaction-records",
-        "https://docs.getpartna.com/api-reference/endpoint/biz/retrieve-users-transaction-summary",
-        "https://docs.getpartna.com/api-reference/endpoint/biz/subscribe-to-webhook",
-        "https://docs.getpartna.com/api-reference/endpoint/biz/transfer-funds",
-        "https://docs.getpartna.com/api-reference/endpoint/biz/wallet-transfer",
-      ];
+      const urls = await collectEndpointsFromMintlify({
+        url: "https://docs.getpartna.com/api-reference/endpoint/biz/retrieve-users-transaction-records",
+      });
       return downloadOpenApiSpecFromMintlify({ urls });
     },
   },

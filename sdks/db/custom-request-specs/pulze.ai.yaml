@@ -4258,5 +4258,67 @@ paths:
       summary: Toggle Model For App
       tags:
         - models
+  /v1/apps/:
+    post:
+      description: Retrieve the list of Apps for the user's Org.
+      operationId: get_apps_list_v1_apps__post
+      parameters:
+        - in: query
+          name: page
+          schema:
+            default: 1
+            minimum: 1
+            title: Page
+            type: integer
+        - in: query
+          name: size
+          schema:
+            default: 50
+            maximum: 100
+            minimum: 1
+            title: Size
+            type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetTableParams'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: Successful Response
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+        - HTTPBearer: []
+      summary: Get Apps List
+      tags:
+        - apps
+  /healthz:
+    get:
+      description: >-
+        An endpoint that checks and ensures the required services are up and
+        running:
+
+        - Redis Knowledge Graph
+
+        - Database
+
+        @return Returns elapsed times for each service
+      operationId: health_check_healthz_get
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: Successful Response
+      summary: Health Check
 servers:
   - url: https://api.pulze.ai
