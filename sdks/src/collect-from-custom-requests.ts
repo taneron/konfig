@@ -1408,7 +1408,13 @@ async function downloadOpenApiSpecFromRedoclyEmbedded({
       // wait until download finishes by checking if the size of files the
       // download folder have stopped increasing after the file appears
       console.log(`Waiting for download to finish for ${url}...`);
-      await waitForDownloadToFinishByFileSize(downloadPath);
+      try {
+        await waitForDownloadToFinishByFileSize(downloadPath);
+      } catch (e) {
+        console.error(`Timeout occured while waiting for download to finish`);
+        retries++;
+        continue;
+      }
       console.log(`Finished waiting for download to finish for ${url}`);
 
       let rawSpecString = fs.readFileSync(
@@ -1419,7 +1425,10 @@ async function downloadOpenApiSpecFromRedoclyEmbedded({
       rawSpecString = rawSpecString.replaceAll(regex, `(${url})`);
       return rawSpecString;
     } catch (e) {
-      console.error(`Error encountered, retrying...`);
+      if (e instanceof Error) {
+        console.error(`Error encountered: ${e.message}`);
+      }
+      console.error(`Retrying...`);
       retries++;
     }
   }
@@ -1427,12 +1436,15 @@ async function downloadOpenApiSpecFromRedoclyEmbedded({
 }
 
 async function waitForDownloadToFinishByFileSize(downloadPath: string) {
-  let timeout = setTimeout(() => {
-    throw new Error("Timeout: File download took longer than 20 seconds");
-  }, 20000);
+  const timeout = 10_000;
   console.log(`Waiting for file to appear under ${downloadPath}...`);
   // wait for the file to appear
+  const t1 = Date.now();
   while (true) {
+    const t2 = Date.now();
+    if (t2 - t1 > timeout) {
+      throw Error(`Timeout: File download took longer than ${timeout} seconds`);
+    }
     const files = fs.readdirSync(downloadPath);
     if (files.length > 0) {
       break;
@@ -1462,7 +1474,6 @@ async function waitForDownloadToFinishByFileSize(downloadPath: string) {
     previousSize = stats.size;
     await new Promise((resolve) => setTimeout(resolve, 500));
   }
-  clearTimeout(timeout);
 }
 
 type CachedProcessedRequest = {
