@@ -364,28 +364,9 @@ const customRequests: Record<string, CustomRequest> = {
   },
   "notion.com": {
     lambda: async () => {
-      const urls = [
-        "https://developers.notion.com/reference/create-a-token?json=on",
-        "https://developers.notion.com/reference/patch-block-children?json=on",
-        "https://developers.notion.com/reference/retrieve-a-block?json=on",
-        "https://developers.notion.com/reference/get-block-children?json=on",
-        "https://developers.notion.com/reference/update-a-block?json=on",
-        "https://developers.notion.com/reference/delete-a-block?json=on",
-        "https://developers.notion.com/reference/post-page?json=on",
-        "https://developers.notion.com/reference/retrieve-a-page?json=on",
-        "https://developers.notion.com/reference/retrieve-a-page-property?json=on",
-        "https://developers.notion.com/reference/patch-page?json=on",
-        "https://developers.notion.com/reference/create-a-database?json=on",
-        "https://developers.notion.com/reference/post-database-query?json=on",
-        "https://developers.notion.com/reference/retrieve-a-database?json=on",
-        "https://developers.notion.com/reference/update-a-database?json=on",
-        "https://developers.notion.com/reference/get-users?json=on",
-        "https://developers.notion.com/reference/get-user?json=on",
-        "https://developers.notion.com/reference/get-self?json=on",
-        "https://developers.notion.com/reference/create-a-comment?json=on",
-        "https://developers.notion.com/reference/retrieve-a-comment?json=on",
-        "https://developers.notion.com/reference/post-search?json=on",
-      ];
+      const urls = await collectEndpointsFromReadme({
+        url: "https://developers.notion.com/reference/create-a-database",
+      });
       return downloadOpenApiSpecFromReadme({ urls });
     },
   },
@@ -984,191 +965,41 @@ const customRequests: Record<string, CustomRequest> = {
   },
   "payfactory.io": {
     lambda: async () => {
-      const urls = [
-        "https://payfactory.readme.io/reference/get_v1-application-status-appid",
-        "https://payfactory.readme.io/reference/get_v1-application-details-appid",
-        "https://payfactory.readme.io/reference/get_v1-applicationform-session-sessionid",
-        "https://payfactory.readme.io/reference/put_v1-applicationform-session-sessionid",
-        "https://payfactory.readme.io/reference/post_v1-applicationform-session",
-        "https://payfactory.readme.io/reference/get_v1-reporting-deposits-referenceid",
-        "https://payfactory.readme.io/reference/get_v1-reporting-achtransactions-referenceid",
-        "https://payfactory.readme.io/reference/post_v1-transaction-metadata",
-        "https://payfactory.readme.io/reference/post_v1-transaction-metadatabulk",
-      ];
+      const urls = await collectEndpointsFromReadme({
+        url: "https://payfactory.readme.io/reference/get_v1-applicationform-session-sessionid",
+      });
       return downloadOpenApiSpecFromReadme({ urls });
     },
   },
   "helcim.com": {
     lambda: async () => {
-      const urls = [
-        "https://devdocs.helcim.com/reference/connectiontest",
-        "https://devdocs.helcim.com/reference/purchase",
-        "https://devdocs.helcim.com/reference/preauth",
-        "https://devdocs.helcim.com/reference/capture",
-        "https://devdocs.helcim.com/reference/verify",
-        "https://devdocs.helcim.com/reference/refund",
-        "https://devdocs.helcim.com/reference/reverse",
-        "https://devdocs.helcim.com/reference/withdraw",
-        "https://devdocs.helcim.com/reference/get-card-batches",
-        "https://devdocs.helcim.com/reference/get-card-batch",
-        "https://devdocs.helcim.com/reference/settle-card-batch",
-        "https://devdocs.helcim.com/reference/get-card-transactions",
-        "https://devdocs.helcim.com/reference/get-card-transaction",
-        "https://devdocs.helcim.com/reference/get-customers",
-        "https://devdocs.helcim.com/reference/create-customer",
-        "https://devdocs.helcim.com/reference/get-customer",
-        "https://devdocs.helcim.com/reference/update-customer",
-        "https://devdocs.helcim.com/reference/get-customer-cards",
-        "https://devdocs.helcim.com/reference/get-customer-card",
-        "https://devdocs.helcim.com/reference/get-customer-bank-accounts",
-        "https://devdocs.helcim.com/reference/get-customer-bank-account",
-        "https://devdocs.helcim.com/reference/set-customer-bank-account-default",
-        "https://devdocs.helcim.com/reference/create-invoice",
-        "https://devdocs.helcim.com/reference/get-invoice",
-        "https://devdocs.helcim.com/reference/get-invoices",
-        "https://devdocs.helcim.com/reference/update-invoice",
-        "https://devdocs.helcim.com/reference/card-terminals",
-        "https://devdocs.helcim.com/reference/checkout-init",
-      ];
+      const urls = await collectEndpointsFromReadme({
+        url: "https://devdocs.helcim.com/reference/card-terminals",
+      });
       return downloadOpenApiSpecFromReadme({ urls });
     },
   },
   "2c2p.com": {
     lambda: async () => {
-      const urls = [
-        "https://developer.2c2p.com/reference/post_payment-4-3-applepay-merchantvalidation",
-        "https://developer.2c2p.com/reference/post_payment-4-3-cache-cleancache",
-        "https://developer.2c2p.com/reference/post_payment-4-3-canceltransaction",
-        "https://developer.2c2p.com/reference/post_payment-4-3-cardinstallmentplaninfo",
-        "https://developer.2c2p.com/reference/post_payment-4-3-cardtokeninfo",
-        "https://developer.2c2p.com/reference/post_payment-4-3-exchangerate",
-        "https://developer.2c2p.com/reference/post_payment-4-3-exchangerate-secure",
-        "https://developer.2c2p.com/reference/post_payment-4-3-exchangerate-apmmccexchangerate",
-        "https://developer.2c2p.com/reference/post_payment-4-3-initialization",
-        "https://developer.2c2p.com/reference/post_payment-4-3-loyaltypointinfo",
-        "https://developer.2c2p.com/reference/post_payment-4-3-payment",
-        "https://developer.2c2p.com/reference/post_payment-4-3-paymentinquiry",
-        "https://developer.2c2p.com/reference/post_payment-4-3-paymentinstruction",
-        "https://developer.2c2p.com/reference/post_payment-4-3-paymentnotification",
-        "https://developer.2c2p.com/reference/post_payment-4-3-paymentoption",
-        "https://developer.2c2p.com/reference/post_payment-4-3-paymentoptiondetails",
-        "https://developer.2c2p.com/reference/post_payment-4-3-paymentsimulate",
-        "https://developer.2c2p.com/reference/post_payment-4-3-paymenttoken",
-        "https://developer.2c2p.com/reference/post_payment-4-3-redirectbackend",
-        "https://developer.2c2p.com/reference/post_payment-4-3-redirectfrontend",
-        "https://developer.2c2p.com/reference/post_payment-4-3-transactionstatus",
-        "https://developer.2c2p.com/reference/post_payment-4-3-userpreference",
-      ];
+      const urls = await collectEndpointsFromReadme({
+        url: "https://developer.2c2p.com/reference/post_payment-4-3-payment",
+      });
       return downloadOpenApiSpecFromReadme({ urls });
     },
   },
   "tremendous.com": {
     lambda: async () => {
-      const urls = [
-        "https://developers.tremendous.com/reference/list-rewards",
-        "https://developers.tremendous.com/reference/get-reward",
-        "https://developers.tremendous.com/reference/generate-reward-link",
-        "https://developers.tremendous.com/reference/generate-reward-token",
-        "https://developers.tremendous.com/reference/resend-reward",
-        "https://developers.tremendous.com/reference/list-orders",
-        "https://developers.tremendous.com/reference/create-order",
-        "https://developers.tremendous.com/reference/get-order",
-        "https://developers.tremendous.com/reference/approve-order",
-        "https://developers.tremendous.com/reference/reject-order",
-        "https://developers.tremendous.com/reference/list-products",
-        "https://developers.tremendous.com/reference/get-product",
-        "https://developers.tremendous.com/reference/list-campaigns",
-        "https://developers.tremendous.com/reference/get-campaign",
-        "https://developers.tremendous.com/reference/list-funding-sources",
-        "https://developers.tremendous.com/reference/get-funding-source",
-        "https://developers.tremendous.com/reference/list-invoices",
-        "https://developers.tremendous.com/reference/create-invoice",
-        "https://developers.tremendous.com/reference/get-invoice",
-        "https://developers.tremendous.com/reference/delete-invoices",
-        "https://developers.tremendous.com/reference/download-invoice-pdf",
-        "https://developers.tremendous.com/reference/download-invoice-csv",
-        "https://developers.tremendous.com/reference/list-balance-transactions",
-        "https://developers.tremendous.com/reference/list-organizations",
-        "https://developers.tremendous.com/reference/create-organization",
-        "https://developers.tremendous.com/reference/get-organization",
-        "https://developers.tremendous.com/reference/create-api-key",
-        "https://developers.tremendous.com/reference/list-members",
-        "https://developers.tremendous.com/reference/create-member",
-        "https://developers.tremendous.com/reference/get-member",
-        "https://developers.tremendous.com/reference/list-fields",
-        "https://developers.tremendous.com/reference/list-webhooks",
-        "https://developers.tremendous.com/reference/create-webhook",
-        "https://developers.tremendous.com/reference/get-webhook",
-        "https://developers.tremendous.com/reference/simulate-webhook",
-        "https://developers.tremendous.com/reference/list-webhook-events",
-      ];
+      const urls = await collectEndpointsFromReadme({
+        url: "https://developers.tremendous.com/reference/list-rewards",
+      });
       return downloadOpenApiSpecFromReadme({ urls });
     },
   },
   "fastspring.com": {
     lambda: async () => {
-      const urls = [
-        "https://developer.fastspring.com/reference/get-an-account",
-        "https://developer.fastspring.com/reference/update-an-account",
-        "https://developer.fastspring.com/reference/get-account-management-url",
-        "https://developer.fastspring.com/reference/create-an-account",
-        "https://developer.fastspring.com/reference/search-by-parameter",
-        "https://developer.fastspring.com/reference/create-new-coupon",
-        "https://developer.fastspring.com/reference/add-coupon-codes",
-        "https://developer.fastspring.com/reference/retrieve-coupon-details",
-        "https://developer.fastspring.com/reference/getcouponcodesassignedtoacoupon",
-        "https://developer.fastspring.com/reference/delete-all-coupon-codes",
-        "https://developer.fastspring.com/reference/get-processed-events",
-        "https://developer.fastspring.com/reference/get-unprocessed-events",
-        "https://developer.fastspring.com/reference/update-an-event",
-        "https://developer.fastspring.com/reference/get-orders-by-id",
-        "https://developer.fastspring.com/reference/get-orders-by-product-path",
-        "https://developer.fastspring.com/reference/get-orders-by-date-range",
-        "https://developer.fastspring.com/reference/get-orders-by-product-date-range",
-        "https://developer.fastspring.com/reference/get-orders-by-end-date",
-        "https://developer.fastspring.com/reference/get-orders-by-return-date",
-        "https://developer.fastspring.com/reference/update-order-tags-attributes",
-        "https://developer.fastspring.com/reference/get-products-by-path",
-        "https://developer.fastspring.com/reference/get-all-product-ids",
-        "https://developer.fastspring.com/reference/create-products",
-        "https://developer.fastspring.com/reference/getalloffersforproductbyoffertype",
-        "https://developer.fastspring.com/reference/createorupdateproductoffers",
-        "https://developer.fastspring.com/reference/get-all-product-prices",
-        "https://developer.fastspring.com/reference/get-a-product-price",
-        "https://developer.fastspring.com/reference/get-all-product-prices-country",
-        "https://developer.fastspring.com/reference/get-all-product-prices-country-currency",
-        "https://developer.fastspring.com/reference/get-a-product-price-country-currency",
-        "https://developer.fastspring.com/reference/get-a-product-price-country",
-        "https://developer.fastspring.com/reference/deleteproducts",
-        "https://developer.fastspring.com/reference/get-returns",
-        "https://developer.fastspring.com/reference/create-returns",
-        "https://developer.fastspring.com/reference/create-a-session",
-        "https://developer.fastspring.com/reference/get-all-subscriptions",
-        "https://developer.fastspring.com/reference/change-subscription-product",
-        "https://developer.fastspring.com/reference/subscriptoinproratepreviewestimate",
-        "https://developer.fastspring.com/reference/get-a-subscription",
-        "https://developer.fastspring.com/reference/cancel-subscription",
-        "https://developer.fastspring.com/reference/resume-canceled-subscription",
-        "https://developer.fastspring.com/reference/get-subscription-entries",
-        "https://developer.fastspring.com/reference/rebill-managed-subscription",
-        "https://developer.fastspring.com/reference/pauseasubscription",
-        "https://developer.fastspring.com/reference/resumeapausedsubscription",
-        "https://developer.fastspring.com/reference/convertexpiredtrialwithoutpaymentmethod",
-        "https://developer.fastspring.com/reference/getsubscriptionplancchangehistory",
-        "https://developer.fastspring.com/reference/get-a-quote",
-        "https://developer.fastspring.com/reference/update-quote",
-        "https://developer.fastspring.com/reference/delete-quote",
-        "https://developer.fastspring.com/reference/cancel-quote",
-        "https://developer.fastspring.com/reference/additional-attributes",
-        "https://developer.fastspring.com/reference/create-quote",
-        "https://developer.fastspring.com/reference/rotatewebhookkey",
-        "https://developer.fastspring.com/reference/generatesubscriptionreport",
-        "https://developer.fastspring.com/reference/generaterevenuereport",
-        "https://developer.fastspring.com/reference/getjobbyid",
-        "https://developer.fastspring.com/reference/getjobs",
-        "https://developer.fastspring.com/reference/resetcache",
-        "https://developer.fastspring.com/reference/downloadreport",
-      ];
+      const urls = await collectEndpointsFromReadme({
+        url: "https://developer.fastspring.com/reference/get-an-account",
+      });
       return downloadOpenApiSpecFromReadme({ urls });
     },
   },
@@ -1210,19 +1041,9 @@ const customRequests: Record<string, CustomRequest> = {
   },
   "coalesce.io": {
     lambda: async () => {
-      const urls = [
-        "https://docs.coalesce.io/reference/startrun",
-        "https://docs.coalesce.io/reference/job-status",
-        "https://docs.coalesce.io/reference/rerun-failed-refresh-job",
-        "https://docs.coalesce.io/reference/cancelrun",
-        "https://docs.coalesce.io/reference/getenvironments",
-        "https://docs.coalesce.io/reference/getenvironment",
-        "https://docs.coalesce.io/reference/getnodes",
-        "https://docs.coalesce.io/reference/getnode",
-        "https://docs.coalesce.io/reference/getruns",
-        "https://docs.coalesce.io/reference/getrun",
-        "https://docs.coalesce.io/reference/getrunresults",
-      ];
+      const urls = await collectEndpointsFromReadme({
+        url: "https://docs.coalesce.io/reference/startrun",
+      });
       return downloadOpenApiSpecFromReadme({ urls });
     },
   },
