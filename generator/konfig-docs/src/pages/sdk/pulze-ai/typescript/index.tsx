@@ -21,7 +21,7 @@ We are a VC Funded, early stage startup based in San Francisco.`}
       companyKebabCase="pulze-ai"
       clientNameCamelCase="pulzeAi"
       homepage="www.pulze.ai/"
-      lastUpdated={new Date("2024-03-24T21:30:45.837Z")}
+      lastUpdated={new Date("2024-03-24T21:45:24.878Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/pulze-ai/favicon.png"
       // Missing contactUrl
       // Missing contactEmail

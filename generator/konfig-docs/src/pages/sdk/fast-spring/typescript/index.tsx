@@ -19,7 +19,7 @@ export default function FastSpringTypeScriptSdk() {
       companyKebabCase="fast-spring"
       clientNameCamelCase="fastSpring"
       homepage="fastspring.com/"
-      lastUpdated={new Date("2024-03-19T20:02:28.444Z")}
+      lastUpdated={new Date("2024-03-24T21:41:22.682Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/fastspring/favicon.png"
       // Missing contactUrl
       // Missing contactEmail

@@ -19,7 +19,7 @@ export default function UploadThingTypeScriptSdk() {
       companyKebabCase="upload-thing"
       clientNameCamelCase="uploadThing"
       homepage="uploadthing.com"
-      lastUpdated={new Date("2024-03-14T22:06:20.836Z")}
+      lastUpdated={new Date("2024-03-24T21:41:22.682Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/uploadthing/favicon.png"
       // Missing contactUrl
       // Missing contactEmail

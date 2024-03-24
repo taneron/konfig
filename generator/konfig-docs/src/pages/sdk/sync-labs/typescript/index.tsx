@@ -29,7 +29,7 @@ we're building a suite of audio / video models to change how we live, work, and 
       companyKebabCase="sync-labs"
       clientNameCamelCase="syncLabs"
       homepage="synclabs.so"
-      lastUpdated={new Date("2024-03-23T08:08:42.516Z")}
+      lastUpdated={new Date("2024-03-24T21:41:22.682Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/sync-labs/favicon.png"
       // Missing contactUrl
       // Missing contactEmail

@@ -19,7 +19,7 @@ export default function OneDocTypeScriptSdk() {
       companyKebabCase="one-doc"
       clientNameCamelCase="oneDoc"
       homepage="onedoc.com"
-      lastUpdated={new Date("2024-03-15T00:46:33.897Z")}
+      lastUpdated={new Date("2024-03-24T21:41:22.682Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/onedoc/favicon.png"
       // Missing contactUrl
       // Missing contactEmail

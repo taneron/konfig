@@ -19,7 +19,7 @@ export default function ClickUpTypeScriptSdk() {
       companyKebabCase="click-up"
       clientNameCamelCase="clickUp"
       homepage="clickup.com"
-      lastUpdated={new Date("2024-03-15T18:50:00.907Z")}
+      lastUpdated={new Date("2024-03-24T21:43:23.717Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/clickup/favicon.png"
       // Missing contactUrl
       // Missing contactEmail

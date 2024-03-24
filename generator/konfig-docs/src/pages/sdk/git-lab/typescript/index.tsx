@@ -19,7 +19,7 @@ export default function GitLabTypeScriptSdk() {
       companyKebabCase="git-lab"
       clientNameCamelCase="gitLab"
       homepage="gitlab.com"
-      lastUpdated={new Date("2024-03-14T08:10:33.678Z")}
+      lastUpdated={new Date("2024-03-24T21:41:22.682Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/gitlab/favicon.png"
       // Missing contactUrl
       // Missing contactEmail

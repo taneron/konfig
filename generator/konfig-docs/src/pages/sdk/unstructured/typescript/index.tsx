@@ -21,7 +21,7 @@ Unstructured captures this unstructured data wherever it lives and transforms it
       companyKebabCase="unstructured"
       clientNameCamelCase="unstructured"
       homepage="unstructured.io"
-      lastUpdated={new Date("2024-03-23T08:08:42.516Z")}
+      lastUpdated={new Date("2024-03-24T21:41:22.682Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/unstructured/favicon.jpg"
       // Missing contactUrl
       // Missing contactEmail

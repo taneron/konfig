@@ -19,7 +19,7 @@ export default function SvixTypeScriptSdk() {
       companyKebabCase="svix"
       clientNameCamelCase="svix"
       homepage="svix.com"
-      lastUpdated={new Date("2024-03-15T18:50:00.907Z")}
+      lastUpdated={new Date("2024-03-24T21:45:24.878Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/svix/favicon.png"
       // Missing contactUrl
       // Missing contactEmail

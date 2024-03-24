@@ -19,7 +19,7 @@ export default function HsbcAccountInformationCeTypeScriptSdk() {
       companyKebabCase="hsbc"
       clientNameCamelCase="hsbcAccountInformationCe"
       homepage="hsbc.com"
-      lastUpdated={new Date("2024-03-19T23:12:03.314Z")}
+      lastUpdated={new Date("2024-03-24T21:45:24.878Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/hsbc/account-information-ce/favicon.png"
       // Missing contactUrl
       // Missing contactEmail

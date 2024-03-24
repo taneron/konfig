@@ -21,7 +21,7 @@ We're 75 people, fully remote, highly profitable, and self-funded (yes, crazy, w
       companyKebabCase="tremendous"
       clientNameCamelCase="tremendous"
       homepage="www.tremendous.com/"
-      lastUpdated={new Date("2024-03-19T01:05:01.617Z")}
+      lastUpdated={new Date("2024-03-24T21:45:24.878Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/tremendous/favicon.png"
       // Missing contactUrl
       contactEmail="developers@tremendous.com"

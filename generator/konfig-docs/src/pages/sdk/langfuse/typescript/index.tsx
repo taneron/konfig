@@ -19,7 +19,7 @@ export default function LangfuseTypeScriptSdk() {
       companyKebabCase="langfuse"
       clientNameCamelCase="langfuse"
       homepage="langfuse.com"
-      lastUpdated={new Date("2024-03-21T18:22:18.451Z")}
+      lastUpdated={new Date("2024-03-24T21:41:22.682Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/langfuse/favicon.png"
       // Missing contactUrl
       // Missing contactEmail

@@ -19,7 +19,7 @@ export default function CrowdSecTypeScriptSdk() {
       companyKebabCase="crowd-sec"
       clientNameCamelCase="crowdSec"
       homepage="www.crowdsec.net/"
-      lastUpdated={new Date("2024-03-18T18:55:40.703Z")}
+      lastUpdated={new Date("2024-03-24T21:41:22.682Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/crowdsec/favicon.png"
       // Missing contactUrl
       contactEmail="contact@crowdsec.net"

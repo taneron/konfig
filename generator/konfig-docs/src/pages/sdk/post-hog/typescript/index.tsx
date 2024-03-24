@@ -28,7 +28,7 @@ With over 50k users, we're default alive, growing 97% through word of mouth, and
       companyKebabCase="post-hog"
       clientNameCamelCase="postHog"
       homepage="posthog.com"
-      lastUpdated={new Date("2024-03-21T03:39:02.740Z")}
+      lastUpdated={new Date("2024-03-24T21:45:24.878Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/posthog/favicon.png"
       // Missing contactUrl
       // Missing contactEmail

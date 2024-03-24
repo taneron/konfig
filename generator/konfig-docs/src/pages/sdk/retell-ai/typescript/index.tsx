@@ -19,7 +19,7 @@ export default function RetellAiTypeScriptSdk() {
       companyKebabCase="retell-ai"
       clientNameCamelCase="retellAi"
       homepage="retellai.com"
-      lastUpdated={new Date("2024-03-23T08:08:42.516Z")}
+      lastUpdated={new Date("2024-03-24T21:45:24.878Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/retell-ai/favicon.png"
       contactUrl="https://www.retellai.com/"
       contactEmail="founders@retellai.com"

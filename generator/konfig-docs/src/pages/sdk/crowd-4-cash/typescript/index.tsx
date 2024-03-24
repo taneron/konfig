@@ -21,7 +21,7 @@ Crowd4Cash brings investors and borrower together. For better returns for the in
       companyKebabCase="crowd-4-cash"
       clientNameCamelCase="crowd4Cash"
       homepage="crowd4cash.ch/"
-      lastUpdated={new Date("2024-03-18T21:28:34.847Z")}
+      lastUpdated={new Date("2024-03-24T21:42:09.454Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/crowd-4-cash/favicon.png"
       contactUrl="https://crowd4cash.ch"
       contactEmail="info@crowd4cash.ch"

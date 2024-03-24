@@ -19,7 +19,7 @@ export default function BoxTypeScriptSdk() {
       companyKebabCase="box"
       clientNameCamelCase="box"
       homepage="box.com"
-      lastUpdated={new Date("2024-03-19T00:01:13.595Z")}
+      lastUpdated={new Date("2024-03-24T21:41:22.682Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/box/favicon.png"
       contactUrl="https://box.dev"
       contactEmail="devrel@box.com"

@@ -19,7 +19,7 @@ export default function CoalesceTypeScriptSdk() {
       companyKebabCase="coalesce"
       clientNameCamelCase="coalesce"
       homepage="coalesce.io/"
-      lastUpdated={new Date("2024-03-19T20:37:31.306Z")}
+      lastUpdated={new Date("2024-03-24T21:45:24.878Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/coalesce/favicon.png"
       // Missing contactUrl
       // Missing contactEmail

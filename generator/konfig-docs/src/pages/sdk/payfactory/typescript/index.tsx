@@ -19,7 +19,7 @@ export default function PayfactoryTypeScriptSdk() {
       companyKebabCase="payfactory"
       clientNameCamelCase="payfactory"
       homepage="payfactory.io/"
-      lastUpdated={new Date("2024-03-18T22:00:41.063Z")}
+      lastUpdated={new Date("2024-03-24T21:41:22.682Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/payfactory/favicon.png"
       // Missing contactUrl
       // Missing contactEmail

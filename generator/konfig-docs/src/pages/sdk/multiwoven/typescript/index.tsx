@@ -19,7 +19,7 @@ export default function MultiwovenTypeScriptSdk() {
       companyKebabCase="multiwoven"
       clientNameCamelCase="multiwoven"
       homepage="www.multiwoven.com/"
-      lastUpdated={new Date("2024-03-23T08:08:42.516Z")}
+      lastUpdated={new Date("2024-03-24T21:45:24.878Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/multiwoven/favicon.png"
       // Missing contactUrl
       // Missing contactEmail

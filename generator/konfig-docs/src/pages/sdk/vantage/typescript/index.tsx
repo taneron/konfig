@@ -19,7 +19,7 @@ export default function VantageTypeScriptSdk() {
       companyKebabCase="vantage"
       clientNameCamelCase="vantage"
       homepage="vantage.sh"
-      lastUpdated={new Date("2024-03-21T03:55:00.846Z")}
+      lastUpdated={new Date("2024-03-24T21:41:22.682Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/vantage/favicon.png"
       contactUrl="https://www.vantage.sh"
       contactEmail="support@vantage.sh"

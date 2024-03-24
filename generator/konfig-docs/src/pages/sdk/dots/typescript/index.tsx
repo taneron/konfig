@@ -19,7 +19,7 @@ export default function DotsTypeScriptSdk() {
       companyKebabCase="dots"
       clientNameCamelCase="dots"
       homepage="dots.dev"
-      lastUpdated={new Date("2024-03-21T21:37:11.285Z")}
+      lastUpdated={new Date("2024-03-24T21:41:22.682Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/dots/favicon.png"
       contactUrl="https://dots.dev"
       contactEmail="info@dots.dev"

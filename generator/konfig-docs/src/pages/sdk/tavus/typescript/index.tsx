@@ -19,7 +19,7 @@ export default function TavusTypeScriptSdk() {
       companyKebabCase="tavus"
       clientNameCamelCase="tavus"
       homepage="www.tavus.io/"
-      lastUpdated={new Date("2024-03-17T23:48:01.149Z")}
+      lastUpdated={new Date("2024-03-24T21:41:22.682Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/tavus/favicon.png"
       // Missing contactUrl
       // Missing contactEmail

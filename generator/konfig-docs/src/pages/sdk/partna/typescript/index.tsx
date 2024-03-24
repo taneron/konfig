@@ -19,7 +19,7 @@ export default function PartnaTypeScriptSdk() {
       companyKebabCase="partna"
       clientNameCamelCase="partna"
       homepage="getpartna.com/"
-      lastUpdated={new Date("2024-03-24T21:30:45.837Z")}
+      lastUpdated={new Date("2024-03-24T21:41:22.682Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/partna/favicon.png"
       // Missing contactUrl
       // Missing contactEmail

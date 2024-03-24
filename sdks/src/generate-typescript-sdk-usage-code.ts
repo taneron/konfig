@@ -19,9 +19,9 @@ export function generateTypescriptSdkUsageCode({
     const addKey = (key: string, value: string) => {
       if (usedKeys.has(key)) {
         // add with comment
-        newLines.push(`    // ${key}: "${value}",`);
+        newLines.push(`    // ${key}: "${value}"`);
       } else {
-        newLines.push(`    ${key}: "${value}",`);
+        newLines.push(`    ${key}: "${value}"`);
       }
       usedKeys.add(key);
     };
@@ -45,7 +45,7 @@ export function generateTypescriptSdkUsageCode({
         addKey("username", "USERNAME");
         addKey("password", "PASSWORD");
       } else if (securityScheme.scheme.toLocaleLowerCase() === "bearer") {
-        addKey("token", "TOKEN");
+        addKey(camelcase(key), snakeCase(key).toUpperCase());
       } else if (securityScheme.scheme.toLocaleLowerCase() === "digest") {
         addKey("username", "USERNAME");
         addKey("password", "PASSWORD");
@@ -74,13 +74,28 @@ export function generateTypescriptSdkUsageCode({
     setupLines.push(...newLines);
   }
 
+  // only add comma to lines that are not at the end and don't start with "//"
+  const setupLinesWithCommas = setupLines.map((line, index) => {
+    if (
+      line.endsWith(",") ||
+      line.trim().startsWith("//") ||
+      line.trim().startsWith("/*") ||
+      line.trim().startsWith("*") ||
+      line.trim().startsWith("*/") ||
+      index === setupLines.length - 1
+    ) {
+      return line;
+    }
+    return `${line},`;
+  });
+
   const lines: string[] = [
     `import { ${clientName} } from '${sdkName}';`,
     "",
     ...(setupLines.length > 0
       ? [
           `const ${camelcase(clientName)} = new ${clientName}({`,
-          ...setupLines,
+          ...setupLinesWithCommas,
           "})",
         ]
       : [`const ${camelcase(clientName)} = new ${clientName}()`]),

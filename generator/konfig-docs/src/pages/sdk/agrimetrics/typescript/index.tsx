@@ -21,7 +21,7 @@ Agrimetrics provides data and tools to agrifood businesses, researchers and poli
       companyKebabCase="agrimetrics"
       clientNameCamelCase="agrimetrics"
       homepage="agrimetrics.co.uk"
-      lastUpdated={new Date("2024-03-24T20:43:46.972Z")}
+      lastUpdated={new Date("2024-03-24T21:45:24.878Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/agrimetrics/favicon.png"
       // Missing contactUrl
       // Missing contactEmail

@@ -23,7 +23,7 @@ As the global leader in people analytics, Visier has over 25,000 customers in 75
       companyKebabCase="visier"
       clientNameCamelCase="visierDocumentSearch"
       homepage="visier.com"
-      lastUpdated={new Date("2024-03-19T23:14:00.000Z")}
+      lastUpdated={new Date("2024-03-24T21:45:24.878Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/visier/document-search/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
