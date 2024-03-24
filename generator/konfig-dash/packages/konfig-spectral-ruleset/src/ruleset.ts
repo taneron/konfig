@@ -97,6 +97,7 @@ export default {
       then: {
         function: parameterMissingDescription,
       },
+      severity: DiagnosticSeverity.Information,
     },
     'konfig-oas2-schema': {
       description: 'Validate structure of OpenAPI v2 specification.',
