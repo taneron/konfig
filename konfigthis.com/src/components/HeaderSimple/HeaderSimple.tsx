@@ -129,7 +129,7 @@ export function HeaderSimple() {
               />
               <NavLink
                 className="py-4 text-gray-600 border-t border-solid border-gray-100"
-                label="SDKs for Relevant APIs"
+                label="SDKs for Public APIs"
                 classNames={{
                   label: "text-lg",
                 }}
