@@ -1,0 +1,616 @@
+examples: {}
+examples_2: {}
+examples_3:
+  /data-sets/{dataSetId}/access:
+    patch:
+      '200':
+        application/json: {}
+  /layers/{layerId}/style:
+    put:
+      '200':
+        application/json: {}
+ignoreObjectsWithNoProperties: true
+operationIds:
+  /access-requests:
+    get: AccessRequest_list
+    post: AccessRequest_createNewRequest
+  /access-requests/{requestId}:
+    delete: AccessRequest_deleteRequestById
+  /authenticate:
+    post: Authentication_getJwt
+  /categories:
+    get: Dataset_listValidCategories
+  /data-requests:
+    get: DataRequest_listUserAccessRequests
+    post: DataRequest_createSingleAccessRequest
+  /data-requests/{requestId}:
+    get: DataRequest_getRequestedData
+    patch: DataRequest_updateRequest
+  /data-requests/{requestId}/download:
+    get: DataRequest_getResults
+  /data-requests/{uniqueLinkId}/approve:
+    get: DataRequest_grantUserAccess
+  /data-requests/{uniqueLinkId}/geometry:
+    get: DataRequest_getGeoJsonGeometry
+  /data-requests/{uniqueLinkId}/reject:
+    get: DataRequest_rejectUserAccess
+  /data-sets:
+    get: DataSet_listAllDataSets
+    post: Dataset_createSingleCatalogEntry
+  /data-sets/{dataSetId}:
+    delete: Dataset_deleteSingleDataSet
+    get: Dataset_getSingleCatalogEntry
+    patch: Dataset_updateSingleCatalogEntry
+    put: Dataset_updateSingleEntry
+  /data-sets/{dataSetId}/access:
+    get: Dataset_getEntitlements
+    patch: Dataset_setEntitlements
+  /data-sets/{dataSetId}/draft:
+    delete: Dataset_discardDraftChanges
+    get: Dataset_getDraftChanges
+  /data-sets/{dataSetId}/draft-status:
+    put: Status_setDraftStatus
+  /data-sets/{dataSetId}/draft/validationReport:
+    get: Dataset_getValidationReport
+  /data-sets/{dataSetId}/fileDataset:
+    get: Dataset_getFileDatasetId
+    post: Dataset_createFileDataset
+  /data-sets/{dataSetId}/image:
+    put: Dataset_setImage
+  /data-sets/{dataSetId}/validationReport:
+    get: Dataset_getValidationReport
+  /datasets/apicss/{cssFile}:
+    get: Ogcapi_getStyleForCssFile
+  /datasets/swagger-ui/{swaggerFile}:
+    get: Ogcapi_getSwaggerFile
+  /datasets/{datasetId}:
+    get: QueryDataset_listLayersWithinDataset
+  /datasets/{datasetId}/layers:
+    post: ManageDataset_ingestFileNewLayer
+  /datasets/{datasetId}/ogc/features/v1:
+    get: Ogcapi_featuresQuery
+  /datasets/{datasetId}/ogc/features/v1/collections:
+    get: Ogcapi_queryFeaturesCollection
+  /datasets/{datasetId}/ogc/features/v1/collections/{collectionId}:
+    get: Ogcapi_featuresQueryOgc
+  /datasets/{datasetId}/ogc/features/v1/collections/{collectionId}/items:
+    get: Ogcapi_queryFeaturesCollectionItems
+  /datasets/{datasetId}/ogc/features/v1/collections/{collectionId}/items/{featureId}:
+    get: Ogcapi_featuresQuery
+  /datasets/{datasetId}/ogc/features/v1/collections/{collectionId}/queryables:
+    get: Ogcapi_featuresQueryables
+  /datasets/{datasetId}/ogc/features/v1/conformance:
+    get: Ogcapi_featuresQueryConformance
+  /datasets/{datasetId}/ogc/features/v1/functions:
+    get: Ogcapi_queryFeaturesFunction
+  /datasets/{datasetId}/ogc/features/v1/openapi:
+    get: Ogcapi_queryFeaturesOpenapi
+  /datasets/{datasetId}/ogc/tiles/v1:
+    get: OgcApiTiles_queryTilesV1
+  /datasets/{datasetId}/ogc/tiles/v1/collections:
+    get: OgcApiTiles_queryCollections
+  /datasets/{datasetId}/ogc/tiles/v1/collections/{collectionId}:
+    get: OgcApiTiles_queryCollectionById
+  /datasets/{datasetId}/ogc/tiles/v1/collections/{collectionId}/map/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}:
+    get: OgcApiTiles_getQueryTilesCollection
+  /datasets/{datasetId}/ogc/tiles/v1/collections/{collectionId}/queryables:
+    get: OgcApiTiles_queryCollectionQueryables
+  /datasets/{datasetId}/ogc/tiles/v1/collections/{collectionId}/tiles/{tileMatrixSetId}:
+    get: OgcApiTiles_getTilesCollection
+  /datasets/{datasetId}/ogc/tiles/v1/conformance:
+    get: OgcApiTiles_getConformance
+  /datasets/{datasetId}/ogc/tiles/v1/tileMatrixSets:
+    get: OgcApiTiles_queryTileMatrixSets
+  /datasets/{datasetId}/ogc/tiles/v1/tileMatrixSets/{tileMatrixSetId}:
+    get: OgcApiTiles_queryTileMatrixSets
+  /datasets/{datasetId}/wcs:
+    get: Wcs_queryData
+    head: Wcs_queryData
+  /datasets/{datasetId}/wfs:
+    get: Wfs_queryDataWithOpenGis
+    head: Wfs_queryDataOpenGis
+    post: Wfs_queryDataOpenGis
+  /datasets/{datasetId}/wms:
+    get: Wms_queryLayerWithOpenGIS
+    head: Wms_queryWithOpenGis
+  /datasets/{datasetId}/wmts:
+    get: Wmts_queryDataSetWmts
+  /datasets/{datasetId}/wmts/rest/{layerName}/{style}/tilejson/{imageFormat}:
+    get: WmtsRest_queryTilejsonImageFormat
+  /datasets/{datasetId}/wmts/rest/{layerName}/{style}/{TileMatrixSet}/{TileMatrix}/{TileRow}/{TileCol}:
+    get: WmtsRest_queryTileMatrixSet
+  /datasets/{datasetId}/wmts/rest/{layerName}/{style}/{TileMatrixSet}/{TileMatrix}/{TileRow}/{TileCol}/{J}/{I}:
+    get: WmtsRest_serviceQuery
+  /harvest/{group}/csw:
+    get: Harvest_xmlDataOnGroup
+    post: Harvest_xmlDataOnGroupPost
+  /harvest/{group}/dcat:
+    get: Dataset_getNonSpatialDataForGroup
+  /images/{imageType}/{imageId}:
+    get: Image_getRawImage
+  /import:
+    post: Import_dataSets
+  /layers/{layerId}:
+    delete: ManageLayer_deleteLayer
+    get: QueryLayer_metadata
+    patch: ManageLayer_addGeoTiff
+  /layers/{layerId}/files:
+    delete: ManageLayer_removeFile
+  /layers/{layerId}/ingest:
+    post: ManageLayer_ingestFile
+  /layers/{layerId}/search:
+    post: QueryLayer_searchGeometry
+  /layers/{layerId}/search/cost:
+    post: QueryLayer_calculateCost
+  /layers/{layerId}/search/statistics:
+    post: QueryLayer_calculateStatisticsWithinGeometry
+  /layers/{layerId}/style:
+    delete: ManageLayer_removeStyle
+    get: ManageLayer_getStyle
+    post: ManageLayer_autoGenerateStyle
+    put: ManageLayer_setStyle
+  /linked-data/concepts:
+    get: Graph_listConcepts
+  /query:
+    post: QueryLayer_cutShapeBoundaryAndRetrieve
+  /rest/services/{datasetId}/{paramOne}:
+    get: Esri_restServiceQuery
+  /rest/services/{datasetId}/{paramOne}/{paramTwo}:
+    get: Esri_restServiceQuery
+  /serviceDefinition:
+    post: ServiceDefinition_createNewDefinition
+  /serviceDefinition/{layerId}:
+    delete: ServiceDefinition_deleteById
+    get: ServiceDefinition_getByLayerId
+    patch: ServiceDefinition_updateExistingDefinition
+  /shapefile:
+    post: Shapefile_convertToGeoJson
+  /status:
+    get: Status_getCatalogApiStatus
+  /tags:
+    get: Dataset_listValidTags
+  /templates:
+    get: Template_listPermissionsToView
+    post: Template_createCatalogEntry
+  /templates/{templateId}:
+    delete: Template_deleteSpecificTemplate
+    get: Template_getSpecificTemplate
+    patch: Template_updateTemplateItem
+    put: Template_updateTemplateItem
+operationTags:
+  /access-requests:
+    get: AccessRequest
+    post: AccessRequest
+  /access-requests/{requestId}:
+    delete: AccessRequest
+  /authenticate:
+    post: Authentication
+  /categories:
+    get: Dataset
+  /data-sets:
+    get: DataSet
+    post: Dataset
+  /data-sets/{dataSetId}:
+    delete: Dataset
+    get: Dataset
+    patch: Dataset
+    put: Dataset
+  /data-sets/{dataSetId}/access:
+    get: Dataset
+    patch: Dataset
+  /data-sets/{dataSetId}/draft:
+    delete: Dataset
+    get: Dataset
+  /data-sets/{dataSetId}/draft-status:
+    put: Status
+  /data-sets/{dataSetId}/draft/validationReport:
+    get: Dataset
+  /data-sets/{dataSetId}/fileDataset:
+    get: Dataset
+    post: Dataset
+  /data-sets/{dataSetId}/image:
+    put: Dataset
+  /data-sets/{dataSetId}/validationReport:
+    get: Dataset
+  /harvest/{group}/csw:
+    get: Harvest
+    post: Harvest
+  /harvest/{group}/dcat:
+    get: Dataset
+  /images/{imageType}/{imageId}:
+    get: Image
+  /import:
+    post: Import
+  /linked-data/concepts:
+    get: Graph
+  /shapefile:
+    post: Shapefile
+  /tags:
+    get: Dataset
+  /templates:
+    get: Template
+    post: Template
+  /templates/{templateId}:
+    delete: Template
+    get: Template
+    patch: Template
+    put: Template
+renameTags: {}
+requestSchemaNames:
+  /access-requests:
+    post:
+      application/json: AccessRequestCreateNewRequestRequest
+  /authenticate:
+    post:
+      application/json: AuthenticationGetJwtRequest
+  /data-requests/{requestId}:
+    patch:
+      application/json: DataRequestUpdateRequestRequest
+  /data-sets:
+    post:
+      application/json: DatasetCreateSingleCatalogEntryRequest
+  /data-sets/{dataSetId}/access:
+    patch:
+      application/json: DatasetSetEntitlementsRequest
+  /data-sets/{dataSetId}/draft-status:
+    put:
+      application/json: StatusSetDraftStatusRequest
+  /datasets/{datasetId}/layers:
+    post:
+      application/json: ManageDatasetIngestFileNewLayerRequest
+  /datasets/{datasetId}/wfs:
+    post:
+      text/xml: WfsQueryDataOpenGisRequest
+  /import:
+    post:
+      application/vnd.openxmlformats-officedocument.spreadsheetml.sheet: ImportDataSetsRequest
+  /layers/{layerId}:
+    patch:
+      multipart/form-data: ManageLayerAddGeoTiffRequest
+  /layers/{layerId}/ingest:
+    post:
+      application/json: ManageLayerIngestFileRequest
+  /layers/{layerId}/search:
+    post:
+      application/json: QueryLayerSearchGeometryRequest
+  /layers/{layerId}/search/cost:
+    post:
+      application/json: QueryLayerCalculateCostRequest
+  /layers/{layerId}/search/statistics:
+    post:
+      application/json: QueryLayerCalculateStatisticsWithinGeometryRequest
+  /layers/{layerId}/style:
+    put:
+      multipart/form-data: ManageLayerSetStyleRequest
+  /query:
+    post:
+      application/json: QueryLayerCutShapeBoundaryAndRetrieveRequest
+      application/zipped-shapefile: QueryLayerCutShapeBoundaryAndRetrieveRequest1
+  /serviceDefinition/{layerId}:
+    patch:
+      application/json: ServiceDefinitionUpdateExistingDefinitionRequest
+  /shapefile:
+    post:
+      application/zipped-shapefile: ShapefileConvertToGeoJsonRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /access-requests:
+    get:
+      '400':
+        application/xml: AccessRequestListResponse
+  /authenticate:
+    post:
+      '200':
+        application/json: AuthenticationGetJwtResponse
+      '400':
+        application/json: AuthenticationGetJwt400Response
+  /data-requests:
+    post:
+      '200':
+        application/json: DataRequestCreateSingleAccessRequestResponse
+  /data-requests/{requestId}:
+    patch:
+      '200':
+        application/json: DataRequestUpdateRequestResponse
+  /data-requests/{requestId}/download:
+    get:
+      '200':
+        application/dxf: DataRequestGetResults200Response
+        application/geo+json: DataRequestGetResultsResponse
+        application/gml+xml; version=3.2: DataRequestGetResults200Response
+        application/vnd.google-earth.kml+xml: DataRequestGetResults200Response
+        application/x.gdb+zip: DataRequestGetResults200Response
+        application/x.mid-mif+zip: DataRequestGetResults200Response
+        application/x.tab+zip: DataRequestGetResults200Response
+        application/zipped-shapefile: DataRequestGetResults200Response
+      '406':
+        application/json: DataRequestGetResults406Response
+  /data-sets:
+    get:
+      '200':
+        application/vnd.openxmlformats-officedocument.spreadsheetml.sheet: DataSetListAllDataSetsResponse
+  /data-sets/{dataSetId}:
+    delete:
+      '200':
+        application/json: DatasetDeleteSingleDataSetResponse
+    get:
+      '200':
+        application/xml: DatasetGetSingleCatalogEntryResponse
+  /data-sets/{dataSetId}/access:
+    get:
+      '200':
+        application/json: DatasetGetEntitlementsResponse
+    patch:
+      '200':
+        application/json: DatasetSetEntitlementsResponse
+  /data-sets/{dataSetId}/draft/validationReport:
+    get:
+      '200':
+        application/json: DatasetGetValidationReport200Response
+  /data-sets/{dataSetId}/fileDataset:
+    get:
+      '200':
+        application/json: DatasetGetFileDatasetIdResponse
+    post:
+      '200':
+        application/json: DatasetCreateFileDatasetResponse
+  /data-sets/{dataSetId}/validationReport:
+    get:
+      '200':
+        application/json: DatasetGetValidationReportResponse
+  /datasets/{datasetId}:
+    get:
+      '200':
+        application/json: QueryDatasetListLayersWithinDatasetResponse
+      '403':
+        application/json: QueryDatasetListLayersWithinDataset403Response
+      '404':
+        application/json: QueryDatasetListLayersWithinDataset404Response
+  /datasets/{datasetId}/ogc/features/v1:
+    get:
+      '200':
+        text/plain: OgcapiFeaturesQueryResponse
+  /datasets/{datasetId}/ogc/features/v1/collections:
+    get:
+      '200':
+        text/plain: OgcapiQueryFeaturesCollectionResponse
+  /datasets/{datasetId}/ogc/features/v1/collections/{collectionId}:
+    get:
+      '200':
+        text/plain: OgcapiFeaturesQueryOgcResponse
+  /datasets/{datasetId}/ogc/features/v1/collections/{collectionId}/items:
+    get:
+      '200':
+        text/plain: OgcapiQueryFeaturesCollectionItemsResponse
+  /datasets/{datasetId}/ogc/features/v1/collections/{collectionId}/items/{featureId}:
+    get:
+      '200':
+        text/plain: OgcapiFeaturesQuery200Response
+  /datasets/{datasetId}/ogc/features/v1/collections/{collectionId}/queryables:
+    get:
+      '200':
+        text/plain: OgcapiFeaturesQueryablesResponse
+  /datasets/{datasetId}/ogc/features/v1/conformance:
+    get:
+      '200':
+        text/plain: OgcapiFeaturesQueryConformanceResponse
+  /datasets/{datasetId}/ogc/features/v1/functions:
+    get:
+      '200':
+        text/plain: OgcapiQueryFeaturesFunctionResponse
+  /datasets/{datasetId}/ogc/features/v1/openapi:
+    get:
+      '200':
+        text/plain: OgcapiQueryFeaturesOpenapiResponse
+  /datasets/{datasetId}/ogc/tiles/v1:
+    get:
+      '200':
+        text/plain: OgcApiTilesQueryTilesV1Response
+  /datasets/{datasetId}/ogc/tiles/v1/collections:
+    get:
+      '200':
+        text/plain: OgcApiTilesQueryCollectionsResponse
+  /datasets/{datasetId}/ogc/tiles/v1/collections/{collectionId}:
+    get:
+      '200':
+        text/plain: OgcApiTilesQueryCollectionByIdResponse
+  /datasets/{datasetId}/ogc/tiles/v1/collections/{collectionId}/map/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}:
+    get:
+      '200':
+        text/plain: OgcApiTilesGetQueryTilesCollectionResponse
+  /datasets/{datasetId}/ogc/tiles/v1/collections/{collectionId}/queryables:
+    get:
+      '200':
+        text/plain: OgcApiTilesQueryCollectionQueryablesResponse
+  /datasets/{datasetId}/ogc/tiles/v1/collections/{collectionId}/tiles/{tileMatrixSetId}:
+    get:
+      '200':
+        text/plain: OgcApiTilesGetTilesCollectionResponse
+  /datasets/{datasetId}/ogc/tiles/v1/conformance:
+    get:
+      '200':
+        text/plain: OgcApiTilesGetConformanceResponse
+  /datasets/{datasetId}/ogc/tiles/v1/tileMatrixSets:
+    get:
+      '200':
+        text/plain: OgcApiTilesQueryTileMatrixSetsResponse
+  /datasets/{datasetId}/ogc/tiles/v1/tileMatrixSets/{tileMatrixSetId}:
+    get:
+      '200':
+        text/plain: OgcApiTilesQueryTileMatrixSets200Response
+  /datasets/{datasetId}/wcs:
+    get:
+      '200':
+        text/plain: WcsQueryDataResponse
+    head:
+      '200':
+        text/plain: WcsQueryData200Response
+  /datasets/{datasetId}/wfs:
+    get:
+      '200':
+        text/plain: WfsQueryDataWithOpenGisResponse
+    head:
+      '200':
+        text/plain: WfsQueryDataOpenGisResponse
+    post:
+      '200':
+        text/plain: WfsQueryDataOpenGis200Response
+  /datasets/{datasetId}/wms:
+    get:
+      '200':
+        text/plain: WmsQueryLayerWithOpenGisResponse
+    head:
+      '200':
+        text/plain: WmsQueryWithOpenGisResponse
+  /datasets/{datasetId}/wmts:
+    get:
+      '200':
+        text/plain: WmtsQueryDataSetWmtsResponse
+  /datasets/{datasetId}/wmts/rest/{layerName}/{style}/tilejson/{imageFormat}:
+    get:
+      '200':
+        text/plain: WmtsRestQueryTilejsonImageFormatResponse
+  /datasets/{datasetId}/wmts/rest/{layerName}/{style}/{TileMatrixSet}/{TileMatrix}/{TileRow}/{TileCol}:
+    get:
+      '200':
+        text/plain: WmtsRestQueryTileMatrixSetResponse
+  /datasets/{datasetId}/wmts/rest/{layerName}/{style}/{TileMatrixSet}/{TileMatrix}/{TileRow}/{TileCol}/{J}/{I}:
+    get:
+      '200':
+        text/plain: WmtsRestServiceQueryResponse
+  /harvest/{group}/csw:
+    get:
+      '200':
+        application/xml: HarvestXmlDataOnGroupResponse
+    post:
+      '200':
+        application/xml: HarvestXmlDataOnGroupPostResponse
+      '400':
+        application/xml: HarvestXmlDataOnGroupPost400Response
+  /harvest/{group}/dcat:
+    get:
+      '200':
+        text/turtle: DatasetGetNonSpatialDataForGroupResponse
+  /layers/{layerId}:
+    get:
+      '200':
+        application/json: QueryLayerMetadataResponse
+    patch:
+      '200':
+        application/json: ManageLayerAddGeoTiffResponse
+  /layers/{layerId}/style:
+    put:
+      '200':
+        application/json: ManageLayerSetStyleResponse
+  /query:
+    post:
+      '200':
+        application/dxf: QueryLayerCutShapeBoundaryAndRetrieve200Response
+        application/dxf+zip: QueryLayerCutShapeBoundaryAndRetrieve200Response
+        application/geo+json: QueryLayerCutShapeBoundaryAndRetrieveResponse
+        application/gml+xml; version=3.2: QueryLayerCutShapeBoundaryAndRetrieve200Response
+        application/vnd.google-earth.kml+xml: QueryLayerCutShapeBoundaryAndRetrieve200Response
+        application/x.gdb+zip: QueryLayerCutShapeBoundaryAndRetrieve200Response
+        application/x.mid-mif+zip: QueryLayerCutShapeBoundaryAndRetrieve200Response
+        application/x.tab+zip: QueryLayerCutShapeBoundaryAndRetrieve200Response
+        application/zipped-shapefile: QueryLayerCutShapeBoundaryAndRetrieve200Response
+      '403':
+        application/json: QueryLayerCutShapeBoundaryAndRetrieve403Response
+      '404':
+        application/json: QueryLayerCutShapeBoundaryAndRetrieve404Response
+      '406':
+        application/json: QueryLayerCutShapeBoundaryAndRetrieve406Response
+  /rest/services/{datasetId}/{paramOne}:
+    get:
+      '200':
+        text/plain: EsriRestServiceQueryResponse
+  /rest/services/{datasetId}/{paramOne}/{paramTwo}:
+    get:
+      '200':
+        text/plain: EsriRestServiceQuery200Response
+  /status:
+    get:
+      '200':
+        application/json: StatusGetCatalogApiStatusResponse
+  /tags:
+    get:
+      '200':
+        application/json: DatasetListValidTagsResponse
+  /templates:
+    get:
+      '200':
+        application/json: TemplateListPermissionsToViewResponse
+securityParameters:
+  accepted:
+    query: false
+  category:
+    query: false
+  creator:
+    query: false
+  dataSetId:
+    query: false
+  draftStatus:
+    query: false
+  entityId:
+    query: false
+  exchange:
+    query: false
+  extendedText:
+    query: false
+  f:
+    query: false
+  fileUri:
+    query: false
+  filename:
+    query: false
+  format:
+    query: false
+  identities:
+    query: false
+  ids:
+    query: false
+  key:
+    query: false
+  keywords:
+    query: false
+  layer:
+    query: false
+  legacyConcepts:
+    query: false
+  licence:
+    query: false
+  limit:
+    query: false
+  metadataStandardName:
+    query: false
+  offset:
+    query: false
+  onlyFeatured:
+    query: false
+  pageNum:
+    query: false
+  pageSize:
+    query: false
+  publishedStatus:
+    query: false
+  requestingEntityId:
+    query: false
+  searchType:
+    query: false
+  showEditable:
+    query: false
+  showHidden:
+    query: false
+  sort:
+    query: false
+  spatialCoverage:
+    query: false
+  tagRelationship:
+    query: false
+  tags:
+    query: false
+  text:
+    query: false
+  thumbnail:
+    query: false
+validServerUrls: {}

@@ -1172,6 +1172,14 @@ const customRequests: Record<string, CustomRequest> = {
       return downloadOpenApiSpecFromReadme({ urls });
     },
   },
+  "agrimetrics.co.uk": {
+    lambda: async () => {
+      const urls = await collectEndpointsFromReadme({
+        url: "https://developer.agrimetrics.co.uk/reference/getstatus",
+      });
+      return downloadOpenApiSpecFromReadme({ urls });
+    },
+  },
   "nvidia.com_NIM": {
     lambda: async () => {
       const urls = await collectEndpointsFromReadme({
