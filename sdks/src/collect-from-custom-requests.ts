@@ -299,6 +299,14 @@ const customRequests: Record<string, CustomRequest> = {
       return downloadOpenApiSpecFromReadme({ urls });
     },
   },
+  "bamboohr.com": {
+    lambda: async () => {
+      const urls = await collectEndpointsFromReadme({
+        url: "https://documentation.bamboohr.com/reference/get-employee",
+      });
+      return downloadOpenApiSpecFromReadme({ urls });
+    },
+  },
   "alexishr.com": {
     lambda: async ({ browser }) => {
       return downloadOpenApiSpecFromRedoclyEmbedded({

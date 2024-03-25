@@ -1,0 +1,641 @@
+examples: {}
+examples_2: {}
+examples_3:
+  /{companyDomain}/v1/performance/employees/{employeeId}/goals:
+    post:
+      '201':
+        application/json: {}
+  /{companyDomain}/v1/performance/employees/{employeeId}/goals/{goalId}:
+    put:
+      '200':
+        application/json: {}
+  /{companyDomain}/v1/performance/employees/{employeeId}/goals/{goalId}/reopen:
+    post:
+      '201':
+        application/json: {}
+  /{companyDomain}/v1_1/performance/employees/{employeeId}/goals/{goalId}:
+    put:
+      '200':
+        application/json: {}
+ignoreObjectsWithNoProperties: true
+ignorePotentialIncorrectType: true
+operationIds:
+  /{companyDomain}/v1/applicant_tracking/application:
+    post: ApplicantTracking_createNewApplication
+  /{companyDomain}/v1/applicant_tracking/applications:
+    get: ApplicantTracking_listApplications
+  /{companyDomain}/v1/applicant_tracking/applications/{applicationId}:
+    get: ApplicantTracking_getApplicationDetails
+  /{companyDomain}/v1/applicant_tracking/applications/{applicationId}/comments:
+    post: ApplicantTracking_addApplicationComment
+  /{companyDomain}/v1/applicant_tracking/applications/{applicationId}/status:
+    post: ApplicantTracking_changeApplicantStatus
+  /{companyDomain}/v1/applicant_tracking/hiring_leads:
+    get: ApplicantTracking_getHiringLeads
+  /{companyDomain}/v1/applicant_tracking/job_opening:
+    post: ApplicantTracking_createNewJobOpening
+  /{companyDomain}/v1/applicant_tracking/jobs:
+    get: ApplicantTracking_getJobSummaries
+  /{companyDomain}/v1/applicant_tracking/locations:
+    get: ApplicantTracking_getCompanyLocations
+  /{companyDomain}/v1/applicant_tracking/statuses:
+    get: ApplicantTracking_listStatuses
+  /{companyDomain}/v1/benefit/company_benefit:
+    get: Benefits_listCompanyBenefits
+    post: Benefits_addNewCompanyBenefit
+  /{companyDomain}/v1/benefit/company_benefit/type:
+    get: Benefits_listCompanyBenefitTypes
+  /{companyDomain}/v1/benefit/company_benefit/{id}:
+    delete: Benefits_deleteCompanyBenefit
+    get: Benefits_getCompanyBenefit
+    put: Benefits_updateCompanyBenefit
+  /{companyDomain}/v1/benefit/employee_benefit:
+    get: Benefits_listEmployeeBenefits
+    post: Benefits_addEmployeeBenefit
+  /{companyDomain}/v1/benefitcoverages:
+    get: Benefits_getCoverages
+  /{companyDomain}/v1/benefitgroupemployees:
+    get: Benefits_getBenefitGroupEmployees
+    post: Benefits_addBenefitGroupEmployee
+  /{companyDomain}/v1/benefitgroupplancosts:
+    get: Benefits_getGroupPlanCosts
+  /{companyDomain}/v1/benefitgroupplans:
+    get: Benefits_getGroupPlans
+  /{companyDomain}/v1/benefitgroups:
+    get: Benefits_getBenefitGroups
+  /{companyDomain}/v1/benefitplancoverages:
+    get: Benefits_listBenefitPlanCoverages
+  /{companyDomain}/v1/benefitplans:
+    get: Benefits_getBenefitPlans
+  /{companyDomain}/v1/benefits/settings/deduction_types/all:
+    get: Benefits_getDeductionTypesAll
+  /{companyDomain}/v1/employee/deductions/{id}:
+    get: Benefits_getDeductionsByPlan
+  /{companyDomain}/v1/employee/plans/{id}:
+    get: Benefits_getBenefitPlanDeductionsByEmployee
+  /{companyDomain}/v1/employee_direct_deposit_accounts/{id}:
+    delete: Payroll_clearEmployeeDirectDeposit
+    get: Payroll_employeeDirectDepositInfo
+    post: Payroll_addEmployeeDirectDepositInfo
+  /{companyDomain}/v1/employee_pay_stub:
+    post: Payroll_addEmployeePaystub
+  /{companyDomain}/v1/employee_pay_stub/{id}:
+    delete: Payroll_deleteEmployeePaystub
+    get: Payroll_getPaystub
+  /{companyDomain}/v1/employee_unpaid_pay_stubs:
+    post: Payroll_addEmployeeUnpaidPaystubs
+  /{companyDomain}/v1/employee_unpaid_pay_stubs/{id}:
+    delete: Payroll_clearEmployeeUnpaidPaystubs
+    get: Payroll_getUnpaidPaystubs
+  /{companyDomain}/v1/employee_withholding/{id}:
+    delete: Payroll_clearEmployeeWithholdings
+    get: Payroll_getDefaultWithholdings
+    post: Payroll_addEmployeeWithholdings
+  /{companyDomain}/v1/employeedependents:
+    get: Benefits_listEmployeeDependents
+    post: Benefits_createEmployeeDependent
+  /{companyDomain}/v1/employeedependents/{id}:
+    get: Benefits_getEmployeeDependent
+    put: Benefits_updateDependentInformation
+  /{companyDomain}/v1/employees/:
+    post: Employees_createNewEmployee
+  /{companyDomain}/v1/employees/changed:
+    get: LastChangeInformation_getChangedEmployeeIds
+  /{companyDomain}/v1/employees/changed/tables/{table}:
+    get: TabularData_getChangedTableRows
+  /{companyDomain}/v1/employees/directory:
+    get: Employees_getDirectory
+  /{companyDomain}/v1/employees/files/categories:
+    post: EmployeeFiles_addCategory
+  /{companyDomain}/v1/employees/{employeeId}/photo:
+    post: Photos_storeNewEmployeePhoto
+  /{companyDomain}/v1/employees/{employeeId}/photo/{size}:
+    get: Photos_getEmployeePhoto
+  /{companyDomain}/v1/employees/{employeeId}/time_off/balance_adjustment/:
+    put: TimeOff_balanceAdjustmentPut
+  /{companyDomain}/v1/employees/{employeeId}/time_off/calculator:
+    get: TimeOff_estimateFutureTimeOffBalances
+  /{companyDomain}/v1/employees/{employeeId}/time_off/history/:
+    put: TimeOff_addTimeOffHistoryItem
+  /{companyDomain}/v1/employees/{employeeId}/time_off/policies:
+    get: TimeOff_listEmployeeTimeOffPolicies
+    put: TimeOff_assignEmployeePolicies
+  /{companyDomain}/v1/employees/{employeeId}/time_off/request:
+    put: TimeOff_requestCreation
+  /{companyDomain}/v1/employees/{id}/:
+    get: Employees_getEmployeeData
+    post: Employees_updateEmployee
+  /{companyDomain}/v1/employees/{id}/files:
+    post: EmployeeFiles_uploadFile
+  /{companyDomain}/v1/employees/{id}/files/view/:
+    get: EmployeeFiles_listFilesAndCategories
+  /{companyDomain}/v1/employees/{id}/files/{fileId}:
+    delete: EmployeeFiles_removeFile
+    get: EmployeeFiles_getEmployeeFile
+    post: EmployeeFiles_updateEmployeeFile
+  /{companyDomain}/v1/employees/{id}/tables/{table}:
+    get: TabularData_getEmployeeTableRows
+    post: TabularData_addTableRow
+  /{companyDomain}/v1/employees/{id}/tables/{table}/{rowId}:
+    delete: TabularData_deleteRow
+    post: TabularData_updateRow
+  /{companyDomain}/v1/files:
+    post: CompanyFiles_uploadFile
+  /{companyDomain}/v1/files/categories:
+    post: CompanyFiles_createCategory
+  /{companyDomain}/v1/files/view/:
+    get: CompanyFiles_listFilesAndCategories
+  /{companyDomain}/v1/files/{fileId}:
+    delete: CompanyFiles_removeFile
+    get: CompanyFiles_getFile
+    post: CompanyFiles_updateFile
+  /{companyDomain}/v1/login:
+    post: Login_userCredentials
+  /{companyDomain}/v1/meta/fields/:
+    get: AccountInformation_getFieldList
+  /{companyDomain}/v1/meta/lists/:
+    get: AccountInformation_getListFields
+  /{companyDomain}/v1/meta/lists/{listFieldId}:
+    put: AccountInformation_updateListFieldValues
+  /{companyDomain}/v1/meta/tables/:
+    get: AccountInformation_discoverTableFields
+  /{companyDomain}/v1/meta/time_off/policies/:
+    get: TimeOff_getPolicies
+  /{companyDomain}/v1/meta/time_off/types/:
+    get: TimeOff_getTimeOffTypes
+  /{companyDomain}/v1/meta/users/:
+    get: AccountInformation_getUserList
+  /{companyDomain}/v1/payroll/deductions/{id}:
+    get: Benefits_getEmployeeBenefitDeductions
+  /{companyDomain}/v1/performance/employees/{employeeId}/goals:
+    get: Goals_getEmployeeGoals
+    post: Goals_createEmployeeGoal
+  /{companyDomain}/v1/performance/employees/{employeeId}/goals/aggregate:
+    get: Goals_getAllAggregateInfo
+  /{companyDomain}/v1/performance/employees/{employeeId}/goals/alignmentOptions:
+    get: Goals_getAlignableOptions
+  /{companyDomain}/v1/performance/employees/{employeeId}/goals/canCreateGoals:
+    get: Goals_determinePermission
+  /{companyDomain}/v1/performance/employees/{employeeId}/goals/filters:
+    get: Goals_statusCount
+  /{companyDomain}/v1/performance/employees/{employeeId}/goals/shareOptions:
+    get: Goals_shareOptionsGet
+  /{companyDomain}/v1/performance/employees/{employeeId}/goals/{goalId}:
+    delete: Goals_deleteById
+    put: Goals_updateEmployeeGoal
+  /{companyDomain}/v1/performance/employees/{employeeId}/goals/{goalId}/aggregate:
+    get: Goals_getGoalAggregateInfo
+  /{companyDomain}/v1/performance/employees/{employeeId}/goals/{goalId}/close:
+    post: Goals_closeGoal
+  /{companyDomain}/v1/performance/employees/{employeeId}/goals/{goalId}/comments:
+    get: Goals_getComments
+    post: Goals_createComment
+  /{companyDomain}/v1/performance/employees/{employeeId}/goals/{goalId}/comments/{commentId}:
+    delete: Goals_deleteComment
+    put: Goals_updateComment
+  /{companyDomain}/v1/performance/employees/{employeeId}/goals/{goalId}/progress:
+    put: Goals_updateProgress
+  /{companyDomain}/v1/performance/employees/{employeeId}/goals/{goalId}/reopen:
+    post: Goals_reopenGoal
+  /{companyDomain}/v1/performance/employees/{employeeId}/goals/{goalId}/sharedWith:
+    put: Goals_updateGoalSharing
+  /{companyDomain}/v1/reports/custom:
+    post: Reports_requestCustomReport
+  /{companyDomain}/v1/reports/{id}:
+    get: Reports_companyReport
+  /{companyDomain}/v1/time_off/requests/:
+    get: TimeOff_getTimeOffRequests
+  /{companyDomain}/v1/time_off/requests/{requestId}/status:
+    put: TimeOff_changeRequestStatus
+  /{companyDomain}/v1/time_off/whos_out/:
+    get: TimeOff_getWhosOutList
+  /{companyDomain}/v1/time_tracking/clock_entries:
+    delete: TimeTracking_deleteClockEntries
+    post: TimeTracking_storeClockEntries
+  /{companyDomain}/v1/time_tracking/clock_entries/delete:
+    post: TimeTrackingPrivateBeta_deleteTimeSheetEntries
+  /{companyDomain}/v1/time_tracking/clock_entries/store:
+    post: TimeTrackingPrivateBeta_addEditClockEntries
+  /{companyDomain}/v1/time_tracking/clock_in/{employeeId}:
+    post: TimeTracking_clockInEmployee
+  /{companyDomain}/v1/time_tracking/clock_out/{employeeId}:
+    post: TimeTracking_clockOutEmployee
+  /{companyDomain}/v1/time_tracking/daily_entries:
+    post: TimeTracking_storeDailyEntries
+  /{companyDomain}/v1/time_tracking/employee/{employeeId}/clock_entries/{id}:
+    get: TimeTracking_getClockEntry
+  /{companyDomain}/v1/time_tracking/employee/{employeeId}/clock_in/data:
+    post: TimeTracking_editClockedInEntryData
+  /{companyDomain}/v1/time_tracking/employee/{employeeId}/clock_out/datetime:
+    post: TimeTracking_clockOutEmployeeAtSpecificTime
+  /{companyDomain}/v1/time_tracking/employee/{employeeId}/daily_entries/{id}:
+    get: TimeTracking_getDailyEntry
+  /{companyDomain}/v1/time_tracking/employee/{employeeId}/is_clocked_in:
+    get: TimeTracking_employeeClockedIn
+  /{companyDomain}/v1/time_tracking/employee/{employeeId}/projects:
+    get: TimeTracking_listEmployeeProjects
+  /{companyDomain}/v1/time_tracking/employee/{employeeId}/projects/{projectId}/tasks:
+    get: TimeTracking_getProjectTasks
+  /{companyDomain}/v1/time_tracking/employee/{employeeId}/timesheet/{timesheetId}:
+    get: TimeTracking_employeeTimesheetGet
+  /{companyDomain}/v1/time_tracking/employees/{employeeId}/clock_in:
+    post: TimeTrackingPrivateBeta_addTimesheetClockIn
+  /{companyDomain}/v1/time_tracking/employees/{employeeId}/clock_out:
+    post: TimeTrackingPrivateBeta_addClockOut
+  /{companyDomain}/v1/time_tracking/employees/{employeeId}/projects:
+    get: TimeTrackingPrivateBeta_listEmployeeProjects
+  /{companyDomain}/v1/time_tracking/hour_entries/delete:
+    post: TimeTrackingPrivateBeta_deleteHourEntries
+  /{companyDomain}/v1/time_tracking/hour_entries/store:
+    post: TimeTrackingPrivateBeta_addEditHourEntries
+  /{companyDomain}/v1/time_tracking/projects:
+    post: TimeTrackingPrivateBeta_createProjectTask
+  /{companyDomain}/v1/time_tracking/timesheet_entries:
+    get: TimeTrackingPrivateBeta_listTimesheetEntries
+  /{companyDomain}/v1/time_tracking/timesheets:
+    get: TimeTracking_getTimesheetsByIds
+  /{companyDomain}/v1/time_tracking/timesheets/approve:
+    post: TimeTracking_approveEmployeeTimesheets
+  /{companyDomain}/v1/time_tracking/timesheets/clock_out_and_approve:
+    post: TimeTracking_approveEmployeeTimesheets
+  /{companyDomain}/v1/timetracking/add:
+    post: Hours_recordAddition
+  /{companyDomain}/v1/timetracking/adjust:
+    put: Hours_editHourRecord
+  /{companyDomain}/v1/timetracking/delete/{id}:
+    delete: Hours_deleteHourRecord
+  /{companyDomain}/v1/timetracking/record:
+    post: Hours_bulkRecordEdit
+  /{companyDomain}/v1/timetracking/record/{id}:
+    get: Hours_getHourRecord
+  /{companyDomain}/v1/training/category:
+    get: Training_categoryList
+    post: Training_addCategory
+  /{companyDomain}/v1/training/category/{trainingCategoryId}:
+    delete: Training_deleteCategory
+    put: Training_updateCategory
+  /{companyDomain}/v1/training/record/employee/{employeeId}:
+    get: Training_listEmployeeTrainings
+    post: Training_addEmployeeTrainingRecord
+  /{companyDomain}/v1/training/record/{employeeTrainingRecordId}:
+    delete: Training_deleteEmployeeRecord
+    put: Training_updateEmployeeTrainingRecord
+  /{companyDomain}/v1/training/type:
+    get: Training_getTypes
+    post: Training_typeAddition
+  /{companyDomain}/v1/training/type/{trainingTypeId}:
+    delete: Training_removeType
+    put: Training_updateType
+  /{companyDomain}/v1/webhooks/:
+    get: Webhooks_getUserList
+    post: Webhooks_addNewWebhook
+  /{companyDomain}/v1/webhooks/monitor_fields:
+    get: Webhooks_listMonitorFields
+  /{companyDomain}/v1/webhooks/{id}/:
+    delete: Webhooks_deleteWebhook
+    get: Webhooks_getUserWebhook
+    put: Webhooks_updateWebhookById
+  /{companyDomain}/v1/webhooks/{id}/log:
+    get: Webhooks_getWebhookLogs
+  /{companyDomain}/v1_1/employees/{employeeId}/time_off/policies:
+    get: TimeOff_listEmployeePolicies
+    put: TimeOff_assignEmployeePoliciesV11
+  /{companyDomain}/v1_1/employees/{id}/tables/{table}:
+    post: TabularData_addRow
+  /{companyDomain}/v1_1/employees/{id}/tables/{table}/{rowId}:
+    post: TabularData_updateRow
+  /{companyDomain}/v1_1/performance/employees/{employeeId}/goals/aggregate:
+    get: Goals_getAllAggregateInfo
+  /{companyDomain}/v1_1/performance/employees/{employeeId}/goals/filters:
+    get: Goals_countPerStatus
+  /{companyDomain}/v1_1/performance/employees/{employeeId}/goals/{goalId}:
+    put: Goals_updateEmployeeGoalV11
+  /{companyDomain}/v1_2/performance/employees/{employeeId}/goals/aggregate:
+    get: Goals_getAllAggregateInfo
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /{companyDomain}/v1/applicant_tracking/application:
+    post:
+      multipart/form-data: ApplicantTrackingCreateNewApplicationRequest
+  /{companyDomain}/v1/applicant_tracking/applications/{applicationId}/comments:
+    post:
+      application/json: ApplicantTrackingAddApplicationCommentRequest
+  /{companyDomain}/v1/applicant_tracking/applications/{applicationId}/status:
+    post:
+      application/json: ApplicantTrackingChangeApplicantStatusRequest
+  /{companyDomain}/v1/applicant_tracking/job_opening:
+    post:
+      multipart/form-data: ApplicantTrackingCreateNewJobOpeningRequest
+  /{companyDomain}/v1/benefit/company_benefit:
+    post:
+      application/x-www-form-urlencoded: BenefitsAddNewCompanyBenefitRequest
+  /{companyDomain}/v1/benefit/company_benefit/{id}:
+    put:
+      application/json: BenefitsUpdateCompanyBenefitRequest
+  /{companyDomain}/v1/benefit/employee_benefit:
+    post:
+      application/json: BenefitsAddEmployeeBenefitRequest
+  /{companyDomain}/v1/performance/employees/{employeeId}/goals/alignmentOptions:
+    get:
+      application/json: GoalsGetAlignableOptionsRequest
+  /{companyDomain}/v1/performance/employees/{employeeId}/goals/{goalId}/close:
+    post:
+      application/json: GoalsCloseGoalRequest
+  /{companyDomain}/v1/performance/employees/{employeeId}/goals/{goalId}/comments:
+    post:
+      application/json: GoalsCreateCommentRequest
+  /{companyDomain}/v1/performance/employees/{employeeId}/goals/{goalId}/progress:
+    put:
+      application/json: GoalsUpdateProgressRequest
+  /{companyDomain}/v1/performance/employees/{employeeId}/goals/{goalId}/sharedWith:
+    put:
+      application/json: GoalsUpdateGoalSharingRequest
+  /{companyDomain}/v1/time_tracking/clock_entries:
+    delete:
+      application/json: TimeTrackingDeleteClockEntriesRequest
+    post:
+      application/json: TimeTrackingStoreClockEntriesRequest
+  /{companyDomain}/v1/time_tracking/clock_entries/delete:
+    post:
+      application/json: TimeTrackingPrivateBetaDeleteTimeSheetEntriesRequest
+  /{companyDomain}/v1/time_tracking/clock_entries/store:
+    post:
+      application/json: TimeTrackingPrivateBetaAddEditClockEntriesRequest
+  /{companyDomain}/v1/time_tracking/clock_in/{employeeId}:
+    post:
+      application/json: TimeTrackingClockInEmployeeRequest
+  /{companyDomain}/v1/time_tracking/clock_out/{employeeId}:
+    post:
+      application/json: TimeTrackingClockOutEmployeeRequest
+  /{companyDomain}/v1/time_tracking/daily_entries:
+    post:
+      application/json: TimeTrackingStoreDailyEntriesRequest
+  /{companyDomain}/v1/time_tracking/employee/{employeeId}/clock_in/data:
+    post:
+      application/json: TimeTrackingEditClockedInEntryDataRequest
+  /{companyDomain}/v1/time_tracking/employee/{employeeId}/clock_out/datetime:
+    post:
+      application/json: TimeTrackingClockOutEmployeeAtSpecificTimeRequest
+  /{companyDomain}/v1/time_tracking/employees/{employeeId}/clock_in:
+    post:
+      application/json: TimeTrackingPrivateBetaAddTimesheetClockInRequest
+  /{companyDomain}/v1/time_tracking/hour_entries/delete:
+    post:
+      application/json: TimeTrackingPrivateBetaDeleteHourEntriesRequest
+  /{companyDomain}/v1/time_tracking/hour_entries/store:
+    post:
+      application/json: TimeTrackingPrivateBetaAddEditHourEntriesRequest
+  /{companyDomain}/v1/time_tracking/projects:
+    post:
+      application/json: TimeTrackingPrivateBetaCreateProjectTaskRequest
+  /{companyDomain}/v1/time_tracking/timesheets:
+    get:
+      application/json: TimeTrackingGetTimesheetsByIdsRequest
+  /{companyDomain}/v1/time_tracking/timesheets/approve:
+    post:
+      application/json: TimeTrackingApproveEmployeeTimesheetsRequest
+  /{companyDomain}/v1/time_tracking/timesheets/clock_out_and_approve:
+    post:
+      application/json: TimeTrackingApproveEmployeeTimesheetsRequest1
+  /{companyDomain}/v1/timetracking/adjust:
+    put:
+      application/json: HoursEditHourRecordRequest
+  /{companyDomain}/v1/training/category:
+    post:
+      application/json: TrainingAddCategoryRequest
+  /{companyDomain}/v1/training/category/{trainingCategoryId}:
+    put:
+      application/json: TrainingUpdateCategoryRequest
+  /{companyDomain}/v1/training/record/employee/{employeeId}:
+    post:
+      application/json: TrainingAddEmployeeTrainingRecordRequest
+  /{companyDomain}/v1/training/record/{employeeTrainingRecordId}:
+    put:
+      application/json: TrainingUpdateEmployeeTrainingRecordRequest
+  /{companyDomain}/v1/training/type:
+    post:
+      application/json: TrainingTypeAdditionRequest
+  /{companyDomain}/v1/training/type/{trainingTypeId}:
+    put:
+      application/json: TrainingUpdateTypeRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /{companyDomain}/v1/applicant_tracking/application:
+    post:
+      '200':
+        application/json: ApplicantTrackingCreateNewApplicationResponse
+  /{companyDomain}/v1/applicant_tracking/applications:
+    get:
+      '200':
+        application/json: ApplicantTrackingListApplicationsResponse
+  /{companyDomain}/v1/applicant_tracking/applications/{applicationId}:
+    get:
+      '200':
+        application/json: ApplicantTrackingGetApplicationDetailsResponse
+  /{companyDomain}/v1/applicant_tracking/hiring_leads:
+    get:
+      '200':
+        application/json: ApplicantTrackingGetHiringLeadsResponse
+  /{companyDomain}/v1/applicant_tracking/job_opening:
+    post:
+      '200':
+        application/json: ApplicantTrackingCreateNewJobOpeningResponse
+  /{companyDomain}/v1/applicant_tracking/jobs:
+    get:
+      '200':
+        application/json: ApplicantTrackingGetJobSummariesResponse
+  /{companyDomain}/v1/applicant_tracking/locations:
+    get:
+      '200':
+        application/json: ApplicantTrackingGetCompanyLocationsResponse
+  /{companyDomain}/v1/applicant_tracking/statuses:
+    get:
+      '200':
+        application/json: ApplicantTrackingListStatusesResponse
+  /{companyDomain}/v1/benefit/company_benefit:
+    get:
+      '200':
+        application/json: BenefitsListCompanyBenefitsResponse
+  /{companyDomain}/v1/benefit/company_benefit/type:
+    get:
+      '200':
+        application/json: BenefitsListCompanyBenefitTypesResponse
+  /{companyDomain}/v1/benefit/employee_benefit:
+    get:
+      '200':
+        application/json: BenefitsListEmployeeBenefitsResponse
+  /{companyDomain}/v1/employees/directory:
+    get:
+      '200':
+        application/json: EmployeesGetDirectoryResponse
+        application/xml: EmployeesGetDirectory200Response
+  /{companyDomain}/v1/employees/{id}:
+    get:
+      '200':
+        application/json: EmployeesGetEmployeeDataResponse
+        application/xml: EmployeesGetEmployeeData200Response
+  /{companyDomain}/v1/employees/{id}/tables/{table}/{rowId}:
+    delete:
+      '200':
+        application/json: TabularDataDeleteRowResponse
+  /{companyDomain}/v1/performance/employees/{employeeId}/goals:
+    get:
+      '200':
+        application/json: GoalsGetEmployeeGoalsResponse
+    post:
+      '201':
+        application/json: GoalsCreateEmployeeGoalResponse
+  /{companyDomain}/v1/performance/employees/{employeeId}/goals/aggregate:
+    get:
+      '200':
+        application/json: GoalsGetAllAggregateInfoResponse
+  /{companyDomain}/v1/performance/employees/{employeeId}/goals/filters:
+    get:
+      '200':
+        application/json: GoalsStatusCountResponse
+  /{companyDomain}/v1/performance/employees/{employeeId}/goals/{goalId}:
+    put:
+      '200':
+        application/json: GoalsUpdateEmployeeGoalResponse
+  /{companyDomain}/v1/performance/employees/{employeeId}/goals/{goalId}/aggregate:
+    get:
+      '200':
+        application/json: GoalsGetGoalAggregateInfoResponse
+  /{companyDomain}/v1/performance/employees/{employeeId}/goals/{goalId}/close:
+    post:
+      '201':
+        application/json: GoalsCloseGoalResponse
+  /{companyDomain}/v1/performance/employees/{employeeId}/goals/{goalId}/progress:
+    put:
+      '200':
+        application/json: GoalsUpdateProgressResponse
+  /{companyDomain}/v1/performance/employees/{employeeId}/goals/{goalId}/reopen:
+    post:
+      '201':
+        application/json: GoalsReopenGoalResponse
+  /{companyDomain}/v1/performance/employees/{employeeId}/goals/{goalId}/sharedWith:
+    put:
+      '200':
+        application/json: GoalsUpdateGoalSharingResponse
+  /{companyDomain}/v1/time_tracking/clock_entries/store:
+    post:
+      '201':
+        application/json: TimeTrackingPrivateBetaAddEditClockEntriesResponse
+  /{companyDomain}/v1/time_tracking/employees/{employeeId}/projects:
+    get:
+      '200':
+        application/json: TimeTrackingPrivateBetaListEmployeeProjectsResponse
+  /{companyDomain}/v1/time_tracking/hour_entries/store:
+    post:
+      '201':
+        application/json: TimeTrackingPrivateBetaAddEditHourEntriesResponse
+  /{companyDomain}/v1/time_tracking/timesheet_entries:
+    get:
+      '200':
+        application/json: TimeTrackingPrivateBetaListTimesheetEntriesResponse
+  /{companyDomain}/v1/training/category:
+    get:
+      '200':
+        application/json: TrainingCategoryListResponse
+  /{companyDomain}/v1/training/record/employee/{employeeId}:
+    get:
+      '200':
+        application/json: TrainingListEmployeeTrainingsResponse
+  /{companyDomain}/v1/training/type:
+    get:
+      '200':
+        application/json: TrainingGetTypesResponse
+  /{companyDomain}/v1/webhooks:
+    get:
+      '200':
+        application/json: WebhooksGetUserListResponse
+    post:
+      '201':
+        application/json: WebhooksAddNewWebhookResponse
+      '403':
+        application/json: WebhooksAddNewWebhook403Response
+  /{companyDomain}/v1/webhooks/monitor_fields:
+    get:
+      '200':
+        application/json: WebhooksListMonitorFieldsResponse
+  /{companyDomain}/v1/webhooks/{id}:
+    put:
+      '403':
+        application/json: WebhooksUpdateWebhookByIdResponse
+  /{companyDomain}/v1_1/performance/employees/{employeeId}/goals/aggregate:
+    get:
+      '200':
+        application/json: GoalsGetAllAggregateInfo200Response
+  /{companyDomain}/v1_1/performance/employees/{employeeId}/goals/filters:
+    get:
+      '200':
+        application/json: GoalsCountPerStatusResponse
+  /{companyDomain}/v1_1/performance/employees/{employeeId}/goals/{goalId}:
+    put:
+      '200':
+        application/json: GoalsUpdateEmployeeGoalV11Response
+  /{companyDomain}/v1_2/performance/employees/{employeeId}/goals/aggregate:
+    get:
+      '200':
+        application/json: GoalsGetAllAggregateInfo200Response1
+securityParameters:
+  action:
+    query: false
+  applicationStatus:
+    query: false
+  applicationStatusId:
+    query: false
+  employeeId:
+    query: false
+  employeeIds:
+    query: false
+  employeeid:
+    query: false
+  end:
+    query: false
+  fd:
+    query: false
+  fields:
+    query: false
+  filter:
+    query: false
+  format:
+    query: false
+  id:
+    query: false
+  jobId:
+    query: false
+  jobStatusGroups:
+    query: false
+  limit:
+    query: false
+  mode:
+    query: false
+  newSince:
+    query: false
+  onlyCurrent:
+    query: false
+  page:
+    query: false
+  search:
+    query: false
+  searchString:
+    query: false
+  since:
+    query: false
+  sortBy:
+    query: false
+  sortOrder:
+    query: false
+  start:
+    query: false
+  status:
+    query: false
+  statusGroups:
+    query: false
+  trainingTypeId:
+    query: false
+  type:
+    query: false
+validServerUrls: {}

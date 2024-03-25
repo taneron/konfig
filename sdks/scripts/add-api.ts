@@ -196,10 +196,14 @@ function getSdkName(company: string, serviceName?: string) {
 }
 
 function getClientName(company: string, serviceName?: string) {
-  if (!serviceName) {
-    return camelCase(company, { pascalCase: true });
+  const result = !serviceName
+    ? camelCase(company, { pascalCase: true })
+    : camelCase(`${company} ${serviceName}`, { pascalCase: true });
+  // if result starts with a number, add a "Client" prefix
+  if (result.startsWith("number")) {
+    return `Client${result}`;
   }
-  return camelCase(`${company} ${serviceName}`, { pascalCase: true });
+  return result;
 }
 
 async function ensureImagePreviewExists(
