@@ -1092,6 +1092,14 @@ const customRequests: Record<string, CustomRequest> = {
       return downloadOpenApiSpecFromReadme({ urls });
     },
   },
+  "revenium.io": {
+    lambda: async () => {
+      const urls = await collectEndpointsFromReadme({
+        url: "https://revenium.readme.io/reference/getuser",
+      });
+      return await downloadOpenApiSpecFromReadme({ urls });
+    },
+  },
 };
 
 async function downloadOpenApiSpecFromMintlify({
