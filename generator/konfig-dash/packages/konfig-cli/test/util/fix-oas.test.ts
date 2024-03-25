@@ -311,8 +311,8 @@ describe('fix-oas', () => {
           schemas: {
             Test: {
               description: `Test [link]     (https://example.com)`,
-            }
-          }
+            },
+          },
         },
       }
       const spec = await parseSpec(JSON.stringify(oas))
@@ -360,7 +360,7 @@ describe('fix-oas', () => {
               in: 'HEADER',
             },
           },
-        }
+        },
       }
       const spec = await parseSpec(JSON.stringify(oas))
       const progress = new Progress({
@@ -691,6 +691,142 @@ describe('fix-oas', () => {
       expect(spec.spec).toMatchSnapshot()
     })
   })
+  it('prioritize default response code', async () => {
+    const oas: Spec['spec'] = {
+      openapi: '3.0.0',
+      info: {
+        title: 'Test API',
+        description: 'Test',
+        version: '1.0.0',
+      },
+      tags: [{ name: 'Test' }],
+      paths: {
+        '/test': {
+          get: {
+            tags: ['Test'],
+            operationId: 'Test_get',
+            description: `Test`,
+            responses: {
+              '4XX': {
+                description: 'Client Error',
+                content: {
+                  'application/json': {
+                    schema: {
+                      type: 'string',
+                    },
+                  },
+                },
+              },
+              '5XX': {
+                description: 'Server Error',
+                content: {
+                  'application/json': {
+                    schema: {
+                      type: 'string',
+                    },
+                  },
+                },
+              },
+              default: {
+                description: 'OK',
+                content: {
+                  'application/json': {
+                    schema: {
+                      type: 'string',
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    }
+    const spec = await parseSpec(JSON.stringify(oas))
+    const progress = new Progress({
+      progress: {},
+      noSave: true,
+    })
+    await fixOas({
+      spec,
+      progress,
+      alwaysYes: true,
+      auto: true,
+      ci: false,
+      useAIForOperationId: false,
+      useAIForTags: false,
+      noInput: true,
+    })
+    expect(spec.spec).toMatchSnapshot()
+  })
+  it('(2|3|4|5)XX response codes', async () => {
+    const oas: Spec['spec'] = {
+      openapi: '3.0.0',
+      info: {
+        title: 'Test API',
+        description: 'Test',
+        version: '1.0.0',
+      },
+      tags: [{ name: 'Test' }],
+      paths: {
+        '/test': {
+          get: {
+            tags: ['Test'],
+            operationId: 'Test_get',
+            description: `Test`,
+            responses: {
+              '4XX': {
+                description: 'Client Error',
+                content: {
+                  'application/json': {
+                    schema: {
+                      type: 'string',
+                    },
+                  },
+                },
+              },
+              '5XX': {
+                description: 'Server Error',
+                content: {
+                  'application/json': {
+                    schema: {
+                      type: 'string',
+                    },
+                  },
+                },
+              },
+              '2XX': {
+                description: 'OK',
+                content: {
+                  'application/json': {
+                    schema: {
+                      type: 'string',
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    }
+    const spec = await parseSpec(JSON.stringify(oas))
+    const progress = new Progress({
+      progress: {},
+      noSave: true,
+    })
+    await fixOas({
+      spec,
+      progress,
+      alwaysYes: true,
+      auto: true,
+      ci: false,
+      useAIForOperationId: false,
+      useAIForTags: false,
+      noInput: true,
+    })
+    expect(spec.spec).toMatchSnapshot()
+  })
   describe('enums with incorrect type', () => {
     it('are fixed', async () => {
       const oas: Spec['spec'] = {
@@ -733,7 +869,7 @@ describe('fix-oas', () => {
                           enum: [1, 2, 3.14],
                         },
                         enum6: {
-                          enum: ["1", "2", "3"],
+                          enum: ['1', '2', '3'],
                           $ref: '#/components/schemas/StringSchema',
                         },
                       },
