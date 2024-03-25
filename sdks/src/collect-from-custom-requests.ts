@@ -301,6 +301,14 @@ const customRequests: Record<string, CustomRequest> = {
       return downloadOpenApiSpecFromReadme({ urls });
     },
   },
+  "breezy.hr": {
+    lambda: async () => {
+      const urls = await collectEndpointsFromReadme({
+        url: "https://developer.breezy.hr/reference/signin",
+      });
+      return downloadOpenApiSpecFromReadme({ urls });
+    },
+  },
   // "breathehr.com": {
   //   lambda: async () => {
   //     const baseUrl = "https://api.breathehr.com/v1/swagger_doc";
@@ -1270,8 +1278,12 @@ async function downloadOpenApiSpecFromReadme({
         console.warn(`Got empty div ("${emptyDiv}") as a result...skipping`);
         continue;
       }
-      if (rawSpecString.endsWith("html>")) {
+      if (rawSpecString.trim().endsWith("html>")) {
         console.warn(`Got HTML instead of JSON...skipping`);
+        continue;
+      }
+      if (rawSpecString.trim() === "") {
+        console.warn(`Got empty string instead of JSON...skipping`);
         continue;
       }
       console.error(rawSpecString);

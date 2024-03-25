@@ -1,0 +1,771 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+operationIds:
+  /v3/companies:
+    get: Company_getAssociated
+  /v3/company/{company_id}:
+    get: Company_getInformation
+  /v3/company/{company_id}/candidates/search:
+    get: Company_getCandidatesByEmail
+  /v3/company/{company_id}/custom-attributes/candidate:
+    get: Company_getCandidateCustomAttributes
+  /v3/company/{company_id}/custom-attributes/position:
+    get: Company_getPositionCustomAttributes
+  /v3/company/{company_id}/pipeline/{pipeline_id}:
+    get: Company_getPipelineStagesByPipelineId
+  /v3/company/{company_id}/pipelines:
+    get: Company_getPipelines
+  /v3/company/{company_id}/position/{position_id}:
+    get: Company_getPositionDetails
+    put: Company_updatePositionDetails
+  /v3/company/{company_id}/position/{position_id}/candidate/{candidate_id}:
+    get: Company_getCandidateById
+    put: Company_updateCandidatePosition
+  /v3/company/{company_id}/position/{position_id}/candidate/{candidate_id}/assessments:
+    get: Company_getAssessments
+  /v3/company/{company_id}/position/{position_id}/candidate/{candidate_id}/background-checks:
+    get: BackgroundCheck_getAll
+  /v3/company/{company_id}/position/{position_id}/candidate/{candidate_id}/conversation:
+    get: Conversation_getStream
+    post: Conversation_addMessage
+  /v3/company/{company_id}/position/{position_id}/candidate/{candidate_id}/custom-attribute:
+    put: CustomAttribute_addToCandidateCustomAttribute
+  /v3/company/{company_id}/position/{position_id}/candidate/{candidate_id}/custom-fields:
+    get: CustomField_get
+  /v3/company/{company_id}/position/{position_id}/candidate/{candidate_id}/custom-fields/{custom_field_id}:
+    put: CustomField_updateCandidateCustomFields
+  /v3/company/{company_id}/position/{position_id}/candidate/{candidate_id}/documents:
+    get: Company_getCandidateDocumentsByPosition
+    post: Company_addCandidateDocument
+  /v3/company/{company_id}/position/{position_id}/candidate/{candidate_id}/education:
+    put: Company_addEducationEntry
+  /v3/company/{company_id}/position/{position_id}/candidate/{candidate_id}/meta:
+    get: Company_getPositionCandidateMeta
+  /v3/company/{company_id}/position/{position_id}/candidate/{candidate_id}/move:
+    post: Company_moveCandidateToPosition
+  /v3/company/{company_id}/position/{position_id}/candidate/{candidate_id}/questionnaire/{candidate_questionnaire_id}:
+    post: Questionnaire_saveCandidateResponses
+  /v3/company/{company_id}/position/{position_id}/candidate/{candidate_id}/questionnaires:
+    get: Questionnaire_get
+  /v3/company/{company_id}/position/{position_id}/candidate/{candidate_id}/resume:
+    post: Company_attachResume
+  /v3/company/{company_id}/position/{position_id}/candidate/{candidate_id}/scorecard:
+    put: Company_updateCandidateScorecard
+  /v3/company/{company_id}/position/{position_id}/candidate/{candidate_id}/send-questionnaire:
+    post: Questionnaire_createForCandidate
+  /v3/company/{company_id}/position/{position_id}/candidate/{candidate_id}/stage:
+    put: Company_moveCandidateStage
+  /v3/company/{company_id}/position/{position_id}/candidate/{candidate_id}/stream:
+    get: Company_getPositionCandidateStreamEvents
+    post: Company_addCandidateStreamNote
+  /v3/company/{company_id}/position/{position_id}/candidate/{candidate_id}/work-history:
+    put: WorkHistory_addEntry
+  /v3/company/{company_id}/position/{position_id}/candidates:
+    get: Company_getPositionCandidates
+    post: Company_addNewCandidateToPosition
+  /v3/company/{company_id}/position/{position_id}/candidates/resume:
+    post: Company_uploadResume
+  /v3/company/{company_id}/position/{position_id}/custom-fields:
+    get: Company_getPositionCustomFields
+  /v3/company/{company_id}/position/{position_id}/custom-fields/{custom_field_id}:
+    put: Company_updateCustomField
+  /v3/company/{company_id}/position/{position_id}/state:
+    put: Company_updatePositionState
+  /v3/company/{company_id}/position/{position_id}/stream:
+    get: Company_getPositionStream
+  /v3/company/{company_id}/position/{position_id}/team:
+    get: Company_getPositionTeamMembers
+  /v3/company/{company_id}/positions:
+    get: Company_getPositionsByState
+    post: Company_createNewPosition
+  /v3/company/{company_id}/questionnaire/{questionnaire_id}:
+    get: Company_getQuestionnaireById
+  /v3/company/{company_id}/questionnaires:
+    get: Company_getQuestionnaires
+  /v3/company/{company_id}/template/{template_id}:
+    get: Company_getEmailTemplateById
+  /v3/company/{company_id}/templates:
+    get: Company_getAllTemplates
+  /v3/signin:
+    post: Authentication_getAccessToken
+  /v3/signout:
+    get: Session_invalidateToken
+  /v3/user:
+    get: User_getById
+  /v3/user/details:
+    get: User_getCompanyDetails
+operationTags:
+  /v3/companies:
+    get: Company
+  /v3/company/{company_id}:
+    get: Company
+  /v3/company/{company_id}/candidates/search:
+    get: Company
+  /v3/company/{company_id}/custom-attributes/candidate:
+    get: Company
+  /v3/company/{company_id}/custom-attributes/position:
+    get: Company
+  /v3/company/{company_id}/pipeline/{pipeline_id}:
+    get: Company
+  /v3/company/{company_id}/pipelines:
+    get: Company
+  /v3/company/{company_id}/position/{position_id}:
+    get: Company
+    put: Company
+  /v3/company/{company_id}/position/{position_id}/candidate/{candidate_id}:
+    get: Company
+    put: Company
+  /v3/company/{company_id}/position/{position_id}/candidate/{candidate_id}/assessments:
+    get: Company
+  /v3/company/{company_id}/position/{position_id}/candidate/{candidate_id}/background-checks:
+    get: BackgroundCheck
+  /v3/company/{company_id}/position/{position_id}/candidate/{candidate_id}/conversation:
+    get: Conversation
+    post: Conversation
+  /v3/company/{company_id}/position/{position_id}/candidate/{candidate_id}/custom-attribute:
+    put: CustomAttribute
+  /v3/company/{company_id}/position/{position_id}/candidate/{candidate_id}/custom-fields:
+    get: CustomField
+  /v3/company/{company_id}/position/{position_id}/candidate/{candidate_id}/custom-fields/{custom_field_id}:
+    put: CustomField
+  /v3/company/{company_id}/position/{position_id}/candidate/{candidate_id}/documents:
+    get: Company
+    post: Company
+  /v3/company/{company_id}/position/{position_id}/candidate/{candidate_id}/education:
+    put: Company
+  /v3/company/{company_id}/position/{position_id}/candidate/{candidate_id}/meta:
+    get: Company
+  /v3/company/{company_id}/position/{position_id}/candidate/{candidate_id}/move:
+    post: Company
+  /v3/company/{company_id}/position/{position_id}/candidate/{candidate_id}/questionnaire/{candidate_questionnaire_id}:
+    post: Questionnaire
+  /v3/company/{company_id}/position/{position_id}/candidate/{candidate_id}/questionnaires:
+    get: Questionnaire
+  /v3/company/{company_id}/position/{position_id}/candidate/{candidate_id}/resume:
+    post: Company
+  /v3/company/{company_id}/position/{position_id}/candidate/{candidate_id}/scorecard:
+    put: Company
+  /v3/company/{company_id}/position/{position_id}/candidate/{candidate_id}/send-questionnaire:
+    post: Questionnaire
+  /v3/company/{company_id}/position/{position_id}/candidate/{candidate_id}/stage:
+    put: Company
+  /v3/company/{company_id}/position/{position_id}/candidate/{candidate_id}/stream:
+    get: Company
+    post: Company
+  /v3/company/{company_id}/position/{position_id}/candidate/{candidate_id}/work-history:
+    put: WorkHistory
+  /v3/company/{company_id}/position/{position_id}/candidates:
+    get: Company
+    post: Company
+  /v3/company/{company_id}/position/{position_id}/candidates/resume:
+    post: Company
+  /v3/company/{company_id}/position/{position_id}/custom-fields:
+    get: Company
+  /v3/company/{company_id}/position/{position_id}/custom-fields/{custom_field_id}:
+    put: Company
+  /v3/company/{company_id}/position/{position_id}/state:
+    put: Company
+  /v3/company/{company_id}/position/{position_id}/stream:
+    get: Company
+  /v3/company/{company_id}/position/{position_id}/team:
+    get: Company
+  /v3/company/{company_id}/positions:
+    get: Company
+    post: Company
+  /v3/company/{company_id}/questionnaire/{questionnaire_id}:
+    get: Company
+  /v3/company/{company_id}/questionnaires:
+    get: Company
+  /v3/company/{company_id}/template/{template_id}:
+    get: Company
+  /v3/company/{company_id}/templates:
+    get: Company
+  /v3/signin:
+    post: Authentication
+  /v3/signout:
+    get: Session
+  /v3/user:
+    get: User
+  /v3/user/details:
+    get: User
+renameTags: {}
+requestSchemaNames:
+  /v3/company/{company_id}/position/{position_id}:
+    put:
+      application/json: CompanyUpdatePositionDetailsRequest
+  /v3/company/{company_id}/position/{position_id}/candidate/{candidate_id}:
+    put:
+      application/json: CompanyUpdateCandidatePositionRequest
+  /v3/company/{company_id}/position/{position_id}/candidate/{candidate_id}/conversation:
+    post:
+      application/json: ConversationAddMessageRequest
+  /v3/company/{company_id}/position/{position_id}/candidate/{candidate_id}/custom-attribute:
+    put:
+      application/json: CustomAttributeAddToCandidateCustomAttributeRequest
+  /v3/company/{company_id}/position/{position_id}/candidate/{candidate_id}/custom-fields/{custom_field_id}:
+    put:
+      application/json: CustomFieldUpdateCandidateCustomFieldsRequest
+  /v3/company/{company_id}/position/{position_id}/candidate/{candidate_id}/education:
+    put:
+      application/json: CompanyAddEducationEntryRequest
+  /v3/company/{company_id}/position/{position_id}/candidate/{candidate_id}/move:
+    post:
+      application/json: CompanyMoveCandidateToPositionRequest
+  /v3/company/{company_id}/position/{position_id}/candidate/{candidate_id}/questionnaire/{candidate_questionnaire_id}:
+    post:
+      application/json: QuestionnaireSaveCandidateResponsesRequest
+  /v3/company/{company_id}/position/{position_id}/candidate/{candidate_id}/resume:
+    post:
+      application/json: CompanyAttachResumeRequest
+  /v3/company/{company_id}/position/{position_id}/candidate/{candidate_id}/scorecard:
+    put:
+      application/json: CompanyUpdateCandidateScorecardRequest
+  /v3/company/{company_id}/position/{position_id}/candidate/{candidate_id}/stage:
+    put:
+      application/json: CompanyMoveCandidateStageRequest
+  /v3/company/{company_id}/position/{position_id}/candidate/{candidate_id}/stream:
+    post:
+      application/json: CompanyAddCandidateStreamNoteRequest
+  /v3/company/{company_id}/position/{position_id}/candidate/{candidate_id}/work-history:
+    put:
+      application/json: WorkHistoryAddEntryRequest
+  /v3/company/{company_id}/position/{position_id}/candidates:
+    post:
+      application/json: CompanyAddNewCandidateToPositionRequest
+  /v3/company/{company_id}/position/{position_id}/candidates/resume:
+    post:
+      application/json: CompanyUploadResumeRequest
+  /v3/company/{company_id}/position/{position_id}/custom-fields/{custom_field_id}:
+    put:
+      application/json: CompanyUpdateCustomFieldRequest
+  /v3/company/{company_id}/position/{position_id}/state:
+    put:
+      application/json: CompanyUpdatePositionStateRequest
+  /v3/company/{company_id}/positions:
+    post:
+      application/json: CompanyCreateNewPositionRequest
+  /v3/signin:
+    post:
+      application/json: AuthenticationGetAccessTokenRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /v3/companies:
+    get:
+      '200':
+        application/json: CompanyGetAssociatedResponse
+      '400':
+        application/json: CompanyGetAssociated400Response
+      '401':
+        application/json: CompanyGetAssociated401Response
+      '500':
+        application/json: CompanyGetAssociated500Response
+  /v3/company/{company_id}:
+    get:
+      '200':
+        application/json: CompanyGetInformationResponse
+      '400':
+        application/json: CompanyGetInformation400Response
+      '401':
+        application/json: CompanyGetInformation401Response
+      '500':
+        application/json: CompanyGetInformation500Response
+  /v3/company/{company_id}/candidates/search:
+    get:
+      '200':
+        application/json: CompanyGetCandidatesByEmailResponse
+      '400':
+        application/json: CompanyGetCandidatesByEmail400Response
+      '401':
+        application/json: CompanyGetCandidatesByEmail401Response
+      '500':
+        application/json: CompanyGetCandidatesByEmail500Response
+  /v3/company/{company_id}/custom-attributes/candidate:
+    get:
+      '200':
+        application/json: CompanyGetCandidateCustomAttributesResponse
+      '400':
+        application/json: CompanyGetCandidateCustomAttributes400Response
+      '401':
+        application/json: CompanyGetCandidateCustomAttributes401Response
+      '500':
+        application/json: CompanyGetCandidateCustomAttributes500Response
+  /v3/company/{company_id}/custom-attributes/position:
+    get:
+      '200':
+        application/json: CompanyGetPositionCustomAttributesResponse
+      '400':
+        application/json: CompanyGetPositionCustomAttributes400Response
+      '401':
+        application/json: CompanyGetPositionCustomAttributes401Response
+      '500':
+        application/json: CompanyGetPositionCustomAttributes500Response
+  /v3/company/{company_id}/pipeline/{pipeline_id}:
+    get:
+      '200':
+        application/json: CompanyGetPipelineStagesByPipelineIdResponse
+      '400':
+        application/json: CompanyGetPipelineStagesByPipelineId400Response
+      '401':
+        application/json: CompanyGetPipelineStagesByPipelineId401Response
+      '500':
+        application/json: CompanyGetPipelineStagesByPipelineId500Response
+  /v3/company/{company_id}/pipelines:
+    get:
+      '200':
+        application/json: CompanyGetPipelinesResponse
+      '400':
+        application/json: CompanyGetPipelines400Response
+      '401':
+        application/json: CompanyGetPipelines401Response
+      '500':
+        application/json: CompanyGetPipelines500Response
+  /v3/company/{company_id}/position/{position_id}:
+    get:
+      '200':
+        application/json: CompanyGetPositionDetailsResponse
+      '400':
+        application/json: CompanyGetPositionDetails400Response
+      '401':
+        application/json: CompanyGetPositionDetails401Response
+      '500':
+        application/json: CompanyGetPositionDetails500Response
+    put:
+      '200':
+        application/json: CompanyUpdatePositionDetailsResponse
+      '400':
+        application/json: CompanyUpdatePositionDetails400Response
+      '401':
+        application/json: CompanyUpdatePositionDetails401Response
+      '500':
+        application/json: CompanyUpdatePositionDetails500Response
+  /v3/company/{company_id}/position/{position_id}/candidate/{candidate_id}:
+    get:
+      '200':
+        application/json: CompanyGetCandidateByIdResponse
+      '400':
+        application/json: CompanyGetCandidateById400Response
+      '401':
+        application/json: CompanyGetCandidateById401Response
+      '500':
+        application/json: CompanyGetCandidateById500Response
+    put:
+      '200':
+        application/json: CompanyUpdateCandidatePositionResponse
+      '400':
+        application/json: CompanyUpdateCandidatePosition400Response
+      '401':
+        application/json: CompanyUpdateCandidatePosition401Response
+      '500':
+        application/json: CompanyUpdateCandidatePosition500Response
+  /v3/company/{company_id}/position/{position_id}/candidate/{candidate_id}/assessments:
+    get:
+      '200':
+        application/json: CompanyGetAssessmentsResponse
+      '400':
+        application/json: CompanyGetAssessments400Response
+      '401':
+        application/json: CompanyGetAssessments401Response
+      '500':
+        application/json: CompanyGetAssessments500Response
+  /v3/company/{company_id}/position/{position_id}/candidate/{candidate_id}/background-checks:
+    get:
+      '200':
+        application/json: BackgroundCheckGetAllResponse
+      '400':
+        application/json: BackgroundCheckGetAll400Response
+      '401':
+        application/json: BackgroundCheckGetAll401Response
+      '500':
+        application/json: BackgroundCheckGetAll500Response
+  /v3/company/{company_id}/position/{position_id}/candidate/{candidate_id}/conversation:
+    get:
+      '200':
+        application/json: ConversationGetStreamResponse
+      '400':
+        application/json: ConversationGetStream400Response
+      '401':
+        application/json: ConversationGetStream401Response
+      '500':
+        application/json: ConversationGetStream500Response
+    post:
+      '200':
+        application/json: ConversationAddMessageResponse
+      '400':
+        application/json: ConversationAddMessage400Response
+      '401':
+        application/json: ConversationAddMessage401Response
+      '500':
+        application/json: ConversationAddMessage500Response
+  /v3/company/{company_id}/position/{position_id}/candidate/{candidate_id}/custom-attribute:
+    put:
+      '200':
+        application/json: CustomAttributeAddToCandidateCustomAttributeResponse
+      '400':
+        application/json: CustomAttributeAddToCandidateCustomAttribute400Response
+      '401':
+        application/json: CustomAttributeAddToCandidateCustomAttribute401Response
+      '500':
+        application/json: CustomAttributeAddToCandidateCustomAttribute500Response
+  /v3/company/{company_id}/position/{position_id}/candidate/{candidate_id}/custom-fields:
+    get:
+      '200':
+        application/json: CustomFieldGetResponse
+      '400':
+        application/json: CustomFieldGet400Response
+      '401':
+        application/json: CustomFieldGet401Response
+      '500':
+        application/json: CustomFieldGet500Response
+  /v3/company/{company_id}/position/{position_id}/candidate/{candidate_id}/custom-fields/{custom_field_id}:
+    put:
+      '200':
+        application/json: CustomFieldUpdateCandidateCustomFieldsResponse
+      '400':
+        application/json: CustomFieldUpdateCandidateCustomFields400Response
+      '401':
+        application/json: CustomFieldUpdateCandidateCustomFields401Response
+      '500':
+        application/json: CustomFieldUpdateCandidateCustomFields500Response
+  /v3/company/{company_id}/position/{position_id}/candidate/{candidate_id}/documents:
+    get:
+      '200':
+        application/json: CompanyGetCandidateDocumentsByPositionResponse
+      '400':
+        application/json: CompanyGetCandidateDocumentsByPosition400Response
+      '401':
+        application/json: CompanyGetCandidateDocumentsByPosition401Response
+      '500':
+        application/json: CompanyGetCandidateDocumentsByPosition500Response
+    post:
+      '200':
+        application/json: CompanyAddCandidateDocumentResponse
+      '400':
+        application/json: CompanyAddCandidateDocument400Response
+      '401':
+        application/json: CompanyAddCandidateDocument401Response
+      '500':
+        application/json: CompanyAddCandidateDocument500Response
+  /v3/company/{company_id}/position/{position_id}/candidate/{candidate_id}/education:
+    put:
+      '200':
+        application/json: CompanyAddEducationEntryResponse
+      '400':
+        application/json: CompanyAddEducationEntry400Response
+      '401':
+        application/json: CompanyAddEducationEntry401Response
+      '500':
+        application/json: CompanyAddEducationEntry500Response
+  /v3/company/{company_id}/position/{position_id}/candidate/{candidate_id}/meta:
+    get:
+      '200':
+        application/json: CompanyGetPositionCandidateMetaResponse
+      '400':
+        application/json: CompanyGetPositionCandidateMeta400Response
+      '401':
+        application/json: CompanyGetPositionCandidateMeta401Response
+      '500':
+        text/plain: CompanyGetPositionCandidateMeta500Response
+  /v3/company/{company_id}/position/{position_id}/candidate/{candidate_id}/move:
+    post:
+      '200':
+        application/json: CompanyMoveCandidateToPositionResponse
+      '400':
+        application/json: CompanyMoveCandidateToPosition400Response
+      '401':
+        application/json: CompanyMoveCandidateToPosition401Response
+      '404':
+        application/json: CompanyMoveCandidateToPosition404Response
+      '500':
+        application/json: CompanyMoveCandidateToPosition500Response
+  /v3/company/{company_id}/position/{position_id}/candidate/{candidate_id}/questionnaire/{candidate_questionnaire_id}:
+    post:
+      '204':
+        application/json: QuestionnaireSaveCandidateResponsesResponse
+      '400':
+        application/json: QuestionnaireSaveCandidateResponses400Response
+      '401':
+        application/json: QuestionnaireSaveCandidateResponses401Response
+      '500':
+        application/json: QuestionnaireSaveCandidateResponses500Response
+  /v3/company/{company_id}/position/{position_id}/candidate/{candidate_id}/questionnaires:
+    get:
+      '200':
+        application/json: QuestionnaireGetResponse
+      '400':
+        application/json: QuestionnaireGet400Response
+      '401':
+        application/json: QuestionnaireGet401Response
+      '500':
+        application/json: QuestionnaireGet500Response
+  /v3/company/{company_id}/position/{position_id}/candidate/{candidate_id}/resume:
+    post:
+      '204':
+        application/json: CompanyAttachResumeResponse
+      '400':
+        application/json: CompanyAttachResume400Response
+      '401':
+        application/json: CompanyAttachResume401Response
+      '500':
+        application/json: CompanyAttachResume500Response
+  /v3/company/{company_id}/position/{position_id}/candidate/{candidate_id}/scorecard:
+    put:
+      '204':
+        application/json: CompanyUpdateCandidateScorecardResponse
+      '400':
+        application/json: CompanyUpdateCandidateScorecard400Response
+      '401':
+        application/json: CompanyUpdateCandidateScorecard401Response
+      '500':
+        application/json: CompanyUpdateCandidateScorecard500Response
+  /v3/company/{company_id}/position/{position_id}/candidate/{candidate_id}/send-questionnaire:
+    post:
+      '200':
+        application/json: QuestionnaireCreateForCandidateResponse
+      '400':
+        application/json: QuestionnaireCreateForCandidate400Response
+      '401':
+        application/json: QuestionnaireCreateForCandidate401Response
+      '500':
+        application/json: QuestionnaireCreateForCandidate500Response
+  /v3/company/{company_id}/position/{position_id}/candidate/{candidate_id}/stage:
+    put:
+      '204':
+        application/json: CompanyMoveCandidateStageResponse
+      '400':
+        application/json: CompanyMoveCandidateStage400Response
+      '401':
+        application/json: CompanyMoveCandidateStage401Response
+      '500':
+        application/json: CompanyMoveCandidateStage500Response
+  /v3/company/{company_id}/position/{position_id}/candidate/{candidate_id}/stream:
+    get:
+      '200':
+        application/json: CompanyGetPositionCandidateStreamEventsResponse
+      '400':
+        application/json: CompanyGetPositionCandidateStreamEvents400Response
+      '401':
+        application/json: CompanyGetPositionCandidateStreamEvents401Response
+      '500':
+        application/json: CompanyGetPositionCandidateStreamEvents500Response
+    post:
+      '200':
+        application/json: CompanyAddCandidateStreamNoteResponse
+      '400':
+        application/json: CompanyAddCandidateStreamNote400Response
+      '401':
+        application/json: CompanyAddCandidateStreamNote401Response
+      '500':
+        application/json: CompanyAddCandidateStreamNote500Response
+  /v3/company/{company_id}/position/{position_id}/candidate/{candidate_id}/work-history:
+    put:
+      '200':
+        application/json: WorkHistoryAddEntryResponse
+      '400':
+        application/json: WorkHistoryAddEntry400Response
+      '401':
+        application/json: WorkHistoryAddEntry401Response
+      '500':
+        application/json: WorkHistoryAddEntry500Response
+  /v3/company/{company_id}/position/{position_id}/candidates:
+    get:
+      '200':
+        application/json: CompanyGetPositionCandidatesResponse
+      '400':
+        application/json: CompanyGetPositionCandidates400Response
+      '401':
+        application/json: CompanyGetPositionCandidates401Response
+      '500':
+        application/json: CompanyGetPositionCandidates500Response
+    post:
+      '200':
+        application/json: CompanyAddNewCandidateToPositionResponse
+      '202':
+        application/json: CompanyAddNewCandidateToPosition202Response
+      '400':
+        application/json: CompanyAddNewCandidateToPosition400Response
+      '401':
+        application/json: CompanyAddNewCandidateToPosition401Response
+      '500':
+        application/json: CompanyAddNewCandidateToPosition500Response
+  /v3/company/{company_id}/position/{position_id}/candidates/resume:
+    post:
+      '200':
+        application/json: CompanyUploadResumeResponse
+      '400':
+        application/json: CompanyUploadResume400Response
+      '401':
+        application/json: CompanyUploadResume401Response
+      '409':
+        application/json: CompanyUploadResume409Response
+      '500':
+        application/json: CompanyUploadResume500Response
+  /v3/company/{company_id}/position/{position_id}/custom-fields:
+    get:
+      '200':
+        application/json: CompanyGetPositionCustomFieldsResponse
+      '400':
+        application/json: CompanyGetPositionCustomFields400Response
+      '401':
+        application/json: CompanyGetPositionCustomFields401Response
+      '500':
+        application/json: CompanyGetPositionCustomFields500Response
+  /v3/company/{company_id}/position/{position_id}/custom-fields/{custom_field_id}:
+    put:
+      '200':
+        application/json: CompanyUpdateCustomFieldResponse
+      '400':
+        application/json: CompanyUpdateCustomField400Response
+      '401':
+        application/json: CompanyUpdateCustomField401Response
+      '500':
+        application/json: CompanyUpdateCustomField500Response
+  /v3/company/{company_id}/position/{position_id}/state:
+    put:
+      '204':
+        application/json: CompanyUpdatePositionStateResponse
+      '400':
+        application/json: CompanyUpdatePositionState400Response
+      '401':
+        application/json: CompanyUpdatePositionState401Response
+      '500':
+        application/json: CompanyUpdatePositionState500Response
+  /v3/company/{company_id}/position/{position_id}/stream:
+    get:
+      '200':
+        application/json: CompanyGetPositionStreamResponse
+      '400':
+        application/json: CompanyGetPositionStream400Response
+  /v3/company/{company_id}/position/{position_id}/team:
+    get:
+      '200':
+        application/json: CompanyGetPositionTeamMembersResponse
+      '400':
+        application/json: CompanyGetPositionTeamMembers400Response
+      '401':
+        application/json: CompanyGetPositionTeamMembers401Response
+      '500':
+        application/json: CompanyGetPositionTeamMembers500Response
+  /v3/company/{company_id}/positions:
+    get:
+      '200':
+        application/json: CompanyGetPositionsByStateResponse
+      '400':
+        application/json: CompanyGetPositionsByState400Response
+      '401':
+        application/json: CompanyGetPositionsByState401Response
+      '500':
+        application/json: CompanyGetPositionsByState500Response
+    post:
+      '200':
+        application/json: CompanyCreateNewPositionResponse
+      '400':
+        application/json: CompanyCreateNewPosition400Response
+      '401':
+        application/json: CompanyCreateNewPosition401Response
+      '500':
+        application/json: CompanyCreateNewPosition500Response
+  /v3/company/{company_id}/questionnaire/{questionnaire_id}:
+    get:
+      '200':
+        application/json: CompanyGetQuestionnaireByIdResponse
+      '400':
+        application/json: CompanyGetQuestionnaireById400Response
+      '401':
+        application/json: CompanyGetQuestionnaireById401Response
+      '500':
+        application/json: CompanyGetQuestionnaireById500Response
+  /v3/company/{company_id}/questionnaires:
+    get:
+      '200':
+        application/json: CompanyGetQuestionnairesResponse
+      '400':
+        application/json: CompanyGetQuestionnaires400Response
+      '401':
+        application/json: CompanyGetQuestionnaires401Response
+      '500':
+        application/json: CompanyGetQuestionnaires500Response
+  /v3/company/{company_id}/template/{template_id}:
+    get:
+      '200':
+        application/json: CompanyGetEmailTemplateByIdResponse
+      '400':
+        application/json: CompanyGetEmailTemplateById400Response
+      '401':
+        application/json: CompanyGetEmailTemplateById401Response
+      '500':
+        application/json: CompanyGetEmailTemplateById500Response
+  /v3/company/{company_id}/templates:
+    get:
+      '200':
+        application/json: CompanyGetAllTemplatesResponse
+      '400':
+        application/json: CompanyGetAllTemplates400Response
+      '401':
+        application/json: CompanyGetAllTemplates401Response
+      '500':
+        application/json: CompanyGetAllTemplates500Response
+  /v3/signin:
+    post:
+      '200':
+        application/json: AuthenticationGetAccessTokenResponse
+      '400':
+        application/json: AuthenticationGetAccessToken400Response
+      '401':
+        application/json: AuthenticationGetAccessToken401Response
+      '500':
+        text/plain: AuthenticationGetAccessToken500Response
+  /v3/signout:
+    get:
+      '204':
+        application/json: SessionInvalidateTokenResponse
+  /v3/user:
+    get:
+      '200':
+        application/json: UserGetByIdResponse
+      '400':
+        application/json: UserGetById400Response
+      '401':
+        application/json: UserGetById401Response
+      '404':
+        application/json: UserGetById404Response
+      '500':
+        application/json: UserGetById500Response
+  /v3/user/details:
+    get:
+      '200':
+        application/json: UserGetCompanyDetailsResponse
+      '400':
+        application/json: UserGetCompanyDetails400Response
+      '401':
+        application/json: UserGetCompanyDetails401Response
+      '404':
+        application/json: UserGetCompanyDetails404Response
+      '500':
+        application/json: UserGetCompanyDetails500Response
+securityParameters:
+  email_address:
+    query: false
+  email_candidate:
+    query: false
+  include_delayed:
+    query: false
+  page:
+    query: false
+  page_size:
+    query: false
+  questionnaire_id:
+    query: false
+  skip:
+    query: false
+  sort:
+    query: false
+  stage_actions_enabled:
+    query: false
+  stage_id:
+    query: false
+  state:
+    query: false
+  user_id:
+    query: false
+validServerUrls: {}
