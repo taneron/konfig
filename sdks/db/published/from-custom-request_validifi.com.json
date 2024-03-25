@@ -1,0 +1,185 @@
+{
+  "securitySchemes": {},
+  "apiBaseUrl": "https://{{domain}}",
+  "apiVersion": "1.0.0",
+  "apiTitle": "RIBBIT API v4",
+  "endpoints": 8,
+  "sdkMethods": 10,
+  "schemas": 1,
+  "parameters": 3,
+  "originalCustomRequest": {
+    "lambda": true
+  },
+  "customRequestSpecFilename": "validifi.com.yaml",
+  "difficultyScore": 10.75,
+  "difficulty": "Very Easy",
+  "company": "ValidiFI",
+  "serviceName": "BankLogin",
+  "sdkName": "validi-fi-bank-login-{language}-sdk",
+  "clientName": "ValidiFiBankLogin",
+  "metaDescription": "ValidiFI, an analytics and technology company, connects bank account and payment insights to help companies in a variety of industries provide more confident, trustworthy and transparent transactions. Our differentiated data, sourced directly from banks, payment processors, and financial platforms helps companies to ensure compliance, mitigate risk, combat fraud, and confidently validate bank account and ownership. For more information, visit ValidiFI.com.",
+  "apiStatusUrls": false,
+  "homepage": "validifi.com/",
+  "developerDocumentation": "portal.ribbit.ai/BLP/Integration",
+  "categories": [
+    "financial_services",
+    "fintech",
+    "banking",
+    "fraud_prevention"
+  ],
+  "category": "Finance",
+  "apiDescription": "ValidiFI, an analytics and technology company, connects bank account and payment insights to help companies in a variety of industries provide more confident, trustworthy and transparent transactions. Our differentiated data, sourced directly from banks, payment processors, and financial platforms helps companies to ensure compliance, mitigate risk, combat fraud, and confidently validate bank account and ownership. For more information, visit ValidiFI.com.",
+  "methods": [
+    {
+      "url": "/v4/token",
+      "method": "create",
+      "httpMethod": "post",
+      "tag": "Token",
+      "typeScriptTag": "token",
+      "description": "OAuth 2.0 Token",
+      "parameters": [
+        {
+          "name": "clientId",
+          "schema": "string",
+          "description": "",
+          "example": "{{clientId}}"
+        },
+        {
+          "name": "clientSecret",
+          "schema": "string",
+          "description": "",
+          "example": "{{clientSecret}}"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v4/HealthCheck",
+      "method": "checkHealth",
+      "httpMethod": "get",
+      "tag": "Token",
+      "typeScriptTag": "token",
+      "description": "Health Check",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v4/Insights",
+      "method": "submitLoanApplication",
+      "httpMethod": "post",
+      "tag": "Insights",
+      "typeScriptTag": "insights",
+      "description": "BankQUALIFY",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v4/Insights/2/{inquiryId}",
+      "method": "getInsightById",
+      "httpMethod": "get",
+      "tag": "Insights",
+      "typeScriptTag": "insights",
+      "description": "Get Insights",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v4/CONNECT/Session",
+      "method": "createSession",
+      "httpMethod": "post",
+      "tag": "CONNECT",
+      "typeScriptTag": "connect",
+      "description": "CONNECT Session",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v4/CONNECT/Banks",
+      "method": "bankLookup",
+      "httpMethod": "get",
+      "tag": "CONNECT",
+      "typeScriptTag": "connect",
+      "description": "Bank Lookup",
+      "parameters": [
+        {
+          "name": "search",
+          "schema": "string",
+          "description": "",
+          "example": "{{routingNumber}}"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v4/accounts/{accountToken}/export",
+      "method": "getFullAccountInfo",
+      "httpMethod": "get",
+      "tag": "CONNECT",
+      "typeScriptTag": "connect",
+      "description": "Get Full Account Info from CONNECT Session",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v4/affordai",
+      "method": "submitAffordAi",
+      "httpMethod": "post",
+      "tag": "Reports",
+      "typeScriptTag": "reports",
+      "description": "AffordAi",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "repositoryDescription": "ValidiFI connects bank account and payment insights to enhance transaction trust. Data sourced from banks, processors, & platforms for compliance, risk mitigation, fraud prevention. ValidiFI's {language} SDK for BankLogin API generated by Konfig (https://konfigthis.com/).",
+  "logo": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/validifi/bank-login/logo.png",
+  "openApiRaw": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/validifi/bank-login/openapi.yaml",
+  "openApiGitHubUi": "https://github.com/konfig-sdks/openapi-examples/tree/HEAD/validifi/bank-login/openapi.yaml",
+  "previewLinkImage": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/validifi/bank-login/imagePreview.jpg",
+  "faviconUrl": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/validifi/bank-login/favicon.png",
+  "clientNameCamelCase": "validiFiBankLogin",
+  "lastUpdated": "2024-03-25T22:51:15.888Z",
+  "typescriptSdkUsageCode": "import { ValidiFiBankLogin } from 'validi-fi-bank-login-typescript-sdk';\n\nconst validiFiBankLogin = new ValidiFiBankLogin()",
+  "typescriptSdkFirstRequestCode": "// OAuth 2.0 Token\nconst createResponse = validiFiBankLogin.token.create({\n    clientId: \"{{clientId}}\"\n    clientSecret: \"{{clientSecret}}\"\n})",
+  "fixedSpecFileName": "validi-fi-bank-login-fixed-spec.yaml"
+}

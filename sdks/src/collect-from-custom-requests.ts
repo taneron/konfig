@@ -1153,7 +1153,20 @@ const customRequests: Record<string, CustomRequest> = {
       });
       return await downloadOpenApiSpecFromReadme({ urls });
     },
-  }
+  },
+  "validifi.com": {
+    lambda: async ({ key }) => {
+      const postmanUrl = "https://portal.ribbit.ai/resources/RIBBIT%20API_v4.postman_collection.json";
+      const postmanCollection = await fetch(postmanUrl).then((res) =>
+        res.json()
+      );
+      const openapi = transpilePostmanToOpenApiCached({
+        key,
+        postmanCollection,
+      });
+      return JSON.stringify(openapi);
+    },
+  },
 };
 
 async function downloadOpenApiSpecFromMintlify({

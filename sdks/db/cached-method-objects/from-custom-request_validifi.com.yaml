@@ -1,0 +1,102 @@
+hash: 1f0408b307c1b8b52bbd2b3bf1baedffc032996e6169c16ffce7a8e3df8da92e
+methodObjects:
+  - url: /v4/token
+    method: create
+    httpMethod: post
+    tag: Token
+    typeScriptTag: token
+    description: OAuth 2.0 Token
+    parameters:
+      - name: clientId
+        schema: string
+        description: ''
+        example: '{{clientId}}'
+      - name: clientSecret
+        schema: string
+        description: ''
+        example: '{{clientSecret}}'
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /v4/HealthCheck
+    method: checkHealth
+    httpMethod: get
+    tag: Token
+    typeScriptTag: token
+    description: Health Check
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /v4/Insights
+    method: submitLoanApplication
+    httpMethod: post
+    tag: Insights
+    typeScriptTag: insights
+    description: BankQUALIFY
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /v4/Insights/2/{inquiryId}
+    method: getInsightById
+    httpMethod: get
+    tag: Insights
+    typeScriptTag: insights
+    description: Get Insights
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /v4/CONNECT/Session
+    method: createSession
+    httpMethod: post
+    tag: CONNECT
+    typeScriptTag: connect
+    description: CONNECT Session
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /v4/CONNECT/Banks
+    method: bankLookup
+    httpMethod: get
+    tag: CONNECT
+    typeScriptTag: connect
+    description: Bank Lookup
+    parameters:
+      - name: search
+        schema: string
+        description: ''
+        example: '{{routingNumber}}'
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /v4/accounts/{accountToken}/export
+    method: getFullAccountInfo
+    httpMethod: get
+    tag: CONNECT
+    typeScriptTag: connect
+    description: Get Full Account Info from CONNECT Session
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /v4/affordai
+    method: submitAffordAi
+    httpMethod: post
+    tag: Reports
+    typeScriptTag: reports
+    description: AffordAi
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+numberOfSchemas: 1
+apiDescription: >-
+  ValidiFI, an analytics and technology company, connects bank account and
+  payment insights to help companies in a variety of industries provide more
+  confident, trustworthy and transparent transactions. Our differentiated data,
+  sourced directly from banks, payment processors, and financial platforms helps
+  companies to ensure compliance, mitigate risk, combat fraud, and confidently
+  validate bank account and ownership. For more information, visit ValidiFI.com.
