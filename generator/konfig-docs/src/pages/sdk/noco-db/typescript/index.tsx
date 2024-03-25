@@ -19,7 +19,7 @@ export default function NocoDbTypeScriptSdk() {
       companyKebabCase="noco-db"
       clientNameCamelCase="nocoDb"
       homepage="nocodb.com"
-      lastUpdated={new Date("2024-03-25T04:35:39.998Z")}
+      lastUpdated={new Date("2024-03-25T04:39:03.984Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/nocodb/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
