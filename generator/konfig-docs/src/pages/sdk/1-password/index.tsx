@@ -102,7 +102,7 @@ export default function Sdk1Password() {
       homepage="1password.com"
       companyKebabCase="1-password"
       categories={allCategories}
-      metaDescription={`Trusted by more than 100,000 businesses to protect their data, 1Password gives you complete control over passwords and other sensitive business information. 
+      metaDescription={`Trusted by more than 100,000 businesses to protect their data, 1Password gives you complete control over passwords and other sensitive business information.
 
 As an integral layer of the Identity and Access Management (IAM) stack, 1Password protects all employee accounts – even those you aren't aware of. Give employees secure access to any app or service and safely share everything you need to work together – including logins, documents, credit cards, and more – while keeping everything else private.
 

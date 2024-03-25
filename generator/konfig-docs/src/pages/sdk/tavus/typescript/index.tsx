@@ -19,7 +19,7 @@ export default function TavusTypeScriptSdk() {
       companyKebabCase="tavus"
       clientNameCamelCase="tavus"
       homepage="www.tavus.io/"
-      lastUpdated={new Date("2024-03-24T21:41:22.682Z")}
+      lastUpdated={new Date("2024-03-25T20:42:11.924Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/tavus/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
@@ -259,7 +259,7 @@ export default function TavusTypeScriptSdk() {
       sdkMethods={14}
       schemas={10}
       parameters={10}
-      difficulty="Easy"
+      difficulty="Very Easy"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/tavus/openapi.yaml"
       openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/tavus/openapi.yaml"
       developerDocumentation="docs.tavusapi.com/api-reference"

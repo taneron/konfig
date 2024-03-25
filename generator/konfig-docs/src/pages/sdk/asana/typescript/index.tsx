@@ -19,7 +19,7 @@ export default function AsanaTypeScriptSdk() {
       companyKebabCase="asana"
       clientNameCamelCase="asana"
       homepage="asana.com"
-      lastUpdated={new Date("2024-03-24T21:45:24.878Z")}
+      lastUpdated={new Date("2024-03-25T20:47:15.965Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/asana/favicon.png"
       contactUrl="https://asana.com/support"
       // Missing contactEmail
@@ -14726,10 +14726,10 @@ export default function AsanaTypeScriptSdk() {
       apiTitle="Asana"
       apiBaseUrl="https://app.asana.com/api/1.0"
       apiVersion="1.0"
-      endpoints={135}
-      sdkMethods={318}
+      endpoints={137}
+      sdkMethods={325}
       schemas={430}
-      parameters={312}
+      parameters={323}
       difficulty="Hard"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/asana/openapi.yaml"
       openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/asana/openapi.yaml"

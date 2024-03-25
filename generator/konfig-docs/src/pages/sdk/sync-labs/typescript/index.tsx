@@ -12,15 +12,15 @@ export default function SyncLabsTypeScriptSdk() {
   return (
     <SdkNew
       sdkName="sync-labs-typescript-sdk"
-      metaDescription={`building generative models to modify + synthesize humans in video. 
+      metaDescription={`building generative models to modify + synthesize humans in video.
 
-the first product we released is our synchronizer – a state-of-the-art lip-syncing model to sync a video to any audio in any language. 
+the first product we released is our synchronizer – a state-of-the-art lip-syncing model to sync a video to any audio in any language.
 
 why is this important?
 
 Imagine a world where you can watch your favorite films, content creators, or learn anything you want in your native tongue — seamlessly.
 
-language should no longer be a barrier. 
+language should no longer be a barrier.
 
 we're building a suite of audio / video models to change how we live, work, and play.`}
       company="sync. labs"
@@ -29,7 +29,7 @@ we're building a suite of audio / video models to change how we live, work, and 
       companyKebabCase="sync-labs"
       clientNameCamelCase="syncLabs"
       homepage="synclabs.so"
-      lastUpdated={new Date("2024-03-24T21:41:22.682Z")}
+      lastUpdated={new Date("2024-03-25T20:47:15.965Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/sync-labs/favicon.png"
       // Missing contactUrl
       // Missing contactEmail

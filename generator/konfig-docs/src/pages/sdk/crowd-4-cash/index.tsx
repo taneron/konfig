@@ -63,7 +63,7 @@ export default function Crowd4Cash() {
       homepage="crowd4cash.ch/"
       companyKebabCase="crowd-4-cash"
       categories={allCategories}
-      metaDescription={`Swiss FinTech for private persons and SME. Crowd Solutions is the provider of Crowd4Cash.ch the innovative Crowdlending platform. 
+      metaDescription={`Swiss FinTech for private persons and SME. Crowd Solutions is the provider of Crowd4Cash.ch the innovative Crowdlending platform.
 
 Crowd4Cash brings investors and borrower together. For better returns for the investors and lower interest rates for borrower. 100% online, easy and simply fair!`}
     />

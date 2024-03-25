@@ -12,7 +12,7 @@ export default function FrontChannelTypeScriptSdk() {
   return (
     <SdkNew
       sdkName="front-channel-typescript-sdk"
-      metaDescription={`Front is a customer operations platform that enables support, sales, and account management teams to deliver exceptional service at scale. Front streamlines customer communication by combining the efficiency of a help desk and the familiarity of email, with automated workflows and real-time collaboration behind the scenes. 
+      metaDescription={`Front is a customer operations platform that enables support, sales, and account management teams to deliver exceptional service at scale. Front streamlines customer communication by combining the efficiency of a help desk and the familiarity of email, with automated workflows and real-time collaboration behind the scenes.
 
 With Front, teams can centralize messages across channels, route them to the right person, and unlock visibility and insights across all of their customer operations. More than 8000 businesses use Front to drive operational efficiency that prevents churn, improves retention, and propels customer growth.`}
       company="Front"
@@ -21,7 +21,7 @@ With Front, teams can centralize messages across channels, route them to the rig
       companyKebabCase="front"
       clientNameCamelCase="frontChannel"
       homepage="front.com"
-      lastUpdated={new Date("2024-03-25T17:00:05.413Z")}
+      lastUpdated={new Date("2024-03-25T20:47:15.965Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/front/channel/favicon.png"
       contactUrl="https://community.front.com"
       // Missing contactEmail

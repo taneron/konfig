@@ -4,7 +4,7 @@ import { Company } from '../../../components/Company';
 const sdks = [
   {
     "name": "Retell AI",
-    "numberOfMethods": 8,
+    "numberOfMethods": 19,
     "categories": [
       "ai",
       "voice_generation",
@@ -19,7 +19,7 @@ const sdks = [
   },
   {
     "name": "Retell AI",
-    "numberOfMethods": 8,
+    "numberOfMethods": 19,
     "categories": [
       "ai",
       "voice_generation",
@@ -34,7 +34,7 @@ const sdks = [
   },
   {
     "name": "Retell AI",
-    "numberOfMethods": 8,
+    "numberOfMethods": 19,
     "categories": [
       "ai",
       "voice_generation",

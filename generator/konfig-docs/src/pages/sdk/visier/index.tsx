@@ -909,7 +909,7 @@ export default function Visier() {
       homepage="visier.com"
       companyKebabCase="visier"
       categories={allCategories}
-      metaDescription={`Visier is the people impact platform that puts the right insights in the right hands, at the right time, throughout the business. 
+      metaDescription={`Visier is the people impact platform that puts the right insights in the right hands, at the right time, throughout the business.
 
 We help organizations of all sizes unlock the power of their people data for business impact. This includes enterprises using our category-leading people analytics software, partners embedding our solution into existing apps, and developers building on the Visier platform.
 

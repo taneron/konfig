@@ -12,7 +12,7 @@ export default function CleverTypeScriptSdk() {
   return (
     <SdkNew
       sdkName="clever-typescript-sdk"
-      metaDescription={`We believe technology is a powerful lever to make education equitable for all and the fastest way to improve educational outcomes now. 
+      metaDescription={`We believe technology is a powerful lever to make education equitable for all and the fastest way to improve educational outcomes now.
 
 Clever is on a mission to unlock new ways to learn for all students. More than 75% of U.S. K-12 schools now use Clever to simplify access and improve engagement with digital learning. With our free platform for schools and a network of leading application providers, we're committed to advancing educational equity.  Clever has offices in San Francisco, CA and Durham, NC but you can visit us at clever.com anytime or follow us on Twitter @Clever.
 
@@ -25,7 +25,7 @@ We go to work every day striving to improve education for millions of kids. Join
       companyKebabCase="clever"
       clientNameCamelCase="clever"
       homepage="clever.com"
-      lastUpdated={new Date("2024-03-24T21:41:22.682Z")}
+      lastUpdated={new Date("2024-03-25T20:47:15.965Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/clever/favicon.png"
       // Missing contactUrl
       // Missing contactEmail

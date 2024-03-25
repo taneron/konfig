@@ -84,7 +84,7 @@ export default function Clever() {
       homepage="clever.com"
       companyKebabCase="clever"
       categories={allCategories}
-      metaDescription={`We believe technology is a powerful lever to make education equitable for all and the fastest way to improve educational outcomes now. 
+      metaDescription={`We believe technology is a powerful lever to make education equitable for all and the fastest way to improve educational outcomes now.
 
 Clever is on a mission to unlock new ways to learn for all students. More than 75% of U.S. K-12 schools now use Clever to simplify access and improve engagement with digital learning. With our free platform for schools and a network of leading application providers, we're committed to advancing educational equity.  Clever has offices in San Francisco, CA and Durham, NC but you can visit us at clever.com anytime or follow us on Twitter @Clever.
 

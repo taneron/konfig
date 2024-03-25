@@ -19,7 +19,7 @@ export default function OpenBankingAccountAndTransactionTypeScriptSdk() {
       companyKebabCase="open-banking"
       clientNameCamelCase="openBankingAccountAndTransaction"
       homepage="www.openbanking.org.uk/"
-      lastUpdated={new Date("2024-03-24T21:42:09.454Z")}
+      lastUpdated={new Date("2024-03-25T20:42:11.924Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/open-banking/account-and-transaction/favicon.png"
       // Missing contactUrl
       contactEmail="ServiceDesk@openbanking.org.uk"
@@ -2295,7 +2295,7 @@ export default function OpenBankingAccountAndTransactionTypeScriptSdk() {
       sdkMethods={29}
       schemas={209}
       parameters={175}
-      difficulty="Hard"
+      difficulty="Medium"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/open-banking/account-and-transaction/openapi.yaml"
       openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/open-banking/account-and-transaction/openapi.yaml"
       developerDocumentation="openbanking.atlassian.net/wiki/spaces/DZ/pages/16385802/Specifications"

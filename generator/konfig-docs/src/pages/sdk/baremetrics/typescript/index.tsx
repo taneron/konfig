@@ -12,11 +12,11 @@ export default function BaremetricsTypeScriptSdk() {
   return (
     <SdkNew
       sdkName="baremetrics-typescript-sdk"
-      metaDescription={`Baremetrics provides real-time subscription metrics for teams built with Stripe, Shopify Partners, Braintree, Recurly, Chargebee, Google Play, and App Store Connect. 
+      metaDescription={`Baremetrics provides real-time subscription metrics for teams built with Stripe, Shopify Partners, Braintree, Recurly, Chargebee, Google Play, and App Store Connect.
 
-In addition to metrics, Baremetrics provides tools that help you reduce churn and grow your business faster: 
+In addition to metrics, Baremetrics provides tools that help you reduce churn and grow your business faster:
 
-Recover: Prevent failed charges and keep your hard-earned revenue with our 100% automated toolkit. 
+Recover: Prevent failed charges and keep your hard-earned revenue with our 100% automated toolkit.
 
 Cancellation insights: Learn exactly why your customers cancel, calculate lost revenue by cancellation reason, and send automated emails to win customers back.
 
@@ -27,7 +27,7 @@ Flightpath: Plan for the future with flexible financial modeling tools built for
       companyKebabCase="baremetrics"
       clientNameCamelCase="baremetrics"
       homepage="baremetrics.com"
-      lastUpdated={new Date("2024-03-24T21:41:22.682Z")}
+      lastUpdated={new Date("2024-03-25T20:47:15.965Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/baremetrics/favicon.png"
       // Missing contactUrl
       // Missing contactEmail

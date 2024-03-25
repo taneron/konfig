@@ -82,7 +82,7 @@ export default function PostHog() {
 
 Until now, tools for building products have been fragmented. Product analytics, heatmaps, session recording, feature flags, and A/B testing are all helpful, but no one wants to buy, send data to, and integrate multiple products.
 
-PostHog offers these tools (and more) in an integrated, open source platform which can be hosted in either the US or EU. Both versions are SOC2 certified, GDPR-ready, and HIPAA compliant. 
+PostHog offers these tools (and more) in an integrated, open source platform which can be hosted in either the US or EU. Both versions are SOC2 certified, GDPR-ready, and HIPAA compliant.
 
 We started PostHog during YCombinator's W20 cohort and had the most successful B2B software launch on Hacker News since 2012 - with a product that was just 4 weeks old.
 

@@ -1,0 +1,8 @@
+```typescript index.ts
+// Worker V2 (List with Top 5 and Prevent Cache)
+const listTop5PreventCacheResponse = adpWorkforceNow.hr.listTop5PreventCache({
+    $top: "5"
+    preventCache: "TIMESTAMP"
+    $filter: "workers/workAssignments/homeOrganizationalUnits/typeCode/codeValue eq 'Department' and workers/workAssignments/homeOrganizationalUnits/nameCode/codeValue eq '001000'"
+})
+```

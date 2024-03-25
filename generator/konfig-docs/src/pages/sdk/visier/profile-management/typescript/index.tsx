@@ -12,7 +12,7 @@ export default function VisierProfileManagementTypeScriptSdk() {
   return (
     <SdkNew
       sdkName="visier-profile-management-typescript-sdk"
-      metaDescription={`Visier is the people impact platform that puts the right insights in the right hands, at the right time, throughout the business. 
+      metaDescription={`Visier is the people impact platform that puts the right insights in the right hands, at the right time, throughout the business.
 
 We help organizations of all sizes unlock the power of their people data for business impact. This includes enterprises using our category-leading people analytics software, partners embedding our solution into existing apps, and developers building on the Visier platform.
 
@@ -23,7 +23,7 @@ As the global leader in people analytics, Visier has over 25,000 customers in 75
       companyKebabCase="visier"
       clientNameCamelCase="visierProfileManagement"
       homepage="visier.com"
-      lastUpdated={new Date("2024-03-24T21:45:24.878Z")}
+      lastUpdated={new Date("2024-03-25T20:47:15.965Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/visier/profile-management/favicon.png"
       // Missing contactUrl
       // Missing contactEmail

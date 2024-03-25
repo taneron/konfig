@@ -4,7 +4,7 @@ import { Company } from '../../../components/Company';
 const sdks = [
   {
     "name": "Just Eat",
-    "numberOfMethods": 91,
+    "numberOfMethods": 76,
     "categories": [
       "ecommerce",
       "food_delivery",
@@ -17,7 +17,7 @@ const sdks = [
   },
   {
     "name": "Just Eat",
-    "numberOfMethods": 91,
+    "numberOfMethods": 76,
     "categories": [
       "ecommerce",
       "food_delivery",
@@ -30,7 +30,7 @@ const sdks = [
   },
   {
     "name": "Just Eat",
-    "numberOfMethods": 91,
+    "numberOfMethods": 76,
     "categories": [
       "ecommerce",
       "food_delivery",

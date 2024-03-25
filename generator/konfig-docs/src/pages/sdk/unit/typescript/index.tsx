@@ -19,7 +19,7 @@ export default function UnitTypeScriptSdk() {
       companyKebabCase="unit"
       clientNameCamelCase="unit"
       homepage="unit.co"
-      lastUpdated={new Date("2024-03-25T05:48:00.896Z")}
+      lastUpdated={new Date("2024-03-25T20:42:11.924Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/unit/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
@@ -3303,7 +3303,7 @@ export default function UnitTypeScriptSdk() {
       sdkMethods={125}
       schemas={133}
       parameters={209}
-      difficulty="Hard"
+      difficulty="Medium"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/unit/openapi.yaml"
       openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/unit/openapi.yaml"
       developerDocumentation="www.unit.co/docs/api/"

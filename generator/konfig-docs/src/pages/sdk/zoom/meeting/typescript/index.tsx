@@ -19,7 +19,7 @@ export default function ZoomMeetingTypeScriptSdk() {
       companyKebabCase="zoom"
       clientNameCamelCase="zoomMeeting"
       homepage="zoom.us/"
-      lastUpdated={new Date("2024-03-24T21:41:22.682Z")}
+      lastUpdated={new Date("2024-03-25T20:47:15.965Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/zoom/meeting/favicon.png"
       contactUrl="https://developer.zoom.us/"
       // Missing contactEmail
@@ -2538,7 +2538,7 @@ export default function ZoomMeetingTypeScriptSdk() {
     "httpMethod": HttpMethodsEnum.PATCH,
     "tag": "Meetings",
     "typeScriptTag": "meetings",
-    "description": "Update Live Stream Status",
+    "description": "Update livestream status",
     "parameters": [
       {
         "name": "meetingId",
@@ -2562,15 +2562,19 @@ export default function ZoomMeetingTypeScriptSdk() {
     "responses": [
       {
         "statusCode": "204",
-        "description": "**HTTP Status Code:** `204`   \n \nMeeting livestream updated.\n\n"
+        "description": "**HTTP Status Code:** `204` <br> Meeting livestream updated."
       },
       {
         "statusCode": "400",
-        "description": "**HTTP Status Code:** `400` <br>\n Bad Request\n\n**Error Code:** `3000` <br>\nCannot access webinar info.<br>\n\n**Error Code:** `1010` <br>\nUser does not belong to this account: {accountId}.\n\n**Error Code:** `3161` <br>\nMeeting hosting and scheduling capabilities are not allowed for your user account.\n\n"
+        "description": "**HTTP Status Code:** `400` <br>\n Bad Request  \n\n **Error Code:** `3000` <br>\n Cannot access webinar info. <br>\n**Error Code:** `3161` <br>\n Your user account is not allowed meeting hosting and scheduling capabilities. <br>\n**Error Code:** `4400` <br>\n End-to-end encrypted meetings currently do not support the livestreaming feature. <br>\n**Error Code:** `300` <br>\n Invalid meeting ID. <br>\n**Error Code:** `4927` <br>\n Meeting {meetingId} has not started. <br>\n"
       },
       {
         "statusCode": "404",
-        "description": "**HTTP Status Code:** `404` <br>\n Not Found\n\n**Error Code:** `1001` <br>\nUser {userId} does not exist.<br>\n\n"
+        "description": "**HTTP Status Code:** `404` <br>\n Not Found  \n\n **Error Code:** `3001` <br>\n Meeting does not exist: {meetingId}. <br>\n"
+      },
+      {
+        "statusCode": "429",
+        "description": "**HTTP Status Code:** `429` <br>\n Too Many Requests  \n\n "
       }
     ]
   },

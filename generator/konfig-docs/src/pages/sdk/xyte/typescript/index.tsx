@@ -12,7 +12,7 @@ export default function XyteTypeScriptSdk() {
   return (
     <SdkNew
       sdkName="xyte-typescript-sdk"
-      metaDescription={`Xyte's Device Cloud is the first all-in-one servitization platform designed for device and hardware manufacturers to cloudify, operate, support, and commercialize their connected devices in a unified platform. 
+      metaDescription={`Xyte's Device Cloud is the first all-in-one servitization platform designed for device and hardware manufacturers to cloudify, operate, support, and commercialize their connected devices in a unified platform.
 
 We enable OEMs across different industries to navigate their digital journey, transforming their devices into integrated business solutions that combine hardware, software and services. The only business and commerce platform designed specifically for IoT device manufacturers, our fully-federated Device Cloud empowers OEMs to manage the complete lifecycle of their devices, from the minute they leave the warehouse through aftermarket sales to end customers.
 
@@ -23,7 +23,7 @@ Our out-of-the-box applications for asset management, remote support, ecommerce 
       companyKebabCase="xyte"
       clientNameCamelCase="xyte"
       homepage="xyte.io"
-      lastUpdated={new Date("2024-03-25T04:02:51.276Z")}
+      lastUpdated={new Date("2024-03-25T20:47:15.965Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/xyte/favicon.png"
       // Missing contactUrl
       // Missing contactEmail

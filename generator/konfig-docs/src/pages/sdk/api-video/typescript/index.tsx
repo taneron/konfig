@@ -12,9 +12,9 @@ export default function ApiVideoTypeScriptSdk() {
   return (
     <SdkNew
       sdkName="api-video-typescript-sdk"
-      metaDescription={`Deliver high-quality videos directly from your website, software, or app. 
+      metaDescription={`Deliver high-quality videos directly from your website, software, or app.
 
-api.video is an API-first platform that enables product builders to integrate video in their own apps and platforms in minutes, with just a few lines of code. 
+api.video is an API-first platform that enables product builders to integrate video in their own apps and platforms in minutes, with just a few lines of code.
 The service handles the end-to-end workflow, from video ingestion to worldwide video delivery.`}
       company="api.video"
       // Missing serviceName
@@ -22,7 +22,7 @@ The service handles the end-to-end workflow, from video ingestion to worldwide v
       companyKebabCase="api-video"
       clientNameCamelCase="apiVideo"
       homepage="api.video"
-      lastUpdated={new Date("2024-03-24T21:45:24.878Z")}
+      lastUpdated={new Date("2024-03-25T20:47:15.965Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/api-video/favicon.png"
       // Missing contactUrl
       // Missing contactEmail

@@ -12,7 +12,7 @@ export default function AgrimetricsTypeScriptSdk() {
   return (
     <SdkNew
       sdkName="agrimetrics-typescript-sdk"
-      metaDescription={`Radical new answers are needed to feed a growing population and protect our planet. 
+      metaDescription={`Radical new answers are needed to feed a growing population and protect our planet.
 
 Agrimetrics provides data and tools to agrifood businesses, researchers and policy-makers to address our most pressing global food challenges. This is a unique opportunity for the food and farming sectors, working together, to drive sustainable productivity.`}
       company="Agrimetrics"
@@ -21,7 +21,7 @@ Agrimetrics provides data and tools to agrifood businesses, researchers and poli
       companyKebabCase="agrimetrics"
       clientNameCamelCase="agrimetrics"
       homepage="agrimetrics.co.uk"
-      lastUpdated={new Date("2024-03-24T21:45:24.878Z")}
+      lastUpdated={new Date("2024-03-25T20:47:15.965Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/agrimetrics/favicon.png"
       // Missing contactUrl
       // Missing contactEmail

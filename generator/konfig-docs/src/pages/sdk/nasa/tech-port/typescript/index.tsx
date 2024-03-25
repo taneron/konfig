@@ -19,7 +19,7 @@ export default function NasaTechPortTypeScriptSdk() {
       companyKebabCase="nasa"
       clientNameCamelCase="nasaTechPort"
       homepage="techport.nasa.gov/home"
-      lastUpdated={new Date("2024-03-24T21:45:24.878Z")}
+      lastUpdated={new Date("2024-03-25T20:37:50.800Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/nasa/tech-port/favicon.png"
       contactUrl="https://techport.nasa.gov"
       contactEmail="hq-techport@mail.nasa.gov"
@@ -229,7 +229,7 @@ export default function NasaTechPortTypeScriptSdk() {
       language="TypeScript"
       apiTitle="TechPort"
       apiBaseUrl="https://techport.nasa.gov"
-      apiVersion="3.13.2"
+      apiVersion="3.13.3"
       endpoints={7}
       sdkMethods={7}
       schemas={27}

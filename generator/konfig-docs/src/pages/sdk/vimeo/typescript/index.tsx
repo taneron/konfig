@@ -19,7 +19,7 @@ export default function VimeoTypeScriptSdk() {
       companyKebabCase="vimeo"
       clientNameCamelCase="vimeo"
       homepage="developer.vimeo.com"
-      lastUpdated={new Date("2024-03-24T21:45:24.878Z")}
+      lastUpdated={new Date("2024-03-25T20:37:50.800Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/vimeo/favicon.jpg"
       contactUrl="https://developer.vimeo.com/help"
       // Missing contactEmail
@@ -17824,6 +17824,29 @@ export default function VimeoTypeScriptSdk() {
     ]
   },
   {
+    "url": "/users/{user_id}/subscriptions/{subscription_id}",
+    "method": "getSubscriptionInfo",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "Payments\\Essentials",
+    "typeScriptTag": "paymentsEssentials",
+    "description": "Get information about a payments service subscription",
+    "parameters": [
+      {
+        "name": "subscriptionId",
+        "schema": "string",
+        "required": true,
+        "description": "The ID of the subscription.",
+        "example": "abc12345"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": "OK"
+      }
+    ]
+  },
+  {
     "url": "/users/{user_id}/team/role",
     "method": "getUserTeamRole",
     "httpMethod": HttpMethodsEnum.GET,
@@ -19253,29 +19276,6 @@ export default function VimeoTypeScriptSdk() {
       {
         "statusCode": "404",
         "description": ""
-      }
-    ]
-  },
-  {
-    "url": "/users/{user_id}/{subscription_id}",
-    "method": "getSubscriptionInfo",
-    "httpMethod": HttpMethodsEnum.GET,
-    "tag": "Payments\\Essentials",
-    "typeScriptTag": "paymentsEssentials",
-    "description": "Get information about a payments service subscription",
-    "parameters": [
-      {
-        "name": "subscriptionId",
-        "schema": "string",
-        "required": true,
-        "description": "The ID of the subscription.",
-        "example": "abc12345"
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": "OK"
       }
     ]
   },

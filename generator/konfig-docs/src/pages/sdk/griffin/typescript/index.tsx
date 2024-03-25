@@ -12,9 +12,9 @@ export default function GriffinTypeScriptSdk() {
   return (
     <SdkNew
       sdkName="griffin-typescript-sdk"
-      metaDescription={`Griffin is the bank you can build on. We make it simple, quick and cost-effective to build and launch financial products. 
+      metaDescription={`Griffin is the bank you can build on. We make it simple, quick and cost-effective to build and launch financial products.
 
-Build on the secure and regulated infrastructure of a bank and seamlessly embed financial services into your app. 
+Build on the secure and regulated infrastructure of a bank and seamlessly embed financial services into your app.
 
 Griffin is authorised (with restrictions) by the PRA and FCA and backed by leading investors EQT Ventures, MassMutual Ventures, Tribe Capital, Notion Capital and Seedcamp.`}
       company="Griffin"
@@ -23,7 +23,7 @@ Griffin is authorised (with restrictions) by the PRA and FCA and backed by leadi
       companyKebabCase="griffin"
       clientNameCamelCase="griffin"
       homepage="griffin.com"
-      lastUpdated={new Date("2024-03-24T21:43:23.717Z")}
+      lastUpdated={new Date("2024-03-25T20:47:15.965Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/griffin/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
@@ -2346,7 +2346,7 @@ Griffin is authorised (with restrictions) by the PRA and FCA and backed by leadi
       },
       {
         "statusCode": "422",
-        "description": ""
+        "description": "Unprocessable Entity: specific error details will be provided, if available"
       }
     ]
   },

@@ -12,7 +12,7 @@ export default function Crowd4CashTypeScriptSdk() {
   return (
     <SdkNew
       sdkName="crowd-4-cash-typescript-sdk"
-      metaDescription={`Swiss FinTech for private persons and SME. Crowd Solutions is the provider of Crowd4Cash.ch the innovative Crowdlending platform. 
+      metaDescription={`Swiss FinTech for private persons and SME. Crowd Solutions is the provider of Crowd4Cash.ch the innovative Crowdlending platform.
 
 Crowd4Cash brings investors and borrower together. For better returns for the investors and lower interest rates for borrower. 100% online, easy and simply fair!`}
       company="Crowd4Cash"
@@ -21,7 +21,7 @@ Crowd4Cash brings investors and borrower together. For better returns for the in
       companyKebabCase="crowd-4-cash"
       clientNameCamelCase="crowd4Cash"
       homepage="crowd4cash.ch/"
-      lastUpdated={new Date("2024-03-24T21:42:09.454Z")}
+      lastUpdated={new Date("2024-03-25T20:47:15.965Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/crowd-4-cash/favicon.png"
       contactUrl="https://crowd4cash.ch"
       contactEmail="info@crowd4cash.ch"

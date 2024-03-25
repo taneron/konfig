@@ -84,9 +84,9 @@ export default function ApiVideo() {
       homepage="api.video"
       companyKebabCase="api-video"
       categories={allCategories}
-      metaDescription={`Deliver high-quality videos directly from your website, software, or app. 
+      metaDescription={`Deliver high-quality videos directly from your website, software, or app.
 
-api.video is an API-first platform that enables product builders to integrate video in their own apps and platforms in minutes, with just a few lines of code. 
+api.video is an API-first platform that enables product builders to integrate video in their own apps and platforms in minutes, with just a few lines of code.
 The service handles the end-to-end workflow, from video ingestion to worldwide video delivery.`}
     />
   )
