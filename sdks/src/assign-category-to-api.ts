@@ -4,8 +4,9 @@ import { z } from "zod";
 import path from "path";
 import { dbFolder } from "../scripts/util";
 import * as fs from "fs";
+import * as yaml from "js-yaml";
 
-const categoryCacheJsonPath = path.join(dbFolder, "category-cache.json");
+const categoryCacheJsonPath = path.join(dbFolder, "category-cache.yaml");
 
 export const categoriesToMapTo = {
   "Artificial Intelligence": [
@@ -136,20 +137,19 @@ type CategoryCache = {
 };
 
 function getCategoryCache(): CategoryCache {
-  return JSON.parse(fs.readFileSync(categoryCacheJsonPath, "utf-8"));
+  return yaml.load(
+    fs.readFileSync(categoryCacheJsonPath, "utf-8")
+  ) as CategoryCache;
 }
 
 function saveCategoryResultToCache(api: API, category: string) {
   // if file doesn't exist, create it
   if (!fs.existsSync(categoryCacheJsonPath)) {
-    fs.writeFileSync(
-      categoryCacheJsonPath,
-      JSON.stringify({ apis: {} }, null, 2)
-    );
+    fs.writeFileSync(categoryCacheJsonPath, yaml.dump({ apis: {} }));
   }
   const cache = getCategoryCache();
   cache.apis[`${api.company}-${api.service}`] = category;
-  fs.writeFileSync(categoryCacheJsonPath, JSON.stringify(cache, null, 2));
+  fs.writeFileSync(categoryCacheJsonPath, yaml.dump(cache));
 }
 
 function getCategoryResultFromCache(api: API): string | undefined {
