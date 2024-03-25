@@ -12,7 +12,6 @@ import {
 } from "@site/src/components/ui/command";
 import { DialogProps } from "@radix-ui/react-dialog";
 import companies from "@site/src/pages/sdk/companies.json";
-import { defaultFilter } from "../util/default-filter";
 import { useRef } from "react";
 
 type Company = (typeof companies)[number];
@@ -120,12 +119,14 @@ function CompanyItem({
   subCategories,
   keywords,
   subpath,
+  services,
 }: Company) {
   const allKeywords = [
     company,
     ...keywords,
     ...parentCategories,
     ...subCategories,
+    ...services,
   ];
   const history = useHistory();
 

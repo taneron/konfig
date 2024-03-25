@@ -203,16 +203,22 @@ function main() {
     difficultyScore: number;
     subpath: string;
     keywords: string[];
+    services: string[];
   }[] = Object.entries(companyApis)
     .map(([company, apis]) => {
       const parentCategories: string[] = [];
       const subCategories: string[] = [];
+      const services: string[] = [];
       for (const api of apis) {
         const subCategory = api.category;
         const parentCategory = getParentCategoryFromCategory(subCategory);
         parentCategories.push(parentCategory);
         subCategories.push(subCategory);
+        if (api.serviceName) {
+          services.push(api.serviceName);
+        }
       }
+
       const averageDifficultyScore =
         apis.reduce((acc, api) => acc + api.difficultyScore, 0) / apis.length;
       const keywords = [...new Set(apis.flatMap((api) => api.categories))];
@@ -222,6 +228,7 @@ function main() {
         subCategories: [...new Set(subCategories)],
         favicon: apis[0].faviconUrl,
         metaDescription: apis[0].metaDescription,
+        services,
         company,
         keywords,
         numberOfApis: apis.length,
