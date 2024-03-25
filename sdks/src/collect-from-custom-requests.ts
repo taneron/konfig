@@ -1122,6 +1122,14 @@ const customRequests: Record<string, CustomRequest> = {
       return await downloadOpenApiSpecFromReadme({ urls });
     },
   },
+  "clickfunnels.com": {
+    lambda: async () => {
+      const urls = await collectEndpointsFromReadme({
+        url: "https://developers.myclickfunnels.com/reference/listteams",
+      });
+      return await downloadOpenApiSpecFromReadme({ urls });
+    },
+  },
 };
 
 async function downloadOpenApiSpecFromMintlify({

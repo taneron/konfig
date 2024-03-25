@@ -1,0 +1,1369 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+operationIds:
+  /contacts/applied_tags/{id}:
+    delete: ContactsAppliedTag_removeById
+    get: ContactsAppliedTag_getForContact
+  /contacts/tags/{id}:
+    delete: ContactsTag_remove
+    get: ContactsTag_getSingle
+    put: ContactsTag_updateSpecificTag
+  /contacts/{contact_id}/applied_tags:
+    get: ContactsAppliedTag_list
+    post: ContactsAppliedTag_createAppliedTag
+  /contacts/{id}:
+    delete: Contact_removeById
+    get: Contact_getContactById
+    put: Contact_updateContactById
+  /contacts/{id}/gdpr_destroy:
+    delete: Contact_redactPersonallyIdentifiable
+  /courses/enrollments/{id}:
+    get: CoursesEnrollment_getById
+    put: CoursesEnrollment_updateSpecificEnrollment
+  /courses/lessons/{id}:
+    get: CoursesLesson_getById
+    put: CoursesLesson_updateLessonById
+  /courses/sections/{id}:
+    get: CoursesSection_getSection
+    put: CoursesSection_updateSectionById
+  /courses/sections/{section_id}/lessons:
+    get: CoursesLesson_listLessons
+  /courses/{course_id}/enrollments:
+    get: CoursesEnrollment_list
+    post: CoursesEnrollment_createNewEnrollment
+  /courses/{course_id}/sections:
+    get: CoursesSection_listSections
+  /courses/{id}:
+    get: Course_getById
+  /forms/field_sets/{field_set_id}/fields:
+    get: FormsField_listFieldsForFieldSet
+    post: FormsField_addNewField
+  /forms/field_sets/{id}:
+    delete: FormsFieldSet_remove
+    get: FormsFieldSet_getFieldSet
+    put: FormsFieldSet_updateFieldSetById
+  /forms/fields/options/{id}:
+    delete: FormsFieldsOption_deleteOptionForField
+    get: FormsFieldsOption_getFieldOption
+    put: FormsFieldsOption_updateFieldOption
+  /forms/fields/{field_id}/options:
+    get: FormsFieldsOption_list
+    post: FormsFieldsOption_createNewFieldOption
+  /forms/fields/{id}:
+    delete: FormsField_removeField
+    get: FormsField_getField
+    put: FormsField_updateFieldById
+  /forms/submissions/answers/{id}:
+    delete: FormsSubmissionsAnswer_removeById
+    get: FormsSubmissionsAnswer_get
+    put: FormsSubmissionsAnswer_updateAnswer
+  /forms/submissions/{id}:
+    delete: FormsSubmission_remove
+    get: FormsSubmission_getById
+    put: FormsSubmission_updateSubmission
+  /forms/submissions/{submission_id}/answers:
+    get: FormsSubmissionsAnswer_list
+    post: FormsSubmissionsAnswer_addNewAnswer
+  /forms/{form_id}/field_sets:
+    get: FormsFieldSet_list
+    post: FormsFieldSet_createNewFieldSet
+  /forms/{form_id}/submissions:
+    get: FormsSubmission_list
+    post: FormsSubmission_createNewSubmission
+  /forms/{id}:
+    delete: Form_remove
+    get: Form_getForm
+    put: Form_updateFormById
+  /fulfillments/locations/{id}:
+    delete: FulfillmentsLocation_removeById
+    get: FulfillmentsLocation_getById
+    put: FulfillmentsLocation_updateById
+  /fulfillments/{id}:
+    get: Fulfillment_getById
+    put: Fulfillment_updateById
+  /fulfillments/{id}/cancel:
+    post: Fulfillment_cancelFulfillment
+  /images/{id}:
+    delete: Image_removeById
+    get: Image_getById
+    put: Image_updateById
+  /orders/applied_tags/{id}:
+    delete: OrdersAppliedTag_removeById
+    get: OrdersAppliedTag_get
+  /orders/invoices/restocks/{id}:
+    get: OrdersInvoicesRestock_getRestock
+  /orders/invoices/{id}:
+    get: OrdersInvoice_getForOrder
+  /orders/tags/{id}:
+    delete: OrdersTag_remove
+    get: OrdersTag_getSingle
+    put: OrdersTag_updateSpecificOrderTag
+  /orders/transactions/{id}:
+    get: OrdersTransaction_getById
+  /orders/{id}:
+    get: Order_getSingle
+    put: Order_updateSpecific
+  /orders/{order_id}/applied_tags:
+    get: OrdersAppliedTag_list
+    post: OrdersAppliedTag_createAppliedTag
+  /orders/{order_id}/invoices:
+    get: OrdersInvoice_listForOrder
+  /orders/{order_id}/transactions:
+    get: OrdersTransaction_getList
+  /products/prices/{id}:
+    get: ProductsPrice_getSinglePrice
+    put: ProductsPrice_updateSinglePrice
+  /products/tags/{id}:
+    delete: ProductsTag_deleteTagById
+    get: ProductsTag_getTagById
+    put: ProductsTag_updateTagById
+  /products/variants/{id}:
+    get: ProductsVariant_getSingle
+    put: ProductsVariant_updateSingle
+  /products/{id}:
+    get: Product_getForWorkspace
+    put: Product_updateForWorkspace
+  /products/{id}/archive:
+    post: Product_archiveProduct
+  /products/{id}/unarchive:
+    post: Product_unarchiveById
+  /products/{product_id}/prices:
+    get: ProductsPrice_listForVariant
+    post: ProductsPrice_createVariantPrice
+  /products/{product_id}/variants:
+    get: ProductsVariant_list
+    post: ProductsVariant_createNewVariant
+  /shipping/location_groups/{id}:
+    get: ShippingLocationGroup_getProfileLocationGroup
+  /shipping/location_groups/{location_group_id}/zones:
+    get: ShippingZone_listZones
+    post: ShippingZone_addNewZone
+  /shipping/packages/{id}:
+    delete: ShippingPackage_removeById
+    get: ShippingPackage_getForWorkspace
+    put: ShippingPackage_updateForWorkspace
+  /shipping/profiles/{id}:
+    delete: ShippingProfile_remove
+    get: ShippingProfile_getWorkspaceProfile
+    put: ShippingProfile_updateForWorkspace
+  /shipping/profiles/{profile_id}/location_groups:
+    get: ShippingLocationGroup_list
+  /shipping/rates/names/{id}:
+    delete: ShippingRatesName_remove
+    get: ShippingRatesName_getRateName
+    put: ShippingRatesName_updateName
+  /shipping/rates/{id}:
+    delete: ShippingRate_removeById
+    get: ShippingRate_getRateById
+    put: ShippingRate_updateRateForZone
+  /shipping/zones/{id}:
+    delete: ShippingZone_removeById
+    get: ShippingZone_getZoneById
+    put: ShippingZone_updateZoneById
+  /shipping/zones/{zone_id}/rates:
+    get: ShippingRate_listForZone
+    post: ShippingRate_createRateForZone
+  /teams:
+    get: Team_getAll
+  /teams/{id}:
+    get: Team_getSingle
+    put: Team_updateTeamById
+  /teams/{team_id}/workspaces:
+    get: Workspace_listWorkspaces
+    post: Workspace_addNew
+  /users:
+    get: User_listCurrentAccountUsers
+  /users/{id}:
+    get: User_getSingle
+    put: User_updateSingleUser
+  /webhooks/outgoing/endpoints/{id}:
+    get: WebhooksOutgoingEndpoint_get
+    put: WebhooksOutgoingEndpoint_updateEndpoint
+  /webhooks/outgoing/events/{id}:
+    get: WebhooksOutgoingEvent_getForWorkspace
+  /workspaces/{id}:
+    get: Workspace_getById
+    put: Workspace_update
+  /workspaces/{workspace_id}/contacts:
+    get: Contact_listForWorkspace
+    post: Contact_createNewContact
+  /workspaces/{workspace_id}/contacts/tags:
+    get: ContactsTag_list
+    post: ContactsTag_createNewTag
+  /workspaces/{workspace_id}/contacts/upsert:
+    post: Contact_upsert
+  /workspaces/{workspace_id}/courses:
+    get: Course_listForWorkspace
+  /workspaces/{workspace_id}/forms:
+    get: Form_listWorkspaceForms
+    post: Form_createNewForm
+  /workspaces/{workspace_id}/fulfillments:
+    get: Fulfillment_list
+    post: Fulfillment_create
+  /workspaces/{workspace_id}/fulfillments/locations:
+    get: FulfillmentsLocation_list
+    post: FulfillmentsLocation_createNewLocation
+  /workspaces/{workspace_id}/images:
+    get: Image_list
+    post: Image_create
+  /workspaces/{workspace_id}/orders:
+    get: Order_listOrders
+  /workspaces/{workspace_id}/orders/invoices/restocks:
+    get: OrdersInvoicesRestock_listRestocks
+  /workspaces/{workspace_id}/orders/tags:
+    get: OrdersTag_list
+    post: OrdersTag_createNewTag
+  /workspaces/{workspace_id}/products:
+    get: Product_listForWorkspace
+    post: Product_addNewToWorkspace
+  /workspaces/{workspace_id}/products/tags:
+    get: ProductsTag_list
+    post: ProductsTag_createNewTag
+  /workspaces/{workspace_id}/shipping/packages:
+    get: ShippingPackage_listForWorkspace
+    post: ShippingPackage_addToWorkspace
+  /workspaces/{workspace_id}/shipping/profiles:
+    get: ShippingProfile_list
+    post: ShippingProfile_createNew
+  /workspaces/{workspace_id}/shipping/rates/names:
+    get: ShippingRatesName_list
+    post: ShippingRatesName_createNewRateName
+  /workspaces/{workspace_id}/webhooks/outgoing/endpoints:
+    get: WebhooksOutgoingEndpoint_listEndpoints
+    post: WebhooksOutgoingEndpoint_createNew
+  /workspaces/{workspace_id}/webhooks/outgoing/events:
+    get: WebhooksOutgoingEvent_listForWorkspace
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /contacts/tags/{id}:
+    put:
+      application/json: ContactsTagUpdateSpecificTagRequest
+  /contacts/{contact_id}/applied_tags:
+    post:
+      application/json: ContactsAppliedTagCreateAppliedTagRequest
+  /contacts/{id}:
+    put:
+      application/json: ContactUpdateContactByIdRequest
+  /courses/enrollments/{id}:
+    put:
+      application/json: CoursesEnrollmentUpdateSpecificEnrollmentRequest
+  /courses/lessons/{id}:
+    put:
+      application/json: CoursesLessonUpdateLessonByIdRequest
+  /courses/sections/{id}:
+    put:
+      application/json: CoursesSectionUpdateSectionByIdRequest
+  /courses/{course_id}/enrollments:
+    post:
+      application/json: CoursesEnrollmentCreateNewEnrollmentRequest
+  /forms/field_sets/{field_set_id}/fields:
+    post:
+      application/json: FormsFieldAddNewFieldRequest
+  /forms/field_sets/{id}:
+    put:
+      application/json: FormsFieldSetUpdateFieldSetByIdRequest
+  /forms/fields/options/{id}:
+    put:
+      application/json: FormsFieldsOptionUpdateFieldOptionRequest
+  /forms/fields/{field_id}/options:
+    post:
+      application/json: FormsFieldsOptionCreateNewFieldOptionRequest
+  /forms/fields/{id}:
+    put:
+      application/json: FormsFieldUpdateFieldByIdRequest
+  /forms/submissions/answers/{id}:
+    put:
+      application/json: FormsSubmissionsAnswerUpdateAnswerRequest
+  /forms/submissions/{id}:
+    put:
+      application/json: FormsSubmissionUpdateSubmissionRequest
+  /forms/submissions/{submission_id}/answers:
+    post:
+      application/json: FormsSubmissionsAnswerAddNewAnswerRequest
+  /forms/{form_id}/field_sets:
+    post:
+      application/json: FormsFieldSetCreateNewFieldSetRequest
+  /forms/{form_id}/submissions:
+    post:
+      application/json: FormsSubmissionCreateNewSubmissionRequest
+  /forms/{id}:
+    put:
+      application/json: FormUpdateFormByIdRequest
+  /fulfillments/locations/{id}:
+    put:
+      application/json: FulfillmentsLocationUpdateByIdRequest
+  /fulfillments/{id}:
+    put:
+      application/json: FulfillmentUpdateByIdRequest
+  /images/{id}:
+    put:
+      application/json: ImageUpdateByIdRequest
+  /orders/tags/{id}:
+    put:
+      application/json: OrdersTagUpdateSpecificOrderTagRequest
+  /orders/{id}:
+    put:
+      application/json: OrderUpdateSpecificRequest
+  /orders/{order_id}/applied_tags:
+    post:
+      application/json: OrdersAppliedTagCreateAppliedTagRequest
+  /products/prices/{id}:
+    put:
+      application/json: ProductsPriceUpdateSinglePriceRequest
+  /products/tags/{id}:
+    put:
+      application/json: ProductsTagUpdateTagByIdRequest
+  /products/variants/{id}:
+    put:
+      application/json: ProductsVariantUpdateSingleRequest
+  /products/{id}:
+    put:
+      application/json: ProductUpdateForWorkspaceRequest
+  /products/{product_id}/prices:
+    post:
+      application/json: ProductsPriceCreateVariantPriceRequest
+  /products/{product_id}/variants:
+    post:
+      application/json: ProductsVariantCreateNewVariantRequest
+  /shipping/location_groups/{location_group_id}/zones:
+    post:
+      application/json: ShippingZoneAddNewZoneRequest
+  /shipping/packages/{id}:
+    put:
+      application/json: ShippingPackageUpdateForWorkspaceRequest
+  /shipping/profiles/{id}:
+    put:
+      application/json: ShippingProfileUpdateForWorkspaceRequest
+  /shipping/rates/names/{id}:
+    put:
+      application/json: ShippingRatesNameUpdateNameRequest
+  /shipping/rates/{id}:
+    put:
+      application/json: ShippingRateUpdateRateForZoneRequest
+  /shipping/zones/{id}:
+    put:
+      application/json: ShippingZoneUpdateZoneByIdRequest
+  /shipping/zones/{zone_id}/rates:
+    post:
+      application/json: ShippingRateCreateRateForZoneRequest
+  /teams/{id}:
+    put:
+      application/json: TeamUpdateTeamByIdRequest
+  /teams/{team_id}/workspaces:
+    post:
+      application/json: WorkspaceAddNewRequest
+  /users/{id}:
+    put:
+      application/json: UserUpdateSingleUserRequest
+  /webhooks/outgoing/endpoints/{id}:
+    put:
+      application/json: WebhooksOutgoingEndpointUpdateEndpointRequest
+  /workspaces/{id}:
+    put:
+      application/json: WorkspaceUpdateRequest
+  /workspaces/{workspace_id}/contacts:
+    post:
+      application/json: ContactCreateNewContactRequest
+  /workspaces/{workspace_id}/contacts/tags:
+    post:
+      application/json: ContactsTagCreateNewTagRequest
+  /workspaces/{workspace_id}/contacts/upsert:
+    post:
+      application/json: ContactUpsertRequest
+  /workspaces/{workspace_id}/forms:
+    post:
+      application/json: FormCreateNewFormRequest
+  /workspaces/{workspace_id}/fulfillments:
+    post:
+      application/json: FulfillmentCreateRequest
+  /workspaces/{workspace_id}/fulfillments/locations:
+    post:
+      application/json: FulfillmentsLocationCreateNewLocationRequest
+  /workspaces/{workspace_id}/images:
+    post:
+      application/json: ImageCreateRequest
+  /workspaces/{workspace_id}/orders/tags:
+    post:
+      application/json: OrdersTagCreateNewTagRequest
+  /workspaces/{workspace_id}/products:
+    post:
+      application/json: ProductAddNewToWorkspaceRequest
+  /workspaces/{workspace_id}/products/tags:
+    post:
+      application/json: ProductsTagCreateNewTagRequest
+  /workspaces/{workspace_id}/shipping/packages:
+    post:
+      application/json: ShippingPackageAddToWorkspaceRequest
+  /workspaces/{workspace_id}/shipping/profiles:
+    post:
+      application/json: ShippingProfileCreateNewRequest
+  /workspaces/{workspace_id}/shipping/rates/names:
+    post:
+      application/json: ShippingRatesNameCreateNewRateNameRequest
+  /workspaces/{workspace_id}/webhooks/outgoing/endpoints:
+    post:
+      application/json: WebhooksOutgoingEndpointCreateNewRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /contacts/applied_tags/{id}:
+    delete:
+      '401':
+        application/json: ContactsAppliedTagRemoveByIdResponse
+      '404':
+        application/json: ContactsAppliedTagRemoveById404Response
+    get:
+      '401':
+        application/json: ContactsAppliedTagGetForContactResponse
+      '404':
+        application/json: ContactsAppliedTagGetForContact404Response
+  /contacts/tags/{id}:
+    delete:
+      '401':
+        application/json: ContactsTagRemoveResponse
+      '404':
+        application/json: ContactsTagRemove404Response
+    get:
+      '401':
+        application/json: ContactsTagGetSingleResponse
+      '404':
+        application/json: ContactsTagGetSingle404Response
+    put:
+      '400':
+        application/json: ContactsTagUpdateSpecificTagResponse
+      '401':
+        application/json: ContactsTagUpdateSpecificTag401Response
+      '404':
+        application/json: ContactsTagUpdateSpecificTag404Response
+  /contacts/{contact_id}/applied_tags:
+    get:
+      '200':
+        application/json: ContactsAppliedTagListResponse
+      '401':
+        application/json: ContactsAppliedTagList401Response
+      '404':
+        application/json: ContactsAppliedTagList404Response
+    post:
+      '400':
+        application/json: ContactsAppliedTagCreateAppliedTagResponse
+      '401':
+        application/json: ContactsAppliedTagCreateAppliedTag401Response
+  /contacts/{id}:
+    delete:
+      '401':
+        application/json: ContactRemoveByIdResponse
+      '404':
+        application/json: ContactRemoveById404Response
+    get:
+      '401':
+        application/json: ContactGetContactByIdResponse
+      '404':
+        application/json: ContactGetContactById404Response
+    put:
+      '400':
+        application/json: ContactUpdateContactByIdResponse
+      '401':
+        application/json: ContactUpdateContactById401Response
+      '404':
+        application/json: ContactUpdateContactById404Response
+  /courses/enrollments/{id}:
+    get:
+      '401':
+        application/json: CoursesEnrollmentGetByIdResponse
+      '404':
+        application/json: CoursesEnrollmentGetById404Response
+    put:
+      '400':
+        application/json: CoursesEnrollmentUpdateSpecificEnrollmentResponse
+      '401':
+        application/json: CoursesEnrollmentUpdateSpecificEnrollment401Response
+      '404':
+        application/json: CoursesEnrollmentUpdateSpecificEnrollment404Response
+  /courses/lessons/{id}:
+    get:
+      '401':
+        application/json: CoursesLessonGetByIdResponse
+      '404':
+        application/json: CoursesLessonGetById404Response
+    put:
+      '400':
+        application/json: CoursesLessonUpdateLessonByIdResponse
+      '401':
+        application/json: CoursesLessonUpdateLessonById401Response
+      '404':
+        application/json: CoursesLessonUpdateLessonById404Response
+  /courses/sections/{id}:
+    get:
+      '401':
+        application/json: CoursesSectionGetSectionResponse
+      '404':
+        application/json: CoursesSectionGetSection404Response
+    put:
+      '400':
+        application/json: CoursesSectionUpdateSectionByIdResponse
+      '401':
+        application/json: CoursesSectionUpdateSectionById401Response
+      '404':
+        application/json: CoursesSectionUpdateSectionById404Response
+  /courses/sections/{section_id}/lessons:
+    get:
+      '200':
+        application/json: CoursesLessonListLessonsResponse
+      '401':
+        application/json: CoursesLessonListLessons401Response
+      '404':
+        application/json: CoursesLessonListLessons404Response
+  /courses/{course_id}/enrollments:
+    get:
+      '200':
+        application/json: CoursesEnrollmentListResponse
+      '401':
+        application/json: CoursesEnrollmentList401Response
+      '404':
+        application/json: CoursesEnrollmentList404Response
+    post:
+      '400':
+        application/json: CoursesEnrollmentCreateNewEnrollmentResponse
+      '401':
+        application/json: CoursesEnrollmentCreateNewEnrollment401Response
+  /courses/{course_id}/sections:
+    get:
+      '200':
+        application/json: CoursesSectionListSectionsResponse
+      '401':
+        application/json: CoursesSectionListSections401Response
+      '404':
+        application/json: CoursesSectionListSections404Response
+  /courses/{id}:
+    get:
+      '401':
+        application/json: CourseGetByIdResponse
+      '404':
+        application/json: CourseGetById404Response
+  /forms/field_sets/{field_set_id}/fields:
+    get:
+      '200':
+        application/json: FormsFieldListFieldsForFieldSetResponse
+      '401':
+        application/json: FormsFieldListFieldsForFieldSet401Response
+      '404':
+        application/json: FormsFieldListFieldsForFieldSet404Response
+    post:
+      '400':
+        application/json: FormsFieldAddNewFieldResponse
+      '401':
+        application/json: FormsFieldAddNewField401Response
+  /forms/field_sets/{id}:
+    delete:
+      '401':
+        application/json: FormsFieldSetRemoveResponse
+      '404':
+        application/json: FormsFieldSetRemove404Response
+    get:
+      '401':
+        application/json: FormsFieldSetGetFieldSetResponse
+      '404':
+        application/json: FormsFieldSetGetFieldSet404Response
+    put:
+      '400':
+        application/json: FormsFieldSetUpdateFieldSetByIdResponse
+      '401':
+        application/json: FormsFieldSetUpdateFieldSetById401Response
+      '404':
+        application/json: FormsFieldSetUpdateFieldSetById404Response
+  /forms/fields/options/{id}:
+    delete:
+      '401':
+        application/json: FormsFieldsOptionDeleteOptionForFieldResponse
+      '404':
+        application/json: FormsFieldsOptionDeleteOptionForField404Response
+    get:
+      '401':
+        application/json: FormsFieldsOptionGetFieldOptionResponse
+      '404':
+        application/json: FormsFieldsOptionGetFieldOption404Response
+    put:
+      '400':
+        application/json: FormsFieldsOptionUpdateFieldOptionResponse
+      '401':
+        application/json: FormsFieldsOptionUpdateFieldOption401Response
+      '404':
+        application/json: FormsFieldsOptionUpdateFieldOption404Response
+  /forms/fields/{field_id}/options:
+    get:
+      '200':
+        application/json: FormsFieldsOptionListResponse
+      '401':
+        application/json: FormsFieldsOptionList401Response
+      '404':
+        application/json: FormsFieldsOptionList404Response
+    post:
+      '400':
+        application/json: FormsFieldsOptionCreateNewFieldOptionResponse
+      '401':
+        application/json: FormsFieldsOptionCreateNewFieldOption401Response
+  /forms/fields/{id}:
+    delete:
+      '401':
+        application/json: FormsFieldRemoveFieldResponse
+      '404':
+        application/json: FormsFieldRemoveField404Response
+    get:
+      '401':
+        application/json: FormsFieldGetFieldResponse
+      '404':
+        application/json: FormsFieldGetField404Response
+    put:
+      '400':
+        application/json: FormsFieldUpdateFieldByIdResponse
+      '401':
+        application/json: FormsFieldUpdateFieldById401Response
+      '404':
+        application/json: FormsFieldUpdateFieldById404Response
+  /forms/submissions/answers/{id}:
+    delete:
+      '401':
+        application/json: FormsSubmissionsAnswerRemoveByIdResponse
+      '404':
+        application/json: FormsSubmissionsAnswerRemoveById404Response
+    get:
+      '401':
+        application/json: FormsSubmissionsAnswerGetResponse
+      '404':
+        application/json: FormsSubmissionsAnswerGet404Response
+    put:
+      '400':
+        application/json: FormsSubmissionsAnswerUpdateAnswerResponse
+      '401':
+        application/json: FormsSubmissionsAnswerUpdateAnswer401Response
+      '404':
+        application/json: FormsSubmissionsAnswerUpdateAnswer404Response
+  /forms/submissions/{id}:
+    delete:
+      '401':
+        application/json: FormsSubmissionRemoveResponse
+      '404':
+        application/json: FormsSubmissionRemove404Response
+    get:
+      '401':
+        application/json: FormsSubmissionGetByIdResponse
+      '404':
+        application/json: FormsSubmissionGetById404Response
+    put:
+      '400':
+        application/json: FormsSubmissionUpdateSubmissionResponse
+      '401':
+        application/json: FormsSubmissionUpdateSubmission401Response
+      '404':
+        application/json: FormsSubmissionUpdateSubmission404Response
+  /forms/submissions/{submission_id}/answers:
+    get:
+      '200':
+        application/json: FormsSubmissionsAnswerListResponse
+      '401':
+        application/json: FormsSubmissionsAnswerList401Response
+      '404':
+        application/json: FormsSubmissionsAnswerList404Response
+    post:
+      '400':
+        application/json: FormsSubmissionsAnswerAddNewAnswerResponse
+      '401':
+        application/json: FormsSubmissionsAnswerAddNewAnswer401Response
+  /forms/{form_id}/field_sets:
+    get:
+      '200':
+        application/json: FormsFieldSetListResponse
+      '401':
+        application/json: FormsFieldSetList401Response
+      '404':
+        application/json: FormsFieldSetList404Response
+    post:
+      '400':
+        application/json: FormsFieldSetCreateNewFieldSetResponse
+      '401':
+        application/json: FormsFieldSetCreateNewFieldSet401Response
+  /forms/{form_id}/submissions:
+    get:
+      '200':
+        application/json: FormsSubmissionListResponse
+      '401':
+        application/json: FormsSubmissionList401Response
+      '404':
+        application/json: FormsSubmissionList404Response
+    post:
+      '400':
+        application/json: FormsSubmissionCreateNewSubmissionResponse
+      '401':
+        application/json: FormsSubmissionCreateNewSubmission401Response
+  /forms/{id}:
+    delete:
+      '401':
+        application/json: FormRemoveResponse
+      '404':
+        application/json: FormRemove404Response
+    get:
+      '401':
+        application/json: FormGetFormResponse
+      '404':
+        application/json: FormGetForm404Response
+    put:
+      '400':
+        application/json: FormUpdateFormByIdResponse
+      '401':
+        application/json: FormUpdateFormById401Response
+      '404':
+        application/json: FormUpdateFormById404Response
+  /fulfillments/locations/{id}:
+    delete:
+      '401':
+        application/json: FulfillmentsLocationRemoveByIdResponse
+      '404':
+        application/json: FulfillmentsLocationRemoveById404Response
+    get:
+      '401':
+        application/json: FulfillmentsLocationGetByIdResponse
+      '404':
+        application/json: FulfillmentsLocationGetById404Response
+    put:
+      '400':
+        application/json: FulfillmentsLocationUpdateByIdResponse
+      '401':
+        application/json: FulfillmentsLocationUpdateById401Response
+      '404':
+        application/json: FulfillmentsLocationUpdateById404Response
+  /fulfillments/{id}:
+    get:
+      '401':
+        application/json: FulfillmentGetByIdResponse
+      '404':
+        application/json: FulfillmentGetById404Response
+    put:
+      '400':
+        application/json: FulfillmentUpdateByIdResponse
+      '401':
+        application/json: FulfillmentUpdateById401Response
+      '404':
+        application/json: FulfillmentUpdateById404Response
+  /images/{id}:
+    delete:
+      '401':
+        application/json: ImageRemoveByIdResponse
+      '404':
+        application/json: ImageRemoveById404Response
+    get:
+      '401':
+        application/json: ImageGetByIdResponse
+      '404':
+        application/json: ImageGetById404Response
+    put:
+      '400':
+        application/json: ImageUpdateByIdResponse
+      '401':
+        application/json: ImageUpdateById401Response
+      '404':
+        application/json: ImageUpdateById404Response
+  /orders/applied_tags/{id}:
+    delete:
+      '401':
+        application/json: OrdersAppliedTagRemoveByIdResponse
+      '404':
+        application/json: OrdersAppliedTagRemoveById404Response
+    get:
+      '401':
+        application/json: OrdersAppliedTagGetResponse
+      '404':
+        application/json: OrdersAppliedTagGet404Response
+  /orders/invoices/restocks/{id}:
+    get:
+      '200':
+        application/json: OrdersInvoicesRestockGetRestockResponse
+      '401':
+        application/json: OrdersInvoicesRestockGetRestock401Response
+      '404':
+        application/json: OrdersInvoicesRestockGetRestock404Response
+  /orders/invoices/{id}:
+    get:
+      '401':
+        application/json: OrdersInvoiceGetForOrderResponse
+      '404':
+        application/json: OrdersInvoiceGetForOrder404Response
+  /orders/tags/{id}:
+    delete:
+      '401':
+        application/json: OrdersTagRemoveResponse
+      '404':
+        application/json: OrdersTagRemove404Response
+    get:
+      '401':
+        application/json: OrdersTagGetSingleResponse
+      '404':
+        application/json: OrdersTagGetSingle404Response
+    put:
+      '400':
+        application/json: OrdersTagUpdateSpecificOrderTagResponse
+      '401':
+        application/json: OrdersTagUpdateSpecificOrderTag401Response
+      '404':
+        application/json: OrdersTagUpdateSpecificOrderTag404Response
+  /orders/transactions/{id}:
+    get:
+      '401':
+        application/json: OrdersTransactionGetByIdResponse
+      '404':
+        application/json: OrdersTransactionGetById404Response
+  /orders/{id}:
+    get:
+      '401':
+        application/json: OrderGetSingleResponse
+      '404':
+        application/json: OrderGetSingle404Response
+    put:
+      '400':
+        application/json: OrderUpdateSpecificResponse
+      '401':
+        application/json: OrderUpdateSpecific401Response
+      '404':
+        application/json: OrderUpdateSpecific404Response
+  /orders/{order_id}/applied_tags:
+    get:
+      '200':
+        application/json: OrdersAppliedTagListResponse
+      '401':
+        application/json: OrdersAppliedTagList401Response
+      '404':
+        application/json: OrdersAppliedTagList404Response
+    post:
+      '400':
+        application/json: OrdersAppliedTagCreateAppliedTagResponse
+      '401':
+        application/json: OrdersAppliedTagCreateAppliedTag401Response
+  /orders/{order_id}/invoices:
+    get:
+      '200':
+        application/json: OrdersInvoiceListForOrderResponse
+      '401':
+        application/json: OrdersInvoiceListForOrder401Response
+      '404':
+        application/json: OrdersInvoiceListForOrder404Response
+  /orders/{order_id}/transactions:
+    get:
+      '200':
+        application/json: OrdersTransactionGetListResponse
+      '401':
+        application/json: OrdersTransactionGetList401Response
+      '404':
+        application/json: OrdersTransactionGetList404Response
+  /products/prices/{id}:
+    get:
+      '401':
+        application/json: ProductsPriceGetSinglePriceResponse
+      '404':
+        application/json: ProductsPriceGetSinglePrice404Response
+    put:
+      '400':
+        application/json: ProductsPriceUpdateSinglePriceResponse
+      '401':
+        application/json: ProductsPriceUpdateSinglePrice401Response
+      '404':
+        application/json: ProductsPriceUpdateSinglePrice404Response
+  /products/tags/{id}:
+    delete:
+      '401':
+        application/json: ProductsTagDeleteTagByIdResponse
+      '404':
+        application/json: ProductsTagDeleteTagById404Response
+    get:
+      '401':
+        application/json: ProductsTagGetTagByIdResponse
+      '404':
+        application/json: ProductsTagGetTagById404Response
+    put:
+      '400':
+        application/json: ProductsTagUpdateTagByIdResponse
+      '401':
+        application/json: ProductsTagUpdateTagById401Response
+      '404':
+        application/json: ProductsTagUpdateTagById404Response
+  /products/variants/{id}:
+    get:
+      '401':
+        application/json: ProductsVariantGetSingleResponse
+      '404':
+        application/json: ProductsVariantGetSingle404Response
+    put:
+      '400':
+        application/json: ProductsVariantUpdateSingleResponse
+      '401':
+        application/json: ProductsVariantUpdateSingle401Response
+      '404':
+        application/json: ProductsVariantUpdateSingle404Response
+  /products/{id}:
+    get:
+      '401':
+        application/json: ProductGetForWorkspaceResponse
+      '404':
+        application/json: ProductGetForWorkspace404Response
+    put:
+      '400':
+        application/json: ProductUpdateForWorkspaceResponse
+      '401':
+        application/json: ProductUpdateForWorkspace401Response
+      '404':
+        application/json: ProductUpdateForWorkspace404Response
+  /products/{product_id}/prices:
+    get:
+      '200':
+        application/json: ProductsPriceListForVariantResponse
+      '401':
+        application/json: ProductsPriceListForVariant401Response
+      '404':
+        application/json: ProductsPriceListForVariant404Response
+    post:
+      '400':
+        application/json: ProductsPriceCreateVariantPriceResponse
+      '401':
+        application/json: ProductsPriceCreateVariantPrice401Response
+  /products/{product_id}/variants:
+    get:
+      '200':
+        application/json: ProductsVariantListResponse
+      '401':
+        application/json: ProductsVariantList401Response
+      '404':
+        application/json: ProductsVariantList404Response
+    post:
+      '400':
+        application/json: ProductsVariantCreateNewVariantResponse
+      '401':
+        application/json: ProductsVariantCreateNewVariant401Response
+  /shipping/location_groups/{id}:
+    get:
+      '401':
+        application/json: ShippingLocationGroupGetProfileLocationGroupResponse
+      '404':
+        application/json: ShippingLocationGroupGetProfileLocationGroup404Response
+  /shipping/location_groups/{location_group_id}/zones:
+    get:
+      '200':
+        application/json: ShippingZoneListZonesResponse
+      '401':
+        application/json: ShippingZoneListZones401Response
+      '404':
+        application/json: ShippingZoneListZones404Response
+    post:
+      '400':
+        application/json: ShippingZoneAddNewZoneResponse
+      '401':
+        application/json: ShippingZoneAddNewZone401Response
+  /shipping/packages/{id}:
+    delete:
+      '401':
+        application/json: ShippingPackageRemoveByIdResponse
+      '404':
+        application/json: ShippingPackageRemoveById404Response
+    get:
+      '401':
+        application/json: ShippingPackageGetForWorkspaceResponse
+      '404':
+        application/json: ShippingPackageGetForWorkspace404Response
+    put:
+      '400':
+        application/json: ShippingPackageUpdateForWorkspaceResponse
+      '401':
+        application/json: ShippingPackageUpdateForWorkspace401Response
+      '404':
+        application/json: ShippingPackageUpdateForWorkspace404Response
+  /shipping/profiles/{id}:
+    delete:
+      '401':
+        application/json: ShippingProfileRemoveResponse
+      '404':
+        application/json: ShippingProfileRemove404Response
+    get:
+      '401':
+        application/json: ShippingProfileGetWorkspaceProfileResponse
+      '404':
+        application/json: ShippingProfileGetWorkspaceProfile404Response
+    put:
+      '400':
+        application/json: ShippingProfileUpdateForWorkspaceResponse
+      '401':
+        application/json: ShippingProfileUpdateForWorkspace401Response
+      '404':
+        application/json: ShippingProfileUpdateForWorkspace404Response
+  /shipping/profiles/{profile_id}/location_groups:
+    get:
+      '200':
+        application/json: ShippingLocationGroupListResponse
+      '401':
+        application/json: ShippingLocationGroupList401Response
+      '404':
+        application/json: ShippingLocationGroupList404Response
+  /shipping/rates/names/{id}:
+    delete:
+      '401':
+        application/json: ShippingRatesNameRemoveResponse
+      '404':
+        application/json: ShippingRatesNameRemove404Response
+    get:
+      '401':
+        application/json: ShippingRatesNameGetRateNameResponse
+      '404':
+        application/json: ShippingRatesNameGetRateName404Response
+    put:
+      '400':
+        application/json: ShippingRatesNameUpdateNameResponse
+      '401':
+        application/json: ShippingRatesNameUpdateName401Response
+      '404':
+        application/json: ShippingRatesNameUpdateName404Response
+  /shipping/rates/{id}:
+    delete:
+      '401':
+        application/json: ShippingRateRemoveByIdResponse
+      '404':
+        application/json: ShippingRateRemoveById404Response
+    get:
+      '401':
+        application/json: ShippingRateGetRateByIdResponse
+      '404':
+        application/json: ShippingRateGetRateById404Response
+    put:
+      '400':
+        application/json: ShippingRateUpdateRateForZoneResponse
+      '401':
+        application/json: ShippingRateUpdateRateForZone401Response
+      '404':
+        application/json: ShippingRateUpdateRateForZone404Response
+  /shipping/zones/{id}:
+    delete:
+      '401':
+        application/json: ShippingZoneRemoveByIdResponse
+      '404':
+        application/json: ShippingZoneRemoveById404Response
+    get:
+      '401':
+        application/json: ShippingZoneGetZoneByIdResponse
+      '404':
+        application/json: ShippingZoneGetZoneById404Response
+    put:
+      '400':
+        application/json: ShippingZoneUpdateZoneByIdResponse
+      '401':
+        application/json: ShippingZoneUpdateZoneById401Response
+      '404':
+        application/json: ShippingZoneUpdateZoneById404Response
+  /shipping/zones/{zone_id}/rates:
+    get:
+      '200':
+        application/json: ShippingRateListForZoneResponse
+      '401':
+        application/json: ShippingRateListForZone401Response
+      '404':
+        application/json: ShippingRateListForZone404Response
+    post:
+      '400':
+        application/json: ShippingRateCreateRateForZoneResponse
+      '401':
+        application/json: ShippingRateCreateRateForZone401Response
+  /teams:
+    get:
+      '200':
+        application/json: TeamGetAllResponse
+      '401':
+        application/json: TeamGetAll401Response
+  /teams/{id}:
+    get:
+      '400':
+        application/json: TeamGetSingleResponse
+      '401':
+        application/json: TeamGetSingle401Response
+      '404':
+        application/json: TeamGetSingle404Response
+    put:
+      '400':
+        application/json: TeamUpdateTeamByIdResponse
+      '401':
+        application/json: TeamUpdateTeamById401Response
+      '404':
+        application/json: TeamUpdateTeamById404Response
+  /teams/{team_id}/workspaces:
+    get:
+      '200':
+        application/json: WorkspaceListWorkspacesResponse
+      '401':
+        application/json: WorkspaceListWorkspaces401Response
+      '404':
+        application/json: WorkspaceListWorkspaces404Response
+    post:
+      '400':
+        application/json: WorkspaceAddNewResponse
+      '401':
+        application/json: WorkspaceAddNew401Response
+  /users:
+    get:
+      '200':
+        application/json: UserListCurrentAccountUsersResponse
+      '401':
+        application/json: UserListCurrentAccountUsers401Response
+  /users/{id}:
+    get:
+      '401':
+        application/json: UserGetSingleResponse
+      '404':
+        application/json: UserGetSingle404Response
+    put:
+      '400':
+        application/json: UserUpdateSingleUserResponse
+      '404':
+        application/json: UserUpdateSingleUser404Response
+  /webhooks/outgoing/endpoints/{id}:
+    get:
+      '401':
+        application/json: WebhooksOutgoingEndpointGetResponse
+      '404':
+        application/json: WebhooksOutgoingEndpointGet404Response
+    put:
+      '400':
+        application/json: WebhooksOutgoingEndpointUpdateEndpointResponse
+      '401':
+        application/json: WebhooksOutgoingEndpointUpdateEndpoint401Response
+      '404':
+        application/json: WebhooksOutgoingEndpointUpdateEndpoint404Response
+  /webhooks/outgoing/events/{id}:
+    get:
+      '401':
+        application/json: WebhooksOutgoingEventGetForWorkspaceResponse
+      '404':
+        application/json: WebhooksOutgoingEventGetForWorkspace404Response
+  /workspaces/{id}:
+    get:
+      '401':
+        application/json: WorkspaceGetByIdResponse
+      '404':
+        application/json: WorkspaceGetById404Response
+    put:
+      '400':
+        application/json: WorkspaceUpdateResponse
+      '401':
+        application/json: WorkspaceUpdate401Response
+      '404':
+        application/json: WorkspaceUpdate404Response
+  /workspaces/{workspace_id}/contacts:
+    get:
+      '200':
+        application/json: ContactListForWorkspaceResponse
+      '401':
+        application/json: ContactListForWorkspace401Response
+      '404':
+        application/json: ContactListForWorkspace404Response
+    post:
+      '400':
+        application/json: ContactCreateNewContactResponse
+      '401':
+        application/json: ContactCreateNewContact401Response
+  /workspaces/{workspace_id}/contacts/tags:
+    get:
+      '200':
+        application/json: ContactsTagListResponse
+      '401':
+        application/json: ContactsTagList401Response
+      '404':
+        application/json: ContactsTagList404Response
+    post:
+      '400':
+        application/json: ContactsTagCreateNewTagResponse
+      '401':
+        application/json: ContactsTagCreateNewTag401Response
+  /workspaces/{workspace_id}/contacts/upsert:
+    post:
+      '200':
+        application/json: ContactUpsertResponse
+      '201':
+        application/json: ContactUpsert201Response
+  /workspaces/{workspace_id}/courses:
+    get:
+      '200':
+        application/json: CourseListForWorkspaceResponse
+      '401':
+        application/json: CourseListForWorkspace401Response
+      '404':
+        application/json: CourseListForWorkspace404Response
+  /workspaces/{workspace_id}/forms:
+    get:
+      '200':
+        application/json: FormListWorkspaceFormsResponse
+      '401':
+        application/json: FormListWorkspaceForms401Response
+      '404':
+        application/json: FormListWorkspaceForms404Response
+    post:
+      '400':
+        application/json: FormCreateNewFormResponse
+      '401':
+        application/json: FormCreateNewForm401Response
+  /workspaces/{workspace_id}/fulfillments:
+    get:
+      '200':
+        application/json: FulfillmentListResponse
+      '401':
+        application/json: FulfillmentList401Response
+      '404':
+        application/json: FulfillmentList404Response
+    post:
+      '400':
+        application/json: FulfillmentCreateResponse
+      '401':
+        application/json: FulfillmentCreate401Response
+  /workspaces/{workspace_id}/fulfillments/locations:
+    get:
+      '200':
+        application/json: FulfillmentsLocationListResponse
+      '401':
+        application/json: FulfillmentsLocationList401Response
+      '404':
+        application/json: FulfillmentsLocationList404Response
+    post:
+      '400':
+        application/json: FulfillmentsLocationCreateNewLocationResponse
+      '401':
+        application/json: FulfillmentsLocationCreateNewLocation401Response
+  /workspaces/{workspace_id}/images:
+    get:
+      '200':
+        application/json: ImageListResponse
+      '401':
+        application/json: ImageList401Response
+      '404':
+        application/json: ImageList404Response
+    post:
+      '400':
+        application/json: ImageCreateResponse
+      '401':
+        application/json: ImageCreate401Response
+  /workspaces/{workspace_id}/orders:
+    get:
+      '200':
+        application/json: OrderListOrdersResponse
+      '401':
+        application/json: OrderListOrders401Response
+      '404':
+        application/json: OrderListOrders404Response
+  /workspaces/{workspace_id}/orders/invoices/restocks:
+    get:
+      '200':
+        application/json: OrdersInvoicesRestockListRestocksResponse
+      '401':
+        application/json: OrdersInvoicesRestockListRestocks401Response
+      '404':
+        application/json: OrdersInvoicesRestockListRestocks404Response
+  /workspaces/{workspace_id}/orders/tags:
+    get:
+      '200':
+        application/json: OrdersTagListResponse
+      '401':
+        application/json: OrdersTagList401Response
+      '404':
+        application/json: OrdersTagList404Response
+    post:
+      '400':
+        application/json: OrdersTagCreateNewTagResponse
+      '401':
+        application/json: OrdersTagCreateNewTag401Response
+  /workspaces/{workspace_id}/products:
+    get:
+      '200':
+        application/json: ProductListForWorkspaceResponse
+      '401':
+        application/json: ProductListForWorkspace401Response
+      '404':
+        application/json: ProductListForWorkspace404Response
+    post:
+      '400':
+        application/json: ProductAddNewToWorkspaceResponse
+      '401':
+        application/json: ProductAddNewToWorkspace401Response
+  /workspaces/{workspace_id}/products/tags:
+    get:
+      '200':
+        application/json: ProductsTagListResponse
+      '401':
+        application/json: ProductsTagList401Response
+      '404':
+        application/json: ProductsTagList404Response
+    post:
+      '400':
+        application/json: ProductsTagCreateNewTagResponse
+      '401':
+        application/json: ProductsTagCreateNewTag401Response
+  /workspaces/{workspace_id}/shipping/packages:
+    get:
+      '200':
+        application/json: ShippingPackageListForWorkspaceResponse
+      '401':
+        application/json: ShippingPackageListForWorkspace401Response
+      '404':
+        application/json: ShippingPackageListForWorkspace404Response
+    post:
+      '400':
+        application/json: ShippingPackageAddToWorkspaceResponse
+      '401':
+        application/json: ShippingPackageAddToWorkspace401Response
+  /workspaces/{workspace_id}/shipping/profiles:
+    get:
+      '200':
+        application/json: ShippingProfileListResponse
+      '401':
+        application/json: ShippingProfileList401Response
+      '404':
+        application/json: ShippingProfileList404Response
+    post:
+      '400':
+        application/json: ShippingProfileCreateNewResponse
+      '401':
+        application/json: ShippingProfileCreateNew401Response
+  /workspaces/{workspace_id}/shipping/rates/names:
+    get:
+      '200':
+        application/json: ShippingRatesNameListResponse
+      '401':
+        application/json: ShippingRatesNameList401Response
+      '404':
+        application/json: ShippingRatesNameList404Response
+    post:
+      '400':
+        application/json: ShippingRatesNameCreateNewRateNameResponse
+      '401':
+        application/json: ShippingRatesNameCreateNewRateName401Response
+  /workspaces/{workspace_id}/webhooks/outgoing/endpoints:
+    get:
+      '200':
+        application/json: WebhooksOutgoingEndpointListEndpointsResponse
+      '401':
+        application/json: WebhooksOutgoingEndpointListEndpoints401Response
+      '404':
+        application/json: WebhooksOutgoingEndpointListEndpoints404Response
+    post:
+      '400':
+        application/json: WebhooksOutgoingEndpointCreateNewResponse
+      '401':
+        application/json: WebhooksOutgoingEndpointCreateNew401Response
+  /workspaces/{workspace_id}/webhooks/outgoing/events:
+    get:
+      '200':
+        application/json: WebhooksOutgoingEventListForWorkspaceResponse
+      '401':
+        application/json: WebhooksOutgoingEventListForWorkspace401Response
+      '404':
+        application/json: WebhooksOutgoingEventListForWorkspace404Response
+securityParameters:
+  after:
+    query: false
+  filter:
+    query: false
+  sort_order:
+    query: false
+validServerUrls:
+  https://{subdomain}.myclickfunnels.com/api/v2:
+    url: https://{subdomain}.myclickfunnels.com/api/v2

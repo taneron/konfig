@@ -54,6 +54,8 @@ operationIds:
     get: VoucherMinmaxAmount_getMinMaxAmount
   /v1/voucher/get-many:
     get: Voucher_getMultipleRecords
+  /v1/voucher/redeem-and-withdraw:
+    patch: Voucher_redeemAndWithdraw
   /v1/vouchers:
     get: Voucher_getRecord
     patch: Voucher_redeemExistingUnused
@@ -131,6 +133,9 @@ requestSchemaNames:
     post:
       application/json: MockPaymentRequestSubmissionRequest
   /v1/voucher:
+    patch:
+      application/json: VoucherRedeemAndWithdrawRequest
+  /v1/voucher/redeem-and-withdraw:
     patch:
       application/json: VoucherRedeemAndWithdrawRequest
   /v1/vouchers:
@@ -257,6 +262,14 @@ responseSchemaNames:
         application/json: VoucherGetMultipleRecordsResponse
       '400':
         application/json: VoucherGetMultipleRecords400Response
+  /v1/voucher/redeem-and-withdraw:
+    patch:
+      '200':
+        application/json: VoucherRedeemAndWithdrawResponse
+      '400':
+        application/json: VoucherRedeemAndWithdraw400Response
+      '404':
+        application/json: VoucherRedeemAndWithdraw404Response
   /v1/vouchers:
     get:
       '200':
