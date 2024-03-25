@@ -17870,6 +17870,29 @@
       ]
     },
     {
+      "url": "/users/{user_id}/subscriptions/{subscription_id}",
+      "method": "getSubscriptionInfo",
+      "httpMethod": "get",
+      "tag": "Payments\\Essentials",
+      "typeScriptTag": "paymentsEssentials",
+      "description": "Get information about a payments service subscription",
+      "parameters": [
+        {
+          "name": "subscriptionId",
+          "schema": "string",
+          "required": true,
+          "description": "The ID of the subscription.",
+          "example": "abc12345"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": "OK"
+        }
+      ]
+    },
+    {
       "url": "/users/{user_id}/team/role",
       "method": "getUserTeamRole",
       "httpMethod": "get",
@@ -19299,29 +19322,6 @@
         {
           "statusCode": "404",
           "description": ""
-        }
-      ]
-    },
-    {
-      "url": "/users/{user_id}/{subscription_id}",
-      "method": "getSubscriptionInfo",
-      "httpMethod": "get",
-      "tag": "Payments\\Essentials",
-      "typeScriptTag": "paymentsEssentials",
-      "description": "Get information about a payments service subscription",
-      "parameters": [
-        {
-          "name": "subscriptionId",
-          "schema": "string",
-          "required": true,
-          "description": "The ID of the subscription.",
-          "example": "abc12345"
-        }
-      ],
-      "responses": [
-        {
-          "statusCode": "200",
-          "description": "OK"
         }
       ]
     },
@@ -22604,7 +22604,7 @@
   "previewLinkImage": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/vimeo/imagePreview.png",
   "faviconUrl": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/vimeo/favicon.jpg",
   "clientNameCamelCase": "vimeo",
-  "lastUpdated": "2024-03-24T21:45:24.878Z",
+  "lastUpdated": "2024-03-25T20:37:50.800Z",
   "typescriptSdkUsageCode": "import { Vimeo } from 'vimeo-typescript-sdk';\n\nconst vimeo = new Vimeo({\n    bearer: \"BEARER\",\n    clientId: \"CLIENT_ID\",\n    clientSecret: \"CLIENT_SECRET\"\n})",
   "typescriptSdkFirstRequestCode": "// Get the API specification\nconst endpointsResponse = vimeo.apiInformation\\essentials.endpoints({\n    openapi: true\n    version: \"3.4\"\n})",
   "fixedSpecFileName": "vimeo-fixed-spec.yaml"

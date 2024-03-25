@@ -1,4 +1,4 @@
-hash: 5d9b58ed7422c7b59ad02fcc6bf6d91c4c380295765bcf57ea6c259246a95416
+hash: c3486c0f2a6bba669b79a5b8b0a1ffba16073b881ecf0804a6b0ab83495467c2
 methodObjects:
   - url: /
     method: endpoints
@@ -12996,6 +12996,21 @@ methodObjects:
         description: The video was added.
       - statusCode: '404'
         description: ''
+  - url: /users/{user_id}/subscriptions/{subscription_id}
+    method: getSubscriptionInfo
+    httpMethod: get
+    tag: Payments\Essentials
+    typeScriptTag: paymentsEssentials
+    description: Get information about a payments service subscription
+    parameters:
+      - name: subscriptionId
+        schema: string
+        required: true
+        description: The ID of the subscription.
+        example: abc12345
+    responses:
+      - statusCode: '200'
+        description: OK
   - url: /users/{user_id}/team/role
     method: getUserTeamRole
     httpMethod: get
@@ -14024,21 +14039,6 @@ methodObjects:
         description: ''
       - statusCode: '404'
         description: ''
-  - url: /users/{user_id}/{subscription_id}
-    method: getSubscriptionInfo
-    httpMethod: get
-    tag: Payments\Essentials
-    typeScriptTag: paymentsEssentials
-    description: Get information about a payments service subscription
-    parameters:
-      - name: subscriptionId
-        schema: string
-        required: true
-        description: The ID of the subscription.
-        example: abc12345
-    responses:
-      - statusCode: '200'
-        description: OK
   - url: /videos
     method: videos
     httpMethod: get

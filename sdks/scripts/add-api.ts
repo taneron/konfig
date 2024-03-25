@@ -3,6 +3,7 @@ import path from "path";
 import * as fs from "fs";
 import autocomplete from "inquirer-autocomplete-standalone";
 import boxen from "boxen";
+import yaml from "js-yaml";
 import { PublishJson as PublishJsonType } from "../src/publish-json-schema";
 import Instructor from "@instructor-ai/instructor";
 import { z } from "zod";
@@ -30,7 +31,7 @@ async function main() {
 }
 
 /**
- * Adds an API to the list of APIs to publish in publish.json.
+ * Adds an API to the list of APIs to publish in publish.yaml.
  *
  * 1. Ask to add one of the JSONs under db/spec-data
  * 2. Ask for a company, homepage.
@@ -419,9 +420,9 @@ async function getCategories(
   //   return specData.categories;
   // }
 
-  const publishJson: PublishJsonType = JSON.parse(
-    fs.readFileSync(path.join(ROOT_FOLDER_PATH, "publish.json"), "utf-8")
-  );
+  const publishJson: PublishJsonType = yaml.load(
+    fs.readFileSync(path.join(ROOT_FOLDER_PATH, "publish.yaml"), "utf-8")
+  ) as PublishJsonType;
 
   const allCategories = [
     ...new Set(
@@ -634,7 +635,7 @@ async function chooseApiFromSpecData(): Promise<string> {
 }
 
 class PublishJson {
-  static PATH = path.join(ROOT_FOLDER_PATH, "publish.json");
+  static PATH = path.join(ROOT_FOLDER_PATH, "publish.yaml");
 
   static getCompany(api: string): string | undefined {
     return PublishJson._currentPublishJson().publish[api]?.company;
@@ -742,7 +743,7 @@ class PublishJson {
   );
 
   static _currentPublishJson(): PublishJsonType {
-    return JSON.parse(fs.readFileSync(this.PATH, "utf-8"));
+    return yaml.load(fs.readFileSync(this.PATH, "utf-8")) as PublishJsonType;
   }
 
   /**
@@ -763,7 +764,7 @@ class PublishJson {
         publishJson.publish[specData] = {} as any;
       }
       lambda(args, publishJson.publish[specData]);
-      fs.writeFileSync(this.PATH, JSON.stringify(publishJson, null, 2));
+      fs.writeFileSync(this.PATH, yaml.dump(publishJson));
     };
   }
 }

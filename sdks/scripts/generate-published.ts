@@ -18,7 +18,7 @@ import { generateRepositoryDescription } from "./generate-repository-description
 import { generateTypescriptSdkFirstRequestCode } from "../src/generate-typescript-sdk-first-request-code";
 import { assignCategoryToApi } from "../src/assign-category-to-api";
 
-const publishJsonPath = path.join(path.dirname(__dirname), "publish.json");
+const publishJsonPath = path.join(path.dirname(__dirname), "publish.yaml");
 const specDataDirPath = path.join(path.dirname(__dirname), "db", "spec-data");
 const publishedDirPath = path.join(path.dirname(__dirname), "db", "published");
 const progressYamlsPath = path.join(path.dirname(__dirname), "db", "progress");
@@ -63,13 +63,13 @@ const intermediateFixedSpecsOutputPath = path.join(
 const openapiFilename = "openapi.yaml";
 
 /**
- * Collects all the data needed to publish the SDKs from the publish.json and spec-data
+ * Collects all the data needed to publish the SDKs from the publish.yaml and spec-data
  *
  * @returns A map from spec to PublishDatum
  */
 function collectAllPublishData() {
   const publishJson: PublishJson = publishJsonSchema.parse(
-    JSON.parse(fs.readFileSync(publishJsonPath, "utf-8"))
+    yaml.load(fs.readFileSync(publishJsonPath, "utf-8"))
   );
   const dataFromHtml = JSON.parse(fs.readFileSync(dataFromHtmlPath, "utf-8"));
 
@@ -263,7 +263,7 @@ function saveMethodObjectsCache({
 
 async function main() {
   const publishJson: PublishJson = publishJsonSchema.parse(
-    JSON.parse(fs.readFileSync(publishJsonPath, "utf-8"))
+    yaml.load(fs.readFileSync(publishJsonPath, "utf-8"))
   );
   const now = new Date();
   const publishedJsons: Set<string> = new Set();
@@ -283,7 +283,7 @@ async function main() {
    * (1) First pass: write fixed specs to fixed-specs/
    *
    * Note: This entire phase is cacheable by four things:
-   * 1. Equality of publish.json entry
+   * 1. Equality of publish.yaml entry
    * 2. Equality of rawSpecString (which is the contents of the OAS file)
    * 3. Equality of version of konfig-cli
    * 4. The existence of the fixed spec
@@ -336,7 +336,7 @@ async function main() {
     const oas = await parseSpec(rawSpecString);
 
     /**
-     * 1.a Perform any overrides authored in publish.json
+     * 1.a Perform any overrides authored in publish.yaml
      */
 
     // if publishData includes securitySchemes then override the securitySchemes in oas
@@ -377,7 +377,7 @@ async function main() {
     /**
      *
      * Dylan: The reason why we do this is so we can author "securitySchemes" in
-     * the publish.json and then override the securitySchemes in the OAS before
+     * the publish.yaml and then override the securitySchemes in the OAS before
      * fixing it
      */
     // write oas to openapiExamples directory to file openapi.yaml
@@ -462,7 +462,7 @@ async function main() {
      *
      * Note: we can cache this based on two things the equality of fixedSpecString
      * 1. Equality of fixedSpecString
-     * 2. Equality of publish.json entry
+     * 2. Equality of publish.yaml entry
      * 3. Equality of spec-data entry
      * 4. The existence of OAS file in openapi-examples
      */

@@ -4,45 +4,98 @@ examples_3: {}
 operationIds:
   /create-agent:
     post: Agent_createNewAgent
+  /create-phone-call:
+    post: Call_makeConnection
+  /create-phone-number:
+    post: PhoneNumber_purchaseNumberAndBindAgent
+  /create-retell-llm:
+    post: Retell_newLlm
   /delete-agent/{agent_id}:
     delete: Agent_deleteExistingAgent
+  /delete-phone-number/{phone_number}:
+    delete: PhoneNumber_removePhoneNumber
+  /delete-retell-llm/{llm_id}:
+    delete: Retell_deleteLlm
   /get-agent/{agent_id}:
     get: Agent_getDetails
   /get-call/{call_id}:
     get: Call_getDetails
+  /get-phone-number/{phone_number}:
+    get: PhoneNumber_getDetails
+  /get-retell-llm/{llm_id}:
+    get: Retell_getLlmDetails
   /list-agents:
     get: Agent_getAll
   /list-calls:
     get: Call_getDetails
+  /list-phone-numbers:
+    get: PhoneNumber_getAllNumbers
+  /list-retell-llms:
+    get: RetellLlm_listAll
   /register-call:
     post: Call_establishConnection
   /update-agent/{agent_id}:
     patch: Agent_updateExistingAgent
+  /update-phone-number/{phone_number}:
+    patch: PhoneNumber_updateRetellLlm
+  /update-retell-llm/{llm_id}:
+    patch: Retell_updateLlm
 operationTags:
   /create-agent:
     post: Agent
+  /create-phone-call:
+    post: Call
+  /create-phone-number:
+    post: PhoneNumber
+  /create-retell-llm:
+    post: Retell
   /delete-agent/{agent_id}:
     delete: Agent
+  /delete-phone-number/{phone_number}:
+    delete: PhoneNumber
+  /delete-retell-llm/{llm_id}:
+    delete: Retell
   /get-agent/{agent_id}:
     get: Agent
   /get-call/{call_id}:
     get: Call
+  /get-phone-number/{phone_number}:
+    get: PhoneNumber
+  /get-retell-llm/{llm_id}:
+    get: Retell
   /list-agents:
     get: Agent
   /list-calls:
     get: Call
+  /list-phone-numbers:
+    get: PhoneNumber
+  /list-retell-llms:
+    get: RetellLLM
   /register-call:
     post: Call
   /update-agent/{agent_id}:
     patch: Agent
+  /update-phone-number/{phone_number}:
+    patch: PhoneNumber
+  /update-retell-llm/{llm_id}:
+    patch: Retell
 renameTags: {}
 requestSchemaNames:
   /create-agent:
     post:
       application/json: AgentCreateNewAgentRequest
+  /create-phone-call:
+    post:
+      application/json: CallMakeConnectionRequest
+  /create-phone-number:
+    post:
+      application/json: PhoneNumberPurchaseNumberAndBindAgentRequest
   /register-call:
     post:
       application/json: CallEstablishConnectionRequest
+  /update-phone-number/{phone_number}:
+    patch:
+      application/json: PhoneNumberUpdateRetellLlmRequest
 responseDescriptions: {}
 responseSchemaNames:
   /list-agents:
@@ -53,6 +106,14 @@ responseSchemaNames:
     get:
       '200':
         application/json: CallGetDetailsResponse
+  /list-phone-numbers:
+    get:
+      '200':
+        application/json: PhoneNumberGetAllNumbersResponse
+  /list-retell-llms:
+    get:
+      '200':
+        application/json: RetellLlmListAllResponse
   /register-call:
     post:
       '400':
