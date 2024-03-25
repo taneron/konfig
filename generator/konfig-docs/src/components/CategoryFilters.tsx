@@ -29,32 +29,38 @@ class AllCategories {
 
   constructor(categories: CategoryFiltersProps["categories"]) {
     this.categories = categories.reduce((acc, category) => {
-      acc[category.parentCategory] = new ParentCategorySection();
+      acc[category.parentCategory] = new ParentCategorySection({
+        name: category.parentCategory,
+      });
       return acc;
     }, {});
-    makeAutoObservable(this, {}, { autoBind: true });
-    if (typeof window === "undefined") return;
-    makePersistable(this, {
-      name: "AllCategories",
-      properties: ["categories"],
-      storage: window.localStorage,
-    });
+
+    makeAutoObservable(this);
   }
 
   get anyCategoryIsOpen() {
     return Object.values(this.categories).some((category) => category.isOpen);
   }
-
-  stopStore() {
-    stopPersisting(this);
-  }
 }
 
 class ParentCategorySection {
   isOpen: boolean = false;
+  name: string;
 
-  constructor() {
-    makeAutoObservable(this);
+  constructor({ name }: { name: string }) {
+    makeAutoObservable(this, {}, { autoBind: true });
+    this.name = name;
+
+    if (typeof window === "undefined") return;
+    makePersistable(this, {
+      name: `Category-${name}`,
+      properties: ["isOpen"],
+      storage: window.localStorage,
+    });
+  }
+
+  stopStore() {
+    stopPersisting(this);
   }
 }
 
@@ -86,7 +92,9 @@ export const CategoryFilterControls = observer(
     const [allCategories] = useState(() => new AllCategories(categories));
     useEffect(() => {
       return () => {
-        allCategories.stopStore();
+        for (const category of Object.values(allCategories.categories)) {
+          category.stopStore();
+        }
       };
     }, []);
     return (
