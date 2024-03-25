@@ -17,7 +17,10 @@ export async function aiGenerateOperationIdSuffix({
   const openai = new OpenAI({ apiKey: process.env['OPENAI_API_KEY'] })
 
   const existingIds = operations.map((o) => o.operation.operationId)
-  const existingIdsStr = existingIds.join(', ').slice(0, -2)
+  const existingIdsStr = existingIds
+    .filter((id) => id !== undefined && id?.trim() !== '')
+    .join(', ')
+    .slice(0, -2)
   const systemPrompt = `You are a generator of operation IDs for an OpenAPI specification. You generate operation IDs in json format: "{ prefix: ... , suffix: ...}"`
   const prompt = generatePrompt({
     prefix,

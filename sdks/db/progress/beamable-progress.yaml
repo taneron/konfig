@@ -1,0 +1,1352 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignoreObjectsWithNoProperties: true
+operationIds:
+  /basic/accounts/admin/admin-user:
+    post: Account_createAdminUser
+  /basic/accounts/admin/admin-users:
+    get: Account_getAdminUsers
+  /basic/accounts/admin/me:
+    get: Account_getDetails
+  /basic/accounts/available:
+    get: Account_checkAvailability
+  /basic/accounts/available/device-id:
+    get: Account_checkAvailability
+  /basic/accounts/available/third-party:
+    get: Account_checkThirdPartyAvailability
+  /basic/accounts/email-update/confirm:
+    post: Mail_updateEmailConfirmation
+  /basic/accounts/email-update/init:
+    post: Mail_updateEmailInit
+  /basic/accounts/find:
+    get: Account_findAccounts
+  /basic/accounts/get-personally-identifiable-information:
+    get: Account_getPersonallyIdentifiableInformation
+  /basic/accounts/me:
+    get: Account_getUserInfo
+    put: Account_updateAccountInfo
+  /basic/accounts/me/device:
+    delete: Account_removeDevice
+  /basic/accounts/me/third-party:
+    delete: Account_deleteThirdParty
+  /basic/accounts/password-update/confirm:
+    post: Account_updatePasswordConfirmation
+  /basic/accounts/password-update/init:
+    post: Account_updatePasswordInit
+  /basic/accounts/register:
+    post: Account_registerNewAccount
+  /basic/accounts/search:
+    get: Account_searchAccounts
+  /basic/announcements/:
+    delete: Announcement_deleteAnnouncement
+    post: Announcement_createNewAnnouncement
+  /basic/announcements/content:
+    get: Content_getAnnouncementContent
+  /basic/announcements/list:
+    get: Announcement_getAllAnnouncements
+  /basic/announcements/search:
+    get: Announcement_searchOperation
+  /basic/auth/token:
+    get: Authentication_getToken
+    post: Authentication_requestToken
+  /basic/cloudsaving/:
+    get: Cloudsaving_getData
+  /basic/cloudsaving/data:
+    delete: Cloudsaving_deleteData
+  /basic/cloudsaving/data/commitManifest:
+    put: Cloudsaving_commitManifestPut
+  /basic/cloudsaving/data/downloadURL:
+    post: Cloudsaving_getDataDownloadUrl
+  /basic/cloudsaving/data/metadata:
+    get: Cloudsaving_getDataMetadata
+  /basic/cloudsaving/data/move:
+    put: Cloudsaving_moveDataPut
+  /basic/cloudsaving/data/replace:
+    post: Cloudsaving_replaceData
+  /basic/cloudsaving/data/uploadURL:
+    post: Cloudsaving_uploadDataUrl
+  /basic/cloudsaving/data/uploadURLFromPortal:
+    post: Cloudsaving_uploadUrlFromPortal
+  /basic/commerce/catalog:
+    get: Product_getCatalog
+  /basic/commerce/skus:
+    get: Sku_listSkus
+    post: Sku_createSku
+  /basic/content/:
+    post: Content_createNewContent
+  /basic/content/content:
+    get: Content_getContentDetails
+  /basic/content/manifest:
+    get: Content_getManifestData
+    post: Content_createManifestData
+  /basic/content/manifest/checksum:
+    get: Content_checkManifestChecksum
+  /basic/content/manifest/private:
+    get: Content_getPrivateManifest
+  /basic/content/manifest/public:
+    get: Content_getPublicManifest
+  /basic/content/manifest/pull:
+    post: Content_pullManifestData
+  /basic/content/text:
+    post: Content_submitTextContent
+  /basic/events/applyContent:
+    post: Content_applyContentData
+  /basic/events/calendar:
+    get: Event_getCalendarEvents
+  /basic/events/content:
+    get: Content_getContentData
+  /basic/events/running:
+    get: Activity_getRunningEvents
+  /basic/groups/search:
+    get: Group_searchGroups
+  /basic/history/account/roles:
+    get: Account_listRoles
+  /basic/history/apiaccess:
+    get: History_getApiAccessHistory
+  /basic/history/apiaccess/url:
+    get: History_getApiAccessUrl
+  /basic/history/events:
+    get: History_getEventHistory
+  /basic/history/microservices:
+    get: History_getMicroservicesHistory
+  /basic/history/query:
+    post: History_getQueryResults
+  /basic/history/query/url:
+    post: History_getQueryData
+  /basic/inventory/currency:
+    get: Currency_getInventoryCurrency
+  /basic/inventory/items:
+    get: Item_listItems
+  /basic/leaderboards/assignment:
+    get: Leaderboard_getAssignmentLeaderboard
+  /basic/leaderboards/list:
+    get: Leaderboard_listUserScores
+  /basic/leaderboards/player:
+    get: Leaderboard_getPlayerScores
+  /basic/leaderboards/uid:
+    get: Leaderboard_getUserScores
+  /basic/legacy-cloud/campaigns:
+    delete: Campaign_removeLegacyCloud
+    get: Campaign_getLegacyCloudCampaigns
+    post: Campaign_createNewLegacyCloudCampaign
+  /basic/legacy-cloud/campaigns/schedule:
+    put: Campaign_updateSchedule
+  /basic/legacy-cloud/templates:
+    delete: Template_deleteLegacyCloud
+    get: Template_getLegacyCloudTemplates
+    post: Template_createLegacyCloudTemplate
+  /basic/legacy-entitlement-defs/:
+    delete: LegacyPvpDef_deleteEntitlementDefinition
+    get: LegacyPvpDef_getEntitlementDefs
+    post: LegacyEntitlementDef_createDefinition
+    put: Entitlement_createLegacyEntitlementDefs
+  /basic/legacy-entitlement-defs/claim:
+    put: Entitlement_defineEntitlementLegacy
+  /basic/legacy-entitlement-defs/grant:
+    post: Entitlement_createLegacyEntitlementDefs
+  /basic/legacy-entitlement-defs/player:
+    get: Entitlement_getPlayerEntitlements
+  /basic/legacy-entitlement-defs/revoke:
+    delete: Entitlement_revokeLegacyEntitlementDefs
+  /basic/legacy-entitlement-defs/upload:
+    post: Entitlement_uploadLegacyEntitlementDefs
+  /basic/legacy-promos/:
+    get: Promo_getLegacyPromos
+    post: Promo_createLegacyPromo
+  /basic/legacy-promos/claim:
+    post: Promo_claimLegacyPromo
+  /basic/legacy-promos/codes:
+    get: Promo_getPromoCodes
+    post: Promo_generatePromoCode
+  /basic/legacy-pvp-defs/:
+    delete: LegacyPvpDef_deleteDefinition
+    get: LegacyPvpDef_getDefinitions
+    put: LegacyPvpDef_createOrUpdateDefinition
+  /basic/legacy-pvp-defs/file:
+    post: LegacyPvpDef_submitPvpFile
+  /basic/legacy-shards/:
+    delete: Shard_deleteLegacyShard
+    get: Shard_getLegacyData
+    post: Shard_postLegacyShard
+    put: Shard_updateLegacyShardData
+  /basic/legacy-shards/accepting:
+    get: Shard_getLegacyAccepting
+  /basic/legacy-shards/preferred:
+    get: Shard_getPreferredLegacyShards
+  /basic/legacy-timers/:
+    delete: Timer_deleteLegacyTimers
+    get: Timer_getLegacyTimers
+    post: Timer_createLegacyTimer
+  /basic/legacy-timers/defs:
+    get: Timer_getLegacyTimers
+  /basic/mail/:
+    get: Mail_getMessages
+    put: Mail_updateMailContent
+  /basic/mail/attachments:
+    put: Mail_uploadAttachment
+  /basic/mail/bulk:
+    post: Mail_sendBulkEmails
+  /basic/mail/template:
+    get: Mail_getMailTemplate
+  /basic/notification/:
+    get: Notification_getUnreadMessages
+  /basic/notification/custom:
+    post: Notification_createCustomNotification
+  /basic/notification/game:
+    post: Game_postNotification
+  /basic/notification/generic:
+    post: Notification_sendNotification
+  /basic/notification/global:
+    post: Notification_sendGlobalNotification
+  /basic/notification/player:
+    post: Notification_sendPlayerNotification
+  /basic/notification/server:
+    post: Notification_sendServerNotification
+  /basic/payments/audits:
+    get: Audit_getPaymentAudits
+  /basic/payments/coupon/product:
+    get: Product_getCouponDetails
+  /basic/payments/coupon/purchase/begin:
+    post: Payment_couponPurchaseBegin
+  /basic/payments/coupon/purchase/cancel:
+    post: Payment_couponPurchaseCancel
+  /basic/payments/coupon/purchase/complete:
+    post: Payment_completePurchase
+  /basic/payments/coupon/purchase/fail:
+    post: Payment_failPurchase
+  /basic/payments/coupon/purchase/track:
+    post: Payment_trackPurchasePost
+  /basic/payments/facebook/product:
+    get: Product_getFacebookProduct
+  /basic/payments/facebook/purchase/begin:
+    post: Payment_facebookPurchaseBegin
+  /basic/payments/facebook/purchase/cancel:
+    post: Payment_facebookPurchaseCancel
+  /basic/payments/facebook/purchase/complete:
+    post: Payment_facebookPurchaseComplete
+  /basic/payments/facebook/purchase/fail:
+    post: Payment_facebookPurchaseFailure
+  /basic/payments/facebook/purchase/track:
+    post: Payment_trackPurchasePost
+  /basic/payments/facebook/update:
+    get: Update_facebookPaymentsUpdate
+    post: Update_facebookPaymentsUpdate
+  /basic/payments/googleplay/product:
+    get: Product_getGooglePlayDetails
+  /basic/payments/googleplay/purchase/begin:
+    post: Payment_googlePlayPurchaseBegin
+  /basic/payments/googleplay/purchase/cancel:
+    post: Payment_googlePlayPurchaseCancel
+  /basic/payments/googleplay/purchase/complete:
+    post: Payment_completePurchaseProcess
+  /basic/payments/googleplay/purchase/fail:
+    post: Payment_processFailure
+  /basic/payments/googleplay/purchase/track:
+    post: Payment_trackPurchasePost
+  /basic/payments/itunes/product:
+    get: Product_getItunesItem
+  /basic/payments/itunes/purchase/begin:
+    post: Payment_itunesPurchaseBegin
+  /basic/payments/itunes/purchase/cancel:
+    post: Payment_cancelPurchaseProcess
+  /basic/payments/itunes/purchase/complete:
+    post: Payment_completeItunesPurchase
+  /basic/payments/itunes/purchase/fail:
+    post: Payment_processFailure
+  /basic/payments/itunes/purchase/track:
+    post: Payment_itunesPurchaseTrack
+  /basic/payments/steam/auth:
+    post: Authentication_steamPostAuth
+  /basic/payments/steam/order:
+    get: Order_getSteam
+  /basic/payments/steam/prices:
+    get: Price_getSteamPrices
+  /basic/payments/steam/product:
+    get: Product_getSteamCatalog
+  /basic/payments/steam/purchase/begin:
+    post: Payment_steamPurchaseBegin
+  /basic/payments/steam/purchase/cancel:
+    post: Payment_steamPurchaseCancel
+  /basic/payments/steam/purchase/complete:
+    post: Payment_steamPurchaseComplete
+  /basic/payments/steam/purchase/fail:
+    post: Payment_steamPurchaseFail
+  /basic/payments/steam/purchase/track:
+    post: Payment_trackPurchasePost
+  /basic/payments/test/product:
+    get: Product_testGetBasicPayments
+  /basic/payments/test/purchase/begin:
+    post: Payment_processBegin
+  /basic/payments/test/purchase/cancel:
+    post: Payment_cancelPurchase
+  /basic/payments/test/purchase/complete:
+    post: Payment_completePurchase
+  /basic/payments/test/purchase/fail:
+    post: Payment_processFailure
+  /basic/payments/test/purchase/track:
+    post: Payment_trackPurchasePost
+  /basic/payments/windows/product:
+    get: Product_listWindowsPayments
+  /basic/payments/windows/purchase/begin:
+    post: Payment_initializePurchaseProcess
+  /basic/payments/windows/purchase/cancel:
+    post: Payment_windowsPurchaseCancel
+  /basic/payments/windows/purchase/complete:
+    post: Payment_processComplete
+  /basic/payments/windows/purchase/fail:
+    post: Payment_processFailure
+  /basic/payments/windows/purchase/track:
+    post: Payment_windowsPurchaseTrack
+  /basic/push/register:
+    post: Registration_pushUser
+  /basic/push/send:
+    post: Message_sendPushNotification
+  /basic/realms/admin/customer:
+    get: Realm_getCustomerRealms
+  /basic/realms/config:
+    get: Realm_getConfig
+    put: Realm_updateConfig
+  /basic/realms/customer:
+    get: Realm_getCustomerRealms
+    post: Realm_createCustomerRealm
+  /basic/realms/customer/alias/available:
+    get: Realm_checkAliasAvailable
+  /basic/realms/customers:
+    get: Realm_listCustomersRealms
+  /basic/realms/game:
+    get: Game_getRealms
+    post: Game_createRealm
+    put: Game_updateRealm
+  /basic/realms/games:
+    get: Game_getRealmsGames
+  /basic/realms/is-customer:
+    get: Realm_checkCustomerStatus
+  /basic/realms/launch-message:
+    delete: Message_deleteLaunchMessage
+    get: Message_getLaunchData
+    post: Message_createLaunchMessage
+  /basic/realms/plans:
+    get: Plan_getRealmsPlans
+    post: Plan_createNewPlan
+  /basic/realms/project:
+    delete: Realm_deleteProject
+    get: Realm_getProjectRealms
+    post: Realm_createProjectReal
+    put: Realm_updateProjectRealms
+  /basic/realms/project/beamable:
+    post: Realm_createBeamable
+  /basic/realms/project/promote:
+    get: Realm_projectPromoteGet
+    post: Realm_projectPromote
+  /basic/realms/project/rename:
+    put: Realm_renameProjectRealms
+  /basic/realms/promotion:
+    get: Realm_getPromotionData
+    post: Realm_createPromotion
+  /basic/session/:
+    post: Session_createSessionRequest
+  /basic/session/heartbeat:
+    post: Session_postHeartbeat
+  /basic/session/history:
+    get: Session_getHistory
+  /basic/session/status:
+    get: Session_getStatus
+  /basic/social/blocked:
+    delete: Block_userSocialUnblock
+    post: Block_userSocialBlocked
+  /basic/social/friends:
+    delete: Friend_removeFriend
+  /basic/social/friends/import:
+    post: Friend_importFriendsData
+  /basic/social/my:
+    get: Message_getMySocialData
+  /basic/stats/batch:
+    post: Statistic_batchPost
+  /basic/stats/client/batch:
+    get: Statistic_getClientBatchStats
+  /basic/stats/search:
+    post: Statistic_searchData
+  /basic/stats/subscribe:
+    put: Subscription_addBasicStatsSubscription
+  /basic/tournaments/:
+    get: Tournament_listTournaments
+    post: Tournament_createNewTournament
+  /basic/tournaments/admin/player:
+    get: Tournament_adminPlayerDataGet
+    put: Tournament_updateAdminPlayer
+  /basic/tournaments/champions:
+    get: Tournament_getChampions
+  /basic/tournaments/global:
+    get: Tournament_getGlobalTournaments
+  /basic/tournaments/me:
+    get: Tournament_getMyTournament
+  /basic/tournaments/rewards:
+    get: Tournament_getRewards
+    post: Tournament_createReward
+  /basic/tournaments/score:
+    post: Tournament_submitScore
+  /basic/tournaments/standings:
+    get: Tournament_getStandings
+  /basic/trials/:
+    delete: Trial_removeTrial
+    get: Trial_listTrials
+    post: Trial_createNewTrial
+  /basic/trials/admin:
+    get: Trial_getAdminTrials
+  /basic/trials/admin/data:
+    get: Trial_adminDataGet
+  /basic/trials/data:
+    delete: Trial_deleteData
+    post: Trial_postData
+  /basic/trials/pause:
+    put: Trial_pauseTrial
+  /basic/trials/schedule:
+    put: Trial_schedulePut
+  /basic/trials/start:
+    put: Trial_startTrialProcess
+  /object/accounts/{objectId}/admin/email:
+    put: Mail_updateAdminEmail
+  /object/accounts/{objectId}/admin/forget:
+    delete: Account_removeAdminForget
+  /object/accounts/{objectId}/admin/scope:
+    delete: Account_deleteAdminScope
+    put: Account_updateAdminScope
+  /object/accounts/{objectId}/admin/third-party:
+    delete: Account_deleteThirdPartyAdmin
+    put: Account_updateThirdPartyAdmin
+  /object/accounts/{objectId}/available-roles:
+    get: Account_getObjectAvailableRoles
+  /object/accounts/{objectId}/role:
+    delete: Account_removeRole
+    put: Account_updateRole
+  /object/announcements/{objectId}/:
+    delete: Announcement_removeAnnouncementObject
+    get: Announcement_getObjectDetails
+  /object/announcements/{objectId}/claim:
+    post: Announcement_claimObjectAnnouncement
+  /object/announcements/{objectId}/raw:
+    get: Announcement_getObjectRaw
+  /object/announcements/{objectId}/read:
+    put: Announcement_markAsRead
+  /object/calendars/{objectId}/:
+    get: Object_getCalendars
+  /object/calendars/{objectId}/claim:
+    post: Object_claimCalendar
+  /object/chatV2/{objectId}/:
+    get: Object_getChatV2
+  /object/chatV2/{objectId}/messages:
+    post: Message_sendMessage
+  /object/chatV2/{objectId}/rooms:
+    delete: Object_deleteRoom
+    get: Object_getChatRooms
+    post: Object_createChatRoom
+  /object/commerce/{objectId}/:
+    get: Object_getById
+  /object/commerce/{objectId}/coupons:
+    post: Object_createCommerceCoupons
+  /object/commerce/{objectId}/coupons/count:
+    get: Object_getCommerceCouponCount
+  /object/commerce/{objectId}/listings:
+    get: Object_getCommerceListings
+  /object/commerce/{objectId}/offers:
+    get: Object_getCommerceOffers
+  /object/commerce/{objectId}/offersAdmin:
+    get: Object_getOffersAdmin
+  /object/commerce/{objectId}/purchase:
+    post: Object_purchaseItem
+    put: Object_purchaseById
+  /object/commerce/{objectId}/stats/update:
+    post: Object_updateStatObject
+  /object/commerce/{objectId}/status:
+    delete: Object_deleteStatusById
+  /object/event-players/{objectId}/:
+    get: Event_getPlayersData
+  /object/event-players/{objectId}/claim:
+    post: Event_claimObjectEventPlayers
+  /object/event-players/{objectId}/score:
+    put: Event_updatePlayerScore
+  /object/events/{objectId}/:
+    get: Event_getObjectEvents
+  /object/events/{objectId}/content:
+    delete: Content_deleteEventContent
+    put: Content_updateObjectContent
+  /object/events/{objectId}/endPhase:
+    put: Event_updateObjectEndPhase
+  /object/events/{objectId}/ping:
+    get: Event_pingObjectEvents
+  /object/events/{objectId}/refresh:
+    put: Event_refreshObjectEvents
+  /object/gamerelay/{objectId}/:
+    post: Game_relayObjectPost
+  /object/gamerelay/{objectId}/results:
+    post: Game_relayObjectResults
+  /object/gamerelay/{objectId}/sync:
+    post: Game_relayObjectSync
+  /object/group-users/{objectId}/:
+    get: Group_getGroupUsers
+  /object/group-users/{objectId}/availability:
+    get: Group_getUserAvailability
+  /object/group-users/{objectId}/group:
+    post: Group_assignObjectGroup
+  /object/group-users/{objectId}/join:
+    delete: Group_joinUserDelete
+    post: Group_joinUserToGroup
+  /object/group-users/{objectId}/recommended:
+    get: Group_getRecommendedUsers
+  /object/group-users/{objectId}/search:
+    get: Group_searchUsers
+  /object/groups/{objectId}/:
+    delete: Group_deleteObjectGroup
+    get: Group_getObjectGroups
+    put: Group_updateObjectGroup
+  /object/groups/{objectId}/apply:
+    post: Group_applyObjectGroups
+  /object/groups/{objectId}/donations:
+    post: Group_createDonation
+    put: Group_updateDonation
+  /object/groups/{objectId}/invite:
+    post: Group_inviteObjectGroup
+  /object/groups/{objectId}/kick:
+    post: Group_kickObjectGroup
+  /object/groups/{objectId}/member:
+    delete: Group_removeMember
+  /object/groups/{objectId}/petition:
+    post: Group_createPetition
+  /object/groups/{objectId}/role:
+    put: Group_updateRole
+  /object/inventory/{objectId}/:
+    get: Object_getInventoryObjectById
+    post: Object_createInventoryObject
+    put: Object_updateInventoryObject
+  /object/inventory/{objectId}/multipliers:
+    get: Object_getMultipliers
+  /object/inventory/{objectId}/preview:
+    put: Object_updateInventoryPreview
+  /object/inventory/{objectId}/transaction:
+    delete: Object_removeTransactionById
+  /object/inventory/{objectId}/transfer:
+    put: Object_transferItemInventory
+  /object/leaderboards/{objectId}/:
+    delete: Leaderboard_deleteObjectById
+    post: Leaderboard_submitObjectScores
+  /object/leaderboards/{objectId}/assignment:
+    delete: Leaderboard_removeAssignment
+  /object/leaderboards/{objectId}/details:
+    get: Leaderboard_getObjectDetails
+  /object/leaderboards/{objectId}/entries:
+    delete: Leaderboard_deleteEntries
+  /object/leaderboards/{objectId}/entry:
+    delete: Leaderboard_removeEntry
+    put: Leaderboard_updateEntry
+  /object/leaderboards/{objectId}/freeze:
+    put: Leaderboard_createFreezeRequest
+  /object/leaderboards/{objectId}/matches:
+    get: Leaderboard_getObjectMatches
+  /object/leaderboards/{objectId}/membership:
+    get: Leaderboard_getObjectMembership
+  /object/leaderboards/{objectId}/partition:
+    get: Leaderboard_getObjectPartition
+  /object/leaderboards/{objectId}/ranks:
+    get: Leaderboard_listObjectRanks
+  /object/leaderboards/{objectId}/swap:
+    put: Leaderboard_swapObjectLeaderboard
+  /object/leaderboards/{objectId}/view:
+    get: Leaderboard_getObjectView
+  /object/mail/{objectId}/:
+    get: Mail_getObjectMail
+    post: Mail_createObjectMail
+    put: Mail_updateObjectMail
+  /object/mail/{objectId}/accept/many:
+    put: Mail_acceptMany
+  /object/mail/{objectId}/bulk:
+    post: Mail_sendBulkItems
+    put: Mail_updateObjectBulk
+  /object/mail/{objectId}/categories:
+    get: Mail_getObjectCategories
+  /object/mail/{objectId}/detail:
+    get: Mail_getObjectDetail
+  /object/mail/{objectId}/search:
+    post: Mail_searchMailObject
+  /object/matchmaking/{objectId}/match:
+    delete: Object_matchmakingDelete
+    get: Object_getMatchmakingData
+    post: Object_startMatchmakingProcess
+  /object/matchmaking/{objectId}/tick:
+    put: Object_updateMatchmakingTick
+  /object/payments/{objectId}/:
+    get: Object_getPaymentDetails
+  /object/stats/{objectId}/:
+    delete: Object_deleteStatsObject
+    get: Object_getObjectStats
+    post: Object_createObjectStats
+  /object/stats/{objectId}/client:
+    get: Object_getClientStats
+    post: Object_postClientStats
+  /object/stats/{objectId}/client/stringlist:
+    post: Object_postClientStringlist
+  /object/tournaments/{objectId}/:
+    get: Tournament_getTournamentObject
+operationTags:
+  /basic/accounts/admin/admin-user:
+    post: Account
+  /basic/accounts/admin/admin-users:
+    get: Account
+  /basic/accounts/admin/me:
+    get: Account
+  /basic/accounts/available:
+    get: Account
+  /basic/accounts/available/device-id:
+    get: Account
+  /basic/accounts/available/third-party:
+    get: Account
+  /basic/accounts/email-update/confirm:
+    post: Mail
+  /basic/accounts/email-update/init:
+    post: Mail
+  /basic/accounts/find:
+    get: Account
+  /basic/accounts/get-personally-identifiable-information:
+    get: Account
+  /basic/accounts/me:
+    get: Account
+    put: Account
+  /basic/accounts/me/device:
+    delete: Account
+  /basic/accounts/me/third-party:
+    delete: Account
+  /basic/accounts/password-update/confirm:
+    post: Account
+  /basic/accounts/password-update/init:
+    post: Account
+  /basic/accounts/register:
+    post: Account
+  /basic/accounts/search:
+    get: Account
+  /basic/announcements/:
+    delete: Announcement
+    post: Announcement
+  /basic/announcements/content:
+    get: Content
+  /basic/announcements/list:
+    get: Announcement
+  /basic/announcements/search:
+    get: Announcement
+  /basic/auth/token:
+    get: Authentication
+    post: Authentication
+  /basic/cloudsaving/:
+    get: Cloudsaving
+  /basic/cloudsaving/data:
+    delete: Cloudsaving
+  /basic/cloudsaving/data/commitManifest:
+    put: Cloudsaving
+  /basic/cloudsaving/data/downloadURL:
+    post: Cloudsaving
+  /basic/cloudsaving/data/metadata:
+    get: Cloudsaving
+  /basic/cloudsaving/data/move:
+    put: Cloudsaving
+  /basic/cloudsaving/data/replace:
+    post: Cloudsaving
+  /basic/cloudsaving/data/uploadURL:
+    post: Cloudsaving
+  /basic/cloudsaving/data/uploadURLFromPortal:
+    post: Cloudsaving
+  /basic/commerce/catalog:
+    get: Product
+  /basic/commerce/skus:
+    get: SKU
+    post: SKU
+  /basic/content/:
+    post: Content
+  /basic/content/content:
+    get: Content
+  /basic/content/manifest:
+    get: Content
+    post: Content
+  /basic/content/manifest/checksum:
+    get: Content
+  /basic/content/manifest/private:
+    get: Content
+  /basic/content/manifest/public:
+    get: Content
+  /basic/content/manifest/pull:
+    post: Content
+  /basic/content/text:
+    post: Content
+  /basic/events/applyContent:
+    post: Content
+  /basic/events/calendar:
+    get: Event
+  /basic/events/content:
+    get: Content
+  /basic/events/running:
+    get: Activity
+  /basic/groups/search:
+    get: Group
+  /basic/history/account/roles:
+    get: Account
+  /basic/history/apiaccess:
+    get: History
+  /basic/history/apiaccess/url:
+    get: History
+  /basic/history/events:
+    get: History
+  /basic/history/microservices:
+    get: History
+  /basic/history/query:
+    post: History
+  /basic/history/query/url:
+    post: History
+  /basic/inventory/currency:
+    get: Currency
+  /basic/inventory/items:
+    get: Item
+  /basic/leaderboards/assignment:
+    get: Leaderboard
+  /basic/leaderboards/list:
+    get: Leaderboard
+  /basic/leaderboards/player:
+    get: Leaderboard
+  /basic/leaderboards/uid:
+    get: Leaderboard
+  /basic/legacy-cloud/campaigns:
+    delete: Campaign
+    get: Campaign
+    post: Campaign
+  /basic/legacy-cloud/campaigns/schedule:
+    put: Campaign
+  /basic/legacy-cloud/templates:
+    delete: Template
+    get: Template
+    post: Template
+  /basic/legacy-entitlement-defs/:
+    delete: LegacyPvpDef
+    get: LegacyPvpDef
+    post: LegacyEntitlementDef
+    put: Entitlement
+  /basic/legacy-entitlement-defs/claim:
+    put: Entitlement
+  /basic/legacy-entitlement-defs/grant:
+    post: Entitlement
+  /basic/legacy-entitlement-defs/player:
+    get: Entitlement
+  /basic/legacy-entitlement-defs/revoke:
+    delete: Entitlement
+  /basic/legacy-entitlement-defs/upload:
+    post: Entitlement
+  /basic/legacy-promos/:
+    get: Promo
+    post: Promo
+  /basic/legacy-promos/claim:
+    post: Promo
+  /basic/legacy-promos/codes:
+    get: Promo
+    post: Promo
+  /basic/legacy-pvp-defs/:
+    delete: LegacyPvpDef
+    get: LegacyPvpDef
+    put: LegacyPvpDef
+  /basic/legacy-pvp-defs/file:
+    post: LegacyPvpDef
+  /basic/legacy-shards/:
+    delete: Shard
+    get: Shard
+    post: Shard
+    put: Shard
+  /basic/legacy-shards/accepting:
+    get: Shard
+  /basic/legacy-shards/preferred:
+    get: Shard
+  /basic/legacy-timers/:
+    delete: Timer
+    get: Timer
+    post: Timer
+  /basic/legacy-timers/defs:
+    get: Timer
+  /basic/mail/:
+    get: Mail
+    put: Mail
+  /basic/mail/attachments:
+    put: Mail
+  /basic/mail/bulk:
+    post: Mail
+  /basic/mail/template:
+    get: Mail
+  /basic/notification/:
+    get: Notification
+  /basic/notification/custom:
+    post: Notification
+  /basic/notification/game:
+    post: Game
+  /basic/notification/generic:
+    post: Notification
+  /basic/notification/global:
+    post: Notification
+  /basic/notification/player:
+    post: Notification
+  /basic/notification/server:
+    post: Notification
+  /basic/payments/audits:
+    get: Audit
+  /basic/payments/coupon/product:
+    get: Product
+  /basic/payments/coupon/purchase/begin:
+    post: Payment
+  /basic/payments/coupon/purchase/cancel:
+    post: Payment
+  /basic/payments/coupon/purchase/complete:
+    post: Payment
+  /basic/payments/coupon/purchase/fail:
+    post: Payment
+  /basic/payments/coupon/purchase/track:
+    post: Payment
+  /basic/payments/facebook/product:
+    get: Product
+  /basic/payments/facebook/purchase/begin:
+    post: Payment
+  /basic/payments/facebook/purchase/cancel:
+    post: Payment
+  /basic/payments/facebook/purchase/complete:
+    post: Payment
+  /basic/payments/facebook/purchase/fail:
+    post: Payment
+  /basic/payments/facebook/purchase/track:
+    post: Payment
+  /basic/payments/facebook/update:
+    get: Update
+    post: Update
+  /basic/payments/googleplay/product:
+    get: Product
+  /basic/payments/googleplay/purchase/begin:
+    post: Payment
+  /basic/payments/googleplay/purchase/cancel:
+    post: Payment
+  /basic/payments/googleplay/purchase/complete:
+    post: Payment
+  /basic/payments/googleplay/purchase/fail:
+    post: Payment
+  /basic/payments/googleplay/purchase/track:
+    post: Payment
+  /basic/payments/itunes/product:
+    get: Product
+  /basic/payments/itunes/purchase/begin:
+    post: Payment
+  /basic/payments/itunes/purchase/cancel:
+    post: Payment
+  /basic/payments/itunes/purchase/complete:
+    post: Payment
+  /basic/payments/itunes/purchase/fail:
+    post: Payment
+  /basic/payments/itunes/purchase/track:
+    post: Payment
+  /basic/payments/steam/auth:
+    post: Authentication
+  /basic/payments/steam/order:
+    get: Order
+  /basic/payments/steam/prices:
+    get: Price
+  /basic/payments/steam/product:
+    get: Product
+  /basic/payments/steam/purchase/begin:
+    post: Payment
+  /basic/payments/steam/purchase/cancel:
+    post: Payment
+  /basic/payments/steam/purchase/complete:
+    post: Payment
+  /basic/payments/steam/purchase/fail:
+    post: Payment
+  /basic/payments/steam/purchase/track:
+    post: Payment
+  /basic/payments/test/product:
+    get: Product
+  /basic/payments/test/purchase/begin:
+    post: Payment
+  /basic/payments/test/purchase/cancel:
+    post: Payment
+  /basic/payments/test/purchase/complete:
+    post: Payment
+  /basic/payments/test/purchase/fail:
+    post: Payment
+  /basic/payments/test/purchase/track:
+    post: Payment
+  /basic/payments/windows/product:
+    get: Product
+  /basic/payments/windows/purchase/begin:
+    post: Payment
+  /basic/payments/windows/purchase/cancel:
+    post: Payment
+  /basic/payments/windows/purchase/complete:
+    post: Payment
+  /basic/payments/windows/purchase/fail:
+    post: Payment
+  /basic/payments/windows/purchase/track:
+    post: Payment
+  /basic/push/register:
+    post: Registration
+  /basic/push/send:
+    post: Message
+  /basic/realms/admin/customer:
+    get: Realm
+  /basic/realms/config:
+    get: Realm
+    put: Realm
+  /basic/realms/customer:
+    get: Realm
+    post: Realm
+  /basic/realms/customer/alias/available:
+    get: Realm
+  /basic/realms/customers:
+    get: Realm
+  /basic/realms/game:
+    get: Game
+    post: Game
+    put: Game
+  /basic/realms/games:
+    get: Game
+  /basic/realms/is-customer:
+    get: Realm
+  /basic/realms/launch-message:
+    delete: Message
+    get: Message
+    post: Message
+  /basic/realms/plans:
+    get: Plan
+    post: Plan
+  /basic/realms/project:
+    delete: Realm
+    get: Realm
+    post: Realm
+    put: Realm
+  /basic/realms/project/beamable:
+    post: Realm
+  /basic/realms/project/promote:
+    get: Realm
+    post: Realm
+  /basic/realms/project/rename:
+    put: Realm
+  /basic/realms/promotion:
+    get: Realm
+    post: Realm
+  /basic/session/:
+    post: Session
+  /basic/session/heartbeat:
+    post: Session
+  /basic/session/history:
+    get: Session
+  /basic/session/status:
+    get: Session
+  /basic/social/blocked:
+    delete: Block
+    post: Block
+  /basic/social/friends:
+    delete: Friend
+  /basic/social/friends/import:
+    post: Friend
+  /basic/social/my:
+    get: Message
+  /basic/stats/batch:
+    post: Statistic
+  /basic/stats/client/batch:
+    get: Statistic
+  /basic/stats/search:
+    post: Statistic
+  /basic/stats/subscribe:
+    put: Subscription
+  /basic/tournaments/:
+    get: Tournament
+    post: Tournament
+  /basic/tournaments/admin/player:
+    get: Tournament
+    put: Tournament
+  /basic/tournaments/champions:
+    get: Tournament
+  /basic/tournaments/global:
+    get: Tournament
+  /basic/tournaments/me:
+    get: Tournament
+  /basic/tournaments/rewards:
+    get: Tournament
+    post: Tournament
+  /basic/tournaments/score:
+    post: Tournament
+  /basic/tournaments/standings:
+    get: Tournament
+  /basic/trials/:
+    delete: Trial
+    get: Trial
+    post: Trial
+  /basic/trials/admin:
+    get: Trial
+  /basic/trials/admin/data:
+    get: Trial
+  /basic/trials/data:
+    delete: Trial
+    post: Trial
+  /basic/trials/pause:
+    put: Trial
+  /basic/trials/schedule:
+    put: Trial
+  /basic/trials/start:
+    put: Trial
+  /object/accounts/{objectId}/admin/email:
+    put: Mail
+  /object/accounts/{objectId}/admin/forget:
+    delete: Account
+  /object/accounts/{objectId}/admin/scope:
+    delete: Account
+    put: Account
+  /object/accounts/{objectId}/admin/third-party:
+    delete: Account
+    put: Account
+  /object/accounts/{objectId}/available-roles:
+    get: Account
+  /object/accounts/{objectId}/role:
+    delete: Account
+    put: Account
+  /object/announcements/{objectId}/:
+    delete: Announcement
+    get: Announcement
+  /object/announcements/{objectId}/claim:
+    post: Announcement
+  /object/announcements/{objectId}/raw:
+    get: Announcement
+  /object/announcements/{objectId}/read:
+    put: Announcement
+  /object/calendars/{objectId}/:
+    get: Object
+  /object/calendars/{objectId}/claim:
+    post: Object
+  /object/chatV2/{objectId}/:
+    get: Object
+  /object/chatV2/{objectId}/messages:
+    post: Message
+  /object/chatV2/{objectId}/rooms:
+    delete: Object
+    get: Object
+    post: Object
+  /object/commerce/{objectId}/:
+    get: Object
+  /object/commerce/{objectId}/coupons:
+    post: Object
+  /object/commerce/{objectId}/coupons/count:
+    get: Object
+  /object/commerce/{objectId}/listings:
+    get: Object
+  /object/commerce/{objectId}/offers:
+    get: Object
+  /object/commerce/{objectId}/offersAdmin:
+    get: Object
+  /object/commerce/{objectId}/purchase:
+    post: Object
+    put: Object
+  /object/commerce/{objectId}/stats/update:
+    post: Object
+  /object/commerce/{objectId}/status:
+    delete: Object
+  /object/event-players/{objectId}/:
+    get: Event
+  /object/event-players/{objectId}/claim:
+    post: Event
+  /object/event-players/{objectId}/score:
+    put: Event
+  /object/events/{objectId}/:
+    get: Event
+  /object/events/{objectId}/content:
+    delete: Content
+    put: Content
+  /object/events/{objectId}/endPhase:
+    put: Event
+  /object/events/{objectId}/ping:
+    get: Event
+  /object/events/{objectId}/refresh:
+    put: Event
+  /object/gamerelay/{objectId}/:
+    post: Game
+  /object/gamerelay/{objectId}/results:
+    post: Game
+  /object/gamerelay/{objectId}/sync:
+    post: Game
+  /object/group-users/{objectId}/:
+    get: Group
+  /object/group-users/{objectId}/availability:
+    get: Group
+  /object/group-users/{objectId}/group:
+    post: Group
+  /object/group-users/{objectId}/join:
+    delete: Group
+    post: Group
+  /object/group-users/{objectId}/recommended:
+    get: Group
+  /object/group-users/{objectId}/search:
+    get: Group
+  /object/groups/{objectId}/:
+    delete: Group
+    get: Group
+    put: Group
+  /object/groups/{objectId}/apply:
+    post: Group
+  /object/groups/{objectId}/donations:
+    post: Group
+    put: Group
+  /object/groups/{objectId}/invite:
+    post: Group
+  /object/groups/{objectId}/kick:
+    post: Group
+  /object/groups/{objectId}/member:
+    delete: Group
+  /object/groups/{objectId}/petition:
+    post: Group
+  /object/groups/{objectId}/role:
+    put: Group
+  /object/inventory/{objectId}/:
+    get: Object
+    post: Object
+    put: Object
+  /object/inventory/{objectId}/multipliers:
+    get: Object
+  /object/inventory/{objectId}/preview:
+    put: Object
+  /object/inventory/{objectId}/transaction:
+    delete: Object
+  /object/inventory/{objectId}/transfer:
+    put: Object
+  /object/leaderboards/{objectId}/:
+    delete: Leaderboard
+    post: Leaderboard
+  /object/leaderboards/{objectId}/assignment:
+    delete: Leaderboard
+  /object/leaderboards/{objectId}/details:
+    get: Leaderboard
+  /object/leaderboards/{objectId}/entries:
+    delete: Leaderboard
+  /object/leaderboards/{objectId}/entry:
+    delete: Leaderboard
+    put: Leaderboard
+  /object/leaderboards/{objectId}/freeze:
+    put: Leaderboard
+  /object/leaderboards/{objectId}/matches:
+    get: Leaderboard
+  /object/leaderboards/{objectId}/membership:
+    get: Leaderboard
+  /object/leaderboards/{objectId}/partition:
+    get: Leaderboard
+  /object/leaderboards/{objectId}/ranks:
+    get: Leaderboard
+  /object/leaderboards/{objectId}/swap:
+    put: Leaderboard
+  /object/leaderboards/{objectId}/view:
+    get: Leaderboard
+  /object/mail/{objectId}/:
+    get: Mail
+    post: Mail
+    put: Mail
+  /object/mail/{objectId}/accept/many:
+    put: Mail
+  /object/mail/{objectId}/bulk:
+    post: Mail
+    put: Mail
+  /object/mail/{objectId}/categories:
+    get: Mail
+  /object/mail/{objectId}/detail:
+    get: Mail
+  /object/mail/{objectId}/search:
+    post: Mail
+  /object/matchmaking/{objectId}/match:
+    delete: Object
+    get: Object
+    post: Object
+  /object/matchmaking/{objectId}/tick:
+    put: Object
+  /object/payments/{objectId}/:
+    get: Object
+  /object/stats/{objectId}/:
+    delete: Object
+    get: Object
+    post: Object
+  /object/stats/{objectId}/client:
+    get: Object
+    post: Object
+  /object/stats/{objectId}/client/stringlist:
+    post: Object
+  /object/tournaments/{objectId}/:
+    get: Tournament
+renameTags: {}
+requestSchemaNames: {}
+responseDescriptions: {}
+responseSchemaNames: {}
+securityParameters:
+  alias:
+    query: false
+  boardId:
+    query: false
+  contentId:
+    query: false
+  contentManifestIds:
+    query: false
+  customerScoped:
+    query: false
+  cycle:
+    query: false
+  cycles:
+    query: false
+  date:
+    query: false
+  dbid:
+    query: false
+  deviceId:
+    query: false
+  email:
+    query: false
+  enrollmentTypes:
+    query: false
+  focus:
+    query: false
+  format:
+    query: false
+  friends:
+    query: false
+  from:
+    query: false
+  gamerTag:
+    query: false
+  gt:
+    query: false
+  guild:
+    query: false
+  hasSlots:
+    query: false
+  hubChallenge:
+    query: false
+  hubMode:
+    query: false
+  hubVerifyToken:
+    query: false
+  icw:
+    query: false
+  id:
+    query: false
+  ids:
+    query: false
+  include_deleted:
+    query: false
+  intervalSecs:
+    query: false
+  isRunning:
+    query: false
+  joinBoard:
+    query: false
+  language:
+    query: false
+  limit:
+    query: false
+  listing:
+    query: false
+  max:
+    query: false
+  mid:
+    query: false
+  month:
+    query: false
+  name:
+    query: false
+  objectIds:
+    query: false
+  offset:
+    query: false
+  orderId:
+    query: false
+  outlier:
+    query: false
+  page:
+    query: false
+  pagesize:
+    query: false
+  player:
+    query: false
+  playerId:
+    query: false
+  playerIds:
+    query: false
+  playerIdsSeq:
+    query: false
+  poolSize:
+    query: false
+  preference:
+    query: false
+  promotions:
+    query: false
+  provider:
+    query: false
+  providerid:
+    query: false
+  query:
+    query: false
+  request:
+    query: false
+  rootPID:
+    query: false
+  scope:
+    query: false
+  scoreMax:
+    query: false
+  scoreMin:
+    query: false
+  skip:
+    query: false
+  sku:
+    query: false
+  sortField:
+    query: false
+  sortValue:
+    query: false
+  sourcePid:
+    query: false
+  spec:
+    query: false
+  start:
+    query: false
+  state:
+    query: false
+  stats:
+    query: false
+  steamId:
+    query: false
+  store:
+    query: false
+  stores:
+    query: false
+  subGroup:
+    query: false
+  symbol:
+    query: false
+  tag:
+    query: false
+  templateName:
+    query: false
+  thirdParty:
+    query: false
+  time:
+    query: false
+  to:
+    query: false
+  token:
+    query: false
+  tournamentId:
+    query: false
+  txid:
+    query: false
+  type:
+    query: false
+  userScore:
+    query: false
+  version:
+    query: false
+  windowSize:
+    query: false
+  windows:
+    query: false
+  year:
+    query: false
+validServerUrls: {}
