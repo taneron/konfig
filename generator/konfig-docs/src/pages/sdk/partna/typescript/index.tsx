@@ -17,7 +17,7 @@ export default function PartnaTypeScriptSdk() {
       companyKebabCase="partna"
       clientNameCamelCase="partna"
       homepage="getpartna.com/"
-      lastUpdated={new Date("2024-03-24T21:41:22.682Z")}
+      lastUpdated={new Date("2024-03-25T21:37:17.124Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/partna/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
@@ -378,7 +378,7 @@ export default function PartnaTypeScriptSdk() {
     ]
   },
   {
-    "url": "/v1/voucher",
+    "url": "/v1/voucher/redeem-and-withdraw",
     "method": "redeemAndWithdraw",
     "httpMethod": HttpMethodsEnum.PATCH,
     "tag": "Voucher",
