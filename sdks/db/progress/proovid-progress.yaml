@@ -1,0 +1,103 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+operationIds:
+  /api/Address/AddressVerification/{id}:
+    delete: Address_verifyById
+    get: Address_verifyById
+  /api/Address/AddressVerification/{id}/certificate.pdf:
+    get: Address_verifyCertificatePdf
+  /api/Address/LinkResponse:
+    post: Address_linkResponse
+  /api/Address/NaturalPersonELV:
+    post: Address_createNaturalPersonElv
+  /api/Address/VerificationByLevel:
+    post: Address_verifyByLevel
+  /api/Document/DocumentVerification/{id}:
+    delete: Document_verifyDeletion
+    get: Document_verifyStatus
+  /api/Document/DocumentVerification/{id}/certificate.pdf:
+    get: Document_getCertificate
+  /api/Document/VerifyDocument:
+    post: Document_verifyStatus
+  /api/Health/Status:
+    get: Health_statusCheck
+  /api/Health/Version:
+    get: Health_getVersion
+  /api/NaturalPerson:
+    post: NaturalPerson_createOrUpdate
+  /api/NaturalPerson/verificationRecord/{verificationId}:
+    get: NaturalPerson_getVerificationRecord
+  /api/NaturalPerson/verify:
+    post: NaturalPerson_verifyDetails
+  /api/NaturalPerson/verifyentity:
+    post: NaturalPerson_verifyEntity
+  /api/NaturalPerson/{id}:
+    delete: NaturalPerson_deleteById
+    get: NaturalPerson_getById
+  /api/NaturalPerson/{naturalPersonId}/certificate:
+    get: NaturalPerson_getCertificate
+  /api/NaturalPerson/{naturalPersonId}/delete:
+    delete: NaturalPerson_removeById
+  /api/NaturalPerson/{naturalPersonId}/get:
+    get: NaturalPerson_getDetails
+  /api/NaturalPerson/{naturalPersonId}/updateDocuments:
+    post: NaturalPerson_updateDocuments
+  /api/NaturalPerson/{naturalPersonId}/updateDocuments/verify:
+    post: NaturalPerson_verifyDocuments
+  /api/NaturalPerson/{naturalPersonId}/updateInfo:
+    post: NaturalPerson_updateInformation
+  /api/NaturalPerson/{naturalPersonId}/verifications:
+    get: NaturalPerson_getVerifications
+  /api/NaturalPerson/{naturalPersonId}/verify:
+    post: NaturalPerson_verifyDetails
+  /api/NaturalPerson/{reference}:
+    get: NaturalPerson_getById
+  /api/Screening/AmlReport/{reference}:
+    get: Screening_getAmlReport
+  /api/Screening/NaturalPerson:
+    post: Screening_submitNaturalPersonScreening
+  /api/Screening/NaturalPerson/{id}:
+    delete: Screening_removeNaturalPerson
+    get: Screening_getNaturalPersonById
+operationTags: {}
+renameTags: {}
+requestSchemaNames: {}
+responseDescriptions: {}
+responseSchemaNames:
+  /api/Address/AddressVerification/{id}/certificate.pdf:
+    get:
+      '200':
+        application/pdf: AddressVerifyCertificatePdfResponse
+      '401':
+        application/pdf: AddressVerifyCertificatePdf401Response
+      '404':
+        application/pdf: AddressVerifyCertificatePdf404Response
+  /api/Document/DocumentVerification/{id}/certificate.pdf:
+    get:
+      '200':
+        application/pdf: DocumentGetCertificateResponse
+      '401':
+        application/pdf: DocumentGetCertificate401Response
+      '404':
+        application/pdf: DocumentGetCertificate404Response
+  /api/NaturalPerson/{naturalPersonId}/certificate:
+    get:
+      '200':
+        application/json: NaturalPersonGetCertificate200Response
+        text/json: NaturalPersonGetCertificate200Response
+        text/plain: NaturalPersonGetCertificateResponse
+      '401':
+        application/json: NaturalPersonGetCertificate401Response
+        text/json: NaturalPersonGetCertificate401Response
+        text/plain: NaturalPersonGetCertificate401Response
+      '404':
+        application/json: NaturalPersonGetCertificate404Response
+        text/json: NaturalPersonGetCertificate404Response
+        text/plain: NaturalPersonGetCertificate404Response
+      '500':
+        application/json: NaturalPersonGetCertificate500Response
+        text/json: NaturalPersonGetCertificate500Response
+        text/plain: NaturalPersonGetCertificate500Response
+securityParameters: {}
+validServerUrls: {}

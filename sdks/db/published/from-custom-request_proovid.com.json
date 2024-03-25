@@ -1,0 +1,1289 @@
+{
+  "securitySchemes": {
+    "Bearer": {
+      "type": "apiKey",
+      "description": "JWT Authorization header using the Bearer scheme.",
+      "name": "Authorization",
+      "in": "header"
+    }
+  },
+  "apiBaseUrl": "https://proovidapi.azurewebsites.net/",
+  "apiVersion": "v1",
+  "apiDescription": "Proovid API is a RESTful application that specializes in electronic verification (Proof of address and Proof of Identity) by employing an advanced risk-tiered approacch in combination with a smart Risk assessment system. <a href='docs/PROOVid_ELV.pdf' target='_blank'>More information</a> ",
+  "apiTitle": "Proovid Electronic Verification",
+  "endpoints": 27,
+  "sdkMethods": 31,
+  "schemas": 93,
+  "parameters": 106,
+  "contactUrl": "http://www.proovid.com",
+  "contactEmail": "info@proovid.com",
+  "originalCustomRequest": {
+    "type": "GET",
+    "url": "https://proovidapi.azurewebsites.net/swagger/v1/swagger.json",
+    "apiBaseUrl": "https://proovidapi.azurewebsites.net/"
+  },
+  "customRequestSpecFilename": "proovid.com.yaml",
+  "difficultyScore": 98.5,
+  "difficulty": "Medium",
+  "company": "PROOViD",
+  "sdkName": "proovid-{language}-sdk",
+  "clientName": "ProoViD",
+  "metaDescription": "PROOViD is a regulatory technology (RegTech) company based in Nicosia, Cyprus consisting of a multi-disciplinary team of Compliance / AML Experts, who over the years have built a consolidated system comprising a fully Integrated one-stop shop offering for KYC and Risk Management.",
+  "apiStatusUrls": "inherit",
+  "homepage": "www.proovid.com/",
+  "developerDocumentation": "proovidapi.azurewebsites.net/index.html",
+  "categories": [
+    "regtech",
+    "risk_management",
+    "kyc",
+    "aml"
+  ],
+  "category": "Compliance & Security",
+  "methods": [
+    {
+      "url": "/api/Address/AddressVerification/{id}",
+      "method": "verifyById",
+      "httpMethod": "delete",
+      "tag": "Address",
+      "typeScriptTag": "address",
+      "description": "",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "integer",
+          "required": true,
+          "description": "",
+          "example": 0
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/api/Address/AddressVerification/{id}",
+      "method": "verifyById",
+      "httpMethod": "get",
+      "tag": "Address",
+      "typeScriptTag": "address",
+      "description": "",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "integer",
+          "required": true,
+          "description": "",
+          "example": 0
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/api/Address/AddressVerification/{id}/certificate.pdf",
+      "method": "verifyCertificatePdf",
+      "httpMethod": "get",
+      "tag": "Address",
+      "typeScriptTag": "address",
+      "description": "",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "integer",
+          "required": true,
+          "description": "",
+          "example": 0
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/api/Address/VerificationByLevel",
+      "method": "verifyByLevel",
+      "httpMethod": "post",
+      "tag": "Address",
+      "typeScriptTag": "address",
+      "description": "",
+      "parameters": [
+        {
+          "name": "referenceId",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "email",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "naturalPersonId",
+          "schema": "integer",
+          "description": ""
+        },
+        {
+          "name": "naturalPersonIndexId",
+          "schema": "integer",
+          "description": ""
+        },
+        {
+          "name": "name",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "surname",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "mobilePhone",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "language",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "verificationLevel",
+          "schema": "integer",
+          "description": ""
+        },
+        {
+          "name": "document",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "street",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "streetNumber",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "unit",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "district",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "city",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "region",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "zipCode",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "country",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "fullAddress",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "skipDocumentComparison",
+          "schema": "boolean",
+          "description": ""
+        },
+        {
+          "name": "validityPeriod",
+          "schema": "integer",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/api/Address/NaturalPersonELV",
+      "method": "createNaturalPersonElv",
+      "httpMethod": "post",
+      "tag": "Address",
+      "typeScriptTag": "address",
+      "description": "",
+      "parameters": [
+        {
+          "name": "naturalPersonIndexId",
+          "schema": "integer",
+          "description": ""
+        },
+        {
+          "name": "street",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "streetNumber",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "unit",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "zipCode",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "city",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "district",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "region",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "country",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "email",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "mobile",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "fullAddress",
+          "schema": "string",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/api/Address/LinkResponse",
+      "method": "linkResponse",
+      "httpMethod": "post",
+      "tag": "Address",
+      "typeScriptTag": "address",
+      "description": "",
+      "parameters": [
+        {
+          "name": "link",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "coords",
+          "schema": "array",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": "Success"
+        }
+      ]
+    },
+    {
+      "url": "/api/Document/DocumentVerification/{id}",
+      "method": "verifyDeletion",
+      "httpMethod": "delete",
+      "tag": "Document",
+      "typeScriptTag": "document",
+      "description": "",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "integer",
+          "required": true,
+          "description": "",
+          "example": 0
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/api/Document/DocumentVerification/{id}",
+      "method": "verifyStatus",
+      "httpMethod": "get",
+      "tag": "Document",
+      "typeScriptTag": "document",
+      "description": "",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "integer",
+          "required": true,
+          "description": "",
+          "example": 0
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/api/Document/DocumentVerification/{id}/certificate.pdf",
+      "method": "getCertificate",
+      "httpMethod": "get",
+      "tag": "Document",
+      "typeScriptTag": "document",
+      "description": "",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "integer",
+          "required": true,
+          "description": "",
+          "example": 0
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/api/Document/VerifyDocument",
+      "method": "verifyStatus",
+      "httpMethod": "post",
+      "tag": "Document",
+      "typeScriptTag": "document",
+      "description": "",
+      "parameters": [
+        {
+          "name": "email",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "country",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "document",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "additionalDocument",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "face",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "documentType",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "naturalPersonId",
+          "schema": "integer",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/api/Health/Status",
+      "method": "statusCheck",
+      "httpMethod": "get",
+      "tag": "Health",
+      "typeScriptTag": "health",
+      "description": "",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": "Success"
+        }
+      ]
+    },
+    {
+      "url": "/api/Health/Version",
+      "method": "getVersion",
+      "httpMethod": "get",
+      "tag": "Health",
+      "typeScriptTag": "health",
+      "description": "",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": "Success"
+        }
+      ]
+    },
+    {
+      "url": "/api/NaturalPerson",
+      "method": "createOrUpdate",
+      "httpMethod": "post",
+      "tag": "NaturalPerson",
+      "typeScriptTag": "naturalPerson",
+      "description": "",
+      "parameters": [
+        {
+          "name": "info",
+          "schema": "object",
+          "description": ""
+        },
+        {
+          "name": "clientReferenceId",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "documents",
+          "schema": "object",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "500",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/api/NaturalPerson/verify",
+      "method": "verifyDetails",
+      "httpMethod": "post",
+      "tag": "NaturalPerson",
+      "typeScriptTag": "naturalPerson",
+      "description": "",
+      "parameters": [
+        {
+          "name": "info",
+          "schema": "object",
+          "description": ""
+        },
+        {
+          "name": "clientReferenceId",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "documents",
+          "schema": "object",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "500",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/api/NaturalPerson/verifyentity",
+      "method": "verifyEntity",
+      "httpMethod": "post",
+      "tag": "NaturalPerson",
+      "typeScriptTag": "naturalPerson",
+      "description": "",
+      "parameters": [
+        {
+          "name": "info",
+          "schema": "object",
+          "description": ""
+        },
+        {
+          "name": "clientReferenceId",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "documents",
+          "schema": "object",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "500",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/api/NaturalPerson/{naturalPersonId}/updateDocuments",
+      "method": "updateDocuments",
+      "httpMethod": "post",
+      "tag": "NaturalPerson",
+      "typeScriptTag": "naturalPerson",
+      "description": "",
+      "parameters": [
+        {
+          "name": "naturalPersonId",
+          "schema": "integer",
+          "required": true,
+          "description": "",
+          "example": 0
+        },
+        {
+          "name": "idDocument",
+          "schema": "object",
+          "description": ""
+        },
+        {
+          "name": "addressDocument",
+          "schema": "object",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": ""
+        },
+        {
+          "statusCode": "500",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/api/NaturalPerson/{naturalPersonId}/updateDocuments/verify",
+      "method": "verifyDocuments",
+      "httpMethod": "post",
+      "tag": "NaturalPerson",
+      "typeScriptTag": "naturalPerson",
+      "description": "",
+      "parameters": [
+        {
+          "name": "naturalPersonId",
+          "schema": "integer",
+          "required": true,
+          "description": "",
+          "example": 0
+        },
+        {
+          "name": "idDocument",
+          "schema": "object",
+          "description": ""
+        },
+        {
+          "name": "addressDocument",
+          "schema": "object",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": ""
+        },
+        {
+          "statusCode": "500",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/api/NaturalPerson/{naturalPersonId}/verify",
+      "method": "verifyDetails",
+      "httpMethod": "post",
+      "tag": "NaturalPerson",
+      "typeScriptTag": "naturalPerson",
+      "description": "",
+      "parameters": [
+        {
+          "name": "naturalPersonId",
+          "schema": "integer",
+          "required": true,
+          "description": "",
+          "example": 0
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": ""
+        },
+        {
+          "statusCode": "500",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/api/NaturalPerson/{naturalPersonId}/get",
+      "method": "getDetails",
+      "httpMethod": "get",
+      "tag": "NaturalPerson",
+      "typeScriptTag": "naturalPerson",
+      "description": "",
+      "parameters": [
+        {
+          "name": "naturalPersonId",
+          "schema": "integer",
+          "required": true,
+          "description": "",
+          "example": 0
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": ""
+        },
+        {
+          "statusCode": "500",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/api/NaturalPerson/{naturalPersonId}/updateInfo",
+      "method": "updateInformation",
+      "httpMethod": "post",
+      "tag": "NaturalPerson",
+      "typeScriptTag": "naturalPerson",
+      "description": "",
+      "parameters": [
+        {
+          "name": "naturalPersonId",
+          "schema": "integer",
+          "required": true,
+          "description": "",
+          "example": 0
+        },
+        {
+          "name": "clientReferenceId",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "taxId",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "firstName",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "lastName",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "middleName",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "legalName",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "dateOfBirth",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "gender",
+          "schema": "integer",
+          "description": ""
+        },
+        {
+          "name": "countryBirth",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "countryResidence",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "countryMainBusiness",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "nationality",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "email",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "emailTwo",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "mobilePhone",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "mobilePhoneTwo",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "automaticallyUpdateNPRisk",
+          "schema": "boolean",
+          "description": ""
+        },
+        {
+          "name": "riskLevel",
+          "schema": "integer",
+          "description": ""
+        },
+        {
+          "name": "riskLevelJustification",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "isFlagged",
+          "schema": "boolean",
+          "description": ""
+        },
+        {
+          "name": "comments",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "economicProfile",
+          "schema": "object",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": ""
+        },
+        {
+          "statusCode": "500",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/api/NaturalPerson/verificationRecord/{verificationId}",
+      "method": "getVerificationRecord",
+      "httpMethod": "get",
+      "tag": "NaturalPerson",
+      "typeScriptTag": "naturalPerson",
+      "description": "",
+      "parameters": [
+        {
+          "name": "verificationId",
+          "schema": "integer",
+          "required": true,
+          "description": "",
+          "example": 0
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": ""
+        },
+        {
+          "statusCode": "500",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/api/NaturalPerson/{naturalPersonId}/certificate",
+      "method": "getCertificate",
+      "httpMethod": "get",
+      "tag": "NaturalPerson",
+      "typeScriptTag": "naturalPerson",
+      "description": "",
+      "parameters": [
+        {
+          "name": "naturalPersonId",
+          "schema": "integer",
+          "required": true,
+          "description": "",
+          "example": 0
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": ""
+        },
+        {
+          "statusCode": "500",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/api/NaturalPerson/{naturalPersonId}/delete",
+      "method": "removeById",
+      "httpMethod": "delete",
+      "tag": "NaturalPerson",
+      "typeScriptTag": "naturalPerson",
+      "description": "",
+      "parameters": [
+        {
+          "name": "naturalPersonId",
+          "schema": "integer",
+          "required": true,
+          "description": "",
+          "example": 0
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": ""
+        },
+        {
+          "statusCode": "500",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/api/NaturalPerson/{naturalPersonId}/verifications",
+      "method": "getVerifications",
+      "httpMethod": "get",
+      "tag": "NaturalPerson",
+      "typeScriptTag": "naturalPerson",
+      "description": "",
+      "parameters": [
+        {
+          "name": "naturalPersonId",
+          "schema": "integer",
+          "required": true,
+          "description": "",
+          "example": 0
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": ""
+        },
+        {
+          "statusCode": "500",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/api/NaturalPerson/{id}",
+      "method": "deleteById",
+      "httpMethod": "delete",
+      "tag": "NaturalPerson",
+      "typeScriptTag": "naturalPerson",
+      "description": "",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "integer",
+          "required": true,
+          "description": "",
+          "example": 0
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/api/NaturalPerson/{id}",
+      "method": "getById",
+      "httpMethod": "get",
+      "tag": "NaturalPerson",
+      "typeScriptTag": "naturalPerson",
+      "description": "",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "integer",
+          "required": true,
+          "description": "",
+          "example": 0
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/api/NaturalPerson/{reference}",
+      "method": "getById",
+      "httpMethod": "get",
+      "tag": "NaturalPerson",
+      "typeScriptTag": "naturalPerson",
+      "description": "",
+      "parameters": [
+        {
+          "name": "reference",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "REFERENCE"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/api/Screening/NaturalPerson",
+      "method": "submitNaturalPersonScreening",
+      "httpMethod": "post",
+      "tag": "Screening",
+      "typeScriptTag": "screening",
+      "description": "",
+      "parameters": [
+        {
+          "name": "naturalPersonId",
+          "schema": "integer",
+          "description": ""
+        },
+        {
+          "name": "firstName",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "middleName",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "lastName",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "dob",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "partialMatch",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "document",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "documentType",
+          "schema": "string",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/api/Screening/NaturalPerson/{id}",
+      "method": "removeNaturalPerson",
+      "httpMethod": "delete",
+      "tag": "Screening",
+      "typeScriptTag": "screening",
+      "description": "",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "integer",
+          "required": true,
+          "description": "",
+          "example": 0
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/api/Screening/NaturalPerson/{id}",
+      "method": "getNaturalPersonById",
+      "httpMethod": "get",
+      "tag": "Screening",
+      "typeScriptTag": "screening",
+      "description": "",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "integer",
+          "required": true,
+          "description": "",
+          "example": 0
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/api/Screening/AmlReport/{reference}",
+      "method": "getAmlReport",
+      "httpMethod": "get",
+      "tag": "Screening",
+      "typeScriptTag": "screening",
+      "description": "",
+      "parameters": [
+        {
+          "name": "reference",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "REFERENCE"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "repositoryDescription": "PROOViD is a regulatory technology (RegTech) company based in Nicosia, Cyprus consisting of a multi-disciplinary team of Compliance / AML Experts, who over the years have built a consolidated system comprising a fully Integrated one-stop shop offering for KYC and Risk Management.",
+  "logo": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/proovid/logo.png",
+  "openApiRaw": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/proovid/openapi.yaml",
+  "openApiGitHubUi": "https://github.com/konfig-sdks/openapi-examples/tree/HEAD/proovid/openapi.yaml",
+  "previewLinkImage": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/proovid/imagePreview.png",
+  "faviconUrl": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/proovid/favicon.png",
+  "clientNameCamelCase": "prooViD",
+  "lastUpdated": "2024-03-25T23:19:55.630Z",
+  "typescriptSdkUsageCode": "import { ProoViD } from 'proovid-typescript-sdk';\n\nconst prooViD = new ProoViD({\n    // JWT Authorization header using the Bearer scheme.\n    bearer: \"AUTHORIZATION\"\n})",
+  "typescriptSdkFirstRequestCode": "// \nconst verifyByIdResponse = prooViD.address.verifyById({\n    id: 0\n})",
+  "fixedSpecFileName": "proovid-fixed-spec.yaml"
+}

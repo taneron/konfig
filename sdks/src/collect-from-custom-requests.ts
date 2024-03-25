@@ -1202,6 +1202,11 @@ const customRequests: Record<string, CustomRequest> = {
       return JSON.stringify(openapi);
     },
   },
+  "proovid.com": {
+    type: "GET",
+    url: "https://proovidapi.azurewebsites.net/swagger/v1/swagger.json",
+    apiBaseUrl: "https://proovidapi.azurewebsites.net/"
+  }
 };
 
 async function downloadOpenApiSpecFromMintlify({
