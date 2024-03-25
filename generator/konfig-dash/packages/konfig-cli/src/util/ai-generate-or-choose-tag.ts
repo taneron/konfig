@@ -18,6 +18,7 @@ export async function aiGenerateOrChooseTag(
   const response = (
     await openai.chat.completions.create({
       response_format: { type: 'json_object' },
+      seed: 0,
       messages: [
         { role: 'system', content: systemPrompt },
         { role: 'user', content: prompt },

@@ -37,6 +37,7 @@ export async function aiGenerateOperationIdSuffix({
         { role: 'system', content: systemPrompt },
         { role: 'user', content: prompt },
       ],
+      seed: 0,
       model: 'gpt-3.5-turbo-1106',
     })
   ).choices[0].message.content
