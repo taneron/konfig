@@ -1080,6 +1080,51 @@ const customRequests: Record<string, CustomRequest> = {
     type: "GET",
     url: "https://raw.githubusercontent.com/Unstructured-IO/unstructured-api/main/openapi.json",
   },
+  "cyberark.com_Conjur": {
+    lambda: async () => {
+      const zipUrl =
+        "https://github.com/cyberark/conjur-openapi-spec/archive/refs/heads/main.zip";
+      const dir = path.join(githubZipDir, "cyberark.com_Conjur");
+      const zipDir = path.join(dir, "zip");
+      const unzippedDir = path.join(dir, "unzipped");
+
+      // ensure folder exists
+      fs.ensureDirSync(dir);
+      fs.ensureDirSync(zipDir);
+      fs.ensureDirSync(unzippedDir);
+
+      const zipPath = path.join(zipDir, "repo.zip");
+      const axios = require("axios");
+      const writer = fs.createWriteStream(zipPath);
+
+      const response = await axios({
+        url: zipUrl,
+        method: "GET",
+        responseType: "stream",
+      });
+
+      response.data.pipe(writer);
+
+      await new Promise((resolve, reject) => {
+        writer.on("finish", resolve);
+        writer.on("error", reject);
+      });
+
+      const zip = new AdmZip(zipPath);
+      zip.extractAllTo(unzippedDir, false);
+
+      const openapi = path.join(
+        unzippedDir,
+        "conjur-openapi-spec-main",
+        "spec",
+        "openapi.yml"
+      );
+
+      const bundled = await $RefParser.bundle(openapi);
+
+      return JSON.stringify(bundled, null, 2);
+    },
+  },
   "unit.co": {
     lambda: async () => {
       const zipUrl =

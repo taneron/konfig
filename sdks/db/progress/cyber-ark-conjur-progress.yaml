@@ -1,0 +1,258 @@
+examples: {}
+examples_2: {}
+examples_3:
+  /health:
+    get:
+      '200':
+        application/json: {}
+  /remote_health/{remote}:
+    get:
+      '200':
+        application/json: {}
+  /secrets:
+    get:
+      '406':
+        application/json: {}
+ignoreObjectsWithNoProperties: true
+operationIds:
+  /authenticators:
+    get: Status_authenticatorDetails
+  /authn-azure/{service_id}/{account}/{login}/authenticate:
+    post: Authentication_azureAuthenticate
+  /authn-gcp/{account}/authenticate:
+    post: Authentication_gcpAuthnAuthenticate
+  /authn-gcp/{account}/status:
+    get: Status_checkAuthenticatorStatus
+  /authn-iam/{service_id}/{account}/{login}/authenticate:
+    post: Authentication_getShortLivedToken
+  /authn-jwt/{service_id}/{account}/authenticate:
+    post: Authentication_jwtAuthenticate
+  /authn-jwt/{service_id}/{account}/{id}/authenticate:
+    post: Authentication_authenticateWithId
+  /authn-k8s/{service_id}/inject_client_cert:
+    post: Authentication_sendCsrForClientCertInjection
+  /authn-k8s/{service_id}/{account}/{login}/authenticate:
+    post: Authentication_kubernetesAuthnAuthenticate
+  /authn-ldap/{service_id}/{account}/login:
+    get: Authentication_exchangeLdapCredentialsForApiKey
+  /authn-ldap/{service_id}/{account}/{login}/authenticate:
+    post: Authentication_ldapAuthenticate
+  /authn-oidc/{service_id}/{account}/authenticate:
+    post: Authentication_oidcAuthenticate
+  /authn/{account}/api_key:
+    put: Authentication_rotateApiKey
+  /authn/{account}/login:
+    get: Authentication_getUserApiKey
+  /authn/{account}/password:
+    put: Authentication_changeUserPassword
+  /authn/{account}/{login}/authenticate:
+    post: Authentication_obtainAccessToken
+  /ca/{account}/{service_id}/sign:
+    post: CertificateAuthority_getSignedCertificate
+  /health:
+    get: Status_checkConjurHealth
+  /host_factories/hosts:
+    post: HostFactory_createHost
+  /host_factory_tokens:
+    post: HostFactory_createHostIdentityTokens
+  /host_factory_tokens/{token}:
+    delete: HostFactory_revokeToken
+  /info:
+    get: Status_conjurServerInfo
+  /policies/{account}/policy/{identifier}:
+    patch: Policies_modifyPolicy
+    post: Policies_addDataToExistingPolicy
+    put: Policies_putPolicyDocument
+  /public_keys/{account}/{kind}/{identifier}:
+    get: PublicKeys_showAllForResource
+  /remote_health/{remote}:
+    get: Status_checkRemoteHealth
+  /resources:
+    get: Resources_list
+  /resources/{account}:
+    get: Resources_listResources
+  /resources/{account}/{kind}:
+    get: Resources_listResourcesForKind
+  /resources/{account}/{kind}/{identifier}:
+    get: Resources_showResourceDetails
+  /roles/{account}/{kind}/{identifier}:
+    delete: Roles_deleteRoleMembership
+    get: Roles_getRoleInformation
+    post: Roles_updateRoleMembership
+  /secrets:
+    get: Secrets_getMultipleValues
+  /secrets/{account}/{kind}/{identifier}:
+    get: Secrets_getSecretValue
+    post: Secrets_createSecretValue
+  /whoami:
+    get: Status_getClientInfo
+  /{authenticator}/{account}:
+    patch: Authentication_toggleAuthenticatorStatus
+  /{authenticator}/{service_id}/{account}:
+    patch: Authentication_toggleAuthenticatorInstanceStatus
+  /{authenticator}/{service_id}/{account}/status:
+    get: Status_checkAuthenticatorConfiguration
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /authn-azure/{service_id}/{account}/{login}/authenticate:
+    post:
+      application/x-www-form-urlencoded: AuthenticationAzureAuthenticateRequest
+  /authn-gcp/{account}/authenticate:
+    post:
+      application/x-www-form-urlencoded: AuthenticationGcpAuthnAuthenticateRequest
+  /authn-iam/{service_id}/{account}/{login}/authenticate:
+    post:
+      text/plain: AuthenticationGetShortLivedTokenRequest
+  /authn-jwt/{service_id}/{account}/authenticate:
+    post:
+      application/x-www-form-urlencoded: AuthenticationJwtAuthenticateRequest
+  /authn-k8s/{service_id}/inject_client_cert:
+    post:
+      text/plain: AuthenticationSendCsrForClientCertInjectionRequest
+  /authn-oidc/{service_id}/{account}/authenticate:
+    post:
+      application/x-www-form-urlencoded: AuthenticationOidcAuthenticateRequest
+  /authn/{account}/password:
+    put:
+      text/plain: AuthenticationChangeUserPasswordRequest
+  /authn/{account}/{login}/authenticate:
+    post:
+      text/plain: AuthenticationObtainAccessTokenRequest
+  /ca/{account}/{service_id}/sign:
+    post:
+      application/x-www-form-urlencoded: CertificateAuthorityGetSignedCertificateRequest
+  /host_factories/hosts:
+    post:
+      application/x-www-form-urlencoded: HostFactoryCreateHostRequest
+  /host_factory_tokens:
+    post:
+      application/x-www-form-urlencoded: HostFactoryCreateHostIdentityTokensRequest
+  /policies/{account}/policy/{identifier}:
+    put:
+      text/yaml: PoliciesPutPolicyDocumentRequest
+  /secrets/{account}/{kind}/{identifier}:
+    post:
+      application/octet-stream: SecretsCreateSecretValueRequest
+  /{authenticator}/{account}:
+    patch:
+      application/x-www-form-urlencoded: AuthenticationToggleAuthenticatorStatusRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /authenticators:
+    get:
+      '200':
+        application/json: StatusAuthenticatorDetailsResponse
+  /authn/{account}/{login}/authenticate:
+    post:
+      '200':
+        text/plain: AuthenticationObtainAccessTokenResponse
+  /ca/{account}/{service_id}/sign:
+    post:
+      '201':
+        application/json: CertificateAuthorityGetSignedCertificateResponse
+        application/x-pem-file: CertificateAuthorityGetSignedCertificate201Response
+  /health:
+    get:
+      '200':
+        application/json: StatusCheckConjurHealthResponse
+  /host_factories/hosts:
+    post:
+      '201':
+        application/json: HostFactoryCreateHostResponse
+  /host_factory_tokens:
+    post:
+      '200':
+        application/json: HostFactoryCreateHostIdentityTokensResponse
+  /info:
+    get:
+      '200':
+        application/json: StatusConjurServerInfoResponse
+  /policies/{account}/policy/{identifier}:
+    patch:
+      '201':
+        application/json: PoliciesModifyPolicyResponse
+  /public_keys/{account}/{kind}/{identifier}:
+    get:
+      '200':
+        text/plain: PublicKeysShowAllForResourceResponse
+  /remote_health/{remote}:
+    get:
+      '200':
+        application/json: StatusCheckRemoteHealthResponse
+  /resources:
+    get:
+      '200':
+        application/json: ResourcesListResponse
+  /resources/{account}/{kind}/{identifier}:
+    get:
+      '200':
+        application/json: ResourcesShowResourceDetailsResponse
+  /roles/{account}/{kind}/{identifier}:
+    get:
+      '200':
+        application/json: RolesGetRoleInformationResponse
+  /secrets:
+    get:
+      '200':
+        application/json: SecretsGetMultipleValuesResponse
+      '406':
+        application/json: SecretsGetMultipleValues406Response
+  /secrets/{account}/{kind}/{identifier}:
+    get:
+      '200':
+        text/plain: SecretsGetSecretValueResponse
+  /whoami:
+    get:
+      '200':
+        application/json: StatusGetClientInfoResponse
+  /{authenticator}/{service_id}/{account}/status:
+    get:
+      '200':
+        application/json: StatusCheckAuthenticatorConfigurationResponse
+securityParameters:
+  Accept-Encoding:
+    header: false
+  Host-Id-Prefix:
+    header: false
+  account:
+    query: false
+  acting_as:
+    query: false
+  all:
+    query: false
+  check:
+    query: false
+  count:
+    query: false
+  expirations:
+    query: false
+  graph:
+    query: false
+  kind:
+    query: false
+  limit:
+    query: false
+  member:
+    query: false
+  members:
+    query: false
+  memberships:
+    query: false
+  offset:
+    query: false
+  permitted_roles:
+    query: false
+  privilege:
+    query: false
+  role:
+    query: false
+  search:
+    query: false
+  variable_ids:
+    query: false
+  version:
+    query: false
+validServerUrls:
+  '':
+    url: ''
