@@ -9,6 +9,7 @@ import * as fs from "fs-extra";
 export const dbFolder = path.join(path.dirname(__dirname), "db");
 export const specFolder = path.join(dbFolder, "spec-data");
 export const browserDownloadsFolder = path.join(dbFolder, "browser-downloads");
+export const githubZipDir = path.join(dbFolder, "github-zip-downloads");
 export const customRequestLastFetchedJsonPath = path.join(
   dbFolder,
   "custom-request-last-fetched.json"

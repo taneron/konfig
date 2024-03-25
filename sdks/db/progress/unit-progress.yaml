@@ -1,0 +1,722 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignoreObjectsWithNoProperties: true
+operationIds:
+  /account-end-of-day:
+    get: GetListAccountEndofdayBalancesHistory_fromApi
+  /accounts:
+    get: GetListAccounts_fromApi
+    post: CreateAccount_viaApi
+  /accounts/{accountId}:
+    get: GetAccount_byId
+    patch: UpdateAccount_viaApi
+  /accounts/{accountId}/activate-daca:
+    post: ActivateControlAgreementForAccount_byId
+  /accounts/{accountId}/close:
+    post: CloseAnAccount_byId
+  /accounts/{accountId}/deactivate-daca:
+    post: DeactivateControlAgreementForAccount_byId
+  /accounts/{accountId}/enter-daca:
+    post: EnterControlAgreementForAccount_byId
+  /accounts/{accountId}/freeze:
+    post: FreezeAnAccount_byId
+  /accounts/{accountId}/limits:
+    get: GetAccountLimits_byId
+  /accounts/{accountId}/reopen:
+    post: ReopenAnAccount_byId
+  /accounts/{accountId}/transactions/{transactionId}:
+    get: GetTransaction_byId
+    patch: UpdateTransaction_viaApi
+  /accounts/{accountId}/unfreeze:
+    post: UnfreezeAccount_byId
+  /application-forms:
+    get: GetListApplicationForms_viaApi
+    post: CreateApplicationForm_viaApi
+  /application-forms/{applicationFormId}:
+    get: GetApplicationForm_byId
+  /applications:
+    get: GetListApplications_fromApi
+    post: CreateApplication_viaApi
+  /applications/{applicationId}:
+    get: GetApplication_byId
+    patch: UpdateApplication_viaApi
+  /applications/{applicationId}/cancel:
+    post: CancelApplication_byId
+  /applications/{applicationId}/documents:
+    get: GetListOfDocuments_viaApi
+    post: CreateADocumentForAnApplication_viaApi
+  /applications/{applicationId}/documents/{documentId}:
+    put: UploadAPdfDocumentForAnApplication_viaApi
+  /applications/{applicationId}/documents/{documentId}/:
+    put: UploadAPngDocumentForAnApplication_byId
+  /applications/{applicationId}/documents/{documentId}/?:
+    put: UploadAJpegDocumentForAnApplication_viaApi
+  /applications/{applicationId}/documents/{documentId}/back:
+    put: UploadAPdfDocumentForAnApplicationBackSide_put
+  /applications/{applicationId}/documents/{documentId}/back/:
+    put: UploadAPngDocumentForAnApplicationBackSide_put
+  /applications/{applicationId}/documents/{documentId}/back/?:
+    put: UploadAJpegDocumentForAnApplicationBackSide_put
+  /applications/{applicationId}/documents/{documentId}/download:
+    get: DownloadADocument_viaApi
+  /applications/{applicationId}/documents/{documentId}/download/back:
+    get: DownloadADocumentBackSide_viaApi
+  /applications/{applicationId}/documents/{documentId}/verify:
+    put: VerifyADocumentForAnApplication_put
+  /atm-locations:
+    get: GetAtmLocationsList_fromApi
+  /authorization-requests:
+    get: GetListAuthorizationRequests_fromApi
+  /authorization-requests/{authorizationId}:
+    get: GetAuthorizationRequest_byId
+  /authorization-requests/{authorizationId}/approve:
+    post: ApproveAuthorizationRequest_byId
+  /authorization-requests/{authorizationId}/decline:
+    post: DeclineAuthorizationRequest_viaApi
+  /authorizations:
+    get: GetListAuthorizations_fromApi
+  /authorizations/{authorizationId}:
+    get: GetAuthorization_byId
+  /cards:
+    get: GetListOfCards_fromApi
+    post: CreateACard_viaApi
+  /cards/{cardId}:
+    get: GetCard_byId
+    patch: UpdateCard_viaApi
+  /cards/{cardId}/close:
+    post: CloseACard_viaApi
+  /cards/{cardId}/freeze:
+    post: FreezeACard_viaApi
+  /cards/{cardId}/limits:
+    get: GetCardLimits_byId
+  /cards/{cardId}/report-lost:
+    post: ReportCardAsLost_viaApi
+  /cards/{cardId}/report-stolen:
+    post: ReportCardAsStolen_viaApi
+  /cards/{cardId}/secure-data/pin/status:
+    get: GetCardPinStatus_pinStatus
+  /cards/{cardId}/unfreeze:
+    post: UnfreezeACard_byId
+  /check-deposits:
+    get: GetListCheckDeposits_fromApi
+    post: CreateCheckDeposit_viaApi
+  /check-deposits/{checkDepositId}:
+    get: GetCheckDeposit_byId
+    patch: UpdateCheckDeposit_byId
+  /check-deposits/{checkDepositId}/back:
+    get: GetCheckDepositBackImage_byId
+  /check-deposits/{checkDepositId}/confirm:
+    post: ConfirmCheckDeposit_byId
+  /check-deposits/{checkDepositId}/front:
+    get: GetCheckDepositFrontImage_byId
+  /check-payments:
+    get: GetListCheckPayments_fromApi
+    post: CreateCheckPayment_viaApi
+  /check-payments/{checkPaymentId}:
+    get: GetCheckPayment_byId
+  /check-payments/{checkPaymentId}/approve:
+    post: ApproveCheckPayment_byId
+  /check-payments/{checkPaymentId}/back:
+    get: GetABackImage_byApi
+  /check-payments/{checkPaymentId}/cancel:
+    post: CancelCheckPayment_byId
+  /check-payments/{checkPaymentId}/front:
+    get: GetAFrontImage_viaApi
+  /check-payments/{checkPaymentId}/return:
+    post: ReturnCheckPayment_byId
+  /counterparties:
+    get: GetListCounterparties_fromApi
+    post: CreateCounterparty_viaApi
+  /counterparties/{counterpartyId}:
+    delete: DeleteCounterparty_byId
+    get: GetCounterparty_byId
+    patch: UpdateCounterparty_viaApi
+  /counterparties/{counterpartyId}/balance:
+    get: GetCounterpartyBalance_recurringPaymentFromApi
+  /customers:
+    get: GetListCustomers_apiList
+  /customers/{customerId}:
+    get: GetCustomer_byId
+    patch: UpdateCustomer_viaApi
+  /customers/{customerId}/archive:
+    post: ArchiveCustomer_byId
+  /customers/{customerId}/token:
+    post: CreateCustomerToken_viaApi
+  /customers/{customerId}/token/verification:
+    post: CreateCustomerTokenVerification_viaApi
+  /disputes:
+    get: GetListDisputes_fromApi
+  /disputes/{disputeId}:
+    get: GetDispute_byId
+  /events:
+    get: GetListEvents_fromApi
+  /events/{eventId}:
+    get: GetEvent_byId
+    post: FireEvent_byId
+  /fees:
+    post: CreateFee_viaApi
+  /institutions/{routingNumber}:
+    get: GetInstitution_byRoutingNumber
+  /payments:
+    get: GetListPayments_fromApi
+    post: CreateAPayment_viaApi
+  /payments/{paymentId}:
+    get: GetPayment_byId
+    patch: UpdatePayment_viaApi
+  /payments/{paymentId}/cancel:
+    post: CancelPayment_byId
+  /received-payments:
+    get: GetReceivedPaymentsList_fromApi
+  /received-payments/{paymentId}:
+    get: GetReceivedPayment_byId
+    patch: UpdateReceivedPayment_viaApi
+  /received-payments/{paymentId}/advance:
+    post: AdvanceReceivedPayment_byId
+  /recurring-payments:
+    get: GetListRecurringPayments_fromApi
+    post: CreateRecurringPayment_viaApi
+  /recurring-payments/{paymentId}:
+    get: GetRecurringPayment_byId
+  /recurring-payments/{paymentId}/disable:
+    post: DisableRecurringPayment_viaApi
+  /recurring-payments/{paymentId}/enable:
+    post: EnableRecurringPayment_viaApi
+  /repayments:
+    get: GetListRepayments_fromApi
+    post: CreateARepayment_viaApi
+  /repayments/{repaymentId}:
+    get: GetRepayment_byId
+  /rewards:
+    get: GetListRewards_fromApi
+    post: CreateReward_viaApi
+  /rewards/{rewardId}:
+    get: GetReward_byId
+  /statements:
+    get: GetListStatements_fromApi
+  /statements/{accountId}/bank/pdf:
+    get: GetBankVerificationPdf_fromApi
+  /statements/{statementId}/html:
+    get: GetStatementHtml_byId
+  /statements/{statementId}/pdf:
+    get: GetStatementPdf_byId
+  /stop-payments:
+    get: StopPayment_getList
+    post: StopPayment_create
+  /stop-payments/{stop_payment_id}:
+    delete: StopPayment_cancel
+    get: StopPayment_getDetails
+  /stop-payments/{stop_payment_id}/disable:
+    post: StopPayment_disableStopPayment
+  /transactions:
+    get: GetListTransactions_fromApi
+  /users/{userId}/api-tokens:
+    get: GetListOrgApiTokens_fromApi
+    post: CreateOrgApiToken_viaApi
+  /users/{userId}/api-tokens/{tokenId}:
+    delete: RevokeOrgApiToken_rewardById
+  /webhooks:
+    get: GetListWebhooks_fromApi
+    post: CreateWebhook_viaApi
+  /webhooks/{webhookId}:
+    get: GetWebhook_byId
+    patch: UpdateWebhook_viaApi
+  /webhooks/{webhookId}/disable:
+    post: DisableWebhook_viaApi
+  /webhooks/{webhookId}/enable:
+    post: EnableWebhook_viaApi
+operationTags:
+  /stop-payments:
+    get: StopPayment
+    post: StopPayment
+  /stop-payments/{stop_payment_id}:
+    delete: StopPayment
+    get: StopPayment
+  /stop-payments/{stop_payment_id}/disable:
+    post: StopPayment
+renameTags: {}
+requestSchemaNames:
+  /accounts:
+    post:
+      application/vnd.api+json: CreateAccountViaApiRequest
+  /accounts/{accountId}:
+    patch:
+      application/vnd.api+json: UpdateAccountViaApiRequest
+  /accounts/{accountId}/close:
+    post:
+      application/vnd.api+json: CloseAnAccountByIdRequest
+  /accounts/{accountId}/freeze:
+    post:
+      application/vnd.api+json: FreezeAnAccountByIdRequest
+  /accounts/{accountId}/transactions/{transactionId}:
+    patch:
+      application/vnd.api+json: UpdateTransactionViaApiRequest
+  /application-forms:
+    post:
+      application/vnd.api+json: CreateApplicationFormViaApiRequest
+  /applications:
+    post:
+      application/vnd.api+json: CreateApplicationViaApiRequest
+  /applications/{applicationId}:
+    patch:
+      application/vnd.api+json: UpdateApplicationViaApiRequest
+  /applications/{applicationId}/cancel:
+    post:
+      application/vnd.api+json: CancelApplicationByIdRequest
+  /applications/{applicationId}/documents/{documentId}:
+    put:
+      image/png: UploadAPngDocumentForAnApplicationByIdRequest
+  /applications/{applicationId}/documents/{documentId}/?:
+    put:
+      image/jpeg: UploadAJpegDocumentForAnApplicationViaApiRequest
+  /applications/{applicationId}/documents/{documentId}/back:
+    put:
+      image/png: UploadAPngDocumentForAnApplicationBackSidePutRequest
+  /applications/{applicationId}/documents/{documentId}/back/?:
+    put:
+      image/jpeg: UploadAJpegDocumentForAnApplicationBackSidePutRequest
+  /applications/{applicationId}/documents/{documentId}/verify:
+    put:
+      application/json: VerifyADocumentForAnApplicationPutRequest
+  /authorization-requests/{authorizationId}/approve:
+    post:
+      application/vnd.api+json: ApproveAuthorizationRequestByIdRequest
+  /authorization-requests/{authorizationId}/decline:
+    post:
+      application/vnd.api+json: DeclineAuthorizationRequestViaApiRequest
+  /cards:
+    post:
+      application/vnd.api+json: CreateACardViaApiRequest
+  /cards/{cardId}:
+    patch:
+      application/vnd.api+json: UpdateCardViaApiRequest
+  /check-deposits:
+    post:
+      application/vnd.api+json: CreateCheckDepositViaApiRequest
+  /check-deposits/{checkDepositId}:
+    patch:
+      application/vnd.api+json: UpdateCheckDepositByIdRequest
+  /check-payments:
+    post:
+      application/vnd.api+json: CreateCheckPaymentViaApiRequest
+  /check-payments/{checkPaymentId}/approve:
+    post:
+      application/vnd.api+json: ApproveCheckPaymentByIdRequest
+  /check-payments/{checkPaymentId}/return:
+    post:
+      application/vnd.api+json: ReturnCheckPaymentByIdRequest
+  /counterparties:
+    post:
+      application/vnd.api+json: CreateCounterpartyViaApiRequest
+  /counterparties/{counterpartyId}:
+    patch:
+      application/vnd.api+json: UpdateCounterpartyViaApiRequest
+  /customers/{customerId}:
+    patch:
+      application/vnd.api+json: UpdateCustomerViaApiRequest
+  /customers/{customerId}/archive:
+    post:
+      application/vnd.api+json: ArchiveCustomerByIdRequest
+  /customers/{customerId}/token:
+    post:
+      application/vnd.api+json: CreateCustomerTokenViaApiRequest
+  /customers/{customerId}/token/verification:
+    post:
+      application/vnd.api+json: CreateCustomerTokenVerificationViaApiRequest
+  /fees:
+    post:
+      application/vnd.api+json: CreateFeeViaApiRequest
+  /payments:
+    post:
+      application/vnd.api+json: CreateAPaymentViaApiRequest
+  /payments/{paymentId}:
+    patch:
+      application/vnd.api+json: UpdatePaymentViaApiRequest
+  /received-payments/{paymentId}:
+    patch:
+      application/vnd.api+json: UpdateReceivedPaymentViaApiRequest
+  /recurring-payments:
+    post:
+      application/vnd.api+json: CreateRecurringPaymentViaApiRequest
+  /repayments:
+    post:
+      application/vnd.api+json: CreateARepaymentViaApiRequest
+  /rewards:
+    post:
+      application/vnd.api+json: CreateRewardViaApiRequest
+  /stop-payments:
+    post:
+      application/json: StopPaymentCreateRequest
+  /users/{userId}/api-tokens:
+    post:
+      application/vnd.api+json: CreateOrgApiTokenViaApiRequest
+  /webhooks:
+    post:
+      application/vnd.api+json: CreateWebhookViaApiRequest
+  /webhooks/{webhookId}:
+    patch:
+      application/vnd.api+json: UpdateWebhookViaApiRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /account-end-of-day:
+    get:
+      '200':
+        application/vnd.api+json; charset=utf-8: GetListAccountEndofdayBalancesHistoryFromApiResponse
+  /accounts:
+    get:
+      '200':
+        application/vnd.api+json; charset=utf-8: GetListAccountsFromApiResponse
+  /accounts/{accountId}:
+    get:
+      '200':
+        application/vnd.api+json; charset=utf-8: GetAccountByIdResponse
+    patch:
+      '200':
+        application/vnd.api+json: UpdateAccountViaApiResponse
+  /accounts/{accountId}/limits:
+    get:
+      '200':
+        application/vnd.api+json; charset=utf-8: GetAccountLimitsByIdResponse
+  /accounts/{accountId}/transactions/{transactionId}:
+    get:
+      '200':
+        application/vnd.api+json; charset=utf-8: GetTransactionByIdResponse
+    patch:
+      '200':
+        application/vnd.api+json: UpdateTransactionViaApiResponse
+  /application-forms:
+    get:
+      '200':
+        application/vnd.api+json; charset=utf-8: GetListApplicationFormsViaApiResponse
+    post:
+      '201':
+        application/vnd.api+json: CreateApplicationFormViaApiResponse
+  /application-forms/{applicationFormId}:
+    get:
+      '200':
+        application/vnd.api+json; charset=utf-8: GetApplicationFormByIdResponse
+  /applications:
+    get:
+      '200':
+        application/vnd.api+json: GetListApplicationsFromApi200Response
+      default:
+        application/json: GetListApplicationsFromApiResponse
+    post:
+      '201':
+        application/vnd.api+json: CreateApplicationViaApiResponse
+  /applications/{applicationId}:
+    get:
+      '200':
+        application/vnd.api+json; charset=utf-8: GetApplicationByIdResponse
+  /applications/{applicationId}/cancel:
+    post:
+      '201':
+        application/vnd.api+json: CancelApplicationByIdResponse
+  /applications/{applicationId}/documents:
+    get:
+      '200':
+        application/vnd.api+json; charset=utf-8: GetListOfDocumentsViaApiResponse
+    post:
+      '200':
+        application/vnd.api+json; charset=utf-8: CreateADocumentForAnApplicationViaApiResponse
+  /applications/{applicationId}/documents/{documentId}/download:
+    get:
+      '200':
+        application/octet-stream: DownloadADocumentViaApiResponse
+  /applications/{applicationId}/documents/{documentId}/download/back:
+    get:
+      '200':
+        application/octet-stream: DownloadADocumentBackSideViaApiResponse
+  /atm-locations:
+    get:
+      '200':
+        application/vnd.api+json; charset=utf-8: GetAtmLocationsListFromApiResponse
+  /authorization-requests:
+    get:
+      '200':
+        application/vnd.api+json; charset=utf-8: GetListAuthorizationRequestsFromApiResponse
+  /authorization-requests/{authorizationId}:
+    get:
+      '200':
+        application/vnd.api+json; charset=utf-8: GetAuthorizationRequestByIdResponse
+  /authorization-requests/{authorizationId}/approve:
+    post:
+      '200':
+        application/vnd.api+json; charset=utf-8: ApproveAuthorizationRequestByIdResponse
+  /authorization-requests/{authorizationId}/decline:
+    post:
+      '200':
+        application/vnd.api+json; charset=utf-8: DeclineAuthorizationRequestViaApiResponse
+  /authorizations:
+    get:
+      '200':
+        application/vnd.api+json; charset=utf-8: GetListAuthorizationsFromApiResponse
+  /authorizations/{authorizationId}:
+    get:
+      '200':
+        application/vnd.api+json; charset=utf-8: GetAuthorizationByIdResponse
+  /cards:
+    get:
+      '200':
+        application/vnd.api+json; charset=utf-8: GetListOfCardsFromApiResponse
+    post:
+      '201':
+        application/vnd.api+json; charset=utf-8: CreateACardViaApiResponse
+  /cards/{cardId}:
+    get:
+      '200':
+        application/vnd.api+json; charset=utf-8: GetCardByIdResponse
+    patch:
+      '200':
+        application/vnd.api+json: UpdateCardViaApiResponse
+  /cards/{cardId}/close:
+    post:
+      '200':
+        application/vnd.api+json; charset=utf-8: CloseACardViaApiResponse
+  /cards/{cardId}/freeze:
+    post:
+      '200':
+        application/vnd.api+json; charset=utf-8: FreezeACardViaApiResponse
+  /cards/{cardId}/limits:
+    get:
+      '200':
+        application/vnd.api+json; charset=utf-8: GetCardLimitsByIdResponse
+  /cards/{cardId}/report-lost:
+    post:
+      '200':
+        application/vnd.api+json; charset=utf-8: ReportCardAsLostViaApiResponse
+  /cards/{cardId}/report-stolen:
+    post:
+      '200':
+        application/vnd.api+json; charset=utf-8: ReportCardAsStolenViaApiResponse
+  /cards/{cardId}/secure-data/pin/status:
+    get:
+      '200':
+        application/vnd.api+json; charset=utf-8: GetCardPinStatusPinStatusResponse
+  /cards/{cardId}/unfreeze:
+    post:
+      '200':
+        application/vnd.api+json; charset=utf-8: UnfreezeACardByIdResponse
+  /check-deposits:
+    get:
+      '200':
+        application/vnd.api+json; charset=utf-8: GetListCheckDepositsFromApiResponse
+    post:
+      '201':
+        application/vnd.api+json: CreateCheckDepositViaApiResponse
+  /check-deposits/{checkDepositId}:
+    get:
+      '200':
+        application/vnd.api+json; charset=utf-8: GetCheckDepositByIdResponse
+    patch:
+      '200':
+        application/vnd.api+json: UpdateCheckDepositByIdResponse
+  /check-deposits/{checkDepositId}/back:
+    get:
+      '200':
+        application/vnd.api+json; charset=utf-8: GetCheckDepositBackImageByIdResponse
+  /check-deposits/{checkDepositId}/confirm:
+    post:
+      '200':
+        application/vnd.api+json; charset=utf-8: ConfirmCheckDepositByIdResponse
+  /check-deposits/{checkDepositId}/front:
+    get:
+      '200':
+        application/vnd.api+json; charset=utf-8: GetCheckDepositFrontImageByIdResponse
+  /check-payments:
+    get:
+      '200':
+        application/vnd.api+json; charset=utf-8: GetListCheckPaymentsFromApiResponse
+    post:
+      '201':
+        application/vnd.api+json: CreateCheckPaymentViaApiResponse
+  /check-payments/{checkPaymentId}/back:
+    get:
+      '200':
+        image/png: GetABackImageByApiResponse
+  /check-payments/{checkPaymentId}/front:
+    get:
+      '200':
+        image/png: GetAFrontImageViaApiResponse
+  /counterparties:
+    get:
+      '200':
+        application/vnd.api+json; charset=utf-8: GetListCounterpartiesFromApiResponse
+    post:
+      '201':
+        application/vnd.api+json: CreateCounterpartyViaApiResponse
+  /counterparties/{counterpartyId}:
+    get:
+      '200':
+        application/vnd.api+json; charset=utf-8: GetCounterpartyByIdResponse
+    patch:
+      '200':
+        application/vnd.api+json: UpdateCounterpartyViaApiResponse
+  /counterparties/{counterpartyId}/balance:
+    get:
+      '200':
+        application/vnd.api+json; charset=utf-8: GetCounterpartyBalanceRecurringPaymentFromApiResponse
+  /customers:
+    get:
+      '200':
+        application/vnd.api+json; charset=utf-8: GetListCustomersApiListResponse
+  /customers/{customerId}:
+    patch:
+      '200':
+        application/vnd.api+json: UpdateCustomerViaApiResponse
+  /customers/{customerId}/token:
+    post:
+      '201':
+        application/vnd.api+json; charset=utf-8: CreateCustomerTokenViaApiResponse
+  /customers/{customerId}/token/verification:
+    post:
+      '201':
+        application/vnd.api+json; charset=utf-8: CreateCustomerTokenVerificationViaApiResponse
+  /disputes:
+    get:
+      '200':
+        application/vnd.api+json; charset=utf-8: GetListDisputesFromApiResponse
+  /disputes/{disputeId}:
+    get:
+      '200':
+        application/vnd.api+json; charset=utf-8: GetDisputeByIdResponse
+  /events:
+    get:
+      '200':
+        application/vnd.api+json; charset=utf-8: GetListEventsFromApiResponse
+  /events/{eventId}:
+    get:
+      '200':
+        application/vnd.api+json; charset=utf-8: GetEventByIdResponse
+    post:
+      '200':
+        application/vnd.api+json; charset=utf-8: FireEventByIdResponse
+  /fees:
+    post:
+      '201':
+        application/vnd.api+json: CreateFeeViaApiResponse
+  /institutions/{routingNumber}:
+    get:
+      '200':
+        application/vnd.api+json; charset=utf-8: GetInstitutionByRoutingNumberResponse
+  /payments:
+    get:
+      '200':
+        application/vnd.api+json; charset=utf-8: GetListPaymentsFromApiResponse
+  /payments/{paymentId}:
+    get:
+      '200':
+        application/vnd.api+json; charset=utf-8: GetPaymentByIdResponse
+    patch:
+      '200':
+        application/vnd.api+json: UpdatePaymentViaApiResponse
+  /received-payments:
+    get:
+      '200':
+        application/vnd.api+json; charset=utf-8: GetReceivedPaymentsListFromApiResponse
+  /received-payments/{paymentId}:
+    get:
+      '200':
+        application/vnd.api+json; charset=utf-8: GetReceivedPaymentByIdResponse
+    patch:
+      '200':
+        application/vnd.api+json: UpdateReceivedPaymentViaApiResponse
+  /recurring-payments:
+    get:
+      '200':
+        application/vnd.api+json; charset=utf-8: GetListRecurringPaymentsFromApiResponse
+    post:
+      '201':
+        application/vnd.api+json: CreateRecurringPaymentViaApiResponse
+  /repayments:
+    get:
+      '200':
+        application/vnd.api+json; charset=utf-8: GetListRepaymentsFromApiResponse
+    post:
+      '201':
+        application/vnd.api+json; charset=utf-8: CreateARepaymentViaApiResponse
+  /rewards:
+    get:
+      '200':
+        application/vnd.api+json; charset=utf-8: GetListRewardsFromApiResponse
+    post:
+      '201':
+        application/vnd.api+json: CreateRewardViaApiResponse
+  /rewards/{rewardId}:
+    get:
+      '200':
+        application/vnd.api+json; charset=utf-8: GetRewardByIdResponse
+  /statements:
+    get:
+      '200':
+        application/vnd.api+json; charset=utf-8: GetListStatementsFromApiResponse
+  /statements/{accountId}/bank/pdf:
+    get:
+      '200':
+        application/pdf: GetBankVerificationPdfFromApiResponse
+  /statements/{statementId}/html:
+    get:
+      '200':
+        text/html: GetStatementHtmlByIdResponse
+  /statements/{statementId}/pdf:
+    get:
+      '200':
+        application/pdf: GetStatementPdfByIdResponse
+  /stop-payments:
+    get:
+      '200':
+        application/json: StopPaymentGetListResponse
+    post:
+      '200':
+        application/json: StopPaymentCreateResponse
+  /transactions:
+    get:
+      '200':
+        application/vnd.api+json: GetListTransactionsFromApiResponse
+  /users/{userId}/api-tokens:
+    get:
+      '200':
+        application/vnd.api+json; charset=utf-8: GetListOrgApiTokensFromApiResponse
+    post:
+      '201':
+        application/vnd.api+json: CreateOrgApiTokenViaApiResponse
+  /users/{userId}/api-tokens/{tokenId}:
+    delete:
+      '200':
+        application/vnd.api+json; charset=utf-8: RevokeOrgApiTokenRewardByIdResponse
+  /webhooks:
+    get:
+      '200':
+        application/vnd.api+json: GetListWebhooksFromApiResponse
+    post:
+      '201':
+        application/vnd.api+json: CreateWebhookViaApiResponse
+  /webhooks/{webhookId}:
+    get:
+      '200':
+        application/vnd.api+json; charset=utf-8: GetWebhookByIdResponse
+    patch:
+      '201':
+        application/vnd.api+json: UpdateWebhookViaApiResponse
+  /webhooks/{webhookId}/disable:
+    post:
+      '200':
+        application/vnd.api+json; charset=utf-8: DisableWebhookViaApiResponse
+  /webhooks/{webhookId}/enable:
+    post:
+      '200':
+        application/vnd.api+json; charset=utf-8: EnableWebhookViaApiResponse
+securityParameters:
+  filter:
+    query: false
+  include:
+    query: false
+  includeNoneAuthorized:
+    query: false
+  included:
+    query: false
+  page:
+    query: false
+  sort:
+    query: false
+validServerUrls: {}

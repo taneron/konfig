@@ -10,6 +10,8 @@ import deepmerge from "deepmerge";
 import yaml from "js-yaml";
 import puppeteer, { Browser as PuppeteerBrowser } from "puppeteer";
 import { transpile } from "postman2openapi";
+import AdmZip from "adm-zip";
+import $RefParser from "@apidevtools/json-schema-ref-parser";
 import {
   computeDifficultyScore,
   customRequestSpecsDir,
@@ -29,6 +31,8 @@ import {
   getCustomRequestLastFetched,
   saveCustomRequestLastFetched,
   processedCustomRequestCacheDir,
+  dbFolder,
+  githubZipDir,
 } from "../scripts/util";
 import { PuppeteerBlocker } from "@cliqz/adblocker-puppeteer";
 import fetch from "cross-fetch"; // required 'fetch'
@@ -989,6 +993,54 @@ const customRequests: Record<string, CustomRequest> = {
   "unstructured.io": {
     type: "GET",
     url: "https://raw.githubusercontent.com/Unstructured-IO/unstructured-api/main/openapi.json",
+  },
+  "unit.co": {
+    lambda: async () => {
+      const zipUrl =
+        "https://github.com/unit-finance/openapi-unit-sdk/archive/refs/heads/main.zip";
+
+      // download zip and unzip to db/github-zip-downloads/unit.co/
+      const dir = path.join(githubZipDir, "unit.co");
+      const zipDir = path.join(dir, "zip");
+      const unzippedDir = path.join(dir, "unzipped");
+
+      // ensure folder exists
+      fs.ensureDirSync(dir);
+      fs.ensureDirSync(zipDir);
+      fs.ensureDirSync(unzippedDir);
+
+      // download from zipUrl to dir/zip
+      const zipPath = path.join(zipDir, "repo.zip");
+      const axios = require("axios");
+      const writer = fs.createWriteStream(zipPath);
+
+      const response = await axios({
+        url: zipUrl,
+        method: "GET",
+        responseType: "stream",
+      });
+
+      response.data.pipe(writer);
+
+      await new Promise((resolve, reject) => {
+        writer.on("finish", resolve);
+        writer.on("error", reject);
+      });
+
+      // unzip to dir/unzipped
+      const zip = new AdmZip(zipPath);
+      zip.extractAllTo(unzippedDir, false);
+
+      const openapi = path.join(
+        unzippedDir,
+        "openapi-unit-sdk-main",
+        "openapi.json"
+      );
+
+      const bundled = await $RefParser.bundle(openapi);
+
+      return JSON.stringify(bundled, null, 2);
+    },
   },
   "pay.com": {
     lambda: async () => {
