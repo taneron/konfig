@@ -1,0 +1,7212 @@
+hash: 946ecaf0aec123d4980148e7da80ade5a9660ddfd7789d9b4a36ec2adc626d40
+methodObjects:
+  - url: /basic/trials/admin/data
+    method: adminDataGet
+    httpMethod: get
+    tag: Trial
+    typeScriptTag: trial
+    description: ''
+    parameters:
+      - name: id
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/trials/data
+    method: deleteData
+    httpMethod: delete
+    tag: Trial
+    typeScriptTag: trial
+    description: ''
+    parameters:
+      - name: id
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/trials/data
+    method: postData
+    httpMethod: post
+    tag: Trial
+    typeScriptTag: trial
+    description: ''
+    parameters:
+      - name: trialName
+        schema: string
+        description: ''
+      - name: cohortName
+        schema: string
+        description: ''
+      - name: dataName
+        schema: string
+        description: ''
+      - name: filePayloadBase64
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/trials/pause
+    method: pauseTrial
+    httpMethod: put
+    tag: Trial
+    typeScriptTag: trial
+    description: ''
+    parameters:
+      - name: name
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/trials/schedule
+    method: schedulePut
+    httpMethod: put
+    tag: Trial
+    typeScriptTag: trial
+    description: ''
+    parameters:
+      - name: name
+        schema: string
+        required: false
+        description: ''
+      - name: time
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/trials/admin
+    method: getAdminTrials
+    httpMethod: get
+    tag: Trial
+    typeScriptTag: trial
+    description: ''
+    parameters:
+      - name: dbid
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/trials/start
+    method: startTrialProcess
+    httpMethod: put
+    tag: Trial
+    typeScriptTag: trial
+    description: ''
+    parameters:
+      - name: name
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/accounts/me/device
+    method: removeDevice
+    httpMethod: delete
+    tag: Account
+    typeScriptTag: account
+    description: ''
+    parameters:
+      - name: deviceIds
+        schema: array
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/accounts/me
+    method: getUserInfo
+    httpMethod: get
+    tag: Account
+    typeScriptTag: account
+    description: ''
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/accounts/me
+    method: updateAccountInfo
+    httpMethod: put
+    tag: Account
+    typeScriptTag: account
+    description: ''
+    parameters:
+      - name: thirdParty
+        schema: string
+        required: false
+        description: ''
+      - name: hasThirdPartyToken
+        schema: boolean
+        required: true
+        description: ''
+        example: true
+      - name: country
+        schema: string
+        required: false
+        description: ''
+      - name: language
+        schema: string
+        required: false
+        description: ''
+      - name: gamerTagAssoc
+        schema: object
+        required: false
+        description: ''
+      - name: token
+        schema: string
+        required: false
+        description: ''
+      - name: deviceId
+        schema: string
+        required: false
+        description: ''
+      - name: userName
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/accounts/me/third-party
+    method: deleteThirdParty
+    httpMethod: delete
+    tag: Account
+    typeScriptTag: account
+    description: ''
+    parameters:
+      - name: thirdParty
+        schema: string
+        required: true
+        description: ''
+        example: THIRDPARTY
+      - name: token
+        schema: string
+        required: true
+        description: ''
+        example: TOKEN
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/accounts/get-personally-identifiable-information
+    method: getPersonallyIdentifiableInformation
+    httpMethod: get
+    tag: Account
+    typeScriptTag: account
+    description: ''
+    parameters:
+      - name: query
+        schema: string
+        required: true
+        description: ''
+        example: QUERY
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/accounts/search
+    method: searchAccounts
+    httpMethod: get
+    tag: Account
+    typeScriptTag: account
+    description: ''
+    parameters:
+      - name: query
+        schema: string
+        required: true
+        description: ''
+        example: QUERY
+      - name: page
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+      - name: pagesize
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/accounts/email-update/init
+    method: updateEmailInit
+    httpMethod: post
+    tag: Mail
+    typeScriptTag: mail
+    description: ''
+    parameters:
+      - name: newEmail
+        schema: string
+        required: true
+        description: ''
+        example: NEWEMAIL
+      - name: codeType
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/accounts/email-update/confirm
+    method: updateEmailConfirmation
+    httpMethod: post
+    tag: Mail
+    typeScriptTag: mail
+    description: ''
+    parameters:
+      - name: code
+        schema: string
+        required: true
+        description: ''
+        example: CODE
+      - name: password
+        schema: string
+        required: true
+        description: ''
+        example: PASSWORD
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/accounts/available/third-party
+    method: checkThirdPartyAvailability
+    httpMethod: get
+    tag: Account
+    typeScriptTag: account
+    description: ''
+    parameters:
+      - name: thirdParty
+        schema: string
+        required: true
+        description: ''
+        example: THIRDPARTY
+      - name: token
+        schema: string
+        required: true
+        description: ''
+        example: TOKEN
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/accounts/admin/admin-user
+    method: createAdminUser
+    httpMethod: post
+    tag: Account
+    typeScriptTag: account
+    description: ''
+    parameters:
+      - name: email
+        schema: string
+        required: true
+        description: ''
+        example: EMAIL
+      - name: role
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/accounts/register
+    method: registerNewAccount
+    httpMethod: post
+    tag: Account
+    typeScriptTag: account
+    description: ''
+    parameters:
+      - name: email
+        schema: string
+        required: true
+        description: ''
+        example: EMAIL
+      - name: password
+        schema: string
+        required: true
+        description: ''
+        example: PASSWORD
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/accounts/admin/me
+    method: getDetails
+    httpMethod: get
+    tag: Account
+    typeScriptTag: account
+    description: ''
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/accounts/password-update/init
+    method: updatePasswordInit
+    httpMethod: post
+    tag: Account
+    typeScriptTag: account
+    description: ''
+    parameters:
+      - name: email
+        schema: string
+        required: true
+        description: ''
+        example: EMAIL
+      - name: codeType
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/accounts/admin/admin-users
+    method: getAdminUsers
+    httpMethod: get
+    tag: Account
+    typeScriptTag: account
+    description: ''
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/accounts/find
+    method: findAccounts
+    httpMethod: get
+    tag: Account
+    typeScriptTag: account
+    description: ''
+    parameters:
+      - name: query
+        schema: string
+        required: true
+        description: ''
+        example: QUERY
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/accounts/available/device-id
+    method: checkAvailability
+    httpMethod: get
+    tag: Account
+    typeScriptTag: account
+    description: ''
+    parameters:
+      - name: deviceId
+        schema: string
+        required: true
+        description: ''
+        example: DEVICEID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/accounts/available
+    method: checkAvailability
+    httpMethod: get
+    tag: Account
+    typeScriptTag: account
+    description: ''
+    parameters:
+      - name: email
+        schema: string
+        required: true
+        description: ''
+        example: EMAIL
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/accounts/password-update/confirm
+    method: updatePasswordConfirmation
+    httpMethod: post
+    tag: Account
+    typeScriptTag: account
+    description: ''
+    parameters:
+      - name: code
+        schema: string
+        required: true
+        description: ''
+        example: CODE
+      - name: newPassword
+        schema: string
+        required: true
+        description: ''
+        example: NEWPASSWORD
+      - name: email
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/accounts/{objectId}/admin/email
+    method: updateAdminEmail
+    httpMethod: put
+    tag: Mail
+    typeScriptTag: mail
+    description: ''
+    parameters:
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+      - name: newEmail
+        schema: string
+        required: true
+        description: ''
+        example: NEWEMAIL
+      - name: codeType
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/accounts/{objectId}/available-roles
+    method: getObjectAvailableRoles
+    httpMethod: get
+    tag: Account
+    typeScriptTag: account
+    description: ''
+    parameters:
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/accounts/{objectId}/role
+    method: removeRole
+    httpMethod: delete
+    tag: Account
+    typeScriptTag: account
+    description: ''
+    parameters:
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/accounts/{objectId}/role
+    method: updateRole
+    httpMethod: put
+    tag: Account
+    typeScriptTag: account
+    description: ''
+    parameters:
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+      - name: cid
+        schema: string
+        description: ''
+      - name: realm
+        schema: string
+        description: ''
+      - name: role
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/accounts/{objectId}/admin/scope
+    method: deleteAdminScope
+    httpMethod: delete
+    tag: Account
+    typeScriptTag: account
+    description: ''
+    parameters:
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/accounts/{objectId}/admin/scope
+    method: updateAdminScope
+    httpMethod: put
+    tag: Account
+    typeScriptTag: account
+    description: ''
+    parameters:
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+      - name: cid
+        schema: string
+        description: ''
+      - name: realm
+        schema: string
+        description: ''
+      - name: role
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/accounts/{objectId}/admin/third-party
+    method: deleteThirdPartyAdmin
+    httpMethod: delete
+    tag: Account
+    typeScriptTag: account
+    description: ''
+    parameters:
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+      - name: thirdParty
+        schema: string
+        description: ''
+      - name: userAppId
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/accounts/{objectId}/admin/third-party
+    method: updateThirdPartyAdmin
+    httpMethod: put
+    tag: Account
+    typeScriptTag: account
+    description: ''
+    parameters:
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+      - name: fromAccountId
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+      - name: thirdParty
+        schema: object
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/accounts/{objectId}/admin/forget
+    method: removeAdminForget
+    httpMethod: delete
+    tag: Account
+    typeScriptTag: account
+    description: ''
+    parameters:
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/announcements/search
+    method: searchOperation
+    httpMethod: get
+    tag: Announcement
+    typeScriptTag: announcement
+    description: ''
+    parameters:
+      - name: date
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/announcements/content
+    method: getAnnouncementContent
+    httpMethod: get
+    tag: Content
+    typeScriptTag: content
+    description: ''
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/announcements/list
+    method: getAllAnnouncements
+    httpMethod: get
+    tag: Announcement
+    typeScriptTag: announcement
+    description: ''
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/announcements/{objectId}/read
+    method: markAsRead
+    httpMethod: put
+    tag: Announcement
+    typeScriptTag: announcement
+    description: ''
+    parameters:
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+      - name: announcement
+        schema: string
+        description: ''
+      - name: announcements
+        schema: array
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/announcements/{objectId}/claim
+    method: claimObjectAnnouncement
+    httpMethod: post
+    tag: Announcement
+    typeScriptTag: announcement
+    description: ''
+    parameters:
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+      - name: announcement
+        schema: string
+        description: ''
+      - name: announcements
+        schema: array
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/announcements/{objectId}/raw
+    method: getObjectRaw
+    httpMethod: get
+    tag: Announcement
+    typeScriptTag: announcement
+    description: ''
+    parameters:
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/auth/token
+    method: getToken
+    httpMethod: get
+    tag: Authentication
+    typeScriptTag: authentication
+    description: ''
+    parameters:
+      - name: token
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/auth/token
+    method: requestToken
+    httpMethod: post
+    tag: Authentication
+    typeScriptTag: authentication
+    description: ''
+    parameters:
+      - name: username
+        schema: string
+        description: ''
+      - name: scope
+        schema: array
+        description: ''
+      - name: refresh_token
+        schema: string
+        description: ''
+      - name: third_party
+        schema: string
+        description: ''
+      - name: redirect_uri
+        schema: string
+        description: ''
+      - name: client_id
+        schema: string
+        description: ''
+      - name: code
+        schema: string
+        description: ''
+      - name: token
+        schema: string
+        description: ''
+      - name: customerScoped
+        schema: boolean
+        description: ''
+      - name: grant_type
+        schema: string
+        description: ''
+      - name: password
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/calendars/{objectId}/claim
+    method: claimCalendar
+    httpMethod: post
+    tag: Object
+    typeScriptTag: object
+    description: ''
+    parameters:
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+      - name: id
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/chatV2/{objectId}/rooms
+    method: deleteRoom
+    httpMethod: delete
+    tag: Object
+    typeScriptTag: object
+    description: ''
+    parameters:
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+      - name: roomId
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/chatV2/{objectId}/rooms
+    method: getChatRooms
+    httpMethod: get
+    tag: Object
+    typeScriptTag: object
+    description: ''
+    parameters:
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/chatV2/{objectId}/rooms
+    method: createChatRoom
+    httpMethod: post
+    tag: Object
+    typeScriptTag: object
+    description: ''
+    parameters:
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+      - name: roomName
+        schema: string
+        required: false
+        description: ''
+      - name: keepSubscribed
+        schema: boolean
+        required: true
+        description: ''
+        example: true
+      - name: players
+        schema: array
+        required: false
+        description: ''
+      - name: gameType
+        schema: string
+        required: false
+        description: ''
+      - name: dbids
+        schema: array
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/chatV2/{objectId}/messages
+    method: sendMessage
+    httpMethod: post
+    tag: Message
+    typeScriptTag: message
+    description: ''
+    parameters:
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+      - name: roomId
+        schema: string
+        description: ''
+      - name: content
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/cloudsaving/data/replace
+    method: replaceData
+    httpMethod: post
+    tag: Cloudsaving
+    typeScriptTag: cloudsaving
+    description: ''
+    parameters:
+      - name: sourcePlayerId
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+      - name: targetPlayerId
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/cloudsaving/data
+    method: deleteData
+    httpMethod: delete
+    tag: Cloudsaving
+    typeScriptTag: cloudsaving
+    description: ''
+    parameters:
+      - name: request
+        schema: array
+        description: ''
+      - name: playerId
+        schema: integer
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/cloudsaving/data/downloadURL
+    method: getDataDownloadUrl
+    httpMethod: post
+    tag: Cloudsaving
+    typeScriptTag: cloudsaving
+    description: ''
+    parameters:
+      - name: request
+        schema: array
+        description: ''
+      - name: playerId
+        schema: integer
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/cloudsaving/data/metadata
+    method: getDataMetadata
+    httpMethod: get
+    tag: Cloudsaving
+    typeScriptTag: cloudsaving
+    description: ''
+    parameters:
+      - name: request
+        schema: array
+        required: false
+        description: ''
+      - name: playerId
+        schema: integer
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/cloudsaving/data/move
+    method: moveDataPut
+    httpMethod: put
+    tag: Cloudsaving
+    typeScriptTag: cloudsaving
+    description: ''
+    parameters:
+      - name: playerId
+        schema: integer
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/cloudsaving/data/uploadURLFromPortal
+    method: uploadUrlFromPortal
+    httpMethod: post
+    tag: Cloudsaving
+    typeScriptTag: cloudsaving
+    description: ''
+    parameters:
+      - name: request
+        schema: array
+        description: ''
+      - name: playerId
+        schema: integer
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/cloudsaving/data/commitManifest
+    method: commitManifestPut
+    httpMethod: put
+    tag: Cloudsaving
+    typeScriptTag: cloudsaving
+    description: ''
+    parameters:
+      - name: request
+        schema: array
+        description: ''
+      - name: playerId
+        schema: integer
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/cloudsaving/data/uploadURL
+    method: uploadDataUrl
+    httpMethod: post
+    tag: Cloudsaving
+    typeScriptTag: cloudsaving
+    description: ''
+    parameters:
+      - name: request
+        schema: array
+        description: ''
+      - name: playerId
+        schema: integer
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/commerce/catalog
+    method: getCatalog
+    httpMethod: get
+    tag: Product
+    typeScriptTag: product
+    description: ''
+    parameters:
+      - name: version
+        schema: integer
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/commerce/skus
+    method: listSkus
+    httpMethod: get
+    tag: SKU
+    typeScriptTag: sku
+    description: ''
+    parameters:
+      - name: version
+        schema: integer
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/commerce/skus
+    method: createSku
+    httpMethod: post
+    tag: SKU
+    typeScriptTag: sku
+    description: ''
+    parameters:
+      - name: definitions
+        schema: array
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/commerce/{objectId}/coupons/count
+    method: getCommerceCouponCount
+    httpMethod: get
+    tag: Object
+    typeScriptTag: object
+    description: ''
+    parameters:
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/commerce/{objectId}/offersAdmin
+    method: getOffersAdmin
+    httpMethod: get
+    tag: Object
+    typeScriptTag: object
+    description: ''
+    parameters:
+      - name: language
+        schema: string
+        required: false
+        description: ''
+      - name: time
+        schema: string
+        required: false
+        description: ''
+      - name: stores
+        schema: string
+        required: false
+        description: ''
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/commerce/{objectId}/purchase
+    method: purchaseItem
+    httpMethod: post
+    tag: Object
+    typeScriptTag: object
+    description: ''
+    parameters:
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+      - name: purchaseId
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/commerce/{objectId}/purchase
+    method: purchaseById
+    httpMethod: put
+    tag: Object
+    typeScriptTag: object
+    description: ''
+    parameters:
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+      - name: listingId
+        schema: string
+        description: ''
+      - name: free
+        schema: boolean
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/commerce/{objectId}/listings
+    method: getCommerceListings
+    httpMethod: get
+    tag: Object
+    typeScriptTag: object
+    description: ''
+    parameters:
+      - name: listing
+        schema: string
+        required: false
+        description: ''
+      - name: store
+        schema: string
+        required: false
+        description: ''
+      - name: time
+        schema: string
+        required: false
+        description: ''
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/commerce/{objectId}/status
+    method: deleteStatusById
+    httpMethod: delete
+    tag: Object
+    typeScriptTag: object
+    description: ''
+    parameters:
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+      - name: store
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/commerce/{objectId}/coupons
+    method: createCommerceCoupons
+    httpMethod: post
+    tag: Object
+    typeScriptTag: object
+    description: ''
+    parameters:
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+      - name: listing
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/commerce/{objectId}/stats/update
+    method: updateStatObject
+    httpMethod: post
+    tag: Object
+    typeScriptTag: object
+    description: ''
+    parameters:
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+      - name: statsBefore
+        schema: object
+        description: ''
+      - name: statsAfter
+        schema: object
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/commerce/{objectId}/offers
+    method: getCommerceOffers
+    httpMethod: get
+    tag: Object
+    typeScriptTag: object
+    description: ''
+    parameters:
+      - name: language
+        schema: string
+        required: false
+        description: ''
+      - name: time
+        schema: string
+        required: false
+        description: ''
+      - name: stores
+        schema: string
+        required: false
+        description: ''
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/content/manifest/pull
+    method: pullManifestData
+    httpMethod: post
+    tag: Content
+    typeScriptTag: content
+    description: ''
+    parameters:
+      - name: sourceRealmPid
+        schema: string
+        description: ''
+      - name: id
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/content/content
+    method: getContentDetails
+    httpMethod: get
+    tag: Content
+    typeScriptTag: content
+    description: ''
+    parameters:
+      - name: contentId
+        schema: string
+        required: false
+        description: ''
+      - name: version
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/content/text
+    method: submitTextContent
+    httpMethod: post
+    tag: Content
+    typeScriptTag: content
+    description: ''
+    parameters:
+      - name: text
+        schema: array
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/content/manifest
+    method: getManifestData
+    httpMethod: get
+    tag: Content
+    typeScriptTag: content
+    description: ''
+    parameters:
+      - name: id
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/content/manifest
+    method: createManifestData
+    httpMethod: post
+    tag: Content
+    typeScriptTag: content
+    description: ''
+    parameters:
+      - name: id
+        schema: string
+        description: ''
+      - name: references
+        schema: array
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/content/manifest/public
+    method: getPublicManifest
+    httpMethod: get
+    tag: Content
+    typeScriptTag: content
+    description: ''
+    parameters:
+      - name: id
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/content/manifest/private
+    method: getPrivateManifest
+    httpMethod: get
+    tag: Content
+    typeScriptTag: content
+    description: ''
+    parameters:
+      - name: id
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/content/manifest/checksum
+    method: checkManifestChecksum
+    httpMethod: get
+    tag: Content
+    typeScriptTag: content
+    description: ''
+    parameters:
+      - name: id
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/events/content
+    method: getContentData
+    httpMethod: get
+    tag: Content
+    typeScriptTag: content
+    description: ''
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/events/calendar
+    method: getCalendarEvents
+    httpMethod: get
+    tag: Event
+    typeScriptTag: event
+    description: ''
+    parameters:
+      - name: from
+        schema: string
+        required: false
+        description: ''
+      - name: to
+        schema: string
+        required: false
+        description: ''
+      - name: query
+        schema: string
+        required: false
+        description: ''
+      - name: limit
+        schema: integer
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/events/applyContent
+    method: applyContentData
+    httpMethod: post
+    tag: Content
+    typeScriptTag: content
+    description: ''
+    parameters:
+      - name: content
+        schema: object
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/events/running
+    method: getRunningEvents
+    httpMethod: get
+    tag: Activity
+    typeScriptTag: activity
+    description: ''
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/events/{objectId}/endPhase
+    method: updateObjectEndPhase
+    httpMethod: put
+    tag: Event
+    typeScriptTag: event
+    description: ''
+    parameters:
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+      - name: time
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/events/{objectId}/ping
+    method: pingObjectEvents
+    httpMethod: get
+    tag: Event
+    typeScriptTag: event
+    description: ''
+    parameters:
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/events/{objectId}/content
+    method: deleteEventContent
+    httpMethod: delete
+    tag: Content
+    typeScriptTag: content
+    description: ''
+    parameters:
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/events/{objectId}/content
+    method: updateObjectContent
+    httpMethod: put
+    tag: Content
+    typeScriptTag: content
+    description: ''
+    parameters:
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+      - name: event
+        schema: object
+        description: ''
+      - name: origin
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/events/{objectId}/refresh
+    method: refreshObjectEvents
+    httpMethod: put
+    tag: Event
+    typeScriptTag: event
+    description: ''
+    parameters:
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/event-players/{objectId}/claim
+    method: claimObjectEventPlayers
+    httpMethod: post
+    tag: Event
+    typeScriptTag: event
+    description: ''
+    parameters:
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+      - name: eventId
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/event-players/{objectId}/score
+    method: updatePlayerScore
+    httpMethod: put
+    tag: Event
+    typeScriptTag: event
+    description: ''
+    parameters:
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+      - name: eventId
+        schema: string
+        required: false
+        description: ''
+      - name: score
+        schema: number
+        required: true
+        description: ''
+        example: 0
+      - name: increment
+        schema: boolean
+        required: false
+        description: ''
+      - name: stats
+        schema: object
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/gamerelay/{objectId}/sync
+    method: relayObjectSync
+    httpMethod: post
+    tag: Game
+    typeScriptTag: game
+    description: ''
+    parameters:
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+      - name: t
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+      - name: events
+        schema: array
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/gamerelay/{objectId}/results
+    method: relayObjectResults
+    httpMethod: post
+    tag: Game
+    typeScriptTag: game
+    description: ''
+    parameters:
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+      - name: results
+        schema: array
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/inventory/{objectId}/preview
+    method: updateInventoryPreview
+    httpMethod: put
+    tag: Object
+    typeScriptTag: object
+    description: ''
+    parameters:
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+      - name: currencies
+        schema: object
+        required: false
+        description: ''
+      - name: empty
+        schema: boolean
+        required: true
+        description: ''
+        example: true
+      - name: currencyProperties
+        schema: object
+        required: false
+        description: ''
+      - name: currencyContentIds
+        schema: array
+        required: true
+        description: ''
+      - name: applyVipBonus
+        schema: boolean
+        required: false
+        description: ''
+      - name: itemContentIds
+        schema: array
+        required: true
+        description: ''
+      - name: updateItems
+        schema: array
+        required: false
+        description: ''
+      - name: newItems
+        schema: array
+        required: false
+        description: ''
+      - name: transaction
+        schema: string
+        required: false
+        description: ''
+      - name: deleteItems
+        schema: array
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/inventory/{objectId}/multipliers
+    method: getMultipliers
+    httpMethod: get
+    tag: Object
+    typeScriptTag: object
+    description: ''
+    parameters:
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/inventory/{objectId}/transaction
+    method: removeTransactionById
+    httpMethod: delete
+    tag: Object
+    typeScriptTag: object
+    description: ''
+    parameters:
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+      - name: transaction
+        schema: string
+        required: true
+        description: ''
+        example: TRANSACTION
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/inventory/{objectId}/transfer
+    method: transferItemInventory
+    httpMethod: put
+    tag: Object
+    typeScriptTag: object
+    description: ''
+    parameters:
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+      - name: transaction
+        schema: string
+        required: false
+        description: ''
+      - name: recipientPlayer
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+      - name: currencies
+        schema: object
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/inventory/items
+    method: listItems
+    httpMethod: get
+    tag: Item
+    typeScriptTag: item
+    description: ''
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/inventory/currency
+    method: getInventoryCurrency
+    httpMethod: get
+    tag: Currency
+    typeScriptTag: currency
+    description: ''
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/leaderboards/list
+    method: listUserScores
+    httpMethod: get
+    tag: Leaderboard
+    typeScriptTag: leaderboard
+    description: ''
+    parameters:
+      - name: skip
+        schema: integer
+        required: false
+        description: ''
+      - name: limit
+        schema: integer
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/leaderboards/player
+    method: getPlayerScores
+    httpMethod: get
+    tag: Leaderboard
+    typeScriptTag: leaderboard
+    description: ''
+    parameters:
+      - name: dbid
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/leaderboards/assignment
+    method: getAssignmentLeaderboard
+    httpMethod: get
+    tag: Leaderboard
+    typeScriptTag: leaderboard
+    description: ''
+    parameters:
+      - name: boardId
+        schema: string
+        required: true
+        description: ''
+        example: BOARDID
+      - name: joinBoard
+        schema: boolean
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/leaderboards/uid
+    method: getUserScores
+    httpMethod: get
+    tag: Leaderboard
+    typeScriptTag: leaderboard
+    description: ''
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/leaderboards/{objectId}/entries
+    method: deleteEntries
+    httpMethod: delete
+    tag: Leaderboard
+    typeScriptTag: leaderboard
+    description: ''
+    parameters:
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/leaderboards/{objectId}/membership
+    method: getObjectMembership
+    httpMethod: get
+    tag: Leaderboard
+    typeScriptTag: leaderboard
+    description: ''
+    parameters:
+      - name: playerId
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/leaderboards/{objectId}/ranks
+    method: listObjectRanks
+    httpMethod: get
+    tag: Leaderboard
+    typeScriptTag: leaderboard
+    description: ''
+    parameters:
+      - name: ids
+        schema: string
+        required: false
+        description: ''
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/leaderboards/{objectId}/partition
+    method: getObjectPartition
+    httpMethod: get
+    tag: Leaderboard
+    typeScriptTag: leaderboard
+    description: ''
+    parameters:
+      - name: playerId
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/leaderboards/{objectId}/matches
+    method: getObjectMatches
+    httpMethod: get
+    tag: Leaderboard
+    typeScriptTag: leaderboard
+    description: ''
+    parameters:
+      - name: poolSize
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+      - name: windows
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+      - name: windowSize
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/leaderboards/{objectId}/assignment
+    method: removeAssignment
+    httpMethod: delete
+    tag: Leaderboard
+    typeScriptTag: leaderboard
+    description: ''
+    parameters:
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+      - name: playerId
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/leaderboards/{objectId}/entry
+    method: removeEntry
+    httpMethod: delete
+    tag: Leaderboard
+    typeScriptTag: leaderboard
+    description: ''
+    parameters:
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+      - name: id
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/leaderboards/{objectId}/entry
+    method: updateEntry
+    httpMethod: put
+    tag: Leaderboard
+    typeScriptTag: leaderboard
+    description: ''
+    parameters:
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+      - name: maxScore
+        schema: number
+        required: false
+        description: ''
+      - name: stats
+        schema: object
+        required: false
+        description: ''
+      - name: score
+        schema: number
+        required: true
+        description: ''
+        example: 0
+      - name: minScore
+        schema: number
+        required: false
+        description: ''
+      - name: id
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+      - name: increment
+        schema: boolean
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/leaderboards/{objectId}/freeze
+    method: createFreezeRequest
+    httpMethod: put
+    tag: Leaderboard
+    typeScriptTag: leaderboard
+    description: ''
+    parameters:
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/leaderboards/{objectId}/details
+    method: getObjectDetails
+    httpMethod: get
+    tag: Leaderboard
+    typeScriptTag: leaderboard
+    description: ''
+    parameters:
+      - name: from
+        schema: integer
+        required: false
+        description: ''
+      - name: max
+        schema: integer
+        required: false
+        description: ''
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/leaderboards/{objectId}/view
+    method: getObjectView
+    httpMethod: get
+    tag: Leaderboard
+    typeScriptTag: leaderboard
+    description: ''
+    parameters:
+      - name: max
+        schema: integer
+        required: false
+        description: ''
+      - name: focus
+        schema: integer
+        required: false
+        description: ''
+      - name: friends
+        schema: boolean
+        required: false
+        description: ''
+      - name: from
+        schema: integer
+        required: false
+        description: ''
+      - name: outlier
+        schema: integer
+        required: false
+        description: ''
+      - name: guild
+        schema: boolean
+        required: false
+        description: ''
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/leaderboards/{objectId}/swap
+    method: swapObjectLeaderboard
+    httpMethod: put
+    tag: Leaderboard
+    typeScriptTag: leaderboard
+    description: ''
+    parameters:
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+      - name: winnerId
+        schema: integer
+        required: false
+        description: ''
+      - name: loserId
+        schema: integer
+        required: false
+        description: ''
+      - name: swapBase
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+      - name: delta
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/groups/search
+    method: searchGroups
+    httpMethod: get
+    tag: Group
+    typeScriptTag: group
+    description: ''
+    parameters:
+      - name: name
+        schema: string
+        required: false
+        description: ''
+      - name: scoreMin
+        schema: integer
+        required: false
+        description: ''
+      - name: sortField
+        schema: string
+        required: false
+        description: ''
+      - name: userScore
+        schema: integer
+        required: false
+        description: ''
+      - name: hasSlots
+        schema: boolean
+        required: false
+        description: ''
+      - name: enrollmentTypes
+        schema: string
+        required: false
+        description: ''
+      - name: offset
+        schema: integer
+        required: false
+        description: ''
+      - name: scoreMax
+        schema: integer
+        required: false
+        description: ''
+      - name: subGroup
+        schema: boolean
+        required: false
+        description: ''
+      - name: sortValue
+        schema: integer
+        required: false
+        description: ''
+      - name: type
+        schema: string
+        required: false
+        description: ''
+      - name: limit
+        schema: integer
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/groups/{objectId}/role
+    method: updateRole
+    httpMethod: put
+    tag: Group
+    typeScriptTag: group
+    description: ''
+    parameters:
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+      - name: gamerTag
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+      - name: role
+        schema: string
+        required: false
+        description: ''
+      - name: subGroup
+        schema: integer
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/groups/{objectId}/kick
+    method: kickObjectGroup
+    httpMethod: post
+    tag: Group
+    typeScriptTag: group
+    description: ''
+    parameters:
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+      - name: gamerTag
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+      - name: subGroup
+        schema: integer
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/groups/{objectId}/apply
+    method: applyObjectGroups
+    httpMethod: post
+    tag: Group
+    typeScriptTag: group
+    description: ''
+    parameters:
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+      - name: subGroup
+        schema: integer
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/groups/{objectId}/donations
+    method: createDonation
+    httpMethod: post
+    tag: Group
+    typeScriptTag: group
+    description: ''
+    parameters:
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+      - name: currencyId
+        schema: string
+        required: false
+        description: ''
+      - name: amount
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+      - name: config
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/groups/{objectId}/donations
+    method: updateDonation
+    httpMethod: put
+    tag: Group
+    typeScriptTag: group
+    description: ''
+    parameters:
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+      - name: recipientId
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+      - name: amount
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/groups/{objectId}/member
+    method: removeMember
+    httpMethod: delete
+    tag: Group
+    typeScriptTag: group
+    description: ''
+    parameters:
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+      - name: gamerTag
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+      - name: subGroup
+        schema: integer
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/groups/{objectId}/invite
+    method: inviteObjectGroup
+    httpMethod: post
+    tag: Group
+    typeScriptTag: group
+    description: ''
+    parameters:
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+      - name: gamerTag
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+      - name: subGroup
+        schema: integer
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/groups/{objectId}/petition
+    method: createPetition
+    httpMethod: post
+    tag: Group
+    typeScriptTag: group
+    description: ''
+    parameters:
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+      - name: subGroup
+        schema: integer
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/group-users/{objectId}/availability
+    method: getUserAvailability
+    httpMethod: get
+    tag: Group
+    typeScriptTag: group
+    description: ''
+    parameters:
+      - name: name
+        schema: string
+        required: false
+        description: ''
+      - name: tag
+        schema: string
+        required: false
+        description: ''
+      - name: type
+        schema: string
+        required: false
+        description: ''
+      - name: subGroup
+        schema: boolean
+        required: false
+        description: ''
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/group-users/{objectId}/recommended
+    method: getRecommendedUsers
+    httpMethod: get
+    tag: Group
+    typeScriptTag: group
+    description: ''
+    parameters:
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/group-users/{objectId}/join
+    method: joinUserDelete
+    httpMethod: delete
+    tag: Group
+    typeScriptTag: group
+    description: ''
+    parameters:
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+      - name: successor
+        schema: integer
+        required: false
+        description: ''
+      - name: score
+        schema: integer
+        required: false
+        description: ''
+      - name: subGroup
+        schema: integer
+        required: false
+        description: ''
+      - name: type
+        schema: string
+        required: false
+        description: ''
+      - name: group
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/group-users/{objectId}/join
+    method: joinUserToGroup
+    httpMethod: post
+    tag: Group
+    typeScriptTag: group
+    description: ''
+    parameters:
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+      - name: successor
+        schema: integer
+        required: false
+        description: ''
+      - name: score
+        schema: integer
+        required: false
+        description: ''
+      - name: subGroup
+        schema: integer
+        required: false
+        description: ''
+      - name: type
+        schema: string
+        required: false
+        description: ''
+      - name: group
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/group-users/{objectId}/group
+    method: assignObjectGroup
+    httpMethod: post
+    tag: Group
+    typeScriptTag: group
+    description: ''
+    parameters:
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+      - name: name
+        schema: string
+        required: false
+        description: ''
+      - name: enrollmentType
+        schema: string
+        required: false
+        description: ''
+      - name: tag
+        schema: string
+        required: false
+        description: ''
+      - name: requirement
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+      - name: clientData
+        schema: string
+        required: false
+        description: ''
+      - name: scores
+        schema: array
+        required: false
+        description: ''
+      - name: time
+        schema: integer
+        required: false
+        description: ''
+      - name: type
+        schema: string
+        required: false
+        description: ''
+      - name: maxSize
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+      - name: group
+        schema: integer
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/group-users/{objectId}/search
+    method: searchUsers
+    httpMethod: get
+    tag: Group
+    typeScriptTag: group
+    description: ''
+    parameters:
+      - name: name
+        schema: string
+        required: false
+        description: ''
+      - name: scoreMin
+        schema: integer
+        required: false
+        description: ''
+      - name: sortField
+        schema: string
+        required: false
+        description: ''
+      - name: userScore
+        schema: integer
+        required: false
+        description: ''
+      - name: hasSlots
+        schema: boolean
+        required: false
+        description: ''
+      - name: enrollmentTypes
+        schema: string
+        required: false
+        description: ''
+      - name: offset
+        schema: integer
+        required: false
+        description: ''
+      - name: scoreMax
+        schema: integer
+        required: false
+        description: ''
+      - name: subGroup
+        schema: boolean
+        required: false
+        description: ''
+      - name: sortValue
+        schema: integer
+        required: false
+        description: ''
+      - name: type
+        schema: string
+        required: false
+        description: ''
+      - name: limit
+        schema: integer
+        required: false
+        description: ''
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/mail/attachments
+    method: uploadAttachment
+    httpMethod: put
+    tag: Mail
+    typeScriptTag: mail
+    description: ''
+    parameters:
+      - name: mailIds
+        schema: array
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/mail/template
+    method: getMailTemplate
+    httpMethod: get
+    tag: Mail
+    typeScriptTag: mail
+    description: ''
+    parameters:
+      - name: templateName
+        schema: string
+        required: false
+        description: ''
+      - name: gamerTag
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/mail/bulk
+    method: sendBulkEmails
+    httpMethod: post
+    tag: Mail
+    typeScriptTag: mail
+    description: ''
+    parameters:
+      - name: sendMailRequests
+        schema: array
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/mail/{objectId}/detail
+    method: getObjectDetail
+    httpMethod: get
+    tag: Mail
+    typeScriptTag: mail
+    description: ''
+    parameters:
+      - name: mid
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/mail/{objectId}/categories
+    method: getObjectCategories
+    httpMethod: get
+    tag: Mail
+    typeScriptTag: mail
+    description: ''
+    parameters:
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/mail/{objectId}/search
+    method: searchMailObject
+    httpMethod: post
+    tag: Mail
+    typeScriptTag: mail
+    description: ''
+    parameters:
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+      - name: clauses
+        schema: array
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/mail/{objectId}/bulk
+    method: sendBulkItems
+    httpMethod: post
+    tag: Mail
+    typeScriptTag: mail
+    description: ''
+    parameters:
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+      - name: sendMailRequests
+        schema: array
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/mail/{objectId}/bulk
+    method: updateObjectBulk
+    httpMethod: put
+    tag: Mail
+    typeScriptTag: mail
+    description: ''
+    parameters:
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+      - name: updateMailRequests
+        schema: array
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/mail/{objectId}/accept/many
+    method: acceptMany
+    httpMethod: put
+    tag: Mail
+    typeScriptTag: mail
+    description: ''
+    parameters:
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+      - name: mailIds
+        schema: array
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/matchmaking/{objectId}/tick
+    method: updateMatchmakingTick
+    httpMethod: put
+    tag: Object
+    typeScriptTag: object
+    description: ''
+    parameters:
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/matchmaking/{objectId}/match
+    method: matchmakingDelete
+    httpMethod: delete
+    tag: Object
+    typeScriptTag: object
+    description: ''
+    parameters:
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/matchmaking/{objectId}/match
+    method: getMatchmakingData
+    httpMethod: get
+    tag: Object
+    typeScriptTag: object
+    description: ''
+    parameters:
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/matchmaking/{objectId}/match
+    method: startMatchmakingProcess
+    httpMethod: post
+    tag: Object
+    typeScriptTag: object
+    description: ''
+    parameters:
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/payments/windows/purchase/track
+    method: windowsPurchaseTrack
+    httpMethod: post
+    tag: Payment
+    typeScriptTag: payment
+    description: ''
+    parameters:
+      - name: priceInLocalCurrency
+        schema: number
+        required: true
+        description: ''
+        example: 0
+      - name: skuName
+        schema: string
+        required: false
+        description: ''
+      - name: skuProductId
+        schema: string
+        required: false
+        description: ''
+      - name: store
+        schema: string
+        required: false
+        description: ''
+      - name: obtainItems
+        schema: array
+        required: false
+        description: ''
+      - name: obtainCurrency
+        schema: array
+        required: false
+        description: ''
+      - name: purchaseId
+        schema: string
+        required: false
+        description: ''
+      - name: isoCurrencySymbol
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/payments/audits
+    method: getPaymentAudits
+    httpMethod: get
+    tag: Audit
+    typeScriptTag: audit
+    description: ''
+    parameters:
+      - name: providerid
+        schema: string
+        required: false
+        description: ''
+      - name: provider
+        schema: string
+        required: false
+        description: ''
+      - name: state
+        schema: string
+        required: false
+        description: ''
+      - name: txid
+        schema: integer
+        required: false
+        description: ''
+      - name: player
+        schema: integer
+        required: false
+        description: ''
+      - name: start
+        schema: integer
+        required: false
+        description: ''
+      - name: limit
+        schema: integer
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/payments/windows/purchase/complete
+    method: processComplete
+    httpMethod: post
+    tag: Payment
+    typeScriptTag: payment
+    description: ''
+    parameters:
+      - name: txid
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+      - name: receipt
+        schema: string
+        required: false
+        description: ''
+      - name: priceInLocalCurrency
+        schema: string
+        required: false
+        description: ''
+      - name: isoCurrencySymbol
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/payments/test/purchase/begin
+    method: processBegin
+    httpMethod: post
+    tag: Payment
+    typeScriptTag: payment
+    description: ''
+    parameters:
+      - name: purchaseId
+        schema: string
+        description: ''
+      - name: language
+        schema: string
+        description: ''
+      - name: time
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/payments/facebook/update
+    method: facebookPaymentsUpdate
+    httpMethod: get
+    tag: Update
+    typeScriptTag: update
+    description: ''
+    parameters:
+      - name: hubMode
+        schema: string
+        required: false
+        description: ''
+      - name: hubChallenge
+        schema: string
+        required: false
+        description: ''
+      - name: hubVerifyToken
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/payments/facebook/update
+    method: facebookPaymentsUpdate
+    httpMethod: post
+    tag: Update
+    typeScriptTag: update
+    description: ''
+    parameters:
+      - name: object
+        schema: string
+        description: ''
+      - name: entry
+        schema: array
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/payments/steam/purchase/fail
+    method: steamPurchaseFail
+    httpMethod: post
+    tag: Payment
+    typeScriptTag: payment
+    description: ''
+    parameters:
+      - name: txid
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+      - name: reason
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/payments/facebook/purchase/complete
+    method: facebookPurchaseComplete
+    httpMethod: post
+    tag: Payment
+    typeScriptTag: payment
+    description: ''
+    parameters:
+      - name: txid
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+      - name: receipt
+        schema: string
+        required: false
+        description: ''
+      - name: priceInLocalCurrency
+        schema: string
+        required: false
+        description: ''
+      - name: isoCurrencySymbol
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/payments/facebook/purchase/fail
+    method: facebookPurchaseFailure
+    httpMethod: post
+    tag: Payment
+    typeScriptTag: payment
+    description: ''
+    parameters:
+      - name: txid
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+      - name: reason
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/payments/test/purchase/complete
+    method: completePurchase
+    httpMethod: post
+    tag: Payment
+    typeScriptTag: payment
+    description: ''
+    parameters:
+      - name: txid
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+      - name: receipt
+        schema: string
+        required: false
+        description: ''
+      - name: priceInLocalCurrency
+        schema: string
+        required: false
+        description: ''
+      - name: isoCurrencySymbol
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/payments/itunes/product
+    method: getItunesItem
+    httpMethod: get
+    tag: Product
+    typeScriptTag: product
+    description: ''
+    parameters:
+      - name: sku
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/payments/googleplay/purchase/complete
+    method: completePurchaseProcess
+    httpMethod: post
+    tag: Payment
+    typeScriptTag: payment
+    description: ''
+    parameters:
+      - name: txid
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+      - name: receipt
+        schema: string
+        required: false
+        description: ''
+      - name: priceInLocalCurrency
+        schema: string
+        required: false
+        description: ''
+      - name: isoCurrencySymbol
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/payments/test/purchase/track
+    method: trackPurchasePost
+    httpMethod: post
+    tag: Payment
+    typeScriptTag: payment
+    description: ''
+    parameters:
+      - name: priceInLocalCurrency
+        schema: number
+        required: true
+        description: ''
+        example: 0
+      - name: skuName
+        schema: string
+        required: false
+        description: ''
+      - name: skuProductId
+        schema: string
+        required: false
+        description: ''
+      - name: store
+        schema: string
+        required: false
+        description: ''
+      - name: obtainItems
+        schema: array
+        required: false
+        description: ''
+      - name: obtainCurrency
+        schema: array
+        required: false
+        description: ''
+      - name: purchaseId
+        schema: string
+        required: false
+        description: ''
+      - name: isoCurrencySymbol
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/payments/googleplay/purchase/begin
+    method: googlePlayPurchaseBegin
+    httpMethod: post
+    tag: Payment
+    typeScriptTag: payment
+    description: ''
+    parameters:
+      - name: purchaseId
+        schema: string
+        description: ''
+      - name: language
+        schema: string
+        description: ''
+      - name: time
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/payments/itunes/purchase/begin
+    method: itunesPurchaseBegin
+    httpMethod: post
+    tag: Payment
+    typeScriptTag: payment
+    description: ''
+    parameters:
+      - name: purchaseId
+        schema: string
+        description: ''
+      - name: language
+        schema: string
+        description: ''
+      - name: time
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/payments/facebook/purchase/cancel
+    method: facebookPurchaseCancel
+    httpMethod: post
+    tag: Payment
+    typeScriptTag: payment
+    description: ''
+    parameters:
+      - name: txid
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/payments/coupon/purchase/track
+    method: trackPurchasePost
+    httpMethod: post
+    tag: Payment
+    typeScriptTag: payment
+    description: ''
+    parameters:
+      - name: priceInLocalCurrency
+        schema: number
+        required: true
+        description: ''
+        example: 0
+      - name: skuName
+        schema: string
+        required: false
+        description: ''
+      - name: skuProductId
+        schema: string
+        required: false
+        description: ''
+      - name: store
+        schema: string
+        required: false
+        description: ''
+      - name: obtainItems
+        schema: array
+        required: false
+        description: ''
+      - name: obtainCurrency
+        schema: array
+        required: false
+        description: ''
+      - name: purchaseId
+        schema: string
+        required: false
+        description: ''
+      - name: isoCurrencySymbol
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/payments/steam/purchase/complete
+    method: steamPurchaseComplete
+    httpMethod: post
+    tag: Payment
+    typeScriptTag: payment
+    description: ''
+    parameters:
+      - name: txid
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+      - name: receipt
+        schema: string
+        required: false
+        description: ''
+      - name: priceInLocalCurrency
+        schema: string
+        required: false
+        description: ''
+      - name: isoCurrencySymbol
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/payments/facebook/purchase/track
+    method: trackPurchasePost
+    httpMethod: post
+    tag: Payment
+    typeScriptTag: payment
+    description: ''
+    parameters:
+      - name: priceInLocalCurrency
+        schema: number
+        required: true
+        description: ''
+        example: 0
+      - name: skuName
+        schema: string
+        required: false
+        description: ''
+      - name: skuProductId
+        schema: string
+        required: false
+        description: ''
+      - name: store
+        schema: string
+        required: false
+        description: ''
+      - name: obtainItems
+        schema: array
+        required: false
+        description: ''
+      - name: obtainCurrency
+        schema: array
+        required: false
+        description: ''
+      - name: purchaseId
+        schema: string
+        required: false
+        description: ''
+      - name: isoCurrencySymbol
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/payments/itunes/purchase/fail
+    method: processFailure
+    httpMethod: post
+    tag: Payment
+    typeScriptTag: payment
+    description: ''
+    parameters:
+      - name: txid
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+      - name: reason
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/payments/test/purchase/cancel
+    method: cancelPurchase
+    httpMethod: post
+    tag: Payment
+    typeScriptTag: payment
+    description: ''
+    parameters:
+      - name: txid
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/payments/googleplay/purchase/track
+    method: trackPurchasePost
+    httpMethod: post
+    tag: Payment
+    typeScriptTag: payment
+    description: ''
+    parameters:
+      - name: priceInLocalCurrency
+        schema: number
+        required: true
+        description: ''
+        example: 0
+      - name: skuName
+        schema: string
+        required: false
+        description: ''
+      - name: skuProductId
+        schema: string
+        required: false
+        description: ''
+      - name: store
+        schema: string
+        required: false
+        description: ''
+      - name: obtainItems
+        schema: array
+        required: false
+        description: ''
+      - name: obtainCurrency
+        schema: array
+        required: false
+        description: ''
+      - name: purchaseId
+        schema: string
+        required: false
+        description: ''
+      - name: isoCurrencySymbol
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/payments/steam/prices
+    method: getSteamPrices
+    httpMethod: get
+    tag: Price
+    typeScriptTag: price
+    description: ''
+    parameters:
+      - name: steamId
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/payments/test/purchase/fail
+    method: processFailure
+    httpMethod: post
+    tag: Payment
+    typeScriptTag: payment
+    description: ''
+    parameters:
+      - name: txid
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+      - name: reason
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/payments/coupon/purchase/cancel
+    method: couponPurchaseCancel
+    httpMethod: post
+    tag: Payment
+    typeScriptTag: payment
+    description: ''
+    parameters:
+      - name: txid
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/payments/itunes/purchase/complete
+    method: completeItunesPurchase
+    httpMethod: post
+    tag: Payment
+    typeScriptTag: payment
+    description: ''
+    parameters:
+      - name: txid
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+      - name: receipt
+        schema: string
+        required: false
+        description: ''
+      - name: priceInLocalCurrency
+        schema: string
+        required: false
+        description: ''
+      - name: isoCurrencySymbol
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/payments/coupon/purchase/begin
+    method: couponPurchaseBegin
+    httpMethod: post
+    tag: Payment
+    typeScriptTag: payment
+    description: ''
+    parameters:
+      - name: purchaseId
+        schema: string
+        description: ''
+      - name: language
+        schema: string
+        description: ''
+      - name: time
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/payments/steam/purchase/track
+    method: trackPurchasePost
+    httpMethod: post
+    tag: Payment
+    typeScriptTag: payment
+    description: ''
+    parameters:
+      - name: priceInLocalCurrency
+        schema: number
+        required: true
+        description: ''
+        example: 0
+      - name: skuName
+        schema: string
+        required: false
+        description: ''
+      - name: skuProductId
+        schema: string
+        required: false
+        description: ''
+      - name: store
+        schema: string
+        required: false
+        description: ''
+      - name: obtainItems
+        schema: array
+        required: false
+        description: ''
+      - name: obtainCurrency
+        schema: array
+        required: false
+        description: ''
+      - name: purchaseId
+        schema: string
+        required: false
+        description: ''
+      - name: isoCurrencySymbol
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/payments/facebook/purchase/begin
+    method: facebookPurchaseBegin
+    httpMethod: post
+    tag: Payment
+    typeScriptTag: payment
+    description: ''
+    parameters:
+      - name: purchaseId
+        schema: string
+        description: ''
+      - name: language
+        schema: string
+        description: ''
+      - name: time
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/payments/steam/order
+    method: getSteam
+    httpMethod: get
+    tag: Order
+    typeScriptTag: order
+    description: ''
+    parameters:
+      - name: orderId
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/payments/windows/purchase/begin
+    method: initializePurchaseProcess
+    httpMethod: post
+    tag: Payment
+    typeScriptTag: payment
+    description: ''
+    parameters:
+      - name: purchaseId
+        schema: string
+        description: ''
+      - name: language
+        schema: string
+        description: ''
+      - name: time
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/payments/windows/product
+    method: listWindowsPayments
+    httpMethod: get
+    tag: Product
+    typeScriptTag: product
+    description: ''
+    parameters:
+      - name: sku
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/payments/googleplay/purchase/fail
+    method: processFailure
+    httpMethod: post
+    tag: Payment
+    typeScriptTag: payment
+    description: ''
+    parameters:
+      - name: txid
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+      - name: reason
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/payments/facebook/product
+    method: getFacebookProduct
+    httpMethod: get
+    tag: Product
+    typeScriptTag: product
+    description: ''
+    parameters:
+      - name: sku
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/payments/googleplay/purchase/cancel
+    method: googlePlayPurchaseCancel
+    httpMethod: post
+    tag: Payment
+    typeScriptTag: payment
+    description: ''
+    parameters:
+      - name: txid
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/payments/coupon/product
+    method: getCouponDetails
+    httpMethod: get
+    tag: Product
+    typeScriptTag: product
+    description: ''
+    parameters:
+      - name: sku
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/payments/coupon/purchase/fail
+    method: failPurchase
+    httpMethod: post
+    tag: Payment
+    typeScriptTag: payment
+    description: ''
+    parameters:
+      - name: txid
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+      - name: reason
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/payments/steam/purchase/begin
+    method: steamPurchaseBegin
+    httpMethod: post
+    tag: Payment
+    typeScriptTag: payment
+    description: ''
+    parameters:
+      - name: purchaseId
+        schema: string
+        description: ''
+      - name: language
+        schema: string
+        description: ''
+      - name: time
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/payments/steam/purchase/cancel
+    method: steamPurchaseCancel
+    httpMethod: post
+    tag: Payment
+    typeScriptTag: payment
+    description: ''
+    parameters:
+      - name: txid
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/payments/steam/auth
+    method: steamPostAuth
+    httpMethod: post
+    tag: Authentication
+    typeScriptTag: authentication
+    description: ''
+    parameters:
+      - name: ticket
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/payments/steam/product
+    method: getSteamCatalog
+    httpMethod: get
+    tag: Product
+    typeScriptTag: product
+    description: ''
+    parameters:
+      - name: sku
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/payments/coupon/purchase/complete
+    method: completePurchase
+    httpMethod: post
+    tag: Payment
+    typeScriptTag: payment
+    description: ''
+    parameters:
+      - name: txid
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+      - name: receipt
+        schema: string
+        required: false
+        description: ''
+      - name: priceInLocalCurrency
+        schema: string
+        required: false
+        description: ''
+      - name: isoCurrencySymbol
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/payments/windows/purchase/cancel
+    method: windowsPurchaseCancel
+    httpMethod: post
+    tag: Payment
+    typeScriptTag: payment
+    description: ''
+    parameters:
+      - name: txid
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/payments/googleplay/product
+    method: getGooglePlayDetails
+    httpMethod: get
+    tag: Product
+    typeScriptTag: product
+    description: ''
+    parameters:
+      - name: sku
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/payments/windows/purchase/fail
+    method: processFailure
+    httpMethod: post
+    tag: Payment
+    typeScriptTag: payment
+    description: ''
+    parameters:
+      - name: txid
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+      - name: reason
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/payments/itunes/purchase/cancel
+    method: cancelPurchaseProcess
+    httpMethod: post
+    tag: Payment
+    typeScriptTag: payment
+    description: ''
+    parameters:
+      - name: txid
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/payments/test/product
+    method: testGetBasicPayments
+    httpMethod: get
+    tag: Product
+    typeScriptTag: product
+    description: ''
+    parameters:
+      - name: sku
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/payments/itunes/purchase/track
+    method: itunesPurchaseTrack
+    httpMethod: post
+    tag: Payment
+    typeScriptTag: payment
+    description: ''
+    parameters:
+      - name: priceInLocalCurrency
+        schema: number
+        required: true
+        description: ''
+        example: 0
+      - name: skuName
+        schema: string
+        required: false
+        description: ''
+      - name: skuProductId
+        schema: string
+        required: false
+        description: ''
+      - name: store
+        schema: string
+        required: false
+        description: ''
+      - name: obtainItems
+        schema: array
+        required: false
+        description: ''
+      - name: obtainCurrency
+        schema: array
+        required: false
+        description: ''
+      - name: purchaseId
+        schema: string
+        required: false
+        description: ''
+      - name: isoCurrencySymbol
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/push/register
+    method: pushUser
+    httpMethod: post
+    tag: Registration
+    typeScriptTag: registration
+    description: ''
+    parameters:
+      - name: provider
+        schema: string
+        description: ''
+      - name: token
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/push/send
+    method: sendPushNotification
+    httpMethod: post
+    tag: Message
+    typeScriptTag: message
+    description: ''
+    parameters:
+      - name: msgs
+        schema: array
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/realms/project/beamable
+    method: createBeamable
+    httpMethod: post
+    tag: Realm
+    typeScriptTag: realm
+    description: ''
+    parameters:
+      - name: name
+        schema: string
+        required: true
+        description: ''
+        example: NAME
+      - name: plan
+        schema: string
+        required: false
+        description: ''
+      - name: sharded
+        schema: boolean
+        required: false
+        description: ''
+      - name: parent
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/realms/customer/alias/available
+    method: checkAliasAvailable
+    httpMethod: get
+    tag: Realm
+    typeScriptTag: realm
+    description: ''
+    parameters:
+      - name: alias
+        schema: string
+        required: true
+        description: ''
+        example: ALIAS
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/realms/project
+    method: deleteProject
+    httpMethod: delete
+    tag: Realm
+    typeScriptTag: realm
+    description: ''
+    parameters:
+      - name: pid
+        schema: string
+        required: true
+        description: ''
+        example: PID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/realms/project
+    method: getProjectRealms
+    httpMethod: get
+    tag: Realm
+    typeScriptTag: realm
+    description: ''
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/realms/project
+    method: createProjectReal
+    httpMethod: post
+    tag: Realm
+    typeScriptTag: realm
+    description: ''
+    parameters:
+      - name: name
+        schema: string
+        required: true
+        description: ''
+        example: NAME
+      - name: plan
+        schema: string
+        required: false
+        description: ''
+      - name: sharded
+        schema: boolean
+        required: false
+        description: ''
+      - name: parent
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/realms/project
+    method: updateProjectRealms
+    httpMethod: put
+    tag: Realm
+    typeScriptTag: realm
+    description: ''
+    parameters:
+      - name: projectId
+        schema: string
+        required: true
+        description: ''
+        example: PROJECTID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/realms/games
+    method: getRealmsGames
+    httpMethod: get
+    tag: Game
+    typeScriptTag: game
+    description: ''
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/realms/config
+    method: getConfig
+    httpMethod: get
+    tag: Realm
+    typeScriptTag: realm
+    description: ''
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/realms/config
+    method: updateConfig
+    httpMethod: put
+    tag: Realm
+    typeScriptTag: realm
+    description: ''
+    parameters:
+      - name: config
+        schema: object
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/realms/project/rename
+    method: renameProjectRealms
+    httpMethod: put
+    tag: Realm
+    typeScriptTag: realm
+    description: ''
+    parameters:
+      - name: projectId
+        schema: string
+        required: true
+        description: ''
+        example: PROJECTID
+      - name: newName
+        schema: string
+        required: true
+        description: ''
+        example: NEWNAME
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/realms/plans
+    method: getRealmsPlans
+    httpMethod: get
+    tag: Plan
+    typeScriptTag: plan
+    description: ''
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/realms/plans
+    method: createNewPlan
+    httpMethod: post
+    tag: Plan
+    typeScriptTag: plan
+    description: ''
+    parameters:
+      - name: name
+        schema: string
+        required: true
+        description: ''
+        example: NAME
+      - name: messageBusAnalytics
+        schema: array
+        required: false
+        description: ''
+      - name: memcachedHosts
+        schema: string
+        required: true
+        description: ''
+        example: MEMCACHEDHOSTS
+      - name: mongoSSL
+        schema: boolean
+        required: true
+        description: ''
+        example: true
+      - name: platformJBDC
+        schema: string
+        required: true
+        description: ''
+        example: PLATFORMJBDC
+      - name: sharded
+        schema: boolean
+        required: true
+        description: ''
+        example: true
+      - name: mongoHosts
+        schema: string
+        required: true
+        description: ''
+        example: MONGOHOSTS
+      - name: messageBusCommon
+        schema: array
+        required: false
+        description: ''
+      - name: redisShards
+        schema: array
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/realms/customer
+    method: getCustomerRealms
+    httpMethod: get
+    tag: Realm
+    typeScriptTag: realm
+    description: ''
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/realms/customer
+    method: createCustomerRealm
+    httpMethod: post
+    tag: Realm
+    typeScriptTag: realm
+    description: ''
+    parameters:
+      - name: projectName
+        schema: string
+        required: true
+        description: ''
+        example: PROJECTNAME
+      - name: email
+        schema: string
+        required: true
+        description: ''
+        example: EMAIL
+      - name: customerName
+        schema: string
+        required: false
+        description: ''
+      - name: hierarchy
+        schema: boolean
+        required: false
+        description: ''
+      - name: alias
+        schema: string
+        required: false
+        description: ''
+      - name: password
+        schema: string
+        required: true
+        description: ''
+        example: PASSWORD
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/realms/launch-message
+    method: deleteLaunchMessage
+    httpMethod: delete
+    tag: Message
+    typeScriptTag: message
+    description: ''
+    parameters:
+      - name: file
+        schema: string
+        required: true
+        description: ''
+        example: FILE
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/realms/launch-message
+    method: getLaunchData
+    httpMethod: get
+    tag: Message
+    typeScriptTag: message
+    description: ''
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/realms/launch-message
+    method: createLaunchMessage
+    httpMethod: post
+    tag: Message
+    typeScriptTag: message
+    description: ''
+    parameters:
+      - name: name
+        schema: string
+        required: true
+        description: ''
+        example: NAME
+      - name: body
+        schema: string
+        required: true
+        description: ''
+        example: BODY
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/realms/is-customer
+    method: checkCustomerStatus
+    httpMethod: get
+    tag: Realm
+    typeScriptTag: realm
+    description: ''
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/realms/admin/customer
+    method: getCustomerRealms
+    httpMethod: get
+    tag: Realm
+    typeScriptTag: realm
+    description: ''
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/realms/game
+    method: getRealms
+    httpMethod: get
+    tag: Game
+    typeScriptTag: game
+    description: ''
+    parameters:
+      - name: rootPid
+        schema: string
+        required: true
+        description: ''
+        example: ROOTPID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/realms/game
+    method: createRealm
+    httpMethod: post
+    tag: Game
+    typeScriptTag: game
+    description: ''
+    parameters:
+      - name: gameName
+        schema: string
+        required: true
+        description: ''
+        example: GAMENAME
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/realms/game
+    method: updateRealm
+    httpMethod: put
+    tag: Game
+    typeScriptTag: game
+    description: ''
+    parameters:
+      - name: rootPID
+        schema: string
+        required: true
+        description: ''
+        example: ROOTPID
+      - name: projects
+        schema: array
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/realms/project/promote
+    method: projectPromoteGet
+    httpMethod: get
+    tag: Realm
+    typeScriptTag: realm
+    description: ''
+    parameters:
+      - name: sourcePid
+        schema: string
+        required: true
+        description: ''
+        example: SOURCEPID
+      - name: promotions
+        schema: array
+        required: false
+        description: ''
+      - name: contentManifestIds
+        schema: array
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/realms/project/promote
+    method: projectPromote
+    httpMethod: post
+    tag: Realm
+    typeScriptTag: realm
+    description: ''
+    parameters:
+      - name: sourcePid
+        schema: string
+        required: true
+        description: ''
+        example: SOURCEPID
+      - name: promotions
+        schema: array
+        required: false
+        description: ''
+      - name: contentManifestIds
+        schema: array
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/realms/customers
+    method: listCustomersRealms
+    httpMethod: get
+    tag: Realm
+    typeScriptTag: realm
+    description: ''
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/realms/promotion
+    method: getPromotionData
+    httpMethod: get
+    tag: Realm
+    typeScriptTag: realm
+    description: ''
+    parameters:
+      - name: sourcePid
+        schema: string
+        required: true
+        description: ''
+        example: SOURCEPID
+      - name: promotions
+        schema: array
+        required: false
+        description: ''
+      - name: contentManifestIds
+        schema: array
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/realms/promotion
+    method: createPromotion
+    httpMethod: post
+    tag: Realm
+    typeScriptTag: realm
+    description: ''
+    parameters:
+      - name: sourcePid
+        schema: string
+        required: true
+        description: ''
+        example: SOURCEPID
+      - name: promotions
+        schema: array
+        required: false
+        description: ''
+      - name: contentManifestIds
+        schema: array
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/notification/player
+    method: sendPlayerNotification
+    httpMethod: post
+    tag: Notification
+    typeScriptTag: notification
+    description: ''
+    parameters:
+      - name: payload
+        schema: object
+        description: ''
+      - name: dbid
+        schema: integer
+        description: ''
+      - name: customChannelSuffix
+        schema: string
+        description: ''
+      - name: dbids
+        schema: array
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/notification/global
+    method: sendGlobalNotification
+    httpMethod: post
+    tag: Notification
+    typeScriptTag: notification
+    description: ''
+    parameters:
+      - name: payload
+        schema: object
+        description: ''
+      - name: dbid
+        schema: integer
+        description: ''
+      - name: customChannelSuffix
+        schema: string
+        description: ''
+      - name: dbids
+        schema: array
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/notification/custom
+    method: createCustomNotification
+    httpMethod: post
+    tag: Notification
+    typeScriptTag: notification
+    description: ''
+    parameters:
+      - name: payload
+        schema: object
+        description: ''
+      - name: dbid
+        schema: integer
+        description: ''
+      - name: customChannelSuffix
+        schema: string
+        description: ''
+      - name: dbids
+        schema: array
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/notification/server
+    method: sendServerNotification
+    httpMethod: post
+    tag: Notification
+    typeScriptTag: notification
+    description: ''
+    parameters:
+      - name: event
+        schema: string
+        required: false
+        description: ''
+      - name: payload
+        schema: undefined
+        required: false
+        description: ''
+      - name: toAll
+        schema: boolean
+        required: true
+        description: ''
+        example: true
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/notification/generic
+    method: sendNotification
+    httpMethod: post
+    tag: Notification
+    typeScriptTag: notification
+    description: ''
+    parameters:
+      - name: payload
+        schema: object
+        description: ''
+      - name: dbid
+        schema: integer
+        description: ''
+      - name: customChannelSuffix
+        schema: string
+        description: ''
+      - name: dbids
+        schema: array
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/notification/game
+    method: postNotification
+    httpMethod: post
+    tag: Game
+    typeScriptTag: game
+    description: ''
+    parameters:
+      - name: payload
+        schema: object
+        description: ''
+      - name: dbid
+        schema: integer
+        description: ''
+      - name: customChannelSuffix
+        schema: string
+        description: ''
+      - name: dbids
+        schema: array
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/session/history
+    method: getHistory
+    httpMethod: get
+    tag: Session
+    typeScriptTag: session
+    description: ''
+    parameters:
+      - name: dbid
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+      - name: month
+        schema: integer
+        required: false
+        description: ''
+      - name: year
+        schema: integer
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/session/status
+    method: getStatus
+    httpMethod: get
+    tag: Session
+    typeScriptTag: session
+    description: ''
+    parameters:
+      - name: playerIds
+        schema: string
+        required: false
+        description: ''
+      - name: intervalSecs
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+      - name: playerIdsSeq
+        schema: array
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/session/heartbeat
+    method: postHeartbeat
+    httpMethod: post
+    tag: Session
+    typeScriptTag: session
+    description: ''
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/stats/client/batch
+    method: getClientBatchStats
+    httpMethod: get
+    tag: Statistic
+    typeScriptTag: statistic
+    description: ''
+    parameters:
+      - name: objectIds
+        schema: string
+        required: false
+        description: ''
+      - name: stats
+        schema: string
+        required: false
+        description: ''
+      - name: format
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/stats/batch
+    method: batchPost
+    httpMethod: post
+    tag: Statistic
+    typeScriptTag: statistic
+    description: ''
+    parameters:
+      - name: updates
+        schema: array
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/stats/search
+    method: searchData
+    httpMethod: post
+    tag: Statistic
+    typeScriptTag: statistic
+    description: ''
+    parameters:
+      - name: domain
+        schema: string
+        description: ''
+      - name: access
+        schema: string
+        description: ''
+      - name: objectType
+        schema: string
+        description: ''
+      - name: criteria
+        schema: array
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/stats/subscribe
+    method: addBasicStatsSubscription
+    httpMethod: put
+    tag: Subscription
+    typeScriptTag: subscription
+    description: ''
+    parameters:
+      - name: service
+        schema: string
+        description: ''
+      - name: subscriptions
+        schema: array
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/stats/{objectId}/client/stringlist
+    method: postClientStringlist
+    httpMethod: post
+    tag: Object
+    typeScriptTag: object
+    description: ''
+    parameters:
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+      - name: set
+        schema: array
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/stats/{objectId}/client
+    method: getClientStats
+    httpMethod: get
+    tag: Object
+    typeScriptTag: object
+    description: ''
+    parameters:
+      - name: stats
+        schema: string
+        required: false
+        description: ''
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/stats/{objectId}/client
+    method: postClientStats
+    httpMethod: post
+    tag: Object
+    typeScriptTag: object
+    description: ''
+    parameters:
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+      - name: objectId
+        schema: string
+        description: ''
+      - name: set
+        schema: object
+        description: ''
+      - name: add
+        schema: object
+        description: ''
+      - name: emitAnalytics
+        schema: boolean
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/tournaments/rewards
+    method: getRewards
+    httpMethod: get
+    tag: Tournament
+    typeScriptTag: tournament
+    description: ''
+    parameters:
+      - name: tournamentId
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/tournaments/rewards
+    method: createReward
+    httpMethod: post
+    tag: Tournament
+    typeScriptTag: tournament
+    description: ''
+    parameters:
+      - name: tournamentId
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/tournaments/global
+    method: getGlobalTournaments
+    httpMethod: get
+    tag: Tournament
+    typeScriptTag: tournament
+    description: ''
+    parameters:
+      - name: tournamentId
+        schema: string
+        required: false
+        description: ''
+      - name: max
+        schema: integer
+        required: false
+        description: ''
+      - name: focus
+        schema: integer
+        required: false
+        description: ''
+      - name: cycle
+        schema: integer
+        required: false
+        description: ''
+      - name: from
+        schema: integer
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/tournaments/standings
+    method: getStandings
+    httpMethod: get
+    tag: Tournament
+    typeScriptTag: tournament
+    description: ''
+    parameters:
+      - name: tournamentId
+        schema: string
+        required: false
+        description: ''
+      - name: max
+        schema: integer
+        required: false
+        description: ''
+      - name: focus
+        schema: integer
+        required: false
+        description: ''
+      - name: cycle
+        schema: integer
+        required: false
+        description: ''
+      - name: from
+        schema: integer
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/tournaments/admin/player
+    method: adminPlayerDataGet
+    httpMethod: get
+    tag: Tournament
+    typeScriptTag: tournament
+    description: ''
+    parameters:
+      - name: playerId
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+      - name: tournamentId
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/tournaments/admin/player
+    method: updateAdminPlayer
+    httpMethod: put
+    tag: Tournament
+    typeScriptTag: tournament
+    description: ''
+    parameters:
+      - name: playerId
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+      - name: tournamentId
+        schema: string
+        required: false
+        description: ''
+      - name: update
+        schema: object
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/tournaments/me
+    method: getMyTournament
+    httpMethod: get
+    tag: Tournament
+    typeScriptTag: tournament
+    description: ''
+    parameters:
+      - name: tournamentId
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/tournaments/champions
+    method: getChampions
+    httpMethod: get
+    tag: Tournament
+    typeScriptTag: tournament
+    description: ''
+    parameters:
+      - name: tournamentId
+        schema: string
+        required: false
+        description: ''
+      - name: cycles
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/tournaments/score
+    method: submitScore
+    httpMethod: post
+    tag: Tournament
+    typeScriptTag: tournament
+    description: ''
+    parameters:
+      - name: tournamentId
+        schema: string
+        required: false
+        description: ''
+      - name: stats
+        schema: object
+        required: false
+        description: ''
+      - name: score
+        schema: number
+        required: true
+        description: ''
+        example: 0
+      - name: playerId
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+      - name: increment
+        schema: boolean
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/social/friends
+    method: removeFriend
+    httpMethod: delete
+    tag: Friend
+    typeScriptTag: friend
+    description: ''
+    parameters:
+      - name: playerId
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/social/my
+    method: getMySocialData
+    httpMethod: get
+    tag: Message
+    typeScriptTag: message
+    description: ''
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/social/friends/import
+    method: importFriendsData
+    httpMethod: post
+    tag: Friend
+    typeScriptTag: friend
+    description: ''
+    parameters:
+      - name: source
+        schema: string
+        description: ''
+      - name: token
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/social/blocked
+    method: userSocialUnblock
+    httpMethod: delete
+    tag: Block
+    typeScriptTag: block
+    description: ''
+    parameters:
+      - name: playerId
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/social/blocked
+    method: userSocialBlocked
+    httpMethod: post
+    tag: Block
+    typeScriptTag: block
+    description: ''
+    parameters:
+      - name: playerId
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/legacy-timers/defs
+    method: getLegacyTimers
+    httpMethod: get
+    tag: Timer
+    typeScriptTag: timer
+    description: ''
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/legacy-promos/codes
+    method: getPromoCodes
+    httpMethod: get
+    tag: Promo
+    typeScriptTag: promo
+    description: ''
+    parameters:
+      - name: id
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/legacy-promos/codes
+    method: generatePromoCode
+    httpMethod: post
+    tag: Promo
+    typeScriptTag: promo
+    description: ''
+    parameters:
+      - name: definitionId
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+      - name: codes
+        schema: array
+        required: false
+        description: ''
+      - name: claimsPerCode
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/legacy-promos/claim
+    method: claimLegacyPromo
+    httpMethod: post
+    tag: Promo
+    typeScriptTag: promo
+    description: ''
+    parameters:
+      - name: code
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/legacy-entitlement-defs/grant
+    method: createLegacyEntitlementDefs
+    httpMethod: post
+    tag: Entitlement
+    typeScriptTag: entitlement
+    description: ''
+    parameters:
+      - name: gamerTags
+        schema: array
+        description: ''
+      - name: generators
+        schema: array
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/legacy-entitlement-defs/revoke
+    method: revokeLegacyEntitlementDefs
+    httpMethod: delete
+    tag: Entitlement
+    typeScriptTag: entitlement
+    description: ''
+    parameters:
+      - name: uuid
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/legacy-entitlement-defs/upload
+    method: uploadLegacyEntitlementDefs
+    httpMethod: post
+    tag: Entitlement
+    typeScriptTag: entitlement
+    description: ''
+    parameters:
+      - name: entitlements
+        schema: array
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/legacy-entitlement-defs/player
+    method: getPlayerEntitlements
+    httpMethod: get
+    tag: Entitlement
+    typeScriptTag: entitlement
+    description: ''
+    parameters:
+      - name: state
+        schema: string
+        required: false
+        description: ''
+      - name: skip
+        schema: integer
+        required: false
+        description: ''
+      - name: symbol
+        schema: string
+        required: false
+        description: ''
+      - name: icw
+        schema: boolean
+        required: false
+        description: ''
+      - name: spec
+        schema: string
+        required: false
+        description: ''
+      - name: limit
+        schema: integer
+        required: false
+        description: ''
+      - name: gt
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/legacy-entitlement-defs/claim
+    method: defineEntitlementLegacy
+    httpMethod: put
+    tag: Entitlement
+    typeScriptTag: entitlement
+    description: ''
+    parameters:
+      - name: gt
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+      - name: symbol
+        schema: string
+        required: false
+        description: ''
+      - name: spec
+        schema: string
+        required: false
+        description: ''
+      - name: uuid
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/legacy-cloud/campaigns/schedule
+    method: updateSchedule
+    httpMethod: put
+    tag: Campaign
+    typeScriptTag: campaign
+    description: ''
+    parameters:
+      - name: sid
+        schema: string
+        description: ''
+      - name: startDate
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/legacy-cloud/templates
+    method: deleteLegacyCloud
+    httpMethod: delete
+    tag: Template
+    typeScriptTag: template
+    description: ''
+    parameters:
+      - name: id
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/legacy-cloud/templates
+    method: getLegacyCloudTemplates
+    httpMethod: get
+    tag: Template
+    typeScriptTag: template
+    description: ''
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/legacy-cloud/templates
+    method: createLegacyCloudTemplate
+    httpMethod: post
+    tag: Template
+    typeScriptTag: template
+    description: ''
+    parameters:
+      - name: name
+        schema: string
+        description: ''
+      - name: msg
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/legacy-cloud/campaigns
+    method: removeLegacyCloud
+    httpMethod: delete
+    tag: Campaign
+    typeScriptTag: campaign
+    description: ''
+    parameters:
+      - name: sid
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/legacy-cloud/campaigns
+    method: getLegacyCloudCampaigns
+    httpMethod: get
+    tag: Campaign
+    typeScriptTag: campaign
+    description: ''
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/legacy-cloud/campaigns
+    method: createNewLegacyCloudCampaign
+    httpMethod: post
+    tag: Campaign
+    typeScriptTag: campaign
+    description: ''
+    parameters:
+      - name: mtype
+        schema: string
+        required: false
+        description: ''
+      - name: mb_store
+        schema: string
+        required: false
+        description: ''
+      - name: mb_expiration
+        schema: string
+        required: false
+        description: ''
+      - name: name
+        schema: string
+        required: false
+        description: ''
+      - name: subject
+        schema: string
+        required: false
+        description: ''
+      - name: mb_ent_spec
+        schema: string
+        required: false
+        description: ''
+      - name: mb_ent_quant
+        schema: integer
+        required: false
+        description: ''
+      - name: resend_to_past_recipients
+        schema: boolean
+        required: true
+        description: ''
+        example: true
+      - name: datepoint
+        schema: string
+        required: false
+        description: ''
+      - name: mb_attachments
+        schema: array
+        required: false
+        description: ''
+      - name: recur
+        schema: string
+        required: false
+        description: ''
+      - name: sent
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+      - name: msg
+        schema: string
+        required: false
+        description: ''
+      - name: rules
+        schema: array
+        required: false
+        description: ''
+      - name: mb_ent
+        schema: string
+        required: false
+        description: ''
+      - name: start
+        schema: string
+        required: false
+        description: ''
+      - name: days
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/legacy-pvp-defs/file
+    method: submitPvpFile
+    httpMethod: post
+    tag: LegacyPvpDef
+    typeScriptTag: legacyPvpDef
+    description: ''
+    parameters:
+      - name: lbid
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/legacy-shards/accepting
+    method: getLegacyAccepting
+    httpMethod: get
+    tag: Shard
+    typeScriptTag: shard
+    description: ''
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/legacy-shards/preferred
+    method: getPreferredLegacyShards
+    httpMethod: get
+    tag: Shard
+    typeScriptTag: shard
+    description: ''
+    parameters:
+      - name: preference
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/history/apiaccess/url
+    method: getApiAccessUrl
+    httpMethod: get
+    tag: History
+    typeScriptTag: history
+    description: ''
+    parameters:
+      - name: from
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+      - name: to
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+      - name: customerScoped
+        schema: boolean
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/history/query/url
+    method: getQueryData
+    httpMethod: post
+    tag: History
+    typeScriptTag: history
+    description: ''
+    parameters:
+      - name: query
+        schema: string
+        required: true
+        description: ''
+        example: QUERY
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/history/query
+    method: getQueryResults
+    httpMethod: post
+    tag: History
+    typeScriptTag: history
+    description: ''
+    parameters:
+      - name: query
+        schema: string
+        required: true
+        description: ''
+        example: QUERY
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/history/microservices
+    method: getMicroservicesHistory
+    httpMethod: get
+    tag: History
+    typeScriptTag: history
+    description: ''
+    parameters:
+      - name: from
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+      - name: to
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/history/account/roles
+    method: listRoles
+    httpMethod: get
+    tag: Account
+    typeScriptTag: account
+    description: ''
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/history/apiaccess
+    method: getApiAccessHistory
+    httpMethod: get
+    tag: History
+    typeScriptTag: history
+    description: ''
+    parameters:
+      - name: from
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+      - name: to
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/history/events
+    method: getEventHistory
+    httpMethod: get
+    tag: History
+    typeScriptTag: history
+    description: ''
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/trials
+    method: removeTrial
+    httpMethod: delete
+    tag: Trial
+    typeScriptTag: trial
+    description: ''
+    parameters:
+      - name: trialType
+        schema: string
+        description: ''
+      - name: name
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/trials
+    method: listTrials
+    httpMethod: get
+    tag: Trial
+    typeScriptTag: trial
+    description: ''
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/trials
+    method: createNewTrial
+    httpMethod: post
+    tag: Trial
+    typeScriptTag: trial
+    description: ''
+    parameters:
+      - name: name
+        schema: string
+        description: ''
+      - name: strat
+        schema: string
+        description: ''
+      - name: cohortType
+        schema: string
+        description: ''
+      - name: cohorts
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/announcements
+    method: deleteAnnouncement
+    httpMethod: delete
+    tag: Announcement
+    typeScriptTag: announcement
+    description: ''
+    parameters:
+      - name: symbol
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/announcements
+    method: createNewAnnouncement
+    httpMethod: post
+    tag: Announcement
+    typeScriptTag: announcement
+    description: ''
+    parameters:
+      - name: summary
+        schema: string
+        description: ''
+      - name: title
+        schema: string
+        description: ''
+      - name: body
+        schema: string
+        description: ''
+      - name: channel
+        schema: string
+        description: ''
+      - name: start_date
+        schema: string
+        description: ''
+      - name: gift
+        schema: object
+        description: ''
+      - name: mongo_start_date
+        schema: integer
+        description: ''
+      - name: stat_requirements
+        schema: array
+        description: ''
+      - name: mongo_end_date
+        schema: integer
+        description: ''
+      - name: symbol
+        schema: string
+        description: ''
+      - name: clientData
+        schema: object
+        description: ''
+      - name: validationErrors
+        schema: array
+        description: ''
+      - name: end_date
+        schema: string
+        description: ''
+      - name: attachments
+        schema: array
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/announcements/{objectId}
+    method: removeAnnouncementObject
+    httpMethod: delete
+    tag: Announcement
+    typeScriptTag: announcement
+    description: ''
+    parameters:
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+      - name: announcement
+        schema: string
+        description: ''
+      - name: announcements
+        schema: array
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/announcements/{objectId}
+    method: getObjectDetails
+    httpMethod: get
+    tag: Announcement
+    typeScriptTag: announcement
+    description: ''
+    parameters:
+      - name: includeDeleted
+        schema: boolean
+        required: false
+        description: ''
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/calendars/{objectId}
+    method: getCalendars
+    httpMethod: get
+    tag: Object
+    typeScriptTag: object
+    description: ''
+    parameters:
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/chatV2/{objectId}
+    method: getChatV2
+    httpMethod: get
+    tag: Object
+    typeScriptTag: object
+    description: ''
+    parameters:
+      - name: scope
+        schema: string
+        required: false
+        description: ''
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/cloudsaving
+    method: getData
+    httpMethod: get
+    tag: Cloudsaving
+    typeScriptTag: cloudsaving
+    description: ''
+    parameters:
+      - name: playerId
+        schema: integer
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/commerce/{objectId}
+    method: getById
+    httpMethod: get
+    tag: Object
+    typeScriptTag: object
+    description: ''
+    parameters:
+      - name: scope
+        schema: string
+        required: false
+        description: ''
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/content
+    method: createNewContent
+    httpMethod: post
+    tag: Content
+    typeScriptTag: content
+    description: ''
+    parameters:
+      - name: content
+        schema: array
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/events/{objectId}
+    method: getObjectEvents
+    httpMethod: get
+    tag: Event
+    typeScriptTag: event
+    description: ''
+    parameters:
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/event-players/{objectId}
+    method: getPlayersData
+    httpMethod: get
+    tag: Event
+    typeScriptTag: event
+    description: ''
+    parameters:
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/gamerelay/{objectId}
+    method: relayObjectPost
+    httpMethod: post
+    tag: Game
+    typeScriptTag: game
+    description: ''
+    parameters:
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+      - name: roomName
+        schema: string
+        required: false
+        description: ''
+      - name: keepSubscribed
+        schema: boolean
+        required: true
+        description: ''
+        example: true
+      - name: players
+        schema: array
+        required: false
+        description: ''
+      - name: gameType
+        schema: string
+        required: false
+        description: ''
+      - name: dbids
+        schema: array
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/inventory/{objectId}
+    method: getInventoryObjectById
+    httpMethod: get
+    tag: Object
+    typeScriptTag: object
+    description: ''
+    parameters:
+      - name: scope
+        schema: string
+        required: false
+        description: ''
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/inventory/{objectId}
+    method: createInventoryObject
+    httpMethod: post
+    tag: Object
+    typeScriptTag: object
+    description: ''
+    parameters:
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+      - name: scopes
+        schema: array
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/inventory/{objectId}
+    method: updateInventoryObject
+    httpMethod: put
+    tag: Object
+    typeScriptTag: object
+    description: ''
+    parameters:
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+      - name: currencies
+        schema: object
+        required: false
+        description: ''
+      - name: empty
+        schema: boolean
+        required: true
+        description: ''
+        example: true
+      - name: currencyProperties
+        schema: object
+        required: false
+        description: ''
+      - name: currencyContentIds
+        schema: array
+        required: true
+        description: ''
+      - name: applyVipBonus
+        schema: boolean
+        required: false
+        description: ''
+      - name: itemContentIds
+        schema: array
+        required: true
+        description: ''
+      - name: updateItems
+        schema: array
+        required: false
+        description: ''
+      - name: newItems
+        schema: array
+        required: false
+        description: ''
+      - name: transaction
+        schema: string
+        required: false
+        description: ''
+      - name: deleteItems
+        schema: array
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/leaderboards/{objectId}
+    method: deleteObjectById
+    httpMethod: delete
+    tag: Leaderboard
+    typeScriptTag: leaderboard
+    description: ''
+    parameters:
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/leaderboards/{objectId}
+    method: submitObjectScores
+    httpMethod: post
+    tag: Leaderboard
+    typeScriptTag: leaderboard
+    description: ''
+    parameters:
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+      - name: freezeTime
+        schema: integer
+        required: false
+        description: ''
+      - name: derivatives
+        schema: array
+        required: false
+        description: ''
+      - name: scoreName
+        schema: string
+        required: false
+        description: ''
+      - name: permissions
+        schema: object
+        required: false
+        description: ''
+      - name: maxEntries
+        schema: integer
+        required: false
+        description: ''
+      - name: partitioned
+        schema: boolean
+        required: false
+        description: ''
+      - name: sharded
+        schema: boolean
+        required: true
+        description: ''
+        example: true
+      - name: ttl
+        schema: integer
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/groups/{objectId}
+    method: deleteObjectGroup
+    httpMethod: delete
+    tag: Group
+    typeScriptTag: group
+    description: ''
+    parameters:
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+      - name: subGroup
+        schema: integer
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/groups/{objectId}
+    method: getObjectGroups
+    httpMethod: get
+    tag: Group
+    typeScriptTag: group
+    description: ''
+    parameters:
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/groups/{objectId}
+    method: updateObjectGroup
+    httpMethod: put
+    tag: Group
+    typeScriptTag: group
+    description: ''
+    parameters:
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+      - name: name
+        schema: string
+        description: ''
+      - name: enrollmentType
+        schema: string
+        description: ''
+      - name: tag
+        schema: string
+        description: ''
+      - name: slogan
+        schema: string
+        description: ''
+      - name: requirement
+        schema: integer
+        description: ''
+      - name: motd
+        schema: string
+        description: ''
+      - name: clientData
+        schema: string
+        description: ''
+      - name: subGroup
+        schema: integer
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/group-users/{objectId}
+    method: getGroupUsers
+    httpMethod: get
+    tag: Group
+    typeScriptTag: group
+    description: ''
+    parameters:
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/mail
+    method: getMessages
+    httpMethod: get
+    tag: Mail
+    typeScriptTag: mail
+    description: ''
+    parameters:
+      - name: mid
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/mail
+    method: updateMailContent
+    httpMethod: put
+    tag: Mail
+    typeScriptTag: mail
+    description: ''
+    parameters:
+      - name: body
+        schema: string
+        required: false
+        description: ''
+      - name: expires
+        schema: string
+        required: false
+        description: ''
+      - name: subject
+        schema: string
+        required: false
+        description: ''
+      - name: state
+        schema: string
+        required: false
+        description: ''
+      - name: mailId
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+      - name: category
+        schema: string
+        required: false
+        description: ''
+      - name: acceptAttachments
+        schema: boolean
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/mail/{objectId}
+    method: getObjectMail
+    httpMethod: get
+    tag: Mail
+    typeScriptTag: mail
+    description: ''
+    parameters:
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/mail/{objectId}
+    method: createObjectMail
+    httpMethod: post
+    tag: Mail
+    typeScriptTag: mail
+    description: ''
+    parameters:
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+      - name: body
+        schema: string
+        required: false
+        description: ''
+      - name: expires
+        schema: string
+        required: false
+        description: ''
+      - name: subject
+        schema: string
+        required: false
+        description: ''
+      - name: rewards
+        schema: object
+        required: false
+        description: ''
+      - name: id
+        schema: integer
+        required: false
+        description: ''
+      - name: senderGamerTag
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+      - name: category
+        schema: string
+        required: false
+        description: ''
+      - name: bodyRef
+        schema: integer
+        required: false
+        description: ''
+      - name: attachments
+        schema: array
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/mail/{objectId}
+    method: updateObjectMail
+    httpMethod: put
+    tag: Mail
+    typeScriptTag: mail
+    description: ''
+    parameters:
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+      - name: body
+        schema: string
+        required: false
+        description: ''
+      - name: expires
+        schema: string
+        required: false
+        description: ''
+      - name: subject
+        schema: string
+        required: false
+        description: ''
+      - name: state
+        schema: string
+        required: false
+        description: ''
+      - name: mailId
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+      - name: category
+        schema: string
+        required: false
+        description: ''
+      - name: acceptAttachments
+        schema: boolean
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/payments/{objectId}
+    method: getPaymentDetails
+    httpMethod: get
+    tag: Object
+    typeScriptTag: object
+    description: ''
+    parameters:
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/notification
+    method: getUnreadMessages
+    httpMethod: get
+    tag: Notification
+    typeScriptTag: notification
+    description: ''
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/session
+    method: createSessionRequest
+    httpMethod: post
+    tag: Session
+    typeScriptTag: session
+    description: ''
+    parameters:
+      - name: source
+        schema: string
+        description: ''
+      - name: customParams
+        schema: object
+        description: ''
+      - name: shard
+        schema: string
+        description: ''
+      - name: locale
+        schema: string
+        description: ''
+      - name: deviceParams
+        schema: object
+        description: ''
+      - name: language
+        schema: object
+        description: ''
+      - name: time
+        schema: integer
+        description: ''
+      - name: platform
+        schema: string
+        description: ''
+      - name: gamer
+        schema: integer
+        description: ''
+      - name: device
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/stats/{objectId}
+    method: deleteStatsObject
+    httpMethod: delete
+    tag: Object
+    typeScriptTag: object
+    description: ''
+    parameters:
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+      - name: stats
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/stats/{objectId}
+    method: getObjectStats
+    httpMethod: get
+    tag: Object
+    typeScriptTag: object
+    description: ''
+    parameters:
+      - name: stats
+        schema: string
+        required: false
+        description: ''
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/stats/{objectId}
+    method: createObjectStats
+    httpMethod: post
+    tag: Object
+    typeScriptTag: object
+    description: ''
+    parameters:
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+      - name: objectId
+        schema: string
+        description: ''
+      - name: set
+        schema: object
+        description: ''
+      - name: add
+        schema: object
+        description: ''
+      - name: emitAnalytics
+        schema: boolean
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/tournaments
+    method: listTournaments
+    httpMethod: get
+    tag: Tournament
+    typeScriptTag: tournament
+    description: ''
+    parameters:
+      - name: isRunning
+        schema: boolean
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/tournaments
+    method: createNewTournament
+    httpMethod: post
+    tag: Tournament
+    typeScriptTag: tournament
+    description: ''
+    parameters:
+      - name: tournamentId
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /object/tournaments/{objectId}
+    method: getTournamentObject
+    httpMethod: get
+    tag: Tournament
+    typeScriptTag: tournament
+    description: ''
+    parameters:
+      - name: objectId
+        schema: string
+        required: true
+        description: ''
+        example: OBJECTID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/legacy-timers
+    method: deleteLegacyTimers
+    httpMethod: delete
+    tag: Timer
+    typeScriptTag: timer
+    description: ''
+    parameters:
+      - name: name
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/legacy-timers
+    method: getLegacyTimers
+    httpMethod: get
+    tag: Timer
+    typeScriptTag: timer
+    description: ''
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/legacy-timers
+    method: createLegacyTimer
+    httpMethod: post
+    tag: Timer
+    typeScriptTag: timer
+    description: ''
+    parameters:
+      - name: name
+        schema: string
+        description: ''
+      - name: cronish
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/legacy-promos
+    method: getLegacyPromos
+    httpMethod: get
+    tag: Promo
+    typeScriptTag: promo
+    description: ''
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/legacy-promos
+    method: createLegacyPromo
+    httpMethod: post
+    tag: Promo
+    typeScriptTag: promo
+    description: ''
+    parameters:
+      - name: definition
+        schema: object
+        required: false
+        description: ''
+      - name: codes
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+      - name: claimsPerCode
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/legacy-entitlement-defs
+    method: deleteEntitlementDefinition
+    httpMethod: delete
+    tag: LegacyPvpDef
+    typeScriptTag: legacyPvpDef
+    description: ''
+    parameters:
+      - name: symbol
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/legacy-entitlement-defs
+    method: getEntitlementDefs
+    httpMethod: get
+    tag: LegacyPvpDef
+    typeScriptTag: legacyPvpDef
+    description: ''
+    parameters:
+      - name: symbol
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/legacy-entitlement-defs
+    method: createDefinition
+    httpMethod: post
+    tag: LegacyEntitlementDef
+    typeScriptTag: legacyEntitlementDef
+    description: ''
+    parameters:
+      - name: symbol
+        schema: string
+        description: ''
+      - name: request
+        schema: object
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/legacy-entitlement-defs
+    method: createLegacyEntitlementDefs
+    httpMethod: put
+    tag: Entitlement
+    typeScriptTag: entitlement
+    description: ''
+    parameters:
+      - name: symbol
+        schema: string
+        description: ''
+      - name: request
+        schema: object
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/legacy-pvp-defs
+    method: deleteDefinition
+    httpMethod: delete
+    tag: LegacyPvpDef
+    typeScriptTag: legacyPvpDef
+    description: ''
+    parameters:
+      - name: lbid
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/legacy-pvp-defs
+    method: getDefinitions
+    httpMethod: get
+    tag: LegacyPvpDef
+    typeScriptTag: legacyPvpDef
+    description: ''
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/legacy-pvp-defs
+    method: createOrUpdateDefinition
+    httpMethod: put
+    tag: LegacyPvpDef
+    typeScriptTag: legacyPvpDef
+    description: ''
+    parameters:
+      - name: lbid
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/legacy-shards
+    method: deleteLegacyShard
+    httpMethod: delete
+    tag: Shard
+    typeScriptTag: shard
+    description: ''
+    parameters:
+      - name: shardId
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/legacy-shards
+    method: getLegacyData
+    httpMethod: get
+    tag: Shard
+    typeScriptTag: shard
+    description: ''
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/legacy-shards
+    method: postLegacyShard
+    httpMethod: post
+    tag: Shard
+    typeScriptTag: shard
+    description: ''
+    parameters:
+      - name: shardId
+        schema: string
+        description: ''
+      - name: uri
+        schema: string
+        description: ''
+      - name: metadata
+        schema: object
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+  - url: /basic/legacy-shards
+    method: updateLegacyShardData
+    httpMethod: put
+    tag: Shard
+    typeScriptTag: shard
+    description: ''
+    parameters:
+      - name: shardId
+        schema: string
+        description: ''
+      - name: uri
+        schema: string
+        description: ''
+      - name: metadata
+        schema: object
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+numberOfSchemas: 514
+apiDescription: >-
+  var Beamable = BeamContext.Default; - That one line of code is a gateway to
+  everything you need to build custom server logic via microservices along with
+  a world of LiveOps tools and live services to build games that players love.

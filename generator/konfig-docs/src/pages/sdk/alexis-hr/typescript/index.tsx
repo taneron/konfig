@@ -11,7 +11,7 @@ export default function AlexisHrTypeScriptSdk() {
     <SdkNew
       sdkName="alexis-hr-typescript-sdk"
       metaDescription={`Alexis kompletta HR-plattform förenklar din och medarbetarnas vardag
-genom automatisering och intuitiv hantering av personaladministration. 
+genom automatisering och intuitiv hantering av personaladministration.
 
 Vi ger företag möjlighet att spara tid, fatta klokare beslut och i slutändan skapa en bättre arbetsplats. En modern och enkel lösning med samlad funktionalitet som låter dig arbeta datadrivet och hantera allt mellan onboarding till offboarding, men också tidrapportering, medarbetarsamtal och integrationer.
 
@@ -22,7 +22,7 @@ AlexisHR har kunder som NAKD, Bokio, Qred och används av företag och anställd
       companyKebabCase="alexis-hr"
       clientNameCamelCase="alexisHr"
       homepage="alexishr.com"
-      lastUpdated={new Date("2024-03-25T21:02:58.020Z")}
+      lastUpdated={new Date("2024-03-25T21:48:38.473Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/alexishr/favicon.png"
       contactUrl=""
       contactEmail="support@alexishr.com"
