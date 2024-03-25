@@ -15,6 +15,7 @@ import { logOperationDetails } from './log-operation-details'
 import { aiGenerateOperationIdSuffix } from './ai-generate-operation-id-suffix'
 import { aiGenerateOrChooseTag } from './ai-generate-or-choose-tag'
 import camelcase from 'camelcase'
+import { RateLimitError } from 'openai'
 
 function updateOperationId({
   operation,
@@ -131,150 +132,230 @@ export async function fixOperationIds({
   const operations = getOperations({ spec }).sort(
     (a, b) => a.path.length - b.path.length
   )
-  for (const { operation, path, method } of operations) {
-    if (operation.operationId !== undefined) {
-      const result = operationIdSchema.safeParse(operation.operationId)
-      if (result.success) continue
-      console.log(
-        boxen(
-          `Detected improperly named operation ID.\nReason:\n - ${result.error.issues
-            .map((issue) => issue.message)
-            .join('\n - ')}`,
-          {
-            title: 'Improper OperationID Detected',
-            padding: 1,
-            borderColor: 'red',
+
+  if (alwaysYes && useAIForOperationId && useAIForTags) {
+    // If all three of these flags are true, we can do the fixing in parallel
+    console.log('Fixing operation IDs in parallel')
+    const results = []
+    const concurrency = 7
+    for (let i = 0; i < operations.length; i += concurrency) {
+      let chunkResults: number[] = []
+      const query = async () => {
+        const promises = operations
+          .slice(i, i + concurrency)
+          .map(async ({ operation, path, method }) => {
+            return await fixOperationId({
+              alwaysYes,
+              operation,
+              operations,
+              method,
+              path,
+              progress,
+              spec,
+              useAIForOperationId,
+              useAIForTags,
+            })
+          })
+        chunkResults = await Promise.all(promises)
+      }
+      while (true) {
+        try {
+          await query()
+          break
+        } catch (e) {
+          if (e instanceof RateLimitError) {
+            // wait for 2 seconds and try again
+            await new Promise((resolve) => setTimeout(resolve, 2000))
+          } else {
+            throw e
           }
-        )
-      )
+        }
+      }
+      results.push(...chunkResults)
     }
-    if (operation.tags === undefined || operation.tags.length === 0) {
-      await updateOperationTag({
-        spec,
+    return results.reduce((acc, curr) => acc + curr, 0)
+  } else {
+    for (const { operation, path, method } of operations) {
+      numberOfUpdatedOperationIds += await fixOperationId({
+        alwaysYes,
         operation,
-        progress,
-        path,
+        operations,
         method,
+        path,
+        progress,
+        spec,
+        useAIForOperationId,
         useAIForTags,
       })
     }
-    numberOfUpdatedOperationIds++
-    const { prefix, generateOperationId } = generatePrefix({ operation })
-    const operationsWithId = operations
-      .map((o) => o.operation)
-      .filter((operation) => operation.operationId !== undefined)
-      .filter(
-        (operation) =>
-          operationIdSchema.safeParse(operation.operationId).success
-      )
-    if (operationsWithId.length > 5) {
-      console.log(
-        boxen(
-          operationsWithId
-            .map((operation) => operation.operationId)
-            .slice(operationsWithId.length - 5)
-            .join('\n'),
-          {
-            title: 'Existing Operation IDs',
-            titleAlignment: 'center',
-            padding: 1,
-          }
-        )
-      )
-    }
+  }
 
-    logOperationDetails({ operation: { operation, path, method } })
+  return numberOfUpdatedOperationIds
+}
 
-    const savedOperationId = progress.getOperationId({ path, method })
-    if (savedOperationId !== undefined) {
-      const confirm = await inquirerConfirm({
-        message: `Use saved operation ID "${savedOperationId}"?`,
-        alwaysYes,
-      })
-      if (confirm) {
-        updateOperationId({
-          operation,
-          operationId: savedOperationId,
-          path,
-          method,
-          progress,
-        })
-        continue
-      }
-    }
-
-    // compute a default value if possible
-    function computeDefault() {
-      const withMatchingSummaries = operationsWithId.filter(
-        (opWithId) => opWithId.summary === operation.summary
-      )
-
-      if (withMatchingSummaries.length < 2) {
-        return
-      }
-      // looks like there are more than 2 operations with matching summaries
-      // lets see if their operation ID suffixes are also the same
-      const uniqueOperationIds = new Set(
-        withMatchingSummaries.map(
-          (operation) => operation.operationId?.split('_')[1] // suffix
-        )
-      )
-      if (uniqueOperationIds.size > 1) return
-
-      // they all have the same operation id suffixes, we can compute the suffix as a default then
-      const suffix = withMatchingSummaries[0].operationId?.split('_')[1]
-      console.log(
-        boxen(`"${suffix}"`, {
-          title: '🪄 Computed Default Value',
-          textAlignment: 'center',
-          borderColor: 'green',
-        })
-      )
-      return suffix
-    }
-
-    async function promptForSuffix(): Promise<{ suffix: string }> {
-      return await inquirer.prompt<{ suffix: string }>([
+async function fixOperationId({
+  operation,
+  method,
+  path,
+  progress,
+  spec,
+  useAIForOperationId,
+  useAIForTags,
+  operations,
+  alwaysYes,
+}: {
+  alwaysYes: boolean
+  operation: Operation
+  operations: OperationObject[]
+  method: HttpMethods
+  path: string
+  progress: Progress
+  spec: Spec['spec']
+  useAIForOperationId: boolean
+  useAIForTags: boolean
+}): Promise<number> {
+  let numberOfUpdatedOperationIds = 0
+  if (operation.operationId !== undefined) {
+    const result = operationIdSchema.safeParse(operation.operationId)
+    if (result.success) return 0
+    console.log(
+      boxen(
+        `Detected improperly named operation ID.\nReason:\n - ${result.error.issues
+          .map((issue) => issue.message)
+          .join('\n - ')}`,
         {
-          type: 'input',
-          name: 'suffix',
-          message: `Enter operation ID:`,
-          default: computeDefault(),
-          validate(suffix: string) {
-            if (suffix === '') return 'Please specify a non-empty string'
-            if (suffix.length < 3)
-              return 'Please enter a suffix longer than 2 characters'
-            const conflictingOperationId = operations
-              .map((o) => o.operation.operationId)
-              .find((opId) => opId === generateOperationId(suffix))
-            if (conflictingOperationId !== undefined)
-              return `Operation ID must be unique (conflicts with "${conflictingOperationId}")`
-            return true
-          },
-          transformer(suffix: string) {
-            return generateOperationId(suffix)
-          },
-        },
-      ])
-    }
-
-    const suffix = useAIForOperationId
-      ? await aiGenerateOperationIdSuffix({
-          prefix,
-          path,
-          method,
-          operation,
-          operations,
-        })
-      : (await promptForSuffix()).suffix
-
-    updateOperationId({
+          title: 'Improper OperationID Detected',
+          padding: 1,
+          borderColor: 'red',
+        }
+      )
+    )
+  }
+  if (operation.tags === undefined || operation.tags.length === 0) {
+    await updateOperationTag({
+      spec,
       operation,
-      operationId: generateOperationId(suffix),
+      progress,
       path,
       method,
-      progress,
+      useAIForTags,
     })
   }
+  numberOfUpdatedOperationIds++
+  const { prefix, generateOperationId } = generatePrefix({ operation })
+  const operationsWithId = operations
+    .map((o) => o.operation)
+    .filter((operation) => operation.operationId !== undefined)
+    .filter(
+      (operation) => operationIdSchema.safeParse(operation.operationId).success
+    )
+  if (operationsWithId.length > 5) {
+    console.log(
+      boxen(
+        operationsWithId
+          .map((operation) => operation.operationId)
+          .slice(operationsWithId.length - 5)
+          .join('\n'),
+        {
+          title: 'Existing Operation IDs',
+          titleAlignment: 'center',
+          padding: 1,
+        }
+      )
+    )
+  }
+
+  logOperationDetails({ operation: { operation, path, method } })
+
+  const savedOperationId = progress.getOperationId({ path, method })
+  if (savedOperationId !== undefined) {
+    const confirm = await inquirerConfirm({
+      message: `Use saved operation ID "${savedOperationId}"?`,
+      alwaysYes,
+    })
+    if (confirm) {
+      updateOperationId({
+        operation,
+        operationId: savedOperationId,
+        path,
+        method,
+        progress,
+      })
+      return numberOfUpdatedOperationIds
+    }
+  }
+
+  // compute a default value if possible
+  function computeDefault() {
+    const withMatchingSummaries = operationsWithId.filter(
+      (opWithId) => opWithId.summary === operation.summary
+    )
+
+    if (withMatchingSummaries.length < 2) {
+      return
+    }
+    // looks like there are more than 2 operations with matching summaries
+    // lets see if their operation ID suffixes are also the same
+    const uniqueOperationIds = new Set(
+      withMatchingSummaries.map(
+        (operation) => operation.operationId?.split('_')[1] // suffix
+      )
+    )
+    if (uniqueOperationIds.size > 1) return
+
+    // they all have the same operation id suffixes, we can compute the suffix as a default then
+    const suffix = withMatchingSummaries[0].operationId?.split('_')[1]
+    console.log(
+      boxen(`"${suffix}"`, {
+        title: '🪄 Computed Default Value',
+        textAlignment: 'center',
+        borderColor: 'green',
+      })
+    )
+    return suffix
+  }
+
+  async function promptForSuffix(): Promise<{ suffix: string }> {
+    return await inquirer.prompt<{ suffix: string }>([
+      {
+        type: 'input',
+        name: 'suffix',
+        message: `Enter operation ID:`,
+        default: computeDefault(),
+        validate(suffix: string) {
+          if (suffix === '') return 'Please specify a non-empty string'
+          if (suffix.length < 3)
+            return 'Please enter a suffix longer than 2 characters'
+          const conflictingOperationId = operations
+            .map((o) => o.operation.operationId)
+            .find((opId) => opId === generateOperationId(suffix))
+          if (conflictingOperationId !== undefined)
+            return `Operation ID must be unique (conflicts with "${conflictingOperationId}")`
+          return true
+        },
+        transformer(suffix: string) {
+          return generateOperationId(suffix)
+        },
+      },
+    ])
+  }
+
+  const suffix = useAIForOperationId
+    ? await aiGenerateOperationIdSuffix({
+        prefix,
+        path,
+        method,
+        operation,
+        operations,
+      })
+    : (await promptForSuffix()).suffix
+
+  updateOperationId({
+    operation,
+    operationId: generateOperationId(suffix),
+    path,
+    method,
+    progress,
+  })
   return numberOfUpdatedOperationIds
 }
