@@ -1146,6 +1146,14 @@ const customRequests: Record<string, CustomRequest> = {
       return await downloadOpenApiSpecFromReadme({ urls });
     },
   },
+  "sumsub.com": {
+    lambda: async () => {
+      const urls = await collectEndpointsFromReadme({
+        url: "https://docs.sumsub.com/reference/audit-trail-events",
+      });
+      return await downloadOpenApiSpecFromReadme({ urls });
+    },
+  }
 };
 
 async function downloadOpenApiSpecFromMintlify({

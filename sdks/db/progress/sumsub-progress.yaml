@@ -1,0 +1,541 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignoreObjectsWithNoProperties: true
+ignorePotentialIncorrectType: true
+operationIds:
+  /resources/accessTokens:
+    post: Token_createActionToken
+  /resources/applicantActions/-/forApplicant/{applicantId}/?levelName=paymentSource:
+    post: Applicant_createPaymentSourceActions
+  /resources/applicantActions/-/forApplicant/{applicantId}/cryptoSourceOfFunds:
+    post: Applicant_createCryptoSourceOfFunds
+  /resources/applicantActions/-/forApplicant/{applicantId}/paymentMethod:
+    post: Applicant_submitPaymentMethod
+  /resources/applicantActions/-/forApplicant/{applicantId}?levelName={levelName}:
+    post: Applicant_createAction
+  /resources/applicantActions/-;applicantId={applicantId}:
+    get: Applicant_getActions
+  /resources/applicantActions/{actionId}/images:
+    post: Applicant_addImageToPaymentMethod
+  /resources/applicantActions/{actionId}/images/{imageId}?preview={isPreview}:
+    get: Applicant_getBankCardImage
+  /resources/applicantActions/{actionId}/one:
+    get: Applicant_getActionOneInfo
+  /resources/applicantActions/{actionId}/paymentMethod:
+    post: Applicant_addPaymentMethodInformation
+  /resources/applicantActions/{actionId}/review/status/pending:
+    post: Applicant_requestActionCheck
+  /resources/applicantFraudNetworks/:
+    get: Applicant_getFraudNetworks
+  /resources/applicantFraudNetworks/-/byApplicant/{applicantId}:
+    get: Applicant_getFraudNetworksByApplicant
+  /resources/applicantFraudNetworks/{networkId}/one:
+    get: Applicant_getFraudNetworkById
+  /resources/applicants:
+    post: Applicant_createNewApplicant
+  /resources/applicants/:
+    patch: Applicant_updateTopLevelInfo
+  /resources/applicants/-/applicantImport:
+    post: Applicant_importByArchive
+  /resources/applicants/-/ingestCompleted?levelName={levelName}:
+    post: Applicant_importCompleted
+  /resources/applicants/-/kyt/txns/-/data:
+    post: Applicant_submitTransactionForNonExisting
+  /resources/applicants/-/levels:
+    get: Applicant_getLevels
+  /resources/applicants/-;externalUserId={externalUserId}/one:
+    get: Applicant_getDataByExternalUserId
+  /resources/applicants/{applicantId}/agreement:
+    post: Applicant_addConsentToProfile
+  /resources/applicants/{applicantId}/blacklist?note={note}:
+    post: Applicant_addToBlocklist
+  /resources/applicants/{applicantId}/ekyc/confirm/{confirmationid}:
+    post: Applicant_confirmData
+  /resources/applicants/{applicantId}/ekyc/submit:
+    post: Applicant_submitDataNoDocVerification
+  /resources/applicants/{applicantId}/fixedInfo:
+    patch: Applicant_updateFixedInfo
+  /resources/applicants/{applicantId}/info:
+    patch: Applicant_changeExtractedInfo
+  /resources/applicants/{applicantId}/info/companyInfo:
+    patch: Applicant_changeCompanyData
+  /resources/applicants/{applicantId}/info/companyInfo/beneficiaries:
+    post: Applicant_addBeneficiary
+  /resources/applicants/{applicantId}/info/companyInfo/beneficiaries/{beneficiaryApplicantId}:
+    delete: Applicant_removeFromBeneficiaryList
+  /resources/applicants/{applicantId}/info/idDoc:
+    post: Applicant_addIdDocument
+  /resources/applicants/{applicantId}/kyt/txns/-/data:
+    post: Applicant_submitTransactionData
+  /resources/applicants/{applicantId}/moveToLevel:
+    post: Applicant_changeRequiredDocumentSet
+  /resources/applicants/{applicantId}/one:
+    get: Applicant_getData
+  /resources/applicants/{applicantId}/presence/{status}:
+    patch: Applicant_deactivateProfile
+  /resources/applicants/{applicantId}/requiredIdDocs:
+    post: Applicant_getRequiredIdDocs
+  /resources/applicants/{applicantId}/requiredIdDocsStatus:
+    get: Applicant_getVerificationStepsStatus
+  /resources/applicants/{applicantId}/reset:
+    post: Applicant_resetProfile
+  /resources/applicants/{applicantId}/resetStep/{idDocSetType}:
+    post: Applicant_resetVerificationStep
+  /resources/applicants/{applicantId}/status:
+    get: Applicant_getReviewStatus
+  /resources/applicants/{applicantId}/status/pending?reason={reason}:
+    post: Applicant_initiateApplicantCheck
+  /resources/applicants/{applicantId}/status/testCompleted:
+    post: Applicant_sandboxVerificationResponse
+  /resources/applicants/{applicantId}/tags:
+    delete: Applicant_removeCustomTags
+    post: Applicant_addCustomTags
+  /resources/applicants/{applicantId}/tags/add:
+    post: Applicant_addCustomTags
+  /resources/auditTrailEvents/:
+    get: AuditTrailEvent_getEvents
+  /resources/checks/crossCheck?comparisonMode={comparisonMode}:
+    post: Check_performNameCrossValidation
+  /resources/checks/latest:
+    get: Applicant_getDataLatest
+  /resources/checks/latest?type=COMPANY:
+    get: Check_additionalCompanyData
+  /resources/checks/latest?type=EMAIL_CONFIRMATION:
+    get: Check_emailConfirmationResults
+  /resources/checks/latest?type=IP_CHECK:
+    get: Check_ipCheckResults
+  /resources/checks/latest?type=PHONE_CONFIRMATION:
+    get: Check_phoneConfirmationResults
+  /resources/checks/latest?type=POA:
+    get: Check_additionalPoaData
+  /resources/checks/latest?type=TIN:
+    get: Check_tinSsnCheckResults
+  /resources/inspections/{inspectionId}/resources/{imageId}:
+    delete: Image_markAsInactive
+    get: Image_getDocumentImages
+  /resources/inspections/{inspectionId}?fields=videoIdentData:
+    get: Inspection_getVideoIdentData
+  /resources/kyt/misc/txns/import:
+    post: Transaction_bulkImport
+  /resources/kyt/txns/-;data.txnId={externalTxnId}/one:
+    get: Transaction_getOneData
+  /resources/kyt/txns/notes:
+    delete: Note_removeFromTransaction
+    patch: Note_updateTransactionNotes
+    post: Note_addToTransaction
+  /resources/kyt/txns/{id}/-/score:
+    post: Transaction_reScore
+  /resources/kyt/txns/{id}/notes:
+    get: Note_getTransactionNotes
+  /resources/kyt/txns/{id}/one:
+    get: Transaction_informationOne
+  /resources/kyt/txns/{id}/props:
+    patch: Transaction_updateProperties
+  /resources/kyt/txns/{id}/review/status/completed:
+    post: Transaction_approveReject
+  /resources/kyt/txns/{id}/tags:
+    delete: Transaction_removeTags
+    get: Transaction_listTags
+    post: Tag_addTransactionTags
+  /resources/kyt/txns/{txnId}/applicantId/{applicantId}:
+    post: Applicant_moveTransactionToAnotherApplicant
+  /resources/kyt/txns/{txnId}/data/applicant:
+    patch: Applicant_enrichTransactionWithTravelRuleData
+  /resources/kyt/txns/{txnId}/data/info:
+    patch: Transaction_updateBlockchainInfo
+  /resources/kyt/txns/{txnId}/ownership/confirmed:
+    post: Transaction_confirmOwnership
+  /resources/kyt/txns/{txnId}/ownership/unconfirmed:
+    post: Transaction_removeOwnership
+  /resources/moderationStates/-;applicantId={applicantId}:
+    get: Applicant_clarifyRejectionReason
+  /resources/sdkIntegrations/levels/{levelName}/websdkLink:
+    post: WebSdkLink_generateExternal
+  /resources/standalone/crypto/availableCurrencies:
+    get: Token_getAvailableCurrencies
+  /resources/standalone/crypto/cryptoSourceOfFunds:
+    post: Analysis_standaloneCryptoInitiation
+  /resources/status/api:
+    get: Health_statusApiGet
+  /resources/vasps/-:
+    get: Vasp_getAvailableVasps
+  /resources/videoIdent/applicant/{applicantId}/media/{compositionMediaId}:
+    get: Applicant_getVideoCallMedia
+operationTags:
+  /resources/accessTokens:
+    post: Token
+  /resources/applicantActions/-/forApplicant/{applicantId}/?levelName=paymentSource:
+    post: Applicant
+  /resources/applicantActions/-/forApplicant/{applicantId}/cryptoSourceOfFunds:
+    post: Applicant
+  /resources/applicantActions/-/forApplicant/{applicantId}/paymentMethod:
+    post: Applicant
+  /resources/applicantActions/-/forApplicant/{applicantId}?levelName={levelName}:
+    post: Applicant
+  /resources/applicantActions/-;applicantId={applicantId}:
+    get: Applicant
+  /resources/applicantActions/{actionId}/images:
+    post: Applicant
+  /resources/applicantActions/{actionId}/images/{imageId}?preview={isPreview}:
+    get: Applicant
+  /resources/applicantActions/{actionId}/one:
+    get: Applicant
+  /resources/applicantActions/{actionId}/paymentMethod:
+    post: Applicant
+  /resources/applicantActions/{actionId}/review/status/pending:
+    post: Applicant
+  /resources/applicantFraudNetworks/:
+    get: Applicant
+  /resources/applicantFraudNetworks/-/byApplicant/{applicantId}:
+    get: Applicant
+  /resources/applicantFraudNetworks/{networkId}/one:
+    get: Applicant
+  /resources/applicants:
+    post: Applicant
+  /resources/applicants/:
+    patch: Applicant
+  /resources/applicants/-/applicantImport:
+    post: Applicant
+  /resources/applicants/-/ingestCompleted?levelName={levelName}:
+    post: Applicant
+  /resources/applicants/-/kyt/txns/-/data:
+    post: Applicant
+  /resources/applicants/-/levels:
+    get: Applicant
+  /resources/applicants/-;externalUserId={externalUserId}/one:
+    get: Applicant
+  /resources/applicants/{applicantId}/agreement:
+    post: Applicant
+  /resources/applicants/{applicantId}/blacklist?note={note}:
+    post: Applicant
+  /resources/applicants/{applicantId}/ekyc/confirm/{confirmationid}:
+    post: Applicant
+  /resources/applicants/{applicantId}/ekyc/submit:
+    post: Applicant
+  /resources/applicants/{applicantId}/fixedInfo:
+    patch: Applicant
+  /resources/applicants/{applicantId}/info:
+    patch: Applicant
+  /resources/applicants/{applicantId}/info/companyInfo:
+    patch: Applicant
+  /resources/applicants/{applicantId}/info/companyInfo/beneficiaries:
+    post: Applicant
+  /resources/applicants/{applicantId}/info/companyInfo/beneficiaries/{beneficiaryApplicantId}:
+    delete: Applicant
+  /resources/applicants/{applicantId}/info/idDoc:
+    post: Applicant
+  /resources/applicants/{applicantId}/kyt/txns/-/data:
+    post: Applicant
+  /resources/applicants/{applicantId}/moveToLevel:
+    post: Applicant
+  /resources/applicants/{applicantId}/one:
+    get: Applicant
+  /resources/applicants/{applicantId}/presence/{status}:
+    patch: Applicant
+  /resources/applicants/{applicantId}/requiredIdDocs:
+    post: Applicant
+  /resources/applicants/{applicantId}/requiredIdDocsStatus:
+    get: Applicant
+  /resources/applicants/{applicantId}/reset:
+    post: Applicant
+  /resources/applicants/{applicantId}/resetStep/{idDocSetType}:
+    post: Applicant
+  /resources/applicants/{applicantId}/status:
+    get: Applicant
+  /resources/applicants/{applicantId}/status/pending?reason={reason}:
+    post: Applicant
+  /resources/applicants/{applicantId}/status/testCompleted:
+    post: Applicant
+  /resources/applicants/{applicantId}/tags:
+    delete: Applicant
+    post: Applicant
+  /resources/applicants/{applicantId}/tags/add:
+    post: Applicant
+  /resources/auditTrailEvents/:
+    get: AuditTrailEvent
+  /resources/checks/crossCheck?comparisonMode={comparisonMode}:
+    post: Check
+  /resources/checks/latest:
+    get: Applicant
+  /resources/checks/latest?type=COMPANY:
+    get: Check
+  /resources/checks/latest?type=EMAIL_CONFIRMATION:
+    get: Check
+  /resources/checks/latest?type=IP_CHECK:
+    get: Check
+  /resources/checks/latest?type=PHONE_CONFIRMATION:
+    get: Check
+  /resources/checks/latest?type=POA:
+    get: Check
+  /resources/checks/latest?type=TIN:
+    get: Check
+  /resources/inspections/{inspectionId}/resources/{imageId}:
+    delete: Image
+    get: Image
+  /resources/inspections/{inspectionId}?fields=videoIdentData:
+    get: Inspection
+  /resources/kyt/misc/txns/import:
+    post: Transaction
+  /resources/kyt/txns/-;data.txnId={externalTxnId}/one:
+    get: Transaction
+  /resources/kyt/txns/notes:
+    delete: Note
+    patch: Note
+    post: Note
+  /resources/kyt/txns/{id}/-/score:
+    post: Transaction
+  /resources/kyt/txns/{id}/notes:
+    get: Note
+  /resources/kyt/txns/{id}/one:
+    get: Transaction
+  /resources/kyt/txns/{id}/props:
+    patch: Transaction
+  /resources/kyt/txns/{id}/review/status/completed:
+    post: Transaction
+  /resources/kyt/txns/{id}/tags:
+    delete: Transaction
+    get: Transaction
+    post: Tag
+  /resources/kyt/txns/{txnId}/applicantId/{applicantId}:
+    post: Applicant
+  /resources/kyt/txns/{txnId}/data/applicant:
+    patch: Applicant
+  /resources/kyt/txns/{txnId}/data/info:
+    patch: Transaction
+  /resources/kyt/txns/{txnId}/ownership/confirmed:
+    post: Transaction
+  /resources/kyt/txns/{txnId}/ownership/unconfirmed:
+    post: Transaction
+  /resources/moderationStates/-;applicantId={applicantId}:
+    get: Applicant
+  /resources/sdkIntegrations/levels/{levelName}/websdkLink:
+    post: WebSDKLink
+  /resources/standalone/crypto/availableCurrencies:
+    get: Token
+  /resources/standalone/crypto/cryptoSourceOfFunds:
+    post: Analysis
+  /resources/status/api:
+    get: Health
+  /resources/vasps/-:
+    get: VASP
+  /resources/videoIdent/applicant/{applicantId}/media/{compositionMediaId}:
+    get: Applicant
+renameTags: {}
+requestSchemaNames:
+  /resources/applicantActions/-/forApplicant/{applicantId}/?levelName=paymentSource:
+    post:
+      application/json: ApplicantCreatePaymentSourceActionsRequest
+      multipart/form-data: ApplicantCreatePaymentSourceActionsRequest1
+  /resources/applicantActions/-/forApplicant/{applicantId}/cryptoSourceOfFunds:
+    post:
+      application/json: ApplicantCreateCryptoSourceOfFundsRequest
+      multipart/form-data: ApplicantCreateCryptoSourceOfFundsRequest1
+  /resources/applicantActions/-/forApplicant/{applicantId}?levelName={levelName}:
+    post:
+      application/json: ApplicantCreateActionRequest
+      multipart/form-data: ApplicantCreateActionRequest1
+  /resources/applicantActions/{actionId}/images:
+    post:
+      application/json: ApplicantAddImageToPaymentMethodRequest
+      multipart/form-data: ApplicantAddImageToPaymentMethodRequest1
+  /resources/applicantActions/{actionId}/paymentMethod:
+    post:
+      application/json: ApplicantAddPaymentMethodInformationRequest
+      multipart/form-data: ApplicantAddPaymentMethodInformationRequest1
+  /resources/applicants:
+    patch:
+      application/json: ApplicantUpdateTopLevelInfoRequest
+      multipart/form-data: ApplicantUpdateTopLevelInfoRequest1
+  /resources/applicants/-/applicantImport:
+    post:
+      application/json: ApplicantImportByArchiveRequest
+      multipart/form-data: ApplicantImportByArchiveRequest1
+  /resources/applicants/-/ingestCompleted?levelName={levelName}:
+    post:
+      application/json: ApplicantImportCompletedRequest
+      multipart/form-data: ApplicantImportCompletedRequest1
+  /resources/applicants/-/kyt/txns/-/data:
+    post:
+      application/json: ApplicantSubmitTransactionForNonExistingRequest
+      multipart/form-data: ApplicantSubmitTransactionForNonExistingRequest1
+  /resources/applicants/{applicantId}/agreement:
+    post:
+      application/json: ApplicantAddConsentToProfileRequest
+      multipart/form-data: ApplicantAddConsentToProfileRequest1
+  /resources/applicants/{applicantId}/ekyc/confirm/{confirmationid}:
+    post:
+      application/json: ApplicantConfirmDataRequest
+      multipart/form-data: ApplicantConfirmDataRequest1
+  /resources/applicants/{applicantId}/ekyc/submit:
+    post:
+      application/json: ApplicantSubmitDataNoDocVerificationRequest
+      multipart/form-data: ApplicantSubmitDataNoDocVerificationRequest1
+  /resources/applicants/{applicantId}/fixedInfo:
+    patch:
+      application/json: ApplicantUpdateFixedInfoRequest
+      multipart/form-data: ApplicantUpdateFixedInfoRequest1
+  /resources/applicants/{applicantId}/info:
+    patch:
+      application/json: ApplicantChangeExtractedInfoRequest
+      multipart/form-data: ApplicantChangeExtractedInfoRequest1
+  /resources/applicants/{applicantId}/info/companyInfo:
+    patch:
+      application/json: ApplicantChangeCompanyDataRequest
+      multipart/form-data: ApplicantChangeCompanyDataRequest1
+  /resources/applicants/{applicantId}/info/companyInfo/beneficiaries:
+    post:
+      application/json: ApplicantAddBeneficiaryRequest
+      multipart/form-data: ApplicantAddBeneficiaryRequest1
+  /resources/applicants/{applicantId}/info/idDoc:
+    post:
+      application/json: ApplicantAddIdDocumentRequest
+      multipart/form-data: ApplicantAddIdDocumentRequest1
+  /resources/applicants/{applicantId}/kyt/txns/-/data:
+    post:
+      application/json: ApplicantSubmitTransactionDataRequest
+      multipart/form-data: ApplicantSubmitTransactionDataRequest1
+  /resources/applicants/{applicantId}/status/testCompleted:
+    post:
+      application/json: ApplicantSandboxVerificationResponseRequest
+      multipart/form-data: ApplicantSandboxVerificationResponseRequest1
+  /resources/applicants/{applicantId}/tags:
+    delete:
+      application/json: ApplicantRemoveCustomTagsRequest
+      multipart/form-data: ApplicantRemoveCustomTagsRequest1
+    post:
+      application/json: ApplicantAddCustomTagsRequest2
+      multipart/form-data: ApplicantAddCustomTagsRequest3
+  /resources/applicants/{applicantId}/tags/add:
+    post:
+      application/json: ApplicantAddCustomTagsRequest
+      multipart/form-data: ApplicantAddCustomTagsRequest1
+  /resources/checks/crossCheck?comparisonMode={comparisonMode}:
+    post:
+      application/json: CheckPerformNameCrossValidationRequest
+      multipart/form-data: CheckPerformNameCrossValidationRequest1
+  /resources/kyt/misc/txns/import:
+    post:
+      application/json: TransactionBulkImportRequest
+      multipart/form-data: TransactionBulkImportRequest1
+  /resources/kyt/txns/notes:
+    delete:
+      application/json: NoteRemoveFromTransactionRequest
+      multipart/form-data: NoteRemoveFromTransactionRequest1
+    patch:
+      application/json: NoteUpdateTransactionNotesRequest
+      multipart/form-data: NoteUpdateTransactionNotesRequest1
+    post:
+      application/json: NoteAddToTransactionRequest
+      multipart/form-data: NoteAddToTransactionRequest1
+  /resources/kyt/txns/{id}/props:
+    patch:
+      application/json: TransactionUpdatePropertiesRequest
+      multipart/form-data: TransactionUpdatePropertiesRequest1
+  /resources/kyt/txns/{id}/review/status/completed:
+    post:
+      application/json: TransactionApproveRejectRequest
+      multipart/form-data: TransactionApproveRejectRequest1
+  /resources/kyt/txns/{id}/tags:
+    delete:
+      application/json: TransactionRemoveTagsRequest
+      multipart/form-data: TransactionRemoveTagsRequest1
+    post:
+      application/json: TagAddTransactionTagsRequest
+      multipart/form-data: TagAddTransactionTagsRequest1
+  /resources/kyt/txns/{txnId}/data/applicant:
+    patch:
+      application/json: ApplicantEnrichTransactionWithTravelRuleDataRequest
+      multipart/form-data: ApplicantEnrichTransactionWithTravelRuleDataRequest1
+  /resources/kyt/txns/{txnId}/data/info:
+    patch:
+      application/json: TransactionUpdateBlockchainInfoRequest
+      multipart/form-data: TransactionUpdateBlockchainInfoRequest1
+  /resources/standalone/crypto/cryptoSourceOfFunds:
+    post:
+      application/json: AnalysisStandaloneCryptoInitiationRequest
+      multipart/form-data: AnalysisStandaloneCryptoInitiationRequest1
+responseDescriptions: {}
+responseSchemaNames:
+  /resources/applicantActions/-/forApplicant/{applicantId}/?levelName=paymentSource:
+    post:
+      '200':
+        text/plain: ApplicantCreatePaymentSourceActionsResponse
+  /resources/applicants/{applicantId}/info/idDoc:
+    post:
+      '200':
+        application/json: ApplicantAddIdDocumentResponse
+  /resources/kyt/txns/{txnId}/applicantId/{applicantId}:
+    post:
+      '200':
+        application/json: ApplicantMoveTransactionToAnotherApplicantResponse
+  /resources/kyt/txns/{txnId}/data/applicant:
+    patch:
+      '200':
+        application/json: ApplicantEnrichTransactionWithTravelRuleDataResponse
+  /resources/kyt/txns/{txnId}/data/info:
+    patch:
+      '200':
+        application/json: TransactionUpdateBlockchainInfoResponse
+  /resources/vasps/-:
+    get:
+      '200':
+        application/json: VaspGetAvailableVaspsResponse
+      '400':
+        application/json: VaspGetAvailableVasps400Response
+  /resources/videoIdent/applicant/{applicantId}/media/{compositionMediaId}:
+    get:
+      '200':
+        application/json: ApplicantGetVideoCallMediaResponse
+securityParameters:
+  X-External-Action-Id:
+    header: false
+  X-Return-Doc-Warnings:
+    header: false
+  activity:
+    query: false
+  applicantId:
+    query: false
+  externalActionId:
+    query: false
+  externalUserId:
+    query: false
+  from:
+    query: false
+  ignoreErrors:
+    query: false
+  isPreview:
+    query: false
+  lang:
+    query: false
+  levelName:
+    query: false
+  limit:
+    query: false
+  name:
+    query: false
+  note:
+    query: false
+  offset:
+    query: false
+  reason:
+    query: false
+  requireSelfie:
+    query: false
+  revert:
+    query: false
+  scoreSavedTxns:
+    query: false
+  subjectName:
+    query: false
+  to:
+    query: false
+  ttlInSecs:
+    query: false
+  type:
+    query: false
+  unsetKeys:
+    query: false
+  userId:
+    query: false
+validServerUrls: {}
