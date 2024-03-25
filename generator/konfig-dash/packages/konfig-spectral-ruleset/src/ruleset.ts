@@ -309,6 +309,7 @@ export default {
         function: listUsageOfSecurity,
       },
       formats: [oas3],
+      severity: DiagnosticSeverity.Information,
     },
     'operation-operationId': {
       message:
