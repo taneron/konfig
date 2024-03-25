@@ -1,0 +1,1838 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignoreObjectsWithNoProperties: true
+ignorePotentialIncorrectType: true
+operationIds:
+  /:
+    get: Candidates_get
+    post: Candidates_submitNewCandidate
+  /api/address/save:
+    post: PeopleAndPermissions_saveUserAddress
+  /api/announcement/create:
+    post: Announcement_createNewAnnouncement
+  /api/announcement/edit:
+    put: Announcement_updateAnnouncement
+  /api/announcement/{annId}:
+    get: Announcement_getById
+  /api/attachment/list/{annId}:
+    get: Announcement_getAttachmentsById
+  /api/education/save:
+    post: PeopleAndPermissions_saveUserEducation
+  /api/employment/save:
+    post: PeopleAndPermissions_saveUserEmployment
+  /api/getdynaforms:
+    get: Forms_getDynaForm
+  /api/jobprofiles:
+    get: JobProfiles_getJobProfiles
+  /api/leave/hours/credit:
+    get: Leaves_getRemainingHoursCredit
+  /api/leaverequest:
+    post: Leaves_createNewLeave
+  /api/leaverequests:
+    get: Leaves_getLeaveRequestsWithinDateRange
+  /api/manage/leaves:
+    get: Leaves_getLeavesBasedOnRole
+  /api/my:
+    get: Forms_getAssignedForms
+  /api/orgrelation/allactive:
+    get: OrgRelation_getAllActive
+  /api/orgrelation/orgRelationsByUser:
+    get: OrgRelation_getOrgRelationsByUser
+  /api/orgrelation/save:
+    get: OrgRelation_saveUser
+  /api/orgunits:
+    get: OrgUnits_getOrgUnits
+  /api/orgunits/add:
+    post: OrgUnits_createNewOrgUnit
+  /api/process/leave:
+    get: Leaves_processLeaveById
+  /api/projects:
+    get: Project_listProjects
+    post: Project_createNew
+  /api/projects/allocation:
+    post: Project_assignUserAllocation
+  /api/projects/allocation/{projectId}:
+    get: Project_listAllocations
+  /api/projects/{projectId}:
+    get: Project_detailsById
+  /api/report:
+    get: Reports_getReportDetails
+  /api/report/content:
+    get: Reports_getContentByAnalyticId
+  /api/response/{dynamicFormId}:
+    get: Forms_getFormResponse
+  /api/responselist:
+    get: Forms_getFormResponses
+  /api/saveFormResponse:
+    post: Forms_saveFormResponse
+  /api/saveItemResponse:
+    post: Forms_submitItemResponse
+  /api/shifts:
+    get: Shifts_listShiftsUsingGET
+  /api/shifts/save:
+    post: Shifts_saveShift
+  /api/survey/allresponses:
+    get: Survey_getAllSurveyResponses
+  /api/survey/item/save:
+    post: Survey_createItemResponse
+  /api/survey/list:
+    get: Survey_getList
+  /api/survey/save:
+    post: Survey_createResponseByAssignmentId
+  /api/survey/view:
+    get: Survey_detailsByFormId
+  /api/test:
+    get: Test_getTest
+  /api/timecards:
+    get: Timesheets_getTimecardsByTimesheetId
+  /api/timecards/details/{timecardId}:
+    get: Timecards_getDetailsByTimecardId
+  /api/timesheet:
+    get: Timesheets_getByTimesheetId
+  /api/timesheet/activitytype/list:
+    get: Timesheets_listActivityTypesByCid
+  /api/timesheet/allocations/list:
+    get: Timesheets_getActiveAllocations
+  /api/timesheet/approvals/list:
+    get: Timesheets_getApprovalList
+  /api/timesheet/clockin:
+    post: Timesheets_clockIn
+  /api/timesheet/clockout:
+    post: Timesheets_clockOut
+  /api/timesheet/delete:
+    post: Timesheets_deleteByTimesheetId
+  /api/timesheet/preferences/list:
+    get: Timesheets_getPreferencesByCid
+  /api/timesheet/save:
+    post: Timesheets_createOrUpdateTimesheet
+  /api/timesheet/update:
+    post: Timesheets_updateStatusByTimesheetId
+  /api/timesheets:
+    get: Timesheets_getByUserId
+  /api/timesheets/details/{timeSheetId}:
+    get: Timesheets_getDetailsByTimesheetId
+  /api/token:
+    get: Authentication_getAccessToken
+  /api/training/content:
+    get: Trainings_getTrainingContentByTrainingId
+  /api/training/status/update:
+    post: Trainings_updateUserStatus
+  /api/training/talentlms/sync:
+    get: Trainings_synchronizeWithTalentLMS
+  /api/trainings:
+    get: Trainings_getByUserId
+  /api/user/:
+    get: PeopleAndPermissions_getUserDetails
+  /api/user/add:
+    post: PeopleAndPermissions_createUser
+  /api/user/address/delete:
+    post: PeopleAndPermissions_deleteUserAddress
+  /api/user/basic:
+    get: PeopleAndPermissions_getUserBasicInformation
+  /api/user/compensation/:
+    get: PeopleAndPermissions_getFinancialRecord
+  /api/user/compensation/add:
+    post: PeopleAndPermissions_createUserCompensation
+  /api/user/compensation/update:
+    post: PeopleAndPermissions_updateFinancialRecord
+  /api/user/completeUserDetails:
+    post: PeopleAndPermissions_createOrUpdateUserDetails
+  /api/user/employment/delete:
+    post: PeopleAndPermissions_deleteUserEmployment
+  /api/user/list:
+    get: PeopleAndPermissions_getUserList
+  /api/user/orgrelation/add:
+    post: PeopleAndPermissions_addReportsTo
+  /api/user/permissions:
+    get: PeopleAndPermissions_getUserPermissionsAndMenuConfigurations
+  /api/user/saveCustomFieldValues:
+    post: PeopleAndPermissions_saveCustomFieldValues
+  /api/user/timecard:
+    get: Timecards_getByUserId
+  /api/user/timecards:
+    get: Timecards_getByUserId
+  /api/user/update:
+    post: PeopleAndPermissions_updateUser
+  /api/user/update/status:
+    get: PeopleAndPermissions_getFinancialStatus
+  /api/user/uploadpicture:
+    post: PeopleAndPermissions_uploadUserProfilePicture
+  /api/userpto/balance/add:
+    post: Leaves_addPtoBalance
+  /api/users:
+    get: PeopleAndPermissions_getAllUsersDetails
+  /api/users/basic:
+    get: PeopleAndPermissions_getBasicUserDetails
+  /api/v3/task/add:
+    post: Workflows_createNewTask
+  /api/v3/task/update/status:
+    post: Workflows_updateStatusTask
+  /api/v3/task/{taskid}:
+    get: Workflows_getTaskDetailsByTaskId
+  /api/v3/tasks:
+    get: Workflows_getTasksByUserId
+  /api/v3/userworkflow/assign/{workflowId}:
+    post: UserWorkflow_assignWorkflowToUser
+  /api/v3/userworkflows:
+    get: Workflows_getUserWorkflows
+  /api/v3/userworkflows/{userworkflowid}:
+    get: Workflows_listTasksByUserworkflowId
+  /api/view:
+    get: Forms_getDetails
+  /api/workflows:
+    get: Workflows_getWorkflows
+  /appraisal/add:
+    post: PerformanceReview_createPerformanceReview
+  /appraisal/assignment:
+    get: PerformanceReviewAssignment_getAssignments
+  /appraisal/bulkLaunch:
+    post: PerformanceReview_launchPerformanceReviewsInBulk
+  /appraisal/getCompletedReviews:
+    get: PerformanceReview_getCompletedReviewsBasedOnUserId
+  /appraisal/template/list:
+    get: PerformanceReview_getTemplates
+  /appraisal/user:
+    get: PerformanceReview_getPerformanceReviews
+  /attachment/download:
+    get: DocumentLibrary_getDocumentAsByteArray
+  /currencylist:
+    get: ExpenseReports_getCurrencies
+  /customfield:
+    get: CustomFields_getById
+  /customfields:
+    get: CustomFields_getCustomFields
+  /customfieldvalues:
+    get: CustomFields_getValue
+    post: CustomFields_updateValue
+  /customlist:
+    get: CustomFields_getCustomLists
+  /delete:
+    post: Dependents_deleteByContactId
+  /deletegoal/:
+    delete: Goals_deleteGoal
+  /detail/{recruitid}:
+    get: Candidates_getCandidateDetailByRecruitid
+  /documentLibrary:
+    get: DocumentLibrary_getAttachments
+  /expenseitem:
+    post: ExpenseReports_createNewExpenseItem
+  /expensereport:
+    get: ExpenseReports_getReportDetails
+    post: ExpenseReports_createNew
+  /expensereport/delete:
+    post: ExpenseReports_deleteExpenseReport
+  /expensereport/submit/{expenseReportId}:
+    post: ExpenseReports_submitExpenseReport
+  /expensereports:
+    get: ExpenseReports_getByUserId
+  /expensetypes:
+    get: ExpenseReports_getExpenseTypes
+  /getgoal/:
+    get: Goals_getGoal
+  /goal/:
+    get: Goals_getAllGoals
+    post: Goals_createNewGoal
+  /goal/list:
+    get: Goals_getUserGoals
+  /invoice/:
+    get: Invoice_getByProjectId
+  /list:
+    get: Candidates_getBasicDetails
+  /objective/:
+    get: Objective_getByUserIdOrSpecificObjectiveById
+  /paystub:
+    get: PayStubs_getDetails
+  /position/list:
+    get: Positions_getPositionsList
+  /position/save:
+    post: Positions_createPosition
+  /position/view:
+    get: Positions_getPosition
+  /ptopolicies:
+    get: UserPtoPolicies_listPtoPolicies
+  /register:
+    post: Timecards_registerDeviceForClockInWithAssetModel
+  /report/content:
+    get: Reports_getContentForReport
+  /resource/:
+    get: PeopleAndPermissions_getUsers
+  /resume/:
+    post: Candidates_extractPdfResume
+  /rm/api/feedback/:
+    get: Feedback_listFeedback
+  /skill/add:
+    post: Skills_createNewSkill
+  /skills:
+    get: Skills_getSkills
+  /timecard/:
+    get: Timecards_getUserById
+  /timecard/addtimecard/:
+    post: Timecards_createTimecard
+  /timecard/clock/out:
+    get: Timecards_clockOut
+  /timecard/clockin/:
+    post: Timecards_createPastTimecard
+  /user/education/delete:
+    post: PeopleAndPermissions_deleteUserEducation
+  /userSkill:
+    get: Skills_getUserAssignedSkills
+  /v3/user/pto:
+    get: UserPtoPolicies_getPolicies
+  /verify/device:
+    get: Timecards_verifyDeviceWithDeviceUUID
+  /verify/tvc:
+    get: Timecards_getTVCForClockinWithQRCodeUsingCid
+  /verify/user:
+    get: Timecards_verifyUserWithUserid
+operationTags:
+  /api/survey/allresponses:
+    get: Survey
+  /api/token:
+    get: Authentication
+  /api/v3/userworkflow/assign/{workflowId}:
+    post: UserWorkflow
+renameTags: {}
+requestSchemaNames:
+  /api/address/save:
+    post:
+      application/json: PeopleAndPermissionsSaveUserAddressRequest
+  /api/education/save:
+    post:
+      application/json: PeopleAndPermissionsSaveUserEducationRequest
+  /api/employment/save:
+    post:
+      application/json: PeopleAndPermissionsSaveUserEmploymentRequest
+  /api/projects:
+    post:
+      application/json: ProjectCreateNewRequest
+  /api/projects/allocation:
+    post:
+      application/json: ProjectAssignUserAllocationRequest
+  /api/shifts/save:
+    post:
+      application/json: ShiftsSaveShiftRequest
+  /api/user/completeUserDetails:
+    post:
+      application/json: PeopleAndPermissionsCreateOrUpdateUserDetailsRequest
+  /api/user/orgrelation/add:
+    post:
+      application/json: PeopleAndPermissionsAddReportsToRequest
+  /api/user/uploadpicture:
+    post:
+      multipart/form-data: PeopleAndPermissionsUploadUserProfilePictureRequest
+  /api/userpto/balance/add:
+    post:
+      application/json: LeavesAddPtoBalanceRequest
+  /resume:
+    post:
+      application/json: CandidatesExtractPdfResumeRequest
+  /skill/add:
+    post:
+      application/json: SkillsCreateNewSkillRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /:
+    get:
+      '200':
+        application/json: CandidatesGetResponse
+      '401':
+        application/json: CandidatesGet401Response
+    post:
+      '201':
+        application/json: CandidatesSubmitNewCandidateResponse
+      '401':
+        application/json: CandidatesSubmitNewCandidate401Response
+      '409':
+        application/json: CandidatesSubmitNewCandidate409Response
+  /api/address/save:
+    post:
+      '201':
+        '*/*': PeopleAndPermissionsSaveUserAddressResponse
+      '401':
+        '*/*': PeopleAndPermissionsSaveUserAddress401Response
+  /api/announcement/create:
+    post:
+      '200':
+        application/json: AnnouncementCreateNewAnnouncementResponse
+      '401':
+        application/json: AnnouncementCreateNewAnnouncement401Response
+      '409':
+        application/json: AnnouncementCreateNewAnnouncement409Response
+  /api/announcement/edit:
+    put:
+      '200':
+        application/json: AnnouncementUpdateAnnouncementResponse
+      '401':
+        application/json: AnnouncementUpdateAnnouncement401Response
+      '409':
+        application/json: AnnouncementUpdateAnnouncement409Response
+  /api/announcement/{annId}:
+    get:
+      '200':
+        application/json: AnnouncementGetByIdResponse
+      '401':
+        application/json: AnnouncementGetById401Response
+      '409':
+        application/json: AnnouncementGetById409Response
+  /api/attachment/list/{annId}:
+    get:
+      '200':
+        application/json: AnnouncementGetAttachmentsByIdResponse
+      '401':
+        application/json: AnnouncementGetAttachmentsById401Response
+      '409':
+        application/json: AnnouncementGetAttachmentsById409Response
+  /api/education/save:
+    post:
+      '201':
+        '*/*': PeopleAndPermissionsSaveUserEducationResponse
+      '401':
+        '*/*': PeopleAndPermissionsSaveUserEducation401Response
+  /api/employment/save:
+    post:
+      '201':
+        '*/*': PeopleAndPermissionsSaveUserEmploymentResponse
+      '401':
+        '*/*': PeopleAndPermissionsSaveUserEmployment401Response
+  /api/getdynaforms:
+    get:
+      '200':
+        application/json: FormsGetDynaFormResponse
+      '401':
+        application/json: FormsGetDynaForm401Response
+  /api/jobprofiles:
+    get:
+      '200':
+        application/json: JobProfilesGetJobProfilesResponse
+      '401':
+        application/json: JobProfilesGetJobProfiles401Response
+  /api/leave/hours/credit:
+    get:
+      '200':
+        application/json: LeavesGetRemainingHoursCreditResponse
+      '400':
+        application/json: LeavesGetRemainingHoursCredit400Response
+      '401':
+        application/json: LeavesGetRemainingHoursCredit401Response
+      '409':
+        application/json: LeavesGetRemainingHoursCredit409Response
+  /api/leaverequest:
+    post:
+      '201':
+        application/json: LeavesCreateNewLeaveResponse
+      '400':
+        application/json: LeavesCreateNewLeave400Response
+      '401':
+        application/json: LeavesCreateNewLeave401Response
+      '409':
+        application/json: LeavesCreateNewLeave409Response
+  /api/leaverequests:
+    get:
+      '200':
+        application/json: LeavesGetLeaveRequestsWithinDateRangeResponse
+      '400':
+        application/json: LeavesGetLeaveRequestsWithinDateRange400Response
+      '401':
+        application/json: LeavesGetLeaveRequestsWithinDateRange401Response
+      '409':
+        application/json: LeavesGetLeaveRequestsWithinDateRange409Response
+  /api/manage/leaves:
+    get:
+      '200':
+        application/json: LeavesGetLeavesBasedOnRoleResponse
+      '400':
+        application/json: LeavesGetLeavesBasedOnRole400Response
+      '401':
+        application/json: LeavesGetLeavesBasedOnRole401Response
+      '409':
+        application/json: LeavesGetLeavesBasedOnRole409Response
+  /api/my:
+    get:
+      '200':
+        application/json: FormsGetAssignedFormsResponse
+      '401':
+        application/json: FormsGetAssignedForms401Response
+  /api/orgrelation/allactive:
+    get:
+      '200':
+        application/json: OrgRelationGetAllActiveResponse
+      '401':
+        application/json: OrgRelationGetAllActive401Response
+      '409':
+        application/json: OrgRelationGetAllActive409Response
+  /api/orgrelation/orgRelationsByUser:
+    get:
+      '200':
+        application/json: OrgRelationGetOrgRelationsByUserResponse
+      '401':
+        application/json: OrgRelationGetOrgRelationsByUser401Response
+      '409':
+        application/json: OrgRelationGetOrgRelationsByUser409Response
+  /api/orgrelation/save:
+    get:
+      '200':
+        application/json: OrgRelationSaveUserResponse
+      '401':
+        application/json: OrgRelationSaveUser401Response
+      '409':
+        application/json: OrgRelationSaveUser409Response
+  /api/orgunits:
+    get:
+      '200':
+        application/json: OrgUnitsGetOrgUnitsResponse
+      '401':
+        application/json: OrgUnitsGetOrgUnits401Response
+  /api/orgunits/add:
+    post:
+      '200':
+        application/json: OrgUnitsCreateNewOrgUnitResponse
+      '409':
+        application/json: OrgUnitsCreateNewOrgUnit409Response
+  /api/process/leave:
+    get:
+      '200':
+        application/json: LeavesProcessLeaveByIdResponse
+      '400':
+        application/json: LeavesProcessLeaveById400Response
+      '401':
+        application/json: LeavesProcessLeaveById401Response
+      '409':
+        application/json: LeavesProcessLeaveById409Response
+  /api/projects:
+    get:
+      '200':
+        application/json: ProjectListProjectsResponse
+      '400':
+        application/json: ProjectListProjects400Response
+      '401':
+        application/json: ProjectListProjects401Response
+      '409':
+        application/json: ProjectListProjects409Response
+    post:
+      '200':
+        application/json: ProjectCreateNewResponse
+      '400':
+        application/json: ProjectCreateNew400Response
+      '401':
+        application/json: ProjectCreateNew401Response
+      '409':
+        application/json: ProjectCreateNew409Response
+  /api/projects/allocation:
+    post:
+      '201':
+        application/json: ProjectAssignUserAllocationResponse
+      '400':
+        application/json: ProjectAssignUserAllocation400Response
+      '401':
+        application/json: ProjectAssignUserAllocation401Response
+      '409':
+        application/json: ProjectAssignUserAllocation409Response
+  /api/projects/allocation/{projectId}:
+    get:
+      '200':
+        application/json: ProjectListAllocationsResponse
+      '400':
+        application/json: ProjectListAllocations400Response
+      '401':
+        application/json: ProjectListAllocations401Response
+      '409':
+        application/json: ProjectListAllocations409Response
+  /api/projects/{projectId}:
+    get:
+      '200':
+        application/json: ProjectDetailsByIdResponse
+      '400':
+        application/json: ProjectDetailsById400Response
+      '401':
+        application/json: ProjectDetailsById401Response
+      '409':
+        application/json: ProjectDetailsById409Response
+  /api/response/{dynamicFormId}:
+    get:
+      '200':
+        application/json: FormsGetFormResponseResponse
+      '401':
+        application/json: FormsGetFormResponse401Response
+  /api/responselist:
+    get:
+      '200':
+        application/json: FormsGetFormResponsesResponse
+      '401':
+        application/json: FormsGetFormResponses401Response
+  /api/saveFormResponse:
+    post:
+      '200':
+        application/json: FormsSaveFormResponseResponse
+      '401':
+        application/json: FormsSaveFormResponse401Response
+  /api/saveItemResponse:
+    post:
+      '200':
+        application/json: FormsSubmitItemResponseResponse
+      '401':
+        application/json: FormsSubmitItemResponse401Response
+  /api/shifts:
+    get:
+      '401':
+        application/json: ShiftsListShiftsUsingGetResponse
+      '409':
+        application/json: ShiftsListShiftsUsingGet409Response
+  /api/survey/allresponses:
+    get:
+      '200':
+        application/json: SurveyGetAllSurveyResponsesResponse
+      '401':
+        text/plain: SurveyGetAllSurveyResponses401Response
+      '403':
+        text/plain: SurveyGetAllSurveyResponses403Response
+  /api/survey/item/save:
+    post:
+      '200':
+        '*/*': SurveyCreateItemResponseResponse
+  /api/survey/list:
+    get:
+      '200':
+        application/json: SurveyGetListResponse
+  /api/survey/save:
+    post:
+      '200':
+        application/json: SurveyCreateResponseByAssignmentIdResponse
+  /api/survey/view:
+    get:
+      '200':
+        application/json: SurveyDetailsByFormIdResponse
+  /api/test:
+    get:
+      '200':
+        application/json: TestGetTestResponse
+      '401':
+        application/json: TestGetTest401Response
+      '409':
+        application/json: TestGetTest409Response
+  /api/timecards:
+    get:
+      '200':
+        application/json: TimesheetsGetTimecardsByTimesheetIdResponse
+      '401':
+        application/json: TimesheetsGetTimecardsByTimesheetId401Response
+      '409':
+        application/json: TimesheetsGetTimecardsByTimesheetId409Response
+  /api/timecards/details/{timecardId}:
+    get:
+      '200':
+        application/json: TimecardsGetDetailsByTimecardIdResponse
+      '403':
+        application/json: TimecardsGetDetailsByTimecardId403Response
+      '404':
+        application/json: TimecardsGetDetailsByTimecardId404Response
+      '409':
+        application/json: TimecardsGetDetailsByTimecardId409Response
+  /api/timesheet:
+    get:
+      '200':
+        application/json: TimesheetsGetByTimesheetIdResponse
+      '401':
+        application/json: TimesheetsGetByTimesheetId401Response
+      '409':
+        application/json: TimesheetsGetByTimesheetId409Response
+  /api/timesheet/activitytype/list:
+    get:
+      '200':
+        application/json: TimesheetsListActivityTypesByCidResponse
+      '401':
+        application/json: TimesheetsListActivityTypesByCid401Response
+      '409':
+        application/json: TimesheetsListActivityTypesByCid409Response
+  /api/timesheet/allocations/list:
+    get:
+      '200':
+        application/json: TimesheetsGetActiveAllocationsResponse
+      '401':
+        application/json: TimesheetsGetActiveAllocations401Response
+      '409':
+        application/json: TimesheetsGetActiveAllocations409Response
+  /api/timesheet/approvals/list:
+    get:
+      '200':
+        application/json: TimesheetsGetApprovalListResponse
+      '401':
+        application/json: TimesheetsGetApprovalList401Response
+      '409':
+        application/json: TimesheetsGetApprovalList409Response
+  /api/timesheet/clockin:
+    post:
+      '201':
+        application/json: TimesheetsClockInResponse
+      '401':
+        application/json: TimesheetsClockIn401Response
+      '403':
+        application/json: TimesheetsClockIn403Response
+      '409':
+        application/json: TimesheetsClockIn409Response
+  /api/timesheet/clockout:
+    post:
+      '200':
+        application/json: TimesheetsClockOutResponse
+      '401':
+        application/json: TimesheetsClockOut401Response
+      '409':
+        application/json: TimesheetsClockOut409Response
+  /api/timesheet/delete:
+    post:
+      '200':
+        application/json: TimesheetsDeleteByTimesheetIdResponse
+      '401':
+        application/json: TimesheetsDeleteByTimesheetId401Response
+      '409':
+        application/json: TimesheetsDeleteByTimesheetId409Response
+  /api/timesheet/preferences/list:
+    get:
+      '200':
+        application/json: TimesheetsGetPreferencesByCidResponse
+      '401':
+        application/json: TimesheetsGetPreferencesByCid401Response
+      '409':
+        application/json: TimesheetsGetPreferencesByCid409Response
+  /api/timesheet/save:
+    post:
+      '201':
+        application/json: TimesheetsCreateOrUpdateTimesheetResponse
+      '401':
+        application/json: TimesheetsCreateOrUpdateTimesheet401Response
+      '403':
+        application/json: TimesheetsCreateOrUpdateTimesheet403Response
+      '409':
+        application/json: TimesheetsCreateOrUpdateTimesheet409Response
+  /api/timesheet/update:
+    post:
+      '200':
+        application/json: TimesheetsUpdateStatusByTimesheetIdResponse
+      '401':
+        application/json: TimesheetsUpdateStatusByTimesheetId401Response
+      '409':
+        application/json: TimesheetsUpdateStatusByTimesheetId409Response
+  /api/timesheets:
+    get:
+      '200':
+        application/json: TimesheetsGetByUserIdResponse
+      '401':
+        application/json: TimesheetsGetByUserId401Response
+      '409':
+        application/json: TimesheetsGetByUserId409Response
+  /api/timesheets/details/{timeSheetId}:
+    get:
+      '200':
+        application/json: TimesheetsGetDetailsByTimesheetIdResponse
+      '401':
+        application/json: TimesheetsGetDetailsByTimesheetId401Response
+      '403':
+        application/json: TimesheetsGetDetailsByTimesheetId403Response
+      '404':
+        application/json: TimesheetsGetDetailsByTimesheetId404Response
+      '409':
+        application/json: TimesheetsGetDetailsByTimesheetId409Response
+  /api/token:
+    get:
+      '200':
+        application/json: AuthenticationGetAccessTokenResponse
+      '403':
+        application/json: AuthenticationGetAccessToken403Response
+      '409':
+        application/json: AuthenticationGetAccessToken409Response
+  /api/training/status/update:
+    post:
+      '200':
+        application/json: TrainingsUpdateUserStatusResponse
+      '401':
+        application/json: TrainingsUpdateUserStatus401Response
+      '409':
+        application/json: TrainingsUpdateUserStatus409Response
+  /api/training/talentlms/sync:
+    get:
+      '200':
+        application/json: TrainingsSynchronizeWithTalentLmsResponse
+      '401':
+        application/json: TrainingsSynchronizeWithTalentLms401Response
+      '409':
+        application/json: TrainingsSynchronizeWithTalentLms409Response
+  /api/user:
+    get:
+      '200':
+        application/json: PeopleAndPermissionsGetUserDetailsResponse
+      '401':
+        application/json: PeopleAndPermissionsGetUserDetails401Response
+  /api/user/add:
+    post:
+      '200':
+        application/json: PeopleAndPermissionsCreateUserResponse
+      '401':
+        application/json: PeopleAndPermissionsCreateUser401Response
+  /api/user/address/delete:
+    post:
+      '201':
+        '*/*': PeopleAndPermissionsDeleteUserAddressResponse
+      '401':
+        '*/*': PeopleAndPermissionsDeleteUserAddress401Response
+      '404':
+        '*/*': PeopleAndPermissionsDeleteUserAddress404Response
+  /api/user/basic:
+    get:
+      '200':
+        application/json: PeopleAndPermissionsGetUserBasicInformationResponse
+      '401':
+        application/json: PeopleAndPermissionsGetUserBasicInformation401Response
+  /api/user/compensation:
+    get:
+      '200':
+        application/json: PeopleAndPermissionsGetFinancialRecordResponse
+      '401':
+        application/json: PeopleAndPermissionsGetFinancialRecord401Response
+  /api/user/compensation/add:
+    post:
+      '201':
+        application/json: PeopleAndPermissionsCreateUserCompensationResponse
+      '401':
+        application/json: PeopleAndPermissionsCreateUserCompensation401Response
+  /api/user/compensation/update:
+    post:
+      '201':
+        application/json: PeopleAndPermissionsUpdateFinancialRecordResponse
+      '401':
+        application/json: PeopleAndPermissionsUpdateFinancialRecord401Response
+  /api/user/completeUserDetails:
+    post:
+      '200':
+        application/json: PeopleAndPermissionsCreateOrUpdateUserDetailsResponse
+      '201':
+        application/json: PeopleAndPermissionsCreateOrUpdateUserDetails201Response
+      '400':
+        application/json: PeopleAndPermissionsCreateOrUpdateUserDetails400Response
+      '401':
+        application/json: PeopleAndPermissionsCreateOrUpdateUserDetails401Response
+      '409':
+        application/json: PeopleAndPermissionsCreateOrUpdateUserDetails409Response
+  /api/user/employment/delete:
+    post:
+      '201':
+        '*/*': PeopleAndPermissionsDeleteUserEmploymentResponse
+      '401':
+        '*/*': PeopleAndPermissionsDeleteUserEmployment401Response
+      '404':
+        '*/*': PeopleAndPermissionsDeleteUserEmployment404Response
+  /api/user/list:
+    get:
+      '200':
+        application/json: PeopleAndPermissionsGetUserListResponse
+      '401':
+        application/json: PeopleAndPermissionsGetUserList401Response
+  /api/user/orgrelation/add:
+    post:
+      '201':
+        '*/*': PeopleAndPermissionsAddReportsToResponse
+      '401':
+        '*/*': PeopleAndPermissionsAddReportsTo401Response
+  /api/user/permissions:
+    get:
+      '200':
+        application/json: PeopleAndPermissionsGetUserPermissionsAndMenuConfigurationsResponse
+      '401':
+        application/json: PeopleAndPermissionsGetUserPermissionsAndMenuConfigurations401Response
+  /api/user/saveCustomFieldValues:
+    post:
+      '200':
+        '*/*': PeopleAndPermissionsSaveCustomFieldValuesResponse
+      '400':
+        '*/*': PeopleAndPermissionsSaveCustomFieldValues400Response
+  /api/user/timecard:
+    get:
+      '200':
+        application/json: TimecardsGetByUserIdResponse
+      '401':
+        application/json: TimecardsGetByUserId401Response
+      '409':
+        application/json: TimecardsGetByUserId409Response
+  /api/user/timecards:
+    get:
+      '200':
+        application/json: TimecardsGetByUserId200Response
+      '400':
+        application/json: TimecardsGetByUserId400Response
+      '401':
+        application/json: TimecardsGetByUserId401Response
+      '409':
+        application/json: TimecardsGetByUserId409Response
+  /api/user/update:
+    post:
+      '200':
+        application/json: PeopleAndPermissionsUpdateUserResponse
+      '401':
+        application/json: PeopleAndPermissionsUpdateUser401Response
+  /api/user/update/status:
+    get:
+      '200':
+        application/json: PeopleAndPermissionsGetFinancialStatusResponse
+      '401':
+        application/json: PeopleAndPermissionsGetFinancialStatus401Response
+  /api/user/uploadpicture:
+    post:
+      '201':
+        '*/*': PeopleAndPermissionsUploadUserProfilePictureResponse
+      '403':
+        '*/*': PeopleAndPermissionsUploadUserProfilePicture403Response
+  /api/userpto/balance/add:
+    post:
+      '201':
+        application/json: LeavesAddPtoBalanceResponse
+      '400':
+        application/json: LeavesAddPtoBalance400Response
+      '401':
+        application/json: LeavesAddPtoBalance401Response
+      '409':
+        application/json: LeavesAddPtoBalance409Response
+  /api/users:
+    get:
+      '200':
+        '*/*': PeopleAndPermissionsGetAllUsersDetailsResponse
+      '204':
+        '*/*': PeopleAndPermissionsGetAllUsersDetails204Response
+  /api/users/basic:
+    get:
+      '200':
+        '*/*': PeopleAndPermissionsGetBasicUserDetailsResponse
+      '204':
+        '*/*': PeopleAndPermissionsGetBasicUserDetails204Response
+  /api/v3/task/add:
+    post:
+      '401':
+        application/json: WorkflowsCreateNewTaskResponse
+      '409':
+        application/json: WorkflowsCreateNewTask409Response
+  /api/v3/userworkflow/assign/{workflowId}:
+    post:
+      '201':
+        application/json: UserWorkflowAssignWorkflowToUserResponse
+      '401':
+        application/json: UserWorkflowAssignWorkflowToUser401Response
+      '403':
+        application/json: UserWorkflowAssignWorkflowToUser403Response
+      '404':
+        application/json: UserWorkflowAssignWorkflowToUser404Response
+      '409':
+        application/json: UserWorkflowAssignWorkflowToUser409Response
+  /api/view:
+    get:
+      '200':
+        application/json: FormsGetDetailsResponse
+      '401':
+        application/json: FormsGetDetails401Response
+  /appraisal/add:
+    post:
+      '201':
+        application/json: PerformanceReviewCreatePerformanceReviewResponse
+      '400':
+        application/json: PerformanceReviewCreatePerformanceReview400Response
+      '409':
+        application/json: PerformanceReviewCreatePerformanceReview409Response
+  /appraisal/assignment:
+    get:
+      '200':
+        application/json: PerformanceReviewAssignmentGetAssignmentsResponse
+      '404':
+        application/json: PerformanceReviewAssignmentGetAssignments404Response
+      '409':
+        application/json: PerformanceReviewAssignmentGetAssignments409Response
+  /appraisal/bulkLaunch:
+    post:
+      '200':
+        application/json: PerformanceReviewLaunchPerformanceReviewsInBulkResponse
+      '400':
+        application/json: PerformanceReviewLaunchPerformanceReviewsInBulk400Response
+  /appraisal/getCompletedReviews:
+    get:
+      '200':
+        application/json: PerformanceReviewGetCompletedReviewsBasedOnUserIdResponse
+      '409':
+        application/json: PerformanceReviewGetCompletedReviewsBasedOnUserId409Response
+  /appraisal/template/list:
+    get:
+      '200':
+        application/json: PerformanceReviewGetTemplatesResponse
+      '404':
+        application/json: PerformanceReviewGetTemplates404Response
+      '409':
+        application/json: PerformanceReviewGetTemplates409Response
+  /appraisal/user:
+    get:
+      '200':
+        application/json: PerformanceReviewGetPerformanceReviewsResponse
+      '404':
+        application/json: PerformanceReviewGetPerformanceReviews404Response
+      '409':
+        application/json: PerformanceReviewGetPerformanceReviews409Response
+  /attachment/download:
+    get:
+      '200':
+        application/json: DocumentLibraryGetDocumentAsByteArrayResponse
+      '409':
+        application/json: DocumentLibraryGetDocumentAsByteArray409Response
+  /currencylist:
+    get:
+      '200':
+        application/json: ExpenseReportsGetCurrenciesResponse
+      '400':
+        application/json: ExpenseReportsGetCurrencies400Response
+  /customfield:
+    get:
+      '200':
+        application/json: CustomFieldsGetByIdResponse
+      '401':
+        application/json: CustomFieldsGetById401Response
+      '409':
+        text/plain: CustomFieldsGetById409Response
+  /customfields:
+    get:
+      '200':
+        application/json: CustomFieldsGetCustomFieldsResponse
+      '401':
+        application/json: CustomFieldsGetCustomFields401Response
+      '409':
+        text/plain: CustomFieldsGetCustomFields409Response
+  /customfieldvalues:
+    get:
+      '200':
+        application/json: CustomFieldsGetValueResponse
+      '401':
+        application/json: CustomFieldsGetValue401Response
+      '409':
+        text/plain: CustomFieldsGetValue409Response
+    post:
+      '200':
+        application/json: CustomFieldsUpdateValueResponse
+      '401':
+        application/json: CustomFieldsUpdateValue401Response
+      '409':
+        text/plain: CustomFieldsUpdateValue409Response
+  /customlist:
+    get:
+      '200':
+        application/json: CustomFieldsGetCustomListsResponse
+      '401':
+        application/json: CustomFieldsGetCustomLists401Response
+      '409':
+        text/plain: CustomFieldsGetCustomLists409Response
+  /delete:
+    post:
+      '201':
+        application/json: DependentsDeleteByContactIdResponse
+      '404':
+        application/json: DependentsDeleteByContactId404Response
+      '409':
+        application/json: DependentsDeleteByContactId409Response
+  /deletegoal:
+    delete:
+      '200':
+        application/json: GoalsDeleteGoalResponse
+      '401':
+        application/json: GoalsDeleteGoal401Response
+      '403':
+        application/json: GoalsDeleteGoal403Response
+      '404':
+        text/plain: GoalsDeleteGoal404Response
+  /detail/{recruitid}:
+    get:
+      '200':
+        application/json: CandidatesGetCandidateDetailByRecruitidResponse
+      '404':
+        application/json: CandidatesGetCandidateDetailByRecruitid404Response
+      '409':
+        application/json: CandidatesGetCandidateDetailByRecruitid409Response
+  /documentLibrary:
+    get:
+      '200':
+        application/json: DocumentLibraryGetAttachmentsResponse
+      '409':
+        application/json: DocumentLibraryGetAttachments409Response
+  /expenseitem:
+    post:
+      '200':
+        application/json: ExpenseReportsCreateNewExpenseItemResponse
+      '400':
+        application/json: ExpenseReportsCreateNewExpenseItem400Response
+  /expensereport:
+    get:
+      '200':
+        application/json: ExpenseReportsGetReportDetailsResponse
+      '400':
+        application/json: ExpenseReportsGetReportDetails400Response
+      '401':
+        application/json: ExpenseReportsGetReportDetails401Response
+      '409':
+        application/json: ExpenseReportsGetReportDetails409Response
+    post:
+      '200':
+        application/json: ExpenseReportsCreateNewResponse
+      '400':
+        application/json: ExpenseReportsCreateNew400Response
+      '401':
+        application/json: ExpenseReportsCreateNew401Response
+      '409':
+        application/json: ExpenseReportsCreateNew409Response
+  /expensereport/delete:
+    post:
+      '200':
+        application/json: ExpenseReportsDeleteExpenseReportResponse
+      '400':
+        application/json: ExpenseReportsDeleteExpenseReport400Response
+  /expensereport/submit/{expenseReportId}:
+    post:
+      '200':
+        application/json: ExpenseReportsSubmitExpenseReportResponse
+      '400':
+        application/json: ExpenseReportsSubmitExpenseReport400Response
+      '401':
+        application/json: ExpenseReportsSubmitExpenseReport401Response
+  /expensereports:
+    get:
+      '200':
+        application/json: ExpenseReportsGetByUserIdResponse
+      '400':
+        application/json: ExpenseReportsGetByUserId400Response
+  /expensetypes:
+    get:
+      '200':
+        application/json: ExpenseReportsGetExpenseTypesResponse
+      '400':
+        application/json: ExpenseReportsGetExpenseTypes400Response
+  /getgoal:
+    get:
+      '200':
+        application/json: GoalsGetGoalResponse
+      '401':
+        application/json: GoalsGetGoal401Response
+      '404':
+        application/json: GoalsGetGoal404Response
+  /goal/list:
+    get:
+      '200':
+        application/json: GoalsGetUserGoalsResponse
+  /invoice:
+    get:
+      '200':
+        application/json: InvoiceGetByProjectIdResponse
+      '401':
+        text/plain: InvoiceGetByProjectId401Response
+  /list:
+    get:
+      '200':
+        application/json: CandidatesGetBasicDetailsResponse
+      '404':
+        application/json: CandidatesGetBasicDetails404Response
+      '409':
+        application/json: CandidatesGetBasicDetails409Response
+  /objective:
+    get:
+      '200':
+        application/json: ObjectiveGetByUserIdOrSpecificObjectiveByIdResponse
+      '401':
+        application/json: ObjectiveGetByUserIdOrSpecificObjectiveById401Response
+  /paystub:
+    get:
+      '200':
+        application/json: PayStubsGetDetailsResponse
+      '409':
+        application/json: PayStubsGetDetails409Response
+  /position/list:
+    get:
+      '200':
+        application/json: PositionsGetPositionsListResponse
+      '401':
+        application/json: PositionsGetPositionsList401Response
+      '404':
+        text: PositionsGetPositionsList404Response
+      '409':
+        application/json: PositionsGetPositionsList409Response
+  /position/save:
+    post:
+      '200':
+        application/json: PositionsCreatePositionResponse
+      '401':
+        application/json: PositionsCreatePosition401Response
+      '404':
+        text: PositionsCreatePosition404Response
+      '409':
+        application/json: PositionsCreatePosition409Response
+  /position/view:
+    get:
+      '200':
+        application/json: PositionsGetPositionResponse
+      '401':
+        application/json: PositionsGetPosition401Response
+      '404':
+        application/json: PositionsGetPosition404Response
+      '409':
+        application/json: PositionsGetPosition409Response
+  /ptopolicies:
+    get:
+      '200':
+        application/json: UserPtoPoliciesListPtoPoliciesResponse
+      '409':
+        application/json: UserPtoPoliciesListPtoPolicies409Response
+  /report/content:
+    get:
+      '200':
+        application/json: ReportsGetContentForReportResponse
+      '401':
+        application/json: ReportsGetContentForReport401Response
+      '404':
+        text/plain: ReportsGetContentForReport404Response
+      '409':
+        text/plain: ReportsGetContentForReport409Response
+  /resource:
+    get:
+      '200':
+        '*/*': PeopleAndPermissionsGetUsersResponse
+      '409':
+        '*/*': PeopleAndPermissionsGetUsers409Response
+  /resume:
+    post:
+      '200':
+        application/json: CandidatesExtractPdfResumeResponse
+      '401':
+        application/json: CandidatesExtractPdfResume401Response
+  /rm/api/feedback:
+    get:
+      '200':
+        application/json: FeedbackListFeedbackResponse
+      '400':
+        application/json: FeedbackListFeedback400Response
+      '401':
+        application/json: FeedbackListFeedback401Response
+      '409':
+        application/json: FeedbackListFeedback409Response
+  /skill/add:
+    post:
+      '201':
+        application/json: SkillsCreateNewSkillResponse
+      '401':
+        application/json: SkillsCreateNewSkill401Response
+      '409':
+        application/json: SkillsCreateNewSkill409Response
+  /skills:
+    get:
+      '200':
+        application/json: SkillsGetSkillsResponse
+      '401':
+        application/json: SkillsGetSkills401Response
+      '409':
+        application/json: SkillsGetSkills409Response
+  /user/education/delete:
+    post:
+      '201':
+        application/json: PeopleAndPermissionsDeleteUserEducationResponse
+      '401':
+        application/json: PeopleAndPermissionsDeleteUserEducation401Response
+      '404':
+        application/json: PeopleAndPermissionsDeleteUserEducation404Response
+      '409':
+        application/json: PeopleAndPermissionsDeleteUserEducation409Response
+  /userSkill:
+    get:
+      '200':
+        application/json: SkillsGetUserAssignedSkillsResponse
+      '401':
+        application/json: SkillsGetUserAssignedSkills401Response
+      '409':
+        application/json: SkillsGetUserAssignedSkills409Response
+  /v3/user/pto:
+    get:
+      '200':
+        application/json: UserPtoPoliciesGetPoliciesResponse
+      '401':
+        application/json: UserPtoPoliciesGetPolicies401Response
+securityParameters:
+  AppraisalType:
+    query: false
+  Authorization:
+    header: false
+  EndDate:
+    query: false
+  StartDate:
+    query: false
+  SurveyId:
+    query: false
+  accessLevel:
+    query: false
+  accessories:
+    query: false
+  acknowledge:
+    query: false
+  activity:
+    query: false
+  additive:
+    query: false
+  addressId:
+    query: false
+  adpAssociateOID:
+    query: false
+  allocation:
+    query: false
+  amount:
+    query: false
+  analyticId:
+    query: false
+  annId:
+    query: false
+  appleUserIdentifier:
+    query: false
+  appraisalId:
+    query: false
+  approvalFlowId:
+    query: false
+  approvalRejectionReason:
+    query: false
+  assetID:
+    query: false
+  assetno:
+    query: false
+  assetstatus:
+    query: false
+  assettype:
+    query: false
+  assignUserId:
+    query: false
+  assignedUserID:
+    query: false
+  assignedUserId:
+    query: false
+  assigneeUserId:
+    query: false
+  assignmentId:
+    query: false
+  assignments:
+    query: false
+  authToken:
+    query: false
+  begindate:
+    query: false
+  billable:
+    query: false
+  calWeekPref:
+    query: false
+  calendarId:
+    query: false
+  candidateId:
+    query: false
+  cardId:
+    query: false
+  careerPathwayId:
+    query: false
+  caseNum:
+    query: false
+  caseURL:
+    query: false
+  categoryCode:
+    query: false
+  cellPhone:
+    query: false
+  chargeType:
+    query: false
+  ci:
+    query: false
+  cid:
+    query: false
+  clockInLatitude:
+    query: false
+  clockInLongitude:
+    query: false
+  clockOutLatitude:
+    query: false
+  clockOutLongitude:
+    query: false
+  clockedOutsideGeofence:
+    query: false
+  comment:
+    query: false
+  commentCrediteatets:
+    query: false
+  commentDescription:
+    query: false
+  comments:
+    query: false
+  companyGoal:
+    query: false
+  compensationType:
+    query: false
+  completionRatio:
+    query: false
+  contactId:
+    query: false
+  coordinatorUserId:
+    query: false
+  count:
+    query: false
+  countryId:
+    query: false
+  createUserID:
+    query: false
+  createUserId:
+    query: false
+  createts:
+    query: false
+  createts.date:
+    query: false
+  createts.day:
+    query: false
+  createts.hours:
+    query: false
+  createts.minutes:
+    query: false
+  createts.month:
+    query: false
+  createts.nanos:
+    query: false
+  createts.seconds:
+    query: false
+  createts.time:
+    query: false
+  createts.timezoneOffset:
+    query: false
+  createts.year:
+    query: false
+  createuserid:
+    query: false
+  crediteatets:
+    query: false
+  currencyCode:
+    query: false
+  currentValue:
+    query: false
+  customFieldCode:
+    query: false
+  customFieldId:
+    query: false
+  customHours:
+    query: false
+  date:
+    query: false
+  dateClose:
+    query: false
+  dateOpen:
+    query: false
+  departmentCode:
+    query: false
+  departmentId:
+    query: false
+  departmentLabel:
+    query: false
+  deptHead:
+    query: false
+  deptHeadName:
+    query: false
+  desciption:
+    query: false
+  description:
+    query: false
+  deviceUUID:
+    query: false
+  displayFullName:
+    query: false
+  disposition:
+    query: false
+  dueDate:
+    query: false
+  dynamicFormId:
+    query: false
+  educationId:
+    query: false
+  effectivedate:
+    query: false
+  elapsedTime:
+    query: false
+  elapsedTime.date:
+    query: false
+  elapsedTime.day:
+    query: false
+  elapsedTime.hours:
+    query: false
+  elapsedTime.minutes:
+    query: false
+  elapsedTime.month:
+    query: false
+  elapsedTime.seconds:
+    query: false
+  elapsedTime.time:
+    query: false
+  elapsedTime.timezoneOffset:
+    query: false
+  elapsedTime.year:
+    query: false
+  elapsedTimeRatio:
+    query: false
+  email:
+    query: false
+  empId:
+    query: false
+  empid:
+    query: false
+  employeeUserId:
+    query: false
+  endDate:
+    query: false
+  endDateAfter:
+    query: false
+  endDateBefore:
+    query: false
+  endDateTime.date:
+    query: false
+  endDateTime.day:
+    query: false
+  endDateTime.hours:
+    query: false
+  endDateTime.minutes:
+    query: false
+  endDateTime.month:
+    query: false
+  endDateTime.nanos:
+    query: false
+  endDateTime.seconds:
+    query: false
+  endDateTime.time:
+    query: false
+  endDateTime.timezoneOffset:
+    query: false
+  endDateTime.year:
+    query: false
+  endDateTimeStr:
+    query: false
+  enddate:
+    query: false
+  expenseItemId:
+    query: false
+  expenseReportId:
+    query: false
+  expenseType:
+    query: false
+  expenseTypeId:
+    query: false
+  familySuffix:
+    query: false
+  fileName:
+    query: false
+  firstName:
+    query: false
+  flatcustomfields:
+    query: false
+  funnelId:
+    query: false
+  gender:
+    query: false
+  goalId:
+    query: false
+  goalValue:
+    query: false
+  goalWeightage:
+    query: false
+  goalid:
+    query: false
+  guid:
+    query: false
+  hasGoalApprovalPermission:
+    query: false
+  id:
+    query: false
+  importGoals:
+    query: false
+  importJobProfileSkills:
+    query: false
+  importSkills:
+    query: false
+  initialvalue:
+    query: false
+  invoiceId:
+    query: false
+  isForward:
+    query: false
+  isNewCand:
+    query: false
+  itemId:
+    query: false
+  jobGrade:
+    query: false
+  lastEdit:
+    query: false
+  lastName:
+    query: false
+  lastUpdateUserId:
+    query: false
+  launchts.date:
+    query: false
+  launchts.day:
+    query: false
+  launchts.hours:
+    query: false
+  launchts.minutes:
+    query: false
+  launchts.month:
+    query: false
+  launchts.nanos:
+    query: false
+  launchts.seconds:
+    query: false
+  launchts.time:
+    query: false
+  launchts.timezoneOffset:
+    query: false
+  launchts.year:
+    query: false
+  leaveDate:
+    query: false
+  leaveId:
+    query: false
+  leaveUserId:
+    query: false
+  leaveUserid:
+    query: false
+  locationId:
+    query: false
+  locationName:
+    query: false
+  locationid:
+    query: false
+  managerEmail:
+    query: false
+  managerUserId:
+    query: false
+  middleName:
+    query: false
+  name:
+    query: false
+  noOfEmployees:
+    query: false
+  notes:
+    query: false
+  numberOfDays:
+    query: false
+  objectType:
+    query: false
+  objectiveId:
+    query: false
+  orgRelationId:
+    query: false
+  otherUserId:
+    query: false
+  page:
+    query: false
+  pageSize:
+    query: false
+  parentDepartmentId:
+    query: false
+  parentDepartmentName:
+    query: false
+  parentGoalId:
+    query: false
+  paymentDate:
+    query: false
+  period:
+    query: false
+  phasename:
+    query: false
+  phone:
+    query: false
+  position:
+    query: false
+  positionUID:
+    query: false
+  positionid:
+    query: false
+  proceedOutsideGeoFence:
+    query: false
+  profileId:
+    query: false
+  profileid:
+    query: false
+  progressRatio:
+    query: false
+  projectAreaId:
+    query: false
+  projectId:
+    query: false
+  projectManager:
+    query: false
+  projectModel.account:
+    query: false
+  projectid:
+    query: false
+  ptoComputed:
+    query: false
+  ptoPolicyId:
+    query: false
+  purchaseDate:
+    query: false
+  recruitId:
+    query: false
+  recruiterId:
+    query: false
+  redirectUrl:
+    header: false
+  reimbursible:
+    query: false
+  relationType:
+    query: false
+  remarks:
+    query: false
+  requirements:
+    query: false
+  responseValue:
+    query: false
+  responsibilities:
+    query: false
+  reviewType:
+    query: false
+  reviewUserId:
+    query: false
+  search:
+    query: false
+  secondLastName:
+    query: false
+  selfAssign:
+    query: false
+  serialno:
+    query: false
+  service:
+    query: false
+  shortName:
+    query: false
+  sortBy:
+    query: false
+  sortOrder:
+    query: false
+  source:
+    query: false
+  specs:
+    query: false
+  startDate:
+    query: false
+  startDateAfter:
+    query: false
+  startDateBefore:
+    query: false
+  startDateTime.date:
+    query: false
+  startDateTime.day:
+    query: false
+  startDateTime.hours:
+    query: false
+  startDateTime.minutes:
+    query: false
+  startDateTime.month:
+    query: false
+  startDateTime.nanos:
+    query: false
+  startDateTime.seconds:
+    query: false
+  startDateTime.time:
+    query: false
+  startDateTime.timezoneOffset:
+    query: false
+  startDateTime.year:
+    query: false
+  startDateTimeStr:
+    query: false
+  state:
+    query: false
+  status:
+    query: false
+  statusCode:
+    query: false
+  sumOfElapsedTime:
+    query: false
+  summary:
+    query: false
+  supplier:
+    query: false
+  systemTask:
+    query: false
+  targetDate:
+    query: false
+  targetUserId:
+    query: false
+  taskId:
+    query: false
+  taskUID:
+    query: false
+  templateId:
+    query: false
+  thumbnail:
+    query: false
+  timecardPeriodPref:
+    query: false
+  timesheetId:
+    query: false
+  timezone:
+    query: false
+  title:
+    query: false
+  tosVersion:
+    query: false
+  trainingId:
+    query: false
+  transitionName:
+    query: false
+  type:
+    query: false
+  typecode:
+    query: false
+  uname:
+    query: false
+  units:
+    query: false
+  url:
+    query: false
+  useStatusCode:
+    query: false
+  usedTime:
+    query: false
+  userCountry:
+    query: false
+  userDateFormat:
+    query: false
+  userDateOfBirth:
+    query: false
+  userDisplayName:
+    query: false
+  userDomain:
+    query: false
+  userEmail:
+    query: false
+  userEndDate:
+    query: false
+  userIdList:
+    query: false
+  userMail:
+    query: false
+  userName:
+    query: false
+  userNameFormat:
+    query: false
+  userPassword:
+    query: false
+  userStartDate:
+    query: false
+  userTrainingId:
+    query: false
+  userType:
+    query: false
+  uuid:
+    query: false
+  value:
+    query: false
+  view:
+    query: false
+  visibleToDirectReports:
+    query: false
+  workerType:
+    query: false
+  workingDays:
+    query: false
+validServerUrls: {}
