@@ -10,6 +10,8 @@ import deepmerge from "deepmerge";
 import yaml from "js-yaml";
 import puppeteer, { Browser as PuppeteerBrowser } from "puppeteer";
 import AdmZip from "adm-zip";
+// @ts-ignore
+import swaggerConverter from "swagger-converter";
 import $RefParser from "@apidevtools/json-schema-ref-parser";
 import {
   computeDifficultyScore,
@@ -299,6 +301,25 @@ const customRequests: Record<string, CustomRequest> = {
       return downloadOpenApiSpecFromReadme({ urls });
     },
   },
+  // "breathehr.com": {
+  //   lambda: async () => {
+  //     const baseUrl = "https://api.breathehr.com/v1/swagger_doc";
+  //     const json = await fetch(baseUrl).then((res) => res.json());
+  //     const jsons = [json];
+  //     for (const endpoint of json.apis) {
+  //       const path = endpoint.path;
+  //       const json = await fetch(`${baseUrl}${path}`).then((res) => res.json());
+  //       jsons.push(json);
+  //     }
+
+  //     // merge all JSONs
+  //     const mergedSpec: any = deepmerge.all(jsons);
+
+  //     const swagger2 = swaggerConverter.convert(mergedSpec.models, mergedSpec);
+
+  //     return JSON.stringify(swagger2);
+  //   },
+  // },
   "bamboohr.com": {
     lambda: async () => {
       const urls = await collectEndpointsFromReadme({

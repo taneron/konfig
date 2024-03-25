@@ -1,0 +1,2319 @@
+  {
+    "apiVersion": "v1",
+    "swaggerVersion": "1.2",
+    "resourcePath": "/employees",
+    "produces": [
+      "application/json"
+    ],
+    "apis": [
+      {
+        "path": "/v1/employees",
+        "operations": [
+          {
+            "notes": "",
+            "summary": "list employees",
+            "nickname": "GET--version-employees--json-",
+            "method": "GET",
+            "parameters": [
+              {
+                "paramType": "query",
+                "name": "page",
+                "description": "Page of results to fetch.",
+                "type": "integer",
+                "required": false,
+                "allowMultiple": false,
+                "format": "int32",
+                "defaultValue": 1
+              },
+              {
+                "paramType": "query",
+                "name": "per_page",
+                "description": "Number of results to return per page.",
+                "type": "integer",
+                "required": false,
+                "allowMultiple": false,
+                "format": "int32"
+              },
+              {
+                "paramType": "query",
+                "name": "filter",
+                "description": "Type of employees to return",
+                "type": "string",
+                "required": false,
+                "allowMultiple": false,
+                "enum": [
+                  "hr",
+                  "line_manager",
+                  "either",
+                  "neither"
+                ]
+              }
+            ],
+            "type": "Employee"
+          },
+          {
+            "notes": "",
+            "summary": "create new employee",
+            "nickname": "POST--version-employees--json-",
+            "method": "POST",
+            "parameters": [
+              {
+                "paramType": "form",
+                "name": "employee[first_name]",
+                "description": "First name",
+                "type": "string",
+                "required": true,
+                "allowMultiple": false
+              },
+              {
+                "paramType": "form",
+                "name": "employee[middle_name]",
+                "description": "Middle name",
+                "type": "string",
+                "required": false,
+                "allowMultiple": false
+              },
+              {
+                "paramType": "form",
+                "name": "employee[last_name]",
+                "description": "Last name",
+                "type": "string",
+                "required": true,
+                "allowMultiple": false
+              },
+              {
+                "paramType": "form",
+                "name": "employee[email]",
+                "description": "Work email",
+                "type": "string",
+                "required": true,
+                "allowMultiple": false
+              },
+              {
+                "paramType": "form",
+                "name": "employee[gender]",
+                "description": "Gender id",
+                "type": "string",
+                "required": false,
+                "allowMultiple": false
+              },
+              {
+                "paramType": "form",
+                "name": "employee[dob]",
+                "description": "Date of birth",
+                "type": "string",
+                "required": false,
+                "allowMultiple": false,
+                "format": "date"
+              },
+              {
+                "paramType": "form",
+                "name": "employee[marital_status]",
+                "description": "Marital status",
+                "type": "string",
+                "required": false,
+                "allowMultiple": false,
+                "enum": [
+                  "Single",
+                  "Co-Habiting",
+                  "Married",
+                  "Civil Partnership",
+                  "Separated",
+                  "Divorced",
+                  "Widowed"
+                ]
+              },
+              {
+                "paramType": "form",
+                "name": "employee[nationality]",
+                "description": "Nationality",
+                "type": "string",
+                "required": false,
+                "allowMultiple": false,
+                "enum": [
+                  "British",
+                  "Afghan",
+                  "Albanian",
+                  "Algerian",
+                  "Andorran",
+                  "Angolan",
+                  "Antiguans",
+                  "Argentinean",
+                  "Armenian",
+                  "Australian",
+                  "Austrian",
+                  "Azerbaijani",
+                  "Bahamian",
+                  "Bahraini",
+                  "Bangladeshi",
+                  "Barbadian",
+                  "Barbudans",
+                  "Belarusian",
+                  "Belgian",
+                  "Belizean",
+                  "Beninese",
+                  "Bermudian",
+                  "Bhutanese",
+                  "Bolivian",
+                  "Bosnian",
+                  "Botswana",
+                  "Brazilian",
+                  "Bruneian",
+                  "Bulgarian",
+                  "Burkinabe",
+                  "Burmese",
+                  "Burundian",
+                  "Cambodian",
+                  "Cameroonian",
+                  "Canadian",
+                  "Cape Verdean",
+                  "Caymanian",
+                  "Central African",
+                  "Chadian",
+                  "Chilean",
+                  "Chinese",
+                  "Colombian",
+                  "Comoran",
+                  "Congolese",
+                  "Costa Rican",
+                  "Croatian",
+                  "Cuban",
+                  "Cypriot",
+                  "Czech",
+                  "Danish",
+                  "Djibouti",
+                  "Dominican",
+                  "Dutch",
+                  "East Timorese",
+                  "Ecuadorean",
+                  "Egyptian",
+                  "Emirian",
+                  "English",
+                  "Equatorial Guinean",
+                  "Eritrean",
+                  "Estonian",
+                  "Ethiopian",
+                  "Fijian",
+                  "Filipino",
+                  "Finnish",
+                  "French",
+                  "Gabonese",
+                  "Gambian",
+                  "Georgian",
+                  "German",
+                  "Ghanaian",
+                  "Greek",
+                  "Grenadian",
+                  "Guatemalan",
+                  "Guinea-Bissauan",
+                  "Guinean",
+                  "Guyanese",
+                  "Haitian",
+                  "Herzegovinian",
+                  "Honduran",
+                  "Hongkonger",
+                  "Hungarian",
+                  "Icelander",
+                  "Indian",
+                  "Indonesian",
+                  "Iranian",
+                  "Iraqi",
+                  "Irish",
+                  "Israeli",
+                  "Italian",
+                  "Ivorian",
+                  "Jamaican",
+                  "Japanese",
+                  "Jordanian",
+                  "Kazakhstani",
+                  "Kenyan",
+                  "Kittian and Nevisian",
+                  "Kuwaiti",
+                  "Kyrgyz",
+                  "Laotian",
+                  "Latvian",
+                  "Lebanese",
+                  "Liberian",
+                  "Libyan",
+                  "Liechtensteiner",
+                  "Lithuanian",
+                  "Luxembourger",
+                  "Macedonian",
+                  "Malagasy",
+                  "Malawian",
+                  "Malaysian",
+                  "Maldivan",
+                  "Malian",
+                  "Maltese",
+                  "Marshallese",
+                  "Mauritanian",
+                  "Mauritian",
+                  "Mexican",
+                  "Micronesian",
+                  "Moldovan",
+                  "Monacan",
+                  "Mongolian",
+                  "Montenegrin",
+                  "Moroccan",
+                  "Mosotho",
+                  "Motswana",
+                  "Mozambican",
+                  "Namibian",
+                  "Nauruan",
+                  "Nepalese",
+                  "Netherlander",
+                  "New Zealander",
+                  "Ni-Vanuatu",
+                  "Nicaraguan",
+                  "Nigerian",
+                  "Nigerien",
+                  "North Korean",
+                  "Northern Irish",
+                  "Norwegian",
+                  "Omani",
+                  "Pakistani",
+                  "Palauan",
+                  "Palestinian",
+                  "Panamanian",
+                  "Papua New Guinean",
+                  "Paraguayan",
+                  "Peruvian",
+                  "Polish",
+                  "Portuguese",
+                  "Qatari",
+                  "Romanian",
+                  "Russian",
+                  "Rwandan",
+                  "Saint Lucian",
+                  "Salvadoran",
+                  "Samoan",
+                  "San Marinese",
+                  "Sao Tomean",
+                  "Saudi",
+                  "Scottish",
+                  "Senegalese",
+                  "Serbian",
+                  "Seychellois",
+                  "Sierra Leonean",
+                  "Singaporean",
+                  "Slovakian",
+                  "Slovenian",
+                  "Solomon Islander",
+                  "Somali",
+                  "South African",
+                  "South Korean",
+                  "Spanish",
+                  "Sri Lankan",
+                  "Sudanese",
+                  "Surinamer",
+                  "Swazi",
+                  "Swedish",
+                  "Swiss",
+                  "Syrian",
+                  "Taiwanese",
+                  "Tajik",
+                  "Tanzanian",
+                  "Thai",
+                  "Togolese",
+                  "Tongan",
+                  "Trinidadian or Tobagonian",
+                  "Tunisian",
+                  "Turkish",
+                  "Tuvaluan",
+                  "Ugandan",
+                  "Ukrainian",
+                  "Uruguayan",
+                  "USA",
+                  "Uzbekistani",
+                  "Venezuelan",
+                  "Vietnamese",
+                  "Vincentian",
+                  "Welsh",
+                  "Yemeni",
+                  "Zambian",
+                  "Zimbabwean"
+                ]
+              },
+              {
+                "paramType": "form",
+                "name": "employee[national_insurance_no]",
+                "description": "National Insurance Number",
+                "type": "string",
+                "required": false,
+                "allowMultiple": false
+              },
+              {
+                "paramType": "form",
+                "name": "employee[ethnicity]",
+                "description": "Ethnicity",
+                "type": "string",
+                "required": false,
+                "allowMultiple": false
+              },
+              {
+                "paramType": "form",
+                "name": "employee[ethnicity_id]",
+                "description": "Ethnicity id",
+                "type": "string",
+                "required": false,
+                "allowMultiple": false
+              },
+              {
+                "paramType": "form",
+                "name": "employee[ddi]",
+                "description": "Direct dial-in number",
+                "type": "string",
+                "required": false,
+                "allowMultiple": false
+              },
+              {
+                "paramType": "form",
+                "name": "employee[work_ext]",
+                "description": "Work extension number",
+                "type": "string",
+                "required": false,
+                "allowMultiple": false
+              },
+              {
+                "paramType": "form",
+                "name": "employee[work_mobile]",
+                "description": "Work mobile number",
+                "type": "string",
+                "required": false,
+                "allowMultiple": false
+              },
+              {
+                "paramType": "form",
+                "name": "employee[personal_mobile]",
+                "description": "Personal mobile number",
+                "type": "string",
+                "required": false,
+                "allowMultiple": false
+              },
+              {
+                "paramType": "form",
+                "name": "employee[home_telephone]",
+                "description": "Home telephone number",
+                "type": "string",
+                "required": false,
+                "allowMultiple": false
+              },
+              {
+                "paramType": "form",
+                "name": "employee[status]",
+                "description": "Employee status",
+                "type": "string",
+                "required": false,
+                "allowMultiple": false,
+                "enum": [
+                  "Current employee",
+                  "Pending leaver",
+                  "Ex-employee"
+                ]
+              },
+              {
+                "paramType": "form",
+                "name": "employee[job_title]",
+                "description": "Job title",
+                "type": "string",
+                "required": false,
+                "allowMultiple": false
+              },
+              {
+                "paramType": "form",
+                "name": "employee[full_or_part_time]",
+                "description": "Fulltime or parttime employee",
+                "type": "string",
+                "required": false,
+                "allowMultiple": false,
+                "enum": [
+                  "Full-Time",
+                  "Part-Time"
+                ]
+              },
+              {
+                "paramType": "form",
+                "name": "employee[job_start_date]",
+                "description": "Job start date",
+                "type": "string",
+                "required": false,
+                "allowMultiple": false,
+                "format": "date"
+              },
+              {
+                "paramType": "form",
+                "name": "employee[company_join_date]",
+                "description": "Company join date",
+                "type": "string",
+                "required": true,
+                "allowMultiple": false,
+                "format": "date"
+              },
+              {
+                "paramType": "form",
+                "name": "employee[employee_ref]",
+                "description": "Employee reference number",
+                "type": "string",
+                "required": false,
+                "allowMultiple": false
+              },
+              {
+                "paramType": "form",
+                "name": "employee[person_type]",
+                "description": "Person type",
+                "type": "string",
+                "required": false,
+                "allowMultiple": false,
+                "enum": [
+                  "Employee",
+                  "Contractor",
+                  "Volunteer"
+                ]
+              },
+              {
+                "paramType": "form",
+                "name": "employee[department]",
+                "description": "Department id",
+                "type": "integer",
+                "required": false,
+                "allowMultiple": false,
+                "format": "int32"
+              },
+              {
+                "paramType": "form",
+                "name": "employee[division]",
+                "description": "Division id",
+                "type": "integer",
+                "required": false,
+                "allowMultiple": false,
+                "format": "int32"
+              },
+              {
+                "paramType": "form",
+                "name": "employee[location]",
+                "description": "Location id",
+                "type": "integer",
+                "required": false,
+                "allowMultiple": false,
+                "format": "int32"
+              },
+              {
+                "paramType": "form",
+                "name": "employee[working_pattern]",
+                "description": "Working pattern id",
+                "type": "integer",
+                "required": false,
+                "allowMultiple": false,
+                "format": "int32"
+              },
+              {
+                "paramType": "form",
+                "name": "employee[working_pattern_id]",
+                "description": "Working pattern id",
+                "type": "integer",
+                "required": false,
+                "allowMultiple": false,
+                "format": "int32"
+              },
+              {
+                "paramType": "form",
+                "name": "employee[holiday_allowance]",
+                "description": "Holiday Allowance id",
+                "type": "integer",
+                "required": false,
+                "allowMultiple": false,
+                "format": "int32"
+              },
+              {
+                "paramType": "form",
+                "name": "employee[holiday_allowance_id]",
+                "description": "Holiday Allowance id",
+                "type": "integer",
+                "required": false,
+                "allowMultiple": false,
+                "format": "int32"
+              },
+              {
+                "paramType": "body",
+                "name": "employee[receives_statutory_holidays]",
+                "description": "Employee receives statutory holidays for their country",
+                "type": "Grape::API::Boolean",
+                "required": false,
+                "allowMultiple": false
+              },
+              {
+                "paramType": "form",
+                "name": "employee[statutory_holiday_country]",
+                "description": "Statutory holiday country name",
+                "type": "string",
+                "required": false,
+                "allowMultiple": false
+              },
+              {
+                "paramType": "form",
+                "name": "employee[statutory_holiday_country_id]",
+                "description": "Statutory holiday country id",
+                "type": "integer",
+                "required": false,
+                "allowMultiple": false,
+                "format": "int32"
+              },
+              {
+                "paramType": "body",
+                "name": "employee[ignore_working_pattern]",
+                "description": "Ignore the working pattern and allow manual entry of time lost when requesting leave.",
+                "type": "Grape::API::Boolean",
+                "required": false,
+                "allowMultiple": false
+              },
+              {
+                "paramType": "body",
+                "name": "employee[hr]",
+                "description": "Employee is an HR manager",
+                "type": "Grape::API::Boolean",
+                "required": false,
+                "allowMultiple": false
+              },
+              {
+                "paramType": "form",
+                "name": "employee[salary][amount]",
+                "description": "Salary amount",
+                "type": "integer",
+                "required": false,
+                "allowMultiple": false,
+                "format": "int32"
+              },
+              {
+                "paramType": "form",
+                "name": "employee[salary][basis]",
+                "description": "Salary basis",
+                "type": "string",
+                "required": false,
+                "allowMultiple": false
+              },
+              {
+                "paramType": "form",
+                "name": "employee[salary][start_date]",
+                "description": "Salary start date",
+                "type": "string",
+                "required": false,
+                "allowMultiple": false,
+                "format": "date"
+              },
+              {
+                "paramType": "form",
+                "name": "employee[salary][payment_schedule]",
+                "description": "Salary payment schedule",
+                "type": "string",
+                "required": false,
+                "allowMultiple": false,
+                "enum": [
+                  "weekly",
+                  "monthly",
+                  "4-weekly",
+                  "bi-weekly",
+                  "bi-monthly"
+                ]
+              }
+            ],
+            "type": "Employee"
+          }
+        ]
+      },
+      {
+        "path": "/v1/employees/{id}",
+        "operations": [
+          {
+            "notes": "",
+            "summary": "get employee",
+            "nickname": "GET--version-employees--id--json-",
+            "method": "GET",
+            "parameters": [
+              {
+                "paramType": "path",
+                "name": "id",
+                "description": "",
+                "type": "string",
+                "required": false,
+                "allowMultiple": false
+              }
+            ],
+            "type": "Employee"
+          }
+        ]
+      },
+      {
+        "path": "/v1/employees/{id}/absences",
+        "operations": [
+          {
+            "notes": "",
+            "summary": "list absences for employee",
+            "nickname": "GET--version-employees--id-absences--json-",
+            "method": "GET",
+            "parameters": [
+              {
+                "paramType": "path",
+                "name": "id",
+                "description": "ID of employee to return absences for",
+                "type": "integer",
+                "required": true,
+                "allowMultiple": false,
+                "format": "int32"
+              },
+              {
+                "paramType": "query",
+                "name": "exclude_cancelled_absences",
+                "description": "Don't return cancelled leave requests",
+                "type": "Grape::API::Boolean",
+                "required": false,
+                "allowMultiple": false
+              },
+              {
+                "paramType": "query",
+                "name": "page",
+                "description": "Page of results to fetch.",
+                "type": "integer",
+                "required": false,
+                "allowMultiple": false,
+                "format": "int32",
+                "defaultValue": 1
+              },
+              {
+                "paramType": "query",
+                "name": "per_page",
+                "description": "Number of results to return per page.",
+                "type": "integer",
+                "required": false,
+                "allowMultiple": false,
+                "format": "int32"
+              }
+            ],
+            "type": "Absence"
+          }
+        ]
+      },
+      {
+        "path": "/v1/employees/{id}/leave_requests",
+        "operations": [
+          {
+            "notes": "",
+            "summary": "list leave requests for employee",
+            "nickname": "GET--version-employees--id-leave_requests--json-",
+            "method": "GET",
+            "parameters": [
+              {
+                "paramType": "path",
+                "name": "id",
+                "description": "ID of employee to return leave requests for",
+                "type": "integer",
+                "required": true,
+                "allowMultiple": false,
+                "format": "int32"
+              },
+              {
+                "paramType": "query",
+                "name": "exclude_cancelled_requests",
+                "description": "Don't return cancelled leave requests",
+                "type": "Grape::API::Boolean",
+                "required": false,
+                "allowMultiple": false
+              }
+            ],
+            "type": "LeaveRequest"
+          },
+          {
+            "notes": "",
+            "summary": "create leave request for employee",
+            "nickname": "POST--version-employees--id-leave_requests--json-",
+            "method": "POST",
+            "parameters": [
+              {
+                "paramType": "path",
+                "name": "id",
+                "description": "ID of employee to return leave requests for",
+                "type": "integer",
+                "required": true,
+                "allowMultiple": false,
+                "format": "int32"
+              },
+              {
+                "paramType": "body",
+                "name": "exclude_cancelled_requests",
+                "description": "Don't return cancelled leave requests",
+                "type": "Grape::API::Boolean",
+                "required": false,
+                "allowMultiple": false
+              },
+              {
+                "paramType": "form",
+                "name": "leave_request[start_date]",
+                "description": "",
+                "type": "string",
+                "required": true,
+                "allowMultiple": false,
+                "format": "date"
+              },
+              {
+                "paramType": "body",
+                "name": "leave_request[half_start]",
+                "description": "",
+                "type": "Grape::API::Boolean",
+                "required": true,
+                "allowMultiple": false,
+                "enum": [
+                  true,
+                  false
+                ]
+              },
+              {
+                "paramType": "form",
+                "name": "leave_request[half_start_am_pm]",
+                "description": "",
+                "type": "string",
+                "required": false,
+                "allowMultiple": false,
+                "enum": [
+                  "am",
+                  "pm"
+                ]
+              },
+              {
+                "paramType": "form",
+                "name": "leave_request[end_date]",
+                "description": "",
+                "type": "string",
+                "required": true,
+                "allowMultiple": false,
+                "format": "date"
+              },
+              {
+                "paramType": "body",
+                "name": "leave_request[half_end]",
+                "description": "",
+                "type": "Grape::API::Boolean",
+                "required": false,
+                "allowMultiple": false
+              },
+              {
+                "paramType": "form",
+                "name": "leave_request[half_end_am_pm]",
+                "description": "",
+                "type": "string",
+                "required": false,
+                "allowMultiple": false,
+                "enum": [
+                  "am",
+                  "pm"
+                ]
+              },
+              {
+                "paramType": "form",
+                "name": "leave_request[type]",
+                "description": "",
+                "type": "string",
+                "required": false,
+                "allowMultiple": false,
+                "enum": [
+                  "Holiday",
+                  "OtherLeave"
+                ]
+              },
+              {
+                "paramType": "form",
+                "name": "leave_request[notes]",
+                "description": "",
+                "type": "string",
+                "required": false,
+                "allowMultiple": false
+              }
+            ],
+            "type": "LeaveRequest"
+          }
+        ]
+      },
+      {
+        "path": "/v1/employees/{id}/change_requests",
+        "operations": [
+          {
+            "notes": "",
+            "summary": "get change requests",
+            "nickname": "GET--version-employees--id-change_requests--json-",
+            "method": "GET",
+            "parameters": [
+              {
+                "paramType": "query",
+                "name": "page",
+                "description": "Page of results to fetch.",
+                "type": "integer",
+                "required": false,
+                "allowMultiple": false,
+                "format": "int32",
+                "defaultValue": 1
+              },
+              {
+                "paramType": "query",
+                "name": "per_page",
+                "description": "Number of results to return per page.",
+                "type": "integer",
+                "required": false,
+                "allowMultiple": false,
+                "format": "int32"
+              },
+              {
+                "paramType": "path",
+                "name": "id",
+                "description": "",
+                "type": "string",
+                "required": false,
+                "allowMultiple": false
+              }
+            ],
+            "type": "ChangeRequest"
+          },
+          {
+            "notes": "",
+            "summary": "add change request",
+            "nickname": "POST--version-employees--id-change_requests--json-",
+            "method": "POST",
+            "parameters": [
+              {
+                "paramType": "form",
+                "name": "change_request[field]",
+                "description": "Field name",
+                "type": "string",
+                "required": true,
+                "allowMultiple": false
+              },
+              {
+                "paramType": "form",
+                "name": "change_request[value]",
+                "description": "New field value",
+                "type": "string",
+                "required": true,
+                "allowMultiple": false
+              },
+              {
+                "paramType": "body",
+                "name": "change_request[approved]",
+                "description": "Set to true to immediately apply change",
+                "type": "Grape::API::Boolean",
+                "required": false,
+                "allowMultiple": false
+              },
+              {
+                "paramType": "path",
+                "name": "id",
+                "description": "",
+                "type": "string",
+                "required": false,
+                "allowMultiple": false
+              }
+            ],
+            "type": "ChangeRequest"
+          }
+        ]
+      },
+      {
+        "path": "/v1/employees/{employee_id}/change_requests/{id}/approve",
+        "operations": [
+          {
+            "notes": "",
+            "summary": "approve change request",
+            "nickname": "POST--version-employees--employee_id-change_requests--id-approve--json-",
+            "method": "POST",
+            "parameters": [
+              {
+                "paramType": "path",
+                "name": "employee_id",
+                "description": "",
+                "type": "string",
+                "required": false,
+                "allowMultiple": false
+              },
+              {
+                "paramType": "path",
+                "name": "id",
+                "description": "",
+                "type": "string",
+                "required": false,
+                "allowMultiple": false
+              }
+            ],
+            "type": "ChangeRequest"
+          }
+        ]
+      },
+      {
+        "path": "/v1/employees/{id}/bonuses",
+        "operations": [
+          {
+            "notes": "",
+            "summary": "list bonuses for employee",
+            "nickname": "GET--version-employees--id-bonuses--json-",
+            "method": "GET",
+            "parameters": [
+              {
+                "paramType": "query",
+                "name": "page",
+                "description": "Page of results to fetch.",
+                "type": "integer",
+                "required": false,
+                "allowMultiple": false,
+                "format": "int32",
+                "defaultValue": 1
+              },
+              {
+                "paramType": "query",
+                "name": "per_page",
+                "description": "Number of results to return per page.",
+                "type": "integer",
+                "required": false,
+                "allowMultiple": false,
+                "format": "int32"
+              },
+              {
+                "paramType": "path",
+                "name": "id",
+                "description": "",
+                "type": "string",
+                "required": false,
+                "allowMultiple": false
+              }
+            ],
+            "type": "EmployeePerk"
+          }
+        ]
+      },
+      {
+        "path": "/v1/employees/{id}/benefits",
+        "operations": [
+          {
+            "notes": "",
+            "summary": "list benefits for employee",
+            "nickname": "GET--version-employees--id-benefits--json-",
+            "method": "GET",
+            "parameters": [
+              {
+                "paramType": "query",
+                "name": "page",
+                "description": "Page of results to fetch.",
+                "type": "integer",
+                "required": false,
+                "allowMultiple": false,
+                "format": "int32",
+                "defaultValue": 1
+              },
+              {
+                "paramType": "query",
+                "name": "per_page",
+                "description": "Number of results to return per page.",
+                "type": "integer",
+                "required": false,
+                "allowMultiple": false,
+                "format": "int32"
+              },
+              {
+                "paramType": "path",
+                "name": "id",
+                "description": "",
+                "type": "string",
+                "required": false,
+                "allowMultiple": false
+              }
+            ],
+            "type": "EmployeeBenefit"
+          }
+        ]
+      },
+      {
+        "path": "/v1/employees/{id}/salaries",
+        "operations": [
+          {
+            "notes": "",
+            "summary": "list salaries for employee",
+            "nickname": "GET--version-employees--id-salaries--json-",
+            "method": "GET",
+            "parameters": [
+              {
+                "paramType": "query",
+                "name": "page",
+                "description": "Page of results to fetch.",
+                "type": "integer",
+                "required": false,
+                "allowMultiple": false,
+                "format": "int32",
+                "defaultValue": 1
+              },
+              {
+                "paramType": "query",
+                "name": "per_page",
+                "description": "Number of results to return per page.",
+                "type": "integer",
+                "required": false,
+                "allowMultiple": false,
+                "format": "int32"
+              },
+              {
+                "paramType": "path",
+                "name": "id",
+                "description": "",
+                "type": "string",
+                "required": false,
+                "allowMultiple": false
+              }
+            ],
+            "type": "EmployeeSalary"
+          }
+        ]
+      },
+      {
+        "path": "/v1/employees/{id}/sicknesses",
+        "operations": [
+          {
+            "notes": "",
+            "summary": "create sickness for employee",
+            "nickname": "POST--version-employees--id-sicknesses--json-",
+            "method": "POST",
+            "parameters": [
+              {
+                "paramType": "path",
+                "name": "id",
+                "description": "Employee id",
+                "type": "integer",
+                "required": true,
+                "allowMultiple": false,
+                "format": "int32"
+              },
+              {
+                "paramType": "form",
+                "name": "sickness[company_sicknesstype_id]",
+                "description": "",
+                "type": "integer",
+                "required": true,
+                "allowMultiple": false,
+                "format": "int32"
+              },
+              {
+                "paramType": "form",
+                "name": "sickness[start_date]",
+                "description": "",
+                "type": "string",
+                "required": true,
+                "allowMultiple": false,
+                "format": "date"
+              },
+              {
+                "paramType": "body",
+                "name": "sickness[half_start]",
+                "description": "",
+                "type": "Grape::API::Boolean",
+                "required": false,
+                "allowMultiple": false
+              },
+              {
+                "paramType": "form",
+                "name": "sickness[half_start_am_pm]",
+                "description": "",
+                "type": "string",
+                "required": false,
+                "allowMultiple": false,
+                "enum": [
+                  "am",
+                  "pm"
+                ]
+              },
+              {
+                "paramType": "body",
+                "name": "sickness[half_end]",
+                "description": "",
+                "type": "Grape::API::Boolean",
+                "required": false,
+                "allowMultiple": false
+              },
+              {
+                "paramType": "form",
+                "name": "sickness[half_end_am_pm]",
+                "description": "",
+                "type": "string",
+                "required": false,
+                "allowMultiple": false,
+                "enum": [
+                  "am",
+                  "pm"
+                ]
+              },
+              {
+                "paramType": "body",
+                "name": "sickness[half_day]",
+                "description": "",
+                "type": "Grape::API::Boolean",
+                "required": false,
+                "allowMultiple": false
+              },
+              {
+                "paramType": "form",
+                "name": "sickness[status]",
+                "description": "",
+                "type": "string",
+                "required": false,
+                "allowMultiple": false,
+                "enum": [
+                  "open",
+                  "returned",
+                  "rejected",
+                  "clarification",
+                  "closed"
+                ]
+              },
+              {
+                "paramType": "form",
+                "name": "sickness[reason]",
+                "description": "",
+                "type": "string",
+                "required": false,
+                "allowMultiple": false
+              },
+              {
+                "paramType": "form",
+                "name": "sickness[end_date]",
+                "description": "",
+                "type": "string",
+                "required": false,
+                "allowMultiple": false,
+                "format": "date"
+              },
+              {
+                "paramType": "form",
+                "name": "sickness[review_notes]",
+                "description": "",
+                "type": "string",
+                "required": false,
+                "allowMultiple": false
+              }
+            ],
+            "type": "Sickness"
+          },
+          {
+            "notes": "",
+            "summary": "get sicknesses for an employee",
+            "nickname": "GET--version-employees--id-sicknesses--json-",
+            "method": "GET",
+            "parameters": [
+              {
+                "paramType": "path",
+                "name": "id",
+                "description": "ID of employee to return sicknessed for",
+                "type": "integer",
+                "required": true,
+                "allowMultiple": false,
+                "format": "int32"
+              }
+            ],
+            "type": "Sickness"
+          }
+        ]
+      }
+    ],
+    "basePath": "https://api.breathehr.com",
+    "models": {
+      "EmployeeExpense": {
+        "id": "EmployeeExpense",
+        "properties": {
+          "id": {
+            "$ref": ""
+          },
+          "employee_id": {
+            "$ref": ""
+          },
+          "account_id": {
+            "$ref": ""
+          },
+          "employee_expense_claim_id": {
+            "$ref": ""
+          },
+          "expense_date": {
+            "$ref": ""
+          },
+          "description": {
+            "$ref": ""
+          },
+          "company_expense_type_id": {
+            "$ref": ""
+          },
+          "company_project_id": {
+            "$ref": ""
+          },
+          "company_mileage_rate_id": {
+            "$ref": ""
+          },
+          "amount": {
+            "$ref": ""
+          },
+          "miles": {
+            "$ref": ""
+          },
+          "payable_to_employee": {
+            "$ref": ""
+          },
+          "chargeable_to_client": {
+            "$ref": ""
+          },
+          "client_name": {
+            "$ref": ""
+          },
+          "vat": {
+            "$ref": ""
+          }
+        }
+      },
+      "EmployeeInclude": {
+        "id": "EmployeeInclude",
+        "properties": {
+          "id": {
+            "$ref": "",
+            "description": "the id"
+          },
+          "email": {
+            "$ref": "",
+            "description": "the email"
+          },
+          "first_name": {
+            "$ref": "",
+            "description": "the first_name"
+          },
+          "last_name": {
+            "$ref": "",
+            "description": "the last_name"
+          }
+        }
+      },
+      "EmployeeJob": {
+        "id": "EmployeeJob",
+        "properties": {
+          "title": {
+            "$ref": ""
+          },
+          "fulltime_parttime": {
+            "$ref": ""
+          },
+          "start_date": {
+            "$ref": ""
+          },
+          "end_date": {
+            "$ref": ""
+          },
+          "contract_end_date": {
+            "$ref": ""
+          },
+          "created_at": {
+            "$ref": ""
+          },
+          "updated_at": {
+            "$ref": ""
+          }
+        }
+      },
+      "EmployeePerk": {
+        "id": "EmployeePerk",
+        "properties": {
+          "id": {
+            "$ref": ""
+          },
+          "description": {
+            "$ref": ""
+          },
+          "amount": {
+            "$ref": ""
+          },
+          "award_date": {
+            "$ref": ""
+          },
+          "created_at": {
+            "$ref": ""
+          },
+          "updated_at": {
+            "$ref": ""
+          }
+        }
+      },
+      "EmployeeSalary": {
+        "id": "EmployeeSalary",
+        "properties": {
+          "id": {
+            "$ref": ""
+          },
+          "start_date": {
+            "$ref": ""
+          },
+          "end_date": {
+            "$ref": ""
+          },
+          "amount": {
+            "$ref": ""
+          },
+          "basis": {
+            "$ref": ""
+          },
+          "created_at": {
+            "$ref": ""
+          },
+          "updated_at": {
+            "$ref": ""
+          }
+        }
+      },
+      "EmployeeTrainingCourse": {
+        "id": "EmployeeTrainingCourse",
+        "properties": {
+          "id": {
+            "$ref": ""
+          },
+          "name": {
+            "$ref": ""
+          },
+          "start_on": {
+            "$ref": ""
+          },
+          "end_on": {
+            "$ref": ""
+          },
+          "half_day": {
+            "$ref": ""
+          },
+          "half_day_am_pm": {
+            "$ref": ""
+          },
+          "expires_on": {
+            "$ref": ""
+          },
+          "hours": {
+            "$ref": ""
+          },
+          "cost": {
+            "$ref": ""
+          },
+          "status": {
+            "$ref": ""
+          },
+          "outcome": {
+            "$ref": ""
+          },
+          "remuneration_currency_id": {
+            "$ref": ""
+          },
+          "rejection_reason": {
+            "$ref": ""
+          },
+          "notes": {
+            "$ref": ""
+          },
+          "followup_date": {
+            "$ref": ""
+          },
+          "employee": {
+            "$ref": ""
+          },
+          "company_training_type": {
+            "$ref": ""
+          },
+          "company_training_category": {
+            "$ref": ""
+          },
+          "company_training_provider": {
+            "$ref": ""
+          }
+        }
+      },
+      "Gender": {
+        "id": "Gender",
+        "properties": {
+          "id": {
+            "$ref": ""
+          },
+          "name": {
+            "$ref": ""
+          },
+          "created_at": {
+            "$ref": ""
+          },
+          "updated_at": {
+            "$ref": ""
+          }
+        }
+      },
+      "HolidayAllowance": {
+        "id": "HolidayAllowance",
+        "properties": {
+          "id": {
+            "$ref": ""
+          },
+          "default": {
+            "$ref": ""
+          },
+          "created_at": {
+            "$ref": ""
+          },
+          "updated_at": {
+            "$ref": ""
+          },
+          "year_1": {
+            "$ref": ""
+          },
+          "year_2": {
+            "$ref": ""
+          },
+          "year_3": {
+            "$ref": ""
+          },
+          "year_4": {
+            "$ref": ""
+          },
+          "year_5": {
+            "$ref": ""
+          },
+          "year_6": {
+            "$ref": ""
+          },
+          "year_7": {
+            "$ref": ""
+          },
+          "year_8": {
+            "$ref": ""
+          },
+          "year_9": {
+            "$ref": ""
+          },
+          "year_10": {
+            "$ref": ""
+          }
+        }
+      },
+      "LeaveRequest": {
+        "id": "LeaveRequest",
+        "properties": {
+          "id": {
+            "$ref": ""
+          },
+          "start_date": {
+            "$ref": ""
+          },
+          "half_start": {
+            "$ref": ""
+          },
+          "half_start_am_pm": {
+            "$ref": ""
+          },
+          "end_date": {
+            "$ref": ""
+          },
+          "half_end": {
+            "$ref": ""
+          },
+          "half_end_am_pm": {
+            "$ref": ""
+          },
+          "action": {
+            "$ref": ""
+          },
+          "status": {
+            "$ref": ""
+          },
+          "notes": {
+            "$ref": ""
+          },
+          "created_at": {
+            "$ref": ""
+          },
+          "updated_at": {
+            "$ref": ""
+          }
+        }
+      },
+      "EmployeeConciseInclude": {
+        "id": "EmployeeConciseInclude",
+        "properties": {
+          "id": {
+            "$ref": "",
+            "description": "the id"
+          },
+          "name": {
+            "$ref": "",
+            "description": "the full name"
+          }
+        }
+      },
+      "OtherLeaveReason": {
+        "id": "OtherLeaveReason",
+        "properties": {
+          "id": {
+            "$ref": "",
+            "description": "the id"
+          },
+          "name": {
+            "$ref": "",
+            "description": "the name"
+          }
+        }
+      },
+      "Picklist": {
+        "id": "Picklist",
+        "properties": {
+          "id": {
+            "$ref": ""
+          },
+          "name": {
+            "$ref": ""
+          }
+        }
+      },
+      "RemunerationCurrency": {
+        "id": "RemunerationCurrency",
+        "properties": {
+          "id": {
+            "$ref": ""
+          },
+          "currency_code": {
+            "$ref": ""
+          },
+          "currency_symbol": {
+            "$ref": ""
+          },
+          "description": {
+            "$ref": ""
+          },
+          "created_at": {
+            "$ref": ""
+          },
+          "updated_at": {
+            "$ref": ""
+          },
+          "deleted_at": {
+            "$ref": ""
+          }
+        }
+      },
+      "Sickness": {
+        "id": "Sickness",
+        "properties": {
+          "company_sicknesstype": {
+            "$ref": ""
+          },
+          "employee": {
+            "$ref": ""
+          },
+          "id": {
+            "$ref": ""
+          },
+          "start_date": {
+            "$ref": ""
+          },
+          "end_date": {
+            "$ref": ""
+          },
+          "half_start": {
+            "$ref": ""
+          },
+          "half_start_am_pm": {
+            "$ref": ""
+          },
+          "half_end": {
+            "$ref": ""
+          },
+          "half_end_am_pm": {
+            "$ref": ""
+          },
+          "deducted": {
+            "$ref": ""
+          },
+          "status": {
+            "$ref": ""
+          },
+          "review_notes": {
+            "$ref": ""
+          },
+          "fit_note_required": {
+            "$ref": ""
+          },
+          "reason": {
+            "$ref": ""
+          }
+        }
+      },
+      "StatutoryHolidayCountry": {
+        "id": "StatutoryHolidayCountry",
+        "properties": {
+          "id": {
+            "$ref": ""
+          },
+          "name": {
+            "$ref": ""
+          },
+          "created_at": {
+            "$ref": ""
+          },
+          "updated_at": {
+            "$ref": ""
+          }
+        }
+      },
+      "StatutoryHoliday": {
+        "id": "StatutoryHoliday",
+        "properties": {
+          "id": {
+            "$ref": ""
+          },
+          "name": {
+            "$ref": ""
+          },
+          "day_on": {
+            "$ref": ""
+          },
+          "created_at": {
+            "$ref": ""
+          },
+          "updated_at": {
+            "$ref": ""
+          }
+        }
+      },
+      "WorkingPattern": {
+        "id": "WorkingPattern",
+        "properties": {
+          "id": {
+            "$ref": ""
+          },
+          "name": {
+            "$ref": ""
+          },
+          "total_hours": {
+            "$ref": ""
+          },
+          "mon": {
+            "$ref": ""
+          },
+          "tue": {
+            "$ref": ""
+          },
+          "wed": {
+            "$ref": ""
+          },
+          "thu": {
+            "$ref": ""
+          },
+          "fri": {
+            "$ref": ""
+          },
+          "sat": {
+            "$ref": ""
+          },
+          "sun": {
+            "$ref": ""
+          },
+          "mon_hr": {
+            "$ref": ""
+          },
+          "tue_hr": {
+            "$ref": ""
+          },
+          "wed_hr": {
+            "$ref": ""
+          },
+          "thu_hr": {
+            "$ref": ""
+          },
+          "fri_hr": {
+            "$ref": ""
+          },
+          "sat_hr": {
+            "$ref": ""
+          },
+          "sun_hr": {
+            "$ref": ""
+          },
+          "created_at": {
+            "$ref": ""
+          },
+          "updated_at": {
+            "$ref": ""
+          }
+        }
+      },
+      "Employee": {
+        "id": "Employee",
+        "properties": {
+          "length_of_service_in_months": {
+            "$ref": ""
+          },
+          "age": {
+            "$ref": ""
+          },
+          "full_or_part_time": {
+            "$ref": ""
+          },
+          "notice_period": {
+            "$ref": ""
+          },
+          "photo_url": {
+            "$ref": ""
+          },
+          "working_pattern": {
+            "$ref": ""
+          },
+          "holiday_allowance": {
+            "$ref": ""
+          },
+          "line_manager": {
+            "$ref": ""
+          },
+          "is_line_manager": {
+            "$ref": ""
+          },
+          "holiday_approver": {
+            "$ref": ""
+          },
+          "department": {
+            "$ref": ""
+          },
+          "division": {
+            "$ref": ""
+          },
+          "location": {
+            "$ref": ""
+          },
+          "gender": {
+            "$ref": ""
+          },
+          "statutory_holiday_country": {
+            "$ref": ""
+          },
+          "receives_statutory_holidays": {
+            "$ref": ""
+          },
+          "salary": {
+            "$ref": ""
+          },
+          "status": {
+            "$ref": ""
+          },
+          "job_start_date": {
+            "$ref": ""
+          },
+          "job_title": {
+            "$ref": ""
+          },
+          "hr": {
+            "$ref": ""
+          },
+          "custom_fields": {
+            "$ref": ""
+          },
+          "contract_type": {
+            "$ref": ""
+          },
+          "remuneration_currency": {
+            "$ref": ""
+          },
+          "id": {
+            "$ref": "",
+            "description": "the id"
+          },
+          "account_id": {
+            "$ref": "",
+            "description": "the account_id"
+          },
+          "first_name": {
+            "$ref": "",
+            "description": "the first_name"
+          },
+          "middle_name": {
+            "$ref": "",
+            "description": "the middle_name"
+          },
+          "last_name": {
+            "$ref": "",
+            "description": "the last_name"
+          },
+          "email": {
+            "$ref": "",
+            "description": "the email"
+          },
+          "join_date": {
+            "$ref": "",
+            "description": "the join_date"
+          },
+          "person_type": {
+            "$ref": "",
+            "description": "the person type"
+          },
+          "dob": {
+            "$ref": "",
+            "description": "the dob"
+          },
+          "known_as": {
+            "$ref": "",
+            "description": "the known_as"
+          },
+          "marital_status": {
+            "$ref": "",
+            "description": "the marital_status"
+          },
+          "nationality": {
+            "$ref": "",
+            "description": "the nationality"
+          },
+          "ethnicity": {
+            "$ref": "",
+            "description": "the ethnicity"
+          },
+          "national_insurance_no": {
+            "$ref": "",
+            "description": "the national_insurance_no"
+          },
+          "driving_license": {
+            "$ref": "",
+            "description": "the driving_license"
+          },
+          "ddi": {
+            "$ref": "",
+            "description": "the ddi"
+          },
+          "work_ext": {
+            "$ref": "",
+            "description": "the work_ext"
+          },
+          "work_mobile": {
+            "$ref": "",
+            "description": "the work_mobile"
+          },
+          "personal_mobile": {
+            "$ref": "",
+            "description": "the personal_mobile"
+          },
+          "home_telephone": {
+            "$ref": "",
+            "description": "the home_telephone"
+          },
+          "personal_email": {
+            "$ref": "",
+            "description": "the personal_email"
+          },
+          "address1": {
+            "$ref": "",
+            "description": "the address1"
+          },
+          "address2": {
+            "$ref": "",
+            "description": "the address2"
+          },
+          "address3": {
+            "$ref": "",
+            "description": "the address3"
+          },
+          "city": {
+            "$ref": "",
+            "description": "the city"
+          },
+          "county": {
+            "$ref": "",
+            "description": "the county"
+          },
+          "postcode": {
+            "$ref": "",
+            "description": "the postcode"
+          },
+          "country": {
+            "$ref": "",
+            "description": "the country"
+          },
+          "linked_in": {
+            "$ref": "",
+            "description": "the linked_in"
+          },
+          "facebook": {
+            "$ref": "",
+            "description": "the facebook"
+          },
+          "skype": {
+            "$ref": "",
+            "description": "the skype"
+          },
+          "twitter": {
+            "$ref": "",
+            "description": "the twitter"
+          },
+          "bank_name": {
+            "$ref": "",
+            "description": "the bank_name"
+          },
+          "bank_branch": {
+            "$ref": "",
+            "description": "the bank_branch"
+          },
+          "sort_code": {
+            "$ref": "",
+            "description": "the sort_code"
+          },
+          "account_number": {
+            "$ref": "",
+            "description": "the account_number"
+          },
+          "building_society": {
+            "$ref": "",
+            "description": "the building_society"
+          },
+          "ref_number": {
+            "$ref": "",
+            "description": "the ref_number"
+          },
+          "leaving_date": {
+            "$ref": "",
+            "description": "the leaving_date"
+          },
+          "employee_ref": {
+            "$ref": "",
+            "description": "the employee_ref"
+          },
+          "contract_provider": {
+            "$ref": "",
+            "description": "the contract_provider"
+          },
+          "probation_date": {
+            "$ref": "",
+            "description": "the probation_date"
+          },
+          "created_at": {
+            "$ref": "",
+            "description": "the created_at"
+          },
+          "updated_at": {
+            "$ref": "",
+            "description": "the updated_at"
+          },
+          "hr_partner_id": {
+            "$ref": "",
+            "description": "the hr_partner_id"
+          },
+          "uuid": {
+            "$ref": "",
+            "description": "the uuid"
+          }
+        }
+      },
+      "ChangeRequest": {
+        "id": "ChangeRequest",
+        "properties": {
+          "id": {
+            "$ref": ""
+          },
+          "field_name": {
+            "$ref": ""
+          },
+          "value": {
+            "$ref": ""
+          },
+          "approved": {
+            "$ref": ""
+          },
+          "approved_at": {
+            "$ref": ""
+          },
+          "created_at": {
+            "$ref": ""
+          },
+          "updated_at": {
+            "$ref": ""
+          }
+        }
+      },
+      "EmployeeExpenseClaim": {
+        "id": "EmployeeExpenseClaim",
+        "properties": {
+          "employee": {
+            "$ref": ""
+          },
+          "employee_expenses": {
+            "$ref": ""
+          },
+          "id": {
+            "$ref": ""
+          },
+          "account_id": {
+            "$ref": ""
+          },
+          "employee_id": {
+            "$ref": ""
+          },
+          "remuneration_currency_id": {
+            "$ref": ""
+          },
+          "submitted_date": {
+            "$ref": ""
+          },
+          "approver_id": {
+            "$ref": ""
+          },
+          "approved_date": {
+            "$ref": ""
+          },
+          "rejected_by_id": {
+            "$ref": ""
+          },
+          "rejected_date": {
+            "$ref": ""
+          },
+          "paid_by_id": {
+            "$ref": ""
+          },
+          "paid_date": {
+            "$ref": ""
+          },
+          "closedby_id": {
+            "$ref": ""
+          },
+          "closed_date": {
+            "$ref": ""
+          },
+          "description": {
+            "$ref": ""
+          },
+          "old_claim_status": {
+            "$ref": ""
+          },
+          "state": {
+            "$ref": ""
+          },
+          "reject_reason": {
+            "$ref": ""
+          },
+          "paid": {
+            "$ref": ""
+          },
+          "third_party_email": {
+            "$ref": ""
+          }
+        }
+      },
+      "Absence": {
+        "id": "Absence",
+        "properties": {
+          "employee": {
+            "$ref": "EmployeeInclude",
+            "description": "The Employee"
+          },
+          "approved_by": {
+            "$ref": ""
+          },
+          "leave_reason": {
+            "$ref": ""
+          },
+          "deducted": {
+            "$ref": ""
+          },
+          "work_units": {
+            "$ref": ""
+          },
+          "id": {
+            "type": "integer",
+            "description": "the id",
+            "format": "int32"
+          },
+          "start_date": {
+            "type": "string",
+            "description": "the start_date",
+            "format": "date-time"
+          },
+          "half_start": {
+            "type": "boolean",
+            "description": "the half_start"
+          },
+          "half_start_am_pm": {
+            "type": "string",
+            "description": "the half_start_am_pm"
+          },
+          "end_date": {
+            "type": "string",
+            "description": "the end_date",
+            "format": "date-time"
+          },
+          "half_end": {
+            "type": "boolean",
+            "description": "the half_end"
+          },
+          "half_end_am_pm": {
+            "type": "string",
+            "description": "the half_end_am_pm"
+          },
+          "cancelled": {
+            "type": "boolean",
+            "description": "the cancelled"
+          },
+          "notes": {
+            "type": "string",
+            "description": "the notes"
+          },
+          "type": {
+            "type": "string",
+            "description": "the type"
+          },
+          "created_at": {
+            "type": "string",
+            "description": "the created_at",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "description": "the updated_at",
+            "format": "date-time"
+          }
+        }
+      },
+      "Account": {
+        "id": "Account",
+        "properties": {
+          "id": {
+            "$ref": ""
+          },
+          "name": {
+            "$ref": ""
+          },
+          "domain": {
+            "$ref": ""
+          },
+          "uuid": {
+            "$ref": ""
+          },
+          "using_rta": {
+            "$ref": ""
+          }
+        }
+      },
+      "CompanyDepartment": {
+        "id": "CompanyDepartment",
+        "properties": {
+          "id": {
+            "$ref": ""
+          },
+          "name": {
+            "$ref": ""
+          },
+          "created_at": {
+            "$ref": ""
+          },
+          "updated_at": {
+            "$ref": ""
+          }
+        }
+      },
+      "CompanyDivision": {
+        "id": "CompanyDivision",
+        "properties": {
+          "id": {
+            "$ref": ""
+          },
+          "name": {
+            "$ref": ""
+          },
+          "created_at": {
+            "$ref": ""
+          },
+          "updated_at": {
+            "$ref": ""
+          }
+        }
+      },
+      "CompanyLeaveReason": {
+        "id": "CompanyLeaveReason",
+        "properties": {
+          "id": {
+            "$ref": ""
+          },
+          "name": {
+            "$ref": ""
+          },
+          "created_at": {
+            "$ref": ""
+          }
+        }
+      },
+      "CompanyTrainingType": {
+        "id": "CompanyTrainingType",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "the id",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string",
+            "description": "the name"
+          },
+          "created_at": {
+            "type": "string",
+            "description": "the created_at",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "description": "the updated_at",
+            "format": "date-time"
+          }
+        }
+      },
+      "EmployeeBenefit": {
+        "id": "EmployeeBenefit",
+        "properties": {
+          "id": {
+            "$ref": "",
+            "description": "the id"
+          },
+          "start_date": {
+            "$ref": ""
+          },
+          "end_date": {
+            "$ref": ""
+          },
+          "review_date": {
+            "$ref": ""
+          },
+          "amount": {
+            "$ref": ""
+          },
+          "provider": {
+            "$ref": ""
+          },
+          "pension_opt_out": {
+            "$ref": ""
+          },
+          "employer_contribution": {
+            "$ref": ""
+          },
+          "employee_contribution": {
+            "$ref": ""
+          },
+          "created_at": {
+            "$ref": ""
+          },
+          "updated_at": {
+            "$ref": ""
+          }
+        }
+      },
+      "CompanyLocation": {
+        "id": "CompanyLocation",
+        "properties": {
+          "id": {
+            "$ref": ""
+          },
+          "name": {
+            "$ref": ""
+          },
+          "created_at": {
+            "$ref": ""
+          },
+          "updated_at": {
+            "$ref": ""
+          }
+        }
+      }
+    }
+  }
