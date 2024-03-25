@@ -9,7 +9,6 @@ import * as fs from "fs-extra";
 import deepmerge from "deepmerge";
 import yaml from "js-yaml";
 import puppeteer, { Browser as PuppeteerBrowser } from "puppeteer";
-import { transpile } from "postman2openapi";
 import AdmZip from "adm-zip";
 import $RefParser from "@apidevtools/json-schema-ref-parser";
 import {
@@ -38,6 +37,7 @@ import { PuppeteerBlocker } from "@cliqz/adblocker-puppeteer";
 import fetch from "cross-fetch"; // required 'fetch'
 import { collectEndpointsFromReadme } from "./collect-endpoints-from-readme";
 import { collectEndpointsFromMintlify } from "./collect-endpoints-from-mintlify";
+import { transpilePostmanToOpenApiCached } from "./transpile-postman-to-openapi-cached";
 
 /**
  * For describing a custom request to get an OAS
@@ -51,7 +51,10 @@ export type CustomRequest = (
     }
   | { url: string; body: string }
   | {
-      lambda: (browser: PuppeteerBrowser) => Promise<string>;
+      lambda: (args: {
+        browser: PuppeteerBrowser;
+        key: string;
+      }) => Promise<string>;
       defaultUrlForBrokenLinks?: string;
     }
 ) & {
@@ -137,7 +140,7 @@ async function executeCustomRequest(
   } else if ("lambda" in customRequest) {
     const lambdaRequest = customRequest;
     console.log(`Processing lambda request for ${key}`);
-    let rawSpecString = await lambdaRequest.lambda(browser);
+    let rawSpecString = await lambdaRequest.lambda({ browser, key });
     if ("defaultUrlForBrokenLinks" in customRequest) {
       rawSpecString = rawSpecString.replaceAll(
         REGEX_FOR_BROKEN_LINKS,
@@ -275,13 +278,16 @@ const customRequests: Record<string, CustomRequest> = {
     },
   },
   "withterminal.com": {
-    lambda: async () => {
+    lambda: async ({ key }) => {
       const postmanUrl =
         "https://raw.githubusercontent.com/terminal-api/postman/main/postman/terminal.postman_collection.json";
       const postmanCollection = await fetch(postmanUrl).then((res) =>
         res.json()
       );
-      const openapi = transpile(postmanCollection);
+      const openapi = transpilePostmanToOpenApiCached({
+        key,
+        postmanCollection,
+      });
       return JSON.stringify(openapi);
     },
   },
@@ -654,7 +660,7 @@ const customRequests: Record<string, CustomRequest> = {
     url: "https://developer.zuora.com/yaml/zuora_openapi.yaml",
   },
   "launchdarkly.com": {
-    lambda: async (browser) => {
+    lambda: async ({ browser }) => {
       return downloadOpenApiSpecFromRedoclyEmbedded({
         url: "https://apidocs.launchdarkly.com",
         filename: "swagger.json",
@@ -663,7 +669,7 @@ const customRequests: Record<string, CustomRequest> = {
     },
   },
   "brex.com_Team": {
-    lambda: async (browser) => {
+    lambda: async ({ browser }) => {
       return downloadOpenApiSpecFromRedoclyEmbedded({
         url: "https://developer.brex.com/openapi/team_api/",
         filename: "swagger.json",
@@ -672,7 +678,7 @@ const customRequests: Record<string, CustomRequest> = {
     },
   },
   "brex.com_Onboarding": {
-    lambda: async (browser) => {
+    lambda: async ({ browser }) => {
       return downloadOpenApiSpecFromRedoclyEmbedded({
         url: "https://developer.brex.com/openapi/onboarding_api/",
         filename: "swagger.json",
@@ -681,7 +687,7 @@ const customRequests: Record<string, CustomRequest> = {
     },
   },
   "brex.com_Payments": {
-    lambda: async (browser) => {
+    lambda: async ({ browser }) => {
       return downloadOpenApiSpecFromRedoclyEmbedded({
         url: "https://developer.brex.com/openapi/payments_api/",
         filename: "swagger.json",
@@ -690,7 +696,7 @@ const customRequests: Record<string, CustomRequest> = {
     },
   },
   "brex.com_Transactions": {
-    lambda: async (browser) => {
+    lambda: async ({ browser }) => {
       return downloadOpenApiSpecFromRedoclyEmbedded({
         url: "https://developer.brex.com/openapi/transactions_api/",
         filename: "swagger.json",
@@ -699,7 +705,7 @@ const customRequests: Record<string, CustomRequest> = {
     },
   },
   "brex.com_Expenses": {
-    lambda: async (browser) => {
+    lambda: async ({ browser }) => {
       return downloadOpenApiSpecFromRedoclyEmbedded({
         url: "https://developer.brex.com/openapi/expenses_api/",
         filename: "swagger.json",
@@ -708,7 +714,7 @@ const customRequests: Record<string, CustomRequest> = {
     },
   },
   "brex.com_Webhooks": {
-    lambda: async (browser) => {
+    lambda: async ({ browser }) => {
       return downloadOpenApiSpecFromRedoclyEmbedded({
         url: "https://developer.brex.com/openapi/webhooks_api/",
         filename: "swagger.json",
@@ -717,7 +723,7 @@ const customRequests: Record<string, CustomRequest> = {
     },
   },
   "brex.com_Budgets": {
-    lambda: async (browser) => {
+    lambda: async ({ browser }) => {
       return downloadOpenApiSpecFromRedoclyEmbedded({
         url: "https://developer.brex.com/openapi/budgets_api/",
         filename: "swagger.json",
@@ -734,7 +740,7 @@ const customRequests: Record<string, CustomRequest> = {
     url: "https://raw.githubusercontent.com/resend/resend-openapi/main/resend.yaml",
   },
   "klarna.com_payments": {
-    lambda: async (browser) => {
+    lambda: async ({ browser }) => {
       return downloadOpenApiSpecFromRedoclyEmbedded({
         url: "https://docs.klarna.com/api/payments/",
         filename: "swagger.json",
@@ -744,7 +750,7 @@ const customRequests: Record<string, CustomRequest> = {
     },
   },
   "klarna.com_checkout": {
-    lambda: async (browser) => {
+    lambda: async ({ browser }) => {
       return downloadOpenApiSpecFromRedoclyEmbedded({
         url: "https://docs.klarna.com/api/checkout/",
         filename: "swagger.json",
@@ -787,7 +793,7 @@ const customRequests: Record<string, CustomRequest> = {
     url: "https://raw.githubusercontent.com/Asana/openapi/master/defs/asana_oas.yaml",
   },
   "hsbc.com_AccountInformationCE": {
-    lambda: async (browser) => {
+    lambda: async ({ browser }) => {
       const url =
         "https://develop.hsbc.com/ob-api-documentation/account-information-ce-hsbcnet/endpoints";
       const anchorSelector = "a.apidownloadlink";
