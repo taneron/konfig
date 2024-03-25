@@ -1,0 +1,21 @@
+```typescript index.ts
+import { CyberArkConjur } from 'cyber-ark-conjur-typescript-sdk';
+
+const cyberArkConjur = new CyberArkConjur({
+    /*
+     * Basic authentication with Conjur username and password (users only)
+     * or API key (hosts and users).
+     * 
+     */
+    username: "USERNAME",
+    password: "PASSWORD",
+    // Conjur access token in `Token token=<base64_encoded_token>` format.
+    conjurAuth: "AUTHORIZATION",
+    /*
+     * Conjur Kubernetes authenticator mutual TLS authentication.
+     * To authenticate using this method, you must provide a trusted client
+     * certificate
+     * 
+     */
+})
+```
