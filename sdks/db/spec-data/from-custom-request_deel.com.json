@@ -1,0 +1,60 @@
+{
+  "securitySchemes": {
+    "deelToken": {
+      "type": "http",
+      "scheme": "bearer",
+      "bearerFormat": "JWT",
+      "description": "## Authentication\n\nDeel API uses API tokens to authenticate requests. A bearer token is required to authenticate all API requests.\n\nAll API requests must be made over HTTPS. Calls made over plain HTTP will fail. API requests without authentication will also fail.\n\n```\ncurl -X GET 'api.letsdeel.com/rest/v2/contracts' \\\n-H 'Authorization: Bearer YOUR-TOKEN-HERE'\n```\n\n### Generating Access Tokens\n1. Navigate to **Apps & Perks > Developer Center**.\n2. Click on the “Generate New Token” button.\n3. In the popup, click “Generate Token” button to generate a new token. Your newly generated token is visible on the screen.\n4. Make sure to copy and save your token once is generated. You won't be able to see it again!\n\n![image](developers.png)\n"
+    },
+    "oauth2": {
+      "type": "oauth2",
+      "description": "Standard OAuth2 security scheme based on https://swagger.io/docs/specification/authentication/",
+      "flows": {
+        "authorizationCode": {
+          "authorizationUrl": "https://auth.deel.com/authorize",
+          "tokenUrl": "https://auth.deel.com/tokens",
+          "scopes": {
+            "accounting:read": "View payments and invoices in your organization.",
+            "accounting:write": "Create and edit payments and invoices.",
+            "candidates:read": "View candidates in your organization.",
+            "candidates:write": "Create, edit and delete candidates in your organization.",
+            "contracts:read": "View contracts in your organization.",
+            "contracts:write": "Create and amend contracts.",
+            "invoice-adjustments:read": "View invoices of your workforce.",
+            "invoice-adjustments:write": "Create, edit, review, and delete invoice adjustments.",
+            "milestones:read": "View milestones of your contractors.",
+            "milestones:write": "Create, edit, review, and delete milestones.",
+            "organizations:read": "View basic information about your organizations, teams, legal entities and agreements.",
+            "organizations:write": "Modify information in your organization. Create, edit, delete admin users or managers.",
+            "off-cycle-payments:read": "View your off-cycle payments.",
+            "off-cycle-payments:write": "Create, edit, review your off-cycle payments.",
+            "timesheets:read": "View work submitted for time-based contracts.",
+            "timesheets:write": "Create, edit, review, and delete timesheets.",
+            "tasks:read": "View your pay-as-you-go tasks.",
+            "tasks:write": "Create, edit, review and delete your pay-as-you-go tasks.",
+            "payslips:read": "View employee payslips.",
+            "payslips:write": "Create, edit, review and delete employee payslips.",
+            "public-token:write": "Create, edit, review and delete public tokens.",
+            "Users:read": "View basic information about users.",
+            "Users:write": "Create and update users."
+          }
+        }
+      }
+    }
+  },
+  "apiBaseUrl": "https://api.letsdeel.com/rest/v2",
+  "apiVersion": "1.25.0",
+  "apiDescription": "API specification for Deel HR user provisioning API. This YAML file is a preview of the API Deel is building. We are looking forward to your feedback.",
+  "apiTitle": "Deel REST API",
+  "endpoints": 124,
+  "sdkMethods": 154,
+  "schemas": 513,
+  "parameters": 326,
+  "contactEmail": "apiteam@deel.com",
+  "originalCustomRequest": {
+    "lambda": true
+  },
+  "customRequestSpecFilename": "deel.com.yaml",
+  "difficultyScore": 492,
+  "difficulty": "Hard"
+}

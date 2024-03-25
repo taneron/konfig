@@ -1080,6 +1080,14 @@ const customRequests: Record<string, CustomRequest> = {
     type: "GET",
     url: "https://raw.githubusercontent.com/Unstructured-IO/unstructured-api/main/openapi.json",
   },
+  "deel.com": {
+    lambda: async () => {
+      const urls = await collectEndpointsFromReadme({
+        url: "https://developer.deel.com/reference/getmanagers",
+      });
+      return downloadOpenApiSpecFromReadme({ urls });
+    },
+  },
   "cyberark.com_Conjur": {
     lambda: async () => {
       const zipUrl =

@@ -1,0 +1,372 @@
+examples: {}
+examples_2: {}
+examples_3:
+  /Users/{id}:
+    delete:
+      '204':
+        application/json: {}
+ignoreObjectsWithNoProperties: true
+ignorePotentialIncorrectType: true
+operationIds:
+  /ServiceProviderConfig:
+    get: ServiceProviderConfig_getDetails
+  /Users:
+    get: User_listDeelUsers
+    post: User_createUser
+  /Users/.search:
+    post: User_searchOrList
+  /Users/{id}:
+    delete: User_deleteUser
+    get: User_getById
+    patch: User_partiallyUpdateUser
+    put: User_updateUserById
+  /adjustments:
+    post: Adjustments_createNewAdjustment
+  /adjustments/categories:
+    get: Adjustments_getCategories
+  /adjustments/{adjustment_id}:
+    delete: Adjustments_removeAdjustment
+    get: Adjustments_getById
+    patch: Adjustments_updateAdjustment
+  /agreements:
+    get: Organizations_listAgreementsWithDeel
+  /attachments:
+    post: Attachments_uploadDeelFile
+  /candidates:
+    post: Candidates_addCandidateToDeel
+  /candidates/{candidate_id}:
+    patch: Candidates_updateCandidateById
+  /contract-templates:
+    get: Contracts_getList
+  /contracts:
+    get: Contracts_getList
+    post: Contractors_createNewDeelContract
+  /contracts/estimate:
+    post: Contracts_calculateFirstPaymentAmount
+  /contracts/fixed-rate:
+    post: Contractors_createNewFixedRateContract
+  /contracts/gp:
+    post: GlobalPayroll_createContractGp
+  /contracts/milestone-based:
+    post: Contractors_createNewMilestoneContract
+  /contracts/task-based:
+    post: Contractors_createNewTaskBasedContract
+  /contracts/time-based:
+    post: Contractors_createNewTimeBasedContract
+  /contracts/{contract_id}:
+    get: Contracts_getSingleContract
+    patch: Contracts_addExternalId
+  /contracts/{contract_id}/adjustments:
+    get: Adjustments_getAll
+  /contracts/{contract_id}/alternate_emails:
+    get: Contracts_findEmailsById
+  /contracts/{contract_id}/amendments:
+    post: Contractors_amendContractDetails
+  /contracts/{contract_id}/archive:
+    patch: Contracts_archiveContract
+  /contracts/{contract_id}/documents:
+    post: Contracts_attachFileToDocument
+    put: Contracts_editFileAttachment
+  /contracts/{contract_id}/entitlements:
+    get: TimeOff_listEntitlements
+  /contracts/{contract_id}/final-payments:
+    get: Contracts_calculateFinalPaymentAmount
+  /contracts/{contract_id}/invitations:
+    delete: Contracts_removeInvite
+    post: Contracts_inviteWorkerToSign
+  /contracts/{contract_id}/invoice-adjustments:
+    get: Invoices_getLineItemsByContract
+  /contracts/{contract_id}/milestones:
+    get: Milestones_listByContract
+    post: Milestones_createNewMilestone
+  /contracts/{contract_id}/milestones/many/reviews:
+    post: Milestones_reviewMultiple
+  /contracts/{contract_id}/milestones/{milestone_id}:
+    delete: Milestones_deleteSingleMilestone
+    get: Milestones_getSingleMilestone
+  /contracts/{contract_id}/milestones/{milestone_id}/reviews:
+    post: Milestones_createReview
+  /contracts/{contract_id}/off-cycle-payments:
+    get: OffcyclePayments_getList
+    post: OffcyclePayments_addPaymentInvoice
+  /contracts/{contract_id}/off-cycle-payments/{offcycle_payment_id}:
+    get: OffcyclePayments_getSinglePayment
+  /contracts/{contract_id}/premium:
+    delete: Contractors_removePremium
+    post: Contractors_upgradeToPremium
+  /contracts/{contract_id}/preview:
+    get: Contractors_getContractPreview
+  /contracts/{contract_id}/signatures:
+    post: Contracts_clientSignContract
+  /contracts/{contract_id}/tasks:
+    get: Tasks_getContractTasks
+    post: Tasks_createNewTask
+  /contracts/{contract_id}/tasks/many/reviews:
+    post: Tasks_reviewManyTasks
+  /contracts/{contract_id}/tasks/{task_id}:
+    delete: Tasks_deleteFromContract
+  /contracts/{contract_id}/tasks/{task_id}/reviews:
+    post: Tasks_submitTaskReview
+  /contracts/{contract_id}/terminations:
+    post: Contractors_terminateContract
+  /contracts/{contract_id}/time-offs:
+    get: TimeOff_listByContract
+    post: TimeOff_addRequestObsolete
+  /contracts/{contract_id}/time-offs/{timeoff_id}:
+    delete: TimeOff_cancelRequestObsolete
+    put: TimeOff_editRequestObsolete
+  /contracts/{contract_id}/timesheets:
+    get: Timesheets_listByContract
+  /departments:
+    get: Organizations_getDepartmentList
+  /eor:
+    post: Eor_createContractQuote
+  /eor/employment_cost:
+    post: Eor_calculateEmployeeCosts
+  /eor/validations/{country_code}:
+    get: Eor_getCountryGuide
+  /eor/workers/{worker_id}/payslips:
+    get: Eor_getEmployeePayslips
+  /eor/workers/{worker_id}/payslips/{payslip_id}/download:
+    get: Eor_getPayslipDownload
+  /eor/{contract_id}/benefits:
+    get: Eor_getContractBenefits
+  /gp/legal-entities/{legal_entity_id}/reports:
+    get: GlobalPayroll_listPayrollEventsByLegalEntity
+  /gp/reports/{gp_report_id}/gross_to_net:
+    get: GlobalPayroll_getGrossToNetGpReport
+  /gp/reports/{gp_report_id}/gross_to_net/csv:
+    get: GlobalPayroll_downloadGrossToNetGpReport
+  /gp/workers/{worker_id}/address:
+    patch: GlobalPayroll_updateWorkerAddress
+  /gp/workers/{worker_id}/banks:
+    get: GlobalPayroll_getBankAccounts
+    post: GlobalPayroll_addBankAccount
+  /gp/workers/{worker_id}/banks/guide:
+    get: GlobalPayroll_getBankGuide
+  /gp/workers/{worker_id}/banks/{bank_id}:
+    patch: GlobalPayroll_modifyBankAccount
+  /gp/workers/{worker_id}/compensation:
+    patch: GlobalPayroll_updateCompensationHistory
+  /gp/workers/{worker_id}/employee-information:
+    patch: GlobalPayroll_updateEmployeeInformation
+  /gp/workers/{worker_id}/payslips:
+    get: GlobalPayroll_getPayslips
+  /gp/workers/{worker_id}/payslips/{payslip_id}/download:
+    get: GlobalPayroll_getPayslipDownloadUrl
+  /gp/workers/{worker_id}/pto-policy:
+    patch: GlobalPayroll_updatePtoPolicy
+  /gp/workers/{worker_id}/terminations:
+    post: GlobalPayroll_requestTerminationProcess
+  /hris/direct-employees:
+    post: People_createDirectEmployee
+  /internal/people:
+    get: People_getList
+  /invoice-adjustments:
+    get: Invoices_listInvoiceAdjustments
+    post: Invoices_createAdjustment
+  /invoice-adjustments/many/reviews:
+    post: Invoices_reviewMultiple
+  /invoice-adjustments/{invoice_adjustment_id}:
+    delete: Invoices_deleteAdjustment
+    patch: Invoices_updateAdjustmentById
+  /invoice-adjustments/{invoice_adjustment_id}/attachment:
+    get: Invoices_getAttachmentFileUrl
+  /invoice-adjustments/{invoice_adjustment_id}/reviews:
+    post: Invoices_submitAdjustmentReview
+  /invoices:
+    get: Accounting_getPaidInvoices
+  /invoices/deel:
+    get: Accounting_getDeelInvoices
+  /invoices/{invoice_id}/download:
+    get: Accounting_getInvoicePdfDownloadLink
+  /legal-entities:
+    get: Organizations_getLegalEntitiesList
+  /lookups/countries:
+    get: Lookups_getCountryList
+  /lookups/currencies:
+    get: Lookups_getCurrenciesList
+  /lookups/job-titles:
+    get: Lookups_getJobTitlesList
+  /lookups/seniorities:
+    get: Lookups_getSeniorityLevels
+  /lookups/time-off-types:
+    get: Lookups_getTimeOffTypes
+  /managers:
+    get: Managers_list
+    post: Managers_createNewManager
+  /organizations:
+    get: Organizations_getDetails
+  /partner-managed/employees/{employee_id}/banks:
+    post: PartnerManaged_addBankAccountForEorEmployee
+  /partner-managed/employees/{employee_id}/banks/guide:
+    get: PartnerManaged_getBankGuideForEorEmployee
+  /partner-managed/employees/{employee_id}/banks/{bank_id}:
+    patch: PartnerManaged_modifyBankAccountForEorEmployee
+  /partner-managed/employees/{employee_id}/compliance-documents:
+    get: PartnerManaged_listEmployeeComplianceDocuments
+  /partner-managed/employees/{employee_id}/compliance-documents/{document_id}:
+    post: PartnerManaged_uploadComplianceDocument
+  /partner-managed/employees/{employee_id}/compliance-documents/{document_id}/templates/download:
+    get: PartnerManaged_downloadComplianceDocumentTemplate
+  /partner-managed/employees/{employee_id}/contracts/{contract_id}/additional-information:
+    post: PartnerManaged_addAdditionalInformationForEorEmployee
+  /partner-managed/employees/{employee_id}/contracts/{contract_id}/custom-verification-letter:
+    post: PartnerManaged_requestCustomVerificationLetter
+  /partner-managed/employees/{employee_id}/contracts/{contract_id}/employee-agreement:
+    get: PartnerManaged_getEmployeeAgreementHtml
+  /partner-managed/employees/{employee_id}/contracts/{contract_id}/employee-agreement/download:
+    get: PartnerManaged_downloadEmployeeAgreementPdf
+  /partner-managed/employees/{employee_id}/contracts/{contract_id}/hr-documents:
+    get: PartnerManaged_listHrVerificationLettersAndDocuments
+  /partner-managed/employees/{employee_id}/contracts/{contract_id}/hr-documents/{document_id}/download:
+    get: PartnerManaged_downloadHrVerificationLettersAndDocuments
+  /partner-managed/employees/{employee_id}/contracts/{contract_id}/offer-letter:
+    get: PartnerManaged_previewJobOfferLetter
+  /partner-managed/employees/{employee_id}/contracts/{contract_id}/signatures:
+    post: PartnerManaged_signContract
+  /partner-managed/employees/{employee_id}/payslips:
+    get: PartnerManaged_listPayslipsForEorEmployee
+  /partner-managed/employees/{employee_id}/tax-documents:
+    get: PartnerManaged_listTaxDocumentsForEmployee
+  /payments:
+    get: Accounting_getPaymentReceipts
+  /payments/{payment_id}/breakdown:
+    get: Accounting_getPaymentBreakdown
+  /people:
+    get: People_getList
+  /people/me:
+    get: People_getCurrentProfile
+  /people/{worker_id}:
+    get: People_getPerson
+  /people/{worker_id}/department:
+    put: People_updateDepartment
+  /people/{worker_id}/time-offs:
+    get: People_listTimeOffsByWorkerId
+    post: People_addTimeOffRequest
+  /people/{worker_id}/time-offs/entitlements:
+    get: People_listTimeOffEntitlements
+  /people/{worker_id}/time-offs/policies:
+    get: People_listTimeOffPolicies
+  /people/{worker_id}/time-offs/{timeoff_id}:
+    delete: People_deleteTimeOffRequest
+    patch: People_editTimeOffRequest
+  /people/{worker_id}/time-offs/{timeoff_id}/review:
+    patch: People_reviewTimeOff
+  /people/{worker_id}/working-location:
+    put: People_updateWorkingLocation
+  /public-tokens:
+    post: Token_createPublicToken
+  /teams:
+    get: Organizations_getTeamList
+  /time-offs/:
+    get: TimeOff_getAllObsolete
+  /time-offs/{timeoff_id}/review:
+    patch: TimeOff_manageRequest
+  /timesheets:
+    get: Timesheets_getList
+    post: Timesheets_submitWorkForContractor
+  /timesheets/many/reviews:
+    post: Timesheets_reviewMultiple
+  /timesheets/{timesheet_id}:
+    delete: Timesheets_deleteEntry
+    get: Timesheets_getSingleEntry
+    patch: Timesheets_updateEntry
+  /timesheets/{timesheet_id}/reviews:
+    post: Timesheets_reviewSingleTimesheet
+  /webhooks:
+    get: Webhooks_listWebhookSubscriptions
+    post: Webhooks_createSubscription
+  /webhooks/events/types:
+    get: Webhooks_listEventTypes
+  /working-locations:
+    get: Organizations_getWorkingLocations
+operationTags: {}
+renameTags: {}
+requestSchemaNames: {}
+responseDescriptions: {}
+responseSchemaNames:
+  /Users/{id}:
+    delete:
+      '204':
+        application/json: UserDeleteUserResponse
+  /gp/reports/{gp_report_id}/gross_to_net/csv:
+    get:
+      '200':
+        text/csv: GlobalPayrollDownloadGrossToNetGpReportResponse
+securityParameters:
+  after_cursor:
+    query: false
+  calculation_type:
+    query: false
+  contract_id:
+    query: false
+  contract_types:
+    query: false
+  count:
+    query: false
+  countries:
+    query: false
+  currencies:
+    query: false
+  date_from:
+    query: false
+  date_to:
+    query: false
+  end_date:
+    query: false
+  entities:
+    query: false
+  external_id:
+    query: false
+  filter:
+    query: false
+  from:
+    query: false
+  hiring_statuses[]:
+    query: false
+  invoice_id:
+    query: false
+  issued_from_date:
+    query: false
+  issued_to_date:
+    query: false
+  limit:
+    query: false
+  offset:
+    query: false
+  order_direction:
+    query: false
+  reason:
+    query: false
+  recurring:
+    query: false
+  reporter_id:
+    query: false
+  search:
+    query: false
+  sort_by:
+    query: false
+  sort_order:
+    query: false
+  startIndex:
+    query: false
+  start_date:
+    query: false
+  statuses:
+    query: false
+  team_id:
+    query: false
+  templateId:
+    query: false
+  to:
+    query: false
+  type:
+    query: false
+  types:
+    query: false
+  workweek_end:
+    query: false
+  workweek_start:
+    query: false
+validServerUrls: {}
