@@ -5,6 +5,7 @@ import { SecuritySchemes, Spec, getOperations, resolveRef } from "konfig-lib";
 import { z } from "zod";
 import kebabcase from "lodash.kebabcase";
 import * as fs from "fs-extra";
+import yaml from "js-yaml";
 
 export const dbFolder = path.join(path.dirname(__dirname), "db");
 export const specFolder = path.join(dbFolder, "spec-data");
@@ -12,7 +13,7 @@ export const browserDownloadsFolder = path.join(dbFolder, "browser-downloads");
 export const githubZipDir = path.join(dbFolder, "github-zip-downloads");
 export const customRequestLastFetchedJsonPath = path.join(
   dbFolder,
-  "custom-request-last-fetched.json"
+  "custom-request-last-fetched.yaml"
 );
 export const customRequestSpecsDir = path.join(
   dbFolder,
@@ -32,7 +33,7 @@ export function getCustomRequestLastFetched(key: string): Date | undefined {
     customRequestLastFetchedJsonPath,
     "utf-8"
   );
-  const parsed = lastUpdatedSchema.parse(JSON.parse(lastUpdated));
+  const parsed = lastUpdatedSchema.parse(yaml.load(lastUpdated));
   return parsed.lastUpdated[key];
 }
 
@@ -41,14 +42,11 @@ export function saveCustomRequestLastFetched(date: Date, keys: string[]): void {
     customRequestLastFetchedJsonPath,
     "utf-8"
   );
-  const parsed = lastUpdatedSchema.parse(JSON.parse(lastUpdated));
+  const parsed = lastUpdatedSchema.parse(yaml.load(lastUpdated));
   for (const key of keys) {
     parsed.lastUpdated[key] = date;
   }
-  fs.writeFileSync(
-    customRequestLastFetchedJsonPath,
-    JSON.stringify(parsed, null, 2)
-  );
+  fs.writeFileSync(customRequestLastFetchedJsonPath, yaml.dump(parsed));
 }
 
 /**
