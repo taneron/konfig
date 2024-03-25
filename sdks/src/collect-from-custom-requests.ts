@@ -1012,6 +1012,14 @@ const customRequests: Record<string, CustomRequest> = {
     url: "https://api.charthop.com/swagger.json",
     apiBaseUrl: "https://api.charthop.com",
   },
+  "clayhr.com": {
+    lambda: async () => {
+      const urls = await collectEndpointsFromReadme({
+        url: "https://clayhr.readme.io/reference/get-customer-configurations-from-public-customer-model",
+      });
+      return downloadOpenApiSpecFromReadme({ urls });
+    },
+  },
   "helcim.com": {
     lambda: async () => {
       const urls = await collectEndpointsFromReadme({
@@ -1205,8 +1213,8 @@ const customRequests: Record<string, CustomRequest> = {
   "proovid.com": {
     type: "GET",
     url: "https://proovidapi.azurewebsites.net/swagger/v1/swagger.json",
-    apiBaseUrl: "https://proovidapi.azurewebsites.net/"
-  }
+    apiBaseUrl: "https://proovidapi.azurewebsites.net/",
+  },
 };
 
 async function downloadOpenApiSpecFromMintlify({

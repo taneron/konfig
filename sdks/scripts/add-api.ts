@@ -144,11 +144,11 @@ async function addApiToPublish() {
   console.log(`✅ Client Name: ${clientName}`);
 
   // (14)
-  const apiDescription = await getApiDescription(api);
-  if (apiDescription.length > 0) {
-    PublishJson.saveApiDescription({ apiDescription }, api);
-    console.log(`✅ Overwrote API Description: ${apiDescription}`);
-  }
+  // const apiDescription = await getApiDescription(api);
+  // if (apiDescription.length > 0) {
+  //   PublishJson.saveApiDescription({ apiDescription }, api);
+  //   console.log(`✅ Overwrote API Description: ${apiDescription}`);
+  // }
 }
 
 function getSpecData(api: string): any {
