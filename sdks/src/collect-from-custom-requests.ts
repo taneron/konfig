@@ -277,6 +277,20 @@ const customRequests: Record<string, CustomRequest> = {
       return rawSpecString;
     },
   },
+  "adp.com_WorkforceNow": {
+    lambda: async ({ key }) => {
+      const postmanUrl =
+        "https://raw.githubusercontent.com/adpllc/marketplace-sample-payloads/master/wfn/ADP%20WFN%20APIs.postman_collection.json";
+      const postmanCollection = await fetch(postmanUrl).then((res) =>
+        res.json()
+      );
+      const openapi = transpilePostmanToOpenApiCached({
+        key,
+        postmanCollection,
+      });
+      return JSON.stringify(openapi);
+    },
+  },
   "withterminal.com": {
     lambda: async ({ key }) => {
       const postmanUrl =
