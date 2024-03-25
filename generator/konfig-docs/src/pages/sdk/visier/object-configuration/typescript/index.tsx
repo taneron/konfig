@@ -23,7 +23,7 @@ As the global leader in people analytics, Visier has over 25,000 customers in 75
       companyKebabCase="visier"
       clientNameCamelCase="visierObjectConfiguration"
       homepage="visier.com"
-      lastUpdated={new Date("2024-03-24T21:45:24.878Z")}
+      lastUpdated={new Date("2024-03-25T04:44:33.157Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/visier/object-configuration/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
@@ -199,7 +199,7 @@ As the global leader in people analytics, Visier has over 25,000 customers in 75
       sdkMethods={6}
       schemas={16}
       parameters={6}
-      difficulty="Easy"
+      difficulty="Very Easy"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/visier/object-configuration/openapi.yaml"
       openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/visier/object-configuration/openapi.yaml"
       developerDocumentation="docs.visier.com/developer/apis/apis.htm"
