@@ -1,0 +1,1508 @@
+examples: {}
+examples_2: {}
+examples_3:
+  /v2/org/{orgId}/job:
+    post:
+      '200':
+        application/json: {}
+  /v2/org/{orgId}/job/{jobId}:
+    get:
+      '200':
+        application/json: {}
+  /v2/org/{orgId}/person:
+    post:
+      '200':
+        application/json: {}
+  /v2/org/{orgId}/person/{personId}:
+    get:
+      '200':
+        application/json: {}
+  /v2/org/{orgId}/position:
+    post:
+      '200':
+        application/json: {}
+  /v2/org/{orgId}/position/{positionId}:
+    delete:
+      '200':
+        application/json: {}
+    patch:
+      '200':
+        application/json: {}
+  /v2/org/{orgId}/position/{positionId}/job/{jobId}:
+    delete:
+      '200':
+        application/json: {}
+    patch:
+      '200':
+        application/json: {}
+    post:
+      '200':
+        application/json: {}
+  /v2/org/{orgId}/position/{positionId}/purge:
+    delete:
+      '200':
+        application/json: {}
+ignoreObjectsWithNoProperties: true
+ignorePotentialIncorrectType: true
+operationIds:
+  /oauth/app/{appName}:
+    get: Oauth_processOauthRedirectRequest
+  /oauth/sso/{idp}/access-token:
+    get: Oauth_exchangeIdpAccessTokenResponse
+  /oauth/sso/{idp}/login:
+    get: Oauth_loginViaIdp
+  /oauth/token:
+    delete: Oauth_revokeBearerToken
+    post: Oauth_authorizeUserToken
+  /oauth/token/sso/{type}:
+    post: Oauth_generateBearerTokenFromSSO
+  /oauth/token/view:
+    post: Oauth_returnViewToken
+  /org/{slug}:
+    get: Org_getValidationBySlug
+  /saml/org/{orgId}/xml-cert:
+    get: Saml_savePerOrgXmlCertFromIdp
+    post: Saml_savePerOrgXmlCertFromIdp
+  /saml/sso/{org}:
+    post: Saml_performSsoAssertion
+  /saml/{org}/login:
+    post: Saml_performSsoAssertion
+  /v1/app:
+    get: App_listPublicGlobalApps
+    post: App_createNewApp
+  /v1/app-config:
+    post: AppConfig_createNewConfig
+  /v1/app-config/{appId}:
+    get: AppConfig_getDefaultConfigByApp
+  /v1/app-config/{appId}/{userId}:
+    get: AppConfig_getUserConfigByAppAndUser
+    patch: AppConfig_updateById
+  /v1/app/name/{appName}:
+    get: App_getByName
+  /v1/app/notify:
+    post: App_sendEmailNotification
+  /v1/app/org/{orgId}:
+    get: App_getActiveAppsByOrg
+  /v1/app/org/{orgId}/install:
+    get: App_findInstalledAppUsers
+    post: App_installAppForOrg
+  /v1/app/org/{orgId}/install/name/{appName}:
+    get: App_getInstalledAppByName
+  /v1/app/org/{orgId}/install/validate:
+    post: App_validateAppInstallation
+  /v1/app/org/{orgId}/install/{appUserId}:
+    delete: App_uninstallAppByUserId
+    get: App_findInstalledAppUsers
+    patch: App_updateInstalledApp
+  /v1/app/org/{orgId}/install/{appUserId}/code:
+    post: App_getOauth2AuthorizationCode
+  /v1/app/org/{orgId}/install/{appUserId}/installdata/{installDataName}:
+    get: App_getTokenForApp
+  /v1/app/org/{orgId}/install/{appUserId}/run:
+    post: App_runInstalledApp
+  /v1/app/org/{orgId}/install/{appUserId}/token:
+    get: App_getTokenForApp
+    post: App_generateOrRegenerateAccessToken
+  /v1/app/{appId}:
+    delete: App_removeById
+    get: App_getById
+    patch: App_updateExistingApp
+  /v1/customer:
+    get: Customer_listVisibleCustomers
+    post: Customer_createNewCustomer
+  /v1/customer/{customerId}:
+    get: Customer_getById
+    patch: Customer_updateExistingCustomer
+  /v1/customer/{customerId}/billing:
+    get: Billing_customerBillingInfo
+  /v1/customer/{customerId}/billing/cancel:
+    post: Billing_cancelSubscriptionForCustomer
+  /v1/customer/{customerId}/billing/checkout:
+    post: Billing_upgradeSubscription
+  /v1/customer/{customerId}/invoices:
+    get: Customer_getAllInvoicesForCustomer
+  /v1/customer/{customerId}/subscription:
+    get: Customer_getCharthopSubscription
+    patch: Customer_updateSubscription
+  /v1/email-template:
+    post: Emailtemplate_createNewTemplate
+  /v1/email-template/essential:
+    get: Emailtemplate_listEssentialEmailTemplates
+  /v1/email-template/name/{name}:
+    get: Emailtemplate_getByName
+  /v1/email-template/non-essential:
+    get: Emailtemplate_getAllNonEssential
+  /v1/email-template/{emailTemplateId}:
+    patch: Emailtemplate_updateExistingTemplate
+  /v1/legaldoc:
+    post: LegalDoc_createDocument
+  /v1/legaldoc/{name}:
+    get: LegalDoc_getByName
+  /v1/media:
+    post: Media_uploadNewMedia
+  /v1/media/{mediaId}:
+    get: Media_getMetadata
+  /v1/org:
+    get: Org_listVisibleOrgs
+    post: Org_createNewOrg
+  /v1/org/app-install-code/validate:
+    post: Org_validateAppInstallAuthorizationCode
+  /v1/org/slug/{slug}:
+    get: Org_getBySlug
+  /v1/org/{orgId}:
+    get: Org_getById
+    patch: Org_updateExistingOrg
+  /v1/org/{orgId}/access:
+    get: Org_getUserAccess
+  /v1/org/{orgId}/access/entity/{type}:
+    get: Access_entityActions
+  /v1/org/{orgId}/action:
+    get: Action_getAllPaginated
+    post: Action_createNewAction
+  /v1/org/{orgId}/action/{actionId}:
+    delete: Action_deleteActionById
+    get: Action_getActionById
+    patch: Action_updateExistingActionById
+  /v1/org/{orgId}/action/{actionId}/run:
+    post: Action_executeActionForTesting
+  /v1/org/{orgId}/agreement:
+    post: Org_consentTermsOfService
+  /v1/org/{orgId}/ai/form-response/summary:
+    post: Ai_generateTextSummary
+  /v1/org/{orgId}/approval-chain:
+    get: Approval_getApprovalChains
+    post: Approval_createChain
+  /v1/org/{orgId}/approval-chain/create-default-chain:
+    post: Approval_generateDefaultChainStages
+  /v1/org/{orgId}/approval-chain/{approvalChainId}:
+    delete: Approval_deleteChainById
+    get: Approval_getApprovalChainById
+    patch: Approval_updateChain
+  /v1/org/{orgId}/approval-chain/{approvalChainId}/request:
+    get: Approval_getAllApprovalRequestsForApprovalChain
+    post: Approval_createRequest
+  /v1/org/{orgId}/approval-chain/{approvalChainId}/request/entity/comp-review:
+    get: Approval_getCompReviewResponsesForChain
+  /v1/org/{orgId}/approval-chain/{approvalChainId}/request/entity/scenario:
+    get: Approval_getScenarioResponses
+  /v1/org/{orgId}/approval-chain/{approvalChainId}/request/{approvalRequestId}:
+    delete: Approval_deleteRequestApproval
+    get: Approval_requestApprovalRequest
+    patch: Approval_updateExistingRequest
+  /v1/org/{orgId}/approval-chain/{approvalChainId}/request/{approvalRequestId}/reassign-approver:
+    post: Approval_reassignApproverAtStage
+  /v1/org/{orgId}/approval-chain/{approvalChainId}/request/{approvalRequestId}/send-reminder:
+    post: Approval_sendStageReviewerReminder
+  /v1/org/{orgId}/approval-chain/{approvalChainId}/stage:
+    get: Approval_getApprovalChainStages
+    post: Approval_createChainStage
+  /v1/org/{orgId}/approval-chain/{approvalChainId}/stage/{approvalChainStageId}:
+    delete: Approval_deleteApprovalChainStage
+    get: Approval_getAllStagesForChain
+    patch: Approval_updateStageById
+  /v1/org/{orgId}/approval-request/entity/scenario:
+    get: Approvalrequest_getAllApprovalRequestScenarioResponses
+  /v1/org/{orgId}/approval-request/scenario-job/{jobId}:
+    get: Approvalrequest_getApprovalRequestScenarioResponseByJobId
+  /v1/org/{orgId}/approval-request/{approvalRequestId}/scenario-response:
+    get: Approvalrequest_getScenarioResponseById
+  /v1/org/{orgId}/assessment:
+    get: Assessment_getAllPaginated
+    post: Assessment_createNewAssessment
+  /v1/org/{orgId}/assessment/bulk/delete:
+    post: Assessment_bulkDelete
+  /v1/org/{orgId}/assessment/bulk/duplicate:
+    post: Assessment_bulkDuplicateAssessments
+  /v1/org/{orgId}/assessment/bulk/move:
+    post: Assessment_updateAssessmentTypes
+  /v1/org/{orgId}/assessment/{assessmentId}:
+    delete: Assessment_removeById
+    get: Assessment_getById
+    patch: Assessment_updateExistingAssessment
+  /v1/org/{orgId}/assessment/{assessmentId}/complete:
+    post: Assessment_completeAssessment
+  /v1/org/{orgId}/assessment/{assessmentId}/form/{formId}/expire:
+    post: Assessment_expireFormTasks
+  /v1/org/{orgId}/assessment/{assessmentId}/reactivate:
+    post: Assessment_reactivateAssessment
+  /v1/org/{orgId}/band:
+    delete: Band_deleteCompBandsOnDate
+    get: Band_findCompBandsInOrg
+    post: Band_createCompBand
+  /v1/org/{orgId}/band/reset:
+    delete: Band_deleteCompBandsOnDate
+  /v1/org/{orgId}/band/{bandId}:
+    delete: Band_removeCompBand
+    get: Band_findCompBandsInOrg
+    patch: Band_updateCompBandById
+  /v1/org/{orgId}/budget-pool:
+    get: Budgetpool_getAllForOrg
+    post: Budgetpool_createNewPool
+  /v1/org/{orgId}/budget-pool/{id}:
+    delete: Budgetpool_deleteBudgetPoolById
+    get: Budgetpool_getSpecificPool
+    patch: Budgetpool_updateBudgetPool
+  /v1/org/{orgId}/budget-pool/{id}/calculate:
+    get: Budgetpool_calculateGuideline
+  /v1/org/{orgId}/budget-pool/{id}/guidelines:
+    get: Budgetpool_getGuidelinesForBudgetPool
+  /v1/org/{orgId}/budget-pool/{id}/preview:
+    get: Budgetpool_calculateGuideline
+  /v1/org/{orgId}/calendar:
+    get: Calendar_getEntriesByTimePeriod
+  /v1/org/{orgId}/category:
+    get: Category_getAvailable
+    post: Category_createNewCategory
+  /v1/org/{orgId}/category-sort:
+    delete: Categorysort_deleteSortOrder
+    get: Categorysort_getCategorySortOrder
+    patch: Categorysort_updateExistingCategorySort
+    post: Categorysort_createIfNotExists
+    put: Categorysort_createOrUpdateSort
+  /v1/org/{orgId}/category-sort/upsert:
+    post: Categorysort_createOrUpdateSortOrder
+  /v1/org/{orgId}/category/{categoryId}:
+    delete: Category_removeById
+    get: Category_getById
+    patch: Category_updateExistingCategory
+  /v1/org/{orgId}/change:
+    get: Change_getRecentChanges
+  /v1/org/{orgId}/change-head:
+    post: Org_createNewJobPlaceholder
+  /v1/org/{orgId}/change/bulkchange:
+    post: Change_performBulkChange
+  /v1/org/{orgId}/change/bulkupdate:
+    post: Change_bulkUpdateJobs
+  /v1/org/{orgId}/change/depart-rehire:
+    post: Change_createDepartRehirePair
+  /v1/org/{orgId}/change/scenario/{scenarioId}:
+    get: Change_findScenarioChanges
+  /v1/org/{orgId}/change/sync/{type}:
+    post: Change_createIfNotExists
+  /v1/org/{orgId}/change/{changeId}:
+    delete: Change_deletePreviousChange
+    get: Change_getById
+    patch: Change_updateChangeById
+  /v1/org/{orgId}/change/{changeId}/approve:
+    post: Change_approveOrReject
+  /v1/org/{orgId}/change/{changeId}/approver:
+    get: Change_checkApproverEligibility
+  /v1/org/{orgId}/change/{type}:
+    post: Change_createNewChange
+  /v1/org/{orgId}/change/{type}/validate:
+    post: Change_validateChangeOperation
+  /v1/org/{orgId}/comment:
+    post: Comment_createNewComment
+  /v1/org/{orgId}/comment/comp-review/{compReviewId}:
+    get: Comment_listCommentsOnCompReview
+  /v1/org/{orgId}/comment/entity/{entityId}:
+    get: Comment_getByEntityId
+  /v1/org/{orgId}/comment/scenario/{scenarioId}:
+    get: Comment_listCommentsOnScenarioAndChanges
+  /v1/org/{orgId}/comment/{commentId}:
+    delete: Comment_removeById
+    get: Comment_getById
+  /v1/org/{orgId}/comp-review:
+    get: Compreview_findCompReviews
+    post: Compreview_createCompReview
+  /v1/org/{orgId}/comp-review/bulk/delete:
+    post: Compreview_deleteBulkCompReviews
+  /v1/org/{orgId}/comp-review/bulk/duplicate:
+    post: Compreview_createBulkDuplicate
+  /v1/org/{orgId}/comp-review/{compReviewId}:
+    delete: Compreview_deleteCompReview
+    get: Compreview_findCompReviewById
+    patch: Compreview_updateCompReview
+  /v1/org/{orgId}/comp-review/{compReviewId}/approval-requests:
+    get: Compreview_listRequestResponses
+  /v1/org/{orgId}/comp-review/{compReviewId}/approval-requests/{approvalRequestId}:
+    patch: Compreview_updateApprovalRequestStatus
+  /v1/org/{orgId}/comp-review/{compReviewId}/associated-entities:
+    get: Compreview_getDateCaches
+  /v1/org/{orgId}/comp-review/{compReviewId}/conclude:
+    post: Compreview_closeCompReview
+  /v1/org/{orgId}/comp-review/{compReviewId}/duplicate:
+    post: Compreview_duplicateCompReview
+  /v1/org/{orgId}/comp-review/{compReviewId}/eligible-employees:
+    get: Compreview_getEligibleEmployees
+  /v1/org/{orgId}/comp-review/{compReviewId}/export:
+    post: Compreview_exportChanges
+  /v1/org/{orgId}/comp-review/{compReviewId}/export/audit:
+    post: Compreview_exportAuditLog
+  /v1/org/{orgId}/comp-review/{compReviewId}/export/comments:
+    post: Compreview_exportComments
+  /v1/org/{orgId}/comp-review/{compReviewId}/generate:
+    post: Compreview_generateCompReview
+  /v1/org/{orgId}/comp-review/{compReviewId}/in-cycle:
+    get: Compreview_overviewInCycleCompReview
+  /v1/org/{orgId}/comp-review/{compReviewId}/in-cycle/changes:
+    get: Compreview_getChangesInCycle
+  /v1/org/{orgId}/comp-review/{compReviewId}/in-cycle/changes/{changeId}:
+    get: Compreview_getChangeAndGuidelineFlags
+  /v1/org/{orgId}/comp-review/{compReviewId}/in-cycle/collabicient:
+    get: Compreview_getCollabicientInCycle
+  /v1/org/{orgId}/comp-review/{compReviewId}/metadata:
+    get: Compreview_getMetadataById
+  /v1/org/{orgId}/comp-review/{compReviewId}/pause:
+    post: Compreview_pauseReview
+  /v1/org/{orgId}/comp-review/{compReviewId}/preview:
+    post: Compreview_generateTieringPreview
+  /v1/org/{orgId}/comp-review/{compReviewId}/send-reminder-email:
+    post: Compreview_sendReminderEmail
+  /v1/org/{orgId}/comp-review/{compReviewId}/visualizations:
+    post: Compreview_createVisualizationData
+  /v1/org/{orgId}/config:
+    get: Orgconfig_getByOrgId
+    patch: Orgconfig_patchExistingConfig
+    post: Orgconfig_createIfNotExists
+  /v1/org/{orgId}/content:
+    get: Content_getPaginated
+    post: Content_createNewPiece
+  /v1/org/{orgId}/content/homepage:
+    patch: Content_updateHomepageContent
+  /v1/org/{orgId}/content/homepage/render:
+    get: Content_renderHomepageContents
+  /v1/org/{orgId}/content/path/{path}:
+    get: Content_getByPath
+  /v1/org/{orgId}/content/path/{path}/render:
+    get: Content_renderByPath
+  /v1/org/{orgId}/content/{contentId}:
+    delete: Content_removeById
+    get: Content_getById
+    patch: Content_updatePieceById
+  /v1/org/{orgId}/cql/evaluate:
+    post: Expression_evaluateCarrotExpression
+  /v1/org/{orgId}/cql/validate:
+    post: Expression_validateCarrotExpression
+  /v1/org/{orgId}/data-user-person:
+    get: Org_getDataUserPersonById
+  /v1/org/{orgId}/data-user-person-count:
+    get: Org_getDataUserPersonCount
+  /v1/org/{orgId}/data-users-persons:
+    get: Org_getDataUsersPersons
+  /v1/org/{orgId}/data-view:
+    get: Dataview_getAllPaginated
+    post: Dataview_createNewDataView
+  /v1/org/{orgId}/data-view/{dataViewId}:
+    delete: Dataview_deleteDataView
+    get: Dataview_getById
+    patch: Dataview_updateExistingView
+  /v1/org/{orgId}/event:
+    get: Event_getPastEvents
+  /v1/org/{orgId}/event/notify/inbound/{appId}/{inboundId}:
+    post: Event_createInboundNotification
+  /v1/org/{orgId}/event/notify/outbound/app/{appId}:
+    post: Event_createOutboundEvent
+  /v1/org/{orgId}/event/{eventId}:
+    get: Event_getEventPayload
+  /v1/org/{orgId}/event/{eventId}/notify:
+    post: Event_resendAssociatedNotifications
+  /v1/org/{orgId}/exchange-rate/{date}:
+    delete: Exchangerate_deleteCustomRateOnDate
+    get: Exchangerate_getRatesOnDate
+    patch: Exchangerate_updateUsdExchangeRatesForDate
+  /v1/org/{orgId}/exchange-rate/{date}/custom:
+    get: Exchangerate_getCustomExchangeRates
+  /v1/org/{orgId}/exchange-rate/{date}/custom/bulkupdate:
+    post: Exchangerate_bulkUpdateCustomRates
+  /v1/org/{orgId}/exchange-rate/{date}/global:
+    get: Exchangerate_getGlobalByDate
+  /v1/org/{orgId}/exchange-rate/{date}/history:
+    get: Exchangerate_orgCustomExchangeRatesHistory
+  /v1/org/{orgId}/export/csv/change:
+    post: Export_changelogToCsv
+  /v1/org/{orgId}/export/csv/fields:
+    post: Export_csvCustomFields
+  /v1/org/{orgId}/export/csv/scenario/{scenarioId}:
+    post: Export_scenarioCsv
+  /v1/org/{orgId}/export/csv/scenario/{scenarioId}/comments:
+    post: Export_csvScenarioComments
+  /v1/org/{orgId}/export/csv/snapshot:
+    post: Export_rosterToCsvSnapshot
+  /v1/org/{orgId}/export/csv/task/{reviewId}:
+    post: Export_taskToCsv
+  /v1/org/{orgId}/export/csv/users:
+    post: Export_userReviewCsv
+  /v1/org/{orgId}/export/pdf/review/{assessmentId}:
+    post: Export_pdfReview
+  /v1/org/{orgId}/export/powerpoint/org:
+    post: Export_orgChartToPowerpoint
+  /v1/org/{orgId}/export/powerpoint/report/{reportId}:
+    post: Export_reportToPowerpoint
+  /v1/org/{orgId}/export/zip/file:
+    post: Export_fileZipDownload
+  /v1/org/{orgId}/field:
+    get: Field_getAllPaginated
+    post: Field_createNewField
+  /v1/org/{orgId}/field/built-in:
+    get: Field_getBuiltInFields
+  /v1/org/{orgId}/field/category:
+    get: Field_getUncategorizedFields
+  /v1/org/{orgId}/field/category/{categoryId}:
+    get: Field_getFieldsInCategory
+  /v1/org/{orgId}/field/delete:
+    delete: Field_remove
+  /v1/org/{orgId}/field/remove-category:
+    post: Field_removeFromCategories
+  /v1/org/{orgId}/field/remove-overrides:
+    post: Field_removeFieldOverrides
+  /v1/org/{orgId}/field/status:
+    post: Field_updateStatusForExistingFields
+  /v1/org/{orgId}/field/{fieldId}:
+    delete: Field_removeById
+    get: Field_getById
+    patch: Field_updateExistingField
+  /v1/org/{orgId}/field/{fieldId}/dryrun:
+    patch: Field_updateFieldDryRun
+  /v1/org/{orgId}/file:
+    get: File_getMetadata
+    post: File_uploadNewFile
+  /v1/org/{orgId}/file/{fileId}:
+    delete: File_removeFileById
+    get: File_getMetadata
+  /v1/org/{orgId}/file/{fileId}/download:
+    get: File_getMetadataById
+  /v1/org/{orgId}/form:
+    get: Form_listOrgForms
+    post: Form_createNewForm
+  /v1/org/{orgId}/form-response:
+    get: Formresponse_getByForm
+  /v1/org/{orgId}/form-response/count:
+    get: Formresponse_getFormResponseCount
+  /v1/org/{orgId}/form-response/{formResponseId}:
+    delete: Formresponse_removeById
+    get: Formresponse_getById
+    patch: Formresponse_updateMetadata
+    post: Formresponse_updateAnswersMetadata
+  /v1/org/{orgId}/form/available:
+    get: Form_listAvailableForms
+  /v1/org/{orgId}/form/delete:
+    delete: Form_deleteFormById
+  /v1/org/{orgId}/form/draft/{draftId}:
+    delete: Form_deleteFormDraft
+  /v1/org/{orgId}/form/person/{personId}:
+    get: Form_getApplicableFormsForPerson
+  /v1/org/{orgId}/form/status:
+    post: Form_updateFormStatus
+  /v1/org/{orgId}/form/{formId}:
+    delete: Form_deleteFormById
+    get: Form_getById
+    patch: Form_updateExistingForm
+    post: Form_submitFormResponse
+  /v1/org/{orgId}/form/{formId}/collect:
+    post: Form_sendEmailsAndChatNotifications
+  /v1/org/{orgId}/form/{formId}/draft:
+    get: Form_getCurrentStateOfDraftData
+    post: Form_submitDraftData
+  /v1/org/{orgId}/form/{formId}/remind:
+    post: Form_sendReminderNotification
+  /v1/org/{orgId}/form/{formId}/render:
+    get: Form_renderForDisplay
+  /v1/org/{orgId}/form/{formId}/rerender/question/{updateQuestionId}:
+    post: Form_rerenderQuestionUpdate
+  /v1/org/{orgId}/form/{formId}/submit:
+    post: Form_submitFormData
+  /v1/org/{orgId}/form/{formId}/submit/draft:
+    post: Form_submitFormDraft
+  /v1/org/{orgId}/guideline:
+    get: Guideline_allForCompReview
+    post: Guideline_createNewGuideline
+  /v1/org/{orgId}/guideline/{id}:
+    delete: Guideline_removeById
+    get: Guideline_getSpecificGuideline
+    patch: Guideline_updateGuideline
+  /v1/org/{orgId}/guideline/{id}/calculate:
+    get: Guideline_calculateMatrixValuesForSpecificGuideline
+  /v1/org/{orgId}/import/csv/columnMatch:
+    post: Import_csvDataWithColumnMatch
+  /v1/org/{orgId}/import/csv/data:
+    post: Import_csvData
+  /v1/org/{orgId}/import/csv/filepath:
+    post: Import_csvDataWithFilePath
+  /v1/org/{orgId}/import/csv/initialColumnMatch:
+    post: Import_csvDataColumnMatch
+  /v1/org/{orgId}/import/spreadsheet/validateFormat:
+    post: Import_spreadsheetValidation
+  /v1/org/{orgId}/job-level:
+    get: Joblevel_findInOrganization
+    post: Joblevel_createNewJobLevel
+  /v1/org/{orgId}/job-level/{jobLevelId}:
+    delete: Joblevel_deleteJobLevel
+    get: Joblevel_getByEffectiveDate
+    patch: Joblevel_updateJobLevel
+  /v1/org/{orgId}/media:
+    post: Media_uploadNewPiece
+  /v1/org/{orgId}/media/{mediaId}:
+    get: Media_getMetadata
+  /v1/org/{orgId}/message:
+    post: Message_createNewMessage
+  /v1/org/{orgId}/message/bulk/read:
+    post: Message_markMessagesAsRead
+  /v1/org/{orgId}/message/bulk/seen:
+    post: Message_markBulkAsSeen
+  /v1/org/{orgId}/message/me:
+    get: Message_getAllForUser
+  /v1/org/{orgId}/message/me/{messageKey}:
+    get: Message_getMessageByKey
+  /v1/org/{orgId}/message/{messageId}:
+    get: Message_getMessageById
+  /v1/org/{orgId}/message/{messageId}/read:
+    post: Message_setReadStatus
+  /v1/org/{orgId}/metric:
+    post: Metric_recordDailyMetric
+  /v1/org/{orgId}/multiplier:
+    get: Multiplier_findCompBandMultipliersInOrg
+    post: Multiplier_createNewMultiplier
+  /v1/org/{orgId}/multiplier/{multiplierId}:
+    delete: Multiplier_deleteMultiplierById
+    get: Multiplier_findCompBandMultipliersInOrg
+    patch: Multiplier_updateMultiplerById
+  /v1/org/{orgId}/notification:
+    post: Notification_sendEmailOrInAppNotification
+  /v1/org/{orgId}/onboard:
+    get: Onboard_incompleteSteps
+  /v1/org/{orgId}/onboard/{stepName}/skip:
+    post: Onboard_markStepSkipped
+  /v1/org/{orgId}/policy:
+    get: Policy_getAllPolicies
+    post: Policy_createNewPolicy
+  /v1/org/{orgId}/policy/action:
+    get: Policy_getAllEntityActionMaps
+  /v1/org/{orgId}/policy/validate:
+    post: Policy_checkValidityOf
+  /v1/org/{orgId}/policy/{policyId}:
+    delete: Policy_removeById
+    get: Policy_getById
+    patch: Policy_updateExistingPolicy
+  /v1/org/{orgId}/policy/{policyId}/copy:
+    post: Policy_copyExistingPolicy
+  /v1/org/{orgId}/preload:
+    get: Preload_preloadedDataRetrieval
+  /v1/org/{orgId}/process:
+    get: Process_getPreviouslyRunProcesses
+    post: Process_createNewPendingProcess
+  /v1/org/{orgId}/process/last-sync/{appUserId}:
+    get: Process_getLastSyncForAppUser
+  /v1/org/{orgId}/process/self-serve:
+    post: Process_createPendingProcess
+  /v1/org/{orgId}/process/{createIdOverride}:
+    post: Process_createPendingProcessWithUserId
+  /v1/org/{orgId}/process/{processId}:
+    get: Process_checkProcessStatus
+    patch: Process_updateStatusOfProcess
+  /v1/org/{orgId}/process/{processId}/decrement:
+    put: Process_decrementStep
+  /v1/org/{orgId}/process/{processId}/events:
+    get: Process_getEventsByProcessId
+  /v1/org/{orgId}/process/{processId}/file:
+    get: Process_downloadFileById
+    post: Process_uploadFileAndMarkComplete
+  /v1/org/{orgId}/process/{processId}/increment:
+    put: Process_incrementProcessStep
+  /v1/org/{orgId}/process/{processId}/log:
+    get: Process_downloadLog
+  /v1/org/{orgId}/process/{processId}/resume:
+    put: Process_resumeProcessWithUserId
+  /v1/org/{orgId}/process/{processId}/resumeWithFile:
+    put: Process_resumeWithFile
+  /v1/org/{orgId}/process/{processId}/state:
+    put: Process_updateProcessState
+  /v1/org/{orgId}/profile-tab:
+    get: Profiletab_listProfileTabs
+    post: Profiletab_createNewTab
+  /v1/org/{orgId}/profile-tab/job/{jobId}:
+    get: Profiletab_findTabsForJob
+  /v1/org/{orgId}/profile-tab/job/{jobId}/profile-tab/{tabId}:
+    get: Profiletab_getEvaluateProfileTabContent
+  /v1/org/{orgId}/profile-tab/person/{personId}:
+    get: Profiletab_getProfileTabs
+  /v1/org/{orgId}/profile-tab/{profileTabId}:
+    delete: Profiletab_deleteProfileTab
+    get: Profiletab_getByOrgIdAndTabId
+    patch: Profiletab_updateExistingTab
+  /v1/org/{orgId}/query:
+    get: Query_queryTokens
+    post: Query_liveQueryToken
+  /v1/org/{orgId}/query/{queryToken}:
+    delete: Query_expireLiveQuery
+    get: Query_liveQueryResult
+  /v1/org/{orgId}/question:
+    get: Question_getAllInOrg
+    post: Question_create
+  /v1/org/{orgId}/question/{questionId}:
+    delete: Question_remove
+    get: Question_getById
+    patch: Question_updateByOrgAndId
+  /v1/org/{orgId}/report:
+    get: Report_getAllPaginated
+    post: Report_createNewReport
+  /v1/org/{orgId}/report/bulk-delete:
+    post: Report_bulkDelete
+  /v1/org/{orgId}/report/bulk-duplicate:
+    post: Report_duplicateReports
+  /v1/org/{orgId}/report/chart/{chartId}:
+    delete: ReportChart_removeById
+    get: ReportChart_getByChartId
+    patch: ReportChart_updateExistingChartData
+  /v1/org/{orgId}/report/count:
+    get: Report_getCountOfReportsInOrganization
+  /v1/org/{orgId}/report/query:
+    post: Report_timeseriesDataArbitraryQueries
+  /v1/org/{orgId}/report/{reportId}:
+    delete: Report_removeById
+    get: Report_findReportById
+    patch: Report_updateExistingReport
+  /v1/org/{orgId}/report/{reportId}/chart:
+    get: ReportChart_getAll
+    post: ReportChart_createNewChart
+  /v1/org/{orgId}/report/{reportId}/chart/{chartId}/clone:
+    post: ReportChart_cloneChart
+  /v1/org/{orgId}/report/{reportId}/chart/{chartId}/data:
+    get: ReportChart_exportData
+  /v1/org/{orgId}/report/{reportId}/chart/{chartId}/export/csv:
+    post: Report_exportChartCsv
+  /v1/org/{orgId}/report/{reportId}/chart/{chartId}/query:
+    get: ReportChart_queryUnderlyingDataInChart
+  /v1/org/{orgId}/report/{reportId}/clone:
+    post: Report_createExactCopy
+  /v1/org/{orgId}/report/{reportId}/query:
+    get: Report_getAllReportCharts
+  /v1/org/{orgId}/role:
+    get: Role_getAllInOrg
+    post: Role_createNewRole
+  /v1/org/{orgId}/role/{roleId}:
+    delete: Role_removeById
+    get: Role_getRoleById
+    patch: Role_updateExisting
+  /v1/org/{orgId}/role/{roleId}/copy:
+    post: Role_copyExistingRole
+  /v1/org/{orgId}/scenario:
+    get: Scenario_listPaginatedScenarios
+    post: Scenario_createNew
+  /v1/org/{orgId}/scenario/bulk/archive:
+    post: Scenario_bulkArchiveScenarios
+  /v1/org/{orgId}/scenario/bulk/delete:
+    post: Scenario_deleteBulkScenarios
+  /v1/org/{orgId}/scenario/bulk/unarchive:
+    post: Scenario_unarchiveSetOfScenarios
+  /v1/org/{orgId}/scenario/{scenarioId}:
+    delete: Scenario_removeById
+    get: Scenario_getById
+    patch: Scenario_updateScenarioChange
+  /v1/org/{orgId}/scenario/{scenarioId}/change/{changeId}:
+    patch: Change_amendScenarioChange
+  /v1/org/{orgId}/scenario/{scenarioId}/change/{changeId}/status/{processId}:
+    get: Change_getStatus
+  /v1/org/{orgId}/scenario/{scenarioId}/combine:
+    post: Scenario_combineScenarios
+  /v1/org/{orgId}/scenario/{scenarioId}/dates:
+    post: Scenario_adjustDates
+  /v1/org/{orgId}/scenario/{scenarioId}/merge:
+    post: Scenario_mergeIntoPrimaryTimeline
+  /v1/org/{orgId}/scenario/{scenarioId}/recalculate-metadata:
+    post: Scenario_manuallyRecalculateMetadata
+  /v1/org/{orgId}/scenario/{scenarioId}/update-shared-view:
+    post: Scenario_updateSharedViewConfig
+  /v1/org/{orgId}/search:
+    get: Search_orgDataByOrgIdAndSearchString
+  /v1/org/{orgId}/table:
+    get: Table_listInOrgPaginated
+    post: Table_createNewTable
+  /v1/org/{orgId}/table/{tableId}:
+    delete: Table_removeById
+    get: Table_getTableByIdOrName
+    patch: Table_updateExistingTable
+  /v1/org/{orgId}/table/{tableId}/data:
+    get: Table_getAllRows
+    post: Table_upsertRowData
+  /v1/org/{orgId}/table/{tableId}/data/{keyColumn}/{keyValue}:
+    delete: Table_deleteRow
+    get: Table_getRowByColumn
+    patch: Table_updateExistingRowData
+  /v1/org/{orgId}/table/{tableId}/data/{keyColumn}/{keyValue}/purge:
+    delete: Table_deleteRowFromHistory
+  /v1/org/{orgId}/table/{tableId}/export:
+    post: Table_exportDataToCsv
+  /v1/org/{orgId}/table/{tableId}/import:
+    post: Table_importDataFromCsvFile
+  /v1/org/{orgId}/task:
+    get: Task_getAllTasks
+  /v1/org/{orgId}/task-config:
+    get: Taskconfig_getAllConfigs
+    post: Taskconfig_createNewConfig
+  /v1/org/{orgId}/task-config/{id}:
+    get: Taskconfig_getSpecificConfig
+  /v1/org/{orgId}/task/bulk-delete:
+    delete: Task_deleteBulkTasks
+  /v1/org/{orgId}/task/me:
+    get: Task_getCurrentUserTasks
+  /v1/org/{orgId}/task/remind:
+    post: Task_sendReminderNotification
+  /v1/org/{orgId}/task/summary/{assessmentId}:
+    get: Task_getAssessmentTasksSummary
+  /v1/org/{orgId}/task/task:
+    get: Task_queryAssessmentTasks
+  /v1/org/{orgId}/task/{assessmentId}/{formId}:
+    delete: Task_removeFormFromAssessment
+  /v1/org/{orgId}/task/{taskId}:
+    delete: Task_removeById
+  /v1/org/{orgId}/task/{taskId}/mark-done:
+    patch: Task_updateStatus
+  /v1/org/{orgId}/task/{taskId}/skip:
+    patch: Task_markAsSkipped
+  /v1/org/{orgId}/template:
+    get: Template_getAllInOrgs
+    post: Template_createNewTemplate
+  /v1/org/{orgId}/template/bulk/delete:
+    post: Template_bulkDelete
+  /v1/org/{orgId}/template/bulk/duplicate:
+    post: Template_createBulkDuplicate
+  /v1/org/{orgId}/template/email:
+    post: Template_createEmail
+  /v1/org/{orgId}/template/email/{templateName}:
+    delete: Template_removeEmail
+    get: Template_getByName
+    patch: Template_updateEmailTemplate
+  /v1/org/{orgId}/template/{templateId}:
+    delete: Template_removeById
+    get: Template_getById
+    patch: Template_updateExisting
+  /v1/org/{orgId}/template/{templateId}/generate:
+    post: Template_generatePdfsAndEmails
+  /v1/org/{orgId}/template/{templateId}/preview:
+    post: Template_generateTemplatePreview
+  /v1/org/{orgId}/template/{templateId}/render:
+    post: Template_evaluateAgainstJob
+  /v1/org/{orgId}/test-email:
+    post: Org_sendTestEmailToOneself
+  /v1/org/{orgId}/timeoff:
+    get: Timeoff_getTimeOff
+    post: Timeoff_createEntry
+  /v1/org/{orgId}/timeoff/request:
+    post: Timeoff_submitTimeOffRequest
+  /v1/org/{orgId}/timeoff/request/validate:
+    post: Timeoff_validateTimeoffRequest
+  /v1/org/{orgId}/timeoff/{timeOffId}:
+    delete: Timeoff_removeEntry
+    get: Timeoff_findTimeOffById
+    patch: Timeoff_updateTimeOffEntry
+  /v1/org/{orgId}/timeoff/{timeOffId}/approve:
+    post: Timeoff_approvePendingRequest
+  /v1/org/{orgId}/timeoff/{timeOffId}/reject:
+    post: Timeoff_rejectTimeOffRequest
+  /v1/org/{orgId}/usage/{type}:
+    post: Usage_recordProductFeatureUsage
+  /v1/org/{orgId}/welcome-email:
+    get: Org_getWelcomeEmailSettings
+  /v1/org/{org}/app-install-code:
+    post: Org_getOauth2AuthorizationCode
+  /v1/product:
+    get: Product_listAllProducts
+    post: Product_createNewProduct
+  /v1/product/{productId}:
+    get: Product_getById
+    patch: Product_updateExistingProduct
+  /v1/status:
+    get: Status_apiIsUpAndAvailable
+  /v1/stock:
+    get: Stock_getHistory
+  /v1/stock/{id}:
+    delete: Stock_removePrice
+  /v1/stock/{symbol}/{date}/{type}:
+    get: Stock_getPriceByDateType
+    put: Stock_upsertPriceByDateType
+  /v1/stripe/plan:
+    get: Stripe_getAllPlans
+  /v1/stripe/product:
+    get: Stripe_getAllProducts
+  /v1/stripe/product/{productId}:
+    get: Stripe_getProductById
+  /v1/stripe/setup-intent:
+    post: Stripe_createSetupIntentSecret
+  /v1/stripe/webhook:
+    post: Stripe_processWebhookEvents
+  /v1/user:
+    get: User_getAllUsersWithinOrgs
+    post: User_createNewUser
+  /v1/user/assign:
+    patch: User_assignRoleToMultiple
+  /v1/user/email/{email}:
+    get: User_getUserByEmail
+  /v1/user/invite:
+    post: User_inviteMultipleNewUsers
+  /v1/user/me:
+    get: User_getCurrentUser
+  /v1/user/me/view:
+    get: User_viewedUserDetails
+  /v1/user/person/{personId}:
+    get: User_returnUserByPersonId
+  /v1/user/sendreset:
+    post: User_sendPasswordResetEmail
+  /v1/user/token:
+    delete: User_revokeAccessTokens
+  /v1/user/{userId}:
+    get: User_getUserById
+    patch: User_updateExistingUser
+  /v1/user/{userId}/password:
+    post: User_changePassword
+  /v1/user/{userId}/token:
+    delete: User_revokeAccessToken
+  /v1/webauthn/register:
+    get: Webauthn_verifyPhysicalKeyForUser
+    post: Webauthn_verifyPhysicalKeyForUser
+  /v1/webauthn/register/{emailBase64}:
+    delete: Webauthn_removeRegisteredCredentialsByEmail
+  /v1/webauthn/verify:
+    get: Webauthn_checkExistingKey
+    post: Webauthn_verifyPhysicalKeyForUser
+  /v2/org/{orgId}/change:
+    get: Change_getRecentChangesForOrgOrPerson
+  /v2/org/{orgId}/change/{changeId}:
+    get: Change_getById
+  /v2/org/{orgId}/group/count:
+    get: Group_getOrganizedGroupCounts
+  /v2/org/{orgId}/group/graph:
+    get: Group_findInOrgOfType
+  /v2/org/{orgId}/group/orphaned:
+    get: Group_findOrphanedGroups
+  /v2/org/{orgId}/group/{type}:
+    get: Group_findOfType
+    post: Group_createNewGroup
+  /v2/org/{orgId}/group/{type}/bulk-delete:
+    post: Group_markMultipleAsDeleted
+  /v2/org/{orgId}/group/{type}/import:
+    post: Group_importCsvData
+  /v2/org/{orgId}/group/{type}/{groupId}:
+    delete: Group_removeByGroupId
+    get: Group_getById
+    patch: Group_updateGroupDetails
+  /v2/org/{orgId}/job:
+    get: Job_findInOrganization
+    post: Job_createNewJob
+  /v2/org/{orgId}/job/bulkupdate:
+    post: Job_performBulkUpdate
+  /v2/org/{orgId}/job/count:
+    get: Job_getOrganizationJobCount
+  /v2/org/{orgId}/job/graph:
+    get: Job_getRegionJobsGraph
+  /v2/org/{orgId}/job/graph-counts:
+    get: Job_getSiblingsAndDirectsMap
+  /v2/org/{orgId}/job/{jobId}:
+    delete: Job_removeById
+    get: Job_findInOrganization
+    patch: Job_updateJobDetails
+  /v2/org/{orgId}/job/{jobId}/position:
+    get: Job_listOccupiedPositionsByJobAndDate
+  /v2/org/{orgId}/person:
+    get: Person_findInOrganization
+    post: Person_createNewPerson
+  /v2/org/{orgId}/person/geocodes:
+    get: Person_getGeocodesForOrg
+  /v2/org/{orgId}/person/{personId}:
+    delete: Person_removeById
+    get: Person_getById
+    patch: Person_updateById
+  /v2/org/{orgId}/position:
+    get: Position_list
+    post: Position_createNewPosition
+  /v2/org/{orgId}/position/import:
+    post: Position_importCsvDataWithFilePath
+  /v2/org/{orgId}/position/{positionId}:
+    delete: Position_deletePosition
+    get: Position_getById
+    patch: Position_updatePositionDetails
+  /v2/org/{orgId}/position/{positionId}/history:
+    get: Position_getHistoryById
+  /v2/org/{orgId}/position/{positionId}/job/{jobId}:
+    delete: Position_removeJobFromPosition
+    patch: Position_updateJobDatesOnPosition
+    post: Position_assignJobToPosition
+  /v2/org/{orgId}/position/{positionId}/purge:
+    delete: Position_deleteAndPurge
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /oauth/token:
+    post:
+      application/x-www-form-urlencoded: OauthAuthorizeUserTokenRequest
+  /saml/sso/{org}:
+    post:
+      application/x-www-form-urlencoded: SamlPerformSsoAssertionRequest
+  /v1/app/org/{orgId}/install/{appUserId}/run:
+    post:
+      application/json: AppRunInstalledAppRequest
+  /v1/org/{orgId}/assessment/bulk/delete:
+    post:
+      application/json: AssessmentBulkDeleteRequest
+  /v1/org/{orgId}/assessment/bulk/duplicate:
+    post:
+      application/json: AssessmentBulkDuplicateAssessmentsRequest
+  /v1/org/{orgId}/comp-review/bulk/delete:
+    post:
+      application/json: CompreviewDeleteBulkCompReviewsRequest
+  /v1/org/{orgId}/comp-review/bulk/duplicate:
+    post:
+      application/json: CompreviewCreateBulkDuplicateRequest
+  /v1/org/{orgId}/comp-review/{compReviewId}/export:
+    post:
+      application/json: CompreviewExportChangesRequest
+  /v1/org/{orgId}/event/notify/inbound/{appId}/{inboundId}:
+    post:
+      application/json: EventCreateInboundNotificationRequest
+  /v1/org/{orgId}/event/notify/outbound/app/{appId}:
+    post:
+      application/json: EventCreateOutboundEventRequest
+  /v1/org/{orgId}/exchange-rate/{date}/custom/bulkupdate:
+    post:
+      application/json: ExchangerateBulkUpdateCustomRatesRequest
+  /v1/org/{orgId}/export/csv/change:
+    post:
+      application/json: ExportChangelogToCsvRequest
+  /v1/org/{orgId}/export/csv/fields:
+    post:
+      application/json: ExportCsvCustomFieldsRequest
+  /v1/org/{orgId}/export/powerpoint/report/{reportId}:
+    post:
+      application/json: ExportReportToPowerpointRequest
+  /v1/org/{orgId}/field/delete:
+    delete:
+      application/json: FieldRemoveRequest
+  /v1/org/{orgId}/file:
+    post:
+      multipart/form-data: FileUploadNewFileRequest
+  /v1/org/{orgId}/form-response/{formResponseId}:
+    post:
+      application/json: FormresponseUpdateAnswersMetadataRequest
+  /v1/org/{orgId}/form/delete:
+    delete:
+      application/json: FormDeleteFormByIdRequest
+  /v1/org/{orgId}/form/{formId}/submit/draft:
+    post:
+      application/json: FormSubmitFormDraftRequest
+  /v1/org/{orgId}/import/csv/columnMatch:
+    post:
+      multipart/form-data: ImportCsvDataWithColumnMatchRequest
+  /v1/org/{orgId}/message/bulk/read:
+    post:
+      application/json: MessageMarkMessagesAsReadRequest
+  /v1/org/{orgId}/process/self-serve:
+    post:
+      multipart/form-data: ProcessCreatePendingProcessRequest
+  /v1/org/{orgId}/process/{processId}/resume:
+    put:
+      application/json: ProcessResumeProcessWithUserIdRequest
+  /v1/org/{orgId}/process/{processId}/state:
+    put:
+      application/json: ProcessUpdateProcessStateRequest
+  /v1/org/{orgId}/report/bulk-delete:
+    post:
+      application/json: ReportBulkDeleteRequest
+  /v1/org/{orgId}/report/bulk-duplicate:
+    post:
+      application/json: ReportDuplicateReportsRequest
+  /v1/org/{orgId}/scenario/bulk/archive:
+    post:
+      application/json: ScenarioBulkArchiveScenariosRequest
+  /v1/org/{orgId}/scenario/bulk/delete:
+    post:
+      application/json: ScenarioDeleteBulkScenariosRequest
+  /v1/org/{orgId}/scenario/bulk/unarchive:
+    post:
+      application/json: ScenarioUnarchiveSetOfScenariosRequest
+  /v1/org/{orgId}/scenario/{scenarioId}/change/{changeId}:
+    patch:
+      application/json: ChangeAmendScenarioChangeRequest
+  /v1/org/{orgId}/task/bulk-delete:
+    delete:
+      application/json: TaskDeleteBulkTasksRequest
+  /v1/org/{orgId}/template/bulk/delete:
+    post:
+      application/json: TemplateBulkDeleteRequest
+  /v1/org/{orgId}/template/bulk/duplicate:
+    post:
+      application/json: TemplateCreateBulkDuplicateRequest
+  /v1/stripe/webhook:
+    post:
+      application/json: StripeProcessWebhookEventsRequest
+  /v1/user/assign:
+    patch:
+      application/json: UserAssignRoleToMultipleRequest
+  /v1/user/invite:
+    post:
+      application/json: UserInviteMultipleNewUsersRequest
+  /v1/user/token:
+    delete:
+      application/json: UserRevokeAccessTokensRequest
+  /v2/org/{orgId}/group/{type}/bulk-delete:
+    post:
+      application/json: GroupMarkMultipleAsDeletedRequest
+  /v2/org/{orgId}/position/import:
+    post:
+      application/x-www-form-urlencoded: PositionImportCsvDataWithFilePathRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /v1/org/{orgId}/change/{changeId}/approver:
+    get:
+      '200':
+        application/json: ChangeCheckApproverEligibilityResponse
+  /v1/org/{orgId}/comp-review/{compReviewId}/approval-requests:
+    get:
+      '200':
+        application/json: CompreviewListRequestResponsesResponse
+  /v1/org/{orgId}/event/notify/inbound/{appId}/{inboundId}:
+    post:
+      '200':
+        application/json: EventCreateInboundNotificationResponse
+  /v1/org/{orgId}/event/notify/outbound/app/{appId}:
+    post:
+      '200':
+        application/json: EventCreateOutboundEventResponse
+  /v1/org/{orgId}/exchange-rate/{date}/history:
+    get:
+      '200':
+        application/json: ExchangerateOrgCustomExchangeRatesHistoryResponse
+  /v1/org/{orgId}/query:
+    get:
+      '200':
+        application/json: QueryQueryTokensResponse
+  /v1/org/{orgId}/report/query:
+    post:
+      '200':
+        application/json: ReportTimeseriesDataArbitraryQueriesResponse
+  /v1/org/{orgId}/report/{reportId}/query:
+    get:
+      '200':
+        application/json: ReportGetAllReportChartsResponse
+  /v1/user/invite:
+    post:
+      '200':
+        application/json: UserInviteMultipleNewUsersResponse
+  /v2/org/{orgId}/group/{type}/{groupId}:
+    get:
+      '200':
+        application/json: GroupGetByIdResponse
+  /v2/org/{orgId}/job:
+    post:
+      '200':
+        application/json: JobCreateNewJobResponse
+  /v2/org/{orgId}/job/{jobId}:
+    get:
+      '200':
+        application/json: JobFindInOrganizationResponse
+  /v2/org/{orgId}/person:
+    post:
+      '200':
+        application/json: PersonCreateNewPersonResponse
+  /v2/org/{orgId}/person/geocodes:
+    get:
+      '200':
+        application/json: PersonGetGeocodesForOrgResponse
+  /v2/org/{orgId}/person/{personId}:
+    get:
+      '200':
+        application/json: PersonGetByIdResponse
+  /v2/org/{orgId}/position:
+    get:
+      '200':
+        application/json: PositionListResponse
+    post:
+      '200':
+        application/json: PositionCreateNewPositionResponse
+  /v2/org/{orgId}/position/{positionId}:
+    delete:
+      '200':
+        application/json: PositionDeletePositionResponse
+    get:
+      '200':
+        application/json: PositionGetByIdResponse
+    patch:
+      '200':
+        application/json: PositionUpdatePositionDetailsResponse
+  /v2/org/{orgId}/position/{positionId}/history:
+    get:
+      '200':
+        application/json: PositionGetHistoryByIdResponse
+  /v2/org/{orgId}/position/{positionId}/job/{jobId}:
+    delete:
+      '200':
+        application/json: PositionRemoveJobFromPositionResponse
+    patch:
+      '200':
+        application/json: PositionUpdateJobDatesOnPositionResponse
+    post:
+      '200':
+        application/json: PositionAssignJobToPositionResponse
+  /v2/org/{orgId}/position/{positionId}/purge:
+    delete:
+      '200':
+        application/json: PositionDeleteAndPurgeResponse
+securityParameters:
+  Stripe-Signature:
+    header: false
+  action:
+    query: false
+  addRates:
+    query: false
+  app:
+    query: false
+  appId:
+    query: false
+  approvalChainId:
+    query: false
+  approvalRequestId:
+    query: false
+  approxLimit:
+    query: false
+  assessmentId:
+    query: false
+  assigndate:
+    query: false
+  authCode:
+    query: false
+  builtin:
+    query: false
+  canAccess:
+    query: false
+  changeGroupingId:
+    query: false
+  changeGroupingType:
+    query: false
+  chartLabel:
+    query: false
+  code:
+    query: false
+  collabicientJobId:
+    query: false
+  collaboratorSelectedReviewerJobId:
+    query: false
+  columns:
+    query: false
+  columnsOnly:
+    query: false
+  compReviewId:
+    query: false
+  completedAtEnd:
+    query: false
+  completedAtStart:
+    query: false
+  createDefaultStages:
+    query: false
+  createGroups:
+    query: false
+  createOrg:
+    query: false
+  currency:
+    query: false
+  currencyCode:
+    query: false
+  customerId:
+    query: false
+  date:
+    query: false
+  defaultChangeDate:
+    query: false
+  depth:
+    query: false
+  desc:
+    query: false
+  disableOverwritePerson:
+    query: false
+  disableSyncHireDate:
+    query: false
+  dryRun:
+    query: false
+  email:
+    query: false
+  end:
+    query: false
+  endDate:
+    query: false
+  entityId:
+    query: false
+  entityIds:
+    query: false
+  entityType:
+    query: false
+  entityTypes:
+    query: false
+  evalJobId:
+    query: false
+  excludeAtsRecruitingFields:
+    query: false
+  field:
+    query: false
+  fieldEntityTypes:
+    query: false
+  fields:
+    query: false
+  fieldsChanged:
+    query: false
+  fieldsList:
+    query: false
+  filePath:
+    query: false
+  filter:
+    query: false
+  filterScenarioIds:
+    query: false
+  form:
+    query: false
+  formId:
+    query: false
+  formResponseChangeId:
+    query: false
+  formResponseId:
+    query: false
+  formVersionId:
+    query: false
+  format:
+    query: false
+  from:
+    query: false
+  fromDate:
+    query: false
+  fromId:
+    query: false
+  getUncomplete:
+    query: false
+  groupApproxLimit:
+    query: false
+  groupFields:
+    query: false
+  groupFilter:
+    query: false
+  groupId:
+    query: false
+  groupLimit:
+    query: false
+  id:
+    query: false
+  idp:
+    query: false
+  ids:
+    query: false
+  importAfterDryRun:
+    query: false
+  importDryRun:
+    query: false
+  importFromProcessId:
+    query: false
+  importSource:
+    query: false
+  includeAll:
+    query: false
+  includeAllRequests:
+    query: false
+  includeBackfill:
+    query: false
+  includeBuiltIns:
+    query: false
+  includeChangeComments:
+    query: false
+  includeDeleted:
+    query: false
+  includeExternalRecruiter:
+    query: false
+  includeFeatures:
+    query: false
+  includeFormer:
+    query: false
+  includeGrantSchedule:
+    query: false
+  includeInactive:
+    query: false
+  includeStruck:
+    query: false
+  includeTtst:
+    query: false
+  includeUpdatedFields:
+    query: false
+  ineligible:
+    query: false
+  internalOptions:
+    query: false
+  interval:
+    query: false
+  isAppProcess:
+    query: false
+  isFinalApproval:
+    query: false
+  isFullyApproved:
+    query: false
+  isParentProcess:
+    query: false
+  isPreview:
+    query: false
+  isSync:
+    query: false
+  jobFields:
+    query: false
+  jobFilter:
+    query: false
+  jobId:
+    query: false
+  jobLimit:
+    query: false
+  keepEntityIds:
+    query: false
+  kind:
+    query: false
+  lastActiveAt:
+    query: false
+  lastCreateAt:
+    query: false
+  limit:
+    query: false
+  mapper:
+    query: false
+  maxRows:
+    query: false
+  minColumns:
+    query: false
+  names:
+    query: false
+  notifyAppName:
+    query: false
+  notifyUserIds:
+    query: false
+  offset:
+    query: false
+  open:
+    query: false
+  orgId:
+    query: false
+  parentEntityId:
+    query: false
+  parentOnly:
+    query: false
+  parentProcessId:
+    query: false
+  personId:
+    query: false
+  positionFields:
+    query: false
+  preview:
+    query: false
+  previewJobId:
+    query: false
+  processId:
+    query: false
+  processTypes:
+    query: false
+  productId:
+    query: false
+  projectHires:
+    query: false
+  proposalOnly:
+    query: false
+  providedQuery:
+    query: false
+  q:
+    query: false
+  questionId:
+    query: false
+  realOnly:
+    query: false
+  referencedReportUrl:
+    query: false
+  refs:
+    query: false
+  removeDate:
+    query: false
+  returnAccess:
+    query: false
+  returnFormCompletionLinks:
+    query: false
+  reviewsOnly:
+    query: false
+  role:
+    query: false
+  scenarioId:
+    query: false
+  scenarioOnly:
+    query: false
+  scenariosOnly:
+    query: false
+  scope:
+    query: false
+  search:
+    query: false
+  searchValue:
+    query: false
+  sensitive:
+    query: false
+  showState:
+    query: false
+  signupSource:
+    query: false
+  silent:
+    query: false
+  size:
+    query: false
+  skipChangeCreation:
+    query: false
+  skipErrors:
+    query: false
+  sort:
+    query: false
+  source:
+    query: false
+  start:
+    query: false
+  startDate:
+    query: false
+  state:
+    query: false
+  status:
+    query: false
+  statuses:
+    query: false
+  stripUpdates:
+    query: false
+  submitPersonId:
+    query: false
+  symbol:
+    query: false
+  syncCauses:
+    query: false
+  syncDirections:
+    query: false
+  syncImages:
+    query: false
+  table:
+    query: false
+  tableType:
+    query: false
+  tag:
+    query: false
+  tags:
+    query: false
+  targetId:
+    query: false
+  targetType:
+    query: false
+  toDate:
+    query: false
+  token:
+    cookie: false
+  type:
+    query: false
+  unreadOnly:
+    query: false
+  unsorted:
+    query: false
+  untilDate:
+    query: false
+  updateTypes:
+    query: false
+  upsert:
+    query: false
+  useScenarioChanges:
+    query: false
+  userId:
+    query: false
+  utmParams:
+    query: false
+  viewJobId:
+    query: false
+validServerUrls: {}

@@ -1007,6 +1007,11 @@ const customRequests: Record<string, CustomRequest> = {
       return downloadOpenApiSpecFromReadme({ urls });
     },
   },
+  "charthop.com": {
+    type: "GET",
+    url: "https://api.charthop.com/swagger.json",
+    apiBaseUrl: "https://api.charthop.com",
+  },
   "helcim.com": {
     lambda: async () => {
       const urls = await collectEndpointsFromReadme({
@@ -1185,7 +1190,8 @@ const customRequests: Record<string, CustomRequest> = {
   },
   "validifi.com": {
     lambda: async ({ key }) => {
-      const postmanUrl = "https://portal.ribbit.ai/resources/RIBBIT%20API_v4.postman_collection.json";
+      const postmanUrl =
+        "https://portal.ribbit.ai/resources/RIBBIT%20API_v4.postman_collection.json";
       const postmanCollection = await fetch(postmanUrl).then((res) =>
         res.json()
       );
