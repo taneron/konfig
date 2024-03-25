@@ -151,6 +151,7 @@ export async function executeFixCommand(options: FixOptions): Promise<void> {
     numberOfFixedRequestMediaTypeObjectsMissingSchema,
     numberOfFixedArraySchemasMissingItems,
     numberOfFixedEnumTypes,
+    numberOfMissingResponsesObjectsFixed,
   } = await fixOas({
     spec,
     progress,
@@ -194,6 +195,7 @@ Fixed ${numberOfExamplesFixed} examples with invalid schemas
 Fixed ${numberOfParametersConvertedToSecurityRequirements} parameters that should be security requirements
 Fixed ${numberOfListUsagesOfSecurityFixed} list usages of security
 Fixed ${numberOfAdditionalPropertiesFixed} additional properties = false
+Fixed ${numberOfMissingResponsesObjectsFixed} missing responses objects
 Removed ${numberOfTrailingSlashesFixed} trailing slashes
 Removed ${numberOfRedundantSecurityAndParametersFixed} redundant security requirement and parameters
 Removed ${numberOfRedundantSecuritySchemesRemoved} redundant security schemes

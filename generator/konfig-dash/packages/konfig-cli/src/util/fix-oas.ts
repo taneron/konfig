@@ -43,6 +43,7 @@ import { fixUpperCaseSecurityInFields } from './fix-upper-case-security-in-field
 import { fixRequestMediaTypeObjectMissingSchema } from './fix-request-media-type-object-missing-schema'
 import { fixArraySchemaMissingItems } from './fix-array-schema-missing-items'
 import { fixEnumWithIncorrectType } from './fix-enum-with-incorrect-type'
+import { fixMissingResponsesObject } from './fix-missing-responses-objects'
 
 export async function fixOas({
   spec,
@@ -98,6 +99,10 @@ export async function fixOas({
     progress,
     alwaysYes,
     noInput,
+  })
+
+  const numberOfMissingResponsesObjectsFixed = await fixMissingResponsesObject({
+    spec,
   })
 
   // Missing Operation Response description
@@ -289,17 +294,21 @@ export async function fixOas({
     spec,
   })
 
-  const numberOfSecurityInFieldsLowercased = await fixUpperCaseSecurityInFields({
-    spec,
-  })
+  const numberOfSecurityInFieldsLowercased = await fixUpperCaseSecurityInFields(
+    {
+      spec,
+    }
+  )
 
-  const numberOfFixedRequestMediaTypeObjectsMissingSchema = await fixRequestMediaTypeObjectMissingSchema({
-    spec,
-  })
+  const numberOfFixedRequestMediaTypeObjectsMissingSchema =
+    await fixRequestMediaTypeObjectMissingSchema({
+      spec,
+    })
 
-  const numberOfFixedArraySchemasMissingItems = await fixArraySchemaMissingItems({
-    spec,
-  })
+  const numberOfFixedArraySchemasMissingItems =
+    await fixArraySchemaMissingItems({
+      spec,
+    })
 
   const numberOfFixedEnumTypes = await fixEnumWithIncorrectType({ spec })
 
@@ -349,6 +358,7 @@ export async function fixOas({
     numberOfFixedRequestMediaTypeObjectsMissingSchema,
     numberOfFixedArraySchemasMissingItems,
     numberOfFixedEnumTypes,
+    numberOfMissingResponsesObjectsFixed,
   }
   const issuesFixed = Object.values(result).reduce((a, b) => a + b)
   return {
