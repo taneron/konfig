@@ -998,6 +998,10 @@ const customRequests: Record<string, CustomRequest> = {
       return downloadOpenApiSpecFromReadme({ urls });
     },
   },
+  "atlassian.com_Jira": {
+    type: "GET",
+    url: "https://dac-static.atlassian.com/cloud/jira/platform/swagger-v3.v3.json",
+  },
   "nocodb.com": {
     type: "GET",
     url: "https://raw.githubusercontent.com/nocodb/nocodb/HEAD/packages/nocodb/src/schema/swagger-v2.json",
