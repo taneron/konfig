@@ -17,7 +17,7 @@ export default function BrexOnboardingTypeScriptSdk() {
       companyKebabCase="brex"
       clientNameCamelCase="brexOnboarding"
       homepage="brex.com"
-      lastUpdated={new Date("2024-03-24T21:43:23.717Z")}
+      lastUpdated={new Date("2024-03-25T23:06:14.544Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/brex/onboarding/favicon.png"
       contactUrl="https://brex.com"
       contactEmail="developer-access@brex.com"
@@ -180,7 +180,7 @@ export default function BrexOnboardingTypeScriptSdk() {
       sdkMethods={4}
       schemas={25}
       parameters={8}
-      difficulty="Easy"
+      difficulty="Very Easy"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/brex/onboarding/openapi.yaml"
       openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/brex/onboarding/openapi.yaml"
       developerDocumentation="developer.brex.com/openapi/onboarding_api/"

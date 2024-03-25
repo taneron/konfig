@@ -17,7 +17,7 @@ export default function GiphyTypeScriptSdk() {
       companyKebabCase="giphy"
       clientNameCamelCase="giphy"
       homepage="giphy.com"
-      lastUpdated={new Date("2024-03-24T21:41:22.682Z")}
+      lastUpdated={new Date("2024-03-25T23:06:14.544Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/giphy/favicon.png"
       // Missing contactUrl
       contactEmail="support@giphy.com"
@@ -494,7 +494,7 @@ export default function GiphyTypeScriptSdk() {
       sdkMethods={10}
       schemas={15}
       parameters={24}
-      difficulty="Easy"
+      difficulty="Very Easy"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/giphy/openapi.yaml"
       openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/giphy/openapi.yaml"
       developerDocumentation="developers.giphy.com/docs/api/"

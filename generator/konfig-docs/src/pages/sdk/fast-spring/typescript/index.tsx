@@ -17,7 +17,7 @@ export default function FastSpringTypeScriptSdk() {
       companyKebabCase="fast-spring"
       clientNameCamelCase="fastSpring"
       homepage="fastspring.com/"
-      lastUpdated={new Date("2024-03-25T22:47:11.618Z")}
+      lastUpdated={new Date("2024-03-25T23:06:14.544Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/fastspring/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
@@ -1929,7 +1929,7 @@ export default function FastSpringTypeScriptSdk() {
       sdkMethods={60}
       schemas={184}
       parameters={131}
-      difficulty="Hard"
+      difficulty="Medium"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/fastspring/openapi.yaml"
       openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/fastspring/openapi.yaml"
       developerDocumentation="developer.fastspring.com/"
