@@ -1,8 +1,6 @@
 import React from "react";
 import { HttpMethodsEnum } from "konfig-lib/dist/forEachOperation";
 // @ts-ignore
-import Description from "./_description.mdx";
-// @ts-ignore
 import GettingStarted from "./_getting-started.mdx";
 // @ts-ignore
 import FirstRequest from "./_first-request.mdx"
@@ -35,7 +33,6 @@ Or get a free API key and start building, no credit card required, at shipengine
       contactEmail="sales@shipengine.com"
       previewLinkImage="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/shipengine/imagePreview.png"
       GettingStarted={GettingStarted}
-      Description={Description}
       FirstRequest={FirstRequest}
       categories={["shipping_api","multi_carrier","logistics_provider","shipping_integration","usps","ups","dhl","shipping_experts","shipping","ecommerce","order_management","international_shipping"]}
       methods={[

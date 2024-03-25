@@ -1,8 +1,6 @@
 import React from "react";
 import { HttpMethodsEnum } from "konfig-lib/dist/forEachOperation";
 // @ts-ignore
-import Description from "./_description.mdx";
-// @ts-ignore
 import GettingStarted from "./_getting-started.mdx";
 // @ts-ignore
 import FirstRequest from "./_first-request.mdx"
@@ -25,7 +23,6 @@ export default function AdpWorkforceNowTypeScriptSdk() {
       // Missing contactEmail
       previewLinkImage="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/adp/workforce-now/imagePreview.jpg"
       GettingStarted={GettingStarted}
-      Description={Description}
       FirstRequest={FirstRequest}
       categories={["hr","payroll","time_management","benefits","human_capital_management","hr_bpo","payroll_tax_services","talent_management","human_resource_management","benefits_administration","time_attendance","payroll_services","professional_services","erp"]}
       methods={[

@@ -1,8 +1,6 @@
 import React from "react";
 import { HttpMethodsEnum } from "konfig-lib/dist/forEachOperation";
 // @ts-ignore
-import Description from "./_description.mdx";
-// @ts-ignore
 import GettingStarted from "./_getting-started.mdx";
 // @ts-ignore
 import FirstRequest from "./_first-request.mdx"
@@ -27,7 +25,6 @@ It's the fair & transparent pricing structures that help Helcim build long-term 
       // Missing contactEmail
       previewLinkImage="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/helcim/imagePreview.webp"
       GettingStarted={GettingStarted}
-      Description={Description}
       FirstRequest={FirstRequest}
       categories={["finance","payments","online_payments","fintech","billing","ecommerce","payment_solutions"]}
       methods={[

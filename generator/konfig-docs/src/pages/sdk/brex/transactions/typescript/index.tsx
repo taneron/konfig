@@ -1,8 +1,6 @@
 import React from "react";
 import { HttpMethodsEnum } from "konfig-lib/dist/forEachOperation";
 // @ts-ignore
-import Description from "./_description.mdx";
-// @ts-ignore
 import GettingStarted from "./_getting-started.mdx";
 // @ts-ignore
 import FirstRequest from "./_first-request.mdx"
@@ -25,7 +23,6 @@ export default function BrexTransactionsTypeScriptSdk() {
       contactEmail="developer-access@brex.com"
       previewLinkImage="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/brex/transactions/imagePreview.jpg"
       GettingStarted={GettingStarted}
-      Description={Description}
       FirstRequest={FirstRequest}
       categories={["finance","payments","online_payments","fintech","automation","global_payments","travel_expenses"]}
       methods={[

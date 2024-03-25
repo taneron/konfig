@@ -1,8 +1,6 @@
 import React from "react";
 import { HttpMethodsEnum } from "konfig-lib/dist/forEachOperation";
 // @ts-ignore
-import Description from "./_description.mdx";
-// @ts-ignore
 import GettingStarted from "./_getting-started.mdx";
 // @ts-ignore
 import FirstRequest from "./_first-request.mdx"
@@ -29,7 +27,6 @@ As the global leader in people analytics, Visier has over 25,000 customers in 75
       // Missing contactEmail
       previewLinkImage="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/visier/data-intake/imagePreview.jpg"
       GettingStarted={GettingStarted}
-      Description={Description}
       FirstRequest={FirstRequest}
       categories={["enterprise_software","people_analytics","business_impact","team_management","workforce_insights","human_resources","workforce_intelligence","workforce_analytics","hr_metrics","hr_analytics","hr_dashboard","hr_reporting","workforce_planning","human_capital_management","workforce_solutions","talent_acquisition_analytics"]}
       methods={[

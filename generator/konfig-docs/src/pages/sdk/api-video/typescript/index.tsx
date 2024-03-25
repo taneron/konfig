@@ -1,8 +1,6 @@
 import React from "react";
 import { HttpMethodsEnum } from "konfig-lib/dist/forEachOperation";
 // @ts-ignore
-import Description from "./_description.mdx";
-// @ts-ignore
 import GettingStarted from "./_getting-started.mdx";
 // @ts-ignore
 import FirstRequest from "./_first-request.mdx"
@@ -28,7 +26,6 @@ The service handles the end-to-end workflow, from video ingestion to worldwide v
       // Missing contactEmail
       previewLinkImage="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/api-video/imagePreview.png"
       GettingStarted={GettingStarted}
-      Description={Description}
       FirstRequest={FirstRequest}
       categories={["video","developer_tools","platform","storage","online_video","video_encoding","video_streaming","live_streaming","video_analytics","video_api","video_ondemand"]}
       methods={[

@@ -1,8 +1,6 @@
 import React from "react";
 import { HttpMethodsEnum } from "konfig-lib/dist/forEachOperation";
 // @ts-ignore
-import Description from "./_description.mdx";
-// @ts-ignore
 import GettingStarted from "./_getting-started.mdx";
 // @ts-ignore
 import FirstRequest from "./_first-request.mdx"
@@ -25,7 +23,6 @@ export default function BasetenTypeScriptSdk() {
       // Missing contactEmail
       previewLinkImage="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/baseten/imagePreview.png"
       GettingStarted={GettingStarted}
-      Description={Description}
       FirstRequest={FirstRequest}
       categories={["ai","ml","developer_tools","automation","collaboration","media","cloud","open_source","machine_learning","deployment","scalability","cost_efficiency","llm","stable_diffusion","tts","text_to_audio","text_to_speech","text_to_image","image_to_video","image_classification","text_embeddings","audio_to_text","image_to_text"]}
       methods={[

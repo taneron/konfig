@@ -1,8 +1,6 @@
 import React from "react";
 import { HttpMethodsEnum } from "konfig-lib/dist/forEachOperation";
 // @ts-ignore
-import Description from "./_description.mdx";
-// @ts-ignore
 import GettingStarted from "./_getting-started.mdx";
 // @ts-ignore
 import FirstRequest from "./_first-request.mdx"
@@ -27,7 +25,6 @@ With Front, teams can centralize messages across channels, route them to the rig
       // Missing contactEmail
       previewLinkImage="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/front/core/imagePreview.png"
       GettingStarted={GettingStarted}
-      Description={Description}
       FirstRequest={FirstRequest}
       categories={["messaging","email","communication","customer_operations","support","sales","account_management","customer_service","help_desk","customer_communication","churn_prevention","channel_routing","real_time_collaboration","collaboration","email_collaboration","shared_inbox"]}
       methods={[

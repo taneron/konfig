@@ -111,8 +111,8 @@ function main() {
     fs.writeFileSync(indexTsxPath, indexTsx);
 
     // write to _description.mdx
-    const descriptionMdx = generateDescriptionMdx(json);
-    fs.writeFileSync(path.join(dirPath, "_description.mdx"), descriptionMdx);
+    // const descriptionMdx = generateDescriptionMdx(json);
+    // fs.writeFileSync(path.join(dirPath, "_description.mdx"), descriptionMdx);
 
     // write to _getting-started.mdx
     const gettingStartedMdx = generateGettingStartedMdx(json);
@@ -471,8 +471,6 @@ function generateIndexTsx({
   return `import React from "react";
 import { HttpMethodsEnum } from "konfig-lib/dist/forEachOperation";
 // @ts-ignore
-import Description from "./_description.mdx";
-// @ts-ignore
 import GettingStarted from "./_getting-started.mdx";
 ${
   useNewPage
@@ -520,7 +518,6 @@ export default function ${camelcase(codeFriendlyCompanyName, {
       }
       previewLinkImage="${previewLinkImage}"
       GettingStarted={GettingStarted}
-      Description={Description}
       ${useNewPage ? `FirstRequest={FirstRequest}` : ""}
       categories={${JSON.stringify(categories)}}
       methods={${JSON.stringify(

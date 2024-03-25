@@ -1,8 +1,6 @@
 import React from "react";
 import { HttpMethodsEnum } from "konfig-lib/dist/forEachOperation";
 // @ts-ignore
-import Description from "./_description.mdx";
-// @ts-ignore
 import GettingStarted from "./_getting-started.mdx";
 // @ts-ignore
 import FirstRequest from "./_first-request.mdx"
@@ -29,7 +27,6 @@ Griffin is authorised (with restrictions) by the PRA and FCA and backed by leadi
       // Missing contactEmail
       previewLinkImage="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/griffin/imagePreview.jpg"
       GettingStarted={GettingStarted}
-      Description={Description}
       FirstRequest={FirstRequest}
       categories={["finance","banking","payments","online_payments","fintech","automation","open_banking","wealth_management","global_banking","retail_banking","commercial_banking","multinational_financial_services","financial_technology","financial_services"]}
       methods={[

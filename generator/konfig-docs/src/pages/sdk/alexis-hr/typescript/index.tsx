@@ -1,8 +1,6 @@
 import React from "react";
 import { HttpMethodsEnum } from "konfig-lib/dist/forEachOperation";
 // @ts-ignore
-import Description from "./_description.mdx";
-// @ts-ignore
 import GettingStarted from "./_getting-started.mdx";
 // @ts-ignore
 import FirstRequest from "./_first-request.mdx"
@@ -30,7 +28,6 @@ AlexisHR har kunder som NAKD, Bokio, Qred och används av företag och anställd
       contactEmail="support@alexishr.com"
       previewLinkImage="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/alexishr/imagePreview.webp"
       GettingStarted={GettingStarted}
-      Description={Description}
       FirstRequest={FirstRequest}
       categories={["hr","work_management","human_resources","hr_metrics","hr_analytics","hr_dashboard","hr_reporting","talent_management","hrms","people_management_platform","hr_systems","hr_services","hr_solutions","hr_tech","employee_engagement","hr_platform","personnel_management","hris","people_analytics","whistleblowing","reviews"]}
       methods={[

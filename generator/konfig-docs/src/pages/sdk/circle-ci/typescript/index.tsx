@@ -1,8 +1,6 @@
 import React from "react";
 import { HttpMethodsEnum } from "konfig-lib/dist/forEachOperation";
 // @ts-ignore
-import Description from "./_description.mdx";
-// @ts-ignore
 import GettingStarted from "./_getting-started.mdx";
 // @ts-ignore
 import FirstRequest from "./_first-request.mdx"
@@ -30,7 +28,6 @@ CircleCI is proud to be an Equal Opportunity and Affirmative Action employer. We
       // Missing contactEmail
       previewLinkImage="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/circleci/imagePreview.png"
       GettingStarted={GettingStarted}
-      Description={Description}
       FirstRequest={FirstRequest}
       categories={["developer_tools","automation","collaboration","continuous_integration","continuous_delivery","continuous_integration","continuous_delivery","continuous_deployment","containers","devops","cicd","ci","cd","software_delivery","ci_platform","software_testing","developer_experience"]}
       methods={[

@@ -1,8 +1,6 @@
 import React from "react";
 import { HttpMethodsEnum } from "konfig-lib/dist/forEachOperation";
 // @ts-ignore
-import Description from "./_description.mdx";
-// @ts-ignore
 import GettingStarted from "./_getting-started.mdx";
 // @ts-ignore
 import FirstRequest from "./_first-request.mdx"
@@ -29,7 +27,6 @@ Start your free trial or request a demo at www.7shifts.com.`}
       contactEmail="api-support@7shifts.com"
       previewLinkImage="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/7-shifts/imagePreview.jpg"
       GettingStarted={GettingStarted}
-      Description={Description}
       FirstRequest={FirstRequest}
       categories={["team_management","restaurant","scheduling","labor_costs","team_communication","workforce_insights","hr_metrics","hr_analytics","hr_reporting","workforce_planning","human_capital_management","workforce_solutions","food_beverages","restaurants","staff_scheduling","restaurant_scheduling","restaurant_communication","scheduling_software","labor_tools","staff_management"]}
       methods={[

@@ -43,7 +43,7 @@ export function SdkNew({
   openApiGitHubUi,
   developerDocumentation,
   companyKebabCase,
-}: InputPropsFromOriginalSdkComponent) {
+}: Omit<InputPropsFromOriginalSdkComponent, "Description">) {
   const serviceNameSubstring =
     serviceName !== undefined ? ` ${serviceName}` : "";
   const description = `Explore the ${company}${serviceNameSubstring} TypeScript SDK. Discover SDK ${methods.length} methods to integrate ${company}'s${serviceNameSubstring} API into your application.`;
