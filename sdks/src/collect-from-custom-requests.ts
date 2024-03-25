@@ -998,6 +998,10 @@ const customRequests: Record<string, CustomRequest> = {
       return downloadOpenApiSpecFromReadme({ urls });
     },
   },
+  "nocodb.com": {
+    type: "GET",
+    url: "https://raw.githubusercontent.com/nocodb/nocodb/HEAD/packages/nocodb/src/schema/swagger-v2.json",
+  },
   "coalesce.io": {
     lambda: async () => {
       const urls = await collectEndpointsFromReadme({

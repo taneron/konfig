@@ -1,0 +1,700 @@
+examples: {}
+examples_2: {}
+examples_3:
+  /api/v2/meta/bases/{baseId}/has-empty-or-null-filters:
+    get:
+      '200':
+        application/json: {}
+  /api/v2/meta/connection/select:
+    post:
+      '200':
+        application/json: {}
+  /api/v2/meta/plugins/test:
+    post:
+      '200':
+        application/json: {}
+  /api/v2/meta/plugins/{pluginId}:
+    patch:
+      '200':
+        application/json: {}
+  /api/v2/public/calendar-view/{sharedViewUuid}/countByDate:
+    get:
+      '200':
+        application/json: {}
+  /api/v2/public/shared-view/{sharedViewUuid}/nested/{columnName}:
+    get:
+      '200':
+        application/json: {}
+ignoreObjectsWithNoProperties: true
+ignorePotentialIncorrectType: true
+operationIds:
+  /api/v2/meta/audits/comments:
+    get: Utils_listComments
+    post: Utils_createNewCommentRow
+  /api/v2/meta/audits/comments/count:
+    get: Utils_countComments
+  /api/v2/meta/audits/rows/{rowId}/update:
+    post: Utils_updateAuditRow
+  /api/v2/meta/audits/{auditId}/comment:
+    patch: Utils_updateAuditComment
+  /api/v2/meta/axiosRequestMake:
+    post: Utils_makeAxiosRequest
+  /api/v2/meta/bases/:
+    get: Base_listBases
+    post: Base_createNewBase
+  /api/v2/meta/bases/:baseId/sources/:sourceId/sqlView:
+    post: Source_createSqlView
+  /api/v2/meta/bases/{baseId}:
+    delete: Base_removeBase
+    get: Base_getInfo
+    patch: Base_updateBaseMeta
+  /api/v2/meta/bases/{baseId}/api-tokens:
+    get: ApiToken_listInBase
+    post: ApiToken_createInBase
+  /api/v2/meta/bases/{baseId}/api-tokens/{token}:
+    delete: ApiToken_deleteInBase
+  /api/v2/meta/bases/{baseId}/audits:
+    get: Base_listAuditsInBase
+  /api/v2/meta/bases/{baseId}/cost:
+    get: Base_calculateCost
+  /api/v2/meta/bases/{baseId}/has-empty-or-null-filters:
+    get: Base_checkEmptyFilters
+  /api/v2/meta/bases/{baseId}/info:
+    get: Base_getInfoById
+  /api/v2/meta/bases/{baseId}/meta-diff:
+    get: Base_metaDiffGet
+    post: Base_syncMetaDiff
+  /api/v2/meta/bases/{baseId}/meta-diff/{sourceId}:
+    get: Source_getMetaDiff
+    post: Source_syncMetaDiff
+  /api/v2/meta/bases/{baseId}/shared:
+    delete: Base_deleteSharedBase
+    get: Base_getSharedBase
+    patch: Base_updateSharedBase
+    post: Base_createSharedBase
+  /api/v2/meta/bases/{baseId}/sources/:
+    get: Source_baseIdSourcesList
+    post: Source_createNewSource
+  /api/v2/meta/bases/{baseId}/sources/{sourceId}:
+    delete: Source_deleteDetails
+    get: Source_getDetails
+    patch: Source_updateDetails
+  /api/v2/meta/bases/{baseId}/sources/{sourceId}/share/erd:
+    delete: Source_deleteErdShare
+    post: Source_createErdShare
+  /api/v2/meta/bases/{baseId}/tables:
+    get: DbTable_listTables
+    post: DbTable_createNewTable
+  /api/v2/meta/bases/{baseId}/user:
+    patch: Base_updateMetaUser
+  /api/v2/meta/bases/{baseId}/users:
+    get: Auth_listBaseUsers
+    post: Auth_addBaseUser
+  /api/v2/meta/bases/{baseId}/users/{userId}:
+    delete: Auth_deleteBaseUser
+    patch: Auth_updateBaseUser
+  /api/v2/meta/bases/{baseId}/users/{userId}/resend-invite:
+    post: Auth_resendInviteUser
+  /api/v2/meta/bases/{baseId}/visibility-rules:
+    get: Base_getUiAcl
+    post: Base_createUiAcl
+  /api/v2/meta/bases/{baseId}/{sourceId}/tables:
+    get: Source_getTables
+    post: Source_createTable
+  /api/v2/meta/cache:
+    delete: Utils_clearNocoCache
+    get: Utils_getAllNocoCache
+  /api/v2/meta/columns/{columnId}:
+    delete: DbTableColumn_deleteByColumnId
+    get: DbTableColumn_getColumnById
+    patch: DbTableColumn_updateByColumnId
+  /api/v2/meta/columns/{columnId}/primary:
+    post: DbTableColumn_setPrimaryValue
+  /api/v2/meta/connection/select:
+    post: Utils_selectConnectionPost
+  /api/v2/meta/connection/test:
+    post: Utils_testDbConnection
+  /api/v2/meta/duplicate/{baseId}:
+    post: Base_duplicateBasePost
+  /api/v2/meta/duplicate/{baseId}/table/{tableId}:
+    post: DbTable_duplicateTablePost
+  /api/v2/meta/duplicate/{baseId}/{sourceId}:
+    post: Base_duplicatePost
+  /api/v2/meta/filters/{filterGroupId}/children:
+    get: DbTableFilter_getChildren
+  /api/v2/meta/filters/{filterId}:
+    delete: DbTableFilter_deleteById
+    get: DbTableFilter_getById
+    patch: DbTableFilter_updateById
+  /api/v2/meta/form-columns/{formViewColumnId}:
+    patch: DbView_updateFormColumn
+  /api/v2/meta/forms/{formViewId}:
+    get: DbView_getFormById
+    patch: DbView_updateFormView
+  /api/v2/meta/galleries/{galleryViewId}:
+    get: DbView_getGalleryView
+    patch: DbView_updateGalleryViewData
+  /api/v2/meta/grid-columns/{columnId}:
+    patch: DbView_updateGridColumnPatch
+  /api/v2/meta/grids/{gridId}/grid-columns:
+    get: DbView_listGridColumns
+  /api/v2/meta/grids/{viewId}:
+    patch: DbView_updateGridView
+  /api/v2/meta/hooks/{hookId}:
+    delete: DbTableWebhook_deleteById
+    patch: DbTableWebhook_updateById
+  /api/v2/meta/hooks/{hookId}/filters:
+    get: DbTableWebhookFilter_getHookFilter
+    post: DbTableWebhookFilter_createNewFilter
+  /api/v2/meta/hooks/{hookId}/logs:
+    get: DbTableWebhookLogs_list
+  /api/v2/meta/kanbans/{kanbanViewId}:
+    get: DbView_kanbanViewGet
+    patch: DbView_updateKanbanView
+  /api/v2/meta/maps/{mapViewId}:
+    get: DbView_getMapViewById
+    patch: DbView_updateMapViewData
+  /api/v2/meta/nocodb/info:
+    get: Utils_getAppInfo
+  /api/v2/meta/plugins:
+    get: Plugin_listAllPlugins
+  /api/v2/meta/plugins/test:
+    post: Plugin_testConfigurationPost
+  /api/v2/meta/plugins/webhook:
+    get: Plugin_webhookListPlugins
+  /api/v2/meta/plugins/{pluginId}:
+    get: Plugin_getDataById
+    patch: Plugin_updateById
+  /api/v2/meta/plugins/{pluginTitle}/status:
+    get: Plugin_getStatus
+  /api/v2/meta/sorts/{sortId}:
+    delete: DbTableSort_deleteById
+    get: DbTableSort_getSortById
+    patch: DbTableSort_updateSortById
+  /api/v2/meta/tables/{tableId}:
+    delete: DbTable_deleteByTableId
+    get: DbTable_readByTableId
+    patch: DbTable_updateMeta
+  /api/v2/meta/tables/{tableId}/columns:
+    post: DbTableColumn_createNewColumn
+  /api/v2/meta/tables/{tableId}/columns/bulk:
+    post: DbTableColumn_bulkCreateUpdate
+  /api/v2/meta/tables/{tableId}/columns/hash:
+    get: DbTableColumn_getTableColumnsHash
+  /api/v2/meta/tables/{tableId}/forms:
+    post: DbView_createFormView
+  /api/v2/meta/tables/{tableId}/galleries:
+    post: DbView_createGalleryView
+  /api/v2/meta/tables/{tableId}/grids:
+    post: DbView_createGridView
+  /api/v2/meta/tables/{tableId}/hooks:
+    get: DbTableWebhook_listTableHooks
+    post: DbTableWebhook_createHook
+  /api/v2/meta/tables/{tableId}/hooks/samplePayload/{operation}/{version}:
+    get: DbTableWebhook_getSamplePayload
+  /api/v2/meta/tables/{tableId}/hooks/test:
+    post: DbTableWebhook_testHookCreate
+  /api/v2/meta/tables/{tableId}/kanbans:
+    post: DbView_createKanbanView
+  /api/v2/meta/tables/{tableId}/maps:
+    post: DbView_createMapView
+  /api/v2/meta/tables/{tableId}/reorder:
+    post: DbTable_updateTableOrder
+  /api/v2/meta/tables/{tableId}/share:
+    get: DbViewShare_listSharedViews
+  /api/v2/meta/tables/{tableId}/views:
+    get: DbView_listTableViews
+  /api/v2/meta/views/{viewId}:
+    delete: DbView_deleteViewById
+    patch: DbView_updateById
+  /api/v2/meta/views/{viewId}/columns:
+    get: DbViewColumn_listByView
+    post: DbViewColumn_createNewColumn
+  /api/v2/meta/views/{viewId}/columns/{columnId}:
+    patch: DbViewColumn_updateColumn
+  /api/v2/meta/views/{viewId}/filters:
+    get: DbTableFilter_getViewData
+    post: DbTableFilter_createViewFilter
+  /api/v2/meta/views/{viewId}/hide-all:
+    post: DbView_hideAllColumns
+  /api/v2/meta/views/{viewId}/share:
+    delete: DbViewShare_deleteSharedView
+    patch: DbViewShare_updateSharedView
+    post: DbViewShare_createSharedView
+  /api/v2/meta/views/{viewId}/show-all:
+    post: DbView_showAllColumns
+  /api/v2/meta/views/{viewId}/sorts:
+    get: DbTableSort_getAllSorts
+    post: DbTableSort_updateViewSort
+  /api/v2/public/calendar-view/{sharedViewUuid}/:
+    get: Public_calendarViewListSharedRows
+  /api/v2/public/calendar-view/{sharedViewUuid}/countByDate:
+    get: Public_calendarViewCountByDate
+  /api/v2/public/shared-base/{sharedBaseUuid}/meta:
+    get: Public_sharedBaseMetaGet
+  /api/v2/public/shared-erd/{sharedErdUuid}/meta:
+    get: Public_sharedErdMetaGet
+  /api/v2/public/shared-view/{sharedViewUuid}/group/{columnId}:
+    get: Public_sharedViewGroupDataList
+  /api/v2/public/shared-view/{sharedViewUuid}/groupby:
+    get: Public_listSharedViewRowsGroupBy
+  /api/v2/public/shared-view/{sharedViewUuid}/meta:
+    get: Public_viewMetaGet
+  /api/v2/public/shared-view/{sharedViewUuid}/nested/{columnName}:
+    get: Public_nestedDataRelationList
+  /api/v2/public/shared-view/{sharedViewUuid}/rows:
+    get: Public_listSharedRows
+    post: Public_createSharedViewRow
+  /api/v2/public/shared-view/{sharedViewUuid}/rows/export/{type}:
+    get: Public_rowsExportType
+  /api/v2/public/shared-view/{sharedViewUuid}/rows/{rowId}/{relationType}/{columnName}:
+    get: Public_listNestedData
+  /api/v2/storage/upload:
+    post: Storage_uploadAttachment
+  /api/v2/storage/upload-by-url:
+    post: Storage_uploadByUrl
+  /api/v2/tables/{tableId}/links/{linkFieldId}/records/{recordId}:
+    delete: TableRecords_unlinkRecords
+    get: TableRecords_listLinkedRecords
+    post: TableRecords_linkRecordsPost
+  /api/v2/tables/{tableId}/records:
+    delete: TableRecords_deleteByArray
+    get: TableRecords_list
+    patch: TableRecords_updatePatchTableRecords
+    post: TableRecords_createNewRecord
+  /api/v2/tables/{tableId}/records/count:
+    get: TableRecords_getCount
+  /api/v2/tables/{tableId}/records/{recordId}:
+    get: TableRecords_readById
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /api/v2/meta/axiosRequestMake:
+    post:
+      application/json: UtilsMakeAxiosRequestRequest
+  /api/v2/meta/bases:
+    post:
+      application/json: BaseCreateNewBaseRequest
+  /api/v2/meta/bases/:baseId/sources/:sourceId/sqlView:
+    post:
+      application/json: SourceCreateSqlViewRequest
+  /api/v2/meta/bases/{baseId}/sources:
+    post:
+      application/json: SourceCreateNewSourceRequest
+  /api/v2/meta/bases/{baseId}/sources/{sourceId}:
+    patch:
+      application/json: SourceUpdateDetailsRequest
+  /api/v2/meta/connection/test:
+    post:
+      application/json: UtilsTestDbConnectionRequest
+  /api/v2/meta/duplicate/{baseId}:
+    post:
+      application/json: BaseDuplicateBasePostRequest
+  /api/v2/meta/duplicate/{baseId}/table/{tableId}:
+    post:
+      application/json: DbTableDuplicateTablePostRequest
+  /api/v2/meta/duplicate/{baseId}/{sourceId}:
+    post:
+      application/json: BaseDuplicatePostRequest
+  /api/v2/meta/tables/{tableId}:
+    patch:
+      application/json: DbTableUpdateMetaRequest
+  /api/v2/meta/tables/{tableId}/columns/bulk:
+    post:
+      application/json: DbTableColumnBulkCreateUpdateRequest
+  /api/v2/meta/tables/{tableId}/reorder:
+    post:
+      application/json: DbTableUpdateTableOrderRequest
+  /api/v2/meta/views/{viewId}/sorts:
+    post:
+      application/json: DbTableSortUpdateViewSortRequest
+  /api/v2/storage/upload-by-url:
+    post:
+      application/json: StorageUploadByUrlRequest
+  /api/v2/tables/{tableId}/links/{linkFieldId}/records/{recordId}:
+    delete:
+      application/json: TableRecordsUnlinkRecordsRequest
+    post:
+      application/json: TableRecordsLinkRecordsPostRequest
+  /api/v2/tables/{tableId}/records:
+    delete:
+      application/json: TableRecordsDeleteByArrayRequest
+    patch:
+      application/json: TableRecordsUpdatePatchTableRecordsRequest
+    post:
+      application/json: TableRecordsCreateNewRecordRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /api/v2/meta/audits/comments:
+    get:
+      '200':
+        application/json: UtilsListCommentsResponse
+  /api/v2/meta/audits/comments/count:
+    get:
+      '200':
+        application/json: UtilsCountCommentsResponse
+  /api/v2/meta/audits/{auditId}/comment:
+    patch:
+      '200':
+        application/json: UtilsUpdateAuditCommentResponse
+  /api/v2/meta/axiosRequestMake:
+    post:
+      '200':
+        application/json: UtilsMakeAxiosRequestResponse
+  /api/v2/meta/bases/:baseId/sources/:sourceId/sqlView:
+    post:
+      '200':
+        application/json: SourceCreateSqlViewResponse
+  /api/v2/meta/bases/{baseId}:
+    delete:
+      '200':
+        application/json: BaseRemoveBaseResponse
+    patch:
+      '200':
+        application/json: BaseUpdateBaseMetaResponse
+  /api/v2/meta/bases/{baseId}/api-tokens/{token}:
+    delete:
+      '200':
+        application/json: ApiTokenDeleteInBaseResponse
+  /api/v2/meta/bases/{baseId}/audits:
+    get:
+      '200':
+        application/json: BaseListAuditsInBaseResponse
+  /api/v2/meta/bases/{baseId}/cost:
+    get:
+      '200':
+        application/json: BaseCalculateCostResponse
+  /api/v2/meta/bases/{baseId}/has-empty-or-null-filters:
+    get:
+      '200':
+        application/json: BaseCheckEmptyFiltersResponse
+  /api/v2/meta/bases/{baseId}/info:
+    get:
+      '200':
+        application/json: BaseGetInfoByIdResponse
+  /api/v2/meta/bases/{baseId}/meta-diff:
+    get:
+      '200':
+        application/json: BaseMetaDiffGetResponse
+    post:
+      '200':
+        application/json: BaseSyncMetaDiffResponse
+  /api/v2/meta/bases/{baseId}/meta-diff/{sourceId}:
+    get:
+      '200':
+        application/json: SourceGetMetaDiffResponse
+    post:
+      '200':
+        application/json: SourceSyncMetaDiffResponse
+  /api/v2/meta/bases/{baseId}/shared:
+    delete:
+      '200':
+        application/json: BaseDeleteSharedBaseResponse
+    get:
+      '200':
+        application/json: BaseGetSharedBaseResponse
+    patch:
+      '200':
+        application/json: BaseUpdateSharedBaseResponse
+    post:
+      '200':
+        application/json: BaseCreateSharedBaseResponse
+  /api/v2/meta/bases/{baseId}/sources/{sourceId}:
+    delete:
+      '200':
+        application/json: SourceDeleteDetailsResponse
+    patch:
+      '200':
+        application/json: SourceUpdateDetailsResponse
+  /api/v2/meta/bases/{baseId}/users:
+    get:
+      '200':
+        application/json: AuthListBaseUsersResponse
+      '400':
+        application/json: AuthListBaseUsers400Response
+    post:
+      '200':
+        application/json: AuthAddBaseUserResponse
+  /api/v2/meta/bases/{baseId}/users/{userId}:
+    delete:
+      '200':
+        application/json: AuthDeleteBaseUserResponse
+    patch:
+      '200':
+        application/json: AuthUpdateBaseUserResponse
+  /api/v2/meta/bases/{baseId}/users/{userId}/resend-invite:
+    post:
+      '200':
+        application/json: AuthResendInviteUserResponse
+  /api/v2/meta/bases/{baseId}/visibility-rules:
+    get:
+      '200':
+        application/json: BaseGetUiAclResponse
+    post:
+      '200':
+        application/json: BaseCreateUiAclResponse
+  /api/v2/meta/cache:
+    delete:
+      '200':
+        application/json: UtilsClearNocoCacheResponse
+  /api/v2/meta/columns/{columnId}/primary:
+    post:
+      '200':
+        application/json: DbTableColumnSetPrimaryValueResponse
+  /api/v2/meta/connection/select:
+    post:
+      '200':
+        application/json: UtilsSelectConnectionPostResponse
+  /api/v2/meta/connection/test:
+    post:
+      '200':
+        application/json: UtilsTestDbConnectionResponse
+  /api/v2/meta/duplicate/{baseId}:
+    post:
+      '200':
+        application/json: BaseDuplicateBasePostResponse
+  /api/v2/meta/duplicate/{baseId}/table/{tableId}:
+    post:
+      '200':
+        application/json: DbTableDuplicateTablePostResponse
+  /api/v2/meta/duplicate/{baseId}/{sourceId}:
+    post:
+      '200':
+        application/json: BaseDuplicatePostResponse
+  /api/v2/meta/filters/{filterId}:
+    delete:
+      '200':
+        application/json: DbTableFilterDeleteByIdResponse
+    patch:
+      '200':
+        application/json: DbTableFilterUpdateByIdResponse
+  /api/v2/meta/forms/{formViewId}:
+    patch:
+      '200':
+        application/json: DbViewUpdateFormViewResponse
+  /api/v2/meta/galleries/{galleryViewId}:
+    patch:
+      '200':
+        application/json: DbViewUpdateGalleryViewDataResponse
+  /api/v2/meta/grid-columns/{columnId}:
+    patch:
+      '200':
+        application/json: DbViewUpdateGridColumnPatchResponse
+  /api/v2/meta/grids/{gridId}/grid-columns:
+    get:
+      '200':
+        application/json: DbViewListGridColumnsResponse
+  /api/v2/meta/grids/{viewId}:
+    patch:
+      '200':
+        application/json: DbViewUpdateGridViewResponse
+  /api/v2/meta/hooks/{hookId}:
+    delete:
+      '200':
+        application/json: DbTableWebhookDeleteByIdResponse
+  /api/v2/meta/kanbans/{kanbanViewId}:
+    patch:
+      '200':
+        application/json: DbViewUpdateKanbanViewResponse
+  /api/v2/meta/maps/{mapViewId}:
+    patch:
+      '200':
+        application/json: DbViewUpdateMapViewDataResponse
+  /api/v2/meta/nocodb/info:
+    get:
+      '200':
+        application/json: UtilsGetAppInfoResponse
+  /api/v2/meta/plugins:
+    get:
+      '200':
+        application/json: PluginListAllPluginsResponse
+  /api/v2/meta/plugins/test:
+    post:
+      '200':
+        application/json: PluginTestConfigurationPostResponse
+  /api/v2/meta/plugins/webhook:
+    get:
+      '200':
+        application/json: PluginWebhookListPluginsResponse
+  /api/v2/meta/plugins/{pluginId}:
+    patch:
+      '200':
+        application/json: PluginUpdateByIdResponse
+  /api/v2/meta/plugins/{pluginTitle}/status:
+    get:
+      '200':
+        application/json: PluginGetStatusResponse
+  /api/v2/meta/sorts/{sortId}:
+    delete:
+      '200':
+        application/json: DbTableSortDeleteByIdResponse
+    patch:
+      '200':
+        application/json: DbTableSortUpdateSortByIdResponse
+  /api/v2/meta/tables/{tableId}:
+    delete:
+      '200':
+        application/json: DbTableDeleteByTableIdResponse
+    patch:
+      '200':
+        application/json: DbTableUpdateMetaResponse
+  /api/v2/meta/tables/{tableId}/columns/bulk:
+    post:
+      '200':
+        application/json: DbTableColumnBulkCreateUpdateResponse
+  /api/v2/meta/tables/{tableId}/columns/hash:
+    get:
+      '200':
+        application/json: DbTableColumnGetTableColumnsHashResponse
+  /api/v2/meta/tables/{tableId}/hooks/samplePayload/{operation}/{version}:
+    get:
+      '200':
+        application/json: DbTableWebhookGetSamplePayloadResponse
+  /api/v2/meta/tables/{tableId}/hooks/test:
+    post:
+      '200':
+        application/json: DbTableWebhookTestHookCreateResponse
+  /api/v2/meta/tables/{tableId}/reorder:
+    post:
+      '200':
+        application/json: DbTableUpdateTableOrderResponse
+  /api/v2/meta/views/{viewId}:
+    delete:
+      '200':
+        application/json: DbViewDeleteViewByIdResponse
+  /api/v2/meta/views/{viewId}/columns/{columnId}:
+    patch:
+      '200':
+        application/json: DbViewColumnUpdateColumnResponse
+  /api/v2/meta/views/{viewId}/hide-all:
+    post:
+      '200':
+        application/json: DbViewHideAllColumnsResponse
+  /api/v2/meta/views/{viewId}/share:
+    delete:
+      '200':
+        application/json: DbViewShareDeleteSharedViewResponse
+  /api/v2/meta/views/{viewId}/show-all:
+    post:
+      '200':
+        application/json: DbViewShowAllColumnsResponse
+  /api/v2/meta/views/{viewId}/sorts:
+    post:
+      '200':
+        application/json: DbTableSortUpdateViewSortResponse
+  /api/v2/public/calendar-view/{sharedViewUuid}/countByDate:
+    get:
+      '200':
+        application/json: PublicCalendarViewCountByDateResponse
+  /api/v2/public/shared-base/{sharedBaseUuid}/meta:
+    get:
+      '200':
+        application/json: PublicSharedBaseMetaGetResponse
+  /api/v2/public/shared-view/{sharedViewUuid}/group/{columnId}:
+    get:
+      '200':
+        application/json: PublicSharedViewGroupDataListResponse
+  /api/v2/public/shared-view/{sharedViewUuid}/meta:
+    get:
+      '200':
+        application/json: PublicViewMetaGetResponse
+        application/xml: PublicViewMetaGet200Response
+  /api/v2/public/shared-view/{sharedViewUuid}/nested/{columnName}:
+    get:
+      '200':
+        application/json: PublicNestedDataRelationListResponse
+  /api/v2/public/shared-view/{sharedViewUuid}/rows:
+    post:
+      '200':
+        application/json: PublicCreateSharedViewRowResponse
+  /api/v2/public/shared-view/{sharedViewUuid}/rows/export/{type}:
+    get:
+      '200':
+        application/octet-stream: PublicRowsExportTypeResponse
+  /api/v2/public/shared-view/{sharedViewUuid}/rows/{rowId}/{relationType}/{columnName}:
+    get:
+      '200':
+        application/json: PublicListNestedDataResponse
+  /api/v2/tables/{tableId}/links/{linkFieldId}/records/{recordId}:
+    delete:
+      '200':
+        application/json: TableRecordsUnlinkRecordsResponse
+    get:
+      '200':
+        application/json: TableRecordsListLinkedRecordsResponse
+    post:
+      '200':
+        application/json: TableRecordsLinkRecordsPostResponse
+  /api/v2/tables/{tableId}/records:
+    delete:
+      '200':
+        application/json: TableRecordsDeleteByArrayResponse
+    get:
+      '200':
+        application/json: TableRecordsListResponse
+    patch:
+      '200':
+        application/json: TableRecordsUpdatePatchTableRecordsResponse
+    post:
+      '200':
+        application/json: TableRecordsCreateNewRecordResponse
+  /api/v2/tables/{tableId}/records/count:
+    get:
+      '200':
+        application/json: TableRecordsGetCountResponse
+  /api/v2/tables/{tableId}/records/{recordId}:
+    get:
+      '200':
+        application/json: TableRecordsReadByIdResponse
+securityParameters:
+  column_name:
+    query: false
+  comments_only:
+    query: false
+  fields:
+    query: false
+  filterArrJson:
+    query: false
+  fk_model_id:
+    query: false
+  from_date:
+    query: false
+  ids:
+    query: false
+  ignoreIds:
+    query: false
+  includeM2M:
+    query: false
+  limit:
+    query: false
+  offset:
+    query: false
+  page:
+    query: false
+  pageSize:
+    query: false
+  path:
+    query: false
+  pks:
+    query: false
+  row_id:
+    query: false
+  sort:
+    query: false
+  sortArrJson:
+    query: false
+  sourceId:
+    query: false
+  to_date:
+    query: false
+  viewId:
+    query: false
+  where:
+    query: false
+  xc-auth:
+    header: false
+  xc-password:
+    header: false
+validServerUrls:
+  http://localhost:8080:
+    url: http://localhost:8080
