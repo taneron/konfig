@@ -1,4 +1,4 @@
-hash: 4df4bf1cd37df623c1cbd4f574a2383b5b64e416af764ae7711f966dcdd7ae62
+hash: e5cc05cb73fe692b22c0d3559591ab3e1eb25eb41f6ebf48d44bd96d4681b429
 methodObjects:
   - url: /archive_files
     method: meetingFilesList
@@ -2868,7 +2868,7 @@ methodObjects:
     httpMethod: patch
     tag: Meetings
     typeScriptTag: meetings
-    description: Update Live Stream Status
+    description: Update livestream status
     parameters:
       - name: meetingId
         schema: integer
@@ -2887,39 +2887,35 @@ methodObjects:
         description: ''
     responses:
       - statusCode: '204'
-        description: |+
-          **HTTP Status Code:** `204`   
-           
-          Meeting livestream updated.
-
+        description: '**HTTP Status Code:** `204` <br> Meeting livestream updated.'
       - statusCode: '400'
-        description: >+
+        description: |
           **HTTP Status Code:** `400` <br>
-           Bad Request
+           Bad Request  
 
-          **Error Code:** `3000` <br>
-
-          Cannot access webinar info.<br>
-
-
-          **Error Code:** `1010` <br>
-
-          User does not belong to this account: {accountId}.
-
-
+           **Error Code:** `3000` <br>
+           Cannot access webinar info. <br>
           **Error Code:** `3161` <br>
-
-          Meeting hosting and scheduling capabilities are not allowed for your
-          user account.
-
+           Your user account is not allowed meeting hosting and scheduling capabilities. <br>
+          **Error Code:** `4400` <br>
+           End-to-end encrypted meetings currently do not support the livestreaming feature. <br>
+          **Error Code:** `300` <br>
+           Invalid meeting ID. <br>
+          **Error Code:** `4927` <br>
+           Meeting {meetingId} has not started. <br>
       - statusCode: '404'
-        description: |+
+        description: |
           **HTTP Status Code:** `404` <br>
-           Not Found
+           Not Found  
 
-          **Error Code:** `1001` <br>
-          User {userId} does not exist.<br>
+           **Error Code:** `3001` <br>
+           Meeting does not exist: {meetingId}. <br>
+      - statusCode: '429'
+        description: |-
+          **HTTP Status Code:** `429` <br>
+           Too Many Requests  
 
+           
   - url: /meetings/{meetingId}/meeting_summary
     method: getMeetingSummary
     httpMethod: get

@@ -3,6 +3,13 @@ examples_2: {}
 examples_3: {}
 ignorePotentialIncorrectType: true
 operationIds:
+  /allocations:
+    get: Allocations_getMultiple
+    post: Allocations_createRecord
+  /allocations/{allocation_gid}:
+    delete: Allocations_deleteAllocationById
+    get: Allocations_getRecordById
+    put: Allocations_updateRecordById
   /attachments:
     get: Attachments_getAllForObject
     post: Attachments_uploadAttachment
@@ -325,6 +332,12 @@ operationIds:
 operationTags: {}
 renameTags: {}
 requestSchemaNames:
+  /allocations:
+    post:
+      application/json: AllocationsCreateRecordRequest
+  /allocations/{allocation_gid}:
+    put:
+      application/json: AllocationsUpdateRecordByIdRequest
   /batch:
     post:
       application/json: BatchApiSubmitParallelRequestsRequest
@@ -564,6 +577,23 @@ requestSchemaNames:
       application/json: TagsCreateTagInWorkspaceRequest
 responseDescriptions: {}
 responseSchemaNames:
+  /allocations:
+    get:
+      '200':
+        application/json: AllocationsGetMultipleResponse
+    post:
+      '201':
+        application/json: AllocationsCreateRecordResponse
+  /allocations/{allocation_gid}:
+    delete:
+      '200':
+        application/json: AllocationsDeleteAllocationByIdResponse
+    get:
+      '200':
+        application/json: AllocationsGetRecordByIdResponse
+    put:
+      '200':
+        application/json: AllocationsUpdateRecordByIdResponse
   /attachments:
     get:
       '200':

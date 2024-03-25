@@ -1,0 +1,269 @@
+{
+  "securitySchemes": {},
+  "apiBaseUrl": "{{service-root}}",
+  "apiVersion": "1.0.0",
+  "apiDescription": "ADP API endpoints.",
+  "apiTitle": "ADP APIs",
+  "endpoints": 7,
+  "sdkMethods": 10,
+  "schemas": 0,
+  "parameters": 17,
+  "originalCustomRequest": {
+    "lambda": true
+  },
+  "customRequestSpecFilename": "adp.com_WorkforceNow.yaml",
+  "difficultyScore": 14.25,
+  "difficulty": "Very Easy",
+  "company": "ADP",
+  "serviceName": "WorkforceNow",
+  "sdkName": "adp-workforce-now-{language}-sdk",
+  "clientName": "AdpWorkforceNow",
+  "metaDescription": "Designing better ways to work through cutting-edge products, premium services and exceptional experiences that enable people to reach their full potential. HR, Talent, Time Management, Benefits and Payroll. Informed by data and designed for people.",
+  "apiStatusUrls": false,
+  "homepage": "adp.com",
+  "developerDocumentation": "developers.adp.com/build/api-explorer/hcm-offrg-wfn",
+  "categories": [
+    "hr",
+    "payroll",
+    "time_management",
+    "benefits",
+    "human_capital_management",
+    "hr_bpo",
+    "payroll_tax_services",
+    "talent_management",
+    "human_resource_management",
+    "benefits_administration",
+    "time_attendance",
+    "payroll_services",
+    "professional_services",
+    "erp"
+  ],
+  "category": "HR Talent & Recruitment",
+  "methods": [
+    {
+      "url": "/hr/v2/workers",
+      "method": "listTop5PreventCache",
+      "httpMethod": "get",
+      "tag": "HR",
+      "typeScriptTag": "hr",
+      "description": "Worker V2 (List with Top 5 and Prevent Cache)",
+      "parameters": [
+        {
+          "name": "$top",
+          "schema": "string",
+          "description": "",
+          "example": "5"
+        },
+        {
+          "name": "preventCache",
+          "schema": "string",
+          "description": "",
+          "example": "TIMESTAMP"
+        },
+        {
+          "name": "$filter",
+          "schema": "string",
+          "description": "",
+          "example": "workers/workAssignments/homeOrganizationalUnits/typeCode/codeValue eq 'Department' and workers/workAssignments/homeOrganizationalUnits/nameCode/codeValue eq '001000'"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/hr/v2/workers/{anthony-albright-aoid}",
+      "method": "getWorkerByAoid",
+      "httpMethod": "get",
+      "tag": "HR",
+      "typeScriptTag": "hr",
+      "description": "Worker V2 (Single by AOID)",
+      "parameters": [
+        {
+          "name": "preventCache",
+          "schema": "string",
+          "description": "",
+          "example": "TIMESTAMP"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/core/v1/operations/workerInformationManagement/hr.v2.workers/{key}",
+      "method": "checkAsyncRequestStatus",
+      "httpMethod": "get",
+      "tag": "HR",
+      "typeScriptTag": "hr",
+      "description": "Worker V2 (Check Async Request Status)",
+      "parameters": [
+        {
+          "name": "$select",
+          "schema": "string",
+          "description": "",
+          "example": "processingStatus"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/hr/v2/worker-demographics",
+      "method": "listTop5PreventCache",
+      "httpMethod": "get",
+      "tag": "HR",
+      "typeScriptTag": "hr",
+      "description": "Worker Demographics V2 (List with Top 5 and Prevent Cache)",
+      "parameters": [
+        {
+          "name": "$top",
+          "schema": "string",
+          "description": "",
+          "example": "5"
+        },
+        {
+          "name": "preventCache",
+          "schema": "string",
+          "description": "",
+          "example": "TIMESTAMP"
+        },
+        {
+          "name": "$filter",
+          "schema": "string",
+          "description": "",
+          "example": "workers/workAssignments/homeOrganizationalUnits/typeCode/codeValue eq 'Department' and workers/workAssignments/homeOrganizationalUnits/nameCode/codeValue eq '001000'"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/hr/v2/worker-demographics/{anthony-albright-aoid}",
+      "method": "getWorkerDemographicsByAoid",
+      "httpMethod": "get",
+      "tag": "HR",
+      "typeScriptTag": "hr",
+      "description": "Worker Demographics V2 (Single by AOID)",
+      "parameters": [
+        {
+          "name": "preventCache",
+          "schema": "string",
+          "description": "",
+          "example": "TIMESTAMP"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/payroll/v1/payroll-output",
+      "method": "listPayrollOutputs",
+      "httpMethod": "get",
+      "tag": "Payroll",
+      "typeScriptTag": "payroll",
+      "description": "Payroll Outputs V1 (List for Region / Company Code / Year / Week)",
+      "parameters": [
+        {
+          "name": "$filter",
+          "schema": "string",
+          "description": "",
+          "example": "payrollScheduleReference/payrollYear eq 2018 and payrollScheduleReference/payrollWeekNumber eq 10 and payrollGroupCode/codeValue eq %26Y%26 and payrollRegionCode/codeValue eq BALT"
+        },
+        {
+          "name": "$count",
+          "schema": "string",
+          "description": "",
+          "example": "true"
+        },
+        {
+          "name": "useCache",
+          "schema": "string",
+          "description": "",
+          "example": "false"
+        },
+        {
+          "name": "level",
+          "schema": "string",
+          "description": "",
+          "example": "details"
+        },
+        {
+          "name": "$select",
+          "schema": "string",
+          "description": "",
+          "example": "earnings,reportableEarningsAndBenefits,reimbursements,statutoryDeductions,nonStatutoryDeductions,memos,configurationTags"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/auth/oauth/v2/token",
+      "method": "createWithAuthorizationHeader",
+      "httpMethod": "post",
+      "tag": "Token Request",
+      "typeScriptTag": "tokenRequest",
+      "description": "Token Request (Authorization Header)",
+      "parameters": [
+        {
+          "name": "grantType",
+          "schema": "string",
+          "description": "",
+          "example": "client_credentials"
+        },
+        {
+          "name": "clientId",
+          "schema": "string",
+          "description": "",
+          "example": "{{client-id}}"
+        },
+        {
+          "name": "clientSecret",
+          "schema": "string",
+          "description": "",
+          "example": "{{client-secret}}"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "repositoryDescription": "Designing better ways to work through cutting-edge products, premium services and exceptional experiences that enable people to reach their full potential. HR, Talent, Time Management, Benefits and Payroll. Informed by data and designed for people. ADP's {language} SDK for WorkforceNow API generated by Konfig (https://konfigthis.com/).",
+  "logo": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/adp/workforce-now/logo.png",
+  "openApiRaw": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/adp/workforce-now/openapi.yaml",
+  "openApiGitHubUi": "https://github.com/konfig-sdks/openapi-examples/tree/HEAD/adp/workforce-now/openapi.yaml",
+  "previewLinkImage": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/adp/workforce-now/imagePreview.jpg",
+  "faviconUrl": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/adp/workforce-now/favicon.png",
+  "clientNameCamelCase": "adpWorkforceNow",
+  "lastUpdated": "2024-03-25T20:47:15.965Z",
+  "typescriptSdkUsageCode": "import { AdpWorkforceNow } from 'adp-workforce-now-typescript-sdk';\n\nconst adpWorkforceNow = new AdpWorkforceNow()",
+  "typescriptSdkFirstRequestCode": "// Worker V2 (List with Top 5 and Prevent Cache)\nconst listTop5PreventCacheResponse = adpWorkforceNow.hr.listTop5PreventCache({\n    $top: \"5\"\n    preventCache: \"TIMESTAMP\"\n    $filter: \"workers/workAssignments/homeOrganizationalUnits/typeCode/codeValue eq 'Department' and workers/workAssignments/homeOrganizationalUnits/nameCode/codeValue eq '001000'\"\n})",
+  "fixedSpecFileName": "adp-workforce-now-fixed-spec.yaml"
+}
