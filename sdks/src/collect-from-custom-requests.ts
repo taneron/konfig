@@ -1062,6 +1062,14 @@ const customRequests: Record<string, CustomRequest> = {
       return downloadOpenApiSpecFromReadme({ urls });
     },
   },
+  "7shifts.com": {
+    lambda: async () => {
+      const urls = await collectEndpointsFromReadme({
+        url: "https://developers.7shifts.com/reference/oauthtoken-2",
+      });
+      return downloadOpenApiSpecFromReadme({ urls });
+    },
+  },
   "atlassian.com_Jira": {
     type: "GET",
     url: "https://dac-static.atlassian.com/cloud/jira/platform/swagger-v3.v3.json",

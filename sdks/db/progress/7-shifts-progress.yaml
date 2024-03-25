@@ -1,0 +1,2103 @@
+examples: {}
+examples_2: {}
+examples_3:
+  /v2/company/{company_id}/test_webhook:
+    get:
+      '200':
+        application/json: {}
+ignoreObjectsWithNoProperties: true
+ignorePotentialIncorrectType: true
+operationIds:
+  /api/v2/company/{company_id}/location/{location_id}/daily_stats:
+    get: Reports_getDailyStats
+  /oauth2/token:
+    post: Authentication_generateOAuthToken
+  /v2/companies:
+    get: Companies_list
+  /v2/companies/{id}:
+    get: Companies_getById
+    patch: Companies_updateCompanyById
+  /v2/company/{company_id}/availabilities:
+    get: Availability_listAvailabilities
+    post: Availability_createNew
+  /v2/company/{company_id}/availabilities/{availability_id}:
+    delete: Availability_removeById
+    get: Availability_getById
+    put: Availability_updateById
+  /v2/company/{company_id}/availabilities/{availability_id}/status:
+    put: Availability_updateStatus
+  /v2/company/{company_id}/availability_reasons:
+    get: Availability_listReasons
+    post: Availability_createReason
+  /v2/company/{company_id}/availability_reasons/{availability_reason_id}:
+    delete: Availability_deleteReason
+    put: Availability_updateReasonById
+  /v2/company/{company_id}/create_many_users:
+    post: Users_bulkCreate
+  /v2/company/{company_id}/day_part/settings:
+    get: DayPart_getSettings
+  /v2/company/{company_id}/departments:
+    get: Departments_list
+    post: Departments_createNewDepartment
+  /v2/company/{company_id}/departments/{department_id}:
+    delete: Departments_deleteById
+    get: Departments_getDepartment
+    put: Departments_updateDepartment
+  /v2/company/{company_id}/events:
+    get: ScheduleEvents_listEvents
+    post: ScheduleEvents_createEvent
+  /v2/company/{company_id}/events/{event_id}:
+    delete: ScheduleEvents_deleteEvent
+    get: ScheduleEvents_getEventById
+    patch: ScheduleEvents_updateEventById
+  /v2/company/{company_id}/external_user_mappings:
+    get: ExternalUserMappings_list
+    post: ExternalUserMappings_createMapping
+  /v2/company/{company_id}/external_user_mappings/{identifier}:
+    delete: ExternalUserMappings_deleteMapping
+    get: ExternalUserMappings_getMappingById
+    put: ExternalUserMappings_updateMappingByIdentifier
+  /v2/company/{company_id}/external_user_mappings_bulk:
+    post: ExternalUserMappings_createBulkMappings
+  /v2/company/{company_id}/inactive_reasons:
+    get: Companies_listInactiveReasons
+  /v2/company/{company_id}/labor_settings:
+    get: Companies_getLaborSettings
+  /v2/company/{company_id}/location/{location_id}/forecast_override:
+    delete: ForecastOverrides_syncProjectedForecastOverride
+    post: ForecastOverrides_createDailyProjectedForecastOverride
+  /v2/company/{company_id}/location/{location_id}/forecast_overrides:
+    post: ForecastOverrides_bulkCreateProjectedForecastOverride
+  /v2/company/{company_id}/location/{location_id}/sales_category_mappings:
+    get: IntegrationMappings_listSalesCategoryMappings
+  /v2/company/{company_id}/location/{location_id}/sales_category_mappings/{external_id}:
+    delete: IntegrationMappings_deleteSalesCategoryMappings
+  /v2/company/{company_id}/location/{location_id}/sales_category_mappings_bulk:
+    post: IntegrationMappings_createSalesCategoryMappingsBulk
+  /v2/company/{company_id}/locations:
+    get: Locations_listGet
+    post: Locations_create
+  /v2/company/{company_id}/locations/{location_id}:
+    delete: Locations_removeLocationById
+    get: Locations_getLocation
+    put: Locations_updateLocationById
+  /v2/company/{company_id}/locations/{location_id}/engage_overview:
+    get: Engage_overviewByLocationId
+  /v2/company/{company_id}/locations/{location_id}/forecast_override_interval:
+    delete: ForecastOverrides_syncProjectedSalesInterval
+    post: ForecastOverrides_overrideInterval
+  /v2/company/{company_id}/locations/{location_id}/forecast_overrides_intervals:
+    post: ForecastOverrides_bulkCreateProjectedSalesIntervalOverride
+  /v2/company/{company_id}/locations/{location_id}/tip_pool_detailed_report:
+    get: TipPool_getDetailedReport
+  /v2/company/{company_id}/locations/{location_id}/tip_pool_summary_report:
+    get: TipPool_getSummaryReport
+  /v2/company/{company_id}/log_book_categories:
+    get: LogBook_listCategories
+    post: LogBook_createCategory
+  /v2/company/{company_id}/log_book_categories/{id}:
+    delete: LogBook_deleteCategoryById
+    patch: LogBook_updateCategoryById
+  /v2/company/{company_id}/log_book_comments:
+    get: LogBook_listComments
+    post: LogBook_createComment
+  /v2/company/{company_id}/log_book_comments/{id}:
+    delete: LogBook_deleteComment
+    get: LogBook_getComment
+  /v2/company/{company_id}/log_book_posts:
+    get: LogBook_listPosts
+    post: LogBook_createPost
+  /v2/company/{company_id}/log_book_posts/{id}:
+    delete: LogBook_deletePost
+    get: LogBook_getPost
+  /v2/company/{company_id}/receipts:
+    get: Receipts_list
+    post: Receipts_createReceipt
+  /v2/company/{company_id}/receipts/{receipt_id}:
+    get: Receipts_getReceipt
+    put: Receipts_updateReceipt
+  /v2/company/{company_id}/receipts_summary:
+    get: Receipts_getSummary
+  /v2/company/{company_id}/roles:
+    get: Roles_list
+    post: Roles_createRole
+  /v2/company/{company_id}/roles/{role_id}:
+    delete: Roles_deleteRole
+    get: Roles_getRole
+    put: Roles_updateRoleById
+  /v2/company/{company_id}/shift_feedback:
+    get: ShiftFeedback_list
+  /v2/company/{company_id}/shifts:
+    get: Shifts_list
+    post: Shifts_createNewShift
+  /v2/company/{company_id}/shifts/{shift_id}:
+    delete: Shifts_deleteShiftById
+    get: Shifts_getShiftById
+    put: Shifts_updateShiftById
+  /v2/company/{company_id}/shifts_scheduled/{id}:
+    get: ScheduleEnforcement_listScheduledShifts
+  /v2/company/{company_id}/task_list_daily_summary:
+    get: TaskManagement_listTaskListsSummary
+  /v2/company/{company_id}/task_list_templates:
+    get: TaskManagement_getTaskListTemplates
+    post: TaskManagement_createTaskListTemplate
+  /v2/company/{company_id}/task_list_templates/{uuid}:
+    delete: TaskManagement_deleteTaskListTemplate
+    get: TaskManagement_getTaskListTemplate
+    put: TaskManagement_editTaskListTemplate
+  /v2/company/{company_id}/task_lists:
+    get: TaskManagement_getTaskLists
+  /v2/company/{company_id}/task_lists/{list_id}:
+    get: TaskManagement_getTaskList
+  /v2/company/{company_id}/task_lists/{list_id}/tasks/{task_id}/clear:
+    post: TaskManagement_clearTask
+  /v2/company/{company_id}/task_lists/{list_id}/tasks/{task_id}/complete:
+    post: TaskManagement_markComplete
+  /v2/company/{company_id}/task_management_settings:
+    get: TaskManagement_getSettings
+  /v2/company/{company_id}/task_tags:
+    delete: TaskManagement_deleteTaskTags
+    post: TaskManagement_createTaskTags
+  /v2/company/{company_id}/test_webhook:
+    get: Webhooks_getWebhook
+  /v2/company/{company_id}/time_punches:
+    get: TimePunches_list
+    post: TimePunches_create
+  /v2/company/{company_id}/time_punches/{time_punch_id}:
+    delete: TimePunches_deleteById
+    get: TimePunches_getTimePunch
+    put: TimePunches_updateById
+  /v2/company/{company_id}/tip_pool/{tip_pool_settings_uuid}/manual_entry:
+    get: TipPool_getManualEntryTips
+    put: TipPool_saveManualEntry
+  /v2/company/{company_id}/tip_pool_settings:
+    get: TipPool_getSettings
+  /v2/company/{company_id}/users:
+    get: Users_list
+    post: Users_createNewUser
+  /v2/company/{company_id}/users/{identifier}:
+    delete: Users_deactivate
+    get: Users_getUserByIdentifier
+    put: Users_updateUserByIdentifier
+  /v2/company/{company_id}/users/{user_id}/assignments:
+    get: UserAssignments_list
+  /v2/company/{company_id}/users/{user_id}/department_assignments:
+    get: UserAssignments_listDepartmentAssignments
+    post: UserAssignments_createDepartmentAssignment
+  /v2/company/{company_id}/users/{user_id}/department_assignments/{department_id}:
+    delete: UserAssignments_removeDepartmentAssignment
+  /v2/company/{company_id}/users/{user_id}/location_assignments:
+    get: UserAssignments_listLocationAssignments
+    post: UserAssignments_createLocationAssignment
+  /v2/company/{company_id}/users/{user_id}/location_assignments/{location_id}:
+    delete: UserAssignments_removeLocationAssignment
+  /v2/company/{company_id}/users/{user_id}/role_assignments:
+    get: UserAssignments_listRoleAssignments
+    post: UserAssignments_createRoleAssignment
+  /v2/company/{company_id}/users/{user_id}/role_assignments/{role_id}:
+    delete: UserAssignments_deleteRoleAssignment
+  /v2/company/{company_id}/users/{user_id}/wages:
+    get: UserWages_list
+    post: UserWages_create
+  /v2/company/{company_id}/webhooks:
+    get: Webhooks_list
+    post: Webhooks_create
+  /v2/company/{company_id}/webhooks/{webhook_id}:
+    delete: Webhooks_deleteWebhookById
+    put: Webhooks_update
+  /v2/partner_company_creation:
+    post: Account_createTrialAccount
+  /v2/reports/daily_sales_and_labor:
+    get: Reports_getDailySalesAndLabor
+  /v2/reports/hours_and_wages:
+    get: Reports_getWorkedHoursWages
+  /v2/time_off:
+    get: TimeOff_list
+    post: TimeOff_createRequest
+  /v2/time_off/total_hours:
+    get: TimeOff_getTotalHours
+  /v2/time_off/{time_off_id}:
+    delete: TimeOff_remove
+    get: TimeOff_getTimeOffById
+    patch: TimeOff_updateTimeOffById
+  /v2/time_off/{time_off_id}/approve:
+    post: TimeOff_approveRequest
+  /v2/time_off/{time_off_id}/decline:
+    post: TimeOff_declineRequest
+  /v2/time_off_settings/{company_id}:
+    get: TimeOff_getSettings
+    post: TimeOff_setTimeOffSettings
+  /v2/whoami:
+    get: Authentication_getIdentity
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /oauth2/token:
+    post:
+      application/x-www-form-urlencoded: AuthenticationGenerateOAuthTokenRequest
+  /v2/companies/{id}:
+    patch:
+      application/json: CompaniesUpdateCompanyByIdRequest
+  /v2/company/{company_id}/availabilities:
+    post:
+      application/json: AvailabilityCreateNewRequest
+  /v2/company/{company_id}/availabilities/{availability_id}:
+    put:
+      application/json: AvailabilityUpdateByIdRequest
+  /v2/company/{company_id}/availabilities/{availability_id}/status:
+    put:
+      application/json: AvailabilityUpdateStatusRequest
+  /v2/company/{company_id}/availability_reasons:
+    post:
+      application/json: AvailabilityCreateReasonRequest
+  /v2/company/{company_id}/availability_reasons/{availability_reason_id}:
+    put:
+      application/json: AvailabilityUpdateReasonByIdRequest
+  /v2/company/{company_id}/create_many_users:
+    post:
+      application/json: UsersBulkCreateRequest
+  /v2/company/{company_id}/departments:
+    post:
+      application/json: DepartmentsCreateNewDepartmentRequest
+  /v2/company/{company_id}/departments/{department_id}:
+    put:
+      application/json: DepartmentsUpdateDepartmentRequest
+  /v2/company/{company_id}/events:
+    post:
+      application/json: ScheduleEventsCreateEventRequest
+  /v2/company/{company_id}/events/{event_id}:
+    patch:
+      application/json: ScheduleEventsUpdateEventByIdRequest
+  /v2/company/{company_id}/external_user_mappings:
+    post:
+      application/json: ExternalUserMappingsCreateMappingRequest
+  /v2/company/{company_id}/external_user_mappings/{identifier}:
+    put:
+      application/json: ExternalUserMappingsUpdateMappingByIdentifierRequest
+  /v2/company/{company_id}/external_user_mappings_bulk:
+    post:
+      application/json: ExternalUserMappingsCreateBulkMappingsRequest
+  /v2/company/{company_id}/location/{location_id}/forecast_override:
+    delete:
+      application/json: ForecastOverridesSyncProjectedForecastOverrideRequest
+    post:
+      application/json: ForecastOverridesCreateDailyProjectedForecastOverrideRequest
+  /v2/company/{company_id}/location/{location_id}/forecast_overrides:
+    post:
+      application/json: ForecastOverridesBulkCreateProjectedForecastOverrideRequest
+  /v2/company/{company_id}/location/{location_id}/sales_category_mappings_bulk:
+    post:
+      application/json: IntegrationMappingsCreateSalesCategoryMappingsBulkRequest
+  /v2/company/{company_id}/locations:
+    post:
+      application/json: LocationsCreateRequest
+  /v2/company/{company_id}/locations/{location_id}:
+    put:
+      application/json: LocationsUpdateLocationByIdRequest
+  /v2/company/{company_id}/locations/{location_id}/forecast_override_interval:
+    delete:
+      application/json: ForecastOverridesSyncProjectedSalesIntervalRequest
+    post:
+      application/json: ForecastOverridesOverrideIntervalRequest
+  /v2/company/{company_id}/locations/{location_id}/forecast_overrides_intervals:
+    post:
+      application/json: ForecastOverridesBulkCreateProjectedSalesIntervalOverrideRequest
+  /v2/company/{company_id}/log_book_categories:
+    post:
+      application/json: LogBookCreateCategoryRequest
+  /v2/company/{company_id}/log_book_categories/{id}:
+    patch:
+      application/json: LogBookUpdateCategoryByIdRequest
+  /v2/company/{company_id}/log_book_comments:
+    post:
+      application/json: LogBookCreateCommentRequest
+  /v2/company/{company_id}/log_book_posts:
+    post:
+      application/json: LogBookCreatePostRequest
+  /v2/company/{company_id}/receipts:
+    post:
+      application/json: ReceiptsCreateReceiptRequest
+  /v2/company/{company_id}/receipts/{receipt_id}:
+    put:
+      application/json: ReceiptsUpdateReceiptRequest
+  /v2/company/{company_id}/roles:
+    post:
+      application/json: RolesCreateRoleRequest
+  /v2/company/{company_id}/roles/{role_id}:
+    put:
+      application/json: RolesUpdateRoleByIdRequest
+  /v2/company/{company_id}/shifts:
+    post:
+      application/json: ShiftsCreateNewShiftRequest
+  /v2/company/{company_id}/shifts/{shift_id}:
+    put:
+      application/json: ShiftsUpdateShiftByIdRequest
+  /v2/company/{company_id}/task_list_templates:
+    post:
+      application/json: TaskManagementCreateTaskListTemplateRequest
+  /v2/company/{company_id}/task_list_templates/{uuid}:
+    put:
+      application/json: TaskManagementEditTaskListTemplateRequest
+  /v2/company/{company_id}/task_lists/{list_id}/tasks/{task_id}/clear:
+    post:
+      application/json: TaskManagementClearTaskRequest
+  /v2/company/{company_id}/task_lists/{list_id}/tasks/{task_id}/complete:
+    post:
+      application/json: TaskManagementMarkCompleteRequest
+  /v2/company/{company_id}/task_tags:
+    delete:
+      application/json: TaskManagementDeleteTaskTagsRequest
+    post:
+      application/json: TaskManagementCreateTaskTagsRequest
+  /v2/company/{company_id}/time_punches:
+    post:
+      application/json: TimePunchesCreateRequest
+  /v2/company/{company_id}/time_punches/{time_punch_id}:
+    put:
+      application/json: TimePunchesUpdateByIdRequest
+  /v2/company/{company_id}/tip_pool/{tip_pool_settings_uuid}/manual_entry:
+    put:
+      application/json: TipPoolSaveManualEntryRequest
+  /v2/company/{company_id}/users:
+    post:
+      application/json: UsersCreateNewUserRequest
+  /v2/company/{company_id}/users/{identifier}:
+    delete:
+      application/json: UsersDeactivateRequest
+    put:
+      application/json: UsersUpdateUserByIdentifierRequest
+  /v2/company/{company_id}/users/{user_id}/department_assignments:
+    post:
+      application/json: UserAssignmentsCreateDepartmentAssignmentRequest
+  /v2/company/{company_id}/users/{user_id}/location_assignments:
+    post:
+      application/json: UserAssignmentsCreateLocationAssignmentRequest
+  /v2/company/{company_id}/users/{user_id}/role_assignments:
+    post:
+      application/json: UserAssignmentsCreateRoleAssignmentRequest
+  /v2/company/{company_id}/users/{user_id}/wages:
+    post:
+      application/json: UserWagesCreateRequest
+  /v2/company/{company_id}/webhooks:
+    post:
+      application/json: WebhooksCreateRequest
+  /v2/company/{company_id}/webhooks/{webhook_id}:
+    put:
+      application/json: WebhooksUpdateRequest
+  /v2/partner_company_creation:
+    post:
+      application/json: AccountCreateTrialAccountRequest
+  /v2/time_off:
+    post:
+      application/json: TimeOffCreateRequestRequest
+  /v2/time_off/{time_off_id}:
+    patch:
+      application/json: TimeOffUpdateTimeOffByIdRequest
+  /v2/time_off/{time_off_id}/approve:
+    post:
+      application/json: TimeOffApproveRequestRequest
+  /v2/time_off/{time_off_id}/decline:
+    post:
+      application/json: TimeOffDeclineRequestRequest
+  /v2/time_off_settings/{company_id}:
+    post:
+      application/json: TimeOffSetTimeOffSettingsRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /api/v2/company/{company_id}/location/{location_id}/daily_stats:
+    get:
+      '200':
+        application/json: ReportsGetDailyStatsResponse
+      '400':
+        application/problem+json: ReportsGetDailyStats400Response
+      '401':
+        application/problem+json: ReportsGetDailyStats401Response
+      '403':
+        application/problem+json: ReportsGetDailyStats403Response
+      '404':
+        application/problem+json: ReportsGetDailyStats404Response
+      '500':
+        application/problem+json: ReportsGetDailyStats500Response
+  /oauth2/token:
+    post:
+      '200':
+        application/json: AuthenticationGenerateOAuthTokenResponse
+      '500':
+        application/json: AuthenticationGenerateOAuthToken500Response
+  /v2/companies:
+    get:
+      '200':
+        application/json: CompaniesListResponse
+      '401':
+        application/problem+json: CompaniesList401Response
+      '403':
+        application/problem+json: CompaniesList403Response
+      '500':
+        application/problem+json: CompaniesList500Response
+  /v2/companies/{id}:
+    get:
+      '200':
+        application/json: CompaniesGetByIdResponse
+      '500':
+        application/problem+json: CompaniesGetById500Response
+    patch:
+      '200':
+        application/json: CompaniesUpdateCompanyByIdResponse
+      '403':
+        application/problem+json: CompaniesUpdateCompanyById403Response
+  /v2/company/{company_id}/availabilities:
+    get:
+      '200':
+        application/json: AvailabilityListAvailabilitiesResponse
+      '400':
+        application/problem+json: AvailabilityListAvailabilities400Response
+      '401':
+        application/problem+json: AvailabilityListAvailabilities401Response
+      '403':
+        application/problem+json: AvailabilityListAvailabilities403Response
+    post:
+      '201':
+        application/json: AvailabilityCreateNewResponse
+      '400':
+        application/problem+json: AvailabilityCreateNew400Response
+      '403':
+        application/problem+json: AvailabilityCreateNew403Response
+      '404':
+        application/problem+json: AvailabilityCreateNew404Response
+      '409':
+        application/problem+json: AvailabilityCreateNew409Response
+      '422':
+        application/problem+json: AvailabilityCreateNew422Response
+  /v2/company/{company_id}/availabilities/{availability_id}:
+    delete:
+      '401':
+        application/problem+json: AvailabilityRemoveByIdResponse
+      '403':
+        application/problem+json: AvailabilityRemoveById403Response
+      '404':
+        application/problem+json: AvailabilityRemoveById404Response
+      '500':
+        application/problem+json: AvailabilityRemoveById500Response
+    get:
+      '200':
+        application/json: AvailabilityGetByIdResponse
+      '401':
+        application/problem+json: AvailabilityGetById401Response
+      '403':
+        application/problem+json: AvailabilityGetById403Response
+      '404':
+        application/problem+json: AvailabilityGetById404Response
+      '500':
+        application/problem+json: AvailabilityGetById500Response
+    put:
+      '201':
+        application/json: AvailabilityUpdateByIdResponse
+      '400':
+        application/problem+json: AvailabilityUpdateById400Response
+      '403':
+        application/problem+json: AvailabilityUpdateById403Response
+      '404':
+        application/problem+json: AvailabilityUpdateById404Response
+      '409':
+        application/problem+json: AvailabilityUpdateById409Response
+      '422':
+        application/problem+json: AvailabilityUpdateById422Response
+  /v2/company/{company_id}/availabilities/{availability_id}/status:
+    put:
+      '401':
+        application/problem+json: AvailabilityUpdateStatusResponse
+      '403':
+        application/problem+json: AvailabilityUpdateStatus403Response
+      '404':
+        application/problem+json: AvailabilityUpdateStatus404Response
+      '422':
+        application/problem+json: AvailabilityUpdateStatus422Response
+      '500':
+        application/problem+json: AvailabilityUpdateStatus500Response
+  /v2/company/{company_id}/availability_reasons:
+    get:
+      '200':
+        application/json: AvailabilityListReasonsResponse
+      '400':
+        application/problem+json: AvailabilityListReasons400Response
+      '401':
+        application/problem+json: AvailabilityListReasons401Response
+      '403':
+        application/problem+json: AvailabilityListReasons403Response
+      '500':
+        application/problem+json: AvailabilityListReasons500Response
+    post:
+      '201':
+        application/json: AvailabilityCreateReasonResponse
+      '401':
+        application/problem+json: AvailabilityCreateReason401Response
+      '403':
+        application/problem+json: AvailabilityCreateReason403Response
+      '422':
+        application/problem+json: AvailabilityCreateReason422Response
+      '500':
+        application/problem+json: AvailabilityCreateReason500Response
+  /v2/company/{company_id}/availability_reasons/{availability_reason_id}:
+    delete:
+      '401':
+        application/problem+json: AvailabilityDeleteReasonResponse
+      '403':
+        application/problem+json: AvailabilityDeleteReason403Response
+      '404':
+        application/problem+json: AvailabilityDeleteReason404Response
+      '500':
+        application/problem+json: AvailabilityDeleteReason500Response
+    put:
+      '200':
+        application/json: AvailabilityUpdateReasonByIdResponse
+      '400':
+        application/problem+json: AvailabilityUpdateReasonById400Response
+      '403':
+        application/problem+json: AvailabilityUpdateReasonById403Response
+      '404':
+        application/problem+json: AvailabilityUpdateReasonById404Response
+      '422':
+        application/problem+json: AvailabilityUpdateReasonById422Response
+      '500':
+        application/problem+json: AvailabilityUpdateReasonById500Response
+  /v2/company/{company_id}/create_many_users:
+    post:
+      '201':
+        application/json: UsersBulkCreateResponse
+      '400':
+        application/problem+json: UsersBulkCreate400Response
+      '401':
+        application/problem+json: UsersBulkCreate401Response
+      '403':
+        application/problem+json: UsersBulkCreate403Response
+      '404':
+        application/problem+json: UsersBulkCreate404Response
+      '500':
+        application/problem+json: UsersBulkCreate500Response
+  /v2/company/{company_id}/day_part/settings:
+    get:
+      '200':
+        application/json: DayPartGetSettingsResponse
+      '400':
+        application/problem+json: DayPartGetSettings400Response
+      '401':
+        application/problem+json: DayPartGetSettings401Response
+      '403':
+        application/problem+json: DayPartGetSettings403Response
+      '500':
+        application/problem+json: DayPartGetSettings500Response
+  /v2/company/{company_id}/departments:
+    get:
+      '200':
+        application/json: DepartmentsListResponse
+      '400':
+        application/problem+json: DepartmentsList400Response
+      '403':
+        application/problem+json: DepartmentsList403Response
+      '500':
+        application/problem+json: DepartmentsList500Response
+    post:
+      '201':
+        application/json: DepartmentsCreateNewDepartmentResponse
+      '403':
+        application/problem+json: DepartmentsCreateNewDepartment403Response
+      '422':
+        application/problem+json: DepartmentsCreateNewDepartment422Response
+      '500':
+        application/problem+json: DepartmentsCreateNewDepartment500Response
+  /v2/company/{company_id}/departments/{department_id}:
+    delete:
+      '403':
+        application/problem+json: DepartmentsDeleteByIdResponse
+      '404':
+        application/problem+json: DepartmentsDeleteById404Response
+      '500':
+        application/problem+json: DepartmentsDeleteById500Response
+    get:
+      '200':
+        application/json: DepartmentsGetDepartmentResponse
+      '403':
+        application/problem+json: DepartmentsGetDepartment403Response
+      '404':
+        application/problem+json: DepartmentsGetDepartment404Response
+      '500':
+        application/problem+json: DepartmentsGetDepartment500Response
+    put:
+      '200':
+        application/json: DepartmentsUpdateDepartmentResponse
+      '403':
+        application/problem+json: DepartmentsUpdateDepartment403Response
+      '404':
+        application/problem+json: DepartmentsUpdateDepartment404Response
+      '500':
+        application/problem+json: DepartmentsUpdateDepartment500Response
+  /v2/company/{company_id}/events:
+    get:
+      '200':
+        application/json: ScheduleEventsListEventsResponse
+      '400':
+        application/problem+json: ScheduleEventsListEvents400Response
+      '401':
+        application/problem+json: ScheduleEventsListEvents401Response
+      '403':
+        application/problem+json: ScheduleEventsListEvents403Response
+      '404':
+        application/problem+json: ScheduleEventsListEvents404Response
+      '500':
+        application/problem+json: ScheduleEventsListEvents500Response
+    post:
+      '200':
+        application/json: ScheduleEventsCreateEventResponse
+      '400':
+        application/problem+json: ScheduleEventsCreateEvent400Response
+      '401':
+        application/problem+json: ScheduleEventsCreateEvent401Response
+      '403':
+        application/problem+json: ScheduleEventsCreateEvent403Response
+      '404':
+        application/problem+json: ScheduleEventsCreateEvent404Response
+      '422':
+        application/problem+json: ScheduleEventsCreateEvent422Response
+      '500':
+        application/problem+json: ScheduleEventsCreateEvent500Response
+  /v2/company/{company_id}/events/{event_id}:
+    delete:
+      '200':
+        application/json: ScheduleEventsDeleteEventResponse
+      '400':
+        application/problem+json: ScheduleEventsDeleteEvent400Response
+      '401':
+        application/problem+json: ScheduleEventsDeleteEvent401Response
+      '403':
+        application/problem+json: ScheduleEventsDeleteEvent403Response
+      '404':
+        application/problem+json: ScheduleEventsDeleteEvent404Response
+      '500':
+        application/problem+json: ScheduleEventsDeleteEvent500Response
+    get:
+      '200':
+        application/json: ScheduleEventsGetEventByIdResponse
+      '401':
+        application/problem+json: ScheduleEventsGetEventById401Response
+      '403':
+        application/problem+json: ScheduleEventsGetEventById403Response
+      '404':
+        application/problem+json: ScheduleEventsGetEventById404Response
+      '500':
+        application/problem+json: ScheduleEventsGetEventById500Response
+    patch:
+      '200':
+        application/json: ScheduleEventsUpdateEventByIdResponse
+      '400':
+        application/problem+json: ScheduleEventsUpdateEventById400Response
+      '401':
+        application/problem+json: ScheduleEventsUpdateEventById401Response
+      '403':
+        application/problem+json: ScheduleEventsUpdateEventById403Response
+      '404':
+        application/problem+json: ScheduleEventsUpdateEventById404Response
+      '422':
+        application/problem+json: ScheduleEventsUpdateEventById422Response
+      '500':
+        application/problem+json: ScheduleEventsUpdateEventById500Response
+  /v2/company/{company_id}/external_user_mappings:
+    get:
+      '200':
+        application/json: ExternalUserMappingsListResponse
+      '400':
+        application/problem+json: ExternalUserMappingsList400Response
+      '401':
+        application/problem+json: ExternalUserMappingsList401Response
+      '403':
+        application/problem+json: ExternalUserMappingsList403Response
+      '404':
+        application/problem+json: ExternalUserMappingsList404Response
+      '500':
+        application/problem+json: ExternalUserMappingsList500Response
+    post:
+      '201':
+        application/json: ExternalUserMappingsCreateMappingResponse
+      '401':
+        application/problem+json: ExternalUserMappingsCreateMapping401Response
+      '403':
+        application/problem+json: ExternalUserMappingsCreateMapping403Response
+      '409':
+        application/problem+json: ExternalUserMappingsCreateMapping409Response
+      '422':
+        application/problem+json: ExternalUserMappingsCreateMapping422Response
+      '500':
+        application/problem+json: ExternalUserMappingsCreateMapping500Response
+  /v2/company/{company_id}/external_user_mappings/{identifier}:
+    delete:
+      '400':
+        application/problem+json: ExternalUserMappingsDeleteMappingResponse
+      '401':
+        application/problem+json: ExternalUserMappingsDeleteMapping401Response
+      '403':
+        application/problem+json: ExternalUserMappingsDeleteMapping403Response
+      '404':
+        application/problem+json: ExternalUserMappingsDeleteMapping404Response
+      '422':
+        application/problem+json: ExternalUserMappingsDeleteMapping422Response
+      '500':
+        application/problem+json: ExternalUserMappingsDeleteMapping500Response
+    get:
+      '200':
+        application/json: ExternalUserMappingsGetMappingByIdResponse
+      '400':
+        application/problem+json: ExternalUserMappingsGetMappingById400Response
+      '401':
+        application/problem+json: ExternalUserMappingsGetMappingById401Response
+      '403':
+        application/problem+json: ExternalUserMappingsGetMappingById403Response
+      '404':
+        application/problem+json: ExternalUserMappingsGetMappingById404Response
+      '500':
+        application/problem+json: ExternalUserMappingsGetMappingById500Response
+    put:
+      '200':
+        application/json: ExternalUserMappingsUpdateMappingByIdentifierResponse
+      '400':
+        application/problem+json: ExternalUserMappingsUpdateMappingByIdentifier400Response
+      '401':
+        application/problem+json: ExternalUserMappingsUpdateMappingByIdentifier401Response
+      '403':
+        application/problem+json: ExternalUserMappingsUpdateMappingByIdentifier403Response
+      '404':
+        application/problem+json: ExternalUserMappingsUpdateMappingByIdentifier404Response
+      '422':
+        application/problem+json: ExternalUserMappingsUpdateMappingByIdentifier422Response
+      '500':
+        application/problem+json: ExternalUserMappingsUpdateMappingByIdentifier500Response
+  /v2/company/{company_id}/external_user_mappings_bulk:
+    post:
+      '200':
+        application/json: ExternalUserMappingsCreateBulkMappingsResponse
+      '400':
+        application/problem+json: ExternalUserMappingsCreateBulkMappings400Response
+      '401':
+        application/problem+json: ExternalUserMappingsCreateBulkMappings401Response
+      '403':
+        application/problem+json: ExternalUserMappingsCreateBulkMappings403Response
+      '404':
+        application/problem+json: ExternalUserMappingsCreateBulkMappings404Response
+      '422':
+        application/problem+json: ExternalUserMappingsCreateBulkMappings422Response
+      '500':
+        application/problem+json: ExternalUserMappingsCreateBulkMappings500Response
+  /v2/company/{company_id}/inactive_reasons:
+    get:
+      '200':
+        application/json: CompaniesListInactiveReasonsResponse
+      '400':
+        application/problem+json: CompaniesListInactiveReasons400Response
+      '403':
+        application/problem+json: CompaniesListInactiveReasons403Response
+      '500':
+        application/problem+json: CompaniesListInactiveReasons500Response
+  /v2/company/{company_id}/labor_settings:
+    get:
+      '200':
+        application/json: CompaniesGetLaborSettingsResponse
+      '401':
+        application/problem+json: CompaniesGetLaborSettings401Response
+      '403':
+        application/problem+json: CompaniesGetLaborSettings403Response
+      '500':
+        application/problem+json: CompaniesGetLaborSettings500Response
+  /v2/company/{company_id}/location/{location_id}/forecast_override:
+    delete:
+      '400':
+        application/problem+json: ForecastOverridesSyncProjectedForecastOverrideResponse
+      '401':
+        application/problem+json: ForecastOverridesSyncProjectedForecastOverride401Response
+      '403':
+        application/problem+json: ForecastOverridesSyncProjectedForecastOverride403Response
+      '422':
+        application/problem+json: ForecastOverridesSyncProjectedForecastOverride422Response
+      '500':
+        application/problem+json: ForecastOverridesSyncProjectedForecastOverride500Response
+    post:
+      '201':
+        application/json: ForecastOverridesCreateDailyProjectedForecastOverrideResponse
+      '400':
+        application/problem+json: ForecastOverridesCreateDailyProjectedForecastOverride400Response
+      '401':
+        application/problem+json: ForecastOverridesCreateDailyProjectedForecastOverride401Response
+      '403':
+        application/problem+json: ForecastOverridesCreateDailyProjectedForecastOverride403Response
+      '422':
+        application/problem+json: ForecastOverridesCreateDailyProjectedForecastOverride422Response
+      '500':
+        application/problem+json: ForecastOverridesCreateDailyProjectedForecastOverride500Response
+  /v2/company/{company_id}/location/{location_id}/forecast_overrides:
+    post:
+      '200':
+        application/json: ForecastOverridesBulkCreateProjectedForecastOverrideResponse
+      '400':
+        application/problem+json: ForecastOverridesBulkCreateProjectedForecastOverride400Response
+      '401':
+        application/problem+json: ForecastOverridesBulkCreateProjectedForecastOverride401Response
+      '403':
+        application/problem+json: ForecastOverridesBulkCreateProjectedForecastOverride403Response
+      '422':
+        application/problem+json: ForecastOverridesBulkCreateProjectedForecastOverride422Response
+      '500':
+        application/problem+json: ForecastOverridesBulkCreateProjectedForecastOverride500Response
+  /v2/company/{company_id}/location/{location_id}/sales_category_mappings:
+    get:
+      '200':
+        application/json: IntegrationMappingsListSalesCategoryMappingsResponse
+      '400':
+        application/problem+json: IntegrationMappingsListSalesCategoryMappings400Response
+      '401':
+        application/problem+json: IntegrationMappingsListSalesCategoryMappings401Response
+      '403':
+        application/problem+json: IntegrationMappingsListSalesCategoryMappings403Response
+      '500':
+        application/problem+json: IntegrationMappingsListSalesCategoryMappings500Response
+  /v2/company/{company_id}/location/{location_id}/sales_category_mappings/{external_id}:
+    delete:
+      '400':
+        application/problem+json: IntegrationMappingsDeleteSalesCategoryMappingsResponse
+      '401':
+        application/problem+json: IntegrationMappingsDeleteSalesCategoryMappings401Response
+      '403':
+        application/problem+json: IntegrationMappingsDeleteSalesCategoryMappings403Response
+      '404':
+        application/problem+json: IntegrationMappingsDeleteSalesCategoryMappings404Response
+      '422':
+        application/problem+json: IntegrationMappingsDeleteSalesCategoryMappings422Response
+      '500':
+        application/problem+json: IntegrationMappingsDeleteSalesCategoryMappings500Response
+  /v2/company/{company_id}/location/{location_id}/sales_category_mappings_bulk:
+    post:
+      '200':
+        application/json: IntegrationMappingsCreateSalesCategoryMappingsBulkResponse
+      '400':
+        application/problem+json: IntegrationMappingsCreateSalesCategoryMappingsBulk400Response
+      '401':
+        application/problem+json: IntegrationMappingsCreateSalesCategoryMappingsBulk401Response
+      '403':
+        application/problem+json: IntegrationMappingsCreateSalesCategoryMappingsBulk403Response
+      '500':
+        application/problem+json: IntegrationMappingsCreateSalesCategoryMappingsBulk500Response
+  /v2/company/{company_id}/locations:
+    get:
+      '200':
+        application/json: LocationsListGetResponse
+      '400':
+        application/problem+json: LocationsListGet400Response
+      '403':
+        application/problem+json: LocationsListGet403Response
+      '500':
+        application/problem+json: LocationsListGet500Response
+    post:
+      '201':
+        application/json: LocationsCreateResponse
+      '400':
+        application/problem+json: LocationsCreate400Response
+      '403':
+        application/problem+json: LocationsCreate403Response
+      '500':
+        application/problem+json: LocationsCreate500Response
+  /v2/company/{company_id}/locations/{location_id}:
+    delete:
+      '403':
+        application/problem+json: LocationsRemoveLocationByIdResponse
+      '404':
+        application/problem+json: LocationsRemoveLocationById404Response
+      '500':
+        application/problem+json: LocationsRemoveLocationById500Response
+    get:
+      '200':
+        application/json: LocationsGetLocationResponse
+      '403':
+        application/problem+json: LocationsGetLocation403Response
+      '404':
+        application/problem+json: LocationsGetLocation404Response
+      '500':
+        application/problem+json: LocationsGetLocation500Response
+    put:
+      '200':
+        application/json: LocationsUpdateLocationByIdResponse
+      '400':
+        application/problem+json: LocationsUpdateLocationById400Response
+      '403':
+        application/problem+json: LocationsUpdateLocationById403Response
+      '404':
+        application/problem+json: LocationsUpdateLocationById404Response
+      '500':
+        application/problem+json: LocationsUpdateLocationById500Response
+  /v2/company/{company_id}/locations/{location_id}/engage_overview:
+    get:
+      '200':
+        application/json: EngageOverviewByLocationIdResponse
+      '400':
+        application/problem+json: EngageOverviewByLocationId400Response
+      '401':
+        application/problem+json: EngageOverviewByLocationId401Response
+      '403':
+        application/problem+json: EngageOverviewByLocationId403Response
+      '500':
+        application/problem+json: EngageOverviewByLocationId500Response
+  /v2/company/{company_id}/locations/{location_id}/forecast_override_interval:
+    delete:
+      '400':
+        application/problem+json: ForecastOverridesSyncProjectedSalesIntervalResponse
+      '401':
+        application/problem+json: ForecastOverridesSyncProjectedSalesInterval401Response
+      '403':
+        application/problem+json: ForecastOverridesSyncProjectedSalesInterval403Response
+      '422':
+        application/problem+json: ForecastOverridesSyncProjectedSalesInterval422Response
+      '500':
+        application/problem+json: ForecastOverridesSyncProjectedSalesInterval500Response
+    post:
+      '400':
+        application/problem+json: ForecastOverridesOverrideIntervalResponse
+      '401':
+        application/problem+json: ForecastOverridesOverrideInterval401Response
+      '403':
+        application/problem+json: ForecastOverridesOverrideInterval403Response
+      '422':
+        application/problem+json: ForecastOverridesOverrideInterval422Response
+      '500':
+        application/problem+json: ForecastOverridesOverrideInterval500Response
+  /v2/company/{company_id}/locations/{location_id}/forecast_overrides_intervals:
+    post:
+      '400':
+        application/problem+json: ForecastOverridesBulkCreateProjectedSalesIntervalOverrideResponse
+      '401':
+        application/problem+json: ForecastOverridesBulkCreateProjectedSalesIntervalOverride401Response
+      '403':
+        application/problem+json: ForecastOverridesBulkCreateProjectedSalesIntervalOverride403Response
+      '422':
+        application/problem+json: ForecastOverridesBulkCreateProjectedSalesIntervalOverride422Response
+      '500':
+        application/problem+json: ForecastOverridesBulkCreateProjectedSalesIntervalOverride500Response
+  /v2/company/{company_id}/locations/{location_id}/tip_pool_detailed_report:
+    get:
+      '200':
+        application/json: TipPoolGetDetailedReportResponse
+      '400':
+        application/problem+json: TipPoolGetDetailedReport400Response
+      '401':
+        application/problem+json: TipPoolGetDetailedReport401Response
+      '403':
+        application/problem+json: TipPoolGetDetailedReport403Response
+      '404':
+        application/problem+json: TipPoolGetDetailedReport404Response
+      '500':
+        application/problem+json: TipPoolGetDetailedReport500Response
+  /v2/company/{company_id}/locations/{location_id}/tip_pool_summary_report:
+    get:
+      '200':
+        application/json: TipPoolGetSummaryReportResponse
+      '400':
+        application/problem+json: TipPoolGetSummaryReport400Response
+      '401':
+        application/problem+json: TipPoolGetSummaryReport401Response
+      '403':
+        application/problem+json: TipPoolGetSummaryReport403Response
+      '404':
+        application/problem+json: TipPoolGetSummaryReport404Response
+      '500':
+        application/problem+json: TipPoolGetSummaryReport500Response
+  /v2/company/{company_id}/log_book_categories:
+    get:
+      '200':
+        application/json: LogBookListCategoriesResponse
+      '401':
+        application/problem+json: LogBookListCategories401Response
+      '403':
+        application/problem+json: LogBookListCategories403Response
+      '500':
+        application/problem+json: LogBookListCategories500Response
+    post:
+      '200':
+        application/json: LogBookCreateCategoryResponse
+      '400':
+        application/problem+json: LogBookCreateCategory400Response
+      '401':
+        application/problem+json: LogBookCreateCategory401Response
+      '403':
+        application/problem+json: LogBookCreateCategory403Response
+      '500':
+        application/problem+json: LogBookCreateCategory500Response
+  /v2/company/{company_id}/log_book_categories/{id}:
+    delete:
+      '401':
+        application/problem+json: LogBookDeleteCategoryByIdResponse
+      '403':
+        application/problem+json: LogBookDeleteCategoryById403Response
+      '404':
+        application/problem+json: LogBookDeleteCategoryById404Response
+      '500':
+        application/problem+json: LogBookDeleteCategoryById500Response
+    patch:
+      '200':
+        application/json: LogBookUpdateCategoryByIdResponse
+      '400':
+        application/problem+json: LogBookUpdateCategoryById400Response
+      '401':
+        application/problem+json: LogBookUpdateCategoryById401Response
+      '403':
+        application/problem+json: LogBookUpdateCategoryById403Response
+      '500':
+        application/problem+json: LogBookUpdateCategoryById500Response
+  /v2/company/{company_id}/log_book_comments:
+    get:
+      '200':
+        application/json: LogBookListCommentsResponse
+      '400':
+        application/problem+json: LogBookListComments400Response
+      '401':
+        application/problem+json: LogBookListComments401Response
+      '403':
+        application/problem+json: LogBookListComments403Response
+      '500':
+        application/problem+json: LogBookListComments500Response
+    post:
+      '200':
+        application/json: LogBookCreateCommentResponse
+      '401':
+        application/problem+json: LogBookCreateComment401Response
+      '403':
+        application/problem+json: LogBookCreateComment403Response
+      '422':
+        application/problem+json: LogBookCreateComment422Response
+      '500':
+        application/problem+json: LogBookCreateComment500Response
+  /v2/company/{company_id}/log_book_comments/{id}:
+    delete:
+      '401':
+        application/problem+json: LogBookDeleteCommentResponse
+      '403':
+        application/problem+json: LogBookDeleteComment403Response
+      '404':
+        application/problem+json: LogBookDeleteComment404Response
+      '500':
+        application/problem+json: LogBookDeleteComment500Response
+    get:
+      '200':
+        application/json: LogBookGetCommentResponse
+      '401':
+        application/problem+json: LogBookGetComment401Response
+      '403':
+        application/problem+json: LogBookGetComment403Response
+      '404':
+        application/problem+json: LogBookGetComment404Response
+      '500':
+        application/problem+json: LogBookGetComment500Response
+  /v2/company/{company_id}/log_book_posts:
+    get:
+      '200':
+        application/json: LogBookListPostsResponse
+      '401':
+        application/problem+json: LogBookListPosts401Response
+      '403':
+        application/problem+json: LogBookListPosts403Response
+      '500':
+        application/problem+json: LogBookListPosts500Response
+    post:
+      '201':
+        application/json: LogBookCreatePostResponse
+      '401':
+        application/problem+json: LogBookCreatePost401Response
+      '403':
+        application/problem+json: LogBookCreatePost403Response
+      '422':
+        application/problem+json: LogBookCreatePost422Response
+      '500':
+        application/problem+json: LogBookCreatePost500Response
+  /v2/company/{company_id}/log_book_posts/{id}:
+    delete:
+      '401':
+        application/problem+json: LogBookDeletePostResponse
+      '403':
+        application/problem+json: LogBookDeletePost403Response
+      '404':
+        application/problem+json: LogBookDeletePost404Response
+      '500':
+        application/problem+json: LogBookDeletePost500Response
+    get:
+      '200':
+        application/json: LogBookGetPostResponse
+      '401':
+        application/problem+json: LogBookGetPost401Response
+      '403':
+        application/problem+json: LogBookGetPost403Response
+      '404':
+        application/problem+json: LogBookGetPost404Response
+      '500':
+        application/problem+json: LogBookGetPost500Response
+  /v2/company/{company_id}/receipts:
+    get:
+      '200':
+        application/json: ReceiptsListResponse
+      '400':
+        application/problem+json: ReceiptsList400Response
+      '401':
+        application/problem+json: ReceiptsList401Response
+      '403':
+        application/problem+json: ReceiptsList403Response
+      '404':
+        application/problem+json: ReceiptsList404Response
+      '422':
+        application/problem+json: ReceiptsList422Response
+      '500':
+        application/problem+json: ReceiptsList500Response
+    post:
+      '202':
+        application/json: ReceiptsCreateReceiptResponse
+      '400':
+        application/problem+json: ReceiptsCreateReceipt400Response
+      '403':
+        application/problem+json: ReceiptsCreateReceipt403Response
+      '500':
+        application/problem+json: ReceiptsCreateReceipt500Response
+  /v2/company/{company_id}/receipts/{receipt_id}:
+    get:
+      '200':
+        application/json: ReceiptsGetReceiptResponse
+      '400':
+        application/problem+json: ReceiptsGetReceipt400Response
+      '403':
+        application/problem+json: ReceiptsGetReceipt403Response
+      '404':
+        application/problem+json: ReceiptsGetReceipt404Response
+      '422':
+        application/problem+json: ReceiptsGetReceipt422Response
+      '500':
+        application/problem+json: ReceiptsGetReceipt500Response
+    put:
+      '202':
+        application/json: ReceiptsUpdateReceiptResponse
+      '400':
+        application/problem+json: ReceiptsUpdateReceipt400Response
+      '403':
+        application/problem+json: ReceiptsUpdateReceipt403Response
+      '500':
+        application/problem+json: ReceiptsUpdateReceipt500Response
+  /v2/company/{company_id}/receipts_summary:
+    get:
+      '200':
+        application/json: ReceiptsGetSummaryResponse
+      '400':
+        application/problem+json: ReceiptsGetSummary400Response
+      '401':
+        application/problem+json: ReceiptsGetSummary401Response
+      '403':
+        application/problem+json: ReceiptsGetSummary403Response
+      '422':
+        application/problem+json: ReceiptsGetSummary422Response
+      '500':
+        application/problem+json: ReceiptsGetSummary500Response
+  /v2/company/{company_id}/roles:
+    get:
+      '200':
+        application/json: RolesListResponse
+      '400':
+        application/problem+json: RolesList400Response
+      '403':
+        application/problem+json: RolesList403Response
+      '404':
+        application/problem+json: RolesList404Response
+      '500':
+        application/problem+json: RolesList500Response
+    post:
+      '201':
+        application/json: RolesCreateRoleResponse
+      '400':
+        application/problem+json: RolesCreateRole400Response
+      '403':
+        application/problem+json: RolesCreateRole403Response
+      '422':
+        application/problem+json: RolesCreateRole422Response
+      '500':
+        application/problem+json: RolesCreateRole500Response
+  /v2/company/{company_id}/roles/{role_id}:
+    delete:
+      '400':
+        application/problem+json: RolesDeleteRoleResponse
+      '403':
+        application/problem+json: RolesDeleteRole403Response
+      '404':
+        application/problem+json: RolesDeleteRole404Response
+      '500':
+        application/problem+json: RolesDeleteRole500Response
+    get:
+      '200':
+        application/json: RolesGetRoleResponse
+      '403':
+        application/problem+json: RolesGetRole403Response
+      '404':
+        application/problem+json: RolesGetRole404Response
+      '500':
+        application/problem+json: RolesGetRole500Response
+    put:
+      '200':
+        application/json: RolesUpdateRoleByIdResponse
+      '400':
+        application/problem+json: RolesUpdateRoleById400Response
+      '403':
+        application/problem+json: RolesUpdateRoleById403Response
+      '404':
+        application/problem+json: RolesUpdateRoleById404Response
+      '422':
+        application/problem+json: RolesUpdateRoleById422Response
+      '500':
+        application/problem+json: RolesUpdateRoleById500Response
+  /v2/company/{company_id}/shift_feedback:
+    get:
+      '200':
+        application/json: ShiftFeedbackListResponse
+      '400':
+        application/problem+json: ShiftFeedbackList400Response
+      '401':
+        application/problem+json: ShiftFeedbackList401Response
+      '403':
+        application/problem+json: ShiftFeedbackList403Response
+      '404':
+        application/problem+json: ShiftFeedbackList404Response
+      '500':
+        application/problem+json: ShiftFeedbackList500Response
+  /v2/company/{company_id}/shifts:
+    get:
+      '200':
+        application/json: ShiftsListResponse
+      '400':
+        application/problem+json: ShiftsList400Response
+      '403':
+        application/problem+json: ShiftsList403Response
+    post:
+      '201':
+        application/json: ShiftsCreateNewShiftResponse
+      '400':
+        application/problem+json: ShiftsCreateNewShift400Response
+      '403':
+        application/problem+json: ShiftsCreateNewShift403Response
+      '422':
+        application/problem+json: ShiftsCreateNewShift422Response
+  /v2/company/{company_id}/shifts/{shift_id}:
+    delete:
+      '401':
+        application/problem+json: ShiftsDeleteShiftByIdResponse
+      '403':
+        application/problem+json: ShiftsDeleteShiftById403Response
+      '404':
+        application/problem+json: ShiftsDeleteShiftById404Response
+      '500':
+        application/problem+json: ShiftsDeleteShiftById500Response
+    get:
+      '200':
+        application/json: ShiftsGetShiftByIdResponse
+      '400':
+        application/problem+json: ShiftsGetShiftById400Response
+      '401':
+        application/problem+json: ShiftsGetShiftById401Response
+      '403':
+        application/problem+json: ShiftsGetShiftById403Response
+      '404':
+        application/problem+json: ShiftsGetShiftById404Response
+      '500':
+        application/problem+json: ShiftsGetShiftById500Response
+    put:
+      '200':
+        application/json: ShiftsUpdateShiftByIdResponse
+      '400':
+        application/problem+json: ShiftsUpdateShiftById400Response
+      '401':
+        application/problem+json: ShiftsUpdateShiftById401Response
+      '403':
+        application/problem+json: ShiftsUpdateShiftById403Response
+      '404':
+        application/problem+json: ShiftsUpdateShiftById404Response
+      '500':
+        application/problem+json: ShiftsUpdateShiftById500Response
+  /v2/company/{company_id}/shifts_scheduled/{id}:
+    get:
+      '200':
+        application/json: ScheduleEnforcementListScheduledShiftsResponse
+      '400':
+        application/problem+json: ScheduleEnforcementListScheduledShifts400Response
+      '401':
+        application/problem+json: ScheduleEnforcementListScheduledShifts401Response
+      '403':
+        application/problem+json: ScheduleEnforcementListScheduledShifts403Response
+      '404':
+        application/problem+json: ScheduleEnforcementListScheduledShifts404Response
+      '500':
+        application/problem+json: ScheduleEnforcementListScheduledShifts500Response
+  /v2/company/{company_id}/task_list_daily_summary:
+    get:
+      '200':
+        application/json: TaskManagementListTaskListsSummary200Response
+      '400':
+        application/problem+json: TaskManagementListTaskListsSummary400Response
+      '401':
+        application/problem+json: TaskManagementListTaskListsSummary401Response
+      '403':
+        application/problem+json: TaskManagementListTaskListsSummary403Response
+      '404':
+        application/problem+json: TaskManagementListTaskListsSummary404Response
+      default:
+        application/problem+json: TaskManagementListTaskListsSummaryResponse
+  /v2/company/{company_id}/task_list_templates:
+    get:
+      '200':
+        application/json: TaskManagementGetTaskListTemplates200Response
+      '403':
+        application/problem+json: TaskManagementGetTaskListTemplates403Response
+      '404':
+        application/problem+json: TaskManagementGetTaskListTemplates404Response
+      default:
+        application/problem+json: TaskManagementGetTaskListTemplatesResponse
+    post:
+      '201':
+        application/json: TaskManagementCreateTaskListTemplateResponse
+      '400':
+        application/problem+json: TaskManagementCreateTaskListTemplate400Response
+      '401':
+        application/problem+json: TaskManagementCreateTaskListTemplate401Response
+      '403':
+        application/problem+json: TaskManagementCreateTaskListTemplate403Response
+      '404':
+        application/problem+json: TaskManagementCreateTaskListTemplate404Response
+      '409':
+        application/problem+json: TaskManagementCreateTaskListTemplate409Response
+      '422':
+        application/problem+json: TaskManagementCreateTaskListTemplate422Response
+      '500':
+        application/problem+json: TaskManagementCreateTaskListTemplate500Response
+  /v2/company/{company_id}/task_list_templates/{uuid}:
+    delete:
+      '401':
+        application/problem+json: TaskManagementDeleteTaskListTemplateResponse
+      '403':
+        application/problem+json: TaskManagementDeleteTaskListTemplate403Response
+      '404':
+        application/problem+json: TaskManagementDeleteTaskListTemplate404Response
+      '500':
+        application/problem+json: TaskManagementDeleteTaskListTemplate500Response
+    get:
+      '200':
+        application/json: TaskManagementGetTaskListTemplateResponse
+      '400':
+        application/problem+json: TaskManagementGetTaskListTemplate400Response
+      '401':
+        application/problem+json: TaskManagementGetTaskListTemplate401Response
+      '403':
+        application/problem+json: TaskManagementGetTaskListTemplate403Response
+      '404':
+        application/problem+json: TaskManagementGetTaskListTemplate404Response
+      '500':
+        application/problem+json: TaskManagementGetTaskListTemplate500Response
+    put:
+      '200':
+        application/json: TaskManagementEditTaskListTemplateResponse
+      '400':
+        application/problem+json: TaskManagementEditTaskListTemplate400Response
+      '401':
+        application/problem+json: TaskManagementEditTaskListTemplate401Response
+      '403':
+        application/problem+json: TaskManagementEditTaskListTemplate403Response
+      '404':
+        application/problem+json: TaskManagementEditTaskListTemplate404Response
+      '422':
+        application/problem+json: TaskManagementEditTaskListTemplate422Response
+      '500':
+        application/problem+json: TaskManagementEditTaskListTemplate500Response
+  /v2/company/{company_id}/task_lists:
+    get:
+      '200':
+        application/json: TaskManagementGetTaskListsResponse
+      '400':
+        application/problem+json: TaskManagementGetTaskLists400Response
+      '401':
+        application/problem+json: TaskManagementGetTaskLists401Response
+      '403':
+        application/problem+json: TaskManagementGetTaskLists403Response
+      '404':
+        application/problem+json: TaskManagementGetTaskLists404Response
+      '500':
+        application/problem+json: TaskManagementGetTaskLists500Response
+  /v2/company/{company_id}/task_lists/{list_id}:
+    get:
+      '200':
+        application/json: TaskManagementGetTaskListResponse
+      '400':
+        application/problem+json: TaskManagementGetTaskList400Response
+      '401':
+        application/problem+json: TaskManagementGetTaskList401Response
+      '403':
+        application/problem+json: TaskManagementGetTaskList403Response
+      '404':
+        application/problem+json: TaskManagementGetTaskList404Response
+      '500':
+        application/problem+json: TaskManagementGetTaskList500Response
+  /v2/company/{company_id}/task_lists/{list_id}/tasks/{task_id}/clear:
+    post:
+      '200':
+        application/json: TaskManagementClearTaskResponse
+      '400':
+        application/problem+json: TaskManagementClearTask400Response
+      '401':
+        application/problem+json: TaskManagementClearTask401Response
+      '403':
+        application/problem+json: TaskManagementClearTask403Response
+      '404':
+        application/problem+json: TaskManagementClearTask404Response
+      '409':
+        application/problem+json: TaskManagementClearTask409Response
+      '422':
+        application/problem+json: TaskManagementClearTask422Response
+      '500':
+        application/problem+json: TaskManagementClearTask500Response
+  /v2/company/{company_id}/task_lists/{list_id}/tasks/{task_id}/complete:
+    post:
+      '200':
+        application/json: TaskManagementMarkCompleteResponse
+      '400':
+        application/problem+json: TaskManagementMarkComplete400Response
+      '401':
+        application/problem+json: TaskManagementMarkComplete401Response
+      '403':
+        application/problem+json: TaskManagementMarkComplete403Response
+      '404':
+        application/problem+json: TaskManagementMarkComplete404Response
+      '409':
+        application/problem+json: TaskManagementMarkComplete409Response
+      '422':
+        application/problem+json: TaskManagementMarkComplete422Response
+      '500':
+        application/problem+json: TaskManagementMarkComplete500Response
+  /v2/company/{company_id}/task_management_settings:
+    get:
+      '200':
+        application/json: TaskManagementGetSettingsResponse
+      '403':
+        application/problem+json: TaskManagementGetSettings403Response
+      '404':
+        application/problem+json: TaskManagementGetSettings404Response
+      '500':
+        application/problem+json: TaskManagementGetSettings500Response
+  /v2/company/{company_id}/task_tags:
+    delete:
+      '401':
+        application/problem+json: TaskManagementDeleteTaskTagsResponse
+      '403':
+        application/problem+json: TaskManagementDeleteTaskTags403Response
+      '404':
+        application/problem+json: TaskManagementDeleteTaskTags404Response
+      '500':
+        application/problem+json: TaskManagementDeleteTaskTags500Response
+    post:
+      '401':
+        application/problem+json: TaskManagementCreateTaskTagsResponse
+      '403':
+        application/problem+json: TaskManagementCreateTaskTags403Response
+      '404':
+        application/problem+json: TaskManagementCreateTaskTags404Response
+      '422':
+        application/problem+json: TaskManagementCreateTaskTags422Response
+      '500':
+        application/problem+json: TaskManagementCreateTaskTags500Response
+  /v2/company/{company_id}/test_webhook:
+    get:
+      '200':
+        application/json: WebhooksGetWebhookResponse
+      '401':
+        application/problem+json: WebhooksGetWebhook401Response
+      '403':
+        application/problem+json: WebhooksGetWebhook403Response
+      '404':
+        application/problem+json: WebhooksGetWebhook404Response
+      '500':
+        application/problem+json: WebhooksGetWebhook500Response
+  /v2/company/{company_id}/time_punches:
+    get:
+      '200':
+        application/json: TimePunchesListResponse
+      '401':
+        application/problem+json: TimePunchesList401Response
+      '403':
+        application/problem+json: TimePunchesList403Response
+      '422':
+        application/problem+json: TimePunchesList422Response
+      '500':
+        application/problem+json: TimePunchesList500Response
+    post:
+      '201':
+        application/json: TimePunchesCreateResponse
+      '400':
+        application/problem+json: TimePunchesCreate400Response
+      '401':
+        application/problem+json: TimePunchesCreate401Response
+      '403':
+        application/problem+json: TimePunchesCreate403Response
+      '404':
+        application/problem+json: TimePunchesCreate404Response
+      '422':
+        application/problem+json: TimePunchesCreate422Response
+      '500':
+        application/problem+json: TimePunchesCreate500Response
+  /v2/company/{company_id}/time_punches/{time_punch_id}:
+    delete:
+      '401':
+        application/problem+json: TimePunchesDeleteByIdResponse
+      '403':
+        application/problem+json: TimePunchesDeleteById403Response
+      '404':
+        application/problem+json: TimePunchesDeleteById404Response
+      '500':
+        application/problem+json: TimePunchesDeleteById500Response
+    get:
+      '200':
+        application/json: TimePunchesGetTimePunchResponse
+      '401':
+        application/problem+json: TimePunchesGetTimePunch401Response
+      '403':
+        application/problem+json: TimePunchesGetTimePunch403Response
+      '404':
+        application/problem+json: TimePunchesGetTimePunch404Response
+      '500':
+        application/problem+json: TimePunchesGetTimePunch500Response
+    put:
+      '200':
+        application/json: TimePunchesUpdateByIdResponse
+      '400':
+        application/problem+json: TimePunchesUpdateById400Response
+      '401':
+        application/problem+json: TimePunchesUpdateById401Response
+      '403':
+        application/problem+json: TimePunchesUpdateById403Response
+      '404':
+        application/problem+json: TimePunchesUpdateById404Response
+      '422':
+        application/problem+json: TimePunchesUpdateById422Response
+      '500':
+        application/problem+json: TimePunchesUpdateById500Response
+  /v2/company/{company_id}/tip_pool/{tip_pool_settings_uuid}/manual_entry:
+    get:
+      '200':
+        application/json: TipPoolGetManualEntryTipsResponse
+      '401':
+        application/problem+json: TipPoolGetManualEntryTips401Response
+      '403':
+        application/problem+json: TipPoolGetManualEntryTips403Response
+    put:
+      '200':
+        application/json: TipPoolSaveManualEntryResponse
+      '400':
+        application/problem+json: TipPoolSaveManualEntry400Response
+      '401':
+        application/problem+json: TipPoolSaveManualEntry401Response
+      '403':
+        application/problem+json: TipPoolSaveManualEntry403Response
+      '422':
+        application/problem+json: TipPoolSaveManualEntry422Response
+      '500':
+        application/problem+json: TipPoolSaveManualEntry500Response
+  /v2/company/{company_id}/tip_pool_settings:
+    get:
+      '200':
+        application/json: TipPoolGetSettingsResponse
+      '403':
+        application/problem+json: TipPoolGetSettings403Response
+      '404':
+        application/problem+json: TipPoolGetSettings404Response
+  /v2/company/{company_id}/users:
+    get:
+      '200':
+        application/json: UsersListResponse
+      '400':
+        application/problem+json: UsersList400Response
+      '401':
+        application/problem+json: UsersList401Response
+      '403':
+        application/problem+json: UsersList403Response
+      '500':
+        application/problem+json: UsersList500Response
+    post:
+      '201':
+        application/json: UsersCreateNewUserResponse
+      '400':
+        application/problem+json: UsersCreateNewUser400Response
+      '401':
+        application/problem+json: UsersCreateNewUser401Response
+      '403':
+        application/problem+json: UsersCreateNewUser403Response
+      '404':
+        application/problem+json: UsersCreateNewUser404Response
+      '422':
+        application/problem+json: UsersCreateNewUser422Response
+      '500':
+        application/problem+json: UsersCreateNewUser500Response
+  /v2/company/{company_id}/users/{identifier}:
+    delete:
+      '400':
+        application/problem+json: UsersDeactivateResponse
+      '401':
+        application/problem+json: UsersDeactivate401Response
+      '403':
+        application/problem+json: UsersDeactivate403Response
+      '404':
+        application/problem+json: UsersDeactivate404Response
+      '500':
+        application/problem+json: UsersDeactivate500Response
+    get:
+      '200':
+        application/json: UsersGetUserByIdentifierResponse
+      '400':
+        application/problem+json: UsersGetUserByIdentifier400Response
+      '403':
+        application/problem+json: UsersGetUserByIdentifier403Response
+      '404':
+        application/problem+json: UsersGetUserByIdentifier404Response
+    put:
+      '200':
+        application/json: UsersUpdateUserByIdentifierResponse
+      '400':
+        application/problem+json: UsersUpdateUserByIdentifier400Response
+      '401':
+        application/problem+json: UsersUpdateUserByIdentifier401Response
+      '403':
+        application/problem+json: UsersUpdateUserByIdentifier403Response
+      '404':
+        application/problem+json: UsersUpdateUserByIdentifier404Response
+      '422':
+        application/problem+json: UsersUpdateUserByIdentifier422Response
+      '500':
+        application/problem+json: UsersUpdateUserByIdentifier500Response
+  /v2/company/{company_id}/users/{user_id}/assignments:
+    get:
+      '200':
+        application/json: UserAssignmentsListResponse
+      '400':
+        application/problem+json: UserAssignmentsList400Response
+      '401':
+        application/problem+json: UserAssignmentsList401Response
+      '403':
+        application/problem+json: UserAssignmentsList403Response
+      '404':
+        application/problem+json: UserAssignmentsList404Response
+      '500':
+        application/problem+json: UserAssignmentsList500Response
+  /v2/company/{company_id}/users/{user_id}/department_assignments:
+    get:
+      '200':
+        application/json: UserAssignmentsListDepartmentAssignmentsResponse
+      '400':
+        application/problem+json: UserAssignmentsListDepartmentAssignments400Response
+      '401':
+        application/problem+json: UserAssignmentsListDepartmentAssignments401Response
+      '403':
+        application/problem+json: UserAssignmentsListDepartmentAssignments403Response
+      '404':
+        application/problem+json: UserAssignmentsListDepartmentAssignments404Response
+      '500':
+        application/problem+json: UserAssignmentsListDepartmentAssignments500Response
+    post:
+      '201':
+        application/json: UserAssignmentsCreateDepartmentAssignmentResponse
+      '400':
+        application/problem+json: UserAssignmentsCreateDepartmentAssignment400Response
+      '401':
+        application/problem+json: UserAssignmentsCreateDepartmentAssignment401Response
+      '403':
+        application/problem+json: UserAssignmentsCreateDepartmentAssignment403Response
+      '404':
+        application/problem+json: UserAssignmentsCreateDepartmentAssignment404Response
+      '500':
+        application/problem+json: UserAssignmentsCreateDepartmentAssignment500Response
+  /v2/company/{company_id}/users/{user_id}/department_assignments/{department_id}:
+    delete:
+      '400':
+        application/problem+json: UserAssignmentsRemoveDepartmentAssignmentResponse
+      '403':
+        application/problem+json: UserAssignmentsRemoveDepartmentAssignment403Response
+      '404':
+        application/problem+json: UserAssignmentsRemoveDepartmentAssignment404Response
+      '500':
+        application/problem+json: UserAssignmentsRemoveDepartmentAssignment500Response
+  /v2/company/{company_id}/users/{user_id}/location_assignments:
+    get:
+      '200':
+        application/json: UserAssignmentsListLocationAssignmentsResponse
+      '400':
+        application/problem+json: UserAssignmentsListLocationAssignments400Response
+      '403':
+        application/problem+json: UserAssignmentsListLocationAssignments403Response
+      '404':
+        application/problem+json: UserAssignmentsListLocationAssignments404Response
+      '500':
+        application/problem+json: UserAssignmentsListLocationAssignments500Response
+    post:
+      '201':
+        application/json: UserAssignmentsCreateLocationAssignmentResponse
+      '400':
+        application/problem+json: UserAssignmentsCreateLocationAssignment400Response
+      '403':
+        application/problem+json: UserAssignmentsCreateLocationAssignment403Response
+      '404':
+        application/problem+json: UserAssignmentsCreateLocationAssignment404Response
+      '500':
+        application/problem+json: UserAssignmentsCreateLocationAssignment500Response
+  /v2/company/{company_id}/users/{user_id}/location_assignments/{location_id}:
+    delete:
+      '400':
+        application/problem+json: UserAssignmentsRemoveLocationAssignmentResponse
+      '403':
+        application/problem+json: UserAssignmentsRemoveLocationAssignment403Response
+      '404':
+        application/problem+json: UserAssignmentsRemoveLocationAssignment404Response
+      '500':
+        application/problem+json: UserAssignmentsRemoveLocationAssignment500Response
+  /v2/company/{company_id}/users/{user_id}/role_assignments:
+    get:
+      '200':
+        application/json: UserAssignmentsListRoleAssignmentsResponse
+      '403':
+        application/problem+json: UserAssignmentsListRoleAssignments403Response
+      '404':
+        application/problem+json: UserAssignmentsListRoleAssignments404Response
+      '500':
+        application/problem+json: UserAssignmentsListRoleAssignments500Response
+    post:
+      '201':
+        application/json: UserAssignmentsCreateRoleAssignmentResponse
+      '400':
+        application/problem+json: UserAssignmentsCreateRoleAssignment400Response
+      '403':
+        application/problem+json: UserAssignmentsCreateRoleAssignment403Response
+      '404':
+        application/problem+json: UserAssignmentsCreateRoleAssignment404Response
+      '500':
+        application/problem+json: UserAssignmentsCreateRoleAssignment500Response
+  /v2/company/{company_id}/users/{user_id}/role_assignments/{role_id}:
+    delete:
+      '403':
+        application/problem+json: UserAssignmentsDeleteRoleAssignmentResponse
+      '404':
+        application/problem+json: UserAssignmentsDeleteRoleAssignment404Response
+      '500':
+        application/problem+json: UserAssignmentsDeleteRoleAssignment500Response
+  /v2/company/{company_id}/users/{user_id}/wages:
+    get:
+      '200':
+        application/json: UserWagesListResponse
+      '403':
+        application/problem+json: UserWagesList403Response
+      '404':
+        application/problem+json: UserWagesList404Response
+      '500':
+        application/problem+json: UserWagesList500Response
+    post:
+      '201':
+        application/json: UserWagesCreateResponse
+      '403':
+        application/problem+json: UserWagesCreate403Response
+      '409':
+        application/problem+json: UserWagesCreate409Response
+      '422':
+        application/problem+json: UserWagesCreate422Response
+      '500':
+        application/problem+json: UserWagesCreate500Response
+  /v2/company/{company_id}/webhooks:
+    get:
+      '200':
+        application/json: WebhooksListResponse
+      '400':
+        application/problem+json: WebhooksList400Response
+      '401':
+        application/problem+json: WebhooksList401Response
+      '403':
+        application/problem+json: WebhooksList403Response
+      '500':
+        application/problem+json: WebhooksList500Response
+    post:
+      '201':
+        application/json: WebhooksCreateResponse
+      '400':
+        application/problem+json: WebhooksCreate400Response
+      '401':
+        application/problem+json: WebhooksCreate401Response
+      '403':
+        application/problem+json: WebhooksCreate403Response
+      '409':
+        application/problem+json: WebhooksCreate409Response
+      '422':
+        application/problem+json: WebhooksCreate422Response
+      '500':
+        application/problem+json: WebhooksCreate500Response
+  /v2/company/{company_id}/webhooks/{webhook_id}:
+    delete:
+      '401':
+        application/problem+json: WebhooksDeleteWebhookByIdResponse
+      '403':
+        application/problem+json: WebhooksDeleteWebhookById403Response
+      '404':
+        application/problem+json: WebhooksDeleteWebhookById404Response
+      '500':
+        application/problem+json: WebhooksDeleteWebhookById500Response
+    put:
+      '200':
+        application/json: WebhooksUpdateResponse
+      '400':
+        application/problem+json: WebhooksUpdate400Response
+      '401':
+        application/problem+json: WebhooksUpdate401Response
+      '403':
+        application/problem+json: WebhooksUpdate403Response
+      '404':
+        application/problem+json: WebhooksUpdate404Response
+      '409':
+        application/problem+json: WebhooksUpdate409Response
+      '500':
+        application/problem+json: WebhooksUpdate500Response
+  /v2/partner_company_creation:
+    post:
+      '201':
+        application/json: AccountCreateTrialAccountResponse
+      '400':
+        application/problem+json: AccountCreateTrialAccount400Response
+      '401':
+        application/problem+json: AccountCreateTrialAccount401Response
+      '403':
+        application/problem+json: AccountCreateTrialAccount403Response
+      '422':
+        application/problem+json: AccountCreateTrialAccount422Response
+      '500':
+        application/problem+json: AccountCreateTrialAccount500Response
+  /v2/reports/daily_sales_and_labor:
+    get:
+      '200':
+        application/json: ReportsGetDailySalesAndLaborResponse
+      '500':
+        application/problem+json: ReportsGetDailySalesAndLabor500Response
+  /v2/reports/hours_and_wages:
+    get:
+      '200':
+        application/json: ReportsGetWorkedHoursWagesResponse
+      '400':
+        application/problem+json: ReportsGetWorkedHoursWages400Response
+      '401':
+        application/problem+json: ReportsGetWorkedHoursWages401Response
+      '403':
+        application/problem+json: ReportsGetWorkedHoursWages403Response
+      '500':
+        application/problem+json: ReportsGetWorkedHoursWages500Response
+  /v2/time_off:
+    get:
+      '200':
+        application/json: TimeOffList200Response
+      default:
+        application/problem+json: TimeOffListResponse
+    post:
+      '200':
+        application/json: TimeOffCreateRequest200Response
+      default:
+        application/problem+json: TimeOffCreateRequestResponse
+  /v2/time_off/total_hours:
+    get:
+      '200':
+        application/json: TimeOffGetTotalHours200Response
+      default:
+        application/problem+json: TimeOffGetTotalHoursResponse
+  /v2/time_off/{time_off_id}:
+    delete:
+      '400':
+        application/problem+json: TimeOffRemove400Response
+      '403':
+        application/problem+json: TimeOffRemove403Response
+      default:
+        application/problem+json: TimeOffRemoveResponse
+    get:
+      '200':
+        application/json: TimeOffGetTimeOffById200Response
+      '403':
+        application/problem+json: TimeOffGetTimeOffById403Response
+      '404':
+        application/problem+json: TimeOffGetTimeOffById404Response
+      default:
+        application/problem+json: TimeOffGetTimeOffByIdResponse
+    patch:
+      '200':
+        application/json: TimeOffUpdateTimeOffById200Response
+      default:
+        application/problem+json: TimeOffUpdateTimeOffByIdResponse
+  /v2/time_off/{time_off_id}/approve:
+    post:
+      '200':
+        application/json: TimeOffApproveRequest200Response
+      default:
+        application/problem+json: TimeOffApproveRequestResponse
+  /v2/time_off/{time_off_id}/decline:
+    post:
+      '200':
+        application/json: TimeOffDeclineRequest200Response
+      default:
+        application/problem+json: TimeOffDeclineRequestResponse
+  /v2/time_off_settings/{company_id}:
+    get:
+      '200':
+        application/json: TimeOffGetSettings200Response
+      '403':
+        application/problem+json: TimeOffGetSettings403Response
+      default:
+        application/problem+json: TimeOffGetSettingsResponse
+    post:
+      '200':
+        application/json: TimeOffSetTimeOffSettings200Response
+      '403':
+        application/problem+json: TimeOffSetTimeOffSettings403Response
+      default:
+        application/problem+json: TimeOffSetTimeOffSettingsResponse
+  /v2/whoami:
+    get:
+      '200':
+        application/json: AuthenticationGetIdentityResponse
+      '401':
+        application/problem+json: AuthenticationGetIdentity401Response
+      '500':
+        application/problem+json: AuthenticationGetIdentity500Response
+securityParameters:
+  active_on_date:
+    query: false
+  approved:
+    query: false
+  category:
+    query: false
+  clocked_in[gte]:
+    query: false
+  clocked_in[lte]:
+    query: false
+  clocked_out[gte]:
+    query: false
+  clocked_out[lte]:
+    query: false
+  company_id:
+    query: false
+  cursor:
+    query: false
+  date:
+    query: false
+  date_end:
+    query: false
+  date_start:
+    query: false
+  day_part_uuid:
+    query: false
+  deleted:
+    query: false
+  department_id:
+    query: false
+  department_ids:
+    query: false
+  draft:
+    query: false
+  employee_id:
+    query: false
+  end[gte]:
+    query: false
+  end[lte]:
+    query: false
+  end_date:
+    query: false
+  external_user_id:
+    query: false
+  frequency:
+    query: false
+  from:
+    query: false
+  grace_period:
+    query: false
+  ids:
+    query: false
+  include_deleted:
+    query: false
+  include_draft:
+    query: false
+  include_future:
+    query: false
+  limit:
+    query: false
+  localize_search_time:
+    query: false
+  location_id:
+    query: false
+  log_book_category_id:
+    query: false
+  log_book_ids:
+    query: false
+  message:
+    query: false
+  modified_since:
+    query: false
+  name:
+    query: false
+  open:
+    query: false
+  order_dir:
+    query: false
+  order_field:
+    query: false
+  posted_date_gte:
+    query: false
+  posted_date_lte:
+    query: false
+  punches:
+    query: false
+  receipt_date[gte]:
+    query: false
+  receipt_date[lte]:
+    query: false
+  recurrence_target:
+    query: false
+  repeating:
+    query: false
+  role_id:
+    query: false
+  shift_ids:
+    query: false
+  sort_by:
+    query: false
+  sort_dir:
+    query: false
+  start[gte]:
+    query: false
+  start[lte]:
+    query: false
+  start_date:
+    query: false
+  status:
+    query: false
+  tip_pool_uuid:
+    query: false
+  to:
+    query: false
+  to_date_gte:
+    query: false
+  topic:
+    query: false
+  transfer_to:
+    query: false
+  user_id:
+    query: false
+  user_type:
+    query: false
+  uuid:
+    query: false
+  webhook_id:
+    query: false
+  week_gte:
+    query: false
+  week_to_include_repeating_gte:
+    query: false
+  x-api-version:
+    header: false
+  x-company-guid:
+    header: false
+validServerUrls: {}

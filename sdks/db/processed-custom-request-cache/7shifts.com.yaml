@@ -1,0 +1,44 @@
+processed:
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://app.7shifts.com/oauth2/token
+          refreshUrl: https://app.7shifts.com/oauth2/token
+          scopes:
+            v1_access: Required to access APIv1 endpoints.
+        password:
+          tokenUrl: https://app.7shifts.com/oauth2/token
+          refreshUrl: https://app.7shifts.com/oauth2/token
+          scopes:
+            v1_access: Required to access APIv1 endpoints.
+        authorizationCode:
+          authorizationUrl: https://app.7shifts.com/oauth2/authorize
+          tokenUrl: https://app.7shifts.com/oauth2/token
+          refreshUrl: https://app.7shifts.com/oauth2/token
+          scopes:
+            v1_access: Required to access APIv1 endpoints.
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: 7session
+    basicAuth:
+      type: http
+      scheme: basic
+    marketingApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization-Marketing-API
+  apiBaseUrl: https://api.7shifts.com
+  apiVersion: '2023-05-01'
+  apiTitle: 7shifts API
+  endpoints: 83
+  sdkMethods: 138
+  schemas: 0
+  parameters: 1081
+  contactEmail: api-support@7shifts.com
+  originalCustomRequest:
+    lambda: true
+  customRequestSpecFilename: 7shifts.com.yaml
+  difficultyScore: 408.25
