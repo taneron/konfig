@@ -1,0 +1,21 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+operationIds:
+  /channels/{channel_id}:
+    patch: Channels_updateChannel
+  /channels/{channel_id}/inbound_messages:
+    post: Messages_importReceivedMessage
+  /channels/{channel_id}/outbound_messages:
+    post: Messages_importSyncedMessage
+operationTags: {}
+renameTags: {}
+requestSchemaNames: {}
+responseDescriptions: {}
+responseSchemaNames:
+  /channels/{channel_id}/inbound_messages:
+    post:
+      '202':
+        application/json: MessagesImportReceivedMessageResponse
+securityParameters: {}
+validServerUrls: {}

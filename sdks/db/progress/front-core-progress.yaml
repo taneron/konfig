@@ -1,0 +1,655 @@
+examples: {}
+examples_2: {}
+examples_3:
+  /accounts:
+    post:
+      '201':
+        application/json: {}
+  /analytics/exports:
+    post:
+      '201':
+        application/json: {}
+  /analytics/exports/{export_id}:
+    get:
+      '200':
+        application/json: {}
+  /analytics/reports:
+    post:
+      '201':
+        application/json: {}
+  /analytics/reports/{report_uid}:
+    get:
+      '200':
+        application/json: {}
+  /channels/{channel_id}:
+    get:
+      '200':
+        application/json: {}
+  /channels/{channel_id}/drafts:
+    post:
+      '200':
+        application/json: {}
+  /comments/{comment_id}:
+    get:
+      '200':
+        application/json: {}
+  /contacts:
+    post:
+      '201':
+        application/json: {}
+  /conversations:
+    post:
+      '201':
+        application/json: {}
+  /download/{attachment_link_id}:
+    get:
+      '200':
+        application/json: {}
+  /inboxes/{inbox_id}:
+    get:
+      '200':
+        application/json: {}
+  /knowledge_base_articles/{article_id}:
+    delete:
+      '200':
+        application/json: {}
+  /knowledge_base_articles/{article_id}/content:
+    get:
+      '200':
+        application/json: {}
+  /knowledge_base_categories/{category_id}:
+    get:
+      '200':
+        application/json: {}
+  /knowledge_base_categories/{category_id}/content:
+    get:
+      '200':
+        application/json: {}
+  /knowledge_bases:
+    post:
+      '201':
+        application/json: {}
+  /knowledge_bases/{knowledge_base_id}:
+    get:
+      '200':
+        application/json: {}
+  /me:
+    get:
+      '200':
+        application/json: {}
+  /message_template_folders:
+    post:
+      '201':
+        application/json: {}
+  /message_template_folders/{message_template_folder_id}/message_templates:
+    post:
+      '201':
+        application/json: {}
+  /rules/{rule_id}:
+    get:
+      '200':
+        application/json: {}
+  /signatures/{signature_id}:
+    get:
+      '200':
+        application/json: {}
+  /teams/{team_id}:
+    get:
+      '200':
+        application/json: {}
+ignoreObjectsWithNoProperties: true
+operationIds:
+  /accounts:
+    get: Accounts_listCompanyAccounts
+    post: Accounts_createNewAccount
+  /accounts/custom_fields:
+    get: CustomFields_listAccountCustomFields
+  /accounts/{account_id}:
+    delete: Accounts_deleteAccount
+    get: Accounts_getAccount
+    patch: Accounts_updateAccount
+  /accounts/{account_id}/contacts:
+    delete: Accounts_removeContactFrom
+    get: Accounts_listAccountContacts
+    post: Accounts_addContactsToAccount
+  /analytics/exports:
+    post: Analytics_createNewExport
+  /analytics/exports/{export_id}:
+    get: Analytics_getExport
+  /analytics/reports:
+    post: Analytics_createNewReport
+  /analytics/reports/{report_uid}:
+    get: Analytics_getReport
+  /channels:
+    get: Channels_list
+  /channels/{channel_id}:
+    get: Channels_getChannel
+    patch: Channels_updateChannel
+  /channels/{channel_id}/drafts:
+    post: Drafts_createNewDraftMessage
+  /channels/{channel_id}/incoming_messages:
+    post: Messages_receiveCustomMessage
+  /channels/{channel_id}/messages:
+    post: Messages_createNewMessage
+  /channels/{channel_id}/validate:
+    post: Channels_validateSMTPSettings
+  /comments/{comment_id}:
+    get: Comments_getComment
+  /comments/{comment_id}/mentions:
+    get: Comments_listMentionedTeammates
+  /company/rules:
+    get: Rules_listAllCompanyRules
+  /company/tags:
+    get: Tags_listCompany
+    post: Tags_createCompanyTag
+  /contact_groups:
+    get: ContactGroups_listGroups
+    post: ContactGroups_createNewGroup
+  /contact_groups/{contact_group_id}:
+    delete: ContactGroups_deleteGroup
+  /contact_groups/{contact_group_id}/contacts:
+    delete: ContactGroups_removeContacts
+    get: ContactGroups_listGroupContacts
+    post: ContactGroups_addContactsToGroup
+  /contacts:
+    get: Contacts_listCompanyContacts
+    post: Contacts_createNewContact
+  /contacts/custom_fields:
+    get: CustomFields_listContactFields
+  /contacts/merge:
+    post: Contacts_mergeContacts
+  /contacts/{contact_id}:
+    delete: Contacts_deleteContact
+    get: Contacts_getOneContact
+    patch: Contacts_updateContact
+  /contacts/{contact_id}/conversations:
+    get: Contacts_listConversationsReverseChronologicalOrder
+  /contacts/{contact_id}/handles:
+    delete: ContactHandles_removeHandle
+    post: ContactHandles_addNewHandle
+  /contacts/{contact_id}/notes:
+    get: ContactNotes_list
+    post: ContactNotes_createNewNote
+  /conversations:
+    get: Conversations_listInReverseChronologicalOrder
+    post: Conversations_createDiscussion
+  /conversations/custom_fields:
+    get: CustomFields_listConversationCustomFields
+  /conversations/search/{query}:
+    get: Conversations_searchByQuery
+  /conversations/{conversation_id}:
+    get: Conversations_getById
+    patch: Conversations_updateConversationById
+  /conversations/{conversation_id}/assignee:
+    put: Conversations_updateAssignee
+  /conversations/{conversation_id}/comments:
+    get: Comments_listConversationComments
+    post: Comments_addNewComment
+  /conversations/{conversation_id}/drafts:
+    get: Drafts_listConversationDrafts
+    post: Drafts_createDraftReply
+  /conversations/{conversation_id}/events:
+    get: Conversations_listEvents
+  /conversations/{conversation_id}/followers:
+    delete: Conversations_removeFollowers
+    get: Conversations_listFollowers
+    post: Conversations_addFollowers
+  /conversations/{conversation_id}/inboxes:
+    get: Conversations_listInboxes
+  /conversations/{conversation_id}/links:
+    delete: Conversations_removeLinks
+    post: Conversations_addLink
+  /conversations/{conversation_id}/messages:
+    get: Conversations_listMessagesInReverseChronologicalOrder
+    post: Messages_createMessageReply
+  /conversations/{conversation_id}/reminders:
+    patch: Conversations_updateReminders
+  /conversations/{conversation_id}/tags:
+    delete: Conversations_removeTag
+    post: Conversations_addTagsToConversation
+  /custom_fields:
+    get: CustomFields_listContactCustomFields
+  /download/{attachment_link_id}:
+    get: Attachments_downloadAttachmentFile
+  /drafts/{draft_id}:
+    delete: Drafts_deleteDraftMessage
+  /drafts/{message_id}/:
+    patch: Drafts_editMessage
+  /events:
+    get: Events_listDetailedInboxEvents
+  /events/{event_id}:
+    get: Events_getEvent
+  /inboxes:
+    get: Inboxes_listInboxes
+    post: Inboxes_createDefaultTeamInbox
+  /inboxes/custom_fields:
+    get: CustomFields_listInboxCustomFields
+  /inboxes/{inbox_id}:
+    get: Inboxes_getInbox
+  /inboxes/{inbox_id}/channels:
+    get: Inboxes_listChannels
+    post: Channels_createInboxChannel
+  /inboxes/{inbox_id}/conversations:
+    get: Inboxes_listConversationsInbox
+  /inboxes/{inbox_id}/imported_messages:
+    post: Messages_importNewInboxMessage
+  /inboxes/{inbox_id}/teammates:
+    delete: Inboxes_removeAccess
+    get: Inboxes_listTeammatesAccess
+    post: Inboxes_addTeammateAccess
+  /knowledge_base_articles/{article_id}:
+    delete: KnowledgeBases_deleteArticle
+    get: KnowledgeBases_getArticleById
+  /knowledge_base_articles/{article_id}/content:
+    get: KnowledgeBases_getContentDefaultLocale
+    patch: KnowledgeBases_updateArticleContentDefaultLocale
+  /knowledge_base_articles/{article_id}/download/{attachment_id}:
+    get: KnowledgeBases_downloadAttachmentArticle
+  /knowledge_base_articles/{article_id}/locales/{locale}/content:
+    get: KnowledgeBases_getArticleContent
+    patch: KnowledgeBases_updateArticleContentLocale
+  /knowledge_base_categories/{category_id}:
+    delete: KnowledgeBases_deleteCategory
+    get: KnowledgeBases_getCategory
+  /knowledge_base_categories/{category_id}/articles:
+    get: KnowledgeBases_listArticlesInCategory
+  /knowledge_base_categories/{category_id}/content:
+    get: KnowledgeBases_getCategoryContentDefaultLocale
+    patch: KnowledgeBases_updateCategoryDefaultLocale
+  /knowledge_base_categories/{category_id}/locales/{locale}/content:
+    get: KnowledgeBases_getCategoryContentLocale
+    patch: KnowledgeBases_updateCategoryContentLocale
+  /knowledge_bases:
+    get: KnowledgeBases_listKnowledgeBases
+    post: KnowledgeBases_createNewKnowledgeBase
+  /knowledge_bases/{knowledge_base_id}:
+    get: KnowledgeBases_getKnowledgeBase
+  /knowledge_bases/{knowledge_base_id}/articles:
+    get: KnowledgeBases_listArticlesInBase
+    post: KnowledgeBases_createArticleDefaultLocale
+  /knowledge_bases/{knowledge_base_id}/categories:
+    get: KnowledgeBases_listCategoriesInBase
+    post: KnowledgeBases_createCategoryDefaultLocale
+  /knowledge_bases/{knowledge_base_id}/content:
+    get: KnowledgeBases_getContentDefaultLocale
+    patch: KnowledgeBases_updateDefaultKnowledgeBase
+  /knowledge_bases/{knowledge_base_id}/locales/{locale}/articles:
+    post: KnowledgeBases_createArticleLocale
+  /knowledge_bases/{knowledge_base_id}/locales/{locale}/categories:
+    post: KnowledgeBases_createCategoryInLocale
+  /knowledge_bases/{knowledge_base_id}/locales/{locale}/content:
+    get: KnowledgeBases_getKnowledgeBaseContentInLocale
+    patch: KnowledgeBases_updateKnowledgeBaseLocale
+  /links:
+    get: Links_listByIdAndType
+    post: Links_createLink
+  /links/custom_fields:
+    get: CustomFields_getList
+  /links/{link_id}:
+    get: Links_getLink
+    patch: Links_updateLink
+  /links/{link_id}/conversations:
+    get: Links_listConversations
+  /me:
+    get: TokenIdentity_getDetails
+  /message_template_folders:
+    get: MessageTemplateFolders_listFolders
+    post: MessageTemplateFolders_createNewFolder
+  /message_template_folders/{message_template_folder_id}:
+    delete: MessageTemplateFolders_deleteFolder
+    get: MessageTemplateFolders_getFolder
+    patch: MessageTemplateFolders_updateFolder
+  /message_template_folders/{message_template_folder_id}/message_template_folders:
+    get: MessageTemplateFolders_getChildFolders
+    post: MessageTemplateFolders_createChildFolder
+  /message_template_folders/{message_template_folder_id}/message_templates:
+    get: MessageTemplates_getChildTemplates
+    post: MessageTemplates_createChildTemplate
+  /message_templates:
+    get: MessageTemplates_list
+    post: MessageTemplates_createNewTemplate
+  /message_templates/{message_template_id}:
+    delete: MessageTemplates_deleteTemplate
+    get: MessageTemplates_getTemplateById
+    patch: MessageTemplates_updateTemplateById
+  /messages/{message_id}:
+    get: Messages_getMessageById
+  /messages/{message_id}/seen:
+    get: Messages_getMessageSeenStatus
+    post: Messages_markMessageSeen
+  /rules:
+    get: Rules_listCompanyRules
+  /rules/{rule_id}:
+    get: Rules_getRule
+  /shift/{shift_id}:
+    get: Shifts_getShift
+  /shift/{shift_id}/teammates:
+    delete: Shifts_removeTeammatesFromShift
+    get: Shifts_listShiftTeammates
+    post: Shifts_addTeammatesToShift
+  /shifts:
+    get: Shifts_listShifts
+    post: Shifts_createShift
+  /shifts/{shift_id}:
+    patch: Shifts_updateShift
+  /signatures/{signature_id}:
+    delete: Signatures_deleteSignature
+    get: Signatures_getSignature
+    patch: Signatures_updateSignature
+  /tags:
+    get: Tags_listAll
+    post: Tags_createTagOldestTeam
+  /tags/{tag_id}:
+    delete: Tags_deleteTag
+    get: Tags_getTag
+    patch: Tags_updateTag
+  /tags/{tag_id}/children:
+    get: Tags_listChildren
+    post: Tags_createChildTag
+  /tags/{tag_id}/conversations:
+    get: Tags_listTaggedConversations
+  /teammates:
+    get: Teammates_listCompanyMembers
+  /teammates/custom_fields:
+    get: CustomFields_listTeammateCustomFields
+  /teammates/{teammate_id}:
+    get: Teammates_getTeammateById
+    patch: Teammates_updateTeammate
+  /teammates/{teammate_id}/channels:
+    get: Channels_listTeammate
+  /teammates/{teammate_id}/contact_groups:
+    get: ContactGroups_listTeammateGroups
+    post: ContactGroups_createTeammateGroup
+  /teammates/{teammate_id}/contacts:
+    get: Contacts_listTeammateContacts
+    post: Contacts_createTeammateContact
+  /teammates/{teammate_id}/conversations:
+    get: Teammates_listAssignedConversations
+  /teammates/{teammate_id}/inboxes:
+    get: Teammates_getInboxList
+  /teammates/{teammate_id}/message_template_folders:
+    get: MessageTemplateFolders_listTeammateFolders
+    post: MessageTemplateFolders_createNewFolder
+  /teammates/{teammate_id}/message_templates:
+    get: MessageTemplates_listTeammateTemplates
+    post: MessageTemplates_addNewTeammateTemplate
+  /teammates/{teammate_id}/rules:
+    get: Rules_listTeammateRules
+  /teammates/{teammate_id}/shifts:
+    get: Shifts_teammateShiftsList
+  /teammates/{teammate_id}/signatures:
+    get: Signatures_listTeammate
+    post: Signatures_createTeammateSignature
+  /teammates/{teammate_id}/tags:
+    get: Tags_listTeammateTags
+    post: Tags_createTeammateTag
+  /teams:
+    get: Teams_listTeams
+  /teams/{team_id}:
+    get: Teams_getWorkspace
+  /teams/{team_id}/channels:
+    get: Channels_listTeam
+  /teams/{team_id}/contact_groups:
+    get: ContactGroups_listTeamGroups
+    post: ContactGroups_createNewGroup
+  /teams/{team_id}/contacts:
+    get: Contacts_listTeamContacts
+    post: Contacts_createTeamContact
+  /teams/{team_id}/inboxes:
+    get: Inboxes_listTeamInboxes
+    post: Inboxes_createTeamInbox
+  /teams/{team_id}/message_template_folders:
+    get: MessageTemplateFolders_listTeamFolders
+    post: MessageTemplateFolders_createNewFolder
+  /teams/{team_id}/message_templates:
+    get: MessageTemplates_listTeamTemplates
+    post: MessageTemplates_createTeamTemplate
+  /teams/{team_id}/rules:
+    get: Rules_listTeamRules
+  /teams/{team_id}/shifts:
+    get: Shifts_listTeamShifts
+    post: Shifts_createTeamShift
+  /teams/{team_id}/signatures:
+    get: Signatures_listTeam
+    post: Signatures_createTeamSignature
+  /teams/{team_id}/tags:
+    get: Tags_listTeamTags
+    post: Tags_createTeamTag
+  /teams/{team_id}/teammates:
+    delete: Teams_removeTeammates
+    post: Teams_addTeammates
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /conversations/{conversation_id}/followers:
+    delete:
+      application/json: ConversationsRemoveFollowersRequest
+    post:
+      application/json: ConversationsAddFollowersRequest
+  /conversations/{conversation_id}/links:
+    delete:
+      application/json: ConversationsRemoveLinksRequest
+    post:
+      application/json: ConversationsAddLinkRequest
+  /messages/{message_id}/seen:
+    post:
+      application/json: MessagesMarkMessageSeenRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /accounts:
+    get:
+      '200':
+        application/json: AccountsListCompanyAccountsResponse
+    post:
+      '201':
+        application/json: AccountsCreateNewAccountResponse
+  /accounts/custom_fields:
+    get:
+      '200':
+        application/json: CustomFieldsListAccountCustomFieldsResponse
+  /accounts/{account_id}/contacts:
+    get:
+      '200':
+        application/json: AccountsListAccountContactsResponse
+  /analytics/exports:
+    post:
+      '201':
+        application/json: AnalyticsCreateNewExportResponse
+  /analytics/exports/{export_id}:
+    get:
+      '200':
+        application/json: AnalyticsGetExportResponse
+  /analytics/reports:
+    post:
+      '201':
+        application/json: AnalyticsCreateNewReportResponse
+  /analytics/reports/{report_uid}:
+    get:
+      '200':
+        application/json: AnalyticsGetReportResponse
+  /channels:
+    get:
+      '200':
+        application/json: ChannelsListResponse
+  /channels/{channel_id}:
+    get:
+      '200':
+        application/json: ChannelsGetChannelResponse
+  /channels/{channel_id}/drafts:
+    post:
+      '200':
+        application/json: DraftsCreateNewDraftMessageResponse
+  /channels/{channel_id}/incoming_messages:
+    post:
+      '202':
+        application/json: MessagesReceiveCustomMessageResponse
+  /channels/{channel_id}/validate:
+    post:
+      '202':
+        application/json: ChannelsValidateSmtpSettingsResponse
+  /comments/{comment_id}:
+    get:
+      '200':
+        application/json: CommentsGetCommentResponse
+  /comments/{comment_id}/mentions:
+    get:
+      '200':
+        application/json: CommentsListMentionedTeammatesResponse
+  /company/rules:
+    get:
+      '200':
+        application/json: RulesListAllCompanyRulesResponse
+  /company/tags:
+    get:
+      '200':
+        application/json: TagsListCompanyResponse
+  /contact_groups:
+    get:
+      '200':
+        application/json: ContactGroupsListGroupsResponse
+  /contacts:
+    post:
+      '201':
+        application/json: ContactsCreateNewContactResponse
+  /contacts/{contact_id}/conversations:
+    get:
+      '200':
+        application/json: ContactsListConversationsReverseChronologicalOrderResponse
+  /contacts/{contact_id}/notes:
+    get:
+      '202':
+        application/json: ContactNotesListResponse
+  /conversations:
+    post:
+      '201':
+        application/json: ConversationsCreateDiscussionResponse
+  /conversations/search/{query}:
+    get:
+      '200':
+        application/json: ConversationsSearchByQueryResponse
+  /conversations/{conversation_id}/comments:
+    get:
+      '200':
+        application/json: CommentsListConversationCommentsResponse
+  /conversations/{conversation_id}/drafts:
+    get:
+      '200':
+        application/json: DraftsListConversationDraftsResponse
+  /conversations/{conversation_id}/events:
+    get:
+      '200':
+        application/json: ConversationsListEventsResponse
+  /conversations/{conversation_id}/inboxes:
+    get:
+      '200':
+        application/json: ConversationsListInboxesResponse
+  /download/{attachment_link_id}:
+    get:
+      '200':
+        application/json: AttachmentsDownloadAttachmentFileResponse
+  /inboxes/{inbox_id}:
+    get:
+      '200':
+        application/json: InboxesGetInboxResponse
+  /knowledge_base_articles/{article_id}:
+    delete:
+      '200':
+        application/json: KnowledgeBasesDeleteArticleResponse
+  /knowledge_base_articles/{article_id}/content:
+    get:
+      '200':
+        application/json: KnowledgeBasesGetContentDefaultLocaleResponse
+  /knowledge_base_categories/{category_id}:
+    get:
+      '200':
+        application/json: KnowledgeBasesGetCategoryResponse
+  /knowledge_base_categories/{category_id}/articles:
+    get:
+      '200':
+        application/json: KnowledgeBasesListArticlesInCategoryResponse
+  /knowledge_base_categories/{category_id}/content:
+    get:
+      '200':
+        application/json: KnowledgeBasesGetCategoryContentDefaultLocaleResponse
+  /knowledge_bases:
+    get:
+      '200':
+        application/json: KnowledgeBasesListKnowledgeBasesResponse
+    post:
+      '201':
+        application/json: KnowledgeBasesCreateNewKnowledgeBaseResponse
+  /knowledge_bases/{knowledge_base_id}:
+    get:
+      '200':
+        application/json: KnowledgeBasesGetKnowledgeBaseResponse
+  /knowledge_bases/{knowledge_base_id}/categories:
+    get:
+      '200':
+        application/json: KnowledgeBasesListCategoriesInBaseResponse
+  /links:
+    get:
+      '200':
+        application/json: LinksListByIdAndTypeResponse
+  /me:
+    get:
+      '200':
+        application/json: TokenIdentityGetDetailsResponse
+  /message_template_folders:
+    get:
+      '200':
+        application/json: MessageTemplateFoldersListFoldersResponse
+    post:
+      '201':
+        application/json: MessageTemplateFoldersCreateNewFolderResponse
+  /message_template_folders/{message_template_folder_id}:
+    delete:
+      '202':
+        application/json: MessageTemplateFoldersDeleteFolderResponse
+  /message_template_folders/{message_template_folder_id}/message_templates:
+    post:
+      '201':
+        application/json: MessageTemplatesCreateChildTemplateResponse
+  /message_templates:
+    get:
+      '200':
+        application/json: MessageTemplatesListResponse
+  /messages/{message_id}/seen:
+    get:
+      '200':
+        application/json: MessagesGetMessageSeenStatusResponse
+  /rules/{rule_id}:
+    get:
+      '200':
+        application/json: RulesGetRuleResponse
+  /shifts:
+    get:
+      '200':
+        application/json: ShiftsListShiftsResponse
+  /signatures/{signature_id}:
+    get:
+      '200':
+        application/json: SignaturesGetSignatureResponse
+  /teammates/{teammate_id}/signatures:
+    get:
+      '200':
+        application/json: SignaturesListTeammateResponse
+  /teams:
+    get:
+      '200':
+        application/json: TeamsListTeamsResponse
+  /teams/{team_id}:
+    get:
+      '200':
+        application/json: TeamsGetWorkspaceResponse
+securityParameters:
+  limit:
+    query: false
+  page_token:
+    query: false
+  q:
+    query: false
+  sort_by:
+    query: false
+  sort_order:
+    query: false
+validServerUrls: {}

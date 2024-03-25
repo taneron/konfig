@@ -1042,6 +1042,14 @@ const customRequests: Record<string, CustomRequest> = {
       return JSON.stringify(bundled, null, 2);
     },
   },
+  "front.com_Core": {
+    type: "GET",
+    url: "https://raw.githubusercontent.com/frontapp/front-api-specs/main/core-api/core-api.json",
+  },
+  "front.com_Channel": {
+    type: "GET",
+    url: "https://raw.githubusercontent.com/frontapp/front-api-specs/main/channel-api/channel-api.json",
+  },
   "browsercat.com": {
     type: "GET",
     url: "https://api.browsercat.com/openapi.json",

@@ -1,0 +1,131 @@
+hash: e19a624b5428bf67fdde1de45b211534fe3356390243882e49ed76d808f8eb9c
+methodObjects:
+  - url: /channels/{channel_id}
+    method: updateChannel
+    httpMethod: patch
+    tag: Channels
+    typeScriptTag: channels
+    description: Update Channel
+    parameters:
+      - name: channelId
+        schema: string
+        required: true
+        description: >-
+          The Channel ID. Alternatively, you can supply the channel address as a
+          [resource alias](https://dev.frontapp.com/docs/resource-aliases-1).
+        example: CHANNEL_ID
+        default: cha_123
+      - name: status
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '204'
+        description: No content
+  - url: /channels/{channel_id}/inbound_messages
+    method: importReceivedMessage
+    httpMethod: post
+    tag: Messages
+    typeScriptTag: messages
+    description: Sync inbound message
+    parameters:
+      - name: channelId
+        schema: string
+        required: true
+        description: >-
+          The channel ID. Alternatively, you can supply the channel address as a
+          [resource alias](https://dev.frontapp.com/docs/resource-aliases-1).
+        example: CHANNEL_ID
+        default: cha_123
+      - name: sender
+        schema: object
+        required: true
+        description: ''
+      - name: subject
+        schema: string
+        required: false
+        description: ''
+      - name: body
+        schema: string
+        required: true
+        description: ''
+        example: BODY
+      - name: metadata
+        schema: object
+        required: true
+        description: ''
+      - name: delivered_at
+        schema: integer
+        required: false
+        description: ''
+      - name: attachments
+        schema: array
+        required: false
+        description: ''
+    responses:
+      - statusCode: '202'
+        description: ''
+  - url: /channels/{channel_id}/outbound_messages
+    method: importSyncedMessage
+    httpMethod: post
+    tag: Messages
+    typeScriptTag: messages
+    description: Sync outbound message
+    parameters:
+      - name: channelId
+        schema: string
+        required: true
+        description: >-
+          The channel ID. Alternatively, you can supply the channel address as a
+          [resource alias](https://dev.frontapp.com/docs/resource-aliases-1).
+        example: CHANNEL_ID
+        default: cha_123
+      - name: sender_name
+        schema: string
+        required: false
+        description: ''
+      - name: to
+        schema: array
+        required: true
+        description: ''
+      - name: subject
+        schema: string
+        required: false
+        description: ''
+      - name: author_id
+        schema: string
+        required: false
+        description: ''
+      - name: body
+        schema: string
+        required: true
+        description: ''
+        example: BODY
+      - name: metadata
+        schema: object
+        required: true
+        description: ''
+      - name: delivered_at
+        schema: integer
+        required: false
+        description: ''
+      - name: attachments
+        schema: array
+        required: false
+        description: ''
+    responses:
+      - statusCode: '202'
+        description: ''
+numberOfSchemas: 4
+apiDescription: >-
+  Front is a customer operations platform that enables support, sales, and
+  account management teams to deliver exceptional service at scale. Front
+  streamlines customer communication by combining the efficiency of a help desk
+  and the familiarity of email, with automated workflows and real-time
+  collaboration behind the scenes. 
+
+
+  With Front, teams can centralize messages across channels, route them to the
+  right person, and unlock visibility and insights across all of their customer
+  operations. More than 8000 businesses use Front to drive operational
+  efficiency that prevents churn, improves retention, and propels customer
+  growth.
