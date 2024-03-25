@@ -2,6 +2,7 @@ examples: {}
 examples_2: {}
 examples_3: {}
 ignoreObjectsWithNoProperties: true
+ignorePotentialIncorrectType: true
 operationIds:
   /core/v1/partner/devices:
     get: Device_listDevices
@@ -180,12 +181,253 @@ requestSchemaNames:
       application/json: DeviceRegisterChildDeviceRequest
 responseDescriptions: {}
 responseSchemaNames:
+  /core/v1/partner/devices:
+    get:
+      '200':
+        application/json: DeviceListDevicesResponse
+      '401':
+        application/json: DeviceListDevices401Response
+  /core/v1/partner/devices/histories:
+    get:
+      '200':
+        application/json: DeviceGetAllDeviceStateHistoriesResponse
+      '401':
+        application/json: DeviceGetAllDeviceStateHistories401Response
+  /core/v1/partner/devices/{device_id}:
+    delete:
+      '200':
+        application/json: DeviceDeleteDeviceResponse
+      '401':
+        application/json: DeviceDeleteDevice401Response
+      '404':
+        application/json: DeviceDeleteDevice404Response
+    get:
+      '200':
+        application/json: DeviceGetInfo200Response
+      '401':
+        application/json: DeviceGetInfo401Response
+  /core/v1/partner/devices/{device_id}/commands:
+    get:
+      '200':
+        application/json: DeviceListCommandsResponse
+      '401':
+        application/json: DeviceListCommands401Response
+      '404':
+        application/json: DeviceListCommands404Response
+  /core/v1/partner/devices/{device_id}/config:
+    get:
+      '200':
+        application/json: DeviceGetConfig200Response
+      '401':
+        application/json: DeviceGetConfig401Response
+      '404':
+        application/json: DeviceGetConfig404Response
+  /core/v1/partner/devices/{device_id}/history:
+    get:
+      '200':
+        application/json: DeviceGetStateHistoryResponse
+      '401':
+        application/json: DeviceGetStateHistory401Response
+      '404':
+        application/json: DeviceGetStateHistory404Response
+  /core/v1/partner/devices/{device_id}/telemetries:
+    get:
+      '200':
+        application/json: DeviceGetTelemetriesResponse
+      '401':
+        application/json: DeviceGetTelemetries401Response
+      '404':
+        application/json: DeviceGetTelemetries404Response
+  /core/v1/partner/tickets:
+    get:
+      '200':
+        application/json: TicketListResponse
+      '401':
+        application/json: TicketList401Response
+  /core/v1/partner/tickets/{ticket_id}:
+    put:
+      '200':
+        application/json: TicketUpdateTicketByIdResponse
+      '401':
+        application/json: TicketUpdateTicketById401Response
+  /core/v1/partner/tickets/{ticket_id} (COPY):
+    get:
+      '200':
+        application/json: TicketGetByIdResponse
+      '401':
+        application/json: TicketGetById401Response
+  /core/v1/partner/tickets/{ticket_id}/message:
+    post:
+      '200':
+        application/json: TicketAddCommentResponse
+      '401':
+        application/json: TicketAddComment401Response
+  /core/v1/partner/tickets/{ticket_id}/resolved:
+    post:
+      '200':
+        application/json: TicketCloseResponse
+      '401':
+        application/json: TicketClose401Response
+      '403':
+        application/json: TicketClose403Response
   /v1/devices:
     post:
-      '400':
+      2XX:
         application/json: DeviceCreateRegistrationResponse
+      '400':
+        application/json: DeviceCreateRegistration400Response
       '422':
         application/json: DeviceCreateRegistration422Response
+  /v1/devices/{deviceId}:
+    get:
+      '200':
+        application/json: DeviceGetInfoResponse
+      '400':
+        application/json: DeviceGetInfo400Response
+    put:
+      '200':
+        application/json: DeviceUpdateDeviceResponse
+      '401':
+        application/json: DeviceUpdateDevice401Response
+  /v1/devices/{deviceId}/children/telemetries:
+    post:
+      '201':
+        application/json: DeviceSendChildTelemetriesResponse
+      '401':
+        application/json: DeviceSendChildTelemetries401Response
+      '422':
+        application/json: DeviceSendChildTelemetries422Response
+  /v1/devices/{deviceId}/cloud_settings:
+    put:
+      '200':
+        application/json: DeviceUpdateCloudSettingsResponse
+      '401':
+        application/json: DeviceUpdateCloudSettings401Response
+  /v1/devices/{deviceId}/command:
+    get:
+      '200':
+        application/json: DeviceGetCommandResponse
+      '401':
+        application/json: DeviceGetCommand401Response
+    post:
+      '200':
+        application/json: DeviceSendCommandResponse
+      '401':
+        application/json: DeviceSendCommand401Response
+      '404':
+        application/json: DeviceSendCommand404Response
+      '422':
+        application/json: DeviceSendCommand422Response
+  /v1/devices/{deviceId}/config:
+    get:
+      '200':
+        application/json: DeviceGetConfigResponse
+      '401':
+        application/json: DeviceGetConfig401Response
+    post:
+      '200':
+        application/json: DeviceSetConfigResponse
+      '401':
+        application/json: DeviceSetConfig401Response
+      '422':
+        application/json: DeviceSetConfig422Response
+  /v1/devices/{deviceId}/dumps/{dumpId}:
+    put:
+      '200':
+        application/json: DeviceAppendDumpFileResponse
+      '401':
+        application/json: DeviceAppendDumpFile401Response
+  /v1/devices/{deviceId}/dumps/{mime-type}/{filename}:
+    post:
+      '201':
+        application/json: DeviceSendDumpFileResponse
+      '401':
+        application/json: DeviceSendDumpFile401Response
+      '422':
+        application/json: DeviceSendDumpFile422Response
+  /v1/devices/{deviceId}/files:
+    get:
+      '200':
+        application/json: DeviceGetFilesResponse
+      '400':
+        application/json: DeviceGetFiles400Response
+  /v1/devices/{deviceId}/files/{fileUuid}:
+    get:
+      '200':
+        application/json: DeviceGetFileResponse
+      '400':
+        application/json: DeviceGetFile400Response
+  /v1/devices/{deviceId}/incidents:
+    get:
+      '201':
+        application/json: DeviceGetIncidentsResponse
+      '401':
+        application/json: DeviceGetIncidents401Response
+      '404':
+        application/json: DeviceGetIncidents404Response
+    post:
+      '200':
+        application/json: DeviceOpenIncidentResponse
+      '401':
+        application/json: DeviceOpenIncident401Response
+      '422':
+        application/json: DeviceOpenIncident422Response
+  /v1/devices/{deviceId}/incidents/{incidentId}:
+    delete:
+      '200':
+        application/json: DeviceCloseIncidentResponse
+      '401':
+        application/json: DeviceCloseIncident401Response
+      '404':
+        application/json: DeviceCloseIncident404Response
+  /v1/devices/{deviceId}/license:
+    get:
+      '200':
+        application/json: DeviceGetLicenseResponse
+      '401':
+        application/json: DeviceGetLicense401Response
+  /v1/devices/{deviceId}/licenses:
+    get:
+      '200':
+        application/json: DeviceGetLicensesResponse
+      '401':
+        application/json: DeviceGetLicenses401Response
+    post:
+      '200':
+        application/json: DeviceUpdateLicenseResponse
+      '401':
+        application/json: DeviceUpdateLicense401Response
+      '404':
+        application/json: DeviceUpdateLicense404Response
+      '422':
+        application/json: DeviceUpdateLicense422Response
+  /v1/devices/{deviceId}/space:
+    get:
+      '201':
+        application/json: DeviceGetSpaceInfoResponse
+      '422':
+        application/json: DeviceGetSpaceInfo422Response
+  /v1/devices/{deviceId}/telemetry:
+    post:
+      '201':
+        application/json: DeviceSendTelemetryResponse
+      '401':
+        application/json: DeviceSendTelemetry401Response
+      '422':
+        application/json: DeviceSendTelemetry422Response
+  /v1/devices/{parent_id}/children:
+    get:
+      '200':
+        application/json: DeviceGetChildDevicesResponse
+      '401':
+        application/json: DeviceGetChildDevices401Response
+    post:
+      '201':
+        application/json: DeviceRegisterChildDeviceResponse
+      '401':
+        application/json: DeviceRegisterChildDevice401Response
+      '404':
+        text/plain: DeviceRegisterChildDevice404Response
 securityParameters:
   from:
     query: false
