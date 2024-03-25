@@ -1,0 +1,628 @@
+hash: dbd90a1623c3d53e9fd7955fc23808cd7d660c6f60c4b81fa39cf59ae84a7bec
+methodObjects:
+  - url: /health
+    method: checkHealthStatus
+    httpMethod: get
+    tag: Server
+    typeScriptTag: server
+    description: Show server health
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: '500'
+        description: ''
+  - url: /metrics
+    method: showMetrics
+    httpMethod: get
+    tag: Server
+    typeScriptTag: server
+    description: Show server metrics
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: OK
+      - statusCode: '404'
+        description: ''
+      - statusCode: '500'
+        description: ''
+  - url: /openapi
+    method: exploreFunctionality
+    httpMethod: get
+    tag: OpenAPI
+    typeScriptTag: openApi
+    description: Open OpenAPI docs
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: OpenAPI HTML
+      - statusCode: '500'
+        description: ''
+  - url: /openapi.json
+    method: getSpecJson
+    httpMethod: get
+    tag: OpenAPI
+    typeScriptTag: openApi
+    description: Retrieve API spec as JSON
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: OpenAPI JSON
+      - statusCode: '500'
+        description: ''
+  - url: /openapi.yaml
+    method: getYamlSpec
+    httpMethod: get
+    tag: OpenAPI
+    typeScriptTag: openApi
+    description: Retrieve API spec as YAML
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: OpenAPI YAML
+      - statusCode: '500'
+        description: ''
+  - url: /connect
+    method: establishConnection
+    httpMethod: get
+    tag: Browsers
+    typeScriptTag: browsers
+    description: Connect to a browser
+    parameters:
+      - name: region
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '500'
+        description: ''
+  - url: /auth/keys
+    method: listAll
+    httpMethod: get
+    tag: API Keys
+    typeScriptTag: apiKeys
+    description: List API keys
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '500'
+        description: ''
+  - url: /auth/keys
+    method: createApiKey
+    httpMethod: post
+    tag: API Keys
+    typeScriptTag: apiKeys
+    description: Create an API key
+    parameters:
+      - name: name
+        schema: string
+        required: true
+        description: ''
+        example: NAME
+      - name: role
+        schema: string
+        required: false
+        description: ''
+      - name: expiredAt
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '500'
+        description: ''
+  - url: /auth/keys/{keyId}
+    method: revokeKey
+    httpMethod: delete
+    tag: API Keys
+    typeScriptTag: apiKeys
+    description: Revoke an API key
+    parameters:
+      - name: keyId
+        schema: string
+        required: true
+        description: ''
+        example: KEYID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: '500'
+        description: ''
+  - url: /auth/keys/{keyId}
+    method: getKey
+    httpMethod: get
+    tag: API Keys
+    typeScriptTag: apiKeys
+    description: Retrieve an API key
+    parameters:
+      - name: keyId
+        schema: string
+        required: true
+        description: ''
+        example: KEYID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: '500'
+        description: ''
+  - url: /auth/keys/{keyId}
+    method: updateKey
+    httpMethod: patch
+    tag: API Keys
+    typeScriptTag: apiKeys
+    description: Patch an API key
+    parameters:
+      - name: keyId
+        schema: string
+        required: true
+        description: ''
+        example: KEYID
+      - name: name
+        schema: string
+        description: ''
+      - name: role
+        schema: string
+        description: ''
+      - name: expiredAt
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: '500'
+        description: ''
+  - url: /auth/keys/{keyId}
+    method: updateApiKey
+    httpMethod: put
+    tag: API Keys
+    typeScriptTag: apiKeys
+    description: Update an API key
+    parameters:
+      - name: keyId
+        schema: string
+        required: true
+        description: ''
+        example: KEYID
+      - name: name
+        schema: string
+        required: true
+        description: ''
+        example: NAME
+      - name: role
+        schema: string
+        required: true
+        description: ''
+        example: ROLE
+      - name: expiredAt
+        schema: string
+        required: true
+        description: ''
+        example: EXPIREDAT
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: '500'
+        description: ''
+  - url: /usage/buckets
+    method: listAggregateAccountUsage
+    httpMethod: get
+    tag: Usage
+    typeScriptTag: usage
+    description: List aggregate account usage
+    parameters:
+      - name: limit
+        schema: integer
+        required: false
+        description: ''
+        default: 100
+      - name: offset
+        schema:
+          - integer
+          - 'null'
+        required: false
+        description: ''
+        default: 0
+      - name: afterDate
+        schema: string
+        required: false
+        description: ''
+      - name: beforeDate
+        schema: string
+        required: false
+        description: ''
+      - name: unit
+        schema: string
+        required: false
+        description: ''
+      - name: userId
+        schema: undefined
+        required: false
+        description: ''
+      - name: keyId
+        schema: undefined
+        required: false
+        description: ''
+      - name: method
+        schema: string
+        required: false
+        description: ''
+      - name: endpoint
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '500'
+        description: ''
+  - url: /usage/sessions
+    method: getSessionRange
+    httpMethod: get
+    tag: Usage
+    typeScriptTag: usage
+    description: List sessions within range
+    parameters:
+      - name: limit
+        schema: integer
+        required: false
+        description: ''
+        default: 100
+      - name: offset
+        schema:
+          - integer
+          - 'null'
+        required: false
+        description: ''
+        default: 0
+      - name: afterDate
+        schema: string
+        required: false
+        description: ''
+      - name: beforeDate
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '500'
+        description: ''
+  - url: /usage/sessions/{sessionId}
+    method: getRequestData
+    httpMethod: get
+    tag: Usage
+    typeScriptTag: usage
+    description: Retrieve data for a request
+    parameters:
+      - name: sessionId
+        schema: string
+        required: true
+        description: ''
+        example: SESSIONID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: '500'
+        description: ''
+  - url: /usage/sessions/{sessionId}/events
+    method: listRequestEvents
+    httpMethod: get
+    tag: Usage
+    typeScriptTag: usage
+    description: List events for a request
+    parameters:
+      - name: sessionId
+        schema: string
+        required: true
+        description: ''
+        example: SESSIONID
+      - name: limit
+        schema: integer
+        required: false
+        description: ''
+        default: 100
+      - name: offset
+        schema:
+          - integer
+          - 'null'
+        required: false
+        description: ''
+        default: 0
+      - name: afterDate
+        schema: string
+        required: false
+        description: ''
+      - name: beforeDate
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '500'
+        description: ''
+  - url: /usage/sessions/{sessionId}/events/{eventId}
+    method: getEventData
+    httpMethod: get
+    tag: Usage
+    typeScriptTag: usage
+    description: Retrieve data for an event
+    parameters:
+      - name: sessionId
+        schema: string
+        required: true
+        description: ''
+        example: SESSIONID
+      - name: eventId
+        schema: string
+        required: true
+        description: ''
+        example: EVENTID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: '500'
+        description: ''
+  - url: /billing/subscriptions
+    method: listSubscriptionsWithinRange
+    httpMethod: get
+    tag: Billing
+    typeScriptTag: billing
+    description: List subscriptions within range
+    parameters:
+      - name: limit
+        schema: integer
+        required: false
+        description: ''
+        default: 100
+      - name: offset
+        schema:
+          - integer
+          - 'null'
+        required: false
+        description: ''
+        default: 0
+      - name: afterDate
+        schema: string
+        required: false
+        description: ''
+      - name: beforeDate
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '500'
+        description: ''
+  - url: /billing/subscriptions/current
+    method: getActiveSubscription
+    httpMethod: get
+    tag: Billing
+    typeScriptTag: billing
+    description: Get active subscription
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: '500'
+        description: ''
+  - url: /billing/subscriptions/{subId}
+    method: getSpecificSubscription
+    httpMethod: get
+    tag: Billing
+    typeScriptTag: billing
+    description: Get specific subscription
+    parameters:
+      - name: subId
+        schema: string
+        required: true
+        description: ''
+        example: SUBID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: '500'
+        description: ''
+  - url: /billing/invoices
+    method: listInvoicesRange
+    httpMethod: get
+    tag: Billing
+    typeScriptTag: billing
+    description: List invoices within range
+    parameters:
+      - name: limit
+        schema: integer
+        required: false
+        description: ''
+        default: 100
+      - name: offset
+        schema:
+          - integer
+          - 'null'
+        required: false
+        description: ''
+        default: 0
+      - name: afterDate
+        schema: string
+        required: false
+        description: ''
+      - name: beforeDate
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '500'
+        description: ''
+  - url: /billing/invoices/{invId}
+    method: getSpecificInvoice
+    httpMethod: get
+    tag: Billing
+    typeScriptTag: billing
+    description: Get specific invoice
+    parameters:
+      - name: invId
+        schema: string
+        required: true
+        description: ''
+        example: INVID
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: '500'
+        description: ''
+  - url: /billing/invoices/{invId}.pdf
+    method: getInvoicePdf
+    httpMethod: get
+    tag: Billing
+    typeScriptTag: billing
+    description: Get PDF receipt for specific invoice
+    parameters:
+      - name: invId
+        schema: string
+        required: true
+        description: ''
+        example: INVID
+    responses:
+      - statusCode: '200'
+        description: Invoice PDF
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '403'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: '500'
+        description: ''
+numberOfSchemas: 126
+apiDescription: >-
+  Providing purr-fect headless browser access via utility endpoints and direct
+  websocket connections.

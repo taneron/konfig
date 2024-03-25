@@ -1042,6 +1042,10 @@ const customRequests: Record<string, CustomRequest> = {
       return JSON.stringify(bundled, null, 2);
     },
   },
+  "browsercat.com": {
+    type: "GET",
+    url: "https://api.browsercat.com/openapi.json",
+  },
   "pay.com": {
     lambda: async () => {
       const urls = await collectEndpointsFromReadme({

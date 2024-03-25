@@ -1,0 +1,303 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+operationIds:
+  /auth/keys:
+    get: ApiKeys_listAll
+    post: ApiKeys_createApiKey
+  /auth/keys/{keyId}:
+    delete: ApiKeys_revokeKey
+    get: ApiKeys_getKey
+    patch: ApiKeys_updateKey
+    put: ApiKeys_updateApiKey
+  /billing/invoices:
+    get: Billing_listInvoicesRange
+  /billing/invoices/{invId}:
+    get: Billing_getSpecificInvoice
+  /billing/invoices/{invId}.pdf:
+    get: Billing_getInvoicePdf
+  /billing/subscriptions:
+    get: Billing_listSubscriptionsWithinRange
+  /billing/subscriptions/current:
+    get: Billing_getActiveSubscription
+  /billing/subscriptions/{subId}:
+    get: Billing_getSpecificSubscription
+  /connect:
+    get: Browsers_establishConnection
+  /health:
+    get: Server_checkHealthStatus
+  /metrics:
+    get: Server_showMetrics
+  /openapi:
+    get: OpenApi_exploreFunctionality
+  /openapi.json:
+    get: OpenApi_getSpecJson
+  /openapi.yaml:
+    get: OpenApi_getYamlSpec
+  /usage/buckets:
+    get: Usage_listAggregateAccountUsage
+  /usage/sessions:
+    get: Usage_getSessionRange
+  /usage/sessions/{sessionId}:
+    get: Usage_getRequestData
+  /usage/sessions/{sessionId}/events:
+    get: Usage_listRequestEvents
+  /usage/sessions/{sessionId}/events/{eventId}:
+    get: Usage_getEventData
+operationTags: {}
+renameTags: {}
+requestSchemaNames: {}
+responseDescriptions: {}
+responseSchemaNames:
+  /auth/keys:
+    get:
+      '400':
+        application/json: ApiKeysListAllResponse
+      '401':
+        application/json: ApiKeysListAll401Response
+      '403':
+        application/json: ApiKeysListAll403Response
+      '500':
+        application/json: ApiKeysListAll500Response
+    post:
+      '400':
+        application/json: ApiKeysCreateApiKeyResponse
+      '401':
+        application/json: ApiKeysCreateApiKey401Response
+      '403':
+        application/json: ApiKeysCreateApiKey403Response
+      '500':
+        application/json: ApiKeysCreateApiKey500Response
+  /auth/keys/{keyId}:
+    delete:
+      '400':
+        application/json: ApiKeysRevokeKeyResponse
+      '401':
+        application/json: ApiKeysRevokeKey401Response
+      '403':
+        application/json: ApiKeysRevokeKey403Response
+      '404':
+        application/json: ApiKeysRevokeKey404Response
+      '500':
+        application/json: ApiKeysRevokeKey500Response
+    get:
+      '400':
+        application/json: ApiKeysGetKeyResponse
+      '401':
+        application/json: ApiKeysGetKey401Response
+      '403':
+        application/json: ApiKeysGetKey403Response
+      '404':
+        application/json: ApiKeysGetKey404Response
+      '500':
+        application/json: ApiKeysGetKey500Response
+    patch:
+      '400':
+        application/json: ApiKeysUpdateKeyResponse
+      '401':
+        application/json: ApiKeysUpdateKey401Response
+      '403':
+        application/json: ApiKeysUpdateKey403Response
+      '404':
+        application/json: ApiKeysUpdateKey404Response
+      '500':
+        application/json: ApiKeysUpdateKey500Response
+    put:
+      '400':
+        application/json: ApiKeysUpdateApiKeyResponse
+      '401':
+        application/json: ApiKeysUpdateApiKey401Response
+      '403':
+        application/json: ApiKeysUpdateApiKey403Response
+      '404':
+        application/json: ApiKeysUpdateApiKey404Response
+      '500':
+        application/json: ApiKeysUpdateApiKey500Response
+  /billing/invoices:
+    get:
+      '400':
+        application/json: BillingListInvoicesRangeResponse
+      '401':
+        application/json: BillingListInvoicesRange401Response
+      '403':
+        application/json: BillingListInvoicesRange403Response
+      '500':
+        application/json: BillingListInvoicesRange500Response
+  /billing/invoices/{invId}:
+    get:
+      '400':
+        application/json: BillingGetSpecificInvoiceResponse
+      '401':
+        application/json: BillingGetSpecificInvoice401Response
+      '403':
+        application/json: BillingGetSpecificInvoice403Response
+      '404':
+        application/json: BillingGetSpecificInvoice404Response
+      '500':
+        application/json: BillingGetSpecificInvoice500Response
+  /billing/invoices/{invId}.pdf:
+    get:
+      '200':
+        application/pdf: BillingGetInvoicePdfResponse
+      '400':
+        application/json: BillingGetInvoicePdf400Response
+      '401':
+        application/json: BillingGetInvoicePdf401Response
+      '403':
+        application/json: BillingGetInvoicePdf403Response
+      '404':
+        application/json: BillingGetInvoicePdf404Response
+      '500':
+        application/json: BillingGetInvoicePdf500Response
+  /billing/subscriptions:
+    get:
+      '400':
+        application/json: BillingListSubscriptionsWithinRangeResponse
+      '401':
+        application/json: BillingListSubscriptionsWithinRange401Response
+      '403':
+        application/json: BillingListSubscriptionsWithinRange403Response
+      '500':
+        application/json: BillingListSubscriptionsWithinRange500Response
+  /billing/subscriptions/current:
+    get:
+      '400':
+        application/json: BillingGetActiveSubscriptionResponse
+      '401':
+        application/json: BillingGetActiveSubscription401Response
+      '403':
+        application/json: BillingGetActiveSubscription403Response
+      '404':
+        application/json: BillingGetActiveSubscription404Response
+      '500':
+        application/json: BillingGetActiveSubscription500Response
+  /billing/subscriptions/{subId}:
+    get:
+      '400':
+        application/json: BillingGetSpecificSubscriptionResponse
+      '401':
+        application/json: BillingGetSpecificSubscription401Response
+      '403':
+        application/json: BillingGetSpecificSubscription403Response
+      '404':
+        application/json: BillingGetSpecificSubscription404Response
+      '500':
+        application/json: BillingGetSpecificSubscription500Response
+  /connect:
+    get:
+      '400':
+        application/json: BrowsersEstablishConnectionResponse
+      '401':
+        application/json: BrowsersEstablishConnection401Response
+      '403':
+        application/json: BrowsersEstablishConnection403Response
+      '500':
+        application/json: BrowsersEstablishConnection500Response
+  /health:
+    get:
+      '200':
+        application/json: ServerCheckHealthStatusResponse
+      '404':
+        application/json: ServerCheckHealthStatus404Response
+      '500':
+        application/json: ServerCheckHealthStatus500Response
+  /metrics:
+    get:
+      '404':
+        application/json: ServerShowMetricsResponse
+      '500':
+        application/json: ServerShowMetrics500Response
+  /openapi:
+    get:
+      '200':
+        text/html: OpenApiExploreFunctionalityResponse
+      '500':
+        application/json: OpenApiExploreFunctionality500Response
+  /openapi.json:
+    get:
+      '200':
+        application/json: OpenApiGetSpecJsonResponse
+      '500':
+        application/json: OpenApiGetSpecJson500Response
+  /openapi.yaml:
+    get:
+      '200':
+        application/x-yaml: OpenApiGetYamlSpecResponse
+      '500':
+        application/json: OpenApiGetYamlSpec500Response
+  /usage/buckets:
+    get:
+      '400':
+        application/json: UsageListAggregateAccountUsageResponse
+      '401':
+        application/json: UsageListAggregateAccountUsage401Response
+      '403':
+        application/json: UsageListAggregateAccountUsage403Response
+      '500':
+        application/json: UsageListAggregateAccountUsage500Response
+  /usage/sessions:
+    get:
+      '400':
+        application/json: UsageGetSessionRangeResponse
+      '401':
+        application/json: UsageGetSessionRange401Response
+      '403':
+        application/json: UsageGetSessionRange403Response
+      '500':
+        application/json: UsageGetSessionRange500Response
+  /usage/sessions/{sessionId}:
+    get:
+      '400':
+        application/json: UsageGetRequestDataResponse
+      '401':
+        application/json: UsageGetRequestData401Response
+      '403':
+        application/json: UsageGetRequestData403Response
+      '404':
+        application/json: UsageGetRequestData404Response
+      '500':
+        application/json: UsageGetRequestData500Response
+  /usage/sessions/{sessionId}/events:
+    get:
+      '400':
+        application/json: UsageListRequestEventsResponse
+      '401':
+        application/json: UsageListRequestEvents401Response
+      '403':
+        application/json: UsageListRequestEvents403Response
+      '500':
+        application/json: UsageListRequestEvents500Response
+  /usage/sessions/{sessionId}/events/{eventId}:
+    get:
+      '400':
+        application/json: UsageGetEventDataResponse
+      '401':
+        application/json: UsageGetEventData401Response
+      '403':
+        application/json: UsageGetEventData403Response
+      '404':
+        application/json: UsageGetEventData404Response
+      '500':
+        application/json: UsageGetEventData500Response
+securityParameters:
+  afterDate:
+    query: false
+  beforeDate:
+    query: false
+  endpoint:
+    query: false
+  keyId:
+    query: false
+  limit:
+    query: false
+  method:
+    query: false
+  offset:
+    query: false
+  region:
+    query: false
+  unit:
+    query: false
+  userId:
+    query: false
+validServerUrls: {}
