@@ -1,0 +1,96 @@
+### Before vs. After
+
+Here is a comparison of before and after using Konfig SDKs while integrating
+with Jira.
+
+<CH.Scrollycoding>
+
+Using manually formed HTTP requests in TypeScript's `axios` library.
+
+```typescript
+import axios from 'axios';
+
+const issueId = "ISSUE-1"
+const email = "your-email"
+const apiToken = process.env.JIRA_API_TOKEN
+const fields = ["comment", "attachment", "subtasks"]
+
+const jiraApi = axios.create({
+  baseURL: 'https://your-jira-instance.atlassian.net/rest/api/3',
+  headers: {
+    'Authorization': 'Basic ' + Buffer.from(`${email}:${apiToken}`).toString('base64'),
+    'Accept': 'application/json'
+  }
+});
+
+async function makeRequests() {
+  // Read request
+  const getIssueResponse = await jiraApi.get(`/issue/${issueId}?fields=${fields.join(",")}`);
+
+  // Compute aggregate statistics about the issue
+  const statistics = {
+    totalComments: issue.data.fields.comment.total,
+    totalAttachments: issue.data.fields.attachment.total,
+    totalSubtasks: issue.data.fields.subtasks.length
+  }
+
+  const commentBody = `This is a new comment for issue ${issue.data.key}. The issue has ${statistics.totalComments} comments, ${statistics.totalAttachments} attachments, and ${statistics.totalSubtasks} subtasks.`
+
+  // Write request
+  const createCommentResponse = await jiraApi.post(`/issue/${issueId}/comments`, {
+      body: "This is a new comment"
+  });
+}
+
+makeRequests();
+```
+
+---
+
+Notice how we have to manually construct HTTP requests which requires extra
+code, and is error-prone.
+
+```typescript
+```
+
+---
+
+With Konfig SDKs
+
+```typescript
+import { AtlassianJira } from "atlassian-jira-typescript-sdk"
+
+const jira = new AtlassianJira({
+  jiraInstance: "your-jira-instance",
+  email: "your-email",
+  token: process.env.JIRA_API_TOKEN
+})
+
+async function makeRequests() {
+  // Get issue details
+  const issue = await jira.issues.getDetailsByIdOrKey({
+    issueIdOrKey: "ISSUE-1",
+    fields: ["comment", "attachment", "subtasks"]
+  })
+
+  // Compute aggregate statistics about the issue
+  const statistics = {
+    totalComments: issue.data.fields.comment.total,
+    totalAttachments: issue.data.fields.attachment.total,
+    totalSubtasks: issue.data.fields.subtasks.length
+  }
+
+  // Create a comment with the statistics
+  const commentBody = `This is a new comment for issue ${issue.data.key}. The issue has ${statistics.totalComments} comments, ${statistics.totalAttachments} attachments, and ${statistics.totalSubtasks} subtasks.`
+
+  // Create a comment
+  const comment = await jira.comments.create({
+    issueIdOrKey: "ISSUE-1",
+    body: commentBody
+  })
+}
+
+makeRequests()
+```
+
+</CH.Scrollycoding>
