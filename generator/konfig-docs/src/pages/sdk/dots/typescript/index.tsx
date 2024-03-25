@@ -19,7 +19,7 @@ export default function DotsTypeScriptSdk() {
       companyKebabCase="dots"
       clientNameCamelCase="dots"
       homepage="dots.dev"
-      lastUpdated={new Date("2024-03-24T21:41:22.682Z")}
+      lastUpdated={new Date("2024-03-25T19:04:01.511Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/dots/favicon.png"
       contactUrl="https://dots.dev"
       contactEmail="info@dots.dev"
@@ -1658,9 +1658,10 @@ export default function DotsTypeScriptSdk() {
       },
       {
         "name": "account_type",
-        "schema": "undefined",
+        "schema": "string",
         "required": true,
-        "description": ""
+        "description": "",
+        "example": "ACCOUNT_TYPE"
       }
     ],
     "responses": [
@@ -1869,7 +1870,7 @@ export default function DotsTypeScriptSdk() {
     "parameters": [
       {
         "name": "type",
-        "schema": "undefined",
+        "schema": "string",
         "description": ""
       },
       {

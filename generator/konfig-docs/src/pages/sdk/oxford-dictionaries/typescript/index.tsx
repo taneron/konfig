@@ -19,7 +19,7 @@ export default function OxfordDictionariesTypeScriptSdk() {
       companyKebabCase="oxford-dictionaries"
       clientNameCamelCase="oxfordDictionaries"
       homepage="developer.oxforddictionaries.com"
-      lastUpdated={new Date("2024-03-24T21:41:22.682Z")}
+      lastUpdated={new Date("2024-03-25T19:04:01.511Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/oxford-dictionaries/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
@@ -743,7 +743,7 @@ export default function OxfordDictionariesTypeScriptSdk() {
       },
       {
         "name": "prefix",
-        "schema": "boolean",
+        "schema": "string",
         "required": false,
         "description": "Set prefix to true if you'd like to get results only starting with search string.",
         "default": "false"
@@ -813,7 +813,7 @@ export default function OxfordDictionariesTypeScriptSdk() {
       },
       {
         "name": "prefix",
-        "schema": "boolean",
+        "schema": "string",
         "required": false,
         "description": "Set prefix to true if you'd like to get results only starting with search string.",
         "default": "false"
@@ -909,7 +909,7 @@ export default function OxfordDictionariesTypeScriptSdk() {
       },
       {
         "name": "exact",
-        "schema": "boolean",
+        "schema": "string",
         "required": false,
         "description": "If exact=true wordlist returns a list of entries that exactly matches the search string. Otherwise wordlist lists entries that start with prefix string.",
         "default": "false"

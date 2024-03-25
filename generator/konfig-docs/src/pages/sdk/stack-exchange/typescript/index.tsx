@@ -19,7 +19,7 @@ export default function StackExchangeTypeScriptSdk() {
       companyKebabCase="stack-exchange"
       clientNameCamelCase="stackExchange"
       homepage="api.stackexchange.com"
-      lastUpdated={new Date("2024-03-24T21:43:23.717Z")}
+      lastUpdated={new Date("2024-03-25T19:04:01.511Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/stack-exchange/favicon.ico"
       // Missing contactUrl
       // Missing contactEmail
@@ -7644,7 +7644,7 @@ export default function StackExchangeTypeScriptSdk() {
       },
       {
         "name": "accepted",
-        "schema": "string",
+        "schema": "boolean",
         "description": ""
       },
       {
@@ -7659,17 +7659,17 @@ export default function StackExchangeTypeScriptSdk() {
       },
       {
         "name": "closed",
-        "schema": "string",
+        "schema": "boolean",
         "description": ""
       },
       {
         "name": "migrated",
-        "schema": "string",
+        "schema": "boolean",
         "description": ""
       },
       {
         "name": "notice",
-        "schema": "string",
+        "schema": "boolean",
         "description": ""
       },
       {
@@ -7704,7 +7704,7 @@ export default function StackExchangeTypeScriptSdk() {
       },
       {
         "name": "wiki",
-        "schema": "string",
+        "schema": "boolean",
         "description": ""
       }
     ],

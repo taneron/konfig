@@ -19,7 +19,7 @@ export default function WhatsAppBusinessTypeScriptSdk() {
       companyKebabCase="whats-app"
       clientNameCamelCase="whatsAppBusiness"
       homepage="developers.facebook.com/docs/whatsapp"
-      lastUpdated={new Date("2024-03-24T21:45:24.878Z")}
+      lastUpdated={new Date("2024-03-25T19:04:01.511Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/whatsapp/business/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
@@ -114,10 +114,10 @@ export default function WhatsAppBusinessTypeScriptSdk() {
       },
       {
         "name": "shards",
-        "schema": "integer",
+        "schema": "string",
         "required": true,
         "description": "",
-        "example": 0
+        "example": "SHARDS"
       }
     ],
     "responses": [
@@ -1042,7 +1042,7 @@ export default function WhatsAppBusinessTypeScriptSdk() {
     "method": "settingsPost",
     "httpMethod": HttpMethodsEnum.POST,
     "tag": "Backup/Restore",
-    "typeScriptTag": "backup/restore",
+    "typeScriptTag": "backupRestore",
     "description": "Backup-Settings",
     "parameters": [
       {
@@ -1228,7 +1228,7 @@ export default function WhatsAppBusinessTypeScriptSdk() {
     "method": "settingsPost",
     "httpMethod": HttpMethodsEnum.POST,
     "tag": "Backup/Restore",
-    "typeScriptTag": "backup/restore",
+    "typeScriptTag": "backupRestore",
     "description": "Restore-Settings",
     "parameters": [
       {
