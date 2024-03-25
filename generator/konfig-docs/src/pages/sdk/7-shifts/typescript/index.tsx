@@ -19,9 +19,9 @@ Start your free trial or request a demo at www.7shifts.com.`}
       // Missing serviceName
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/7-shifts/logo.png"
       companyKebabCase="7-shifts"
-      clientNameCamelCase="7Shifts"
+      clientNameCamelCase="client7Shifts"
       homepage="7shifts.com"
-      lastUpdated={new Date("2024-03-25T19:04:01.511Z")}
+      lastUpdated={new Date("2024-03-25T21:58:36.102Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/7-shifts/favicon.jpg"
       // Missing contactUrl
       contactEmail="api-support@7shifts.com"
