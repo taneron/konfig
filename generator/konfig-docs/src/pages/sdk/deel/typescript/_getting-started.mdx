@@ -1,0 +1,32 @@
+```typescript index.ts
+import { Deel } from 'deel-typescript-sdk';
+
+const deel = new Deel({
+    /*
+     * ## Authentication
+     * 
+     * Deel API uses API tokens to authenticate requests. A bearer token is required to authenticate all API requests.
+     * 
+     * All API requests must be made over HTTPS. Calls made over plain HTTP will fail. API requests without authentication will also fail.
+     * 
+     * ```
+     * curl -X GET 'api.letsdeel.com/rest/v2/contracts' \
+     * -H 'Authorization: Bearer YOUR-TOKEN-HERE'
+     * ```
+     * 
+     * ### Generating Access Tokens
+     * 1. Navigate to **Apps & Perks > Developer Center**.
+     * 2. Click on the “Generate New Token” button.
+     * 3. In the popup, click “Generate Token” button to generate a new token. Your newly generated token is visible on the screen.
+     * 4. Make sure to copy and save your token once is generated. You won't be able to see it again!
+     * 
+     * ![image](developers.png)
+     * 
+     */
+    deelToken: "DEEL_TOKEN",
+    // Standard OAuth2 security scheme based on https://swagger.io/docs/specification/authentication/
+    clientId: "CLIENT_ID",
+    clientSecret: "CLIENT_SECRET",
+    redirectUri: "REDIRECT_URI"
+})
+```
