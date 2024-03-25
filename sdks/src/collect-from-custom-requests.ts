@@ -291,6 +291,14 @@ const customRequests: Record<string, CustomRequest> = {
       return JSON.stringify(openapi);
     },
   },
+  "alexishr.com": {
+    lambda: async ({ browser }) => {
+      return downloadOpenApiSpecFromRedoclyEmbedded({
+        url: "https://docs.alexishr.com/",
+        browser,
+      });
+    },
+  },
   "withterminal.com": {
     lambda: async ({ key }) => {
       const postmanUrl =
@@ -1224,13 +1232,13 @@ async function downloadOpenApiSpecFromReadme({
  */
 async function downloadOpenApiSpecFromRedoclyEmbedded({
   url,
-  filename,
+  filename = "swagger.json",
   browser,
   enableAdBlock,
   closeModal,
 }: {
   url: string;
-  filename: string;
+  filename?: string;
   browser: PuppeteerBrowser;
   enableAdBlock?: boolean;
   closeModal?: {
