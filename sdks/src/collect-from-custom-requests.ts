@@ -291,6 +291,14 @@ const customRequests: Record<string, CustomRequest> = {
       return JSON.stringify(openapi);
     },
   },
+  "beamable.com": {
+    lambda: async () => {
+      const urls = await collectEndpointsFromReadme({
+        url: "https://docs.beamable.com/reference/overview",
+      });
+      return downloadOpenApiSpecFromReadme({ urls });
+    },
+  },
   "alexishr.com": {
     lambda: async ({ browser }) => {
       return downloadOpenApiSpecFromRedoclyEmbedded({
