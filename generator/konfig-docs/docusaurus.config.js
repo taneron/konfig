@@ -176,7 +176,7 @@ async function createConfig() {
               label: "Interactive Tutorial",
               position: "left",
             },
-            { to: "/sdk", label: "SDKs", position: "right" },
+            { to: "/sdk", label: "SDKs for Public APIs", position: "right" },
             { to: "/blog", label: "Blog", position: "right" },
             { to: "/schedule-demo", label: "Schedule Demo", position: "right" },
           ],
