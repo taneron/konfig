@@ -753,6 +753,22 @@ const customRequests: Record<string, CustomRequest> = {
       });
     },
   },
+  "gusto.com_EmbeddedPayroll": {
+    lambda: async () => {
+      const urls = await collectEndpointsFromReadme({
+        url: "https://docs.gusto.com/embedded-payroll/reference",
+      });
+      return downloadOpenApiSpecFromReadme({ urls });
+    },
+  },
+  "gusto.com_AppIntegrations": {
+    lambda: async () => {
+      const urls = await collectEndpointsFromReadme({
+        url: "https://docs.gusto.com/app-integrations/reference",
+      });
+      return downloadOpenApiSpecFromReadme({ urls });
+    },
+  },
   "factorialhr.com": {
     lambda: async () => {
       const urls = await collectEndpointsFromReadme({

@@ -1,0 +1,939 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignoreObjectsWithNoProperties: true
+ignorePotentialIncorrectType: true
+operationIds:
+  /oauth/token:
+    post: Introspection_exchangeRefreshToken
+  /v1/benefits:
+    get: CompanyBenefits_listSupportedBenefits
+  /v1/benefits/{benefit_id}:
+    get: CompanyBenefits_getSupportedBenefitById
+  /v1/benefits/{benefit_id}/requirements:
+    get: CompanyBenefits_getBenefitFieldsRequirementsById
+  /v1/companies/{company_id}:
+    get: Companies_getCompany
+  /v1/companies/{company_id}/admins:
+    get: Companies_getAllAdmins
+    post: Companies_createAdmin
+  /v1/companies/{company_id}/bank_accounts:
+    get: BankAccounts_listCompanyBankAccounts
+    post: BankAccounts_createVerificationDeposits
+  /v1/companies/{company_id}/bank_accounts/{bank_account_uuid}/verify:
+    put: BankAccounts_verifyMicroDeposits
+  /v1/companies/{company_id}/company_benefits:
+    get: CompanyBenefits_getBenefitsForCompany
+    post: CompanyBenefits_createBenefit
+  /v1/companies/{company_id}/contractor_payments:
+    get: ContractorPayments_getWithinTimePeriodTotals
+    post: ContractorPayments_createPayment
+  /v1/companies/{company_id}/contractor_payments/{contractor_payment_id}:
+    delete: ContractorPayments_cancelPayment
+    get: ContractorPayments_getSinglePayment
+  /v1/companies/{company_id}/contractors:
+    get: Contractors_getCompanyContractors
+    post: Contractors_createNewContractor
+  /v1/companies/{company_id}/custom_fields:
+    get: Companies_getCustomFields
+  /v1/companies/{company_id}/earning_types:
+    get: EarningTypes_getAll
+    post: EarningTypes_createCustomEarningType
+  /v1/companies/{company_id}/earning_types/{earning_type_uuid}:
+    delete: EarningTypes_deactivateType
+    put: EarningTypes_updateType
+  /v1/companies/{company_id}/employees:
+    get: Employees_listCompanyEmployees
+    post: Employees_createEmployee
+  /v1/companies/{company_id}/federal_tax_details:
+    get: FederalTaxDetails_getAttributes
+    put: FederalTaxDetails_updateAttributes
+  /v1/companies/{company_id}/forms:
+    get: CompanyForms_getAllForms
+  /v1/companies/{company_id}/industry_selection:
+    get: IndustrySelection_getCompanyIndustrySelection
+    put: IndustrySelection_updateCompanyIndustrySelection
+  /v1/companies/{company_id}/locations:
+    get: Locations_getCompanyLocations
+    post: Locations_createCompanyLocation
+  /v1/companies/{company_id}/pay_periods:
+    get: PaySchedules_getPayPeriods
+  /v1/companies/{company_id}/pay_periods/unprocessed_termination_pay_periods:
+    get: PaySchedules_getUnprocessedTerminationPayPeriods
+  /v1/companies/{company_id}/pay_schedules:
+    get: PaySchedules_listForCompany
+    post: PaySchedules_createNew
+  /v1/companies/{company_id}/pay_schedules/assign:
+    post: PaySchedules_assignEmployeesToSchedules
+  /v1/companies/{company_id}/pay_schedules/assignment_preview:
+    post: PaySchedules_previewAssignmentsForCompany
+  /v1/companies/{company_id}/pay_schedules/assignments:
+    get: PaySchedules_getAssignments
+  /v1/companies/{company_id}/pay_schedules/preview:
+    get: PaySchedules_previewPayScheduleDates
+  /v1/companies/{company_id}/pay_schedules/{pay_schedule_id}:
+    get: PaySchedules_getDetails
+    put: PaySchedules_updatePaySchedule
+  /v1/companies/{company_id}/payroll_reversals:
+    get: Payrolls_approvedReversals
+  /v1/companies/{company_id}/payrolls:
+    get: Payrolls_getCompanyPayrolls
+    post: Payrolls_createOffCyclePayroll
+  /v1/companies/{company_id}/payrolls/{payroll_id}:
+    delete: Payrolls_deleteUnprocessedPayroll
+    get: Payrolls_getSinglePayroll
+    put: Payrolls_updatePayrollById
+  /v1/companies/{company_id}/payrolls/{payroll_id}/calculate:
+    put: Payrolls_calculateGrossUp
+  /v1/companies/{company_id}/payrolls/{payroll_id}/cancel:
+    put: Payrolls_cancelPayrollTransition
+  /v1/companies/{company_id}/payrolls/{payroll_id}/prepare:
+    put: Payrolls_prepareForUpdate
+  /v1/companies/{company_id}/payrolls/{payroll_id}/submit:
+    put: Payrolls_submitPayroll
+  /v1/companies/{company_uuid}/ach_transactions:
+    get: AchTransactions_getAllForCompany
+  /v1/companies/{company_uuid}/contractor_payments/preview:
+    get: ContractorPayments_previewDebitDate
+  /v1/companies/{company_uuid}/departments:
+    get: Departments_getAllWithEmployees
+    post: Departments_createDepartment
+  /v1/companies/{company_uuid}/external_payrolls:
+    get: ExternalPayrolls_listForCompany
+    post: ExternalPayrolls_createNewPayroll
+  /v1/companies/{company_uuid}/external_payrolls/tax_liabilities:
+    get: ExternalPayrolls_getTaxLiabilities
+    put: ExternalPayrolls_updateTaxLiabilities
+  /v1/companies/{company_uuid}/external_payrolls/tax_liabilities/finish:
+    put: ExternalPayrolls_finalizeTaxLiabilities
+  /v1/companies/{company_uuid}/external_payrolls/{external_payroll_id}:
+    delete: ExternalPayrolls_deletePayroll
+    get: ExternalPayrolls_getById
+    put: ExternalPayrolls_updatePayrollItems
+  /v1/companies/{company_uuid}/external_payrolls/{external_payroll_id}/calculate_taxes:
+    get: ExternalPayrolls_getTaxSuggestions
+  /v1/companies/{company_uuid}/finish_onboarding:
+    put: Companies_finishOnboarding
+  /v1/companies/{company_uuid}/flows:
+    post: Flows_generateLink
+  /v1/companies/{company_uuid}/holiday_pay_policy:
+    delete: HolidayPayPolicies_deletePolicy
+    get: HolidayPayPolicies_getCompanyPolicy
+    post: HolidayPayPolicies_createCompanyPolicy
+    put: HolidayPayPolicies_updatePolicy
+  /v1/companies/{company_uuid}/holiday_pay_policy/add:
+    put: HolidayPayPolicies_addEmployeesToPolicy
+  /v1/companies/{company_uuid}/holiday_pay_policy/remove:
+    put: HolidayPayPolicies_removeEmployees
+  /v1/companies/{company_uuid}/onboarding_status:
+    get: Companies_getOnboardingStatus
+  /v1/companies/{company_uuid}/paid_holidays:
+    get: HolidayPayPolicies_previewCompanyPaidHolidays
+  /v1/companies/{company_uuid}/payment_configs:
+    get: PaymentConfigs_getCompanyPaymentConfigs
+    put: PaymentConfigs_updateCompanyPaymentConfigs
+  /v1/companies/{company_uuid}/payrolls/blockers:
+    get: Payrolls_getAllPayrollBlockers
+  /v1/companies/{company_uuid}/payrolls/skip:
+    post: Payrolls_skipPayroll
+  /v1/companies/{company_uuid}/recovery_cases:
+    get: RecoveryCases_listForCompany
+  /v1/companies/{company_uuid}/signatories:
+    get: Signatories_getCompanySignatories
+    post: Signatories_createSignatoryWithCompleteInformation
+  /v1/companies/{company_uuid}/signatories/invite:
+    post: Signatories_createInvite
+  /v1/companies/{company_uuid}/signatories/{signatory_uuid}:
+    delete: Signatories_deleteSignatory
+    put: Signatories_update
+  /v1/companies/{company_uuid}/tax_requirements:
+    get: TaxRequirements_getStates
+  /v1/companies/{company_uuid}/tax_requirements/{state}:
+    get: TaxRequirements_getStateRequirements
+    put: TaxRequirements_updateStateTaxes
+  /v1/companies/{company_uuid}/time_off_policies:
+    get: TimeOffPolicies_getAllPolicies
+    post: TimeOffPolicies_createPolicy
+  /v1/company_benefits/{company_benefit_id}:
+    delete: CompanyBenefits_deleteBenefit
+    get: CompanyBenefits_getBenefitById
+    put: CompanyBenefits_updateBenefit
+  /v1/company_benefits/{company_benefit_id}/summary:
+    get: CompanyBenefits_getBenefitSummaryById
+  /v1/compensations/{compensation_id}:
+    delete: JobsAndCompensations_removeCompensation
+    get: JobsAndCompensations_getCompensationById
+    put: JobsAndCompensations_updateCompensation
+  /v1/contractor_payments/{contractor_payment_uuid}/fund:
+    put: ContractorPayments_fundContractorPayment
+  /v1/contractor_payments/{contractor_payment_uuid}/receipt:
+    get: ContractorPayments_getSingleReceipt
+  /v1/contractors/{contractor_id}:
+    delete: Contractors_deleteContractor
+    get: Contractors_getById
+    put: Contractors_updateContractor
+  /v1/contractors/{contractor_uuid}/address:
+    get: Contractors_getAddress
+    put: Contractors_updateAddress
+  /v1/contractors/{contractor_uuid}/bank_accounts:
+    get: ContractorPaymentMethod_listBankAccounts
+    post: ContractorPaymentMethod_createBankAccount
+  /v1/contractors/{contractor_uuid}/forms:
+    get: ContractorForms_listAll
+  /v1/contractors/{contractor_uuid}/forms/{form_id}:
+    get: ContractorForms_getByIdForm
+  /v1/contractors/{contractor_uuid}/forms/{form_id}/pdf:
+    get: ContractorForms_getPdfLink
+  /v1/contractors/{contractor_uuid}/onboarding_status:
+    get: Contractors_getOnboardingStatus
+    put: Contractors_changeOnboardingStatus
+  /v1/contractors/{contractor_uuid}/payment_method:
+    get: ContractorPaymentMethod_getContractorPaymentMethod
+    put: ContractorPaymentMethod_updateBankAccount
+  /v1/departments/{department_uuid}:
+    delete: Departments_deleteDepartment
+    get: Departments_getDepartmentByUuid
+    put: Departments_updateDepartment
+  /v1/departments/{department_uuid}/add:
+    put: Departments_addPeopleToDepartment
+  /v1/departments/{department_uuid}/remove:
+    put: Departments_removePeopleFromDepartment
+  /v1/employee_benefits/{employee_benefit_id}:
+    delete: EmployeeBenefits_deleteById
+    get: EmployeeBenefits_getEmployeeBenefitById
+    put: EmployeeBenefits_updateBenefitRecord
+  /v1/employees/{employee_id}:
+    delete: Employees_deleteOnboardingEmployee
+    get: Employees_getEmployeeById
+    put: Employees_updateEmployee
+  /v1/employees/{employee_id}/bank_accounts:
+    get: EmployeePaymentMethod_listBankAccounts
+    post: EmployeePaymentMethod_createBankAccount
+  /v1/employees/{employee_id}/bank_accounts/{bank_account_uuid}:
+    delete: EmployeePaymentMethod_deleteBankAccount
+  /v1/employees/{employee_id}/custom_fields:
+    get: Employees_getCustomFields
+  /v1/employees/{employee_id}/employee_benefits:
+    get: EmployeeBenefits_getAllForEmployee
+    post: EmployeeBenefits_createBenefitRecord
+  /v1/employees/{employee_id}/employment_history:
+    get: EmployeeEmployments_getHistory
+  /v1/employees/{employee_id}/finish_onboarding:
+    put: Employees_completeOnboarding
+  /v1/employees/{employee_id}/forms:
+    get: EmployeeForms_getAllEmployeeForms
+  /v1/employees/{employee_id}/forms/{form_id}:
+    get: EmployeeForms_getFormById
+  /v1/employees/{employee_id}/forms/{form_id}/pdf:
+    get: EmployeeForms_getPdfLink
+  /v1/employees/{employee_id}/forms/{form_id}/sign:
+    put: EmployeeForms_signForm
+  /v1/employees/{employee_id}/garnishments:
+    get: Garnishments_getEmployeeGarnishments
+    post: Garnishments_createGarnishment
+  /v1/employees/{employee_id}/home_addresses:
+    get: EmployeeAddresses_getHomeAddresses
+    post: EmployeeAddresses_createHomeAddress
+  /v1/employees/{employee_id}/jobs:
+    get: JobsAndCompensations_getEmployeeJobs
+    post: JobsAndCompensations_createJob
+  /v1/employees/{employee_id}/onboarding_status:
+    get: Employees_getOnboardingStatus
+    put: Employees_updateOnboardingStatus
+  /v1/employees/{employee_id}/pay_stubs:
+    get: Payrolls_getEmployeePayStubs
+  /v1/employees/{employee_id}/payment_method:
+    get: EmployeePaymentMethod_getBankAccounts
+    put: EmployeePaymentMethod_updatePaymentMethod
+  /v1/employees/{employee_id}/rehire:
+    delete: EmployeeEmployments_removeRehire
+    get: EmployeeEmployments_getRehire
+    post: EmployeeEmployments_createRehire
+    put: EmployeeEmployments_updateRehire
+  /v1/employees/{employee_id}/terminations:
+    delete: EmployeeEmployments_deleteTermination
+    get: EmployeeEmployments_listEmployeeTerminations
+    post: EmployeeEmployments_createTermination
+  /v1/employees/{employee_id}/work_addresses:
+    get: EmployeeAddresses_listWorkAddresses
+    post: EmployeeAddresses_createWorkAddress
+  /v1/employees/{employee_id}/ytd_benefit_amounts_from_different_company:
+    post: EmployeeBenefits_createYtdBenefitAmountsFromDifferentCompany
+  /v1/employees/{employee_uuid}/federal_taxes:
+    get: EmployeeTaxSetup_getFederalTaxesById
+    put: EmployeeTaxSetup_updateFederalTaxes
+  /v1/employees/{employee_uuid}/state_taxes:
+    get: EmployeeTaxSetup_getStateTaxes
+    put: EmployeeTaxSetup_updateStateTaxes
+  /v1/employees/{employee_uuid}/time_off_activities:
+    get: Employees_getTimeOffActivities
+  /v1/events:
+    get: Events_get30DayEvents
+  /v1/forms/{form_id}:
+    get: CompanyForms_getFormById
+  /v1/forms/{form_id}/pdf:
+    get: CompanyForms_getPdfLink
+  /v1/forms/{form_id}/sign:
+    put: CompanyForms_signForm
+  /v1/garnishments/{garnishment_id}:
+    get: Garnishments_getGarnishment
+    put: Garnishments_updateGarnishment
+  /v1/generated_documents/{document_type}/{request_uuid}:
+    get: GeneratedDocuments_getDocumentByRequestUuid
+  /v1/home_addresses/{home_address_uuid}:
+    delete: EmployeeAddresses_deleteHome
+    get: EmployeeAddresses_getHomeAddress
+    put: EmployeeAddresses_updateHomeAddress
+  /v1/invoices/{invoice_period}:
+    get: Invoices_getInvoicingDataForCompanies
+  /v1/jobs/{job_id}:
+    delete: JobsAndCompensations_deleteJobById
+    get: JobsAndCompensations_getJobDetails
+    put: JobsAndCompensations_updateJob
+  /v1/jobs/{job_id}/compensations:
+    get: JobsAndCompensations_getJobCompensations
+    post: JobsAndCompensations_createCompensation
+  /v1/locations/{location_id}:
+    get: Locations_getById
+    put: Locations_updateLocation
+  /v1/locations/{location_uuid}/minimum_wages:
+    get: Locations_getMinimumWages
+  /v1/notifications/{notification_uuid}:
+    get: Notifications_getDetails
+  /v1/partner_managed_companies:
+    post: Companies_createPartnerManagedCompany
+  /v1/partner_managed_companies/{company_uuid}/accept_terms_of_service:
+    post: Companies_acceptTermsOfService
+  /v1/partner_managed_companies/{company_uuid}/migrate:
+    put: Companies_migrateToEmbeddedPayroll
+  /v1/partner_managed_companies/{company_uuid}/retrieve_terms_of_service:
+    post: Companies_getTermsOfServiceStatus
+  /v1/payrolls/{payroll_id}/employees/{employee_id}/calculate_accruing_time_off_hours:
+    post: TimeOffPolicies_calculateAccruingTimeOffHours
+  /v1/payrolls/{payroll_id}/employees/{employee_id}/pay_stub:
+    get: Payrolls_getEmployeePayStub
+  /v1/payrolls/{payroll_id}/generated_documents/printable_payroll_checks:
+    post: Payrolls_generatePrintableChecks
+  /v1/payrolls/{payroll_uuid}/gross_up:
+    post: Payrolls_calculateGrossUp
+  /v1/payrolls/{payroll_uuid}/receipt:
+    get: Payrolls_getSingleReceipt
+  /v1/plaid/processor_token:
+    post: BankAccounts_createFromPlaidToken
+  /v1/recovery_cases/{recovery_case_uuid}/redebit:
+    put: RecoveryCases_initiateRedebit
+  /v1/sandbox/generate_1099:
+    post: ContractorForms_create1099Form
+  /v1/sandbox/generate_w2:
+    post: EmployeeForms_generateW2Document
+  /v1/terminations/{employee_id}:
+    put: EmployeeEmployments_updateTermination
+  /v1/time_off_policies/{time_off_policy_uuid}:
+    get: TimeOffPolicies_getPolicy
+    put: TimeOffPolicies_updatePolicy
+  /v1/time_off_policies/{time_off_policy_uuid}/add_employees:
+    put: TimeOffPolicies_addEmployeesToPolicy
+  /v1/time_off_policies/{time_off_policy_uuid}/balance:
+    put: TimeOffPolicies_updateEmployeeBalance
+  /v1/time_off_policies/{time_off_policy_uuid}/deactivate:
+    put: TimeOffPolicies_deactivatePolicy
+  /v1/time_off_policies/{time_off_policy_uuid}/remove_employees:
+    put: TimeOffPolicies_removeEmployees
+  /v1/token_info:
+    get: Introspection_getCurrentAccessTokenInfo
+  /v1/webhook_subscriptions:
+    get: Webhooks_listSubscriptions
+    post: Webhooks_createSubscription
+  /v1/webhook_subscriptions/{webhook_subscription_uuid}:
+    delete: Webhooks_deleteSubscriptionByUuid
+    get: Webhooks_getSubscription
+    put: Webhooks_updateSubscription
+  /v1/webhook_subscriptions/{webhook_subscription_uuid}/request_verification_token:
+    get: Webhooks_requestVerificationToken
+  /v1/webhook_subscriptions/{webhook_subscription_uuid}/verify:
+    put: Webhooks_verifySubscriptionToken
+  /v1/work_addresses/{work_address_uuid}:
+    delete: EmployeeAddresses_deleteWorkAddress
+    get: EmployeeAddresses_getWorkAddress
+    put: EmployeeAddresses_updateWorkAddress
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /oauth/token:
+    post:
+      application/json: IntrospectionExchangeRefreshTokenRequest
+  /v1/companies/{company_id}/admins:
+    post:
+      application/json: CompaniesCreateAdminRequest
+  /v1/companies/{company_id}/bank_accounts:
+    post:
+      application/json: BankAccountsCreateVerificationDepositsRequest
+  /v1/companies/{company_id}/bank_accounts/{bank_account_uuid}/verify:
+    put:
+      application/json: BankAccountsVerifyMicroDepositsRequest
+  /v1/companies/{company_id}/company_benefits:
+    post:
+      application/json: CompanyBenefitsCreateBenefitRequest
+  /v1/companies/{company_id}/contractor_payments:
+    post:
+      application/json: ContractorPaymentsCreatePaymentRequest
+  /v1/companies/{company_id}/contractors:
+    post:
+      application/json: ContractorsCreateNewContractorRequest
+  /v1/companies/{company_id}/earning_types:
+    post:
+      application/json: EarningTypesCreateCustomEarningTypeRequest
+  /v1/companies/{company_id}/earning_types/{earning_type_uuid}:
+    put:
+      application/json: EarningTypesUpdateTypeRequest
+  /v1/companies/{company_id}/employees:
+    get:
+      application/json: EmployeesListCompanyEmployeesRequest
+    post:
+      application/json: EmployeesCreateEmployeeRequest
+  /v1/companies/{company_id}/federal_tax_details:
+    put:
+      application/json: FederalTaxDetailsUpdateAttributesRequest
+  /v1/companies/{company_id}/industry_selection:
+    put:
+      application/json: IndustrySelectionUpdateCompanyIndustrySelectionRequest
+  /v1/companies/{company_id}/locations:
+    post:
+      application/json: LocationsCreateCompanyLocationRequest
+      application/xml: LocationsCreateCompanyLocationRequest1
+  /v1/companies/{company_id}/pay_schedules:
+    post:
+      application/json: PaySchedulesCreateNewRequest
+  /v1/companies/{company_id}/pay_schedules/{pay_schedule_id}:
+    put:
+      application/json: PaySchedulesUpdatePayScheduleRequest
+  /v1/companies/{company_id}/payrolls:
+    post:
+      application/json: PayrollsCreateOffCyclePayrollRequest
+  /v1/companies/{company_id}/payrolls/{payroll_id}:
+    put:
+      application/json: PayrollsUpdatePayrollByIdRequest
+  /v1/companies/{company_uuid}/contractor_payments/preview:
+    get:
+      application/json: ContractorPaymentsPreviewDebitDateRequest
+      application/xml: ContractorPaymentsPreviewDebitDateRequest1
+  /v1/companies/{company_uuid}/departments:
+    post:
+      application/json: DepartmentsCreateDepartmentRequest
+  /v1/companies/{company_uuid}/external_payrolls:
+    post:
+      application/json: ExternalPayrollsCreateNewPayrollRequest
+  /v1/companies/{company_uuid}/external_payrolls/tax_liabilities:
+    put:
+      application/json: ExternalPayrollsUpdateTaxLiabilitiesRequest
+  /v1/companies/{company_uuid}/external_payrolls/{external_payroll_id}:
+    put:
+      application/json: ExternalPayrollsUpdatePayrollItemsRequest
+  /v1/companies/{company_uuid}/flows:
+    post:
+      application/json: FlowsGenerateLinkRequest
+  /v1/companies/{company_uuid}/holiday_pay_policy:
+    post:
+      application/json: HolidayPayPoliciesCreateCompanyPolicyRequest
+    put:
+      application/json: HolidayPayPoliciesUpdatePolicyRequest
+  /v1/companies/{company_uuid}/holiday_pay_policy/add:
+    put:
+      application/json: HolidayPayPoliciesAddEmployeesToPolicyRequest
+  /v1/companies/{company_uuid}/holiday_pay_policy/remove:
+    put:
+      application/json: HolidayPayPoliciesRemoveEmployeesRequest
+  /v1/companies/{company_uuid}/paid_holidays:
+    get:
+      application/json: HolidayPayPoliciesPreviewCompanyPaidHolidaysRequest
+  /v1/companies/{company_uuid}/payment_configs:
+    put:
+      application/json: PaymentConfigsUpdateCompanyPaymentConfigsRequest
+  /v1/companies/{company_uuid}/payrolls/skip:
+    post:
+      application/json: PayrollsSkipPayrollRequest
+  /v1/companies/{company_uuid}/signatories:
+    post:
+      application/json: SignatoriesCreateSignatoryWithCompleteInformationRequest
+  /v1/companies/{company_uuid}/signatories/invite:
+    post:
+      application/json: SignatoriesCreateInviteRequest
+  /v1/companies/{company_uuid}/signatories/{signatory_uuid}:
+    put:
+      application/json: SignatoriesUpdateRequest
+  /v1/companies/{company_uuid}/tax_requirements/{state}:
+    put:
+      application/json: TaxRequirementsUpdateStateTaxesRequest
+  /v1/companies/{company_uuid}/time_off_policies:
+    post:
+      application/json: TimeOffPoliciesCreatePolicyRequest
+  /v1/company_benefits/{company_benefit_id}:
+    put:
+      application/json: CompanyBenefitsUpdateBenefitRequest
+  /v1/compensations/{compensation_id}:
+    put:
+      application/json: JobsAndCompensationsUpdateCompensationRequest
+  /v1/contractors/{contractor_id}:
+    put:
+      application/json: ContractorsUpdateContractorRequest
+  /v1/contractors/{contractor_uuid}/address:
+    put:
+      application/json: ContractorsUpdateAddressRequest
+  /v1/contractors/{contractor_uuid}/bank_accounts:
+    post:
+      application/json: ContractorPaymentMethodCreateBankAccountRequest
+  /v1/contractors/{contractor_uuid}/onboarding_status:
+    put:
+      application/json: ContractorsChangeOnboardingStatusRequest
+  /v1/contractors/{contractor_uuid}/payment_method:
+    put:
+      application/json: ContractorPaymentMethodUpdateBankAccountRequest
+  /v1/departments/{department_uuid}:
+    put:
+      application/json: DepartmentsUpdateDepartmentRequest
+  /v1/departments/{department_uuid}/add:
+    put:
+      application/json: DepartmentsAddPeopleToDepartmentRequest
+  /v1/departments/{department_uuid}/remove:
+    put:
+      application/json: DepartmentsRemovePeopleFromDepartmentRequest
+  /v1/employee_benefits/{employee_benefit_id}:
+    put:
+      application/json: EmployeeBenefitsUpdateBenefitRecordRequest
+  /v1/employees/{employee_id}:
+    put:
+      application/json: EmployeesUpdateEmployeeRequest
+  /v1/employees/{employee_id}/bank_accounts:
+    get:
+      application/json: EmployeePaymentMethodListBankAccountsRequest
+    post:
+      application/json: EmployeePaymentMethodCreateBankAccountRequest
+  /v1/employees/{employee_id}/employee_benefits:
+    post:
+      application/json: EmployeeBenefitsCreateBenefitRecordRequest
+  /v1/employees/{employee_id}/forms/{form_id}/sign:
+    put:
+      application/json: EmployeeFormsSignFormRequest
+  /v1/employees/{employee_id}/garnishments:
+    post:
+      application/json: GarnishmentsCreateGarnishmentRequest
+  /v1/employees/{employee_id}/home_addresses:
+    post:
+      application/json: EmployeeAddressesCreateHomeAddressRequest
+  /v1/employees/{employee_id}/jobs:
+    post:
+      application/json: JobsAndCompensationsCreateJobRequest
+  /v1/employees/{employee_id}/onboarding_status:
+    put:
+      application/json: EmployeesUpdateOnboardingStatusRequest
+  /v1/employees/{employee_id}/payment_method:
+    put:
+      application/json: EmployeePaymentMethodUpdatePaymentMethodRequest
+  /v1/employees/{employee_id}/rehire:
+    put:
+      application/json: EmployeeEmploymentsUpdateRehireRequest
+  /v1/employees/{employee_id}/terminations:
+    post:
+      application/json: EmployeeEmploymentsCreateTerminationRequest
+  /v1/employees/{employee_id}/work_addresses:
+    post:
+      application/json: EmployeeAddressesCreateWorkAddressRequest
+  /v1/employees/{employee_id}/ytd_benefit_amounts_from_different_company:
+    post:
+      application/json: EmployeeBenefitsCreateYtdBenefitAmountsFromDifferentCompanyRequest
+  /v1/employees/{employee_uuid}/federal_taxes:
+    put:
+      application/json: EmployeeTaxSetupUpdateFederalTaxesRequest
+  /v1/employees/{employee_uuid}/state_taxes:
+    put:
+      application/json: EmployeeTaxSetupUpdateStateTaxesRequest
+  /v1/forms/{form_id}/sign:
+    put:
+      application/json: CompanyFormsSignFormRequest
+  /v1/garnishments/{garnishment_id}:
+    put:
+      application/json: GarnishmentsUpdateGarnishmentRequest
+  /v1/home_addresses/{home_address_uuid}:
+    put:
+      application/json: EmployeeAddressesUpdateHomeAddressRequest
+  /v1/jobs/{job_id}:
+    put:
+      application/json: JobsAndCompensationsUpdateJobRequest
+  /v1/jobs/{job_id}/compensations:
+    post:
+      application/json: JobsAndCompensationsCreateCompensationRequest
+  /v1/locations/{location_id}:
+    put:
+      application/json: LocationsUpdateLocationRequest
+  /v1/partner_managed_companies:
+    post:
+      application/json: CompaniesCreatePartnerManagedCompanyRequest
+  /v1/partner_managed_companies/{company_uuid}/accept_terms_of_service:
+    post:
+      application/json: CompaniesAcceptTermsOfServiceRequest
+  /v1/partner_managed_companies/{company_uuid}/migrate:
+    put:
+      application/json: CompaniesMigrateToEmbeddedPayrollRequest
+  /v1/partner_managed_companies/{company_uuid}/retrieve_terms_of_service:
+    post:
+      application/json: CompaniesGetTermsOfServiceStatusRequest
+  /v1/payrolls/{payroll_id}/employees/{employee_id}/calculate_accruing_time_off_hours:
+    post:
+      application/json: TimeOffPoliciesCalculateAccruingTimeOffHoursRequest
+  /v1/payrolls/{payroll_id}/generated_documents/printable_payroll_checks:
+    post:
+      application/json: PayrollsGeneratePrintableChecksRequest
+  /v1/payrolls/{payroll_uuid}/gross_up:
+    post:
+      application/json: PayrollsCalculateGrossUpRequest
+  /v1/plaid/processor_token:
+    post:
+      application/json: BankAccountsCreateFromPlaidTokenRequest
+  /v1/sandbox/generate_1099:
+    post:
+      application/json: ContractorFormsCreate1099FormRequest
+  /v1/sandbox/generate_w2:
+    post:
+      application/json: EmployeeFormsGenerateW2DocumentRequest
+  /v1/terminations/{employee_id}:
+    put:
+      application/json: EmployeeEmploymentsUpdateTerminationRequest
+  /v1/time_off_policies/{time_off_policy_uuid}:
+    put:
+      application/json: TimeOffPoliciesUpdatePolicyRequest
+  /v1/time_off_policies/{time_off_policy_uuid}/add_employees:
+    put:
+      application/json: TimeOffPoliciesAddEmployeesToPolicyRequest
+  /v1/time_off_policies/{time_off_policy_uuid}/balance:
+    put:
+      application/json: TimeOffPoliciesUpdateEmployeeBalanceRequest
+  /v1/time_off_policies/{time_off_policy_uuid}/remove_employees:
+    put:
+      application/json: TimeOffPoliciesRemoveEmployeesRequest
+  /v1/webhook_subscriptions:
+    post:
+      application/json: WebhooksCreateSubscriptionRequest
+  /v1/webhook_subscriptions/{webhook_subscription_uuid}:
+    put:
+      application/json: WebhooksUpdateSubscriptionRequest
+  /v1/webhook_subscriptions/{webhook_subscription_uuid}/verify:
+    put:
+      application/json: WebhooksVerifySubscriptionTokenRequest
+  /v1/work_addresses/{work_address_uuid}:
+    put:
+      application/json: EmployeeAddressesUpdateWorkAddressRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /v1/benefits:
+    get:
+      '200':
+        application/json: CompanyBenefitsListSupportedBenefitsResponse
+  /v1/companies/{company_id}/admins:
+    get:
+      '200':
+        application/json: CompaniesGetAllAdminsResponse
+  /v1/companies/{company_id}/bank_accounts:
+    get:
+      '200':
+        application/json: BankAccountsListCompanyBankAccountsResponse
+  /v1/companies/{company_id}/company_benefits:
+    get:
+      '200':
+        application/json: CompanyBenefitsGetBenefitsForCompanyResponse
+  /v1/companies/{company_id}/contractor_payments:
+    get:
+      '200':
+        application/json: ContractorPaymentsGetWithinTimePeriodTotalsResponse
+  /v1/companies/{company_id}/contractors:
+    get:
+      '200':
+        application/json: ContractorsGetCompanyContractorsResponse
+  /v1/companies/{company_id}/custom_fields:
+    get:
+      '200':
+        application/json: CompaniesGetCustomFieldsResponse
+  /v1/companies/{company_id}/earning_types:
+    get:
+      '200':
+        application/json: EarningTypesGetAllResponse
+  /v1/companies/{company_id}/employees:
+    get:
+      '200':
+        application/json: EmployeesListCompanyEmployeesResponse
+  /v1/companies/{company_id}/forms:
+    get:
+      '200':
+        application/json: CompanyFormsGetAllFormsResponse
+  /v1/companies/{company_id}/locations:
+    get:
+      '200':
+        application/json: LocationsGetCompanyLocationsResponse
+  /v1/companies/{company_id}/pay_periods:
+    get:
+      '200':
+        application/json: PaySchedulesGetPayPeriodsResponse
+  /v1/companies/{company_id}/pay_periods/unprocessed_termination_pay_periods:
+    get:
+      '200':
+        application/json: PaySchedulesGetUnprocessedTerminationPayPeriodsResponse
+  /v1/companies/{company_id}/pay_schedules:
+    get:
+      '200':
+        application/json: PaySchedulesListForCompanyResponse
+  /v1/companies/{company_id}/pay_schedules/preview:
+    get:
+      '200':
+        application/json: PaySchedulesPreviewPayScheduleDatesResponse
+  /v1/companies/{company_id}/payrolls:
+    get:
+      '200':
+        application/json: PayrollsGetCompanyPayrollsResponse
+  /v1/companies/{company_id}/payrolls/{payroll_id}/calculate:
+    put:
+      '422':
+        application/json: PayrollsCalculateGrossUp422Response
+  /v1/companies/{company_id}/payrolls/{payroll_id}/submit:
+    put:
+      '422':
+        application/json: PayrollsSubmitPayrollResponse
+  /v1/companies/{company_uuid}/ach_transactions:
+    get:
+      '200':
+        application/json: AchTransactionsGetAllForCompanyResponse
+  /v1/companies/{company_uuid}/contractor_payments/preview:
+    get:
+      '200':
+        application/json: ContractorPaymentsPreviewDebitDateResponse
+      '422':
+        application/json: ContractorPaymentsPreviewDebitDate422Response
+  /v1/companies/{company_uuid}/departments:
+    get:
+      '200':
+        application/json: DepartmentsGetAllWithEmployeesResponse
+  /v1/companies/{company_uuid}/external_payrolls:
+    get:
+      '200':
+        application/json: ExternalPayrollsListForCompanyResponse
+  /v1/companies/{company_uuid}/external_payrolls/tax_liabilities:
+    get:
+      '200':
+        application/json: ExternalPayrollsGetTaxLiabilitiesResponse
+  /v1/companies/{company_uuid}/external_payrolls/{external_payroll_id}/calculate_taxes:
+    get:
+      '200':
+        application/json: ExternalPayrollsGetTaxSuggestionsResponse
+  /v1/companies/{company_uuid}/payrolls/blockers:
+    get:
+      '200':
+        application/json: PayrollsGetAllPayrollBlockersResponse
+  /v1/companies/{company_uuid}/payrolls/skip:
+    post:
+      '422':
+        application/json: PayrollsSkipPayrollResponse
+  /v1/companies/{company_uuid}/recovery_cases:
+    get:
+      '200':
+        application/json: RecoveryCasesListForCompanyResponse
+  /v1/companies/{company_uuid}/signatories:
+    get:
+      '200':
+        application/json: SignatoriesGetCompanySignatoriesResponse
+  /v1/companies/{company_uuid}/tax_requirements:
+    get:
+      '200':
+        application/json: TaxRequirementsGetStatesResponse
+  /v1/companies/{company_uuid}/time_off_policies:
+    get:
+      '200':
+        application/json: TimeOffPoliciesGetAllPoliciesResponse
+  /v1/company_benefits/{company_benefit_id}:
+    delete:
+      '422':
+        application/json: CompanyBenefitsDeleteBenefitResponse
+  /v1/contractors/{contractor_uuid}/bank_accounts:
+    get:
+      '200':
+        application/json: ContractorPaymentMethodListBankAccountsResponse
+    post:
+      '201':
+        application/xml: ContractorPaymentMethodCreateBankAccountResponse
+  /v1/contractors/{contractor_uuid}/forms:
+    get:
+      '200':
+        application/json: ContractorFormsListAllResponse
+  /v1/contractors/{contractor_uuid}/onboarding_status:
+    get:
+      '200':
+        application/xml: ContractorsGetOnboardingStatusResponse
+  /v1/employees/{employee_id}/bank_accounts:
+    get:
+      '200':
+        application/json: EmployeePaymentMethodListBankAccountsResponse
+  /v1/employees/{employee_id}/custom_fields:
+    get:
+      '200':
+        application/json: EmployeesGetCustomFieldsResponse
+  /v1/employees/{employee_id}/employee_benefits:
+    get:
+      '200':
+        application/json: EmployeeBenefitsGetAllForEmployeeResponse
+  /v1/employees/{employee_id}/employment_history:
+    get:
+      '200':
+        application/json: EmployeeEmploymentsGetHistoryResponse
+  /v1/employees/{employee_id}/garnishments:
+    get:
+      '200':
+        application/json: GarnishmentsGetEmployeeGarnishmentsResponse
+  /v1/employees/{employee_id}/home_addresses:
+    get:
+      '200':
+        application/json: EmployeeAddressesGetHomeAddressesResponse
+  /v1/employees/{employee_id}/jobs:
+    get:
+      '200':
+        application/json: JobsAndCompensationsGetEmployeeJobsResponse
+  /v1/employees/{employee_id}/onboarding_status:
+    get:
+      '200':
+        application/xml: EmployeesGetOnboardingStatusResponse
+  /v1/employees/{employee_id}/pay_stubs:
+    get:
+      '200':
+        application/json: PayrollsGetEmployeePayStubsResponse
+  /v1/employees/{employee_id}/terminations:
+    get:
+      '200':
+        application/json: EmployeeEmploymentsListEmployeeTerminationsResponse
+  /v1/employees/{employee_id}/work_addresses:
+    get:
+      '200':
+        application/json: EmployeeAddressesListWorkAddressesResponse
+  /v1/employees/{employee_uuid}/state_taxes:
+    get:
+      '200':
+        application/json: EmployeeTaxSetupGetStateTaxesResponse
+    put:
+      '422':
+        application/json: EmployeeTaxSetupUpdateStateTaxesResponse
+  /v1/events:
+    get:
+      '200':
+        application/json: EventsGet30DayEventsResponse
+  /v1/jobs/{job_id}/compensations:
+    get:
+      '200':
+        application/json: JobsAndCompensationsGetJobCompensationsResponse
+    post:
+      '201':
+        application/xml: JobsAndCompensationsCreateCompensationResponse
+  /v1/locations/{location_uuid}/minimum_wages:
+    get:
+      '200':
+        application/json: LocationsGetMinimumWagesResponse
+  /v1/partner_managed_companies:
+    post:
+      '200':
+        application/json: CompaniesCreatePartnerManagedCompanyResponse
+  /v1/partner_managed_companies/{company_uuid}/accept_terms_of_service:
+    post:
+      '200':
+        application/json: CompaniesAcceptTermsOfServiceResponse
+  /v1/partner_managed_companies/{company_uuid}/migrate:
+    put:
+      '200':
+        application/json: CompaniesMigrateToEmbeddedPayrollResponse
+  /v1/partner_managed_companies/{company_uuid}/retrieve_terms_of_service:
+    post:
+      '200':
+        application/json: CompaniesGetTermsOfServiceStatusResponse
+  /v1/payrolls/{payroll_id}/employees/{employee_id}/calculate_accruing_time_off_hours:
+    post:
+      '200':
+        application/json: TimeOffPoliciesCalculateAccruingTimeOffHoursResponse
+  /v1/payrolls/{payroll_uuid}/gross_up:
+    post:
+      '422':
+        application/json: PayrollsCalculateGrossUpResponse
+  /v1/plaid/processor_token:
+    post:
+      '201':
+        application/json: BankAccountsCreateFromPlaidTokenResponse
+  /v1/sandbox/generate_w2:
+    post:
+      '200':
+        application/json: EmployeeFormsGenerateW2DocumentResponse
+  /v1/token_info:
+    get:
+      '200':
+        application/json: IntrospectionGetCurrentAccessTokenInfoResponse
+  /v1/webhook_subscriptions:
+    get:
+      '200':
+        application/json: WebhooksListSubscriptionsResponse
+securityParameters:
+  X-Gusto-API-Version:
+    header: false
+  anchor_end_of_pay_period:
+    query: false
+  anchor_pay_date:
+    query: false
+  async:
+    query: false
+  company_uuids:
+    query: false
+  contractor_payment_uuid:
+    query: false
+  contractor_uuid:
+    query: false
+  day_1:
+    query: false
+  day_2:
+    query: false
+  detailed:
+    query: false
+  effective_date:
+    query: false
+  end_date:
+    query: false
+  enrollment_count:
+    query: false
+  event_type:
+    query: false
+  frequency:
+    query: false
+  group_by_date:
+    query: false
+  include:
+    query: false
+  limit:
+    query: false
+  page:
+    query: false
+  payment_direction:
+    query: false
+  payroll_types:
+    query: false
+  payroll_uuid:
+    query: false
+  per:
+    query: false
+  processing_statuses:
+    query: false
+  resource_uuid:
+    query: false
+  scheduling:
+    query: false
+  start_date:
+    query: false
+  starting_after_uuid:
+    query: false
+  terminated:
+    query: false
+  time_off_type:
+    query: false
+  transaction_type:
+    query: false
+  with_employee_benefits:
+    query: false
+validServerUrls: {}
