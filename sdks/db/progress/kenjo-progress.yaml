@@ -1,0 +1,509 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignorePotentialIncorrectType: true
+operationIds:
+  /areas:
+    get: Areas_getList
+    post: Areas_createNewArea
+  /areas/{id}:
+    delete: Areas_removeById
+    get: Areas_getById
+    put: Areas_updateAreaById
+  /attendances:
+    get: Attendance_getList
+    post: Attendance_createEntry
+  /attendances/categories:
+    get: Attendance_getCategories
+  /attendances/expected-time:
+    get: Attendance_getExpectedTimeByUser
+  /attendances/track-time:
+    post: Attendance_createTrackTime
+  /attendances/{attendanceId}:
+    delete: Attendance_removeById
+    get: Attendance_getById
+    put: Attendance_updateEntry
+  /auth/login:
+    post: Authentication_createBearerToken
+  /auth/logout:
+    post: Authentication_invalidateToken
+  /calendars:
+    get: Calendars_getList
+  /calendars/{id}:
+    get: Calendars_getById
+  /companies:
+    get: Companies_getList
+  /compensation/additional-payment-types:
+    get: Compensation_listAdditionalPaymentTypes
+  /compensation/additional-payments:
+    get: Compensation_listAdditionalPayments
+  /compensation/contract-types:
+    get: Compensation_listContractTypes
+  /compensation/contracts:
+    get: Compensation_getContracts
+  /compensation/salaries:
+    get: Compensation_getSalariesList
+  /custom-fields:
+    get: CustomFields_getList
+  /departments:
+    get: Departments_listDepartments
+    post: Departments_createNewDepartment
+  /departments/{id}:
+    delete: Departments_removeById
+    get: Departments_getById
+    put: Departments_updateAttributes
+  /employees:
+    get: Employees_getList
+    post: Employees_createInactiveEmployee
+  /employees/accounts:
+    get: Employees_getAccounts
+  /employees/addresses:
+    get: Employees_listAddresses
+  /employees/financials:
+    get: Employees_listFinancials
+  /employees/homes:
+    get: Employees_listHomes
+  /employees/personals:
+    get: Employees_listPersonals
+  /employees/work-schedules:
+    get: Employees_getWorkSchedules
+  /employees/works:
+    get: Employees_listWorks
+  /employees/{employeeId}:
+    get: Employees_getEmployeeInformation
+  /employees/{employeeId}/accounts:
+    put: Employees_updateEmployeeAccounts
+  /employees/{employeeId}/activate:
+    put: Employees_activateEmployee
+  /employees/{employeeId}/addresses:
+    put: Employees_updateAddress
+  /employees/{employeeId}/deactivate:
+    put: Employees_deactivateEmployeeById
+  /employees/{employeeId}/financials:
+    put: Employees_updateFinancials
+  /employees/{employeeId}/homes:
+    put: Employees_updateHome
+  /employees/{employeeId}/personals:
+    put: Employees_updatePersonals
+  /employees/{employeeId}/work-schedules:
+    put: Employees_updateWorkSchedule
+  /employees/{employeeId}/works:
+    put: Employees_updateWorks
+  /offices:
+    get: Offices_getList
+    post: Offices_createNewOffice
+  /offices/{id}:
+    delete: Offices_removeById
+    get: Offices_getById
+    put: Offices_updateOfficeAttributes
+  /teams:
+    get: Teams_getList
+    post: Teams_createTeam
+  /teams/{id}:
+    delete: Teams_removeTeam
+    get: Teams_getById
+    put: Teams_updateTeamAttributes
+  /time-off/requests:
+    get: TimeOff_getRequestsByDate
+  /user-accounts:
+    get: UserAccounts_listEmployees
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /areas:
+    post:
+      application/json: AreasCreateNewAreaRequest
+  /areas/{id}:
+    put:
+      application/json: AreasUpdateAreaByIdRequest
+  /attendances:
+    post:
+      application/json: AttendanceCreateEntryRequest
+  /attendances/track-time:
+    post:
+      application/json: AttendanceCreateTrackTimeRequest
+  /attendances/{attendanceId}:
+    put:
+      application/json: AttendanceUpdateEntryRequest
+  /auth/login:
+    post:
+      application/json: AuthenticationCreateBearerTokenRequest
+  /departments:
+    post:
+      application/json: DepartmentsCreateNewDepartmentRequest
+  /departments/{id}:
+    put:
+      application/json: DepartmentsUpdateAttributesRequest
+  /employees:
+    post:
+      application/json: EmployeesCreateInactiveEmployeeRequest
+  /employees/{employeeId}/accounts:
+    put:
+      application/json: EmployeesUpdateEmployeeAccountsRequest
+  /employees/{employeeId}/addresses:
+    put:
+      application/json: EmployeesUpdateAddressRequest
+  /employees/{employeeId}/financials:
+    put:
+      application/json: EmployeesUpdateFinancialsRequest
+  /employees/{employeeId}/homes:
+    put:
+      application/json: EmployeesUpdateHomeRequest
+  /employees/{employeeId}/personals:
+    put:
+      application/json: EmployeesUpdatePersonalsRequest
+  /employees/{employeeId}/work-schedules:
+    put:
+      application/json: EmployeesUpdateWorkScheduleRequest
+  /employees/{employeeId}/works:
+    put:
+      application/json: EmployeesUpdateWorksRequest
+  /offices:
+    post:
+      application/json: OfficesCreateNewOfficeRequest
+  /offices/{id}:
+    put:
+      application/json: OfficesUpdateOfficeAttributesRequest
+  /teams:
+    post:
+      application/json: TeamsCreateTeamRequest
+  /teams/{id}:
+    put:
+      application/json: TeamsUpdateTeamAttributesRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /areas:
+    get:
+      '200':
+        application/json: AreasGetListResponse
+    post:
+      '201':
+        application/json: AreasCreateNewAreaResponse
+  /areas/{id}:
+    get:
+      '200':
+        application/json: AreasGetByIdResponse
+    put:
+      '200':
+        application/json: AreasUpdateAreaByIdResponse
+  /attendances:
+    get:
+      '200':
+        application/json: AttendanceGetListResponse
+    post:
+      '201':
+        application/json: AttendanceCreateEntryResponse
+  /attendances/categories:
+    get:
+      '200':
+        application/json: AttendanceGetCategoriesResponse
+  /attendances/expected-time:
+    get:
+      '200':
+        application/json: AttendanceGetExpectedTimeByUserResponse
+  /attendances/track-time:
+    post:
+      '201':
+        application/json: AttendanceCreateTrackTimeResponse
+  /attendances/{attendanceId}:
+    get:
+      '200':
+        application/json: AttendanceGetByIdResponse
+    put:
+      '200':
+        application/json: AttendanceUpdateEntryResponse
+  /auth/login:
+    post:
+      '200':
+        application/json: AuthenticationCreateBearerTokenResponse
+      '400':
+        application/json: AuthenticationCreateBearerToken400Response
+  /calendars:
+    get:
+      '200':
+        application/json: CalendarsGetListResponse
+  /calendars/{id}:
+    get:
+      '200':
+        application/json: CalendarsGetByIdResponse
+  /companies:
+    get:
+      '200':
+        application/json: CompaniesGetListResponse
+  /compensation/additional-payment-types:
+    get:
+      '200':
+        application/json: CompensationListAdditionalPaymentTypesResponse
+  /compensation/additional-payments:
+    get:
+      '200':
+        application/json: CompensationListAdditionalPaymentsResponse
+  /compensation/contract-types:
+    get:
+      '200':
+        application/json: CompensationListContractTypesResponse
+  /compensation/contracts:
+    get:
+      '200':
+        application/json: CompensationGetContractsResponse
+  /compensation/salaries:
+    get:
+      '200':
+        application/json: CompensationGetSalariesListResponse
+  /custom-fields:
+    get:
+      '200':
+        application/json: CustomFieldsGetListResponse
+      '400':
+        application/json: CustomFieldsGetList400Response
+  /departments:
+    get:
+      '200':
+        application/json: DepartmentsListDepartmentsResponse
+    post:
+      '201':
+        application/json: DepartmentsCreateNewDepartmentResponse
+  /departments/{id}:
+    get:
+      '200':
+        application/json: DepartmentsGetByIdResponse
+    put:
+      '200':
+        application/json: DepartmentsUpdateAttributesResponse
+  /employees:
+    get:
+      '200':
+        application/json: EmployeesGetListResponse
+    post:
+      '201':
+        application/json: EmployeesCreateInactiveEmployeeResponse
+  /employees/accounts:
+    get:
+      '200':
+        application/json: EmployeesGetAccountsResponse
+  /employees/addresses:
+    get:
+      '200':
+        application/json: EmployeesListAddressesResponse
+  /employees/financials:
+    get:
+      '200':
+        application/json: EmployeesListFinancialsResponse
+  /employees/homes:
+    get:
+      '200':
+        application/json: EmployeesListHomesResponse
+  /employees/personals:
+    get:
+      '200':
+        application/json: EmployeesListPersonalsResponse
+  /employees/work-schedules:
+    get:
+      '200':
+        application/json: EmployeesGetWorkSchedulesResponse
+  /employees/works:
+    get:
+      '200':
+        application/json: EmployeesListWorksResponse
+  /employees/{employeeId}:
+    get:
+      '200':
+        application/json: EmployeesGetEmployeeInformationResponse
+  /employees/{employeeId}/accounts:
+    put:
+      '200':
+        application/json: EmployeesUpdateEmployeeAccountsResponse
+  /employees/{employeeId}/activate:
+    put:
+      '200':
+        application/json: EmployeesActivateEmployeeResponse
+      '400':
+        application/json: EmployeesActivateEmployee400Response
+  /employees/{employeeId}/addresses:
+    put:
+      '200':
+        application/json: EmployeesUpdateAddressResponse
+  /employees/{employeeId}/deactivate:
+    put:
+      '200':
+        application/json: EmployeesDeactivateEmployeeByIdResponse
+      '400':
+        application/json: EmployeesDeactivateEmployeeById400Response
+  /employees/{employeeId}/financials:
+    put:
+      '200':
+        application/json: EmployeesUpdateFinancialsResponse
+  /employees/{employeeId}/homes:
+    put:
+      '200':
+        application/json: EmployeesUpdateHomeResponse
+  /employees/{employeeId}/personals:
+    put:
+      '200':
+        application/json: EmployeesUpdatePersonalsResponse
+  /employees/{employeeId}/work-schedules:
+    put:
+      '200':
+        application/json: EmployeesUpdateWorkScheduleResponse
+  /employees/{employeeId}/works:
+    put:
+      '200':
+        application/json: EmployeesUpdateWorksResponse
+  /offices:
+    get:
+      '200':
+        application/json: OfficesGetListResponse
+    post:
+      '201':
+        application/json: OfficesCreateNewOfficeResponse
+  /offices/{id}:
+    get:
+      '200':
+        application/json: OfficesGetByIdResponse
+    put:
+      '200':
+        application/json: OfficesUpdateOfficeAttributesResponse
+  /teams:
+    get:
+      '200':
+        application/json: TeamsGetListResponse
+    post:
+      '201':
+        application/json: TeamsCreateTeamResponse
+  /teams/{id}:
+    get:
+      '200':
+        application/json: TeamsGetByIdResponse
+    put:
+      '200':
+        application/json: TeamsUpdateTeamAttributesResponse
+  /time-off/requests:
+    get:
+      '200':
+        application/json: TimeOffGetRequestsByDateResponse
+  /user-accounts:
+    get:
+      '200':
+        application/json: UserAccountsListEmployeesResponse
+securityParameters:
+  Authorization:
+    header: false
+  _companyId:
+    query: false
+  _timeOffTypeId:
+    query: false
+  _userId:
+    query: false
+  accountHolderName:
+    query: false
+  accountNumber:
+    query: false
+  apiName:
+    query: false
+  bankName:
+    query: false
+  birthdate:
+    query: false
+  calendarId:
+    query: false
+  city:
+    query: false
+  companyId:
+    query: false
+  contractTypeId:
+    query: false
+  country:
+    query: false
+  currency:
+    query: false
+  departmentId:
+    query: false
+  displayName:
+    query: false
+  email:
+    query: false
+  externalId:
+    query: false
+  firstName:
+    query: false
+  from:
+    query: false
+  gender:
+    query: false
+  iban:
+    query: false
+  isActive:
+    query: false
+  isAssistant:
+    query: false
+  jobTitle:
+    query: false
+  label:
+    query: false
+  language:
+    query: false
+  lastName:
+    query: false
+  limit:
+    query: false
+  maritalStatus:
+    query: false
+  name:
+    query: false
+  nationalId:
+    query: false
+  nationalInsuranceNumber:
+    query: false
+  officeId:
+    query: false
+  offset:
+    query: false
+  passport:
+    query: false
+  paymentPeriod:
+    query: false
+  personalEmail:
+    query: false
+  personalMobile:
+    query: false
+  personalPhone:
+    query: false
+  postalCode:
+    query: false
+  probationPeriodEnd:
+    query: false
+  reportsToId:
+    query: false
+  section:
+    query: false
+  spouseBirthdate:
+    query: false
+  spouseFirstName:
+    query: false
+  spouseGender:
+    query: false
+  spouseLastName:
+    query: false
+  startDate:
+    query: false
+  status:
+    query: false
+  street:
+    query: false
+  swiftCode:
+    query: false
+  taxCode:
+    query: false
+  taxIdentificationNumber:
+    query: false
+  to:
+    query: false
+  trackAttendance:
+    query: false
+  userId:
+    query: false
+  workMobile:
+    query: false
+  workPhone:
+    query: false
+validServerUrls: {}

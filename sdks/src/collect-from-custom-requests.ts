@@ -1319,6 +1319,10 @@ const customRequests: Record<string, CustomRequest> = {
       return await downloadOpenApiSpecFromReadme({ urls });
     },
   },
+  "kenjo.io": {
+    type: "GET",
+    url: "https://static.kenjo.io/kenjo-api.yml",
+  },
   "sumsub.com": {
     lambda: async () => {
       const urls = await collectEndpointsFromReadme({
