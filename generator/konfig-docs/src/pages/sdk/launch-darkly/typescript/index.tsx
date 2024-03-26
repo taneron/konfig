@@ -17,7 +17,7 @@ export default function LaunchDarklyTypeScriptSdk() {
       companyKebabCase="launch-darkly"
       clientNameCamelCase="launchDarkly"
       homepage="launchdarkly.com"
-      lastUpdated={new Date("2024-03-24T21:41:22.682Z")}
+      lastUpdated={new Date("2024-03-26T20:40:42.558Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/launchdarkly/favicon.png"
       contactUrl="https://support.launchdarkly.com"
       contactEmail="support@launchdarkly.com"
@@ -985,7 +985,7 @@ export default function LaunchDarklyTypeScriptSdk() {
       {
         "name": "before",
         "schema": "integer",
-        "description": "A timestamp filter, expressed as a Unix epoch time in milliseconds. All entries this returns occurred before the timestamp."
+        "description": "A timestamp filter, expressed as a Unix epoch time in milliseconds.  All entries this returns occurred before the timestamp."
       },
       {
         "name": "after",
@@ -15092,7 +15092,7 @@ export default function LaunchDarklyTypeScriptSdk() {
       apiVersion="2.0"
       endpoints={164}
       sdkMethods={257}
-      schemas={447}
+      schemas={448}
       parameters={979}
       difficulty="Very Hard"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/launchdarkly/openapi.yaml"
