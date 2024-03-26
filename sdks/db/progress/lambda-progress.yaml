@@ -1,0 +1,98 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+operationIds:
+  /file-systems:
+    get: FileSystem_getList
+  /instance-operations/launch:
+    post: Instance_createInstances
+  /instance-operations/restart:
+    post: Instance_restartInstances
+  /instance-operations/terminate:
+    post: Instance_terminateInstance
+  /instance-types:
+    get: InstanceType_getList
+  /instances:
+    get: Instance_listRunningInstances
+  /instances/{id}:
+    get: Instance_getDetails
+  /ssh-keys:
+    get: Key_getList
+    post: Key_addSshKey
+  /ssh-keys/{id}:
+    delete: SshKey_remove
+operationTags:
+  /file-systems:
+    get: FileSystem
+  /instance-operations/launch:
+    post: Instance
+  /instance-operations/restart:
+    post: Instance
+  /instance-operations/terminate:
+    post: Instance
+  /instance-types:
+    get: InstanceType
+  /instances:
+    get: Instance
+  /instances/{id}:
+    get: Instance
+  /ssh-keys:
+    get: Key
+    post: Key
+  /ssh-keys/{id}:
+    delete: SSHKey
+renameTags: {}
+requestSchemaNames:
+  /instance-operations/launch:
+    post:
+      application/json: InstanceCreateInstancesRequest
+  /instance-operations/restart:
+    post:
+      application/json: InstanceRestartInstancesRequest
+  /instance-operations/terminate:
+    post:
+      application/json: InstanceTerminateInstanceRequest
+  /ssh-keys:
+    post:
+      application/json: KeyAddSshKeyRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /file-systems:
+    get:
+      '200':
+        application/json: FileSystemGetListResponse
+  /instance-operations/launch:
+    post:
+      '200':
+        application/json: InstanceCreateInstancesResponse
+  /instance-operations/restart:
+    post:
+      '200':
+        application/json: InstanceRestartInstancesResponse
+  /instance-operations/terminate:
+    post:
+      '200':
+        application/json: InstanceTerminateInstanceResponse
+  /instance-types:
+    get:
+      '200':
+        application/json: InstanceTypeGetListResponse
+  /instances:
+    get:
+      '200':
+        application/json: InstanceListRunningInstancesResponse
+  /instances/{id}:
+    get:
+      '200':
+        application/json: InstanceGetDetailsResponse
+  /ssh-keys:
+    get:
+      '200':
+        application/json: KeyGetListResponse
+    post:
+      '200':
+        application/json: KeyAddSshKeyResponse
+securityParameters: {}
+validServerUrls:
+  /api/v1:
+    url: /api/v1

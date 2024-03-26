@@ -1019,6 +1019,10 @@ const customRequests: Record<string, CustomRequest> = {
     url: "https://api.jina.ai/openapi.json",
     apiBaseUrl: "https://api.jina.ai",
   },
+  "lambdalabs.com": {
+    type: "GET",
+    url: "https://cloud.lambdalabs.com/static/api/v1/openapi.yaml",
+  },
   "induced.ai": {
     type: "GET",
     url: "https://raw.githubusercontent.com/inducedai/docs/main/openapi.json",
