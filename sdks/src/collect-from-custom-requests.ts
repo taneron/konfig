@@ -497,6 +497,34 @@ const customRequests: Record<string, CustomRequest> = {
     type: "GET",
     url: "https://stoplight.io/api/v1/projects/lucca/lucca-legacyapi/nodes/reference/Cleemy-Expenses-v3.yaml?fromExportButton=true&snapshotType=http_service&deref=optimizedBundle",
   },
+  "namely.com": {
+    lambda: async () => {
+      const url =
+        "https://stoplight.io/api/v1/projects/namely/namely-api/nodes/reference/openapi.json?fromExportButton=true&snapshotType=http_service&deref=optimizedBundle";
+      const response = await fetch(url);
+      let rawSpecString = await response.text();
+
+      // replace "#/definitions/Team" with "#/definitions/team"
+      rawSpecString = rawSpecString.replaceAll(
+        "#/definitions/Team",
+        "#/definitions/team"
+      );
+
+      // replace "#/definitions/team%20Link" with "#/definitions/Team%20Link"
+      rawSpecString = rawSpecString.replaceAll(
+        "#/definitions/team%20Link",
+        "#/definitions/Team%20Link"
+      );
+
+      return rawSpecString;
+    },
+    servers: [
+      {
+        url: "https://{company}.namely.com/api/v1",
+        variables: { company: { default: "your-company" } },
+      },
+    ],
+  },
   "httpbin.org": {
     type: "GET",
     url: "https://httpbin.org/spec.json",

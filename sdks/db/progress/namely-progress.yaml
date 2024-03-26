@@ -1,0 +1,319 @@
+examples: {}
+examples_2: {}
+examples_3:
+  /likes/event_comment/{comment-id}:
+    post:
+      default:
+        application/json: {}
+ignoreObjectsWithNoProperties: true
+operationIds:
+  /companies/info:
+    get: CompanyInfo_getInfo
+  /countries/{id}:
+    get: NamelySystemInfo_getCountryDetails
+  /events/{event-id}/comments:
+    get: HomeFeed_getEventComments
+  /events/{event-id}/comments/{comment-id}:
+    delete: HomeFeed_removeEventComment
+  /events/{id}:
+    delete: HomeFeed_deleteAnnouncement
+    get: HomeFeed_getEvent
+  /events/{id}/comments:
+    post: HomeFeed_createEventComment
+  /folders/{id}:
+    delete: CompanyResources_deleteFolderById
+    put: CompanyResources_updateFolderName
+  /folders/{id}/resources:
+    delete: CompanyResources_deleteResourceById
+    get: CompanyResources_getFolderResources
+  /group_types:
+    get: GroupsTeams_getAllGroupTypes
+  /group_types/{id}:
+    get: GroupsTeams_getGroupTypeDetails
+  /group_types/{id}/groups:
+    get: GroupsTeams_getGroupTypeGroups
+  /groups/{id}:
+    get: GroupsTeams_getGroupDetails
+  /job_tiers:
+    get: JobsInfo_getAllJobTiers
+    post: JobsInfo_createJobTier
+  /job_tiers/{id}:
+    get: JobsInfo_getJobTier
+    put: JobsInfo_updateLabel
+  /job_titles:
+    get: JobsInfo_getAllJobTitles
+    post: JobsInfo_createJobTitle
+  /job_titles/{id}:
+    get: JobsInfo_getJobTitleById
+    put: JobsInfo_updateJobTitle
+  /likes/event/{event-id}:
+    delete: HomeFeed_removeEventLike
+  /likes/event/{event-id}/recent:
+    get: HomeFeed_getEventLikes
+  /likes/event/{id}:
+    post: HomeFeed_createEventLike
+  /likes/event_comment/{comment-id}:
+    delete: HomeFeed_deleteEventCommentLike
+    post: HomeFeed_likeEventComment
+  /likes/event_comment/{comment-id}/recent:
+    get: HomeFeed_getEventCommentLikes
+  /profiles/fields:
+    get: ProfileFields_getAllFields
+    post: ProfileFields_createProfileField
+  /profiles/fields/sections:
+    get: ProfileFields_getAllFieldSections
+  /profiles/fields/sections/{id}:
+    get: ProfileFields_getFieldSection
+    put: ProfileFields_updateFieldInSection
+  /profiles/fields/{id}:
+    get: ProfileFields_getFieldInformation
+    put: ProfileFields_updateFieldInSection
+  /profiles/me:
+    get: Profiles_getCurrentUserProfile
+  /profiles/{id}:
+    get: Profiles_getProfileById
+    put: Profiles_updateProfileWithNewJobTitle
+  /profiles/{id}/notifications:
+    get: Notifications_getProfileNotifications
+  /reports/{id}:
+    get: Reports_getReportData
+  /resources/{id}:
+    get: CompanyResources_getById
+  /teams/{id}:
+    get: GroupsTeams_get
+operationTags: {}
+renameTags: {}
+requestSchemaNames: {}
+responseDescriptions: {}
+responseSchemaNames:
+  /companies/info:
+    get:
+      '200':
+        application/json: CompanyInfoGetInfoResponse
+  /countries:
+    get:
+      '200':
+        application/json: GetCountriesResponse
+  /countries/{id}:
+    get:
+      '200':
+        application/json: NamelySystemInfoGetCountryDetailsResponse
+  /events:
+    get:
+      '200':
+        application/json: GetEventsResponse
+    post:
+      '201':
+        application/json: PostEventsResponse
+  /events/{event-id}/comments:
+    get:
+      '200':
+        application/json: HomeFeedGetEventCommentsResponse
+  /events/{event-id}/comments/{comment-id}:
+    delete:
+      '200':
+        application/json: HomeFeedRemoveEventCommentResponse
+  /events/{id}:
+    delete:
+      '200':
+        application/json: HomeFeedDeleteAnnouncementResponse
+    get:
+      '200':
+        application/json: HomeFeedGetEventResponse
+  /events/{id}/comments:
+    post:
+      '201':
+        application/json: HomeFeedCreateEventCommentResponse
+  /folders:
+    get:
+      '200':
+        application/json: GetFoldersResponse
+    post:
+      '201':
+        application/json: PostFoldersResponse
+  /folders/{id}:
+    put:
+      '200':
+        application/json: CompanyResourcesUpdateFolderNameResponse
+  /folders/{id}/resources:
+    get:
+      '200':
+        application/json: CompanyResourcesGetFolderResourcesResponse
+  /group_types:
+    get:
+      '200':
+        application/json: GroupsTeamsGetAllGroupTypesResponse
+  /group_types/{id}:
+    get:
+      '200':
+        application/json: GroupsTeamsGetGroupTypeDetailsResponse
+  /group_types/{id}/groups:
+    get:
+      '200':
+        application/javascript: GroupsTeamsGetGroupTypeGroupsResponse
+  /groups:
+    get:
+      '200':
+        application/json: GetGroupsResponse
+  /groups/{id}:
+    get:
+      '200':
+        application/json: GroupsTeamsGetGroupDetailsResponse
+  /job_tiers:
+    get:
+      '200':
+        application/json: JobsInfoGetAllJobTiersResponse
+    post:
+      '201':
+        application/json: JobsInfoCreateJobTierResponse
+  /job_tiers/{id}:
+    get:
+      '200':
+        application/json: JobsInfoGetJobTierResponse
+    put:
+      '200':
+        application/json: JobsInfoUpdateLabelResponse
+  /job_titles:
+    get:
+      '200':
+        application/json: JobsInfoGetAllJobTitlesResponse
+    post:
+      '201':
+        application/json: JobsInfoCreateJobTitleResponse
+  /job_titles/{id}:
+    get:
+      '200':
+        application/json: JobsInfoGetJobTitleByIdResponse
+    put:
+      '200':
+        application/json: JobsInfoUpdateJobTitleResponse
+  /likes/event/{event-id}:
+    delete:
+      '200':
+        application/json: HomeFeedRemoveEventLikeResponse
+  /likes/event/{event-id}/recent:
+    get:
+      '200':
+        application/json: HomeFeedGetEventLikesResponse
+  /likes/event/{id}:
+    post:
+      '200':
+        application/json: HomeFeedCreateEventLikeResponse
+  /likes/event_comment/{comment-id}:
+    delete:
+      '200':
+        application/json: HomeFeedDeleteEventCommentLikeResponse
+    post:
+      default:
+        application/json: HomeFeedLikeEventCommentResponse
+  /likes/event_comment/{comment-id}/recent:
+    get:
+      '200':
+        application/json: HomeFeedGetEventCommentLikesResponse
+  /notifications:
+    get:
+      '200':
+        application/json: GetNotificationsResponse
+  /profiles:
+    get:
+      '200':
+        application/json: GetProfilesResponse
+    post:
+      '201':
+        application/json: PostProfilesResponse
+  /profiles/fields:
+    get:
+      '200':
+        application/json: ProfileFieldsGetAllFieldsResponse
+    post:
+      '201':
+        application/json: ProfileFieldsCreateProfileFieldResponse
+  /profiles/fields/sections:
+    get:
+      '200':
+        application/json: ProfileFieldsGetAllFieldSectionsResponse
+  /profiles/fields/sections/{id}:
+    get:
+      '200':
+        application/json: ProfileFieldsGetFieldSectionResponse
+    put:
+      '200':
+        application/json: ProfileFieldsUpdateFieldInSection200Response
+  /profiles/fields/{id}:
+    get:
+      '200':
+        application/json: ProfileFieldsGetFieldInformationResponse
+    put:
+      '200':
+        application/json: ProfileFieldsUpdateFieldInSectionResponse
+  /profiles/me:
+    get:
+      '200':
+        application/json: ProfilesGetCurrentUserProfileResponse
+  /profiles/{id}:
+    get:
+      '200':
+        application/json: ProfilesGetProfileByIdResponse
+    put:
+      '200':
+        application/json: ProfilesUpdateProfileWithNewJobTitleResponse
+  /profiles/{id}/notifications:
+    get:
+      '200':
+        application/json: NotificationsGetProfileNotificationsResponse
+  /reports/{id}:
+    get:
+      '200':
+        application/json: ReportsGetReportDataResponse
+  /resources:
+    get:
+      '200':
+        application/json: GetResourcesResponse
+  /resources/{id}:
+    get:
+      '200':
+        application/json: CompanyResourcesGetByIdResponse
+  /teams:
+    get:
+      '200':
+        application/json: GetTeamsResponse
+  /teams/{id}:
+    get:
+      '200':
+        application/json: GroupsTeamsGetResponse
+securityParameters:
+  after:
+    query: false
+  filter[email]:
+    query: false
+  filter[first_name]:
+    query: false
+  filter[job_title]:
+    query: false
+  filter[last_name]:
+    query: false
+  filter[personal_email]:
+    query: false
+  filter[reports_to]:
+    query: false
+  filter[type]:
+    query: false
+  filter[user_status]:
+    query: false
+  limit:
+    query: false
+  order:
+    query: false
+  page:
+    query: false
+  per_page:
+    query: false
+  profile_format:
+    query: false
+  profile_id:
+    query: false
+  sort:
+    query: false
+validServerUrls:
+  https://{company}.namely.com/api/v1:
+    url: https://{company}.namely.com/api/v1
