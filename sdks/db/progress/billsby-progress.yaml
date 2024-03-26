@@ -1,0 +1,556 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignoreObjectsWithNoProperties: true
+ignorePotentialIncorrectType: true
+operationIds:
+  /invoices/{invoiceNumber}:
+    get: Invoice_details
+  /operations/{companyDomain}/subscriptions/{subscriptionUniqueId}/counters/{counterId}:
+    post: Subscription_updateCounter
+  /usage/{companyDomain}/subscriptions/{subscriptionUniqueId}/counters/{counterId}:
+    get: Subscription_getCountersValue
+  /{companyDomain} /creditNotes /{creditNoteNumber} /Payment:
+    put: Creditnote_reattemptPayment
+  /{companyDomain}/addons:
+    get: Addon_listAvailableAddons
+  /{companyDomain}/addons/{addonId}:
+    get: Addon_getDetails
+  /{companyDomain}/allowances:
+    get: Allowance_getList
+  /{companyDomain}/allowances/{allowanceId}:
+    get: Allowance_getDetails
+  /{companyDomain}/companies/creditnotes:
+    get: Creditnote_list
+  /{companyDomain}/companies/invoices:
+    get: Invoice_listCompanyInvoices
+  /{companyDomain}/customers:
+    get: Customer_listCustomers
+    post: Customer_createWithoutSubscription
+  /{companyDomain}/customers/{customerUniqueId}:
+    delete: Customer_deleteById
+    get: Customer_getDetails
+    put: Customer_updateDetails
+  /{companyDomain}/customers/{customerUniqueId}/creditNotes:
+    get: Customer_getCreditNotes
+  /{companyDomain}/customers/{customerUniqueId}/gdprcleanup:
+    put: Customer_clearGdprData
+  /{companyDomain}/customers/{customerUniqueId}/invoices:
+    get: Invoice_getCustomerInvoices
+    post: Invoice_createOneTimeCharge
+  /{companyDomain}/customers/{customerUniqueId}/invoices/{invoiceNumber}/paymentlogs:
+    get: Invoice_getPaymentLogs
+  /{companyDomain}/customers/{customerUniqueId}/paymentCard:
+    put: Customer_updatePaymentCardToken
+  /{companyDomain}/customers/{customerUniqueId}/paymentdetailsrequest:
+    get: Customer_updatePaymentDetailsRequest
+  /{companyDomain}/customers/{customerUniqueId}/refunds:
+    post: Invoice_createRefund
+  /{companyDomain}/customers/{customerUniqueId}/subscriptions:
+    get: Customer_getSubscriptionsByUniqueId
+    post: Customer_addSubscriptionToExistingCustomer
+  /{companyDomain}/customers/{customerUniqueId}/subscriptions/featuretags:
+    get: Customer_getFeatureTags
+  /{companyDomain}/customfieldResponses:
+    get: CustomField_getResponse
+  /{companyDomain}/customfieldResponses/{customFieldResponseId}:
+    put: Customer_updateCustomFieldResponse
+  /{companyDomain}/customfields:
+    get: CustomField_list
+    post: CustomField_createNewField
+  /{companyDomain}/customfields/{customFieldId}:
+    put: CustomField_updateField
+  /{companyDomain}/invoices/{invoiceNumber}/PaidOffline:
+    put: Invoice_markAsPaidOffline
+  /{companyDomain}/invoices/{invoiceNumber}/Payment:
+    put: Invoice_reattemptPayment
+  /{companyDomain}/invoices/{invoiceNumber}/WrittenOff:
+    put: Invoice_markWrittenOff
+  /{companyDomain}/products:
+    get: Product_listProducts
+    post: Product_createNewProduct
+  /{companyDomain}/products/{productId}:
+    get: Product_getDetails
+    put: Product_updateProduct
+  /{companyDomain}/products/{productId}/plans:
+    get: Product_listPlans
+    post: Product_createPlan
+  /{companyDomain}/products/{productId}/plans/orders:
+    put: Product_updatePlanOrder
+  /{companyDomain}/products/{productId}/plans/{planId}:
+    put: Product_updatePlanAndCycle
+  /{companyDomain}/products/{productId}/plans/{planId}/cycles:
+    post: Product_createCycle
+  /{companyDomain}/subscriptions:
+    get: Subscription_listSubscriptions
+    post: Customer_createNewCustomerAndSubscription
+  /{companyDomain}/subscriptions/tags:
+    post: Subscription_addFeatureTags
+  /{companyDomain}/subscriptions/tags/{tagname}:
+    delete: Subscription_removeFeatureTag
+  /{companyDomain}/subscriptions/{subscriptionUniqueId}:
+    delete: Subscription_cancelSubscription
+    get: Subscription_getDetails
+  /{companyDomain}/subscriptions/{subscriptionUniqueId}/addons:
+    get: Addon_getAddonList
+  /{companyDomain}/subscriptions/{subscriptionUniqueId}/allowances:
+    get: Allowance_getSpecificSubscriptionAllowances
+  /{companyDomain}/subscriptions/{subscriptionUniqueId}/logs:
+    get: Subscription_getEventLogs
+  /{companyDomain}/subscriptions/{subscriptionUniqueId}/plan:
+    put: Subscription_changePlan
+  /{companyDomain}/subscriptions/{subscriptionUniqueId}/renewaldate:
+    put: Subscription_updateRenewalDate
+  /{companyDomain}/subscriptions/{subscriptionUniqueId}/shippingAddress:
+    get: Subscription_getShippingAddress
+    put: Subscription_updateShippingAddress
+  /{companyDomain}/subscriptions/{subscriptionUniqueId}/tags:
+    get: Subscription_listTagsBySubscription
+  /{companyDomain}/subscriptions/{subscriptionUniqueId}/tags/split:
+    get: Subscription_featureTagsSplit
+operationTags:
+  /invoices/{invoiceNumber}:
+    get: Invoice
+  /operations/{companyDomain}/subscriptions/{subscriptionUniqueId}/counters/{counterId}:
+    post: Subscription
+  /usage/{companyDomain}/subscriptions/{subscriptionUniqueId}/counters/{counterId}:
+    get: Subscription
+  /{companyDomain} /creditNotes /{creditNoteNumber} /Payment:
+    put: Creditnote
+  /{companyDomain}/addons:
+    get: Addon
+  /{companyDomain}/addons/{addonId}:
+    get: Addon
+  /{companyDomain}/allowances:
+    get: Allowance
+  /{companyDomain}/allowances/{allowanceId}:
+    get: Allowance
+  /{companyDomain}/companies/creditnotes:
+    get: Creditnote
+  /{companyDomain}/companies/invoices:
+    get: Invoice
+  /{companyDomain}/customers:
+    get: Customer
+    post: Customer
+  /{companyDomain}/customers/{customerUniqueId}:
+    delete: Customer
+    get: Customer
+    put: Customer
+  /{companyDomain}/customers/{customerUniqueId}/creditNotes:
+    get: Customer
+  /{companyDomain}/customers/{customerUniqueId}/gdprcleanup:
+    put: Customer
+  /{companyDomain}/customers/{customerUniqueId}/invoices:
+    get: Invoice
+    post: Invoice
+  /{companyDomain}/customers/{customerUniqueId}/invoices/{invoiceNumber}/paymentlogs:
+    get: Invoice
+  /{companyDomain}/customers/{customerUniqueId}/paymentCard:
+    put: Customer
+  /{companyDomain}/customers/{customerUniqueId}/paymentdetailsrequest:
+    get: Customer
+  /{companyDomain}/customers/{customerUniqueId}/refunds:
+    post: Invoice
+  /{companyDomain}/customers/{customerUniqueId}/subscriptions:
+    get: Customer
+    post: Customer
+  /{companyDomain}/customers/{customerUniqueId}/subscriptions/featuretags:
+    get: Customer
+  /{companyDomain}/customfieldResponses:
+    get: CustomField
+  /{companyDomain}/customfieldResponses/{customFieldResponseId}:
+    put: Customer
+  /{companyDomain}/customfields:
+    get: CustomField
+    post: CustomField
+  /{companyDomain}/customfields/{customFieldId}:
+    put: CustomField
+  /{companyDomain}/invoices/{invoiceNumber}/PaidOffline:
+    put: Invoice
+  /{companyDomain}/invoices/{invoiceNumber}/Payment:
+    put: Invoice
+  /{companyDomain}/invoices/{invoiceNumber}/WrittenOff:
+    put: Invoice
+  /{companyDomain}/products:
+    get: Product
+    post: Product
+  /{companyDomain}/products/{productId}:
+    get: Product
+    put: Product
+  /{companyDomain}/products/{productId}/plans:
+    get: Product
+    post: Product
+  /{companyDomain}/products/{productId}/plans/orders:
+    put: Product
+  /{companyDomain}/products/{productId}/plans/{planId}:
+    put: Product
+  /{companyDomain}/products/{productId}/plans/{planId}/cycles:
+    post: Product
+  /{companyDomain}/subscriptions:
+    get: Subscription
+    post: Customer
+  /{companyDomain}/subscriptions/tags:
+    post: Subscription
+  /{companyDomain}/subscriptions/tags/{tagname}:
+    delete: Subscription
+  /{companyDomain}/subscriptions/{subscriptionUniqueId}:
+    delete: Subscription
+    get: Subscription
+  /{companyDomain}/subscriptions/{subscriptionUniqueId}/addons:
+    get: Addon
+  /{companyDomain}/subscriptions/{subscriptionUniqueId}/allowances:
+    get: Allowance
+  /{companyDomain}/subscriptions/{subscriptionUniqueId}/logs:
+    get: Subscription
+  /{companyDomain}/subscriptions/{subscriptionUniqueId}/plan:
+    put: Subscription
+  /{companyDomain}/subscriptions/{subscriptionUniqueId}/renewaldate:
+    put: Subscription
+  /{companyDomain}/subscriptions/{subscriptionUniqueId}/shippingAddress:
+    get: Subscription
+    put: Subscription
+  /{companyDomain}/subscriptions/{subscriptionUniqueId}/tags:
+    get: Subscription
+  /{companyDomain}/subscriptions/{subscriptionUniqueId}/tags/split:
+    get: Subscription
+renameTags: {}
+requestSchemaNames:
+  /operations/{companyDomain}/subscriptions/{subscriptionUniqueId}/counters/{counterId}:
+    post:
+      application/json: SubscriptionUpdateCounterRequest
+  /{companyDomain}/customers:
+    post:
+      application/json: CustomerCreateWithoutSubscriptionRequest
+  /{companyDomain}/customers/{customerUniqueId}:
+    put:
+      application/json: CustomerUpdateDetailsRequest
+  /{companyDomain}/customers/{customerUniqueId}/invoices:
+    post:
+      application/json: InvoiceCreateOneTimeChargeRequest
+  /{companyDomain}/customers/{customerUniqueId}/paymentCard:
+    put:
+      application/json: CustomerUpdatePaymentCardTokenRequest
+  /{companyDomain}/customers/{customerUniqueId}/refunds:
+    post:
+      application/json: InvoiceCreateRefundRequest
+  /{companyDomain}/customers/{customerUniqueId}/subscriptions:
+    post:
+      application/json: CustomerAddSubscriptionToExistingCustomerRequest
+  /{companyDomain}/customfieldResponses/{customFieldResponseId}:
+    put:
+      application/json: CustomerUpdateCustomFieldResponseRequest
+  /{companyDomain}/customfields:
+    post:
+      application/json: CustomFieldCreateNewFieldRequest
+  /{companyDomain}/customfields/{customFieldId}:
+    put:
+      application/json: CustomFieldUpdateFieldRequest
+  /{companyDomain}/products:
+    post:
+      application/json: ProductCreateNewProductRequest
+  /{companyDomain}/products/{productId}:
+    put:
+      application/json: ProductUpdateProductRequest
+  /{companyDomain}/products/{productId}/plans:
+    post:
+      application/json: ProductCreatePlanRequest
+  /{companyDomain}/products/{productId}/plans/orders:
+    put:
+      application/json: ProductUpdatePlanOrderRequest
+  /{companyDomain}/products/{productId}/plans/{planId}:
+    put:
+      application/json: ProductUpdatePlanAndCycleRequest
+  /{companyDomain}/products/{productId}/plans/{planId}/cycles:
+    post:
+      application/json: ProductCreateCycleRequest
+  /{companyDomain}/subscriptions:
+    post:
+      application/json: CustomerCreateNewCustomerAndSubscriptionRequest
+  /{companyDomain}/subscriptions/tags:
+    post:
+      application/json: SubscriptionAddFeatureTagsRequest
+  /{companyDomain}/subscriptions/{subscriptionUniqueId}/plan:
+    put:
+      application/json: SubscriptionChangePlanRequest
+  /{companyDomain}/subscriptions/{subscriptionUniqueId}/renewaldate:
+    put:
+      application/json: SubscriptionUpdateRenewalDateRequest
+  /{companyDomain}/subscriptions/{subscriptionUniqueId}/shippingAddress:
+    put:
+      application/json: SubscriptionUpdateShippingAddressRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /invoices/{invoiceNumber}:
+    get:
+      '200':
+        application/json: InvoiceDetailsResponse
+      '400':
+        application/json: InvoiceDetails400Response
+  /operations/{companyDomain}/subscriptions/{subscriptionUniqueId}/counters/{counterId}:
+    post:
+      '200':
+        application/json: SubscriptionUpdateCounterResponse
+  /usage/{companyDomain}/subscriptions/{subscriptionUniqueId}/counters/{counterId}:
+    get:
+      '200':
+        application/json: SubscriptionGetCountersValueResponse
+  /{companyDomain} /creditNotes /{creditNoteNumber} /Payment:
+    put:
+      '200':
+        application/json: CreditnoteReattemptPaymentResponse
+  /{companyDomain}/addons:
+    get:
+      '200':
+        application/json: AddonListAvailableAddonsResponse
+  /{companyDomain}/addons/{addonId}:
+    get:
+      '200':
+        application/json: AddonGetDetailsResponse
+  /{companyDomain}/allowances:
+    get:
+      '200':
+        application/json: AllowanceGetListResponse
+  /{companyDomain}/allowances/{allowanceId}:
+    get:
+      '200':
+        application/json: AllowanceGetDetailsResponse
+  /{companyDomain}/companies/creditnotes:
+    get:
+      '200':
+        application/json: CreditnoteListResponse
+  /{companyDomain}/companies/invoices:
+    get:
+      '200':
+        application/json: InvoiceListCompanyInvoicesResponse
+  /{companyDomain}/customers:
+    get:
+      '200':
+        application/json: CustomerListCustomersResponse
+    post:
+      '200':
+        application/json: CustomerCreateWithoutSubscriptionResponse
+  /{companyDomain}/customers/{customerUniqueId}:
+    delete:
+      '200':
+        application/json: CustomerDeleteByIdResponse
+    get:
+      '200':
+        application/json: CustomerGetDetailsResponse
+    put:
+      '200':
+        application/json: CustomerUpdateDetailsResponse
+  /{companyDomain}/customers/{customerUniqueId}/creditNotes:
+    get:
+      '200':
+        application/json: CustomerGetCreditNotesResponse
+  /{companyDomain}/customers/{customerUniqueId}/gdprcleanup:
+    put:
+      '200':
+        application/json: CustomerClearGdprDataResponse
+  /{companyDomain}/customers/{customerUniqueId}/invoices:
+    get:
+      '200':
+        application/json: InvoiceGetCustomerInvoicesResponse
+    post:
+      '200':
+        text/plain: InvoiceCreateOneTimeChargeResponse
+  /{companyDomain}/customers/{customerUniqueId}/invoices/{invoiceNumber}/paymentlogs:
+    get:
+      '200':
+        application/json: InvoiceGetPaymentLogsResponse
+  /{companyDomain}/customers/{customerUniqueId}/paymentCard:
+    put:
+      '200':
+        application/json: CustomerUpdatePaymentCardTokenResponse
+  /{companyDomain}/customers/{customerUniqueId}/paymentdetailsrequest:
+    get:
+      '200':
+        application/json: CustomerUpdatePaymentDetailsRequestResponse
+  /{companyDomain}/customers/{customerUniqueId}/refunds:
+    post:
+      '200':
+        text/plain: InvoiceCreateRefundResponse
+  /{companyDomain}/customers/{customerUniqueId}/subscriptions:
+    get:
+      '200':
+        application/json: CustomerGetSubscriptionsByUniqueIdResponse
+    post:
+      '200':
+        application/json: CustomerAddSubscriptionToExistingCustomerResponse
+  /{companyDomain}/customers/{customerUniqueId}/subscriptions/featuretags:
+    get:
+      '200':
+        application/json: CustomerGetFeatureTagsResponse
+  /{companyDomain}/customfieldResponses:
+    get:
+      '200':
+        application/json: CustomFieldGetResponseResponse
+      '400':
+        application/json: CustomFieldGetResponse400Response
+  /{companyDomain}/customfieldResponses/{customFieldResponseId}:
+    put:
+      '200':
+        application/json: CustomerUpdateCustomFieldResponseResponse
+  /{companyDomain}/customfields:
+    get:
+      '200':
+        text/plain: CustomFieldListResponse
+    post:
+      '200':
+        application/json: CustomFieldCreateNewFieldResponse
+  /{companyDomain}/customfields/{customFieldId}:
+    put:
+      '200':
+        application/json: CustomFieldUpdateFieldResponse
+  /{companyDomain}/invoices/{invoiceNumber}/PaidOffline:
+    put:
+      '200':
+        application/json: InvoiceMarkAsPaidOfflineResponse
+      '400':
+        application/json: InvoiceMarkAsPaidOffline400Response
+  /{companyDomain}/invoices/{invoiceNumber}/Payment:
+    put:
+      '200':
+        application/json: InvoiceReattemptPaymentResponse
+  /{companyDomain}/invoices/{invoiceNumber}/WrittenOff:
+    put:
+      '200':
+        application/json: InvoiceMarkWrittenOffResponse
+  /{companyDomain}/products:
+    get:
+      '200':
+        application/json: ProductListProductsResponse
+    post:
+      '200':
+        application/json: ProductCreateNewProductResponse
+  /{companyDomain}/products/{productId}:
+    get:
+      '200':
+        application/json: ProductGetDetailsResponse
+    put:
+      '200':
+        application/json: ProductUpdateProductResponse
+  /{companyDomain}/products/{productId}/plans:
+    get:
+      '200':
+        application/json: ProductListPlansResponse
+    post:
+      '200':
+        application/json: ProductCreatePlanResponse
+  /{companyDomain}/products/{productId}/plans/orders:
+    put:
+      '200':
+        application/json: ProductUpdatePlanOrderResponse
+  /{companyDomain}/products/{productId}/plans/{planId}:
+    put:
+      '200':
+        application/json: ProductUpdatePlanAndCycleResponse
+  /{companyDomain}/products/{productId}/plans/{planId}/cycles:
+    post:
+      '200':
+        application/json: ProductCreateCycleResponse
+  /{companyDomain}/subscriptions:
+    get:
+      '200':
+        application/json: SubscriptionListSubscriptionsResponse
+    post:
+      '200':
+        application/json: CustomerCreateNewCustomerAndSubscriptionResponse
+  /{companyDomain}/subscriptions/tags:
+    post:
+      '200':
+        application/json: SubscriptionAddFeatureTagsResponse
+  /{companyDomain}/subscriptions/tags/{tagname}:
+    delete:
+      '200':
+        application/json: SubscriptionRemoveFeatureTagResponse
+  /{companyDomain}/subscriptions/{subscriptionUniqueId}:
+    delete:
+      '200':
+        application/json: SubscriptionCancelSubscriptionResponse
+    get:
+      '200':
+        application/json: SubscriptionGetDetailsResponse
+  /{companyDomain}/subscriptions/{subscriptionUniqueId}/addons:
+    get:
+      '200':
+        application/json: AddonGetAddonListResponse
+  /{companyDomain}/subscriptions/{subscriptionUniqueId}/allowances:
+    get:
+      '200':
+        application/json: AllowanceGetSpecificSubscriptionAllowancesResponse
+  /{companyDomain}/subscriptions/{subscriptionUniqueId}/logs:
+    get:
+      '200':
+        application/json: SubscriptionGetEventLogsResponse
+  /{companyDomain}/subscriptions/{subscriptionUniqueId}/plan:
+    put:
+      '200':
+        application/json: SubscriptionChangePlanResponse
+  /{companyDomain}/subscriptions/{subscriptionUniqueId}/renewaldate:
+    put:
+      '200':
+        application/json: SubscriptionUpdateRenewalDateResponse
+      '400':
+        application/json: SubscriptionUpdateRenewalDate400Response
+  /{companyDomain}/subscriptions/{subscriptionUniqueId}/shippingAddress:
+    get:
+      '200':
+        application/json: SubscriptionGetShippingAddressResponse
+    put:
+      '200':
+        application/json: SubscriptionUpdateShippingAddressResponse
+  /{companyDomain}/subscriptions/{subscriptionUniqueId}/tags:
+    get:
+      '200':
+        application/json: SubscriptionListTagsBySubscriptionResponse
+  /{companyDomain}/subscriptions/{subscriptionUniqueId}/tags/split:
+    get:
+      '200':
+        application/json: SubscriptionFeatureTagsSplitResponse
+securityParameters:
+  customerUniqueId:
+    query: false
+  from:
+    query: false
+  isActive:
+    query: false
+  isFailed:
+    query: false
+  isInFreeTrial:
+    query: false
+  isPaid:
+    query: false
+  isPaidOffline:
+    query: false
+  isPending:
+    query: false
+  isUnpaid:
+    query: false
+  isWrittenOff:
+    query: false
+  orderBy:
+    query: false
+  orderByDescending:
+    query: false
+  page:
+    query: false
+  pageSize:
+    query: false
+  planName:
+    query: false
+  productId:
+    query: false
+  productName:
+    query: false
+  query:
+    query: false
+  search:
+    query: false
+  subsId:
+    query: false
+  to:
+    query: false
+  visibilityType:
+    query: false
+validServerUrls: {}

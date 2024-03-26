@@ -1284,6 +1284,14 @@ const customRequests: Record<string, CustomRequest> = {
       });
     },
   },
+  "billsby.com": {
+    lambda: async () => {
+      const urls = await collectEndpointsFromReadme({
+        url: "https://support.billsby.com/reference",
+      });
+      return await downloadOpenApiSpecFromReadme({ urls });
+    },
+  }
 };
 
 async function downloadOpenApiSpecFromMintlify({
