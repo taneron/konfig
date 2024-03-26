@@ -1,0 +1,207 @@
+examples: {}
+examples_2: {}
+examples_3:
+  /v3/invoices:
+    post:
+      '201':
+        application/json: {}
+  /v3/orders/{id}/finalize:
+    post:
+      '201':
+        application/json: {}
+ignoreObjectsWithNoProperties: true
+operationIds:
+  /v3/customers:
+    get: Customers_listAll
+    post: Customers_registerNewCustomer
+  /v3/customers/{id}:
+    get: Customers_getById
+    post: Customers_updateExistingCustomer
+  /v3/customers/{id}/intent:
+    post: Customers_generateIntentSecret
+  /v3/invoices:
+    get: Invoices_list
+    post: Invoices_createNewInvoice
+  /v3/invoices/{id}:
+    get: Invoices_getById
+  /v3/invoices/{id}/cancel:
+    post: Invoices_cancelInvoice
+  /v3/invoices/{id}/open:
+    post: Invoices_openDraft
+  /v3/invoices/{id}/void:
+    post: Invoices_voidInvoice
+  /v3/merchants:
+    get: Merchants_getSettings
+  /v3/orders:
+    get: Orders_listOrders
+    post: Orders_createNewOrder
+  /v3/orders/{id}:
+    get: Orders_getById
+    post: Orders_updateAttributes
+  /v3/orders/{id}/cancel:
+    post: Orders_cancelOrder
+  /v3/orders/{id}/finalize:
+    post: Orders_finalizeOrder
+  /v3/orders/{id}/intent:
+    post: Orders_generateIntentSecret
+  /v3/orders/{id}/open:
+    post: Orders_openOrder
+  /v3/orders/{id}/refund:
+    post: Orders_refundOrder
+  /v3/orders/{id}/reset:
+    post: Orders_resetOrder
+  /v3/orders/{id}/submit:
+    post: Orders_submitOrderStatus
+  /v3/payout-accounts:
+    get: PayoutAccounts_listAllPayoutAccounts
+    post: PayoutAccounts_createWithExternalId
+  /v3/payout-accounts/{id}:
+    delete: PayoutAccounts_deleteAccount
+    get: PayoutAccounts_getById
+    patch: PayoutAccounts_updateWithExternalId
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /v3/customers:
+    post:
+      application/json: CustomersRegisterNewCustomerRequest
+  /v3/customers/{id}:
+    post:
+      application/json: CustomersUpdateExistingCustomerRequest
+  /v3/invoices:
+    post:
+      application/json: InvoicesCreateNewInvoiceRequest
+  /v3/orders:
+    post:
+      application/json: OrdersCreateNewOrderRequest
+  /v3/orders/{id}:
+    post:
+      application/json: OrdersUpdateAttributesRequest
+  /v3/orders/{id}/open:
+    post:
+      application/json: OrdersOpenOrderRequest
+  /v3/orders/{id}/refund:
+    post:
+      application/json: OrdersRefundOrderRequest
+  /v3/orders/{id}/submit:
+    post:
+      application/json: OrdersSubmitOrderStatusRequest
+  /v3/payout-accounts:
+    post:
+      application/json: PayoutAccountsCreateWithExternalIdRequest
+  /v3/payout-accounts/{id}:
+    patch:
+      application/json: PayoutAccountsUpdateWithExternalIdRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /v3/customers:
+    get:
+      '200':
+        application/json: CustomersListAllResponse
+    post:
+      '201':
+        application/json: CustomersRegisterNewCustomerResponse
+  /v3/customers/{id}:
+    get:
+      '200':
+        application/json: CustomersGetByIdResponse
+    post:
+      '201':
+        application/json: CustomersUpdateExistingCustomerResponse
+  /v3/invoices:
+    get:
+      '200':
+        application/json: InvoicesListResponse
+    post:
+      '201':
+        application/json: InvoicesCreateNewInvoiceResponse
+  /v3/invoices/{id}:
+    get:
+      '200':
+        application/json: InvoicesGetByIdResponse
+  /v3/invoices/{id}/cancel:
+    post:
+      '201':
+        application/json: InvoicesCancelInvoiceResponse
+  /v3/invoices/{id}/open:
+    post:
+      '201':
+        application/json: InvoicesOpenDraftResponse
+  /v3/invoices/{id}/void:
+    post:
+      '201':
+        application/json: InvoicesVoidInvoiceResponse
+  /v3/merchants:
+    get:
+      '200':
+        application/json: MerchantsGetSettingsResponse
+  /v3/orders:
+    get:
+      '200':
+        application/json: OrdersListOrdersResponse
+    post:
+      '201':
+        application/json: OrdersCreateNewOrderResponse
+  /v3/orders/{id}:
+    get:
+      '200':
+        application/json: OrdersGetByIdResponse
+    post:
+      '201':
+        application/json: OrdersUpdateAttributesResponse
+  /v3/orders/{id}/cancel:
+    post:
+      '201':
+        application/json: OrdersCancelOrderResponse
+  /v3/orders/{id}/finalize:
+    post:
+      '201':
+        application/json: OrdersFinalizeOrderResponse
+  /v3/orders/{id}/open:
+    post:
+      '200':
+        application/json: OrdersOpenOrderResponse
+  /v3/orders/{id}/refund:
+    post:
+      '201':
+        application/json: OrdersRefundOrderResponse
+  /v3/orders/{id}/reset:
+    post:
+      '201':
+        application/json: OrdersResetOrderResponse
+  /v3/orders/{id}/submit:
+    post:
+      '200':
+        application/json: OrdersSubmitOrderStatusResponse
+  /v3/payout-accounts:
+    get:
+      '200':
+        application/json: PayoutAccountsListAllPayoutAccountsResponse
+    post:
+      '201':
+        application/json: PayoutAccountsCreateWithExternalIdResponse
+  /v3/payout-accounts/{id}:
+    get:
+      '200':
+        application/json: PayoutAccountsGetByIdResponse
+    patch:
+      '200':
+        application/json: PayoutAccountsUpdateWithExternalIdResponse
+securityParameters:
+  afterCursor:
+    query: false
+  beforeCursor:
+    query: false
+  expand:
+    query: false
+  filter:
+    query: false
+  limit:
+    query: false
+  order:
+    query: false
+  orderBy:
+    query: false
+  timeoutMs:
+    query: false
+validServerUrls: {}

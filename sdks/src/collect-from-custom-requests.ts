@@ -761,6 +761,14 @@ const customRequests: Record<string, CustomRequest> = {
       return downloadOpenApiSpecFromReadme({ urls });
     },
   },
+  "slope.so": {
+    lambda: async () => {
+      const urls = await collectEndpointsFromReadme({
+        url: "https://developers.slope.so/reference/createorder",
+      });
+      return downloadOpenApiSpecFromReadme({ urls });
+    },
+  },
   "gusto.com_AppIntegrations": {
     lambda: async () => {
       const urls = await collectEndpointsFromReadme({
@@ -1307,7 +1315,7 @@ const customRequests: Record<string, CustomRequest> = {
       });
       return await downloadOpenApiSpecFromReadme({ urls });
     },
-  }
+  },
 };
 
 async function downloadOpenApiSpecFromMintlify({
