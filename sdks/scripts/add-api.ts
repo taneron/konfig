@@ -500,11 +500,13 @@ Here are existing categories: ${allCategories.join(", ")}.
     );
   }
 
-  const foundCategories = [
-    ...matchingCategories,
-    ...(newCategories ?? []),
-    ...(keywordsSnakeCase ?? []),
-  ];
+  const foundCategories = Array.from(
+    new Set([
+      ...matchingCategories,
+      ...(newCategories ?? []),
+      ...(keywordsSnakeCase ?? []),
+    ])
+  );
 
   const selectedCategories = (
     await inquirer.prompt({

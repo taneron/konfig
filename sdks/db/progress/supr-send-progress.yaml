@@ -1,0 +1,320 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignoreObjectsWithNoProperties: true
+ignorePotentialIncorrectType: true
+operationIds:
+  /event/:
+    post: Event_triggerEvent
+  /v1/brand/:
+    get: Brand_listGet
+  /v1/brand/{brand_id}:
+    get: Brand_brandDataGet
+    post: Brand_createOrUpdate
+  /v1/brand/{brand_id}/category/:
+    get: Brand_getCategories
+  /v1/brand/{brand_id}/category/{category_slug}/:
+    post: Brand_updateDefaultPreference
+  /v1/subscriber/{distinct_id}/category/:
+    get: PrefCategory_getUserPreferencesAllCategories
+  /v1/subscriber/{distinct_id}/category/{category_slug}:
+    get: Subscriber_getUserPreferencesSingleCategory
+  /v1/subscriber/{distinct_id}/category/{category_slug}/:
+    post: Subscriber_updateUserPreferencesCategory
+  /v1/subscriber/{distinct_id}/channel_preference/:
+    get: Preference_getUserChannelPreferences
+    post: Preference_updateChannelPreferences
+  /v1/subscriber_list/:
+    get: SubscriberList_getAllLists
+    post: SubscriberList_createList
+  /v1/subscriber_list/{list_id}/:
+    get: SubscriberList_getListData
+  /v1/subscriber_list/{list_id}/delete:
+    patch: SubscriberList_deleteList
+  /v1/subscriber_list/{list_id}/start_sync:
+    post: Sync_listStartSync
+  /v1/subscriber_list/{list_id}/subscriber/add:
+    post: Subscriber_addToList
+  /v1/subscriber_list/{list_id}/subscriber/remove:
+    post: SubscriberList_removeSubscribersFromList
+  /v1/subscriber_list/{list_id}/version/{version_id}/delete:
+    patch: Subscriber_deleteDraftList
+  /v1/subscriber_list/{list_id}/version/{version_id}/finish_sync:
+    patch: Subscriber_finishSyncDraftVersion
+  /v1/subscriber_list/{list_id}/version/{version_id}/subscriber/add:
+    post: Subscriber_addToDraftList
+  /v1/subscriber_list/{list_id}/version/{version_id}/subscriber/remove:
+    post: Subscriber_removeFromDraftList
+  /v1/template:
+    get: Template_getList
+  /v1/template/{template_slug}:
+    get: Template_getDetails
+  /v1/template/{template_slug}/channel/{channel_slug}:
+    get: Template_getContentChannel
+  /{workspace_key}/broadcast:
+    post: Broadcast_triggerMessageList
+  /{workspace_key}/trigger/:
+    post: Workflow_configureTrigger
+operationTags:
+  /event/:
+    post: Event
+  /v1/brand/:
+    get: Brand
+  /v1/brand/{brand_id}:
+    get: Brand
+    post: Brand
+  /v1/brand/{brand_id}/category/:
+    get: Brand
+  /v1/brand/{brand_id}/category/{category_slug}/:
+    post: Brand
+  /v1/subscriber/{distinct_id}/category/:
+    get: PrefCategory
+  /v1/subscriber/{distinct_id}/category/{category_slug}:
+    get: Subscriber
+  /v1/subscriber/{distinct_id}/category/{category_slug}/:
+    post: Subscriber
+  /v1/subscriber/{distinct_id}/channel_preference/:
+    get: Preference
+    post: Preference
+  /v1/subscriber_list/:
+    get: SubscriberList
+    post: SubscriberList
+  /v1/subscriber_list/{list_id}/:
+    get: SubscriberList
+  /v1/subscriber_list/{list_id}/delete:
+    patch: SubscriberList
+  /v1/subscriber_list/{list_id}/start_sync:
+    post: Sync
+  /v1/subscriber_list/{list_id}/subscriber/add:
+    post: Subscriber
+  /v1/subscriber_list/{list_id}/subscriber/remove:
+    post: SubscriberList
+  /v1/subscriber_list/{list_id}/version/{version_id}/delete:
+    patch: Subscriber
+  /v1/subscriber_list/{list_id}/version/{version_id}/finish_sync:
+    patch: Subscriber
+  /v1/subscriber_list/{list_id}/version/{version_id}/subscriber/add:
+    post: Subscriber
+  /v1/subscriber_list/{list_id}/version/{version_id}/subscriber/remove:
+    post: Subscriber
+  /v1/template:
+    get: Template
+  /v1/template/{template_slug}:
+    get: Template
+  /v1/template/{template_slug}/channel/{channel_slug}:
+    get: Template
+  /{workspace_key}/broadcast:
+    post: Broadcast
+  /{workspace_key}/trigger/:
+    post: Workflow
+renameTags: {}
+requestSchemaNames:
+  /event:
+    post:
+      application/json: EventTriggerEventRequest
+  /v1/brand/{brand_id}:
+    post:
+      application/json: BrandCreateOrUpdateRequest
+  /v1/brand/{brand_id}/category/{category_slug}:
+    post:
+      application/json: BrandUpdateDefaultPreferenceRequest
+  /v1/subscriber/{distinct_id}/category/{category_slug}:
+    post:
+      application/json: SubscriberUpdateUserPreferencesCategoryRequest
+  /v1/subscriber/{distinct_id}/channel_preference:
+    post:
+      application/json: PreferenceUpdateChannelPreferencesRequest
+  /v1/subscriber_list:
+    post:
+      application/json: SubscriberListCreateListRequest
+  /v1/subscriber_list/{list_id}/subscriber/add:
+    post:
+      application/json: SubscriberAddToListRequest
+  /v1/subscriber_list/{list_id}/subscriber/remove:
+    post:
+      application/json: SubscriberListRemoveSubscribersFromListRequest
+  /v1/subscriber_list/{list_id}/version/{version_id}/subscriber/add:
+    post:
+      application/json: SubscriberAddToDraftListRequest
+  /v1/subscriber_list/{list_id}/version/{version_id}/subscriber/remove:
+    post:
+      application/json: SubscriberRemoveFromDraftListRequest
+  /{workspace_key}/broadcast:
+    post:
+      application/json: BroadcastTriggerMessageListRequest
+  /{workspace_key}/trigger:
+    post:
+      application/json: WorkflowConfigureTriggerRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /event:
+    post:
+      '202':
+        application/json: EventTriggerEventResponse
+      '400':
+        application/json: EventTriggerEvent400Response
+  /v1/brand:
+    get:
+      '200':
+        application/json: BrandListGetResponse
+      '400':
+        application/json: BrandListGet400Response
+  /v1/brand/{brand_id}:
+    get:
+      '200':
+        application/json: BrandBrandDataGetResponse
+      '400':
+        application/json: BrandBrandDataGet400Response
+    post:
+      '200':
+        application/json: BrandCreateOrUpdateResponse
+      '400':
+        application/json: BrandCreateOrUpdate400Response
+  /v1/brand/{brand_id}/category:
+    get:
+      '200':
+        application/json: BrandGetCategoriesResponse
+      '400':
+        application/json: BrandGetCategories400Response
+  /v1/brand/{brand_id}/category/{category_slug}:
+    post:
+      '200':
+        application/json: BrandUpdateDefaultPreferenceResponse
+      '400':
+        application/json: BrandUpdateDefaultPreference400Response
+  /v1/subscriber/{distinct_id}/category:
+    get:
+      '200':
+        application/json: PrefCategoryGetUserPreferencesAllCategoriesResponse
+      '400':
+        application/json: PrefCategoryGetUserPreferencesAllCategories400Response
+  /v1/subscriber/{distinct_id}/category/{category_slug}:
+    post:
+      '200':
+        application/json: SubscriberUpdateUserPreferencesCategoryResponse
+      '400':
+        application/json: SubscriberUpdateUserPreferencesCategory400Response
+  /v1/subscriber/{distinct_id}/channel_preference:
+    get:
+      '200':
+        application/json: PreferenceGetUserChannelPreferencesResponse
+      '400':
+        application/json: PreferenceGetUserChannelPreferences400Response
+    post:
+      '200':
+        application/json: PreferenceUpdateChannelPreferencesResponse
+      '400':
+        application/json: PreferenceUpdateChannelPreferences400Response
+  /v1/subscriber_list:
+    get:
+      '200':
+        application/json: SubscriberListGetAllListsResponse
+      '400':
+        application/json: SubscriberListGetAllLists400Response
+    post:
+      '200':
+        application/json: SubscriberListCreateListResponse
+      '400':
+        application/json: SubscriberListCreateList400Response
+  /v1/subscriber_list/{list_id}:
+    get:
+      '200':
+        application/json: SubscriberListGetListDataResponse
+      '400':
+        application/json: SubscriberListGetListData400Response
+  /v1/subscriber_list/{list_id}/delete:
+    patch:
+      '200':
+        application/json: SubscriberListDeleteListResponse
+      '400':
+        application/json: SubscriberListDeleteList400Response
+  /v1/subscriber_list/{list_id}/start_sync:
+    post:
+      '201':
+        application/json: SyncListStartSyncResponse
+      '400':
+        application/json: SyncListStartSync400Response
+  /v1/subscriber_list/{list_id}/subscriber/add:
+    post:
+      '200':
+        application/json: SubscriberAddToListResponse
+      '400':
+        application/json: SubscriberAddToList400Response
+  /v1/subscriber_list/{list_id}/subscriber/remove:
+    post:
+      '200':
+        application/json: SubscriberListRemoveSubscribersFromListResponse
+      '400':
+        application/json: SubscriberListRemoveSubscribersFromList400Response
+  /v1/subscriber_list/{list_id}/version/{version_id}/delete:
+    patch:
+      '200':
+        application/json: SubscriberDeleteDraftListResponse
+      '400':
+        application/json: SubscriberDeleteDraftList400Response
+  /v1/subscriber_list/{list_id}/version/{version_id}/finish_sync:
+    patch:
+      '201':
+        application/json: SubscriberFinishSyncDraftVersionResponse
+      '400':
+        application/json: SubscriberFinishSyncDraftVersion400Response
+  /v1/subscriber_list/{list_id}/version/{version_id}/subscriber/add:
+    post:
+      '200':
+        application/json: SubscriberAddToDraftListResponse
+      '400':
+        application/json: SubscriberAddToDraftList400Response
+  /v1/subscriber_list/{list_id}/version/{version_id}/subscriber/remove:
+    post:
+      '200':
+        application/json: SubscriberRemoveFromDraftListResponse
+      '400':
+        application/json: SubscriberRemoveFromDraftList400Response
+  /v1/template:
+    get:
+      '200':
+        application/json: TemplateGetListResponse
+      '400':
+        application/json: TemplateGetList400Response
+  /v1/template/{template_slug}:
+    get:
+      '200':
+        application/json: TemplateGetDetailsResponse
+      '400':
+        application/json: TemplateGetDetails400Response
+  /v1/template/{template_slug}/channel/{channel_slug}:
+    get:
+      '200':
+        application/json: TemplateGetContentChannelResponse
+      '400':
+        application/json: TemplateGetContentChannel400Response
+  /{workspace_key}/broadcast:
+    post:
+      '202':
+        application/json: BroadcastTriggerMessageListResponse
+      '400':
+        application/json: BroadcastTriggerMessageList400Response
+  /{workspace_key}/trigger:
+    post:
+      '202':
+        application/json: WorkflowConfigureTriggerResponse
+      '400':
+        application/json: WorkflowConfigureTrigger400Response
+securityParameters:
+  Content - Type:
+    header: false
+  has_channels_any:
+    query: false
+  has_tag_ids_any:
+    query: false
+  is_active:
+    query: false
+  is_archived:
+    query: false
+  limit:
+    query: false
+  offset:
+    query: false
+  tenant_id:
+    query: false
+validServerUrls: {}

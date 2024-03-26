@@ -497,6 +497,14 @@ const customRequests: Record<string, CustomRequest> = {
     type: "GET",
     url: "https://stoplight.io/api/v1/projects/lucca/lucca-legacyapi/nodes/reference/Cleemy-Expenses-v3.yaml?fromExportButton=true&snapshotType=http_service&deref=optimizedBundle",
   },
+  "suprsend.com": {
+    lambda: async () => {
+      const urls = await collectEndpointsFromReadme({
+        url: "https://docs.suprsend.com/reference/overview",
+      });
+      return downloadOpenApiSpecFromReadme({ urls });
+    },
+  },
   "namely.com": {
     lambda: async () => {
       const url =
