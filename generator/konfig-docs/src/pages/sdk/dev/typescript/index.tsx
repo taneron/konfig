@@ -17,7 +17,7 @@ export default function DevTypeScriptSdk() {
       companyKebabCase="dev"
       clientNameCamelCase="dev"
       homepage="dev.to"
-      lastUpdated={new Date("2024-03-24T21:43:23.717Z")}
+      lastUpdated={new Date("2024-03-26T19:20:53.107Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/dev/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
@@ -2109,7 +2109,7 @@ export default function DevTypeScriptSdk() {
       sdkMethods={58}
       schemas={147}
       parameters={129}
-      difficulty="Medium"
+      difficulty="Easy"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/dev/openapi.yaml"
       openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/dev/openapi.yaml"
       developerDocumentation="developers.forem.com/"
