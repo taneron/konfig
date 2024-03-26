@@ -19,7 +19,7 @@ Through one refreshingly easy, integrated platform, we automate and simplify you
       companyKebabCase="gusto"
       clientNameCamelCase="gustoEmbeddedPayroll"
       homepage="gusto.com"
-      lastUpdated={new Date("2024-03-26T00:52:31.854Z")}
+      lastUpdated={new Date("2024-03-26T00:57:19.559Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/gusto/embedded-payroll/favicon.png"
       // Missing contactUrl
       contactEmail="developer@gusto.com"
