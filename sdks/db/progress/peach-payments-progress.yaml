@@ -1,0 +1,145 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignorePotentialIncorrectType: true
+operationIds:
+  /api/attachments:
+    post: Files_uploadFile
+  /api/batches/{batchId}:
+    get: Batch_linkStatusGet
+  /api/batches/{batchId}/files:
+    get: Batch_getErrorFiles
+  /api/channels/{entityId}/payments:
+    post: Payment_generateLink
+  /api/channels/{entityId}/payments/batches:
+    get: Batch_getBatchStatuses
+    post: Batch_generateLink
+  /api/payments:
+    get: Payment_getAllPaymentLinks
+  /api/payments/{paymentId}:
+    delete: Payment_cancelLink
+    get: Status_queryPaymentStatus
+  /api/payments/{paymentId}/files/{fileId}:
+    get: Files_downloadFile
+  /checkout:
+    post: CheckoutGeneration_initiatePayment
+  /checkout/initiate:
+    post: CheckoutGeneration_initiateRedirectCheckout
+  /checkout/validate:
+    post: CheckoutGeneration_validateRequest
+  /merchant_specs:
+    post: Helpers_getPaymentMethods
+  /payments:
+    post: PaymentsApiInbound_initiateDebitTransaction
+  /payments/{uniqueId}:
+    get: PaymentsApiInbound_queryTransactionById
+    post: PaymentsApiInbound_refundTransaction
+  /status:
+    get: Status_checkoutStatusGet
+  /v2/checkout:
+    post: CheckoutV2Generation_initiateCheckoutInstance
+operationTags:
+  /api/channels/{entityId}/payments:
+    post: Payment
+  /api/payments:
+    get: Payment
+  /api/payments/{paymentId}:
+    delete: Payment
+    get: Status
+renameTags: {}
+requestSchemaNames:
+  /api/attachments:
+    post:
+      multipart/form-data: FilesUploadFileRequest
+  /api/channels/{entityId}/payments/batches:
+    post:
+      application/json: BatchGenerateLinkRequest
+  /merchant_specs:
+    post:
+      application/json: HelpersGetPaymentMethodsRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /api/attachments:
+    post:
+      '200':
+        application/json: FilesUploadFileResponse
+  /api/batches/{batchId}/files:
+    get:
+      '200':
+        application/json: BatchGetErrorFilesResponse
+  /api/channels/{entityId}/payments/batches:
+    get:
+      '200':
+        application/json: BatchGetBatchStatusesResponse
+    post:
+      '200':
+        application/json: BatchGenerateLinkResponse
+  /api/payments:
+    get:
+      '200':
+        application/json: PaymentGetAllPaymentLinksResponse
+        text/csv: PaymentGetAllPaymentLinks200Response
+  /api/payments/{paymentId}:
+    get:
+      '200':
+        application/json: StatusQueryPaymentStatusResponse
+  /checkout/initiate:
+    post:
+      '201':
+        application/json: CheckoutGenerationInitiateRedirectCheckoutResponse
+  /checkout/validate:
+    post:
+      '400':
+        application/json: CheckoutGenerationValidateRequestResponse
+  /payments:
+    post:
+      '200':
+        application/json: PaymentsApiInboundInitiateDebitTransactionResponse
+  /payments/{uniqueId}:
+    post:
+      '200':
+        application/json: PaymentsApiInboundRefundTransactionResponse
+      '502':
+        application/json: PaymentsApiInboundRefundTransaction502Response
+  /v2/checkout:
+    post:
+      '200':
+        application/json: CheckoutV2GenerationInitiateCheckoutInstanceResponse
+securityParameters:
+  Referer:
+    header: false
+  X-Authentication-Tag:
+    header: false
+  X-Initialization-Vector:
+    header: false
+  authentication.entityId:
+    query: false
+  authentication.password:
+    query: false
+  authentication.userId:
+    query: false
+  checkoutId:
+    query: false
+  filters[amountOperator]:
+    query: false
+  filters[amountValue]:
+    query: false
+  filters[endDate]:
+    query: false
+  filters[sendingOptions]:
+    query: false
+  filters[startDate]:
+    query: false
+  filters[status]:
+    query: false
+  merchant:
+    query: false
+  merchantTransactionId:
+    query: false
+  offset:
+    query: false
+  perPage:
+    query: false
+  signature:
+    query: false
+validServerUrls: {}

@@ -1453,6 +1453,14 @@ const customRequests: Record<string, CustomRequest> = {
       return await downloadOpenApiSpecFromReadme({ urls });
     },
   },
+  "peachpayments.com": {
+    lambda: async () => {
+      const urls = await collectEndpointsFromReadme({
+        url: "https://developer.peachpayments.com/reference",
+      });
+      return await downloadOpenApiSpecFromReadme({ urls });
+    },
+  }
 };
 
 async function downloadOpenApiSpecFromMintlify({
