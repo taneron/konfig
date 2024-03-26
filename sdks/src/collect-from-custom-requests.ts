@@ -761,6 +761,14 @@ const customRequests: Record<string, CustomRequest> = {
       return downloadOpenApiSpecFromReadme({ urls });
     },
   },
+  "hibob.com": {
+    lambda: async () => {
+      const urls = await collectEndpointsFromReadme({
+        url: "https://apidocs.hibob.com/reference/post_people-search",
+      });
+      return downloadOpenApiSpecFromReadme({ urls });
+    },
+  },
   "slope.so": {
     lambda: async () => {
       const urls = await collectEndpointsFromReadme({

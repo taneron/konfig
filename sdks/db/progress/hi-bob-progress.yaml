@@ -1,0 +1,239 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignoreObjectsWithNoProperties: true
+ignorePotentialIncorrectType: true
+operationIds:
+  /attendance/import/{importMethod}:
+    post: Attendance_importData
+  /avatars:
+    get: People_getEmailAvatar
+  /avatars/{employeeId}:
+    get: People_getAvatarUrl
+    put: People_uploadEmployeeAvatarUrl
+  /company/named-lists:
+    get: Metadata_getCompanyNamedLists
+  /company/named-lists/{listName}:
+    get: Metadata_getNamedList
+    post: Metadata_addNewItemToNamedList
+  /company/named-lists/{listName}/{itemId}:
+    delete: Metadata_deleteItemFromCompanyNamedList
+    put: Metadata_updateItemFromNamedList
+  /company/people/fields:
+    get: Metadata_getCompanyFields
+    post: Metadata_addNewField
+  /company/people/fields/{fieldId}:
+    delete: Metadata_deleteField
+    put: Metadata_updateField
+  /company/reports:
+    get: Reports_listAccessibleReports
+  /company/reports/download/{reportName}:
+    get: Reports_downloadReportFile
+  /company/reports/{reportId}/download:
+    get: Reports_downloadById
+  /company/reports/{reportId}/download-async:
+    get: Reports_getDownloadUrl
+  /docs/people/{id}:
+    get: Documents_downloadLinks
+  /docs/people/{id}/confidential:
+    post: Documents_uploadToConfidentialFolder
+  /docs/people/{id}/confidential/upload:
+    post: Documents_uploadConfidentialFile
+  /docs/people/{id}/confidential/{docId}:
+    delete: Documents_deleteEmployeeConfidentialDoc
+  /docs/people/{id}/shared:
+    post: Documents_uploadToSharedFolder
+  /docs/people/{id}/shared/upload:
+    post: Documents_uploadToSharedFolder
+  /docs/people/{id}/shared/{docId}:
+    delete: Documents_removeEmployeeSharedDocument
+  /employees/{employeeId}/invitations:
+    post: People_inviteEmployeeWizard
+  /employees/{employeeId}/start-date:
+    post: People_setStartDate
+  /employees/{identifier}/terminate:
+    post: People_terminateEmployee
+  /employees/{identifier}/uninvite:
+    post: People_revokeAccessToEmployee
+  /metadata/objects/position:
+    get: Metadata_getPositionFields
+  /my/avatar:
+    get: People_getAvatarUrl
+  /my/tasks:
+    get: Tasks_getEmployeeTasks
+  /objects/position/search:
+    post: Objects_searchCompanyPositions
+  /onboarding/wizards:
+    get: Onboarding_getWizardSummary
+  /payroll/history:
+    get: Payroll_readHistory
+  /people:
+    get: People_listEmployees
+    post: People_createEmployeeRecord
+  /people/custom-tables/metadata:
+    get: Metadata_getCustomTableMetadata
+  /people/custom-tables/metadata/{custom_table_id}:
+    get: Metadata_getTableDetails
+  /people/custom-tables/{employee_id}/{custom_table_id}:
+    get: CustomTables_readEntries
+    post: CustomTables_createNewEntry
+  /people/custom-tables/{employee_id}/{custom_table_id}/{entry_id}:
+    delete: CustomTables_deleteEntryById
+    put: CustomTables_updateEntry
+  /people/search:
+    post: People_searchEmployees
+  /people/{identifier}:
+    get: People_readEmployeeById
+    post: People_readEmployeeFields
+    put: People_updateEmployeeRecord
+  /people/{id}/email:
+    put: People_updateEmail
+  /people/{id}/employment:
+    get: People_getEmploymentHistory
+    post: People_createEmploymentEntry
+  /people/{id}/employment/{entry_id}:
+    delete: People_deleteEmploymentEntry
+    put: People_updateEmploymentEntry
+  /people/{id}/equities:
+    get: People_listEquityGrants
+    post: People_createEquityGrant
+  /people/{id}/equities/{entry_id}:
+    delete: People_deleteEquityGrant
+    put: People_updateEquityGrantForEmployee
+  /people/{id}/lifecycle:
+    get: People_listEmployeeLifecycle
+  /people/{id}/salaries:
+    get: People_getSalaryHistory
+    post: People_createNewSalaryEntry
+  /people/{id}/salaries/{entry_id}:
+    delete: People_deleteSalaryEntry
+  /people/{id}/training:
+    get: People_listTrainingRecords
+    post: People_createTrainingRecord
+  /people/{id}/training/{entry_id}:
+    delete: People_deleteTrainingRecord
+  /people/{id}/variable:
+    get: People_listVariablePayments
+    post: People_createVariablePayment
+  /people/{id}/variable/{entry_id}:
+    delete: People_deleteTrainingRecord
+  /people/{id}/work:
+    get: People_getWorkHistory
+    post: People_createWorkEntry
+  /people/{id}/work/{entry_id}:
+    delete: People_deleteWorkEntry
+    put: People_updateWorkEntry
+  /profiles:
+    get: People_listActiveEmployees
+  /tasks:
+    get: Tasks_getOpenTasks
+  /tasks/people/{id}:
+    get: Tasks_readEmployeeTasks
+  /tasks/{taskId}/complete:
+    post: Tasks_completeTask
+  /timeoff/employees/{id}/adjustments:
+    post: TimeOff_createBalanceAdjustment
+  /timeoff/employees/{id}/balance:
+    get: TimeOff_getEmployeeBalance
+  /timeoff/employees/{id}/diffHours/requests:
+    post: TimeOff_submitNewRequestDiffHours
+  /timeoff/employees/{id}/requests:
+    post: TimeOff_submitNewRequest
+  /timeoff/employees/{id}/requests/{requestId}:
+    delete: TimeOff_cancelRequest
+    get: TimeOff_getDetailsOfRequest
+  /timeoff/outtoday:
+    get: TimeOff_getOutOfOffice
+  /timeoff/policies:
+    get: TimeOff_getPolicyDetails
+  /timeoff/policies/names:
+    get: TimeOff_listPolicyTypeNames
+  /timeoff/policy-types:
+    get: TimeOff_listPolicyTypesNames
+  /timeoff/policy-types/{policyType}:
+    get: TimeOff_getPolicyDetails
+  /timeoff/policy-types/{policyType}/reason-codes:
+    get: TimeOff_listReasonCodes
+    post: TimeOff_addReasonCodes
+  /timeoff/requests/changes:
+    get: TimeOff_getNewDeletedRequestsSinceDate
+  /timeoff/whosout:
+    get: TimeOff_getWhosOut
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /docs/people/{id}/confidential/upload:
+    post:
+      multipart/form-data: DocumentsUploadConfidentialFileRequest
+  /docs/people/{id}/shared/upload:
+    post:
+      multipart/form-data: DocumentsUploadToSharedFolderRequest
+  /people/custom-tables/{employee_id}/{custom_table_id}:
+    post:
+      application/json: CustomTablesCreateNewEntryRequest
+  /people/custom-tables/{employee_id}/{custom_table_id}/{entry_id}:
+    put:
+      application/json: CustomTablesUpdateEntryRequest
+  /people/{identifier}:
+    put:
+      application/json: PeopleUpdateEmployeeRecordRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /company/reports/download/{reportName}:
+    get:
+      '200':
+        application/json: ReportsDownloadReportFileResponse
+  /company/reports/{reportId}/download:
+    get:
+      '200':
+        application/json: ReportsDownloadByIdResponse
+securityParameters:
+  date:
+    query: false
+  department:
+    query: false
+  email:
+    query: false
+  fields:
+    query: false
+  format:
+    query: false
+  from:
+    query: false
+  humanReadable:
+    query: false
+  includeArchived:
+    query: false
+  includeHourly:
+    query: false
+  includeHumanReadable:
+    query: false
+  includeInfo:
+    query: false
+  includePending:
+    query: false
+  includePrivate:
+    query: false
+  locale:
+    query: false
+  policyName:
+    query: false
+  policyType:
+    query: false
+  policyTypeName:
+    query: false
+  showInactive:
+    query: false
+  since:
+    query: false
+  siteId:
+    query: false
+  sortBy:
+    query: false
+  task_status:
+    query: false
+  to:
+    query: false
+  today:
+    query: false
+validServerUrls: {}
