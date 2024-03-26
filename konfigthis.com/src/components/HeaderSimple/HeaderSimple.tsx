@@ -197,7 +197,7 @@ export function HeaderSimple() {
                 target="_blank"
                 href="/sdk"
               >
-                SDKs
+                SDKs for Public APIs
               </a>
               <a
                 className="text-gray-600 hover:text-black"

@@ -10,7 +10,14 @@ import {
   clsx,
 } from "@mantine/core";
 import { useOs } from "@mantine/hooks";
-import { IconCalendarEvent, IconExternalLink } from "@tabler/icons-react";
+import {
+  IconArrowBadgeRightFilled,
+  IconArrowBigRightFilled,
+  IconArrowRight,
+  IconCalendarEvent,
+  IconChevronRight,
+  IconExternalLink,
+} from "@tabler/icons-react";
 import { useState, useEffect } from "react";
 
 const useStyles = createStyles((theme) => ({
@@ -122,6 +129,20 @@ export function HeroBullets() {
   return (
     <div className="pt-16">
       <Container className={classes.wrapper} size={1400}>
+        <div className="text-center">
+          <div className="relative inline-flex group text-center mb-10">
+            <div className="absolute transition-all duration-1000 opacity-70 -inset-px bg-gradient-to-r from-[#44BCFF] via-[#FF44EC] to-[#FF675E] rounded-full blur-md group-hover:opacity-100 group-hover:-inset-1 group-hover:duration-200 animate-tilt"></div>
+            <a
+              href="/sdk"
+              title="Get quote now"
+              className="relative inline-flex ring-1 ring-blue-400 group-hover:ring-blue-600 items-center justify-center px-4 py-2 text-sm font-semibold text-slate-700 group-hover:text-slate-900 transition-all duration-200 bg-white rounded-full"
+              role="button"
+            >
+              <span>Writing API integrations?</span>
+              <IconChevronRight className="h-4 ml-0 group-hover:ml-1 transition-all" />
+            </a>
+          </div>
+        </div>
         <div className={classes.inner}>
           <Title className={classes.title}>
             <Text
