@@ -1,0 +1,353 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+operationIds:
+  /api/v2/ap/bills/{id}/:
+    get: Ap_billsGetById
+  /api/v2/ap/company-payment-methods/:
+    get: Ap_companyPaymentMethodsList
+    post: Ap_createCompanyPaymentMethod
+  /api/v2/ap/items/:
+    get: Ap_itemsGet
+  /api/v2/ap/payments/:
+    get: Ap_getPayments
+  /api/v2/ap/payments/{id}/approver-choices/:
+    get: Ap_paymentsApproverChoicesRetrieve
+  /api/v2/ap/vendor-payment-methods/:
+    get: Ap_vendorPaymentMethodsList
+    post: Ap_createVendorPaymentMethod
+  /api/v2/global/order_items/:
+    get: Requisitions_getAllOrderItems
+  /api/v2/global/orders/:
+    get: Requisitions_getAllOrders
+  /api/v2/purchase_order/revise/{procurify_PO}/:
+    put: Purchaseorders_reviseProcurifyPO
+  /api/v2/purchase_orders/{id}/:
+    get: Purchaseorders_getByIdWithItems
+  /api/v2/purchase_orders/{role}/{status}/:
+    get: Purchaseorders_getByRoleAndStatus
+  /api/v3/account-codes/:
+    get: Accountcodes_list
+    post: Accountcodes_createAccountCodes
+  /api/v3/account-codes/{id}/:
+    put: Accountcodes_updateAccountCode
+  /api/v3/ap/bills/:
+    get: Ap_billsList
+  /api/v3/catalog-bundles/:
+    get: Catalog_getAllBundles
+  /api/v3/catalog-items/:
+    get: Catalog_getAllItems
+    post: Catalog_itemCreate
+  /api/v3/catalog-items/{id}/:
+    put: Catalog_updateItem
+  /api/v3/custom-fields/order-items/:
+    get: Customfields_getOrderItemCustomFields
+  /api/v3/custom-fields/{id}/:
+    put: Customfields_updateOrderItemCustomFieldDropdownChoices
+  /api/v3/order-items/:
+    get: Orderitems_listItems
+  /api/v3/permissions/groups/:
+    get: Permissions_getAvailableSystemRoles
+  /api/v3/purchase-orders/billing-history/:
+    get: Purchaseorders_viewBillingHistory
+  /api/v3/purchase-orders/{procurify_PO}/:
+    put: Purchaseorders_updateOrder
+  /api/v3/purchase-orders/{procurify_PO}/close/:
+    post: Purchaseorders_closeOrder
+  /api/v3/purchase-orders/{procurify_PO}/reopen/:
+    post: Purchaseorders_reopenProcurifyPo
+  /api/v3/users/me/:
+    get: Users_getLoggedInUser
+  /api/v3/vendors/{id}/:
+    patch: Vendors_partialUpdate
+  /oauth/token:
+    post: Oauth_tokenRequest
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /api/v3/users:
+    post:
+      '': UsersCreateRequest2
+      application/json: UsersCreateRequest
+      application/x-www-form-urlencoded: UsersCreateRequest1
+      application/xml: UsersCreateRequest3
+      multipart/form-data: UsersCreateRequest4
+  /oauth/token:
+    post:
+      application/json: OauthTokenRequestRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /oauth/token:
+    post:
+      '200':
+        application/json: OauthTokenRequestResponse
+securityParameters:
+  account:
+    query: false
+  account_code:
+    query: false
+  active:
+    query: false
+  approved_datetime_0:
+    query: false
+  approved_datetime_1:
+    query: false
+  approved_price:
+    query: false
+  approved_quantity:
+    query: false
+  approver:
+    query: false
+  approver_id:
+    query: false
+  base:
+    query: false
+  bill:
+    query: false
+  bill_uuid:
+    query: false
+  billed:
+    query: false
+  branch:
+    query: false
+  budget:
+    query: false
+  bundle:
+    query: false
+  catalog:
+    query: false
+  catalog_item:
+    query: false
+  code:
+    query: false
+  confirm_duplicate_external_po_number:
+    query: false
+  contract:
+    query: false
+  created_at_0:
+    query: false
+  created_at_1:
+    query: false
+  currency:
+    query: false
+  dateRequired:
+    query: false
+  date_0:
+    query: false
+  date_1:
+    query: false
+  department:
+    query: false
+  departments:
+    query: false
+  description:
+    query: false
+  due_date_0:
+    query: false
+  due_date_1:
+    query: false
+  exclude:
+    query: false
+  exclude_bill_group_ids:
+    query: false
+  exclude_expense_bills:
+    query: false
+  exclude_other:
+    query: false
+  exclude_punchout:
+    query: false
+  expense:
+    query: false
+  expiry_date_0:
+    query: false
+  expiry_date_1:
+    query: false
+  external_id:
+    query: false
+  field_type:
+    query: false
+  format:
+    query: false
+  fulfilment_status:
+    query: false
+  gl_post_date_0:
+    query: false
+  gl_post_date_1:
+    query: false
+  group:
+    query: false
+  has_blanket_order_items:
+    query: false
+  has_payment:
+    query: false
+  has_posting_date:
+    query: false
+  headquarter:
+    query: false
+  id:
+    query: false
+  in_effect:
+    query: false
+  include_bill_group_ids:
+    query: false
+  include_is_active_for_account_code:
+    query: false
+  internalSKU:
+    query: false
+  invoice_date_0:
+    query: false
+  invoice_date_1:
+    query: false
+  is_active:
+    query: false
+  is_exported:
+    query: false
+  is_parent:
+    query: false
+  is_punchout:
+    query: false
+  is_purchased:
+    query: false
+  is_recurring:
+    query: false
+  last_changed_by:
+    query: false
+  last_export_date_0:
+    query: false
+  last_export_date_1:
+    query: false
+  last_export_user:
+    query: false
+  last_modified_0:
+    query: false
+  last_modified_1:
+    query: false
+  last_modified_datetime_0:
+    query: false
+  last_modified_datetime_1:
+    query: false
+  lineComment:
+    query: false
+  lineCount:
+    query: false
+  location:
+    query: false
+  location_perm_override:
+    query: false
+  locations:
+    query: false
+  max_price:
+    query: false
+  meta__is_active:
+    query: false
+  min_price:
+    query: false
+  modified_date_0:
+    query: false
+  modified_date_1:
+    query: false
+  name:
+    query: false
+  num:
+    query: false
+  orderNum:
+    query: false
+  orderNum__status:
+    query: false
+  order_by:
+    query: false
+  order_created_date_0:
+    query: false
+  order_created_date_1:
+    query: false
+  page:
+    query: false
+  page_size:
+    query: false
+  payment_date_0:
+    query: false
+  payment_date_1:
+    query: false
+  payment_method__type:
+    query: false
+  pending_invite:
+    query: false
+  permission:
+    query: false
+  po_created_date_0:
+    query: false
+  po_created_date_1:
+    query: false
+  po_vendor:
+    query: false
+  pref_vendor:
+    query: false
+  price:
+    query: false
+  promise_date_0:
+    query: false
+  promise_date_1:
+    query: false
+  purchase_agreement:
+    query: false
+  purchased_date_0:
+    query: false
+  purchased_date_1:
+    query: false
+  purchaser:
+    query: false
+  quantity:
+    query: false
+  rate:
+    query: false
+  receivedFailQty:
+    query: false
+  receivedPassQty:
+    query: false
+  received_on_0:
+    query: false
+  received_on_1:
+    query: false
+  reimburse:
+    query: false
+  requestable:
+    query: false
+  requester:
+    query: false
+  required_date_0:
+    query: false
+  required_date_1:
+    query: false
+  role:
+    query: false
+  search:
+    query: false
+  sku:
+    query: false
+  status:
+    query: false
+  submitted_date_0:
+    query: false
+  submitted_date_1:
+    query: false
+  sync_status:
+    query: false
+  sync_status_v2:
+    query: false
+  totalPrice:
+    query: false
+  type:
+    query: false
+  unit:
+    query: false
+  user:
+    query: false
+  userprofile:
+    query: false
+  vendor:
+    query: false
+  with_expired_budgets:
+    query: false
+validServerUrls:
+  https://{user_domain}.procurify.com:
+    url: https://{user_domain}.procurify.com

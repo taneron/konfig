@@ -1268,6 +1268,14 @@ const customRequests: Record<string, CustomRequest> = {
     url: "https://proovidapi.azurewebsites.net/swagger/v1/swagger.json",
     apiBaseUrl: "https://proovidapi.azurewebsites.net/",
   },
+  "procurify.com": {
+    lambda: async ({ browser }) => {
+      return downloadOpenApiSpecFromRedoclyEmbedded({
+        url: "https://developer.procurify.com/",
+        browser,
+      });
+    },
+  },
 };
 
 async function downloadOpenApiSpecFromMintlify({
