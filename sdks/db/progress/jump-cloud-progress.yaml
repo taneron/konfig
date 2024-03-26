@@ -1,0 +1,1271 @@
+examples: {}
+examples_2: {}
+examples_3:
+  /accessrequests/{accessId}:
+    put:
+      '200':
+        application/json: {}
+  /accessrequests/{accessId}/revoke:
+    post:
+      '200':
+        application/json: {}
+  /applications/{application_id}:
+    get:
+      '200':
+        application/json: {}
+  /devices/settings/defaultpasswordsync:
+    put:
+      '204':
+        application/json: {}
+  /devices/settings/signinwithjumpcloud:
+    put:
+      '204':
+        application/json: {}
+  /google-emm/devices/{deviceId}/erase-device:
+    post:
+      '200':
+        application/json: {}
+  /google-emm/devices/{deviceId}/lock:
+    post:
+      '200':
+        application/json: {}
+  /google-emm/devices/{deviceId}/reboot:
+    post:
+      '200':
+        application/json: {}
+  /google-emm/devices/{deviceId}/resetpassword:
+    post:
+      '200':
+        application/json: {}
+  /providers/{provider_id}/configuredpolicytemplates/{id}:
+    get:
+      '200':
+        application/json: {}
+  /systemgroups/{group_id}/suggestions:
+    post:
+      '200':
+        application/json: {}
+  /usergroups/{group_id}/suggestions:
+    post:
+      '200':
+        application/json: {}
+ignoreObjectsWithNoProperties: true
+ignorePotentialIncorrectType: true
+operationIds:
+  /gsuites/{gsuite_id}/domains:
+    get: GSuite_configuredDomainsList
+    post: GSuite_addDomain
+  /gsuites/{gsuite_id}/domains/{domainId}:
+    delete: GSuite_deleteDomain
+  /policygroups:
+    get: PolicyGroups_listAll
+    post: PolicyGroups_createNew
+  /policygroups/{id}:
+    delete: PolicyGroups_deleteGroup
+    get: PolicyGroups_getDetails
+    put: PolicyGroups_updatePolicyGroup
+  /policyresults:
+    get: Policies_listAllPolicyResults
+  /systemgroups:
+    get: SystemGroups_listAll
+    post: SystemGroups_createNewGroup
+  /systemgroups/{group_id}/suggestions:
+    get: SystemGroups_listSuggestions
+    post: SystemGroups_applySuggestions
+  /systemgroups/{id}:
+    delete: SystemGroups_deleteGroup
+    get: SystemGroups_viewDetails
+    put: SystemGroups_updateGroup
+  /systeminsights/alf:
+    get: SystemInsights_listAlf
+  /systeminsights/alf_exceptions:
+    get: SystemInsights_listAlfExceptions
+  /systeminsights/alf_explicit_auths:
+    get: SystemInsights_listAlfExplicitAuths
+  /systeminsights/appcompat_shims:
+    get: SystemInsights_listAppcompatShims
+  /systeminsights/apps:
+    get: SystemInsights_listApps
+  /systeminsights/authorized_keys:
+    get: SystemInsights_listAuthorizedKeys
+  /systeminsights/azure_instance_metadata:
+    get: SystemInsights_listAzureInstanceMetadata
+  /systeminsights/azure_instance_tags:
+    get: SystemInsights_listAzureInstanceTags
+  /systeminsights/battery:
+    get: SystemInsights_listBatteryData
+  /systeminsights/bitlocker_info:
+    get: SystemInsights_listBitlockerInfo
+  /systeminsights/browser_plugins:
+    get: SystemInsights_listBrowserPlugins
+  /systeminsights/certificates:
+    get: SystemInsights_listCertificates
+  /systeminsights/chassis_info:
+    get: SystemInsights_getChassisInfo
+  /systeminsights/chrome_extensions:
+    get: SystemInsights_listChromeExtensions
+  /systeminsights/connectivity:
+    get: SystemInsights_listConnectivity
+  /systeminsights/crashes:
+    get: SystemInsights_listCrashes
+  /systeminsights/cups_destinations:
+    get: SystemInsights_listCupsDestinations
+  /systeminsights/disk_encryption:
+    get: SystemInsights_listDiskEncryption
+  /systeminsights/disk_info:
+    get: SystemInsights_getDiskInfo
+  /systeminsights/dns_resolvers:
+    get: SystemInsights_listDnsResolvers
+  /systeminsights/etc_hosts:
+    get: SystemInsights_listEtcHosts
+  /systeminsights/firefox_addons:
+    get: SystemInsights_listFirefoxAddons
+  /systeminsights/groups:
+    get: SystemInsights_listGroups
+  /systeminsights/ie_extensions:
+    get: SystemInsights_getIEExtensionsList
+  /systeminsights/interface_addresses:
+    get: SystemInsights_listInterfaceAddresses
+  /systeminsights/interface_details:
+    get: SystemInsights_listInterfaceDetails
+  /systeminsights/kernel_info:
+    get: SystemInsights_getKernelInfo
+  /systeminsights/launchd:
+    get: SystemInsights_listLaunchd
+  /systeminsights/linux_packages:
+    get: SystemInsights_listLinuxPackages
+  /systeminsights/logged_in_users:
+    get: SystemInsights_listLoggedInUsers
+  /systeminsights/logical_drives:
+    get: SystemInsights_listLogicalDrives
+  /systeminsights/managed_policies:
+    get: SystemInsights_listManagedPolicies
+  /systeminsights/mounts:
+    get: SystemInsights_listMounts
+  /systeminsights/os_version:
+    get: SystemInsights_getOsVersion
+  /systeminsights/patches:
+    get: SystemInsights_listPatches
+  /systeminsights/programs:
+    get: SystemInsights_listPrograms
+  /systeminsights/python_packages:
+    get: SystemInsights_listPythonPackages
+  /systeminsights/safari_extensions:
+    get: SystemInsights_listSafariExtensions
+  /systeminsights/scheduled_tasks:
+    get: SystemInsights_listScheduledTasks
+  /systeminsights/secureboot:
+    get: SystemInsights_listSecureBoot
+  /systeminsights/services:
+    get: SystemInsights_listServices
+  /systeminsights/shadow:
+    get: SystemInsights_listShadowData
+  /systeminsights/shared_folders:
+    get: SystemInsights_listSharedFolders
+  /systeminsights/shared_resources:
+    get: SystemInsights_listSharedResources
+  /systeminsights/sharing_preferences:
+    get: SystemInsights_listSharingPreferences
+  /systeminsights/sip_config:
+    get: SystemInsights_getSipConfig
+  /systeminsights/startup_items:
+    get: SystemInsights_listStartupItems
+  /systeminsights/system_controls:
+    get: SystemInsights_listSystemControls
+  /systeminsights/system_info:
+    get: SystemInsights_getSystemInfoList
+  /systeminsights/tpm_info:
+    get: SystemInsights_getTpmInfo
+  /systeminsights/uptime:
+    get: SystemInsights_listUptime
+  /systeminsights/usb_devices:
+    get: SystemInsights_listUsbDevices
+  /systeminsights/user_groups:
+    get: SystemInsights_getUserGroups
+  /systeminsights/user_ssh_keys:
+    get: SystemInsights_listUserSshKeys
+  /systeminsights/userassist:
+    get: SystemInsights_listUserAssist
+  /systeminsights/users:
+    get: SystemInsights_listUsers
+  /systeminsights/wifi_networks:
+    get: SystemInsights_listWifiNetworks
+  /systeminsights/wifi_status:
+    get: SystemInsights_listWifiStatus
+  /systeminsights/windows_security_center:
+    get: SystemInsights_listWindowsSecurityCenter
+  /systeminsights/windows_security_products:
+    get: SystemInsights_listWindowsSecurityProducts
+  /usergroups:
+    get: UserGroups_listAll
+    post: UserGroups_createNewGroup
+  /usergroups/{group_id}/suggestions:
+    get: UserGroups_getSuggestions
+    post: UserGroups_applySuggestions
+  /usergroups/{id}:
+    delete: UserGroups_deleteGroup
+    get: UserGroups_getDetails
+    put: UserGroups_updateGroup
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /accessrequests/{accessId}:
+    put:
+      application/json: AccessRequestApiUpdateAccessRequestRequest
+  /applemdms/{apple_mdm_id}/devices/{device_id}/erase:
+    post:
+      application/json: ApplemdmsDeviceseraseRequest
+  /applemdms/{apple_mdm_id}/devices/{device_id}/lock:
+    post:
+      application/json: ApplemdmsDeviceslockRequest
+  /applemdms/{apple_mdm_id}/devices/{device_id}/restart:
+    post:
+      application/json: ApplemdmsDevicesrestartRequest
+  /applications/{application_id}/logo:
+    post:
+      multipart/form-data: ApplicationsPostLogoRequest
+  /bulk/user/expires:
+    post:
+      application/json: BulkUserExpiresRequest
+  /bulk/user/unlocks:
+    post:
+      application/json: BulkUserUnlocksRequest
+  /bulk/users:
+    patch:
+      application/json: BulkUsersUpdateRequest
+    post:
+      application/json: BulkUsersCreateRequest
+  /google-emm/devices/{deviceId}/erase-device:
+    post:
+      application/json: DevicesEraseDeviceRequest
+  /google-emm/devices/{deviceId}/resetpassword:
+    post:
+      application/json: DevicesResetPasswordRequest
+  /google-emm/enterprises/{enterpriseId}:
+    patch:
+      application/json: EnterprisesPatchEnterpriseRequest
+  /google-emm/enterprises/{enterpriseObjectId}/enrollment-tokens:
+    post:
+      application/json: EnrollmentTokensCreateEnterprisesEnrollmentTokenRequest
+  /ldapservers/{id}:
+    patch:
+      application/json: LdapserversPatchRequest
+  /office365s/{office365_id}/domains:
+    post:
+      application/json: DomainsInsertRequest
+  /systemgroups/{group_id}/suggestions:
+    post:
+      application/json: SystemGroupsApplySuggestionsRequest
+  /usergroups/{group_id}/suggestions:
+    post:
+      application/json: UserGroupsApplySuggestionsRequest
+  /users/{userId}/pushendpoints/{pushEndpointId}/verify:
+    post:
+      application/json: PushVerificationsStartRequest
+  /users/{user_id}/pushendpoints/{push_endpoint_id}:
+    patch:
+      application/json: PushEndpointsPatchRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /accessrequests/{accessId}:
+    put:
+      '200':
+        application/json: AccessRequestApiUpdateAccessRequestResponse
+  /accessrequests/{accessId}/revoke:
+    post:
+      '200':
+        application/json: AccessRequestApiRevokeAccessRequestResponse
+  /activedirectories:
+    get:
+      '200':
+        application/json: ActivedirectoriesListResponse
+  /activedirectories/{activedirectory_id}/agents:
+    get:
+      '200':
+        application/json: ActivedirectoriesAgentsListResponse
+  /activedirectories/{activedirectory_id}/associations:
+    get:
+      '200':
+        application/json: GraphActiveDirectoryAssociationsListResponse
+  /activedirectories/{activedirectory_id}/usergroups:
+    get:
+      '200':
+        application/json: GraphActiveDirectoryTraverseUserGroupResponse
+  /activedirectories/{activedirectory_id}/users:
+    get:
+      '200':
+        application/json: GraphActiveDirectoryTraverseUserResponse
+  /administrators/{id}/organizationlinks:
+    get:
+      '200':
+        application/json: AdministratorOrganizationsListByAdministratorResponse
+  /applemdms:
+    get:
+      '200':
+        application/json: ApplemdmsListResponse
+  /applemdms/{apple_mdm_id}/devices:
+    get:
+      '200':
+        application/json: ApplemdmsDeviceslistResponse
+  /applemdms/{apple_mdm_id}/devices/{device_id}/clearActivationLock:
+    post:
+      '400':
+        application/json: ApplemdmsDevicesClearActivationLockResponse
+      '500':
+        application/json: ApplemdmsDevicesClearActivationLock500Response
+  /applemdms/{apple_mdm_id}/devices/{device_id}/erase:
+    post:
+      '400':
+        application/json: ApplemdmsDeviceseraseResponse
+      '500':
+        application/json: ApplemdmsDeviceserase500Response
+  /applemdms/{apple_mdm_id}/devices/{device_id}/lock:
+    post:
+      '400':
+        application/json: ApplemdmsDeviceslockResponse
+      '500':
+        application/json: ApplemdmsDeviceslock500Response
+  /applemdms/{apple_mdm_id}/devices/{device_id}/osUpdateStatus:
+    post:
+      '500':
+        application/json: ApplemdmsDevicesOsUpdateStatusResponse
+  /applemdms/{apple_mdm_id}/devices/{device_id}/refreshActivationLockInformation:
+    post:
+      '400':
+        application/json: ApplemdmsDevicesRefreshActivationLockInformationResponse
+      '500':
+        application/json: ApplemdmsDevicesRefreshActivationLockInformation500Response
+  /applemdms/{apple_mdm_id}/devices/{device_id}/restart:
+    post:
+      '400':
+        application/json: ApplemdmsDevicesrestartResponse
+      '500':
+        application/json: ApplemdmsDevicesrestart500Response
+  /applemdms/{apple_mdm_id}/devices/{device_id}/scheduleOSUpdate:
+    post:
+      '500':
+        application/json: ApplemdmsDevicesScheduleOsUpdateResponse
+  /applemdms/{apple_mdm_id}/devices/{device_id}/shutdown:
+    post:
+      '400':
+        application/json: ApplemdmsDevicesshutdownResponse
+      '500':
+        application/json: ApplemdmsDevicesshutdown500Response
+  /applemdms/{apple_mdm_id}/enrollmentprofiles:
+    get:
+      '200':
+        application/json: ApplemdmsEnrollmentprofileslistResponse
+  /applemdms/{apple_mdm_id}/refreshdepdevices:
+    post:
+      '400':
+        application/json: ApplemdmsRefreshdepdevicesResponse
+      '500':
+        application/json: ApplemdmsRefreshdepdevices500Response
+  /applications/{application_id}:
+    get:
+      '200':
+        application/json: ApplicationsGetResponse
+  /applications/{application_id}/associations:
+    get:
+      '200':
+        application/json: GraphApplicationAssociationsListResponse
+  /applications/{application_id}/usergroups:
+    get:
+      '200':
+        application/json: GraphApplicationTraverseUserGroupResponse
+  /applications/{application_id}/users:
+    get:
+      '200':
+        application/json: GraphApplicationTraverseUserResponse
+  /authn/policies:
+    get:
+      '200':
+        application/json: AuthnpoliciesListResponse
+  /bulk/users/{job_id}/results:
+    get:
+      '200':
+        application/json: BulkUsersCreateResultsResponse
+  /bulk/userstates:
+    get:
+      '200':
+        application/json: BulkUserStatesListResponse
+    post:
+      '201':
+        application/json: BulkUserStatesCreateResponse
+      '400':
+        application/json: BulkUserStatesCreate400Response
+      '401':
+        application/json: BulkUserStatesCreate401Response
+      '500':
+        application/json: BulkUserStatesCreate500Response
+  /bulk/userstates/eventlist/next:
+    get:
+      '200':
+        application/json: BulkUserStatesGetNextScheduledResponse
+  /commands/{command_id}/associations:
+    get:
+      '200':
+        application/json: GraphCommandAssociationsListResponse
+  /commands/{command_id}/systemgroups:
+    get:
+      '200':
+        application/json: GraphCommandTraverseSystemGroupResponse
+  /commands/{command_id}/systems:
+    get:
+      '200':
+        application/json: GraphCommandTraverseSystemResponse
+  /customemail/templates:
+    get:
+      '200':
+        application/json: CustomEmailsGetTemplatesResponse
+  /devices/settings/defaultpasswordsync:
+    put:
+      '200':
+        application/json: SystemsOrgSettingsSetDefaultPasswordSyncSettingsResponse
+      '204':
+        application/json: SystemsOrgSettingsSetDefaultPasswordSyncSettings204Response
+  /devices/settings/signinwithjumpcloud:
+    put:
+      '200':
+        application/json: SystemsOrgSettingsSetSignInWithJumpCloudSettingsResponse
+      '204':
+        application/json: SystemsOrgSettingsSetSignInWithJumpCloudSettings204Response
+  /directories:
+    get:
+      '200':
+        application/json: DirectoriesListResponse
+  /duo/accounts:
+    get:
+      '200':
+        application/json: DuoAccountListResponse
+  /duo/accounts/{account_id}/applications:
+    get:
+      '200':
+        application/json: DuoApplicationListResponse
+  /google-emm/devices/{deviceId}/erase-device:
+    post:
+      '200':
+        application/json: DevicesEraseDeviceResponse
+  /google-emm/devices/{deviceId}/lock:
+    post:
+      '200':
+        application/json: DevicesLockDeviceResponse
+  /google-emm/devices/{deviceId}/reboot:
+    post:
+      '200':
+        application/json: DevicesRebootDeviceResponse
+  /google-emm/devices/{deviceId}/resetpassword:
+    post:
+      '200':
+        application/json: DevicesResetPasswordResponse
+  /google-emm/enterprises/{enterpriseId}:
+    delete:
+      '200':
+        application/json: EnterprisesDeleteEnterpriseResponse
+  /groups:
+    get:
+      '200':
+        application/json: GroupsListResponse
+  /gsuites/{gsuite_id}/associations:
+    get:
+      '200':
+        application/json: GraphGSuiteAssociationsListResponse
+  /gsuites/{gsuite_id}/import/jumpcloudusers:
+    get:
+      '200':
+        application/json: GsuitesListImportJumpcloudUsersResponse
+  /gsuites/{gsuite_id}/import/users:
+    get:
+      '200':
+        application/json: GsuitesListImportUsersResponse
+  /gsuites/{gsuite_id}/translationrules:
+    get:
+      '200':
+        application/json: TranslationRulesGSuiteListResponse
+  /gsuites/{gsuite_id}/usergroups:
+    get:
+      '200':
+        application/json: GraphGSuiteTraverseUserGroupResponse
+  /gsuites/{gsuite_id}/users:
+    get:
+      '200':
+        application/json: GraphGSuiteTraverseUserResponse
+  /identity-provider/policies/{idp_routing_policy_id}/associations:
+    get:
+      '200':
+        application/json: GraphIdpRoutingPolicyAssociationsListResponse
+  /identity-provider/policies/{idp_routing_policy_id}/associations/usergroups:
+    get:
+      '200':
+        application/json: GraphIdpRoutingPolicyTraverseUserGroupResponse
+  /identity-provider/policies/{idp_routing_policy_id}/associations/users:
+    get:
+      '200':
+        application/json: GraphIdpRoutingPolicyTraverseUserResponse
+  /integrations/autotask/{UUID}:
+    patch:
+      '422':
+        application/json: AutotaskUpdateConfigurationResponse
+  /integrations/autotask/{UUID}/contracts:
+    get:
+      '200':
+        application/json: AutotaskRetrieveContractsResponse
+  /integrations/autotask/{UUID}/contracts/fields:
+    get:
+      '200':
+        application/json: AutotaskRetrieveContractsFieldsResponse
+  /integrations/autotask/{UUID}/contracts/services:
+    get:
+      '200':
+        application/json: AutotaskRetrieveServicesResponse
+  /integrations/autotask/{UUID}/mappings:
+    get:
+      '200':
+        application/json: AutotaskRetrieveMappingsResponse
+  /integrations/connectwise/{UUID}:
+    patch:
+      '422':
+        application/json: ConnectwiseUpdateConfigurationResponse
+  /integrations/connectwise/{UUID}/agreements:
+    get:
+      '200':
+        application/json: ConnectwiseRetrieveAgreementsResponse
+  /integrations/connectwise/{UUID}/agreements/{agreement_ID}/additions:
+    get:
+      '200':
+        application/json: ConnectwiseRetrieveAdditionsResponse
+  /integrations/connectwise/{UUID}/mappings:
+    get:
+      '200':
+        application/json: ConnectwiseRetrieveMappingsResponse
+  /integrations/syncro/{UUID}:
+    patch:
+      '422':
+        application/json: SyncroUpdateConfigurationResponse
+  /integrations/syncro/{UUID}/mappings:
+    get:
+      '200':
+        application/json: SyncroRetrieveMappingsResponse
+  /iplists:
+    get:
+      '200':
+        application/json: IplistsListResponse
+  /ldapservers:
+    get:
+      '200':
+        application/json: LdapserversListResponse
+  /ldapservers/{id}:
+    patch:
+      '200':
+        application/json: LdapserversPatchResponse
+      '400':
+        application/json: LdapserversPatch400Response
+  /ldapservers/{ldapserver_id}/associations:
+    get:
+      '200':
+        application/json: GraphLdapServerAssociationsListResponse
+  /ldapservers/{ldapserver_id}/sambadomains:
+    get:
+      '200':
+        application/json: LdapserversSambaDomainsListResponse
+  /ldapservers/{ldapserver_id}/sambadomains/{id}:
+    delete:
+      '200':
+        application/json: LdapserversSambaDomainsDeleteResponse
+  /ldapservers/{ldapserver_id}/usergroups:
+    get:
+      '200':
+        application/json: GraphLdapServerTraverseUserGroupResponse
+  /ldapservers/{ldapserver_id}/users:
+    get:
+      '200':
+        application/json: GraphLdapServerTraverseUserResponse
+  /logos/{id}:
+    get:
+      '200':
+        image/gif: LogosGetResponse
+        image/jpeg: LogosGet200Response
+        image/png: LogosGet200Response
+  /microsoft-mdm/configuration-files:
+    post:
+      '200':
+        application/zip: EnrollmentsDownloadConfigFilesResponse
+  /office365s/{office365_id}/associations:
+    get:
+      '200':
+        application/json: GraphOffice365AssociationsListResponse
+  /office365s/{office365_id}/import/users:
+    get:
+      '200':
+        application/json: Office365SListImportUsersResponse
+  /office365s/{office365_id}/translationrules:
+    get:
+      '200':
+        application/json: TranslationRulesOffice365ListResponse
+  /office365s/{office365_id}/usergroups:
+    get:
+      '200':
+        application/json: GraphOffice365TraverseUserGroupResponse
+  /office365s/{office365_id}/users:
+    get:
+      '200':
+        application/json: GraphOffice365TraverseUserResponse
+  /organizations/{id}/administratorlinks:
+    get:
+      '200':
+        application/json: AdministratorOrganizationsListByOrganizationResponse
+  /policies:
+    get:
+      '200':
+        application/json: PoliciesListResponse
+  /policies/{policy_id}/associations:
+    get:
+      '200':
+        application/json: GraphPolicyAssociationsListResponse
+  /policies/{policy_id}/memberof:
+    get:
+      '200':
+        application/json: GraphPolicyMemberOfResponse
+  /policies/{policy_id}/policyresults:
+    get:
+      '200':
+        application/json: PolicyresultsListResponse
+  /policies/{policy_id}/policystatuses:
+    get:
+      '200':
+        application/json: PolicystatusesPoliciesListResponse
+  /policies/{policy_id}/systemgroups:
+    get:
+      '200':
+        application/json: GraphPolicyTraverseSystemGroupResponse
+  /policies/{policy_id}/systems:
+    get:
+      '200':
+        application/json: GraphPolicyTraverseSystemResponse
+  /policygroups:
+    get:
+      '200':
+        application/json: PolicyGroupsListAllResponse
+  /policygroups/{group_id}/associations:
+    get:
+      '200':
+        application/json: GraphPolicyGroupAssociationsListResponse
+  /policygroups/{group_id}/members:
+    get:
+      '200':
+        application/json: GraphPolicyGroupMembersListResponse
+  /policygroups/{group_id}/membership:
+    get:
+      '200':
+        application/json: GraphPolicyGroupMembershipResponse
+  /policygroups/{group_id}/systemgroups:
+    get:
+      '200':
+        application/json: GraphPolicyGroupTraverseSystemGroupResponse
+  /policygroups/{group_id}/systems:
+    get:
+      '200':
+        application/json: GraphPolicyGroupTraverseSystemResponse
+  /policyresults:
+    get:
+      '200':
+        application/json: PoliciesListAllPolicyResultsResponse
+  /policytemplates:
+    get:
+      '200':
+        application/json: PolicytemplatesListResponse
+  /providers/{provider_id}/administrators:
+    get:
+      '200':
+        application/json: ProvidersListAdministratorsResponse
+      '401':
+        application/json: ProvidersListAdministrators401Response
+    post:
+      '401':
+        application/json: ProvidersPostAdminsResponse
+  /providers/{provider_id}/billing/contract:
+    get:
+      '200':
+        application/pdf: BillingGetContractResponse
+  /providers/{provider_id}/configuredpolicytemplates:
+    get:
+      '200':
+        application/json: PolicyGroupTemplatesListConfiguredPolicyTemplatesResponse
+  /providers/{provider_id}/configuredpolicytemplates/{id}:
+    get:
+      '200':
+        application/json: PolicyGroupTemplatesGetConfiguredPolicyTemplateResponse
+  /providers/{provider_id}/integrations/autotask:
+    post:
+      '201':
+        application/json: AutotaskCreateConfigurationResponse
+      '422':
+        application/json: AutotaskCreateConfiguration422Response
+  /providers/{provider_id}/integrations/connectwise:
+    post:
+      '201':
+        application/json: ConnectwiseCreateConfigurationResponse
+      '422':
+        application/json: ConnectwiseCreateConfiguration422Response
+  /providers/{provider_id}/integrations/syncro:
+    post:
+      '201':
+        application/json: SyncroCreateConfigurationResponse
+      '422':
+        application/json: SyncroCreateConfiguration422Response
+  /providers/{provider_id}/invoices/{ID}:
+    get:
+      '200':
+        application/pdf: ProvidersRetrieveInvoiceResponse
+  /providers/{provider_id}/organizations:
+    get:
+      '200':
+        application/json: ProvidersListOrganizationsResponse
+  /radiusservers/{radiusserver_id}/associations:
+    get:
+      '200':
+        application/json: GraphRadiusServerAssociationsListResponse
+  /radiusservers/{radiusserver_id}/usergroups:
+    get:
+      '200':
+        application/json: GraphRadiusServerTraverseUserGroupResponse
+  /radiusservers/{radiusserver_id}/users:
+    get:
+      '200':
+        application/json: GraphRadiusServerTraverseUserResponse
+  /softwareapps:
+    get:
+      '200':
+        application/json: SoftwareAppsListResponse
+  /softwareapps/{software_app_id}/associations:
+    get:
+      '200':
+        application/json: GraphSoftwareappsAssociationsListResponse
+  /softwareapps/{software_app_id}/statuses:
+    get:
+      '200':
+        application/json: SoftwareAppStatusesListResponse
+  /softwareapps/{software_app_id}/systemgroups:
+    get:
+      '200':
+        application/json: GraphSoftwareappsTraverseSystemGroupResponse
+  /softwareapps/{software_app_id}/systems:
+    get:
+      '200':
+        application/json: GraphSoftwareappsTraverseSystemResponse
+  /subscriptions:
+    get:
+      '200':
+        application/json: SubscriptionsGetResponse
+  /systemgroups:
+    get:
+      '200':
+        application/json: SystemGroupsListAllResponse
+  /systemgroups/{group_id}/associations:
+    get:
+      '200':
+        application/json: GraphSystemGroupAssociationsListResponse
+  /systemgroups/{group_id}/commands:
+    get:
+      '200':
+        application/json: GraphSystemGroupTraverseCommandResponse
+  /systemgroups/{group_id}/members:
+    get:
+      '200':
+        application/json: GraphSystemGroupMembersListResponse
+  /systemgroups/{group_id}/membership:
+    get:
+      '200':
+        application/json: GraphSystemGroupMembershipResponse
+  /systemgroups/{group_id}/policies:
+    get:
+      '200':
+        application/json: GraphSystemGroupTraversePolicyResponse
+  /systemgroups/{group_id}/policygroups:
+    get:
+      '200':
+        application/json: GraphSystemGroupTraversePolicyGroupResponse
+  /systemgroups/{group_id}/suggestions:
+    get:
+      '200':
+        application/json: SystemGroupsListSuggestionsResponse
+    post:
+      '200':
+        application/json: SystemGroupsApplySuggestionsResponse
+  /systemgroups/{group_id}/usergroups:
+    get:
+      '200':
+        application/json: GraphSystemGroupTraverseUserGroupResponse
+  /systemgroups/{group_id}/users:
+    get:
+      '200':
+        application/json: GraphSystemGroupTraverseUserResponse
+  /systeminsights/alf:
+    get:
+      '200':
+        application/json: SystemInsightsListAlfResponse
+  /systeminsights/alf_exceptions:
+    get:
+      '200':
+        application/json: SystemInsightsListAlfExceptionsResponse
+  /systeminsights/alf_explicit_auths:
+    get:
+      '200':
+        application/json: SystemInsightsListAlfExplicitAuthsResponse
+  /systeminsights/appcompat_shims:
+    get:
+      '200':
+        application/json: SystemInsightsListAppcompatShimsResponse
+  /systeminsights/apps:
+    get:
+      '200':
+        application/json: SystemInsightsListAppsResponse
+  /systeminsights/authorized_keys:
+    get:
+      '200':
+        application/json: SystemInsightsListAuthorizedKeysResponse
+  /systeminsights/azure_instance_metadata:
+    get:
+      '200':
+        application/json: SystemInsightsListAzureInstanceMetadataResponse
+      '400':
+        application/json: SystemInsightsListAzureInstanceMetadata400Response
+  /systeminsights/azure_instance_tags:
+    get:
+      '200':
+        application/json: SystemInsightsListAzureInstanceTagsResponse
+      '400':
+        application/json: SystemInsightsListAzureInstanceTags400Response
+  /systeminsights/battery:
+    get:
+      '200':
+        application/json: SystemInsightsListBatteryDataResponse
+  /systeminsights/bitlocker_info:
+    get:
+      '200':
+        application/json: SystemInsightsListBitlockerInfoResponse
+  /systeminsights/browser_plugins:
+    get:
+      '200':
+        application/json: SystemInsightsListBrowserPluginsResponse
+  /systeminsights/certificates:
+    get:
+      '200':
+        application/json: SystemInsightsListCertificatesResponse
+  /systeminsights/chassis_info:
+    get:
+      '200':
+        application/json: SystemInsightsGetChassisInfoResponse
+      '400':
+        application/json: SystemInsightsGetChassisInfo400Response
+  /systeminsights/chrome_extensions:
+    get:
+      '200':
+        application/json: SystemInsightsListChromeExtensionsResponse
+  /systeminsights/connectivity:
+    get:
+      '200':
+        application/json: SystemInsightsListConnectivityResponse
+  /systeminsights/crashes:
+    get:
+      '200':
+        application/json: SystemInsightsListCrashesResponse
+  /systeminsights/cups_destinations:
+    get:
+      '200':
+        application/json: SystemInsightsListCupsDestinationsResponse
+  /systeminsights/disk_encryption:
+    get:
+      '200':
+        application/json: SystemInsightsListDiskEncryptionResponse
+  /systeminsights/disk_info:
+    get:
+      '200':
+        application/json: SystemInsightsGetDiskInfoResponse
+  /systeminsights/dns_resolvers:
+    get:
+      '200':
+        application/json: SystemInsightsListDnsResolversResponse
+  /systeminsights/etc_hosts:
+    get:
+      '200':
+        application/json: SystemInsightsListEtcHostsResponse
+  /systeminsights/firefox_addons:
+    get:
+      '200':
+        application/json: SystemInsightsListFirefoxAddonsResponse
+  /systeminsights/groups:
+    get:
+      '200':
+        application/json: SystemInsightsListGroupsResponse
+  /systeminsights/ie_extensions:
+    get:
+      '200':
+        application/json: SystemInsightsGetIeExtensionsListResponse
+  /systeminsights/interface_addresses:
+    get:
+      '200':
+        application/json: SystemInsightsListInterfaceAddressesResponse
+  /systeminsights/interface_details:
+    get:
+      '200':
+        application/json: SystemInsightsListInterfaceDetailsResponse
+  /systeminsights/kernel_info:
+    get:
+      '200':
+        application/json: SystemInsightsGetKernelInfoResponse
+  /systeminsights/launchd:
+    get:
+      '200':
+        application/json: SystemInsightsListLaunchdResponse
+  /systeminsights/linux_packages:
+    get:
+      '200':
+        application/json: SystemInsightsListLinuxPackagesResponse
+  /systeminsights/logged_in_users:
+    get:
+      '200':
+        application/json: SystemInsightsListLoggedInUsersResponse
+  /systeminsights/logical_drives:
+    get:
+      '200':
+        application/json: SystemInsightsListLogicalDrivesResponse
+  /systeminsights/managed_policies:
+    get:
+      '200':
+        application/json: SystemInsightsListManagedPoliciesResponse
+  /systeminsights/mounts:
+    get:
+      '200':
+        application/json: SystemInsightsListMountsResponse
+  /systeminsights/os_version:
+    get:
+      '200':
+        application/json: SystemInsightsGetOsVersionResponse
+  /systeminsights/patches:
+    get:
+      '200':
+        application/json: SystemInsightsListPatchesResponse
+  /systeminsights/programs:
+    get:
+      '200':
+        application/json: SystemInsightsListProgramsResponse
+  /systeminsights/python_packages:
+    get:
+      '200':
+        application/json: SystemInsightsListPythonPackagesResponse
+  /systeminsights/safari_extensions:
+    get:
+      '200':
+        application/json: SystemInsightsListSafariExtensionsResponse
+  /systeminsights/scheduled_tasks:
+    get:
+      '200':
+        application/json: SystemInsightsListScheduledTasksResponse
+  /systeminsights/secureboot:
+    get:
+      '200':
+        application/json: SystemInsightsListSecureBootResponse
+      '400':
+        application/json: SystemInsightsListSecureBoot400Response
+  /systeminsights/services:
+    get:
+      '200':
+        application/json: SystemInsightsListServicesResponse
+  /systeminsights/shadow:
+    get:
+      '200':
+        application/json: SystemInsightsListShadowDataResponse
+  /systeminsights/shared_folders:
+    get:
+      '200':
+        application/json: SystemInsightsListSharedFoldersResponse
+  /systeminsights/shared_resources:
+    get:
+      '200':
+        application/json: SystemInsightsListSharedResourcesResponse
+  /systeminsights/sharing_preferences:
+    get:
+      '200':
+        application/json: SystemInsightsListSharingPreferencesResponse
+  /systeminsights/sip_config:
+    get:
+      '200':
+        application/json: SystemInsightsGetSipConfigResponse
+  /systeminsights/startup_items:
+    get:
+      '200':
+        application/json: SystemInsightsListStartupItemsResponse
+  /systeminsights/system_controls:
+    get:
+      '200':
+        application/json: SystemInsightsListSystemControlsResponse
+  /systeminsights/system_info:
+    get:
+      '200':
+        application/json: SystemInsightsGetSystemInfoListResponse
+  /systeminsights/tpm_info:
+    get:
+      '200':
+        text/html: SystemInsightsGetTpmInfoResponse
+      '400':
+        text/html: SystemInsightsGetTpmInfo400Response
+  /systeminsights/uptime:
+    get:
+      '200':
+        application/json: SystemInsightsListUptimeResponse
+  /systeminsights/usb_devices:
+    get:
+      '200':
+        application/json: SystemInsightsListUsbDevicesResponse
+  /systeminsights/user_groups:
+    get:
+      '200':
+        application/json: SystemInsightsGetUserGroupsResponse
+  /systeminsights/user_ssh_keys:
+    get:
+      '200':
+        application/json: SystemInsightsListUserSshKeysResponse
+  /systeminsights/userassist:
+    get:
+      '200':
+        application/json: SystemInsightsListUserAssistResponse
+      '400':
+        application/json: SystemInsightsListUserAssist400Response
+  /systeminsights/users:
+    get:
+      '200':
+        application/json: SystemInsightsListUsersResponse
+  /systeminsights/wifi_networks:
+    get:
+      '200':
+        application/json: SystemInsightsListWifiNetworksResponse
+  /systeminsights/wifi_status:
+    get:
+      '200':
+        application/json: SystemInsightsListWifiStatusResponse
+  /systeminsights/windows_security_center:
+    get:
+      '200':
+        application/json: SystemInsightsListWindowsSecurityCenterResponse
+      '400':
+        application/json: SystemInsightsListWindowsSecurityCenter400Response
+  /systeminsights/windows_security_products:
+    get:
+      '200':
+        application/json: SystemInsightsListWindowsSecurityProductsResponse
+  /systems/{system_id}/associations:
+    get:
+      '200':
+        application/json: GraphSystemAssociationsListResponse
+  /systems/{system_id}/commands:
+    get:
+      '200':
+        application/json: GraphSystemTraverseCommandResponse
+  /systems/{system_id}/memberof:
+    get:
+      '200':
+        application/json: GraphSystemMemberOfResponse
+  /systems/{system_id}/policies:
+    get:
+      '200':
+        application/json: GraphSystemTraversePolicyResponse
+  /systems/{system_id}/policygroups:
+    get:
+      '200':
+        application/json: GraphSystemTraversePolicyGroupResponse
+  /systems/{system_id}/policystatuses:
+    get:
+      '200':
+        application/json: PolicystatusesSystemsListResponse
+  /systems/{system_id}/softwareappstatuses:
+    get:
+      '200':
+        application/json: SystemsListSoftwareAppsWithStatusesResponse
+  /systems/{system_id}/usergroups:
+    get:
+      '200':
+        application/json: GraphSystemTraverseUserGroupResponse
+  /systems/{system_id}/users:
+    get:
+      '200':
+        application/json: GraphSystemTraverseUserResponse
+  /usergroups:
+    get:
+      '200':
+        application/json: UserGroupsListAllResponse
+  /usergroups/{group_id}/activedirectories:
+    get:
+      '200':
+        application/json: GraphUserGroupTraverseActiveDirectoryResponse
+  /usergroups/{group_id}/applications:
+    get:
+      '200':
+        application/json: GraphUserGroupTraverseApplicationResponse
+  /usergroups/{group_id}/associations:
+    get:
+      '200':
+        application/json: GraphUserGroupAssociationsListResponse
+  /usergroups/{group_id}/directories:
+    get:
+      '200':
+        application/json: GraphUserGroupTraverseDirectoryResponse
+  /usergroups/{group_id}/gsuites:
+    get:
+      '200':
+        application/json: GraphUserGroupTraverseGSuiteResponse
+  /usergroups/{group_id}/ldapservers:
+    get:
+      '200':
+        application/json: GraphUserGroupTraverseLdapServerResponse
+  /usergroups/{group_id}/members:
+    get:
+      '200':
+        application/json: GraphUserGroupMembersListResponse
+  /usergroups/{group_id}/membership:
+    get:
+      '200':
+        application/json: GraphUserGroupMembershipResponse
+  /usergroups/{group_id}/office365s:
+    get:
+      '200':
+        application/json: GraphUserGroupTraverseOffice365Response
+  /usergroups/{group_id}/radiusservers:
+    get:
+      '200':
+        application/json: GraphUserGroupTraverseRadiusServerResponse
+  /usergroups/{group_id}/suggestions:
+    get:
+      '200':
+        application/json: UserGroupsGetSuggestionsResponse
+    post:
+      '200':
+        application/json: UserGroupsApplySuggestionsResponse
+  /usergroups/{group_id}/systemgroups:
+    get:
+      '200':
+        application/json: GraphUserGroupTraverseSystemGroupResponse
+  /usergroups/{group_id}/systems:
+    get:
+      '200':
+        application/json: GraphUserGroupTraverseSystemResponse
+  /users/{user_id}/activedirectories:
+    get:
+      '200':
+        application/json: GraphUserTraverseActiveDirectoryResponse
+  /users/{user_id}/applications:
+    get:
+      '200':
+        application/json: GraphUserTraverseApplicationResponse
+  /users/{user_id}/associations:
+    get:
+      '200':
+        application/json: GraphUserAssociationsListResponse
+  /users/{user_id}/directories:
+    get:
+      '200':
+        application/json: GraphUserTraverseDirectoryResponse
+  /users/{user_id}/gsuites:
+    get:
+      '200':
+        application/json: GraphUserTraverseGSuiteResponse
+  /users/{user_id}/ldapservers:
+    get:
+      '200':
+        application/json: GraphUserTraverseLdapServerResponse
+  /users/{user_id}/memberof:
+    get:
+      '200':
+        application/json: GraphUserMemberOfResponse
+  /users/{user_id}/office365s:
+    get:
+      '200':
+        application/json: GraphUserTraverseOffice365Response
+  /users/{user_id}/pushendpoints:
+    get:
+      '200':
+        application/json: PushEndpointsListResponse
+  /users/{user_id}/radiusservers:
+    get:
+      '200':
+        application/json: GraphUserTraverseRadiusServerResponse
+  /users/{user_id}/systemgroups:
+    get:
+      '200':
+        application/json: GraphUserTraverseSystemGroupResponse
+  /users/{user_id}/systems:
+    get:
+      '200':
+        application/json: GraphUserTraverseSystemResponse
+  /workdays:
+    get:
+      '200':
+        application/json: WorkdaysListResponse
+  /workdays/{id}/import/{job_id}/results:
+    get:
+      '200':
+        application/json: WorkdaysImportresultsResponse
+  /workdays/{workday_id}/workers:
+    get:
+      '200':
+        application/json: WorkdaysWorkersResponse
+securityParameters:
+  Authorization:
+    header: false
+  ConsistencyLevel:
+    header: false
+  Date:
+    header: false
+  count:
+    query: false
+  creation-source:
+    header: false
+  details:
+    query: false
+  domain:
+    query: false
+  fields:
+    query: false
+  filter:
+    query: false
+  limit:
+    query: false
+  maxResults:
+    query: false
+  orderBy:
+    query: false
+  orderby:
+    query: false
+  organizationObjectId:
+    query: false
+  pageToken:
+    query: false
+  query:
+    query: false
+  search:
+    query: false
+  skip:
+    query: false
+  skipToken:
+    query: false
+  sort:
+    query: false
+  sortIgnoreCase:
+    query: false
+  sortOrder:
+    query: false
+  targets:
+    query: false
+  top:
+    query: false
+  userid:
+    query: false
+  users:
+    query: false
+  x-org-id:
+    header: false
+  x-total-count:
+    header: false
+  x-unfiltered-total-count:
+    header: false
+validServerUrls: {}

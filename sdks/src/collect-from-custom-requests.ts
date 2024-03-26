@@ -1027,6 +1027,10 @@ const customRequests: Record<string, CustomRequest> = {
     type: "GET",
     url: "https://swagger.hrapi.co.uk/swagger.json",
   },
+  "jumpcloud.com": {
+    type: "GET",
+    url: "https://docs.jumpcloud.com/api/2.0/index.yaml",
+  },
   "induced.ai": {
     type: "GET",
     url: "https://raw.githubusercontent.com/inducedai/docs/main/openapi.json",
