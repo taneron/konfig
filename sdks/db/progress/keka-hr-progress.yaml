@@ -1,0 +1,322 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+operationIds:
+  /assets:
+    get: Asset_getAll
+  /assets/categories:
+    get: AssetCategory_getAll
+  /assets/conditions:
+    get: AssetCondition_getAll
+  /assets/types:
+    get: AssetType_getAll
+  /connect/token:
+    post: Authentication_getAccessToken
+  /expense/categories:
+    get: ExpenseCategory_getAllCategories
+  /expense/claims:
+    get: Expense_getAllClaims
+  /expensepolicies:
+    get: ExpensePolicy_listAllExpensePolicies
+  /hris/currencies:
+    get: Currency_getAll
+  /hris/departments:
+    get: Departments_getAll
+  /hris/employees:
+    get: Employees_getAll
+    post: Employees_createEmployee
+  /hris/employees/updatefields:
+    get: Employees_getAllUpdateFields
+  /hris/employees/{id}:
+    get: Employees_getById
+  /hris/employees/{id}/jobdetails:
+    put: Employees_updateJobDetails
+  /hris/employees/{id}/personaldetails:
+    put: Employees_updatePersonalDetails
+  /hris/groups:
+    get: Groups_getAll
+  /hris/grouptypes:
+    get: Groups_getAllGroupTypes
+  /hris/jobtitles:
+    get: JobTitle_getAll
+  /hris/locations:
+    get: Locations_getAll
+  /hris/noticeperiods:
+    get: NoticePeriod_getAll
+  /payroll/paybands:
+    get: PayBands_getAll
+  /payroll/paygrades:
+    get: PayGrades_getAll
+  /payroll/paygroups:
+    get: PayGroups_getAll
+  /payroll/paygroups/{payGroupId}/paycycles:
+    get: PayCycles_getAll
+  /payroll/paygroups/{payGroupId}/paycycles/{payCycleId}/paybatches:
+    get: PayCycles_getPayBatches
+  /payroll/paygroups/{payGroupId}/paycycles/{payCycleId}/paybatches/{payBatchId}/payments:
+    get: PayCycles_getBatchPayments
+    put: PayCycles_updatePaymentsStatus
+  /payroll/paygroups/{payGroupId}/paycycles/{payCycleId}/payregister:
+    get: PayCycles_getPayRegister
+  /payroll/salarycomponents:
+    get: SalaryComponents_getAllComponents
+  /pms/badges:
+    get: Badge_getList
+  /pms/goals:
+    get: Goal_listWithHierarchy
+  /pms/goals/{goalId}/progress:
+    put: Goal_updateProgress
+  /pms/praise:
+    get: Praise_listEmployeesPraises
+    post: Praise_createPraiseIdentifier
+  /pms/timeframes:
+    get: TimeFrames_getAll
+  /psa/clients:
+    get: Clients_getAll
+    post: Clients_createClientIdentifier
+  /psa/clients/{id}:
+    get: Clients_getById
+    put: Clients_updateDetails
+  /psa/projects:
+    get: Projects_getAll
+    post: Projects_createProjectIdentifier
+  /psa/projects/{id}:
+    get: Projects_getById
+    put: Projects_updateDetails
+  /psa/projects/{id}/allocations:
+    get: Projects_getAllocations
+  /psa/projects/{id}/timeentries:
+    get: Projects_getTimesheetEntriesBetweenDates
+  /psa/projects/{projectId}/phases:
+    get: ProjectPhases_getAll
+    post: ProjectPhases_createPhaseIdentifier
+  /psa/projects/{projectId}/tasks:
+    get: Tasks_getAll
+    post: Tasks_createTaskIdentifier
+  /psa/projects/{projectId}/tasks/{taskId}:
+    put: Tasks_updateTask
+  /psa/projects/{projectId}/tasks/{taskId}/timeentries:
+    get: Tasks_listTimeEntriesBetweenDates
+  /psa/timeentries:
+    get: TimesheetEntries_getBetweenDates
+  /requisition/requests:
+    get: RequisitionRequest_getAll
+  /time/attendance:
+    get: Attendance_getRecordsInRange
+  /time/capturescheme:
+    get: AttendanceCaptureScheme_getAll
+  /time/holidayscalendar:
+    get: HolidayCalendar_getAllHolidaysCalendar
+  /time/leavebalance:
+    get: LeaveBalance_getAllBalances
+  /time/leaverequests:
+    get: LeaveRequests_getAllBetweenDates
+    post: LeaveRequests_createRequestIdentifier
+  /time/leavetypes:
+    get: LeaveTypes_listAll
+  /v1/hire/jobs:
+    get: Jobs_getAllPublishedJobs
+  /v1/hire/jobs/{jobId}/applicationfields:
+    get: Jobs_getApplicationFields
+  /v1/hire/jobs/{jobId}/candidate:
+    post: Jobs_postCandidate
+  /v1/hire/jobs/{jobId}/candidate/{candidateId}:
+    put: Jobs_updateCandidate
+  /v1/hire/jobs/{jobId}/candidate/{candidateId}/interviews:
+    get: Jobs_getCandidateInterviews
+  /v1/hire/jobs/{jobId}/candidate/{candidateId}/notes:
+    post: Jobs_addCandidateNote
+  /v1/hire/jobs/{jobId}/candidate/{candidateId}/scorecards:
+    get: Jobs_getCandidateScorecards
+  /v1/hire/jobs/{jobId}/candidates:
+    get: Jobs_getCandidates
+  /v1/hire/talentpool:
+    get: TalentPool_getAll
+  /v1/hire/talentpool/{talentPoolId}/applicationfields:
+    get: TalentPool_getApplicationFields
+  /v1/hire/talentpool/{talentPoolId}/candidate:
+    post: TalentPool_addCandidate
+  /v1/hire/talentpool/{talentPoolId}/candidates:
+    get: TalentPool_getCandidates
+operationTags:
+  /connect/token:
+    post: Authentication
+renameTags: {}
+requestSchemaNames:
+  /connect/token:
+    post:
+      application/x-www-form-urlencoded: AuthenticationGetAccessTokenRequest
+  /payroll/paygroups/{payGroupId}/paycycles/{payCycleId}/paybatches/{payBatchId}/payments:
+    put:
+      application/*+json: PayCyclesUpdatePaymentsStatusRequest3
+      application/json: PayCyclesUpdatePaymentsStatusRequest1
+      application/json-patch+json: PayCyclesUpdatePaymentsStatusRequest
+      text/json: PayCyclesUpdatePaymentsStatusRequest2
+  /v1/hire/jobs/{jobId}/candidate:
+    post:
+      application/*+json: JobsPostCandidateRequest3
+      application/json: JobsPostCandidateRequest1
+      application/json-patch+json: JobsPostCandidateRequest
+      text/json: JobsPostCandidateRequest2
+  /v1/hire/jobs/{jobId}/candidate/{candidateId}:
+    put:
+      application/*+json: JobsUpdateCandidateRequest3
+      application/json: JobsUpdateCandidateRequest1
+      application/json-patch+json: JobsUpdateCandidateRequest
+      text/json: JobsUpdateCandidateRequest2
+  /v1/hire/talentpool/{talentPoolId}/candidate:
+    post:
+      application/*+json: TalentPoolAddCandidateRequest3
+      application/json: TalentPoolAddCandidateRequest1
+      application/json-patch+json: TalentPoolAddCandidateRequest
+      text/json: TalentPoolAddCandidateRequest2
+responseDescriptions: {}
+responseSchemaNames:
+  /connect/token:
+    post:
+      '200':
+        application/json: AuthenticationGetAccessTokenResponse
+      '400':
+        application/json: AuthenticationGetAccessToken400Response
+  /v1/hire/jobs:
+    get:
+      '200':
+        application/json: JobsGetAllPublishedJobsResponse
+        text/json: JobsGetAllPublishedJobs200Response
+  /v1/hire/jobs/{jobId}/applicationfields:
+    get:
+      '200':
+        application/json: JobsGetApplicationFieldsResponse
+        text/json: JobsGetApplicationFields200Response
+  /v1/hire/jobs/{jobId}/candidate:
+    post:
+      '200':
+        application/json: JobsPostCandidateResponse
+        text/json: JobsPostCandidate200Response
+  /v1/hire/jobs/{jobId}/candidate/{candidateId}:
+    put:
+      '200':
+        application/json: JobsUpdateCandidateResponse
+        text/json: JobsUpdateCandidate200Response
+  /v1/hire/jobs/{jobId}/candidate/{candidateId}/interviews:
+    get:
+      '200':
+        application/json: JobsGetCandidateInterviewsResponse
+        text/json: JobsGetCandidateInterviews200Response
+  /v1/hire/jobs/{jobId}/candidate/{candidateId}/notes:
+    post:
+      '200':
+        application/json: JobsAddCandidateNoteResponse
+        text/json: JobsAddCandidateNote200Response
+  /v1/hire/jobs/{jobId}/candidate/{candidateId}/scorecards:
+    get:
+      '200':
+        application/json: JobsGetCandidateScorecardsResponse
+        text/json: JobsGetCandidateScorecards200Response
+  /v1/hire/jobs/{jobId}/candidates:
+    get:
+      '200':
+        application/json: JobsGetCandidatesResponse
+        text/json: JobsGetCandidates200Response
+  /v1/hire/talentpool:
+    get:
+      '200':
+        application/json: TalentPoolGetAllResponse
+        text/json: TalentPoolGetAll200Response
+  /v1/hire/talentpool/{talentPoolId}/applicationfields:
+    get:
+      '200':
+        application/json: TalentPoolGetApplicationFieldsResponse
+        text/json: TalentPoolGetApplicationFields200Response
+  /v1/hire/talentpool/{talentPoolId}/candidate:
+    post:
+      '200':
+        application/json: TalentPoolAddCandidateResponse
+        text/json: TalentPoolAddCandidate200Response
+  /v1/hire/talentpool/{talentPoolId}/candidates:
+    get:
+      '200':
+        application/json: TalentPoolGetCandidatesResponse
+        text/json: TalentPoolGetCandidates200Response
+securityParameters:
+  JobStatus:
+    query: false
+  assetCategoryIds:
+    query: false
+  assetConditionIds:
+    query: false
+  assetIds:
+    query: false
+  assetStatus:
+    query: false
+  assetTypeIds:
+    query: false
+  badgeIds:
+    query: false
+  captureschemeIds:
+    query: false
+  clientIds:
+    query: false
+  departmentIds:
+    query: false
+  employeeIds:
+    query: false
+  employeeNumbers:
+    query: false
+  employmentStatus:
+    query: false
+  expenseCategoryIds:
+    query: false
+  expensepolicyIds:
+    query: false
+  from:
+    query: false
+  goalIds:
+    query: false
+  groupTypeIds:
+    query: false
+  holidaysCalendarIds:
+    query: false
+  inNoticePeriod:
+    query: false
+  inProbation:
+    query: false
+  isArchived:
+    query: false
+  lastModified:
+    query: false
+  leaveTypeIds:
+    query: false
+  noticePeriodIds:
+    query: false
+  pageNumber:
+    query: false
+  pageSize:
+    query: false
+  payBandIds:
+    query: false
+  payGradeIds:
+    query: false
+  phaseName:
+    query: false
+  praiseIds:
+    query: false
+  projectIds:
+    query: false
+  requisitionRequestIds:
+    query: false
+  runStatus:
+    query: false
+  status:
+    query: false
+  systemGroupTypes:
+    query: false
+  taskIds:
+    query: false
+  timeFrameIds:
+    query: false
+  to:
+    query: false
+validServerUrls:
+  https://{company}.{environment}.com/api/v1:
+    url: https://{company}.{environment}.com/api/v1

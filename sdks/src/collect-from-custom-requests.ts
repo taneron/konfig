@@ -1031,6 +1031,14 @@ const customRequests: Record<string, CustomRequest> = {
     type: "GET",
     url: "https://docs.jumpcloud.com/api/2.0/index.yaml",
   },
+  "keka.com": {
+    lambda: async () => {
+      const urls = await collectEndpointsFromReadme({
+        url: "https://developers.keka.com/reference",
+      });
+      return downloadOpenApiSpecFromReadme({ urls });
+    },
+  },
   "induced.ai": {
     type: "GET",
     url: "https://raw.githubusercontent.com/inducedai/docs/main/openapi.json",
