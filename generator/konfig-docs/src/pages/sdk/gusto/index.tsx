@@ -3,7 +3,7 @@ import { Company } from '../../../components/Company';
 
 const sdks = [
   {
-    "name": "Gusto",
+    "name": "AppIntegrations",
     "numberOfMethods": 100,
     "categories": [
       "payroll",
@@ -13,14 +13,14 @@ const sdks = [
       "health_insurance",
       "compliance"
     ],
-    "index": "gusto/typescript",
+    "index": "app-integrations/typescript",
     "language": "TypeScript",
-    "link": "/sdk/gusto/typescript/",
+    "link": "/sdk/gusto/app-integrations/typescript/",
     "developerDocumentation": "docs.gusto.com/app-integrations/docs/introduction",
-    "openapiGitHubUi": "https://github.com/konfig-sdks/openapi-examples/tree/HEAD/gusto/openapi.yaml"
+    "openapiGitHubUi": "https://github.com/konfig-sdks/openapi-examples/tree/HEAD/gusto/app-integrations/openapi.yaml"
   },
   {
-    "name": "Gusto",
+    "name": "AppIntegrations",
     "numberOfMethods": 100,
     "categories": [
       "payroll",
@@ -30,14 +30,14 @@ const sdks = [
       "health_insurance",
       "compliance"
     ],
-    "index": "gusto/python",
+    "index": "app-integrations/python",
     "language": "Python",
-    "link": "/sdk/gusto/python/",
+    "link": "/sdk/gusto/app-integrations/python/",
     "developerDocumentation": "docs.gusto.com/app-integrations/docs/introduction",
-    "openapiGitHubUi": "https://github.com/konfig-sdks/openapi-examples/tree/HEAD/gusto/openapi.yaml"
+    "openapiGitHubUi": "https://github.com/konfig-sdks/openapi-examples/tree/HEAD/gusto/app-integrations/openapi.yaml"
   },
   {
-    "name": "Gusto",
+    "name": "AppIntegrations",
     "numberOfMethods": 100,
     "categories": [
       "payroll",
@@ -47,11 +47,11 @@ const sdks = [
       "health_insurance",
       "compliance"
     ],
-    "index": "gusto/java",
+    "index": "app-integrations/java",
     "language": "Java",
-    "link": "/sdk/gusto/java/",
+    "link": "/sdk/gusto/app-integrations/java/",
     "developerDocumentation": "docs.gusto.com/app-integrations/docs/introduction",
-    "openapiGitHubUi": "https://github.com/konfig-sdks/openapi-examples/tree/HEAD/gusto/openapi.yaml"
+    "openapiGitHubUi": "https://github.com/konfig-sdks/openapi-examples/tree/HEAD/gusto/app-integrations/openapi.yaml"
   },
   {
     "name": "EmbeddedPayroll",
@@ -119,9 +119,9 @@ export default function Gusto() {
   return (
     <Company
       company="Gusto"
-      previewLinkImage="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/gusto/imagePreview.png"
-      logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/gusto/logo.png"
-      favicon="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/gusto/favicon.png"
+      previewLinkImage="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/gusto/app-integrations/imagePreview.png"
+      logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/gusto/app-integrations/logo.png"
+      favicon="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/gusto/app-integrations/favicon.png"
       sdks={sdks}
       homepage="gusto.com"
       companyKebabCase="gusto"

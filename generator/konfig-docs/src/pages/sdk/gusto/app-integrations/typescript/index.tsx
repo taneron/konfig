@@ -6,7 +6,7 @@ import GettingStarted from "./_getting-started.mdx";
 import FirstRequest from "./_first-request.mdx"
 import { SdkNew } from "@site/src/components/SdkNew";
 
-export default function GustoTypeScriptSdk() {
+export default function GustoAppIntegrationsTypeScriptSdk() {
   return (
     <SdkNew
       sdkName="gusto-typescript-sdk"
@@ -14,16 +14,16 @@ export default function GustoTypeScriptSdk() {
 
 Through one refreshingly easy, integrated platform, we automate and simplify your payroll, benefits, and HR, all while providing expert support. You and your employees will get the peace of mind you need to do your best work.`}
       company="Gusto"
-      // Missing serviceName
-      logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/gusto/logo.png"
+      serviceName="AppIntegrations"
+      logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/gusto/app-integrations/logo.png"
       companyKebabCase="gusto"
       clientNameCamelCase="gusto"
       homepage="gusto.com"
-      lastUpdated={new Date("2024-03-26T00:42:28.369Z")}
-      faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/gusto/favicon.png"
+      lastUpdated={new Date("2024-03-26T00:47:46.893Z")}
+      faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/gusto/app-integrations/favicon.png"
       // Missing contactUrl
       contactEmail="developer@gusto.com"
-      previewLinkImage="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/gusto/imagePreview.png"
+      previewLinkImage="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/gusto/app-integrations/imagePreview.png"
       GettingStarted={GettingStarted}
       FirstRequest={FirstRequest}
       categories={["payroll","hr","benefits","human_resources","health_insurance","compliance"]}
@@ -4792,8 +4792,8 @@ Through one refreshingly easy, integrated platform, we automate and simplify you
       schemas={198}
       parameters={416}
       difficulty="Hard"
-      openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/gusto/openapi.yaml"
-      openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/gusto/openapi.yaml"
+      openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/gusto/app-integrations/openapi.yaml"
+      openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/gusto/app-integrations/openapi.yaml"
       developerDocumentation="docs.gusto.com/app-integrations/docs/introduction"
     />
   );
