@@ -24013,6 +24013,24 @@ components:
           allOf:
             - $ref: '#/components/schemas/BasketUpdateDealYaml'
       type: object
+    IdverificationapiRequestsAgeVerificationConsentGivenRequestYaml:
+      type: object
+      required:
+        - basketId
+        - timestamp
+      properties:
+        basketId:
+          type: string
+          description: >-
+            The ID of the basket for which the consent for Age Verification was
+            given.
+        timestamp:
+          description: Timestamp of the consent in UTC.
+          type: string
+          format: date-time
+      example:
+        basketId: EDAwNTY4ZGEtYjk4NC99OD-v1
+        timestamp: '2024-03-06T13:09:33.339Z'
     IdverificationapiRequestsCreateInitSessionRequestYaml:
       type: object
       properties:
@@ -34558,6 +34576,14 @@ components:
         - logo
         - video
       type: string
+    PartnermediaRequestMediaUploadInstructionsYaml:
+      properties:
+        fileType:
+          nullable: false
+          description: mine type of the file to be uploaded.
+          type: string
+      example:
+        fileType: image/png
     PartnermediaRequestPublishMediaRequestYaml:
       properties:
         mediaUrl:

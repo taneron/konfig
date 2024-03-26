@@ -592,6 +592,10 @@ const customRequests: Record<string, CustomRequest> = {
       throw Error("Expecting oasDefinition to be defined");
     },
   },
+  "onelogin.com": {
+    type: "GET",
+    url: "https://app.swaggerhub.com/apiproxy/registry/OneLogin-Auth/onelogin-api/1.0.0-oas3",
+  },
   "visier.com_Authentication": {
     type: "GET",
     url: "https://raw.githubusercontent.com/visier/openapi-clients/main/res/authentication-apis.yaml",

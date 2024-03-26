@@ -1,0 +1,322 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignoreObjectsWithNoProperties: true
+ignorePotentialIncorrectType: true
+operationIds:
+  /events:
+    get: Events_listFilteredEvents
+  /events/types:
+    get: Events_listEventTypes
+  /events/{id}:
+    get: Events_getById
+  /groups:
+    get: Groups_getList
+  /groups/{id}:
+    get: Groups_getById
+  /invites/get_invite_link:
+    post: Invites_generateLink
+  /invites/send_invite_link:
+    post: Invites_sendInviteLink
+  /login/auth:
+    post: Login_userAuthentication
+  /login/verify_factor:
+    post: Login_verifyFactor
+  /privileges:
+    get: Privileges_listPrivileges
+    post: Privileges_createPrivilege
+  /privileges/{id}:
+    delete: Privileges_deletePrivilege
+    get: Privileges_getPrivilegeById
+    put: Privileges_updatePrivilegeById
+  /privileges/{id}/roles:
+    get: Privileges_getRoles
+    post: Privileges_assignRoles
+  /privileges/{id}/roles/{role_id}:
+    delete: Privileges_removeRole
+  /privileges/{id}/users:
+    get: Privileges_getAssignedUsers
+    post: Privileges_assignUsers
+  /privileges/{id}/users/{user_id}:
+    delete: Privileges_removeUser
+  /roles:
+    get: Roles_listRoles
+  /roles/{id}:
+    get: Roles_getRoleById
+  /saml_assertion:
+    post: Saml_generateAssertion
+  /saml_assertion/verify_factor:
+    post: Saml_verifyFactor
+  /users:
+    get: Users_getList
+    post: Users_createAccount
+  /users/custom_attributes:
+    get: Users_getCustomAttributes
+  /users/set_password_clear_text/{id}:
+    put: Users_setPasswordClearTextById
+  /users/set_password_using_salt/{id}:
+    put: Users_setPreSaltedPassword
+  /users/{id}:
+    delete: Users_deleteUserById
+    get: Users_getUser
+    put: Users_updateById
+  /users/{id}/add_roles:
+    put: Users_assignRoles
+  /users/{id}/apps:
+    get: Users_listUserApps
+  /users/{id}/auth_factors:
+    get: Mfa_getUserFactorsList
+  /users/{id}/lock_user:
+    put: Users_lockUserAccount
+  /users/{id}/logout:
+    put: Users_logoutUserById
+  /users/{id}/mfa_token:
+    post: Users_generateTempMfaToken
+  /users/{id}/otp_devices:
+    get: Mfa_getUserFactors
+    post: Mfa_enrollUserWithFactor
+  /users/{id}/otp_devices/{device_id}:
+    delete: Mfa_removeFactor
+  /users/{id}/otp_devices/{device_id}/trigger:
+    post: Mfa_triggerOtp
+  /users/{id}/otp_devices/{device_id}/verify:
+    post: Mfa_authenticateOtp
+  /users/{id}/remove_roles:
+    put: Users_removeUserRoles
+  /users/{id}/roles:
+    get: Users_getUserRoles
+  /users/{id}/set_custom_attributes:
+    put: Users_setCustomAttributes
+  /users/{id}/set_state:
+    put: Users_setState
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /invites/get_invite_link:
+    post:
+      application/json: InvitesGenerateLinkRequest
+  /invites/send_invite_link:
+    post:
+      application/json: InvitesSendInviteLinkRequest
+  /login/auth:
+    post:
+      application/json: LoginUserAuthenticationRequest
+  /login/verify_factor:
+    post:
+      application/json: LoginVerifyFactorRequest
+  /privileges/{id}/roles:
+    post:
+      application/json: PrivilegesAssignRolesRequest
+  /privileges/{id}/users:
+    post:
+      application/json: PrivilegesAssignUsersRequest
+  /saml_assertion:
+    post:
+      application/json: SamlGenerateAssertionRequest
+  /saml_assertion/verify_factor:
+    post:
+      application/json: SamlVerifyFactorRequest
+  /users/set_password_clear_text/{id}:
+    put:
+      application/json: UsersSetPasswordClearTextByIdRequest
+  /users/set_password_using_salt/{id}:
+    put:
+      application/json: UsersSetPreSaltedPasswordRequest
+  /users/{id}/add_roles:
+    put:
+      application/json: UsersAssignRolesRequest
+  /users/{id}/lock_user:
+    put:
+      application/json: UsersLockUserAccountRequest
+  /users/{id}/mfa_token:
+    post:
+      application/json: UsersGenerateTempMfaTokenRequest
+  /users/{id}/otp_devices:
+    post:
+      application/json: MfaEnrollUserWithFactorRequest
+  /users/{id}/otp_devices/{device_id}/verify:
+    post:
+      application/json: MfaAuthenticateOtpRequest
+  /users/{id}/remove_roles:
+    put:
+      application/json: UsersRemoveUserRolesRequest
+  /users/{id}/set_custom_attributes:
+    put:
+      application/json: UsersSetCustomAttributesRequest
+  /users/{id}/set_state:
+    put:
+      application/json: UsersSetStateRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /events:
+    get:
+      '200':
+        application/json: EventsListFilteredEventsResponse
+  /events/types:
+    get:
+      '200':
+        application/json: EventsListEventTypesResponse
+  /events/{id}:
+    get:
+      '200':
+        application/json: EventsGetByIdResponse
+  /groups:
+    get:
+      '200':
+        application/json: GroupsGetListResponse
+  /groups/{id}:
+    get:
+      '200':
+        application/json: GroupsGetByIdResponse
+  /invites/get_invite_link:
+    post:
+      '200':
+        application/json: InvitesGenerateLinkResponse
+  /login/auth:
+    post:
+      '200':
+        application/json: LoginUserAuthenticationResponse
+  /login/verify_factor:
+    post:
+      '200':
+        application/json: LoginVerifyFactorResponse
+  /privileges:
+    get:
+      '200':
+        application/json: PrivilegesListPrivilegesResponse
+      '401':
+        '*/*': PrivilegesListPrivileges401Response
+    post:
+      '201':
+        '*/*': PrivilegesCreatePrivilegeResponse
+  /privileges/{id}:
+    put:
+      '200':
+        '*/*': PrivilegesUpdatePrivilegeByIdResponse
+  /privileges/{id}/roles:
+    get:
+      '200':
+        '*/*': PrivilegesGetRolesResponse
+    post:
+      '200':
+        '*/*': PrivilegesAssignRolesResponse
+  /privileges/{id}/users:
+    get:
+      '200':
+        '*/*': PrivilegesGetAssignedUsersResponse
+    post:
+      '200':
+        '*/*': PrivilegesAssignUsersResponse
+  /roles:
+    get:
+      '200':
+        application/json: RolesListRolesResponse
+  /roles/{id}:
+    get:
+      '200':
+        application/json: RolesGetRoleByIdResponse
+  /saml_assertion:
+    post:
+      '200':
+        application/json: SamlGenerateAssertionResponse
+  /saml_assertion/verify_factor:
+    post:
+      '200':
+        application/json: SamlVerifyFactorResponse
+  /users:
+    get:
+      '200':
+        application/json: UsersGetListResponse
+    post:
+      '200':
+        application/json: UsersCreateAccountResponse
+  /users/custom_attributes:
+    get:
+      '200':
+        application/json: UsersGetCustomAttributesResponse
+  /users/{id}:
+    get:
+      '200':
+        application/json: UsersGetUserResponse
+    put:
+      '200':
+        application/json: UsersUpdateByIdResponse
+  /users/{id}/apps:
+    get:
+      '200':
+        application/json: UsersListUserAppsResponse
+  /users/{id}/auth_factors:
+    get:
+      '200':
+        application/json: MfaGetUserFactorsListResponse
+  /users/{id}/mfa_token:
+    post:
+      '201':
+        application/json: UsersGenerateTempMfaTokenResponse
+  /users/{id}/otp_devices:
+    get:
+      '200':
+        application/json: MfaGetUserFactorsResponse
+    post:
+      '200':
+        application/json: MfaEnrollUserWithFactorResponse
+  /users/{id}/otp_devices/{device_id}:
+    delete:
+      '200':
+        application/json: MfaRemoveFactorResponse
+  /users/{id}/otp_devices/{device_id}/trigger:
+    post:
+      '200':
+        application/json: MfaTriggerOtpResponse
+  /users/{id}/roles:
+    get:
+      '200':
+        application/json: UsersGetUserRolesResponse
+securityParameters:
+  Custom-Allowed-Origin-Header-1:
+    header: false
+  client_id:
+    query: false
+  created_at:
+    query: false
+  directory_id:
+    query: false
+  email:
+    query: false
+  event_type_id:
+    query: false
+  external_id:
+    query: false
+  fields:
+    query: false
+  firstname:
+    query: false
+  id:
+    query: false
+  limit:
+    query: false
+  manager_ad_id:
+    query: false
+  name:
+    query: false
+  resolution:
+    query: false
+  role_id:
+    query: false
+  samaccountname:
+    query: false
+  since:
+    query: false
+  sort:
+    query: false
+  until:
+    query: false
+  user_id:
+    query: false
+  username:
+    query: false
+  userprincipalname:
+    query: false
+validServerUrls:
+  https://api.{region}.onelogin.com/api/1:
+    url: https://api.{region}.onelogin.com/api/1
