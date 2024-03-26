@@ -6,24 +6,24 @@ import GettingStarted from "./_getting-started.mdx";
 import FirstRequest from "./_first-request.mdx"
 import { SdkNew } from "@site/src/components/SdkNew";
 
-export default function OfficientIoTypeScriptSdk() {
+export default function OfficientTypeScriptSdk() {
   return (
     <SdkNew
-      sdkName="officient-io-typescript-sdk"
-      metaDescription={`Officient offers an intuitive HRIS which helps manage all personnel administration through our HR platform & personalized employee self-services. Manage payroll, company assets, contracts, days off, fleet, performance reviews and all employee data in one HR system. HR deserves great software and we're here to provide it. 
+      sdkName="officient-typescript-sdk"
+      metaDescription={`Officient offers an intuitive HRIS which helps manage all personnel administration through our HR platform & personalized employee self-services. Manage payroll, company assets, contracts, days off, fleet, performance reviews and all employee data in one HR system. HR deserves great software and we're here to provide it.
 
 We support our customers in transforming HR towards paperless administration and automating tedious workforce management tasks in the process. Our goal? Transform HR from an administrative, processing role, to a controlling role which fuels HR strategy across the organization.`}
-      company="Officient.io"
+      company="Officient"
       // Missing serviceName
-      logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/officient-io/logo.png"
-      companyKebabCase="officient-io"
-      clientNameCamelCase="officientIo"
+      logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/officient/logo.png"
+      companyKebabCase="officient"
+      clientNameCamelCase="officient"
       homepage="officient.io"
-      lastUpdated={new Date("2024-03-26T20:26:03.770Z")}
-      faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/officient-io/favicon.png"
+      lastUpdated={new Date("2024-03-26T20:28:24.270Z")}
+      faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/officient/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
-      previewLinkImage="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/officient-io/imagePreview.jpg"
+      previewLinkImage="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/officient/imagePreview.jpg"
       GettingStarted={GettingStarted}
       FirstRequest={FirstRequest}
       categories={["hr"]}
@@ -105,7 +105,7 @@ We support our customers in transforming HR towards paperless administration and
   },
   {
     "url": "/1.0/wages/{person_id}/current",
-    "method": "getCurrentWageDetails",
+    "method": "getCurrentWage",
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "Person",
     "typeScriptTag": "person",
@@ -271,7 +271,7 @@ We support our customers in transforming HR towards paperless administration and
   },
   {
     "url": "/1.0/fleet/list",
-    "method": "getAll",
+    "method": "getAllVehicles",
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "Vehicle",
     "typeScriptTag": "vehicle",
@@ -465,10 +465,10 @@ We support our customers in transforming HR towards paperless administration and
   },
   {
     "url": "/1.0/calendar/events/types/{year}",
-    "method": "getCustomEventTypesByYear",
+    "method": "getList",
     "httpMethod": HttpMethodsEnum.GET,
-    "tag": "Calendar",
-    "typeScriptTag": "calendar",
+    "tag": "CustomEventType",
+    "typeScriptTag": "customEventType",
     "description": "Custom event types",
     "parameters": [
       {
@@ -492,7 +492,7 @@ We support our customers in transforming HR towards paperless administration and
   },
   {
     "url": "/1.0/calendar/{person_id}/events/add",
-    "method": "addEventToCalendar",
+    "method": "addToCalendar",
     "httpMethod": HttpMethodsEnum.POST,
     "tag": "Person",
     "typeScriptTag": "person",
@@ -553,7 +553,7 @@ We support our customers in transforming HR towards paperless administration and
   },
   {
     "url": "/1.0/calendar/{person_id}/{year}/{month}/{day}/work",
-    "method": "overwriteTimeWorked",
+    "method": "updateTimeWorked",
     "httpMethod": HttpMethodsEnum.PATCH,
     "tag": "Person",
     "typeScriptTag": "person",
@@ -703,7 +703,7 @@ We support our customers in transforming HR towards paperless administration and
   },
   {
     "url": "/1.0/documents/{object_type}/{object_id}/list",
-    "method": "getByObject",
+    "method": "listRelated",
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "Document",
     "typeScriptTag": "document",
@@ -804,7 +804,7 @@ We support our customers in transforming HR towards paperless administration and
   },
   {
     "url": "/1.0/webhooks/add",
-    "method": "subscribeNotifications",
+    "method": "subscribeNotification",
     "httpMethod": HttpMethodsEnum.POST,
     "tag": "Webhook",
     "typeScriptTag": "webhook",
@@ -823,7 +823,7 @@ We support our customers in transforming HR towards paperless administration and
   },
   {
     "url": "/1.0/webhooks/{webhook_id}",
-    "method": "unsubscribeNotifications",
+    "method": "unsubscribeNotification",
     "httpMethod": HttpMethodsEnum.DELETE,
     "tag": "Webhook",
     "typeScriptTag": "webhook",
@@ -869,7 +869,7 @@ We support our customers in transforming HR towards paperless administration and
   },
   {
     "url": "/1.0/account",
-    "method": "informationGet",
+    "method": "getInformation",
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "Account",
     "typeScriptTag": "account",
@@ -888,7 +888,7 @@ We support our customers in transforming HR towards paperless administration and
   },
   {
     "url": "/1.0/contracts/add",
-    "method": "addNew",
+    "method": "createNewContract",
     "httpMethod": HttpMethodsEnum.POST,
     "tag": "Contract",
     "typeScriptTag": "contract",
@@ -1001,7 +1001,7 @@ We support our customers in transforming HR towards paperless administration and
   },
   {
     "url": "/1.0/people/search",
-    "method": "searchByNameEmailNationalNumber",
+    "method": "searchByCriteria",
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "Person",
     "typeScriptTag": "person",
@@ -1036,7 +1036,7 @@ We support our customers in transforming HR towards paperless administration and
   },
   {
     "url": "/1.0/calendar/{person_id}/{year}/work/bulk",
-    "method": "bulkUpdateTimeWorked",
+    "method": "updateBulkTimeWorked",
     "httpMethod": HttpMethodsEnum.PATCH,
     "tag": "Person",
     "typeScriptTag": "person",
@@ -1070,7 +1070,7 @@ We support our customers in transforming HR towards paperless administration and
   },
   {
     "url": "/1.0/people/{person_id}/manager",
-    "method": "getManager",
+    "method": "getManagerDetails",
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "Person",
     "typeScriptTag": "person",
@@ -1124,7 +1124,7 @@ We support our customers in transforming HR towards paperless administration and
   },
   {
     "url": "/1.0/calendar/{person_id}/{year}/{month}/{day}/events/set",
-    "method": "setEvent",
+    "method": "overwriteEvent",
     "httpMethod": HttpMethodsEnum.PUT,
     "tag": "Person",
     "typeScriptTag": "person",
@@ -1247,7 +1247,7 @@ We support our customers in transforming HR towards paperless administration and
   },
   {
     "url": "/1.0/teams/{team_id}",
-    "method": "editTeam",
+    "method": "editInformation",
     "httpMethod": HttpMethodsEnum.PATCH,
     "tag": "Team",
     "typeScriptTag": "team",
@@ -1274,7 +1274,7 @@ We support our customers in transforming HR towards paperless administration and
   },
   {
     "url": "/1.0/teams/add",
-    "method": "createNew",
+    "method": "createNewTeam",
     "httpMethod": HttpMethodsEnum.POST,
     "tag": "Team",
     "typeScriptTag": "team",
@@ -1293,7 +1293,7 @@ We support our customers in transforming HR towards paperless administration and
   },
   {
     "url": "/1.0/assets/types/list",
-    "method": "listCustomAssetTypes",
+    "method": "getCustomTypesList",
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "Asset",
     "typeScriptTag": "asset",
@@ -1331,7 +1331,7 @@ We support our customers in transforming HR towards paperless administration and
   },
   {
     "url": "/1.0/assets/types/{asset_type_id}",
-    "method": "deleteCustomType",
+    "method": "removeCustomType",
     "httpMethod": HttpMethodsEnum.DELETE,
     "tag": "Asset",
     "typeScriptTag": "asset",
@@ -1354,7 +1354,7 @@ We support our customers in transforming HR towards paperless administration and
   },
   {
     "url": "/1.0/assets/add",
-    "method": "addAsset",
+    "method": "createNewAsset",
     "httpMethod": HttpMethodsEnum.POST,
     "tag": "Asset",
     "typeScriptTag": "asset",
@@ -1373,7 +1373,7 @@ We support our customers in transforming HR towards paperless administration and
   },
   {
     "url": "/1.0/assets/{asset_id}",
-    "method": "delete",
+    "method": "remove",
     "httpMethod": HttpMethodsEnum.DELETE,
     "tag": "Asset",
     "typeScriptTag": "asset",
@@ -1400,7 +1400,7 @@ We support our customers in transforming HR towards paperless administration and
   },
   {
     "url": "/1.0/assets/{asset_id}",
-    "method": "updateAssetInformation",
+    "method": "updateAsset",
     "httpMethod": HttpMethodsEnum.PATCH,
     "tag": "Asset",
     "typeScriptTag": "asset",
@@ -1446,7 +1446,7 @@ We support our customers in transforming HR towards paperless administration and
   },
   {
     "url": "/1.0/fleet/{vehicle_id}",
-    "method": "updateInformation",
+    "method": "editDetails",
     "httpMethod": HttpMethodsEnum.PATCH,
     "tag": "Vehicle",
     "typeScriptTag": "vehicle",
@@ -1473,7 +1473,7 @@ We support our customers in transforming HR towards paperless administration and
   },
   {
     "url": "/1.0/calendar/{person_id}/{year}",
-    "method": "getScheduledYearly",
+    "method": "getYearlyCalendar",
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "Person",
     "typeScriptTag": "person",
@@ -1515,8 +1515,8 @@ We support our customers in transforming HR towards paperless administration and
     "url": "/1.0/calendar/requests/list",
     "method": "listRequests",
     "httpMethod": HttpMethodsEnum.GET,
-    "tag": "Calendar",
-    "typeScriptTag": "calendar",
+    "tag": "CalendarRequest",
+    "typeScriptTag": "calendarRequest",
     "description": "List calendar requests",
     "parameters": [
       {
@@ -1541,10 +1541,10 @@ We support our customers in transforming HR towards paperless administration and
   },
   {
     "url": "/1.0/calendar/requests/{request_id}/detail",
-    "method": "getRequestDetail",
+    "method": "getDetailById",
     "httpMethod": HttpMethodsEnum.GET,
-    "tag": "Calendar",
-    "typeScriptTag": "calendar",
+    "tag": "CalendarRequest",
+    "typeScriptTag": "calendarRequest",
     "description": "Calendar request detail",
     "parameters": [
       {
@@ -1568,7 +1568,7 @@ We support our customers in transforming HR towards paperless administration and
   },
   {
     "url": "/1.0/custom_fields/{custom_field_id}/{object_type}/{object_id}",
-    "method": "updateValueForObject",
+    "method": "editValueForObject",
     "httpMethod": HttpMethodsEnum.PATCH,
     "tag": "CustomField",
     "typeScriptTag": "customField",
@@ -1628,7 +1628,7 @@ We support our customers in transforming HR towards paperless administration and
   },
   {
     "url": "/1.0/people/{person_id}/photo",
-    "method": "uploadPhoto",
+    "method": "uploadAvatar",
     "httpMethod": HttpMethodsEnum.PUT,
     "tag": "Person",
     "typeScriptTag": "person",
@@ -1682,7 +1682,7 @@ We support our customers in transforming HR towards paperless administration and
   },
   {
     "url": "/1.0/wages/one_off/components/{person_id}/options/list",
-    "method": "listOneOffComponents",
+    "method": "listAvailableComponents",
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "Person",
     "typeScriptTag": "person",
@@ -1780,7 +1780,7 @@ We support our customers in transforming HR towards paperless administration and
   },
   {
     "url": "/1.0/performance_reviews/{person_id}/list",
-    "method": "getPerformanceReviews",
+    "method": "getPerformanceReviewsByPerson",
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "Person",
     "typeScriptTag": "person",
@@ -1811,7 +1811,7 @@ We support our customers in transforming HR towards paperless administration and
   },
   {
     "url": "/1.0/legal/dimonas/{person_id}/list",
-    "method": "getDimonaByPerson",
+    "method": "listDimonasByPerson",
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "Person",
     "typeScriptTag": "person",
@@ -1838,10 +1838,10 @@ We support our customers in transforming HR towards paperless administration and
   },
   {
     "url": "/1.0/calendar/state/lock",
-    "method": "unlockMonthCorrections",
+    "method": "unlockMonthProcessed",
     "httpMethod": HttpMethodsEnum.POST,
-    "tag": "Calendar",
-    "typeScriptTag": "calendar",
+    "tag": "CalendarState",
+    "typeScriptTag": "calendarState",
     "description": "Unlock calendar",
     "parameters": [
       {
@@ -1863,7 +1863,7 @@ We support our customers in transforming HR towards paperless administration and
   },
   {
     "url": "/1.0/budgets/{budget_id}",
-    "method": "removeBudget",
+    "method": "deleteBudgetById",
     "httpMethod": HttpMethodsEnum.DELETE,
     "tag": "Budget",
     "typeScriptTag": "budget",
@@ -1890,7 +1890,7 @@ We support our customers in transforming HR towards paperless administration and
   },
   {
     "url": "/1.0/budgets/{budget_id}",
-    "method": "updateBudgetDetails",
+    "method": "updateBudgetItem",
     "httpMethod": HttpMethodsEnum.PATCH,
     "tag": "Budget",
     "typeScriptTag": "budget",
@@ -1922,7 +1922,7 @@ We support our customers in transforming HR towards paperless administration and
   },
   {
     "url": "/1.0/budgets/add",
-    "method": "createNewBudget",
+    "method": "addBudgetItem",
     "httpMethod": HttpMethodsEnum.POST,
     "tag": "Budget",
     "typeScriptTag": "budget",
@@ -2070,7 +2070,7 @@ We support our customers in transforming HR towards paperless administration and
   },
   {
     "url": "/1.0/budgets/people/{person_id}/{budget_id}/items/list",
-    "method": "getBudgetItems",
+    "method": "listBudgetItems",
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "Person",
     "typeScriptTag": "person",
@@ -2104,10 +2104,10 @@ We support our customers in transforming HR towards paperless administration and
   },
   {
     "url": "/1.0/calendar/events/priorityschemes/{year}",
-    "method": "listPrioritySchemesByYear",
+    "method": "listActivePrioritySchemesByYear",
     "httpMethod": HttpMethodsEnum.GET,
-    "tag": "Calendar",
-    "typeScriptTag": "calendar",
+    "tag": "PriorityScheme",
+    "typeScriptTag": "priorityScheme",
     "description": "List priority schemes",
     "parameters": [
       {
@@ -2131,7 +2131,7 @@ We support our customers in transforming HR towards paperless administration and
   },
   {
     "url": "/1.0/calendar/{person_id}/priorityschemes/events/add",
-    "method": "addToCalendarBasedOnPriorityScheme",
+    "method": "addToCalendar",
     "httpMethod": HttpMethodsEnum.POST,
     "tag": "Person",
     "typeScriptTag": "person",
@@ -2185,7 +2185,7 @@ We support our customers in transforming HR towards paperless administration and
   },
   {
     "url": "/1.0/people/change_history",
-    "method": "getLatestDeltaChangesToPersonalData",
+    "method": "getPersonalDataChanges",
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "Person",
     "typeScriptTag": "person",
@@ -2210,7 +2210,7 @@ We support our customers in transforming HR towards paperless administration and
   },
   {
     "url": "/1.0/calendar/{person_id}/verzuim/{year}",
-    "method": "listVerzuimPeriods",
+    "method": "getVerzuimPeriods",
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "Person",
     "typeScriptTag": "person",
@@ -2363,7 +2363,7 @@ We support our customers in transforming HR towards paperless administration and
   },
   {
     "url": "/1.0/expenses/{expense_id}/detail",
-    "method": "detailList",
+    "method": "getDetail",
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "Expense",
     "typeScriptTag": "expense",
@@ -2390,7 +2390,7 @@ We support our customers in transforming HR towards paperless administration and
   },
   {
     "url": "/1.0/expenses/add",
-    "method": "addExpense",
+    "method": "addExpenseWithCategory",
     "httpMethod": HttpMethodsEnum.POST,
     "tag": "Expense",
     "typeScriptTag": "expense",
@@ -2483,7 +2483,7 @@ We support our customers in transforming HR towards paperless administration and
   },
   {
     "url": "/1.0/expenses/{expense_id}",
-    "method": "removeExpense",
+    "method": "deleteById",
     "httpMethod": HttpMethodsEnum.DELETE,
     "tag": "Expense",
     "typeScriptTag": "expense",
@@ -2572,7 +2572,7 @@ We support our customers in transforming HR towards paperless administration and
   },
   {
     "url": "/1.0/expenses/categories/{category_id}",
-    "method": "updateCategoryName",
+    "method": "editCategoryName",
     "httpMethod": HttpMethodsEnum.PATCH,
     "tag": "Expense",
     "typeScriptTag": "expense",
@@ -2606,7 +2606,7 @@ We support our customers in transforming HR towards paperless administration and
   },
   {
     "url": "/1.0/expenses/{expense_id}/updatePayout",
-    "method": "updatePayoutMethodStatus",
+    "method": "setPayoutMethodAndStatus",
     "httpMethod": HttpMethodsEnum.POST,
     "tag": "Expense",
     "typeScriptTag": "expense",
@@ -2711,7 +2711,7 @@ We support our customers in transforming HR towards paperless administration and
   },
   {
     "url": "/1.0/expenses/categories/{category_id}/detail",
-    "method": "categoryDetailList",
+    "method": "listByCategoryDetail",
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "Expense",
     "typeScriptTag": "expense",
@@ -2803,7 +2803,7 @@ We support our customers in transforming HR towards paperless administration and
   },
   {
     "url": "/1.0/wages/functions/detail/{internal_code}",
-    "method": "getDetail",
+    "method": "getDetails",
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "Function",
     "typeScriptTag": "function",
@@ -2876,7 +2876,7 @@ We support our customers in transforming HR towards paperless administration and
   },
   {
     "url": "/1.0/wages/cost_units/list",
-    "method": "getAll",
+    "method": "listFunctions",
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "CostUnit",
     "typeScriptTag": "costUnit",
@@ -2895,7 +2895,7 @@ We support our customers in transforming HR towards paperless administration and
   },
   {
     "url": "/1.0/wages/cost_units/detail/{internal_code}",
-    "method": "getDetail",
+    "method": "getFunctionsDetail",
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "CostUnit",
     "typeScriptTag": "costUnit",
@@ -2922,7 +2922,7 @@ We support our customers in transforming HR towards paperless administration and
   },
   {
     "url": "/1.0/wages/cost_centers/list",
-    "method": "getAllCostCenters",
+    "method": "getList",
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "CostCenter",
     "typeScriptTag": "costCenter",
@@ -2941,7 +2941,7 @@ We support our customers in transforming HR towards paperless administration and
   },
   {
     "url": "/1.0/wages/cost_centers/detail/{internal_code}",
-    "method": "getDetailAllFunctionsOrSingleOne",
+    "method": "detailGet",
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "CostCenter",
     "typeScriptTag": "costCenter",
@@ -2977,8 +2977,8 @@ We support our customers in transforming HR towards paperless administration and
       schemas={203}
       parameters={153}
       difficulty="Medium"
-      openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/officient-io/openapi.yaml"
-      openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/officient-io/openapi.yaml"
+      openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/officient/openapi.yaml"
+      openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/officient/openapi.yaml"
       developerDocumentation="apidocs.officient.io/"
     />
   );

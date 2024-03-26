@@ -18,10 +18,10 @@
   "customRequestSpecFilename": "officient.io.yaml",
   "difficultyScore": 136.25,
   "difficulty": "Medium",
-  "company": "Officient.io",
-  "sdkName": "officient-io-{language}-sdk",
-  "clientName": "OfficientIo",
-  "metaDescription": "Officient offers an intuitive HRIS which helps manage all personnel administration through our HR platform & personalized employee self-services. Manage payroll, company assets, contracts, days off, fleet, performance reviews and all employee data in one HR system. HR deserves great software and we're here to provide it. \n\nWe support our customers in transforming HR towards paperless administration and automating tedious workforce management tasks in the process. Our goal? Transform HR from an administrative, processing role, to a controlling role which fuels HR strategy across the organization.",
+  "company": "Officient",
+  "sdkName": "officient-{language}-sdk",
+  "clientName": "Officient",
+  "metaDescription": "Officient offers an intuitive HRIS which helps manage all personnel administration through our HR platform & personalized employee self-services. Manage payroll, company assets, contracts, days off, fleet, performance reviews and all employee data in one HR system. HR deserves great software and we're here to provide it.\n\nWe support our customers in transforming HR towards paperless administration and automating tedious workforce management tasks in the process. Our goal? Transform HR from an administrative, processing role, to a controlling role which fuels HR strategy across the organization.",
   "apiStatusUrls": "inherit",
   "homepage": "officient.io",
   "developerDocumentation": "apidocs.officient.io/",
@@ -29,7 +29,7 @@
     "hr"
   ],
   "category": "HR Talent & Recruitment",
-  "apiDescription": "Officient offers an intuitive HRIS which helps manage all personnel administration through our HR platform & personalized employee self-services. Manage payroll, company assets, contracts, days off, fleet, performance reviews and all employee data in one HR system. HR deserves great software and we're here to provide it. \n\nWe support our customers in transforming HR towards paperless administration and automating tedious workforce management tasks in the process. Our goal? Transform HR from an administrative, processing role, to a controlling role which fuels HR strategy across the organization.",
+  "apiDescription": "Officient offers an intuitive HRIS which helps manage all personnel administration through our HR platform & personalized employee self-services. Manage payroll, company assets, contracts, days off, fleet, performance reviews and all employee data in one HR system. HR deserves great software and we're here to provide it.\n\nWe support our customers in transforming HR towards paperless administration and automating tedious workforce management tasks in the process. Our goal? Transform HR from an administrative, processing role, to a controlling role which fuels HR strategy across the organization.",
   "methods": [
     {
       "url": "/1.0/people/list",
@@ -108,7 +108,7 @@
     },
     {
       "url": "/1.0/wages/{person_id}/current",
-      "method": "getCurrentWageDetails",
+      "method": "getCurrentWage",
       "httpMethod": "get",
       "tag": "Person",
       "typeScriptTag": "person",
@@ -274,7 +274,7 @@
     },
     {
       "url": "/1.0/fleet/list",
-      "method": "getAll",
+      "method": "getAllVehicles",
       "httpMethod": "get",
       "tag": "Vehicle",
       "typeScriptTag": "vehicle",
@@ -468,10 +468,10 @@
     },
     {
       "url": "/1.0/calendar/events/types/{year}",
-      "method": "getCustomEventTypesByYear",
+      "method": "getList",
       "httpMethod": "get",
-      "tag": "Calendar",
-      "typeScriptTag": "calendar",
+      "tag": "CustomEventType",
+      "typeScriptTag": "customEventType",
       "description": "Custom event types",
       "parameters": [
         {
@@ -495,7 +495,7 @@
     },
     {
       "url": "/1.0/calendar/{person_id}/events/add",
-      "method": "addEventToCalendar",
+      "method": "addToCalendar",
       "httpMethod": "post",
       "tag": "Person",
       "typeScriptTag": "person",
@@ -556,7 +556,7 @@
     },
     {
       "url": "/1.0/calendar/{person_id}/{year}/{month}/{day}/work",
-      "method": "overwriteTimeWorked",
+      "method": "updateTimeWorked",
       "httpMethod": "patch",
       "tag": "Person",
       "typeScriptTag": "person",
@@ -706,7 +706,7 @@
     },
     {
       "url": "/1.0/documents/{object_type}/{object_id}/list",
-      "method": "getByObject",
+      "method": "listRelated",
       "httpMethod": "get",
       "tag": "Document",
       "typeScriptTag": "document",
@@ -807,7 +807,7 @@
     },
     {
       "url": "/1.0/webhooks/add",
-      "method": "subscribeNotifications",
+      "method": "subscribeNotification",
       "httpMethod": "post",
       "tag": "Webhook",
       "typeScriptTag": "webhook",
@@ -826,7 +826,7 @@
     },
     {
       "url": "/1.0/webhooks/{webhook_id}",
-      "method": "unsubscribeNotifications",
+      "method": "unsubscribeNotification",
       "httpMethod": "delete",
       "tag": "Webhook",
       "typeScriptTag": "webhook",
@@ -872,7 +872,7 @@
     },
     {
       "url": "/1.0/account",
-      "method": "informationGet",
+      "method": "getInformation",
       "httpMethod": "get",
       "tag": "Account",
       "typeScriptTag": "account",
@@ -891,7 +891,7 @@
     },
     {
       "url": "/1.0/contracts/add",
-      "method": "addNew",
+      "method": "createNewContract",
       "httpMethod": "post",
       "tag": "Contract",
       "typeScriptTag": "contract",
@@ -1004,7 +1004,7 @@
     },
     {
       "url": "/1.0/people/search",
-      "method": "searchByNameEmailNationalNumber",
+      "method": "searchByCriteria",
       "httpMethod": "get",
       "tag": "Person",
       "typeScriptTag": "person",
@@ -1039,7 +1039,7 @@
     },
     {
       "url": "/1.0/calendar/{person_id}/{year}/work/bulk",
-      "method": "bulkUpdateTimeWorked",
+      "method": "updateBulkTimeWorked",
       "httpMethod": "patch",
       "tag": "Person",
       "typeScriptTag": "person",
@@ -1073,7 +1073,7 @@
     },
     {
       "url": "/1.0/people/{person_id}/manager",
-      "method": "getManager",
+      "method": "getManagerDetails",
       "httpMethod": "get",
       "tag": "Person",
       "typeScriptTag": "person",
@@ -1127,7 +1127,7 @@
     },
     {
       "url": "/1.0/calendar/{person_id}/{year}/{month}/{day}/events/set",
-      "method": "setEvent",
+      "method": "overwriteEvent",
       "httpMethod": "put",
       "tag": "Person",
       "typeScriptTag": "person",
@@ -1250,7 +1250,7 @@
     },
     {
       "url": "/1.0/teams/{team_id}",
-      "method": "editTeam",
+      "method": "editInformation",
       "httpMethod": "patch",
       "tag": "Team",
       "typeScriptTag": "team",
@@ -1277,7 +1277,7 @@
     },
     {
       "url": "/1.0/teams/add",
-      "method": "createNew",
+      "method": "createNewTeam",
       "httpMethod": "post",
       "tag": "Team",
       "typeScriptTag": "team",
@@ -1296,7 +1296,7 @@
     },
     {
       "url": "/1.0/assets/types/list",
-      "method": "listCustomAssetTypes",
+      "method": "getCustomTypesList",
       "httpMethod": "get",
       "tag": "Asset",
       "typeScriptTag": "asset",
@@ -1334,7 +1334,7 @@
     },
     {
       "url": "/1.0/assets/types/{asset_type_id}",
-      "method": "deleteCustomType",
+      "method": "removeCustomType",
       "httpMethod": "delete",
       "tag": "Asset",
       "typeScriptTag": "asset",
@@ -1357,7 +1357,7 @@
     },
     {
       "url": "/1.0/assets/add",
-      "method": "addAsset",
+      "method": "createNewAsset",
       "httpMethod": "post",
       "tag": "Asset",
       "typeScriptTag": "asset",
@@ -1376,7 +1376,7 @@
     },
     {
       "url": "/1.0/assets/{asset_id}",
-      "method": "delete",
+      "method": "remove",
       "httpMethod": "delete",
       "tag": "Asset",
       "typeScriptTag": "asset",
@@ -1403,7 +1403,7 @@
     },
     {
       "url": "/1.0/assets/{asset_id}",
-      "method": "updateAssetInformation",
+      "method": "updateAsset",
       "httpMethod": "patch",
       "tag": "Asset",
       "typeScriptTag": "asset",
@@ -1449,7 +1449,7 @@
     },
     {
       "url": "/1.0/fleet/{vehicle_id}",
-      "method": "updateInformation",
+      "method": "editDetails",
       "httpMethod": "patch",
       "tag": "Vehicle",
       "typeScriptTag": "vehicle",
@@ -1476,7 +1476,7 @@
     },
     {
       "url": "/1.0/calendar/{person_id}/{year}",
-      "method": "getScheduledYearly",
+      "method": "getYearlyCalendar",
       "httpMethod": "get",
       "tag": "Person",
       "typeScriptTag": "person",
@@ -1518,8 +1518,8 @@
       "url": "/1.0/calendar/requests/list",
       "method": "listRequests",
       "httpMethod": "get",
-      "tag": "Calendar",
-      "typeScriptTag": "calendar",
+      "tag": "CalendarRequest",
+      "typeScriptTag": "calendarRequest",
       "description": "List calendar requests",
       "parameters": [
         {
@@ -1544,10 +1544,10 @@
     },
     {
       "url": "/1.0/calendar/requests/{request_id}/detail",
-      "method": "getRequestDetail",
+      "method": "getDetailById",
       "httpMethod": "get",
-      "tag": "Calendar",
-      "typeScriptTag": "calendar",
+      "tag": "CalendarRequest",
+      "typeScriptTag": "calendarRequest",
       "description": "Calendar request detail",
       "parameters": [
         {
@@ -1571,7 +1571,7 @@
     },
     {
       "url": "/1.0/custom_fields/{custom_field_id}/{object_type}/{object_id}",
-      "method": "updateValueForObject",
+      "method": "editValueForObject",
       "httpMethod": "patch",
       "tag": "CustomField",
       "typeScriptTag": "customField",
@@ -1631,7 +1631,7 @@
     },
     {
       "url": "/1.0/people/{person_id}/photo",
-      "method": "uploadPhoto",
+      "method": "uploadAvatar",
       "httpMethod": "put",
       "tag": "Person",
       "typeScriptTag": "person",
@@ -1685,7 +1685,7 @@
     },
     {
       "url": "/1.0/wages/one_off/components/{person_id}/options/list",
-      "method": "listOneOffComponents",
+      "method": "listAvailableComponents",
       "httpMethod": "get",
       "tag": "Person",
       "typeScriptTag": "person",
@@ -1783,7 +1783,7 @@
     },
     {
       "url": "/1.0/performance_reviews/{person_id}/list",
-      "method": "getPerformanceReviews",
+      "method": "getPerformanceReviewsByPerson",
       "httpMethod": "get",
       "tag": "Person",
       "typeScriptTag": "person",
@@ -1814,7 +1814,7 @@
     },
     {
       "url": "/1.0/legal/dimonas/{person_id}/list",
-      "method": "getDimonaByPerson",
+      "method": "listDimonasByPerson",
       "httpMethod": "get",
       "tag": "Person",
       "typeScriptTag": "person",
@@ -1841,10 +1841,10 @@
     },
     {
       "url": "/1.0/calendar/state/lock",
-      "method": "unlockMonthCorrections",
+      "method": "unlockMonthProcessed",
       "httpMethod": "post",
-      "tag": "Calendar",
-      "typeScriptTag": "calendar",
+      "tag": "CalendarState",
+      "typeScriptTag": "calendarState",
       "description": "Unlock calendar",
       "parameters": [
         {
@@ -1866,7 +1866,7 @@
     },
     {
       "url": "/1.0/budgets/{budget_id}",
-      "method": "removeBudget",
+      "method": "deleteBudgetById",
       "httpMethod": "delete",
       "tag": "Budget",
       "typeScriptTag": "budget",
@@ -1893,7 +1893,7 @@
     },
     {
       "url": "/1.0/budgets/{budget_id}",
-      "method": "updateBudgetDetails",
+      "method": "updateBudgetItem",
       "httpMethod": "patch",
       "tag": "Budget",
       "typeScriptTag": "budget",
@@ -1925,7 +1925,7 @@
     },
     {
       "url": "/1.0/budgets/add",
-      "method": "createNewBudget",
+      "method": "addBudgetItem",
       "httpMethod": "post",
       "tag": "Budget",
       "typeScriptTag": "budget",
@@ -2073,7 +2073,7 @@
     },
     {
       "url": "/1.0/budgets/people/{person_id}/{budget_id}/items/list",
-      "method": "getBudgetItems",
+      "method": "listBudgetItems",
       "httpMethod": "get",
       "tag": "Person",
       "typeScriptTag": "person",
@@ -2107,10 +2107,10 @@
     },
     {
       "url": "/1.0/calendar/events/priorityschemes/{year}",
-      "method": "listPrioritySchemesByYear",
+      "method": "listActivePrioritySchemesByYear",
       "httpMethod": "get",
-      "tag": "Calendar",
-      "typeScriptTag": "calendar",
+      "tag": "PriorityScheme",
+      "typeScriptTag": "priorityScheme",
       "description": "List priority schemes",
       "parameters": [
         {
@@ -2134,7 +2134,7 @@
     },
     {
       "url": "/1.0/calendar/{person_id}/priorityschemes/events/add",
-      "method": "addToCalendarBasedOnPriorityScheme",
+      "method": "addToCalendar",
       "httpMethod": "post",
       "tag": "Person",
       "typeScriptTag": "person",
@@ -2188,7 +2188,7 @@
     },
     {
       "url": "/1.0/people/change_history",
-      "method": "getLatestDeltaChangesToPersonalData",
+      "method": "getPersonalDataChanges",
       "httpMethod": "get",
       "tag": "Person",
       "typeScriptTag": "person",
@@ -2213,7 +2213,7 @@
     },
     {
       "url": "/1.0/calendar/{person_id}/verzuim/{year}",
-      "method": "listVerzuimPeriods",
+      "method": "getVerzuimPeriods",
       "httpMethod": "get",
       "tag": "Person",
       "typeScriptTag": "person",
@@ -2366,7 +2366,7 @@
     },
     {
       "url": "/1.0/expenses/{expense_id}/detail",
-      "method": "detailList",
+      "method": "getDetail",
       "httpMethod": "get",
       "tag": "Expense",
       "typeScriptTag": "expense",
@@ -2393,7 +2393,7 @@
     },
     {
       "url": "/1.0/expenses/add",
-      "method": "addExpense",
+      "method": "addExpenseWithCategory",
       "httpMethod": "post",
       "tag": "Expense",
       "typeScriptTag": "expense",
@@ -2486,7 +2486,7 @@
     },
     {
       "url": "/1.0/expenses/{expense_id}",
-      "method": "removeExpense",
+      "method": "deleteById",
       "httpMethod": "delete",
       "tag": "Expense",
       "typeScriptTag": "expense",
@@ -2575,7 +2575,7 @@
     },
     {
       "url": "/1.0/expenses/categories/{category_id}",
-      "method": "updateCategoryName",
+      "method": "editCategoryName",
       "httpMethod": "patch",
       "tag": "Expense",
       "typeScriptTag": "expense",
@@ -2609,7 +2609,7 @@
     },
     {
       "url": "/1.0/expenses/{expense_id}/updatePayout",
-      "method": "updatePayoutMethodStatus",
+      "method": "setPayoutMethodAndStatus",
       "httpMethod": "post",
       "tag": "Expense",
       "typeScriptTag": "expense",
@@ -2714,7 +2714,7 @@
     },
     {
       "url": "/1.0/expenses/categories/{category_id}/detail",
-      "method": "categoryDetailList",
+      "method": "listByCategoryDetail",
       "httpMethod": "get",
       "tag": "Expense",
       "typeScriptTag": "expense",
@@ -2806,7 +2806,7 @@
     },
     {
       "url": "/1.0/wages/functions/detail/{internal_code}",
-      "method": "getDetail",
+      "method": "getDetails",
       "httpMethod": "get",
       "tag": "Function",
       "typeScriptTag": "function",
@@ -2879,7 +2879,7 @@
     },
     {
       "url": "/1.0/wages/cost_units/list",
-      "method": "getAll",
+      "method": "listFunctions",
       "httpMethod": "get",
       "tag": "CostUnit",
       "typeScriptTag": "costUnit",
@@ -2898,7 +2898,7 @@
     },
     {
       "url": "/1.0/wages/cost_units/detail/{internal_code}",
-      "method": "getDetail",
+      "method": "getFunctionsDetail",
       "httpMethod": "get",
       "tag": "CostUnit",
       "typeScriptTag": "costUnit",
@@ -2925,7 +2925,7 @@
     },
     {
       "url": "/1.0/wages/cost_centers/list",
-      "method": "getAllCostCenters",
+      "method": "getList",
       "httpMethod": "get",
       "tag": "CostCenter",
       "typeScriptTag": "costCenter",
@@ -2944,7 +2944,7 @@
     },
     {
       "url": "/1.0/wages/cost_centers/detail/{internal_code}",
-      "method": "getDetailAllFunctionsOrSingleOne",
+      "method": "detailGet",
       "httpMethod": "get",
       "tag": "CostCenter",
       "typeScriptTag": "costCenter",
@@ -2970,15 +2970,15 @@
       ]
     }
   ],
-  "repositoryDescription": "Officient provides an intuitive HRIS for complete personnel administration and employee self-services. Manage payroll, assets, contracts, leave, fleet, reviews, and all HR data in one system. We help transition HR to a strategic, paperless function. Officient.io's {language} SDK generated by Konfig (https://konfigthis.com/).",
-  "logo": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/officient-io/logo.png",
-  "openApiRaw": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/officient-io/openapi.yaml",
-  "openApiGitHubUi": "https://github.com/konfig-sdks/openapi-examples/tree/HEAD/officient-io/openapi.yaml",
-  "previewLinkImage": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/officient-io/imagePreview.jpg",
-  "faviconUrl": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/officient-io/favicon.png",
-  "clientNameCamelCase": "officientIo",
-  "lastUpdated": "2024-03-26T20:26:03.770Z",
-  "typescriptSdkUsageCode": "import { OfficientIo } from 'officient-io-typescript-sdk';\n\nconst officientIo = new OfficientIo()",
-  "typescriptSdkFirstRequestCode": "// List people\nconst listPeopleResponse = officientIo.person.listPeople({\n    page: 0\n})",
-  "fixedSpecFileName": "officient-io-fixed-spec.yaml"
+  "repositoryDescription": "Officient provides intuitive HRIS for managing personnel admin, payroll, assets, contracts, days off, fleet, performance reviews, and employee data in one system. Transforming HR with paperless admin and automation to fuel HR strategy. Officient's {language} SDK generated by Konfig (https://konfigthis.com/).",
+  "logo": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/officient/logo.png",
+  "openApiRaw": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/officient/openapi.yaml",
+  "openApiGitHubUi": "https://github.com/konfig-sdks/openapi-examples/tree/HEAD/officient/openapi.yaml",
+  "previewLinkImage": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/officient/imagePreview.jpg",
+  "faviconUrl": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/officient/favicon.png",
+  "clientNameCamelCase": "officient",
+  "lastUpdated": "2024-03-26T20:28:24.270Z",
+  "typescriptSdkUsageCode": "import { Officient } from 'officient-typescript-sdk';\n\nconst officient = new Officient()",
+  "typescriptSdkFirstRequestCode": "// List people\nconst listPeopleResponse = officient.person.listPeople({\n    page: 0\n})",
+  "fixedSpecFileName": "officient-fixed-spec.yaml"
 }
