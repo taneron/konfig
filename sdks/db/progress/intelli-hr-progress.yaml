@@ -1,0 +1,245 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignorePotentialIncorrectType: true
+operationIds:
+  /business-entities:
+    get: BusinessEntities_listAll
+    post: BusinessEntities_createNewEntity
+  /business-entities/{id}:
+    delete: BusinessEntities_deleteById
+    get: BusinessEntities_findById
+    patch: BusinessEntities_updateById
+  /business-units:
+    get: BusinessUnits_listAll
+    post: BusinessUnits_createNewUnit
+  /business-units/{id}:
+    delete: BusinessUnits_deleteById
+    get: BusinessUnits_findById
+    patch: BusinessUnits_updateById
+  /custom-field-definitions:
+    get: CustomFieldDefinitions_listAll
+    post: CustomFieldDefinitions_createDefinition
+  /custom-field-definitions/{id}:
+    delete: CustomFieldDefinitions_deleteById
+    get: CustomFieldDefinitions_findDefinitionById
+    patch: CustomFieldDefinitions_updateDefinitionById
+  /default-remuneration-components:
+    get: DefaultRemunerationComponents_listAll
+  /default-remuneration-components/{id}:
+    get: DefaultRemunerationComponents_findById
+  /employment-conditions:
+    get: EmploymentConditions_listAllEmploymentConditions
+  /employment-conditions/{id}:
+    get: EmploymentConditions_findById
+  /extended-leave:
+    post: ExtendedLeave_createNew
+  /extended-leave-types:
+    get: ExtendedLeaveTypes_listAll
+  /extended-leave-types/{id}:
+    get: ExtendedLeaveTypes_findById
+  /extended-leave/{id}:
+    patch: ExtendedLeave_updateFinalise
+  /forms/{id}:
+    get: Forms_findById
+  /job-change-reasons:
+    get: JobChangeReasons_listAll
+    post: JobChangeReasons_createNewReason
+  /job-change-reasons/{id}:
+    delete: JobChangeReasons_deleteById
+    get: JobChangeReasons_findById
+    patch: JobChangeReasons_updateById
+  /job-end/{id}:
+    delete: EndJob_cancelEndDate
+    patch: EndJob_jobFinalize
+  /job-requirement-groups:
+    get: JobRequirementGroups_listAll
+    post: JobRequirementGroups_createNewGroup
+  /job-requirement-groups/{id}:
+    delete: JobRequirementGroups_deleteById
+    get: JobRequirementGroups_findById
+    patch: JobRequirementGroups_updateAttributes
+  /jobs:
+    get: Jobs_getAll
+    post: Jobs_createRecord
+  /jobs/{id}:
+    get: Jobs_findById
+    patch: Jobs_updateAttributes
+  /jobs/{jobId}/timeline:
+    get: JobTimeline_getUpcomingChanges
+  /locations:
+    get: Locations_listAll
+    post: Locations_createNewLocation
+  /locations/{id}:
+    delete: Locations_deleteById
+    get: Locations_findLocationById
+    patch: Locations_updateById
+  /pay-grades:
+    get: PayGrades_getAll
+    post: PayGrades_createRecord
+  /pay-grades/{id}:
+    delete: PayGrades_deleteById
+    get: PayGrades_findById
+    patch: PayGrades_updateRecord
+  /people:
+    get: People_listAllPeople
+    post: People_createNewPerson
+  /people/{id}:
+    get: People_findById
+    patch: People_updatePersonById
+  /people/{personId}/documents:
+    get: PeopleDocuments_list
+    post: PeopleDocuments_createPresignedUploadUrl
+  /people/{personId}/documents/{id}:
+    patch: PeopleDocuments_updateDocument
+  /people/{personId}/images:
+    get: PeopleImages_getTemporaryImage
+    patch: PeopleImages_promoteImage
+    post: PeopleImages_generateTemporaryImageUrl
+  /people/{personId}/skills:
+    get: PeopleSkills_listPersonSkills
+    post: PeopleSkills_assignSkillToPerson
+  /people/{personId}/skills/{id}:
+    delete: PeopleSkills_deleteAssignedSkillById
+    get: PeopleSkills_findSkillById
+    patch: PeopleSkills_updateAssignedSkill
+  /permission-groups:
+    get: PermissionGroups_listAll
+  /permission-groups/{id}:
+    get: PermissionGroups_findGroupById
+  /person-documents:
+    post: PersonDocumentsDeprecated_createPresignedUploadUrl
+  /person-documents/{id}:
+    patch: PersonDocumentsDeprecated_updateDocument
+  /position-titles:
+    get: PositionTitles_listAll
+    post: PositionTitles_createNewRecord
+  /position-titles/{id}:
+    delete: PositionTitles_deleteById
+    patch: PositionTitles_updateAttributes
+  /qualification-library-items:
+    get: QualificationLibraryItems_getAllQualifications
+    post: QualificationLibraryItems_createNewRecord
+  /qualification-library-items/{id}:
+    delete: QualificationLibraryItems_deleteById
+    get: QualificationLibraryItems_findByID
+    patch: QualificationLibraryItems_updateRecord
+  /qualification-statuses/{id}:
+    get: QualificationStatuses_findStatusById
+  /qualification-types:
+    get: QualificationTypes_listAllQualificationTypes
+  /qualification-types/{id}:
+    get: QualificationTypes_findById
+  /qualifications:
+    get: QualificationInstances_listAll
+    post: QualificationInstances_createNewInstance
+  /qualifications/{id}:
+    delete: QualificationInstances_deleteById
+    get: QualificationInstances_findById
+    patch: QualificationInstances_updateInstanceById
+  /recruitment-sources:
+    get: RecruitmentSources_listAll
+  /recruitment-sources/{id}:
+    get: RecruitmentSources_findById
+  /representative-types:
+    get: RepresentativeTypes_listAll
+  /representative-types/{id}:
+    get: RepresentativeTypes_findById
+  /skill-disciplines:
+    get: SkillDisciplines_listAll
+    post: SkillDisciplines_createNewDiscipline
+  /skill-disciplines/{id}:
+    get: SkillDisciplines_findById
+    patch: SkillDisciplines_updateDisciplineById
+  /skills:
+    get: Skills_getAll
+    post: Skills_createNewSkill
+  /skills/{id}:
+    get: Skills_findSkillById
+    patch: Skills_updateSkillById
+  /training-providers:
+    get: TrainingProviders_listAll
+  /training-providers/{id}:
+    get: TrainingProviders_findById
+  /training-statuses:
+    get: TrainingStatuses_listAll
+  /training-types:
+    get: TrainingTypes_listAll
+  /training-types/{id}:
+    get: TrainingTypes_findById
+  /trainings:
+    get: Trainings_listAll
+    post: Trainings_createNewTraining
+  /trainings/{id}:
+    delete: Trainings_deleteById
+    get: Trainings_findTrainingById
+    patch: Trainings_updateTrainingById
+  /users:
+    get: Users_getAllUsers
+    post: Users_createUser
+  /users/{id}:
+    get: Users_findUserById
+    patch: Users_updateById
+  /webhook-events:
+    get: WebhookEvents_listAllEvents
+  /webhook-events/{id}:
+    get: WebhookEvents_findEventById
+  /webhooks:
+    get: Webhooks_listAll
+    post: Webhooks_createWebhook
+  /webhooks/{id}:
+    delete: Webhooks_deleteById
+    get: Webhooks_findById
+    patch: Webhooks_updateWebhook
+  /work-classes:
+    get: WorkClasses_listAll
+  /work-classes/{id}:
+    get: WorkClasses_findById
+  /work-rights:
+    get: WorkRights_listAll
+  /work-rights/{id}:
+    get: WorkRights_findWorkRightById
+  /work-types:
+    get: WorkTypes_listAll
+  /work-types/{id}:
+    get: WorkTypes_findById
+  /workflow-events/{id}:
+    get: WorkflowEvents_findById
+  /workflows/{id}:
+    patch: Workflows_triggerById
+operationTags: {}
+renameTags: {}
+requestSchemaNames: {}
+responseDescriptions: {}
+responseSchemaNames:
+  /business-entities:
+    get:
+      '500':
+        application/json: BusinessEntitiesListAllResponse
+    post:
+      '400':
+        application/json: BusinessEntitiesCreateNewEntityResponse
+      '403':
+        application/json: BusinessEntitiesCreateNewEntity403Response
+securityParameters:
+  asAt:
+    query: false
+  cancelDisablingUserAccount:
+    query: false
+  filters:
+    query: false
+  imageType:
+    query: false
+  limit:
+    query: false
+  page:
+    query: false
+  shouldNotFinaliseEndDate:
+    query: false
+  shouldRetainUserAccount:
+    query: false
+  sort:
+    query: false
+  suppressEvents:
+    query: false
+validServerUrls: {}

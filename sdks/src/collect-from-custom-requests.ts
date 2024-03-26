@@ -761,6 +761,15 @@ const customRequests: Record<string, CustomRequest> = {
       return downloadOpenApiSpecFromReadme({ urls });
     },
   },
+  "intellihr.com": {
+    lambda: async ({ browser }) => {
+      return downloadOpenApiSpecFromRedoclyEmbedded({
+        url: "https://developers.intellihr.io/docs/v1/",
+        filename: "openapi.json",
+        browser,
+      });
+    },
+  },
   "hibob.com": {
     lambda: async () => {
       const urls = await collectEndpointsFromReadme({
