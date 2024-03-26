@@ -1460,6 +1460,14 @@ const customRequests: Record<string, CustomRequest> = {
       });
       return await downloadOpenApiSpecFromReadme({ urls });
     },
+  },
+  "connexpay.com": {
+    lambda: async () => {
+      const urls = await collectEndpointsFromReadme({
+        url: "https://docs.connexpay.com/reference",
+      });
+      return await downloadOpenApiSpecFromReadme({ urls });
+    },
   }
 };
 

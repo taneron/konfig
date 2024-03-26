@@ -1,0 +1,584 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignoreObjectsWithNoProperties: true
+ignorePotentialIncorrectType: true
+operationIds:
+  /api/chargeback/GetByUser:
+    get: Sale_getChargebacksByUser
+  /api/v1/3ds:
+    post: Authentication_obtain3dSecureAuthentication
+  /api/v1/3ds/{GUID}:
+    get: StatusGroup_3dsAuthenticationStatus
+  /api/v1/Accounting/DailyDetail:
+    get: Accounting_getDailyDetail
+  /api/v1/Accounting/DailySummary:
+    get: Accounting_getDailySummary
+  /api/v1/Addendum/ACH:
+    post: Addendum_createAchPurchase
+  /api/v1/Addendum/VirtualCard:
+    post: Addendum_createVirtualCard
+  /api/v1/Captures:
+    post: Transaction_captureAuthorization
+  /api/v1/Cards/Transactions/{cardGuid}:
+    get: Transaction_searchVirtualCardHistory
+  /api/v1/Cards/{CardGuid}/{ShowFullPan}:
+    get: Card_getDetail
+  /api/v1/HostedPaymentPageRequests:
+    post: Token_requestHppToken
+  /api/v1/IssueACH:
+    post: Transaction_createAchCreditPayment
+  /api/v1/IssueACH/IssueLite:
+    post: Ach_createCreditPayment
+  /api/v1/IssueCard:
+    post: CardIssuance_createVirtualCard
+  /api/v1/IssueCard/ActivateDelayedCard/{{CardGuid}}:
+    put: Card_activateDelayed
+  /api/v1/IssueCard/Cancel/{{CardGuid}}:
+    put: Card_cancelVirtualCard
+  /api/v1/IssueCard/IssueLite:
+    post: CardIssue_createVirtualCardLite
+  /api/v1/IssueCard/LodgedCard:
+    post: Card_createLodgedCard
+  /api/v1/IssueCard/LodgedCard/{CardGuid}:
+    put: Card_updateLodgedCard
+  /api/v1/IssueCard/SendPaymentInfo/{cardGuid}:
+    put: Card_resendTransmissionInfo
+  /api/v1/IssueCard/UpdateDelayedCard/{{CardGuid}}:
+    put: Card_updateDelayedActivation
+  /api/v1/IssueCard/{cardGuid}:
+    put: Card_updateCardDetails
+  /api/v1/MerchantFlexFunding/Funds/Transfer:
+    post: Funding_transferMerchantCashBalance
+  /api/v1/MerchantSelfServiceFunding:
+    post: Funding_merchantCashBalance
+  /api/v1/PurchaseEventHistory/Resend:
+    post: Replay_purchaseEventHistoryResend
+  /api/v1/Search/AvailableFunds/{merchantGuid}:
+    get: Funds_getAvailableDetails
+  /api/v1/Search/IssuedCards/:
+    post: Card_searchIssuedVirtualCards
+  /api/v1/Search/Returns/{exportable}/{pageNumber}/{pageSize}:
+    post: Return_searchSaleReturns
+  /api/v1/Search/Sales/{exportable}/{pageNumber}/{pageSize}:
+    post: Sale_searchSales
+  /api/v1/Search/Settlements/:
+    post: Settlement_searchVirtualCardSettlements
+  /api/v1/Search/Verify/{exportable}/{pageNumber}/{pageSize}:
+    post: Validation_searchVerifyOperation
+  /api/v1/Search/Voids/{exportable}/{pageNumber}/{pageSize}:
+    post: Void_searchVoids
+  /api/v1/TerminateCard/<guid>:
+    post: Card_terminateByDate
+  /api/v1/authenticate:
+    post: Token_generateReportingToken
+  /api/v1/authonlys:
+    post: Authentication_acquireClientAuthorization
+  /api/v1/cancel:
+    post: Cancellation_entireTripCancellation
+  /api/v1/merchantsupplier/settings:
+    post: Setting_tokenizeBankAccountInfo
+  /api/v1/returns:
+    post: Return_itemRequest
+  /api/v1/sales:
+    post: Sale_createTransaction
+  /api/v1/sales/Activate/{SaleGuid}:
+    put: Sale_activateDelayed
+  /api/v1/sales/UpdateFutureSale:
+    post: Sale_updateDelayedActivation
+  /api/v1/token:
+    post: Token_issueAuthenticationToken
+  /api/v1/verify:
+    post: Verification_cardBankAccount
+  /api/v1/void:
+    post: Void_createVoid
+  /v1/Addendum/Remove/<guid>:
+    post: Addendum_deleteItem
+operationTags:
+  /api/chargeback/GetByUser:
+    get: Sale
+  /api/v1/3ds:
+    post: Authentication
+  /api/v1/3ds/{GUID}:
+    get: StatusGroup
+  /api/v1/Addendum/ACH:
+    post: Addendum
+  /api/v1/Addendum/VirtualCard:
+    post: Addendum
+  /api/v1/Captures:
+    post: Transaction
+  /api/v1/Cards/Transactions/{cardGuid}:
+    get: Transaction
+  /api/v1/Cards/{CardGuid}/{ShowFullPan}:
+    get: Card
+  /api/v1/HostedPaymentPageRequests:
+    post: Token
+  /api/v1/IssueACH:
+    post: Transaction
+  /api/v1/IssueACH/IssueLite:
+    post: ACH
+  /api/v1/IssueCard:
+    post: CardIssuance
+  /api/v1/IssueCard/ActivateDelayedCard/{{CardGuid}}:
+    put: Card
+  /api/v1/IssueCard/Cancel/{{CardGuid}}:
+    put: Card
+  /api/v1/IssueCard/IssueLite:
+    post: CardIssue
+  /api/v1/IssueCard/LodgedCard:
+    post: Card
+  /api/v1/IssueCard/LodgedCard/{CardGuid}:
+    put: Card
+  /api/v1/IssueCard/SendPaymentInfo/{cardGuid}:
+    put: Card
+  /api/v1/IssueCard/UpdateDelayedCard/{{CardGuid}}:
+    put: Card
+  /api/v1/IssueCard/{cardGuid}:
+    put: Card
+  /api/v1/MerchantFlexFunding/Funds/Transfer:
+    post: Funding
+  /api/v1/MerchantSelfServiceFunding:
+    post: Funding
+  /api/v1/PurchaseEventHistory/Resend:
+    post: Replay
+  /api/v1/Search/AvailableFunds/{merchantGuid}:
+    get: Funds
+  /api/v1/Search/IssuedCards/:
+    post: Card
+  /api/v1/Search/Returns/{exportable}/{pageNumber}/{pageSize}:
+    post: Return
+  /api/v1/Search/Sales/{exportable}/{pageNumber}/{pageSize}:
+    post: Sale
+  /api/v1/Search/Settlements/:
+    post: Settlement
+  /api/v1/Search/Verify/{exportable}/{pageNumber}/{pageSize}:
+    post: Validation
+  /api/v1/Search/Voids/{exportable}/{pageNumber}/{pageSize}:
+    post: Void
+  /api/v1/TerminateCard/<guid>:
+    post: Card
+  /api/v1/authenticate:
+    post: Token
+  /api/v1/authonlys:
+    post: Authentication
+  /api/v1/cancel:
+    post: Cancellation
+  /api/v1/merchantsupplier/settings:
+    post: Setting
+  /api/v1/returns:
+    post: Return
+  /api/v1/sales:
+    post: Sale
+  /api/v1/sales/Activate/{SaleGuid}:
+    put: Sale
+  /api/v1/sales/UpdateFutureSale:
+    post: Sale
+  /api/v1/token:
+    post: Token
+  /api/v1/verify:
+    post: Verification
+  /api/v1/void:
+    post: Void
+  /v1/Addendum/Remove/<guid>:
+    post: Addendum
+renameTags: {}
+requestSchemaNames:
+  /api/v1/3ds:
+    post:
+      application/json: AuthenticationObtain3DSecureAuthenticationRequest
+  /api/v1/Addendum/ACH:
+    post:
+      application/json: AddendumCreateAchPurchaseRequest
+  /api/v1/Addendum/VirtualCard:
+    post:
+      application/json: AddendumCreateVirtualCardRequest
+  /api/v1/Captures:
+    post:
+      application/json: TransactionCaptureAuthorizationRequest
+  /api/v1/HostedPaymentPageRequests:
+    post:
+      application/json: TokenRequestHppTokenRequest
+  /api/v1/IssueACH:
+    post:
+      application/json: TransactionCreateAchCreditPaymentRequest
+  /api/v1/IssueACH/IssueLite:
+    post:
+      application/json: AchCreateCreditPaymentRequest
+  /api/v1/IssueCard:
+    post:
+      application/json: CardIssuanceCreateVirtualCardRequest
+  /api/v1/IssueCard/IssueLite:
+    post:
+      application/json: CardIssueCreateVirtualCardLiteRequest
+  /api/v1/IssueCard/LodgedCard:
+    post:
+      application/json: CardCreateLodgedCardRequest
+  /api/v1/IssueCard/LodgedCard/{CardGuid}:
+    put:
+      application/json: CardUpdateLodgedCardRequest
+  /api/v1/IssueCard/SendPaymentInfo/{cardGuid}:
+    put:
+      application/json: CardResendTransmissionInfoRequest
+  /api/v1/IssueCard/UpdateDelayedCard/{{CardGuid}}:
+    put:
+      application/json: CardUpdateDelayedActivationRequest
+  /api/v1/IssueCard/{cardGuid}:
+    put:
+      application/json: CardUpdateCardDetailsRequest
+  /api/v1/MerchantFlexFunding/Funds/Transfer:
+    post:
+      application/json: FundingTransferMerchantCashBalanceRequest
+  /api/v1/MerchantSelfServiceFunding:
+    post:
+      application/json: FundingMerchantCashBalanceRequest
+  /api/v1/PurchaseEventHistory/Resend:
+    post:
+      application/json: ReplayPurchaseEventHistoryResendRequest
+  /api/v1/Search/IssuedCards:
+    post:
+      application/json: CardSearchIssuedVirtualCardsRequest
+  /api/v1/Search/Returns/{exportable}/{pageNumber}/{pageSize}:
+    post:
+      application/json: ReturnSearchSaleReturnsRequest
+  /api/v1/Search/Sales/{exportable}/{pageNumber}/{pageSize}:
+    post:
+      application/json: SaleSearchSalesRequest
+  /api/v1/Search/Settlements:
+    post:
+      application/json: SettlementSearchVirtualCardSettlementsRequest
+  /api/v1/Search/Verify/{exportable}/{pageNumber}/{pageSize}:
+    post:
+      application/json: ValidationSearchVerifyOperationRequest
+  /api/v1/Search/Voids/{exportable}/{pageNumber}/{pageSize}:
+    post:
+      application/json: VoidSearchVoidsRequest
+  /api/v1/authenticate:
+    post:
+      application/json: TokenGenerateReportingTokenRequest
+  /api/v1/authonlys:
+    post:
+      application/json: AuthenticationAcquireClientAuthorizationRequest
+  /api/v1/cancel:
+    post:
+      application/json: CancellationEntireTripCancellationRequest
+  /api/v1/merchantsupplier/settings:
+    post:
+      application/json: SettingTokenizeBankAccountInfoRequest
+  /api/v1/returns:
+    post:
+      application/json: ReturnItemRequestRequest
+  /api/v1/sales:
+    post:
+      application/json: SaleCreateTransactionRequest
+  /api/v1/sales/UpdateFutureSale:
+    post:
+      application/json: SaleUpdateDelayedActivationRequest
+  /api/v1/token:
+    post:
+      application/json: TokenIssueAuthenticationTokenRequest
+  /api/v1/verify:
+    post:
+      application/json: VerificationCardBankAccountRequest
+  /api/v1/void:
+    post:
+      application/json: VoidCreateVoidRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /api/chargeback/GetByUser:
+    get:
+      '200':
+        application/json: SaleGetChargebacksByUserResponse
+      '400':
+        application/json: SaleGetChargebacksByUser400Response
+  /api/v1/3ds:
+    post:
+      '200':
+        application/json: AuthenticationObtain3DSecureAuthenticationResponse
+      '202':
+        application/json: AuthenticationObtain3DSecureAuthentication202Response
+      '400':
+        application/json: AuthenticationObtain3DSecureAuthentication400Response
+  /api/v1/3ds/{GUID}:
+    get:
+      '200':
+        application/json: StatusGroup3DsAuthenticationStatusResponse
+  /api/v1/Addendum/ACH:
+    post:
+      '201':
+        application/json: AddendumCreateAchPurchaseResponse
+  /api/v1/Addendum/VirtualCard:
+    post:
+      '201':
+        application/json: AddendumCreateVirtualCardResponse
+  /api/v1/Captures:
+    post:
+      '200':
+        application/json: TransactionCaptureAuthorizationResponse
+      '400':
+        application/json: TransactionCaptureAuthorization400Response
+  /api/v1/Cards/Transactions/{cardGuid}:
+    get:
+      '200':
+        application/json: TransactionSearchVirtualCardHistoryResponse
+      '400':
+        application/json: TransactionSearchVirtualCardHistory400Response
+  /api/v1/Cards/{CardGuid}/{ShowFullPan}:
+    get:
+      '200':
+        application/json: CardGetDetailResponse
+  /api/v1/HostedPaymentPageRequests:
+    post:
+      '200':
+        application/json: TokenRequestHppTokenResponse
+      '400':
+        application/json: TokenRequestHppToken400Response
+  /api/v1/IssueACH:
+    post:
+      '200':
+        application/json: TransactionCreateAchCreditPaymentResponse
+      '400':
+        application/json: TransactionCreateAchCreditPayment400Response
+  /api/v1/IssueACH/IssueLite:
+    post:
+      '200':
+        application/json: AchCreateCreditPaymentResponse
+      '400':
+        application/json: AchCreateCreditPayment400Response
+  /api/v1/IssueCard:
+    post:
+      '200':
+        application/json: CardIssuanceCreateVirtualCardResponse
+      '400':
+        application/json: CardIssuanceCreateVirtualCard400Response
+  /api/v1/IssueCard/ActivateDelayedCard/{{CardGuid}}:
+    put:
+      '200':
+        application/json: CardActivateDelayedResponse
+      '400':
+        application/json: CardActivateDelayed400Response
+  /api/v1/IssueCard/Cancel/{{CardGuid}}:
+    put:
+      '200':
+        application/json: CardCancelVirtualCardResponse
+      '400':
+        application/json: CardCancelVirtualCard400Response
+  /api/v1/IssueCard/IssueLite:
+    post:
+      '200':
+        application/json: CardIssueCreateVirtualCardLiteResponse
+      '400':
+        application/json: CardIssueCreateVirtualCardLite400Response
+  /api/v1/IssueCard/LodgedCard:
+    post:
+      '200':
+        application/json: CardCreateLodgedCardResponse
+      '400':
+        application/json: CardCreateLodgedCard400Response
+  /api/v1/IssueCard/LodgedCard/{CardGuid}:
+    put:
+      '200':
+        application/json: CardUpdateLodgedCardResponse
+      '400':
+        application/json: CardUpdateLodgedCard400Response
+  /api/v1/IssueCard/SendPaymentInfo/{cardGuid}:
+    put:
+      '200':
+        application/json: CardResendTransmissionInfoResponse
+      '400':
+        application/json: CardResendTransmissionInfo400Response
+  /api/v1/IssueCard/UpdateDelayedCard/{{CardGuid}}:
+    put:
+      '200':
+        application/json: CardUpdateDelayedActivationResponse
+      '400':
+        application/json: CardUpdateDelayedActivation400Response
+  /api/v1/IssueCard/{cardGuid}:
+    put:
+      '200':
+        application/json: CardUpdateCardDetailsResponse
+      '400':
+        application/json: CardUpdateCardDetails400Response
+  /api/v1/MerchantFlexFunding/Funds/Transfer:
+    post:
+      '200':
+        application/json: FundingTransferMerchantCashBalanceResponse
+      '422':
+        application/json: FundingTransferMerchantCashBalance422Response
+      '500':
+        application/json: FundingTransferMerchantCashBalance500Response
+  /api/v1/MerchantSelfServiceFunding:
+    post:
+      '201':
+        application/json: FundingMerchantCashBalanceResponse
+      '422':
+        application/json: FundingMerchantCashBalance422Response
+      '500':
+        application/json: FundingMerchantCashBalance500Response
+  /api/v1/PurchaseEventHistory/Resend:
+    post:
+      '200':
+        application/json: ReplayPurchaseEventHistoryResendResponse
+      '400':
+        application/json: ReplayPurchaseEventHistoryResend400Response
+  /api/v1/PushToCard/Payees/{payeeGuid}:
+    patch:
+      '200':
+        application/json: PushToCardUpdatePayeeResponse
+        application/xml: PushToCardUpdatePayee200Response
+        text/json: PushToCardUpdatePayee200Response
+        text/xml: PushToCardUpdatePayee200Response
+  /api/v1/PushToCard/Payees/{payeeGuid}/{status}:
+    put:
+      '200':
+        application/json: PushToCardManagePayeeResponse
+        application/xml: PushToCardManagePayee200Response
+        text/json: PushToCardManagePayee200Response
+        text/xml: PushToCardManagePayee200Response
+  /api/v1/PushToCard/Payments/{ridGuid}/{cardId}:
+    patch:
+      '200':
+        application/json: PushToCardPushFundsToCardAsyncResponse
+        application/xml: PushToCardPushFundsToCardAsync200Response
+        text/json: PushToCardPushFundsToCardAsync200Response
+        text/xml: PushToCardPushFundsToCardAsync200Response
+  /api/v1/PushToCard/Payouts/{payoutGuid}/Cancel:
+    post:
+      '200':
+        application/json: PushToCardCancelPaymentsResponse
+        application/xml: PushToCardCancelPayments200Response
+        text/json: PushToCardCancelPayments200Response
+        text/xml: PushToCardCancelPayments200Response
+  /api/v1/Search/AvailableFunds/{merchantGuid}:
+    get:
+      '200':
+        application/json: FundsGetAvailableDetailsResponse
+      '400':
+        application/json: FundsGetAvailableDetails400Response
+  /api/v1/Search/IssuedCards:
+    post:
+      '200':
+        application/json: CardSearchIssuedVirtualCardsResponse
+      '400':
+        application/json: CardSearchIssuedVirtualCards400Response
+  /api/v1/Search/Returns/{exportable}/{pageNumber}/{pageSize}:
+    post:
+      '200':
+        application/json: ReturnSearchSaleReturnsResponse
+      '400':
+        application/json: ReturnSearchSaleReturns400Response
+  /api/v1/Search/Sales/{exportable}/{pageNumber}/{pageSize}:
+    post:
+      '200':
+        application/json: SaleSearchSalesResponse
+      '400':
+        application/json: SaleSearchSales400Response
+  /api/v1/Search/Settlements:
+    post:
+      '200':
+        application/json: SettlementSearchVirtualCardSettlementsResponse
+      '400':
+        application/json: SettlementSearchVirtualCardSettlements400Response
+  /api/v1/Search/Verify/{exportable}/{pageNumber}/{pageSize}:
+    post:
+      '200':
+        application/json: ValidationSearchVerifyOperationResponse
+      '400':
+        application/json: ValidationSearchVerifyOperation400Response
+  /api/v1/Search/Voids/{exportable}/{pageNumber}/{pageSize}:
+    post:
+      '200':
+        application/json: VoidSearchVoidsResponse
+      '400':
+        application/json: VoidSearchVoids400Response
+  /api/v1/TerminateCard/<guid>:
+    post:
+      '200':
+        application/json: CardTerminateByDateResponse
+      '400':
+        application/json: CardTerminateByDate400Response
+  /api/v1/authenticate:
+    post:
+      '200':
+        application/json: TokenGenerateReportingTokenResponse
+      '400':
+        application/json: TokenGenerateReportingToken400Response
+  /api/v1/authonlys:
+    post:
+      '200':
+        application/json: AuthenticationAcquireClientAuthorizationResponse
+      '202':
+        application/json: AuthenticationAcquireClientAuthorization202Response
+  /api/v1/cancel:
+    post:
+      '200':
+        application/json: CancellationEntireTripCancellationResponse
+      '400':
+        application/json: CancellationEntireTripCancellation400Response
+  /api/v1/merchantsupplier/settings:
+    post:
+      '200':
+        application/json: SettingTokenizeBankAccountInfoResponse
+      '400':
+        application/json: SettingTokenizeBankAccountInfo400Response
+  /api/v1/returns:
+    post:
+      '200':
+        application/json: ReturnItemRequestResponse
+      '400':
+        application/json: ReturnItemRequest400Response
+  /api/v1/sales:
+    post:
+      '200':
+        application/json: SaleCreateTransactionResponse
+      '201':
+        application/json: SaleCreateTransaction201Response
+      '202':
+        application/json: SaleCreateTransaction202Response
+  /api/v1/sales/Activate/{SaleGuid}:
+    put:
+      '200':
+        application/json: SaleActivateDelayedResponse
+      '400':
+        application/json: SaleActivateDelayed400Response
+  /api/v1/sales/UpdateFutureSale:
+    post:
+      '200':
+        application/json: SaleUpdateDelayedActivationResponse
+      '400':
+        application/json: SaleUpdateDelayedActivation400Response
+  /api/v1/token:
+    post:
+      '200':
+        application/json: TokenIssueAuthenticationTokenResponse
+      '400':
+        application/json: TokenIssueAuthenticationToken400Response
+  /api/v1/verify:
+    post:
+      '201':
+        application/json: VerificationCardBankAccountResponse
+  /api/v1/void:
+    post:
+      '201':
+        application/json: VoidCreateVoidResponse
+      '400':
+        application/json: VoidCreateVoid400Response
+  /v1/Addendum/Remove/<guid>:
+    post:
+      '200':
+        application/json: AddendumDeleteItemResponse
+      '400':
+        application/json: AddendumDeleteItem400Response
+securityParameters:
+  merchantGuid:
+    query: false
+  pageNumber:
+    query: false
+  pageSize:
+    query: false
+  payeeEmailAddress:
+    query: false
+  payeeGuid:
+    query: false
+  releasedDate:
+    query: false
+validServerUrls: {}
