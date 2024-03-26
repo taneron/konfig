@@ -10,9 +10,9 @@ export default function KenjoTypeScriptSdk() {
   return (
     <SdkNew
       sdkName="kenjo-typescript-sdk"
-      metaDescription={`Kenjo is the all in one HR software for managing the workforce of companies in the industrial, service and commercial sectors, among others. 
+      metaDescription={`Kenjo is the all in one HR software for managing the workforce of companies in the industrial, service and commercial sectors, among others.
 
-On a single platform, companies can optimise the most important operations and processes in people management: attendance, shift planning and recruitment, among others, while remaining compliant. 
+On a single platform, companies can optimise the most important operations and processes in people management: attendance, shift planning and recruitment, among others, while remaining compliant.
 
 All of this with the aim of making HR a key part of the success of companies and the development of their workforce.`}
       company="Kenjo"
@@ -21,7 +21,7 @@ All of this with the aim of making HR a key part of the success of companies and
       companyKebabCase="kenjo"
       clientNameCamelCase="kenjo"
       homepage="kenjo.io"
-      lastUpdated={new Date("2024-03-26T19:34:06.737Z")}
+      lastUpdated={new Date("2024-03-26T19:52:11.073Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/kenjo/favicon.png"
       // Missing contactUrl
       // Missing contactEmail

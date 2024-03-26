@@ -90,9 +90,9 @@ export default function Kenjo() {
       homepage="kenjo.io"
       companyKebabCase="kenjo"
       categories={allCategories}
-      metaDescription={`Kenjo is the all in one HR software for managing the workforce of companies in the industrial, service and commercial sectors, among others. 
+      metaDescription={`Kenjo is the all in one HR software for managing the workforce of companies in the industrial, service and commercial sectors, among others.
 
-On a single platform, companies can optimise the most important operations and processes in people management: attendance, shift planning and recruitment, among others, while remaining compliant. 
+On a single platform, companies can optimise the most important operations and processes in people management: attendance, shift planning and recruitment, among others, while remaining compliant.
 
 All of this with the aim of making HR a key part of the success of companies and the development of their workforce.`}
     />

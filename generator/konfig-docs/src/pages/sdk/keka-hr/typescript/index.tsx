@@ -12,7 +12,7 @@ export default function KekaHrTypeScriptSdk() {
       sdkName="keka-hr-typescript-sdk"
       metaDescription={`Here's our story,
 
-It all began with the frustration of using software that sucks. Prior to starting Keka, our core team was a 100 person business that needed an easy to use software for managing employees. We looked everywhere and all we found were software that was lousy and hard to use. We felt SME businesses in India deserved something better. Something awesome actually! 
+It all began with the frustration of using software that sucks. Prior to starting Keka, our core team was a 100 person business that needed an easy to use software for managing employees. We looked everywhere and all we found were software that was lousy and hard to use. We felt SME businesses in India deserved something better. Something awesome actually!
 
 Thus emerged Keka!`}
       company="Keka HR"
@@ -21,7 +21,7 @@ Thus emerged Keka!`}
       companyKebabCase="keka-hr"
       clientNameCamelCase="kekaHr"
       homepage="keka.com"
-      lastUpdated={new Date("2024-03-26T19:27:47.991Z")}
+      lastUpdated={new Date("2024-03-26T19:52:11.073Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/keka-hr/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
