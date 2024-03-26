@@ -1,0 +1,927 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignoreObjectsWithNoProperties: true
+operationIds:
+  /api/v1/apps:
+    get: Application_listApps
+    post: Application_createNew
+  /api/v1/apps/{appId}:
+    delete: Application_removeInactive
+    get: Application_getById
+    put: Application_updateApplicationInOrg
+  /api/v1/apps/{appId}/connections/default:
+    get: Application_getDefaultProvisioningConnection
+    post: Application_setDefaultProvisioningConnection
+  /api/v1/apps/{appId}/connections/default/lifecycle/activate:
+    post: Application_activateDefaultProvisioningConnection
+  /api/v1/apps/{appId}/connections/default/lifecycle/deactivate:
+    post: Application_deactivateDefaultProvisioningConnection
+  /api/v1/apps/{appId}/credentials/csrs:
+    get: Application_listCsrsForApplication
+    post: Application_generateCsrForApplication
+  /api/v1/apps/{appId}/credentials/csrs/{csrId}:
+    delete: Application_deleteCsrById
+    get: Application_getCredentialsCsrs
+  /api/v1/apps/{appId}/credentials/csrs/{csrId}/lifecycle/publish:
+    post: Application_publishCsrLifecycle
+  /api/v1/apps/{appId}/credentials/keys:
+    get: Application_listKeyCredentials
+  /api/v1/apps/{appId}/credentials/keys/generate:
+    post: Application_generateX509Certificate
+  /api/v1/apps/{appId}/credentials/keys/{keyId}:
+    get: Application_getKeyCredential
+  /api/v1/apps/{appId}/credentials/keys/{keyId}/clone:
+    post: Application_cloneApplicationKeyCredential
+  /api/v1/apps/{appId}/credentials/secrets:
+    get: Application_listClientSecrets
+    post: Application_addClientSecret
+  /api/v1/apps/{appId}/credentials/secrets/{secretId}:
+    delete: Application_removeSecret
+    get: Application_getClientSecret
+  /api/v1/apps/{appId}/credentials/secrets/{secretId}/lifecycle/activate:
+    post: Application_activateClientSecret
+  /api/v1/apps/{appId}/credentials/secrets/{secretId}/lifecycle/deactivate:
+    post: Application_deactivateClientSecretById
+  /api/v1/apps/{appId}/features:
+    get: Application_listFeatures
+  /api/v1/apps/{appId}/features/{name}:
+    get: Application_getFeature
+    put: Application_updateFeature
+  /api/v1/apps/{appId}/grants:
+    get: Application_listScopeConsentGrants
+    post: Application_grantConsentToScope
+  /api/v1/apps/{appId}/grants/{grantId}:
+    delete: Application_revokePermission
+    get: Application_getSingleScopeConsentGrant
+  /api/v1/apps/{appId}/groups:
+    get: Application_listGroupsAssigned
+  /api/v1/apps/{appId}/groups/{groupId}:
+    delete: Application_removeGroupAssignment
+    get: Application_getGroupAssignment
+    put: Application_assignGroupTo
+  /api/v1/apps/{appId}/lifecycle/activate:
+    post: Application_activateInactive
+  /api/v1/apps/{appId}/lifecycle/deactivate:
+    post: Application_deactivateLifecycle
+  /api/v1/apps/{appId}/logo:
+    post: Application_updateLogo
+  /api/v1/apps/{appId}/policies/{policyId}:
+    put: Application_assignPolicyToApplication
+  /api/v1/apps/{appId}/sso/saml/metadata:
+    get: Application_previewSamlAppMetadata
+  /api/v1/apps/{appId}/tokens:
+    delete: Application_revokeAllTokens
+    get: Application_listTokens
+  /api/v1/apps/{appId}/tokens/{tokenId}:
+    delete: Application_revokeToken
+    get: Application_getToken
+  /api/v1/apps/{appId}/users:
+    get: Application_listAssignedUsers
+    post: Application_assignUserToApplication
+  /api/v1/apps/{appId}/users/{userId}:
+    delete: Application_removeUserFrom
+    get: Application_getSpecificUserAssignment
+    post: Application_updateProfileForUser
+  /api/v1/authenticators:
+    get: Authenticator_listAllAvailable
+    post: Authenticator_createNew
+  /api/v1/authenticators/{authenticatorId}:
+    get: Authenticator_getSuccess
+    put: Authenticator_updateAuthenticator
+  /api/v1/authenticators/{authenticatorId}/lifecycle/activate:
+    post: Authenticator_activateLifecycleSuccess
+  /api/v1/authenticators/{authenticatorId}/lifecycle/deactivate:
+    post: Authenticator_deactivateLifecycleSuccess
+  /api/v1/authorizationServers:
+    get: AuthorizationServer_listServers
+    post: AuthorizationServer_createNewServer
+  /api/v1/authorizationServers/{authServerId}:
+    delete: AuthorizationServer_deleteSuccess
+    get: AuthorizationServer_getById
+    put: AuthorizationServer_updateById
+  /api/v1/authorizationServers/{authServerId}/claims:
+    get: AuthorizationServer_getClaims
+    post: AuthorizationServer_createClaims
+  /api/v1/authorizationServers/{authServerId}/claims/{claimId}:
+    delete: AuthorizationServer_deleteClaim
+    get: AuthorizationServer_getClaims
+    put: AuthorizationServer_updateClaimSuccess
+  /api/v1/authorizationServers/{authServerId}/clients:
+    get: AuthorizationServer_listClients
+  /api/v1/authorizationServers/{authServerId}/clients/{clientId}/tokens:
+    delete: AuthorizationServer_deleteClientToken
+    get: AuthorizationServer_getClientTokens
+  /api/v1/authorizationServers/{authServerId}/clients/{clientId}/tokens/{tokenId}:
+    delete: AuthorizationServer_deleteAuthToken
+    get: AuthorizationServer_getClientAuthToken
+  /api/v1/authorizationServers/{authServerId}/credentials/keys:
+    get: AuthorizationServer_listCredentialsKeys
+  /api/v1/authorizationServers/{authServerId}/credentials/lifecycle/keyRotate:
+    post: AuthorizationServer_rotateKeyLifecycle
+  /api/v1/authorizationServers/{authServerId}/lifecycle/activate:
+    post: AuthorizationServer_activateLifecycleSuccess
+  /api/v1/authorizationServers/{authServerId}/lifecycle/deactivate:
+    post: AuthorizationServer_deactivateLifecycle
+  /api/v1/authorizationServers/{authServerId}/policies:
+    get: AuthorizationServer_getPoliciesSuccess
+    post: AuthorizationServer_createPolicy
+  /api/v1/authorizationServers/{authServerId}/policies/{policyId}:
+    delete: AuthorizationServer_deletePolicyById
+    get: AuthorizationServer_getPolicies
+    put: AuthorizationServer_updatePolicySuccess
+  /api/v1/authorizationServers/{authServerId}/policies/{policyId}/lifecycle/activate:
+    post: AuthorizationServer_activatePolicyLifecycle
+  /api/v1/authorizationServers/{authServerId}/policies/{policyId}/lifecycle/deactivate:
+    post: AuthorizationServer_deactivatePolicyLifecycle
+  /api/v1/authorizationServers/{authServerId}/policies/{policyId}/rules:
+    get: AuthorizationServer_enumeratePolicyRules
+    post: AuthorizationServer_createPolicyRule
+  /api/v1/authorizationServers/{authServerId}/policies/{policyId}/rules/{ruleId}:
+    delete: AuthorizationServer_deletePolicyRule
+    get: AuthorizationServer_getPolicyRuleById
+    put: AuthorizationServer_updatePolicyRuleConfiguration
+  /api/v1/authorizationServers/{authServerId}/policies/{policyId}/rules/{ruleId}/lifecycle/activate:
+    post: AuthorizationServer_activatePolicyRule
+  /api/v1/authorizationServers/{authServerId}/policies/{policyId}/rules/{ruleId}/lifecycle/deactivate:
+    post: AuthorizationServer_deactivatePolicyRule
+  /api/v1/authorizationServers/{authServerId}/scopes:
+    get: AuthorizationServer_getScopes
+    post: AuthorizationServer_createScope
+  /api/v1/authorizationServers/{authServerId}/scopes/{scopeId}:
+    delete: AuthorizationServer_deleteScope
+    get: AuthorizationServer_getScopes
+    put: AuthorizationServer_updateScopeSuccess
+  /api/v1/brands:
+    get: Brand_getAllBrands
+  /api/v1/brands/{brandId}:
+    get: Brand_getById
+    put: Brand_updateByBrandId
+  /api/v1/brands/{brandId}/templates/email:
+    get: Brand_listEmailTemplates
+  /api/v1/brands/{brandId}/templates/email/{templateName}:
+    get: Brand_getEmailTemplate
+  /api/v1/brands/{brandId}/templates/email/{templateName}/customizations:
+    delete: Brand_deleteEmailTemplateCustomizations
+    get: Brand_listEmailTemplateCustomizations
+    post: Brand_createEmailTemplateCustomization
+  /api/v1/brands/{brandId}/templates/email/{templateName}/customizations/{customizationId}:
+    delete: Brand_deleteEmailCustomization
+    get: Brand_getEmailTemplateCustomizationById
+    put: Brand_updateEmailCustomization
+  /api/v1/brands/{brandId}/templates/email/{templateName}/customizations/{customizationId}/preview:
+    get: Brand_getEmailCustomizationPreview
+  /api/v1/brands/{brandId}/templates/email/{templateName}/default-content:
+    get: Brand_getEmailTemplateDefaultContent
+  /api/v1/brands/{brandId}/templates/email/{templateName}/default-content/preview:
+    get: Brand_getEmailTemplateDefaultContentPreview
+  /api/v1/brands/{brandId}/templates/email/{templateName}/test:
+    post: Brand_getEmailTemplateDefaultContentPreview
+  /api/v1/brands/{brandId}/themes:
+    get: Brand_getThemes
+  /api/v1/brands/{brandId}/themes/{themeId}:
+    get: Brand_getThemeById
+    put: Brand_updateTheme
+  /api/v1/brands/{brandId}/themes/{themeId}/background-image:
+    delete: Brand_deleteThemeBackgroundImage
+    post: Brand_updateThemeBackgroundImage
+  /api/v1/brands/{brandId}/themes/{themeId}/favicon:
+    delete: Brand_deleteThemeFavicon
+    post: Brand_updateThemeFavicon
+  /api/v1/brands/{brandId}/themes/{themeId}/logo:
+    delete: Brand_deleteThemeLogo
+    post: Brand_updateThemeLogo
+  /api/v1/domains:
+    get: Domain_listVerifiedCustom
+    post: Domain_createNewDomain
+  /api/v1/domains/{domainId}:
+    delete: Domain_removeById
+    get: Domain_getById
+  /api/v1/domains/{domainId}/certificate:
+    put: Domain_createCertificate
+  /api/v1/domains/{domainId}/verify:
+    post: Domain_verifyById
+  /api/v1/eventHooks:
+    get: EventHook_listSuccessEvents
+    post: EventHook_createSuccess
+  /api/v1/eventHooks/{eventHookId}:
+    delete: EventHook_removeSuccessEvent
+    get: EventHook_getSuccessEvent
+    put: EventHook_updateSuccessEvent
+  /api/v1/eventHooks/{eventHookId}/lifecycle/activate:
+    post: EventHook_activateLifecycleSuccess
+  /api/v1/eventHooks/{eventHookId}/lifecycle/deactivate:
+    post: EventHook_deactivateLifecycleEvent
+  /api/v1/eventHooks/{eventHookId}/lifecycle/verify:
+    post: EventHook_verifyLifecycleSuccess
+  /api/v1/features:
+    get: Feature_getSuccess
+  /api/v1/features/{featureId}:
+    get: Feature_getSuccessById
+  /api/v1/features/{featureId}/dependencies:
+    get: Feature_listDependencies
+  /api/v1/features/{featureId}/dependents:
+    get: Feature_listDependents
+  /api/v1/features/{featureId}/{lifecycle}:
+    post: Feature_createLifecycleSuccess
+  /api/v1/groups:
+    get: Group_list
+    post: Group_createNewGroup
+  /api/v1/groups/rules:
+    get: Group_getAllRules
+    post: Group_addRule
+  /api/v1/groups/rules/{ruleId}:
+    delete: Group_removeRuleById
+    get: Group_getGroupRuleById
+    put: Group_updateRule
+  /api/v1/groups/rules/{ruleId}/lifecycle/activate:
+    post: Group_activateRuleLifecycle
+  /api/v1/groups/rules/{ruleId}/lifecycle/deactivate:
+    post: Group_deactivateRuleLifecycle
+  /api/v1/groups/{groupId}:
+    delete: Group_removeOperation
+    get: Group_getRules
+    put: Group_updateProfile
+  /api/v1/groups/{groupId}/apps:
+    get: Group_listAssignedApps
+  /api/v1/groups/{groupId}/roles:
+    get: Group_getRoleList
+    post: Group_assignRoleToGroup
+  /api/v1/groups/{groupId}/roles/{roleId}:
+    delete: Group_unassignRole
+    get: Group_getRoleSuccess
+  /api/v1/groups/{groupId}/roles/{roleId}/targets/catalog/apps:
+    get: Group_getRoleTargetsCatalogApps
+  /api/v1/groups/{groupId}/roles/{roleId}/targets/catalog/apps/{appName}:
+    delete: Group_deleteTargetGroupRolesCatalogApps
+    put: Group_updateRolesCatalogApps
+  /api/v1/groups/{groupId}/roles/{roleId}/targets/catalog/apps/{appName}/{applicationId}:
+    delete: Group_removeAppInstanceTargetToAppAdminRoleGivenToGroup
+    put: Group_addAppInstanceTargetToAppAdminRoleGivenToGroup
+  /api/v1/groups/{groupId}/roles/{roleId}/targets/groups:
+    get: Group_listRoleTargetsGroups
+  /api/v1/groups/{groupId}/roles/{roleId}/targets/groups/{targetGroupId}:
+    delete: Group_removeTargetGroup
+    put: Group_updateTargetGroupsRole
+  /api/v1/groups/{groupId}/users:
+    get: Group_enumerateGroupMembers
+  /api/v1/groups/{groupId}/users/{userId}:
+    delete: Group_removeUserFrom
+    put: Group_addUserToGroup
+  /api/v1/idps:
+    get: IdentityProvider_list
+    post: IdentityProvider_addNewIdp
+  /api/v1/idps/credentials/keys:
+    get: IdentityProvider_enumerateIdpKeys
+    post: IdentityProvider_addX509CertificatePublicKey
+  /api/v1/idps/credentials/keys/{keyId}:
+    delete: IdentityProvider_deleteKeyCredential
+    get: IdentityProvider_getKeyCredentialByIdp
+  /api/v1/idps/{idpId}:
+    delete: IdentityProvider_removeIdp
+    get: IdentityProvider_getByIdp
+    put: IdentityProvider_updateConfiguration
+  /api/v1/idps/{idpId}/credentials/csrs:
+    get: IdentityProvider_listCsrsForCertificateSigningRequests
+    post: IdentityProvider_generateCsr
+  /api/v1/idps/{idpId}/credentials/csrs/{csrId}:
+    delete: IdentityProvider_revokeCsrForIdentityProvider
+    get: IdentityProvider_getCsrByIdp
+  /api/v1/idps/{idpId}/credentials/csrs/{csrId}/lifecycle/publish:
+    post: IdentityProvider_updateCsrLifecyclePublish
+  /api/v1/idps/{idpId}/credentials/keys:
+    get: IdentityProvider_listSigningKeyCredentials
+  /api/v1/idps/{idpId}/credentials/keys/generate:
+    post: IdentityProvider_generateNewSigningKeyCredential
+  /api/v1/idps/{idpId}/credentials/keys/{keyId}:
+    get: IdentityProvider_getSigningKeyCredentialByIdp
+  /api/v1/idps/{idpId}/credentials/keys/{keyId}/clone:
+    post: IdentityProvider_cloneSigningKeyCredential
+  /api/v1/idps/{idpId}/lifecycle/activate:
+    post: IdentityProvider_activateIdpLifecycle
+  /api/v1/idps/{idpId}/lifecycle/deactivate:
+    post: IdentityProvider_deactivateIdp
+  /api/v1/idps/{idpId}/users:
+    get: IdentityProvider_getUser
+  /api/v1/idps/{idpId}/users/{userId}:
+    delete: IdentityProvider_unlinkUser
+    get: IdentityProvider_getLinkedUserById
+    post: IdentityProvider_linkUserToIdpWithoutTransaction
+  /api/v1/idps/{idpId}/users/{userId}/credentials/tokens:
+    get: IdentityProvider_getSocialAuthTokens
+  /api/v1/inlineHooks:
+    get: InlineHook_getSuccess
+    post: InlineHook_createSuccess
+  /api/v1/inlineHooks/{inlineHookId}:
+    delete: InlineHook_deleteMatchingById
+    get: InlineHook_getById
+    put: InlineHook_updateById
+  /api/v1/inlineHooks/{inlineHookId}/execute:
+    post: InlineHook_executeWithInput
+  /api/v1/inlineHooks/{inlineHookId}/lifecycle/activate:
+    post: InlineHook_activateLifecycle
+  /api/v1/inlineHooks/{inlineHookId}/lifecycle/deactivate:
+    post: InlineHook_deactivateLifecycle
+  /api/v1/logs:
+    get: Log_getListEvents
+  /api/v1/mappings:
+    get: ProfileMapping_listWithPagination
+  /api/v1/mappings/{mappingId}:
+    get: ProfileMapping_getById
+    post: ProfileMapping_updatePropertyMappings
+  /api/v1/meta/schemas/apps/{appInstanceId}/default:
+    get: UserSchema_getUserSchema
+    post: UserSchema_partialUpdateUserProfile
+  /api/v1/meta/schemas/group/default:
+    get: GroupSchema_get
+    post: GroupSchema_updateCustomProperties
+  /api/v1/meta/schemas/user/linkedObjects:
+    get: LinkedObject_getUserLinkedObjects
+    post: LinkedObject_createLinkedObject
+  /api/v1/meta/schemas/user/linkedObjects/{linkedObjectName}:
+    delete: LinkedObject_deleteUserLinkedObject
+    get: LinkedObject_getUserLinkedObjects
+  /api/v1/meta/schemas/user/{schemaId}:
+    get: UserSchema_getSchemaById
+    post: UserSchema_partialUpdateUserProfile
+  /api/v1/meta/types/user:
+    get: UserType_getAllUserTypes
+    post: UserType_createNewUserType
+  /api/v1/meta/types/user/{typeId}:
+    delete: UserType_deletePermanently
+    get: UserType_getById
+    post: UserType_updateExistingType
+    put: UserType_replaceExistingType
+  /api/v1/org:
+    get: Org_getSettings
+    post: Org_updateSettings
+    put: Org_updateSetting
+  /api/v1/org/contacts:
+    get: Org_listContactTypes
+  /api/v1/org/contacts/{contactType}:
+    get: Org_getContactUser
+    put: Org_updateContactUser
+  /api/v1/org/logo:
+    post: Org_updateOrganizationLogo
+  /api/v1/org/preferences:
+    get: Org_getOrgPreferences
+  /api/v1/org/preferences/hideEndUserFooter:
+    post: Org_hideEndUserFooter
+  /api/v1/org/preferences/showEndUserFooter:
+    post: Org_makeOktaUiFooterVisible
+  /api/v1/org/privacy/oktaCommunication:
+    get: Org_getOktaCommunicationSettings
+  /api/v1/org/privacy/oktaCommunication/optIn:
+    post: Org_optInOktaCommunicationEmails
+  /api/v1/org/privacy/oktaCommunication/optOut:
+    post: Org_optOutOktaCommunicationEmails
+  /api/v1/org/privacy/oktaSupport:
+    get: Org_getOktaSupportSettings
+  /api/v1/org/privacy/oktaSupport/extend:
+    post: Org_extendOktaSupport
+  /api/v1/org/privacy/oktaSupport/grant:
+    post: Org_grantOktaSupportAccess
+  /api/v1/org/privacy/oktaSupport/revoke:
+    post: Org_extendOktaSupport
+  /api/v1/policies:
+    get: Policy_getAllWithType
+    post: Policy_createNewPolicy
+  /api/v1/policies/{policyId}:
+    delete: Policy_removePolicyOperation
+    get: Policy_getPolicy
+    put: Policy_updateOperation
+  /api/v1/policies/{policyId}/lifecycle/activate:
+    post: Policy_activateLifecycle
+  /api/v1/policies/{policyId}/lifecycle/deactivate:
+    post: Policy_deactivateLifecycle
+  /api/v1/policies/{policyId}/rules:
+    get: Policy_enumerateRules
+    post: Policy_createRule
+  /api/v1/policies/{policyId}/rules/{ruleId}:
+    delete: Policy_removeRule
+    get: Policy_getPolicyRule
+    put: Policy_updateRule
+  /api/v1/policies/{policyId}/rules/{ruleId}/lifecycle/activate:
+    post: Policy_activateRuleLifecycle
+  /api/v1/policies/{policyId}/rules/{ruleId}/lifecycle/deactivate:
+    post: Policy_deactivateRuleLifecycle
+  /api/v1/roles/{roleTypeOrRoleId}/subscriptions:
+    get: Subscription_listRoleSubscriptions
+  /api/v1/roles/{roleTypeOrRoleId}/subscriptions/{notificationType}:
+    get: Subscription_getRoleSubscriptionsByNotificationType
+  /api/v1/roles/{roleTypeOrRoleId}/subscriptions/{notificationType}/subscribe:
+    post: Subscription_roleNotificationSubscribe
+  /api/v1/roles/{roleTypeOrRoleId}/subscriptions/{notificationType}/unsubscribe:
+    post: Subscription_customRoleNotificationUnsubscribe
+  /api/v1/sessions:
+    post: Session_createSessionWithToken
+  /api/v1/sessions/{sessionId}:
+    delete: Session_close
+    get: Session_getDetails
+  /api/v1/sessions/{sessionId}/lifecycle/refresh:
+    post: Session_refreshLifecycle
+  /api/v1/templates/sms:
+    get: Template_enumerateSmsTemplates
+    post: Template_addNewCustomSms
+  /api/v1/templates/sms/{templateId}:
+    delete: Template_removeSms
+    get: Template_getById
+    post: Template_partialSmsUpdate
+    put: Template_updateSmsTemplate
+  /api/v1/threats/configuration:
+    get: ThreatInsight_getCurrentConfiguration
+    post: ThreatInsight_updateConfiguration
+  /api/v1/trustedOrigins:
+    get: TrustedOrigin_getList
+    post: TrustedOrigin_createSuccess
+  /api/v1/trustedOrigins/{trustedOriginId}:
+    delete: TrustedOrigin_deleteSuccess
+    get: TrustedOrigin_getSuccessById
+    put: TrustedOrigin_updateSuccess
+  /api/v1/trustedOrigins/{trustedOriginId}/lifecycle/activate:
+    post: TrustedOrigin_activateLifecycleSuccess
+  /api/v1/trustedOrigins/{trustedOriginId}/lifecycle/deactivate:
+    post: TrustedOrigin_deactivateLifecycleSuccess
+  /api/v1/users:
+    get: User_listActiveUsers
+    post: User_createNewUser
+  /api/v1/users/{associatedUserId}/linkedObjects/{primaryRelationshipName}/{primaryUserId}:
+    put: User_updateLinkedObject
+  /api/v1/users/{userId}:
+    delete: User_deletePermanently
+    get: User_getOktaUser
+    post: User_updateProfile
+    put: User_updateProfile
+  /api/v1/users/{userId}/appLinks:
+    get: User_listAssignedAppLinks
+  /api/v1/users/{userId}/clients:
+    get: User_listClients
+  /api/v1/users/{userId}/clients/{clientId}/grants:
+    delete: User_revokeGrantsForUserAndClient
+    get: User_listGrantsForClient
+  /api/v1/users/{userId}/clients/{clientId}/tokens:
+    delete: User_revokeAllTokens
+    get: User_listRefreshTokensForUserAndClient
+  /api/v1/users/{userId}/clients/{clientId}/tokens/{tokenId}:
+    delete: User_revokeTokenForClient
+    get: User_getClientRefreshToken
+  /api/v1/users/{userId}/credentials/change_password:
+    post: User_changePasswordValidation
+  /api/v1/users/{userId}/credentials/change_recovery_question:
+    post: User_updateRecoveryQuestion
+  /api/v1/users/{userId}/credentials/forgot_password:
+    post: User_forgotPassword
+  /api/v1/users/{userId}/factors:
+    get: UserFactor_enumerateEnrolled
+    post: UserFactor_enrollSupportedFactor
+  /api/v1/users/{userId}/factors/catalog:
+    get: UserFactor_enumerateSupportedFactors
+  /api/v1/users/{userId}/factors/questions:
+    get: UserFactor_enumerateSecurityQuestions
+  /api/v1/users/{userId}/factors/{factorId}:
+    delete: UserFactor_unenrollFactor
+    get: UserFactor_getFactor
+  /api/v1/users/{userId}/factors/{factorId}/lifecycle/activate:
+    post: UserFactor_activateFactorLifecycle
+  /api/v1/users/{userId}/factors/{factorId}/transactions/{transactionId}:
+    get: UserFactor_pollFactorTransactionStatus
+  /api/v1/users/{userId}/factors/{factorId}/verify:
+    post: UserFactor_verifyOtp
+  /api/v1/users/{userId}/grants:
+    delete: User_revokeGrants
+    get: User_listGrants
+  /api/v1/users/{userId}/grants/{grantId}:
+    delete: User_revokeGrant
+    get: User_getGrantById
+  /api/v1/users/{userId}/groups:
+    get: User_getMemberGroups
+  /api/v1/users/{userId}/idps:
+    get: User_listIdpsForUser
+  /api/v1/users/{userId}/lifecycle/activate:
+    post: User_activateLifecycle
+  /api/v1/users/{userId}/lifecycle/deactivate:
+    post: User_deactivateLifecycle
+  /api/v1/users/{userId}/lifecycle/expire_password?tempPassword=false:
+    post: User_expirePasswordAndGetTemporaryPassword
+  /api/v1/users/{userId}/lifecycle/expire_password?tempPassword=true:
+    post: User_expirePasswordAndTemporaryPassword
+  /api/v1/users/{userId}/lifecycle/reactivate:
+    post: User_reactivateUser
+  /api/v1/users/{userId}/lifecycle/reset_factors:
+    post: User_resetFactorsOperation
+  /api/v1/users/{userId}/lifecycle/reset_password:
+    post: User_generatePasswordResetToken
+  /api/v1/users/{userId}/lifecycle/suspend:
+    post: User_suspendLifecycle
+  /api/v1/users/{userId}/lifecycle/unlock:
+    post: User_unlockUserStatus
+  /api/v1/users/{userId}/lifecycle/unsuspend:
+    post: User_unsuspendLifecycle
+  /api/v1/users/{userId}/linkedObjects/{relationshipName}:
+    delete: User_deleteLinkedObjects
+    get: User_getLinkedObjects
+  /api/v1/users/{userId}/roles:
+    get: User_listAssignedRoles
+    post: User_assignRole
+  /api/v1/users/{userId}/roles/{roleId}:
+    delete: User_unassignRole
+    get: User_getAssignedRole
+  /api/v1/users/{userId}/roles/{roleId}/targets/catalog/apps:
+    get: User_listAppTargetsForRole
+    put: User_updateRolesCatalogApps
+  /api/v1/users/{userId}/roles/{roleId}/targets/catalog/apps/{appName}:
+    delete: User_deleteTargetApp
+    put: User_updateRolesCatalogApps
+  /api/v1/users/{userId}/roles/{roleId}/targets/catalog/apps/{appName}/{applicationId}:
+    delete: User_removeAppInstanceTargetToAppAdministratorRoleGivenTo
+    put: User_addAppInstanceTargetToAppAdministratorRoleGivenToUser
+  /api/v1/users/{userId}/roles/{roleId}/targets/groups:
+    get: User_listRoleTargetsGroups
+  /api/v1/users/{userId}/roles/{roleId}/targets/groups/{groupId}:
+    delete: User_removeTargetGroup
+    put: User_updateRolesCatalogApps
+  /api/v1/users/{userId}/sessions:
+    delete: User_revokeAllSessions
+  /api/v1/users/{userId}/subscriptions:
+    get: User_listSubscriptions
+  /api/v1/users/{userId}/subscriptions/{notificationType}:
+    get: User_getSubscriptionByNotification
+  /api/v1/users/{userId}/subscriptions/{notificationType}/subscribe:
+    post: Subscription_userNotificationSubscribe
+  /api/v1/users/{userId}/subscriptions/{notificationType}/unsubscribe:
+    post: Subscription_unsubscribeUserSubscriptionByNotificationType
+  /api/v1/zones:
+    get: NetworkZone_listZones
+    post: NetworkZone_createNew
+  /api/v1/zones/{zoneId}:
+    delete: NetworkZone_removeZone
+    get: NetworkZone_getById
+    put: NetworkZone_updateZone
+  /api/v1/zones/{zoneId}/lifecycle/activate:
+    post: NetworkZone_activateLifecycle
+  /api/v1/zones/{zoneId}/lifecycle/deactivate:
+    post: NetworkZone_deactivateZoneLifecycle
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /api/v1/apps/{appId}/logo:
+    post:
+      multipart/form-data: ApplicationUpdateLogoRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /api/v1/apps:
+    get:
+      '200':
+        application/json: ApplicationListAppsResponse
+  /api/v1/apps/{appId}/credentials/csrs:
+    get:
+      '200':
+        application/json: ApplicationListCsrsForApplicationResponse
+  /api/v1/apps/{appId}/credentials/keys:
+    get:
+      '200':
+        application/json: ApplicationListKeyCredentialsResponse
+  /api/v1/apps/{appId}/credentials/secrets:
+    get:
+      '200':
+        application/json: ApplicationListClientSecretsResponse
+  /api/v1/apps/{appId}/features:
+    get:
+      '200':
+        application/json: ApplicationListFeaturesResponse
+  /api/v1/apps/{appId}/grants:
+    get:
+      '200':
+        application/json: ApplicationListScopeConsentGrantsResponse
+  /api/v1/apps/{appId}/groups:
+    get:
+      '200':
+        application/json: ApplicationListGroupsAssignedResponse
+  /api/v1/apps/{appId}/sso/saml/metadata:
+    get:
+      '200':
+        application/xml: ApplicationPreviewSamlAppMetadataResponse
+  /api/v1/apps/{appId}/tokens:
+    get:
+      '200':
+        application/json: ApplicationListTokensResponse
+  /api/v1/apps/{appId}/users:
+    get:
+      '200':
+        application/json: ApplicationListAssignedUsersResponse
+  /api/v1/authenticators:
+    get:
+      '200':
+        application/json: AuthenticatorListAllAvailableResponse
+  /api/v1/authorizationServers:
+    get:
+      '200':
+        application/json: AuthorizationServerListServersResponse
+  /api/v1/authorizationServers/{authServerId}/claims:
+    get:
+      '200':
+        application/json: AuthorizationServerGetClaimsResponse
+  /api/v1/authorizationServers/{authServerId}/clients:
+    get:
+      '200':
+        application/json: AuthorizationServerListClientsResponse
+  /api/v1/authorizationServers/{authServerId}/clients/{clientId}/tokens:
+    get:
+      '200':
+        application/json: AuthorizationServerGetClientTokensResponse
+  /api/v1/authorizationServers/{authServerId}/credentials/keys:
+    get:
+      '200':
+        application/json: AuthorizationServerListCredentialsKeysResponse
+  /api/v1/authorizationServers/{authServerId}/credentials/lifecycle/keyRotate:
+    post:
+      '200':
+        application/json: AuthorizationServerRotateKeyLifecycleResponse
+  /api/v1/authorizationServers/{authServerId}/policies:
+    get:
+      '200':
+        application/json: AuthorizationServerGetPoliciesSuccessResponse
+  /api/v1/authorizationServers/{authServerId}/policies/{policyId}/rules:
+    get:
+      '200':
+        application/json: AuthorizationServerEnumeratePolicyRulesResponse
+  /api/v1/authorizationServers/{authServerId}/scopes:
+    get:
+      '200':
+        application/json: AuthorizationServerGetScopesResponse
+  /api/v1/brands:
+    get:
+      '200':
+        application/json: BrandGetAllBrandsResponse
+  /api/v1/brands/{brandId}/templates/email:
+    get:
+      '200':
+        application/json: BrandListEmailTemplatesResponse
+  /api/v1/brands/{brandId}/templates/email/{templateName}/customizations:
+    get:
+      '200':
+        application/json: BrandListEmailTemplateCustomizationsResponse
+  /api/v1/brands/{brandId}/themes:
+    get:
+      '200':
+        application/json: BrandGetThemesResponse
+  /api/v1/eventHooks:
+    get:
+      '200':
+        application/json: EventHookListSuccessEventsResponse
+  /api/v1/features:
+    get:
+      '200':
+        application/json: FeatureGetSuccessResponse
+  /api/v1/features/{featureId}/dependencies:
+    get:
+      '200':
+        application/json: FeatureListDependenciesResponse
+  /api/v1/features/{featureId}/dependents:
+    get:
+      '200':
+        application/json: FeatureListDependentsResponse
+  /api/v1/groups:
+    get:
+      '200':
+        application/json: GroupListResponse
+  /api/v1/groups/rules:
+    get:
+      '200':
+        application/json: GroupGetAllRulesResponse
+  /api/v1/groups/{groupId}/apps:
+    get:
+      '200':
+        application/json: GroupListAssignedAppsResponse
+  /api/v1/groups/{groupId}/roles:
+    get:
+      '200':
+        application/json: GroupGetRoleListResponse
+  /api/v1/groups/{groupId}/roles/{roleId}/targets/catalog/apps:
+    get:
+      '200':
+        application/json: GroupGetRoleTargetsCatalogAppsResponse
+  /api/v1/groups/{groupId}/roles/{roleId}/targets/groups:
+    get:
+      '200':
+        application/json: GroupListRoleTargetsGroupsResponse
+  /api/v1/groups/{groupId}/users:
+    get:
+      '200':
+        application/json: GroupEnumerateGroupMembersResponse
+  /api/v1/idps:
+    get:
+      '200':
+        application/json: IdentityProviderListResponse
+  /api/v1/idps/credentials/keys:
+    get:
+      '200':
+        application/json: IdentityProviderEnumerateIdpKeysResponse
+  /api/v1/idps/{idpId}/credentials/csrs:
+    get:
+      '200':
+        application/json: IdentityProviderListCsrsForCertificateSigningRequestsResponse
+  /api/v1/idps/{idpId}/credentials/keys:
+    get:
+      '200':
+        application/json: IdentityProviderListSigningKeyCredentialsResponse
+  /api/v1/idps/{idpId}/users:
+    get:
+      '200':
+        application/json: IdentityProviderGetUserResponse
+  /api/v1/idps/{idpId}/users/{userId}/credentials/tokens:
+    get:
+      '200':
+        application/json: IdentityProviderGetSocialAuthTokensResponse
+  /api/v1/inlineHooks:
+    get:
+      '200':
+        application/json: InlineHookGetSuccessResponse
+  /api/v1/logs:
+    get:
+      '200':
+        application/json: LogGetListEventsResponse
+  /api/v1/mappings:
+    get:
+      '200':
+        application/json: ProfileMappingListWithPaginationResponse
+  /api/v1/meta/schemas/user/linkedObjects:
+    get:
+      '200':
+        application/json: LinkedObjectGetUserLinkedObjectsResponse
+  /api/v1/meta/types/user:
+    get:
+      '200':
+        application/json: UserTypeGetAllUserTypesResponse
+  /api/v1/org/contacts:
+    get:
+      '200':
+        application/json: OrgListContactTypesResponse
+  /api/v1/policies:
+    get:
+      '200':
+        application/json: PolicyGetAllWithTypeResponse
+  /api/v1/policies/{policyId}/rules:
+    get:
+      '200':
+        application/json: PolicyEnumerateRulesResponse
+  /api/v1/roles/{roleTypeOrRoleId}/subscriptions:
+    get:
+      '200':
+        application/json: SubscriptionListRoleSubscriptionsResponse
+  /api/v1/templates/sms:
+    get:
+      '200':
+        application/json: TemplateEnumerateSmsTemplatesResponse
+  /api/v1/trustedOrigins:
+    get:
+      '200':
+        application/json: TrustedOriginGetListResponse
+  /api/v1/users:
+    get:
+      '200':
+        application/json: UserListActiveUsersResponse
+  /api/v1/users/{userId}/appLinks:
+    get:
+      '200':
+        application/json: UserListAssignedAppLinksResponse
+  /api/v1/users/{userId}/clients:
+    get:
+      '200':
+        application/json: UserListClientsResponse
+  /api/v1/users/{userId}/clients/{clientId}/grants:
+    get:
+      '200':
+        application/json: UserListGrantsForClientResponse
+  /api/v1/users/{userId}/clients/{clientId}/tokens:
+    get:
+      '200':
+        application/json: UserListRefreshTokensForUserAndClientResponse
+  /api/v1/users/{userId}/factors:
+    get:
+      '200':
+        application/json: UserFactorEnumerateEnrolledResponse
+  /api/v1/users/{userId}/factors/catalog:
+    get:
+      '200':
+        application/json: UserFactorEnumerateSupportedFactorsResponse
+  /api/v1/users/{userId}/factors/questions:
+    get:
+      '200':
+        application/json: UserFactorEnumerateSecurityQuestionsResponse
+  /api/v1/users/{userId}/grants:
+    get:
+      '200':
+        application/json: UserListGrantsResponse
+  /api/v1/users/{userId}/groups:
+    get:
+      '200':
+        application/json: UserGetMemberGroupsResponse
+  /api/v1/users/{userId}/idps:
+    get:
+      '200':
+        application/json: UserListIdpsForUserResponse
+  /api/v1/users/{userId}/linkedObjects/{relationshipName}:
+    get:
+      '200':
+        application/json: UserGetLinkedObjectsResponse
+  /api/v1/users/{userId}/roles:
+    get:
+      '200':
+        application/json: UserListAssignedRolesResponse
+  /api/v1/users/{userId}/roles/{roleId}/targets/catalog/apps:
+    get:
+      '200':
+        application/json: UserListAppTargetsForRoleResponse
+  /api/v1/users/{userId}/roles/{roleId}/targets/groups:
+    get:
+      '200':
+        application/json: UserListRoleTargetsGroupsResponse
+  /api/v1/users/{userId}/subscriptions:
+    get:
+      '200':
+        application/json: UserListSubscriptionsResponse
+  /api/v1/zones:
+    get:
+      '200':
+        application/json: NetworkZoneListZonesResponse
+securityParameters:
+  Accept-Language:
+    header: false
+  OktaAccessGateway-Agent:
+    header: false
+  User-Agent:
+    header: false
+  X-Forwarded-For:
+    header: false
+  activate:
+    query: false
+  after:
+    query: false
+  cursor:
+    query: false
+  disableNotifications:
+    query: false
+  expand:
+    query: false
+  filter:
+    query: false
+  includeNonDeleted:
+    query: false
+  kid:
+    query: false
+  limit:
+    query: false
+  mode:
+    query: false
+  nextLogin:
+    query: false
+  oauthTokens:
+    query: false
+  provider:
+    query: false
+  q:
+    query: false
+  query_scope:
+    query: false
+  removeUsers:
+    query: false
+  scopeId:
+    query: false
+  search:
+    query: false
+  sendEmail:
+    query: false
+  since:
+    query: false
+  sortBy:
+    query: false
+  sortOrder:
+    query: false
+  sourceId:
+    query: false
+  status:
+    query: false
+  strict:
+    query: false
+  targetAid:
+    query: false
+  targetId:
+    query: false
+  targetIdpId:
+    query: false
+  templateId:
+    query: false
+  templateType:
+    query: false
+  tokenLifetimeSeconds:
+    query: false
+  type:
+    query: false
+  until:
+    query: false
+  updatePhone:
+    query: false
+  validityYears:
+    query: false
+validServerUrls: {}

@@ -14387,6 +14387,7 @@ paths:
             - interact
   /me/webinars:
     post:
+      deprecated: true
       summary: Create a webinar
       description: This method creates a new webinar for the authenticated user.
       operationId: create_webinar_alt1
@@ -27991,6 +27992,7 @@ paths:
             - interact
   /users/{user_id}/webinars:
     post:
+      deprecated: true
       summary: Create a webinar
       description: This method creates a new webinar for the authenticated user.
       operationId: create_webinar
@@ -34456,6 +34458,10 @@ components:
                 video:
                   description: The associated video object.
                   properties:
+                    created_time:
+                      description: The time in ISO 8601 format when the video was created.
+                      example: '2018-03-05T21:04:47+00:00'
+                      type: string
                     duration:
                       description: The duration of the associated video.
                       type: number
@@ -34472,6 +34478,7 @@ components:
                       example: /videos/152184
                       type: string
                   required:
+                    - created_time
                     - duration
                     - options
                     - title
@@ -42655,62 +42662,209 @@ components:
           description: Whether the subscription is the latest version.
           example: true
           type: boolean
-        items:
-          description: An array of items in the subscription.
-          items:
-            type: object
-            properties:
-              billing_plan_id:
-                description: The ID of the billing plan for the subscription item.
-                example: abc12345
-                type: string
-              created_at:
-                description: >-
-                  The time in 8601 format when the subscription item was
-                  created.
-                example: '2020-01-01T00:00:00Z'
-                type: string
-              id:
-                description: The ID of the subscription item.
-                example: abc12345
-                type: string
-              metadata:
-                description: The metadata of the subscription item.
-                type: object
-              promo_code:
-                description: The promotional code for the subscription item.
-                example: abc12345
-                type: string
-              promo_code_id:
-                description: The ID of the promotional code for the subscription item.
-                example: abc12345
-                type: string
-              quantity:
-                description: The quantity of the subscription item.
-                example: 1
-                type: number
-              synced_at:
-                description: The time in 8601 format when the subscription item was synced.
-                example: '2020-01-01T00:00:00Z'
-                type: string
-              updated_at:
-                description: >-
-                  The time in 8601 format when the subscription item was
-                  updated.
-                example: '2020-01-01T00:00:00Z'
-                type: string
-            required:
-              - billing_plan_id
-              - created_at
-              - id
-              - quantity
-              - synced_at
-              - updated_at
-          type: array
         payment_method_id:
           description: The ID of the payment method.
           example: abc12345
           type: string
+        plans:
+          description: An array of plans in the subscription.
+          items:
+            type: object
+            properties:
+              amount:
+                description: The amount of the plan.
+                example: '1.00'
+                properties:
+                  amount:
+                    description: The amount in actual currency.
+                    example: 12
+                    type: number
+                  currency:
+                    description: The currency of the amount.
+                    example: USD
+                    type: string
+                  formatted:
+                    description: The formatted amount.
+                    example: '12.00'
+                    type: string
+                  unit:
+                    description: >-
+                      The money amount in the lowest denomination. For instance,
+                      for USD, the lowest denomination is cents, so $12 is
+                      represented as 1200.
+                    example: 1200
+                    type: number
+                required:
+                  - unit
+                type: object
+              billing_plan_id:
+                description: The ID of the billing plan.
+                example: abc12345
+                type: string
+              billing_plan_product_id:
+                description: The ID of the billing plan product.
+                example: abc12345
+                type: string
+              billing_plan_type:
+                description: The type of the billing plan.
+                example: abc12345
+                type: string
+              created_at:
+                description: The time in 8601 format when the plan was created.
+                example: '2020-01-01T00:00:00Z'
+                type: string
+              id:
+                description: The ID of the plan.
+                example: abc12345
+                type: string
+              items:
+                description: An array of items in the plan.
+                items:
+                  type: object
+                  properties:
+                    amount:
+                      description: The amount of the item.
+                      example: 1
+                      items:
+                        amount:
+                          description: The amount in actual currency.
+                          example: 12
+                          required: false
+                          type: number
+                        currency:
+                          description: The currency of the amount.
+                          example: USD
+                          required: false
+                          type: string
+                        formatted:
+                          description: The formatted amount.
+                          example: '12.00'
+                          required: false
+                          type: string
+                        unit:
+                          description: >-
+                            The money amount in the lowest denomination. For
+                            instance, for USD, the lowest denomination is cents,
+                            so $12 is represented as 1200.
+                          example: 1200
+                          required: true
+                          type: number
+                      type: number
+                    created_at:
+                      description: The time in 8601 format when the item was created.
+                      example: '2020-01-01T00:00:00Z'
+                      type: string
+                    end_date:
+                      description: The time in 8601 format when the item ended.
+                      example: '2020-01-01T00:00:00Z'
+                      type: string
+                    id:
+                      description: The ID of the item.
+                      example: abc12345
+                      type: string
+                    metadata:
+                      description: The metadata of the item.
+                      type: object
+                    price_id:
+                      description: The ID of the price.
+                      example: abc12345
+                      type: string
+                    quantity:
+                      description: The quantity of the item.
+                      example: 1
+                      type: number
+                    start_date:
+                      description: The time in 8601 format when the item started.
+                      example: '2020-01-01T00:00:00Z'
+                      type: string
+                    subscription_item_id:
+                      description: The ID of the subscription item.
+                      example: abc12345
+                      type: string
+                    subscription_item_number:
+                      description: The number of the subscription item.
+                      example: '12345'
+                      type: string
+                    subscription_plan_id:
+                      description: The ID of the subscription plan.
+                      example: abc12345
+                      type: string
+                    synced_at:
+                      description: The time in 8601 format when the item was synced.
+                      example: '2020-01-01T00:00:00Z'
+                      type: string
+                    updated_at:
+                      description: The time in 8601 format when the item was updated.
+                      example: '2020-01-01T00:00:00Z'
+                      type: string
+                  required:
+                    - amount
+                    - created_at
+                    - id
+                    - price_id
+                    - quantity
+                    - subscription_item_id
+                    - subscription_item_number
+                    - subscription_plan_id
+                    - synced_at
+                    - updated_at
+                type: array
+              metadata:
+                description: The metadata of the plan.
+                type: object
+              plan_id:
+                description: The ID of the plan.
+                example: abc12345
+                type: string
+              product_id:
+                description: The ID of the product.
+                example: abc12345
+                type: string
+              promo_code:
+                description: The promotional code.
+                example: abc12345
+                type: string
+              promo_code_id:
+                description: The ID of the promotional code.
+                example: abc12345
+                type: string
+              quantity:
+                description: The quantity of the plan.
+                example: 1
+                type: number
+              subscription_plan_id:
+                description: The ID of the subscription plan.
+                example: abc12345
+                type: string
+              subscription_plan_number:
+                description: The number of the subscription plan.
+                example: '12345'
+                type: string
+              subscription_plan_type:
+                description: The type of the subscription plan.
+                example: abc12345
+                type: string
+              synced_at:
+                description: The time in 8601 format when the plan was synced.
+                example: '2020-01-01T00:00:00Z'
+                type: string
+              updated_at:
+                description: The time in 8601 format when the plan was updated.
+                example: '2020-01-01T00:00:00Z'
+                type: string
+            required:
+              - amount
+              - created_at
+              - id
+              - items
+              - plan_id
+              - product_id
+              - subscription_plan_id
+              - subscription_plan_number
+              - subscription_plan_type
+              - synced_at
+              - updated_at
+          type: array
         start_date:
           description: The time in ISO 8601 format when the subscription started.
           example: '2020-01-01T00:00:00Z'
@@ -42726,6 +42880,7 @@ components:
              * `SUBSCRIPTION_STATUS_IN_TRIAL` - The subscription is in a trial period.
              * `SUBSCRIPTION_STATUS_PAST_DUE` - The subscription is past due.
              * `SUBSCRIPTION_STATUS_UNPAID` - The subscription is unpaid.
+             * `SUBSCRIPTION_STATUS_UNSPECIFIED` - The subscription status is unspecified.
           enum:
             - SUBSCRIPTION_STATUS_ACTIVE
             - SUBSCRIPTION_STATUS_CANCELLED
@@ -42733,6 +42888,7 @@ components:
             - SUBSCRIPTION_STATUS_IN_TRIAL
             - SUBSCRIPTION_STATUS_PAST_DUE
             - SUBSCRIPTION_STATUS_UNPAID
+            - SUBSCRIPTION_STATUS_UNSPECIFIED
           example: SUBSCRIPTION_STATUS_ACTIVE
           type: string
         subscription_number:
@@ -42743,10 +42899,6 @@ components:
           description: The version of the subscription.
           example: 1
           type: number
-        synced_at:
-          description: The time in ISO 8601 format when the subscription was synced.
-          example: '2020-01-01T00:00:00Z'
-          type: string
         updated_at:
           description: The time in ISO 8601 format when the subscription was updated.
           example: '2020-01-01T00:00:00Z'
@@ -42756,19 +42908,18 @@ components:
           example: vimeo
           type: string
       required:
+        - account_id
         - auto_renew
         - created_at
         - end_date
-        - grace_period_id
         - id
         - is_latest
-        - items
         - payment_method_id
+        - plans
         - start_date
         - status
         - subscription_number
         - subscription_version
-        - synced_at
         - updated_at
         - vendor
       type: object
