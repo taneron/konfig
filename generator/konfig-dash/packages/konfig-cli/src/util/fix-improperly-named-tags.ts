@@ -9,10 +9,12 @@ export async function fixImproperlyNamedTags({
   spec,
   progress,
   alwaysYes,
+  useAIForTags,
 }: {
   spec: Spec['spec']
   progress: Progress
   alwaysYes: boolean
+  useAIForTags: boolean
 }): Promise<number> {
   let numberOfImproperlyNamedTags = 0
   if (spec.tags === undefined) return numberOfImproperlyNamedTags
@@ -58,6 +60,14 @@ export async function fixImproperlyNamedTags({
         numberOfImproperlyNamedTags++
         continue
       }
+    }
+
+    if (useAIForTags) {
+      // if AI is enabled, defer generation of a new tag to fix-operation-ids.ts
+      // and simply delete the tag
+      deleteTag({ spec, tagName: tag.name, progress })
+      numberOfImproperlyNamedTags++
+      continue
     }
 
     // if there is an existing valid tag present the option to select it or create a new one
@@ -126,6 +136,23 @@ export async function fixImproperlyNamedTags({
   }
 
   return numberOfImproperlyNamedTags
+}
+
+function deleteTag({
+  spec,
+  tagName,
+  progress,
+}: {
+  spec: Spec['spec']
+  tagName: string
+  progress: Progress
+}) {
+  if (spec.tags === undefined) return
+  spec.tags = spec.tags.filter((tag) => tag.name !== tagName)
+  for (const { operation } of getOperations({ spec })) {
+    if (operation.tags === undefined) continue
+    operation.tags = operation.tags.filter((tag) => tag !== tagName)
+  }
 }
 
 function renameTag({

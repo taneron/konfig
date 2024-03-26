@@ -123,6 +123,7 @@ export async function fixOas({
     spec: spec.spec,
     progress,
     alwaysYes,
+    useAIForTags,
   })
 
   // Fix only one tag name
