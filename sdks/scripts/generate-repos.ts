@@ -374,6 +374,11 @@ async function deleteAllEmptyRepositories() {
   });
 }
 
+function keyMatchesFilter(key: string, companyFilter: string[] | undefined): boolean {
+  if (!companyFilter) return true;
+  return companyFilter.some((filter) => key.includes(filter));
+}
+
 async function main() {
   const args = parseArguments(process.argv.slice(2));
   if (args.listStatus) {
@@ -388,10 +393,11 @@ async function main() {
   const publishedJsons = fs.readdirSync(publishedDir);
   const result: GenerateSdkResult[] = [];
   logArguments(args);
+  const companyFilter = args.companyFilter ? args.companyFilter.split(",") : undefined;
   await Promise.all(
     publishedJsons.map(async (file) => {
       const key = file.replace(".json", "");
-      if (args.companyFilter && !key.includes(args.companyFilter)) return;
+      if (!keyMatchesFilter(key, companyFilter)) return;
       LANGUAGES.forEach((lang) => {
         if (args.languageFilter && lang !== args.languageFilter) return;
         console.log(`🐱 ${key} | ${lang}`);
