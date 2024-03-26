@@ -1,0 +1,272 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignoreObjectsWithNoProperties: true
+ignorePotentialIncorrectType: true
+operationIds:
+  /access-tokens:
+    post: Token_generateAccessToken
+  /bank-transfer-payments:
+    get: BankTransfer_listAllBankTransfers
+  /bank-transfer-payments/{bankTransferId}:
+    get: BankTransfer_getBankTransfer
+  /itp-payments:
+    get: Itp_listAll
+    post: Itp_createPaymentInstruction
+  /itp-payments/{id}:
+    get: Itp_getItp
+  /pix-qrcode-payments:
+    get: QrCode_listAll
+    post: QrCode_generateQrCode
+  /pix-qrcode-payments/{id}:
+    get: QrCode_getQrCodeById
+  /recipients:
+    get: Recipient_listAll
+    post: Recipient_createRecipient
+  /recipients/{id}:
+    get: Recipient_getById
+    put: Recipient_updateRecipientById
+  /recipients/{recipientId}/balance:
+    get: Recipient_getBalance
+  /recipients/{recipientId}/bank-accounts:
+    get: Recipient_listBankAccounts
+    post: Recipient_createBankAccount
+  /recipients/{recipientId}/bank-accounts/{bankAccountId}:
+    delete: Recipient_deleteBankAccount
+    get: Recipient_getBankAccount
+  /recipients/{recipientId}/transactions:
+    get: Recipient_listTransactions
+  /recipients/{recipientId}/withdrawals:
+    get: Recipient_listWithdrawals
+    post: Recipient_createWithdrawal
+  /recipients/{recipientId}/withdrawals/{withdrawalId}:
+    get: Recipient_getWithdrawalById
+  /webhooks:
+    get: Webhook_listAll
+  /webhooks/{id}:
+    get: Webhook_get
+  /webhooks/{id}/attempts:
+    post: Webhook_resendAttempt
+operationTags:
+  /access-tokens:
+    post: Token
+  /bank-transfer-payments:
+    get: BankTransfer
+  /bank-transfer-payments/{bankTransferId}:
+    get: BankTransfer
+  /itp-payments:
+    get: ITP
+    post: ITP
+  /itp-payments/{id}:
+    get: ITP
+  /pix-qrcode-payments:
+    get: QRCode
+    post: QRCode
+  /pix-qrcode-payments/{id}:
+    get: QRCode
+  /recipients:
+    get: Recipient
+    post: Recipient
+  /recipients/{id}:
+    get: Recipient
+    put: Recipient
+  /recipients/{recipientId}/balance:
+    get: Recipient
+  /recipients/{recipientId}/bank-accounts:
+    get: Recipient
+    post: Recipient
+  /recipients/{recipientId}/bank-accounts/{bankAccountId}:
+    delete: Recipient
+    get: Recipient
+  /recipients/{recipientId}/transactions:
+    get: Recipient
+  /recipients/{recipientId}/withdrawals:
+    get: Recipient
+    post: Recipient
+  /recipients/{recipientId}/withdrawals/{withdrawalId}:
+    get: Recipient
+  /webhooks:
+    get: Webhook
+  /webhooks/{id}:
+    get: Webhook
+  /webhooks/{id}/attempts:
+    post: Webhook
+renameTags: {}
+requestSchemaNames:
+  /access-tokens:
+    post:
+      application/json: TokenGenerateAccessTokenRequest
+  /itp-payments:
+    post:
+      application/json: ItpCreatePaymentInstructionRequest
+  /pix-qrcode-payments:
+    post:
+      application/json: QrCodeGenerateQrCodeRequest
+  /recipients:
+    post:
+      application/json: RecipientCreateRecipientRequest
+  /recipients/{recipientId}/bank-accounts:
+    post:
+      application/json: RecipientCreateBankAccountRequest
+  /recipients/{recipientId}/withdrawals:
+    post:
+      application/json: RecipientCreateWithdrawalRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /access-tokens:
+    post:
+      '200':
+        application/json: TokenGenerateAccessTokenResponse
+      '400':
+        application/json: TokenGenerateAccessToken400Response
+  /bank-transfer-payments:
+    get:
+      '200':
+        application/json: BankTransferListAllBankTransfersResponse
+      '400':
+        application/json: BankTransferListAllBankTransfers400Response
+  /bank-transfer-payments/{bankTransferId}:
+    get:
+      '200':
+        application/json: BankTransferGetBankTransferResponse
+      '400':
+        application/json: BankTransferGetBankTransfer400Response
+  /itp-payments:
+    get:
+      '200':
+        application/json: ItpListAllResponse
+      '400':
+        application/json: ItpListAll400Response
+    post:
+      '200':
+        application/json: ItpCreatePaymentInstructionResponse
+      '400':
+        application/json: ItpCreatePaymentInstruction400Response
+  /itp-payments/{id}:
+    get:
+      '200':
+        application/json: ItpGetItpResponse
+      '400':
+        application/json: ItpGetItp400Response
+  /pix-qrcode-payments:
+    get:
+      '200':
+        application/json: QrCodeListAllResponse
+      '400':
+        application/json: QrCodeListAll400Response
+    post:
+      '200':
+        application/json: QrCodeGenerateQrCodeResponse
+      '400':
+        application/json: QrCodeGenerateQrCode400Response
+  /pix-qrcode-payments/{id}:
+    get:
+      '200':
+        application/json: QrCodeGetQrCodeByIdResponse
+      '400':
+        application/json: QrCodeGetQrCodeById400Response
+  /recipients:
+    get:
+      '200':
+        application/json: RecipientListAllResponse
+      '400':
+        application/json: RecipientListAll400Response
+    post:
+      '200':
+        application/json: RecipientCreateRecipientResponse
+      '400':
+        application/json: RecipientCreateRecipient400Response
+  /recipients/{id}:
+    get:
+      '200':
+        application/json: RecipientGetByIdResponse
+      '400':
+        application/json: RecipientGetById400Response
+    put:
+      '200':
+        application/json: RecipientUpdateRecipientByIdResponse
+      '400':
+        application/json: RecipientUpdateRecipientById400Response
+  /recipients/{recipientId}/balance:
+    get:
+      '200':
+        application/json: RecipientGetBalanceResponse
+      '400':
+        application/json: RecipientGetBalance400Response
+  /recipients/{recipientId}/bank-accounts:
+    get:
+      '200':
+        application/json: RecipientListBankAccountsResponse
+      '400':
+        application/json: RecipientListBankAccounts400Response
+    post:
+      '200':
+        application/json: RecipientCreateBankAccountResponse
+      '400':
+        application/json: RecipientCreateBankAccount400Response
+  /recipients/{recipientId}/bank-accounts/{bankAccountId}:
+    delete:
+      '200':
+        application/json: RecipientDeleteBankAccountResponse
+      '400':
+        application/json: RecipientDeleteBankAccount400Response
+    get:
+      '200':
+        application/json: RecipientGetBankAccountResponse
+      '400':
+        application/json: RecipientGetBankAccount400Response
+  /recipients/{recipientId}/transactions:
+    get:
+      '200':
+        application/json: RecipientListTransactionsResponse
+      '400':
+        application/json: RecipientListTransactions400Response
+  /recipients/{recipientId}/withdrawals:
+    get:
+      '200':
+        application/json: RecipientListWithdrawalsResponse
+      '400':
+        application/json: RecipientListWithdrawals400Response
+    post:
+      '200':
+        application/json: RecipientCreateWithdrawalResponse
+      '400':
+        application/json: RecipientCreateWithdrawal400Response
+  /recipients/{recipientId}/withdrawals/{withdrawalId}:
+    get:
+      '200':
+        application/json: RecipientGetWithdrawalByIdResponse
+      '400':
+        application/json: RecipientGetWithdrawalById400Response
+  /webhooks:
+    get:
+      '200':
+        application/json: WebhookListAllResponse
+      '400':
+        application/json: WebhookListAll400Response
+  /webhooks/{id}:
+    get:
+      '200':
+        application/json: WebhookGetResponse
+      '400':
+        application/json: WebhookGet400Response
+  /webhooks/{id}/attempts:
+    post:
+      '200':
+        application/json: WebhookResendAttemptResponse
+      '400':
+        application/json: WebhookResendAttempt400Response
+securityParameters:
+  after:
+    query: false
+  before:
+    query: false
+  endpointId:
+    query: false
+  event:
+    query: false
+  limit:
+    query: false
+  status:
+    query: false
+validServerUrls: {}

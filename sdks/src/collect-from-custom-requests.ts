@@ -1445,6 +1445,14 @@ const customRequests: Record<string, CustomRequest> = {
       return await downloadOpenApiSpecFromReadme({ urls });
     },
   },
+  "sqala.tech": {
+    lambda: async () => {
+      const urls = await collectEndpointsFromReadme({
+        url: "https://sqala.readme.io/reference/",
+      });
+      return await downloadOpenApiSpecFromReadme({ urls });
+    },
+  },
 };
 
 async function downloadOpenApiSpecFromMintlify({

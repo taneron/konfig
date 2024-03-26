@@ -1,0 +1,2959 @@
+openapi: 3.1.0
+info:
+  title: Developer API
+  version: '1.0'
+servers:
+  - url: https://api.sqala.tech/developer/v1
+components:
+  securitySchemes:
+    sec0:
+      type: http
+      scheme: basic
+      flows: {}
+security:
+  - sec0: []
+paths:
+  /access-tokens:
+    post:
+      summary: Create an Access Token
+      description: ''
+      operationId: exchanging-a-refresh-token-for-tokens
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - refreshToken
+              properties:
+                refreshToken:
+                  type: string
+                  description: >-
+                    The Refresh Token is used to get a new Access Token, when
+                    the old one expires.
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: |-
+                    {
+                      "token": "eyJraWQiOiJwb1NPeDI0VHRmbDZCYjdaZ3RcL296WGpqUzMrTVlkYTNScXdON1dVSXJkbz0iLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiIyZjE5MDk0Mi1jMjY5LTQxMjQtOTNkNy01YTdmYTkwMTQ0YzkiLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAuc2EtZWFzdC0xLmFtYXpvbmF3cy5jb21cL3NhLWVhc3QtMV82eWdMcFJLMGUiLCJjbGllbnRfaWQiOiIyNXQwOGxwaHYwN2IzZnZqZ2FqcTNsczFrcCIsIm9yaWdpbl9qdGkiOiIzZWZjODY1Yi01MzU2LTQwNWMtOTQxYy1iNmExM2I3ODFhNWYiLCJldmVudF9pZCI6ImMyMTM1NjgzLWY3YTUtNGMxYy04MzUzLWM3MTUyNmQ2NDU5YyIsInRva2VuX3VzZSI6ImFjY2VzcyIsInNjb3BlIjoiYXdzLmNvZ25pdG8uc2lnbmluLnVzZXIuYWRtaW4iLCJhdXRoX3RpbWUiOjE2NTQ4MTY3OTgsImV4cCI6MTY1NDgyMDUyNCwiaWF0IjoxNjU0ODE2OTI0LCJqdGkiOiI2ZmVhODZiNC1kNDVmLTRhOGQtYjEwYi1iOWRhNzkzODQyZmQiLCJ1c2VybmFtZSI6ImNhcmxvc3BlY2FuaGEyQG91dGxvb2suY29tIn0.PfKd8rpnq9xPO3IwSRkDuBDx0VjN41ABKvm0xIybNCxWh5N1b7HZsTPxjh6GiDoHWYnr8_HCzXqk0MQXYHt7ybHKIFPKqOaA4VpBrb-WaazwSAGdTJFt3grZb4KP-ab2gKaYMji9x1l_SDAaEU-frEHErOnJwyMPi1dn2pZAKJMp4p7IIctwYTFITokP4Lqn7amy_PHlsXoNlUPV0BoNBrFFq-sp22NXSdDtIsdSkyRlGqlOHNTd2zMNqqKCFx3lBt1dPfm6gPvx_mwlOiT0icAXwUOsXxi22P5HgEoh3HJw2NneP9xC8Mw1BQvhBdmfnmANQzIHWkFfBMCQo3xF5w",
+                      "expiresIn": 3600,
+                      "type": "Bearer"
+                    }
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+                    example: >-
+                      eyJraWQiOiJwb1NPeDI0VHRmbDZCYjdaZ3RcL296WGpqUzMrTVlkYTNScXdON1dVSXJkbz0iLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiIyZjE5MDk0Mi1jMjY5LTQxMjQtOTNkNy01YTdmYTkwMTQ0YzkiLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAuc2EtZWFzdC0xLmFtYXpvbmF3cy5jb21cL3NhLWVhc3QtMV82eWdMcFJLMGUiLCJjbGllbnRfaWQiOiIyNXQwOGxwaHYwN2IzZnZqZ2FqcTNsczFrcCIsIm9yaWdpbl9qdGkiOiIzZWZjODY1Yi01MzU2LTQwNWMtOTQxYy1iNmExM2I3ODFhNWYiLCJldmVudF9pZCI6ImMyMTM1NjgzLWY3YTUtNGMxYy04MzUzLWM3MTUyNmQ2NDU5YyIsInRva2VuX3VzZSI6ImFjY2VzcyIsInNjb3BlIjoiYXdzLmNvZ25pdG8uc2lnbmluLnVzZXIuYWRtaW4iLCJhdXRoX3RpbWUiOjE2NTQ4MTY3OTgsImV4cCI6MTY1NDgyMDUyNCwiaWF0IjoxNjU0ODE2OTI0LCJqdGkiOiI2ZmVhODZiNC1kNDVmLTRhOGQtYjEwYi1iOWRhNzkzODQyZmQiLCJ1c2VybmFtZSI6ImNhcmxvc3BlY2FuaGEyQG91dGxvb2suY29tIn0.PfKd8rpnq9xPO3IwSRkDuBDx0VjN41ABKvm0xIybNCxWh5N1b7HZsTPxjh6GiDoHWYnr8_HCzXqk0MQXYHt7ybHKIFPKqOaA4VpBrb-WaazwSAGdTJFt3grZb4KP-ab2gKaYMji9x1l_SDAaEU-frEHErOnJwyMPi1dn2pZAKJMp4p7IIctwYTFITokP4Lqn7amy_PHlsXoNlUPV0BoNBrFFq-sp22NXSdDtIsdSkyRlGqlOHNTd2zMNqqKCFx3lBt1dPfm6gPvx_mwlOiT0icAXwUOsXxi22P5HgEoh3HJw2NneP9xC8Mw1BQvhBdmfnmANQzIHWkFfBMCQo3xF5w
+                  expiresIn:
+                    type: integer
+                    example: 3600
+                    default: 0
+                  type:
+                    type: string
+                    example: Bearer
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+  /pix-qrcode-payments:
+    post:
+      summary: Create a Pix QR Code
+      description: ''
+      operationId: create-pix
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - amount
+              properties:
+                code:
+                  type: string
+                  description: Unique identifier for the object in your system.
+                amount:
+                  type: integer
+                  description: Amount in cents to be paid.
+                  format: int32
+                payer:
+                  type: object
+                  description: This object represents a payer of the payment.
+                  properties:
+                    name:
+                      type: string
+                      description: The customer’s full name or business name.
+                    taxId:
+                      type: string
+                      description: >-
+                        The tax ID of the customer (CPF for individual customers
+                        or CNPJ for businesses customers)
+                split:
+                  type: array
+                  description: >-
+                    This object represents a list of recipients who will receive
+                    part of the payment.
+                  items:
+                    properties:
+                      value:
+                        type: integer
+                        format: int32
+                      recipientId:
+                        type: string
+                    required:
+                      - value
+                      - recipientId
+                    type: object
+                metadata:
+                  type: array
+                  description: >-
+                    Set of key-value pairs that you can attach to an object.
+                    This can be useful for storing additional information about
+                    the object in a structured format.
+                  items:
+                    properties:
+                      name:
+                        type: string
+                        description: The name of the custom field.
+                      value:
+                        type: string
+                        description: The value of the custom field.
+                    type: object
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \t\"id\": \"6a0b14a9-023c-4198-9ada-6e4684213340\",\n  \t\"code\": \"804a46a7-7012-4159-8782-1090e85e4afa\",\n    \"type\": \"STATIC\",\n    \"amount\": 4990,\n    \"paidAmount\": null,\n    \"payload\": \"00020126580014BR.GOV.BCB.PIX01368ad59cd0-cd85-45eb-a443-b8824285c5f352040000530398654041.295802BR5924RPO GESTAO DE PAGAMENTOS6008SO PAULO6108000000006224052046193bc0333a468fa1ee6304A3E1\",\n    \"payer\": {\n      \"name\": \"Bruce Wayne\",\n      \"taxId\": \"37515868066\"\n    },\n    \"split\": [\n      {\n        \"value\": 990,\n        \"recipientId\": \"009cb956-3b58-4731-927f-20225600b35b\"\n      }\n    ],\n  \t\"status\": \"PROCESSED\",\n    \"createdAt\": \"2022-06-06T11:48:21Z\",\n    \"processedAt\": \"2022-06-06T11:48:26Z\",\n    \"paidAt\": null,\n    \"failedAt\": null,\n    \"metadata\": [\n      {\n        \"name\": \"CUSTOM_FIELD_NAME\", \n        \"value\": \"CUSTOM_FIELD_VALUE\"\n      }\n    ]\n}"
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: 6a0b14a9-023c-4198-9ada-6e4684213340
+                  code:
+                    type: string
+                    example: 804a46a7-7012-4159-8782-1090e85e4afa
+                  type:
+                    type: string
+                    example: STATIC
+                  amount:
+                    type: integer
+                    example: 4990
+                    default: 0
+                  paidAmount: {}
+                  payload:
+                    type: string
+                    example: >-
+                      00020126580014BR.GOV.BCB.PIX01368ad59cd0-cd85-45eb-a443-b8824285c5f352040000530398654041.295802BR5924RPO
+                      GESTAO DE PAGAMENTOS6008SO
+                      PAULO6108000000006224052046193bc0333a468fa1ee6304A3E1
+                  payer:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                        example: Bruce Wayne
+                      taxId:
+                        type: string
+                        example: '37515868066'
+                  split:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        value:
+                          type: integer
+                          example: 990
+                          default: 0
+                        recipientId:
+                          type: string
+                          example: 009cb956-3b58-4731-927f-20225600b35b
+                  status:
+                    type: string
+                    example: PROCESSED
+                  createdAt:
+                    type: string
+                    example: '2022-06-06T11:48:21Z'
+                  processedAt:
+                    type: string
+                    example: '2022-06-06T11:48:26Z'
+                  paidAt: {}
+                  failedAt: {}
+                  metadata:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                          example: CUSTOM_FIELD_NAME
+                        value:
+                          type: string
+                          example: CUSTOM_FIELD_VALUE
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n\t\"code\": \"INVALID_BODY\",\n  \"message\": \"Invalid body, check 'errors' property for more info.\",\n  \"errors\": [\n    \"amount must be a positive number\"\n  ]\n}"
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: INVALID_BODY
+                  message:
+                    type: string
+                    example: Invalid body, check 'errors' property for more info.
+                  errors:
+                    type: array
+                    items:
+                      type: string
+                      example: amount must be a positive number
+      deprecated: false
+    get:
+      summary: List all Pix QR Codes
+      description: ''
+      operationId: list-all-pix
+      parameters:
+        - name: limit
+          in: query
+          description: A limit on the number of objects to be returned, between 1 and 50.
+          schema:
+            type: integer
+            format: int32
+            default: 10
+        - name: before
+          in: query
+          description: >-
+            A cursor for use in pagination. ```before``` is an object ID that
+            defines your place in the list. For instance, if you make a list
+            request and receive 50 objects, starting with ```obj_bar```, your
+            subsequent call can include ```before=obj_bar``` in order to fetch
+            the previous page of the list.
+          schema:
+            type: string
+        - name: after
+          in: query
+          description: >-
+            A cursor for use in pagination. after is an object ID that defines
+            your place in the list. For instance, if you make a list request and
+            receive 50 objects, ending with obj_foo, your subsequent call can
+            include after=obj_foo in order to fetch the next page of the list.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: |-
+                    {
+                       "data":[
+                          {
+                             "id":"6a0b14a9-023c-4198-9ada-6e4684213340",
+                             "code":"804a46a7-7012-4159-8782-1090e85e4afa",
+                             "type":"STATIC",
+                             "amount":4990,
+                             "paidAmount":null,
+                             "payload":"00020126580014BR.GOV.BCB.PIX01368ad59cd0-cd85-45eb-a443-b8824285c5f352040000530398654041.295802BR5924RPO GESTAO DE PAGAMENTOS6008SO PAULO6108000000006224052046193bc0333a468fa1ee6304A3E1",
+                             "payer":{
+                                "name":"Bruce Wayne",
+                                "taxId":"37515868066"
+                             },
+                             "split":[
+                                {
+                                   "value":990,
+                                   "recipientId":"009cb956-3b58-4731-927f-20225600b35b"
+                                }
+                             ],
+                             "status":"PROCESSED",
+                             "createdAt":"2022-06-06T11:48:21Z",
+                             "processedAt":"2022-06-06T11:48:26Z",
+                             "paidAt":null,
+                             "failedAt":null,
+                             "metadata":[
+                                {
+                                   "name":"CUSTOM_FIELD_NAME",
+                                   "value":"CUSTOM_FIELD_VALUE"
+                                }
+                             ]
+                          }
+                       ],
+                       "paging":{
+                          "before":null,
+                          "after":"aWQ6YzYyZjViNTAtZTNiOS0xMWVjLTk0OWEtNjFkMjljNjZlMmNm"
+                       }
+                    }
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: 6a0b14a9-023c-4198-9ada-6e4684213340
+                        code:
+                          type: string
+                          example: 804a46a7-7012-4159-8782-1090e85e4afa
+                        type:
+                          type: string
+                          example: STATIC
+                        amount:
+                          type: integer
+                          example: 4990
+                          default: 0
+                        paidAmount: {}
+                        payload:
+                          type: string
+                          example: >-
+                            00020126580014BR.GOV.BCB.PIX01368ad59cd0-cd85-45eb-a443-b8824285c5f352040000530398654041.295802BR5924RPO
+                            GESTAO DE PAGAMENTOS6008SO
+                            PAULO6108000000006224052046193bc0333a468fa1ee6304A3E1
+                        payer:
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                              example: Bruce Wayne
+                            taxId:
+                              type: string
+                              example: '37515868066'
+                        split:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              value:
+                                type: integer
+                                example: 990
+                                default: 0
+                              recipientId:
+                                type: string
+                                example: 009cb956-3b58-4731-927f-20225600b35b
+                        status:
+                          type: string
+                          example: PROCESSED
+                        createdAt:
+                          type: string
+                          example: '2022-06-06T11:48:21Z'
+                        processedAt:
+                          type: string
+                          example: '2022-06-06T11:48:26Z'
+                        paidAt: {}
+                        failedAt: {}
+                        metadata:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              name:
+                                type: string
+                                example: CUSTOM_FIELD_NAME
+                              value:
+                                type: string
+                                example: CUSTOM_FIELD_VALUE
+                  paging:
+                    type: object
+                    properties:
+                      before: {}
+                      after:
+                        type: string
+                        example: aWQ6YzYyZjViNTAtZTNiOS0xMWVjLTk0OWEtNjFkMjljNjZlMmNm
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+  /pix-qrcode-payments/{id}:
+    get:
+      summary: Retrieve a Pix QR Code
+      description: ''
+      operationId: retrieve-a-pix
+      parameters:
+        - name: id
+          in: path
+          description: Unique identifier for the object.
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \t\"id\": \"6a0b14a9-023c-4198-9ada-6e4684213340\",\n  \t\"code\": \"804a46a7-7012-4159-8782-1090e85e4afa\",\n    \"type\": \"STATIC\",\n    \"amount\": 4990,\n    \"paidAmount\": null,\n    \"payload\": \"00020126580014BR.GOV.BCB.PIX01368ad59cd0-cd85-45eb-a443-b8824285c5f352040000530398654041.295802BR5924RPO GESTAO DE PAGAMENTOS6008SO PAULO6108000000006224052046193bc0333a468fa1ee6304A3E1\",\n    \"payer\": {\n      \"name\": \"Bruce Wayne\",\n      \"taxId\": \"37515868066\"\n    },\n    \"split\": [\n      {\n        \"value\": 990,\n        \"recipientId\": \"009cb956-3b58-4731-927f-20225600b35b\"\n      }\n    ],\n  \t\"status\": \"PROCESSED\",\n    \"createdAt\": \"2022-06-06T11:48:21Z\",\n    \"processedAt\": \"2022-06-06T11:48:26Z\",\n    \"paidAt\": null,\n    \"failedAt\": null,\n    \"metadata\": [\n      {\n        \"name\": \"CUSTOM_FIELD_NAME\", \n        \"value\": \"CUSTOM_FIELD_VALUE\"\n      }\n    ]\n}"
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: 6a0b14a9-023c-4198-9ada-6e4684213340
+                  code:
+                    type: string
+                    example: 804a46a7-7012-4159-8782-1090e85e4afa
+                  type:
+                    type: string
+                    example: STATIC
+                  amount:
+                    type: integer
+                    example: 4990
+                    default: 0
+                  paidAmount: {}
+                  payload:
+                    type: string
+                    example: >-
+                      00020126580014BR.GOV.BCB.PIX01368ad59cd0-cd85-45eb-a443-b8824285c5f352040000530398654041.295802BR5924RPO
+                      GESTAO DE PAGAMENTOS6008SO
+                      PAULO6108000000006224052046193bc0333a468fa1ee6304A3E1
+                  payer:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                        example: Bruce Wayne
+                      taxId:
+                        type: string
+                        example: '37515868066'
+                  split:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        value:
+                          type: integer
+                          example: 990
+                          default: 0
+                        recipientId:
+                          type: string
+                          example: 009cb956-3b58-4731-927f-20225600b35b
+                  status:
+                    type: string
+                    example: PROCESSED
+                  createdAt:
+                    type: string
+                    example: '2022-06-06T11:48:21Z'
+                  processedAt:
+                    type: string
+                    example: '2022-06-06T11:48:26Z'
+                  paidAt: {}
+                  failedAt: {}
+                  metadata:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                          example: CUSTOM_FIELD_NAME
+                        value:
+                          type: string
+                          example: CUSTOM_FIELD_VALUE
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+  /itp-payments:
+    post:
+      summary: Create an ITP
+      description: ''
+      operationId: create-a-pix-qr-code-copy
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - amount
+                - payer
+              properties:
+                code:
+                  type: string
+                  description: Unique identifier for the object in your system.
+                amount:
+                  type: integer
+                  description: Amount in cents to be paid.
+                  format: int32
+                payer:
+                  type: object
+                  description: This object represents a payer of the payment.
+                  properties:
+                    name:
+                      type: string
+                      description: The customer’s full name or business name.
+                    taxId:
+                      type: string
+                      description: >-
+                        The tax ID of the customer (CPF for individual customers
+                        or CNPJ for businesses customers)
+                split:
+                  type: array
+                  description: >-
+                    This object represents a list of recipients who will receive
+                    part of the payment.
+                  items:
+                    properties:
+                      value:
+                        type: integer
+                        format: int32
+                      recipientId:
+                        type: string
+                    required:
+                      - value
+                      - recipientId
+                    type: object
+                metadata:
+                  type: array
+                  description: >-
+                    Set of key-value pairs that you can attach to an object.
+                    This can be useful for storing additional information about
+                    the object in a structured format.
+                  items:
+                    properties:
+                      name:
+                        type: string
+                        description: The name of the custom field.
+                      value:
+                        type: string
+                        description: The value of the custom field.
+                    type: object
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \t\"id\": \"6a0b14a9-023c-4198-9ada-6e4684213340\",\n  \t\"code\": \"804a46a7-7012-4159-8782-1090e85e4afa\",\n    \"type\": \"STATIC\",\n    \"amount\": 4990,\n    \"paidAmount\": null,\n    \"payload\": \"00020126580014BR.GOV.BCB.PIX01368ad59cd0-cd85-45eb-a443-b8824285c5f352040000530398654041.295802BR5924RPO GESTAO DE PAGAMENTOS6008SO PAULO6108000000006224052046193bc0333a468fa1ee6304A3E1\",\n    \"payer\": {\n      \"name\": \"Bruce Wayne\",\n      \"taxId\": \"37515868066\"\n    },\n    \"split\": [\n      {\n        \"value\": 990,\n        \"recipientId\": \"009cb956-3b58-4731-927f-20225600b35b\"\n      }\n    ],\n  \t\"status\": \"PROCESSED\",\n    \"createdAt\": \"2022-06-06T11:48:21Z\",\n    \"processedAt\": \"2022-06-06T11:48:26Z\",\n    \"paidAt\": null,\n    \"failedAt\": null,\n    \"metadata\": [\n      {\n        \"name\": \"CUSTOM_FIELD_NAME\", \n        \"value\": \"CUSTOM_FIELD_VALUE\"\n      }\n    ]\n}"
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: 6a0b14a9-023c-4198-9ada-6e4684213340
+                  code:
+                    type: string
+                    example: 804a46a7-7012-4159-8782-1090e85e4afa
+                  type:
+                    type: string
+                    example: STATIC
+                  amount:
+                    type: integer
+                    example: 4990
+                    default: 0
+                  paidAmount: {}
+                  payload:
+                    type: string
+                    example: >-
+                      00020126580014BR.GOV.BCB.PIX01368ad59cd0-cd85-45eb-a443-b8824285c5f352040000530398654041.295802BR5924RPO
+                      GESTAO DE PAGAMENTOS6008SO
+                      PAULO6108000000006224052046193bc0333a468fa1ee6304A3E1
+                  payer:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                        example: Bruce Wayne
+                      taxId:
+                        type: string
+                        example: '37515868066'
+                  split:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        value:
+                          type: integer
+                          example: 990
+                          default: 0
+                        recipientId:
+                          type: string
+                          example: 009cb956-3b58-4731-927f-20225600b35b
+                  status:
+                    type: string
+                    example: PROCESSED
+                  createdAt:
+                    type: string
+                    example: '2022-06-06T11:48:21Z'
+                  processedAt:
+                    type: string
+                    example: '2022-06-06T11:48:26Z'
+                  paidAt: {}
+                  failedAt: {}
+                  metadata:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                          example: CUSTOM_FIELD_NAME
+                        value:
+                          type: string
+                          example: CUSTOM_FIELD_VALUE
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n\t\"code\": \"INVALID_BODY\",\n  \"message\": \"Invalid body, check 'errors' property for more info.\",\n  \"errors\": [\n    \"amount must be a positive number\"\n  ]\n}"
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: INVALID_BODY
+                  message:
+                    type: string
+                    example: Invalid body, check 'errors' property for more info.
+                  errors:
+                    type: array
+                    items:
+                      type: string
+                      example: amount must be a positive number
+      deprecated: false
+    get:
+      summary: List all ITPs
+      description: ''
+      operationId: list-all-pix-qr-codes-copy
+      parameters:
+        - name: limit
+          in: query
+          description: A limit on the number of objects to be returned, between 1 and 50.
+          schema:
+            type: integer
+            format: int32
+            default: 10
+        - name: before
+          in: query
+          description: >-
+            A cursor for use in pagination. ```before``` is an object ID that
+            defines your place in the list. For instance, if you make a list
+            request and receive 50 objects, starting with ```obj_bar```, your
+            subsequent call can include ```before=obj_bar``` in order to fetch
+            the previous page of the list.
+          schema:
+            type: string
+        - name: after
+          in: query
+          description: >-
+            A cursor for use in pagination. after is an object ID that defines
+            your place in the list. For instance, if you make a list request and
+            receive 50 objects, ending with obj_foo, your subsequent call can
+            include after=obj_foo in order to fetch the next page of the list.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: |-
+                    {
+                       "data":[
+                          {
+                             "id":"6a0b14a9-023c-4198-9ada-6e4684213340",
+                             "code":"804a46a7-7012-4159-8782-1090e85e4afa",
+                             "type":"STATIC",
+                             "amount":4990,
+                             "paidAmount":null,
+                             "payload":"00020126580014BR.GOV.BCB.PIX01368ad59cd0-cd85-45eb-a443-b8824285c5f352040000530398654041.295802BR5924RPO GESTAO DE PAGAMENTOS6008SO PAULO6108000000006224052046193bc0333a468fa1ee6304A3E1",
+                             "payer":{
+                                "name":"Bruce Wayne",
+                                "taxId":"37515868066"
+                             },
+                             "split":[
+                                {
+                                   "value":990,
+                                   "recipientId":"009cb956-3b58-4731-927f-20225600b35b"
+                                }
+                             ],
+                             "status":"PROCESSED",
+                             "createdAt":"2022-06-06T11:48:21Z",
+                             "processedAt":"2022-06-06T11:48:26Z",
+                             "paidAt":null,
+                             "failedAt":null,
+                             "metadata":[
+                                {
+                                   "name":"CUSTOM_FIELD_NAME",
+                                   "value":"CUSTOM_FIELD_VALUE"
+                                }
+                             ]
+                          }
+                       ],
+                       "paging":{
+                          "before":null,
+                          "after":"aWQ6YzYyZjViNTAtZTNiOS0xMWVjLTk0OWEtNjFkMjljNjZlMmNm"
+                       }
+                    }
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: 6a0b14a9-023c-4198-9ada-6e4684213340
+                        code:
+                          type: string
+                          example: 804a46a7-7012-4159-8782-1090e85e4afa
+                        type:
+                          type: string
+                          example: STATIC
+                        amount:
+                          type: integer
+                          example: 4990
+                          default: 0
+                        paidAmount: {}
+                        payload:
+                          type: string
+                          example: >-
+                            00020126580014BR.GOV.BCB.PIX01368ad59cd0-cd85-45eb-a443-b8824285c5f352040000530398654041.295802BR5924RPO
+                            GESTAO DE PAGAMENTOS6008SO
+                            PAULO6108000000006224052046193bc0333a468fa1ee6304A3E1
+                        payer:
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                              example: Bruce Wayne
+                            taxId:
+                              type: string
+                              example: '37515868066'
+                        split:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              value:
+                                type: integer
+                                example: 990
+                                default: 0
+                              recipientId:
+                                type: string
+                                example: 009cb956-3b58-4731-927f-20225600b35b
+                        status:
+                          type: string
+                          example: PROCESSED
+                        createdAt:
+                          type: string
+                          example: '2022-06-06T11:48:21Z'
+                        processedAt:
+                          type: string
+                          example: '2022-06-06T11:48:26Z'
+                        paidAt: {}
+                        failedAt: {}
+                        metadata:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              name:
+                                type: string
+                                example: CUSTOM_FIELD_NAME
+                              value:
+                                type: string
+                                example: CUSTOM_FIELD_VALUE
+                  paging:
+                    type: object
+                    properties:
+                      before: {}
+                      after:
+                        type: string
+                        example: aWQ6YzYyZjViNTAtZTNiOS0xMWVjLTk0OWEtNjFkMjljNjZlMmNm
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+  /itp-payments/{id}:
+    get:
+      summary: Retrieve an ITP
+      description: ''
+      operationId: retrieve-a-pix-qr-code-copy
+      parameters:
+        - name: id
+          in: path
+          description: Unique identifier for the object.
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \t\"id\": \"6a0b14a9-023c-4198-9ada-6e4684213340\",\n  \t\"code\": \"804a46a7-7012-4159-8782-1090e85e4afa\",\n    \"type\": \"STATIC\",\n    \"amount\": 4990,\n    \"paidAmount\": null,\n    \"payload\": \"00020126580014BR.GOV.BCB.PIX01368ad59cd0-cd85-45eb-a443-b8824285c5f352040000530398654041.295802BR5924RPO GESTAO DE PAGAMENTOS6008SO PAULO6108000000006224052046193bc0333a468fa1ee6304A3E1\",\n    \"payer\": {\n      \"name\": \"Bruce Wayne\",\n      \"taxId\": \"37515868066\"\n    },\n    \"split\": [\n      {\n        \"value\": 990,\n        \"recipientId\": \"009cb956-3b58-4731-927f-20225600b35b\"\n      }\n    ],\n  \t\"status\": \"PROCESSED\",\n    \"createdAt\": \"2022-06-06T11:48:21Z\",\n    \"processedAt\": \"2022-06-06T11:48:26Z\",\n    \"paidAt\": null,\n    \"failedAt\": null,\n    \"metadata\": [\n      {\n        \"name\": \"CUSTOM_FIELD_NAME\", \n        \"value\": \"CUSTOM_FIELD_VALUE\"\n      }\n    ]\n}"
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: 6a0b14a9-023c-4198-9ada-6e4684213340
+                  code:
+                    type: string
+                    example: 804a46a7-7012-4159-8782-1090e85e4afa
+                  type:
+                    type: string
+                    example: STATIC
+                  amount:
+                    type: integer
+                    example: 4990
+                    default: 0
+                  paidAmount: {}
+                  payload:
+                    type: string
+                    example: >-
+                      00020126580014BR.GOV.BCB.PIX01368ad59cd0-cd85-45eb-a443-b8824285c5f352040000530398654041.295802BR5924RPO
+                      GESTAO DE PAGAMENTOS6008SO
+                      PAULO6108000000006224052046193bc0333a468fa1ee6304A3E1
+                  payer:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                        example: Bruce Wayne
+                      taxId:
+                        type: string
+                        example: '37515868066'
+                  split:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        value:
+                          type: integer
+                          example: 990
+                          default: 0
+                        recipientId:
+                          type: string
+                          example: 009cb956-3b58-4731-927f-20225600b35b
+                  status:
+                    type: string
+                    example: PROCESSED
+                  createdAt:
+                    type: string
+                    example: '2022-06-06T11:48:21Z'
+                  processedAt:
+                    type: string
+                    example: '2022-06-06T11:48:26Z'
+                  paidAt: {}
+                  failedAt: {}
+                  metadata:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                          example: CUSTOM_FIELD_NAME
+                        value:
+                          type: string
+                          example: CUSTOM_FIELD_VALUE
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+  /bank-transfer-payments/{bankTransferId}:
+    get:
+      summary: Retrieve a Bank Transfer
+      description: ''
+      operationId: retrieve-a-bank-transfer
+      parameters:
+        - name: bankTransferId
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+  /bank-transfer-payments:
+    get:
+      summary: List all Bank Transfers
+      description: ''
+      operationId: list-all-bank-transfers
+      parameters:
+        - name: limit
+          in: query
+          description: A limit on the number of objects to be returned, between 1 and 50.
+          schema:
+            type: string
+            default: '10'
+        - name: before
+          in: query
+          description: >-
+            A cursor for use in pagination. ```before``` is an object ID that
+            defines your place in the list. For instance, if you make a list
+            request and receive 50 objects, starting with ```obj_bar```, your
+            subsequent call can include ```before=obj_bar``` in order to fetch
+            the previous page of the list.
+          schema:
+            type: string
+        - name: after
+          in: query
+          description: >-
+            A cursor for use in pagination. after is an object ID that defines
+            your place in the list. For instance, if you make a list request and
+            receive 50 objects, ending with obj_foo, your subsequent call can
+            include after=obj_foo in order to fetch the next page of the list.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+  /recipients:
+    post:
+      summary: Create a Recipient
+      description: ''
+      operationId: create-a-recipient
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - name
+                - taxId
+                - type
+              properties:
+                code:
+                  type: string
+                  description: Unique identifier for the object in your system.
+                name:
+                  type: string
+                  description: The name of the recipient.
+                taxId:
+                  type: string
+                  description: >-
+                    The tax ID of the recipient (CPF for individual recipients
+                    or CNPJ for businesses recipients).
+                type:
+                  type: string
+                  description: The type of the recipient.
+                  enum:
+                    - INDIVIDUAL
+                    - COMPANY
+                metadata:
+                  type: array
+                  description: >-
+                    Set of key-value pairs that you can attach to an object.
+                    This can be useful for storing additional information about
+                    the object in a structured format.
+                  items:
+                    properties:
+                      name:
+                        type: string
+                        description: The name of the custom field.
+                      value:
+                        type: string
+                        description: The value of the custom field.
+                    type: object
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"id\": \"80e579ff-e3a6-4573-84ff-30de777e7861\",\n  \"code\": \"a1fc515c-ce4a-45e0-8802-2696b2c0337a\",\n  \"name\": \"Bruce Wayne\",\n  \"taxId\": \"37515868066\",\n  \"type\": \"INDIVIDUAL\",\n  \"status\": \"ACTIVE\",\n  \"createdAt\": \"2022-06-08T15:02:00Z\",\n  \"updatedAt\": null,\n  \"deletedAt\": null,\n  \"metadata\": {\n  \t\"CUSTOM_FIELD_NAME\": \"CUSTOM_FIELD_VALUE\", \n  }\n}"
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+    get:
+      summary: List all Recipients
+      description: ''
+      operationId: list-all-recipients
+      parameters:
+        - name: limit
+          in: query
+          description: A limit on the number of objects to be returned, between 1 and 50.
+          schema:
+            type: integer
+            format: int32
+            default: 10
+        - name: before
+          in: query
+          description: >-
+            A cursor for use in pagination. ```before``` is an object ID that
+            defines your place in the list. For instance, if you make a list
+            request and receive 50 objects, starting with ```obj_bar```, your
+            subsequent call can include ```before=obj_bar``` in order to fetch
+            the previous page of the list.
+          schema:
+            type: string
+        - name: after
+          in: query
+          description: >-
+            A cursor for use in pagination. after is an object ID that defines
+            your place in the list. For instance, if you make a list request and
+            receive 50 objects, ending with obj_foo, your subsequent call can
+            include after=obj_foo in order to fetch the next page of the list.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: |-
+                    {
+                       "data":[
+                          {
+                             "id": "80e579ff-e3a6-4573-84ff-30de777e7861",
+                             "code": "a1fc515c-ce4a-45e0-8802-2696b2c0337a",
+                             "name": "Bruce Wayne",
+                             "taxId": "37515868066",
+                             "type": "INDIVIDUAL",
+                             "status": "ACTIVE",
+                             "createdAt": "2022-06-08T15:02:00Z",
+                             "updatedAt": null,
+                             "deletedAt": null,
+                             "metadata": {
+                                "CUSTOM_FIELD_NAME": "CUSTOM_FIELD_VALUE"
+                             }
+                          }
+                       ],
+                       "paging": {
+                         "before": "",
+                         "after": "aWQ6YzYyZjViNTAtZTNiOS0xMWVjLTk0OWEtNjFkMjljNjZlMmNm"
+                       }
+                    }
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: 80e579ff-e3a6-4573-84ff-30de777e7861
+                        code:
+                          type: string
+                          example: a1fc515c-ce4a-45e0-8802-2696b2c0337a
+                        name:
+                          type: string
+                          example: Bruce Wayne
+                        taxId:
+                          type: string
+                          example: '37515868066'
+                        type:
+                          type: string
+                          example: INDIVIDUAL
+                        status:
+                          type: string
+                          example: ACTIVE
+                        createdAt:
+                          type: string
+                          example: '2022-06-08T15:02:00Z'
+                        updatedAt: {}
+                        deletedAt: {}
+                        metadata:
+                          type: object
+                          properties:
+                            CUSTOM_FIELD_NAME:
+                              type: string
+                              example: CUSTOM_FIELD_VALUE
+                  paging:
+                    type: object
+                    properties:
+                      before:
+                        type: string
+                        example: ''
+                      after:
+                        type: string
+                        example: aWQ6YzYyZjViNTAtZTNiOS0xMWVjLTk0OWEtNjFkMjljNjZlMmNm
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+  /recipients/{id}:
+    get:
+      summary: Retrieve a Recipient
+      description: ''
+      operationId: retrieve-a-recipient
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"id\": \"80e579ff-e3a6-4573-84ff-30de777e7861\",\n  \"code\": \"a1fc515c-ce4a-45e0-8802-2696b2c0337a\",\n  \"name\": \"Bruce Wayne\",\n  \"taxId\": \"37515868066\",\n  \"type\": \"INDIVIDUAL\",\n  \"status\": \"ACTIVE\",\n  \"createdAt\": \"2022-06-08T15:02:00Z\",\n  \"updatedAt\": null,\n  \"deletedAt\": null,\n  \"metadata\": {\n  \t\"CUSTOM_FIELD_NAME\": \"CUSTOM_FIELD_VALUE\", \n  }\n}"
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+    put:
+      summary: Update a Recipient
+      description: ''
+      operationId: update-a-recipient
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"id\": \"80e579ff-e3a6-4573-84ff-30de777e7861\",\n  \"code\": \"a1fc515c-ce4a-45e0-8802-2696b2c0337a\",\n  \"name\": \"Bruce Wayne\",\n  \"taxId\": \"37515868066\",\n  \"type\": \"INDIVIDUAL\",\n  \"status\": \"ACTIVE\",\n  \"createdAt\": \"2022-06-08T15:02:00Z\",\n  \"updatedAt\": \"2022-06-08T15:02:00Z\",\n  \"deletedAt\": null,\n  \"metadata\": {\n  \t\"CUSTOM_FIELD_NAME\": \"CUSTOM_FIELD_VALUE\", \n  }\n}"
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+  /recipients/{recipientId}/bank-accounts:
+    post:
+      summary: Create a Bank Account
+      description: ''
+      operationId: create-a-bank-account
+      parameters:
+        - name: recipientId
+          in: path
+          schema:
+            type: string
+            default: DEFAULT
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - holderName
+                - holderTaxId
+                - holderType
+                - branchNumber
+                - accountNumber
+                - bankId
+              properties:
+                type:
+                  type: string
+                  description: The type of bank account. Can be CHEKING or SAVINGS.
+                  default: CHECKING
+                  enum:
+                    - CHECKING
+                    - SAVINGS
+                holderName:
+                  type: string
+                  description: >-
+                    The name of the person or business that owns the bank
+                    account.
+                holderTaxId:
+                  type: string
+                  description: >-
+                    The tax ID of the account holder (CPF for individual account
+                    holders or CNPJ for businesses account holders).
+                holderType:
+                  type: string
+                  description: >-
+                    The type of entity that holds the account. Can be INDIVIDUAL
+                    or COMPANY.
+                  enum:
+                    - INDIVIDUAL
+                    - COMPANY
+                branchNumber:
+                  type: string
+                accountNumber:
+                  type: string
+                bankId:
+                  type: string
+                  description: The ID of the bank associated with the account.
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"id\": \"a8a9c988-c2ba-44b9-af2d-ee6fcc00e269\",\n  \"code\": \"ade39877-cb26-42bc-b151-8e6eef84284d\",\n  \"holderName\": \"Bruce Wayne\",\n  \"holderTaxId\": \"37515868066\",\n  \"holderType\": \"INDIVIDUAL\",\n  \"branchNumber\": \"0001\",\n  \"accountNumber\": \"11111-1\",\n  \"bankId\": \"60701190\",\n  \"status\": \"ACTIVE\",\n  \"createdAt\": \"2022-06-06T11:48:21Z\",\n  \"updatedAt\": null,\n  \"deletedAt\": null,\n  \"metadata\": {\n  \t\"CUSTOM_FIELD_NAME\": \"CUSTOM_FIELD_VALUE\"\n  }\n}"
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: a8a9c988-c2ba-44b9-af2d-ee6fcc00e269
+                  code:
+                    type: string
+                    example: ade39877-cb26-42bc-b151-8e6eef84284d
+                  holderName:
+                    type: string
+                    example: Bruce Wayne
+                  holderTaxId:
+                    type: string
+                    example: '37515868066'
+                  holderType:
+                    type: string
+                    example: INDIVIDUAL
+                  branchNumber:
+                    type: string
+                    example: '0001'
+                  accountNumber:
+                    type: string
+                    example: 11111-1
+                  bankId:
+                    type: string
+                    example: '60701190'
+                  status:
+                    type: string
+                    example: ACTIVE
+                  createdAt:
+                    type: string
+                    example: '2022-06-06T11:48:21Z'
+                  updatedAt: {}
+                  deletedAt: {}
+                  metadata:
+                    type: object
+                    properties:
+                      CUSTOM_FIELD_NAME:
+                        type: string
+                        example: CUSTOM_FIELD_VALUE
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+    get:
+      summary: List all Bank Accounts
+      description: ''
+      operationId: list-all-bank-accounts
+      parameters:
+        - name: recipientId
+          in: path
+          schema:
+            type: string
+            default: DEFAULT
+          required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: |-
+                    {
+                       "data":[
+                          {
+                            "id": "a8a9c988-c2ba-44b9-af2d-ee6fcc00e269",
+                            "code": "ade39877-cb26-42bc-b151-8e6eef84284d",
+                            "holderName": "Bruce Wayne",
+                            "holderTaxId": "37515868066",
+                            "holderType": "INDIVIDUAL",
+                            "branchNumber": "0001",
+                            "accountNumber": "11111-1",
+                            "bankId": "60701190",
+                            "status": "ACTIVE",
+                            "createdAt": "2022-06-06T11:48:21Z",
+                            "updatedAt": null,
+                            "deletedAt": null,
+                            "metadata": {
+                              "CUSTOM_FIELD_NAME": "CUSTOM_FIELD_VALUE"
+                            }
+                          }
+                       ],
+                       "paging": {
+                         "before": "",
+                         "after": "aWQ6YzYyZjViNTAtZTNiOS0xMWVjLTk0OWEtNjFkMjljNjZlMmNm"
+                       }
+                    }
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: a8a9c988-c2ba-44b9-af2d-ee6fcc00e269
+                        code:
+                          type: string
+                          example: ade39877-cb26-42bc-b151-8e6eef84284d
+                        holderName:
+                          type: string
+                          example: Bruce Wayne
+                        holderTaxId:
+                          type: string
+                          example: '37515868066'
+                        holderType:
+                          type: string
+                          example: INDIVIDUAL
+                        branchNumber:
+                          type: string
+                          example: '0001'
+                        accountNumber:
+                          type: string
+                          example: 11111-1
+                        bankId:
+                          type: string
+                          example: '60701190'
+                        status:
+                          type: string
+                          example: ACTIVE
+                        createdAt:
+                          type: string
+                          example: '2022-06-06T11:48:21Z'
+                        updatedAt: {}
+                        deletedAt: {}
+                        metadata:
+                          type: object
+                          properties:
+                            CUSTOM_FIELD_NAME:
+                              type: string
+                              example: CUSTOM_FIELD_VALUE
+                  paging:
+                    type: object
+                    properties:
+                      before:
+                        type: string
+                        example: ''
+                      after:
+                        type: string
+                        example: aWQ6YzYyZjViNTAtZTNiOS0xMWVjLTk0OWEtNjFkMjljNjZlMmNm
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+  /recipients/{recipientId}/bank-accounts/{bankAccountId}:
+    get:
+      summary: Retrieve a Bank Account
+      description: ''
+      operationId: retrieve-a-bank-account
+      parameters:
+        - name: recipientId
+          in: path
+          schema:
+            type: string
+            default: DEFAULT
+          required: true
+        - name: bankAccountId
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"id\": \"a8a9c988-c2ba-44b9-af2d-ee6fcc00e269\",\n  \"code\": \"ade39877-cb26-42bc-b151-8e6eef84284d\",\n  \"holderName\": \"Bruce Wayne\",\n  \"holderTaxId\": \"37515868066\",\n  \"holderType\": \"INDIVIDUAL\",\n  \"branchNumber\": \"0001\",\n  \"accountNumber\": \"11111-1\",\n  \"bankId\": \"60701190\",\n  \"status\": \"ACTIVE\",\n  \"createdAt\": \"2022-06-06T11:48:21Z\",\n  \"updatedAt\": null,\n  \"deletedAt\": null,\n  \"metadata\": {\n  \t\"CUSTOM_FIELD_NAME\": \"CUSTOM_FIELD_VALUE\"\n  }\n}"
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: a8a9c988-c2ba-44b9-af2d-ee6fcc00e269
+                  code:
+                    type: string
+                    example: ade39877-cb26-42bc-b151-8e6eef84284d
+                  holderName:
+                    type: string
+                    example: Bruce Wayne
+                  holderTaxId:
+                    type: string
+                    example: '37515868066'
+                  holderType:
+                    type: string
+                    example: INDIVIDUAL
+                  branchNumber:
+                    type: string
+                    example: '0001'
+                  accountNumber:
+                    type: string
+                    example: 11111-1
+                  bankId:
+                    type: string
+                    example: '60701190'
+                  status:
+                    type: string
+                    example: ACTIVE
+                  createdAt:
+                    type: string
+                    example: '2022-06-06T11:48:21Z'
+                  updatedAt: {}
+                  deletedAt: {}
+                  metadata:
+                    type: object
+                    properties:
+                      CUSTOM_FIELD_NAME:
+                        type: string
+                        example: CUSTOM_FIELD_VALUE
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+    delete:
+      summary: Delete a Bank Account
+      description: ''
+      operationId: delete-a-bank-account
+      parameters:
+        - name: recipientId
+          in: path
+          schema:
+            type: string
+            default: DEFAULT
+          required: true
+        - name: bankAccountId
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"id\": \"a8a9c988-c2ba-44b9-af2d-ee6fcc00e269\",\n  \"code\": \"ade39877-cb26-42bc-b151-8e6eef84284d\",\n  \"holderName\": \"Bruce Wayne\",\n  \"holderTaxId\": \"37515868066\",\n  \"holderType\": \"INDIVIDUAL\",\n  \"branchNumber\": \"0001\",\n  \"accountNumber\": \"11111-1\",\n  \"bankId\": \"60701190\",\n  \"status\": \"DELETED\",\n  \"createdAt\": \"2022-06-06T11:48:21Z\",\n  \"updatedAt\": null,\n  \"deletedAt\": \"2022-06-06T11:48:21Z\",\n  \"metadata\": {\n  \t\"CUSTOM_FIELD_NAME\": \"CUSTOM_FIELD_VALUE\"\n  }\n}"
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: a8a9c988-c2ba-44b9-af2d-ee6fcc00e269
+                  code:
+                    type: string
+                    example: ade39877-cb26-42bc-b151-8e6eef84284d
+                  holderName:
+                    type: string
+                    example: Bruce Wayne
+                  holderTaxId:
+                    type: string
+                    example: '37515868066'
+                  holderType:
+                    type: string
+                    example: INDIVIDUAL
+                  branchNumber:
+                    type: string
+                    example: '0001'
+                  accountNumber:
+                    type: string
+                    example: 11111-1
+                  bankId:
+                    type: string
+                    example: '60701190'
+                  status:
+                    type: string
+                    example: DELETED
+                  createdAt:
+                    type: string
+                    example: '2022-06-06T11:48:21Z'
+                  updatedAt: {}
+                  deletedAt:
+                    type: string
+                    example: '2022-06-06T11:48:21Z'
+                  metadata:
+                    type: object
+                    properties:
+                      CUSTOM_FIELD_NAME:
+                        type: string
+                        example: CUSTOM_FIELD_VALUE
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+  /recipients/{recipientId}/withdrawals:
+    post:
+      summary: Create a Withdrawal
+      description: ''
+      operationId: create-a-withdrawal
+      parameters:
+        - name: recipientId
+          in: path
+          schema:
+            type: string
+            default: DEFAULT
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - amount
+                - method
+              properties:
+                code:
+                  type: string
+                  description: Unique identifier for the object in your system.
+                amount:
+                  type: integer
+                  description: Amount in cents to be transferred.
+                  format: int32
+                method:
+                  type: string
+                  description: The method of the withdrawal.
+                  enum:
+                    - STANDARD
+                    - PIX
+                pixKey:
+                  type: string
+                  description: >-
+                    The PIX key of the destination bank account. Required if
+                    method is PIX
+                bankAccount:
+                  type: object
+                  description: >-
+                    The destination bank account. Required if method is
+                    STANDARD.
+                  required:
+                    - holderName
+                    - holderTaxId
+                    - holderType
+                    - branchNumber
+                    - accountNumber
+                    - bankId
+                  properties:
+                    type:
+                      type: string
+                      description: The type of bank account. Can be CHEKING or SAVINGS.
+                      default: CHECKING
+                      enum:
+                        - CHECKING
+                        - SAVINGS
+                    holderName:
+                      type: string
+                      description: >-
+                        The name of the person or business that owns the bank
+                        account.
+                    holderTaxId:
+                      type: string
+                      description: >-
+                        The tax ID of the account holder (CPF for individual
+                        account holders or CNPJ for businesses account holders).
+                    holderType:
+                      type: string
+                      description: >-
+                        The type of entity that holds the account. Can be
+                        INDIVIDUAL or COMPANY.
+                      enum:
+                        - INDIVIDUAL
+                        - COMPANY
+                    branchNumber:
+                      type: string
+                    accountNumber:
+                      type: string
+                    bankId:
+                      type: string
+                      description: The ID of the bank associated with the account.
+                bankAccountId:
+                  type: string
+                  description: >-
+                    The ID of the destination bank account. Required if method
+                    is STANDARD.
+                metadata:
+                  type: array
+                  description: >-
+                    Set of key-value pairs that you can attach to an object.
+                    This can be useful for storing additional information about
+                    the object in a structured format.
+                  items:
+                    properties:
+                      name:
+                        type: string
+                        description: The name of the custom field.
+                      value:
+                        type: string
+                        description: The value of the custom field.
+                    type: object
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"id\": \"86cfd98a-dcc5-4b67-b8d7-841e4a9f37fd\",\n  \"code\": \"45447b68-09fc-4af9-be82-d7b4df00fc3b\",\n  \"amount\": 990,\n  \"method\": \"PIX\",\n  \"status\": \"PROCESSED\",\n  \"createdAt\": \"2022-06-06T11:48:21Z\",\n  \"approvedAt\": \"2022-06-06T11:48:21Z\",\n  \"rejectedAt\": null,\n  \"processedAt\": \"2022-06-06T11:48:21Z\",\n  \"paidAt\": null,\n  \"failedAt\": null,\n  \"pixKey\": null,\n  \"bankAccount\": {\n    \"id\": \"a8a9c988-c2ba-44b9-af2d-ee6fcc00e269\",\n    \"code\": \"ade39877-cb26-42bc-b151-8e6eef84284d\",\n    \"holderName\": \"Bruce Wayne\",\n    \"holderTaxId\": \"37515868066\",\n    \"holderType\": \"INDIVIDUAL\",\n    \"branchNumber\": \"0001\",\n    \"accountNumber\": \"11111-1\",\n    \"bankId\": \"60701190\",\n    \"status\": \"ACTIVE\",\n    \"createdAt\": \"2022-06-06T11:48:21Z\",\n    \"updatedAt\": null,\n    \"deletedAt\": null,\n    \"metadata\": null\n  },\n  \"recipient\": {\n    \"id\": \"80e579ff-e3a6-4573-84ff-30de777e7861\",\n    \"code\": \"a1fc515c-ce4a-45e0-8802-2696b2c0337a\",\n    \"name\": \"Bruce Wayne\",\n    \"taxId\": \"37515868066\",\n    \"type\": \"INDIVIDUAL\",\n    \"status\": \"ACTIVE\",\n    \"createdAt\": \"2022-06-08T15:02:00Z\",\n    \"updatedAt\": null,\n    \"deletedAt\": null,\n    \"metadata\": null\n  },\n  \"metadata\": {\n  \t\"CUSTOM_FIELD_NAME\": \"CUSTOM_FIELD_VALUE\"\n  }\n}"
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: 86cfd98a-dcc5-4b67-b8d7-841e4a9f37fd
+                  code:
+                    type: string
+                    example: 45447b68-09fc-4af9-be82-d7b4df00fc3b
+                  amount:
+                    type: integer
+                    example: 990
+                    default: 0
+                  method:
+                    type: string
+                    example: PIX
+                  status:
+                    type: string
+                    example: PROCESSED
+                  createdAt:
+                    type: string
+                    example: '2022-06-06T11:48:21Z'
+                  approvedAt:
+                    type: string
+                    example: '2022-06-06T11:48:21Z'
+                  rejectedAt: {}
+                  processedAt:
+                    type: string
+                    example: '2022-06-06T11:48:21Z'
+                  paidAt: {}
+                  failedAt: {}
+                  pixKey: {}
+                  bankAccount:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: a8a9c988-c2ba-44b9-af2d-ee6fcc00e269
+                      code:
+                        type: string
+                        example: ade39877-cb26-42bc-b151-8e6eef84284d
+                      holderName:
+                        type: string
+                        example: Bruce Wayne
+                      holderTaxId:
+                        type: string
+                        example: '37515868066'
+                      holderType:
+                        type: string
+                        example: INDIVIDUAL
+                      branchNumber:
+                        type: string
+                        example: '0001'
+                      accountNumber:
+                        type: string
+                        example: 11111-1
+                      bankId:
+                        type: string
+                        example: '60701190'
+                      status:
+                        type: string
+                        example: ACTIVE
+                      createdAt:
+                        type: string
+                        example: '2022-06-06T11:48:21Z'
+                      updatedAt: {}
+                      deletedAt: {}
+                      metadata: {}
+                  recipient:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: 80e579ff-e3a6-4573-84ff-30de777e7861
+                      code:
+                        type: string
+                        example: a1fc515c-ce4a-45e0-8802-2696b2c0337a
+                      name:
+                        type: string
+                        example: Bruce Wayne
+                      taxId:
+                        type: string
+                        example: '37515868066'
+                      type:
+                        type: string
+                        example: INDIVIDUAL
+                      status:
+                        type: string
+                        example: ACTIVE
+                      createdAt:
+                        type: string
+                        example: '2022-06-08T15:02:00Z'
+                      updatedAt: {}
+                      deletedAt: {}
+                      metadata: {}
+                  metadata:
+                    type: object
+                    properties:
+                      CUSTOM_FIELD_NAME:
+                        type: string
+                        example: CUSTOM_FIELD_VALUE
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+    get:
+      summary: List all Withdrawals
+      description: ''
+      operationId: list-all-withdrawals
+      parameters:
+        - name: recipientId
+          in: path
+          schema:
+            type: string
+            default: DEFAULT
+          required: true
+        - name: limit
+          in: query
+          description: A limit on the number of objects to be returned, between 1 and 50.
+          schema:
+            type: string
+            default: '10'
+        - name: before
+          in: query
+          description: >-
+            A cursor for use in pagination. ```before``` is an object ID that
+            defines your place in the list. For instance, if you make a list
+            request and receive 50 objects, starting with ```obj_bar```, your
+            subsequent call can include ```before=obj_bar``` in order to fetch
+            the previous page of the list.
+          schema:
+            type: string
+        - name: after
+          in: query
+          description: >-
+            A cursor for use in pagination. after is an object ID that defines
+            your place in the list. For instance, if you make a list request and
+            receive 50 objects, ending with obj_foo, your subsequent call can
+            include after=obj_foo in order to fetch the next page of the list.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n   \"data\": [\n      {\n         \"id\": \"86cfd98a-dcc5-4b67-b8d7-841e4a9f37fd\",\n         \"code\": \"45447b68-09fc-4af9-be82-d7b4df00fc3b\",\n         \"amount\": 990,\n         \"method\": \"PIX\",\n         \"status\": \"PAID\",\n         \"createdAt\": \"2022-06-06T11:48:21Z\",\n         \"approvedAt\": \"2022-06-06T11:48:21Z\",\n         \"rejectedAt\": null,\n         \"paidAt\":\" 2022-06-06T11:48:21Z\",\n         \"failedAt\": null,\n         \"pixKey\": null,\n         \"bankAccount\": {\n            \"id\": \"a8a9c988-c2ba-44b9-af2d-ee6fcc00e269\",\n            \"code\": \"ade39877-cb26-42bc-b151-8e6eef84284d\",\n            \"holderName\": \"Bruce Wayne\",\n            \"holderTaxId\": \"37515868066\",\n            \"holderType\": \"INDIVIDUAL\",\n            \"branchNumber\": \"0001\",\n            \"accountNumber\": \"11111-1\",\n            \"bankId\": \"60701190\",\n            \"status\": \"ACTIVE\",\n            \"createdAt\": \"2022-06-06T11:48:21Z\",\n            \"updatedAt\": null,\n            \"deletedAt\": null,\n            \"metadata\": null\n         },\n         \"recipient\": {\n            \"id\": \"80e579ff-e3a6-4573-84ff-30de777e7861\",\n            \"code\": \"a1fc515c-ce4a-45e0-8802-2696b2c0337a\",\n            \"name\": \"Bruce Wayne\",\n            \"taxId\": \"37515868066\",\n            \"type\": \"INDIVIDUAL\",\n            \"status\": \"ACTIVE\",\n            \"createdAt\": \"2022-06-08T15:02:00Z\",\n            \"updatedAt\": null,\n            \"deletedAt\": null,\n            \"metadata\": null\n         },\n         \"metadata\": {\n         \t\t\"CUSTOM_FIELD_NAME\": \"CUSTOM_FIELD_VALUE\"\n         }\n      }\n   ],\n   \"paging\": {\n      \"before\": \"\",\n      \"after\": \"aWQ6YzYyZjViNTAtZTNiOS0xMWVjLTk0OWEtNjFkMjljNjZlMmNm\"\n   }\n}"
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: 86cfd98a-dcc5-4b67-b8d7-841e4a9f37fd
+                        code:
+                          type: string
+                          example: 45447b68-09fc-4af9-be82-d7b4df00fc3b
+                        amount:
+                          type: integer
+                          example: 990
+                          default: 0
+                        method:
+                          type: string
+                          example: PIX
+                        status:
+                          type: string
+                          example: PAID
+                        createdAt:
+                          type: string
+                          example: '2022-06-06T11:48:21Z'
+                        approvedAt:
+                          type: string
+                          example: '2022-06-06T11:48:21Z'
+                        rejectedAt: {}
+                        paidAt:
+                          type: string
+                          example: ' 2022-06-06T11:48:21Z'
+                        failedAt: {}
+                        pixKey: {}
+                        bankAccount:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              example: a8a9c988-c2ba-44b9-af2d-ee6fcc00e269
+                            code:
+                              type: string
+                              example: ade39877-cb26-42bc-b151-8e6eef84284d
+                            holderName:
+                              type: string
+                              example: Bruce Wayne
+                            holderTaxId:
+                              type: string
+                              example: '37515868066'
+                            holderType:
+                              type: string
+                              example: INDIVIDUAL
+                            branchNumber:
+                              type: string
+                              example: '0001'
+                            accountNumber:
+                              type: string
+                              example: 11111-1
+                            bankId:
+                              type: string
+                              example: '60701190'
+                            status:
+                              type: string
+                              example: ACTIVE
+                            createdAt:
+                              type: string
+                              example: '2022-06-06T11:48:21Z'
+                            updatedAt: {}
+                            deletedAt: {}
+                            metadata: {}
+                        recipient:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              example: 80e579ff-e3a6-4573-84ff-30de777e7861
+                            code:
+                              type: string
+                              example: a1fc515c-ce4a-45e0-8802-2696b2c0337a
+                            name:
+                              type: string
+                              example: Bruce Wayne
+                            taxId:
+                              type: string
+                              example: '37515868066'
+                            type:
+                              type: string
+                              example: INDIVIDUAL
+                            status:
+                              type: string
+                              example: ACTIVE
+                            createdAt:
+                              type: string
+                              example: '2022-06-08T15:02:00Z'
+                            updatedAt: {}
+                            deletedAt: {}
+                            metadata: {}
+                        metadata:
+                          type: object
+                          properties:
+                            CUSTOM_FIELD_NAME:
+                              type: string
+                              example: CUSTOM_FIELD_VALUE
+                  paging:
+                    type: object
+                    properties:
+                      before:
+                        type: string
+                        example: ''
+                      after:
+                        type: string
+                        example: aWQ6YzYyZjViNTAtZTNiOS0xMWVjLTk0OWEtNjFkMjljNjZlMmNm
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+  /recipients/{recipientId}/withdrawals/{withdrawalId}:
+    get:
+      summary: Retrieve a Withdrawal
+      description: ''
+      operationId: retrieve-a-withdrawal
+      parameters:
+        - name: recipientId
+          in: path
+          schema:
+            type: string
+            default: DEFAULT
+          required: true
+        - name: withdrawalId
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"id\": \"86cfd98a-dcc5-4b67-b8d7-841e4a9f37fd\",\n  \"code\": \"45447b68-09fc-4af9-be82-d7b4df00fc3b\",\n  \"amount\": 990,\n  \"method\": \"PIX\",\n  \"status\": \"PAID\",\n  \"createdAt\": \"2022-06-06T11:48:21Z\",\n  \"approvedAt\": \"2022-06-06T11:48:21Z\",\n  \"rejectedAt\": null,\n  \"paidAt\": \"2022-06-06T11:48:21Z\",\n  \"failedAt\": null,\n  \"pixKey\": null,\n  \"bankAccount\": {\n    \"id\": \"a8a9c988-c2ba-44b9-af2d-ee6fcc00e269\",\n    \"code\": \"ade39877-cb26-42bc-b151-8e6eef84284d\",\n    \"holderName\": \"Bruce Wayne\",\n    \"holderTaxId\": \"37515868066\",\n    \"holderType\": \"INDIVIDUAL\",\n    \"branchNumber\": \"0001\",\n    \"accountNumber\": \"11111-1\",\n    \"bankId\": \"60701190\",\n    \"status\": \"ACTIVE\",\n    \"createdAt\": \"2022-06-06T11:48:21Z\",\n    \"updatedAt\": null,\n    \"deletedAt\": null,\n    \"metadata\": null\n  },\n  \"recipient\": {\n    \"id\": \"80e579ff-e3a6-4573-84ff-30de777e7861\",\n    \"code\": \"a1fc515c-ce4a-45e0-8802-2696b2c0337a\",\n    \"name\": \"Bruce Wayne\",\n    \"taxId\": \"37515868066\",\n    \"type\": \"INDIVIDUAL\",\n    \"status\": \"ACTIVE\",\n    \"createdAt\": \"2022-06-08T15:02:00Z\",\n    \"updatedAt\": null,\n    \"deletedAt\": null,\n    \"metadata\": null\n  },\n  \"metadata\": {\n  \t\"CUSTOM_FIELD_NAME\": \"CUSTOM_FIELD_VALUE\"\n  }\n}"
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: 86cfd98a-dcc5-4b67-b8d7-841e4a9f37fd
+                  code:
+                    type: string
+                    example: 45447b68-09fc-4af9-be82-d7b4df00fc3b
+                  amount:
+                    type: integer
+                    example: 990
+                    default: 0
+                  method:
+                    type: string
+                    example: PIX
+                  status:
+                    type: string
+                    example: PAID
+                  createdAt:
+                    type: string
+                    example: '2022-06-06T11:48:21Z'
+                  approvedAt:
+                    type: string
+                    example: '2022-06-06T11:48:21Z'
+                  rejectedAt: {}
+                  paidAt:
+                    type: string
+                    example: '2022-06-06T11:48:21Z'
+                  failedAt: {}
+                  pixKey: {}
+                  bankAccount:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: a8a9c988-c2ba-44b9-af2d-ee6fcc00e269
+                      code:
+                        type: string
+                        example: ade39877-cb26-42bc-b151-8e6eef84284d
+                      holderName:
+                        type: string
+                        example: Bruce Wayne
+                      holderTaxId:
+                        type: string
+                        example: '37515868066'
+                      holderType:
+                        type: string
+                        example: INDIVIDUAL
+                      branchNumber:
+                        type: string
+                        example: '0001'
+                      accountNumber:
+                        type: string
+                        example: 11111-1
+                      bankId:
+                        type: string
+                        example: '60701190'
+                      status:
+                        type: string
+                        example: ACTIVE
+                      createdAt:
+                        type: string
+                        example: '2022-06-06T11:48:21Z'
+                      updatedAt: {}
+                      deletedAt: {}
+                      metadata: {}
+                  recipient:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: 80e579ff-e3a6-4573-84ff-30de777e7861
+                      code:
+                        type: string
+                        example: a1fc515c-ce4a-45e0-8802-2696b2c0337a
+                      name:
+                        type: string
+                        example: Bruce Wayne
+                      taxId:
+                        type: string
+                        example: '37515868066'
+                      type:
+                        type: string
+                        example: INDIVIDUAL
+                      status:
+                        type: string
+                        example: ACTIVE
+                      createdAt:
+                        type: string
+                        example: '2022-06-08T15:02:00Z'
+                      updatedAt: {}
+                      deletedAt: {}
+                      metadata: {}
+                  metadata:
+                    type: object
+                    properties:
+                      CUSTOM_FIELD_NAME:
+                        type: string
+                        example: CUSTOM_FIELD_VALUE
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+  /recipients/{recipientId}/balance:
+    get:
+      summary: Get Balance
+      description: ''
+      operationId: get-balance
+      parameters:
+        - name: recipientId
+          in: path
+          schema:
+            type: string
+            default: DEFAULT
+          required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+  /recipients/{recipientId}/transactions:
+    get:
+      summary: List all Transactions
+      description: ''
+      operationId: list-all-balance-transactions
+      parameters:
+        - name: recipientId
+          in: path
+          schema:
+            type: string
+            default: DEFAULT
+          required: true
+        - name: limit
+          in: query
+          description: A limit on the number of objects to be returned, between 1 and 50.
+          schema:
+            type: string
+            default: '10'
+        - name: before
+          in: query
+          description: >-
+            A cursor for use in pagination. ```before``` is an object ID that
+            defines your place in the list. For instance, if you make a list
+            request and receive 50 objects, starting with ```obj_bar```, your
+            subsequent call can include ```before=obj_bar``` in order to fetch
+            the previous page of the list.
+          schema:
+            type: string
+        - name: after
+          in: query
+          description: >-
+            A cursor for use in pagination. after is an object ID that defines
+            your place in the list. For instance, if you make a list request and
+            receive 50 objects, ending with obj_foo, your subsequent call can
+            include after=obj_foo in order to fetch the next page of the list.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+  /webhooks/{id}/attempts:
+    post:
+      summary: Resend a Webhook
+      description: ''
+      operationId: resend-a-webhook
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: |-
+                    {
+                       "id": "89f4209f-b574-4582-86b6-98584b4f65ef",
+                       "event": "payment.paid",
+                       "object": {
+                          "id": "b6d9473e-5612-4a51-a854-d1d9f62e60e0",
+                          "type": "BankTransferPayment"
+                       },
+                       "signature": "e91aa3f03c7699db37e070ad4224a15c7b39dd383d2b0aef6f270f0a10d42772",
+                       "responses": [
+                         {
+                           "code": 200,
+                           "time": 289,
+                           "at": "2022-06-06T11:49:03Z"
+                         }
+                       ],
+                       "data": {
+                          "id": "96f42ef0-00b1-11ed-bb3a-098b2c4afa72",
+                          "code": "ffa16dae-ac66-4830-8984-171f306ca8d7",
+                          "transactionId": "E00416968202207061808Ymqobao0YFb",
+                          "amount": 1990,
+                          "paidAmount": 1990,
+                          "method": "BANK_TRANSFER",
+                          "status": "PAID",
+                          "createdAt": "2022-07-11T00:37:06.009Z",
+                          "processedAt": "2022-07-11T00:37:06.116Z",
+                          "paidAt": "2022-07-06T00:00:00.000Z",
+                          "failedAt": null,
+                          "split": [],
+                          "payer":{
+                             "name": "Bruce Wayne",
+                             "taxId": "13703591013"
+                          },
+                          "source": {
+                             "bankName": "ITAÚ UNIBANCO S.A.",
+                             "branchNumber": "1",
+                             "accountNumber": "99999"
+                          },
+                          "destination": {
+                             "bankName": "NU PAGAMENTOS S.A.",
+                             "branchNumber": "1",
+                             "accountNumber": "199060"
+                          }
+                       },
+                      "status": "DELIVERED",
+                      "createdAt": "2022-06-06T11:48:21Z",
+                      "queuedAt": "2022-06-06T11:48:22Z",
+                      "deliveredAt": "2022-06-06T11:49:03Z",
+                      "failedAt": null,
+                      "lastAttemptAt": "2022-06-06T11:49:01Z",
+                      "nextAttemptAt": null,
+                      "endpointId": "33d8034f-6e13-4d15-b1b4-d88fcced590d",
+                      "organizationId": "bd0b3148-8772-4854-8a97-be409ed1ffa8"
+                    }
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: 89f4209f-b574-4582-86b6-98584b4f65ef
+                  event:
+                    type: string
+                    example: payment.paid
+                  object:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: b6d9473e-5612-4a51-a854-d1d9f62e60e0
+                      type:
+                        type: string
+                        example: BankTransferPayment
+                  signature:
+                    type: string
+                    example: >-
+                      e91aa3f03c7699db37e070ad4224a15c7b39dd383d2b0aef6f270f0a10d42772
+                  responses:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: integer
+                          example: 200
+                          default: 0
+                        time:
+                          type: integer
+                          example: 289
+                          default: 0
+                        at:
+                          type: string
+                          example: '2022-06-06T11:49:03Z'
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: 96f42ef0-00b1-11ed-bb3a-098b2c4afa72
+                      code:
+                        type: string
+                        example: ffa16dae-ac66-4830-8984-171f306ca8d7
+                      transactionId:
+                        type: string
+                        example: E00416968202207061808Ymqobao0YFb
+                      amount:
+                        type: integer
+                        example: 1990
+                        default: 0
+                      paidAmount:
+                        type: integer
+                        example: 1990
+                        default: 0
+                      method:
+                        type: string
+                        example: BANK_TRANSFER
+                      status:
+                        type: string
+                        example: PAID
+                      createdAt:
+                        type: string
+                        example: '2022-07-11T00:37:06.009Z'
+                      processedAt:
+                        type: string
+                        example: '2022-07-11T00:37:06.116Z'
+                      paidAt:
+                        type: string
+                        example: '2022-07-06T00:00:00.000Z'
+                      failedAt: {}
+                      split:
+                        type: array
+                      payer:
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                            example: Bruce Wayne
+                          taxId:
+                            type: string
+                            example: '13703591013'
+                      source:
+                        type: object
+                        properties:
+                          bankName:
+                            type: string
+                            example: ITAÚ UNIBANCO S.A.
+                          branchNumber:
+                            type: string
+                            example: '1'
+                          accountNumber:
+                            type: string
+                            example: '99999'
+                      destination:
+                        type: object
+                        properties:
+                          bankName:
+                            type: string
+                            example: NU PAGAMENTOS S.A.
+                          branchNumber:
+                            type: string
+                            example: '1'
+                          accountNumber:
+                            type: string
+                            example: '199060'
+                  status:
+                    type: string
+                    example: DELIVERED
+                  createdAt:
+                    type: string
+                    example: '2022-06-06T11:48:21Z'
+                  queuedAt:
+                    type: string
+                    example: '2022-06-06T11:48:22Z'
+                  deliveredAt:
+                    type: string
+                    example: '2022-06-06T11:49:03Z'
+                  failedAt: {}
+                  lastAttemptAt:
+                    type: string
+                    example: '2022-06-06T11:49:01Z'
+                  nextAttemptAt: {}
+                  endpointId:
+                    type: string
+                    example: 33d8034f-6e13-4d15-b1b4-d88fcced590d
+                  organizationId:
+                    type: string
+                    example: bd0b3148-8772-4854-8a97-be409ed1ffa8
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+  /webhooks/{id}:
+    get:
+      summary: Retrieve a Webhook
+      description: ''
+      operationId: retrieve-a-webhook
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: |-
+                    {
+                       "id": "89f4209f-b574-4582-86b6-98584b4f65ef",
+                       "event": "payment.paid",
+                       "object": {
+                          "id": "b6d9473e-5612-4a51-a854-d1d9f62e60e0",
+                          "type": "BankTransferPayment"
+                       },
+                       "signature": "e91aa3f03c7699db37e070ad4224a15c7b39dd383d2b0aef6f270f0a10d42772",
+                       "responses": [
+                         {
+                           "code": 200,
+                           "time": 289,
+                           "at": "2022-06-06T11:49:03Z"
+                         }
+                       ],
+                       "data": {
+                          "id": "96f42ef0-00b1-11ed-bb3a-098b2c4afa72",
+                          "code": "ffa16dae-ac66-4830-8984-171f306ca8d7",
+                          "transactionId": "E00416968202207061808Ymqobao0YFb",
+                          "amount": 1990,
+                          "paidAmount": 1990,
+                          "method": "BANK_TRANSFER",
+                          "status": "PAID",
+                          "createdAt": "2022-07-11T00:37:06.009Z",
+                          "processedAt": "2022-07-11T00:37:06.116Z",
+                          "paidAt": "2022-07-06T00:00:00.000Z",
+                          "failedAt": null,
+                          "split": [],
+                          "payer":{
+                             "name": "Bruce Wayne",
+                             "taxId": "13703591013"
+                          },
+                          "source": {
+                             "bankName": "ITAÚ UNIBANCO S.A.",
+                             "branchNumber": "1",
+                             "accountNumber": "99999"
+                          },
+                          "destination": {
+                             "bankName": "NU PAGAMENTOS S.A.",
+                             "branchNumber": "1",
+                             "accountNumber": "199060"
+                          }
+                       },
+                      "status": "DELIVERED",
+                      "createdAt": "2022-06-06T11:48:21Z",
+                      "queuedAt": "2022-06-06T11:48:22Z",
+                      "deliveredAt": "2022-06-06T11:49:03Z",
+                      "failedAt": null,
+                      "lastAttemptAt": "2022-06-06T11:49:01Z",
+                      "nextAttemptAt": null,
+                      "endpointId": "33d8034f-6e13-4d15-b1b4-d88fcced590d",
+                      "organizationId": "bd0b3148-8772-4854-8a97-be409ed1ffa8"
+                    }
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: 89f4209f-b574-4582-86b6-98584b4f65ef
+                  event:
+                    type: string
+                    example: payment.paid
+                  object:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: b6d9473e-5612-4a51-a854-d1d9f62e60e0
+                      type:
+                        type: string
+                        example: BankTransferPayment
+                  signature:
+                    type: string
+                    example: >-
+                      e91aa3f03c7699db37e070ad4224a15c7b39dd383d2b0aef6f270f0a10d42772
+                  responses:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: integer
+                          example: 200
+                          default: 0
+                        time:
+                          type: integer
+                          example: 289
+                          default: 0
+                        at:
+                          type: string
+                          example: '2022-06-06T11:49:03Z'
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: 96f42ef0-00b1-11ed-bb3a-098b2c4afa72
+                      code:
+                        type: string
+                        example: ffa16dae-ac66-4830-8984-171f306ca8d7
+                      transactionId:
+                        type: string
+                        example: E00416968202207061808Ymqobao0YFb
+                      amount:
+                        type: integer
+                        example: 1990
+                        default: 0
+                      paidAmount:
+                        type: integer
+                        example: 1990
+                        default: 0
+                      method:
+                        type: string
+                        example: BANK_TRANSFER
+                      status:
+                        type: string
+                        example: PAID
+                      createdAt:
+                        type: string
+                        example: '2022-07-11T00:37:06.009Z'
+                      processedAt:
+                        type: string
+                        example: '2022-07-11T00:37:06.116Z'
+                      paidAt:
+                        type: string
+                        example: '2022-07-06T00:00:00.000Z'
+                      failedAt: {}
+                      split:
+                        type: array
+                      payer:
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                            example: Bruce Wayne
+                          taxId:
+                            type: string
+                            example: '13703591013'
+                      source:
+                        type: object
+                        properties:
+                          bankName:
+                            type: string
+                            example: ITAÚ UNIBANCO S.A.
+                          branchNumber:
+                            type: string
+                            example: '1'
+                          accountNumber:
+                            type: string
+                            example: '99999'
+                      destination:
+                        type: object
+                        properties:
+                          bankName:
+                            type: string
+                            example: NU PAGAMENTOS S.A.
+                          branchNumber:
+                            type: string
+                            example: '1'
+                          accountNumber:
+                            type: string
+                            example: '199060'
+                  status:
+                    type: string
+                    example: DELIVERED
+                  createdAt:
+                    type: string
+                    example: '2022-06-06T11:48:21Z'
+                  queuedAt:
+                    type: string
+                    example: '2022-06-06T11:48:22Z'
+                  deliveredAt:
+                    type: string
+                    example: '2022-06-06T11:49:03Z'
+                  failedAt: {}
+                  lastAttemptAt:
+                    type: string
+                    example: '2022-06-06T11:49:01Z'
+                  nextAttemptAt: {}
+                  endpointId:
+                    type: string
+                    example: 33d8034f-6e13-4d15-b1b4-d88fcced590d
+                  organizationId:
+                    type: string
+                    example: bd0b3148-8772-4854-8a97-be409ed1ffa8
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+  /webhooks:
+    get:
+      summary: List all Webhooks
+      description: ''
+      operationId: list-all-webhooks
+      parameters:
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum:
+              - PENDING
+              - QUEUED
+              - DELIVERED
+              - FAILED
+        - name: event
+          in: query
+          schema:
+            type: string
+        - name: endpointId
+          in: query
+          schema:
+            type: string
+        - name: limit
+          in: query
+          description: A limit on the number of objects to be returned, between 1 and 50.
+          schema:
+            type: integer
+            format: int32
+            default: 10
+        - name: before
+          in: query
+          description: >-
+            A cursor for use in pagination. ```before``` is an object ID that
+            defines your place in the list. For instance, if you make a list
+            request and receive 50 objects, starting with ```obj_bar```, your
+            subsequent call can include ```before=obj_bar``` in order to fetch
+            the previous page of the list.
+          schema:
+            type: string
+        - name: after
+          in: query
+          description: >-
+            A cursor for use in pagination. after is an object ID that defines
+            your place in the list. For instance, if you make a list request and
+            receive 50 objects, ending with obj_foo, your subsequent call can
+            include after=obj_foo in order to fetch the next page of the list.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: |-
+                    {
+                       "data": [
+                          {
+                           "id": "89f4209f-b574-4582-86b6-98584b4f65ef",
+                           "event": "payment.paid",
+                           "object": {
+                              "id": "b6d9473e-5612-4a51-a854-d1d9f62e60e0",
+                              "type": "BankTransferPayment"
+                           },
+                           "signature": "e91aa3f03c7699db37e070ad4224a15c7b39dd383d2b0aef6f270f0a10d42772",
+                           "responses": [
+                             {
+                               "code": 200,
+                               "time": 289,
+                               "at": "2022-06-06T11:49:03Z"
+                             }
+                           ],
+                           "data": {
+                              "id": "96f42ef0-00b1-11ed-bb3a-098b2c4afa72",
+                              "code": "ffa16dae-ac66-4830-8984-171f306ca8d7",
+                              "transactionId": "E00416968202207061808Ymqobao0YFb",
+                              "amount": 1990,
+                              "paidAmount": 1990,
+                              "method": "BANK_TRANSFER",
+                              "status": "PAID",
+                              "createdAt": "2022-07-11T00:37:06.009Z",
+                              "processedAt": "2022-07-11T00:37:06.116Z",
+                              "paidAt": "2022-07-06T00:00:00.000Z",
+                              "failedAt": null,
+                              "split": [],
+                              "payer":{
+                                 "name": "Bruce Wayne",
+                                 "taxId": "13703591013"
+                              },
+                              "source": {
+                                 "bankName": "ITAÚ UNIBANCO S.A.",
+                                 "branchNumber": "1",
+                                 "accountNumber": "99999"
+                              },
+                              "destination": {
+                                 "bankName": "NU PAGAMENTOS S.A.",
+                                 "branchNumber": "1",
+                                 "accountNumber": "199060"
+                              }
+                           },
+                          "status": "DELIVERED",
+                          "createdAt": "2022-06-06T11:48:21Z",
+                          "queuedAt": "2022-06-06T11:48:22Z",
+                          "deliveredAt": "2022-06-06T11:49:03Z",
+                          "failedAt": null,
+                          "lastAttemptAt": "2022-06-06T11:49:01Z",
+                          "nextAttemptAt": null,
+                          "endpointId": "33d8034f-6e13-4d15-b1b4-d88fcced590d",
+                          "organizationId": "bd0b3148-8772-4854-8a97-be409ed1ffa8"
+                        }
+                       ],
+                       "paging": {
+                          "before": "",
+                          "after": "aWQ6YzYyZjViNTAtZTNiOS0xMWVjLTk0OWEtNjFkMjljNjZlMmNm"
+                       }
+                    }
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: 89f4209f-b574-4582-86b6-98584b4f65ef
+                        event:
+                          type: string
+                          example: payment.paid
+                        object:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              example: b6d9473e-5612-4a51-a854-d1d9f62e60e0
+                            type:
+                              type: string
+                              example: BankTransferPayment
+                        signature:
+                          type: string
+                          example: >-
+                            e91aa3f03c7699db37e070ad4224a15c7b39dd383d2b0aef6f270f0a10d42772
+                        responses:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              code:
+                                type: integer
+                                example: 200
+                                default: 0
+                              time:
+                                type: integer
+                                example: 289
+                                default: 0
+                              at:
+                                type: string
+                                example: '2022-06-06T11:49:03Z'
+                        data:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              example: 96f42ef0-00b1-11ed-bb3a-098b2c4afa72
+                            code:
+                              type: string
+                              example: ffa16dae-ac66-4830-8984-171f306ca8d7
+                            transactionId:
+                              type: string
+                              example: E00416968202207061808Ymqobao0YFb
+                            amount:
+                              type: integer
+                              example: 1990
+                              default: 0
+                            paidAmount:
+                              type: integer
+                              example: 1990
+                              default: 0
+                            method:
+                              type: string
+                              example: BANK_TRANSFER
+                            status:
+                              type: string
+                              example: PAID
+                            createdAt:
+                              type: string
+                              example: '2022-07-11T00:37:06.009Z'
+                            processedAt:
+                              type: string
+                              example: '2022-07-11T00:37:06.116Z'
+                            paidAt:
+                              type: string
+                              example: '2022-07-06T00:00:00.000Z'
+                            failedAt: {}
+                            split:
+                              type: array
+                            payer:
+                              type: object
+                              properties:
+                                name:
+                                  type: string
+                                  example: Bruce Wayne
+                                taxId:
+                                  type: string
+                                  example: '13703591013'
+                            source:
+                              type: object
+                              properties:
+                                bankName:
+                                  type: string
+                                  example: ITAÚ UNIBANCO S.A.
+                                branchNumber:
+                                  type: string
+                                  example: '1'
+                                accountNumber:
+                                  type: string
+                                  example: '99999'
+                            destination:
+                              type: object
+                              properties:
+                                bankName:
+                                  type: string
+                                  example: NU PAGAMENTOS S.A.
+                                branchNumber:
+                                  type: string
+                                  example: '1'
+                                accountNumber:
+                                  type: string
+                                  example: '199060'
+                        status:
+                          type: string
+                          example: DELIVERED
+                        createdAt:
+                          type: string
+                          example: '2022-06-06T11:48:21Z'
+                        queuedAt:
+                          type: string
+                          example: '2022-06-06T11:48:22Z'
+                        deliveredAt:
+                          type: string
+                          example: '2022-06-06T11:49:03Z'
+                        failedAt: {}
+                        lastAttemptAt:
+                          type: string
+                          example: '2022-06-06T11:49:01Z'
+                        nextAttemptAt: {}
+                        endpointId:
+                          type: string
+                          example: 33d8034f-6e13-4d15-b1b4-d88fcced590d
+                        organizationId:
+                          type: string
+                          example: bd0b3148-8772-4854-8a97-be409ed1ffa8
+                  paging:
+                    type: object
+                    properties:
+                      before:
+                        type: string
+                        example: ''
+                      after:
+                        type: string
+                        example: aWQ6YzYyZjViNTAtZTNiOS0xMWVjLTk0OWEtNjFkMjljNjZlMmNm
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+x-readme:
+  headers: []
+  explorer-enabled: true
+  proxy-enabled: true
+  samples-enabled: true
+x-readme-fauxas: true
+_id: 62cb7776cd7849008b4c5cca:62cb8142d88c1d0013b14b83
