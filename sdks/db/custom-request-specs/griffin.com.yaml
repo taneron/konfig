@@ -13402,6 +13402,47 @@ paths:
                         title: verification-url
                         example: /v0/verifications/vn.IHZlcmlmaWNhdGlvbi1pZA
                         description: A link to the [verification](http://docs.griffin.com).
+                      onboarding-application-status:
+                        enum:
+                          - errored
+                        type: string
+                    required:
+                      - created-at
+                      - legal-person-url
+                      - onboarding-application-url
+                      - verification-url
+                      - workflow-url
+                      - onboarding-application-status
+                    title: errored
+                  - type: object
+                    properties:
+                      onboarding-application-url:
+                        type: string
+                        title: onboarding-application-url
+                        example: /v0/onboarding/applications/oa.b25ib2FyZGluZy1hcHBsaQ
+                        description: Link to the onboarding application.
+                      created-at:
+                        title: created-at
+                        format: date-time
+                        type: string
+                        description: ISO 8601 formatted date-time.
+                      workflow-url:
+                        type: string
+                        title: workflow-url
+                        example: /v0/workflows/wf.ICAgICB3b3JrZmxvdy1pZA
+                        description: A link to the [workflow](http://docs.griffin.com).
+                      legal-person-url:
+                        type: string
+                        title: legal-person-url
+                        example: /v0/legal-persons/lp.IGxlZ2FsLXBlcnNvbi1pZA
+                        description: >-
+                          A contextual link to the [legal
+                          person](http://docs.griffin.com).
+                      verification-url:
+                        type: string
+                        title: verification-url
+                        example: /v0/verifications/vn.IHZlcmlmaWNhdGlvbi1pZA
+                        description: A link to the [verification](http://docs.griffin.com).
                       decision-outcome:
                         title: decision-outcome
                         type: string
@@ -23327,6 +23368,7 @@ paths:
                     enum:
                       - processing
                       - submitted
+                      - errored
                       - complete
                 required:
                   - onboarding-application-url

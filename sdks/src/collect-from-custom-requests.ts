@@ -505,6 +505,10 @@ const customRequests: Record<string, CustomRequest> = {
       return downloadOpenApiSpecFromReadme({ urls });
     },
   },
+  "okta.com": {
+    type: "GET",
+    url: "https://raw.githubusercontent.com/okta/okta-management-openapi-spec/master/dist/spec.yaml",
+  },
   "officient.io": {
     lambda: async () => {
       const url = "https://apidocs.officient.io/openapi";

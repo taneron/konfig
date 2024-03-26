@@ -6734,10 +6734,12 @@ paths:
 
         |-----------------------|-------------|----------------------|
 
-        | `archived`              | A boolean value. It filters the list to
-        archived flags. Setting the value to `true` returns only archived flags.
-        When this is absent, only unarchived flags are returned. |
-        `filter=archived:true` |
+        | `applicationEvaluated`  | A string. It filters the list to flags that
+        are evaluated in the application with the given key. |
+        `filter=applicationEvaluated:com.launchdarkly.cafe` |
+
+        | `archived`              | (deprecated) A boolean value. It filters the
+        list to archived flags. | Use `filter=state:archived` instead |
 
         | `contextKindsEvaluated` | A `+`-separated list of context kind keys.
         It filters the list to flags which have been evaluated in the past 30
@@ -6796,6 +6798,10 @@ paths:
         | `query`                 | A string. It filters the list to flags that
         include the specified string in their key or name. It is not case
         sensitive. | `filter=query:example` |
+
+        | `state`                 | A string, either `live`, `deprecated`, or
+        `archived`. It filters the list to flags in this state. |
+        `filter=state:archived` |
 
         | `sdkAvailability`       | A string, one of `client`, `mobile`,
         `anyClient`, `server`. Using `client` filters the list to flags whose
@@ -32698,6 +32704,19 @@ components:
           type: integer
           description: The release version
           example: 1
+    ReleaseAudience:
+      type: object
+      required:
+        - environment
+        - name
+      properties:
+        environment:
+          description: Details about the environment
+          $ref: '#/components/schemas/EnvironmentSummary'
+        name:
+          type: string
+          description: The release phase name
+          example: Phase 1 - Testing
     ReleasePhase:
       type: object
       required:
@@ -32736,7 +32755,7 @@ components:
             A logical grouping of one or more environments that share attributes
             for rolling out changes
           items:
-            $ref: '#/components/schemas/Audience'
+            $ref: '#/components/schemas/ReleaseAudience'
     ReleasePipeline:
       type: object
       required:

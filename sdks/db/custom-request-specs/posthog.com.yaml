@@ -14275,14 +14275,14 @@ components:
     ChartDisplayType:
       enum:
         - ActionsLineGraph
-        - ActionsLineGraphCumulative
-        - ActionsAreaGraph
-        - ActionsTable
-        - ActionsPie
         - ActionsBar
-        - ActionsBarValue
-        - WorldMap
+        - ActionsAreaGraph
+        - ActionsLineGraphCumulative
         - BoldNumber
+        - ActionsPie
+        - ActionsBarValue
+        - ActionsTable
+        - WorldMap
       title: ChartDisplayType
       type: string
     ChartSettings:
@@ -22708,12 +22708,6 @@ components:
           title: Label
         operator:
           $ref: '#/components/schemas/PropertyOperator'
-        table:
-          anyOf:
-            - type: string
-            - type: 'null'
-          default: null
-          title: Table
         type:
           const: person
           default: person
