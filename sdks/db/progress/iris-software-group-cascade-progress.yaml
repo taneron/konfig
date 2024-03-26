@@ -1,0 +1,193 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+operationIds:
+  /attendance/absencedays:
+    get: AbsenceDays_getList
+    post: AbsenceDays_createAbsenceDay
+  /attendance/absencedays/{id}:
+    delete: AbsenceDays_deleteById
+    get: AbsenceDays_getById
+    put: AbsenceDays_updateAbsenceDay
+  /attendance/absencereasons:
+    get: AbsenceReasons_list
+  /attendance/absencereasons/{id}:
+    get: AbsenceReasons_getById
+  /attendance/absencereasons/{id}/employees/{employeeId}:
+    get: AbsenceReasons_getEmployeeById
+  /attendance/absences:
+    get: Absences_getList
+    post: Absences_createNewAbsence
+  /attendance/absences/{id}:
+    delete: Absences_deleteById
+    get: Absences_getById
+    put: Absences_updateById
+  /attendance/entitlements:
+    get: Entitlements_getList
+  /attendance/entitlements/{id}:
+    get: Entitlements_getById
+  /bankdetails:
+    get: BankDetails_getList
+    post: BankDetails_createBankDetail
+  /bankdetails/{id}:
+    get: BankDetails_getById
+    put: BankDetails_updateBankDetail
+  /benefits:
+    get: Benefits_getList
+  /benefits/{id}:
+    get: Benefits_getById
+  /employees:
+    get: Employees_getList
+    post: Employees_createNewEmployee
+  /employees/{id}:
+    get: Employees_getById
+    put: Employees_updateById
+  /hierarchy:
+    get: Hierarchy_getList
+  /hierarchy/{id}:
+    get: Hierarchy_getNodeById
+  /hierarchy/{id}/path:
+    get: Hierarchy_getPathById
+  /jobs:
+    get: Jobs_getList
+    post: Jobs_createNewJob
+  /jobs/{id}:
+    get: Jobs_getById
+    put: Jobs_updateById
+  /publicholidays:
+    get: PublicHolidays_getLocations
+  /publicholidays/{id}:
+    get: PublicHolidays_getLocationListById
+operationTags: {}
+renameTags: {}
+requestSchemaNames: {}
+responseDescriptions: {}
+responseSchemaNames:
+  /attendance/absencedays:
+    post:
+      '200':
+        application/json; version=1: AbsenceDaysCreateAbsenceDay200Response
+        application/json;odata.metadata=full; version=1: AbsenceDaysCreateAbsenceDay200Response
+        application/json;odata.metadata=full;odata.streaming=false; version=1: AbsenceDaysCreateAbsenceDay200Response
+        application/json;odata.metadata=full;odata.streaming=true; version=1: AbsenceDaysCreateAbsenceDay200Response
+        application/json;odata.metadata=minimal; version=1: AbsenceDaysCreateAbsenceDay200Response
+        application/json;odata.metadata=minimal;odata.streaming=false; version=1: AbsenceDaysCreateAbsenceDay200Response
+        application/json;odata.metadata=minimal;odata.streaming=true; version=1: AbsenceDaysCreateAbsenceDayResponse
+        application/json;odata.metadata=none; version=1: AbsenceDaysCreateAbsenceDay200Response
+        application/json;odata.metadata=none;odata.streaming=false; version=1: AbsenceDaysCreateAbsenceDay200Response
+        application/json;odata.metadata=none;odata.streaming=true; version=1: AbsenceDaysCreateAbsenceDay200Response
+        application/json;odata.streaming=false; version=1: AbsenceDaysCreateAbsenceDay200Response
+        application/json;odata.streaming=true; version=1: AbsenceDaysCreateAbsenceDay200Response
+        application/prs.odatatestxx-odata; version=1: AbsenceDaysCreateAbsenceDay200Response
+        application/xml; version=1: AbsenceDaysCreateAbsenceDay200Response
+        text/json; version=1: AbsenceDaysCreateAbsenceDay200Response
+        text/plain; version=1: AbsenceDaysCreateAbsenceDay200Response
+  /attendance/absences:
+    post:
+      '200':
+        application/json; version=1: AbsencesCreateNewAbsence200Response
+        application/json;odata.metadata=full; version=1: AbsencesCreateNewAbsence200Response
+        application/json;odata.metadata=full;odata.streaming=false; version=1: AbsencesCreateNewAbsence200Response
+        application/json;odata.metadata=full;odata.streaming=true; version=1: AbsencesCreateNewAbsence200Response
+        application/json;odata.metadata=minimal; version=1: AbsencesCreateNewAbsence200Response
+        application/json;odata.metadata=minimal;odata.streaming=false; version=1: AbsencesCreateNewAbsence200Response
+        application/json;odata.metadata=minimal;odata.streaming=true; version=1: AbsencesCreateNewAbsenceResponse
+        application/json;odata.metadata=none; version=1: AbsencesCreateNewAbsence200Response
+        application/json;odata.metadata=none;odata.streaming=false; version=1: AbsencesCreateNewAbsence200Response
+        application/json;odata.metadata=none;odata.streaming=true; version=1: AbsencesCreateNewAbsence200Response
+        application/json;odata.streaming=false; version=1: AbsencesCreateNewAbsence200Response
+        application/json;odata.streaming=true; version=1: AbsencesCreateNewAbsence200Response
+        application/prs.odatatestxx-odata; version=1: AbsencesCreateNewAbsence200Response
+        application/xml; version=1: AbsencesCreateNewAbsence200Response
+        text/json; version=1: AbsencesCreateNewAbsence200Response
+        text/plain; version=1: AbsencesCreateNewAbsence200Response
+  /bankdetails:
+    post:
+      '200':
+        application/json; version=1: BankDetailsCreateBankDetail200Response
+        application/json;odata.metadata=full; version=1: BankDetailsCreateBankDetail200Response
+        application/json;odata.metadata=full;odata.streaming=false; version=1: BankDetailsCreateBankDetail200Response
+        application/json;odata.metadata=full;odata.streaming=true; version=1: BankDetailsCreateBankDetail200Response
+        application/json;odata.metadata=minimal; version=1: BankDetailsCreateBankDetail200Response
+        application/json;odata.metadata=minimal;odata.streaming=false; version=1: BankDetailsCreateBankDetail200Response
+        application/json;odata.metadata=minimal;odata.streaming=true; version=1: BankDetailsCreateBankDetailResponse
+        application/json;odata.metadata=none; version=1: BankDetailsCreateBankDetail200Response
+        application/json;odata.metadata=none;odata.streaming=false; version=1: BankDetailsCreateBankDetail200Response
+        application/json;odata.metadata=none;odata.streaming=true; version=1: BankDetailsCreateBankDetail200Response
+        application/json;odata.streaming=false; version=1: BankDetailsCreateBankDetail200Response
+        application/json;odata.streaming=true; version=1: BankDetailsCreateBankDetail200Response
+        application/prs.odatatestxx-odata; version=1: BankDetailsCreateBankDetail200Response
+        application/xml; version=1: BankDetailsCreateBankDetail200Response
+        text/json; version=1: BankDetailsCreateBankDetail200Response
+        text/plain; version=1: BankDetailsCreateBankDetail200Response
+  /employees:
+    post:
+      '200':
+        application/json; version=2: EmployeesCreateNewEmployee200Response
+        application/json;odata.metadata=full; version=2: EmployeesCreateNewEmployee200Response
+        application/json;odata.metadata=full;odata.streaming=false; version=2: EmployeesCreateNewEmployee200Response
+        application/json;odata.metadata=full;odata.streaming=true; version=2: EmployeesCreateNewEmployee200Response
+        application/json;odata.metadata=minimal; version=2: EmployeesCreateNewEmployee200Response
+        application/json;odata.metadata=minimal;odata.streaming=false; version=2: EmployeesCreateNewEmployee200Response
+        application/json;odata.metadata=minimal;odata.streaming=true; version=2: EmployeesCreateNewEmployeeResponse
+        application/json;odata.metadata=none; version=2: EmployeesCreateNewEmployee200Response
+        application/json;odata.metadata=none;odata.streaming=false; version=2: EmployeesCreateNewEmployee200Response
+        application/json;odata.metadata=none;odata.streaming=true; version=2: EmployeesCreateNewEmployee200Response
+        application/json;odata.streaming=false; version=2: EmployeesCreateNewEmployee200Response
+        application/json;odata.streaming=true; version=2: EmployeesCreateNewEmployee200Response
+        application/prs.odatatestxx-odata; version=2: EmployeesCreateNewEmployee200Response
+        application/xml; version=2: EmployeesCreateNewEmployee200Response
+        text/json; version=2: EmployeesCreateNewEmployee200Response
+        text/plain; version=2: EmployeesCreateNewEmployee200Response
+  /jobs:
+    post:
+      '200':
+        application/json; version=2: JobsCreateNewJob200Response
+        application/json;odata.metadata=full; version=2: JobsCreateNewJob200Response
+        application/json;odata.metadata=full;odata.streaming=false; version=2: JobsCreateNewJob200Response
+        application/json;odata.metadata=full;odata.streaming=true; version=2: JobsCreateNewJob200Response
+        application/json;odata.metadata=minimal; version=2: JobsCreateNewJob200Response
+        application/json;odata.metadata=minimal;odata.streaming=false; version=2: JobsCreateNewJob200Response
+        application/json;odata.metadata=minimal;odata.streaming=true; version=2: JobsCreateNewJobResponse
+        application/json;odata.metadata=none; version=2: JobsCreateNewJob200Response
+        application/json;odata.metadata=none;odata.streaming=false; version=2: JobsCreateNewJob200Response
+        application/json;odata.metadata=none;odata.streaming=true; version=2: JobsCreateNewJob200Response
+        application/json;odata.streaming=false; version=2: JobsCreateNewJob200Response
+        application/json;odata.streaming=true; version=2: JobsCreateNewJob200Response
+        application/prs.odatatestxx-odata; version=2: JobsCreateNewJob200Response
+        application/xml; version=2: JobsCreateNewJob200Response
+        text/json; version=2: JobsCreateNewJob200Response
+        text/plain; version=2: JobsCreateNewJob200Response
+  /jobs/{id}:
+    get:
+      '200':
+        application/json; version=2: JobsGetById200Response
+        application/json;odata.metadata=full; version=2: JobsGetById200Response
+        application/json;odata.metadata=full;odata.streaming=false; version=2: JobsGetById200Response
+        application/json;odata.metadata=full;odata.streaming=true; version=2: JobsGetById200Response
+        application/json;odata.metadata=minimal; version=2: JobsGetById200Response
+        application/json;odata.metadata=minimal;odata.streaming=false; version=2: JobsGetById200Response
+        application/json;odata.metadata=minimal;odata.streaming=true; version=2: JobsGetByIdResponse
+        application/json;odata.metadata=none; version=2: JobsGetById200Response
+        application/json;odata.metadata=none;odata.streaming=false; version=2: JobsGetById200Response
+        application/json;odata.metadata=none;odata.streaming=true; version=2: JobsGetById200Response
+        application/json;odata.streaming=false; version=2: JobsGetById200Response
+        application/json;odata.streaming=true; version=2: JobsGetById200Response
+        application/prs.odatatestxx-odata; version=2: JobsGetById200Response
+        application/xml; version=2: JobsGetById200Response
+        text/json; version=2: JobsGetById200Response
+        text/plain; version=2: JobsGetById200Response
+securityParameters:
+  $count:
+    query: false
+  $filter:
+    query: false
+  $orderby:
+    query: false
+  $select:
+    query: false
+  $skip:
+    query: false
+  $top:
+    query: false
+validServerUrls: {}

@@ -1023,6 +1023,10 @@ const customRequests: Record<string, CustomRequest> = {
     type: "GET",
     url: "https://cloud.lambdalabs.com/static/api/v1/openapi.yaml",
   },
+  "iris.co.uk_Cascade": {
+    type: "GET",
+    url: "https://swagger.hrapi.co.uk/swagger.json",
+  },
   "induced.ai": {
     type: "GET",
     url: "https://raw.githubusercontent.com/inducedai/docs/main/openapi.json",
