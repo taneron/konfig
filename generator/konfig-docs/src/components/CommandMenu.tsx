@@ -72,8 +72,12 @@ export function CommandMenu({ ...props }: DialogProps) {
 
             // number of items in index that search substring matches / number of keywords
             const score =
-              index.filter((item) => item.includes(search.toLowerCase()))
-                .length / index.length;
+              index.filter((item) =>
+                search
+                  .toLowerCase()
+                  .split(" ")
+                  .every((term) => item.includes(term))
+              ).length / index.length;
 
             return score;
           },
