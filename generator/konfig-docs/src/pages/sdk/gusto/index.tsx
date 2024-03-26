@@ -3,7 +3,7 @@ import { Company } from '../../../components/Company';
 
 const sdks = [
   {
-    "name": "AppIntegrations",
+    "name": "App Integrations",
     "numberOfMethods": 100,
     "categories": [
       "payroll",
@@ -20,7 +20,7 @@ const sdks = [
     "openapiGitHubUi": "https://github.com/konfig-sdks/openapi-examples/tree/HEAD/gusto/app-integrations/openapi.yaml"
   },
   {
-    "name": "AppIntegrations",
+    "name": "App Integrations",
     "numberOfMethods": 100,
     "categories": [
       "payroll",
@@ -37,7 +37,7 @@ const sdks = [
     "openapiGitHubUi": "https://github.com/konfig-sdks/openapi-examples/tree/HEAD/gusto/app-integrations/openapi.yaml"
   },
   {
-    "name": "AppIntegrations",
+    "name": "App Integrations",
     "numberOfMethods": 100,
     "categories": [
       "payroll",
@@ -54,7 +54,7 @@ const sdks = [
     "openapiGitHubUi": "https://github.com/konfig-sdks/openapi-examples/tree/HEAD/gusto/app-integrations/openapi.yaml"
   },
   {
-    "name": "EmbeddedPayroll",
+    "name": "Embedded Payroll",
     "numberOfMethods": 213,
     "categories": [
       "payroll",
@@ -73,7 +73,7 @@ const sdks = [
     "openapiGitHubUi": "https://github.com/konfig-sdks/openapi-examples/tree/HEAD/gusto/embedded-payroll/openapi.yaml"
   },
   {
-    "name": "EmbeddedPayroll",
+    "name": "Embedded Payroll",
     "numberOfMethods": 213,
     "categories": [
       "payroll",
@@ -92,7 +92,7 @@ const sdks = [
     "openapiGitHubUi": "https://github.com/konfig-sdks/openapi-examples/tree/HEAD/gusto/embedded-payroll/openapi.yaml"
   },
   {
-    "name": "EmbeddedPayroll",
+    "name": "Embedded Payroll",
     "numberOfMethods": 213,
     "categories": [
       "payroll",

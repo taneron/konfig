@@ -9,17 +9,17 @@ import { SdkNew } from "@site/src/components/SdkNew";
 export default function GustoAppIntegrationsTypeScriptSdk() {
   return (
     <SdkNew
-      sdkName="gusto-typescript-sdk"
+      sdkName="gusto-app-integrations-typescript-sdk"
       metaDescription={`Launched in 2011 as ZenPayroll, Gusto serves more than 300,000 businesses nationwide. Each year we process tens of billions of dollars of payroll and provide employee benefits—like health insurance and 401(k) accounts—while helping companies create incredible work places.
 
 Through one refreshingly easy, integrated platform, we automate and simplify your payroll, benefits, and HR, all while providing expert support. You and your employees will get the peace of mind you need to do your best work.`}
       company="Gusto"
-      serviceName="AppIntegrations"
+      serviceName="App Integrations"
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/gusto/app-integrations/logo.png"
       companyKebabCase="gusto"
-      clientNameCamelCase="gusto"
+      clientNameCamelCase="gustoAppIntegrations"
       homepage="gusto.com"
-      lastUpdated={new Date("2024-03-26T00:47:46.893Z")}
+      lastUpdated={new Date("2024-03-26T00:52:31.854Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/gusto/app-integrations/favicon.png"
       // Missing contactUrl
       contactEmail="developer@gusto.com"
@@ -476,7 +476,7 @@ Through one refreshingly easy, integrated platform, we automate and simplify you
   },
   {
     "url": "/v1/companies/{company_id}/pay_schedules",
-    "method": "listForCompany",
+    "method": "list",
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "Pay Schedules",
     "typeScriptTag": "paySchedules",
@@ -559,7 +559,7 @@ Through one refreshingly easy, integrated platform, we automate and simplify you
   },
   {
     "url": "/v1/companies/{company_id}/pay_periods",
-    "method": "getPayPeriods",
+    "method": "list",
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "Pay Schedules",
     "typeScriptTag": "paySchedules",
@@ -610,7 +610,7 @@ Through one refreshingly easy, integrated platform, we automate and simplify you
   },
   {
     "url": "/v1/companies/{company_id}/pay_periods/unprocessed_termination_pay_periods",
-    "method": "getUnprocessedTerminationPayPeriods",
+    "method": "listUnprocessedTerminationPayPeriods",
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "Pay Schedules",
     "typeScriptTag": "paySchedules",
@@ -676,7 +676,7 @@ Through one refreshingly easy, integrated platform, we automate and simplify you
   },
   {
     "url": "/v1/companies/{company_id}/employees",
-    "method": "listAllEmployees",
+    "method": "getCompanyEmployees",
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "Employees",
     "typeScriptTag": "employees",
@@ -1053,7 +1053,7 @@ Through one refreshingly easy, integrated platform, we automate and simplify you
   },
   {
     "url": "/v1/departments/{department_uuid}/remove",
-    "method": "removePeople",
+    "method": "removeEmployees",
     "httpMethod": HttpMethodsEnum.PUT,
     "tag": "Departments",
     "typeScriptTag": "departments",
@@ -1291,7 +1291,7 @@ Through one refreshingly easy, integrated platform, we automate and simplify you
   },
   {
     "url": "/v1/employees/{employee_id}/terminations",
-    "method": "listTerminations",
+    "method": "listTerminationsForEmployee",
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "Employee Employments",
     "typeScriptTag": "employeeEmployments",
@@ -1444,7 +1444,7 @@ Through one refreshingly easy, integrated platform, we automate and simplify you
   },
   {
     "url": "/v1/employees/{employee_id}/rehire",
-    "method": "getEmployeeRehire",
+    "method": "getRehireInfo",
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "Employee Employments",
     "typeScriptTag": "employeeEmployments",
@@ -1729,7 +1729,7 @@ Through one refreshingly easy, integrated platform, we automate and simplify you
   },
   {
     "url": "/v1/home_addresses/{home_address_uuid}",
-    "method": "deleteHomeAddress",
+    "method": "deleteEmployeeHomeAddress",
     "httpMethod": HttpMethodsEnum.DELETE,
     "tag": "Employee Addresses",
     "typeScriptTag": "employeeAddresses",
@@ -1766,7 +1766,7 @@ Through one refreshingly easy, integrated platform, we automate and simplify you
   },
   {
     "url": "/v1/home_addresses/{home_address_uuid}",
-    "method": "getByUuid",
+    "method": "getHomeAddress",
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "Employee Addresses",
     "typeScriptTag": "employeeAddresses",
@@ -1965,7 +1965,7 @@ Through one refreshingly easy, integrated platform, we automate and simplify you
   },
   {
     "url": "/v1/work_addresses/{work_address_uuid}",
-    "method": "deleteWorkAddress",
+    "method": "deleteEmployeeWorkAddress",
     "httpMethod": HttpMethodsEnum.DELETE,
     "tag": "Employee Addresses",
     "typeScriptTag": "employeeAddresses",
@@ -2247,7 +2247,7 @@ Through one refreshingly easy, integrated platform, we automate and simplify you
   },
   {
     "url": "/v1/employees/{employee_uuid}/time_off_activities",
-    "method": "listTimeOffActivities",
+    "method": "getTimeOffActivities",
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "Employees",
     "typeScriptTag": "employees",
@@ -2432,7 +2432,7 @@ Through one refreshingly easy, integrated platform, we automate and simplify you
   },
   {
     "url": "/v1/jobs/{job_id}/compensations",
-    "method": "getJobCompensations",
+    "method": "getCompensationsByJobId",
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "Jobs and Compensations",
     "typeScriptTag": "jobsAndCompensations",
@@ -2588,7 +2588,7 @@ Through one refreshingly easy, integrated platform, we automate and simplify you
   },
   {
     "url": "/v1/compensations/{compensation_id}",
-    "method": "getCompensation",
+    "method": "getCompensationById",
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "Jobs and Compensations",
     "typeScriptTag": "jobsAndCompensations",
@@ -2695,7 +2695,7 @@ Through one refreshingly easy, integrated platform, we automate and simplify you
   },
   {
     "url": "/v1/companies/{company_id}/earning_types",
-    "method": "listCompanyEarningTypes",
+    "method": "getAll",
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "Earning Types",
     "typeScriptTag": "earningTypes",
@@ -2812,7 +2812,7 @@ Through one refreshingly easy, integrated platform, we automate and simplify you
   },
   {
     "url": "/v1/companies/{company_id}/earning_types/{earning_type_uuid}",
-    "method": "updateType",
+    "method": "updateTypeById",
     "httpMethod": HttpMethodsEnum.PUT,
     "tag": "Earning Types",
     "typeScriptTag": "earningTypes",
@@ -2861,7 +2861,7 @@ Through one refreshingly easy, integrated platform, we automate and simplify you
   },
   {
     "url": "/v1/companies/{company_id}/contractors",
-    "method": "listForCompany",
+    "method": "getAll",
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "Contractors",
     "typeScriptTag": "contractors",
@@ -3146,7 +3146,7 @@ Through one refreshingly easy, integrated platform, we automate and simplify you
   },
   {
     "url": "/v1/webhook_subscriptions/{webhook_subscription_uuid}",
-    "method": "updateSubscription",
+    "method": "updateSubscriptionByUuid",
     "httpMethod": HttpMethodsEnum.PUT,
     "tag": "Webhooks",
     "typeScriptTag": "webhooks",
@@ -3189,7 +3189,7 @@ Through one refreshingly easy, integrated platform, we automate and simplify you
   },
   {
     "url": "/v1/webhook_subscriptions/{webhook_subscription_uuid}/verify",
-    "method": "verifyWebhookSubscription",
+    "method": "verifySubscriptionToken",
     "httpMethod": HttpMethodsEnum.PUT,
     "tag": "Webhooks",
     "typeScriptTag": "webhooks",
@@ -3324,7 +3324,7 @@ Through one refreshingly easy, integrated platform, we automate and simplify you
   },
   {
     "url": "/v1/companies/{company_id}/payrolls/{payroll_id}",
-    "method": "singleGet",
+    "method": "getSinglePayroll",
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "Payrolls",
     "typeScriptTag": "payrolls",
@@ -3369,7 +3369,7 @@ Through one refreshingly easy, integrated platform, we automate and simplify you
   },
   {
     "url": "/v1/companies/{company_id}/payrolls/{payroll_id}",
-    "method": "updatePayrollById",
+    "method": "updateById",
     "httpMethod": HttpMethodsEnum.PUT,
     "tag": "Payrolls",
     "typeScriptTag": "payrolls",
@@ -3419,7 +3419,7 @@ Through one refreshingly easy, integrated platform, we automate and simplify you
   },
   {
     "url": "/v1/companies/{company_id}/payrolls/{payroll_id}/prepare",
-    "method": "preparePayrollForUpdate",
+    "method": "prepareForUpdate",
     "httpMethod": HttpMethodsEnum.PUT,
     "tag": "Payrolls",
     "typeScriptTag": "payrolls",
@@ -3524,7 +3524,7 @@ Through one refreshingly easy, integrated platform, we automate and simplify you
   },
   {
     "url": "/v1/companies/{company_id}/contractor_payments",
-    "method": "getWithinTimePeriod",
+    "method": "listForCompany",
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "Contractor Payments",
     "typeScriptTag": "contractorPayments",
@@ -3591,7 +3591,7 @@ Through one refreshingly easy, integrated platform, we automate and simplify you
   },
   {
     "url": "/v1/companies/{company_id}/contractor_payments/{contractor_payment_id}",
-    "method": "getSinglePayment",
+    "method": "getSingle",
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "Contractor Payments",
     "typeScriptTag": "contractorPayments",
@@ -3631,7 +3631,7 @@ Through one refreshingly easy, integrated platform, we automate and simplify you
   },
   {
     "url": "/v1/companies/{company_id}/company_benefits",
-    "method": "getDetails",
+    "method": "getByCompanyId",
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "Company Benefits",
     "typeScriptTag": "companyBenefits",
@@ -3669,7 +3669,7 @@ Through one refreshingly easy, integrated platform, we automate and simplify you
   },
   {
     "url": "/v1/companies/{company_id}/company_benefits",
-    "method": "createBenefit",
+    "method": "createCompanyBenefit",
     "httpMethod": HttpMethodsEnum.POST,
     "tag": "Company Benefits",
     "typeScriptTag": "companyBenefits",
@@ -3775,7 +3775,7 @@ Through one refreshingly easy, integrated platform, we automate and simplify you
   },
   {
     "url": "/v1/company_benefits/{company_benefit_id}",
-    "method": "getBenefitById",
+    "method": "getById",
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "Company Benefits",
     "typeScriptTag": "companyBenefits",
@@ -3928,7 +3928,7 @@ Through one refreshingly easy, integrated platform, we automate and simplify you
   },
   {
     "url": "/v1/company_benefits/{company_benefit_id}/summary",
-    "method": "getSummaryByCompanyBenefitId",
+    "method": "getSummaryById",
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "Company Benefits",
     "typeScriptTag": "companyBenefits",
@@ -3978,7 +3978,7 @@ Through one refreshingly easy, integrated platform, we automate and simplify you
   },
   {
     "url": "/v1/benefits/{benefit_id}/requirements",
-    "method": "getBenefitFieldsRequirementsById",
+    "method": "getFieldsRequirementsById",
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "Company Benefits",
     "typeScriptTag": "companyBenefits",
@@ -4190,7 +4190,7 @@ Through one refreshingly easy, integrated platform, we automate and simplify you
   },
   {
     "url": "/v1/employee_benefits/{employee_benefit_id}",
-    "method": "deleteBenefit",
+    "method": "removeBenefit",
     "httpMethod": HttpMethodsEnum.DELETE,
     "tag": "Employee Benefits",
     "typeScriptTag": "employeeBenefits",
@@ -4223,7 +4223,7 @@ Through one refreshingly easy, integrated platform, we automate and simplify you
   },
   {
     "url": "/v1/employee_benefits/{employee_benefit_id}",
-    "method": "getBenefitDetails",
+    "method": "getById",
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "Employee Benefits",
     "typeScriptTag": "employeeBenefits",
@@ -4256,7 +4256,7 @@ Through one refreshingly easy, integrated platform, we automate and simplify you
   },
   {
     "url": "/v1/employee_benefits/{employee_benefit_id}",
-    "method": "updateBenefitDetails",
+    "method": "updateBenefit",
     "httpMethod": HttpMethodsEnum.PUT,
     "tag": "Employee Benefits",
     "typeScriptTag": "employeeBenefits",
@@ -4500,7 +4500,7 @@ Through one refreshingly easy, integrated platform, we automate and simplify you
   },
   {
     "url": "/v1/employees/{employee_id}/garnishments",
-    "method": "create",
+    "method": "createGarnishment",
     "httpMethod": HttpMethodsEnum.POST,
     "tag": "Garnishments",
     "typeScriptTag": "garnishments",
@@ -4600,7 +4600,7 @@ Through one refreshingly easy, integrated platform, we automate and simplify you
   },
   {
     "url": "/v1/garnishments/{garnishment_id}",
-    "method": "getDetails",
+    "method": "get",
     "httpMethod": HttpMethodsEnum.GET,
     "tag": "Garnishments",
     "typeScriptTag": "garnishments",

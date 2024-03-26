@@ -14,12 +14,12 @@ export default function GustoEmbeddedPayrollTypeScriptSdk() {
 
 Through one refreshingly easy, integrated platform, we automate and simplify your payroll, benefits, and HR, all while providing expert support. You and your employees will get the peace of mind you need to do your best work.`}
       company="Gusto"
-      serviceName="EmbeddedPayroll"
+      serviceName="Embedded Payroll"
       logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/gusto/embedded-payroll/logo.png"
       companyKebabCase="gusto"
       clientNameCamelCase="gustoEmbeddedPayroll"
       homepage="gusto.com"
-      lastUpdated={new Date("2024-03-26T00:42:28.369Z")}
+      lastUpdated={new Date("2024-03-26T00:52:31.854Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/gusto/embedded-payroll/favicon.png"
       // Missing contactUrl
       contactEmail="developer@gusto.com"

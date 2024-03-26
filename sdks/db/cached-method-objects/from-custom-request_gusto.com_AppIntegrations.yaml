@@ -1,4 +1,4 @@
-hash: 90533a2decfdcb68db3e43577459b13223aac62e9f4651f8f8e33ae131847901
+hash: c15276f446244b66793c641231bed777c079f4b0c13a5ea6ef0a81258338a5d8
 methodObjects:
   - url: /v1/token_info
     method: accessTokenInfo
@@ -358,7 +358,7 @@ methodObjects:
       - statusCode: '404'
         description: ''
   - url: /v1/companies/{company_id}/pay_schedules
-    method: listForCompany
+    method: list
     httpMethod: get
     tag: Pay Schedules
     typeScriptTag: paySchedules
@@ -423,7 +423,7 @@ methodObjects:
       - statusCode: '404'
         description: ''
   - url: /v1/companies/{company_id}/pay_periods
-    method: getPayPeriods
+    method: list
     httpMethod: get
     tag: Pay Schedules
     typeScriptTag: paySchedules
@@ -462,7 +462,7 @@ methodObjects:
       - statusCode: '404'
         description: ''
   - url: /v1/companies/{company_id}/pay_periods/unprocessed_termination_pay_periods
-    method: getUnprocessedTerminationPayPeriods
+    method: listUnprocessedTerminationPayPeriods
     httpMethod: get
     tag: Pay Schedules
     typeScriptTag: paySchedules
@@ -512,7 +512,7 @@ methodObjects:
       - statusCode: '404'
         description: ''
   - url: /v1/companies/{company_id}/employees
-    method: listAllEmployees
+    method: getCompanyEmployees
     httpMethod: get
     tag: Employees
     typeScriptTag: employees
@@ -822,7 +822,7 @@ methodObjects:
       - statusCode: '404'
         description: ''
   - url: /v1/departments/{department_uuid}/remove
-    method: removePeople
+    method: removeEmployees
     httpMethod: put
     tag: Departments
     typeScriptTag: departments
@@ -1015,7 +1015,7 @@ methodObjects:
           Categories](https://docs.gusto.com/embedded-payroll/docs/error-categories)
           guide for more details.
   - url: /v1/employees/{employee_id}/terminations
-    method: listTerminations
+    method: listTerminationsForEmployee
     httpMethod: get
     tag: Employee Employments
     typeScriptTag: employeeEmployments
@@ -1156,7 +1156,7 @@ methodObjects:
           Categories](https://docs.gusto.com/embedded-payroll/docs/error-categories)
           guide for more details.
   - url: /v1/employees/{employee_id}/rehire
-    method: getEmployeeRehire
+    method: getRehireInfo
     httpMethod: get
     tag: Employee Employments
     typeScriptTag: employeeEmployments
@@ -1398,7 +1398,7 @@ methodObjects:
           Categories](https://docs.gusto.com/embedded-payroll/docs/error-categories)
           guide for more details.
   - url: /v1/home_addresses/{home_address_uuid}
-    method: deleteHomeAddress
+    method: deleteEmployeeHomeAddress
     httpMethod: delete
     tag: Employee Addresses
     typeScriptTag: employeeAddresses
@@ -1432,7 +1432,7 @@ methodObjects:
           Categories](https://docs.gusto.com/embedded-payroll/docs/error-categories)
           guide for more details.
   - url: /v1/home_addresses/{home_address_uuid}
-    method: getByUuid
+    method: getHomeAddress
     httpMethod: get
     tag: Employee Addresses
     typeScriptTag: employeeAddresses
@@ -1589,7 +1589,7 @@ methodObjects:
           Categories](https://docs.gusto.com/embedded-payroll/docs/error-categories)
           guide for more details.
   - url: /v1/work_addresses/{work_address_uuid}
-    method: deleteWorkAddress
+    method: deleteEmployeeWorkAddress
     httpMethod: delete
     tag: Employee Addresses
     typeScriptTag: employeeAddresses
@@ -1824,7 +1824,7 @@ methodObjects:
           Categories](https://docs.gusto.com/embedded-payroll/docs/error-categories)
           guide for more details.
   - url: /v1/employees/{employee_uuid}/time_off_activities
-    method: listTimeOffActivities
+    method: getTimeOffActivities
     httpMethod: get
     tag: Employees
     typeScriptTag: employees
@@ -1972,7 +1972,7 @@ methodObjects:
           Categories](https://docs.gusto.com/embedded-payroll/docs/error-categories)
           guide for more details.
   - url: /v1/jobs/{job_id}/compensations
-    method: getJobCompensations
+    method: getCompensationsByJobId
     httpMethod: get
     tag: Jobs and Compensations
     typeScriptTag: jobsAndCompensations
@@ -2099,7 +2099,7 @@ methodObjects:
       - statusCode: '404'
         description: ''
   - url: /v1/compensations/{compensation_id}
-    method: getCompensation
+    method: getCompensationById
     httpMethod: get
     tag: Jobs and Compensations
     typeScriptTag: jobsAndCompensations
@@ -2183,7 +2183,7 @@ methodObjects:
           Categories](https://docs.gusto.com/embedded-payroll/docs/error-categories)
           guide for more details.
   - url: /v1/companies/{company_id}/earning_types
-    method: listCompanyEarningTypes
+    method: getAll
     httpMethod: get
     tag: Earning Types
     typeScriptTag: earningTypes
@@ -2277,7 +2277,7 @@ methodObjects:
       - statusCode: '404'
         description: ''
   - url: /v1/companies/{company_id}/earning_types/{earning_type_uuid}
-    method: updateType
+    method: updateTypeById
     httpMethod: put
     tag: Earning Types
     typeScriptTag: earningTypes
@@ -2319,7 +2319,7 @@ methodObjects:
           Categories](https://docs.gusto.com/embedded-payroll/docs/error-categories)
           guide for more details.
   - url: /v1/companies/{company_id}/contractors
-    method: listForCompany
+    method: getAll
     httpMethod: get
     tag: Contractors
     typeScriptTag: contractors
@@ -2555,7 +2555,7 @@ methodObjects:
       - statusCode: '404'
         description: ''
   - url: /v1/webhook_subscriptions/{webhook_subscription_uuid}
-    method: updateSubscription
+    method: updateSubscriptionByUuid
     httpMethod: put
     tag: Webhooks
     typeScriptTag: webhooks
@@ -2593,7 +2593,7 @@ methodObjects:
           Categories](https://docs.gusto.com/embedded-payroll/docs/error-categories)
           guide for more details.
   - url: /v1/webhook_subscriptions/{webhook_subscription_uuid}/verify
-    method: verifyWebhookSubscription
+    method: verifySubscriptionToken
     httpMethod: put
     tag: Webhooks
     typeScriptTag: webhooks
@@ -2709,7 +2709,7 @@ methodObjects:
       - statusCode: '404'
         description: ''
   - url: /v1/companies/{company_id}/payrolls/{payroll_id}
-    method: singleGet
+    method: getSinglePayroll
     httpMethod: get
     tag: Payrolls
     typeScriptTag: payrolls
@@ -2745,7 +2745,7 @@ methodObjects:
       - statusCode: '404'
         description: ''
   - url: /v1/companies/{company_id}/payrolls/{payroll_id}
-    method: updatePayrollById
+    method: updateById
     httpMethod: put
     tag: Payrolls
     typeScriptTag: payrolls
@@ -2788,7 +2788,7 @@ methodObjects:
           Categories](https://docs.gusto.com/embedded-payroll/docs/error-categories)
           guide for more details.
   - url: /v1/companies/{company_id}/payrolls/{payroll_id}/prepare
-    method: preparePayrollForUpdate
+    method: prepareForUpdate
     httpMethod: put
     tag: Payrolls
     typeScriptTag: payrolls
@@ -2871,7 +2871,7 @@ methodObjects:
           Categories](https://docs.gusto.com/embedded-payroll/docs/error-categories)
           guide for more details.
   - url: /v1/companies/{company_id}/contractor_payments
-    method: getWithinTimePeriod
+    method: listForCompany
     httpMethod: get
     tag: Contractor Payments
     typeScriptTag: contractorPayments
@@ -2926,7 +2926,7 @@ methodObjects:
       - statusCode: '404'
         description: ''
   - url: /v1/companies/{company_id}/contractor_payments/{contractor_payment_id}
-    method: getSinglePayment
+    method: getSingle
     httpMethod: get
     tag: Contractor Payments
     typeScriptTag: contractorPayments
@@ -2956,7 +2956,7 @@ methodObjects:
       - statusCode: '404'
         description: ''
   - url: /v1/companies/{company_id}/company_benefits
-    method: getDetails
+    method: getByCompanyId
     httpMethod: get
     tag: Company Benefits
     typeScriptTag: companyBenefits
@@ -2984,7 +2984,7 @@ methodObjects:
       - statusCode: '404'
         description: ''
   - url: /v1/companies/{company_id}/company_benefits
-    method: createBenefit
+    method: createCompanyBenefit
     httpMethod: post
     tag: Company Benefits
     typeScriptTag: companyBenefits
@@ -3067,7 +3067,7 @@ methodObjects:
       - statusCode: '422'
         description: ''
   - url: /v1/company_benefits/{company_benefit_id}
-    method: getBenefitById
+    method: getById
     httpMethod: get
     tag: Company Benefits
     typeScriptTag: companyBenefits
@@ -3187,7 +3187,7 @@ methodObjects:
       - statusCode: '404'
         description: ''
   - url: /v1/company_benefits/{company_benefit_id}/summary
-    method: getSummaryByCompanyBenefitId
+    method: getSummaryById
     httpMethod: get
     tag: Company Benefits
     typeScriptTag: companyBenefits
@@ -3223,7 +3223,7 @@ methodObjects:
       - statusCode: '404'
         description: ''
   - url: /v1/benefits/{benefit_id}/requirements
-    method: getBenefitFieldsRequirementsById
+    method: getFieldsRequirementsById
     httpMethod: get
     tag: Company Benefits
     typeScriptTag: companyBenefits
@@ -3386,7 +3386,7 @@ methodObjects:
           Categories](https://docs.gusto.com/embedded-payroll/docs/error-categories)
           guide for more details.
   - url: /v1/employee_benefits/{employee_benefit_id}
-    method: deleteBenefit
+    method: removeBenefit
     httpMethod: delete
     tag: Employee Benefits
     typeScriptTag: employeeBenefits
@@ -3411,7 +3411,7 @@ methodObjects:
       - statusCode: '404'
         description: ''
   - url: /v1/employee_benefits/{employee_benefit_id}
-    method: getBenefitDetails
+    method: getById
     httpMethod: get
     tag: Employee Benefits
     typeScriptTag: employeeBenefits
@@ -3436,7 +3436,7 @@ methodObjects:
       - statusCode: '404'
         description: ''
   - url: /v1/employee_benefits/{employee_benefit_id}
-    method: updateBenefitDetails
+    method: updateBenefit
     httpMethod: put
     tag: Employee Benefits
     typeScriptTag: employeeBenefits
@@ -3628,7 +3628,7 @@ methodObjects:
       - statusCode: '404'
         description: ''
   - url: /v1/employees/{employee_id}/garnishments
-    method: create
+    method: createGarnishment
     httpMethod: post
     tag: Garnishments
     typeScriptTag: garnishments
@@ -3714,7 +3714,7 @@ methodObjects:
           Categories](https://docs.gusto.com/embedded-payroll/docs/error-categories)
           guide for more details.
   - url: /v1/garnishments/{garnishment_id}
-    method: getDetails
+    method: get
     httpMethod: get
     tag: Garnishments
     typeScriptTag: garnishments
