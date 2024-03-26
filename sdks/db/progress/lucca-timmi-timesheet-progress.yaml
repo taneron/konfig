@@ -1,0 +1,138 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignorePotentialIncorrectType: true
+operationIds:
+  /api/v3/timeentries:
+    delete: TimeEntries_deleteMultiple
+    get: TimeEntries_listTimeEntries
+    post: TimeEntries_createMultiple
+    put: TimeEntries_updateMultiple
+  /api/v3/timeentries/{timeEntryId}:
+    delete: TimeEntries_removeById
+    get: TimeEntries_getById
+    put: TimeEntries_updateById
+  /api/v3/timmitimesheets:
+    get: Timesheets_list
+  /api/v3/timmitimesheets/remindable:
+    get: Timesheets_listDue
+  /timmi-timesheet/api/reports:
+    post: Reports_createBasedOnTemplate
+  /timmi-timesheet/api/reports/{reportId}/download-csv:
+    get: Reports_downloadCsvReport
+  /timmi-timesheet/api/reports/{reportId}/download-excel:
+    get: Reports_downloadExcelReport
+  /timmi/services/workflow/approve:
+    post: Workflow_approveTimesheetsById
+  /timmi/services/workflow/cancel:
+    post: Workflow_cancelTimesheetById
+  /timmi/services/workflow/deny:
+    post: Workflow_denyTimesheetById
+  /timmi/services/workflow/invalidate:
+    post: Workflow_invalidateTimesheetById
+  /timmi/services/workflow/remind:
+    post: Workflow_sendReminderEmail
+  /timmi/services/workflow/submit:
+    post: Workflow_submitTimesheet
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /api/v3/timeentries:
+    delete:
+      application/json: TimeEntriesDeleteMultipleRequest
+    post:
+      application/json: TimeEntriesCreateMultipleRequest
+    put:
+      application/json: TimeEntriesUpdateMultipleRequest
+  /timmi/services/workflow/approve:
+    post:
+      application/json: WorkflowApproveTimesheetsByIdRequest
+  /timmi/services/workflow/cancel:
+    post:
+      application/json: WorkflowCancelTimesheetByIdRequest
+  /timmi/services/workflow/deny:
+    post:
+      application/json: WorkflowDenyTimesheetByIdRequest
+  /timmi/services/workflow/invalidate:
+    post:
+      application/json: WorkflowInvalidateTimesheetByIdRequest
+  /timmi/services/workflow/remind:
+    post:
+      application/json: WorkflowSendReminderEmailRequest
+  /timmi/services/workflow/submit:
+    post:
+      application/json: WorkflowSubmitTimesheetRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /api/v3/timeentries:
+    delete:
+      '400':
+        application/json: TimeEntriesDeleteMultipleResponse
+    get:
+      '200':
+        application/json: TimeEntriesListTimeEntriesResponse
+    post:
+      '200':
+        application/json: TimeEntriesCreateMultipleResponse
+    put:
+      '200':
+        application/json: TimeEntriesUpdateMultipleResponse
+  /api/v3/timeentries/{timeEntryId}:
+    get:
+      '200':
+        application/json: TimeEntriesGetByIdResponse
+    put:
+      '200':
+        application/json: TimeEntriesUpdateByIdResponse
+  /api/v3/timmitimesheets:
+    get:
+      '200':
+        application/json: TimesheetsListResponse
+  /api/v3/timmitimesheets/remindable:
+    get:
+      '200':
+        application/json: TimesheetsListDueResponse
+  /timmi-timesheet/api/reports/{reportId}/download-csv:
+    get:
+      '200':
+        application/octet-stream: ReportsDownloadCsvReportResponse
+  /timmi-timesheet/api/reports/{reportId}/download-excel:
+    get:
+      '200':
+        application/octet-stream: ReportsDownloadExcelReportResponse
+  /timmi/services/workflow/remind:
+    post:
+      '200':
+        application/json: WorkflowSendReminderEmailResponse
+securityParameters:
+  archivedAt:
+    query: false
+  axisSections.code:
+    query: false
+  axisSections.id:
+    query: false
+  end:
+    query: false
+  endsOn:
+    query: false
+  legalEntityIds:
+    query: false
+  managerIds:
+    query: false
+  modifiedAt:
+    query: false
+  ownerId:
+    query: false
+  ownerIds:
+    query: false
+  paging:
+    query: false
+  start:
+    query: false
+  startsAt:
+    query: false
+  startsOn:
+    query: false
+  status:
+    query: false
+validServerUrls: {}

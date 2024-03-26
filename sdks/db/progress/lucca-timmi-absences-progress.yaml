@@ -1,0 +1,118 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignoreObjectsWithNoProperties: true
+ignorePotentialIncorrectType: true
+operationIds:
+  /api/v3/leaveRequests:
+    get: LeaveRequests_list
+  /api/v3/leaveRequests/{leaveRequestId}:
+    delete: LeaveRequests_cancelRequest
+    get: LeaveRequests_getById
+  /api/v3/leaveRequests/{leaveRequestId}/approvals:
+    post: LeaveRequests_approveDeny
+  /api/v3/leaves:
+    get: Leaves_getApprovedList
+  /api/v3/leaves/{leaveId}:
+    delete: Leaves_cancelLeaveById
+    get: Leaves_getById
+  /api/v3/services/importLeavePeriods:
+    post: Imports_absenceBatchCreate
+  /figgo/api/public/services/v1.0/leaveEntitlementsImport:
+    post: Imports_entitlementsBatchImport
+  /figgo/api/public/services/v1.0/leaveEntitlementsReplace:
+    post: Imports_replaceEntitlements
+  /timmi-absences/api/imports/v1.0/leavePeriods:
+    post: Imports_createAbsencesBatch
+  /timmi-absences/api/imports/v1.0/leavePeriods/{summaryId}/progress:
+    get: Imports_getProgress
+  /timmi-absences/api/public/services/v1.0/leaveEntitlementsImport:
+    post: Imports_importLeaveEntitlements
+  /timmi-absences/api/public/services/v1.0/leaveEntitlementsReplace:
+    post: Imports_replaceEntitlements
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /api/v3/leaveRequests/{leaveRequestId}/approvals:
+    post:
+      application/json: LeaveRequestsApproveDenyRequest
+  /api/v3/services/importLeavePeriods:
+    post:
+      multipart/form-data: ImportsAbsenceBatchCreateRequest
+  /figgo/api/public/services/v1.0/leaveEntitlementsImport:
+    post:
+      multipart/form-data: ImportsEntitlementsBatchImportRequest
+  /figgo/api/public/services/v1.0/leaveEntitlementsReplace:
+    post:
+      multipart/form-data: ImportsReplaceEntitlementsRequest
+  /timmi-absences/api/imports/v1.0/leavePeriods:
+    post:
+      multipart/form-data: ImportsCreateAbsencesBatchRequest
+  /timmi-absences/api/public/services/v1.0/leaveEntitlementsImport:
+    post:
+      multipart/form-data: ImportsImportLeaveEntitlementsRequest
+  /timmi-absences/api/public/services/v1.0/leaveEntitlementsReplace:
+    post:
+      multipart/form-data: ImportsReplaceEntitlementsRequest1
+responseDescriptions: {}
+responseSchemaNames:
+  /api/v3/leaveRequests:
+    get:
+      '200':
+        application/json: LeaveRequestsListResponse
+  /api/v3/leaveRequests/{leaveRequestId}:
+    get:
+      '200':
+        application/json: LeaveRequestsGetByIdResponse
+  /api/v3/leaves:
+    get:
+      '200':
+        application/json: LeavesGetApprovedListResponse
+  /api/v3/leaves/{leaveId}:
+    get:
+      '200':
+        application/json: LeavesGetByIdResponse
+  /api/v3/services/importLeavePeriods:
+    post:
+      '200':
+        application/json: ImportsAbsenceBatchCreateResponse
+  /figgo/api/public/services/v1.0/leaveEntitlementsImport:
+    post:
+      '200':
+        application/json: ImportsEntitlementsBatchImportResponse
+  /timmi-absences/api/imports/v1.0/leavePeriods:
+    post:
+      '200':
+        application/json: ImportsCreateAbsencesBatchResponse
+  /timmi-absences/api/imports/v1.0/leavePeriods/{summaryId}/progress:
+    get:
+      '200':
+        application/json: ImportsGetProgressResponse
+securityParameters:
+  async:
+    query: false
+  create:
+    query: false
+  date:
+    query: false
+  leaveAccountId:
+    query: false
+  leavePeriod.ownerId:
+    query: false
+  originalFileName:
+    query: false
+  overrideLeaves:
+    query: false
+  paging:
+    query: false
+  recredit:
+    query: false
+  simulate:
+    query: false
+  strict:
+    query: false
+  synchronize:
+    query: false
+  type:
+    query: false
+validServerUrls: {}

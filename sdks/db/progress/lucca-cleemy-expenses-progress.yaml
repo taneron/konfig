@@ -1,0 +1,61 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignorePotentialIncorrectType: true
+operationIds:
+  /api/v3/expenseClaims:
+    get: ExpenseClaims_list
+  /api/v3/expenseClaims/creation:
+    post: ExpenseClaims_createNewExpenseClaim
+  /api/v3/expenseTempItems:
+    get: Expenses_listTempItems
+    post: Expenses_createNewTemporaryExpense
+  /api/v3/expenseTempItems/{expenseTempItemId}:
+    get: Expenses_getById
+    put: Expenses_updateExpenseTempItem
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /api/v3/expenseClaims/creation:
+    post:
+      application/json: ExpenseClaimsCreateNewExpenseClaimRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /api/v3/expenseClaims:
+    get:
+      '200':
+        application/json: ExpenseClaimsListResponse
+  /api/v3/expenseClaims/creation:
+    post:
+      '200':
+        application/json: ExpenseClaimsCreateNewExpenseClaimResponse
+  /api/v3/expenseTempItems:
+    get:
+      '200':
+        application/json: ExpensesListTempItemsResponse
+      '400':
+        application/json: ExpensesListTempItems400Response
+    post:
+      '200':
+        application/json: ExpensesCreateNewTemporaryExpenseResponse
+  /api/v3/expenseTempItems/{expenseTempItemId}:
+    get:
+      '200':
+        application/json: ExpensesGetByIdResponse
+    put:
+      '200':
+        application/json: ExpensesUpdateExpenseTempItemResponse
+securityParameters:
+  declaredOn:
+    query: false
+  orderBy:
+    query: false
+  ownerId:
+    query: false
+  paging:
+    query: false
+  purchasedOn:
+    query: false
+  statusId:
+    query: false
+validServerUrls: {}

@@ -1,0 +1,395 @@
+{
+  "securitySchemes": {
+    "Authorization": {
+      "name": "Authorization",
+      "type": "apiKey",
+      "in": "header",
+      "description": "Header value must be equal to `lucca application={apiKey}`"
+    }
+  },
+  "apiBaseUrl": "https://example.ilucca.net",
+  "apiVersion": "1.0",
+  "apiDescription": "Welcome on the documentation for the Organization Structure API\n",
+  "apiTitle": "Organization structure API",
+  "endpoints": 6,
+  "sdkMethods": 12,
+  "schemas": 16,
+  "parameters": 10,
+  "contactUrl": "www.lucca.fr",
+  "contactEmail": "developers@lucca.fr",
+  "originalCustomRequest": {
+    "type": "GET",
+    "url": "https://stoplight.io/api/v1/projects/lucca/lucca-legacyapi/nodes/reference/Organization-v3.yaml?fromExportButton=true&snapshotType=http_service&deref=optimizedBundle"
+  },
+  "customRequestSpecFilename": "lucca-hr.com_Organization.yaml",
+  "difficultyScore": 18,
+  "difficulty": "Very Easy",
+  "company": "Lucca",
+  "serviceName": "Organization",
+  "sdkName": "lucca-organization-{language}-sdk",
+  "clientName": "LuccaOrganization",
+  "metaDescription": "Nereo est un éditeur de logiciels de gestion des ressources humaines, basé à Saint Etienne, qui propose à ses clients des solutions accessibles en ligne pour faciliter des tâches chronophages et sans réelle valeur ajoutée telles que la gestion des congés, des temps et activités ou encore des notes de frais.\n\nCréée en décembre 2011, Nereo propose déjà une solution complète de gestion de congés et absences en mode SaaS baptisée Nereo Congés.",
+  "apiStatusUrls": "inherit",
+  "homepage": "lucca-hr.com",
+  "developerDocumentation": "developers.lucca.fr/",
+  "categories": [
+    "hr",
+    "hr_management",
+    "resource_management",
+    "human_resources",
+    "scheduling",
+    "time_management",
+    "attendance_management",
+    "hr_automation"
+  ],
+  "category": "HR Talent & Recruitment",
+  "methods": [
+    {
+      "url": "/api/v3/axes",
+      "method": "list",
+      "httpMethod": "get",
+      "tag": "Axis-sections",
+      "typeScriptTag": "axisSections",
+      "description": "List Axes",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "array",
+          "description": "Filter on axes unique identifiers."
+        },
+        {
+          "name": "isActive",
+          "schema": "boolean",
+          "description": "Filter on axes active status.",
+          "default": true
+        },
+        {
+          "name": "paging",
+          "schema": "string",
+          "required": true,
+          "description": "{offset},{limit}. Defaults to 0,1000.",
+          "example": "100,0"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/api/v3/axisSections",
+      "method": "list",
+      "httpMethod": "get",
+      "tag": "Axis-sections",
+      "typeScriptTag": "axisSections",
+      "description": "List AxisSections",
+      "parameters": [
+        {
+          "name": "paging",
+          "schema": "string",
+          "required": true,
+          "description": "{offset},{limit}. Defaults to 0,1000.",
+          "example": "100,0"
+        },
+        {
+          "name": "axisId",
+          "schema": "array",
+          "description": "Filter on the axis it belongs to."
+        },
+        {
+          "name": "ownerId",
+          "schema": "array",
+          "description": "Filter on the owner managing it."
+        },
+        {
+          "name": "active",
+          "schema": "boolean",
+          "description": "Filter on active status.",
+          "default": true
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": "Bad Request"
+        },
+        {
+          "statusCode": "401",
+          "description": "Unauthorized"
+        },
+        {
+          "statusCode": "403",
+          "description": "Forbidden"
+        },
+        {
+          "statusCode": "404",
+          "description": "Not Found"
+        },
+        {
+          "statusCode": "500",
+          "description": "Internal Server Error"
+        }
+      ]
+    },
+    {
+      "url": "/api/v3/axisSections",
+      "method": "createNewAxisSection",
+      "httpMethod": "post",
+      "tag": "Axis-sections",
+      "typeScriptTag": "axisSections",
+      "description": "Create a new AxisSection",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": "Bad Request"
+        },
+        {
+          "statusCode": "401",
+          "description": "Unauthorized"
+        },
+        {
+          "statusCode": "403",
+          "description": "Forbidden"
+        },
+        {
+          "statusCode": "404",
+          "description": "Not Found"
+        },
+        {
+          "statusCode": "500",
+          "description": "Internal Server Error"
+        }
+      ]
+    },
+    {
+      "url": "/api/v3/axisSections/{axisSectionId}",
+      "method": "deleteById",
+      "httpMethod": "delete",
+      "tag": "Axis-sections",
+      "typeScriptTag": "axisSections",
+      "description": "Delete an AxisSection by id",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": "OK"
+        },
+        {
+          "statusCode": "400",
+          "description": "Bad Request"
+        },
+        {
+          "statusCode": "401",
+          "description": "Unauthorized"
+        },
+        {
+          "statusCode": "403",
+          "description": "Forbidden"
+        },
+        {
+          "statusCode": "404",
+          "description": "Not Found"
+        },
+        {
+          "statusCode": "500",
+          "description": "Internal Server Error"
+        }
+      ]
+    },
+    {
+      "url": "/api/v3/axisSections/{axisSectionId}",
+      "method": "getById",
+      "httpMethod": "get",
+      "tag": "Axis-sections",
+      "typeScriptTag": "axisSections",
+      "description": "Get an AxisSection by id",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": "Bad Request"
+        },
+        {
+          "statusCode": "401",
+          "description": "Unauthorized"
+        },
+        {
+          "statusCode": "403",
+          "description": "Forbidden"
+        },
+        {
+          "statusCode": "404",
+          "description": "Not Found"
+        },
+        {
+          "statusCode": "500",
+          "description": "Internal Server Error"
+        }
+      ]
+    },
+    {
+      "url": "/api/v3/axisSections/{axisSectionId}",
+      "method": "updateById",
+      "httpMethod": "put",
+      "tag": "Axis-sections",
+      "typeScriptTag": "axisSections",
+      "description": "Update an AxisSection by id",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": "Bad Request"
+        },
+        {
+          "statusCode": "401",
+          "description": "Unauthorized"
+        },
+        {
+          "statusCode": "403",
+          "description": "Forbidden"
+        },
+        {
+          "statusCode": "404",
+          "description": "Not Found"
+        },
+        {
+          "statusCode": "500",
+          "description": "Internal Server Error"
+        }
+      ]
+    },
+    {
+      "url": "/api/v3/departments",
+      "method": "getAll",
+      "httpMethod": "get",
+      "tag": "Departments",
+      "typeScriptTag": "departments",
+      "description": "List Departments",
+      "parameters": [
+        {
+          "name": "headId",
+          "schema": "integer",
+          "description": ""
+        },
+        {
+          "name": "parentId",
+          "schema": "integer",
+          "description": ""
+        },
+        {
+          "name": "paging",
+          "schema": "string",
+          "required": true,
+          "description": "{offset},{limit}. Defaults to 0,1000.",
+          "example": "100,0"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "500",
+          "description": "Internal Server Error"
+        }
+      ]
+    },
+    {
+      "url": "/api/v3/departments/tree",
+      "method": "listTree",
+      "httpMethod": "get",
+      "tag": "Departments",
+      "typeScriptTag": "departments",
+      "description": "List Departements as a tree",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "500",
+          "description": "Internal Server Error"
+        }
+      ]
+    },
+    {
+      "url": "/api/v3/departments/{departmentId}",
+      "method": "getById",
+      "httpMethod": "get",
+      "tag": "Departments",
+      "typeScriptTag": "departments",
+      "description": "Get Departement by id",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": ""
+        },
+        {
+          "statusCode": "500",
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "repositoryDescription": "Nereo is a Saint Etienne-based HR software publisher, offering online solutions to simplify time-consuming tasks like leave management, time tracking, and expense reports. Founded in December 2011, Nereo provides a full SaaS solution called Nereo Congés. Lucca's {language} SDK for Organization API generated by Konfig (https://konfigthis.com/).",
+  "logo": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/lucca/organization/logo.svg",
+  "openApiRaw": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/lucca/organization/openapi.yaml",
+  "openApiGitHubUi": "https://github.com/konfig-sdks/openapi-examples/tree/HEAD/lucca/organization/openapi.yaml",
+  "previewLinkImage": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/lucca/organization/imagePreview.jpg",
+  "faviconUrl": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/lucca/organization/favicon.png",
+  "clientNameCamelCase": "luccaOrganization",
+  "lastUpdated": "2024-03-26T19:55:14.920Z",
+  "typescriptSdkUsageCode": "import { LuccaOrganization } from 'lucca-organization-typescript-sdk';\n\nconst luccaOrganization = new LuccaOrganization({\n    // Header value must be equal to `lucca application={apiKey}`\n    authorization: \"AUTHORIZATION\"\n})",
+  "typescriptSdkFirstRequestCode": "// List Axes\nconst listResponse = luccaOrganization.axisSections.list({\n    isActive: true\n    paging: \"100,0\"\n})",
+  "fixedSpecFileName": "lucca-organization-fixed-spec.yaml"
+}

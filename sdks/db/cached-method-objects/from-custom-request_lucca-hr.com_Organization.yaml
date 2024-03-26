@@ -1,0 +1,203 @@
+hash: c8141d1df70db009a5a9c894fa9659803f8ca8d3513e7c83b2b9f7e8802fb45a
+methodObjects:
+  - url: /api/v3/axes
+    method: list
+    httpMethod: get
+    tag: Axis-sections
+    typeScriptTag: axisSections
+    description: List Axes
+    parameters:
+      - name: id
+        schema: array
+        description: Filter on axes unique identifiers.
+      - name: isActive
+        schema: boolean
+        description: Filter on axes active status.
+        default: true
+      - name: paging
+        schema: string
+        required: true
+        description: '{offset},{limit}. Defaults to 0,1000.'
+        example: 100,0
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /api/v3/axisSections
+    method: list
+    httpMethod: get
+    tag: Axis-sections
+    typeScriptTag: axisSections
+    description: List AxisSections
+    parameters:
+      - name: paging
+        schema: string
+        required: true
+        description: '{offset},{limit}. Defaults to 0,1000.'
+        example: 100,0
+      - name: axisId
+        schema: array
+        description: Filter on the axis it belongs to.
+      - name: ownerId
+        schema: array
+        description: Filter on the owner managing it.
+      - name: active
+        schema: boolean
+        description: Filter on active status.
+        default: true
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+      - statusCode: '401'
+        description: Unauthorized
+      - statusCode: '403'
+        description: Forbidden
+      - statusCode: '404'
+        description: Not Found
+      - statusCode: '500'
+        description: Internal Server Error
+  - url: /api/v3/axisSections
+    method: createNewAxisSection
+    httpMethod: post
+    tag: Axis-sections
+    typeScriptTag: axisSections
+    description: Create a new AxisSection
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+      - statusCode: '401'
+        description: Unauthorized
+      - statusCode: '403'
+        description: Forbidden
+      - statusCode: '404'
+        description: Not Found
+      - statusCode: '500'
+        description: Internal Server Error
+  - url: /api/v3/axisSections/{axisSectionId}
+    method: deleteById
+    httpMethod: delete
+    tag: Axis-sections
+    typeScriptTag: axisSections
+    description: Delete an AxisSection by id
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: OK
+      - statusCode: '400'
+        description: Bad Request
+      - statusCode: '401'
+        description: Unauthorized
+      - statusCode: '403'
+        description: Forbidden
+      - statusCode: '404'
+        description: Not Found
+      - statusCode: '500'
+        description: Internal Server Error
+  - url: /api/v3/axisSections/{axisSectionId}
+    method: getById
+    httpMethod: get
+    tag: Axis-sections
+    typeScriptTag: axisSections
+    description: Get an AxisSection by id
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+      - statusCode: '401'
+        description: Unauthorized
+      - statusCode: '403'
+        description: Forbidden
+      - statusCode: '404'
+        description: Not Found
+      - statusCode: '500'
+        description: Internal Server Error
+  - url: /api/v3/axisSections/{axisSectionId}
+    method: updateById
+    httpMethod: put
+    tag: Axis-sections
+    typeScriptTag: axisSections
+    description: Update an AxisSection by id
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Bad Request
+      - statusCode: '401'
+        description: Unauthorized
+      - statusCode: '403'
+        description: Forbidden
+      - statusCode: '404'
+        description: Not Found
+      - statusCode: '500'
+        description: Internal Server Error
+  - url: /api/v3/departments
+    method: getAll
+    httpMethod: get
+    tag: Departments
+    typeScriptTag: departments
+    description: List Departments
+    parameters:
+      - name: headId
+        schema: integer
+        description: ''
+      - name: parentId
+        schema: integer
+        description: ''
+      - name: paging
+        schema: string
+        required: true
+        description: '{offset},{limit}. Defaults to 0,1000.'
+        example: 100,0
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '500'
+        description: Internal Server Error
+  - url: /api/v3/departments/tree
+    method: listTree
+    httpMethod: get
+    tag: Departments
+    typeScriptTag: departments
+    description: List Departements as a tree
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '500'
+        description: Internal Server Error
+  - url: /api/v3/departments/{departmentId}
+    method: getById
+    httpMethod: get
+    tag: Departments
+    typeScriptTag: departments
+    description: Get Departement by id
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: ''
+      - statusCode: '401'
+        description: ''
+      - statusCode: '404'
+        description: ''
+      - statusCode: '500'
+        description: ''
+numberOfSchemas: 16
+apiDescription: |
+  Welcome on the documentation for the Organization Structure API

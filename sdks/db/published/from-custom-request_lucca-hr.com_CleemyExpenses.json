@@ -1,0 +1,564 @@
+{
+  "securitySchemes": {
+    "Authorization": {
+      "name": "Authorization",
+      "type": "apiKey",
+      "in": "header",
+      "description": "Header value must be equal to `lucca application={yourApiKey}`"
+    }
+  },
+  "apiBaseUrl": "https://example.ilucca.net",
+  "apiVersion": "1.0",
+  "apiDescription": "Welcome on the documentation for the CleemyExpenses API.\n",
+  "apiTitle": "Cleemy Expenses",
+  "endpoints": 4,
+  "sdkMethods": 8,
+  "schemas": 23,
+  "parameters": 53,
+  "contactUrl": "https://www.lucca.fr",
+  "contactEmail": "developers@lucca.fr",
+  "originalCustomRequest": {
+    "type": "GET",
+    "url": "https://stoplight.io/api/v1/projects/lucca/lucca-legacyapi/nodes/reference/Cleemy-Expenses-v3.yaml?fromExportButton=true&snapshotType=http_service&deref=optimizedBundle"
+  },
+  "customRequestSpecFilename": "lucca-hr.com_CleemyExpenses.yaml",
+  "difficultyScore": 28.75,
+  "difficulty": "Easy",
+  "company": "Lucca",
+  "serviceName": "Cleemy Expenses",
+  "sdkName": "lucca-cleemy-expenses-{language}-sdk",
+  "clientName": "LuccaCleemyExpenses",
+  "metaDescription": "Nereo est un éditeur de logiciels de gestion des ressources humaines, basé à Saint Etienne, qui propose à ses clients des solutions accessibles en ligne pour faciliter des tâches chronophages et sans réelle valeur ajoutée telles que la gestion des congés, des temps et activités ou encore des notes de frais.\n\nCréée en décembre 2011, Nereo propose déjà une solution complète de gestion de congés et absences en mode SaaS baptisée Nereo Congés.",
+  "apiStatusUrls": "inherit",
+  "homepage": "lucca-hr.com",
+  "developerDocumentation": "developers.lucca.fr/",
+  "categories": [
+    "hr",
+    "hr_management",
+    "resource_management",
+    "human_resources",
+    "scheduling",
+    "time_management",
+    "attendance_management",
+    "hr_automation"
+  ],
+  "category": "HR Talent & Recruitment",
+  "methods": [
+    {
+      "url": "/api/v3/expenseTempItems",
+      "method": "listTempItems",
+      "httpMethod": "get",
+      "tag": "Expenses",
+      "typeScriptTag": "expenses",
+      "description": "List ExpenseTempItems (temporary expense)",
+      "parameters": [
+        {
+          "name": "ownerId",
+          "schema": "array",
+          "description": "Comma-separated list of user identifiers (int)."
+        },
+        {
+          "name": "orderBy",
+          "schema": "string",
+          "description": "{fieldName},{'asc'||'desc'}. Example: `?orderby=purchasedOn,desc`"
+        },
+        {
+          "name": "purchasedOn",
+          "schema": "string",
+          "description": "Examples: `between,2022-01-01,202201-31`."
+        },
+        {
+          "name": "paging",
+          "schema": "string",
+          "required": true,
+          "description": "{offset},{limit}. Defaults to 0,1000.",
+          "example": "100,0"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "500",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/api/v3/expenseTempItems",
+      "method": "createNewTemporaryExpense",
+      "httpMethod": "post",
+      "tag": "Expenses",
+      "typeScriptTag": "expenses",
+      "description": "Create a new temporary expense",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "integer",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "purchasedOn",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "PURCHASEDON"
+        },
+        {
+          "name": "originalTransaction",
+          "schema": "object",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "processedAmounts",
+          "schema": "object",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "expenseNatureId",
+          "schema": "integer",
+          "required": true,
+          "description": "",
+          "example": 0
+        },
+        {
+          "name": "mileage",
+          "schema": "object",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "quantity",
+          "schema": "integer",
+          "required": false,
+          "description": "",
+          "default": 1
+        },
+        {
+          "name": "effectiveQuantity",
+          "schema": "integer",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "attendees",
+          "schema": "object",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "axisSections",
+          "schema": "array",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "customFields",
+          "schema": "object",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "merchant",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "comment",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "expenseReceipts",
+          "schema": "array",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "authorizedActions",
+          "schema": "object",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "sourceId",
+          "schema": "object",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "source",
+          "schema": "object",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "ownerId",
+          "schema": "integer",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "paymentMethodId",
+          "schema": "number",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "paymentMethod",
+          "schema": "object",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "statusId",
+          "schema": "object",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "status",
+          "schema": "object",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "403",
+          "description": ""
+        },
+        {
+          "statusCode": "500",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/api/v3/expenseTempItems/{expenseTempItemId}",
+      "method": "getById",
+      "httpMethod": "get",
+      "tag": "Expenses",
+      "typeScriptTag": "expenses",
+      "description": "Get an ExpenseTempItem by id",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": ""
+        },
+        {
+          "statusCode": "500",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/api/v3/expenseTempItems/{expenseTempItemId}",
+      "method": "updateExpenseTempItem",
+      "httpMethod": "put",
+      "tag": "Expenses",
+      "typeScriptTag": "expenses",
+      "description": "Update an ExpenseTempItem by id",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "integer",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "purchasedOn",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "PURCHASEDON"
+        },
+        {
+          "name": "originalTransaction",
+          "schema": "object",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "processedAmounts",
+          "schema": "object",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "expenseNatureId",
+          "schema": "integer",
+          "required": true,
+          "description": "",
+          "example": 0
+        },
+        {
+          "name": "mileage",
+          "schema": "object",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "quantity",
+          "schema": "integer",
+          "required": false,
+          "description": "",
+          "default": 1
+        },
+        {
+          "name": "effectiveQuantity",
+          "schema": "integer",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "attendees",
+          "schema": "object",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "axisSections",
+          "schema": "array",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "customFields",
+          "schema": "object",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "merchant",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "comment",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "expenseReceipts",
+          "schema": "array",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "authorizedActions",
+          "schema": "object",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "sourceId",
+          "schema": "object",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "source",
+          "schema": "object",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "ownerId",
+          "schema": "integer",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "paymentMethodId",
+          "schema": "number",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "paymentMethod",
+          "schema": "object",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "statusId",
+          "schema": "object",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "status",
+          "schema": "object",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "403",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": ""
+        },
+        {
+          "statusCode": "500",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/api/v3/expenseClaims/creation",
+      "method": "createNewExpenseClaim",
+      "httpMethod": "post",
+      "tag": "ExpenseClaims",
+      "typeScriptTag": "expenseClaims",
+      "description": "Create a new ExpenseClaim",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "403",
+          "description": ""
+        },
+        {
+          "statusCode": "500",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/api/v3/expenseClaims",
+      "method": "list",
+      "httpMethod": "get",
+      "tag": "ExpenseClaims",
+      "typeScriptTag": "expenseClaims",
+      "description": "List ExpenseClaims",
+      "parameters": [
+        {
+          "name": "ownerId",
+          "schema": "array",
+          "description": "Comma-separated list of user identifiers (int)."
+        },
+        {
+          "name": "orderBy",
+          "schema": "string",
+          "description": "{fieldName},{'asc'||'desc'}. Example: `?orderby=declaredOn,desc`"
+        },
+        {
+          "name": "declaredOn",
+          "schema": "string",
+          "description": "Examples: `between,2022-01-01,202201-31`."
+        },
+        {
+          "name": "paging",
+          "schema": "string",
+          "required": true,
+          "description": "{offset},{limit}. Defaults to 0,1000.",
+          "example": "100,0"
+        },
+        {
+          "name": "statusId",
+          "schema": "string",
+          "description": "1: Created; 2: PartiallyApproved; 3: Approved; 4: Controlled; 5: ApprovedAndControlled; 6: PaymentInitiated; 7: Paid; 8: Refused; 9: Cancelled. Examples: `2,3` or `PartiallyApproved,Approved`."
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        },
+        {
+          "statusCode": "401",
+          "description": ""
+        },
+        {
+          "statusCode": "500",
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "repositoryDescription": "Nereo, basé à Saint Etienne, propose des logiciels de gestion des ressources humaines en ligne pour simplifier la gestion des congés, temps, activités et notes de frais. Créée en 2011, Nereo offre une solution SaaS de gestion de congés et absences. Lucca's {language} SDK for Cleemy Expenses API generated by Konfig (https://konfigthis.com/).",
+  "logo": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/lucca/cleemy-expenses/logo.svg",
+  "openApiRaw": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/lucca/cleemy-expenses/openapi.yaml",
+  "openApiGitHubUi": "https://github.com/konfig-sdks/openapi-examples/tree/HEAD/lucca/cleemy-expenses/openapi.yaml",
+  "previewLinkImage": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/lucca/cleemy-expenses/imagePreview.jpg",
+  "faviconUrl": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/lucca/cleemy-expenses/favicon.png",
+  "clientNameCamelCase": "luccaCleemyExpenses",
+  "lastUpdated": "2024-03-26T19:55:14.920Z",
+  "typescriptSdkUsageCode": "import { LuccaCleemyExpenses } from 'lucca-cleemy-expenses-typescript-sdk';\n\nconst luccaCleemyExpenses = new LuccaCleemyExpenses({\n    // Header value must be equal to `lucca application={yourApiKey}`\n    authorization: \"AUTHORIZATION\"\n})",
+  "typescriptSdkFirstRequestCode": "// List ExpenseTempItems (temporary expense)\nconst listTempItemsResponse = luccaCleemyExpenses.expenses.listTempItems({\n    paging: \"100,0\"\n})",
+  "fixedSpecFileName": "lucca-cleemy-expenses-fixed-spec.yaml"
+}

@@ -1,0 +1,53 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+fixOnlyOneTagName: false
+ignoreObjectsWithNoProperties: true
+operationIds:
+  /api/v3/users:
+    get: Users_listExcludedFormer
+    post: Users_createNewUser
+  /api/v3/users/{userId}:
+    get: Users_getById
+    put: Users_updateById
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /api/v3/users:
+    get:
+      application/json: UsersListExcludedFormerRequest
+  /api/v3/users/{userId}:
+    put:
+      application/json: UsersUpdateByIdRequest
+      application/xml: UsersUpdateByIdRequest1
+responseDescriptions: {}
+responseSchemaNames:
+  /api/v3/users:
+    get:
+      '200':
+        application/json: UsersListExcludedFormerResponse
+    post:
+      '200':
+        application/json: UsersCreateNewUserResponse
+  /api/v3/users/{userId}:
+    get:
+      '200':
+        application/json: UsersGetByIdResponse
+securityParameters:
+  dtContractEnd:
+    query: false
+  dtContractStart:
+    query: false
+  fields:
+    query: false
+  id:
+    query: false
+  login:
+    query: false
+  mail:
+    query: false
+  modifiedAt:
+    query: false
+  paging:
+    query: false
+validServerUrls: {}

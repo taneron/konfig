@@ -1,0 +1,563 @@
+{
+  "securitySchemes": {
+    "Authorization": {
+      "name": "Authorization",
+      "type": "apiKey",
+      "in": "header",
+      "description": "Header value must be equal to `lucca application={yourApiKey}`"
+    }
+  },
+  "apiBaseUrl": "https://example.ilucca.net",
+  "apiVersion": "1.0",
+  "apiDescription": "Welcome on the documentation for Timmi Absences API.",
+  "apiTitle": "Timmi Absences API",
+  "endpoints": 12,
+  "sdkMethods": 24,
+  "schemas": 22,
+  "parameters": 41,
+  "contactUrl": "https://www.lucca.fr",
+  "contactEmail": "developers@lucca.fr",
+  "originalCustomRequest": {
+    "type": "GET",
+    "url": "https://stoplight.io/api/v1/projects/lucca/lucca-legacyapi/nodes/reference/Figgo-v3.yaml?fromExportButton=true&snapshotType=http_service&deref=optimizedBundle"
+  },
+  "customRequestSpecFilename": "lucca-hr.com_Figgo.yaml",
+  "difficultyScore": 37.75,
+  "difficulty": "Easy",
+  "company": "Lucca",
+  "serviceName": "Timmi Absences",
+  "sdkName": "lucca-timmi-absences-{language}-sdk",
+  "clientName": "LuccaTimmiAbsences",
+  "metaDescription": "Nereo est un éditeur de logiciels de gestion des ressources humaines, basé à Saint Etienne, qui propose à ses clients des solutions accessibles en ligne pour faciliter des tâches chronophages et sans réelle valeur ajoutée telles que la gestion des congés, des temps et activités ou encore des notes de frais.\n\nCréée en décembre 2011, Nereo propose déjà une solution complète de gestion de congés et absences en mode SaaS baptisée Nereo Congés.",
+  "apiStatusUrls": "inherit",
+  "homepage": "lucca-hr.com",
+  "developerDocumentation": "developers.lucca.fr/",
+  "categories": [
+    "hr",
+    "hr_management",
+    "resource_management",
+    "human_resources",
+    "scheduling",
+    "time_management",
+    "attendance_management",
+    "hr_automation"
+  ],
+  "category": "HR Talent & Recruitment",
+  "methods": [
+    {
+      "url": "/api/v3/leaves",
+      "method": "getApprovedList",
+      "httpMethod": "get",
+      "tag": "Leaves",
+      "typeScriptTag": "leaves",
+      "description": "List leaves",
+      "parameters": [
+        {
+          "name": "paging",
+          "schema": "string",
+          "required": true,
+          "description": "{offset},{limit}. Defaults to 0,1000.",
+          "example": "100,0"
+        },
+        {
+          "name": "leaveAccountId",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "leavePeriodOwnerId",
+          "schema": "array",
+          "required": true,
+          "description": "Employee's identifier"
+        },
+        {
+          "name": "date",
+          "schema": "string",
+          "required": true,
+          "description": "{comparator},{date-time}",
+          "example": "DATE"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": "Bad Request"
+        },
+        {
+          "statusCode": "401",
+          "description": "Unauthorized"
+        },
+        {
+          "statusCode": "404",
+          "description": "Not Found"
+        },
+        {
+          "statusCode": "500",
+          "description": "Internal Server Error"
+        }
+      ]
+    },
+    {
+      "url": "/api/v3/leaves/{leaveId}",
+      "method": "cancelLeaveById",
+      "httpMethod": "delete",
+      "tag": "Leaves",
+      "typeScriptTag": "leaves",
+      "description": "Cancellation of a leave",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": "OK"
+        }
+      ]
+    },
+    {
+      "url": "/api/v3/leaves/{leaveId}",
+      "method": "getById",
+      "httpMethod": "get",
+      "tag": "Leaves",
+      "typeScriptTag": "leaves",
+      "description": "Get a leave by id",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": "Bad Request"
+        },
+        {
+          "statusCode": "401",
+          "description": "Unauthorized"
+        },
+        {
+          "statusCode": "404",
+          "description": "Not Found"
+        },
+        {
+          "statusCode": "500",
+          "description": "Internal Server Error"
+        }
+      ]
+    },
+    {
+      "url": "/api/v3/leaveRequests",
+      "method": "list",
+      "httpMethod": "get",
+      "tag": "Leave Requests",
+      "typeScriptTag": "leaveRequests",
+      "description": "List leave requests",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": "Bad Request"
+        },
+        {
+          "statusCode": "401",
+          "description": "Unauthorized"
+        },
+        {
+          "statusCode": "404",
+          "description": "Not Found"
+        },
+        {
+          "statusCode": "500",
+          "description": "Internal Server Error"
+        }
+      ]
+    },
+    {
+      "url": "/api/v3/leaveRequests/{leaveRequestId}",
+      "method": "cancelRequest",
+      "httpMethod": "delete",
+      "tag": "Leave Requests",
+      "typeScriptTag": "leaveRequests",
+      "description": "Request to cancel a leave request",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": "OK"
+        }
+      ]
+    },
+    {
+      "url": "/api/v3/leaveRequests/{leaveRequestId}",
+      "method": "getById",
+      "httpMethod": "get",
+      "tag": "Leave Requests",
+      "typeScriptTag": "leaveRequests",
+      "description": "Get a leave request by id",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": "Bad Request"
+        },
+        {
+          "statusCode": "401",
+          "description": "Unauthorized"
+        },
+        {
+          "statusCode": "404",
+          "description": "Not Found"
+        },
+        {
+          "statusCode": "500",
+          "description": "Internal Server Error"
+        }
+      ]
+    },
+    {
+      "url": "/api/v3/leaveRequests/{leaveRequestId}/approvals",
+      "method": "approveDeny",
+      "httpMethod": "post",
+      "tag": "Leave Requests",
+      "typeScriptTag": "leaveRequests",
+      "description": "Approve or deny a leave request",
+      "parameters": [
+        {
+          "name": "approved",
+          "schema": "boolean",
+          "description": ""
+        },
+        {
+          "name": "comment",
+          "schema": "null",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": "OK"
+        }
+      ]
+    },
+    {
+      "url": "/figgo/api/public/services/v1.0/leaveEntitlementsImport",
+      "method": "entitlementsBatchImport",
+      "httpMethod": "post",
+      "tag": "Imports",
+      "typeScriptTag": "imports",
+      "description": "Import entitlements (deprecated)",
+      "parameters": [
+        {
+          "name": "strict",
+          "schema": "boolean",
+          "description": "In strict mode, if the import has errors, nothing is imported. Without strict mode, the lines in error are ignored and those in success are imported.",
+          "default": false
+        },
+        {
+          "name": "simulate",
+          "schema": "boolean",
+          "description": "Allows you to simulate the import. In this case, the response indicates the theoretical result of the import without any data being recorded.",
+          "default": false
+        },
+        {
+          "name": "File",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "Description",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "ReferenceDate",
+          "schema": "string",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/timmi-absences/api/public/services/v1.0/leaveEntitlementsImport",
+      "method": "importLeaveEntitlements",
+      "httpMethod": "post",
+      "tag": "Imports",
+      "typeScriptTag": "imports",
+      "description": "Import entitlements",
+      "parameters": [
+        {
+          "name": "strict",
+          "schema": "boolean",
+          "description": "In strict mode, if the import has errors, nothing is imported. Without strict mode, the lines in error are ignored and those in success are imported.",
+          "default": false
+        },
+        {
+          "name": "simulate",
+          "schema": "boolean",
+          "description": "Allows you to simulate the import. In this case, the response indicates the theoretical result of the import without any data being recorded.",
+          "default": false
+        },
+        {
+          "name": "File",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "Description",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "ReferenceDate",
+          "schema": "string",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/figgo/api/public/services/v1.0/leaveEntitlementsReplace",
+      "method": "replaceEntitlements",
+      "httpMethod": "post",
+      "tag": "Imports",
+      "typeScriptTag": "imports",
+      "description": "Replace entitlements (deprecated)",
+      "parameters": [
+        {
+          "name": "strict",
+          "schema": "boolean",
+          "description": "In strict mode, if the import has errors, nothing is imported. Without strict mode, the lines in error are ignored and those in success are imported.",
+          "default": false
+        },
+        {
+          "name": "simulate",
+          "schema": "boolean",
+          "description": "Allows you to simulate the import. In this case, the response indicates the theoretical result of the import without any data being recorded.",
+          "default": false
+        },
+        {
+          "name": "File",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "Description",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "ReferenceDate",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "EntryTypes",
+          "schema": "string",
+          "description": "",
+          "default": "AutoAccruals,ManualAccruals,Regularizations"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/timmi-absences/api/public/services/v1.0/leaveEntitlementsReplace",
+      "method": "replaceEntitlements",
+      "httpMethod": "post",
+      "tag": "Imports",
+      "typeScriptTag": "imports",
+      "description": "Replace entitlements",
+      "parameters": [
+        {
+          "name": "strict",
+          "schema": "boolean",
+          "description": "In strict mode, if the import has errors, nothing is imported. Without strict mode, the lines in error are ignored and those in success are imported.",
+          "default": false
+        },
+        {
+          "name": "simulate",
+          "schema": "boolean",
+          "description": "Allows you to simulate the import. In this case, the response indicates the theoretical result of the import without any data being recorded.",
+          "default": false
+        },
+        {
+          "name": "File",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "Description",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "ReferenceDate",
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "EntryTypes",
+          "schema": "string",
+          "description": "",
+          "default": "AutoAccruals,ManualAccruals,Regularizations"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/api/v3/services/importLeavePeriods",
+      "method": "absenceBatchCreate",
+      "httpMethod": "post",
+      "tag": "Imports",
+      "typeScriptTag": "imports",
+      "description": "Import leaves (deprecated)",
+      "parameters": [
+        {
+          "name": "type",
+          "schema": "string",
+          "required": true,
+          "description": "Support CSV files only",
+          "example": "TYPE",
+          "default": "csv"
+        },
+        {
+          "name": "create",
+          "schema": "boolean",
+          "description": "Use `false` to simulate the import.",
+          "default": false
+        },
+        {
+          "name": "recredit",
+          "schema": "boolean",
+          "description": "Use `true` if absences should **not** be deducted from the user balance. Use `false` if absences should be deducted from the user balance. Note: if the absence type doesn’t have balance management, absence won’t impact the balance in any case."
+        },
+        {
+          "name": "originalFileName",
+          "schema": "string",
+          "required": true,
+          "description": "Filename",
+          "example": "import.csv"
+        },
+        {
+          "name": "synchronize",
+          "schema": "boolean",
+          "description": "Use `true` to force synchronization of the absences in the sync webservice (sync to Exchange/0365, Google Calendar, Webhook or ADP GXP, depending on configuration). Use `false` to import absences without synchronizing absences."
+        },
+        {
+          "name": "overrideLeaves",
+          "schema": "boolean",
+          "description": "Use `true` to allow replacing existing absences"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/timmi-absences/api/imports/v1.0/leavePeriods",
+      "method": "createAbsencesBatch",
+      "httpMethod": "post",
+      "tag": "Imports",
+      "typeScriptTag": "imports",
+      "description": "Import leaves",
+      "parameters": [
+        {
+          "name": "create",
+          "schema": "boolean",
+          "description": "Use `false` to simulate the import."
+        },
+        {
+          "name": "recredit",
+          "schema": "boolean",
+          "description": "Use `true` if absences should **not** be deducted from the user balance. Use `false` if absences should be deducted from the user balance. Note: if the absence type doesn’t have balance management, absence won’t impact the balance in any case."
+        },
+        {
+          "name": "originalFileName",
+          "schema": "string",
+          "description": "Filename",
+          "default": "import.csv"
+        },
+        {
+          "name": "synchronize",
+          "schema": "boolean",
+          "description": "Use `true` to force synchronization of the absences in the sync webservice (sync to Exchange/0365, Google Calendar, Webhook or ADP GXP, depending on configuration). Use `false` to import absences without synchronizing absences."
+        },
+        {
+          "name": "async",
+          "schema": "boolean",
+          "description": "Use `true` if you want to import absences with the asynchronous processing (you have to request figgo/api/imports/v1.0/leavePeriods/{summaryId}/progress API to track the status). Use `false` if you want import absences with the synchronous processing (the response is sent when the file is fully imported)."
+        },
+        {
+          "name": "files",
+          "schema": "array",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/timmi-absences/api/imports/v1.0/leavePeriods/{summaryId}/progress",
+      "method": "getProgress",
+      "httpMethod": "get",
+      "tag": "Imports",
+      "typeScriptTag": "imports",
+      "description": "Get import leaves progress",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": "0:not started, 1-99:in progress, 100:success, -1:error"
+        }
+      ]
+    }
+  ],
+  "repositoryDescription": "Nereo, based in Saint Etienne, is a HR software editor providing online solutions to simplify tasks like leave management, time tracking, and expense reports. Established in December 2011, Nereo offers a comprehensive SaaS solution called Nereo Congés. Lucca's {language} SDK for Timmi Absences API generated by Konfig (https://konfigthis.com/).",
+  "logo": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/lucca/timmi-absences/logo.svg",
+  "openApiRaw": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/lucca/timmi-absences/openapi.yaml",
+  "openApiGitHubUi": "https://github.com/konfig-sdks/openapi-examples/tree/HEAD/lucca/timmi-absences/openapi.yaml",
+  "previewLinkImage": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/lucca/timmi-absences/imagePreview.jpg",
+  "faviconUrl": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/lucca/timmi-absences/favicon.png",
+  "clientNameCamelCase": "luccaTimmiAbsences",
+  "lastUpdated": "2024-03-26T19:55:14.920Z",
+  "typescriptSdkUsageCode": "import { LuccaTimmiAbsences } from 'lucca-timmi-absences-typescript-sdk';\n\nconst luccaTimmiAbsences = new LuccaTimmiAbsences({\n    // Header value must be equal to `lucca application={yourApiKey}`\n    authorization: \"AUTHORIZATION\"\n})",
+  "typescriptSdkFirstRequestCode": "// List leaves\nconst getApprovedListResponse = luccaTimmiAbsences.leaves.getApprovedList({\n    paging: \"100,0\"\n    date: \"DATE\"\n})",
+  "fixedSpecFileName": "lucca-timmi-absences-fixed-spec.yaml"
+}

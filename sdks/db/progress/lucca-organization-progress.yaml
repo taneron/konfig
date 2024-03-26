@@ -1,0 +1,76 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignoreObjectsWithNoProperties: true
+ignorePotentialIncorrectType: true
+operationIds:
+  /api/v3/axes:
+    get: Axissections_list
+  /api/v3/axisSections:
+    get: Axissections_list
+    post: Axissections_createNewAxisSection
+  /api/v3/axisSections/{axisSectionId}:
+    delete: Axissections_deleteById
+    get: Axissections_getById
+    put: Axissections_updateById
+  /api/v3/departments:
+    get: Departments_getAll
+  /api/v3/departments/tree:
+    get: Departments_listTree
+  /api/v3/departments/{departmentId}:
+    get: Departments_getById
+operationTags: {}
+renameTags: {}
+requestSchemaNames: {}
+responseDescriptions: {}
+responseSchemaNames:
+  /api/v3/axes:
+    get:
+      '200':
+        application/json: AxissectionsListResponse
+  /api/v3/axisSections:
+    get:
+      '200':
+        application/json: AxissectionsList200Response
+    post:
+      '200':
+        application/json: AxissectionsCreateNewAxisSectionResponse
+  /api/v3/axisSections/{axisSectionId}:
+    get:
+      '200':
+        application/json: AxissectionsGetByIdResponse
+    put:
+      '200':
+        application/json: AxissectionsUpdateByIdResponse
+  /api/v3/departments:
+    get:
+      '200':
+        application/json: DepartmentsGetAllResponse
+      '400':
+        application/json: DepartmentsGetAll400Response
+  /api/v3/departments/tree:
+    get:
+      '200':
+        application/json: DepartmentsListTreeResponse
+  /api/v3/departments/{departmentId}:
+    get:
+      '200':
+        application/json: DepartmentsGetByIdResponse
+securityParameters:
+  active:
+    query: false
+  axisId:
+    query: false
+  headId:
+    query: false
+  id:
+    query: false
+  isActive:
+    query: false
+  ownerId:
+    query: false
+  paging:
+    query: false
+  parentId:
+    query: false
+validServerUrls: {}

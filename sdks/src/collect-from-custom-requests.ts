@@ -477,6 +477,26 @@ const customRequests: Record<string, CustomRequest> = {
     type: "GET",
     url: "https://stoplight.io/api/v1/projects/zapier/public-api/nodes/spec/reference/API.yaml?fromExportButton=true&snapshotType=http_service&deref=optimizedBundle",
   },
+  "lucca-hr.com_Organization": {
+    type: "GET",
+    url: "https://stoplight.io/api/v1/projects/lucca/lucca-legacyapi/nodes/reference/Organization-v3.yaml?fromExportButton=true&snapshotType=http_service&deref=optimizedBundle",
+  },
+  "lucca-hr.com_Directory": {
+    type: "GET",
+    url: "https://stoplight.io/api/v1/projects/lucca/lucca-legacyapi/nodes/reference/Directory-v3.yaml?fromExportButton=true&snapshotType=http_service&deref=optimizedBundle",
+  },
+  "lucca-hr.com_Figgo": {
+    type: "GET",
+    url: "https://stoplight.io/api/v1/projects/lucca/lucca-legacyapi/nodes/reference/Figgo-v3.yaml?fromExportButton=true&snapshotType=http_service&deref=optimizedBundle",
+  },
+  "lucca-hr.com_TimmiTimesheet": {
+    type: "GET",
+    url: "https://stoplight.io/api/v1/projects/lucca/lucca-legacyapi/nodes/reference/Timmi-Timesheet-v3.yaml?fromExportButton=true&snapshotType=http_service&deref=optimizedBundle",
+  },
+  "lucca-hr.com_CleemyExpenses": {
+    type: "GET",
+    url: "https://stoplight.io/api/v1/projects/lucca/lucca-legacyapi/nodes/reference/Cleemy-Expenses-v3.yaml?fromExportButton=true&snapshotType=http_service&deref=optimizedBundle",
+  },
   "httpbin.org": {
     type: "GET",
     url: "https://httpbin.org/spec.json",
