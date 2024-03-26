@@ -1014,6 +1014,10 @@ const customRequests: Record<string, CustomRequest> = {
       return rawSpecString;
     },
   },
+  "induced.ai": {
+    type: "GET",
+    url: "https://raw.githubusercontent.com/inducedai/docs/main/openapi.json",
+  },
   "tavus.io": {
     lambda: async () => {
       const urls = await collectEndpointsFromMintlify({

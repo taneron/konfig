@@ -1,0 +1,263 @@
+publishJson:
+  company: InducedAI
+  serviceName: false
+  sdkName: induced-ai-{language}-sdk
+  clientName: InducedAi
+  metaDescription: Building the next evolution of actionable AI.
+  apiStatusUrls: inherit
+  homepage: induced.ai
+  developerDocumentation: docs.induced.ai/introduction
+  categories:
+    - ai
+    - developer_tools
+    - browser_automation
+    - browser_agent
+rawSpecString: |
+  openapi: 3.0.0
+  info:
+    title: Autonomous API
+    version: 1.0.0
+  servers:
+    - url: https://api.induced.ai/api/v1
+  paths:
+    /autonomous:
+      post:
+        summary: Execute an Autonomous Task
+        operationId: executeAutonomousTask
+        requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  task:
+                    type: string
+                    example: Go to google and search for Elon Musk
+        responses:
+          '200':
+            description: Task executed successfully
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    success:
+                      type: boolean
+                    data:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        streamingUrl:
+                          type: string
+                        watchUrl:
+                          type: string
+                    requestId:
+                      type: string
+                    timeTaken:
+                      type: integer
+        security:
+          - ApiKeyAuth: []
+    /autonomous/{id}:
+      get:
+        summary: Get Autonomous Task Result
+        operationId: getAutonomousTaskResult
+        parameters:
+          - name: id
+            in: path
+            required: true
+            schema:
+              type: string
+        responses:
+          '200':
+            description: Task result retrieved successfully
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    success:
+                      type: boolean
+                    data:
+                      type: object
+                      properties:
+                        run:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                            status:
+                              type: string
+                            objective:
+                              type: string
+                            steps:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  id:
+                                    type: string
+                                  step:
+                                    type: string
+                                  status:
+                                    type: string
+                                  thought:
+                                    type: string
+                            result:
+                              type: string
+                    requestId:
+                      type: string
+                    timeTaken:
+                      type: integer
+        security:
+          - ApiKeyAuth: []
+    /autonomous/{id}/stop:
+      post:
+        summary: Stop an Autonomous Task
+        operationId: stopAutonomousTask
+        parameters:
+          - name: id
+            in: path
+            required: true
+            schema:
+              type: string
+        responses:
+          '200':
+            description: Task stopped successfully
+        security:
+          - ApiKeyAuth: []
+    /autonomous/{id}/feedback:
+      post:
+        summary: Provide Feedback for an Autonomous Task
+        operationId: provideAutonomousTaskFeedback
+        parameters:
+          - name: id
+            in: path
+            required: true
+            schema:
+              type: string
+        requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  feedback:
+                    type: boolean
+        responses:
+          '200':
+            description: Feedback received successfully
+        security:
+          - ApiKeyAuth: []
+    /extract:
+      post:
+        summary: Extract data from a URL
+        operationId: extractData
+        requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  url:
+                    type: string
+                  query:
+                    type: string
+                  columns:
+                    type: string
+                  limit:
+                    type: integer
+                  format:
+                    type: string
+                    enum:
+                      - json
+                      - csv
+                      - markdown
+        responses:
+          '200':
+            description: Data extracted successfully
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    success:
+                      type: boolean
+                    data:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        status:
+                          type: string
+                        objective:
+                          type: string
+                    requestId:
+                      type: string
+                    timeTaken:
+                      type: integer
+        security:
+          - ApiKeyAuth: []
+    /extract/{id}:
+      get:
+        summary: Get extraction result
+        operationId: getExtractionResult
+        parameters:
+          - name: id
+            in: path
+            required: true
+            schema:
+              type: string
+        responses:
+          '200':
+            description: Extraction result retrieved successfully
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    success:
+                      type: boolean
+                    data:
+                      type: object
+                      properties:
+                        run:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                            status:
+                              type: string
+                            objective:
+                              type: string
+                            url:
+                              type: string
+                            screenshot:
+                              type: string
+                            output:
+                              type: object
+                              properties:
+                                name:
+                                  type: string
+                                value:
+                                  type: string
+                                format:
+                                  type: string
+                            time:
+                              type: number
+                    requestId:
+                      type: string
+                    timeTaken:
+                      type: integer
+        security:
+          - ApiKeyAuth: []
+  components:
+    securitySchemes:
+      ApiKeyAuth:
+        type: apiKey
+        in: header
+        name: x-api-key
+konfigCliVersion: 1.38.34

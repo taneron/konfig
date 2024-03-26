@@ -1,0 +1,60 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+operationIds:
+  /autonomous:
+    post: Task_execute
+  /autonomous/{id}:
+    get: Autonomous_getResult
+  /autonomous/{id}/feedback:
+    post: Feedback_submission
+  /autonomous/{id}/stop:
+    post: Autonomous_terminateTask
+  /extract:
+    post: Extraction_fromUrl
+  /extract/{id}:
+    get: Extraction_getResult
+operationTags:
+  /autonomous:
+    post: Task
+  /autonomous/{id}:
+    get: Autonomous
+  /autonomous/{id}/feedback:
+    post: Feedback
+  /autonomous/{id}/stop:
+    post: Autonomous
+  /extract:
+    post: Extraction
+  /extract/{id}:
+    get: Extraction
+renameTags: {}
+requestSchemaNames:
+  /autonomous:
+    post:
+      application/json: TaskExecuteRequest
+  /autonomous/{id}/feedback:
+    post:
+      application/json: FeedbackSubmissionRequest
+  /extract:
+    post:
+      application/json: ExtractionFromUrlRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /autonomous:
+    post:
+      '200':
+        application/json: TaskExecuteResponse
+  /autonomous/{id}:
+    get:
+      '200':
+        application/json: AutonomousGetResultResponse
+  /extract:
+    post:
+      '200':
+        application/json: ExtractionFromUrlResponse
+  /extract/{id}:
+    get:
+      '200':
+        application/json: ExtractionGetResultResponse
+securityParameters: {}
+validServerUrls: {}
