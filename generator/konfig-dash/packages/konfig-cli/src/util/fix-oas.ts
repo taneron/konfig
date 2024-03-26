@@ -44,6 +44,7 @@ import { fixRequestMediaTypeObjectMissingSchema } from './fix-request-media-type
 import { fixArraySchemaMissingItems } from './fix-array-schema-missing-items'
 import { fixEnumWithIncorrectType } from './fix-enum-with-incorrect-type'
 import { fixMissingResponsesObject } from './fix-missing-responses-objects'
+import { fixReferenceToNonExistentSecurityScheme } from './fix-reference-to-non-existent-security-scheme'
 
 export async function fixOas({
   spec,
@@ -164,6 +165,10 @@ export async function fixOas({
     progress,
     noInput,
   })
+
+  // Security requirements referring to non-existent security schemes
+  const numberOfReferencesToNonExistentSecuritySchemesRemoved =
+    await fixReferenceToNonExistentSecurityScheme({ spec })
 
   // Redundant security requirement and parameters
   const numberOfRedundantSecurityAndParametersFixed =
@@ -346,6 +351,7 @@ export async function fixOas({
     numberOfDuplicateTagNamesFixed,
     numberOfExampleAndExamplesFixed,
     numberOfInvalidServerUrlsFixed,
+    numberOfReferencesToNonExistentSecuritySchemesRemoved,
     numberOfNewTagNames,
     numberOfOas31UsagesFixed,
     numberOfAnyOfTypeNullUsagesReverted,
