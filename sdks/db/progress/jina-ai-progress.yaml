@@ -1,0 +1,31 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignoreObjectsWithNoProperties: true
+operationIds:
+  /:
+    get: Health_checkStatus
+  /v1/bulk-embeddings:
+    post: Bulkembeddings_uploadFileAndGetEmbeddings
+  /v1/bulk-embeddings/{job_id}:
+    get: Bulkembeddings_getJob
+  /v1/bulk-embeddings/{job_id}/download-result:
+    post: Bulkembeddings_downloadResultPost
+  /v1/embeddings:
+    post: Embeddings_createRepresentation
+  /v1/multi-embeddings:
+    post: Multiembeddings_generateEmbeddings
+  /v1/rerank:
+    post: Rerank_pairRanking
+operationTags:
+  /:
+    get: health
+renameTags: {}
+requestSchemaNames:
+  /v1/embeddings:
+    post:
+      application/json: EmbeddingsCreateRepresentationRequest
+responseDescriptions: {}
+responseSchemaNames: {}
+securityParameters: {}
+validServerUrls: {}

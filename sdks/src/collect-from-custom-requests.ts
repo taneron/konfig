@@ -1014,6 +1014,11 @@ const customRequests: Record<string, CustomRequest> = {
       return rawSpecString;
     },
   },
+  "jina.ai": {
+    type: "GET",
+    url: "https://api.jina.ai/openapi.json",
+    apiBaseUrl: "https://api.jina.ai",
+  },
   "induced.ai": {
     type: "GET",
     url: "https://raw.githubusercontent.com/inducedai/docs/main/openapi.json",
