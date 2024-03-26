@@ -1,4 +1,4 @@
-hash: 4869c3be6175266175980f1e0501bcc730e4103828445492243deed2a4e3bbfc
+hash: 65a1bb4d27194c9d76b42f597bdd9c3a0660e1c49102077a06021096acb43bc3
 methodObjects:
   - url: /1.0/people/list
     method: listPeople
@@ -50,7 +50,7 @@ methodObjects:
       - statusCode: '400'
         description: ''
   - url: /1.0/wages/{person_id}/current
-    method: getCurrentWageDetails
+    method: getCurrentWage
     httpMethod: get
     tag: Person
     typeScriptTag: person
@@ -156,7 +156,7 @@ methodObjects:
       - statusCode: '400'
         description: ''
   - url: /1.0/fleet/list
-    method: getAll
+    method: getAllVehicles
     httpMethod: get
     tag: Vehicle
     typeScriptTag: vehicle
@@ -284,10 +284,10 @@ methodObjects:
       - statusCode: '400'
         description: ''
   - url: /1.0/calendar/events/types/{year}
-    method: getCustomEventTypesByYear
+    method: getList
     httpMethod: get
-    tag: Calendar
-    typeScriptTag: calendar
+    tag: CustomEventType
+    typeScriptTag: customEventType
     description: Custom event types
     parameters:
       - name: year
@@ -301,7 +301,7 @@ methodObjects:
       - statusCode: '400'
         description: ''
   - url: /1.0/calendar/{person_id}/events/add
-    method: addEventToCalendar
+    method: addToCalendar
     httpMethod: post
     tag: Person
     typeScriptTag: person
@@ -340,7 +340,7 @@ methodObjects:
       - statusCode: '400'
         description: ''
   - url: /1.0/calendar/{person_id}/{year}/{month}/{day}/work
-    method: overwriteTimeWorked
+    method: updateTimeWorked
     httpMethod: patch
     tag: Person
     typeScriptTag: person
@@ -438,7 +438,7 @@ methodObjects:
       - statusCode: '400'
         description: ''
   - url: /1.0/documents/{object_type}/{object_id}/list
-    method: getByObject
+    method: listRelated
     httpMethod: get
     tag: Document
     typeScriptTag: document
@@ -505,7 +505,7 @@ methodObjects:
       - statusCode: '400'
         description: ''
   - url: /1.0/webhooks/add
-    method: subscribeNotifications
+    method: subscribeNotification
     httpMethod: post
     tag: Webhook
     typeScriptTag: webhook
@@ -517,7 +517,7 @@ methodObjects:
       - statusCode: '400'
         description: ''
   - url: /1.0/webhooks/{webhook_id}
-    method: unsubscribeNotifications
+    method: unsubscribeNotification
     httpMethod: delete
     tag: Webhook
     typeScriptTag: webhook
@@ -546,7 +546,7 @@ methodObjects:
       - statusCode: '400'
         description: ''
   - url: /1.0/account
-    method: informationGet
+    method: getInformation
     httpMethod: get
     tag: Account
     typeScriptTag: account
@@ -558,7 +558,7 @@ methodObjects:
       - statusCode: '400'
         description: ''
   - url: /1.0/contracts/add
-    method: addNew
+    method: createNewContract
     httpMethod: post
     tag: Contract
     typeScriptTag: contract
@@ -631,7 +631,7 @@ methodObjects:
       - statusCode: '400'
         description: ''
   - url: /1.0/people/search
-    method: searchByNameEmailNationalNumber
+    method: searchByCriteria
     httpMethod: get
     tag: Person
     typeScriptTag: person
@@ -652,7 +652,7 @@ methodObjects:
       - statusCode: '400'
         description: ''
   - url: /1.0/calendar/{person_id}/{year}/work/bulk
-    method: bulkUpdateTimeWorked
+    method: updateBulkTimeWorked
     httpMethod: patch
     tag: Person
     typeScriptTag: person
@@ -674,7 +674,7 @@ methodObjects:
       - statusCode: '400'
         description: ''
   - url: /1.0/people/{person_id}/manager
-    method: getManager
+    method: getManagerDetails
     httpMethod: get
     tag: Person
     typeScriptTag: person
@@ -708,7 +708,7 @@ methodObjects:
       - statusCode: '400'
         description: ''
   - url: /1.0/calendar/{person_id}/{year}/{month}/{day}/events/set
-    method: setEvent
+    method: overwriteEvent
     httpMethod: put
     tag: Person
     typeScriptTag: person
@@ -789,7 +789,7 @@ methodObjects:
       - statusCode: '400'
         description: ''
   - url: /1.0/teams/{team_id}
-    method: editTeam
+    method: editInformation
     httpMethod: patch
     tag: Team
     typeScriptTag: team
@@ -806,7 +806,7 @@ methodObjects:
       - statusCode: '400'
         description: ''
   - url: /1.0/teams/add
-    method: createNew
+    method: createNewTeam
     httpMethod: post
     tag: Team
     typeScriptTag: team
@@ -818,7 +818,7 @@ methodObjects:
       - statusCode: '400'
         description: ''
   - url: /1.0/assets/types/list
-    method: listCustomAssetTypes
+    method: getCustomTypesList
     httpMethod: get
     tag: Asset
     typeScriptTag: asset
@@ -842,7 +842,7 @@ methodObjects:
       - statusCode: '400'
         description: ''
   - url: /1.0/assets/types/{asset_type_id}
-    method: deleteCustomType
+    method: removeCustomType
     httpMethod: delete
     tag: Asset
     typeScriptTag: asset
@@ -857,7 +857,7 @@ methodObjects:
       - statusCode: '200'
         description: ''
   - url: /1.0/assets/add
-    method: addAsset
+    method: createNewAsset
     httpMethod: post
     tag: Asset
     typeScriptTag: asset
@@ -869,7 +869,7 @@ methodObjects:
       - statusCode: '400'
         description: ''
   - url: /1.0/assets/{asset_id}
-    method: delete
+    method: remove
     httpMethod: delete
     tag: Asset
     typeScriptTag: asset
@@ -886,7 +886,7 @@ methodObjects:
       - statusCode: '400'
         description: ''
   - url: /1.0/assets/{asset_id}
-    method: updateAssetInformation
+    method: updateAsset
     httpMethod: patch
     tag: Asset
     typeScriptTag: asset
@@ -915,7 +915,7 @@ methodObjects:
       - statusCode: '400'
         description: ''
   - url: /1.0/fleet/{vehicle_id}
-    method: updateInformation
+    method: editDetails
     httpMethod: patch
     tag: Vehicle
     typeScriptTag: vehicle
@@ -932,7 +932,7 @@ methodObjects:
       - statusCode: '400'
         description: ''
   - url: /1.0/calendar/{person_id}/{year}
-    method: getScheduledYearly
+    method: getYearlyCalendar
     httpMethod: get
     tag: Person
     typeScriptTag: person
@@ -962,8 +962,8 @@ methodObjects:
   - url: /1.0/calendar/requests/list
     method: listRequests
     httpMethod: get
-    tag: Calendar
-    typeScriptTag: calendar
+    tag: CalendarRequest
+    typeScriptTag: calendarRequest
     description: List calendar requests
     parameters:
       - name: page
@@ -978,10 +978,10 @@ methodObjects:
       - statusCode: '200'
         description: ''
   - url: /1.0/calendar/requests/{request_id}/detail
-    method: getRequestDetail
+    method: getDetailById
     httpMethod: get
-    tag: Calendar
-    typeScriptTag: calendar
+    tag: CalendarRequest
+    typeScriptTag: calendarRequest
     description: Calendar request detail
     parameters:
       - name: requestId
@@ -995,7 +995,7 @@ methodObjects:
       - statusCode: '400'
         description: ''
   - url: /1.0/custom_fields/{custom_field_id}/{object_type}/{object_id}
-    method: updateValueForObject
+    method: editValueForObject
     httpMethod: patch
     tag: CustomField
     typeScriptTag: customField
@@ -1036,7 +1036,7 @@ methodObjects:
       - statusCode: '400'
         description: ''
   - url: /1.0/people/{person_id}/photo
-    method: uploadPhoto
+    method: uploadAvatar
     httpMethod: put
     tag: Person
     typeScriptTag: person
@@ -1070,7 +1070,7 @@ methodObjects:
       - statusCode: '400'
         description: ''
   - url: /1.0/wages/one_off/components/{person_id}/options/list
-    method: listOneOffComponents
+    method: listAvailableComponents
     httpMethod: get
     tag: Person
     typeScriptTag: person
@@ -1133,7 +1133,7 @@ methodObjects:
       - statusCode: '400'
         description: ''
   - url: /1.0/performance_reviews/{person_id}/list
-    method: getPerformanceReviews
+    method: getPerformanceReviewsByPerson
     httpMethod: get
     tag: Person
     typeScriptTag: person
@@ -1156,7 +1156,7 @@ methodObjects:
       - statusCode: '200'
         description: ''
   - url: /1.0/legal/dimonas/{person_id}/list
-    method: getDimonaByPerson
+    method: listDimonasByPerson
     httpMethod: get
     tag: Person
     typeScriptTag: person
@@ -1173,10 +1173,10 @@ methodObjects:
       - statusCode: '400'
         description: ''
   - url: /1.0/calendar/state/lock
-    method: unlockMonthCorrections
+    method: unlockMonthProcessed
     httpMethod: post
-    tag: Calendar
-    typeScriptTag: calendar
+    tag: CalendarState
+    typeScriptTag: calendarState
     description: Unlock calendar
     parameters:
       - name: disable_lock
@@ -1188,7 +1188,7 @@ methodObjects:
       - statusCode: '400'
         description: ''
   - url: /1.0/budgets/{budget_id}
-    method: removeBudget
+    method: deleteBudgetById
     httpMethod: delete
     tag: Budget
     typeScriptTag: budget
@@ -1205,7 +1205,7 @@ methodObjects:
       - statusCode: '400'
         description: ''
   - url: /1.0/budgets/{budget_id}
-    method: updateBudgetDetails
+    method: updateBudgetItem
     httpMethod: patch
     tag: Budget
     typeScriptTag: budget
@@ -1225,7 +1225,7 @@ methodObjects:
       - statusCode: '400'
         description: ''
   - url: /1.0/budgets/add
-    method: createNewBudget
+    method: addBudgetItem
     httpMethod: post
     tag: Budget
     typeScriptTag: budget
@@ -1317,7 +1317,7 @@ methodObjects:
       - statusCode: '400'
         description: ''
   - url: /1.0/budgets/people/{person_id}/{budget_id}/items/list
-    method: getBudgetItems
+    method: listBudgetItems
     httpMethod: get
     tag: Person
     typeScriptTag: person
@@ -1339,10 +1339,10 @@ methodObjects:
       - statusCode: '400'
         description: ''
   - url: /1.0/calendar/events/priorityschemes/{year}
-    method: listPrioritySchemesByYear
+    method: listActivePrioritySchemesByYear
     httpMethod: get
-    tag: Calendar
-    typeScriptTag: calendar
+    tag: PriorityScheme
+    typeScriptTag: priorityScheme
     description: List priority schemes
     parameters:
       - name: year
@@ -1356,7 +1356,7 @@ methodObjects:
       - statusCode: '400'
         description: ''
   - url: /1.0/calendar/{person_id}/priorityschemes/events/add
-    method: addToCalendarBasedOnPriorityScheme
+    method: addToCalendar
     httpMethod: post
     tag: Person
     typeScriptTag: person
@@ -1390,7 +1390,7 @@ methodObjects:
       - statusCode: '400'
         description: ''
   - url: /1.0/people/change_history
-    method: getLatestDeltaChangesToPersonalData
+    method: getPersonalDataChanges
     httpMethod: get
     tag: Person
     typeScriptTag: person
@@ -1405,7 +1405,7 @@ methodObjects:
       - statusCode: '400'
         description: ''
   - url: /1.0/calendar/{person_id}/verzuim/{year}
-    method: listVerzuimPeriods
+    method: getVerzuimPeriods
     httpMethod: get
     tag: Person
     typeScriptTag: person
@@ -1505,7 +1505,7 @@ methodObjects:
       - statusCode: '400'
         description: ''
   - url: /1.0/expenses/{expense_id}/detail
-    method: detailList
+    method: getDetail
     httpMethod: get
     tag: Expense
     typeScriptTag: expense
@@ -1522,7 +1522,7 @@ methodObjects:
       - statusCode: '400'
         description: ''
   - url: /1.0/expenses/add
-    method: addExpense
+    method: addExpenseWithCategory
     httpMethod: post
     tag: Expense
     typeScriptTag: expense
@@ -1585,7 +1585,7 @@ methodObjects:
       - statusCode: '400'
         description: ''
   - url: /1.0/expenses/{expense_id}
-    method: removeExpense
+    method: deleteById
     httpMethod: delete
     tag: Expense
     typeScriptTag: expense
@@ -1642,7 +1642,7 @@ methodObjects:
       - statusCode: '400'
         description: ''
   - url: /1.0/expenses/categories/{category_id}
-    method: updateCategoryName
+    method: editCategoryName
     httpMethod: patch
     tag: Expense
     typeScriptTag: expense
@@ -1664,7 +1664,7 @@ methodObjects:
       - statusCode: '400'
         description: ''
   - url: /1.0/expenses/{expense_id}/updatePayout
-    method: updatePayoutMethodStatus
+    method: setPayoutMethodAndStatus
     httpMethod: post
     tag: Expense
     typeScriptTag: expense
@@ -1733,7 +1733,7 @@ methodObjects:
       - statusCode: '400'
         description: ''
   - url: /1.0/expenses/categories/{category_id}/detail
-    method: categoryDetailList
+    method: listByCategoryDetail
     httpMethod: get
     tag: Expense
     typeScriptTag: expense
@@ -1794,7 +1794,7 @@ methodObjects:
       - statusCode: '400'
         description: ''
   - url: /1.0/wages/functions/detail/{internal_code}
-    method: getDetail
+    method: getDetails
     httpMethod: get
     tag: Function
     typeScriptTag: function
@@ -1844,7 +1844,7 @@ methodObjects:
       - statusCode: '400'
         description: ''
   - url: /1.0/wages/cost_units/list
-    method: getAll
+    method: listFunctions
     httpMethod: get
     tag: CostUnit
     typeScriptTag: costUnit
@@ -1856,7 +1856,7 @@ methodObjects:
       - statusCode: '400'
         description: ''
   - url: /1.0/wages/cost_units/detail/{internal_code}
-    method: getDetail
+    method: getFunctionsDetail
     httpMethod: get
     tag: CostUnit
     typeScriptTag: costUnit
@@ -1875,7 +1875,7 @@ methodObjects:
       - statusCode: '400'
         description: ''
   - url: /1.0/wages/cost_centers/list
-    method: getAllCostCenters
+    method: getList
     httpMethod: get
     tag: CostCenter
     typeScriptTag: costCenter
@@ -1887,7 +1887,7 @@ methodObjects:
       - statusCode: '400'
         description: ''
   - url: /1.0/wages/cost_centers/detail/{internal_code}
-    method: getDetailAllFunctionsOrSingleOne
+    method: detailGet
     httpMethod: get
     tag: CostCenter
     typeScriptTag: costCenter
@@ -1911,7 +1911,7 @@ apiDescription: >-
   administration through our HR platform & personalized employee self-services.
   Manage payroll, company assets, contracts, days off, fleet, performance
   reviews and all employee data in one HR system. HR deserves great software and
-  we're here to provide it. 
+  we're here to provide it.
 
 
   We support our customers in transforming HR towards paperless administration

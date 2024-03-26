@@ -1,0 +1,1022 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignoreObjectsWithNoProperties: true
+ignorePotentialIncorrectType: true
+operationIds:
+  /1.0/account:
+    get: Account_getInformation
+  /1.0/assets/add:
+    post: Asset_createNewAsset
+  /1.0/assets/list:
+    get: Asset_listAssets
+  /1.0/assets/types/add:
+    post: Asset_addCustomType
+  /1.0/assets/types/list:
+    get: Asset_getCustomTypesList
+  /1.0/assets/types/{asset_type_id}:
+    delete: Asset_removeCustomType
+  /1.0/assets/{asset_id}:
+    delete: Asset_remove
+    patch: Asset_updateAsset
+  /1.0/assets/{asset_id}/detail:
+    get: Asset_getDetail
+  /1.0/budgets/add:
+    post: Budget_addBudgetItem
+  /1.0/budgets/people/{person_id}/{budget_id}/items/list:
+    get: Person_listBudgetItems
+  /1.0/budgets/people/{person_id}/{year}/list:
+    get: Person_getBudgetsByYear
+  /1.0/budgets/{budget_id}:
+    delete: Budget_deleteBudgetById
+    patch: Budget_updateBudgetItem
+  /1.0/budgets/{budget_id}/items/add:
+    post: Budget_addItem
+  /1.0/budgets/{budget_id}/items/{item_id}:
+    delete: Budget_removeItem
+  /1.0/calendar/events/priorityschemes/{year}:
+    get: PriorityScheme_listActivePrioritySchemesByYear
+  /1.0/calendar/events/types/{year}:
+    get: CustomEventType_getList
+  /1.0/calendar/requests/list:
+    get: CalendarRequest_listRequests
+  /1.0/calendar/requests/{request_id}/detail:
+    get: CalendarRequest_getDetailById
+  /1.0/calendar/state/lock:
+    post: CalendarState_unlockMonthProcessed
+  /1.0/calendar/{person_id}/events/add:
+    post: Person_addToCalendar
+  /1.0/calendar/{person_id}/events/types/{year}/limits:
+    get: Person_getEventTypeLimits
+  /1.0/calendar/{person_id}/events/types/{year}/limits/{type_id}/set:
+    post: Person_updateEventTypeLimit
+  /1.0/calendar/{person_id}/events/{event_id}:
+    delete: Person_removeEvent
+  /1.0/calendar/{person_id}/priorityschemes/events/add:
+    post: Person_addToCalendar
+  /1.0/calendar/{person_id}/verzuim/{year}:
+    get: Person_getVerzuimPeriods
+  /1.0/calendar/{person_id}/{year}:
+    get: Person_getYearlyCalendar
+  /1.0/calendar/{person_id}/{year}/work/bulk:
+    patch: Person_updateBulkTimeWorked
+  /1.0/calendar/{person_id}/{year}/{month}:
+    get: Person_getMonthlyCalendar
+  /1.0/calendar/{person_id}/{year}/{month}/{day}:
+    get: Person_getDailyCalendar
+  /1.0/calendar/{person_id}/{year}/{month}/{day}/events/set:
+    put: Person_overwriteEvent
+  /1.0/calendar/{person_id}/{year}/{month}/{day}/work:
+    patch: Person_updateTimeWorked
+  /1.0/calendar/{person_id}/{year}/{month}/{day}/work/reset:
+    post: Person_resetTimeWorked
+  /1.0/contracts/add:
+    post: Contract_createNewContract
+  /1.0/contracts/list:
+    get: Contract_getAll
+  /1.0/contracts/signature/request:
+    post: Contract_requestSignature
+  /1.0/contracts/{contract_id}/detail:
+    get: Contract_getDetail
+  /1.0/contracts/{contract_id}/pdf:
+    get: Contract_getPdfLink
+  /1.0/custom_fields/list:
+    get: CustomField_listFields
+  /1.0/custom_fields/{custom_field_id}/{object_type}/{object_id}:
+    patch: CustomField_editValueForObject
+  /1.0/documents/{file_id}:
+    delete: Document_remove
+  /1.0/documents/{file_id}/download:
+    get: Document_getDownloadUrl
+  /1.0/documents/{object_type}/{object_id}/add:
+    post: Document_uploadDocument
+  /1.0/documents/{object_type}/{object_id}/list:
+    get: Document_listRelated
+  /1.0/expenses/add:
+    post: Expense_addExpenseWithCategory
+  /1.0/expenses/categories/add:
+    post: Expense_addCategory
+  /1.0/expenses/categories/list:
+    get: Expense_listCategories
+  /1.0/expenses/categories/{category_id}:
+    delete: Expense_deleteCategory
+    patch: Expense_editCategoryName
+  /1.0/expenses/categories/{category_id}/detail:
+    get: Expense_listByCategoryDetail
+  /1.0/expenses/list/{year}:
+    get: Expense_listByYear
+  /1.0/expenses/list/{year}/{month}:
+    get: Expense_listByMonth
+  /1.0/expenses/{expense_id}:
+    delete: Expense_deleteById
+    patch: Expense_updateDetails
+  /1.0/expenses/{expense_id}/detail:
+    get: Expense_getDetail
+  /1.0/expenses/{expense_id}/updatePayout:
+    post: Expense_setPayoutMethodAndStatus
+  /1.0/fleet/add:
+    post: Vehicle_createNew
+  /1.0/fleet/list:
+    get: Vehicle_getAllVehicles
+  /1.0/fleet/{vehicle_id}:
+    patch: Vehicle_editDetails
+  /1.0/fleet/{vehicle_id}/detail:
+    get: Vehicle_getDetail
+  /1.0/legal/dimonas/{person_id}/list:
+    get: Person_listDimonasByPerson
+  /1.0/people/add:
+    post: Person_addNew
+  /1.0/people/change_history:
+    get: Person_getPersonalDataChanges
+  /1.0/people/list:
+    get: Person_listPeople
+  /1.0/people/search:
+    get: Person_searchByCriteria
+  /1.0/people/selfservice/invite_link:
+    post: Invitation_generateSecretUrl
+  /1.0/people/{person_id}/custom_fields:
+    get: Person_getCustomFields
+  /1.0/people/{person_id}/detail:
+    get: Person_getDetail
+    patch: Person_editDetail
+  /1.0/people/{person_id}/manager:
+    get: Person_getManagerDetails
+    put: Person_updateManager
+  /1.0/people/{person_id}/photo:
+    put: Person_uploadAvatar
+  /1.0/people/{person_id}/role:
+    put: Person_setFunctionDescription
+  /1.0/people/{person_id}/weekly_schedule/current:
+    get: Person_getCurrentWeeklySchedule
+  /1.0/performance_reviews/{person_id}/list:
+    get: Person_getPerformanceReviewsByPerson
+  /1.0/roles/{person_id}/history:
+    get: Person_viewRoleHistory
+  /1.0/teams/add:
+    post: Team_createNewTeam
+  /1.0/teams/list:
+    get: Team_getAllTeams
+  /1.0/teams/{team_id}:
+    patch: Team_editInformation
+  /1.0/token:
+    post: Authentication_getAccessToken
+  /1.0/wages/cost_centers/detail/{internal_code}:
+    get: CostCenter_detailGet
+  /1.0/wages/cost_centers/list:
+    get: CostCenter_getList
+  /1.0/wages/cost_units/detail/{internal_code}:
+    get: CostUnit_getFunctionsDetail
+  /1.0/wages/cost_units/list:
+    get: CostUnit_listFunctions
+  /1.0/wages/departments/detail/{internal_code}:
+    get: Department_getDetail
+  /1.0/wages/departments/list:
+    get: Department_getAllDepartments
+  /1.0/wages/functions/detail/{internal_code}:
+    get: Function_getDetails
+  /1.0/wages/functions/list:
+    get: Function_getAllFunctions
+  /1.0/wages/one_off/components/add:
+    post: Component_grantOneOffWage
+  /1.0/wages/one_off/components/{granted_component_id}:
+    delete: Component_removeOneOffWage
+  /1.0/wages/one_off/components/{person_id}/options/list:
+    get: Person_listAvailableComponents
+  /1.0/wages/one_off/components/{person_id}/{year}/{month}/list:
+    get: Person_getOneOffWageComponentsByMonth
+  /1.0/wages/{person_id}/current:
+    get: Person_getCurrentWage
+  /1.0/wages/{person_id}/history:
+    get: Person_getWageHistory
+  /1.0/webhooks/add:
+    post: Webhook_subscribeNotification
+  /1.0/webhooks/list:
+    get: Webhook_getActiveNotifications
+  /1.0/webhooks/{webhook_id}:
+    delete: Webhook_unsubscribeNotification
+operationTags:
+  /1.0/account:
+    get: Account
+  /1.0/assets/add:
+    post: Asset
+  /1.0/assets/list:
+    get: Asset
+  /1.0/assets/types/add:
+    post: Asset
+  /1.0/assets/types/list:
+    get: Asset
+  /1.0/assets/types/{asset_type_id}:
+    delete: Asset
+  /1.0/assets/{asset_id}:
+    delete: Asset
+    patch: Asset
+  /1.0/assets/{asset_id}/detail:
+    get: Asset
+  /1.0/budgets/add:
+    post: Budget
+  /1.0/budgets/people/{person_id}/{budget_id}/items/list:
+    get: Person
+  /1.0/budgets/people/{person_id}/{year}/list:
+    get: Person
+  /1.0/budgets/{budget_id}:
+    delete: Budget
+    patch: Budget
+  /1.0/budgets/{budget_id}/items/add:
+    post: Budget
+  /1.0/budgets/{budget_id}/items/{item_id}:
+    delete: Budget
+  /1.0/calendar/events/priorityschemes/{year}:
+    get: PriorityScheme
+  /1.0/calendar/events/types/{year}:
+    get: CustomEventType
+  /1.0/calendar/requests/list:
+    get: CalendarRequest
+  /1.0/calendar/requests/{request_id}/detail:
+    get: CalendarRequest
+  /1.0/calendar/state/lock:
+    post: CalendarState
+  /1.0/calendar/{person_id}/events/add:
+    post: Person
+  /1.0/calendar/{person_id}/events/types/{year}/limits:
+    get: Person
+  /1.0/calendar/{person_id}/events/types/{year}/limits/{type_id}/set:
+    post: Person
+  /1.0/calendar/{person_id}/events/{event_id}:
+    delete: Person
+  /1.0/calendar/{person_id}/priorityschemes/events/add:
+    post: Person
+  /1.0/calendar/{person_id}/verzuim/{year}:
+    get: Person
+  /1.0/calendar/{person_id}/{year}:
+    get: Person
+  /1.0/calendar/{person_id}/{year}/work/bulk:
+    patch: Person
+  /1.0/calendar/{person_id}/{year}/{month}:
+    get: Person
+  /1.0/calendar/{person_id}/{year}/{month}/{day}:
+    get: Person
+  /1.0/calendar/{person_id}/{year}/{month}/{day}/events/set:
+    put: Person
+  /1.0/calendar/{person_id}/{year}/{month}/{day}/work:
+    patch: Person
+  /1.0/calendar/{person_id}/{year}/{month}/{day}/work/reset:
+    post: Person
+  /1.0/contracts/add:
+    post: Contract
+  /1.0/contracts/list:
+    get: Contract
+  /1.0/contracts/signature/request:
+    post: Contract
+  /1.0/contracts/{contract_id}/detail:
+    get: Contract
+  /1.0/contracts/{contract_id}/pdf:
+    get: Contract
+  /1.0/custom_fields/list:
+    get: CustomField
+  /1.0/custom_fields/{custom_field_id}/{object_type}/{object_id}:
+    patch: CustomField
+  /1.0/documents/{file_id}:
+    delete: Document
+  /1.0/documents/{file_id}/download:
+    get: Document
+  /1.0/documents/{object_type}/{object_id}/add:
+    post: Document
+  /1.0/documents/{object_type}/{object_id}/list:
+    get: Document
+  /1.0/expenses/add:
+    post: Expense
+  /1.0/expenses/categories/add:
+    post: Expense
+  /1.0/expenses/categories/list:
+    get: Expense
+  /1.0/expenses/categories/{category_id}:
+    delete: Expense
+    patch: Expense
+  /1.0/expenses/categories/{category_id}/detail:
+    get: Expense
+  /1.0/expenses/list/{year}:
+    get: Expense
+  /1.0/expenses/list/{year}/{month}:
+    get: Expense
+  /1.0/expenses/{expense_id}:
+    delete: Expense
+    patch: Expense
+  /1.0/expenses/{expense_id}/detail:
+    get: Expense
+  /1.0/expenses/{expense_id}/updatePayout:
+    post: Expense
+  /1.0/fleet/add:
+    post: Vehicle
+  /1.0/fleet/list:
+    get: Vehicle
+  /1.0/fleet/{vehicle_id}:
+    patch: Vehicle
+  /1.0/fleet/{vehicle_id}/detail:
+    get: Vehicle
+  /1.0/legal/dimonas/{person_id}/list:
+    get: Person
+  /1.0/people/add:
+    post: Person
+  /1.0/people/change_history:
+    get: Person
+  /1.0/people/list:
+    get: Person
+  /1.0/people/search:
+    get: Person
+  /1.0/people/selfservice/invite_link:
+    post: Invitation
+  /1.0/people/{person_id}/custom_fields:
+    get: Person
+  /1.0/people/{person_id}/detail:
+    get: Person
+    patch: Person
+  /1.0/people/{person_id}/manager:
+    get: Person
+    put: Person
+  /1.0/people/{person_id}/photo:
+    put: Person
+  /1.0/people/{person_id}/role:
+    put: Person
+  /1.0/people/{person_id}/weekly_schedule/current:
+    get: Person
+  /1.0/performance_reviews/{person_id}/list:
+    get: Person
+  /1.0/roles/{person_id}/history:
+    get: Person
+  /1.0/teams/add:
+    post: Team
+  /1.0/teams/list:
+    get: Team
+  /1.0/teams/{team_id}:
+    patch: Team
+  /1.0/token:
+    post: Authentication
+  /1.0/wages/cost_centers/detail/{internal_code}:
+    get: CostCenter
+  /1.0/wages/cost_centers/list:
+    get: CostCenter
+  /1.0/wages/cost_units/detail/{internal_code}:
+    get: CostUnit
+  /1.0/wages/cost_units/list:
+    get: CostUnit
+  /1.0/wages/departments/detail/{internal_code}:
+    get: Department
+  /1.0/wages/departments/list:
+    get: Department
+  /1.0/wages/functions/detail/{internal_code}:
+    get: Function
+  /1.0/wages/functions/list:
+    get: Function
+  /1.0/wages/one_off/components/add:
+    post: Component
+  /1.0/wages/one_off/components/{granted_component_id}:
+    delete: Component
+  /1.0/wages/one_off/components/{person_id}/options/list:
+    get: Person
+  /1.0/wages/one_off/components/{person_id}/{year}/{month}/list:
+    get: Person
+  /1.0/wages/{person_id}/current:
+    get: Person
+  /1.0/wages/{person_id}/history:
+    get: Person
+  /1.0/webhooks/add:
+    post: Webhook
+  /1.0/webhooks/list:
+    get: Webhook
+  /1.0/webhooks/{webhook_id}:
+    delete: Webhook
+renameTags: {}
+requestSchemaNames:
+  /1.0/budgets/add:
+    post:
+      application/json: BudgetAddBudgetItemRequest
+  /1.0/budgets/{budget_id}:
+    patch:
+      application/json: BudgetUpdateBudgetItemRequest
+  /1.0/budgets/{budget_id}/items/add:
+    post:
+      application/json: BudgetAddItemRequest
+  /1.0/calendar/state/lock:
+    post:
+      application/json: CalendarStateUnlockMonthProcessedRequest
+  /1.0/expenses/add:
+    post:
+      application/json: ExpenseAddExpenseWithCategoryRequest
+  /1.0/expenses/categories/add:
+    post:
+      application/json: ExpenseAddCategoryRequest
+  /1.0/expenses/categories/{category_id}:
+    patch:
+      application/json: ExpenseEditCategoryNameRequest
+  /1.0/expenses/{expense_id}:
+    patch:
+      application/json: ExpenseUpdateDetailsRequest
+  /1.0/expenses/{expense_id}/updatePayout:
+    post:
+      application/json: ExpenseSetPayoutMethodAndStatusRequest
+  /1.0/people/selfservice/invite_link:
+    post:
+      application/json: InvitationGenerateSecretUrlRequest
+  /1.0/token:
+    post:
+      application/json: AuthenticationGetAccessTokenRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /1.0/account:
+    get:
+      '200':
+        application/json: AccountGetInformationResponse
+      '400':
+        application/json: AccountGetInformation400Response
+  /1.0/assets/add:
+    post:
+      '200':
+        application/json: AssetCreateNewAssetResponse
+      '400':
+        application/json: AssetCreateNewAsset400Response
+  /1.0/assets/list:
+    get:
+      '200':
+        application/json: AssetListAssetsResponse
+      '400':
+        application/json: AssetListAssets400Response
+  /1.0/assets/types/add:
+    post:
+      '200':
+        application/json: AssetAddCustomTypeResponse
+      '400':
+        application/json: AssetAddCustomType400Response
+  /1.0/assets/types/list:
+    get:
+      '200':
+        application/json: AssetGetCustomTypesListResponse
+      '400':
+        application/json: AssetGetCustomTypesList400Response
+  /1.0/assets/types/{asset_type_id}:
+    delete:
+      '200':
+        application/json: AssetRemoveCustomTypeResponse
+  /1.0/assets/{asset_id}:
+    delete:
+      '200':
+        application/json: AssetRemoveResponse
+      '400':
+        application/json: AssetRemove400Response
+    patch:
+      '200':
+        application/json: AssetUpdateAssetResponse
+      '400':
+        application/json: AssetUpdateAsset400Response
+  /1.0/assets/{asset_id}/detail:
+    get:
+      '200':
+        application/json: AssetGetDetailResponse
+      '400':
+        application/json: AssetGetDetail400Response
+  /1.0/budgets/add:
+    post:
+      '200':
+        application/json: BudgetAddBudgetItemResponse
+      '400':
+        application/json: BudgetAddBudgetItem400Response
+  /1.0/budgets/people/{person_id}/{budget_id}/items/list:
+    get:
+      '200':
+        application/json: PersonListBudgetItemsResponse
+      '400':
+        application/json: PersonListBudgetItems400Response
+  /1.0/budgets/people/{person_id}/{year}/list:
+    get:
+      '200':
+        application/json: PersonGetBudgetsByYearResponse
+      '400':
+        application/json: PersonGetBudgetsByYear400Response
+  /1.0/budgets/{budget_id}:
+    delete:
+      '200':
+        application/json: BudgetDeleteBudgetByIdResponse
+      '400':
+        application/json: BudgetDeleteBudgetById400Response
+    patch:
+      '200':
+        application/json: BudgetUpdateBudgetItemResponse
+      '400':
+        application/json: BudgetUpdateBudgetItem400Response
+  /1.0/budgets/{budget_id}/items/add:
+    post:
+      '200':
+        application/json: BudgetAddItemResponse
+      '400':
+        application/json: BudgetAddItem400Response
+  /1.0/budgets/{budget_id}/items/{item_id}:
+    delete:
+      '200':
+        application/json: BudgetRemoveItemResponse
+      '400':
+        application/json: BudgetRemoveItem400Response
+  /1.0/calendar/events/priorityschemes/{year}:
+    get:
+      '200':
+        application/json: PrioritySchemeListActivePrioritySchemesByYearResponse
+      '400':
+        application/json: PrioritySchemeListActivePrioritySchemesByYear400Response
+  /1.0/calendar/events/types/{year}:
+    get:
+      '200':
+        application/json: CustomEventTypeGetListResponse
+      '400':
+        application/json: CustomEventTypeGetList400Response
+  /1.0/calendar/requests/list:
+    get:
+      '200':
+        application/json: CalendarRequestListRequestsResponse
+  /1.0/calendar/requests/{request_id}/detail:
+    get:
+      '200':
+        application/json: CalendarRequestGetDetailByIdResponse
+      '400':
+        application/json: CalendarRequestGetDetailById400Response
+  /1.0/calendar/state/lock:
+    post:
+      '200':
+        application/json: CalendarStateUnlockMonthProcessedResponse
+      '400':
+        application/json: CalendarStateUnlockMonthProcessed400Response
+  /1.0/calendar/{person_id}/events/add:
+    post:
+      '200':
+        application/json: PersonAddToCalendarResponse
+      '400':
+        application/json: PersonAddToCalendar400Response
+  /1.0/calendar/{person_id}/events/types/{year}/limits:
+    get:
+      '200':
+        application/json: PersonGetEventTypeLimitsResponse
+      '400':
+        application/json: PersonGetEventTypeLimits400Response
+  /1.0/calendar/{person_id}/events/types/{year}/limits/{type_id}/set:
+    post:
+      '200':
+        application/json: PersonUpdateEventTypeLimitResponse
+      '400':
+        application/json: PersonUpdateEventTypeLimit400Response
+  /1.0/calendar/{person_id}/events/{event_id}:
+    delete:
+      '200':
+        application/json: PersonRemoveEventResponse
+      '400':
+        application/json: PersonRemoveEvent400Response
+  /1.0/calendar/{person_id}/priorityschemes/events/add:
+    post:
+      '200':
+        application/json: PersonAddToCalendar200Response
+      '400':
+        application/json: PersonAddToCalendar400Response1
+  /1.0/calendar/{person_id}/verzuim/{year}:
+    get:
+      '200':
+        application/json: PersonGetVerzuimPeriodsResponse
+      '400':
+        application/json: PersonGetVerzuimPeriods400Response
+  /1.0/calendar/{person_id}/{year}:
+    get:
+      '200':
+        application/json: PersonGetYearlyCalendarResponse
+      '400':
+        application/json: PersonGetYearlyCalendar400Response
+  /1.0/calendar/{person_id}/{year}/work/bulk:
+    patch:
+      '200':
+        application/json: PersonUpdateBulkTimeWorkedResponse
+      '400':
+        application/json: PersonUpdateBulkTimeWorked400Response
+  /1.0/calendar/{person_id}/{year}/{month}:
+    get:
+      '200':
+        application/json: PersonGetMonthlyCalendarResponse
+      '400':
+        application/json: PersonGetMonthlyCalendar400Response
+  /1.0/calendar/{person_id}/{year}/{month}/{day}:
+    get:
+      '200':
+        application/json: PersonGetDailyCalendarResponse
+      '400':
+        application/json: PersonGetDailyCalendar400Response
+  /1.0/calendar/{person_id}/{year}/{month}/{day}/events/set:
+    put:
+      '200':
+        application/json: PersonOverwriteEventResponse
+      '400':
+        application/json: PersonOverwriteEvent400Response
+  /1.0/calendar/{person_id}/{year}/{month}/{day}/work:
+    patch:
+      '200':
+        application/json: PersonUpdateTimeWorkedResponse
+      '400':
+        application/json: PersonUpdateTimeWorked400Response
+  /1.0/calendar/{person_id}/{year}/{month}/{day}/work/reset:
+    post:
+      '200':
+        application/json: PersonResetTimeWorkedResponse
+      '400':
+        application/json: PersonResetTimeWorked400Response
+  /1.0/contracts/add:
+    post:
+      '200':
+        application/json: ContractCreateNewContractResponse
+      '400':
+        application/json: ContractCreateNewContract400Response
+  /1.0/contracts/list:
+    get:
+      '200':
+        application/json: ContractGetAllResponse
+      '400':
+        application/json: ContractGetAll400Response
+  /1.0/contracts/signature/request:
+    post:
+      '200':
+        application/json: ContractRequestSignatureResponse
+      '400':
+        application/json: ContractRequestSignature400Response
+  /1.0/contracts/{contract_id}/detail:
+    get:
+      '200':
+        application/json: ContractGetDetailResponse
+      '400':
+        application/json: ContractGetDetail400Response
+  /1.0/contracts/{contract_id}/pdf:
+    get:
+      '200':
+        application/json: ContractGetPdfLinkResponse
+      '400':
+        application/json: ContractGetPdfLink400Response
+  /1.0/custom_fields/list:
+    get:
+      '200':
+        application/json: CustomFieldListFieldsResponse
+      '400':
+        application/json: CustomFieldListFields400Response
+  /1.0/custom_fields/{custom_field_id}/{object_type}/{object_id}:
+    patch:
+      '200':
+        application/json: CustomFieldEditValueForObjectResponse
+      '400':
+        application/json: CustomFieldEditValueForObject400Response
+  /1.0/documents/{file_id}:
+    delete:
+      '200':
+        application/json: DocumentRemoveResponse
+      '400':
+        application/json: DocumentRemove400Response
+  /1.0/documents/{file_id}/download:
+    get:
+      '200':
+        application/json: DocumentGetDownloadUrlResponse
+      '400':
+        application/json: DocumentGetDownloadUrl400Response
+  /1.0/documents/{object_type}/{object_id}/add:
+    post:
+      '200':
+        application/json: DocumentUploadDocumentResponse
+      '400':
+        application/json: DocumentUploadDocument400Response
+  /1.0/documents/{object_type}/{object_id}/list:
+    get:
+      '200':
+        application/json: DocumentListRelatedResponse
+      '400':
+        application/json: DocumentListRelated400Response
+  /1.0/expenses/add:
+    post:
+      '200':
+        application/json: ExpenseAddExpenseWithCategoryResponse
+      '400':
+        application/json: ExpenseAddExpenseWithCategory400Response
+  /1.0/expenses/categories/add:
+    post:
+      '200':
+        application/json: ExpenseAddCategoryResponse
+      '400':
+        application/json: ExpenseAddCategory400Response
+  /1.0/expenses/categories/list:
+    get:
+      '200':
+        application/json: ExpenseListCategoriesResponse
+      '400':
+        application/json: ExpenseListCategories400Response
+  /1.0/expenses/categories/{category_id}:
+    delete:
+      '200':
+        application/json: ExpenseDeleteCategoryResponse
+      '400':
+        application/json: ExpenseDeleteCategory400Response
+    patch:
+      '200':
+        application/json: ExpenseEditCategoryNameResponse
+      '400':
+        application/json: ExpenseEditCategoryName400Response
+  /1.0/expenses/categories/{category_id}/detail:
+    get:
+      '200':
+        application/json: ExpenseListByCategoryDetailResponse
+      '400':
+        application/json: ExpenseListByCategoryDetail400Response
+  /1.0/expenses/list/{year}:
+    get:
+      '200':
+        application/json: ExpenseListByYearResponse
+      '400':
+        application/json: ExpenseListByYear400Response
+  /1.0/expenses/list/{year}/{month}:
+    get:
+      '200':
+        application/json: ExpenseListByMonthResponse
+      '400':
+        text/plain: ExpenseListByMonth400Response
+  /1.0/expenses/{expense_id}:
+    delete:
+      '200':
+        application/json: ExpenseDeleteByIdResponse
+      '400':
+        application/json: ExpenseDeleteById400Response
+    patch:
+      '200':
+        application/json: ExpenseUpdateDetailsResponse
+      '400':
+        application/json: ExpenseUpdateDetails400Response
+  /1.0/expenses/{expense_id}/detail:
+    get:
+      '200':
+        application/json: ExpenseGetDetailResponse
+      '400':
+        application/json: ExpenseGetDetail400Response
+  /1.0/expenses/{expense_id}/updatePayout:
+    post:
+      '200':
+        application/json: ExpenseSetPayoutMethodAndStatusResponse
+      '400':
+        application/json: ExpenseSetPayoutMethodAndStatus400Response
+  /1.0/fleet/add:
+    post:
+      '200':
+        application/json: VehicleCreateNewResponse
+      '400':
+        application/json: VehicleCreateNew400Response
+  /1.0/fleet/list:
+    get:
+      '200':
+        application/json: VehicleGetAllVehiclesResponse
+      '400':
+        application/json: VehicleGetAllVehicles400Response
+  /1.0/fleet/{vehicle_id}:
+    patch:
+      '200':
+        application/json: VehicleEditDetailsResponse
+      '400':
+        application/json: VehicleEditDetails400Response
+  /1.0/fleet/{vehicle_id}/detail:
+    get:
+      '200':
+        application/json: VehicleGetDetailResponse
+      '400':
+        application/json: VehicleGetDetail400Response
+  /1.0/legal/dimonas/{person_id}/list:
+    get:
+      '200':
+        application/json: PersonListDimonasByPersonResponse
+      '400':
+        application/json: PersonListDimonasByPerson400Response
+  /1.0/people/add:
+    post:
+      '200':
+        application/json: PersonAddNewResponse
+      '400':
+        application/json: PersonAddNew400Response
+  /1.0/people/change_history:
+    get:
+      '200':
+        application/json: PersonGetPersonalDataChangesResponse
+      '400':
+        application/json: PersonGetPersonalDataChanges400Response
+  /1.0/people/list:
+    get:
+      '200':
+        application/json: PersonListPeopleResponse
+  /1.0/people/search:
+    get:
+      '200':
+        application/json: PersonSearchByCriteriaResponse
+      '400':
+        application/json: PersonSearchByCriteria400Response
+  /1.0/people/selfservice/invite_link:
+    post:
+      '200':
+        application/json: InvitationGenerateSecretUrlResponse
+      '400':
+        application/json: InvitationGenerateSecretUrl400Response
+  /1.0/people/{person_id}/custom_fields:
+    get:
+      '200':
+        application/json: PersonGetCustomFieldsResponse
+      '400':
+        application/json: PersonGetCustomFields400Response
+  /1.0/people/{person_id}/detail:
+    get:
+      '200':
+        application/json: PersonGetDetailResponse
+      '400':
+        application/json: PersonGetDetail400Response
+    patch:
+      '200':
+        application/json: PersonEditDetailResponse
+      '400':
+        application/json: PersonEditDetail400Response
+  /1.0/people/{person_id}/manager:
+    get:
+      '200':
+        application/json: PersonGetManagerDetailsResponse
+      '400':
+        application/json: PersonGetManagerDetails400Response
+    put:
+      '200':
+        application/json: PersonUpdateManagerResponse
+      '400':
+        application/json: PersonUpdateManager400Response
+  /1.0/people/{person_id}/photo:
+    put:
+      '200':
+        application/json: PersonUploadAvatarResponse
+      '400':
+        application/json: PersonUploadAvatar400Response
+  /1.0/people/{person_id}/role:
+    put:
+      '200':
+        application/json: PersonSetFunctionDescriptionResponse
+      '400':
+        application/json: PersonSetFunctionDescription400Response
+  /1.0/people/{person_id}/weekly_schedule/current:
+    get:
+      '200':
+        application/json: PersonGetCurrentWeeklyScheduleResponse
+      '400':
+        application/json: PersonGetCurrentWeeklySchedule400Response
+  /1.0/performance_reviews/{person_id}/list:
+    get:
+      '200':
+        application/json: PersonGetPerformanceReviewsByPersonResponse
+  /1.0/roles/{person_id}/history:
+    get:
+      '200':
+        application/json: PersonViewRoleHistoryResponse
+      '400':
+        application/json: PersonViewRoleHistory400Response
+  /1.0/teams/add:
+    post:
+      '200':
+        application/json: TeamCreateNewTeamResponse
+      '400':
+        application/json: TeamCreateNewTeam400Response
+  /1.0/teams/list:
+    get:
+      '200':
+        application/json: TeamGetAllTeamsResponse
+      '400':
+        application/json: TeamGetAllTeams400Response
+  /1.0/teams/{team_id}:
+    patch:
+      '200':
+        application/json: TeamEditInformationResponse
+      '400':
+        application/json: TeamEditInformation400Response
+  /1.0/token:
+    post:
+      '200':
+        application/json: AuthenticationGetAccessTokenResponse
+      '400':
+        application/json: AuthenticationGetAccessToken400Response
+  /1.0/wages/cost_centers/detail/{internal_code}:
+    get:
+      '200':
+        application/json: CostCenterDetailGetResponse
+      '400':
+        application/json: CostCenterDetailGet400Response
+  /1.0/wages/cost_centers/list:
+    get:
+      '200':
+        application/json: CostCenterGetListResponse
+      '400':
+        application/json: CostCenterGetList400Response
+  /1.0/wages/cost_units/detail/{internal_code}:
+    get:
+      '200':
+        application/json: CostUnitGetFunctionsDetailResponse
+      '400':
+        application/json: CostUnitGetFunctionsDetail400Response
+  /1.0/wages/cost_units/list:
+    get:
+      '200':
+        application/json: CostUnitListFunctionsResponse
+      '400':
+        application/json: CostUnitListFunctions400Response
+  /1.0/wages/departments/detail/{internal_code}:
+    get:
+      '200':
+        application/json: DepartmentGetDetailResponse
+      '400':
+        application/json: DepartmentGetDetail400Response
+  /1.0/wages/departments/list:
+    get:
+      '200':
+        application/json: DepartmentGetAllDepartmentsResponse
+      '400':
+        application/json: DepartmentGetAllDepartments400Response
+  /1.0/wages/functions/detail/{internal_code}:
+    get:
+      '200':
+        application/json: FunctionGetDetailsResponse
+      '400':
+        application/json: FunctionGetDetails400Response
+  /1.0/wages/functions/list:
+    get:
+      '200':
+        application/json: FunctionGetAllFunctionsResponse
+      '400':
+        application/json: FunctionGetAllFunctions400Response
+  /1.0/wages/one_off/components/add:
+    post:
+      '200':
+        application/json: ComponentGrantOneOffWageResponse
+      '400':
+        application/json: ComponentGrantOneOffWage400Response
+  /1.0/wages/one_off/components/{granted_component_id}:
+    delete:
+      '200':
+        application/json: ComponentRemoveOneOffWageResponse
+      '400':
+        application/json: ComponentRemoveOneOffWage400Response
+  /1.0/wages/one_off/components/{person_id}/options/list:
+    get:
+      '200':
+        application/json: PersonListAvailableComponentsResponse
+      '400':
+        application/json: PersonListAvailableComponents400Response
+  /1.0/wages/one_off/components/{person_id}/{year}/{month}/list:
+    get:
+      '200':
+        application/json: PersonGetOneOffWageComponentsByMonthResponse
+      '400':
+        application/json: PersonGetOneOffWageComponentsByMonth400Response
+  /1.0/wages/{person_id}/current:
+    get:
+      '200':
+        application/json: PersonGetCurrentWageResponse
+      '400':
+        application/json: PersonGetCurrentWage400Response
+  /1.0/wages/{person_id}/history:
+    get:
+      '200':
+        application/json: PersonGetWageHistoryResponse
+      '400':
+        application/json: PersonGetWageHistory400Response
+  /1.0/webhooks/add:
+    post:
+      '200':
+        application/json: WebhookSubscribeNotificationResponse
+      '400':
+        application/json: WebhookSubscribeNotification400Response
+  /1.0/webhooks/list:
+    get:
+      '200':
+        application/json: WebhookGetActiveNotificationsResponse
+      '400':
+        application/json: WebhookGetActiveNotifications400Response
+  /1.0/webhooks/{webhook_id}:
+    delete:
+      '200':
+        application/json: WebhookUnsubscribeNotificationResponse
+      '400':
+        application/json: WebhookUnsubscribeNotification400Response
+securityParameters:
+  email:
+    query: false
+  filter:
+    query: false
+  include_archived:
+    query: false
+  include_deleted:
+    query: false
+  item_id:
+    query: false
+  name:
+    query: false
+  national_number:
+    query: false
+  page:
+    query: false
+  person_id:
+    query: false
+  since_timestamp:
+    query: false
+  status:
+    query: false
+validServerUrls: {}
