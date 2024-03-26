@@ -12,7 +12,7 @@ export default function ProcurifyTypeScriptSdk() {
       sdkName="procurify-typescript-sdk"
       metaDescription={`Procurify is the Intelligent Spend Management company. We're on a mission to give all organizations unprecedented visibility and control over their business spend. By bringing more spend under management in one procure-to-pay solution, our customers capture unified spend data that can be harnessed to realize millions of dollars in time and cost savings.
 
-Named the #1 Purchasing Leader by G2, Procurify is trusted by hundreds of customers worldwide to manage over US$30 billion dollars of organizational spend. We integrate with major ERP accounting systems such as NetSuite and QuickBooks Online. 
+Named the #1 Purchasing Leader by G2, Procurify is trusted by hundreds of customers worldwide to manage over US$30 billion dollars of organizational spend. We integrate with major ERP accounting systems such as NetSuite and QuickBooks Online.
 
 Take control of spend today.`}
       company="Procurify"
@@ -21,7 +21,7 @@ Take control of spend today.`}
       companyKebabCase="procurify"
       clientNameCamelCase="procurify"
       homepage="www.procurify.com/"
-      lastUpdated={new Date("2024-03-26T00:02:24.073Z")}
+      lastUpdated={new Date("2024-03-26T00:42:28.369Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/procurify/favicon.png"
       // Missing contactUrl
       // Missing contactEmail

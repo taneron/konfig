@@ -17,7 +17,7 @@ export default function BreezyHrTypeScriptSdk() {
       companyKebabCase="breezy-hr"
       clientNameCamelCase="breezyHr"
       homepage="breezy.hr"
-      lastUpdated={new Date("2024-03-25T22:47:11.618Z")}
+      lastUpdated={new Date("2024-03-26T00:42:28.369Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/breezy-hr/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
@@ -2735,7 +2735,7 @@ export default function BreezyHrTypeScriptSdk() {
       sdkMethods={50}
       schemas={219}
       parameters={201}
-      difficulty="Medium"
+      difficulty="Easy"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/breezy-hr/openapi.yaml"
       openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/breezy-hr/openapi.yaml"
       developerDocumentation="developer.breezy.hr/reference/overview"
