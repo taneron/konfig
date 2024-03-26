@@ -1,0 +1,122 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+operationIds:
+  /CardOperations:
+    post: CardOperations_getTokenStartOperation
+  /CardOperations/brand:
+    get: CardOperations_getBrandPrefix
+  /CardOperations/charge:
+    post: CardOperations_performUniversalPaymentGatewayCharge
+  /CardOperations/opValidate:
+    get: CardOperations_performValidation
+  /CardOperations/store:
+    post: CardOperations_tokenizeAndStore
+  /CardOperations/topBrands:
+    get: CardOperations_getTopBrandsLookup
+  /CardOperations/validate:
+    post: CardOperations_performValidation
+  /CustomForms:
+    get: CustomForms_getList
+  /CustomForms/{name}:
+    delete: CustomForms_removeForm
+    put: CustomForms_uploadFormFolder
+  /CvvOperations:
+    post: CvvOperations_getTokenCvvOperation
+  /CvvOperations/charge:
+    post: CvvOperations_performUniversalPaymentGatewayCharge
+  /CvvOperations/opValidate:
+    get: CvvOperations_validateOperation
+  /NetworkToken:
+    delete: NetworkToken_delete
+    post: NetworkToken_cardTokenize
+  /PaymentGateway:
+    get: PaymentGateway_listGateways
+  /PaymentGateway/authorize:
+    post: PaymentGateway_performAuthorizeOperation
+  /PaymentGateway/capture:
+    put: PaymentGateway_performCaptureOperation
+  /PaymentGateway/charge:
+    post: PaymentGateway_performChargeOperation
+  /PaymentGateway/refund:
+    put: PaymentGateway_performRefundOperation
+  /PaymentGateway/void:
+    delete: PaymentGateway_voidOperation
+  /PaymentGatewayAccounts:
+    get: PaymentGatewayAccounts_getAll
+  /PaymentGatewayAccounts/{name}:
+    delete: PaymentGatewayAccounts_removeAccount
+    get: PaymentGatewayAccounts_getInfo
+    put: PaymentGatewayAccounts_addOrReplace
+  /StringTokens:
+    post: StringTokens_storeAndTokenize
+  /StringTokens/{token}:
+    delete: StringTokens_deleteByToken
+    get: StringTokens_getContent
+  /StringTokens/{token}/meta:
+    get: StringTokens_getMetaData
+  /ThreeDsMerchants:
+    get: ThreeDsMerchants_listMerchants
+  /ThreeDsMerchants/{name}:
+    delete: ThreeDsMerchants_removeMerchant
+    get: ThreeDsMerchants_getMerchantInfo
+    put: ThreeDsMerchants_updateMerchantInfo
+  /ThreeDsSessions:
+    post: ThreeDsSessions_getTokenStartOperation
+  /ThreeDsSessions/challengeStatus:
+    get: ThreeDsSessions_getChallengeStatus
+  /ThreeDsSessions/fingerprintCallback/{sessionId}:
+    post: ThreeDsSessions_handleFingerprintCallback
+  /ThreeDsSessions/mpiChallengeCallback/{sessionId}:
+    get: ThreeDsSessions_handleMpiChallengeCallback
+  /ThreeDsSessions/opValidate:
+    get: ThreeDsSessions_performValidationOperation
+  /Tools/brand:
+    get: Tools_getBrandLookup
+  /Tools/iin:
+    get: Tools_lookupMetadata
+  /Tools/luhn:
+    get: Tools_validateLuhnCard
+  /Tools/validate:
+    post: Tools_validateCardDetails
+  /Utils/apiKey:
+    get: Utils_validateApiKey
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /CustomForms/{name}:
+    put:
+      application/json: CustomFormsUploadFormFolderRequest1
+      multipart/form-data: CustomFormsUploadFormFolderRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /CustomForms/{name}:
+    delete:
+      '404':
+        application/json: CustomFormsRemoveFormResponse
+  /NetworkToken:
+    delete:
+      '200':
+        application/json: NetworkTokenDeleteResponse
+  /PaymentGateway:
+    get:
+      '200':
+        application/json: PaymentGatewayListGatewaysResponse
+  /PaymentGatewayAccounts:
+    get:
+      '200':
+        application/json: PaymentGatewayAccountsGetAllResponse
+  /ThreeDsMerchants:
+    get:
+      '200':
+        application/json: ThreeDsMerchantsListMerchantsResponse
+securityParameters:
+  iin:
+    query: false
+  metaData:
+    query: false
+  number:
+    query: false
+  ttl:
+    query: false
+validServerUrls: {}

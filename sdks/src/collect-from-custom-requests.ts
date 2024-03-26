@@ -1468,6 +1468,14 @@ const customRequests: Record<string, CustomRequest> = {
       });
       return await downloadOpenApiSpecFromReadme({ urls });
     },
+  },
+  "bluetime.io": {
+    lambda: async () => {
+      const urls = await collectEndpointsFromReadme({
+        url: "https://developers.bluetime.io/reference",
+      });
+      return await downloadOpenApiSpecFromReadme({ urls });
+    },
   }
 };
 
