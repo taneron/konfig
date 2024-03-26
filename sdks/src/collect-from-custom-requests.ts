@@ -753,6 +753,14 @@ const customRequests: Record<string, CustomRequest> = {
       });
     },
   },
+  "factorialhr.com": {
+    lambda: async () => {
+      const urls = await collectEndpointsFromReadme({
+        url: "https://apidoc.factorialhr.com/reference/core-employees-v1",
+      });
+      return downloadOpenApiSpecFromReadme({ urls });
+    },
+  },
   "brex.com_Payments": {
     lambda: async ({ browser }) => {
       return downloadOpenApiSpecFromRedoclyEmbedded({

@@ -1,0 +1,1030 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignorePotentialIncorrectType: true
+operationIds:
+  /v1/ats/applications:
+    post: Application_createAtsApplication
+  /v1/ats/applications/{id}:
+    put: Application_updateData
+  /v1/ats/candidates:
+    get: Candidate_listAllCandidates
+    post: Candidate_createNewCandidate
+  /v1/ats/candidates/{id}:
+    delete: Candidate_deleteExistingCandidate
+    put: Candidate_updateCandidateData
+  /v1/ats/job_postings:
+    get: Post_getAllPostings
+    post: Post_atsJobPosting
+  /v1/ats/job_postings/{id}:
+    delete: Post_removeJobPosting
+    put: Post_jobPostingUpdate
+  /v1/ats/job_postings/{id}/duplicate:
+    post: Post_duplicateJobPosting
+  /v1/ats/messages:
+    get: Message_getAllMessages
+    post: Message_createAtsMessage
+  /v1/company_holidays:
+    get: Holiday_getAllCompanyHolidays
+  /v1/company_holidays/{id}:
+    get: Holiday_getById
+  /v1/core/custom/tables:
+    get: CustomTable_get
+    post: Table_createCustomTable
+  /v1/core/custom/tables/{id}:
+    get: Table_getCustomTable
+  /v1/core/custom/tables/{id}/fields:
+    get: Table_getFields
+    post: Table_createField
+  /v1/core/custom/tables/{id}/values/{employee_id}:
+    get: Employee_getCustomTableValues
+    post: Employee_createCustomTableValue
+  /v1/core/documents:
+    get: Document_listGivenEmployeeOrFolder
+    post: Document_createNewDocument
+  /v1/core/documents/{id}:
+    delete: Document_deleteById
+    get: Document_getById
+    put: Document_updateById
+  /v1/core/events:
+    get: Event_getTriggeredEvents
+  /v1/core/folders:
+    get: Folder_getByNameAndStatus
+    post: Folder_createNewFolder
+  /v1/core/folders/{id}:
+    get: Folder_getById
+    put: Folder_updateFolderById
+  /v1/core/keys:
+    get: Key_getCollection
+    post: Key_createNew
+  /v1/core/keys/{id}:
+    delete: Key_deleteById
+  /v1/core/legal_entities:
+    get: LegalEntity_listLegalEntities
+  /v1/core/legal_entities/{id}:
+    get: LegalEntity_getById
+  /v1/core/tasks:
+    get: Task_getAllTasks
+    post: Task_createNewTask
+  /v1/core/tasks/{id}:
+    delete: Task_deleteById
+    get: Task_getById
+    put: Task_updateById
+  /v1/core/tasks/{id}/copy:
+    post: Task_copyById
+  /v1/core/tasks/{id}/files:
+    get: Task_getFiles
+    post: Task_addFileToTask
+  /v1/core/tasks/{id}/resolve:
+    post: Task_resolveById
+  /v1/core/tasks/{task_id}/files/{id}:
+    get: Task_getFile
+    post: Task_deleteFileInTask
+  /v1/core/teams:
+    get: Team_getAllTeams
+    post: Team_createNewTeam
+  /v1/core/teams/{id}:
+    delete: Team_removeTeam
+    get: Team_getById
+    put: Team_updateTeamById
+  /v1/core/teams/{id}/employees/{employee_id}:
+    delete: Employee_unassignToTeam
+    post: Employee_assignToTeam
+    put: Employee_updateInTeam
+  /v1/core/webhooks:
+    get: User_subscribedWebhooksList
+    post: Webhook_createSubscription
+  /v1/core/webhooks/{id}:
+    delete: Webhook_deleteWebhookById
+  /v1/custom_fields:
+    get: CustomField_getFieldsByGroup
+  /v1/custom_fields/values:
+    get: CustomFieldValue_getInstanceValue
+    post: CustomFieldValue_createCustomValue
+  /v1/employees:
+    get: Employee_getEmployees
+    post: Employee_createEmployee
+  /v1/employees/{id}:
+    get: Employee_getEmployeeById
+    put: Employee_updateById
+  /v1/employees/{id}/terminate:
+    post: Employee_terminateEmployee
+  /v1/employees/{id}/unterminate:
+    post: Employee_unterminateEmployee
+  /v1/finance/expenses:
+    get: Expense_getCompanyExpenses
+  /v1/finance/expenses/{id}:
+    get: Expense_getById
+  /v1/locations:
+    get: Location_getAllLocations
+  /v1/locations/{id}:
+    get: Location_getById
+  /v1/me:
+    get: User_infoGet
+  /v1/payroll/compensations:
+    get: Compensation_getCompensations
+    post: Compensation_createContractCompensation
+  /v1/payroll/compensations/{id}:
+    delete: Compensation_deleteCompensation
+    get: Compensation_getById
+    put: Compensation_updateForContract
+  /v1/payroll/contract_versions:
+    get: ContractVersion_getAllVersions
+    post: ContractVersion_createNewVersion
+  /v1/payroll/contract_versions/{id}:
+    delete: Contract_deleteVersion
+    put: Contract_updateVersion
+  /v1/payroll/family_situation:
+    get: Employee_listFamilySituations
+    post: FamilySituation_createNew
+  /v1/payroll/family_situation/{id}:
+    put: FamilySituation_updateFamilySituation
+  /v1/payroll/reference_contracts:
+    get: Contract_getAllReferenceContracts
+  /v1/payroll/supplements:
+    get: Supplement_getAll
+    post: Supplement_createNewSupplement
+  /v1/payroll/supplements/{id}:
+    delete: Supplement_deleteById
+    put: Supplement_updateById
+  /v1/payroll/taxonomies:
+    get: Taxonomy_getCompanyTaxonomies
+  /v1/payroll/taxonomies/{id}:
+    get: Taxonomy_getById
+  /v1/posts:
+    get: Post_listPosts
+    post: Post_createNewPost
+  /v1/posts/{id}:
+    delete: Post_removePost
+    get: Post_getById
+    put: Post_updateExistingPost
+  /v1/time/break_configurations_for_dates:
+    get: Employee_listBreakConfigurationsForDates
+  /v1/time/breaks:
+    post: Break_createBreak
+  /v1/time/breaks/end:
+    post: Break_endBreak
+  /v1/time/breaks/start:
+    post: Break_startBreak
+  /v1/time/leave_types:
+    get: Leave_getTypes
+    post: Leave_typeCreate
+  /v1/time/leave_types/{id}:
+    put: Leave_updateType
+  /v1/time/leaves:
+    get: Leave_getCompanyLeaves
+    post: Leave_createNewLeave
+  /v1/time/leaves/{id}:
+    delete: Leave_deleteById
+    get: Leave_getById
+    put: Leave_updateLeaveById
+  /v1/time/policies:
+    get: Policy_getTimeOffPolicies
+  /v1/time/policies/{id}:
+    get: Policy_getTimeOff
+  /v1/time/shifts:
+    get: Shift_getFromCompany
+  /v1/time/shifts/clock_in:
+    post: Shift_createClockInShift
+  /v1/time/shifts/clock_out:
+    post: Shift_updateClockOutShift
+  /v1/time/shifts/toggle:
+    post: Shift_toggleShiftStatus
+  /v1/time/shifts/{id}:
+    delete: Shift_deleteShiftById
+    put: Shift_updateShift
+  /v1/time/shifts_management:
+    get: Shift_getAllShifts
+    post: Shift_createNewShift
+  /v1/time/shifts_management/publish:
+    post: Shift_publishShiftsInsideTimeRange
+  /v1/time/shifts_management/{id}:
+    delete: Shift_deleteById
+    get: Shift_getById
+  /v1/time/shifts_management/{id}/locations:
+    put: Location_updateShiftLocation
+  /v1/time/shifts_management/{id}/notes:
+    put: Shift_updateNotes
+  /v2/core/bulk/attendance:
+    post: Attendance_getBulkV2
+  /v2/core/bulk/contract_version:
+    post: ContractVersion_getBulkVersions
+  /v2/core/bulk/employee:
+    post: Employee_getBulkV2
+  /v2/core/employees:
+    get: Employee_getAllEmployees
+    post: Employee_createNew
+  /v2/core/employees/{id}:
+    get: Employee_getById
+    put: Employee_updateEmployeeById
+  /v2/core/employees/{id}/email:
+    put: Employee_changeEmail
+  /v2/core/employees/{id}/invite:
+    post: Employee_sendInvitationEmail
+  /v2/core/employees/{id}/terminate:
+    post: Employee_setTerminationDetails
+  /v2/core/employees/{id}/unterminate:
+    post: Employee_unterminatePost
+  /v2/core/webhooks:
+    get: User_subscribedWebhooksList
+    post: Webhook_subscriptionCreate
+  /v2/core/webhooks/{id}:
+    delete: Webhook_deleteWebhook
+    put: Webhook_updateWebhookById
+  /v2/core/workplaces:
+    get: Workplace_listAllWorkplaces
+    post: Workplace_createNewWorkplace
+  /v2/core/workplaces/{id}:
+    delete: Workplace_removeWorkplace
+    get: Workplace_getById
+    put: Workplace_updateWorkplaceById
+  /v2/custom_fields/fields:
+    get: CustomField_getFieldsBySlug
+    post: CustomField_createField
+  /v2/custom_fields/fields/{id}:
+    delete: CustomField_deleteById
+  /v2/custom_fields/values:
+    get: CustomFieldValue_getBySlugName
+  /v2/custom_fields/values/{id}:
+    put: CustomFieldValue_updateValue
+  /v2/payroll_integrations/codes:
+    get: Integration_getAllCodes
+    post: IntegrationCode_createPayrollIntegrationCode
+  /v2/payroll_integrations/codes/{id}:
+    delete: Integration_deletePayrollCode
+    patch: Integration_updatePayrollCode
+  /v2/payroll_integrations/codes/{id}/find_employee:
+    get: Employee_getByPayrollIntegrationCode
+  /v2/time/attendance:
+    get: Attendance_getCompanyAttendance
+    post: Attendance_createNew
+  /v2/time/leaves:
+    get: Leave_getCompanyLeaves
+    post: Leave_createNewLeave
+  /v2/time/leaves/{id}:
+    delete: Leave_deleteById
+    get: Leave_getById
+    put: Leave_updateById
+operationTags:
+  /v1/ats/applications:
+    post: Application
+  /v1/ats/applications/{id}:
+    put: Application
+  /v1/ats/candidates:
+    get: Candidate
+    post: Candidate
+  /v1/ats/candidates/{id}:
+    delete: Candidate
+    put: Candidate
+  /v1/ats/job_postings:
+    get: Post
+    post: Post
+  /v1/ats/job_postings/{id}:
+    delete: Post
+    put: Post
+  /v1/ats/job_postings/{id}/duplicate:
+    post: Post
+  /v1/ats/messages:
+    get: Message
+    post: Message
+  /v1/company_holidays:
+    get: Holiday
+  /v1/company_holidays/{id}:
+    get: Holiday
+  /v1/core/custom/tables:
+    get: CustomTable
+    post: Table
+  /v1/core/custom/tables/{id}:
+    get: Table
+  /v1/core/custom/tables/{id}/fields:
+    get: Table
+    post: Table
+  /v1/core/custom/tables/{id}/values/{employee_id}:
+    get: Employee
+    post: Employee
+  /v1/core/documents:
+    get: Document
+    post: Document
+  /v1/core/documents/{id}:
+    delete: Document
+    get: Document
+    put: Document
+  /v1/core/events:
+    get: Event
+  /v1/core/folders:
+    get: Folder
+    post: Folder
+  /v1/core/folders/{id}:
+    get: Folder
+    put: Folder
+  /v1/core/keys:
+    get: Key
+    post: Key
+  /v1/core/keys/{id}:
+    delete: Key
+  /v1/core/legal_entities:
+    get: LegalEntity
+  /v1/core/legal_entities/{id}:
+    get: LegalEntity
+  /v1/core/tasks:
+    get: Task
+    post: Task
+  /v1/core/tasks/{id}:
+    delete: Task
+    get: Task
+    put: Task
+  /v1/core/tasks/{id}/copy:
+    post: Task
+  /v1/core/tasks/{id}/files:
+    get: Task
+    post: Task
+  /v1/core/tasks/{id}/resolve:
+    post: Task
+  /v1/core/tasks/{task_id}/files/{id}:
+    get: Task
+    post: Task
+  /v1/core/teams:
+    get: Team
+    post: Team
+  /v1/core/teams/{id}:
+    delete: Team
+    get: Team
+    put: Team
+  /v1/core/teams/{id}/employees/{employee_id}:
+    delete: Employee
+    post: Employee
+    put: Employee
+  /v1/core/webhooks:
+    get: User
+    post: Webhook
+  /v1/core/webhooks/{id}:
+    delete: Webhook
+  /v1/custom_fields:
+    get: CustomField
+  /v1/custom_fields/values:
+    get: CustomFieldValue
+    post: CustomFieldValue
+  /v1/employees:
+    get: Employee
+    post: Employee
+  /v1/employees/{id}:
+    get: Employee
+    put: Employee
+  /v1/employees/{id}/terminate:
+    post: Employee
+  /v1/employees/{id}/unterminate:
+    post: Employee
+  /v1/finance/expenses:
+    get: Expense
+  /v1/finance/expenses/{id}:
+    get: Expense
+  /v1/locations:
+    get: Location
+  /v1/locations/{id}:
+    get: Location
+  /v1/me:
+    get: User
+  /v1/payroll/compensations:
+    get: Compensation
+    post: Compensation
+  /v1/payroll/compensations/{id}:
+    delete: Compensation
+    get: Compensation
+    put: Compensation
+  /v1/payroll/contract_versions:
+    get: ContractVersion
+    post: ContractVersion
+  /v1/payroll/contract_versions/{id}:
+    delete: Contract
+    put: Contract
+  /v1/payroll/family_situation:
+    get: Employee
+    post: FamilySituation
+  /v1/payroll/family_situation/{id}:
+    put: FamilySituation
+  /v1/payroll/reference_contracts:
+    get: Contract
+  /v1/payroll/supplements:
+    get: Supplement
+    post: Supplement
+  /v1/payroll/supplements/{id}:
+    delete: Supplement
+    put: Supplement
+  /v1/payroll/taxonomies:
+    get: Taxonomy
+  /v1/payroll/taxonomies/{id}:
+    get: Taxonomy
+  /v1/posts:
+    get: Post
+    post: Post
+  /v1/posts/{id}:
+    delete: Post
+    get: Post
+    put: Post
+  /v1/time/break_configurations_for_dates:
+    get: Employee
+  /v1/time/breaks:
+    post: Break
+  /v1/time/breaks/end:
+    post: Break
+  /v1/time/breaks/start:
+    post: Break
+  /v1/time/leave_types:
+    get: Leave
+    post: Leave
+  /v1/time/leave_types/{id}:
+    put: Leave
+  /v1/time/leaves:
+    get: Leave
+    post: Leave
+  /v1/time/leaves/{id}:
+    delete: Leave
+    get: Leave
+    put: Leave
+  /v1/time/policies:
+    get: Policy
+  /v1/time/policies/{id}:
+    get: Policy
+  /v1/time/shifts:
+    get: Shift
+  /v1/time/shifts/clock_in:
+    post: Shift
+  /v1/time/shifts/clock_out:
+    post: Shift
+  /v1/time/shifts/toggle:
+    post: Shift
+  /v1/time/shifts/{id}:
+    delete: Shift
+    put: Shift
+  /v1/time/shifts_management:
+    get: Shift
+    post: Shift
+  /v1/time/shifts_management/publish:
+    post: Shift
+  /v1/time/shifts_management/{id}:
+    delete: Shift
+    get: Shift
+  /v1/time/shifts_management/{id}/locations:
+    put: Location
+  /v1/time/shifts_management/{id}/notes:
+    put: Shift
+  /v2/core/bulk/attendance:
+    post: Attendance
+  /v2/core/bulk/contract_version:
+    post: ContractVersion
+  /v2/core/bulk/employee:
+    post: Employee
+  /v2/core/employees:
+    get: Employee
+    post: Employee
+  /v2/core/employees/{id}:
+    get: Employee
+    put: Employee
+  /v2/core/employees/{id}/email:
+    put: Employee
+  /v2/core/employees/{id}/invite:
+    post: Employee
+  /v2/core/employees/{id}/terminate:
+    post: Employee
+  /v2/core/employees/{id}/unterminate:
+    post: Employee
+  /v2/core/webhooks:
+    get: User
+    post: Webhook
+  /v2/core/webhooks/{id}:
+    delete: Webhook
+    put: Webhook
+  /v2/core/workplaces:
+    get: Workplace
+    post: Workplace
+  /v2/core/workplaces/{id}:
+    delete: Workplace
+    get: Workplace
+    put: Workplace
+  /v2/custom_fields/fields:
+    get: CustomField
+    post: CustomField
+  /v2/custom_fields/fields/{id}:
+    delete: CustomField
+  /v2/custom_fields/values:
+    get: CustomFieldValue
+  /v2/custom_fields/values/{id}:
+    put: CustomFieldValue
+  /v2/payroll_integrations/codes:
+    get: Integration
+    post: IntegrationCode
+  /v2/payroll_integrations/codes/{id}:
+    delete: Integration
+    patch: Integration
+  /v2/payroll_integrations/codes/{id}/find_employee:
+    get: Employee
+  /v2/time/attendance:
+    get: Attendance
+    post: Attendance
+  /v2/time/leaves:
+    get: Leave
+    post: Leave
+  /v2/time/leaves/{id}:
+    delete: Leave
+    get: Leave
+    put: Leave
+renameTags: {}
+requestSchemaNames:
+  /v1/ats/applications:
+    post:
+      multipart/form-data: ApplicationCreateAtsApplicationRequest
+  /v1/ats/applications/{id}:
+    put:
+      application/json: ApplicationUpdateDataRequest
+  /v1/ats/candidates:
+    post:
+      application/json: CandidateCreateNewCandidateRequest
+  /v1/ats/candidates/{id}:
+    put:
+      application/json: CandidateUpdateCandidateDataRequest
+  /v1/ats/job_postings:
+    post:
+      application/json: PostAtsJobPostingRequest
+  /v1/ats/job_postings/{id}:
+    put:
+      application/json: PostJobPostingUpdateRequest
+  /v1/ats/messages:
+    post:
+      application/json: MessageCreateAtsMessageRequest
+  /v1/core/custom/tables:
+    post:
+      application/json: TableCreateCustomTableRequest
+  /v1/core/custom/tables/{id}/fields:
+    post:
+      application/json: TableCreateFieldRequest
+  /v1/core/custom/tables/{id}/values/{employee_id}:
+    post:
+      application/json: EmployeeCreateCustomTableValueRequest
+  /v1/core/documents:
+    post:
+      multipart/form-data: DocumentCreateNewDocumentRequest
+  /v1/core/documents/{id}:
+    put:
+      application/json: DocumentUpdateByIdRequest
+  /v1/core/folders:
+    post:
+      application/json: FolderCreateNewFolderRequest
+  /v1/core/folders/{id}:
+    put:
+      application/json: FolderUpdateFolderByIdRequest
+  /v1/core/keys:
+    post:
+      application/json: KeyCreateNewRequest
+  /v1/core/tasks:
+    post:
+      application/json: TaskCreateNewTaskRequest
+  /v1/core/tasks/{id}:
+    put:
+      application/json: TaskUpdateByIdRequest
+  /v1/core/tasks/{id}/copy:
+    post:
+      application/json: TaskCopyByIdRequest
+  /v1/core/tasks/{id}/files:
+    post:
+      application/json: TaskAddFileToTaskRequest
+  /v1/core/tasks/{id}/resolve:
+    post:
+      application/json: TaskResolveByIdRequest
+  /v1/core/teams:
+    post:
+      application/json: TeamCreateNewTeamRequest
+  /v1/core/teams/{id}:
+    put:
+      application/json: TeamUpdateTeamByIdRequest
+  /v1/core/teams/{id}/employees/{employee_id}:
+    put:
+      application/json: EmployeeUpdateInTeamRequest
+  /v1/core/webhooks:
+    post:
+      application/json: WebhookCreateSubscriptionRequest
+  /v1/custom_fields/values:
+    post:
+      application/json: CustomFieldValueCreateCustomValueRequest
+  /v1/employees:
+    post:
+      application/json: EmployeeCreateEmployeeRequest
+  /v1/employees/{id}:
+    put:
+      application/json: EmployeeUpdateByIdRequest
+  /v1/employees/{id}/terminate:
+    post:
+      application/json: EmployeeTerminateEmployeeRequest
+  /v1/payroll/compensations:
+    post:
+      application/json: CompensationCreateContractCompensationRequest
+  /v1/payroll/compensations/{id}:
+    put:
+      application/json: CompensationUpdateForContractRequest
+  /v1/payroll/contract_versions:
+    post:
+      application/json: ContractVersionCreateNewVersionRequest
+  /v1/payroll/contract_versions/{id}:
+    put:
+      application/json: ContractUpdateVersionRequest
+  /v1/payroll/family_situation:
+    post:
+      application/json: FamilySituationCreateNewRequest
+  /v1/payroll/family_situation/{id}:
+    put:
+      application/json: FamilySituationUpdateFamilySituationRequest
+  /v1/payroll/supplements:
+    post:
+      application/json: SupplementCreateNewSupplementRequest
+  /v1/payroll/supplements/{id}:
+    put:
+      application/json: SupplementUpdateByIdRequest
+  /v1/posts:
+    post:
+      application/json: PostCreateNewPostRequest
+  /v1/posts/{id}:
+    put:
+      application/json: PostUpdateExistingPostRequest
+  /v1/time/breaks:
+    post:
+      application/json: BreakCreateBreakRequest
+  /v1/time/breaks/end:
+    post:
+      application/json: BreakEndBreakRequest
+  /v1/time/breaks/start:
+    post:
+      application/json: BreakStartBreakRequest
+  /v1/time/leave_types:
+    post:
+      application/json: LeaveTypeCreateRequest
+  /v1/time/leave_types/{id}:
+    put:
+      application/json: LeaveUpdateTypeRequest
+  /v1/time/leaves:
+    post:
+      application/json: LeaveCreateNewLeaveRequest
+  /v1/time/leaves/{id}:
+    put:
+      application/json: LeaveUpdateLeaveByIdRequest
+  /v1/time/shifts/clock_in:
+    post:
+      application/json: ShiftCreateClockInShiftRequest
+  /v1/time/shifts/clock_out:
+    post:
+      application/json: ShiftUpdateClockOutShiftRequest
+  /v1/time/shifts/toggle:
+    post:
+      application/json: ShiftToggleShiftStatusRequest
+  /v1/time/shifts/{id}:
+    put:
+      application/json: ShiftUpdateShiftRequest
+  /v1/time/shifts_management:
+    post:
+      application/json: ShiftCreateNewShiftRequest
+  /v1/time/shifts_management/publish:
+    post:
+      application/json: ShiftPublishShiftsInsideTimeRangeRequest
+  /v1/time/shifts_management/{id}/locations:
+    put:
+      application/json: LocationUpdateShiftLocationRequest
+  /v1/time/shifts_management/{id}/notes:
+    put:
+      application/json: ShiftUpdateNotesRequest
+  /v2/core/employees:
+    post:
+      application/json: EmployeeCreateNewRequest
+  /v2/core/employees/{id}:
+    put:
+      application/json: EmployeeUpdateEmployeeByIdRequest
+  /v2/core/employees/{id}/email:
+    put:
+      application/json: EmployeeChangeEmailRequest
+  /v2/core/employees/{id}/terminate:
+    post:
+      application/json: EmployeeSetTerminationDetailsRequest
+  /v2/core/webhooks:
+    post:
+      application/json: WebhookSubscriptionCreateRequest
+  /v2/core/webhooks/{id}:
+    put:
+      application/json: WebhookUpdateWebhookByIdRequest
+  /v2/core/workplaces:
+    post:
+      application/json: WorkplaceCreateNewWorkplaceRequest
+  /v2/core/workplaces/{id}:
+    put:
+      application/json: WorkplaceUpdateWorkplaceByIdRequest
+  /v2/custom_fields/fields:
+    post:
+      application/json: CustomFieldCreateFieldRequest
+  /v2/custom_fields/values/{id}:
+    put:
+      application/json: CustomFieldValueUpdateValueRequest
+  /v2/payroll_integrations/codes:
+    post:
+      application/json: IntegrationCodeCreatePayrollIntegrationCodeRequest
+  /v2/payroll_integrations/codes/{id}:
+    patch:
+      application/json: IntegrationUpdatePayrollCodeRequest
+  /v2/time/attendance:
+    post:
+      application/json: AttendanceCreateNewRequest
+  /v2/time/leaves:
+    post:
+      application/json: LeaveCreateNewLeaveRequest1
+  /v2/time/leaves/{id}:
+    put:
+      application/json: LeaveUpdateByIdRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /v1/ats/candidates:
+    get:
+      '200':
+        application/json: CandidateListAllCandidatesResponse
+  /v1/ats/job_postings:
+    get:
+      '200':
+        application/json: PostGetAllPostingsResponse
+  /v1/ats/messages:
+    get:
+      '200':
+        application/json: MessageGetAllMessagesResponse
+  /v1/company_holidays:
+    get:
+      '200':
+        application/json: HolidayGetAllCompanyHolidaysResponse
+  /v1/core/custom/tables:
+    get:
+      '200':
+        application/json: CustomTableGetResponse
+  /v1/core/custom/tables/{id}/fields:
+    get:
+      '200':
+        application/json: TableGetFieldsResponse
+  /v1/core/custom/tables/{id}/values/{employee_id}:
+    get:
+      '200':
+        application/json: EmployeeGetCustomTableValuesResponse
+  /v1/core/documents:
+    get:
+      '200':
+        application/json: DocumentListGivenEmployeeOrFolderResponse
+  /v1/core/events:
+    get:
+      '200':
+        application/json: EventGetTriggeredEventsResponse
+  /v1/core/folders:
+    get:
+      '200':
+        application/json: FolderGetByNameAndStatusResponse
+    post:
+      '200':
+        application/json: FolderCreateNewFolderResponse
+  /v1/core/keys:
+    get:
+      '200':
+        application/json: KeyGetCollectionResponse
+  /v1/core/legal_entities:
+    get:
+      '200':
+        application/json: LegalEntityListLegalEntitiesResponse
+  /v1/core/tasks:
+    get:
+      '200':
+        application/json: TaskGetAllTasksResponse
+  /v1/core/teams:
+    get:
+      '200':
+        application/json: TeamGetAllTeamsResponse
+  /v1/core/teams/{id}:
+    get:
+      '200':
+        application/json: TeamGetByIdResponse
+  /v1/core/webhooks:
+    get:
+      '200':
+        application/json: UserSubscribedWebhooksList200Response
+    post:
+      '200':
+        application/json: WebhookCreateSubscriptionResponse
+  /v1/core/webhooks/{id}:
+    delete:
+      '200':
+        application/json: WebhookDeleteWebhookByIdResponse
+  /v1/custom_fields:
+    get:
+      '200':
+        application/json: CustomFieldGetFieldsByGroupResponse
+  /v1/employees:
+    get:
+      '200':
+        application/json: EmployeeGetEmployeesResponse
+  /v1/finance/expenses:
+    get:
+      '200':
+        application/json: ExpenseGetCompanyExpensesResponse
+  /v1/locations:
+    get:
+      '200':
+        application/json: LocationGetAllLocationsResponse
+  /v1/payroll/compensations:
+    get:
+      '200':
+        application/json: CompensationGetCompensationsResponse
+  /v1/payroll/compensations/{id}:
+    delete:
+      '200':
+        application/json: CompensationDeleteCompensationResponse
+  /v1/payroll/contract_versions:
+    get:
+      '200':
+        application/json: ContractVersionGetAllVersionsResponse
+  /v1/payroll/family_situation:
+    get:
+      '200':
+        application/json: EmployeeListFamilySituationsResponse
+  /v1/payroll/reference_contracts:
+    get:
+      '200':
+        application/json: ContractGetAllReferenceContractsResponse
+  /v1/payroll/supplements:
+    get:
+      '200':
+        application/json: SupplementGetAllResponse
+  /v1/payroll/taxonomies:
+    get:
+      '200':
+        application/json: TaxonomyGetCompanyTaxonomiesResponse
+  /v1/posts:
+    get:
+      '200':
+        application/json: PostListPostsResponse
+    post:
+      '200':
+        application/json: PostCreateNewPostResponse
+  /v1/posts/{id}:
+    put:
+      '200':
+        application/json: PostUpdateExistingPostResponse
+  /v1/time/break_configurations_for_dates:
+    get:
+      '200':
+        application/json: EmployeeListBreakConfigurationsForDatesResponse
+  /v1/time/leave_types:
+    get:
+      '200':
+        application/json: LeaveGetTypesResponse
+  /v1/time/leaves:
+    get:
+      '200':
+        application/json: LeaveGetCompanyLeavesResponse
+  /v1/time/policies:
+    get:
+      '200':
+        application/json: PolicyGetTimeOffPoliciesResponse
+  /v1/time/shifts:
+    get:
+      '200':
+        application/json: ShiftGetFromCompanyResponse
+  /v1/time/shifts_management:
+    get:
+      '200':
+        application/json: ShiftGetAllShiftsResponse
+  /v2/core/bulk/attendance:
+    post:
+      '200':
+        application/json: AttendanceGetBulkV2Response
+  /v2/core/bulk/contract_version:
+    post:
+      '200':
+        application/json: ContractVersionGetBulkVersionsResponse
+  /v2/core/bulk/employee:
+    post:
+      '200':
+        application/json: EmployeeGetBulkV2Response
+  /v2/core/employees:
+    get:
+      '200':
+        application/json: EmployeeGetAllEmployeesResponse
+  /v2/core/webhooks:
+    get:
+      '200':
+        application/json: UserSubscribedWebhooksListResponse
+    post:
+      '200':
+        application/json: WebhookSubscriptionCreateResponse
+  /v2/core/workplaces:
+    get:
+      '200':
+        application/json: WorkplaceListAllWorkplacesResponse
+  /v2/core/workplaces/{id}:
+    delete:
+      '200':
+        application/json: WorkplaceRemoveWorkplaceResponse
+  /v2/custom_fields/fields:
+    get:
+      '200':
+        application/json: CustomFieldGetFieldsBySlugResponse
+  /v2/custom_fields/fields/{id}:
+    delete:
+      '200':
+        application/json: CustomFieldDeleteByIdResponse
+  /v2/custom_fields/values:
+    get:
+      '200':
+        application/json: CustomFieldValueGetBySlugNameResponse
+  /v2/payroll_integrations/codes:
+    get:
+      '200':
+        application/json: IntegrationGetAllCodesResponse
+  /v2/payroll_integrations/codes/{id}/find_employee:
+    get:
+      '200':
+        application/json: EmployeeGetByPayrollIntegrationCodeResponse
+  /v2/time/attendance:
+    get:
+      '200':
+        application/json: AttendanceGetCompanyAttendanceResponse
+  /v2/time/leaves:
+    get:
+      '200':
+        application/json: LeaveGetCompanyLeaves200Response
+securityParameters:
+  active:
+    query: false
+  assignee_id:
+    query: false
+  code:
+    query: false
+  contract_version_ids:
+    query: false
+  conversation_id:
+    query: false
+  date_from:
+    query: false
+  date_to:
+    query: false
+  employee_id:
+    query: false
+  employee_ids:
+    query: false
+  employee_ids%5B%5D:
+    query: false
+  employee_ids[]:
+    query: false
+  end_at:
+    query: false
+  field_group:
+    query: false
+  field_id:
+    query: false
+  field_value:
+    query: false
+  folder_id:
+    query: false
+  from:
+    query: false
+  full_text_name:
+    query: false
+  id:
+    query: false
+  ids:
+    query: false
+  include_leave_type:
+    query: false
+  instance_id:
+    query: false
+  integration:
+    query: false
+  label:
+    query: false
+  leave_type_ids[]:
+    query: false
+  legal_entity_id:
+    query: false
+  legal_entity_ids:
+    query: false
+  location_id:
+    query: false
+  month:
+    query: false
+  name:
+    query: false
+  only_published:
+    query: false
+  slug_id:
+    query: false
+  slug_name:
+    query: false
+  start_at:
+    query: false
+  status:
+    query: false
+  team_id:
+    query: false
+  to:
+    query: false
+  topic_name:
+    query: false
+  year:
+    query: false
+validServerUrls: {}

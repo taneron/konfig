@@ -1,0 +1,6461 @@
+{
+  "securitySchemes": {
+    "oauth2": {
+      "type": "oauth2",
+      "flows": {
+        "authorizationCode": {
+          "authorizationUrl": "/oauth/authorize",
+          "tokenUrl": "/oauth/token",
+          "refreshUrl": "/oauth/token",
+          "scopes": {
+            "read": "Required for all operations",
+            "write": "Required for write operations"
+          }
+        }
+      }
+    },
+    "apikey": {
+      "type": "apiKey",
+      "in": "header",
+      "name": "x-api-key"
+    }
+  },
+  "apiBaseUrl": "https://api.factorialhr.com/api",
+  "apiVersion": "1.0.0",
+  "apiDescription": "Open Api Specifications available at [https://github.com/factorialco/oas](https://github.com/factorialco/oasLooking)\n\nGuides and support available at [https://help.factorialhr.com/integrations](https://help.factorialhr.com/integrations)\n\n# Authentication\n\nThe public API provides two methods of authentication, ApiKeys and OAuth2. The following sections provide information regarding each one and their intent.\n\n## OAuth2\n\n> OAuth2 is used to identify individual users, not applications or platforms.\n\nOAuth2 is available for authenticating to the public API and making requests via third parties **on behalf of a user**. All actions are authored on behalf of the user that creates the token. This means the intent is to be used mainly to do submit actions the actual user is performing on an alternative interface.\n\nTo generate a token you will require opening an authorization dialog that returns a code, this code can then be exchanged for a token.\n\n### Configuration\n\nIn order to create an OAuth application, you must be an admin, head over to your [personal repository of OAuth applications](https://api.factorialhr.com/oauth/applications), click on `New application` and follow the creation process.\n\nThe Factorial API enforces the same permissions at the user level than the Factorial web application. This means that Factorial API users will only be able to perform the same actions they are allowed to do in the Factorial platform.\n\nNext step will be to generate the Authorization Code you will need in order to generate an OAuth2 Token.\n\n### OAuth2 Code Generation\n\nShould be generated via browser by opening the following url. The user should be already logged in to Factorial beforehand.\n\n`https://api.factorialhr.com/oauth/authorize?client_id=&redirect_uri=&response_type=code&scope=`\n\nYOUR_CLIENT_ID: OAuth2 Application Id\nREDIRECT_URI: OAuth2 Redirect URL\n\n#### State Parameter\n\nAn optional query parameter called `state` can be added to the code generation url. Any string can be used and will be sent on the callback url.\n\n> Authorization protocols provide a `state` parameter that allows you to restore the previous state of your application. The `state` parameter preserves some state objects set by the client in the Authorization request and makes it available to the client in the response.\n\n### OAuth2 Token Generation\n\nOnce you have the authorization code, you can request their access token to Factorial.\n\n`curl -X POST 'https://api.factorialhr.com/oauth/token' -d 'client_id=&client_secret=&code=&grant_type=authorization_code&redirect_uri='`\n\nYOUR_CLIENT_ID: OAuth2 Application Id\nYOUR_CLIENT_SECRET: OAuth2 Application Secret\nAUTHORIZATION_CODE: OAuth2 CODE\nREDIRECT_URI: OAuth2 Redirect URL\n\n> You can generate only one OAuth2 token per Code, that means that if you want to generate a new token for a Code that already have one you should refresh your token.\n\nEvery time a new token is generated a refresh token is generated as well, so that you can use it on the OAuth2 Refresh Token, and an expire date is also provided.\n\n### OAuth2 Refresh Token\n\nYou can generate a new token under the same Code with a new expire date (you can do it as many times as you need). A refresh token is also returned here so that you can use it on the OAuth2 Refresh Token again.\n\n`curl -X POST 'https://api.factorialhr.com/oauth/token' -d 'client_id=&client_secret=&refresh_token=&grant_type=refresh_token'`\n\nYOUR_CLIENT_ID: OAuth2 Application Id\nYOUR_CLIENT_SECRET: OAuth2 Application Secret\nREFRESH_TOKEN: OAuth2 Refresh Token\n\n### OAuth2 Revoke Token\n\nYou can revoke an access/refresh token if you do not want it to be active anylonger. This can happen in cases where you have refreshed your token and would like to revoke the previous token if you haven't used the new token yet, as using the new token automatically revokes the previous one.\n\n`curl -X POST 'https://api.factorialhr.com/oauth/revoke' -d 'client_id=&client_secret=&token='`\n\nYOUR_CLIENT_ID: OAuth2 Application Id\nYOUR_CLIENT_SECRET: OAuth2 Application Secret\nTOKEN: OAuth2 Access/Refresh Token (whichever you wish to revoke)\n\n### OAuth2 Token Usage\n\nThe generated token is the credential for performing authenticated requests to Factorial. This token should be included in the Authorization header prefixed with the word Bearer and a separating space.\nAs an example, if your token is `12345` then the header content should be `Bearer 12345`.\n\n### Maintaining a persistent connection\n\nTo maintain a persistent connection, you should not let the token expire. You can avoid this by simply refreshing your token before the expiration date. This will give you another token with a new expiration date, before that token expires you should refresh it again, and so on...\nIf you want to do this automatically, you should provide something in your code that will help you perform the update every time the token expires. Otherwise, you would have to do the update manually and make sure you refresh your token before the expiration date to maintain the connection.\n\n## ApiKeys\n\n> API keys are used to identify systems, not the individual users that access.\n\nApiKeys have **TOTAL ACCESS** to everything and never expire. Its the creators responsibility to generate them and store them securely.\n\n### Generation\n\nIn the `Core>Keys` section of this documentation you can access the apis for managing this resource.\n\n### Usage\n\nApiKeys are a single string of symbols that must be added as a custom header on the request. The header name must be `x-api-key` and the key must be the value without any prefixes.\n\n### Disclaimer\n\nApiKey management require full admin permissions as the resource itself allows for full admin access to the entire platform on behalf of the company and not of a user, therefore any operations are not linked to any user in particular.\n\n# Development\n\n## SDKs\n\nComing soon\n\n## Sandbox\n\nA sandbox/demo environment is available for testing integrations via public API calls. Developers can request provisioning with full access to a demo company where to test code before actually interacting with a production environment.\n\nContact your account manager or account executive to request this environment and get OAuth2 credentials for generating tokens.\n\nNote: the domain for sandbox is different than that from production. Sandbox base domain is `http://api.demo.factorialhr.com`\n\n## Postman\n\nClick the \"Run in Postman\" button to open the full list of endpoints on your Postman workspace as a Postman Collection.\nInside the collection lookout for the Collection's Variables, configure your variables accordingly.\n\n### Delegating Token Generation To Postman\n\nComing soon\n\n# Changelog\n\nComing soon\n\n# How to...\n\n## Custom Fields\n\nCustom fields are useful when you want to add some fields that are not the default ones, to every employee of the company.\n\nFor that, you have to create via Factorial App the base custom field in order to have all the employees with it. That option is available in customization, inside the company menu\n\nOnce you have that, via API, you can [Create a value for a custom field](https://apidoc.factorialhr.com/#72f3f786-e37d-4e80-ada2-0beedd03b171) to each employee. You should know the custom field id in order to make that, you can check it by [getting a collection of custom fields](https://apidoc.factorialhr.com/#f98dae5a-a8d0-474e-a181-7e9603409b42)",
+  "apiTitle": "Factorial API",
+  "endpoints": 101,
+  "sdkMethods": 161,
+  "schemas": 175,
+  "parameters": 573,
+  "originalCustomRequest": {
+    "lambda": true
+  },
+  "customRequestSpecFilename": "factorialhr.com.yaml",
+  "difficultyScore": 330.75,
+  "difficulty": "Hard",
+  "company": "Factorial",
+  "sdkName": "factorial-{language}-sdk",
+  "clientName": "Factorial",
+  "metaDescription": "With over 8,000 clients worldwide, Factorial is one of the leading HR softwares for SMEs. We provide intuitive HR solutions that automate and centralize administrative tasks to provide insights and help your business run smoothly.\n\nFactorial was founded in 2016 in Barcelona and experienced quick growth due to the fact that so many businesses face the same challenge: wasting time on never-ending manual tasks. A few years later, in 2022, Factorial became a Unicorn, propelling us forward to continue on our mission of providing your business with a one-stop-shop solution for all people processes. \n\nFactorial offers solutions like time management, talent management, recruitment, expenses, analytics, document management to name a few. Our all-in-one, user friendly platform makes it easier for businesses to focus on matters, the people within it.",
+  "apiStatusUrls": "inherit",
+  "homepage": "factorialhr.com",
+  "developerDocumentation": "apidoc.factorialhr.com/reference/core-employees-v1",
+  "categories": [
+    "hr",
+    "time_management",
+    "talent_management",
+    "recruitment",
+    "document_management",
+    "hr_software",
+    "human_resources",
+    "hr_platform",
+    "hr_solutions",
+    "hr_tech",
+    "hrms",
+    "people_management_platform",
+    "hr_systems",
+    "payroll_services",
+    "payroll_tax_services",
+    "benefits_administration",
+    "benefits",
+    "employee_engagement",
+    "insurance",
+    "payroll"
+  ],
+  "category": "HR Talent & Recruitment",
+  "methods": [
+    {
+      "url": "/v1/employees",
+      "method": "getEmployees",
+      "httpMethod": "get",
+      "tag": "Employee",
+      "typeScriptTag": "employee",
+      "description": "Get employees from a company",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/employees",
+      "method": "createEmployee",
+      "httpMethod": "post",
+      "tag": "Employee",
+      "typeScriptTag": "employee",
+      "description": "Create employee",
+      "parameters": [
+        {
+          "name": "email",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "bob_stone@factorial.co"
+        },
+        {
+          "name": "first_name",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "Bob"
+        },
+        {
+          "name": "last_name",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "Stone"
+        },
+        {
+          "name": "birthday_on",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "2000-01-08"
+        },
+        {
+          "name": "start_date",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "2022-01-08"
+        },
+        {
+          "name": "regular_access_starts_on",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "2022-01-08"
+        },
+        {
+          "name": "manager_id",
+          "schema": "integer",
+          "required": false,
+          "description": "",
+          "example": 5
+        },
+        {
+          "name": "role",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "basic"
+        },
+        {
+          "name": "timeoff_manager_id",
+          "schema": "integer",
+          "required": false,
+          "description": "",
+          "example": 5
+        },
+        {
+          "name": "terminated_on",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "2022-01-08"
+        },
+        {
+          "name": "termination_reason",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "behaviour"
+        },
+        {
+          "name": "company_identifier",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "124ABC"
+        },
+        {
+          "name": "phone_number",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "622564089"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "201",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/employees/{id}",
+      "method": "getEmployeeById",
+      "httpMethod": "get",
+      "tag": "Employee",
+      "typeScriptTag": "employee",
+      "description": "Get employee",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "(Required)",
+          "example": 5
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/employees/{id}",
+      "method": "updateById",
+      "httpMethod": "put",
+      "tag": "Employee",
+      "typeScriptTag": "employee",
+      "description": "Update employee",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "(Required)",
+          "example": 5
+        },
+        {
+          "name": "first_name",
+          "schema": "string",
+          "description": "",
+          "example": "Bob"
+        },
+        {
+          "name": "last_name",
+          "schema": "string",
+          "description": "",
+          "example": "Stone"
+        },
+        {
+          "name": "manager_id",
+          "schema": "integer",
+          "description": "",
+          "example": 5
+        },
+        {
+          "name": "role",
+          "schema": "string",
+          "description": "",
+          "example": "basic"
+        },
+        {
+          "name": "timeoff_manager_id",
+          "schema": "integer",
+          "description": "",
+          "example": 5
+        },
+        {
+          "name": "company_identifier",
+          "schema": "string",
+          "description": "",
+          "example": "124ABC"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/employees/{id}/terminate",
+      "method": "terminateEmployee",
+      "httpMethod": "post",
+      "tag": "Employee",
+      "typeScriptTag": "employee",
+      "description": "Terminate employee",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "(Required)",
+          "example": 5
+        },
+        {
+          "name": "terminated_on",
+          "schema": "string",
+          "description": "",
+          "example": "1992-05-02"
+        },
+        {
+          "name": "termination_reason",
+          "schema": "string",
+          "description": "",
+          "example": "Behaviour"
+        },
+        {
+          "name": "termination_assigned_manager_id",
+          "schema": "integer",
+          "description": "",
+          "example": 5
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/employees/{id}/unterminate",
+      "method": "unterminateEmployee",
+      "httpMethod": "post",
+      "tag": "Employee",
+      "typeScriptTag": "employee",
+      "description": "Unterminate employee",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "(Required)",
+          "example": 5
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v2/core/employees",
+      "method": "getAllEmployees",
+      "httpMethod": "get",
+      "tag": "Employee",
+      "typeScriptTag": "employee",
+      "description": "Get employees from a company",
+      "parameters": [
+        {
+          "name": "fullTextName",
+          "schema": "string",
+          "description": "Retrieves the list of employees by full names",
+          "example": "Bob Stone"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v2/core/employees",
+      "method": "createNew",
+      "httpMethod": "post",
+      "tag": "Employee",
+      "typeScriptTag": "employee",
+      "description": "Create employee",
+      "parameters": [
+        {
+          "name": "email",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "bob_stone@factorial.co"
+        },
+        {
+          "name": "first_name",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "Bob"
+        },
+        {
+          "name": "last_name",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "Stone"
+        },
+        {
+          "name": "birthday_on",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "2000-01-08"
+        },
+        {
+          "name": "role",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "basic"
+        },
+        {
+          "name": "gender",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "female"
+        },
+        {
+          "name": "identifier",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "Y7729503E"
+        },
+        {
+          "name": "identifier_type",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "nie"
+        },
+        {
+          "name": "nationality",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "es"
+        },
+        {
+          "name": "bank_number",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "ES09 4595 6109 8115 7760 8354"
+        },
+        {
+          "name": "country",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "es"
+        },
+        {
+          "name": "city",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "Barcelona"
+        },
+        {
+          "name": "state",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "Barcelona"
+        },
+        {
+          "name": "postal_code",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "08007"
+        },
+        {
+          "name": "address_line_1",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "c/ Tallers 123"
+        },
+        {
+          "name": "address_line_2",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "Atic 5"
+        },
+        {
+          "name": "swift_bic",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "1234567890"
+        },
+        {
+          "name": "company_id",
+          "schema": "integer",
+          "required": false,
+          "description": "",
+          "example": 5
+        },
+        {
+          "name": "manager_id",
+          "schema": "integer",
+          "required": false,
+          "description": "",
+          "example": 5
+        },
+        {
+          "name": "location_id",
+          "schema": "integer",
+          "required": false,
+          "description": "",
+          "example": 5
+        },
+        {
+          "name": "timeoff_manager_id",
+          "schema": "integer",
+          "required": false,
+          "description": "",
+          "example": 5
+        },
+        {
+          "name": "legal_entity_id",
+          "schema": "integer",
+          "required": false,
+          "description": "",
+          "example": 765
+        },
+        {
+          "name": "company_identifier",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "124ABC"
+        },
+        {
+          "name": "phone_number",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "622564089"
+        },
+        {
+          "name": "social_security_number",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "223948780514"
+        },
+        {
+          "name": "tax_id",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "121232323"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "201",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v2/core/employees/{id}",
+      "method": "getById",
+      "httpMethod": "get",
+      "tag": "Employee",
+      "typeScriptTag": "employee",
+      "description": "Get employee",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "(Required)",
+          "example": 5
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v2/core/employees/{id}",
+      "method": "updateEmployeeById",
+      "httpMethod": "put",
+      "tag": "Employee",
+      "typeScriptTag": "employee",
+      "description": "Update employee",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "(Required)",
+          "example": 5
+        },
+        {
+          "name": "email",
+          "schema": "string",
+          "description": "",
+          "example": "bob_stone@factorial.co"
+        },
+        {
+          "name": "first_name",
+          "schema": "string",
+          "description": "",
+          "example": "Bob"
+        },
+        {
+          "name": "last_name",
+          "schema": "string",
+          "description": "",
+          "example": "Stone"
+        },
+        {
+          "name": "birthday_on",
+          "schema": "string",
+          "description": "",
+          "example": "2000-01-08"
+        },
+        {
+          "name": "role",
+          "schema": "string",
+          "description": "",
+          "example": "basic"
+        },
+        {
+          "name": "gender",
+          "schema": "string",
+          "description": "",
+          "example": "female"
+        },
+        {
+          "name": "identifier",
+          "schema": "string",
+          "description": "",
+          "example": "Y7729503E"
+        },
+        {
+          "name": "identifier_type",
+          "schema": "string",
+          "description": "",
+          "example": "nie"
+        },
+        {
+          "name": "nationality",
+          "schema": "string",
+          "description": "",
+          "example": "es"
+        },
+        {
+          "name": "bank_number",
+          "schema": "string",
+          "description": "",
+          "example": "ES09 4595 6109 8115 7760 8354"
+        },
+        {
+          "name": "country",
+          "schema": "string",
+          "description": "",
+          "example": "es"
+        },
+        {
+          "name": "city",
+          "schema": "string",
+          "description": "",
+          "example": "Barcelona"
+        },
+        {
+          "name": "state",
+          "schema": "string",
+          "description": "",
+          "example": "Barcelona"
+        },
+        {
+          "name": "postal_code",
+          "schema": "string",
+          "description": "",
+          "example": "08007"
+        },
+        {
+          "name": "address_line_1",
+          "schema": "string",
+          "description": "",
+          "example": "c/ Tallers 123"
+        },
+        {
+          "name": "address_line_2",
+          "schema": "string",
+          "description": "",
+          "example": "Atic 5"
+        },
+        {
+          "name": "swift_bic",
+          "schema": "string",
+          "description": "",
+          "example": "1234567890"
+        },
+        {
+          "name": "manager_id",
+          "schema": "integer",
+          "description": "",
+          "example": 5
+        },
+        {
+          "name": "location_id",
+          "schema": "integer",
+          "description": "",
+          "example": 5
+        },
+        {
+          "name": "timeoff_manager_id",
+          "schema": "integer",
+          "description": "",
+          "example": 5
+        },
+        {
+          "name": "phone_number",
+          "schema": "string",
+          "description": "",
+          "example": "678901234"
+        },
+        {
+          "name": "social_security_number",
+          "schema": "integer",
+          "description": "",
+          "example": 223948780514
+        },
+        {
+          "name": "legal_entity_id",
+          "schema": "integer",
+          "description": "",
+          "example": 235
+        },
+        {
+          "name": "company_identifier",
+          "schema": "string",
+          "description": "",
+          "example": "124ABC"
+        },
+        {
+          "name": "contact_name",
+          "schema": "string",
+          "description": "",
+          "example": "John"
+        },
+        {
+          "name": "contact_number",
+          "schema": "string",
+          "description": "",
+          "example": "678901234"
+        },
+        {
+          "name": "tax_id",
+          "schema": "string",
+          "description": "",
+          "example": "121232323"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v2/core/employees/{id}/invite",
+      "method": "sendInvitationEmail",
+      "httpMethod": "post",
+      "tag": "Employee",
+      "typeScriptTag": "employee",
+      "description": "Invite employee",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "(Required)",
+          "example": 5
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v2/core/employees/{id}/email",
+      "method": "changeEmail",
+      "httpMethod": "put",
+      "tag": "Employee",
+      "typeScriptTag": "employee",
+      "description": "Change employee email",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "(Required)",
+          "example": 5
+        },
+        {
+          "name": "email",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "bob_stone1@factorial.co"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v2/core/employees/{id}/terminate",
+      "method": "setTerminationDetails",
+      "httpMethod": "post",
+      "tag": "Employee",
+      "typeScriptTag": "employee",
+      "description": "Terminate employee",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "(Required)",
+          "example": 5
+        },
+        {
+          "name": "terminated_on",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "2023-02-08"
+        },
+        {
+          "name": "termination_reason",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "a termination reason"
+        },
+        {
+          "name": "termination_reason_type",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "termination_assigned_manager_id",
+          "schema": "integer",
+          "required": false,
+          "description": "",
+          "example": 5
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v2/core/employees/{id}/unterminate",
+      "method": "unterminatePost",
+      "httpMethod": "post",
+      "tag": "Employee",
+      "typeScriptTag": "employee",
+      "description": "Unterminate employee",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "(Required)",
+          "example": 5
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v2/core/webhooks",
+      "method": "subscribedWebhooksList",
+      "httpMethod": "get",
+      "tag": "User",
+      "typeScriptTag": "user",
+      "description": "Get a list of all subscribed webhooks for current user",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v2/core/webhooks",
+      "method": "subscriptionCreate",
+      "httpMethod": "post",
+      "tag": "Webhook",
+      "typeScriptTag": "webhook",
+      "description": "Create a webhook",
+      "parameters": [
+        {
+          "name": "subscription_type",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "Employees::Events::EmployeeCreated"
+        },
+        {
+          "name": "target_url",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "https://webhook.site/48103127-b1f6-3215-8f18-60fdbc013e3f"
+        },
+        {
+          "name": "name",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "creating employee webhook"
+        },
+        {
+          "name": "challenge",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "9288376100399000"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v2/core/webhooks/{id}",
+      "method": "deleteWebhook",
+      "httpMethod": "delete",
+      "tag": "Webhook",
+      "typeScriptTag": "webhook",
+      "description": "Delete a Webhook",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "(Required)",
+          "example": 1
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v2/core/webhooks/{id}",
+      "method": "updateWebhookById",
+      "httpMethod": "put",
+      "tag": "Webhook",
+      "typeScriptTag": "webhook",
+      "description": "Update a Webhook",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "(Required)",
+          "example": 1
+        },
+        {
+          "name": "target_url",
+          "schema": "string",
+          "description": "",
+          "example": "Employees::Events::EmployeeCreated"
+        },
+        {
+          "name": "name",
+          "schema": "string",
+          "description": "",
+          "example": "creating employee webhook"
+        },
+        {
+          "name": "challenge",
+          "schema": "string",
+          "description": "",
+          "example": "9288376100399000"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/me",
+      "method": "infoGet",
+      "httpMethod": "get",
+      "tag": "User",
+      "typeScriptTag": "user",
+      "description": "Get information about current user",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": "OK"
+        }
+      ]
+    },
+    {
+      "url": "/v1/locations",
+      "method": "getAllLocations",
+      "httpMethod": "get",
+      "tag": "Location",
+      "typeScriptTag": "location",
+      "description": "Get all locations",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/locations/{id}",
+      "method": "getById",
+      "httpMethod": "get",
+      "tag": "Location",
+      "typeScriptTag": "location",
+      "description": "Get a Location by ID",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "(Required)",
+          "example": 1
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/company_holidays",
+      "method": "getAllCompanyHolidays",
+      "httpMethod": "get",
+      "tag": "Holiday",
+      "typeScriptTag": "holiday",
+      "description": "Get all company holidays",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/company_holidays/{id}",
+      "method": "getById",
+      "httpMethod": "get",
+      "tag": "Holiday",
+      "typeScriptTag": "holiday",
+      "description": "Get a company holiday by ID",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "(Required)",
+          "example": 5
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/core/teams",
+      "method": "getAllTeams",
+      "httpMethod": "get",
+      "tag": "Team",
+      "typeScriptTag": "team",
+      "description": "Get teams",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/core/teams",
+      "method": "createNewTeam",
+      "httpMethod": "post",
+      "tag": "Team",
+      "typeScriptTag": "team",
+      "description": "Create a team",
+      "parameters": [
+        {
+          "name": "description",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "Team description"
+        },
+        {
+          "name": "name",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "Management"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "201",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/core/teams/{id}",
+      "method": "removeTeam",
+      "httpMethod": "delete",
+      "tag": "Team",
+      "typeScriptTag": "team",
+      "description": "Delete a team",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "(Required)",
+          "example": 1
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/core/teams/{id}",
+      "method": "getById",
+      "httpMethod": "get",
+      "tag": "Team",
+      "typeScriptTag": "team",
+      "description": "Get a team by ID",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "(Required)",
+          "example": 1
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/core/teams/{id}",
+      "method": "updateTeamById",
+      "httpMethod": "put",
+      "tag": "Team",
+      "typeScriptTag": "team",
+      "description": "Update a team",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "(Required)",
+          "example": 1
+        },
+        {
+          "name": "description",
+          "schema": "string",
+          "description": "",
+          "example": "Team description"
+        },
+        {
+          "name": "name",
+          "schema": "string",
+          "description": "",
+          "example": "Management"
+        },
+        {
+          "name": "avatar",
+          "schema": "string",
+          "description": "",
+          "example": "https://api.factorialhr.com/rails/active_storage/representations/redirect/bob.png"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/core/teams/{id}/employees/{employee_id}",
+      "method": "unassignToTeam",
+      "httpMethod": "delete",
+      "tag": "Employee",
+      "typeScriptTag": "employee",
+      "description": "Unassign employee to team",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "(Required)",
+          "example": 1
+        },
+        {
+          "name": "employeeId",
+          "schema": "string",
+          "required": true,
+          "description": "(Required)",
+          "example": 5
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/core/teams/{id}/employees/{employee_id}",
+      "method": "assignToTeam",
+      "httpMethod": "post",
+      "tag": "Employee",
+      "typeScriptTag": "employee",
+      "description": "Assign an employee to a team",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "(Required)",
+          "example": 1
+        },
+        {
+          "name": "employeeId",
+          "schema": "string",
+          "required": true,
+          "description": "(Required)",
+          "example": 1
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/core/teams/{id}/employees/{employee_id}",
+      "method": "updateInTeam",
+      "httpMethod": "put",
+      "tag": "Employee",
+      "typeScriptTag": "employee",
+      "description": "Update an employee in a team",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "(Required)",
+          "example": 1
+        },
+        {
+          "name": "employeeId",
+          "schema": "string",
+          "required": true,
+          "description": "(Required)",
+          "example": 1
+        },
+        {
+          "name": "lead",
+          "schema": "boolean",
+          "description": "",
+          "example": true
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/core/folders",
+      "method": "getByNameAndStatus",
+      "httpMethod": "get",
+      "tag": "Folder",
+      "typeScriptTag": "folder",
+      "description": "Get Folders",
+      "parameters": [
+        {
+          "name": "name",
+          "schema": "string",
+          "description": "Retrieves the list of folder by name",
+          "example": "payment"
+        },
+        {
+          "name": "active",
+          "schema": "boolean",
+          "description": "Retrieves the list of employees by active status",
+          "example": "true"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/core/folders",
+      "method": "createNewFolder",
+      "httpMethod": "post",
+      "tag": "Folder",
+      "typeScriptTag": "folder",
+      "description": "Create a Folder",
+      "parameters": [
+        {
+          "name": "name",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "payment"
+        },
+        {
+          "name": "active",
+          "schema": "boolean",
+          "required": false,
+          "description": "",
+          "example": true
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/core/folders/{id}",
+      "method": "getById",
+      "httpMethod": "get",
+      "tag": "Folder",
+      "typeScriptTag": "folder",
+      "description": "Get a Folder by ID",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "(Required)",
+          "example": 1
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/core/folders/{id}",
+      "method": "updateFolderById",
+      "httpMethod": "put",
+      "tag": "Folder",
+      "typeScriptTag": "folder",
+      "description": "Update a folder",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "(Required)",
+          "example": 1
+        },
+        {
+          "name": "name",
+          "schema": "string",
+          "description": "",
+          "example": "payment"
+        },
+        {
+          "name": "active",
+          "schema": "boolean",
+          "description": "",
+          "example": true
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/core/documents",
+      "method": "listGivenEmployeeOrFolder",
+      "httpMethod": "get",
+      "tag": "Document",
+      "typeScriptTag": "document",
+      "description": "Get a collection of Documents",
+      "parameters": [
+        {
+          "name": "employeeId",
+          "schema": "integer",
+          "description": "Retrieves the list of documents by employee id",
+          "example": 1
+        },
+        {
+          "name": "folderId",
+          "schema": "integer",
+          "description": "Retrieves the list of documents by folder id",
+          "example": 1
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/core/documents",
+      "method": "createNewDocument",
+      "httpMethod": "post",
+      "tag": "Document",
+      "typeScriptTag": "document",
+      "description": "Create a Document",
+      "parameters": [
+        {
+          "name": "employee_id",
+          "schema": "integer",
+          "required": false,
+          "description": "",
+          "example": 1
+        },
+        {
+          "name": "folder_id",
+          "schema": "integer",
+          "required": false,
+          "description": "",
+          "example": 1
+        },
+        {
+          "name": "request_esignature",
+          "schema": "boolean",
+          "required": false,
+          "description": "",
+          "example": true
+        },
+        {
+          "name": "filename",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "payslip.pdf"
+        },
+        {
+          "name": "public",
+          "schema": "boolean",
+          "required": false,
+          "description": "",
+          "example": true
+        },
+        {
+          "name": "signees",
+          "schema": "array",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "file",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "payslip.pdf"
+        },
+        {
+          "name": "is_pending_assignment",
+          "schema": "boolean",
+          "required": false,
+          "description": "",
+          "example": false
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "201",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/core/documents/{id}",
+      "method": "deleteById",
+      "httpMethod": "delete",
+      "tag": "Document",
+      "typeScriptTag": "document",
+      "description": "Delete a Document by ID",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "(Required)",
+          "example": 1
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/core/documents/{id}",
+      "method": "getById",
+      "httpMethod": "get",
+      "tag": "Document",
+      "typeScriptTag": "document",
+      "description": "Get a Document by ID",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "(Required)",
+          "example": 1
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/core/documents/{id}",
+      "method": "updateById",
+      "httpMethod": "put",
+      "tag": "Document",
+      "typeScriptTag": "document",
+      "description": "Update a Document by ID",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "(Required)",
+          "example": 1
+        },
+        {
+          "name": "public",
+          "schema": "boolean",
+          "description": "",
+          "example": true
+        },
+        {
+          "name": "employee_id",
+          "schema": "integer",
+          "description": "",
+          "example": 1
+        },
+        {
+          "name": "folder_id",
+          "schema": "integer",
+          "description": "",
+          "example": 1
+        },
+        {
+          "name": "request_esignature",
+          "schema": "boolean",
+          "description": "",
+          "example": false
+        },
+        {
+          "name": "signees",
+          "schema": "array",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/core/legal_entities",
+      "method": "listLegalEntities",
+      "httpMethod": "get",
+      "tag": "LegalEntity",
+      "typeScriptTag": "legalEntity",
+      "description": "Get a collection of Legal Entities",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/core/legal_entities/{id}",
+      "method": "getById",
+      "httpMethod": "get",
+      "tag": "LegalEntity",
+      "typeScriptTag": "legalEntity",
+      "description": "Get a Legal Entity by ID",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "(Required)",
+          "example": 1
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/core/keys",
+      "method": "getCollection",
+      "httpMethod": "get",
+      "tag": "Key",
+      "typeScriptTag": "key",
+      "description": "Get a collection of Keys",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/core/keys",
+      "method": "createNew",
+      "httpMethod": "post",
+      "tag": "Key",
+      "typeScriptTag": "key",
+      "description": "Create a Key",
+      "parameters": [
+        {
+          "name": "name",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": 1
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "201",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/core/keys/{id}",
+      "method": "deleteById",
+      "httpMethod": "delete",
+      "tag": "Key",
+      "typeScriptTag": "key",
+      "description": "Delete an API Key by ID",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "(Required)",
+          "example": 1
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/core/tasks",
+      "method": "getAllTasks",
+      "httpMethod": "get",
+      "tag": "Task",
+      "typeScriptTag": "task",
+      "description": "Get Tasks",
+      "parameters": [
+        {
+          "name": "assigneeId",
+          "schema": "integer",
+          "description": "Retrieves the list of tasks by assignee",
+          "example": 3
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/core/tasks",
+      "method": "createNewTask",
+      "httpMethod": "post",
+      "tag": "Task",
+      "typeScriptTag": "task",
+      "description": "Create a Task",
+      "parameters": [
+        {
+          "name": "name",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "Upload information task"
+        },
+        {
+          "name": "due_on",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "2022-05-18"
+        },
+        {
+          "name": "content",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "Update information due date to either following weekday or following friday"
+        },
+        {
+          "name": "assignee_ids",
+          "schema": "array",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "201",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/core/tasks/{id}",
+      "method": "deleteById",
+      "httpMethod": "delete",
+      "tag": "Task",
+      "typeScriptTag": "task",
+      "description": "Delete a Task by ID",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "(Required)",
+          "example": 1
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/core/tasks/{id}",
+      "method": "getById",
+      "httpMethod": "get",
+      "tag": "Task",
+      "typeScriptTag": "task",
+      "description": "Get a Task by ID",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "(Required)",
+          "example": 1
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/core/tasks/{id}",
+      "method": "updateById",
+      "httpMethod": "put",
+      "tag": "Task",
+      "typeScriptTag": "task",
+      "description": "Update a Task by ID",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "(Required)",
+          "example": 1
+        },
+        {
+          "name": "due_on",
+          "schema": "string",
+          "description": "",
+          "example": "2022-05-18"
+        },
+        {
+          "name": "name",
+          "schema": "string",
+          "description": "",
+          "example": "Upload information task"
+        },
+        {
+          "name": "content",
+          "schema": "string",
+          "description": "",
+          "example": "Update information due date to either following weekday or following friday"
+        },
+        {
+          "name": "assignee_ids",
+          "schema": "array",
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/core/tasks/{id}/resolve",
+      "method": "resolveById",
+      "httpMethod": "post",
+      "tag": "Task",
+      "typeScriptTag": "task",
+      "description": "Resolve Task by ID",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "(Required)",
+          "example": 1
+        },
+        {
+          "name": "done",
+          "schema": "boolean",
+          "description": "",
+          "example": true
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/core/tasks/{id}/copy",
+      "method": "copyById",
+      "httpMethod": "post",
+      "tag": "Task",
+      "typeScriptTag": "task",
+      "description": "Copy Task by ID",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "(Required)",
+          "example": 1
+        },
+        {
+          "name": "name",
+          "schema": "string",
+          "description": "",
+          "example": "Upload information task"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/core/tasks/{id}/files",
+      "method": "getFiles",
+      "httpMethod": "get",
+      "tag": "Task",
+      "typeScriptTag": "task",
+      "description": "Get files from a Task",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "(Required)",
+          "example": 15
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/core/tasks/{id}/files",
+      "method": "addFileToTask",
+      "httpMethod": "post",
+      "tag": "Task",
+      "typeScriptTag": "task",
+      "description": "Create a File in a Task",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "(Required)",
+          "example": 15
+        },
+        {
+          "name": "file",
+          "schema": "string",
+          "description": "",
+          "example": "task_file.pdf"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/core/tasks/{task_id}/files/{id}",
+      "method": "getFile",
+      "httpMethod": "get",
+      "tag": "Task",
+      "typeScriptTag": "task",
+      "description": "Get a file from one Task",
+      "parameters": [
+        {
+          "name": "taskId",
+          "schema": "string",
+          "required": true,
+          "description": "(Required)",
+          "example": 15
+        },
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "(Required)",
+          "example": 1
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/core/tasks/{task_id}/files/{id}",
+      "method": "deleteFileInTask",
+      "httpMethod": "post",
+      "tag": "Task",
+      "typeScriptTag": "task",
+      "description": "Delete a File in a Task",
+      "parameters": [
+        {
+          "name": "taskId",
+          "schema": "string",
+          "required": true,
+          "description": "(Required)",
+          "example": 15
+        },
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "(Required)",
+          "example": 1
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/time/shifts",
+      "method": "getFromCompany",
+      "httpMethod": "get",
+      "tag": "Shift",
+      "typeScriptTag": "shift",
+      "description": "Get shifts (time registries) from a company",
+      "parameters": [
+        {
+          "name": "year",
+          "schema": "string",
+          "description": "It should be valid year in the format `YYYY`",
+          "example": "2022"
+        },
+        {
+          "name": "month",
+          "schema": "string",
+          "description": "It should be valid month in the calendar ranging rom `01 to 12`. The month format is `MM`",
+          "example": "11"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/time/shifts/clock_in",
+      "method": "createClockInShift",
+      "httpMethod": "post",
+      "tag": "Shift",
+      "typeScriptTag": "shift",
+      "description": "Clock in",
+      "parameters": [
+        {
+          "name": "employee_id",
+          "schema": "integer",
+          "required": true,
+          "description": "",
+          "example": 5
+        },
+        {
+          "name": "now",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "2019-01-01T12:12:01-02:00"
+        },
+        {
+          "name": "observations",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "New observation"
+        },
+        {
+          "name": "location_type",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "office"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "201",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/time/shifts/clock_out",
+      "method": "updateClockOutShift",
+      "httpMethod": "post",
+      "tag": "Shift",
+      "typeScriptTag": "shift",
+      "description": "Clock out",
+      "parameters": [
+        {
+          "name": "employee_id",
+          "schema": "integer",
+          "required": true,
+          "description": "",
+          "example": 5
+        },
+        {
+          "name": "now",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "2019-01-01T12:12:01-02:00"
+        },
+        {
+          "name": "observations",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "Updated observation"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "201",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/time/shifts/toggle",
+      "method": "toggleShiftStatus",
+      "httpMethod": "post",
+      "tag": "Shift",
+      "typeScriptTag": "shift",
+      "description": "Toggle",
+      "parameters": [
+        {
+          "name": "employee_id",
+          "schema": "integer",
+          "required": true,
+          "description": "",
+          "example": 5
+        },
+        {
+          "name": "now",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "2019-01-01T12:12:01-02:00"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "201",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/time/shifts/{id}",
+      "method": "deleteShiftById",
+      "httpMethod": "delete",
+      "tag": "Shift",
+      "typeScriptTag": "shift",
+      "description": "Delete Shift (time registry)",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "(Required)",
+          "example": 5
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/time/shifts/{id}",
+      "method": "updateShift",
+      "httpMethod": "put",
+      "tag": "Shift",
+      "typeScriptTag": "shift",
+      "description": "Update Shift (time registry)",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "(Required)",
+          "example": 5
+        },
+        {
+          "name": "clock_in",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "2019-01-01T12:12:01-02:00"
+        },
+        {
+          "name": "clock_out",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "2019-01-01T12:12:01-02:00"
+        },
+        {
+          "name": "observations",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "First Shift"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "201",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v2/time/attendance",
+      "method": "getCompanyAttendance",
+      "httpMethod": "get",
+      "tag": "Attendance",
+      "typeScriptTag": "attendance",
+      "description": "Get attendance from a company",
+      "parameters": [
+        {
+          "name": "employeeIds[]",
+          "schema": "array",
+          "description": "Employees id array",
+          "example": [
+            1
+          ]
+        },
+        {
+          "name": "dateFrom",
+          "schema": "string",
+          "description": "It should be a valid date following the format YYYY-MM-DD",
+          "example": "2023-01-03"
+        },
+        {
+          "name": "dateTo",
+          "schema": "string",
+          "description": "It should be a valid date following the format YYYY-MM-DD",
+          "example": "2023-01-04"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v2/time/attendance",
+      "method": "createNew",
+      "httpMethod": "post",
+      "tag": "Attendance",
+      "typeScriptTag": "attendance",
+      "description": "Create Attendance",
+      "parameters": [
+        {
+          "name": "employee_id",
+          "schema": "integer",
+          "required": true,
+          "description": "",
+          "example": 5
+        },
+        {
+          "name": "clock_in",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "2019-01-01T12:12:01-02:00"
+        },
+        {
+          "name": "clock_out",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "2019-01-01T14:12:01-02:00"
+        },
+        {
+          "name": "observations",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "First Attendance"
+        },
+        {
+          "name": "location_type",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "office"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "201",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/time/leave_types",
+      "method": "getTypes",
+      "httpMethod": "get",
+      "tag": "Leave",
+      "typeScriptTag": "leave",
+      "description": "Get Leave types",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/time/leave_types",
+      "method": "typeCreate",
+      "httpMethod": "post",
+      "tag": "Leave",
+      "typeScriptTag": "leave",
+      "description": "Create a Leave Type",
+      "parameters": [
+        {
+          "name": "name",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "holiday"
+        },
+        {
+          "name": "color",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "07A2AD"
+        },
+        {
+          "name": "accrues",
+          "schema": "boolean",
+          "required": false,
+          "description": "",
+          "example": true
+        },
+        {
+          "name": "active",
+          "schema": "boolean",
+          "required": false,
+          "description": "",
+          "example": true
+        },
+        {
+          "name": "approval_required",
+          "schema": "boolean",
+          "required": false,
+          "description": "",
+          "example": false
+        },
+        {
+          "name": "attachment",
+          "schema": "boolean",
+          "required": false,
+          "description": "",
+          "example": false
+        },
+        {
+          "name": "visibility",
+          "schema": "boolean",
+          "required": false,
+          "description": "",
+          "example": true
+        },
+        {
+          "name": "workable",
+          "schema": "boolean",
+          "required": false,
+          "description": "",
+          "example": false
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "201",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/time/leave_types/{id}",
+      "method": "updateType",
+      "httpMethod": "put",
+      "tag": "Leave",
+      "typeScriptTag": "leave",
+      "description": "Update a Leave Type",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "(Required)",
+          "example": 5
+        },
+        {
+          "name": "name",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "Special appointment"
+        },
+        {
+          "name": "color",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "FFFFFF"
+        },
+        {
+          "name": "accrues",
+          "schema": "boolean",
+          "required": false,
+          "description": "",
+          "example": false
+        },
+        {
+          "name": "active",
+          "schema": "boolean",
+          "required": false,
+          "description": "",
+          "example": true
+        },
+        {
+          "name": "approval_required",
+          "schema": "boolean",
+          "required": false,
+          "description": "",
+          "example": false
+        },
+        {
+          "name": "attachment",
+          "schema": "boolean",
+          "required": false,
+          "description": "",
+          "example": true
+        },
+        {
+          "name": "visibility",
+          "schema": "boolean",
+          "required": false,
+          "description": "",
+          "example": true
+        },
+        {
+          "name": "workable",
+          "schema": "boolean",
+          "required": false,
+          "description": "",
+          "example": true
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "201",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/time/leaves",
+      "method": "getCompanyLeaves",
+      "httpMethod": "get",
+      "tag": "Leave",
+      "typeScriptTag": "leave",
+      "description": "Get Leaves",
+      "parameters": [
+        {
+          "name": "employeeIds[]",
+          "schema": "array",
+          "description": "Employees id array",
+          "example": [
+            1
+          ]
+        },
+        {
+          "name": "leaveTypeIds[]",
+          "schema": "array",
+          "description": "Leave type id array",
+          "example": [
+            1
+          ]
+        },
+        {
+          "name": "from",
+          "schema": "string",
+          "description": "It should be a valid date following the format YYYY-MM-DD",
+          "example": "2023-01-03"
+        },
+        {
+          "name": "to",
+          "schema": "string",
+          "description": "It should be a valid date following the format YYYY-MM-DD",
+          "example": "2023-01-04"
+        },
+        {
+          "name": "includeLeaveType",
+          "schema": "boolean",
+          "description": "Include leave type name",
+          "default": false
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/time/leaves",
+      "method": "createNewLeave",
+      "httpMethod": "post",
+      "tag": "Leave",
+      "typeScriptTag": "leave",
+      "description": "Create a Leave",
+      "parameters": [
+        {
+          "name": "description",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "Medical appointment for 4 hours"
+        },
+        {
+          "name": "start_on",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "2022-03-03"
+        },
+        {
+          "name": "finish_on",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "2022-03-03"
+        },
+        {
+          "name": "employee_id",
+          "schema": "integer",
+          "required": true,
+          "description": "",
+          "example": 5
+        },
+        {
+          "name": "leave_type_id",
+          "schema": "integer",
+          "required": false,
+          "description": "",
+          "example": 1
+        },
+        {
+          "name": "half_day",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "end_of_day"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "201",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/time/leaves/{id}",
+      "method": "deleteById",
+      "httpMethod": "delete",
+      "tag": "Leave",
+      "typeScriptTag": "leave",
+      "description": "Delete a Leave by ID",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "(Required)",
+          "example": 1
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/time/leaves/{id}",
+      "method": "getById",
+      "httpMethod": "get",
+      "tag": "Leave",
+      "typeScriptTag": "leave",
+      "description": "Get a Leave by ID",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "(Required)",
+          "example": 1
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/time/leaves/{id}",
+      "method": "updateLeaveById",
+      "httpMethod": "put",
+      "tag": "Leave",
+      "typeScriptTag": "leave",
+      "description": "Update a Leave",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "(Required)",
+          "example": 1
+        },
+        {
+          "name": "description",
+          "schema": "string",
+          "description": "",
+          "example": "Medical appointment for 4 hours"
+        },
+        {
+          "name": "employee_id",
+          "schema": "integer",
+          "description": "",
+          "example": 7
+        },
+        {
+          "name": "finish_on",
+          "schema": "integer",
+          "description": "",
+          "example": 5
+        },
+        {
+          "name": "start_on",
+          "schema": "string",
+          "description": "",
+          "example": "basic"
+        },
+        {
+          "name": "half_day",
+          "schema": "string",
+          "description": "",
+          "example": "end_of_day"
+        },
+        {
+          "name": "leave_type_id",
+          "schema": "integer",
+          "description": "",
+          "example": 3
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v2/time/leaves",
+      "method": "getCompanyLeaves",
+      "httpMethod": "get",
+      "tag": "Leave",
+      "typeScriptTag": "leave",
+      "description": "Get Leaves",
+      "parameters": [
+        {
+          "name": "employeeIds[]",
+          "schema": "array",
+          "description": "Employees id array",
+          "example": [
+            1
+          ]
+        },
+        {
+          "name": "leaveTypeIds[]",
+          "schema": "array",
+          "description": "Leave type id array",
+          "example": [
+            1
+          ]
+        },
+        {
+          "name": "from",
+          "schema": "string",
+          "description": "It should be a valid date following the format YYYY-MM-DD",
+          "example": "2023-01-03"
+        },
+        {
+          "name": "to",
+          "schema": "string",
+          "description": "It should be a valid date following the format YYYY-MM-DD",
+          "example": "2023-01-04"
+        },
+        {
+          "name": "includeLeaveType",
+          "schema": "boolean",
+          "description": "Include leave type name",
+          "default": false
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v2/time/leaves",
+      "method": "createNewLeave",
+      "httpMethod": "post",
+      "tag": "Leave",
+      "typeScriptTag": "leave",
+      "description": "Create a Leave",
+      "parameters": [
+        {
+          "name": "description",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "Medical appointment for 4 hours"
+        },
+        {
+          "name": "start_on",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "2022-03-03"
+        },
+        {
+          "name": "finish_on",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "2022-03-03"
+        },
+        {
+          "name": "employee_id",
+          "schema": "integer",
+          "required": true,
+          "description": "",
+          "example": 5
+        },
+        {
+          "name": "leave_type_id",
+          "schema": "integer",
+          "required": false,
+          "description": "",
+          "example": 1
+        },
+        {
+          "name": "half_day",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "end_of_day"
+        },
+        {
+          "name": "start_time",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "14:00"
+        },
+        {
+          "name": "hours_amount_in_cents",
+          "schema": "integer",
+          "required": false,
+          "description": "",
+          "example": 400
+        },
+        {
+          "name": "medical_leave_type",
+          "schema": "integer",
+          "required": false,
+          "description": "",
+          "example": 400
+        },
+        {
+          "name": "effective_on",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "2022-03-03"
+        },
+        {
+          "name": "medical_discharge_reason",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "medical appointment"
+        },
+        {
+          "name": "colegiate_number",
+          "schema": "integer",
+          "required": false,
+          "description": "",
+          "example": 3
+        },
+        {
+          "name": "has_previous_relapse",
+          "schema": "boolean",
+          "required": false,
+          "description": "",
+          "example": false
+        },
+        {
+          "name": "relapse_leave_id",
+          "schema": "integer",
+          "required": false,
+          "description": "",
+          "example": 3
+        },
+        {
+          "name": "relapse_on",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "2022-03-03"
+        },
+        {
+          "name": "accident_on",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "2022-03-01"
+        },
+        {
+          "name": "paternity_birth_on",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "2022-03-02"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "201",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v2/time/leaves/{id}",
+      "method": "deleteById",
+      "httpMethod": "delete",
+      "tag": "Leave",
+      "typeScriptTag": "leave",
+      "description": "Delete a Leave by ID",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "(Required)",
+          "example": 1
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v2/time/leaves/{id}",
+      "method": "getById",
+      "httpMethod": "get",
+      "tag": "Leave",
+      "typeScriptTag": "leave",
+      "description": "Get a Leave by ID",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "(Required)",
+          "example": 1
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v2/time/leaves/{id}",
+      "method": "updateById",
+      "httpMethod": "put",
+      "tag": "Leave",
+      "typeScriptTag": "leave",
+      "description": "Update a Leave",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "(Required)",
+          "example": 1
+        },
+        {
+          "name": "description",
+          "schema": "string",
+          "description": "",
+          "example": "Medical appointment for 4 hours"
+        },
+        {
+          "name": "employee_id",
+          "schema": "integer",
+          "description": "",
+          "example": 7
+        },
+        {
+          "name": "finish_on",
+          "schema": "string",
+          "description": "",
+          "example": "2022-03-03"
+        },
+        {
+          "name": "start_on",
+          "schema": "string",
+          "description": "",
+          "example": "2022-03-03"
+        },
+        {
+          "name": "start_time",
+          "schema": "string",
+          "description": "",
+          "example": "12:00"
+        },
+        {
+          "name": "hour_amount_in_cents",
+          "schema": "integer",
+          "description": "",
+          "example": 400
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/payroll/family_situation",
+      "method": "listFamilySituations",
+      "httpMethod": "get",
+      "tag": "Employee",
+      "typeScriptTag": "employee",
+      "description": "Get all family situations - only FR employees",
+      "parameters": [
+        {
+          "name": "employeeId",
+          "schema": "string",
+          "description": "Get all family situations given an employee",
+          "example": 3
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/payroll/family_situation",
+      "method": "createNew",
+      "httpMethod": "post",
+      "tag": "FamilySituation",
+      "typeScriptTag": "familySituation",
+      "description": "Create a Family Situation",
+      "parameters": [
+        {
+          "name": "employee_id",
+          "schema": "integer",
+          "required": true,
+          "description": "",
+          "example": 3
+        },
+        {
+          "name": "civil_status",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "married"
+        },
+        {
+          "name": "number_of_dependants",
+          "schema": "integer",
+          "required": false,
+          "description": "",
+          "example": 1
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "201",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/payroll/family_situation/{id}",
+      "method": "updateFamilySituation",
+      "httpMethod": "put",
+      "tag": "FamilySituation",
+      "typeScriptTag": "familySituation",
+      "description": "Update a Family Situation",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "(Required)",
+          "example": 3
+        },
+        {
+          "name": "employee_id",
+          "schema": "integer",
+          "description": "",
+          "example": 3
+        },
+        {
+          "name": "civil_status",
+          "schema": "string",
+          "description": "",
+          "example": "married"
+        },
+        {
+          "name": "number_of_dependants",
+          "schema": "integer",
+          "description": "",
+          "example": 1
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/custom_fields",
+      "method": "getFieldsByGroup",
+      "httpMethod": "get",
+      "tag": "CustomField",
+      "typeScriptTag": "customField",
+      "description": "Get Custom Fields",
+      "parameters": [
+        {
+          "name": "fieldGroup",
+          "schema": "string",
+          "required": true,
+          "description": "Available options: employees-questions (Employee's fields) time-tracking-projects (Shift's project)' contract-versions (Contract versions)'",
+          "example": "employees-questions"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/custom_fields/values",
+      "method": "getInstanceValue",
+      "httpMethod": "get",
+      "tag": "CustomFieldValue",
+      "typeScriptTag": "customFieldValue",
+      "description": "Given a custom field, get the value for a specific instance",
+      "parameters": [
+        {
+          "name": "fieldId",
+          "schema": "integer",
+          "required": true,
+          "description": "",
+          "example": 1
+        },
+        {
+          "name": "instanceId",
+          "schema": "integer",
+          "required": true,
+          "description": "",
+          "example": 23
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/custom_fields/values",
+      "method": "createCustomValue",
+      "httpMethod": "post",
+      "tag": "CustomFieldValue",
+      "typeScriptTag": "customFieldValue",
+      "description": "Create a value for a custom field",
+      "parameters": [
+        {
+          "name": "fieldId",
+          "schema": "integer",
+          "required": true,
+          "description": "",
+          "example": 1
+        },
+        {
+          "name": "instanceId",
+          "schema": "integer",
+          "required": true,
+          "description": "",
+          "example": 23
+        },
+        {
+          "name": "value",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "somelinktomyportfolio.com"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/posts",
+      "method": "listPosts",
+      "httpMethod": "get",
+      "tag": "Post",
+      "typeScriptTag": "post",
+      "description": "Get Posts",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "500",
+          "description": "Internal Server Error"
+        }
+      ]
+    },
+    {
+      "url": "/v1/posts",
+      "method": "createNewPost",
+      "httpMethod": "post",
+      "tag": "Post",
+      "typeScriptTag": "post",
+      "description": "Create a Post",
+      "parameters": [
+        {
+          "name": "title",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "New Post"
+        },
+        {
+          "name": "description",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "description"
+        },
+        {
+          "name": "posts_group_id",
+          "schema": "integer",
+          "required": true,
+          "description": "",
+          "example": 1
+        },
+        {
+          "name": "type",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "first_day"
+        },
+        {
+          "name": "published_at",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "2022-09-08T00:00:00.000Z"
+        },
+        {
+          "name": "stars_at",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "2022-09-08T00:00:00.000Z"
+        },
+        {
+          "name": "ends_at",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "2022-09-08T00:00:00.000Z"
+        },
+        {
+          "name": "location",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "Green park"
+        },
+        {
+          "name": "target_id",
+          "schema": "integer",
+          "required": false,
+          "description": "",
+          "example": 1
+        },
+        {
+          "name": "send_notifications",
+          "schema": "boolean",
+          "required": false,
+          "description": "",
+          "example": true
+        },
+        {
+          "name": "image",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "allow_comments_and_reactions",
+          "schema": "boolean",
+          "required": false,
+          "description": "",
+          "example": true
+        },
+        {
+          "name": "attachments",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/posts/{id}",
+      "method": "removePost",
+      "httpMethod": "delete",
+      "tag": "Post",
+      "typeScriptTag": "post",
+      "description": "Delete Post",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "(Required)",
+          "example": 1
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/posts/{id}",
+      "method": "getById",
+      "httpMethod": "get",
+      "tag": "Post",
+      "typeScriptTag": "post",
+      "description": "Get Post",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "(Required)",
+          "example": 1
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/posts/{id}",
+      "method": "updateExistingPost",
+      "httpMethod": "put",
+      "tag": "Post",
+      "typeScriptTag": "post",
+      "description": "Create a Post",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "(Required)",
+          "example": 1
+        },
+        {
+          "name": "title",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "New Post"
+        },
+        {
+          "name": "description",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "description"
+        },
+        {
+          "name": "id",
+          "schema": "integer",
+          "required": true,
+          "description": "",
+          "example": 1
+        },
+        {
+          "name": "stars_at",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "2022-09-08T00:00:00.000Z"
+        },
+        {
+          "name": "location",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "Green park"
+        },
+        {
+          "name": "send_notifications",
+          "schema": "boolean",
+          "required": false,
+          "description": "",
+          "example": true
+        },
+        {
+          "name": "delete_cover_image",
+          "schema": "boolean",
+          "required": false,
+          "description": "",
+          "example": true
+        },
+        {
+          "name": "image",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "allow_comments_and_reactions",
+          "schema": "boolean",
+          "required": false,
+          "description": "",
+          "example": true
+        },
+        {
+          "name": "attachments",
+          "schema": "string",
+          "required": false,
+          "description": ""
+        },
+        {
+          "name": "deleted_attachments",
+          "schema": "array",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/ats/job_postings",
+      "method": "getAllPostings",
+      "httpMethod": "get",
+      "tag": "Post",
+      "typeScriptTag": "post",
+      "description": "Get all job postings",
+      "parameters": [
+        {
+          "name": "status",
+          "schema": "string",
+          "description": "Job posting status",
+          "example": 3
+        },
+        {
+          "name": "teamId",
+          "schema": "integer",
+          "description": "An id of any teams that the ats company has in Factorial",
+          "example": 3
+        },
+        {
+          "name": "locationId",
+          "schema": "string",
+          "description": "An id of any location associated with the ats company in Factorial",
+          "example": 1
+        },
+        {
+          "name": "legalEntityId",
+          "schema": "integer",
+          "description": "An id of any legal entity associated with the company in Factorial",
+          "example": 1
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/ats/job_postings",
+      "method": "atsJobPosting",
+      "httpMethod": "post",
+      "tag": "Post",
+      "typeScriptTag": "post",
+      "description": "Create a Job Posting",
+      "parameters": [
+        {
+          "name": "title",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "Jr Software Developer"
+        },
+        {
+          "name": "description",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "Full Stack Developer"
+        },
+        {
+          "name": "contract_type",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "temporary"
+        },
+        {
+          "name": "remote",
+          "schema": "boolean",
+          "required": false,
+          "description": "",
+          "example": true
+        },
+        {
+          "name": "status",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "draft"
+        },
+        {
+          "name": "schedule_type",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "full_time"
+        },
+        {
+          "name": "team_id",
+          "schema": "integer",
+          "required": false,
+          "description": "",
+          "example": 1
+        },
+        {
+          "name": "location_id",
+          "schema": "integer",
+          "required": false,
+          "description": "",
+          "example": 3
+        },
+        {
+          "name": "salary_format",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "range"
+        },
+        {
+          "name": "salary_from_amount_in_cents",
+          "schema": "integer",
+          "required": false,
+          "description": "",
+          "example": 50000
+        },
+        {
+          "name": "salary_to_amount_in_cents",
+          "schema": "integer",
+          "required": false,
+          "description": "",
+          "example": 60000
+        },
+        {
+          "name": "cv_requirement",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "mandatory"
+        },
+        {
+          "name": "cover_letter_requirement",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "mandatory"
+        },
+        {
+          "name": "phone_requirement",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "mandatory"
+        },
+        {
+          "name": "photo_requirement",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "mandatory"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "201",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/ats/job_postings/{id}",
+      "method": "removeJobPosting",
+      "httpMethod": "delete",
+      "tag": "Post",
+      "typeScriptTag": "post",
+      "description": "Delete a Job Posting",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "(Required)",
+          "example": 3
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/ats/job_postings/{id}",
+      "method": "jobPostingUpdate",
+      "httpMethod": "put",
+      "tag": "Post",
+      "typeScriptTag": "post",
+      "description": "Update a Job Posting",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "(Required)",
+          "example": 3
+        },
+        {
+          "name": "title",
+          "schema": "string",
+          "description": "",
+          "example": "Developer"
+        },
+        {
+          "name": "description",
+          "schema": "string",
+          "description": "",
+          "example": "Full Stack Developer"
+        },
+        {
+          "name": "contract_type",
+          "schema": "string",
+          "description": "",
+          "example": "temporary"
+        },
+        {
+          "name": "remote",
+          "schema": "boolean",
+          "description": "",
+          "example": true
+        },
+        {
+          "name": "status",
+          "schema": "string",
+          "description": "",
+          "example": "draft"
+        },
+        {
+          "name": "schedule_type",
+          "schema": "string",
+          "description": "",
+          "example": "full_time"
+        },
+        {
+          "name": "team_id",
+          "schema": "integer",
+          "description": "",
+          "example": 1
+        },
+        {
+          "name": "location_id",
+          "schema": "integer",
+          "description": "",
+          "example": 3
+        },
+        {
+          "name": "salary_format",
+          "schema": "string",
+          "description": "",
+          "example": "range"
+        },
+        {
+          "name": "salary_from_amount_in_cents",
+          "schema": "integer",
+          "description": "",
+          "example": 50000
+        },
+        {
+          "name": "salary_to_amount_in_cents",
+          "schema": "integer",
+          "description": "",
+          "example": 60000
+        },
+        {
+          "name": "cv_requirement",
+          "schema": "string",
+          "description": "",
+          "example": "mandatory"
+        },
+        {
+          "name": "cover_letter_requirement",
+          "schema": "string",
+          "description": "",
+          "example": "mandatory"
+        },
+        {
+          "name": "phone_requirement",
+          "schema": "string",
+          "description": "",
+          "example": "mandatory"
+        },
+        {
+          "name": "photo_requirement",
+          "schema": "string",
+          "description": "",
+          "example": "mandatory"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/ats/job_postings/{id}/duplicate",
+      "method": "duplicateJobPosting",
+      "httpMethod": "post",
+      "tag": "Post",
+      "typeScriptTag": "post",
+      "description": "Duplicate a Job Posting",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "(Required)",
+          "example": 3
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "201",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/ats/candidates",
+      "method": "listAllCandidates",
+      "httpMethod": "get",
+      "tag": "Candidate",
+      "typeScriptTag": "candidate",
+      "description": "Get all candidates",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/ats/candidates",
+      "method": "createNewCandidate",
+      "httpMethod": "post",
+      "tag": "Candidate",
+      "typeScriptTag": "candidate",
+      "description": "Create a candidate",
+      "parameters": [
+        {
+          "name": "first_name",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "Bob"
+        },
+        {
+          "name": "last_name",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "Stone"
+        },
+        {
+          "name": "email",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "bob_stone@factorial.co"
+        },
+        {
+          "name": "source",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "indeed"
+        },
+        {
+          "name": "medium",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "LinkedIn"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "201",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/ats/candidates/{id}",
+      "method": "deleteExistingCandidate",
+      "httpMethod": "delete",
+      "tag": "Candidate",
+      "typeScriptTag": "candidate",
+      "description": "Delete a Candidate",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "(Required)",
+          "example": 3
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/ats/candidates/{id}",
+      "method": "updateCandidateData",
+      "httpMethod": "put",
+      "tag": "Candidate",
+      "typeScriptTag": "candidate",
+      "description": "Update candidate",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "(Required)",
+          "example": 3
+        },
+        {
+          "name": "first_name",
+          "schema": "string",
+          "description": "",
+          "example": "Bob"
+        },
+        {
+          "name": "last_name",
+          "schema": "string",
+          "description": "",
+          "example": "Stone"
+        },
+        {
+          "name": "email",
+          "schema": "string",
+          "description": "",
+          "example": "bob_stone@factorial.co"
+        },
+        {
+          "name": "talent_pool",
+          "schema": "boolean",
+          "description": "",
+          "example": true
+        },
+        {
+          "name": "consent_to_talent_pool",
+          "schema": "boolean",
+          "description": "",
+          "example": false
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/payroll/contract_versions",
+      "method": "getAllVersions",
+      "httpMethod": "get",
+      "tag": "ContractVersion",
+      "typeScriptTag": "contractVersion",
+      "description": "Get all contract versions",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/payroll/contract_versions",
+      "method": "createNewVersion",
+      "httpMethod": "post",
+      "tag": "ContractVersion",
+      "typeScriptTag": "contractVersion",
+      "description": "Create contract versions",
+      "parameters": [
+        {
+          "name": "effective_on",
+          "schema": "string",
+          "description": "",
+          "example": "2022-04-22"
+        },
+        {
+          "name": "employee_id",
+          "schema": "integer",
+          "description": "",
+          "example": 5
+        },
+        {
+          "name": "starts_on",
+          "schema": "string",
+          "description": "",
+          "example": "2021-04-22"
+        },
+        {
+          "name": "ends_on",
+          "schema": "string",
+          "description": "",
+          "example": "2023-04-22"
+        },
+        {
+          "name": "working_hours_frequency",
+          "schema": "string",
+          "description": "",
+          "example": "week"
+        },
+        {
+          "name": "working_week_days",
+          "schema": "string",
+          "description": "",
+          "example": "friday,tuesday,saturday"
+        },
+        {
+          "name": "working_hours",
+          "schema": "integer",
+          "description": "",
+          "example": 800
+        },
+        {
+          "name": "salary_frequency",
+          "schema": "string",
+          "description": "",
+          "example": "yearly"
+        },
+        {
+          "name": "salary_amount",
+          "schema": "integer",
+          "description": "",
+          "example": 5000000
+        },
+        {
+          "name": "job_title",
+          "schema": "string",
+          "description": "",
+          "example": "Jr Software Developer"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "201",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/payroll/contract_versions/{id}",
+      "method": "deleteVersion",
+      "httpMethod": "delete",
+      "tag": "Contract",
+      "typeScriptTag": "contract",
+      "description": "Delete contract version",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "(Required)",
+          "example": 3
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/payroll/contract_versions/{id}",
+      "method": "updateVersion",
+      "httpMethod": "put",
+      "tag": "Contract",
+      "typeScriptTag": "contract",
+      "description": "Update contract version",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "(Required)",
+          "example": 3
+        },
+        {
+          "name": "effective_on",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "2022-04-22"
+        },
+        {
+          "name": "employee_id",
+          "schema": "integer",
+          "required": false,
+          "description": "",
+          "example": 5
+        },
+        {
+          "name": "starts_on",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "2021-04-22"
+        },
+        {
+          "name": "ends_on",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "2023-04-22"
+        },
+        {
+          "name": "working_hours_frequency",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "week"
+        },
+        {
+          "name": "working_week_days",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "friday,tuesday,saturday"
+        },
+        {
+          "name": "working_hours",
+          "schema": "integer",
+          "required": false,
+          "description": "",
+          "example": 800
+        },
+        {
+          "name": "salary_frequency",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "yearly"
+        },
+        {
+          "name": "salary_amount",
+          "schema": "integer",
+          "required": false,
+          "description": "",
+          "example": 5000000
+        },
+        {
+          "name": "job_title",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "Jr Software Developer"
+        },
+        {
+          "name": "es_cotization_group",
+          "schema": "integer",
+          "required": false,
+          "description": "",
+          "example": 1
+        },
+        {
+          "name": "es_professional_category_id",
+          "schema": "integer",
+          "required": false,
+          "description": "",
+          "example": 2
+        },
+        {
+          "name": "es_education_level_id",
+          "schema": "integer",
+          "required": false,
+          "description": "",
+          "example": 4
+        },
+        {
+          "name": "es_contract_type_id",
+          "schema": "integer",
+          "required": false,
+          "description": "",
+          "example": 2
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/payroll/reference_contracts",
+      "method": "getAllReferenceContracts",
+      "httpMethod": "get",
+      "tag": "Contract",
+      "typeScriptTag": "contract",
+      "description": "Get all reference contracts",
+      "parameters": [
+        {
+          "name": "employeeIds[]",
+          "schema": "array",
+          "description": "Employees id array",
+          "example": [
+            1
+          ]
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/payroll/supplements",
+      "method": "getAll",
+      "httpMethod": "get",
+      "tag": "Supplement",
+      "typeScriptTag": "supplement",
+      "description": "Get all supplements",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/payroll/supplements",
+      "method": "createNewSupplement",
+      "httpMethod": "post",
+      "tag": "Supplement",
+      "typeScriptTag": "supplement",
+      "description": "Create supplements",
+      "parameters": [
+        {
+          "name": "employee_id",
+          "schema": "integer",
+          "description": "",
+          "example": 5
+        },
+        {
+          "name": "amount_in_cents",
+          "schema": "integer",
+          "description": "",
+          "example": 23333
+        },
+        {
+          "name": "effective_on",
+          "schema": "string",
+          "description": "",
+          "example": "2023-04-22"
+        },
+        {
+          "name": "contracts_taxonomy_id",
+          "schema": "integer",
+          "description": "",
+          "example": 2
+        },
+        {
+          "name": "payroll_policy_period_id",
+          "schema": "integer",
+          "description": "",
+          "example": 3
+        },
+        {
+          "name": "unit",
+          "schema": "string",
+          "description": "",
+          "example": "usd"
+        },
+        {
+          "name": "contracts_compensation_id",
+          "schema": "integer",
+          "description": "",
+          "example": 3
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "201",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/payroll/supplements/{id}",
+      "method": "deleteById",
+      "httpMethod": "delete",
+      "tag": "Supplement",
+      "typeScriptTag": "supplement",
+      "description": "Delete supplements",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "(Required)",
+          "example": 3
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/payroll/supplements/{id}",
+      "method": "updateById",
+      "httpMethod": "put",
+      "tag": "Supplement",
+      "typeScriptTag": "supplement",
+      "description": "Update supplements",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "(Required)",
+          "example": 3
+        },
+        {
+          "name": "employee_id",
+          "schema": "integer",
+          "description": "",
+          "example": 5
+        },
+        {
+          "name": "amount_in_cents",
+          "schema": "integer",
+          "description": "",
+          "example": 23333
+        },
+        {
+          "name": "effective_on",
+          "schema": "string",
+          "description": "",
+          "example": "2023-04-22"
+        },
+        {
+          "name": "contracts_taxonomy_id",
+          "schema": "integer",
+          "description": "",
+          "example": 2
+        },
+        {
+          "name": "payroll_policy_period_id",
+          "schema": "integer",
+          "description": "",
+          "example": 3
+        },
+        {
+          "name": "unit",
+          "schema": "string",
+          "description": "",
+          "example": "usd"
+        },
+        {
+          "name": "contracts_compensation_id",
+          "schema": "integer",
+          "description": "",
+          "example": 3
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v2/payroll_integrations/codes",
+      "method": "getAllCodes",
+      "httpMethod": "get",
+      "tag": "Integration",
+      "typeScriptTag": "integration",
+      "description": "Get all codes for a specific Integration",
+      "parameters": [
+        {
+          "name": "integration",
+          "schema": "string",
+          "description": "Payroll Integration name",
+          "example": "a3innuva"
+        },
+        {
+          "name": "code",
+          "schema": "string",
+          "description": "Unique identifier to relate Factorial with different payroll softwares",
+          "example": "TEST_CODE"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v2/payroll_integrations/codes",
+      "method": "createPayrollIntegrationCode",
+      "httpMethod": "post",
+      "tag": "IntegrationCode",
+      "typeScriptTag": "integrationCode",
+      "description": "Create a Payroll Integration Code",
+      "parameters": [
+        {
+          "name": "code",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "TEST_CODE"
+        },
+        {
+          "name": "codeable_id",
+          "schema": "integer",
+          "required": true,
+          "description": "",
+          "example": 12
+        },
+        {
+          "name": "codeable_type",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "Employee"
+        },
+        {
+          "name": "integration",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "temporary"
+        },
+        {
+          "name": "forfait_jours",
+          "schema": "boolean",
+          "required": false,
+          "description": "",
+          "example": true
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "201",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v2/payroll_integrations/codes/{id}",
+      "method": "deletePayrollCode",
+      "httpMethod": "delete",
+      "tag": "Integration",
+      "typeScriptTag": "integration",
+      "description": "Delete a Payroll Integration Code",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "(Required)",
+          "example": 3
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v2/payroll_integrations/codes/{id}",
+      "method": "updatePayrollCode",
+      "httpMethod": "patch",
+      "tag": "Integration",
+      "typeScriptTag": "integration",
+      "description": "Update a Payroll Integration Code",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "(Required)",
+          "example": 3
+        },
+        {
+          "name": "id",
+          "schema": "integer",
+          "description": "",
+          "example": 3
+        },
+        {
+          "name": "code",
+          "schema": "string",
+          "description": "",
+          "example": "TEST_CODE"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v2/payroll_integrations/codes/{id}/find_employee",
+      "method": "getByPayrollIntegrationCode",
+      "httpMethod": "get",
+      "tag": "Employee",
+      "typeScriptTag": "employee",
+      "description": "Find Employee assigned to a Payroll Integration Code",
+      "parameters": [
+        {
+          "name": "integration",
+          "schema": "string",
+          "description": "Payroll Integration name",
+          "example": "a3innuva"
+        },
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "(Required)",
+          "example": 3
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/time/shifts_management",
+      "method": "getAllShifts",
+      "httpMethod": "get",
+      "tag": "Shift",
+      "typeScriptTag": "shift",
+      "description": "Get all shifts from a company",
+      "parameters": [
+        {
+          "name": "employeeId",
+          "schema": "integer",
+          "description": "Employee ID to find shifts from",
+          "example": 5
+        },
+        {
+          "name": "employeeIds%5B%5D",
+          "schema": "array",
+          "description": "Employee IDs to find shifts from"
+        },
+        {
+          "name": "startAt",
+          "schema": "string",
+          "description": "Start date to find shifts from",
+          "example": "2023-07-24"
+        },
+        {
+          "name": "endAt",
+          "schema": "string",
+          "description": "End date to find shifts to",
+          "example": "2023-07-30"
+        },
+        {
+          "name": "onlyPublished",
+          "schema": "boolean",
+          "description": "To return only published shifts",
+          "example": false
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/time/shifts_management",
+      "method": "createNewShift",
+      "httpMethod": "post",
+      "tag": "Shift",
+      "typeScriptTag": "shift",
+      "description": "Create a shift",
+      "parameters": [
+        {
+          "name": "start_at",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "2022-06-23T11:00:00.000+00:00"
+        },
+        {
+          "name": "end_at",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "2022-06-23T17:00:00.000+00:00"
+        },
+        {
+          "name": "employee_id",
+          "schema": "integer",
+          "required": true,
+          "description": "",
+          "example": 3
+        },
+        {
+          "name": "notes",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "Note 2"
+        },
+        {
+          "name": "location_id",
+          "schema": "integer",
+          "required": false,
+          "description": "",
+          "example": 1
+        },
+        {
+          "name": "work_area_id",
+          "schema": "integer",
+          "required": false,
+          "description": "",
+          "example": 1
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "201",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/time/shifts_management/publish",
+      "method": "publishShiftsInsideTimeRange",
+      "httpMethod": "post",
+      "tag": "Shift",
+      "typeScriptTag": "shift",
+      "description": "Publish shifts inside time range",
+      "parameters": [
+        {
+          "name": "start_at",
+          "schema": "string",
+          "description": "",
+          "example": "2022-06-23T11:00:00.000+00:00"
+        },
+        {
+          "name": "end_at",
+          "schema": "string",
+          "description": "",
+          "example": "2022-06-23T17:00:00.000+00:00"
+        },
+        {
+          "name": "employee_ids",
+          "schema": "array",
+          "description": ""
+        },
+        {
+          "name": "send_notification",
+          "schema": "boolean",
+          "description": "",
+          "example": false
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "201",
+          "description": "Created"
+        }
+      ]
+    },
+    {
+      "url": "/v1/time/shifts_management/{id}/locations",
+      "method": "updateShiftLocation",
+      "httpMethod": "put",
+      "tag": "Location",
+      "typeScriptTag": "location",
+      "description": "Update shift location",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "(Required)",
+          "example": 3
+        },
+        {
+          "name": "location_id",
+          "schema": "integer",
+          "description": "",
+          "example": 2
+        },
+        {
+          "name": "work_area_id",
+          "schema": "integer",
+          "description": "",
+          "example": 3
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/time/shifts_management/{id}/notes",
+      "method": "updateNotes",
+      "httpMethod": "put",
+      "tag": "Shift",
+      "typeScriptTag": "shift",
+      "description": "Update shift notes",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "(Required)",
+          "example": 3
+        },
+        {
+          "name": "notes",
+          "schema": "string",
+          "description": "",
+          "example": "Note 1"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/time/shifts_management/{id}",
+      "method": "deleteById",
+      "httpMethod": "delete",
+      "tag": "Shift",
+      "typeScriptTag": "shift",
+      "description": "Delete Shift",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "(Required)",
+          "example": 3
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/time/shifts_management/{id}",
+      "method": "getById",
+      "httpMethod": "get",
+      "tag": "Shift",
+      "typeScriptTag": "shift",
+      "description": "Get Shift",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "(Required)",
+          "example": 3
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/time/breaks/start",
+      "method": "startBreak",
+      "httpMethod": "post",
+      "tag": "Break",
+      "typeScriptTag": "break",
+      "description": "Start a break",
+      "parameters": [
+        {
+          "name": "now",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "2022-06-23T11:00:00.000+00:00"
+        },
+        {
+          "name": "employee_id",
+          "schema": "integer",
+          "required": true,
+          "description": "",
+          "example": 3
+        },
+        {
+          "name": "observations",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "New break observation"
+        },
+        {
+          "name": "time_settings_break_configuration_id",
+          "schema": "integer",
+          "required": false,
+          "description": "",
+          "example": 1
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "201",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/time/breaks/end",
+      "method": "endBreak",
+      "httpMethod": "post",
+      "tag": "Break",
+      "typeScriptTag": "break",
+      "description": "End a break",
+      "parameters": [
+        {
+          "name": "now",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "2022-06-23T11:00:00.000+00:00"
+        },
+        {
+          "name": "employee_id",
+          "schema": "integer",
+          "required": true,
+          "description": "",
+          "example": 3
+        },
+        {
+          "name": "observations",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "Updated break observation"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "201",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/time/breaks",
+      "method": "createBreak",
+      "httpMethod": "post",
+      "tag": "Break",
+      "typeScriptTag": "break",
+      "description": "Create a break",
+      "parameters": [
+        {
+          "name": "employee_id",
+          "schema": "integer",
+          "required": true,
+          "description": "",
+          "example": 5
+        },
+        {
+          "name": "break_start",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "2022-06-23T12:12:01-02:00"
+        },
+        {
+          "name": "break_end",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "2022-06-23T13:12:01-02:00"
+        },
+        {
+          "name": "observations",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "New observation"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "201",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/time/break_configurations_for_dates",
+      "method": "listBreakConfigurationsForDates",
+      "httpMethod": "get",
+      "tag": "Employee",
+      "typeScriptTag": "employee",
+      "description": "Get break configurations from a employee in a date range",
+      "parameters": [
+        {
+          "name": "startAt",
+          "schema": "string",
+          "description": "",
+          "example": "2023-09-30"
+        },
+        {
+          "name": "endAt",
+          "schema": "string",
+          "description": "",
+          "example": "2023-09-30"
+        },
+        {
+          "name": "employeeId",
+          "schema": "integer",
+          "description": "",
+          "example": 1
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/ats/applications",
+      "method": "createAtsApplication",
+      "httpMethod": "post",
+      "tag": "Application",
+      "typeScriptTag": "application",
+      "description": "Creates an application",
+      "parameters": [
+        {
+          "name": "ats_job_posting_id",
+          "schema": "integer",
+          "required": true,
+          "description": "",
+          "example": 1
+        },
+        {
+          "name": "source",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "indeed"
+        },
+        {
+          "name": "medium",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "LinkedIn"
+        },
+        {
+          "name": "ats_candidate_id",
+          "schema": "integer",
+          "required": false,
+          "description": "",
+          "example": 2
+        },
+        {
+          "name": "cover_letter",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": ""
+        },
+        {
+          "name": "first_name",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "Bob"
+        },
+        {
+          "name": "last_name",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "Stone"
+        },
+        {
+          "name": "phone",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "1134124214"
+        },
+        {
+          "name": "email",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "bob_stone@factorial.co"
+        },
+        {
+          "name": "cv",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "cv.pdf"
+        },
+        {
+          "name": "photo",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "photo.jpg"
+        },
+        {
+          "name": "answers",
+          "schema": "array",
+          "required": false,
+          "description": "",
+          "example": [
+            {
+              "ats_question_id": 10,
+              "value": "Yes"
+            },
+            {
+              "ats_question_id": 11,
+              "value": [
+                "Barcelona",
+                "Madrid"
+              ]
+            },
+            {
+              "ats_question_id": 12,
+              "value": "cv.pdf"
+            }
+          ]
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "201",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/ats/applications/{id}",
+      "method": "updateData",
+      "httpMethod": "put",
+      "tag": "Application",
+      "typeScriptTag": "application",
+      "description": "Update application",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "string",
+          "required": true,
+          "description": "(Required)",
+          "example": 3
+        },
+        {
+          "name": "ats_application_phase_id",
+          "schema": "integer",
+          "description": "",
+          "example": 1
+        },
+        {
+          "name": "qualified",
+          "schema": "boolean",
+          "description": "",
+          "example": true
+        },
+        {
+          "name": "first_name",
+          "schema": "string",
+          "description": "",
+          "example": "Bob"
+        },
+        {
+          "name": "last_name",
+          "schema": "string",
+          "description": "",
+          "example": "Stone"
+        },
+        {
+          "name": "phone",
+          "schema": "string",
+          "description": "",
+          "example": "1134124214"
+        },
+        {
+          "name": "email",
+          "schema": "string",
+          "description": "",
+          "example": "bob_stone@factorial.co"
+        },
+        {
+          "name": "personal_url",
+          "schema": "string",
+          "description": "",
+          "example": "www.linkedin.com/awesome"
+        },
+        {
+          "name": "disqualified_reason",
+          "schema": "string",
+          "description": "",
+          "example": "not_a_fit"
+        },
+        {
+          "name": "cv",
+          "schema": "string",
+          "description": "",
+          "example": "cv.pdf"
+        },
+        {
+          "name": "photo",
+          "schema": "string",
+          "description": "",
+          "example": "photo.jpeg"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/ats/messages",
+      "method": "getAllMessages",
+      "httpMethod": "get",
+      "tag": "Message",
+      "typeScriptTag": "message",
+      "description": "Get all ATS Messages",
+      "parameters": [
+        {
+          "name": "conversationId",
+          "schema": "string",
+          "required": true,
+          "description": "(Required)",
+          "example": 3
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/ats/messages",
+      "method": "createAtsMessage",
+      "httpMethod": "post",
+      "tag": "Message",
+      "typeScriptTag": "message",
+      "description": "Creates an ats messsage",
+      "parameters": [
+        {
+          "name": "job_application_id",
+          "schema": "integer",
+          "required": true,
+          "description": "",
+          "example": 1
+        },
+        {
+          "name": "content",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "Message 1"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "201",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v2/core/bulk/employee",
+      "method": "getBulkV2",
+      "httpMethod": "post",
+      "tag": "Employee",
+      "typeScriptTag": "employee",
+      "description": "Get Bulk Employees",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v2/core/bulk/attendance",
+      "method": "getBulkV2",
+      "httpMethod": "post",
+      "tag": "Attendance",
+      "typeScriptTag": "attendance",
+      "description": "Get Bulk Attendance",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v2/core/bulk/contract_version",
+      "method": "getBulkVersions",
+      "httpMethod": "post",
+      "tag": "ContractVersion",
+      "typeScriptTag": "contractVersion",
+      "description": "Get Bulk Contract Versions",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/core/custom/tables",
+      "method": "get",
+      "httpMethod": "get",
+      "tag": "CustomTable",
+      "typeScriptTag": "customTable",
+      "description": "Get Custom Tables",
+      "parameters": [
+        {
+          "name": "topicName",
+          "schema": "string",
+          "description": "Filters by topic_name",
+          "example": "employee"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/core/custom/tables",
+      "method": "createCustomTable",
+      "httpMethod": "post",
+      "tag": "Table",
+      "typeScriptTag": "table",
+      "description": "Creates a custom table",
+      "parameters": [
+        {
+          "name": "name",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "Kudos"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "201",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/core/custom/tables/{id}",
+      "method": "getCustomTable",
+      "httpMethod": "get",
+      "tag": "Table",
+      "typeScriptTag": "table",
+      "description": "Get Custom Table",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "integer",
+          "required": true,
+          "description": "(Required)",
+          "example": 1
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/core/custom/tables/{id}/fields",
+      "method": "getFields",
+      "httpMethod": "get",
+      "tag": "Table",
+      "typeScriptTag": "table",
+      "description": "Get Custom Table Fields",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "integer",
+          "required": true,
+          "description": "Custom Table ID (Required)",
+          "example": 1
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/core/custom/tables/{id}/fields",
+      "method": "createField",
+      "httpMethod": "post",
+      "tag": "Table",
+      "typeScriptTag": "table",
+      "description": "Creates a custom table field",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "integer",
+          "required": true,
+          "description": "Custom Table ID (Required)",
+          "example": 1
+        },
+        {
+          "name": "id",
+          "schema": "integer",
+          "required": true,
+          "description": "",
+          "example": 86
+        },
+        {
+          "name": "custom_field",
+          "schema": "object",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "201",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/core/custom/tables/{id}/values/{employee_id}",
+      "method": "getCustomTableValues",
+      "httpMethod": "get",
+      "tag": "Employee",
+      "typeScriptTag": "employee",
+      "description": "Get Custom Table Fields",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "integer",
+          "required": true,
+          "description": "(Required)",
+          "example": 1
+        },
+        {
+          "name": "employeeId",
+          "schema": "integer",
+          "required": true,
+          "description": "(Required)",
+          "example": 3
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/core/custom/tables/{id}/values/{employee_id}",
+      "method": "createCustomTableValue",
+      "httpMethod": "post",
+      "tag": "Employee",
+      "typeScriptTag": "employee",
+      "description": "Creates a custom table value",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "integer",
+          "required": true,
+          "description": "(Required)",
+          "example": 1
+        },
+        {
+          "name": "employeeId",
+          "schema": "integer",
+          "required": true,
+          "description": "(Required)",
+          "example": 3
+        },
+        {
+          "name": "id",
+          "schema": "integer",
+          "required": true,
+          "description": "",
+          "example": 86
+        },
+        {
+          "name": "emloyee_id",
+          "schema": "integer",
+          "required": true,
+          "description": "",
+          "example": 10
+        },
+        {
+          "name": "table_values",
+          "schema": "array",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "201",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/core/events",
+      "method": "getTriggeredEvents",
+      "httpMethod": "get",
+      "tag": "Event",
+      "typeScriptTag": "event",
+      "description": "Get triggered events",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/core/webhooks",
+      "method": "subscribedWebhooksList",
+      "httpMethod": "get",
+      "tag": "User",
+      "typeScriptTag": "user",
+      "description": "Get a list of all subscribed webhooks for current user",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/core/webhooks",
+      "method": "createSubscription",
+      "httpMethod": "post",
+      "tag": "Webhook",
+      "typeScriptTag": "webhook",
+      "description": "Create a webhook",
+      "parameters": [
+        {
+          "name": "type",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "employee_created"
+        },
+        {
+          "name": "target_url",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "https://webhook.site/48103127-b1f6-3215-8f18-60fdbc013e3f"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/core/webhooks/{id}",
+      "method": "deleteWebhookById",
+      "httpMethod": "delete",
+      "tag": "Webhook",
+      "typeScriptTag": "webhook",
+      "description": "Delete a Webhook",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "integer",
+          "required": true,
+          "description": "(Required)",
+          "example": 1
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/time/policies",
+      "method": "getTimeOffPolicies",
+      "httpMethod": "get",
+      "tag": "Policy",
+      "typeScriptTag": "policy",
+      "description": "Get Time off Policies",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/time/policies/{id}",
+      "method": "getTimeOff",
+      "httpMethod": "get",
+      "tag": "Policy",
+      "typeScriptTag": "policy",
+      "description": "Get a Time off Policy",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "integer",
+          "required": true,
+          "description": "(Required)",
+          "example": 1
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/finance/expenses",
+      "method": "getCompanyExpenses",
+      "httpMethod": "get",
+      "tag": "Expense",
+      "typeScriptTag": "expense",
+      "description": "Get Expenses",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/finance/expenses/{id}",
+      "method": "getById",
+      "httpMethod": "get",
+      "tag": "Expense",
+      "typeScriptTag": "expense",
+      "description": "Get an expense",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "integer",
+          "required": true,
+          "description": "(Required)",
+          "example": 1
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/payroll/compensations",
+      "method": "getCompensations",
+      "httpMethod": "get",
+      "tag": "Compensation",
+      "typeScriptTag": "compensation",
+      "description": "Get Compensations",
+      "parameters": [
+        {
+          "name": "ids",
+          "schema": "array",
+          "description": "Compensations id array",
+          "example": [
+            1
+          ]
+        },
+        {
+          "name": "contractVersionIds",
+          "schema": "array",
+          "description": "Contract versions id array",
+          "example": [
+            1
+          ]
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/payroll/compensations",
+      "method": "createContractCompensation",
+      "httpMethod": "post",
+      "tag": "Compensation",
+      "typeScriptTag": "compensation",
+      "description": "Create a compensation",
+      "parameters": [
+        {
+          "name": "description",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "Meal 2"
+        },
+        {
+          "name": "contract_version_id",
+          "schema": "integer",
+          "required": true,
+          "description": "",
+          "example": 2
+        },
+        {
+          "name": "contracts_taxonomy_id",
+          "schema": "integer",
+          "required": false,
+          "description": "",
+          "example": 2
+        },
+        {
+          "name": "compensation_type",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "fixed"
+        },
+        {
+          "name": "amount",
+          "schema": "integer",
+          "required": false,
+          "description": "",
+          "example": 2112
+        },
+        {
+          "name": "unit",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "money"
+        },
+        {
+          "name": "sync_with_supplements",
+          "schema": "boolean",
+          "required": false,
+          "description": "",
+          "example": true
+        },
+        {
+          "name": "payroll_policy_id",
+          "schema": "integer",
+          "required": false,
+          "description": "",
+          "example": 2
+        },
+        {
+          "name": "recurrence_count",
+          "schema": "integer",
+          "required": false,
+          "description": "",
+          "example": 2
+        },
+        {
+          "name": "starts_on",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "2022-08-02"
+        },
+        {
+          "name": "recurrence",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "monthly"
+        },
+        {
+          "name": "first_payment_on",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "2022-08-02"
+        },
+        {
+          "name": "calculation",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "current_period"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "201",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/payroll/compensations/{id}",
+      "method": "deleteCompensation",
+      "httpMethod": "delete",
+      "tag": "Compensation",
+      "typeScriptTag": "compensation",
+      "description": "Delete a Compensation",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "integer",
+          "required": true,
+          "description": "(Required)",
+          "example": 1
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/payroll/compensations/{id}",
+      "method": "getById",
+      "httpMethod": "get",
+      "tag": "Compensation",
+      "typeScriptTag": "compensation",
+      "description": "Get a compensation",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "integer",
+          "required": true,
+          "description": "",
+          "example": 1
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/payroll/compensations/{id}",
+      "method": "updateForContract",
+      "httpMethod": "put",
+      "tag": "Compensation",
+      "typeScriptTag": "compensation",
+      "description": "Updates a compensation",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "integer",
+          "required": true,
+          "description": "",
+          "example": 1
+        },
+        {
+          "name": "description",
+          "schema": "string",
+          "description": "",
+          "example": "Meal 2"
+        },
+        {
+          "name": "contracts_taxonomy_id",
+          "schema": "integer",
+          "description": "",
+          "example": 2
+        },
+        {
+          "name": "compensation_type",
+          "schema": "string",
+          "description": "",
+          "example": "fixed"
+        },
+        {
+          "name": "amount",
+          "schema": "integer",
+          "description": "",
+          "example": 2112
+        },
+        {
+          "name": "unit",
+          "schema": "string",
+          "description": "",
+          "example": "money"
+        },
+        {
+          "name": "sync_with_supplements",
+          "schema": "boolean",
+          "description": "",
+          "example": true
+        },
+        {
+          "name": "payroll_policy_id",
+          "schema": "integer",
+          "description": "",
+          "example": 2
+        },
+        {
+          "name": "recurrence_count",
+          "schema": "integer",
+          "description": "",
+          "example": 2
+        },
+        {
+          "name": "starts_on",
+          "schema": "string",
+          "description": "",
+          "example": "2022-08-02"
+        },
+        {
+          "name": "recurrence",
+          "schema": "string",
+          "description": "",
+          "example": "monthly"
+        },
+        {
+          "name": "first_payment_on",
+          "schema": "string",
+          "description": "",
+          "example": "2022-08-02"
+        },
+        {
+          "name": "calculation",
+          "schema": "string",
+          "description": "",
+          "example": "current_period"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/payroll/taxonomies",
+      "method": "getCompanyTaxonomies",
+      "httpMethod": "get",
+      "tag": "Taxonomy",
+      "typeScriptTag": "taxonomy",
+      "description": "Get Taxonomies",
+      "parameters": [
+        {
+          "name": "ids",
+          "schema": "array",
+          "description": "Taxonomies id array",
+          "example": [
+            1
+          ]
+        },
+        {
+          "name": "legalEntityIds",
+          "schema": "array",
+          "description": "Legal Entities id array",
+          "example": [
+            1
+          ]
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v1/payroll/taxonomies/{id}",
+      "method": "getById",
+      "httpMethod": "get",
+      "tag": "Taxonomy",
+      "typeScriptTag": "taxonomy",
+      "description": "Get a taxonomy",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "integer",
+          "required": true,
+          "description": "",
+          "example": 1
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v2/core/workplaces",
+      "method": "listAllWorkplaces",
+      "httpMethod": "get",
+      "tag": "Workplace",
+      "typeScriptTag": "workplace",
+      "description": "Get all workplaces",
+      "parameters": [
+        {
+          "name": "ids",
+          "schema": "string",
+          "description": "Workplaces id comma separated values",
+          "example": "1,2"
+        },
+        {
+          "name": "employeeIds",
+          "schema": "string",
+          "description": "Employees id comma separated values",
+          "example": "1,2"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v2/core/workplaces",
+      "method": "createNewWorkplace",
+      "httpMethod": "post",
+      "tag": "Workplace",
+      "typeScriptTag": "workplace",
+      "description": "Create a workplace",
+      "parameters": [
+        {
+          "name": "name",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "First Workspace"
+        },
+        {
+          "name": "country",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "es"
+        },
+        {
+          "name": "state",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "CT"
+        },
+        {
+          "name": "city",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "Barcelona"
+        },
+        {
+          "name": "address_line_1",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "Swatch strasse 3"
+        },
+        {
+          "name": "address_line_2",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "Atiquen terceren"
+        },
+        {
+          "name": "postal_code",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "C1231"
+        },
+        {
+          "name": "phone_number",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "55555555"
+        },
+        {
+          "name": "company_id",
+          "schema": "integer",
+          "required": false,
+          "description": "",
+          "example": 2
+        },
+        {
+          "name": "legal_entity_id",
+          "schema": "integer",
+          "required": false,
+          "description": "",
+          "example": 2
+        },
+        {
+          "name": "main",
+          "schema": "boolean",
+          "required": false,
+          "description": "",
+          "example": true
+        },
+        {
+          "name": "latitude",
+          "schema": "number",
+          "required": false,
+          "description": "",
+          "example": 41.39612
+        },
+        {
+          "name": "longitude",
+          "schema": "number",
+          "required": false,
+          "description": "",
+          "example": 2.19123
+        },
+        {
+          "name": "timezone",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "etc/UTC"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "201",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v2/core/workplaces/{id}",
+      "method": "removeWorkplace",
+      "httpMethod": "delete",
+      "tag": "Workplace",
+      "typeScriptTag": "workplace",
+      "description": "Delete a workplace",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "integer",
+          "required": true,
+          "description": "(Required)",
+          "example": 1
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v2/core/workplaces/{id}",
+      "method": "getById",
+      "httpMethod": "get",
+      "tag": "Workplace",
+      "typeScriptTag": "workplace",
+      "description": "Get a workplace",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "integer",
+          "required": true,
+          "description": "",
+          "example": 1
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v2/core/workplaces/{id}",
+      "method": "updateWorkplaceById",
+      "httpMethod": "put",
+      "tag": "Workplace",
+      "typeScriptTag": "workplace",
+      "description": "Updates a workplace",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "integer",
+          "required": true,
+          "description": "",
+          "example": 1
+        },
+        {
+          "name": "name",
+          "schema": "string",
+          "description": "",
+          "example": "First Workspace"
+        },
+        {
+          "name": "country",
+          "schema": "string",
+          "description": "",
+          "example": "es"
+        },
+        {
+          "name": "state",
+          "schema": "string",
+          "description": "",
+          "example": "CT"
+        },
+        {
+          "name": "city",
+          "schema": "string",
+          "description": "",
+          "example": "Barcelona"
+        },
+        {
+          "name": "address_line_1",
+          "schema": "string",
+          "description": "",
+          "example": "Swatch strasse 3"
+        },
+        {
+          "name": "address_line_2",
+          "schema": "string",
+          "description": "",
+          "example": "Atiquen terceren"
+        },
+        {
+          "name": "postal_code",
+          "schema": "string",
+          "description": "",
+          "example": "C1231"
+        },
+        {
+          "name": "phone_number",
+          "schema": "string",
+          "description": "",
+          "example": "55555555"
+        },
+        {
+          "name": "payroll_policy_id",
+          "schema": "integer",
+          "description": "",
+          "example": 2
+        },
+        {
+          "name": "main",
+          "schema": "boolean",
+          "description": "",
+          "example": true
+        },
+        {
+          "name": "timezone",
+          "schema": "string",
+          "description": "",
+          "example": "etc/UTC"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v2/custom_fields/fields",
+      "method": "getFieldsBySlug",
+      "httpMethod": "get",
+      "tag": "CustomField",
+      "typeScriptTag": "customField",
+      "description": "Get custom fields",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "integer",
+          "description": "",
+          "example": 1
+        },
+        {
+          "name": "label",
+          "schema": "string",
+          "description": "",
+          "example": "tshirt size"
+        },
+        {
+          "name": "slugId",
+          "schema": "integer",
+          "description": "",
+          "example": 1
+        },
+        {
+          "name": "slugName",
+          "schema": "string",
+          "description": "",
+          "example": "employees-questions"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v2/custom_fields/fields",
+      "method": "createField",
+      "httpMethod": "post",
+      "tag": "CustomField",
+      "typeScriptTag": "customField",
+      "description": "Create a custom field",
+      "parameters": [
+        {
+          "name": "label",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "t shirt"
+        },
+        {
+          "name": "slug_name",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "employees-questions"
+        },
+        {
+          "name": "field_type",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "text"
+        },
+        {
+          "name": "min_value",
+          "schema": "integer",
+          "required": false,
+          "description": "",
+          "example": 1
+        },
+        {
+          "name": "max_value",
+          "schema": "integer",
+          "required": false,
+          "description": "",
+          "example": 100
+        },
+        {
+          "name": "required",
+          "schema": "boolean",
+          "required": true,
+          "description": "",
+          "example": true
+        },
+        {
+          "name": "editable",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "text"
+        },
+        {
+          "name": "visible",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "text"
+        },
+        {
+          "name": "choice_options",
+          "schema": "array",
+          "required": false,
+          "description": ""
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v2/custom_fields/fields/{id}",
+      "method": "deleteById",
+      "httpMethod": "delete",
+      "tag": "CustomField",
+      "typeScriptTag": "customField",
+      "description": "Delete a custom field",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "integer",
+          "required": true,
+          "description": "(Required)",
+          "example": 1
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v2/custom_fields/values",
+      "method": "getBySlugName",
+      "httpMethod": "get",
+      "tag": "CustomFieldValue",
+      "typeScriptTag": "customFieldValue",
+      "description": "Get custom field values",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "integer",
+          "description": "",
+          "example": 1
+        },
+        {
+          "name": "slugId",
+          "schema": "integer",
+          "description": "",
+          "example": 1
+        },
+        {
+          "name": "fieldId",
+          "schema": "integer",
+          "description": "",
+          "example": 1
+        },
+        {
+          "name": "slugName",
+          "schema": "string",
+          "description": "",
+          "example": "employees-questions"
+        },
+        {
+          "name": "fieldValue",
+          "schema": "string",
+          "description": "",
+          "example": "red"
+        },
+        {
+          "name": "employeeIds[]",
+          "schema": "array",
+          "description": "Employees id array",
+          "example": [
+            1
+          ]
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/v2/custom_fields/values/{id}",
+      "method": "updateValue",
+      "httpMethod": "put",
+      "tag": "CustomFieldValue",
+      "typeScriptTag": "customFieldValue",
+      "description": "Update custom field value",
+      "parameters": [
+        {
+          "name": "id",
+          "schema": "integer",
+          "required": true,
+          "description": "(Required)",
+          "example": 1
+        },
+        {
+          "name": "value",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "l"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "repositoryDescription": "Factorial, a leading HR software for SMEs, offers intuitive solutions to automate administrative tasks and provide insights. Founded in 2016 in Barcelona, now a Unicorn in 2022, Factorial simplifies time management, talent recruitment, and more in one user-friendly platform. Factorial's {language} SDK generated by Konfig (https://konfigthis.com/).",
+  "logo": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/factorial/logo.png",
+  "openApiRaw": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/factorial/openapi.yaml",
+  "openApiGitHubUi": "https://github.com/konfig-sdks/openapi-examples/tree/HEAD/factorial/openapi.yaml",
+  "previewLinkImage": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/factorial/imagePreview.png",
+  "faviconUrl": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/factorial/favicon.png",
+  "clientNameCamelCase": "factorial",
+  "lastUpdated": "2024-03-26T00:19:23.016Z",
+  "typescriptSdkUsageCode": "import { Factorial } from 'factorial-typescript-sdk';\n\nconst factorial = new Factorial({\n    clientId: \"CLIENT_ID\",\n    clientSecret: \"CLIENT_SECRET\",\n    redirectUri: \"REDIRECT_URI\",\n    apikey: \"X_API_KEY\"\n})",
+  "typescriptSdkFirstRequestCode": "// Get employees from a company\nconst getEmployeesResponse = factorial.employee.getEmployees()",
+  "fixedSpecFileName": "factorial-fixed-spec.yaml"
+}
