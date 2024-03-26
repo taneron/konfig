@@ -505,6 +505,21 @@ const customRequests: Record<string, CustomRequest> = {
       return downloadOpenApiSpecFromReadme({ urls });
     },
   },
+  "officient.io": {
+    lambda: async () => {
+      const url = "https://apidocs.officient.io/openapi";
+      // get HTML and find href fro <a> that contains "openapi" and download OAS from there
+      const htmlResponse = await fetch(url);
+      const html = await htmlResponse.text();
+      const subpath = html.match(/href="([^"]+)"/)?.[1];
+      if (!subpath) {
+        throw Error("Could not find openapi url");
+      }
+      const openapiUrl = `https://apidocs.officient.io/${subpath}`;
+      const response = await fetch(openapiUrl);
+      return response.text();
+    },
+  },
   "namely.com": {
     lambda: async () => {
       const url =
