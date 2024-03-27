@@ -493,6 +493,10 @@ const customRequests: Record<string, CustomRequest> = {
     type: "GET",
     url: "https://stoplight.io/api/v1/projects/zapier/public-api/nodes/spec/reference/API.yaml?fromExportButton=true&snapshotType=http_service&deref=optimizedBundle",
   },
+  "insightly.com": {
+    type: "GET",
+    url: "https://api.na1.insightly.com/v3.1/swagger/docs/v3.1",
+  },
   "hubspot.com_CRM": {
     lambda: async () => {
       const indexUrl = "https://api.hubspot.com/api-catalog-public/v1/apis";

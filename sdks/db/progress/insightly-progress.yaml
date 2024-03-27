@@ -1,0 +1,2789 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+operationIds:
+  /ActivitySets:
+    get: ActivitySets_getList
+  /ActivitySets/{id}:
+    get: ActivitySets_getActivitySet
+  /Comments:
+    put: Comments_updateComment
+  /Comments/{id}:
+    delete: Comments_deleteComment
+  /Comments/{id}/FileAttachments:
+    get: Comments_getFileAttachments
+    post: Comments_addFileAttachment
+  /Comments/{id}/Sync:
+    put: Comments_syncQuotationToOpportunity
+  /CommunityComments:
+    get: ForumComments_listComments
+    post: ForumComments_addCommentOperation
+    put: ForumComments_updateComment
+  /CommunityComments/Search:
+    get: ForumComments_getList
+  /CommunityComments/{id}:
+    get: ForumComments_getById
+  /CommunityComments/{id}/Follow:
+    delete: ForumComments_stopFollowing
+    get: ForumComments_getFollowState
+    post: ForumComments_startFollowingComment
+  /CommunityComments/{id}/MergeDocument/{documentTemplateId}:
+    post: ForumComments_generateMergeDocument
+  /CommunityComments/{id}/Sync:
+    put: ForumComments_syncQuotationToOpportunity
+  /CommunityForums:
+    get: Forums_getList
+    post: Forums_addForumOperation
+    put: Forums_updateForum
+  /CommunityForums/Search:
+    get: Forums_getFilteredList
+  /CommunityForums/{id}:
+    get: Forums_getForumById
+  /CommunityForums/{id}/CommunityPosts:
+    get: Forums_getForumPosts
+    post: Forums_addPostToForum
+    put: Forums_updateForumPost
+  /CommunityForums/{id}/Follow:
+    delete: Forums_stopFollowing
+    get: Forums_getFollowState
+    post: Forums_startFollowingForum
+  /CommunityForums/{id}/MergeDocument/{documentTemplateId}:
+    post: Forums_generateMergeDocument
+  /CommunityForums/{id}/Sync:
+    put: Forums_syncQuotationToOpportunity
+  /CommunityPosts:
+    get: ForumPosts_listForumPosts
+    post: ForumPosts_addForumPost
+    put: ForumPosts_updatePost
+  /CommunityPosts/Search:
+    get: ForumPosts_getList
+  /CommunityPosts/{id}:
+    get: ForumPosts_getPost
+  /CommunityPosts/{id}/CommunityComments:
+    get: ForumPosts_getComments
+    post: ForumPosts_addComment
+    put: ForumPosts_updateComment
+  /CommunityPosts/{id}/Follow:
+    delete: ForumPosts_unfollowPost
+    get: ForumPosts_getFollowState
+    post: ForumPosts_startFollowingPost
+  /CommunityPosts/{id}/MergeDocument/{documentTemplateId}:
+    post: ForumPosts_generateMergeDocument
+  /CommunityPosts/{id}/Sync:
+    put: ForumPosts_syncQuotationToOpportunity
+  /Contacts:
+    get: Contacts_getList
+    post: Contacts_createContact
+    put: Contacts_updateContact
+  /Contacts/Search:
+    get: Contacts_filteredList
+  /Contacts/SearchByTag:
+    get: Contacts_listByTag
+  /Contacts/{id}:
+    delete: Contacts_deleteContact
+    get: Contacts_getContact
+  /Contacts/{id}/ActivitySetAssignment:
+    post: Contacts_addActivitySetAssignment
+  /Contacts/{id}/Dates:
+    get: Contacts_getDates
+    put: Contacts_updateDates
+  /Contacts/{id}/Emails:
+    get: Contacts_getEmailsList
+  /Contacts/{id}/Events:
+    get: Contacts_getEvents
+  /Contacts/{id}/FileAttachments:
+    get: Contacts_getFileAttachments
+    post: Contacts_addFileAttachment
+  /Contacts/{id}/Follow:
+    delete: Contacts_stopFollowing
+    get: Contacts_getFollowState
+    post: Contacts_startFollowing
+  /Contacts/{id}/Image:
+    delete: Contacts_deleteImage
+    get: Contacts_getImage
+  /Contacts/{id}/Image/{filename}:
+    put: Contacts_updateImage
+  /Contacts/{id}/ImageField/{fieldName}:
+    delete: Contacts_deleteCustomImageField
+    get: Contacts_getCustomImageField
+  /Contacts/{id}/ImageField/{fieldName}/{fileName}:
+    put: Contacts_updateCustomImageField
+  /Contacts/{id}/Links:
+    get: Contacts_getLinks
+    post: Contacts_addLink
+    put: Contacts_updateLink
+  /Contacts/{id}/Links/{linkId}:
+    delete: Contacts_deleteLink
+  /Contacts/{id}/MergeDocument/{documentTemplateId}:
+    post: Contacts_generateMergeDocument
+  /Contacts/{id}/Note:
+    get: Contacts_getNoteList
+    post: Contacts_addNoteToContact
+    put: Contacts_updateNote
+  /Contacts/{id}/Note/{childEntityId}:
+    delete: Contacts_deleteNote
+  /Contacts/{id}/Notes:
+    get: Contacts_getNotes
+    post: Contacts_addNoteToContact
+    put: Contacts_updateNote
+  /Contacts/{id}/Sync:
+    put: Contacts_syncQuotationToOpportunity
+  /Contacts/{id}/Tags:
+    delete: Contacts_removeTag
+    get: Contacts_getTagList
+    post: Contacts_addTagToContact
+    put: Contacts_updateTags
+  /Contacts/{id}/Tasks:
+    get: Contacts_getTasksList
+  /Countries:
+    get: Countries_listOfCountries
+  /Currencies:
+    get: Currencies_getList
+  /CustomFields/{objectName}:
+    get: CustomFields_getList
+  /CustomFields/{objectName}/Search:
+    get: CustomFields_getFieldByName
+  /CustomObjects:
+    get: CustomObjects_getList
+  /CustomObjects/{customObjectName}:
+    get: CustomObjects_getObjectByName
+  /DocumentTemplates:
+    get: DocumentTemplates_listTemplates
+  /DocumentTemplates/Search:
+    get: DocumentTemplates_getList
+  /DocumentTemplates/{id}:
+    get: DocumentTemplates_getById
+  /Emails:
+    get: Emails_getList
+  /Emails/Search:
+    get: Emails_filteredList
+  /Emails/SearchByTag:
+    get: Emails_listByTag
+  /Emails/{id}:
+    delete: Emails_deleteEmail
+    get: Emails_getEmail
+  /Emails/{id}/Comments:
+    get: Emails_getComments
+    post: Emails_addComment
+  /Emails/{id}/FileAttachments:
+    get: Emails_getFileAttachments
+  /Emails/{id}/Follow:
+    delete: Emails_unfollow
+    get: Emails_getFollowState
+    post: Emails_startFollowing
+  /Emails/{id}/Links:
+    get: Emails_getLinks
+    post: Emails_addLink
+  /Emails/{id}/Links/{linkId}:
+    delete: Emails_deleteLink
+  /Emails/{id}/Tags:
+    delete: Emails_deleteTag
+    get: Emails_getTags
+    post: Emails_addTagToEmail
+    put: Emails_updateTags
+  /Events:
+    get: Events_list
+    post: Events_addEvent
+    put: Events_updateEvent
+  /Events/Search:
+    get: Events_filteredList
+  /Events/{id}:
+    delete: Events_deleteEvent
+    get: Events_getEvent
+  /Events/{id}/ImageField/{fieldName}:
+    delete: Events_deleteCustomImageField
+    get: Events_getCustomImageField
+  /Events/{id}/ImageField/{fieldName}/{fileName}:
+    put: Events_updateImageField
+  /Events/{id}/Links:
+    get: Events_getLinks
+    post: Events_addLink
+  /Events/{id}/Links/{linkId}:
+    delete: Events_deleteLink
+  /Events/{id}/MergeDocument/{documentTemplateId}:
+    post: Events_generateMergeDocument
+  /Events/{id}/Sync:
+    put: Events_syncQuotationToOpportunity
+  /FileAttachments/{id}:
+    delete: FileAttachments_deleteAttachment
+    get: FileAttachments_getFile
+  /FileCategories:
+    get: FileCategories_getList
+    post: FileCategories_addCategory
+    put: FileCategories_updateCategory
+  /FileCategories/{id}:
+    delete: FileCategories_deactivateCategory
+    get: FileCategories_getGraph
+  /Follows:
+    get: Follows_getList
+  /ForumCategories:
+    get: ForumCategories_list
+  /ForumCategories/Search:
+    get: ForumCategories_getList
+  /ForumCategories/{id}:
+    get: ForumCategories_getById
+  /ForumCategories/{id}/Follow:
+    delete: ForumCategories_unfollowCategory
+    get: ForumCategories_getFollowState
+    post: ForumCategories_startFollowingCategory
+  /Instance:
+    get: Instance_getData
+  /KnowledgeArticle:
+    get: KnowledgeArticles_listArticleObjects
+    post: KnowledgeArticles_addKnowledgeArticle
+    put: KnowledgeArticles_updateArticle
+  /KnowledgeArticle/Search:
+    get: KnowledgeArticles_getListByFilter
+  /KnowledgeArticle/SearchByTag:
+    get: KnowledgeArticles_listByTag
+  /KnowledgeArticle/{id}:
+    delete: KnowledgeArticles_deleteArticle
+    get: KnowledgeArticles_getById
+  /KnowledgeArticle/{id}/Follow:
+    delete: KnowledgeArticles_stopFollowing
+    get: KnowledgeArticles_getFollowState
+    post: KnowledgeArticles_startFollowing
+  /KnowledgeArticle/{id}/ImageField/{fieldName}:
+    delete: KnowledgeArticles_deleteCustomImageField
+    get: KnowledgeArticles_getCustomImageField
+  /KnowledgeArticle/{id}/ImageField/{fieldName}/{fileName}:
+    put: KnowledgeArticles_updateImageField
+  /KnowledgeArticle/{id}/MergeDocument/{documentTemplateId}:
+    post: KnowledgeArticles_generateMergeDocument
+  /KnowledgeArticle/{id}/Sync:
+    put: KnowledgeArticles_syncQuotationToOpportunity
+  /KnowledgeArticle/{id}/Tags:
+    delete: KnowledgeArticles_deleteTag
+    get: KnowledgeArticles_getTags
+    post: KnowledgeArticles_addTagToArticle
+    put: KnowledgeArticles_updateTags
+  /KnowledgeArticle/{id}/Translations/{language}:
+    get: KnowledgeArticles_getTranslation
+    post: KnowledgeArticles_addTranslation
+    put: KnowledgeArticles_updateTranslation
+  /KnowledgeArticleCategory:
+    get: KnowledgeArticleCategories_getList
+    post: KnowledgeArticleCategories_addCategory
+    put: KnowledgeArticleCategories_updateCategory
+  /KnowledgeArticleCategory/Search:
+    get: KnowledgeArticleCategories_filterList
+  /KnowledgeArticleCategory/{id}:
+    get: KnowledgeArticleCategories_getCategory
+  /KnowledgeArticleCategory/{id}/MergeDocument/{documentTemplateId}:
+    post: KnowledgeArticleCategories_generateMergeDocument
+  /KnowledgeArticleCategory/{id}/Sync:
+    put: KnowledgeArticleCategories_syncQuotationToOpportunity
+  /KnowledgeArticleFolder:
+    get: KnowledgeArticleFolders_getList
+    post: KnowledgeArticleFolders_addFolder
+    put: KnowledgeArticleFolders_updateFolder
+  /KnowledgeArticleFolder/Search:
+    get: KnowledgeArticleFolders_getList
+  /KnowledgeArticleFolder/{id}:
+    get: KnowledgeArticleFolders_getFolder
+  /KnowledgeArticleFolder/{id}/MergeDocument/{documentTemplateId}:
+    post: KnowledgeArticleFolders_generateMergeDocument
+  /KnowledgeArticleFolder/{id}/Sync:
+    put: KnowledgeArticleFolders_syncQuotationToOpportunity
+  /LeadSources:
+    delete: LeadSources_deleteSource
+    get: LeadSources_getList
+    post: LeadSources_addLeadSource
+    put: LeadSources_updateLeadSource
+  /LeadStatuses:
+    delete: LeadStatuses_deleteStatus
+    get: LeadStatuses_listStatuses
+    post: LeadStatuses_addStatus
+    put: LeadStatuses_updateStatus
+  /Leads:
+    get: Leads_getList
+    post: Leads_createLead
+    put: Leads_updateLead
+  /Leads/Search:
+    get: Leads_filteredList
+  /Leads/SearchByTag:
+    get: Leads_listByTag
+  /Leads/{id}:
+    delete: Leads_deleteLead
+    get: Leads_getLead
+  /Leads/{id}/ActivitySetAssignment:
+    post: Leads_addActivitySetAssignment
+  /Leads/{id}/Emails:
+    get: Leads_getEmailsList
+  /Leads/{id}/Events:
+    get: Leads_getLeadEvents
+  /Leads/{id}/FileAttachments:
+    get: Leads_getFileAttachments
+    post: Leads_addFileAttachment
+  /Leads/{id}/Follow:
+    delete: Leads_unfollowLead
+    get: Leads_getFollowState
+    post: Leads_startFollowingLead
+  /Leads/{id}/Image:
+    delete: Leads_deleteLeadImage
+    get: Leads_getImage
+  /Leads/{id}/Image/{filename}:
+    put: Leads_updateImage
+  /Leads/{id}/ImageField/{fieldName}:
+    delete: Leads_deleteCustomImageField
+    get: Leads_customImageFieldGet
+  /Leads/{id}/ImageField/{fieldName}/{fileName}:
+    put: Leads_updateImageField
+  /Leads/{id}/LinkEmailAddress:
+    get: Leads_linkEmailAddressGet
+  /Leads/{id}/Links:
+    get: Leads_getLeadLinks
+    post: Leads_addLink
+    put: Leads_updateLink
+  /Leads/{id}/Links/{linkId}:
+    delete: Leads_deleteLink
+  /Leads/{id}/MergeDocument/{documentTemplateId}:
+    post: Leads_generateMergeDocument
+  /Leads/{id}/Note:
+    get: Leads_getLeadNotes
+    post: Leads_addNote
+    put: Leads_updateNote
+  /Leads/{id}/Note/{childEntityId}:
+    delete: Leads_deleteNoteChildEntity
+  /Leads/{id}/Notes:
+    get: Leads_getLeadNotes
+    post: Leads_addNote
+    put: Leads_updateNote
+  /Leads/{id}/Sync:
+    put: Leads_syncQuotationToOpportunity
+  /Leads/{id}/Tags:
+    delete: Leads_deleteTag
+    get: Leads_getTags
+    post: Leads_addTag
+    put: Leads_updateTags
+  /Leads/{id}/Tasks:
+    get: Leads_getLeadTasks
+  /MarketingCustomEvent:
+    post: MarketingCustomEvents_addStructuredEvent
+  /MarketingVisits:
+    get: MarketingVisits_getList
+  /MarketingVisits/{id}:
+    get: MarketingVisits_getListByProspect
+  /Milestones:
+    get: Milestones_getList
+  /Milestones/Search:
+    get: Milestones_filteredList
+  /Milestones/{id}:
+    get: Milestones_getMilestone
+  /Notes:
+    get: Notes_getList
+    put: Notes_updateNote
+  /Notes/Search:
+    get: Notes_filteredList
+  /Notes/{id}:
+    delete: Notes_deleteNote
+    get: Notes_getNote
+  /Notes/{id}/Comment:
+    get: Notes_getComments
+    put: Notes_updateComment
+  /Notes/{id}/Comment/{childEntityId}:
+    delete: Notes_deleteComment
+  /Notes/{id}/Comments:
+    get: Notes_getComments
+    post: Notes_addCommentToNote
+  /Notes/{id}/FileAttachments:
+    get: Notes_getFileAttachments
+    post: Notes_addFileAttachment
+  /Notes/{id}/Follow:
+    delete: Notes_stopFollowing
+    get: Notes_getFollowState
+    post: Notes_startFollowing
+  /Notes/{id}/Links:
+    get: Notes_getLinks
+    post: Notes_addLink
+  /Notes/{id}/Links/{linkId}:
+    delete: Notes_deleteLink
+  /Notes/{id}/Sync:
+    put: Notes_syncQuotationToOpportunity
+  /Opportunities:
+    get: Opportunities_listOpportunities
+    post: Opportunities_addOpportunity
+    put: Opportunities_updateOpportunity
+  /Opportunities/Search:
+    get: Opportunities_getListFiltered
+  /Opportunities/SearchByTag:
+    get: Opportunities_listByTag
+  /Opportunities/{id}:
+    delete: Opportunities_deleteOpportunity
+    get: Opportunities_getById
+  /Opportunities/{id}/ActivitySetAssignment:
+    post: Opportunities_addActivitySet
+  /Opportunities/{id}/Emails:
+    get: Opportunities_getEmails
+  /Opportunities/{id}/Events:
+    get: Opportunities_getEvents
+  /Opportunities/{id}/FileAttachments:
+    get: Opportunities_getFileAttachments
+    post: Opportunities_addFileAttachment
+  /Opportunities/{id}/Follow:
+    delete: Opportunities_unfollow
+    get: Opportunities_getFollowState
+    post: Opportunities_startFollowing
+  /Opportunities/{id}/Image:
+    delete: Opportunities_deleteImage
+    get: Opportunities_getImage
+  /Opportunities/{id}/Image/{filename}:
+    put: Opportunities_updateImage
+  /Opportunities/{id}/ImageField/{fieldName}:
+    delete: Opportunities_deleteCustomImageField
+    get: Opportunities_getCustomImageField
+  /Opportunities/{id}/ImageField/{fieldName}/{fileName}:
+    put: Opportunities_updateCustomImageField
+  /Opportunities/{id}/LinkEmailAddress:
+    get: Opportunities_getLinkEmailAddress
+  /Opportunities/{id}/Links:
+    get: Opportunities_getLinks
+    post: Opportunities_addLink
+    put: Opportunities_updateLink
+  /Opportunities/{id}/Links/{linkId}:
+    delete: Opportunities_deleteLink
+  /Opportunities/{id}/MergeDocument/{documentTemplateId}:
+    post: Opportunities_generateMergeDocument
+  /Opportunities/{id}/Note:
+    get: Opportunities_getNoteList
+    post: Opportunities_addNoteToOpportunity
+    put: Opportunities_updateNote
+  /Opportunities/{id}/Note/{childEntityId}:
+    delete: Opportunities_deleteNote
+  /Opportunities/{id}/Notes:
+    get: Opportunities_getNotes
+    post: Opportunities_addNote
+    put: Opportunities_updateNote
+  /Opportunities/{id}/OpportunityLineItem:
+    get: Opportunities_getOpportunityLineItem
+    post: Opportunities_addOpportunityProduct
+    put: Opportunities_updateOpportunityProduct
+  /Opportunities/{id}/OpportunityLineItem/{childEntityId}:
+    delete: Opportunities_deleteOpportunityProduct
+  /Opportunities/{id}/Pipeline:
+    delete: Opportunities_clearPipeline
+    put: Opportunities_changePipeline
+  /Opportunities/{id}/PipelineStage:
+    put: Opportunities_updatePipelineStage
+  /Opportunities/{id}/Pricebook:
+    put: Opportunities_updatePriceBook
+  /Opportunities/{id}/StateChange:
+    put: Opportunities_updateState
+  /Opportunities/{id}/StateHistory:
+    get: Opportunities_getStateHistory
+  /Opportunities/{id}/Sync:
+    put: Opportunities_syncQuotation
+  /Opportunities/{id}/Tags:
+    delete: Opportunities_deleteTag
+    get: Opportunities_getTags
+    post: Opportunities_addTagToOpportunity
+    put: Opportunities_updateTags
+  /Opportunities/{id}/Tasks:
+    get: Opportunities_getTasksList
+  /OpportunityCategories:
+    get: OpportunityCategories_getList
+    post: OpportunityCategories_addNewCategory
+    put: OpportunityCategories_updateCategory
+  /OpportunityCategories/{id}:
+    delete: OpportunityCategories_deactivateCategory
+    get: OpportunityCategories_getGraph
+  /OpportunityLineItem:
+    get: OpportunityProducts_getList
+  /OpportunityLineItem/Search:
+    get: OpportunityProducts_filteredListGet
+  /OpportunityLineItem/{id}:
+    get: OpportunityProducts_get
+  /OpportunityLineItem/{id}/ImageField/{fieldName}:
+    delete: OpportunityProducts_deleteCustomImageField
+    get: OpportunityProducts_getCustomImageField
+  /OpportunityLineItem/{id}/ImageField/{fieldName}/{fileName}:
+    put: OpportunityProducts_updateCustomImageField
+  /OpportunityStateReasons:
+    get: OpportunityStateReasons_getList
+  /Organisations:
+    get: Organisations_list
+    post: Organisations_createOrganisation
+    put: Organisations_updateOrganisation
+  /Organisations/Search:
+    get: Organisations_filterList
+  /Organisations/SearchByTag:
+    get: Organisations_listByTag
+  /Organisations/{id}:
+    delete: Organisations_removeOrganisation
+    get: Organisations_getOrganisation
+  /Organisations/{id}/ActivitySetAssignment:
+    post: Organisations_addActivitySetAssignment
+  /Organisations/{id}/Dates:
+    get: Organisations_getDates
+    put: Organisations_updateDates
+  /Organisations/{id}/EmailDomains:
+    get: Organisations_getEmailDomains
+    put: Organisations_updateEmailDomains
+  /Organisations/{id}/Emails:
+    get: Organisations_getEmailList
+  /Organisations/{id}/Events:
+    get: Organisations_getEvents
+  /Organisations/{id}/FileAttachments:
+    get: Organisations_getFileAttachments
+    post: Organisations_addFileAttachment
+  /Organisations/{id}/Follow:
+    delete: Organisations_stopFollowing
+    get: Organisations_getFollowState
+    post: Organisations_startFollowing
+  /Organisations/{id}/Image:
+    delete: Organisations_deleteImage
+    get: Organisations_getImage
+  /Organisations/{id}/Image/{filename}:
+    put: Organisations_updateImage
+  /Organisations/{id}/ImageField/{fieldName}:
+    delete: Organisations_deleteImageField
+    get: Organisations_getCustomImageField
+  /Organisations/{id}/ImageField/{fieldName}/{fileName}:
+    put: Organisations_updateCustomImageField
+  /Organisations/{id}/Links:
+    get: Organisations_getLinks
+    post: Organisations_addLink
+    put: Organisations_updateLink
+  /Organisations/{id}/Links/{linkId}:
+    delete: Organisations_deleteLink
+  /Organisations/{id}/MergeDocument/{documentTemplateId}:
+    post: Organisations_generateMergeDocument
+  /Organisations/{id}/Note:
+    get: Organisations_getNoteList
+    post: Organisations_addNote
+    put: Organisations_updateNote
+  /Organisations/{id}/Note/{childEntityId}:
+    delete: Organisations_deleteNote
+  /Organisations/{id}/Notes:
+    get: Organisations_getNotes
+    post: Organisations_addNote
+    put: Organisations_updateNote
+  /Organisations/{id}/Sync:
+    put: Organisations_syncQuotationToOpportunity
+  /Organisations/{id}/Tags:
+    delete: Organisations_deleteTag
+    get: Organisations_getTags
+    post: Organisations_addTag
+    put: Organisations_updateTags
+  /Organisations/{id}/Tasks:
+    get: Organisations_listTasks
+  /Permissions:
+    get: Permissions_getUserPermissions
+  /PipelineStages:
+    get: PipelineStages_getList
+  /PipelineStages/{id}:
+    get: PipelineStages_getGraph
+  /Pipelines:
+    get: Pipelines_getList
+  /Pipelines/{id}:
+    get: Pipelines_getGraph
+  /Pricebook:
+    get: PriceBooks_getList
+    post: PriceBooks_create
+    put: PriceBooks_updatePriceBook
+  /Pricebook/Search:
+    get: PriceBooks_filteredList
+  /Pricebook/{id}:
+    get: PriceBooks_getById
+  /Pricebook/{id}/Follow:
+    delete: PriceBooks_stopFollowing
+    get: PriceBooks_getFollowState
+    post: PriceBooks_startFollowing
+  /Pricebook/{id}/MergeDocument/{documentTemplateId}:
+    post: PriceBooks_generateMergeDocument
+  /Pricebook/{id}/PricebookEntry:
+    get: PriceBooks_getPricebookEntries
+    post: PriceBooks_addEntry
+    put: PriceBooks_updatePriceBookEntry
+  /Pricebook/{id}/PricebookEntry/{childEntityId}:
+    delete: PriceBooks_deletePriceBookEntry
+  /Pricebook/{id}/Sync:
+    put: PriceBooks_syncQuotationToOpportunity
+  /PricebookEntry:
+    get: PriceBookEntries_getList
+  /PricebookEntry/Search:
+    get: PriceBookEntries_filteredList
+  /PricebookEntry/{id}:
+    get: PriceBookEntries_getEntry
+  /PricebookEntry/{id}/ImageField/{fieldName}:
+    delete: PriceBookEntries_deleteImageField
+    get: PriceBookEntries_getCustomImageField
+  /PricebookEntry/{id}/ImageField/{fieldName}/{fileName}:
+    put: PriceBookEntries_updateCustomImageField
+  /Product:
+    get: Products_getList
+    post: Products_createProduct
+    put: Products_updateProduct
+  /Product/Search:
+    get: Products_filteredList
+  /Product/{id}:
+    delete: Products_deleteProduct
+    get: Products_getById
+  /Product/{id}/Follow:
+    delete: Products_stopFollowing
+    get: Products_getFollowState
+    post: Products_startFollowingProduct
+  /Product/{id}/Image:
+    delete: Products_deleteImage
+    get: Products_getImage
+  /Product/{id}/Image/{filename}:
+    put: Products_updateImage
+  /Product/{id}/ImageField/{fieldName}:
+    delete: Products_deleteCustomImageField
+    get: Products_getCustomImageField
+  /Product/{id}/ImageField/{fieldName}/{fileName}:
+    put: Products_updateCustomImageField
+  /Product/{id}/MergeDocument/{documentTemplateId}:
+    post: Products_generateMergeDocument
+  /Product/{id}/PricebookEntry:
+    get: Products_getPricebookEntries
+    post: Products_addPriceBookEntry
+    put: Products_updatePriceBookEntry
+  /Product/{id}/PricebookEntry/{childEntityId}:
+    delete: Products_deletePriceBookEntry
+  /Product/{id}/Sync:
+    put: Products_syncQuotationToOpportunity
+  /ProjectCategories:
+    get: ProjectCategories_getList
+    post: ProjectCategories_addCategory
+    put: ProjectCategories_updateCategory
+  /ProjectCategories/{id}:
+    delete: ProjectCategories_deactivateCategory
+    get: ProjectCategories_getGraph
+  /Projects:
+    get: Projects_getList
+    post: Projects_addProject
+    put: Projects_updateProject
+  /Projects/Search:
+    get: Projects_filteredList
+  /Projects/SearchByTag:
+    get: Projects_listByTag
+  /Projects/{id}:
+    delete: Projects_deleteProject
+    get: Projects_getProject
+  /Projects/{id}/ActivitySetAssignment:
+    post: Projects_addActivityAssignment
+  /Projects/{id}/Emails:
+    get: Projects_getListEmails
+  /Projects/{id}/Events:
+    get: Projects_getEvents
+  /Projects/{id}/FileAttachments:
+    get: Projects_getFileAttachments
+    post: Projects_addFileAttachment
+  /Projects/{id}/Follow:
+    delete: Projects_stopFollowing
+    get: Projects_getFollowState
+    post: Projects_startFollowing
+  /Projects/{id}/Image:
+    delete: Projects_deleteImage
+    get: Projects_getImage
+  /Projects/{id}/Image/{filename}:
+    put: Projects_updateProjectImage
+  /Projects/{id}/ImageField/{fieldName}:
+    delete: Projects_deleteImageField
+    get: Projects_getCustomImageField
+  /Projects/{id}/ImageField/{fieldName}/{fileName}:
+    put: Projects_updateCustomImageField
+  /Projects/{id}/LinkEmailAddress:
+    get: Projects_linkEmailAddress
+  /Projects/{id}/Links:
+    get: Projects_getLinks
+    post: Projects_addLink
+    put: Projects_updateLink
+  /Projects/{id}/Links/{linkId}:
+    delete: Projects_deleteLink
+  /Projects/{id}/MergeDocument/{documentTemplateId}:
+    post: Projects_generateMergeDocument
+  /Projects/{id}/Milestones:
+    get: Projects_listMilestones
+    post: Projects_addMilestone
+    put: Projects_updateMilestone
+  /Projects/{id}/Milestones/{milestoneId}:
+    delete: Projects_deleteMilestone
+  /Projects/{id}/Note:
+    get: Projects_getNoteList
+    post: Projects_addNoteToProject
+    put: Projects_updateNote
+  /Projects/{id}/Note/{childEntityId}:
+    delete: Projects_deleteNote
+  /Projects/{id}/Notes:
+    get: Projects_getNotes
+    post: Projects_addNoteToProject
+    put: Projects_updateNoteOperation
+  /Projects/{id}/Pipeline:
+    delete: Projects_clearPipeline
+    put: Projects_changePipeline
+  /Projects/{id}/PipelineStage:
+    put: Projects_changeStage
+  /Projects/{id}/Sync:
+    put: Projects_syncQuotationToOpportunity
+  /Projects/{id}/Tags:
+    delete: Projects_removeTag
+    get: Projects_getTags
+    post: Projects_addTagToProject
+    put: Projects_updateTags
+  /Projects/{id}/Tasks:
+    get: Projects_getTaskList
+  /Prospect:
+    get: Prospects_list
+    post: Prospects_addProspect
+    put: Prospects_updateProspect
+  /Prospect/Search:
+    get: Prospects_filteredList
+  /Prospect/SearchByTag:
+    get: Prospects_searchByTagList
+  /Prospect/{id}:
+    delete: Prospects_deleteProspect
+    get: Prospects_getProspectById
+  /Prospect/{id}/Follow:
+    delete: Prospects_stopFollowing
+    get: Prospects_getFollowState
+    post: Prospects_startFollowing
+  /Prospect/{id}/ImageField/{fieldName}:
+    delete: Prospects_deleteCustomImageField
+    get: Prospects_getCustomImageField
+  /Prospect/{id}/ImageField/{fieldName}/{fileName}:
+    put: Prospects_updateImageField
+  /Prospect/{id}/MergeDocument/{documentTemplateId}:
+    post: Prospects_generateMergeDocument
+  /Prospect/{id}/StaticListMembership:
+    delete: Prospects_removeFromStaticList
+    get: Prospects_getStaticListMembership
+    post: Prospects_addToStaticList
+    put: Prospects_updateStaticListMembership
+  /Prospect/{id}/Sync:
+    put: Prospects_syncQuotationToOpportunity
+  /Prospect/{id}/Tags:
+    delete: Prospects_deleteTag
+    get: Prospects_getTags
+    post: Prospects_addTag
+    put: Prospects_updateTags
+  /Quotation:
+    get: Quotes_getList
+    post: Quotes_addQuoteOperation
+    put: Quotes_updateQuote
+  /Quotation/Search:
+    get: Quotes_filteredList
+  /Quotation/{id}:
+    delete: Quotes_deleteQuoteOperation
+    get: Quotes_getQuote
+  /Quotation/{id}/Follow:
+    delete: Quotes_stopFollowingQuote
+    get: Quotes_getFollowState
+    post: Quotes_startFollowingQuote
+  /Quotation/{id}/ImageField/{fieldName}:
+    delete: Quotes_deleteCustomImageField
+    get: Quotes_getCustomImageField
+  /Quotation/{id}/ImageField/{fieldName}/{fileName}:
+    put: Quotes_updateCustomImageField
+  /Quotation/{id}/MergeDocument/{documentTemplateId}:
+    post: Quotes_generateMergeDocument
+  /Quotation/{id}/QuotationDocument:
+    get: Quotes_getQuoteDocuments
+  /Quotation/{id}/QuotationDocument/{childEntityId}:
+    delete: Quotes_deleteDocument
+  /Quotation/{id}/QuotationLineItem:
+    get: Quotes_getQuoteLineItem
+    post: Quotes_addProductToQuote
+    put: Quotes_updateQuotationLineItem
+  /Quotation/{id}/QuotationLineItem/{childEntityId}:
+    delete: Quotes_deleteQuoteProduct
+  /Quotation/{id}/Sync:
+    put: Quotes_syncToOpportunity
+  /QuotationLineItem:
+    get: QuoteProducts_listQuoteProducts
+  /QuotationLineItem/Search:
+    get: QuoteProducts_filteredList
+  /QuotationLineItem/{id}:
+    get: QuoteProducts_getProduct
+  /QuotationLineItem/{id}/ImageField/{fieldName}:
+    delete: QuoteProducts_deleteCustomImageField
+    get: QuoteProducts_getCustomImageField
+  /QuotationLineItem/{id}/ImageField/{fieldName}/{fileName}:
+    put: QuoteProducts_updateCustomImageField
+  /Relationships:
+    get: Relationships_getList
+  /Tags:
+    get: Tags_getListByRecordType
+  /TaskCategories:
+    get: TaskCategories_getList
+    post: TaskCategories_createCategory
+    put: TaskCategories_updateCategory
+  /TaskCategories/{id}:
+    delete: TaskCategories_deactivateCategory
+    get: TaskCategories_getGraph
+  /Tasks:
+    get: Tasks_list
+    post: Tasks_addTask
+    put: Tasks_updateTask
+  /Tasks/Search:
+    get: Tasks_filteredList
+  /Tasks/{id}:
+    delete: Tasks_deleteTask
+    get: Tasks_getTask
+  /Tasks/{id}/Comment:
+    get: Tasks_getComments
+    post: Tasks_addCommentToTask
+    put: Tasks_updateComment
+  /Tasks/{id}/Comment/{childEntityId}:
+    delete: Tasks_deleteComment
+  /Tasks/{id}/Comments:
+    get: Tasks_getComments
+    post: Tasks_addComment
+  /Tasks/{id}/Follow:
+    delete: Tasks_stopFollowing
+    get: Tasks_getFollowState
+    post: Tasks_startFollowingTask
+  /Tasks/{id}/ImageField/{fieldName}:
+    delete: Tasks_deleteCustomImageField
+    get: Tasks_getCustomImageField
+  /Tasks/{id}/ImageField/{fieldName}/{fileName}:
+    put: Tasks_updateCustomImageField
+  /Tasks/{id}/Links:
+    get: Tasks_getLinks
+    post: Tasks_addLink
+  /Tasks/{id}/Links/{linkId}:
+    delete: Tasks_deleteLink
+  /Tasks/{id}/MergeDocument/{documentTemplateId}:
+    post: Tasks_generateMergeDocument
+  /Tasks/{id}/Sync:
+    put: Tasks_syncQuotationToOpportunity
+  /TeamMembers:
+    get: TeamMembers_getList
+    post: TeamMembers_addNewMember
+  /TeamMembers/{id}:
+    delete: TeamMembers_deleteMember
+    get: TeamMembers_getById
+  /Teams:
+    get: Teams_getList
+    post: Teams_addTeam
+    put: Teams_updateTeamMembers
+  /Teams/{id}:
+    delete: Teams_removeTeam
+    get: Teams_getTeam
+  /Teams/{id}/TeamMembers:
+    post: Teams_addTeamMember
+  /Teams/{id}/TeamMembers/{permissionId}:
+    delete: Teams_deleteTeamMember
+  /Ticket:
+    get: Tickets_listObjects
+    post: Tickets_createTicket
+    put: Tickets_updateTicket
+  /Ticket/Search:
+    get: Tickets_filterList
+  /Ticket/SearchByTag:
+    get: Tickets_filterByTagList
+  /Ticket/{id}:
+    delete: Tickets_deleteTicketOperation
+    get: Tickets_getTicket
+  /Ticket/{id}/Comments:
+    get: Tickets_getComments
+    post: Tickets_addComment
+  /Ticket/{id}/Follow:
+    delete: Tickets_stopFollowing
+    get: Tickets_getFollowState
+    post: Tickets_startFollowing
+  /Ticket/{id}/ImageField/{fieldName}:
+    delete: Tickets_deleteCustomImageField
+    get: Tickets_getCustomImageField
+  /Ticket/{id}/ImageField/{fieldName}/{fileName}:
+    put: Tickets_updateCustomImageField
+  /Ticket/{id}/Merge:
+    post: Tickets_mergeInto
+  /Ticket/{id}/MergeDocument/{documentTemplateId}:
+    post: Tickets_generateMergeDocument
+  /Ticket/{id}/Sync:
+    put: Tickets_syncQuotationToOpportunity
+  /Ticket/{id}/Tags:
+    delete: Tickets_removeTag
+    get: Tickets_getTags
+    post: Tickets_addTagToTicket
+    put: Tickets_updateTags
+  /Users:
+    get: Users_listUsers
+  /Users/Me:
+    get: Users_getUser
+  /Users/Search:
+    get: Users_filteredList
+  /Users/{id}:
+    get: Users_getUserDetails
+  /{objectName}:
+    get: CustomObjectsRecords_getList
+    post: CustomObjectsRecords_addRecord
+    put: CustomObjectsRecords_updateRecord
+  /{objectName}/Search:
+    get: CustomObjectsRecords_getFilteredList
+  /{objectName}/{id}:
+    delete: CustomObjectsRecords_deleteRecord
+    get: CustomObjectsRecords_getRecord
+  /{objectName}/{id}/Translations/{language}:
+    get: CustomObjectsRecords_getTranslation
+    post: CustomObjectsRecords_addTranslation
+    put: CustomObjectsRecords_updateTranslationRecord
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /Comments:
+    put:
+      application/json: CommentsUpdateCommentRequest
+  /Comments/{id}/FileAttachments:
+    post:
+      multipart/form-data: CommentsAddFileAttachmentRequest
+  /CommunityComments:
+    post:
+      application/json: ForumCommentsAddCommentOperationRequest
+    put:
+      application/json: ForumCommentsUpdateCommentRequest
+  /CommunityForums:
+    post:
+      application/json: ForumsAddForumOperationRequest
+    put:
+      application/json: ForumsUpdateForumRequest
+  /CommunityForums/{id}/CommunityPosts:
+    post:
+      application/json: ForumsAddPostToForumRequest
+    put:
+      application/json: ForumsUpdateForumPostRequest
+  /CommunityPosts:
+    post:
+      application/json: ForumPostsAddForumPostRequest
+    put:
+      application/json: ForumPostsUpdatePostRequest
+  /CommunityPosts/{id}/CommunityComments:
+    post:
+      application/json: ForumPostsAddCommentRequest
+    put:
+      application/json: ForumPostsUpdateCommentRequest
+  /Contacts:
+    post:
+      application/json: ContactsCreateContactRequest
+    put:
+      application/json: ContactsUpdateContactRequest
+  /Contacts/{id}/Image/{filename}:
+    put:
+      application/octet-stream: ContactsUpdateImageRequest
+  /Contacts/{id}/Note:
+    post:
+      application/json: ContactsAddNoteToContactRequest
+    put:
+      application/json: ContactsUpdateNoteRequest
+  /Events:
+    post:
+      application/json: EventsAddEventRequest
+    put:
+      application/json: EventsUpdateEventRequest
+  /KnowledgeArticle:
+    post:
+      application/json: KnowledgeArticlesAddKnowledgeArticleRequest
+    put:
+      application/json: KnowledgeArticlesUpdateArticleRequest
+  /KnowledgeArticleCategory:
+    post:
+      application/json: KnowledgeArticleCategoriesAddCategoryRequest
+    put:
+      application/json: KnowledgeArticleCategoriesUpdateCategoryRequest
+  /KnowledgeArticleFolder:
+    post:
+      application/json: KnowledgeArticleFoldersAddFolderRequest
+    put:
+      application/json: KnowledgeArticleFoldersUpdateFolderRequest
+  /Leads:
+    post:
+      application/json: LeadsCreateLeadRequest
+    put:
+      application/json: LeadsUpdateLeadRequest
+  /Leads/{id}/Note:
+    post:
+      application/json: LeadsAddNoteRequest
+    put:
+      application/json: LeadsUpdateNoteRequest
+  /Notes:
+    put:
+      application/json: NotesUpdateNoteRequest
+  /Notes/{id}/Comment:
+    put:
+      application/json: NotesUpdateCommentRequest
+  /Opportunities:
+    post:
+      application/json: OpportunitiesAddOpportunityRequest
+    put:
+      application/json: OpportunitiesUpdateOpportunityRequest
+  /Opportunities/{id}/Note:
+    post:
+      application/json: OpportunitiesAddNoteToOpportunityRequest
+    put:
+      application/json: OpportunitiesUpdateNoteRequest
+  /Opportunities/{id}/Pricebook:
+    put:
+      application/json: OpportunitiesUpdatePriceBookRequest
+  /Organisations:
+    post:
+      application/json: OrganisationsCreateOrganisationRequest
+    put:
+      application/json: OrganisationsUpdateOrganisationRequest
+  /Organisations/{id}/Note:
+    post:
+      application/json: OrganisationsAddNoteRequest
+    put:
+      application/json: OrganisationsUpdateNoteRequest
+  /Pricebook:
+    post:
+      application/json: PriceBooksCreateRequest
+    put:
+      application/json: PriceBooksUpdatePriceBookRequest
+  /Product:
+    post:
+      application/json: ProductsCreateProductRequest
+    put:
+      application/json: ProductsUpdateProductRequest
+  /Projects:
+    post:
+      application/json: ProjectsAddProjectRequest
+    put:
+      application/json: ProjectsUpdateProjectRequest
+  /Projects/{id}/Note:
+    post:
+      application/json: ProjectsAddNoteToProjectRequest
+    put:
+      application/json: ProjectsUpdateNoteRequest
+  /Prospect:
+    post:
+      application/json: ProspectsAddProspectRequest
+    put:
+      application/json: ProspectsUpdateProspectRequest
+  /Prospect/{id}/StaticListMembership:
+    put:
+      application/json: ProspectsUpdateStaticListMembershipRequest
+  /Quotation:
+    post:
+      application/json: QuotesAddQuoteOperationRequest
+    put:
+      application/json: QuotesUpdateQuoteRequest
+  /Tasks:
+    post:
+      application/json: TasksAddTaskRequest
+    put:
+      application/json: TasksUpdateTaskRequest
+  /Tasks/{id}/Comment:
+    post:
+      application/json: TasksAddCommentToTaskRequest
+    put:
+      application/json: TasksUpdateCommentRequest
+  /Ticket:
+    post:
+      application/json: TicketsCreateTicketRequest
+    put:
+      application/json: TicketsUpdateTicketRequest
+  /{objectName}:
+    post:
+      application/json: CustomObjectsRecordsAddRecordRequest
+    put:
+      application/json: CustomObjectsRecordsUpdateRecordRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /ActivitySets:
+    get:
+      '200':
+        application/json: ActivitySetsGetListResponse
+  /ActivitySets/{id}:
+    get:
+      '200':
+        application/json: ActivitySetsGetActivitySetResponse
+  /Comments:
+    put:
+      '201':
+        application/json: CommentsUpdateCommentResponse
+        text/json: CommentsUpdateComment201Response
+  /Comments/{id}/FileAttachments:
+    get:
+      '200':
+        application/json: CommentsGetFileAttachmentsResponse
+  /Comments/{id}/Sync:
+    put:
+      '200':
+        application/json: CommentsSyncQuotationToOpportunityResponse
+        text/json: CommentsSyncQuotationToOpportunity200Response
+  /CommunityComments:
+    get:
+      '200':
+        application/json: ForumCommentsListComments200Response
+        application/octet-stream: ForumCommentsListCommentsResponse
+    post:
+      '201':
+        application/json: ForumCommentsAddCommentOperationResponse
+        text/json: ForumCommentsAddCommentOperation201Response
+    put:
+      '201':
+        application/json: ForumCommentsUpdateCommentResponse
+        text/json: ForumCommentsUpdateComment201Response
+  /CommunityComments/Search:
+    get:
+      '200':
+        application/json: ForumCommentsGetList200Response
+        application/octet-stream: ForumCommentsGetListResponse
+  /CommunityComments/{id}:
+    get:
+      '200':
+        application/json: ForumCommentsGetById200Response
+        application/octet-stream: ForumCommentsGetByIdResponse
+  /CommunityComments/{id}/MergeDocument/{documentTemplateId}:
+    post:
+      '200':
+        application/json: ForumCommentsGenerateMergeDocumentResponse
+        text/json: ForumCommentsGenerateMergeDocument200Response
+  /CommunityComments/{id}/Sync:
+    put:
+      '200':
+        application/json: ForumCommentsSyncQuotationToOpportunityResponse
+        text/json: ForumCommentsSyncQuotationToOpportunity200Response
+  /CommunityForums:
+    get:
+      '200':
+        application/json: ForumsGetList200Response
+        application/octet-stream: ForumsGetListResponse
+    post:
+      '201':
+        application/json: ForumsAddForumOperationResponse
+        text/json: ForumsAddForumOperation201Response
+    put:
+      '201':
+        application/json: ForumsUpdateForumResponse
+        text/json: ForumsUpdateForum201Response
+  /CommunityForums/Search:
+    get:
+      '200':
+        application/json: ForumsGetFilteredList200Response
+        application/octet-stream: ForumsGetFilteredListResponse
+  /CommunityForums/{id}:
+    get:
+      '200':
+        application/json: ForumsGetForumById200Response
+        application/octet-stream: ForumsGetForumByIdResponse
+  /CommunityForums/{id}/CommunityPosts:
+    get:
+      '201':
+        application/json: ForumsGetForumPosts201Response
+        application/octet-stream: ForumsGetForumPostsResponse
+    post:
+      '201':
+        application/json: ForumsAddPostToForumResponse
+        text/json: ForumsAddPostToForum201Response
+    put:
+      '200':
+        application/json: ForumsUpdateForumPostResponse
+        text/json: ForumsUpdateForumPost200Response
+  /CommunityForums/{id}/MergeDocument/{documentTemplateId}:
+    post:
+      '200':
+        application/json: ForumsGenerateMergeDocumentResponse
+        text/json: ForumsGenerateMergeDocument200Response
+  /CommunityForums/{id}/Sync:
+    put:
+      '200':
+        application/json: ForumsSyncQuotationToOpportunityResponse
+        text/json: ForumsSyncQuotationToOpportunity200Response
+  /CommunityPosts:
+    get:
+      '200':
+        application/json: ForumPostsListForumPosts200Response
+        application/octet-stream: ForumPostsListForumPostsResponse
+    post:
+      '201':
+        application/json: ForumPostsAddForumPostResponse
+        text/json: ForumPostsAddForumPost201Response
+    put:
+      '201':
+        application/json: ForumPostsUpdatePostResponse
+        text/json: ForumPostsUpdatePost201Response
+  /CommunityPosts/Search:
+    get:
+      '200':
+        application/json: ForumPostsGetList200Response
+        application/octet-stream: ForumPostsGetListResponse
+  /CommunityPosts/{id}:
+    get:
+      '200':
+        application/json: ForumPostsGetPost200Response
+        application/octet-stream: ForumPostsGetPostResponse
+  /CommunityPosts/{id}/CommunityComments:
+    get:
+      '201':
+        application/json: ForumPostsGetComments201Response
+        application/octet-stream: ForumPostsGetCommentsResponse
+    post:
+      '201':
+        application/json: ForumPostsAddCommentResponse
+        text/json: ForumPostsAddComment201Response
+    put:
+      '200':
+        application/json: ForumPostsUpdateCommentResponse
+        text/json: ForumPostsUpdateComment200Response
+  /CommunityPosts/{id}/MergeDocument/{documentTemplateId}:
+    post:
+      '200':
+        application/json: ForumPostsGenerateMergeDocumentResponse
+        text/json: ForumPostsGenerateMergeDocument200Response
+  /CommunityPosts/{id}/Sync:
+    put:
+      '200':
+        application/json: ForumPostsSyncQuotationToOpportunityResponse
+        text/json: ForumPostsSyncQuotationToOpportunity200Response
+  /Contacts:
+    get:
+      '200':
+        application/json: ContactsGetList200Response
+        application/octet-stream: ContactsGetListResponse
+    post:
+      '201':
+        application/json: ContactsCreateContactResponse
+        text/json: ContactsCreateContact201Response
+    put:
+      '201':
+        application/json: ContactsUpdateContactResponse
+        text/json: ContactsUpdateContact201Response
+  /Contacts/Search:
+    get:
+      '200':
+        application/json: ContactsFilteredList200Response
+        application/octet-stream: ContactsFilteredListResponse
+  /Contacts/SearchByTag:
+    get:
+      '200':
+        application/json: ContactsListByTag200Response
+        application/octet-stream: ContactsListByTagResponse
+  /Contacts/{id}:
+    get:
+      '200':
+        application/json: ContactsGetContact200Response
+        application/octet-stream: ContactsGetContactResponse
+  /Contacts/{id}/Dates:
+    get:
+      '201':
+        application/json: ContactsGetDatesResponse
+    put:
+      '200':
+        application/json: ContactsUpdateDatesResponse
+        text/json: ContactsUpdateDates200Response
+  /Contacts/{id}/Emails:
+    get:
+      '200':
+        application/json: ContactsGetEmailsList200Response
+        application/octet-stream: ContactsGetEmailsListResponse
+  /Contacts/{id}/Events:
+    get:
+      '200':
+        application/json: ContactsGetEvents200Response
+        application/octet-stream: ContactsGetEventsResponse
+  /Contacts/{id}/FileAttachments:
+    get:
+      '200':
+        application/json: ContactsGetFileAttachmentsResponse
+  /Contacts/{id}/Image/{filename}:
+    put:
+      '201':
+        application/json: ContactsUpdateImageResponse
+        text/json: ContactsUpdateImage201Response
+  /Contacts/{id}/ImageField/{fieldName}/{fileName}:
+    put:
+      '201':
+        application/json: ContactsUpdateCustomImageFieldResponse
+        text/json: ContactsUpdateCustomImageField201Response
+  /Contacts/{id}/Links:
+    get:
+      '200':
+        application/json: ContactsGetLinks200Response
+        application/octet-stream: ContactsGetLinksResponse
+  /Contacts/{id}/MergeDocument/{documentTemplateId}:
+    post:
+      '200':
+        application/json: ContactsGenerateMergeDocumentResponse
+        text/json: ContactsGenerateMergeDocument200Response
+  /Contacts/{id}/Note:
+    get:
+      '201':
+        application/json: ContactsGetNoteList201Response
+        application/octet-stream: ContactsGetNoteListResponse
+    post:
+      '201':
+        application/json: ContactsAddNoteToContactResponse
+        text/json: ContactsAddNoteToContact201Response
+    put:
+      '200':
+        application/json: ContactsUpdateNoteResponse
+        text/json: ContactsUpdateNote200Response
+  /Contacts/{id}/Notes:
+    get:
+      '200':
+        application/json: ContactsGetNotes200Response
+        application/octet-stream: ContactsGetNotesResponse
+  /Contacts/{id}/Sync:
+    put:
+      '200':
+        application/json: ContactsSyncQuotationToOpportunityResponse
+        text/json: ContactsSyncQuotationToOpportunity200Response
+  /Contacts/{id}/Tags:
+    get:
+      '201':
+        application/json: ContactsGetTagListResponse
+    put:
+      '201':
+        application/json: ContactsUpdateTagsResponse
+        text/json: ContactsUpdateTags201Response
+  /Contacts/{id}/Tasks:
+    get:
+      '200':
+        application/json: ContactsGetTasksList200Response
+        application/octet-stream: ContactsGetTasksListResponse
+  /Countries:
+    get:
+      '200':
+        application/json: CountriesListOfCountriesResponse
+  /Currencies:
+    get:
+      '200':
+        application/json: CurrenciesGetListResponse
+  /CustomFields/{objectName}:
+    get:
+      '200':
+        application/json: CustomFieldsGetListResponse
+  /CustomFields/{objectName}/Search:
+    get:
+      '200':
+        application/json: CustomFieldsGetFieldByNameResponse
+  /CustomObjects:
+    get:
+      '200':
+        application/json: CustomObjectsGetListResponse
+  /CustomObjects/{customObjectName}:
+    get:
+      '200':
+        application/json: CustomObjectsGetObjectByNameResponse
+  /DocumentTemplates:
+    get:
+      '200':
+        application/json: DocumentTemplatesListTemplates200Response
+        application/octet-stream: DocumentTemplatesListTemplatesResponse
+  /DocumentTemplates/Search:
+    get:
+      '200':
+        application/json: DocumentTemplatesGetList200Response
+        application/octet-stream: DocumentTemplatesGetListResponse
+  /DocumentTemplates/{id}:
+    get:
+      '200':
+        application/json: DocumentTemplatesGetById200Response
+        application/octet-stream: DocumentTemplatesGetByIdResponse
+  /Emails:
+    get:
+      '200':
+        application/json: EmailsGetList200Response
+        application/octet-stream: EmailsGetListResponse
+  /Emails/Search:
+    get:
+      '200':
+        application/json: EmailsFilteredList200Response
+        application/octet-stream: EmailsFilteredListResponse
+  /Emails/SearchByTag:
+    get:
+      '200':
+        application/json: EmailsListByTag200Response
+        application/octet-stream: EmailsListByTagResponse
+  /Emails/{id}:
+    get:
+      '200':
+        application/json: EmailsGetEmail200Response
+        application/octet-stream: EmailsGetEmailResponse
+  /Emails/{id}/Comments:
+    get:
+      '200':
+        application/json: EmailsGetComments200Response
+        application/octet-stream: EmailsGetCommentsResponse
+    post:
+      '201':
+        application/json: EmailsAddCommentResponse
+        text/json: EmailsAddComment201Response
+  /Emails/{id}/FileAttachments:
+    get:
+      '200':
+        application/json: EmailsGetFileAttachmentsResponse
+  /Emails/{id}/Links:
+    get:
+      '200':
+        application/json: EmailsGetLinks200Response
+        application/octet-stream: EmailsGetLinksResponse
+  /Emails/{id}/Tags:
+    get:
+      '201':
+        application/json: EmailsGetTagsResponse
+    put:
+      '201':
+        application/json: EmailsUpdateTagsResponse
+        text/json: EmailsUpdateTags201Response
+  /Events:
+    get:
+      '200':
+        application/json: EventsList200Response
+        application/octet-stream: EventsListResponse
+    post:
+      '201':
+        application/json: EventsAddEventResponse
+        text/json: EventsAddEvent201Response
+    put:
+      '201':
+        application/json: EventsUpdateEventResponse
+        text/json: EventsUpdateEvent201Response
+  /Events/Search:
+    get:
+      '200':
+        application/json: EventsFilteredList200Response
+        application/octet-stream: EventsFilteredListResponse
+  /Events/{id}:
+    get:
+      '200':
+        application/json: EventsGetEvent200Response
+        application/octet-stream: EventsGetEventResponse
+  /Events/{id}/ImageField/{fieldName}/{fileName}:
+    put:
+      '201':
+        application/json: EventsUpdateImageFieldResponse
+        text/json: EventsUpdateImageField201Response
+  /Events/{id}/Links:
+    get:
+      '200':
+        application/json: EventsGetLinks200Response
+        application/octet-stream: EventsGetLinksResponse
+  /Events/{id}/MergeDocument/{documentTemplateId}:
+    post:
+      '200':
+        application/json: EventsGenerateMergeDocumentResponse
+        text/json: EventsGenerateMergeDocument200Response
+  /Events/{id}/Sync:
+    put:
+      '200':
+        application/json: EventsSyncQuotationToOpportunityResponse
+        text/json: EventsSyncQuotationToOpportunity200Response
+  /FileCategories:
+    get:
+      '200':
+        application/json: FileCategoriesGetListResponse
+    post:
+      '201':
+        application/json: FileCategoriesAddCategoryResponse
+        text/json: FileCategoriesAddCategory201Response
+    put:
+      '200':
+        application/json: FileCategoriesUpdateCategoryResponse
+        text/json: FileCategoriesUpdateCategory200Response
+  /FileCategories/{id}:
+    get:
+      '200':
+        application/json: FileCategoriesGetGraphResponse
+  /Follows:
+    get:
+      '200':
+        application/json: FollowsGetListResponse
+  /ForumCategories:
+    get:
+      '200':
+        application/json: ForumCategoriesList200Response
+        application/octet-stream: ForumCategoriesListResponse
+  /ForumCategories/Search:
+    get:
+      '200':
+        application/json: ForumCategoriesGetList200Response
+        application/octet-stream: ForumCategoriesGetListResponse
+  /ForumCategories/{id}:
+    get:
+      '200':
+        application/json: ForumCategoriesGetById200Response
+        application/octet-stream: ForumCategoriesGetByIdResponse
+  /KnowledgeArticle:
+    get:
+      '200':
+        application/json: KnowledgeArticlesListArticleObjects200Response
+        application/octet-stream: KnowledgeArticlesListArticleObjectsResponse
+    post:
+      '201':
+        application/json: KnowledgeArticlesAddKnowledgeArticleResponse
+        text/json: KnowledgeArticlesAddKnowledgeArticle201Response
+    put:
+      '201':
+        application/json: KnowledgeArticlesUpdateArticleResponse
+        text/json: KnowledgeArticlesUpdateArticle201Response
+  /KnowledgeArticle/Search:
+    get:
+      '200':
+        application/json: KnowledgeArticlesGetListByFilter200Response
+        application/octet-stream: KnowledgeArticlesGetListByFilterResponse
+  /KnowledgeArticle/SearchByTag:
+    get:
+      '200':
+        application/json: KnowledgeArticlesListByTag200Response
+        application/octet-stream: KnowledgeArticlesListByTagResponse
+  /KnowledgeArticle/{id}:
+    get:
+      '200':
+        application/json: KnowledgeArticlesGetById200Response
+        application/octet-stream: KnowledgeArticlesGetByIdResponse
+  /KnowledgeArticle/{id}/ImageField/{fieldName}/{fileName}:
+    put:
+      '201':
+        application/json: KnowledgeArticlesUpdateImageFieldResponse
+        text/json: KnowledgeArticlesUpdateImageField201Response
+  /KnowledgeArticle/{id}/MergeDocument/{documentTemplateId}:
+    post:
+      '200':
+        application/json: KnowledgeArticlesGenerateMergeDocumentResponse
+        text/json: KnowledgeArticlesGenerateMergeDocument200Response
+  /KnowledgeArticle/{id}/Sync:
+    put:
+      '200':
+        application/json: KnowledgeArticlesSyncQuotationToOpportunityResponse
+        text/json: KnowledgeArticlesSyncQuotationToOpportunity200Response
+  /KnowledgeArticle/{id}/Tags:
+    get:
+      '201':
+        application/json: KnowledgeArticlesGetTagsResponse
+    put:
+      '201':
+        application/json: KnowledgeArticlesUpdateTagsResponse
+        text/json: KnowledgeArticlesUpdateTags201Response
+  /KnowledgeArticle/{id}/Translations/{language}:
+    get:
+      '200':
+        application/json: KnowledgeArticlesGetTranslation200Response
+        application/octet-stream: KnowledgeArticlesGetTranslationResponse
+    post:
+      '201':
+        application/json: KnowledgeArticlesAddTranslationResponse
+        text/json: KnowledgeArticlesAddTranslation201Response
+    put:
+      '201':
+        application/json: KnowledgeArticlesUpdateTranslationResponse
+        text/json: KnowledgeArticlesUpdateTranslation201Response
+  /KnowledgeArticleCategory:
+    get:
+      '200':
+        application/json: KnowledgeArticleCategoriesGetList200Response
+        application/octet-stream: KnowledgeArticleCategoriesGetListResponse
+    post:
+      '201':
+        application/json: KnowledgeArticleCategoriesAddCategoryResponse
+        text/json: KnowledgeArticleCategoriesAddCategory201Response
+    put:
+      '201':
+        application/json: KnowledgeArticleCategoriesUpdateCategoryResponse
+        text/json: KnowledgeArticleCategoriesUpdateCategory201Response
+  /KnowledgeArticleCategory/Search:
+    get:
+      '200':
+        application/json: KnowledgeArticleCategoriesFilterList200Response
+        application/octet-stream: KnowledgeArticleCategoriesFilterListResponse
+  /KnowledgeArticleCategory/{id}:
+    get:
+      '200':
+        application/json: KnowledgeArticleCategoriesGetCategory200Response
+        application/octet-stream: KnowledgeArticleCategoriesGetCategoryResponse
+  /KnowledgeArticleCategory/{id}/MergeDocument/{documentTemplateId}:
+    post:
+      '200':
+        application/json: KnowledgeArticleCategoriesGenerateMergeDocumentResponse
+        text/json: KnowledgeArticleCategoriesGenerateMergeDocument200Response
+  /KnowledgeArticleCategory/{id}/Sync:
+    put:
+      '200':
+        application/json: KnowledgeArticleCategoriesSyncQuotationToOpportunityResponse
+        text/json: KnowledgeArticleCategoriesSyncQuotationToOpportunity200Response
+  /KnowledgeArticleFolder:
+    get:
+      '200':
+        application/json: KnowledgeArticleFoldersGetList200Response
+        application/octet-stream: KnowledgeArticleFoldersGetListResponse
+    post:
+      '201':
+        application/json: KnowledgeArticleFoldersAddFolderResponse
+        text/json: KnowledgeArticleFoldersAddFolder201Response
+    put:
+      '201':
+        application/json: KnowledgeArticleFoldersUpdateFolderResponse
+        text/json: KnowledgeArticleFoldersUpdateFolder201Response
+  /KnowledgeArticleFolder/Search:
+    get:
+      '200':
+        application/json: KnowledgeArticleFoldersGetList200Response
+        application/octet-stream: KnowledgeArticleFoldersGetList200Response
+  /KnowledgeArticleFolder/{id}:
+    get:
+      '200':
+        application/json: KnowledgeArticleFoldersGetFolder200Response
+        application/octet-stream: KnowledgeArticleFoldersGetFolderResponse
+  /KnowledgeArticleFolder/{id}/MergeDocument/{documentTemplateId}:
+    post:
+      '200':
+        application/json: KnowledgeArticleFoldersGenerateMergeDocumentResponse
+        text/json: KnowledgeArticleFoldersGenerateMergeDocument200Response
+  /KnowledgeArticleFolder/{id}/Sync:
+    put:
+      '200':
+        application/json: KnowledgeArticleFoldersSyncQuotationToOpportunityResponse
+        text/json: KnowledgeArticleFoldersSyncQuotationToOpportunity200Response
+  /LeadSources:
+    get:
+      '200':
+        application/json: LeadSourcesGetListResponse
+    post:
+      '201':
+        application/json: LeadSourcesAddLeadSourceResponse
+        text/json: LeadSourcesAddLeadSource201Response
+    put:
+      '200':
+        application/json: LeadSourcesUpdateLeadSourceResponse
+        text/json: LeadSourcesUpdateLeadSource200Response
+  /LeadStatuses:
+    get:
+      '200':
+        application/json: LeadStatusesListStatusesResponse
+    post:
+      '201':
+        application/json: LeadStatusesAddStatusResponse
+        text/json: LeadStatusesAddStatus201Response
+    put:
+      '200':
+        application/json: LeadStatusesUpdateStatusResponse
+        text/json: LeadStatusesUpdateStatus200Response
+  /Leads:
+    get:
+      '200':
+        application/json: LeadsGetList200Response
+        application/octet-stream: LeadsGetListResponse
+    post:
+      '201':
+        application/json: LeadsCreateLeadResponse
+        text/json: LeadsCreateLead201Response
+    put:
+      '201':
+        application/json: LeadsUpdateLeadResponse
+        text/json: LeadsUpdateLead201Response
+  /Leads/Search:
+    get:
+      '200':
+        application/json: LeadsFilteredList200Response
+        application/octet-stream: LeadsFilteredListResponse
+  /Leads/SearchByTag:
+    get:
+      '200':
+        application/json: LeadsListByTag200Response
+        application/octet-stream: LeadsListByTagResponse
+  /Leads/{id}:
+    get:
+      '200':
+        application/json: LeadsGetLead200Response
+        application/octet-stream: LeadsGetLeadResponse
+  /Leads/{id}/Emails:
+    get:
+      '200':
+        application/json: LeadsGetEmailsList200Response
+        application/octet-stream: LeadsGetEmailsListResponse
+  /Leads/{id}/Events:
+    get:
+      '200':
+        application/json: LeadsGetLeadEvents200Response
+        application/octet-stream: LeadsGetLeadEventsResponse
+  /Leads/{id}/FileAttachments:
+    get:
+      '200':
+        application/json: LeadsGetFileAttachmentsResponse
+  /Leads/{id}/Image/{filename}:
+    put:
+      '201':
+        application/json: LeadsUpdateImageResponse
+        text/json: LeadsUpdateImage201Response
+  /Leads/{id}/ImageField/{fieldName}/{fileName}:
+    put:
+      '201':
+        application/json: LeadsUpdateImageFieldResponse
+        text/json: LeadsUpdateImageField201Response
+  /Leads/{id}/Links:
+    get:
+      '200':
+        application/json: LeadsGetLeadLinks200Response
+        application/octet-stream: LeadsGetLeadLinksResponse
+  /Leads/{id}/MergeDocument/{documentTemplateId}:
+    post:
+      '200':
+        application/json: LeadsGenerateMergeDocumentResponse
+        text/json: LeadsGenerateMergeDocument200Response
+  /Leads/{id}/Note:
+    get:
+      '201':
+        application/json: LeadsGetLeadNotes201Response
+        application/octet-stream: LeadsGetLeadNotesResponse
+    post:
+      '201':
+        application/json: LeadsAddNoteResponse
+        text/json: LeadsAddNote201Response
+    put:
+      '200':
+        application/json: LeadsUpdateNoteResponse
+        text/json: LeadsUpdateNote200Response
+  /Leads/{id}/Notes:
+    get:
+      '200':
+        application/json: LeadsGetLeadNotes200Response
+        application/octet-stream: LeadsGetLeadNotes200Response
+  /Leads/{id}/Sync:
+    put:
+      '200':
+        application/json: LeadsSyncQuotationToOpportunityResponse
+        text/json: LeadsSyncQuotationToOpportunity200Response
+  /Leads/{id}/Tags:
+    get:
+      '201':
+        application/json: LeadsGetTagsResponse
+    put:
+      '201':
+        application/json: LeadsUpdateTagsResponse
+        text/json: LeadsUpdateTags201Response
+  /Leads/{id}/Tasks:
+    get:
+      '200':
+        application/json: LeadsGetLeadTasks200Response
+        application/octet-stream: LeadsGetLeadTasksResponse
+  /MarketingCustomEvent:
+    post:
+      '201':
+        application/json: MarketingCustomEventsAddStructuredEventResponse
+        text/json: MarketingCustomEventsAddStructuredEvent201Response
+  /MarketingVisits:
+    get:
+      '200':
+        application/json: MarketingVisitsGetListResponse
+  /MarketingVisits/{id}:
+    get:
+      '200':
+        application/json: MarketingVisitsGetListByProspectResponse
+  /Milestones:
+    get:
+      '200':
+        application/json: MilestonesGetList200Response
+        application/octet-stream: MilestonesGetListResponse
+  /Milestones/Search:
+    get:
+      '200':
+        application/json: MilestonesFilteredList200Response
+        application/octet-stream: MilestonesFilteredListResponse
+  /Milestones/{id}:
+    get:
+      '200':
+        application/json: MilestonesGetMilestone200Response
+        application/octet-stream: MilestonesGetMilestoneResponse
+  /Notes:
+    get:
+      '200':
+        application/json: NotesGetList200Response
+        application/octet-stream: NotesGetListResponse
+    put:
+      '201':
+        application/json: NotesUpdateNoteResponse
+        text/json: NotesUpdateNote201Response
+  /Notes/Search:
+    get:
+      '200':
+        application/json: NotesFilteredList200Response
+        application/octet-stream: NotesFilteredListResponse
+  /Notes/{id}:
+    get:
+      '200':
+        application/json: NotesGetNote200Response
+        application/octet-stream: NotesGetNoteResponse
+  /Notes/{id}/Comment:
+    get:
+      '201':
+        application/json: NotesGetComments201Response
+        application/octet-stream: NotesGetCommentsResponse
+    put:
+      '200':
+        application/json: NotesUpdateCommentResponse
+        text/json: NotesUpdateComment200Response
+  /Notes/{id}/Comments:
+    get:
+      '200':
+        application/json: NotesGetComments200Response
+        application/octet-stream: NotesGetComments200Response
+    post:
+      '201':
+        application/json: NotesAddCommentToNoteResponse
+        text/json: NotesAddCommentToNote201Response
+  /Notes/{id}/FileAttachments:
+    get:
+      '200':
+        application/json: NotesGetFileAttachmentsResponse
+  /Notes/{id}/Links:
+    get:
+      '200':
+        application/json: NotesGetLinks200Response
+        application/octet-stream: NotesGetLinksResponse
+  /Notes/{id}/Sync:
+    put:
+      '200':
+        application/json: NotesSyncQuotationToOpportunityResponse
+        text/json: NotesSyncQuotationToOpportunity200Response
+  /Opportunities:
+    get:
+      '200':
+        application/json: OpportunitiesListOpportunities200Response
+        application/octet-stream: OpportunitiesListOpportunitiesResponse
+    post:
+      '201':
+        application/json: OpportunitiesAddOpportunityResponse
+        text/json: OpportunitiesAddOpportunity201Response
+    put:
+      '201':
+        application/json: OpportunitiesUpdateOpportunityResponse
+        text/json: OpportunitiesUpdateOpportunity201Response
+  /Opportunities/Search:
+    get:
+      '200':
+        application/json: OpportunitiesGetListFiltered200Response
+        application/octet-stream: OpportunitiesGetListFilteredResponse
+  /Opportunities/SearchByTag:
+    get:
+      '200':
+        application/json: OpportunitiesListByTag200Response
+        application/octet-stream: OpportunitiesListByTagResponse
+  /Opportunities/{id}:
+    get:
+      '200':
+        application/json: OpportunitiesGetById200Response
+        application/octet-stream: OpportunitiesGetByIdResponse
+  /Opportunities/{id}/Emails:
+    get:
+      '200':
+        application/json: OpportunitiesGetEmails200Response
+        application/octet-stream: OpportunitiesGetEmailsResponse
+  /Opportunities/{id}/Events:
+    get:
+      '200':
+        application/json: OpportunitiesGetEvents200Response
+        application/octet-stream: OpportunitiesGetEventsResponse
+  /Opportunities/{id}/FileAttachments:
+    get:
+      '200':
+        application/json: OpportunitiesGetFileAttachmentsResponse
+  /Opportunities/{id}/Image/{filename}:
+    put:
+      '201':
+        application/json: OpportunitiesUpdateImageResponse
+        text/json: OpportunitiesUpdateImage201Response
+  /Opportunities/{id}/ImageField/{fieldName}/{fileName}:
+    put:
+      '201':
+        application/json: OpportunitiesUpdateCustomImageFieldResponse
+        text/json: OpportunitiesUpdateCustomImageField201Response
+  /Opportunities/{id}/Links:
+    get:
+      '200':
+        application/json: OpportunitiesGetLinks200Response
+        application/octet-stream: OpportunitiesGetLinksResponse
+  /Opportunities/{id}/MergeDocument/{documentTemplateId}:
+    post:
+      '200':
+        application/json: OpportunitiesGenerateMergeDocumentResponse
+        text/json: OpportunitiesGenerateMergeDocument200Response
+  /Opportunities/{id}/Note:
+    get:
+      '201':
+        application/json: OpportunitiesGetNoteList201Response
+        application/octet-stream: OpportunitiesGetNoteListResponse
+    post:
+      '201':
+        application/json: OpportunitiesAddNoteToOpportunityResponse
+        text/json: OpportunitiesAddNoteToOpportunity201Response
+    put:
+      '200':
+        application/json: OpportunitiesUpdateNoteResponse
+        text/json: OpportunitiesUpdateNote200Response
+  /Opportunities/{id}/Notes:
+    get:
+      '200':
+        application/json: OpportunitiesGetNotes200Response
+        application/octet-stream: OpportunitiesGetNotesResponse
+  /Opportunities/{id}/OpportunityLineItem:
+    get:
+      '201':
+        application/json: OpportunitiesGetOpportunityLineItem201Response
+        application/octet-stream: OpportunitiesGetOpportunityLineItemResponse
+    post:
+      '201':
+        application/json: OpportunitiesAddOpportunityProductResponse
+        text/json: OpportunitiesAddOpportunityProduct201Response
+    put:
+      '200':
+        application/json: OpportunitiesUpdateOpportunityProductResponse
+        text/json: OpportunitiesUpdateOpportunityProduct200Response
+  /Opportunities/{id}/Pipeline:
+    put:
+      '200':
+        application/json: OpportunitiesChangePipelineResponse
+        text/json: OpportunitiesChangePipeline200Response
+  /Opportunities/{id}/PipelineStage:
+    put:
+      '200':
+        application/json: OpportunitiesUpdatePipelineStageResponse
+        text/json: OpportunitiesUpdatePipelineStage200Response
+  /Opportunities/{id}/Pricebook:
+    put:
+      '200':
+        application/json: OpportunitiesUpdatePriceBookResponse
+        text/json: OpportunitiesUpdatePriceBook200Response
+  /Opportunities/{id}/StateHistory:
+    get:
+      '200':
+        application/json: OpportunitiesGetStateHistoryResponse
+  /Opportunities/{id}/Sync:
+    put:
+      '200':
+        application/json: OpportunitiesSyncQuotationResponse
+        text/json: OpportunitiesSyncQuotation200Response
+  /Opportunities/{id}/Tags:
+    get:
+      '201':
+        application/json: OpportunitiesGetTagsResponse
+    put:
+      '201':
+        application/json: OpportunitiesUpdateTagsResponse
+        text/json: OpportunitiesUpdateTags201Response
+  /Opportunities/{id}/Tasks:
+    get:
+      '200':
+        application/json: OpportunitiesGetTasksList200Response
+        application/octet-stream: OpportunitiesGetTasksListResponse
+  /OpportunityCategories:
+    get:
+      '200':
+        application/json: OpportunityCategoriesGetListResponse
+    post:
+      '201':
+        application/json: OpportunityCategoriesAddNewCategoryResponse
+        text/json: OpportunityCategoriesAddNewCategory201Response
+    put:
+      '200':
+        application/json: OpportunityCategoriesUpdateCategoryResponse
+        text/json: OpportunityCategoriesUpdateCategory200Response
+  /OpportunityCategories/{id}:
+    get:
+      '200':
+        application/json: OpportunityCategoriesGetGraphResponse
+  /OpportunityLineItem:
+    get:
+      '200':
+        application/json: OpportunityProductsGetList200Response
+        application/octet-stream: OpportunityProductsGetListResponse
+  /OpportunityLineItem/Search:
+    get:
+      '200':
+        application/json: OpportunityProductsFilteredListGet200Response
+        application/octet-stream: OpportunityProductsFilteredListGetResponse
+  /OpportunityLineItem/{id}:
+    get:
+      '200':
+        application/json: OpportunityProductsGet200Response
+        application/octet-stream: OpportunityProductsGetResponse
+  /OpportunityLineItem/{id}/ImageField/{fieldName}/{fileName}:
+    put:
+      '201':
+        application/json: OpportunityProductsUpdateCustomImageFieldResponse
+        text/json: OpportunityProductsUpdateCustomImageField201Response
+  /OpportunityStateReasons:
+    get:
+      '200':
+        application/json: OpportunityStateReasonsGetListResponse
+  /Organisations:
+    get:
+      '200':
+        application/json: OrganisationsList200Response
+        application/octet-stream: OrganisationsListResponse
+    post:
+      '201':
+        application/json: OrganisationsCreateOrganisationResponse
+        text/json: OrganisationsCreateOrganisation201Response
+    put:
+      '201':
+        application/json: OrganisationsUpdateOrganisationResponse
+        text/json: OrganisationsUpdateOrganisation201Response
+  /Organisations/Search:
+    get:
+      '200':
+        application/json: OrganisationsFilterList200Response
+        application/octet-stream: OrganisationsFilterListResponse
+  /Organisations/SearchByTag:
+    get:
+      '200':
+        application/json: OrganisationsListByTag200Response
+        application/octet-stream: OrganisationsListByTagResponse
+  /Organisations/{id}:
+    get:
+      '200':
+        application/json: OrganisationsGetOrganisation200Response
+        application/octet-stream: OrganisationsGetOrganisationResponse
+  /Organisations/{id}/Dates:
+    get:
+      '201':
+        application/json: OrganisationsGetDatesResponse
+    put:
+      '200':
+        application/json: OrganisationsUpdateDatesResponse
+        text/json: OrganisationsUpdateDates200Response
+  /Organisations/{id}/EmailDomains:
+    get:
+      '201':
+        application/json: OrganisationsGetEmailDomainsResponse
+    put:
+      '200':
+        application/json: OrganisationsUpdateEmailDomainsResponse
+        text/json: OrganisationsUpdateEmailDomains200Response
+  /Organisations/{id}/Emails:
+    get:
+      '200':
+        application/json: OrganisationsGetEmailList200Response
+        application/octet-stream: OrganisationsGetEmailListResponse
+  /Organisations/{id}/Events:
+    get:
+      '200':
+        application/json: OrganisationsGetEvents200Response
+        application/octet-stream: OrganisationsGetEventsResponse
+  /Organisations/{id}/FileAttachments:
+    get:
+      '200':
+        application/json: OrganisationsGetFileAttachmentsResponse
+  /Organisations/{id}/Image/{filename}:
+    put:
+      '201':
+        application/json: OrganisationsUpdateImageResponse
+        text/json: OrganisationsUpdateImage201Response
+  /Organisations/{id}/ImageField/{fieldName}/{fileName}:
+    put:
+      '201':
+        application/json: OrganisationsUpdateCustomImageFieldResponse
+        text/json: OrganisationsUpdateCustomImageField201Response
+  /Organisations/{id}/Links:
+    get:
+      '200':
+        application/json: OrganisationsGetLinks200Response
+        application/octet-stream: OrganisationsGetLinksResponse
+  /Organisations/{id}/MergeDocument/{documentTemplateId}:
+    post:
+      '200':
+        application/json: OrganisationsGenerateMergeDocumentResponse
+        text/json: OrganisationsGenerateMergeDocument200Response
+  /Organisations/{id}/Note:
+    get:
+      '201':
+        application/json: OrganisationsGetNoteList201Response
+        application/octet-stream: OrganisationsGetNoteListResponse
+    post:
+      '201':
+        application/json: OrganisationsAddNoteResponse
+        text/json: OrganisationsAddNote201Response
+    put:
+      '200':
+        application/json: OrganisationsUpdateNoteResponse
+        text/json: OrganisationsUpdateNote200Response
+  /Organisations/{id}/Notes:
+    get:
+      '200':
+        application/json: OrganisationsGetNotes200Response
+        application/octet-stream: OrganisationsGetNotesResponse
+  /Organisations/{id}/Sync:
+    put:
+      '200':
+        application/json: OrganisationsSyncQuotationToOpportunityResponse
+        text/json: OrganisationsSyncQuotationToOpportunity200Response
+  /Organisations/{id}/Tags:
+    get:
+      '201':
+        application/json: OrganisationsGetTagsResponse
+    put:
+      '201':
+        application/json: OrganisationsUpdateTagsResponse
+        text/json: OrganisationsUpdateTags201Response
+  /Organisations/{id}/Tasks:
+    get:
+      '200':
+        application/json: OrganisationsListTasks200Response
+        application/octet-stream: OrganisationsListTasksResponse
+  /PipelineStages:
+    get:
+      '200':
+        application/json: PipelineStagesGetListResponse
+  /PipelineStages/{id}:
+    get:
+      '200':
+        application/json: PipelineStagesGetGraphResponse
+  /Pipelines:
+    get:
+      '200':
+        application/json: PipelinesGetListResponse
+  /Pricebook:
+    get:
+      '200':
+        application/json: PriceBooksGetList200Response
+        application/octet-stream: PriceBooksGetListResponse
+    post:
+      '201':
+        application/json: PriceBooksCreateResponse
+        text/json: PriceBooksCreate201Response
+    put:
+      '201':
+        application/json: PriceBooksUpdatePriceBookResponse
+        text/json: PriceBooksUpdatePriceBook201Response
+  /Pricebook/Search:
+    get:
+      '200':
+        application/json: PriceBooksFilteredList200Response
+        application/octet-stream: PriceBooksFilteredListResponse
+  /Pricebook/{id}:
+    get:
+      '200':
+        application/json: PriceBooksGetById200Response
+        application/octet-stream: PriceBooksGetByIdResponse
+  /Pricebook/{id}/MergeDocument/{documentTemplateId}:
+    post:
+      '200':
+        application/json: PriceBooksGenerateMergeDocumentResponse
+        text/json: PriceBooksGenerateMergeDocument200Response
+  /Pricebook/{id}/PricebookEntry:
+    get:
+      '201':
+        application/json: PriceBooksGetPricebookEntries201Response
+        application/octet-stream: PriceBooksGetPricebookEntriesResponse
+    post:
+      '201':
+        application/json: PriceBooksAddEntryResponse
+        text/json: PriceBooksAddEntry201Response
+    put:
+      '200':
+        application/json: PriceBooksUpdatePriceBookEntryResponse
+        text/json: PriceBooksUpdatePriceBookEntry200Response
+  /Pricebook/{id}/Sync:
+    put:
+      '200':
+        application/json: PriceBooksSyncQuotationToOpportunityResponse
+        text/json: PriceBooksSyncQuotationToOpportunity200Response
+  /PricebookEntry:
+    get:
+      '200':
+        application/json: PriceBookEntriesGetList200Response
+        application/octet-stream: PriceBookEntriesGetListResponse
+  /PricebookEntry/Search:
+    get:
+      '200':
+        application/json: PriceBookEntriesFilteredList200Response
+        application/octet-stream: PriceBookEntriesFilteredListResponse
+  /PricebookEntry/{id}:
+    get:
+      '200':
+        application/json: PriceBookEntriesGetEntry200Response
+        application/octet-stream: PriceBookEntriesGetEntryResponse
+  /PricebookEntry/{id}/ImageField/{fieldName}/{fileName}:
+    put:
+      '201':
+        application/json: PriceBookEntriesUpdateCustomImageFieldResponse
+        text/json: PriceBookEntriesUpdateCustomImageField201Response
+  /Product:
+    get:
+      '200':
+        application/json: ProductsGetList200Response
+        application/octet-stream: ProductsGetListResponse
+    post:
+      '201':
+        application/json: ProductsCreateProductResponse
+        text/json: ProductsCreateProduct201Response
+    put:
+      '201':
+        application/json: ProductsUpdateProductResponse
+        text/json: ProductsUpdateProduct201Response
+  /Product/Search:
+    get:
+      '200':
+        application/json: ProductsFilteredList200Response
+        application/octet-stream: ProductsFilteredListResponse
+  /Product/{id}:
+    get:
+      '200':
+        application/json: ProductsGetById200Response
+        application/octet-stream: ProductsGetByIdResponse
+  /Product/{id}/Image/{filename}:
+    put:
+      '201':
+        application/json: ProductsUpdateImageResponse
+        text/json: ProductsUpdateImage201Response
+  /Product/{id}/ImageField/{fieldName}/{fileName}:
+    put:
+      '201':
+        application/json: ProductsUpdateCustomImageFieldResponse
+        text/json: ProductsUpdateCustomImageField201Response
+  /Product/{id}/MergeDocument/{documentTemplateId}:
+    post:
+      '200':
+        application/json: ProductsGenerateMergeDocumentResponse
+        text/json: ProductsGenerateMergeDocument200Response
+  /Product/{id}/PricebookEntry:
+    get:
+      '201':
+        application/json: ProductsGetPricebookEntries201Response
+        application/octet-stream: ProductsGetPricebookEntriesResponse
+    post:
+      '201':
+        application/json: ProductsAddPriceBookEntryResponse
+        text/json: ProductsAddPriceBookEntry201Response
+    put:
+      '200':
+        application/json: ProductsUpdatePriceBookEntryResponse
+        text/json: ProductsUpdatePriceBookEntry200Response
+  /Product/{id}/Sync:
+    put:
+      '200':
+        application/json: ProductsSyncQuotationToOpportunityResponse
+        text/json: ProductsSyncQuotationToOpportunity200Response
+  /ProjectCategories:
+    get:
+      '200':
+        application/json: ProjectCategoriesGetListResponse
+    post:
+      '201':
+        application/json: ProjectCategoriesAddCategoryResponse
+        text/json: ProjectCategoriesAddCategory201Response
+    put:
+      '200':
+        application/json: ProjectCategoriesUpdateCategoryResponse
+        text/json: ProjectCategoriesUpdateCategory200Response
+  /ProjectCategories/{id}:
+    get:
+      '200':
+        application/json: ProjectCategoriesGetGraphResponse
+  /Projects:
+    get:
+      '200':
+        application/json: ProjectsGetList200Response
+        application/octet-stream: ProjectsGetListResponse
+    post:
+      '201':
+        application/json: ProjectsAddProjectResponse
+        text/json: ProjectsAddProject201Response
+    put:
+      '201':
+        application/json: ProjectsUpdateProjectResponse
+        text/json: ProjectsUpdateProject201Response
+  /Projects/Search:
+    get:
+      '200':
+        application/json: ProjectsFilteredList200Response
+        application/octet-stream: ProjectsFilteredListResponse
+  /Projects/SearchByTag:
+    get:
+      '200':
+        application/json: ProjectsListByTag200Response
+        application/octet-stream: ProjectsListByTagResponse
+  /Projects/{id}:
+    get:
+      '200':
+        application/json: ProjectsGetProject200Response
+        application/octet-stream: ProjectsGetProjectResponse
+  /Projects/{id}/Emails:
+    get:
+      '200':
+        application/json: ProjectsGetListEmails200Response
+        application/octet-stream: ProjectsGetListEmailsResponse
+  /Projects/{id}/Events:
+    get:
+      '200':
+        application/json: ProjectsGetEvents200Response
+        application/octet-stream: ProjectsGetEventsResponse
+  /Projects/{id}/FileAttachments:
+    get:
+      '200':
+        application/json: ProjectsGetFileAttachmentsResponse
+  /Projects/{id}/Image/{filename}:
+    put:
+      '201':
+        application/json: ProjectsUpdateProjectImageResponse
+        text/json: ProjectsUpdateProjectImage201Response
+  /Projects/{id}/ImageField/{fieldName}/{fileName}:
+    put:
+      '201':
+        application/json: ProjectsUpdateCustomImageFieldResponse
+        text/json: ProjectsUpdateCustomImageField201Response
+  /Projects/{id}/Links:
+    get:
+      '200':
+        application/json: ProjectsGetLinks200Response
+        application/octet-stream: ProjectsGetLinksResponse
+  /Projects/{id}/MergeDocument/{documentTemplateId}:
+    post:
+      '200':
+        application/json: ProjectsGenerateMergeDocumentResponse
+        text/json: ProjectsGenerateMergeDocument200Response
+  /Projects/{id}/Milestones:
+    get:
+      '201':
+        application/json: ProjectsListMilestones201Response
+        application/octet-stream: ProjectsListMilestonesResponse
+    post:
+      '201':
+        application/json: ProjectsAddMilestoneResponse
+        text/json: ProjectsAddMilestone201Response
+    put:
+      '200':
+        application/json: ProjectsUpdateMilestoneResponse
+        text/json: ProjectsUpdateMilestone200Response
+  /Projects/{id}/Note:
+    get:
+      '201':
+        application/json: ProjectsGetNoteList201Response
+        application/octet-stream: ProjectsGetNoteListResponse
+    post:
+      '201':
+        application/json: ProjectsAddNoteToProjectResponse
+        text/json: ProjectsAddNoteToProject201Response
+    put:
+      '200':
+        application/json: ProjectsUpdateNoteResponse
+        text/json: ProjectsUpdateNote200Response
+  /Projects/{id}/Notes:
+    get:
+      '200':
+        application/json: ProjectsGetNotes200Response
+        application/octet-stream: ProjectsGetNotesResponse
+  /Projects/{id}/Pipeline:
+    put:
+      '200':
+        application/json: ProjectsChangePipelineResponse
+        text/json: ProjectsChangePipeline200Response
+  /Projects/{id}/PipelineStage:
+    put:
+      '200':
+        application/json: ProjectsChangeStageResponse
+        text/json: ProjectsChangeStage200Response
+  /Projects/{id}/Sync:
+    put:
+      '200':
+        application/json: ProjectsSyncQuotationToOpportunityResponse
+        text/json: ProjectsSyncQuotationToOpportunity200Response
+  /Projects/{id}/Tags:
+    get:
+      '201':
+        application/json: ProjectsGetTagsResponse
+    put:
+      '201':
+        application/json: ProjectsUpdateTagsResponse
+        text/json: ProjectsUpdateTags201Response
+  /Projects/{id}/Tasks:
+    get:
+      '200':
+        application/json: ProjectsGetTaskList200Response
+        application/octet-stream: ProjectsGetTaskListResponse
+  /Prospect:
+    get:
+      '200':
+        application/json: ProspectsList200Response
+        application/octet-stream: ProspectsListResponse
+    post:
+      '201':
+        application/json: ProspectsAddProspectResponse
+        text/json: ProspectsAddProspect201Response
+    put:
+      '201':
+        application/json: ProspectsUpdateProspectResponse
+        text/json: ProspectsUpdateProspect201Response
+  /Prospect/Search:
+    get:
+      '200':
+        application/json: ProspectsFilteredList200Response
+        application/octet-stream: ProspectsFilteredListResponse
+  /Prospect/SearchByTag:
+    get:
+      '200':
+        application/json: ProspectsSearchByTagList200Response
+        application/octet-stream: ProspectsSearchByTagListResponse
+  /Prospect/{id}:
+    get:
+      '200':
+        application/json: ProspectsGetProspectById200Response
+        application/octet-stream: ProspectsGetProspectByIdResponse
+  /Prospect/{id}/ImageField/{fieldName}/{fileName}:
+    put:
+      '201':
+        application/json: ProspectsUpdateImageFieldResponse
+        text/json: ProspectsUpdateImageField201Response
+  /Prospect/{id}/MergeDocument/{documentTemplateId}:
+    post:
+      '200':
+        application/json: ProspectsGenerateMergeDocumentResponse
+        text/json: ProspectsGenerateMergeDocument200Response
+  /Prospect/{id}/StaticListMembership:
+    get:
+      '200':
+        application/json: ProspectsGetStaticListMembershipResponse
+    post:
+      '200':
+        application/json: ProspectsAddToStaticListResponse
+        text/json: ProspectsAddToStaticList200Response
+    put:
+      '200':
+        application/json: ProspectsUpdateStaticListMembershipResponse
+        text/json: ProspectsUpdateStaticListMembership200Response
+  /Prospect/{id}/Sync:
+    put:
+      '200':
+        application/json: ProspectsSyncQuotationToOpportunityResponse
+        text/json: ProspectsSyncQuotationToOpportunity200Response
+  /Prospect/{id}/Tags:
+    get:
+      '201':
+        application/json: ProspectsGetTagsResponse
+    put:
+      '201':
+        application/json: ProspectsUpdateTagsResponse
+        text/json: ProspectsUpdateTags201Response
+  /Quotation:
+    get:
+      '200':
+        application/json: QuotesGetList200Response
+        application/octet-stream: QuotesGetListResponse
+    post:
+      '201':
+        application/json: QuotesAddQuoteOperationResponse
+        text/json: QuotesAddQuoteOperation201Response
+    put:
+      '201':
+        application/json: QuotesUpdateQuoteResponse
+        text/json: QuotesUpdateQuote201Response
+  /Quotation/Search:
+    get:
+      '200':
+        application/json: QuotesFilteredList200Response
+        application/octet-stream: QuotesFilteredListResponse
+  /Quotation/{id}:
+    get:
+      '200':
+        application/json: QuotesGetQuote200Response
+        application/octet-stream: QuotesGetQuoteResponse
+  /Quotation/{id}/ImageField/{fieldName}/{fileName}:
+    put:
+      '201':
+        application/json: QuotesUpdateCustomImageFieldResponse
+        text/json: QuotesUpdateCustomImageField201Response
+  /Quotation/{id}/MergeDocument/{documentTemplateId}:
+    post:
+      '200':
+        application/json: QuotesGenerateMergeDocumentResponse
+        text/json: QuotesGenerateMergeDocument200Response
+  /Quotation/{id}/QuotationDocument:
+    get:
+      '201':
+        application/json: QuotesGetQuoteDocuments201Response
+        application/octet-stream: QuotesGetQuoteDocumentsResponse
+  /Quotation/{id}/QuotationLineItem:
+    get:
+      '201':
+        application/json: QuotesGetQuoteLineItem201Response
+        application/octet-stream: QuotesGetQuoteLineItemResponse
+    post:
+      '201':
+        application/json: QuotesAddProductToQuoteResponse
+        text/json: QuotesAddProductToQuote201Response
+    put:
+      '200':
+        application/json: QuotesUpdateQuotationLineItemResponse
+        text/json: QuotesUpdateQuotationLineItem200Response
+  /Quotation/{id}/Sync:
+    put:
+      '200':
+        application/json: QuotesSyncToOpportunityResponse
+        text/json: QuotesSyncToOpportunity200Response
+  /QuotationLineItem:
+    get:
+      '200':
+        application/json: QuoteProductsListQuoteProducts200Response
+        application/octet-stream: QuoteProductsListQuoteProductsResponse
+  /QuotationLineItem/Search:
+    get:
+      '200':
+        application/json: QuoteProductsFilteredList200Response
+        application/octet-stream: QuoteProductsFilteredListResponse
+  /QuotationLineItem/{id}:
+    get:
+      '200':
+        application/json: QuoteProductsGetProduct200Response
+        application/octet-stream: QuoteProductsGetProductResponse
+  /QuotationLineItem/{id}/ImageField/{fieldName}/{fileName}:
+    put:
+      '201':
+        application/json: QuoteProductsUpdateCustomImageFieldResponse
+        text/json: QuoteProductsUpdateCustomImageField201Response
+  /Relationships:
+    get:
+      '200':
+        application/json: RelationshipsGetListResponse
+  /Tags:
+    get:
+      '200':
+        application/json: TagsGetListByRecordTypeResponse
+  /TaskCategories:
+    get:
+      '200':
+        application/json: TaskCategoriesGetListResponse
+    post:
+      '201':
+        application/json: TaskCategoriesCreateCategoryResponse
+        text/json: TaskCategoriesCreateCategory201Response
+    put:
+      '200':
+        application/json: TaskCategoriesUpdateCategoryResponse
+        text/json: TaskCategoriesUpdateCategory200Response
+  /TaskCategories/{id}:
+    get:
+      '200':
+        application/json: TaskCategoriesGetGraphResponse
+  /Tasks:
+    get:
+      '200':
+        application/json: TasksList200Response
+        application/octet-stream: TasksListResponse
+    post:
+      '201':
+        application/json: TasksAddTaskResponse
+        text/json: TasksAddTask201Response
+    put:
+      '201':
+        application/json: TasksUpdateTaskResponse
+        text/json: TasksUpdateTask201Response
+  /Tasks/Search:
+    get:
+      '200':
+        application/json: TasksFilteredList200Response
+        application/octet-stream: TasksFilteredListResponse
+  /Tasks/{id}:
+    get:
+      '200':
+        application/json: TasksGetTask200Response
+        application/octet-stream: TasksGetTaskResponse
+  /Tasks/{id}/Comment:
+    get:
+      '201':
+        application/json: TasksGetComments201Response
+        application/octet-stream: TasksGetCommentsResponse
+    post:
+      '201':
+        application/json: TasksAddCommentToTaskResponse
+        text/json: TasksAddCommentToTask201Response
+    put:
+      '200':
+        application/json: TasksUpdateCommentResponse
+        text/json: TasksUpdateComment200Response
+  /Tasks/{id}/Comments:
+    get:
+      '200':
+        application/json: TasksGetComments200Response
+        application/octet-stream: TasksGetComments200Response
+    post:
+      '201':
+        application/json: TasksAddCommentResponse
+        text/json: TasksAddComment201Response
+  /Tasks/{id}/ImageField/{fieldName}/{fileName}:
+    put:
+      '201':
+        application/json: TasksUpdateCustomImageFieldResponse
+        text/json: TasksUpdateCustomImageField201Response
+  /Tasks/{id}/Links:
+    get:
+      '200':
+        application/json: TasksGetLinks200Response
+        application/octet-stream: TasksGetLinksResponse
+  /Tasks/{id}/MergeDocument/{documentTemplateId}:
+    post:
+      '200':
+        application/json: TasksGenerateMergeDocumentResponse
+        text/json: TasksGenerateMergeDocument200Response
+  /Tasks/{id}/Sync:
+    put:
+      '200':
+        application/json: TasksSyncQuotationToOpportunityResponse
+        text/json: TasksSyncQuotationToOpportunity200Response
+  /TeamMembers:
+    get:
+      '200':
+        application/json: TeamMembersGetListResponse
+    post:
+      '201':
+        application/json: TeamMembersAddNewMemberResponse
+        text/json: TeamMembersAddNewMember201Response
+  /TeamMembers/{id}:
+    get:
+      '200':
+        application/json: TeamMembersGetByIdResponse
+  /Teams:
+    get:
+      '200':
+        application/json: TeamsGetListResponse
+    post:
+      '201':
+        application/json: TeamsAddTeamResponse
+        text/json: TeamsAddTeam201Response
+    put:
+      '200':
+        application/json: TeamsUpdateTeamMembersResponse
+        text/json: TeamsUpdateTeamMembers200Response
+  /Teams/{id}:
+    get:
+      '200':
+        application/json: TeamsGetTeamResponse
+  /Teams/{id}/TeamMembers:
+    post:
+      '201':
+        application/json: TeamsAddTeamMemberResponse
+        text/json: TeamsAddTeamMember201Response
+  /Ticket:
+    get:
+      '200':
+        application/json: TicketsListObjects200Response
+        application/octet-stream: TicketsListObjectsResponse
+    post:
+      '201':
+        application/json: TicketsCreateTicketResponse
+        text/json: TicketsCreateTicket201Response
+    put:
+      '201':
+        application/json: TicketsUpdateTicketResponse
+        text/json: TicketsUpdateTicket201Response
+  /Ticket/Search:
+    get:
+      '200':
+        application/json: TicketsFilterList200Response
+        application/octet-stream: TicketsFilterListResponse
+  /Ticket/SearchByTag:
+    get:
+      '200':
+        application/json: TicketsFilterByTagList200Response
+        application/octet-stream: TicketsFilterByTagListResponse
+  /Ticket/{id}:
+    get:
+      '200':
+        application/json: TicketsGetTicket200Response
+        application/octet-stream: TicketsGetTicketResponse
+  /Ticket/{id}/Comments:
+    get:
+      '200':
+        application/json: TicketsGetComments200Response
+        application/octet-stream: TicketsGetCommentsResponse
+    post:
+      '201':
+        application/json: TicketsAddCommentResponse
+        text/json: TicketsAddComment201Response
+  /Ticket/{id}/ImageField/{fieldName}/{fileName}:
+    put:
+      '201':
+        application/json: TicketsUpdateCustomImageFieldResponse
+        text/json: TicketsUpdateCustomImageField201Response
+  /Ticket/{id}/Merge:
+    post:
+      '200':
+        application/json: TicketsMergeIntoResponse
+        text/json: TicketsMergeInto200Response
+  /Ticket/{id}/MergeDocument/{documentTemplateId}:
+    post:
+      '200':
+        application/json: TicketsGenerateMergeDocumentResponse
+        text/json: TicketsGenerateMergeDocument200Response
+  /Ticket/{id}/Sync:
+    put:
+      '200':
+        application/json: TicketsSyncQuotationToOpportunityResponse
+        text/json: TicketsSyncQuotationToOpportunity200Response
+  /Ticket/{id}/Tags:
+    get:
+      '201':
+        application/json: TicketsGetTagsResponse
+    put:
+      '201':
+        application/json: TicketsUpdateTagsResponse
+        text/json: TicketsUpdateTags201Response
+  /Users:
+    get:
+      '200':
+        application/json: UsersListUsersResponse
+  /Users/Search:
+    get:
+      '200':
+        application/json: UsersFilteredListResponse
+  /Users/{id}:
+    get:
+      '200':
+        application/json: UsersGetUserDetailsResponse
+  /{objectName}:
+    get:
+      '200':
+        application/json: CustomObjectsRecordsGetList200Response
+        application/octet-stream: CustomObjectsRecordsGetListResponse
+    post:
+      '201':
+        application/json: CustomObjectsRecordsAddRecordResponse
+        text/json: CustomObjectsRecordsAddRecord201Response
+    put:
+      '201':
+        application/json: CustomObjectsRecordsUpdateRecordResponse
+        text/json: CustomObjectsRecordsUpdateRecord201Response
+  /{objectName}/Search:
+    get:
+      '200':
+        application/json: CustomObjectsRecordsGetFilteredList200Response
+        application/octet-stream: CustomObjectsRecordsGetFilteredListResponse
+  /{objectName}/{id}:
+    get:
+      '200':
+        application/json: CustomObjectsRecordsGetRecord200Response
+        application/octet-stream: CustomObjectsRecordsGetRecordResponse
+  /{objectName}/{id}/Translations/{language}:
+    get:
+      '200':
+        application/json: CustomObjectsRecordsGetTranslation200Response
+        application/octet-stream: CustomObjectsRecordsGetTranslationResponse
+    post:
+      '201':
+        application/json: CustomObjectsRecordsAddTranslationResponse
+        text/json: CustomObjectsRecordsAddTranslation201Response
+    put:
+      '201':
+        application/json: CustomObjectsRecordsUpdateTranslationRecordResponse
+        text/json: CustomObjectsRecordsUpdateTranslationRecord201Response
+securityParameters:
+  Authorization:
+    header: false
+  brief:
+    query: false
+  count_total:
+    query: false
+  fieldName:
+    query: false
+  field_name:
+    query: false
+  field_value:
+    query: false
+  format:
+    query: false
+  id:
+    query: false
+  include_converted:
+    query: false
+  record_type:
+    query: false
+  skip:
+    query: false
+  tagName:
+    query: false
+  top:
+    query: false
+  updated_after_utc:
+    query: false
+validServerUrls: {}
