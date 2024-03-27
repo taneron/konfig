@@ -1783,7 +1783,7 @@ In the last year, we have been awarded Technology Company of the Year in the UK 
       sdkMethods={34}
       schemas={52}
       parameters={227}
-      difficulty="Easy"
+      difficulty="Medium"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/iris-software-group/cascade/openapi.yaml"
       openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/iris-software-group/cascade/openapi.yaml"
       developerDocumentation="help-iris.co.uk/hr/cascade/api/getstart/getting-started.htm"
