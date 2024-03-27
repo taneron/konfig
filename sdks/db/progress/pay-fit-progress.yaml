@@ -1,0 +1,274 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignoreObjectsWithNoProperties: true
+operationIds:
+  /companies-fr/{companyId}:
+    get: Company_getBasicInfoFr
+  /companies/{companyId}/collaborators/meal-vouchers:
+    get: Collaborator_listMealVouchers
+  /companies/{companyId}/collaborators/{collaboratorId}:
+    get: Collaborator_getById
+  /companies/{companyId}/collaborators/{collaboratorId}/contracts/{contractId}/payslips/{payslipId}:
+    get: Collaborator_viewPayslip
+  /companies/{companyId}/collaborators/{collaboratorId}/payslips:
+    get: Collaborator_listPayslips
+  /companies/{companyId}/contracts-fr:
+    get: Contract_listFrenchContracts
+  /companies/{companyId}/contracts-fr/{contractId}:
+    get: Contract_getFrenchInfo
+  /companies/{companyId}/contracts-fr/{contractId}/health-insurance:
+    put: Contract_updateHealthInsuranceAffiliation
+  /companies/{companyId}/contracts-fr/{contractId}/provident-fund:
+    put: Contract_updateProvidentFundAffiliation
+  /companies/{companyId}/contracts/time:
+    get: Contract_listWorkedTimeByPayPeriod
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /companies/{companyId}/contracts-fr/{contractId}/health-insurance:
+    put:
+      application/json: ContractUpdateHealthInsuranceAffiliationRequest
+  /companies/{companyId}/contracts-fr/{contractId}/provident-fund:
+    put:
+      application/json: ContractUpdateProvidentFundAffiliationRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /companies-fr/{companyId}:
+    get:
+      '200':
+        application/json: CompanyGetBasicInfoFrResponse
+      '400':
+        application/json: CompanyGetBasicInfoFr400Response
+      '401':
+        application/json: CompanyGetBasicInfoFr401Response
+      '403':
+        application/json: CompanyGetBasicInfoFr403Response
+      '404':
+        application/json: CompanyGetBasicInfoFr404Response
+  /companies/{companyId}:
+    get:
+      '200':
+        application/json: GetCompanyResponse
+      '400':
+        application/json: GetCompany400Response
+      '401':
+        application/json: GetCompany401Response
+      '403':
+        application/json: GetCompany403Response
+      '404':
+        application/json: GetCompany404Response
+  /companies/{companyId}/accounting:
+    get:
+      '200':
+        application/octet-stream: GetCompanyAccountingResponse
+      '400':
+        application/json: GetCompanyAccounting400Response
+      '401':
+        application/json: GetCompanyAccounting401Response
+      '403':
+        application/json: GetCompanyAccounting403Response
+      '404':
+        application/json: GetCompanyAccounting404Response
+  /companies/{companyId}/accounting-v2:
+    get:
+      '200':
+        application/json: GetCompanyAccountingV2Response
+      '400':
+        application/json: GetCompanyAccountingV2400Response
+      '401':
+        application/json: GetCompanyAccountingV2401Response
+      '403':
+        application/json: GetCompanyAccountingV2403Response
+      '404':
+        application/json: GetCompanyAccountingV2404Response
+  /companies/{companyId}/collaborators:
+    get:
+      '200':
+        application/json: GetCollaboratorsResponse
+      '400':
+        application/json: GetCollaborators400Response
+      '401':
+        application/json: GetCollaborators401Response
+      '403':
+        application/json: GetCollaborators403Response
+      '404':
+        application/json: GetCollaborators404Response
+  /companies/{companyId}/collaborators/meal-vouchers:
+    get:
+      '200':
+        application/json: CollaboratorListMealVouchersResponse
+      '400':
+        application/json: CollaboratorListMealVouchers400Response
+      '401':
+        application/json: CollaboratorListMealVouchers401Response
+      '403':
+        application/json: CollaboratorListMealVouchers403Response
+      '404':
+        application/json: CollaboratorListMealVouchers404Response
+  /companies/{companyId}/collaborators/{collaboratorId}:
+    get:
+      '200':
+        application/json: CollaboratorGetByIdResponse
+      '400':
+        application/json: CollaboratorGetById400Response
+      '401':
+        application/json: CollaboratorGetById401Response
+      '403':
+        application/json: CollaboratorGetById403Response
+      '404':
+        application/json: CollaboratorGetById404Response
+  /companies/{companyId}/collaborators/{collaboratorId}/contracts/{contractId}/payslips/{payslipId}:
+    get:
+      '200':
+        application/pdf: CollaboratorViewPayslipResponse
+      '400':
+        application/json: CollaboratorViewPayslip400Response
+      '401':
+        application/json: CollaboratorViewPayslip401Response
+      '403':
+        application/json: CollaboratorViewPayslip403Response
+      '404':
+        application/json: CollaboratorViewPayslip404Response
+  /companies/{companyId}/collaborators/{collaboratorId}/payslips:
+    get:
+      '200':
+        application/json: CollaboratorListPayslipsResponse
+      '400':
+        application/json: CollaboratorListPayslips400Response
+      '401':
+        application/json: CollaboratorListPayslips401Response
+      '403':
+        application/json: CollaboratorListPayslips403Response
+      '404':
+        application/json: CollaboratorListPayslips404Response
+  /companies/{companyId}/contracts:
+    get:
+      '200':
+        application/json: GetContractsResponse
+      '400':
+        application/json: GetContracts400Response
+      '401':
+        application/json: GetContracts401Response
+      '403':
+        application/json: GetContracts403Response
+      '404':
+        application/json: GetContracts404Response
+  /companies/{companyId}/contracts-fr:
+    get:
+      '200':
+        application/json: ContractListFrenchContractsResponse
+      '400':
+        application/json: ContractListFrenchContracts400Response
+      '401':
+        application/json: ContractListFrenchContracts401Response
+      '403':
+        application/json: ContractListFrenchContracts403Response
+      '404':
+        application/json: ContractListFrenchContracts404Response
+  /companies/{companyId}/contracts-fr/{contractId}:
+    get:
+      '200':
+        application/json: ContractGetFrenchInfoResponse
+      '400':
+        application/json: ContractGetFrenchInfo400Response
+      '401':
+        application/json: ContractGetFrenchInfo401Response
+      '403':
+        application/json: ContractGetFrenchInfo403Response
+      '404':
+        application/json: ContractGetFrenchInfo404Response
+  /companies/{companyId}/contracts-fr/{contractId}/health-insurance:
+    put:
+      '204':
+        application/json: ContractUpdateHealthInsuranceAffiliationResponse
+      '400':
+        application/json: ContractUpdateHealthInsuranceAffiliation400Response
+      '401':
+        application/json: ContractUpdateHealthInsuranceAffiliation401Response
+      '403':
+        application/json: ContractUpdateHealthInsuranceAffiliation403Response
+      '404':
+        application/json: ContractUpdateHealthInsuranceAffiliation404Response
+  /companies/{companyId}/contracts-fr/{contractId}/provident-fund:
+    put:
+      '204':
+        application/json: ContractUpdateProvidentFundAffiliationResponse
+      '400':
+        application/json: ContractUpdateProvidentFundAffiliation400Response
+      '401':
+        application/json: ContractUpdateProvidentFundAffiliation401Response
+      '403':
+        application/json: ContractUpdateProvidentFundAffiliation403Response
+      '404':
+        application/json: ContractUpdateProvidentFundAffiliation404Response
+  /companies/{companyId}/contracts/time:
+    get:
+      '200':
+        application/json: ContractListWorkedTimeByPayPeriodResponse
+      '400':
+        application/json: ContractListWorkedTimeByPayPeriod400Response
+      '401':
+        application/json: ContractListWorkedTimeByPayPeriod401Response
+      '403':
+        application/json: ContractListWorkedTimeByPayPeriod403Response
+      '404':
+        application/json: ContractListWorkedTimeByPayPeriod404Response
+  /companies/{companyId}/contracts/{contractId}:
+    get:
+      '200':
+        application/json: GetContractResponse
+      '400':
+        application/json: GetContract400Response
+      '401':
+        application/json: GetContract401Response
+      '403':
+        application/json: GetContract403Response
+      '404':
+        application/json: GetContract404Response
+  /companies/{companyId}/health-insurance-contracts:
+    get:
+      '200':
+        application/json: GetHealthInsuranceContractsResponse
+      '400':
+        application/json: GetHealthInsuranceContracts400Response
+      '401':
+        application/json: GetHealthInsuranceContracts401Response
+      '403':
+        application/json: GetHealthInsuranceContracts403Response
+      '404':
+        application/json: GetHealthInsuranceContracts404Response
+  /companies/{companyId}/payroll-status:
+    get:
+      '200':
+        application/json: GetCompanyPayrollStatusResponse
+      '400':
+        application/json: GetCompanyPayrollStatus400Response
+      '401':
+        application/json: GetCompanyPayrollStatus401Response
+      '403':
+        application/json: GetCompanyPayrollStatus403Response
+      '404':
+        application/json: GetCompanyPayrollStatus404Response
+  /companies/{companyId}/provident-fund-contracts:
+    get:
+      '200':
+        application/json: GetProvidentFundContractsResponse
+      '400':
+        application/json: GetProvidentFundContracts400Response
+      '401':
+        application/json: GetProvidentFundContracts401Response
+      '403':
+        application/json: GetProvidentFundContracts403Response
+      '404':
+        application/json: GetProvidentFundContracts404Response
+securityParameters:
+  date:
+    query: false
+  fields:
+    query: false
+  maxResults:
+    query: false
+  nextPageToken:
+    query: false
+validServerUrls: {}

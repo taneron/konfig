@@ -510,6 +510,21 @@ const customRequests: Record<string, CustomRequest> = {
     type: "GET",
     url: "https://raw.githubusercontent.com/okta/okta-management-openapi-spec/master/dist/spec.yaml",
   },
+  "payfit.com": {
+    lambda: async () => {
+      const url = "https://developers.payfit.io/openapi";
+      // get HTML and find href fro <a> that contains "openapi" and download OAS from there
+      const htmlResponse = await fetch(url);
+      const html = await htmlResponse.text();
+      const subpath = html.match(/href="([^"]+)"/)?.[1];
+      if (!subpath) {
+        throw Error("Could not find openapi url");
+      }
+      const openapiUrl = `https://developers.payfit.io/${subpath}`;
+      const response = await fetch(openapiUrl);
+      return response.text();
+    },
+  },
   "officient.io": {
     lambda: async () => {
       const url = "https://apidocs.officient.io/openapi";
