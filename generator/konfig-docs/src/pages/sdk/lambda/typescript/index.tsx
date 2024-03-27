@@ -17,7 +17,7 @@ export default function LambdaTypeScriptSdk() {
       companyKebabCase="lambda"
       clientNameCamelCase="lambda"
       homepage="lambdalabs.com"
-      lastUpdated={new Date("2024-03-26T17:57:20.824Z")}
+      lastUpdated={new Date("2024-03-27T16:38:55.058Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/lambda/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
@@ -400,7 +400,7 @@ export default function LambdaTypeScriptSdk() {
       sdkMethods={10}
       schemas={33}
       parameters={12}
-      difficulty="Easy"
+      difficulty="Very Easy"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/lambda/openapi.yaml"
       openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/lambda/openapi.yaml"
       developerDocumentation="docs.lambdalabs.com/on-demand-cloud/cloud-api"
