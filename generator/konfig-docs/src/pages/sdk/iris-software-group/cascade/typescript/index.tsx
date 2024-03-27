@@ -25,7 +25,7 @@ In the last year, we have been awarded Technology Company of the Year in the UK 
       companyKebabCase="iris-software-group"
       clientNameCamelCase="irisSoftwareGroupCascade"
       homepage="www.iris.co.uk/products/iris-cascade/"
-      lastUpdated={new Date("2024-03-26T19:14:53.376Z")}
+      lastUpdated={new Date("2024-03-27T22:24:36.753Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/iris-software-group/cascade/favicon.png"
       contactUrl="https://help.iris.co.uk/hr/cascade/api/"
       contactEmail="hrapi@iris.co.uk"
@@ -1783,7 +1783,7 @@ In the last year, we have been awarded Technology Company of the Year in the UK 
       sdkMethods={34}
       schemas={52}
       parameters={227}
-      difficulty="Medium"
+      difficulty="Easy"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/iris-software-group/cascade/openapi.yaml"
       openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/iris-software-group/cascade/openapi.yaml"
       developerDocumentation="help-iris.co.uk/hr/cascade/api/getstart/getting-started.htm"

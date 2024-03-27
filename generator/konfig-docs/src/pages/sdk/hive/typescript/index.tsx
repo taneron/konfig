@@ -10,7 +10,7 @@ export default function HiveTypeScriptSdk() {
   return (
     <SdkNew
       sdkName="hive-typescript-sdk"
-      metaDescription={`We help teams move faster. Hive's best-in-class project management platform includes all of the tools you need and want - and if not, we will build them for you. With flexible project views and endless customizations, Hive offers project management on your terms, success guaranteed. 
+      metaDescription={`We help teams move faster. Hive's best-in-class project management platform includes all of the tools you need and want - and if not, we will build them for you. With flexible project views and endless customizations, Hive offers project management on your terms, success guaranteed.
 
 Hive is used by thousands of fast-moving teams to help with:
 - Project management
@@ -18,9 +18,9 @@ Hive is used by thousands of fast-moving teams to help with:
 - Resourcing
 - Time-Tracking
 - Proofing and approvals
-- Note Taking 
+- Note Taking
 - Task management
-- Reporting and analytics 
+- Reporting and analytics
 
 Want to see what it's all about? Start using Hive for free: app.hive.com/join`}
       company="Hive"
@@ -29,7 +29,7 @@ Want to see what it's all about? Start using Hive for free: app.hive.com/join`}
       companyKebabCase="hive"
       clientNameCamelCase="hive"
       homepage="hive.com"
-      lastUpdated={new Date("2024-03-27T21:52:38.991Z")}
+      lastUpdated={new Date("2024-03-27T22:24:36.753Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/hive/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
@@ -572,7 +572,7 @@ Want to see what it's all about? Start using Hive for free: app.hive.com/join`}
       {
         "name": "sortBy",
         "schema": "string",
-        "description": "Sort results by an Action Object field (https://developers.hive.com/reference",
+        "description": "Sort results by an Action Object field (for example, `sortBy=title asc`)",
         "default": "fieldName asc"
       },
       {
@@ -1164,7 +1164,7 @@ Want to see what it's all about? Start using Hive for free: app.hive.com/join`}
       {
         "name": "sortBy",
         "schema": "string",
-        "description": "Sort results by an Action Object field (https://developers.hive.com/reference",
+        "description": "Sort results by an Action Object field (for example, `sortBy=title+asc`)",
         "default": "fieldName+asc"
       },
       {

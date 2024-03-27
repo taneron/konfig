@@ -60,7 +60,7 @@ export default function TripAdd() {
       homepage="tripadd.com/"
       companyKebabCase="trip-add"
       categories={allCategories}
-      metaDescription={`Tripadd is a global travel ancillary product marketplace powered by AI. 
+      metaDescription={`Tripadd is a global travel ancillary product marketplace powered by AI.
 
 Boost your sales with ancillary products from around the world. Seamlessly integrate thousands of products through a single API into your checkout path with personalization for every customer.
 

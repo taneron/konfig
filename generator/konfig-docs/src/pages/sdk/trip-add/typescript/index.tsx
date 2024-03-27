@@ -10,7 +10,7 @@ export default function TripAddTypeScriptSdk() {
   return (
     <SdkNew
       sdkName="trip-add-typescript-sdk"
-      metaDescription={`Tripadd is a global travel ancillary product marketplace powered by AI. 
+      metaDescription={`Tripadd is a global travel ancillary product marketplace powered by AI.
 
 Boost your sales with ancillary products from around the world. Seamlessly integrate thousands of products through a single API into your checkout path with personalization for every customer.
 
@@ -21,7 +21,7 @@ Sign up today at www.tripadd.com`}
       companyKebabCase="trip-add"
       clientNameCamelCase="tripAdd"
       homepage="tripadd.com/"
-      lastUpdated={new Date("2024-03-27T22:04:35.990Z")}
+      lastUpdated={new Date("2024-03-27T22:24:36.753Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/tripadd/favicon.jpg"
       // Missing contactUrl
       contactEmail="info@tripadd.com"
