@@ -1,0 +1,3440 @@
+hash: 555818a0edeb22aa00334f19f95f7fcef26cb545efd8791b8cc51e5da06dd6b1
+methodObjects:
+  - url: /v1/public/auth/roles
+    method: getRoles
+    httpMethod: get
+    tag: V1 User APIs
+    typeScriptTag: v1UserApIs
+    description: Get Roles
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /v1/public/auth/users
+    method: getUserList
+    httpMethod: get
+    tag: V1 User APIs
+    typeScriptTag: v1UserApIs
+    description: Get User List
+    parameters:
+      - name: page
+        schema: integer
+        description: The page to return. Page numbers start at 1.
+        default: 1
+      - name: limit
+        schema: integer
+        description: The number of items to return per page.
+        default: 10
+      - name: userEmail
+        schema: string
+        required: false
+        description: >-
+          User email address for which that user list should be filtered. Please
+          make sure that the value is url encoded. So for example, if the email
+          address is `abc+123@xyz.com` the value passed should be
+          `abc%2B123%40xyz.com`.
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '400'
+        description: Invalid page number or page limit too big
+  - url: /v1/public/auth/users
+    method: createUser
+    httpMethod: post
+    tag: V1 User APIs
+    typeScriptTag: v1UserApIs
+    description: Create User
+    parameters:
+      - name: username
+        schema: string
+        required: true
+        description: ''
+        example: USERNAME
+      - name: first_name
+        schema: string
+        required: true
+        description: ''
+        example: FIRST_NAME
+      - name: last_name
+        schema: string
+        required: true
+        description: ''
+        example: LAST_NAME
+      - name: password
+        schema: string
+        required: false
+        description: ''
+      - name: roles
+        schema: array
+        required: true
+        description: ''
+    responses:
+      - statusCode: '201'
+        description: The actual results.
+      - statusCode: '400'
+        description: Invalid Request body or User already exists
+  - url: /v1/public/auth/users/{user_id}
+    method: deactivateUser
+    httpMethod: delete
+    tag: V1 User APIs
+    typeScriptTag: v1UserApIs
+    description: Deactivate a User
+    parameters:
+      - name: userId
+        schema: integer
+        required: true
+        description: ID of the user as returned by the List Users API.
+        example: 0
+    responses:
+      - statusCode: '204'
+        description: User deactivated
+      - statusCode: '400'
+        description: User already deactivated
+  - url: /v1/public/auth/users/{user_id}
+    method: updateUserRoles
+    httpMethod: patch
+    tag: V1 User APIs
+    typeScriptTag: v1UserApIs
+    description: Update User roles
+    parameters:
+      - name: userId
+        schema: integer
+        required: true
+        description: ID of the user as returned by the List Users API.
+        example: 0
+      - name: roles
+        schema: array
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: The actual results.
+      - statusCode: '400'
+        description: Invalid Role ID
+  - url: /v1/public/contracts
+    method: getList
+    httpMethod: get
+    tag: V1 Contract APIs
+    typeScriptTag: v1ContractApIs
+    description: Get Contract List
+    parameters:
+      - name: page
+        schema: integer
+        description: The page to return. Page numbers start at 1.
+        default: 1
+      - name: limit
+        schema: integer
+        description: The number of items to return per page.
+        default: 10
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /v1/public/contracts
+    method: createContract
+    httpMethod: post
+    tag: V1 Contract APIs
+    typeScriptTag: v1ContractApIs
+    description: Create Contract
+    parameters:
+      - name: contract_template_id
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+      - name: contract_data
+        schema: object
+        required: true
+        description: ''
+      - name: counter_party_details
+        schema: array
+        required: true
+        description: ''
+      - name: external_metadata
+        schema: object
+        required: false
+        description: ''
+      - name: entity_reference_id
+        schema: string
+        required: false
+        description: ''
+      - name: workflow_config
+        schema: object
+        required: false
+        description: ''
+      - name: send_to_counterparty_config
+        schema: object
+        required: false
+        description: ''
+      - name: contract_name
+        schema: string
+        required: false
+        description: ''
+      - name: signatories
+        schema: array
+        required: false
+        description: ''
+      - name: is_embedded_contract
+        schema: boolean
+        required: false
+        description: ''
+        default: false
+    responses:
+      - statusCode: '201'
+        description: The list of Contracts
+  - url: /v1/public/contracts/by_external_metadata/{external_metadata_id}
+    method: getByExternalMetadataId
+    httpMethod: get
+    tag: V1 Contract APIs
+    typeScriptTag: v1ContractApIs
+    description: Get Contract by External Metadata ID
+    parameters:
+      - name: externalMetadataId
+        schema: string
+        required: true
+        description: >-
+          External Metadata ID of the Contract. This can be used to search for
+          contracts based on an ID specified when creating the contract using
+          the external API.
+        example: EXTERNAL_METADATA_ID
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /v1/public/contracts/{contract_id}/download
+    method: downloadContractFile
+    httpMethod: post
+    tag: V1 Contract APIs
+    typeScriptTag: v1ContractApIs
+    description: Download Contract File
+    parameters:
+      - name: contractId
+        schema: integer
+        required: true
+        description: ID of the Contract.
+        example: 0
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /v1/public/contracts/{contract_id}/download_link
+    method: createDownloadLink
+    httpMethod: post
+    tag: V1 Contract APIs
+    typeScriptTag: v1ContractApIs
+    description: Get Contract Download Link
+    parameters:
+      - name: contractId
+        schema: integer
+        required: true
+        description: ID of the Contract.
+        example: 0
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /v1/public/contracts/{contract_id}/send_to_counterparties
+    method: sendToCounterparties
+    httpMethod: post
+    tag: V1 Contract APIs
+    typeScriptTag: v1ContractApIs
+    description: Send Contract to Counterparties
+    parameters:
+      - name: contractId
+        schema: integer
+        required: true
+        description: ID of the Contract.
+        example: 0
+      - name: to_emails
+        schema: array
+        required: false
+        description: ''
+      - name: cc_emails
+        schema: array
+        required: false
+        description: ''
+      - name: bcc_emails
+        schema: array
+        required: false
+        description: ''
+      - name: attachment_formats
+        schema: array
+        required: true
+        description: ''
+      - name: extra_attachments
+        schema: array
+        required: false
+        description: ''
+      - name: custom_message
+        schema: string
+        required: false
+        description: ''
+      - name: subject
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: OK
+  - url: /v1/public/contracts/{contract_id}/status
+    method: getStatus
+    httpMethod: get
+    tag: V1 Contract APIs
+    typeScriptTag: v1ContractApIs
+    description: Get Contract Status
+    parameters:
+      - name: contractId
+        schema: integer
+        required: true
+        description: ID of the Contract.
+        example: 0
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /v1/public/templates/{template_id}/metadata
+    method: getMetadata
+    httpMethod: get
+    tag: V1 Template APIs
+    typeScriptTag: v1TemplateApIs
+    description: Get Template Metadata
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: SD Base Model from which all other Models should inherit
+  - url: /v2.1/public/auth/roles/{role_id}/members
+    method: deleteRoleMember
+    httpMethod: delete
+    tag: V2.1 User APIs
+    typeScriptTag: v21UserApIs
+    description: Delete Role Member
+    parameters:
+      - name: roleId
+        schema: integer
+        required: true
+        description: >-
+          Use the [Get Active
+          Roles](#tag/V2.1-User-APIs/operation/v2.1_public_auth_roles_list) API
+          to get the role ID.
+        example: 0
+      - name: user_ids_to_remove
+        schema: array
+        required: true
+        description: ''
+    responses:
+      - statusCode: '204'
+        description: Delete Role Member
+  - url: /v2.1/public/auth/roles/{role_id}/members
+    method: addRoleMember
+    httpMethod: post
+    tag: V2.1 User APIs
+    typeScriptTag: v21UserApIs
+    description: Add Role Member
+    parameters:
+      - name: roleId
+        schema: integer
+        required: true
+        description: >-
+          Use the [Get Active
+          Roles](#tag/V2.1-User-APIs/operation/v2.1_public_auth_roles_list) API
+          to get the role ID.
+        example: 0
+      - name: user_ids_to_add
+        schema: array
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: The updated members of the role.
+  - url: /v2.1/public/contract_types/{contract_type_id}/entities
+    method: listEntities
+    httpMethod: get
+    tag: V2.1 Contract Type APIs
+    typeScriptTag: v21ContractTypeApIs
+    description: List Contract Type Entities
+    parameters:
+      - name: contractTypeId
+        schema: integer
+        required: true
+        description: ID of the Contract Type.
+        example: 0
+    responses:
+      - statusCode: '200'
+        description: The list of entities for the contract type
+  - url: /v2.1/public/contracts/by_external_metadata/{external_metadata_id}
+    method: getByExternalMetadataId
+    httpMethod: get
+    tag: V2.1 Contract APIs
+    typeScriptTag: v21ContractApIs
+    description: Get Contract by External Metadata ID
+    parameters:
+      - name: externalMetadataId
+        schema: string
+        required: true
+        description: >-
+          External Metadata ID of the Contract. This can be used to search for
+          contracts based on an ID specified when creating the contract using
+          the external API.
+        example: EXTERNAL_METADATA_ID
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /v2.1/public/contracts/{composite_id}/download
+    method: downloadContractFile
+    httpMethod: post
+    tag: V2.1 Contract APIs
+    typeScriptTag: v21ContractApIs
+    description: Download Contract File
+    parameters:
+      - name: compositeId
+        schema: string
+        required: true
+        description: >-
+          ID of the Contract. Should be of the form T-123 or H-123. T stands for
+          Template contracts and H stands for Historical contracts.
+        example: COMPOSITE_ID
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /v2.1/public/contracts/{composite_id}/download_link
+    method: getDownloadLink
+    httpMethod: post
+    tag: V2.1 Contract APIs
+    typeScriptTag: v21ContractApIs
+    description: Get Contract Download Link
+    parameters:
+      - name: contractId
+        schema: string
+        required: true
+        description: >-
+          ID of the Contract. Should be of the form T-123 or H-123. T stands for
+          Template contracts and H stands for Historical contracts.
+        example: CONTRACT_ID
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /v2.1/public/contracts/{composite_id}/key_pointers/bulk
+    method: bulkUpdateKeyPointers
+    httpMethod: post
+    tag: V2.1 Contract APIs
+    typeScriptTag: v21ContractApIs
+    description: Bulk Update Key Pointer Value
+    parameters:
+      - name: contractId
+        schema: string
+        required: true
+        description: >-
+          ID of the Contract. Should be of the form T-123 or H-123. T stands for
+          Template contracts and H stands for Historical contracts.
+        example: CONTRACT_ID
+      - name: key_pointers
+        schema: array
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: SD Base Model from which all other Models should inherit
+  - url: /v2.1/public/contracts/{composite_id}/send_to_counterparties
+    method: sendToCounterparties
+    httpMethod: post
+    tag: V2.1 Contract APIs
+    typeScriptTag: v21ContractApIs
+    description: Send Contract to Counterparties
+    parameters:
+      - name: contractId
+        schema: string
+        required: true
+        description: >-
+          ID of the Contract. Should be of the form T-123 or H-123. T stands for
+          Template contracts and H stands for Historical contracts.
+        example: CONTRACT_ID
+      - name: to_emails
+        schema: array
+        required: false
+        description: ''
+      - name: cc_emails
+        schema: array
+        required: false
+        description: ''
+      - name: bcc_emails
+        schema: array
+        required: false
+        description: ''
+      - name: attachment_formats
+        schema: array
+        required: true
+        description: ''
+      - name: extra_attachments
+        schema: array
+        required: false
+        description: ''
+      - name: custom_message
+        schema: string
+        required: false
+        description: ''
+      - name: subject
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: OK
+  - url: /v2.1/public/contracts/{composite_id}/unmark_for_execution
+    method: unmarkForExecution
+    httpMethod: post
+    tag: V2.1 Contract APIs
+    typeScriptTag: v21ContractApIs
+    description: Unmarks the contract for execution
+    parameters:
+      - name: compositeId
+        schema: string
+        required: true
+        description: >-
+          ID of the Contract. Should be of the form T-123 or H-123. T stands for
+          Template contracts and H stands for Historical contracts.
+        example: COMPOSITE_ID
+      - name: note
+        schema: string
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: Success
+  - url: /v2.1/public/contracts/{contract_id}/contract_data
+    method: updateContractData
+    httpMethod: patch
+    tag: V2.1 Contract APIs
+    typeScriptTag: v21ContractApIs
+    description: Update Contract Data
+    parameters:
+      - name: userEmail
+        schema: string
+        required: false
+        description: >-
+          The email address of the user to act as (when using client-secret
+          authentication). This header attributes actions taken using the API to
+          the given user.
+      - name: data
+        schema: object
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: SD Base Model from which all other Models should inherit
+      - statusCode: '400'
+        description: body
+  - url: /v2.1/public/contracts/{contract_id}/external_metadata
+    method: createOrUpdateExternalMetadata
+    httpMethod: post
+    tag: V2.1 Contract APIs
+    typeScriptTag: v21ContractApIs
+    description: Create or Update Contract External Metadata
+    parameters:
+      - name: external_metadata
+        schema: object
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: body
+  - url: /v2.1/public/contracts/{contract_id}/key_pointers
+    method: getKeyPointers
+    httpMethod: get
+    tag: V2.1 Contract APIs
+    typeScriptTag: v21ContractApIs
+    description: Get Key Pointers
+    parameters:
+      - name: contractId
+        schema: string
+        required: true
+        description: >-
+          ID of the Contract. Should be of the form T-123 or H-123. T stands for
+          Template contracts and H stands for Historical contracts.
+        example: CONTRACT_ID
+    responses:
+      - statusCode: '200'
+        description: SD Base Model from which all other Models should inherit
+  - url: >-
+      /v2.1/public/contracts/{contract_id}/key_pointers/{contract_key_pointer_id}
+    method: updateKeyPointerValue
+    httpMethod: patch
+    tag: V2.1 Contract APIs
+    typeScriptTag: v21ContractApIs
+    description: Update Key Pointer Value
+    parameters:
+      - name: contractId
+        schema: string
+        required: true
+        description: >-
+          ID of the Contract. Should be of the form T-123 or H-123. T stands for
+          Template contracts and H stands for Historical contracts.
+        example: CONTRACT_ID
+      - name: contractKeyPointerId
+        schema: string
+        required: true
+        description: ID of the contract key pointer value.
+        example: CONTRACT_KEY_POINTER_ID
+      - name: value
+        schema: object
+        required: true
+        description: ''
+        example: &ref_0
+          type: MONTHS
+          value: 6
+    responses:
+      - statusCode: '200'
+        description: SD Base Model from which all other Models should inherit
+  - url: /v2.1/public/contracts/{contract_id}/notes
+    method: getContractNotes
+    httpMethod: get
+    tag: V2.1 Contract APIs
+    typeScriptTag: v21ContractApIs
+    description: Get Contract Notes
+    parameters:
+      - name: contractId
+        schema: string
+        required: true
+        description: >-
+          ID of the Contract. Should be of the form T-123 or H-123. T stands for
+          Template contracts and H stands for Historical contracts.
+        example: CONTRACT_ID
+    responses:
+      - statusCode: '200'
+        description: SD Base Model from which all other Models should inherit
+  - url: /v2.1/public/contracts/{contract_id}/notes/{note_id}
+    method: updateContractNote
+    httpMethod: put
+    tag: V2.1 Contract APIs
+    typeScriptTag: v21ContractApIs
+    description: Update Contract Note
+    parameters:
+      - name: contractId
+        schema: string
+        required: true
+        description: >-
+          ID of the Contract. Should be of the form T-123 or H-123. T stands for
+          Template contracts and H stands for Historical contracts.
+        example: CONTRACT_ID
+      - name: keyPointerId
+        schema: string
+        required: true
+        description: ID of the key pointer value.
+        example: KEY_POINTER_ID
+      - name: userEmail
+        schema: string
+        required: false
+        description: >-
+          The email address of the user to act as (when using client-secret
+          authentication). This header attributes actions taken using the API to
+          the given user.
+      - name: note_tag
+        schema: object
+        required: false
+        description: ''
+      - name: text
+        schema: string
+        required: true
+        description: ''
+        example: TEXT
+    responses:
+      - statusCode: '200'
+        description: SD Base Model from which all other Models should inherit
+  - url: /v2.1/public/contracts/{contract_id}/status
+    method: getStatus
+    httpMethod: get
+    tag: V2.1 Contract APIs
+    typeScriptTag: v21ContractApIs
+    description: Get Contract Status
+    parameters:
+      - name: contractId
+        schema: string
+        required: true
+        description: >-
+          ID of the Contract. Should be of the form T-123 or H-123. T stands for
+          Template contracts and H stands for Historical contracts.
+        example: CONTRACT_ID
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /v2.1/public/counter_parties/{counterparty_id}
+    method: getById
+    httpMethod: get
+    tag: V2.1 Counterparty APIs
+    typeScriptTag: v21CounterpartyApIs
+    description: Get Counterparty
+    parameters:
+      - name: counterpartyId
+        schema: integer
+        required: true
+        description: ID of the Counterparty.
+        example: 0
+    responses:
+      - statusCode: '200'
+        description: SD Base Model from which all other Models should inherit
+  - url: /v2.1/public/counter_parties/{counterparty_id}
+    method: updateCounterpartyDetails
+    httpMethod: patch
+    tag: V2.1 Counterparty APIs
+    typeScriptTag: v21CounterpartyApIs
+    description: Update Counterparty
+    parameters:
+      - name: counterpartyId
+        schema: integer
+        required: true
+        description: ID of the Counterparty.
+        example: 0
+      - name: name
+        schema: string
+        description: ''
+      - name: brand_name
+        schema: string
+        description: ''
+      - name: custom_fields
+        schema: object
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: SD Base Model from which all other Models should inherit
+  - url: /v2.1/public/counter_parties/{counterparty_id}/contacts
+    method: listCounterpartyContacts
+    httpMethod: get
+    tag: V2.1 Counterparty APIs
+    typeScriptTag: v21CounterpartyApIs
+    description: List Counterparty Contacts
+    parameters:
+      - name: page
+        schema: integer
+        description: The page to return. Page numbers start at 1.
+        default: 1
+      - name: limit
+        schema: integer
+        description: The number of items to return per page.
+        default: 10
+      - name: counterpartyId
+        schema: integer
+        required: true
+        description: ID of the Counterparty.
+        example: 0
+    responses:
+      - statusCode: '200'
+        description: SD Base Model from which all other Models should inherit
+  - url: /v2.1/public/counter_parties/{counterparty_id}/contacts
+    method: createContact
+    httpMethod: post
+    tag: V2.1 Counterparty APIs
+    typeScriptTag: v21CounterpartyApIs
+    description: Create Counterparty Contact
+    parameters:
+      - name: counterpartyId
+        schema: integer
+        required: true
+        description: ID of the Counterparty.
+        example: 0
+      - name: name
+        schema: string
+        required: true
+        description: ''
+        example: NAME
+      - name: email
+        schema: string
+        required: true
+        description: ''
+        example: EMAIL
+      - name: is_primary
+        schema: boolean
+        required: true
+        description: ''
+        example: true
+    responses:
+      - statusCode: '201'
+        description: SD Base Model from which all other Models should inherit
+  - url: /v2.1/public/templates/{template_id}/metadata
+    method: getTemplateMetadata
+    httpMethod: get
+    tag: V2.1 Template APIs
+    typeScriptTag: v21TemplateApIs
+    description: Get Template Metadata
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: SD Base Model from which all other Models should inherit
+  - url: /v2/public/auth/roles/{role_id}/members
+    method: deleteRoleMember
+    httpMethod: delete
+    tag: V2 User APIs
+    typeScriptTag: v2UserApIs
+    description: Delete Role Member
+    parameters:
+      - name: roleId
+        schema: integer
+        required: true
+        description: >-
+          Use the [Get Active
+          Roles](#tag/V2.1-User-APIs/operation/v2.1_public_auth_roles_list) API
+          to get the role ID.
+        example: 0
+      - name: user_ids_to_remove
+        schema: array
+        required: true
+        description: ''
+    responses:
+      - statusCode: '204'
+        description: Delete Role Member
+  - url: /v2/public/auth/roles/{role_id}/members
+    method: addRoleMember
+    httpMethod: post
+    tag: V2 User APIs
+    typeScriptTag: v2UserApIs
+    description: Add Role Member
+    parameters:
+      - name: roleId
+        schema: integer
+        required: true
+        description: >-
+          Use the [Get Active
+          Roles](#tag/V2.1-User-APIs/operation/v2.1_public_auth_roles_list) API
+          to get the role ID.
+        example: 0
+      - name: user_ids_to_add
+        schema: array
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: The updated members of the role.
+  - url: /v2/public/contract_types/{contract_type_id}/entities
+    method: listEntities
+    httpMethod: get
+    tag: V2 Contract Type APIs
+    typeScriptTag: v2ContractTypeApIs
+    description: List Contract Type Entities
+    parameters:
+      - name: contractTypeId
+        schema: integer
+        required: true
+        description: ID of the Contract Type.
+        example: 0
+    responses:
+      - statusCode: '200'
+        description: The list of entities for the contract type
+  - url: /v2/public/contracts/by_external_metadata/{external_metadata_id}
+    method: getByExternalMetadataId
+    httpMethod: get
+    tag: V2 Contract APIs
+    typeScriptTag: v2ContractApIs
+    description: Get Contract by External Metadata ID
+    parameters:
+      - name: externalMetadataId
+        schema: string
+        required: true
+        description: >-
+          External Metadata ID of the Contract. This can be used to search for
+          contracts based on an ID specified when creating the contract using
+          the external API.
+        example: EXTERNAL_METADATA_ID
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /v2/public/contracts/{composite_id}/download
+    method: downloadContractFile
+    httpMethod: post
+    tag: V2 Contract APIs
+    typeScriptTag: v2ContractApIs
+    description: Download Contract File
+    parameters:
+      - name: compositeId
+        schema: string
+        required: true
+        description: >-
+          ID of the Contract. Should be of the form T-123 or H-123. T stands for
+          Template contracts and H stands for Historical contracts.
+        example: COMPOSITE_ID
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /v2/public/contracts/{composite_id}/download_link
+    method: getDownloadLink
+    httpMethod: post
+    tag: V2 Contract APIs
+    typeScriptTag: v2ContractApIs
+    description: Get Contract Download Link
+    parameters:
+      - name: contractId
+        schema: string
+        required: true
+        description: >-
+          ID of the Contract. Should be of the form T-123 or H-123. T stands for
+          Template contracts and H stands for Historical contracts.
+        example: CONTRACT_ID
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /v2/public/contracts/{composite_id}/send_to_counterparties
+    method: sendToCounterparties
+    httpMethod: post
+    tag: V2 Contract APIs
+    typeScriptTag: v2ContractApIs
+    description: Send Contract to Counterparties
+    parameters:
+      - name: contractId
+        schema: string
+        required: true
+        description: >-
+          ID of the Contract. Should be of the form T-123 or H-123. T stands for
+          Template contracts and H stands for Historical contracts.
+        example: CONTRACT_ID
+      - name: to_emails
+        schema: array
+        required: false
+        description: ''
+      - name: cc_emails
+        schema: array
+        required: false
+        description: ''
+      - name: bcc_emails
+        schema: array
+        required: false
+        description: ''
+      - name: attachment_formats
+        schema: array
+        required: true
+        description: ''
+      - name: extra_attachments
+        schema: array
+        required: false
+        description: ''
+      - name: custom_message
+        schema: string
+        required: false
+        description: ''
+      - name: subject
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: OK
+  - url: /v2/public/contracts/{contract_id}/contract_data
+    method: updateContractData
+    httpMethod: patch
+    tag: V2 Contract APIs
+    typeScriptTag: v2ContractApIs
+    description: Update Contract Data
+    parameters:
+      - name: userEmail
+        schema: string
+        required: false
+        description: >-
+          The email address of the user to act as (when using client-secret
+          authentication). This header attributes actions taken using the API to
+          the given user.
+      - name: data
+        schema: object
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: SD Base Model from which all other Models should inherit
+      - statusCode: '400'
+        description: body
+  - url: /v2/public/contracts/{contract_id}/key_pointers
+    method: getKeyPointers
+    httpMethod: get
+    tag: V2 Contract APIs
+    typeScriptTag: v2ContractApIs
+    description: Get Key Pointers
+    parameters:
+      - name: contractId
+        schema: string
+        required: true
+        description: >-
+          ID of the Contract. Should be of the form T-123 or H-123. T stands for
+          Template contracts and H stands for Historical contracts.
+        example: CONTRACT_ID
+    responses:
+      - statusCode: '200'
+        description: SD Base Model from which all other Models should inherit
+  - url: /v2/public/contracts/{contract_id}/key_pointers/{contract_key_pointer_id}
+    method: updateKeyPointerValue
+    httpMethod: patch
+    tag: V2 Contract APIs
+    typeScriptTag: v2ContractApIs
+    description: Update Key Pointer Value
+    parameters:
+      - name: contractId
+        schema: string
+        required: true
+        description: >-
+          ID of the Contract. Should be of the form T-123 or H-123. T stands for
+          Template contracts and H stands for Historical contracts.
+        example: CONTRACT_ID
+      - name: contractKeyPointerId
+        schema: string
+        required: true
+        description: ID of the contract key pointer value.
+        example: CONTRACT_KEY_POINTER_ID
+      - name: value
+        schema: object
+        required: true
+        description: ''
+        example: *ref_0
+    responses:
+      - statusCode: '200'
+        description: SD Base Model from which all other Models should inherit
+  - url: /v2/public/contracts/{contract_id}/notes
+    method: getContractNotes
+    httpMethod: get
+    tag: V2 Contract APIs
+    typeScriptTag: v2ContractApIs
+    description: Get Contract Notes
+    parameters:
+      - name: contractId
+        schema: string
+        required: true
+        description: >-
+          ID of the Contract. Should be of the form T-123 or H-123. T stands for
+          Template contracts and H stands for Historical contracts.
+        example: CONTRACT_ID
+    responses:
+      - statusCode: '200'
+        description: SD Base Model from which all other Models should inherit
+  - url: /v2/public/contracts/{contract_id}/notes/{note_id}
+    method: updateContractNote
+    httpMethod: put
+    tag: V2 Contract APIs
+    typeScriptTag: v2ContractApIs
+    description: Update Contract Note
+    parameters:
+      - name: contractId
+        schema: string
+        required: true
+        description: >-
+          ID of the Contract. Should be of the form T-123 or H-123. T stands for
+          Template contracts and H stands for Historical contracts.
+        example: CONTRACT_ID
+      - name: keyPointerId
+        schema: string
+        required: true
+        description: ID of the key pointer value.
+        example: KEY_POINTER_ID
+      - name: userEmail
+        schema: string
+        required: false
+        description: >-
+          The email address of the user to act as (when using client-secret
+          authentication). This header attributes actions taken using the API to
+          the given user.
+      - name: note_tag
+        schema: object
+        required: false
+        description: ''
+      - name: text
+        schema: string
+        required: true
+        description: ''
+        example: TEXT
+    responses:
+      - statusCode: '200'
+        description: SD Base Model from which all other Models should inherit
+  - url: /v2/public/contracts/{contract_id}/status
+    method: getStatus
+    httpMethod: get
+    tag: V2 Contract APIs
+    typeScriptTag: v2ContractApIs
+    description: Get Contract Status
+    parameters:
+      - name: contractId
+        schema: string
+        required: true
+        description: >-
+          ID of the Contract. Should be of the form T-123 or H-123. T stands for
+          Template contracts and H stands for Historical contracts.
+        example: CONTRACT_ID
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /v2/public/counter_parties/{counterparty_id}
+    method: getCounterpartyById
+    httpMethod: get
+    tag: V2 Counterparty APIs
+    typeScriptTag: v2CounterpartyApIs
+    description: Get Counterparty
+    parameters:
+      - name: counterpartyId
+        schema: integer
+        required: true
+        description: ID of the Counterparty.
+        example: 0
+    responses:
+      - statusCode: '200'
+        description: SD Base Model from which all other Models should inherit
+  - url: /v2/public/counter_parties/{counterparty_id}
+    method: updateDetails
+    httpMethod: patch
+    tag: V2 Counterparty APIs
+    typeScriptTag: v2CounterpartyApIs
+    description: Update Counterparty
+    parameters:
+      - name: counterpartyId
+        schema: integer
+        required: true
+        description: ID of the Counterparty.
+        example: 0
+      - name: name
+        schema: string
+        description: ''
+      - name: brand_name
+        schema: string
+        description: ''
+      - name: custom_fields
+        schema: object
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: SD Base Model from which all other Models should inherit
+  - url: /v2/public/counter_parties/{counterparty_id}/contacts
+    method: listCounterpartyContacts
+    httpMethod: get
+    tag: V2 Counterparty APIs
+    typeScriptTag: v2CounterpartyApIs
+    description: List Counterparty Contacts
+    parameters:
+      - name: page
+        schema: integer
+        description: The page to return. Page numbers start at 1.
+        default: 1
+      - name: limit
+        schema: integer
+        description: The number of items to return per page.
+        default: 10
+      - name: counterpartyId
+        schema: integer
+        required: true
+        description: ID of the Counterparty.
+        example: 0
+    responses:
+      - statusCode: '200'
+        description: SD Base Model from which all other Models should inherit
+  - url: /v2/public/counter_parties/{counterparty_id}/contacts
+    method: createContact
+    httpMethod: post
+    tag: V2 Counterparty APIs
+    typeScriptTag: v2CounterpartyApIs
+    description: Create Counterparty Contact
+    parameters:
+      - name: counterpartyId
+        schema: integer
+        required: true
+        description: ID of the Counterparty.
+        example: 0
+      - name: name
+        schema: string
+        required: true
+        description: ''
+        example: NAME
+      - name: email
+        schema: string
+        required: true
+        description: ''
+        example: EMAIL
+      - name: is_primary
+        schema: boolean
+        required: true
+        description: ''
+        example: true
+    responses:
+      - statusCode: '201'
+        description: SD Base Model from which all other Models should inherit
+  - url: /v2/public/templates/{template_id}/metadata
+    method: getMetadata
+    httpMethod: get
+    tag: V2 Template APIs
+    typeScriptTag: v2TemplateApIs
+    description: Get Template Metadata
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: SD Base Model from which all other Models should inherit
+  - url: /v1/public/templates
+    method: getTemplateList
+    httpMethod: get
+    tag: V1 Template APIs
+    typeScriptTag: v1TemplateApIs
+    description: Get Template List
+    parameters:
+      - name: tags
+        schema: array
+        required: false
+        description: >-
+          The tags (if any) to filter the templates by.
+
+
+          Multiple tags can be specified by specifying the query param multiple
+          times. Only templates where the Template tags are a subset of the tags
+          passed will be returned.
+      - name: tagsAll
+        schema: array
+        required: false
+        description: >-
+          The tags (if any) to filter the templates by.
+
+
+          Multiple tags can be specified by specifying the query param multiple
+          times. Only templates where the tags passed are a subset of the
+          Template tags will be returned.
+    responses:
+      - statusCode: '200'
+        description: A list of template as returned by the public API
+  - url: /v1/public/webhook-sample
+    method: createWebhookSample
+    httpMethod: post
+    tag: V1 Webhooks
+    typeScriptTag: v1Webhooks
+    description: Sample Webhook Request
+    parameters:
+      - name: activity_data
+        schema: object
+        required: true
+        description: ''
+      - name: activity
+        schema: string
+        required: true
+        description: ''
+        example: ACTIVITY
+      - name: contract_id
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+      - name: contract_title
+        schema: string
+        required: true
+        description: ''
+        example: CONTRACT_TITLE
+      - name: contract_type
+        schema: string
+        required: true
+        description: ''
+        example: CONTRACT_TYPE
+      - name: contract_type_name
+        schema: string
+        required: true
+        description: ''
+        example: CONTRACT_TYPE_NAME
+      - name: contract_type_id
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+      - name: contract_status
+        schema: string
+        required: true
+        description: ''
+        example: CONTRACT_STATUS
+      - name: contract_kind
+        schema: string
+        required: true
+        description: ''
+        example: CONTRACT_KIND
+      - name: business_user
+        schema: object
+        required: true
+        description: ''
+      - name: created_at
+        schema: string
+        required: true
+        description: ''
+        example: CREATED_AT
+      - name: counterparties
+        schema: array
+        required: false
+        description: ''
+      - name: external_metadata
+        schema: object
+        required: false
+        description: ''
+      - name: entity
+        schema: object
+        required: false
+        description: ''
+      - name: contract_reference_id
+        schema: string
+        required: false
+        description: ''
+      - name: contract_template_id
+        schema: integer
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: SD Base Model from which all other Models should inherit
+  - url: /v2.1/public/auth/roles
+    method: listActiveRoles
+    httpMethod: get
+    tag: V2.1 User APIs
+    typeScriptTag: v21UserApIs
+    description: Get active roles for a workspace
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: |-
+          Pydantic Model that takes in the list if active
+          roles pydantic response
+  - url: /v2.1/public/auth/users
+    method: getUserList
+    httpMethod: get
+    tag: V2.1 User APIs
+    typeScriptTag: v21UserApIs
+    description: Get User List
+    parameters:
+      - name: page
+        schema: integer
+        description: The page to return. Page numbers start at 1.
+        default: 1
+      - name: limit
+        schema: integer
+        description: The number of items to return per page.
+        default: 10
+      - name: userEmail
+        schema: string
+        required: false
+        description: >-
+          User email address for which that user list should be filtered. Please
+          make sure that the value is url encoded. So for example, if the email
+          address is `abc+123@xyz.com` the value passed should be
+          `abc%2B123%40xyz.com`.
+    responses:
+      - statusCode: '200'
+        description: SD Generic Model from which all other Generic Models should inherit
+  - url: /v2.1/public/clickwrap/{clickwrap_public_id}/consent_status
+    method: getUserConsentStatus
+    httpMethod: post
+    tag: V2.1 Clickwrap APIs
+    typeScriptTag: v21ClickwrapApIs
+    description: Get consent status
+    parameters:
+      - name: clickwrapPublicId
+        schema: uuid
+        required: true
+        description: Public Id of Clickwrap
+      - name: user_identifier
+        schema: string
+        required: true
+        description: ''
+        example: USER_IDENTIFIER
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /v2.1/public/contract_types
+    method: getList
+    httpMethod: get
+    tag: V2.1 Contract Type APIs
+    typeScriptTag: v21ContractTypeApIs
+    description: Get Contract Type List
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: SD Base Model from which all other Models should inherit
+  - url: /v2.1/public/contract_types/{contract_type_id}/intake_form/questionnaire
+    method: getIntakeFormQuestionnaireDetails
+    httpMethod: get
+    tag: V2.1 Contract Type APIs
+    typeScriptTag: v21ContractTypeApIs
+    description: Get Intake Form Questionnaire Details
+    parameters:
+      - name: contractTypeId
+        schema: integer
+        required: true
+        description: ID of the Contract Type.
+        example: 0
+    responses:
+      - statusCode: '200'
+        description: The list of attributes for this contract template.
+  - url: /v2.1/public/contracts
+    method: getList
+    httpMethod: get
+    tag: V2.1 Contract APIs
+    typeScriptTag: v21ContractApIs
+    description: Get Contract List
+    parameters:
+      - name: page
+        schema: integer
+        description: The page to return. Page numbers start at 1.
+        default: 1
+      - name: limit
+        schema: integer
+        description: The number of items to return per page.
+        default: 10
+      - name: filterClientEmailAddress
+        schema: string
+        description: Filters on the counter party email. Does an exact match.
+      - name: filterClientName
+        schema: string
+        description: Filters on the counter party name. Does an exact match.
+    responses:
+      - statusCode: '200'
+        description: SD Base Model from which all other Models should inherit
+  - url: /v2.1/public/contracts
+    method: createNewContract
+    httpMethod: post
+    tag: V2.1 Contract APIs
+    typeScriptTag: v21ContractApIs
+    description: Create Contract
+    parameters:
+      - name: userEmail
+        schema: string
+        required: false
+        description: >-
+          The email address of the user to act as (when using client-secret
+          authentication). This header attributes actions taken using the API to
+          the given user.
+      - name: contract_template_id
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+      - name: contract_data
+        schema: object
+        required: true
+        description: ''
+      - name: counter_party_details
+        schema: array
+        required: true
+        description: ''
+      - name: external_metadata
+        schema: object
+        required: false
+        description: ''
+      - name: entity_reference_id
+        schema: string
+        required: false
+        description: ''
+      - name: workflow_config
+        schema: object
+        required: false
+        description: ''
+      - name: send_to_counterparty_config
+        schema: object
+        required: false
+        description: ''
+      - name: contract_name
+        schema: string
+        required: false
+        description: ''
+      - name: signatories
+        schema: array
+        required: false
+        description: ''
+      - name: is_embedded_contract
+        schema: boolean
+        required: false
+        description: ''
+        default: false
+    responses:
+      - statusCode: '201'
+        description: The list of Contracts
+  - url: /v2.1/public/contracts/approvals/{contract_id}
+    method: getApprovals
+    httpMethod: get
+    tag: V2.1 Contract APIs
+    typeScriptTag: v21ContractApIs
+    description: Get contract approvals
+    parameters:
+      - name: contractId
+        schema: string
+        required: true
+        description: >-
+          ID of the Contract. Should be of the form T-123 or H-123. T stands for
+          Template contracts and H stands for Historical contracts.
+        example: CONTRACT_ID
+    responses:
+      - statusCode: '200'
+        description: SD Base Model from which all other Models should inherit
+  - url: /v2.1/public/contracts/approvals/{contract_id}
+    method: createAdhocApprovals
+    httpMethod: post
+    tag: V2.1 Contract APIs
+    typeScriptTag: v21ContractApIs
+    description: Create and send adhoc approvals
+    parameters:
+      - name: contractId
+        schema: string
+        required: true
+        description: >-
+          ID of the Contract. Should be of the form T-123 or H-123. T stands for
+          Template contracts and H stands for Historical contracts.
+        example: CONTRACT_ID
+      - name: approvals
+        schema: array
+        required: true
+        description: ''
+    responses:
+      - statusCode: '201'
+        description: SD Base Model from which all other Models should inherit
+  - url: /v2.1/public/contracts/embedded/contracts/{contract_id}/counter_party
+    method: getCounterpartyEmbeddedUrl
+    httpMethod: get
+    tag: V2.1 Contract APIs
+    typeScriptTag: v21ContractApIs
+    description: Get CounterParty Embedded Url
+    parameters:
+      - name: cpEmailId
+        schema: string
+        description: Email address of the CP for which the url needs to be returned.
+    responses:
+      - statusCode: '200'
+        description: SD Base Model from which all other Models should inherit
+  - url: /v2.1/public/contracts/executed_contracts
+    method: uploadExecutedContract
+    httpMethod: post
+    tag: V2.1 Contract APIs
+    typeScriptTag: v21ContractApIs
+    description: Upload Executed Contract Api
+    parameters:
+      - name: contract_name
+        schema: string
+        required: true
+        description: ''
+        example: CONTRACT_NAME
+      - name: file_name
+        schema: string
+        required: true
+        description: ''
+        example: FILE_NAME
+      - name: file_content
+        schema: string
+        required: true
+        description: ''
+        example: FILE_CONTENT
+      - name: contract_type_id
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+      - name: organization_entity_id
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+      - name: counterparty_details
+        schema: array
+        required: false
+        description: ''
+    responses:
+      - statusCode: '201'
+        description: Must be kept in sync with ExternalContractV3Serializer
+  - url: /v2.1/public/contracts/preview
+    method: generateContractPreview
+    httpMethod: post
+    tag: V2.1 Contract APIs
+    typeScriptTag: v21ContractApIs
+    description: Generate Contract Preview
+    parameters:
+      - name: contract_template_id
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+      - name: contract_data
+        schema: object
+        required: true
+        description: ''
+      - name: organization_entity_id
+        schema: integer
+        required: false
+        description: ''
+      - name: cp_role_label
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /v2.1/public/contracts/upload_review_contracts
+    method: uploadContractForReview
+    httpMethod: post
+    tag: V2.1 Contract APIs
+    typeScriptTag: v21ContractApIs
+    description: Upload Contract For Review
+    parameters:
+      - name: contract_name
+        schema: string
+        required: true
+        description: ''
+        example: CONTRACT_NAME
+      - name: contract_type_id
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+      - name: file_name
+        schema: string
+        required: true
+        description: ''
+        example: FILE_NAME
+      - name: file_base64
+        schema: string
+        required: true
+        description: ''
+        example: FILE_BASE64
+      - name: creator_organization_entity_id
+        schema: integer
+        required: false
+        description: ''
+      - name: external_metadata
+        schema: object
+        required: false
+        description: ''
+      - name: reviewer
+        schema: object
+        required: false
+        description: ''
+      - name: counterparty_workspace_id
+        schema: integer
+        required: false
+        description: ''
+      - name: counterparty_organization_name
+        schema: string
+        required: false
+        description: ''
+      - name: counterparty_is_individual
+        schema: boolean
+        required: false
+        description: ''
+      - name: counterparty_poc_details
+        schema: object
+        required: false
+        description: ''
+      - name: intake_form_data
+        schema: object
+        required: false
+        description: ''
+      - name: business_user_email
+        schema: string
+        required: false
+        description: ''
+      - name: creator_signatories
+        schema: array
+        required: false
+        description: ''
+    responses:
+      - statusCode: '201'
+        description: Must be kept in sync with ExternalContractV3Serializer
+  - url: /v2.1/public/contracts/upload_sign_contracts
+    method: uploadContractForSignature
+    httpMethod: post
+    tag: V2.1 Contract APIs
+    typeScriptTag: v21ContractApIs
+    description: Upload Contract For Signature
+    parameters:
+      - name: contract_name
+        schema: string
+        required: true
+        description: ''
+        example: CONTRACT_NAME
+      - name: contract_type_id
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+      - name: file_name
+        schema: string
+        required: true
+        description: ''
+        example: FILE_NAME
+      - name: file_base64
+        schema: string
+        required: true
+        description: ''
+        example: FILE_BASE64
+      - name: creator_organization_entity_id
+        schema: integer
+        required: false
+        description: ''
+      - name: counterparty_organization_name
+        schema: string
+        required: true
+        description: ''
+        example: COUNTERPARTY_ORGANIZATION_NAME
+      - name: external_metadata
+        schema: object
+        required: false
+        description: ''
+      - name: counterparty_is_individual
+        schema: boolean
+        required: false
+        description: ''
+      - name: counterparty_poc_details
+        schema: object
+        required: false
+        description: ''
+      - name: intake_form_data
+        schema: object
+        required: false
+        description: ''
+      - name: business_user_email
+        schema: string
+        required: false
+        description: ''
+      - name: creator_signatories
+        schema: array
+        required: false
+        description: ''
+    responses:
+      - statusCode: '201'
+        description: Must be kept in sync with ExternalContractV3Serializer
+  - url: /v2.1/public/contracts/webhooks/re_trigger_latest
+    method: reTriggerLatestContractsWebhooks
+    httpMethod: post
+    tag: V2.1 Contract APIs
+    typeScriptTag: v21ContractApIs
+    description: Re-trigger Contract Webhooks
+    parameters:
+      - name: contract_ids
+        schema: array
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: ''
+  - url: /v2.1/public/contracts/{composite_id}/mark_for_execution
+    method: markForExecution
+    httpMethod: post
+    tag: V2.1 Contract APIs
+    typeScriptTag: v21ContractApIs
+    description: Marks the contract for execution
+    parameters:
+      - name: contractId
+        schema: string
+        required: true
+        description: >-
+          ID of the Contract. Should be of the form T-123 or H-123. T stands for
+          Template contracts and H stands for Historical contracts.
+        example: CONTRACT_ID
+    responses:
+      - statusCode: '200'
+        description: Successfully Marked for Execution
+  - url: /v2.1/public/contracts/{composite_id}/signatories/resend_email
+    method: resendEmailToSignatory
+    httpMethod: post
+    tag: V2.1 Contract APIs
+    typeScriptTag: v21ContractApIs
+    description: Resend Email to the signatory of a Contract.
+    parameters:
+      - name: compositeId
+        schema: string
+        required: true
+        description: >-
+          ID of the Contract. Should be of the form T-123 or H-123. T stands for
+          Template contracts and H stands for Historical contracts.
+        example: COMPOSITE_ID
+      - name: email_id
+        schema: string
+        required: true
+        description: ''
+        example: EMAIL_ID
+    responses:
+      - statusCode: '200'
+        description: Success
+  - url: /v2.1/public/contracts/{contract_id}/comments
+    method: getComments
+    httpMethod: get
+    tag: V2.1 Contract APIs
+    typeScriptTag: v21ContractApIs
+    description: Get comments in contract activity log.
+    parameters:
+      - name: page
+        schema: integer
+        description: The page to return. Page numbers start at 1.
+        default: 1
+      - name: limit
+        schema: integer
+        description: The number of items to return per page.
+        default: 10
+      - name: contractId
+        schema: integer
+        required: true
+        description: ID of the Contract.
+        example: 0
+    responses:
+      - statusCode: '200'
+        description: SD Base Model from which all other Models should inherit
+  - url: /v2.1/public/contracts/{contract_id}/comments
+    method: addCommentToActivityLog
+    httpMethod: post
+    tag: V2.1 Contract APIs
+    typeScriptTag: v21ContractApIs
+    description: Add comment to contract activity log.
+    parameters:
+      - name: contractId
+        schema: integer
+        required: true
+        description: ID of the Contract.
+        example: 0
+      - name: comment
+        schema: string
+        required: true
+        description: ''
+        example: COMMENT
+    responses:
+      - statusCode: '201'
+        description: SD Base Model from which all other Models should inherit
+  - url: /v2.1/public/contracts/{contract_id}/contract_relation
+    method: createContractRelation
+    httpMethod: post
+    tag: V2.1 Contract APIs
+    typeScriptTag: v21ContractApIs
+    description: Create Contract relations
+    parameters:
+      - name: contractId
+        schema: integer
+        required: true
+        description: ID of the Contract.
+        example: 0
+      - name: related_contract_id
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+      - name: relation_type
+        schema: string
+        required: true
+        description: ''
+        example: RELATION_TYPE
+    responses:
+      - statusCode: '201'
+        description: SD Base Model from which all other Models should inherit
+      - statusCode: '400'
+        description: body
+  - url: /v2.1/public/contracts/{contract_id}/contract_version
+    method: uploadVersion
+    httpMethod: post
+    tag: V2.1 Contract Version APIs
+    typeScriptTag: v21ContractVersionApIs
+    description: Upload Contract Version.
+    parameters:
+      - name: contractId
+        schema: integer
+        required: true
+        description: ID of the Contract.
+        example: 0
+      - name: document_name
+        schema: string
+        required: true
+        description: ''
+        example: DOCUMENT_NAME
+      - name: document_base_64
+        schema: string
+        required: true
+        description: ''
+        example: DOCUMENT_BASE_64
+      - name: collect_approvals
+        schema: boolean
+        required: false
+        description: ''
+        default: true
+      - name: is_executed_version
+        schema: boolean
+        required: false
+        description: ''
+        default: false
+    responses:
+      - statusCode: '201'
+        description: Success
+  - url: /v2.1/public/contracts/{contract_id}/invite
+    method: inviteUsersRoles
+    httpMethod: post
+    tag: V2.1 Contract APIs
+    typeScriptTag: v21ContractApIs
+    description: Invite Users & Roles
+    parameters:
+      - name: contractId
+        schema: integer
+        required: true
+        description: ID of the Contract.
+        example: 0
+      - name: items
+        schema: array
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: SD Base Model from which all other Models should inherit
+  - url: /v2.1/public/contracts/{contract_id}/questionnaire/responses
+    method: getQuestionnaireResponses
+    httpMethod: get
+    tag: V2.1 Contract APIs
+    typeScriptTag: v21ContractApIs
+    description: Get Questionnaire Response
+    parameters:
+      - name: page
+        schema: integer
+        required: false
+        description: A page number within the paginated result set.
+      - name: limit
+        schema: integer
+        required: false
+        description: Number of results to return per page.
+      - name: contractId
+        schema: integer
+        required: true
+        description: ID of the Contract.
+        example: 0
+      - name: questionnaireType
+        schema: string
+        required: true
+        description: >-
+          Enum: `INTAKE_FORM/TEMPLATE`. Type of the questionnaire for which
+          response needs to be returned.
+        example: QUESTIONNAIRE_TYPE
+    responses:
+      - statusCode: '200'
+        description: SD Base Model from which all other Models should inherit
+  - url: /v2.1/public/contracts/{contract_id}/recipients/recipient_link
+    method: getRecipientLink
+    httpMethod: get
+    tag: V2.1 Contract APIs
+    typeScriptTag: v21ContractApIs
+    description: Get Recipient Link
+    parameters:
+      - name: contractId
+        schema: integer
+        required: true
+        description: ID of the Contract.
+        example: 0
+      - name: recipientEmail
+        schema: string
+        required: true
+        description: Email of the recipient for whom the link needs to be generated.
+        example: RECIPIENT_EMAIL
+    responses:
+      - statusCode: '200'
+        description: SD Base Model from which all other Models should inherit
+  - url: /v2.1/public/contracts/{contract_id}/review_request
+    method: createLegalReviewTask
+    httpMethod: post
+    tag: V2.1 Contract APIs
+    typeScriptTag: v21ContractApIs
+    description: Create and assign a legal review task
+    parameters:
+      - name: contractId
+        schema: integer
+        required: true
+        description: ID of the Contract.
+        example: 0
+      - name: description
+        schema: string
+        description: ''
+        default: ''
+      - name: assignee_user_id
+        schema: integer
+        description: ''
+      - name: assignee_role_id
+        schema: integer
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: Success
+  - url: /v2.1/public/contracts/{contract_id}/uninvite
+    method: uninviteUserOrRole
+    httpMethod: post
+    tag: V2.1 Contract APIs
+    typeScriptTag: v21ContractApIs
+    description: Un-Invite a User or Role
+    parameters:
+      - name: contractId
+        schema: integer
+        required: true
+        description: ID of the Contract.
+        example: 0
+      - name: user_id
+        schema: integer
+        description: ''
+      - name: role_id
+        schema: integer
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: Success
+  - url: /v2.1/public/contracts/{contract_id}/uninvite_all
+    method: uninviteAllUsersRoles
+    httpMethod: post
+    tag: V2.1 Contract APIs
+    typeScriptTag: v21ContractApIs
+    description: Un-Invite all Users & Roles
+    parameters:
+      - name: contractId
+        schema: integer
+        required: true
+        description: ID of the Contract.
+        example: 0
+    responses:
+      - statusCode: '200'
+        description: Success
+  - url: /v2.1/public/counter_parties
+    method: getList
+    httpMethod: get
+    tag: V2.1 Counterparty APIs
+    typeScriptTag: v21CounterpartyApIs
+    description: List Counterparties
+    parameters:
+      - name: page
+        schema: integer
+        description: The page to return. Page numbers start at 1.
+        default: 1
+      - name: limit
+        schema: integer
+        description: The number of items to return per page.
+        default: 10
+      - name: filterClientEmailAddress
+        schema: string
+        description: Filters on the counter party email. Does an exact match.
+      - name: filterCustom_<customFieldName>
+        schema: string
+        description: >-
+          Filters all the counterparties which have the custom field values
+          present.
+    responses:
+      - statusCode: '200'
+        description: SD Base Model from which all other Models should inherit
+  - url: /v2.1/public/counter_parties
+    method: createCounterParty
+    httpMethod: post
+    tag: V2.1 Counterparty APIs
+    typeScriptTag: v21CounterpartyApIs
+    description: Create Counter Party
+    parameters:
+      - name: is_individual
+        schema: boolean
+        required: true
+        description: ''
+        example: true
+      - name: organization_type
+        schema: string
+        required: false
+        description: ''
+      - name: organization_name
+        schema: string
+        required: false
+        description: ''
+      - name: contact_name
+        schema: string
+        required: false
+        description: ''
+      - name: contact_email
+        schema: string
+        required: false
+        description: ''
+      - name: primary_address
+        schema: object
+        required: false
+        description: ''
+        example: &ref_1
+          line_one: 'st: 3, block: 2, Jenkins Road'
+          city_name: Cincinnati
+          state_name: Ohio
+          zipcode: '513'
+          country_name: USA
+          email: test@yopmail.com
+          phone: '1234567890'
+          country_iso_code: US
+      - name: custom_fields
+        schema: object
+        required: false
+        description: ''
+    responses:
+      - statusCode: '201'
+        description: SD Base Model from which all other Models should inherit
+  - url: /v2.1/public/counter_parties/{counterparty_id}/addresses
+    method: listAddresses
+    httpMethod: get
+    tag: V2.1 Counterparty APIs
+    typeScriptTag: v21CounterpartyApIs
+    description: List Counterparty Addresses
+    parameters:
+      - name: counterpartyId
+        schema: integer
+        required: true
+        description: ID of the Counterparty.
+        example: 0
+      - name: page
+        schema: integer
+        description: The page to return. Page numbers start at 1.
+        default: 1
+      - name: limit
+        schema: integer
+        description: The number of items to return per page.
+        default: 10
+    responses:
+      - statusCode: '200'
+        description: SD Base Model from which all other Models should inherit
+  - url: /v2.1/public/counter_parties/{counterparty_id}/addresses
+    method: createAddress
+    httpMethod: post
+    tag: V2.1 Counterparty APIs
+    typeScriptTag: v21CounterpartyApIs
+    description: Create Counterparty Address
+    parameters:
+      - name: counterpartyId
+        schema: integer
+        required: true
+        description: ID of the Counterparty.
+        example: 0
+      - name: line_one
+        schema: string
+        required: true
+        description: ''
+        example: LINE_ONE
+      - name: city_name
+        schema: string
+        required: true
+        description: ''
+        example: CITY_NAME
+      - name: state_name
+        schema: string
+        required: false
+        description: ''
+        default: ''
+      - name: zipcode
+        schema: string
+        required: false
+        description: ''
+        default: ''
+      - name: email
+        schema: string
+        required: false
+        description: ''
+      - name: phone
+        schema: string
+        required: false
+        description: ''
+      - name: country_name
+        schema: string
+        required: true
+        description: ''
+        example: COUNTRY_NAME
+      - name: country_iso_code
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '201'
+        description: SD Base Model from which all other Models should inherit
+  - url: /v2.1/public/counter_parties/{counterparty_id}/addresses/{address_id}
+    method: updateAddress
+    httpMethod: patch
+    tag: V2.1 Counterparty APIs
+    typeScriptTag: v21CounterpartyApIs
+    description: Update Counterparty Address
+    parameters:
+      - name: counterpartyId
+        schema: integer
+        required: true
+        description: ID of the Counterparty.
+        example: 0
+      - name: addressId
+        schema: integer
+        required: true
+        description: ID of the Counterparty address.
+        example: 0
+      - name: city_name
+        schema: string
+        description: ''
+      - name: state_name
+        schema: string
+        description: ''
+      - name: country_iso_code
+        schema: string
+        description: ''
+      - name: zipcode
+        schema: string
+        description: ''
+      - name: line_one
+        schema: string
+        description: ''
+      - name: is_primary
+        schema: boolean
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: SD Base Model from which all other Models should inherit
+  - url: /v2.1/public/counter_parties/{counterparty_id}/contacts/bulk
+    method: bulkUpdateContacts
+    httpMethod: patch
+    tag: V2.1 Counterparty APIs
+    typeScriptTag: v21CounterpartyApIs
+    description: Bulk Update Counterparty Contacts
+    parameters:
+      - name: counterpartyId
+        schema: integer
+        required: true
+        description: ID of the Counterparty.
+        example: 0
+      - name: contacts
+        schema: array
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: SD Base Model from which all other Models should inherit
+  - url: /v2.1/public/counter_parties/{counterparty_id}/contacts/{contact_id}
+    method: deleteContact
+    httpMethod: delete
+    tag: V2.1 Counterparty APIs
+    typeScriptTag: v21CounterpartyApIs
+    description: Delete Counterparty Contact
+    parameters:
+      - name: counterpartyId
+        schema: integer
+        required: true
+        description: ID of the Counterparty.
+        example: 0
+      - name: contactId
+        schema: integer
+        required: true
+        description: ID of the Counterparty contact.
+        example: 0
+    responses:
+      - statusCode: '204'
+        description: Delete Counterparty Contact
+  - url: /v2.1/public/counter_parties/{counterparty_id}/contacts/{contact_id}
+    method: updateContact
+    httpMethod: patch
+    tag: V2.1 Counterparty APIs
+    typeScriptTag: v21CounterpartyApIs
+    description: Update Counterparty Contact
+    parameters:
+      - name: counterpartyId
+        schema: integer
+        required: true
+        description: ID of the Counterparty.
+        example: 0
+      - name: contactId
+        schema: integer
+        required: true
+        description: ID of the Counterparty contact.
+        example: 0
+      - name: name
+        schema: string
+        description: ''
+      - name: email
+        schema: string
+        description: ''
+      - name: is_primary
+        schema: boolean
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: SD Base Model from which all other Models should inherit
+  - url: /v2.1/public/key_pointers
+    method: getKeyPointers
+    httpMethod: get
+    tag: V2.1 KeyPointer APIs
+    typeScriptTag: v21KeyPointerApIs
+    description: Get KeyPointers
+    parameters:
+      - name: contractTypeId
+        schema: integer
+        required: true
+        description: ID of the Contract type.
+        example: 0
+      - name: isExternal
+        schema: boolean
+        required: false
+        description: Set to True to get only key pointers from external sections.
+    responses:
+      - statusCode: '200'
+        description: SD Base Model from which all other Models should inherit
+  - url: /v2.1/public/organizations/entities
+    method: getAllEntity
+    httpMethod: get
+    tag: V2.1 Organization APIs
+    typeScriptTag: v21OrganizationApIs
+    description: Get Organization Entities
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: SD Base Model from which all other Models should inherit
+  - url: /v2.1/public/organizations/entities
+    method: createEntity
+    httpMethod: post
+    tag: V2.1 Organization APIs
+    typeScriptTag: v21OrganizationApIs
+    description: Create Entity
+    parameters:
+      - name: name
+        schema: string
+        required: true
+        description: ''
+        example: NAME
+      - name: reference_id
+        schema: string
+        required: true
+        description: ''
+        example: REFERENCE_ID
+      - name: jurisdiction_iso_code
+        schema: string
+        required: true
+        description: ''
+        example: JURISDICTION_ISO_CODE
+      - name: organization_type_id
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+      - name: is_primary
+        schema: boolean
+        required: true
+        description: ''
+        example: true
+      - name: primary_address
+        schema: object
+        required: true
+        description: ''
+        example: &ref_2
+          city_name: Houston
+          state_name: Texas
+          zipcode: '77020'
+          line_one: 3659 Burwell Heights Road
+          country_iso_code: US
+    responses:
+      - statusCode: '201'
+        description: SD Base Model from which all other Models should inherit
+  - url: /v2.1/public/organizations/types
+    method: getTypes
+    httpMethod: get
+    tag: V2.1 Organization APIs
+    typeScriptTag: v21OrganizationApIs
+    description: Get Organization Types
+    parameters:
+      - name: jurisdictionIsoCode
+        schema: string
+        required: false
+        description: >-
+          The ISO-3166-1 Alpha-2 code of the jurisdiction associated with this
+          organization. Any value passed here is overrides `jurisdiction`. Valid
+          values can be found
+          [here](https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes).
+    responses:
+      - statusCode: '200'
+        description: SD Base Model from which all other Models should inherit
+  - url: /v2.1/public/supported_documents/{contract_id}
+    method: uploadSupportedDocuments
+    httpMethod: post
+    tag: V2.1 Contract APIs
+    typeScriptTag: v21ContractApIs
+    description: Upload supported documents for a given contract
+    parameters:
+      - name: contractId
+        schema: string
+        required: true
+        description: >-
+          ID of the Contract. Should be of the form T-123 or H-123. T stands for
+          Template contracts and H stands for Historical contracts.
+        example: CONTRACT_ID
+      - name: name
+        schema: string
+        required: true
+        description: ''
+        example: NAME
+      - name: file_name
+        schema: string
+        required: true
+        description: ''
+        example: FILE_NAME
+      - name: file_base64
+        schema: string
+        required: true
+        description: ''
+        example: FILE_BASE64
+    responses:
+      - statusCode: '201'
+        description: SD Base Model from which all other Models should inherit
+  - url: /v2.1/public/templates
+    method: getList
+    httpMethod: get
+    tag: V2.1 Template APIs
+    typeScriptTag: v21TemplateApIs
+    description: Get Template List
+    parameters:
+      - name: tags
+        schema: array
+        required: false
+        description: >-
+          The tags (if any) to filter the templates by.
+
+
+          Multiple tags can be specified by specifying the query param multiple
+          times. Only templates where the Template tags are a subset of the tags
+          passed will be returned.
+      - name: tagsAll
+        schema: array
+        required: false
+        description: >-
+          The tags (if any) to filter the templates by.
+
+
+          Multiple tags can be specified by specifying the query param multiple
+          times. Only templates where the tags passed are a subset of the
+          Template tags will be returned.
+    responses:
+      - statusCode: '200'
+        description: A list of template as returned by the public API
+  - url: /v2.1/public/templates/{template_id}
+    method: getDetails
+    httpMethod: get
+    tag: V2.1 Template APIs
+    typeScriptTag: v21TemplateApIs
+    description: Get Template Details
+    parameters:
+      - name: templateId
+        schema: integer
+        required: true
+        description: The ID of the template.
+        example: 0
+    responses:
+      - statusCode: '200'
+        description: A template along with the updated data as updated by the public API.
+  - url: /v2.1/public/templates/{template_id}
+    method: updateTemplateData
+    httpMethod: patch
+    tag: V2.1 Template APIs
+    typeScriptTag: v21TemplateApIs
+    description: Update Template Data
+    parameters:
+      - name: templateId
+        schema: integer
+        required: true
+        description: The ID of the template.
+        example: 0
+      - name: tags
+        schema: array
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: A template along with the updated data as updated by the public API.
+  - url: /v2.1/public/user_tasks
+    method: createUserTasksList
+    httpMethod: post
+    tag: V2.1 Tasks and Reminders APIs
+    typeScriptTag: v21TasksAndRemindersApIs
+    description: V2.1 Create User Tasks List
+    parameters:
+      - name: title
+        schema: string
+        required: true
+        description: ''
+        example: TITLE
+      - name: notes
+        schema: string
+        required: false
+        description: ''
+        default: ''
+      - name: contract_id
+        schema: integer
+        required: false
+        description: ''
+      - name: due_date
+        schema: string
+        required: false
+        description: ''
+      - name: due_date_key_pointer_id
+        schema: integer
+        required: false
+        description: ''
+      - name: assignees
+        schema: array
+        required: true
+        description: ''
+      - name: reminders
+        schema: array
+        required: false
+        description: ''
+    responses:
+      - statusCode: '201'
+        description: SD Base Model from which all other Models should inherit
+  - url: /v2/public/auth/roles
+    method: getActiveRoles
+    httpMethod: get
+    tag: V2 User APIs
+    typeScriptTag: v2UserApIs
+    description: Get active roles for a workspace
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: |-
+          Pydantic Model that takes in the list if active
+          roles pydantic response
+  - url: /v2/public/auth/users
+    method: getUserList
+    httpMethod: get
+    tag: V2 User APIs
+    typeScriptTag: v2UserApIs
+    description: Get User List
+    parameters:
+      - name: page
+        schema: integer
+        description: The page to return. Page numbers start at 1.
+        default: 1
+      - name: limit
+        schema: integer
+        description: The number of items to return per page.
+        default: 10
+      - name: userEmail
+        schema: string
+        required: false
+        description: >-
+          User email address for which that user list should be filtered. Please
+          make sure that the value is url encoded. So for example, if the email
+          address is `abc+123@xyz.com` the value passed should be
+          `abc%2B123%40xyz.com`.
+    responses:
+      - statusCode: '200'
+        description: SD Generic Model from which all other Generic Models should inherit
+  - url: /v2/public/contract_types
+    method: getList
+    httpMethod: get
+    tag: V2 Contract Type APIs
+    typeScriptTag: v2ContractTypeApIs
+    description: Get Contract Type List
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: SD Base Model from which all other Models should inherit
+  - url: /v2/public/contract_types/{contract_type_id}/intake_form/questionnaire
+    method: getIntakeFormQuestionnaireDetails
+    httpMethod: get
+    tag: V2 Contract Type APIs
+    typeScriptTag: v2ContractTypeApIs
+    description: Get Intake Form Questionnaire Details
+    parameters:
+      - name: contractTypeId
+        schema: integer
+        required: true
+        description: ID of the Contract Type.
+        example: 0
+    responses:
+      - statusCode: '200'
+        description: The list of attributes for this contract template.
+  - url: /v2/public/contracts
+    method: getContractList
+    httpMethod: get
+    tag: V2 Contract APIs
+    typeScriptTag: v2ContractApIs
+    description: Get Contract List
+    parameters:
+      - name: page
+        schema: integer
+        description: The page to return. Page numbers start at 1.
+        default: 1
+      - name: limit
+        schema: integer
+        description: The number of items to return per page.
+        default: 10
+      - name: filterClientEmailAddress
+        schema: string
+        description: Filters on the counter party email. Does an exact match.
+      - name: filterClientName
+        schema: string
+        description: Filters on the counter party name. Does an exact match.
+    responses:
+      - statusCode: '200'
+        description: SD Base Model from which all other Models should inherit
+  - url: /v2/public/contracts
+    method: createNewContract
+    httpMethod: post
+    tag: V2 Contract APIs
+    typeScriptTag: v2ContractApIs
+    description: Create Contract
+    parameters:
+      - name: userEmail
+        schema: string
+        required: false
+        description: >-
+          The email address of the user to act as (when using client-secret
+          authentication). This header attributes actions taken using the API to
+          the given user.
+      - name: contract_template_id
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+      - name: contract_data
+        schema: object
+        required: true
+        description: ''
+      - name: counter_party_details
+        schema: array
+        required: true
+        description: ''
+      - name: external_metadata
+        schema: object
+        required: false
+        description: ''
+      - name: entity_reference_id
+        schema: string
+        required: false
+        description: ''
+      - name: workflow_config
+        schema: object
+        required: false
+        description: ''
+      - name: send_to_counterparty_config
+        schema: object
+        required: false
+        description: ''
+      - name: contract_name
+        schema: string
+        required: false
+        description: ''
+      - name: signatories
+        schema: array
+        required: false
+        description: ''
+      - name: is_embedded_contract
+        schema: boolean
+        required: false
+        description: ''
+        default: false
+    responses:
+      - statusCode: '201'
+        description: The list of Contracts
+  - url: /v2/public/contracts/approvals/{contract_id}
+    method: getApprovals
+    httpMethod: get
+    tag: V2 Contract APIs
+    typeScriptTag: v2ContractApIs
+    description: Get contract approvals
+    parameters:
+      - name: contractId
+        schema: string
+        required: true
+        description: >-
+          ID of the Contract. Should be of the form T-123 or H-123. T stands for
+          Template contracts and H stands for Historical contracts.
+        example: CONTRACT_ID
+    responses:
+      - statusCode: '200'
+        description: SD Base Model from which all other Models should inherit
+  - url: /v2/public/contracts/approvals/{contract_id}
+    method: createAdhocApprovals
+    httpMethod: post
+    tag: V2 Contract APIs
+    typeScriptTag: v2ContractApIs
+    description: Create and send adhoc approvals
+    parameters:
+      - name: contractId
+        schema: string
+        required: true
+        description: >-
+          ID of the Contract. Should be of the form T-123 or H-123. T stands for
+          Template contracts and H stands for Historical contracts.
+        example: CONTRACT_ID
+      - name: approvals
+        schema: array
+        required: true
+        description: ''
+    responses:
+      - statusCode: '201'
+        description: SD Base Model from which all other Models should inherit
+  - url: /v2/public/contracts/embedded/contracts/{contract_id}/counter_party
+    method: getCounterPartyEmbeddedUrl
+    httpMethod: get
+    tag: V2 Contract APIs
+    typeScriptTag: v2ContractApIs
+    description: Get CounterParty Embedded Url
+    parameters:
+      - name: cpEmailId
+        schema: string
+        description: Email address of the CP for which the url needs to be returned.
+    responses:
+      - statusCode: '200'
+        description: SD Base Model from which all other Models should inherit
+  - url: /v2/public/contracts/preview
+    method: generateContractPreview
+    httpMethod: post
+    tag: V2 Contract APIs
+    typeScriptTag: v2ContractApIs
+    description: Generate Contract Preview
+    parameters:
+      - name: contract_template_id
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+      - name: contract_data
+        schema: object
+        required: true
+        description: ''
+      - name: organization_entity_id
+        schema: integer
+        required: false
+        description: ''
+      - name: cp_role_label
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+  - url: /v2/public/contracts/upload_review_contracts
+    method: uploadReviewContracts
+    httpMethod: post
+    tag: V2 Contract APIs
+    typeScriptTag: v2ContractApIs
+    description: Upload Contract For Review
+    parameters:
+      - name: contract_name
+        schema: string
+        required: true
+        description: ''
+        example: CONTRACT_NAME
+      - name: contract_type_id
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+      - name: file_name
+        schema: string
+        required: true
+        description: ''
+        example: FILE_NAME
+      - name: file_base64
+        schema: string
+        required: true
+        description: ''
+        example: FILE_BASE64
+      - name: creator_organization_entity_id
+        schema: integer
+        required: false
+        description: ''
+      - name: external_metadata
+        schema: object
+        required: false
+        description: ''
+      - name: reviewer
+        schema: object
+        required: false
+        description: ''
+      - name: counterparty_workspace_id
+        schema: integer
+        required: false
+        description: ''
+      - name: counterparty_organization_name
+        schema: string
+        required: false
+        description: ''
+      - name: counterparty_is_individual
+        schema: boolean
+        required: false
+        description: ''
+      - name: counterparty_poc_details
+        schema: object
+        required: false
+        description: ''
+      - name: intake_form_data
+        schema: object
+        required: false
+        description: ''
+      - name: business_user_email
+        schema: string
+        required: false
+        description: ''
+      - name: creator_signatories
+        schema: array
+        required: false
+        description: ''
+    responses:
+      - statusCode: '201'
+        description: Must be kept in sync with ExternalContractV3Serializer
+  - url: /v2/public/contracts/upload_sign_contracts
+    method: uploadSignContracts
+    httpMethod: post
+    tag: V2 Contract APIs
+    typeScriptTag: v2ContractApIs
+    description: Upload Contract For Signature
+    parameters:
+      - name: contract_name
+        schema: string
+        required: true
+        description: ''
+        example: CONTRACT_NAME
+      - name: contract_type_id
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+      - name: file_name
+        schema: string
+        required: true
+        description: ''
+        example: FILE_NAME
+      - name: file_base64
+        schema: string
+        required: true
+        description: ''
+        example: FILE_BASE64
+      - name: creator_organization_entity_id
+        schema: integer
+        required: false
+        description: ''
+      - name: counterparty_organization_name
+        schema: string
+        required: true
+        description: ''
+        example: COUNTERPARTY_ORGANIZATION_NAME
+      - name: external_metadata
+        schema: object
+        required: false
+        description: ''
+      - name: counterparty_is_individual
+        schema: boolean
+        required: false
+        description: ''
+      - name: counterparty_poc_details
+        schema: object
+        required: false
+        description: ''
+      - name: intake_form_data
+        schema: object
+        required: false
+        description: ''
+      - name: business_user_email
+        schema: string
+        required: false
+        description: ''
+      - name: creator_signatories
+        schema: array
+        required: false
+        description: ''
+    responses:
+      - statusCode: '201'
+        description: Must be kept in sync with ExternalContractV3Serializer
+  - url: /v2/public/contracts/webhooks/re_trigger_latest
+    method: reTriggerLatest
+    httpMethod: post
+    tag: V2 Contract APIs
+    typeScriptTag: v2ContractApIs
+    description: Re-trigger Contract Webhooks
+    parameters:
+      - name: contract_ids
+        schema: array
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: ''
+      - statusCode: '404'
+        description: ''
+  - url: /v2/public/contracts/{contract_id}/comments
+    method: getCommentsInActivityLog
+    httpMethod: get
+    tag: V2 Contract APIs
+    typeScriptTag: v2ContractApIs
+    description: Get comments in contract activity log.
+    parameters:
+      - name: page
+        schema: integer
+        description: The page to return. Page numbers start at 1.
+        default: 1
+      - name: limit
+        schema: integer
+        description: The number of items to return per page.
+        default: 10
+      - name: contractId
+        schema: integer
+        required: true
+        description: ID of the Contract.
+        example: 0
+    responses:
+      - statusCode: '200'
+        description: SD Base Model from which all other Models should inherit
+  - url: /v2/public/contracts/{contract_id}/comments
+    method: addCommentToActivityLog
+    httpMethod: post
+    tag: V2 Contract APIs
+    typeScriptTag: v2ContractApIs
+    description: Add comment to contract activity log.
+    parameters:
+      - name: contractId
+        schema: integer
+        required: true
+        description: ID of the Contract.
+        example: 0
+      - name: comment
+        schema: string
+        required: true
+        description: ''
+        example: COMMENT
+    responses:
+      - statusCode: '201'
+        description: SD Base Model from which all other Models should inherit
+  - url: /v2/public/contracts/{contract_id}/contract_version
+    method: uploadVersion
+    httpMethod: post
+    tag: V2 Contract Version APIs
+    typeScriptTag: v2ContractVersionApIs
+    description: Upload Contract Version.
+    parameters:
+      - name: contractId
+        schema: integer
+        required: true
+        description: ID of the Contract.
+        example: 0
+      - name: document_name
+        schema: string
+        required: true
+        description: ''
+        example: DOCUMENT_NAME
+      - name: document_base_64
+        schema: string
+        required: true
+        description: ''
+        example: DOCUMENT_BASE_64
+      - name: collect_approvals
+        schema: boolean
+        required: false
+        description: ''
+        default: true
+      - name: is_executed_version
+        schema: boolean
+        required: false
+        description: ''
+        default: false
+    responses:
+      - statusCode: '201'
+        description: Success
+  - url: /v2/public/contracts/{contract_id}/invite
+    method: inviteUsersRoles
+    httpMethod: post
+    tag: V2 Contract APIs
+    typeScriptTag: v2ContractApIs
+    description: Invite Users & Roles
+    parameters:
+      - name: contractId
+        schema: integer
+        required: true
+        description: ID of the Contract.
+        example: 0
+      - name: items
+        schema: array
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: SD Base Model from which all other Models should inherit
+  - url: /v2/public/contracts/{contract_id}/questionnaire/responses
+    method: getQuestionnaireResponses
+    httpMethod: get
+    tag: V2 Contract APIs
+    typeScriptTag: v2ContractApIs
+    description: Get Questionnaire Response
+    parameters:
+      - name: page
+        schema: integer
+        required: false
+        description: A page number within the paginated result set.
+      - name: limit
+        schema: integer
+        required: false
+        description: Number of results to return per page.
+      - name: contractId
+        schema: integer
+        required: true
+        description: ID of the Contract.
+        example: 0
+      - name: questionnaireType
+        schema: string
+        required: true
+        description: >-
+          Enum: `INTAKE_FORM/TEMPLATE`. Type of the questionnaire for which
+          response needs to be returned.
+        example: QUESTIONNAIRE_TYPE
+    responses:
+      - statusCode: '200'
+        description: SD Base Model from which all other Models should inherit
+  - url: /v2/public/contracts/{contract_id}/recipients/recipient_link
+    method: getRecipientLink
+    httpMethod: get
+    tag: V2 Contract APIs
+    typeScriptTag: v2ContractApIs
+    description: Get Recipient Link
+    parameters:
+      - name: contractId
+        schema: integer
+        required: true
+        description: ID of the Contract.
+        example: 0
+      - name: recipientEmail
+        schema: string
+        required: true
+        description: Email of the recipient for whom the link needs to be generated.
+        example: RECIPIENT_EMAIL
+    responses:
+      - statusCode: '200'
+        description: SD Base Model from which all other Models should inherit
+  - url: /v2/public/counter_parties
+    method: getList
+    httpMethod: get
+    tag: V2 Counterparty APIs
+    typeScriptTag: v2CounterpartyApIs
+    description: List Counterparties
+    parameters:
+      - name: page
+        schema: integer
+        description: The page to return. Page numbers start at 1.
+        default: 1
+      - name: limit
+        schema: integer
+        description: The number of items to return per page.
+        default: 10
+      - name: filterClientEmailAddress
+        schema: string
+        description: Filters on the counter party email. Does an exact match.
+      - name: filterCustom_<customFieldName>
+        schema: string
+        description: >-
+          Filters all the counterparties which have the custom field values
+          present.
+    responses:
+      - statusCode: '200'
+        description: SD Base Model from which all other Models should inherit
+  - url: /v2/public/counter_parties
+    method: createCounterparty
+    httpMethod: post
+    tag: V2 Counterparty APIs
+    typeScriptTag: v2CounterpartyApIs
+    description: Create Counterparty
+    parameters:
+      - name: is_individual
+        schema: boolean
+        required: true
+        description: ''
+        example: true
+      - name: organization_type
+        schema: string
+        required: false
+        description: ''
+      - name: organization_name
+        schema: string
+        required: false
+        description: ''
+      - name: contact_name
+        schema: string
+        required: false
+        description: ''
+      - name: contact_email
+        schema: string
+        required: false
+        description: ''
+      - name: primary_address
+        schema: object
+        required: false
+        description: ''
+        example: *ref_1
+      - name: custom_fields
+        schema: object
+        required: false
+        description: ''
+    responses:
+      - statusCode: '201'
+        description: SD Base Model from which all other Models should inherit
+  - url: /v2/public/counter_parties/{counterparty_id}/addresses
+    method: listAddresses
+    httpMethod: get
+    tag: V2 Counterparty APIs
+    typeScriptTag: v2CounterpartyApIs
+    description: List Counterparty Addresses
+    parameters:
+      - name: counterpartyId
+        schema: integer
+        required: true
+        description: ID of the Counterparty.
+        example: 0
+      - name: page
+        schema: integer
+        description: The page to return. Page numbers start at 1.
+        default: 1
+      - name: limit
+        schema: integer
+        description: The number of items to return per page.
+        default: 10
+    responses:
+      - statusCode: '200'
+        description: SD Base Model from which all other Models should inherit
+  - url: /v2/public/counter_parties/{counterparty_id}/addresses
+    method: createAddress
+    httpMethod: post
+    tag: V2 Counterparty APIs
+    typeScriptTag: v2CounterpartyApIs
+    description: Create Counterparty Address
+    parameters:
+      - name: counterpartyId
+        schema: integer
+        required: true
+        description: ID of the Counterparty.
+        example: 0
+      - name: line_one
+        schema: string
+        required: true
+        description: ''
+        example: LINE_ONE
+      - name: city_name
+        schema: string
+        required: true
+        description: ''
+        example: CITY_NAME
+      - name: state_name
+        schema: string
+        required: false
+        description: ''
+        default: ''
+      - name: zipcode
+        schema: string
+        required: false
+        description: ''
+        default: ''
+      - name: email
+        schema: string
+        required: false
+        description: ''
+      - name: phone
+        schema: string
+        required: false
+        description: ''
+      - name: country_name
+        schema: string
+        required: true
+        description: ''
+        example: COUNTRY_NAME
+      - name: country_iso_code
+        schema: string
+        required: false
+        description: ''
+    responses:
+      - statusCode: '201'
+        description: SD Base Model from which all other Models should inherit
+  - url: /v2/public/counter_parties/{counterparty_id}/addresses/{address_id}
+    method: updateAddress
+    httpMethod: patch
+    tag: V2 Counterparty APIs
+    typeScriptTag: v2CounterpartyApIs
+    description: Update Counterparty Address
+    parameters:
+      - name: counterpartyId
+        schema: integer
+        required: true
+        description: ID of the Counterparty.
+        example: 0
+      - name: addressId
+        schema: integer
+        required: true
+        description: ID of the Counterparty address.
+        example: 0
+      - name: city_name
+        schema: string
+        description: ''
+      - name: state_name
+        schema: string
+        description: ''
+      - name: country_iso_code
+        schema: string
+        description: ''
+      - name: zipcode
+        schema: string
+        description: ''
+      - name: line_one
+        schema: string
+        description: ''
+      - name: is_primary
+        schema: boolean
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: SD Base Model from which all other Models should inherit
+  - url: /v2/public/counter_parties/{counterparty_id}/contacts/bulk
+    method: bulkUpdateContacts
+    httpMethod: patch
+    tag: V2 Counterparty APIs
+    typeScriptTag: v2CounterpartyApIs
+    description: Bulk Update Counterparty Contacts
+    parameters:
+      - name: counterpartyId
+        schema: integer
+        required: true
+        description: ID of the Counterparty.
+        example: 0
+      - name: contacts
+        schema: array
+        required: true
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: SD Base Model from which all other Models should inherit
+  - url: /v2/public/counter_parties/{counterparty_id}/contacts/{contact_id}
+    method: deleteCounterpartyContact
+    httpMethod: delete
+    tag: V2 Counterparty APIs
+    typeScriptTag: v2CounterpartyApIs
+    description: Delete Counterparty Contact
+    parameters:
+      - name: counterpartyId
+        schema: integer
+        required: true
+        description: ID of the Counterparty.
+        example: 0
+      - name: contactId
+        schema: integer
+        required: true
+        description: ID of the Counterparty contact.
+        example: 0
+    responses:
+      - statusCode: '204'
+        description: Delete Counterparty Contact
+  - url: /v2/public/counter_parties/{counterparty_id}/contacts/{contact_id}
+    method: updateCounterpartyContact
+    httpMethod: patch
+    tag: V2 Counterparty APIs
+    typeScriptTag: v2CounterpartyApIs
+    description: Update Counterparty Contact
+    parameters:
+      - name: counterpartyId
+        schema: integer
+        required: true
+        description: ID of the Counterparty.
+        example: 0
+      - name: contactId
+        schema: integer
+        required: true
+        description: ID of the Counterparty contact.
+        example: 0
+      - name: name
+        schema: string
+        description: ''
+      - name: email
+        schema: string
+        description: ''
+      - name: is_primary
+        schema: boolean
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: SD Base Model from which all other Models should inherit
+  - url: /v2/public/key_pointers
+    method: getAll
+    httpMethod: get
+    tag: V2 KeyPointer APIs
+    typeScriptTag: v2KeyPointerApIs
+    description: Get KeyPointers
+    parameters:
+      - name: contractTypeId
+        schema: integer
+        required: true
+        description: ID of the Contract type.
+        example: 0
+      - name: isExternal
+        schema: boolean
+        required: false
+        description: Set to True to get only key pointers from external sections.
+    responses:
+      - statusCode: '200'
+        description: SD Base Model from which all other Models should inherit
+  - url: /v2/public/organizations/entities
+    method: getAllEntities
+    httpMethod: get
+    tag: V2 Organization APIs
+    typeScriptTag: v2OrganizationApIs
+    description: Get Organization Entities
+    parameters: []
+    responses:
+      - statusCode: '200'
+        description: SD Base Model from which all other Models should inherit
+  - url: /v2/public/organizations/entities
+    method: createEntity
+    httpMethod: post
+    tag: V2 Organization APIs
+    typeScriptTag: v2OrganizationApIs
+    description: Create Entity
+    parameters:
+      - name: name
+        schema: string
+        required: true
+        description: ''
+        example: NAME
+      - name: reference_id
+        schema: string
+        required: true
+        description: ''
+        example: REFERENCE_ID
+      - name: jurisdiction_iso_code
+        schema: string
+        required: true
+        description: ''
+        example: JURISDICTION_ISO_CODE
+      - name: organization_type_id
+        schema: integer
+        required: true
+        description: ''
+        example: 0
+      - name: is_primary
+        schema: boolean
+        required: true
+        description: ''
+        example: true
+      - name: primary_address
+        schema: object
+        required: true
+        description: ''
+        example: *ref_2
+    responses:
+      - statusCode: '201'
+        description: SD Base Model from which all other Models should inherit
+  - url: /v2/public/organizations/types
+    method: listOrganizationTypes
+    httpMethod: get
+    tag: V2 Organization APIs
+    typeScriptTag: v2OrganizationApIs
+    description: Get Organization Types
+    parameters:
+      - name: jurisdictionIsoCode
+        schema: string
+        required: false
+        description: >-
+          The ISO-3166-1 Alpha-2 code of the jurisdiction associated with this
+          organization. Any value passed here is overrides `jurisdiction`. Valid
+          values can be found
+          [here](https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes).
+    responses:
+      - statusCode: '200'
+        description: SD Base Model from which all other Models should inherit
+  - url: /v2/public/supported_documents/{contract_id}
+    method: uploadSupportedDocuments
+    httpMethod: post
+    tag: V2 Contract APIs
+    typeScriptTag: v2ContractApIs
+    description: Upload supported documents for a given contract
+    parameters:
+      - name: contractId
+        schema: string
+        required: true
+        description: >-
+          ID of the Contract. Should be of the form T-123 or H-123. T stands for
+          Template contracts and H stands for Historical contracts.
+        example: CONTRACT_ID
+      - name: name
+        schema: string
+        required: true
+        description: ''
+        example: NAME
+      - name: file_name
+        schema: string
+        required: true
+        description: ''
+        example: FILE_NAME
+      - name: file_base64
+        schema: string
+        required: true
+        description: ''
+        example: FILE_BASE64
+    responses:
+      - statusCode: '201'
+        description: SD Base Model from which all other Models should inherit
+  - url: /v2/public/templates
+    method: list
+    httpMethod: get
+    tag: V2 Template APIs
+    typeScriptTag: v2TemplateApIs
+    description: Get Template List
+    parameters:
+      - name: tags
+        schema: array
+        required: false
+        description: >-
+          The tags (if any) to filter the templates by.
+
+
+          Multiple tags can be specified by specifying the query param multiple
+          times. Only templates where the Template tags are a subset of the tags
+          passed will be returned.
+      - name: tagsAll
+        schema: array
+        required: false
+        description: >-
+          The tags (if any) to filter the templates by.
+
+
+          Multiple tags can be specified by specifying the query param multiple
+          times. Only templates where the tags passed are a subset of the
+          Template tags will be returned.
+    responses:
+      - statusCode: '200'
+        description: A list of template as returned by the public API
+  - url: /v2/public/templates/{template_id}
+    method: getDetails
+    httpMethod: get
+    tag: V2 Template APIs
+    typeScriptTag: v2TemplateApIs
+    description: Get Template Details
+    parameters:
+      - name: templateId
+        schema: integer
+        required: true
+        description: The ID of the template.
+        example: 0
+    responses:
+      - statusCode: '200'
+        description: A template along with the updated data as updated by the public API.
+  - url: /v2/public/templates/{template_id}
+    method: updateContractData
+    httpMethod: patch
+    tag: V2 Template APIs
+    typeScriptTag: v2TemplateApIs
+    description: Update Template Data
+    parameters:
+      - name: templateId
+        schema: integer
+        required: true
+        description: The ID of the template.
+        example: 0
+      - name: tags
+        schema: array
+        description: ''
+    responses:
+      - statusCode: '200'
+        description: A template along with the updated data as updated by the public API.
+  - url: /v2/public/user_tasks
+    method: createUserTasksList
+    httpMethod: post
+    tag: V2 Tasks and Reminders APIs
+    typeScriptTag: v2TasksAndRemindersApIs
+    description: V2 Create User Tasks List
+    parameters:
+      - name: title
+        schema: string
+        required: true
+        description: ''
+        example: TITLE
+      - name: notes
+        schema: string
+        required: false
+        description: ''
+        default: ''
+      - name: contract_id
+        schema: integer
+        required: false
+        description: ''
+      - name: due_date
+        schema: string
+        required: false
+        description: ''
+      - name: due_date_key_pointer_id
+        schema: integer
+        required: false
+        description: ''
+      - name: assignees
+        schema: array
+        required: true
+        description: ''
+      - name: reminders
+        schema: array
+        required: false
+        description: ''
+    responses:
+      - statusCode: '201'
+        description: SD Base Model from which all other Models should inherit
+numberOfSchemas: 237
+apiDescription: "## SpotDraft Public API\n\n## API Reference\n\nThe SpotDraft API is organized around [REST](http://en.wikipedia.org/wiki/Representational_State_Transfer). Our API has predictable resource-oriented URLs, accepts [form-encoded](<https://en.wikipedia.org/wiki/POST_(HTTP)#Use_for_submitting_web_forms>) request bodies, returns [JSON-encoded](http://www.json.org/) responses, and uses standard HTTP response codes, authentication, and verbs.\n\n### Note on redirects\n\nOur API will respond with `302 Found` if a redirect is needed. There are two situations in which this usually happens:\n\n- If the API is accessed using `http` instead of `https`.\n- If a trailing slash is added or removed in a way that is inconsitent with this documentation.\n\nCertain libraries can have unexpected behavior if they encounter a redirect.\n\nFor example the python `requests` library will follow the redirect but not using the same HTTP Verb, and instead falling back on `GET`. This can lead to hard to debug issues where the API is seemingly responding with an unexpected body and response code. It is thus advisable to configure `requests` (or any other library) to not follow redirects and instead fail the request if it encounters a redirect. This can be achieved by passing `allow_redirects=False` when making the request (in case of python `requests`).\n\n## Authentication\n\nAll API requests expect a Client ID to be sent as a HTTP Header.\n\n**Requests as the Application**\n\nIn addition to the Client ID, a Client Secret must also be sent in the HTTP Headers. All requests made using this method will be audited as the calling Application.\n\nWhen making requests as the Application, the Application can impersonate a user by passing the `user-email` header with the email\naddress of the user to impersonate. The user must be an active member of the workspace for this to work.\n\nIf impersonation is not used the Application will act as the user who is linked to the credentials. This can be updated by reaching\nout to your Customer Success Associate.\n\n<table>\n  <tr>\n   <td><strong>Type</strong>\n   </td>\n   <td><strong>Params</strong>\n   </td>\n   <td><strong>Values</strong>\n   </td>\n  </tr>\n  <tr>\n   <td><code>HEADER</code>\n   </td>\n   <td><code>client-id</code>\n   </td>\n   <td><code>string</code>\n   </td>\n  </tr>\n  <tr>\n   <td><code>HEADER</code>\n   </td>\n   <td><code>client-secret</code>\n   </td>\n   <td><code>string</code>\n   </td>\n  </tr>\n  <tr>\n   <td><code>HEADER</code>\n   </td>\n   <td><code>user-email</code>\n   </td>\n   <td><code>string (optional)</code>\n   </td>\n  </tr>\n</table>\n\n\\*\\*(<code>Client-Secret</code> must be set in addition to <code>Client-Id</code>)</strong>\n\n## Webhooks\n\nThe SpotDraft API allows API Consumers to receive webhooks when certain actions are taken by Users on the platform.\n\nAt the time of writing webhooks need to be enabled by the SpotDraft Customer Success team. Please reach out to your CS Manager if you need access to this.\n\n**Webhook Schemantics**\n\n- The URL provided must have HTTPS with a valid certificate. Self-signed certificates are not accepted.\n- The webhook will be paused if more than 5 failures occur for a given URL.\n- Multiple webhook URLs can be added for a given SpotDraft account.\n- It is possible to filter to a specific subset of activities to get webhooks on.\n\n**Verifying Webhooks**\n\nAll requests sent by SpotDraft to your server include the header X-SD-CONTENT-HASH which can be used to verify that the webhook was sent by SpotDraft. \\\n \\\nThe content of the X-SD-CONTENT-HASH header is created by computing the HMAC-SHA512 on the JSON payload using the Callback Secret which is shared privately. \\\n \\\nIt can be verified by generating a using the same process on the Consumer end and ensuring that the signatures match. A Python snippet is provided below for clarity.\n\n```\nimport hmac\nimport hashlib\n\nhmac_instance = hmac.new(\n  callback_secret.encode(\"utf-8\"),\n  request.body,\n  digestmod=hashlib.sha512,\n)\nsignature = hmac_instance.hexdigest()\n\nassert signature == request.headers[\"X-SD-CONTENT-HASH\"]\n```\n\n### Webhook Activity Types\n\nThe following are the different activies for which webhooks are sent. The table is sorted by the order in which these activity events are expected.\n\n<table>\n  <tr>\n    <th><code>activity</code> field value</th>\n    <th>Details</th>\n  </tr>\n  <tr>\n   <td><strong><code>CONTRACT_CREATED</code></strong></td>\n   <td>When a contract is created</td>\n  </tr>\n  <tr>\n   <td><strong><code>CONTRACT_SENT_TO_COUNTERPARTY</code></strong></td>\n   <td>When the contract is sent via email to the counterparty for review</td>\n  </tr>\n  <tr>\n   <td><strong><code>REDLINING_EMAIL_DELIVERED</code></strong></td>\n   <td>When the email sent to the counterparty for review is delivered</td>\n  </tr>\n  <tr>\n   <td><strong><code>REDLINING_EMAIL_NOT_DELIVERED</code></strong></td>\n   <td>When the email sent to the counterparty for review could not be delivered for some reason</td>\n  </tr>\n  <tr>\n   <td><strong><code>REDLINING_EMAIL_OPENED</code></strong></td>\n   <td>When the contract sent to the counterparty for review is opened</td>\n  </tr>\n  <tr>\n   <td><strong><code>REDLINING_EMAIL_LINK_CLICKED</code></strong></td>\n   <td>When the counterparty clicks on the contract link sent for review</td>\n  </tr>\n  <tr>\n   <td><strong><code>CONTRACT_SIGNATURE_REQUESTED</code></strong></td>\n   <td>When a contract is sent for signature</td>\n  </tr>\n  <tr>\n   <td><strong><code>CONTRACT_SIGNATURE_REQUESTED_NOTIFICATION_SENT</code></strong></td>\n   <td>When someone is notified that they need to add their signature. One per signatory who receives the email</td>\n  </tr>\n  <tr>\n   <td><strong><code>SIGNING_EMAIL_DELIVERED</code></strong></td>\n   <td>When the email sent to the counterparty for signing is delivered</td>\n  </tr>\n  <tr>\n   <td><strong><code>SIGNING_EMAIL_NOT_DELIVERED</code></strong></td>\n   <td>When the email sent to the counterparty for signing could not be delivered for some reason</td>\n  </tr>\n  <tr>\n   <td><strong><code>SIGNING_EMAIL_OPENED</code></strong></td>\n   <td>When the contract sent to the counterparty for signing is opened</td>\n  </tr>\n  <tr>\n   <td><strong><code>SIGNING_EMAIL_LINK_CLICKED</code></strong></td>\n   <td>When the counterparty clicks on the contract link sent for singing</td>\n  </tr>\n  <tr>\n   <td><strong><code>CONTRACT_SIGNED</code></strong></td>\n   <td>When any user signs a contract</td>\n  </tr>\n  <tr>\n   <td><strong><code>CONTRACT_EXECUTED</code></strong></td>\n   <td>When all signatures are collected</td>\n  </tr>\n  <tr>\n   <td><strong><code>CONTRACT_DELETED</code></strong></td>\n   <td>When a contract is moved to the deleted tab</td>\n  </tr>\n  <tr>\n   <td><strong><code>CONTRACT_SIGNATURE_DECLINED</code></strong></td>\n   <td>When a user declines to sign a contract</td>\n  </tr>\n</table>\n\n### Webhook Payload\n\nSee the [webhook section](https://api.spotdraft.com)\n\n## Errors\n\nThe SpotDraft API uses conventional HTTP response codes to indicate the success or failure of an API request. In general: Codes in the 2xx range indicate success. Codes in the 4xx range indicate an error that failed given the information provided (e.g., a required parameter was omitted, a charge failed, etc.). Codes in the 5xx range indicate an error with SpotDraft's servers (these are rare).\n\n**HTTP Status Code Summary**\n\n<table>\n  <tr>\n   <td><strong>200 - OK</strong>\n   </td>\n   <td>Everything worked as expected.\n   </td>\n  </tr>\n  <tr>\n   <td><strong>400 - Bad Request</strong>\n   </td>\n   <td>The request was unacceptable, often due to missing a required parameter.\n   </td>\n  </tr>\n  <tr>\n   <td><strong>401 - Unauthorized</strong>\n   </td>\n   <td>No valid API key provided.\n   </td>\n  </tr>\n  <tr>\n   <td><strong>402 - Request Failed</strong>\n   </td>\n   <td>The parameters were valid but the request failed.\n   </td>\n  </tr>\n  <tr>\n   <td><strong>403 - Forbidden</strong>\n   </td>\n   <td>The API key doesn't have permissions to perform the request.\n   </td>\n  </tr>\n  <tr>\n   <td><strong>404 - Not Found</strong>\n   </td>\n   <td>The requested resource doesn't exist.\n   </td>\n  </tr>\n  <tr>\n   <td><strong>409 - Conflict</strong>\n   </td>\n   <td>The request conflicts with another request (perhaps due to using the same idempotent key).\n   </td>\n  </tr>\n  <tr>\n   <td><strong>429 - Too Many Requests</strong>\n   </td>\n   <td>Too many requests hitting the API, exceeding the rate limit of 10 requests/second. We recommend an exponential backoff of your requests.\n   </td>\n  </tr>\n  <tr>\n   <td><strong>500, 502, 503, 504 - Server Errors</strong>\n   </td>\n   <td>Something went wrong on SpotDraft’s end. (These are rare.)\n   </td>\n  </tr>\n</table>\n\n## Embedded Contract API\n\nThis section explains the steps to integrate SpotDraft\\'s Embedded\nsigning experience into your app.\n\n#### Step 1. Creating a Contract from the data collected\n\n<ol type=\"a\">\n    <li>\n        <b>Authentication</b>\n        <p style=\"font-weight: normal;\">The API credentials (<code>client-id</code> and <code>client-secret</code>) should be generated  by the user who needs to receive notifications when a user signs agreements using Embedded. The same user will also be assigned as the Business User for all contracts created using this flow. Please refer to <a href=\"#section/Authentication\">Authentication</a> for more details.</p>\n    </li><br/>\n    <li>\n        <b>Payload</b>\n        <p style=\"font-weight: normal;\">Once a user fills out the form on your web application, the information provided by them should be passed to the SpotDraft <a href=\"#operation/v2.1_public_contracts_create\">Create Contract API</a>.</p>\n    </li>\n</ol>\n\n#### Step 2. Generate URL\n\nThe call to [Create Contract API](#operation/v2.1_public_contracts_create) made in previous step will return a Contract ID in the response payload. This Contract ID and the email address of the counterparty need to be passed to the [Counterparty Embedded Url](#operation/v2.1_public_contracts_embedded_contracts_counter_party_list) to get the URL which can be iframed in your application.\n\n#### Step 3. Render & Close iframe\n\nThe call to [CounterParty Embedded Url](#operation/v2.1_public_contracts_embedded_contracts_counter_party_list) made in previous step will return a url that can be used to render the iframe. Once the SpotDraft signing experience gets loaded in the iframe, SpotDraft will emit messages using the [postMessage](https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage) API to allow your app to react to user actions in the SpotDraft Embedded flow. The following messages are emitted.\n\n<table>\n  <tr>\n   <th>Event</th>\n   <th>Message Name</th>\n   <th>Payload</th>\n  </tr>\n  <tr>\n   <td>Sign Completed Successfully</td>\n   <td>spotdraft.embedded.sign_successful</td>\n   <td>{contract_id}</td>\n  </tr>\n  <tr>\n   <td>Sign Declined by User</td>\n   <td>spotdraft.embedded.sign_declined</td>\n   <td>{contract_id}</td>\n  </tr>\n  <tr>\n   <td>Sign API Fail</td>\n   <td>spotdraft.embedded.sign_error</td>\n   <td>{contract_id, error: {code, upstream_error}} <br/> <br/>\n    code: SD_SIGN_API_ERROR\n   </td>\n  </tr>\n  <tr>\n   <td>PDF Generation Fail</td>\n   <td>spotdraft.embedded.sign_error</td>\n   <td>{contract_id, error: {code, upstream_error}} <br/><br/>\n    code: SD_SIGN_DOC_GENERATION_ERROR\n   </td>\n  </tr>\n</table>\n\n### Points to be noted\n\n<ul>\n    <li>\n        <b>Loader</b>\n        <p>As generating large contracts can take a few seconds, we recommend showing a loader or progress indicator in your application to provide users a visual cue while your app is waiting for the completion of the initial API calls for the Embedded flow. The approach for implementing this loader depends on your app and tech stack.</p>\n    </li><br/>\n    <li>\n        <b>Cluster Id</b>\n        <p>To best serve our users in different regions and be compliant with data residency requirements, we have multiple data centres. The following are the region and the relevant Id: </p>\n        <ul>\n            <li>\n                USA: <code>us</code>\n            </li>\n            <li>\n                Europe: <code>eu</code>\n            </li>\n            <li>\n                India: <code>in</code>\n            </li>\n            <li>\n                Middle East: <code>me</code>\n            </li>\n        </ul>\n    </li>\n</ul>\n\n## Spotdraft Clickthrough SDK\n\n### Introduction\n\nThe Clickthrough JavaScript SDK allows developers to integrate Clickthrough functionality into their web applications. Clickthrough enables you to require users to acknowledge contractual agreements before proceeding with certain actions.\n\nThis documentation provides instructions on how to include and use the Clickthrough JavaScript SDK in your web application.\n\n### Getting Started\n\n#### Prerequisites\n\nBefore you start integrating the Clickthrough JavaScript SDK, make sure you have the following prerequisites in place:\n\n- A SpotDraft Clickthrough account: To use the Clickthrough JavaScript SDK, you need an active SpotDraft Clickthrough account. If you don't have one, you can request a demo by visiting https://www.spotdraft.com/requestfordemo. This account is necessary for creating Clickthroughs and managing contracts.\n  - Clickthrough creation: Within your SpotDraft Clickthrough account, you should have created atleast one Clickthrough. A Clickthrough represents the agreement that your end users will be consenting to. Make sure to configure the necessary contract details, such as name, content, and any other relevant information.\n  - Contract addition: Within your Clickthrough, you need to add contracts that will be a part of the Clickthrough. These contracts define the specific terms and conditions or legal agreements that users must accept.\n- Supported Domains: In the `Clickthrough Settings` tab of your Clickthrough, ensure that you have added the domains where your Clickthrough will be hosted to `Supported Domains`.\n  - For example, if your Clickthrough will be hosted on `https://my_domain.com/clickwraps/test.html`, make sure to add `my_domain.com` to `Supported Domains`.\n- Development environment with SSL enabled\n  - To ensure secure communication between your web application and the Clickthrough JavaScript SDK, it is recommended to have SSL (HTTPS) enabled in your development environment. This ensures that the SDK functions properly and maintains data privacy and security.\n\n### Installation\n\n> **_NOTE:_** All the following code snippets, with the right values for each, can be directly copied from the Spotdraft Clickthrough console by clicking on the `View Snippet` on the Clickthrough page.\n\nAdd the following script tag to your HTML file (ideally in the head tag) to include the SDK:\n\n```\n<script type=\"module\" src=\"https://sdk.spotdraft.com/clickwrap/v1/sdk.js\"></script>\n```\n\n`SdClickthrough` class will be attached to the window and spotdraft Clickthrough will be loaded into your application.\n\n### Initialization\n\nYou must initialize the Spotdraft Clickthrough SDK to include it in your application.\n\n- Initialise `new SdClickthrough` instance to configure the SDK.\n  - Provide the `clickwrapId`, `hostLocationDomId`, and `baseUrl` as shown in the example below:\n    - `clickwrapId` - `UUID` - The Clickthrough public ID from the Clickthrough settings page on SD.\n    - `hostLocationDomId` - `str` - The ID of the dom element where you want to load the Clickthrough.\n    - `baseUrl` - `str` - You can find the base URL on clicking the `View Snippet` on the Clickthrough settings page on SD.\n- Use the `init` method to attach the clickthrough to the HTML DOM.\n\n```\nwindow.addEventListener(\"sdClickthroughLoaded\", function () {\n    const clickthrough = new SdClickthrough({\n      clickwrapId: \"CLICKWRAP_ID_FROM_CONSOLE\",\n      hostLocationDomId: \"HOST_ELEMENT_DOM_ID\",\n      baseUrl: \"BASE_URL_FROM_CONSOLE\"\n    });\n    clickthrough.init();\n})\n```\n\n### Creating Clickthrough Contract\n\nThe `submit` method enables you to create a Clickthrough contract based on the provided agreement. Here's an example of how to use the submit method to create a Clickthrough contract:\n\n```\n// Define the payload object\nconst payload = {\n  user_identifier: 'johndoe@example.com', // this is a required field\n  first_name: 'John',\n  last_name: 'Doe',\n  user_email: 'johndoe@example.com',\n};\n\nclickthrough.submit(payload).then(data => {\n\t// continue to submit the form\n})\n```\n\n> **_NOTE:_** `user_identifier` is a required field and its data type is string. It can be an email, phone number or anything else that uniquely identifies a user on your system.\n\n### Checking Clickthrough Agreement Acceptance\n\nAfter showing the user the Clickthrough agreement, you might want to restrict some operations, including submitting forms, until they have accepted the agreement. The 'isAccepted()' method of the SDK enables you to determine whether a particular Clickthrough agreement has been accepted by the user. Here is how to apply it:\n\n```\nif(clickthrough.isAccepted) {\n    // continue submitting your form\n}\n```\n\n### Passing Custom User Data\n\nThe Spotdraft Clickthrough SDK enables you to create Clickthrough contracts in Spotdraft with customized payload data in addition to obtaining user approval. You can send a payload object to the submit method to be linked to the newly generated Clickthrough contract. Any additional data or metadata pertinent to your application or operational procedures may be included in this payload.\n\nAs part of the submit payload\n\n```\nconst payload = {\n  user_identifier: '123',\n  ...\n    additional_custom_information: {\n    customField1: 'Value 1',\n    customField2: 'Value 2',\n    // Add more custom fields as needed\n  },\n};\n\nclickthrough.submit(payload).then(data => {\n\t// continue to submit the form\n})\n```\n\n### Styling Clickthrough Elements\n\nYou can utilize the class names provided by the Spotdraft Clickthrough SDK to style the items that the SDK renders. To make these elements match the appearance and feel of your application, you can apply unique CSS styles. The list of class names includes:\n\n- sd-clickthrough-checkbox: This class name can be used to target the checkbox element rendered by the SDK.\n\n- sd-clickthrough-text: This class name can be used to target the text content displayed in the Clickthrough agreement.\n\n### Event Handling\n\nYou can listen to events provided by the Spotdraft Clickthrough SDK in order to carry out particular tasks or react to user activities. To add event listeners to the SDK and record these events, use the 'on' method. Here's an example:\n\n```\nclickthrough.on(\"sdClickthroughLoaded\", function (data) {\n  // Event listener callback function\n  console.log(\"Clickthrough object loaded succesfully!!\");\n});\n```\n\nThe followings are the type of events you can listen to:\n\n- acceptanceToggled - When users checks/unchecks the checkbox.\n- sdClickthroughLoaded - When Spotdraft Clickthrough object successfully loads.\n- sdClickthroughLoadFailed - When Spotdraft Clickthrough object failed to load.\n\n### Full example\n\n```\n<html lang=\"en\">\n  <body>\n    <head>\n      <script\n        type=\"module\"\n        src=\"https://sdk.spotdraft.com/clickwrap/v1/sdk.js\"\n      ></script>\n    </head>\n    <form id=\"form\">\n      <!-- Form goes here -->\n      <input id=\"email\" type=\"text\" />\n      <div id=\"my-clickthrough-host\"></div>\n      <button id=\"submit-button\"></button>\n    </form>\n    <script type=\"module\">\n      window.addEventListener(\"sdClickthroughLoaded\", function () {\n        const clickthrough = new SdClickthrough({\n          clickwrapId: \"<CLICKWRAP_ID_FROM_CONSOLE>\",\n          hostLocationDomId: \"my-clickthrough-host\",\n          baseUrl: \"<BASEURL_FROM_CONSOLE>\",\n        });\n        clickthrough.init();\n        clickthrough.on(\"acceptanceToggled\", function (data) {\n          console.log(\"accepted Event triggered:\", data);\n        });\n\n        const button = document.getElementById(\"submit-button\");\n        const form = document.getElementById(\"form\");\n        const email = document.getElementById(\"email\");\n        button.addEventListener(\"click\", function (event) {\n          event.preventDefault();\n          if (!email.value) {\n            alert(\"Please fill all the details\");\n          }\n          if (clickthrough.isAccepted()) {\n            clickthrough.submit({ user_identifier: email.value })\n              .then((_) => {\n                form.submit();\n              });\n          } else {\n            alert(\"Pease accept the policies to continue\");\n          }\n        });\n\n      });\n    </script>\n  </body>\n</html>\n\n```\n\n## Clickthrough KeyPointers\n\n### Generating Reports for Clickthrough Contracts\n\nYou have the option to create reports for Clickthrough contracts on SpotDraft using Key Pointers for each specific Clickthrough Packet. Before using this API, make sure to set up the necessary key pointers for your Clickthrough packet\n\n### Passing Data to Key Pointers\n\nTo send data from your website to a Clickthrough Packet's key pointer, use the `key_pointer_information` field in the clickthrough API payload. Data should be in key-value pairs. The values will be checked against their respective key pointer types for validation.\n\n### Validation and Display\n\nIf the validation fails, the key pointer values won't be shown in the key pointer section. However, this won't cause the contract generation to fail. You can find a list of key pointer values in the table below.\n\n<table>\n  <tr>\n   <th>KeyPointer Types</th>\n   <th>Syntax</th>\n   <th>Sample</th>\n  </tr>\n  <tr>\n   <td><strong>STRING</strong></td>\n   <td>“keypointer_field_name”: “Any_string_value”</td>\n   <td>“slug_name”: \"Harvey Specter\"</td>\n  </tr>\n  <tr>\n   <td><strong>DATE</strong></td>\n   <td>“keypointer_field_name”: “YYYY-MM-DD” <br/> <br/> NB: Date should be in the aforementioned format as a string.</td>\n   <td>\"slug_dob\": \"2023-01-01\"</td>\n  </tr>\n  <tr>\n   <td><strong>NUMBER</strong></td>\n   <td>“keypointer_field_name”: Integer</td>\n   <td>\"slug_age\":24 </td>\n  </tr>\n  <tr>\n   <td><strong>CHECK BOX</strong></td>\n   <td>“keypointer_field_name”: bool</td>\n   <td>“slug_is_admin”: true</td>\n  </tr>\n  <tr>\n   <td><strong>CURRENCY</strong></td>\n   <td>“keypointer_field_name”:{ \"type\": \"Currency_type_code\", \"value\": Integer} </td>\n   <td>\"slug_salary\": {\"type\": \"USD\", \"value\": 1000}</td>\n  </tr>\n  <tr>\n   <td><strong>PHONE NUMBER</strong></td>\n   <td>“keypointer_field_name”:\n{\"number\": \"number_value\",\n\"country_code\": \"country_code_string\",\"code\": \"country_code_integer\"}</td>\n   <td>\"slug_mobile\": {\"number\": \"9999912345\",\"country_code\": \"IN\",\"code\": \"+91\"}\n   </td>\n  </tr>\n  <tr>\n   <td><strong>DURATION</strong></td>\n   <td>“keypointer_field_name”: {\"days\": Integer, \"type\": \"DAY /WEEK / MONTH /YEARS\", \"value\": Integer}</td>\n   <td>“slug_term”:\n{\"days\": 730, \"type\": \"YEARS\", \"value\": 2}\n   </td>\n  </tr>\n  <tr>\n   <td><strong>DROPDOWN</strong></td>\n   <td>“keypointer_field_name”: “value” <br/><br/>NB:Value should be in the dropdown list.</td>\n   <td>\"slug_country\": \"India\"\n   </td>\n  </tr>\n  <tr>\n   <td><strong>MULTI DROPDOWN</strong></td>\n   <td>“keypointer_field_name”: [“value1”, “value2”] <br/><br/> NB:Value1 and Value2 should be in the multi-dropdown list.</td>\n   <td>\"slug_multi\": [\"L1\",\"L2\"]\n   </td>\n  </tr>\n  <tr>\n   <td><strong>PARAGRAPH</strong></td>\n   <td>keypointer_field_name”: “Any_string_values”</td>\n   <td>“slug_paragraph: “It’s Paragraph KP”\n   </td>\n  </tr>\n</table>\n\n## Clickthrough Agreement Reacceptance\n\nThe \"Clickthrough Re-Acceptance\" feature enables users to gather re-acceptance for the currently published version of the agreement. This allows users to obtain acceptance from individuals who have previously agreed to any earlier versions.\n\nUsers have the capability to specify whether a currently published version requires re-acceptance, both during the publishing process and after the current version is published. It's important to note that at any given time, only the latest published version can be designated for re-acceptance.\n\nOnce re-acceptance is collected, the SDK will provide users with information indicating whether a specific user has accepted the currently published version of the agreement. This information can be utilized to trigger a pop-up for re-acceptance or to notify users about modifications made to the prior agreement version.\n\nThe `isReacceptanceRequired` method of the SDK enables you to determine whether the current user needs to reaccept the updated agreement or not:\n\n```\nclickthrough.isReacceptanceRequired(<user_identifier>)\n  .then(status) {\n    // check if reaccapence is required or not\n    if (status.trigger_acceptance) {\n      // show the clickthrough elements\n      // so users can reaccept the updated agreements\n      clickthrough.init();\n    }\n  }\n```\n"

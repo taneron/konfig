@@ -1,0 +1,799 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+operationIds:
+  /v1/public/auth/roles:
+    get: V1UserApIs_getRoles
+  /v1/public/auth/users:
+    get: V1UserApIs_getUserList
+    post: V1UserApIs_createUser
+  /v1/public/auth/users/{user_id}:
+    delete: V1UserApIs_deactivateUser
+    patch: V1UserApIs_updateUserRoles
+  /v1/public/contracts:
+    get: V1ContractApIs_getList
+    post: V1ContractApIs_createContract
+  /v1/public/contracts/by_external_metadata/{external_metadata_id}:
+    get: V1ContractApIs_getByExternalMetadataId
+  /v1/public/contracts/{contract_id}/download:
+    post: V1ContractApIs_downloadContractFile
+  /v1/public/contracts/{contract_id}/download_link:
+    post: V1ContractApIs_createDownloadLink
+  /v1/public/contracts/{contract_id}/send_to_counterparties:
+    post: V1ContractApIs_sendToCounterparties
+  /v1/public/contracts/{contract_id}/status:
+    get: V1ContractApIs_getStatus
+  /v1/public/templates/:
+    get: V1TemplateApIs_getTemplateList
+  /v1/public/templates/{template_id}/metadata:
+    get: V1TemplateApIs_getMetadata
+  /v1/public/webhook-sample/:
+    post: V1Webhooks_createWebhookSample
+  /v2.1/public/auth/roles/:
+    get: V21UserApIs_listActiveRoles
+  /v2.1/public/auth/roles/{role_id}/members:
+    delete: V21UserApIs_deleteRoleMember
+    post: V21UserApIs_addRoleMember
+  /v2.1/public/auth/users/:
+    get: V21UserApIs_getUserList
+  /v2.1/public/clickwrap/{clickwrap_public_id}/consent_status/:
+    post: V21ClickwrapApIs_getUserConsentStatus
+  /v2.1/public/contract_types/:
+    get: V21ContractTypeApIs_getList
+  /v2.1/public/contract_types/{contract_type_id}/entities:
+    get: V21ContractTypeApIs_listEntities
+  /v2.1/public/contract_types/{contract_type_id}/intake_form/questionnaire/:
+    get: V21ContractTypeApIs_getIntakeFormQuestionnaireDetails
+  /v2.1/public/contracts/:
+    get: V21ContractApIs_getList
+    post: V21ContractApIs_createNewContract
+  /v2.1/public/contracts/approvals/{contract_id}/:
+    get: V21ContractApIs_getApprovals
+    post: V21ContractApIs_createAdhocApprovals
+  /v2.1/public/contracts/by_external_metadata/{external_metadata_id}:
+    get: V21ContractApIs_getByExternalMetadataId
+  /v2.1/public/contracts/embedded/contracts/{contract_id}/counter_party/:
+    get: V21ContractApIs_getCounterpartyEmbeddedUrl
+  /v2.1/public/contracts/executed_contracts/:
+    post: V21ContractApIs_uploadExecutedContract
+  /v2.1/public/contracts/preview/:
+    post: V21ContractApIs_generateContractPreview
+  /v2.1/public/contracts/upload_review_contracts/:
+    post: V21ContractApIs_uploadContractForReview
+  /v2.1/public/contracts/upload_sign_contracts/:
+    post: V21ContractApIs_uploadContractForSignature
+  /v2.1/public/contracts/webhooks/re_trigger_latest/:
+    post: V21ContractApIs_reTriggerLatestContractsWebhooks
+  /v2.1/public/contracts/{composite_id}/download:
+    post: V21ContractApIs_downloadContractFile
+  /v2.1/public/contracts/{composite_id}/download_link:
+    post: V21ContractApIs_getDownloadLink
+  /v2.1/public/contracts/{composite_id}/key_pointers/bulk:
+    post: V21ContractApIs_bulkUpdateKeyPointers
+  /v2.1/public/contracts/{composite_id}/mark_for_execution/:
+    post: V21ContractApIs_markForExecution
+  /v2.1/public/contracts/{composite_id}/send_to_counterparties:
+    post: V21ContractApIs_sendToCounterparties
+  /v2.1/public/contracts/{composite_id}/signatories/resend_email/:
+    post: V21ContractApIs_resendEmailToSignatory
+  /v2.1/public/contracts/{composite_id}/unmark_for_execution:
+    post: V21ContractApIs_unmarkForExecution
+  /v2.1/public/contracts/{contract_id}/comments/:
+    get: V21ContractApIs_getComments
+    post: V21ContractApIs_addCommentToActivityLog
+  /v2.1/public/contracts/{contract_id}/contract_data:
+    patch: V21ContractApIs_updateContractData
+  /v2.1/public/contracts/{contract_id}/contract_relation/:
+    post: V21ContractApIs_createContractRelation
+  /v2.1/public/contracts/{contract_id}/contract_version/:
+    post: V21ContractVersionApIs_uploadVersion
+  /v2.1/public/contracts/{contract_id}/external_metadata:
+    post: V21ContractApIs_createOrUpdateExternalMetadata
+  /v2.1/public/contracts/{contract_id}/invite/:
+    post: V21ContractApIs_inviteUsersRoles
+  /v2.1/public/contracts/{contract_id}/key_pointers:
+    get: V21ContractApIs_getKeyPointers
+  /v2.1/public/contracts/{contract_id}/key_pointers/{contract_key_pointer_id}:
+    patch: V21ContractApIs_updateKeyPointerValue
+  /v2.1/public/contracts/{contract_id}/notes:
+    get: V21ContractApIs_getContractNotes
+  /v2.1/public/contracts/{contract_id}/notes/{note_id}:
+    put: V21ContractApIs_updateContractNote
+  /v2.1/public/contracts/{contract_id}/questionnaire/responses/:
+    get: V21ContractApIs_getQuestionnaireResponses
+  /v2.1/public/contracts/{contract_id}/recipients/recipient_link/:
+    get: V21ContractApIs_getRecipientLink
+  /v2.1/public/contracts/{contract_id}/review_request/:
+    post: V21ContractApIs_createLegalReviewTask
+  /v2.1/public/contracts/{contract_id}/status:
+    get: V21ContractApIs_getStatus
+  /v2.1/public/contracts/{contract_id}/uninvite/:
+    post: V21ContractApIs_uninviteUserOrRole
+  /v2.1/public/contracts/{contract_id}/uninvite_all/:
+    post: V21ContractApIs_uninviteAllUsersRoles
+  /v2.1/public/counter_parties/:
+    get: V21CounterpartyApIs_getList
+    post: V21CounterpartyApIs_createCounterParty
+  /v2.1/public/counter_parties/{counterparty_id}:
+    get: V21CounterpartyApIs_getById
+    patch: V21CounterpartyApIs_updateCounterpartyDetails
+  /v2.1/public/counter_parties/{counterparty_id}/addresses/:
+    get: V21CounterpartyApIs_listAddresses
+    post: V21CounterpartyApIs_createAddress
+  /v2.1/public/counter_parties/{counterparty_id}/addresses/{address_id}/:
+    patch: V21CounterpartyApIs_updateAddress
+  /v2.1/public/counter_parties/{counterparty_id}/contacts:
+    get: V21CounterpartyApIs_listCounterpartyContacts
+    post: V21CounterpartyApIs_createContact
+  /v2.1/public/counter_parties/{counterparty_id}/contacts/bulk/:
+    patch: V21CounterpartyApIs_bulkUpdateContacts
+  /v2.1/public/counter_parties/{counterparty_id}/contacts/{contact_id}/:
+    delete: V21CounterpartyApIs_deleteContact
+    patch: V21CounterpartyApIs_updateContact
+  /v2.1/public/key_pointers/:
+    get: V21KeyPointerApIs_getKeyPointers
+  /v2.1/public/organizations/entities/:
+    get: V21OrganizationApIs_getAllEntity
+    post: V21OrganizationApIs_createEntity
+  /v2.1/public/organizations/types/:
+    get: V21OrganizationApIs_getTypes
+  /v2.1/public/supported_documents/{contract_id}/:
+    post: V21ContractApIs_uploadSupportedDocuments
+  /v2.1/public/templates/:
+    get: V21TemplateApIs_getList
+  /v2.1/public/templates/{template_id}/:
+    get: V21TemplateApIs_getDetails
+    patch: V21TemplateApIs_updateTemplateData
+  /v2.1/public/templates/{template_id}/metadata:
+    get: V21TemplateApIs_getTemplateMetadata
+  /v2.1/public/user_tasks/:
+    post: V21TasksAndRemindersApIs_createUserTasksList
+  /v2/public/auth/roles/:
+    get: V2UserApIs_getActiveRoles
+  /v2/public/auth/roles/{role_id}/members:
+    delete: V2UserApIs_deleteRoleMember
+    post: V2UserApIs_addRoleMember
+  /v2/public/auth/users/:
+    get: V2UserApIs_getUserList
+  /v2/public/contract_types/:
+    get: V2ContractTypeApIs_getList
+  /v2/public/contract_types/{contract_type_id}/entities:
+    get: V2ContractTypeApIs_listEntities
+  /v2/public/contract_types/{contract_type_id}/intake_form/questionnaire/:
+    get: V2ContractTypeApIs_getIntakeFormQuestionnaireDetails
+  /v2/public/contracts/:
+    get: V2ContractApIs_getContractList
+    post: V2ContractApIs_createNewContract
+  /v2/public/contracts/approvals/{contract_id}/:
+    get: V2ContractApIs_getApprovals
+    post: V2ContractApIs_createAdhocApprovals
+  /v2/public/contracts/by_external_metadata/{external_metadata_id}:
+    get: V2ContractApIs_getByExternalMetadataId
+  /v2/public/contracts/embedded/contracts/{contract_id}/counter_party/:
+    get: V2ContractApIs_getCounterPartyEmbeddedUrl
+  /v2/public/contracts/preview/:
+    post: V2ContractApIs_generateContractPreview
+  /v2/public/contracts/upload_review_contracts/:
+    post: V2ContractApIs_uploadReviewContracts
+  /v2/public/contracts/upload_sign_contracts/:
+    post: V2ContractApIs_uploadSignContracts
+  /v2/public/contracts/webhooks/re_trigger_latest/:
+    post: V2ContractApIs_reTriggerLatest
+  /v2/public/contracts/{composite_id}/download:
+    post: V2ContractApIs_downloadContractFile
+  /v2/public/contracts/{composite_id}/download_link:
+    post: V2ContractApIs_getDownloadLink
+  /v2/public/contracts/{composite_id}/send_to_counterparties:
+    post: V2ContractApIs_sendToCounterparties
+  /v2/public/contracts/{contract_id}/comments/:
+    get: V2ContractApIs_getCommentsInActivityLog
+    post: V2ContractApIs_addCommentToActivityLog
+  /v2/public/contracts/{contract_id}/contract_data:
+    patch: V2ContractApIs_updateContractData
+  /v2/public/contracts/{contract_id}/contract_version/:
+    post: V2ContractVersionApIs_uploadVersion
+  /v2/public/contracts/{contract_id}/invite/:
+    post: V2ContractApIs_inviteUsersRoles
+  /v2/public/contracts/{contract_id}/key_pointers:
+    get: V2ContractApIs_getKeyPointers
+  /v2/public/contracts/{contract_id}/key_pointers/{contract_key_pointer_id}:
+    patch: V2ContractApIs_updateKeyPointerValue
+  /v2/public/contracts/{contract_id}/notes:
+    get: V2ContractApIs_getContractNotes
+  /v2/public/contracts/{contract_id}/notes/{note_id}:
+    put: V2ContractApIs_updateContractNote
+  /v2/public/contracts/{contract_id}/questionnaire/responses/:
+    get: V2ContractApIs_getQuestionnaireResponses
+  /v2/public/contracts/{contract_id}/recipients/recipient_link/:
+    get: V2ContractApIs_getRecipientLink
+  /v2/public/contracts/{contract_id}/status:
+    get: V2ContractApIs_getStatus
+  /v2/public/counter_parties/:
+    get: V2CounterpartyApIs_getList
+    post: V2CounterpartyApIs_createCounterparty
+  /v2/public/counter_parties/{counterparty_id}:
+    get: V2CounterpartyApIs_getCounterpartyById
+    patch: V2CounterpartyApIs_updateDetails
+  /v2/public/counter_parties/{counterparty_id}/addresses/:
+    get: V2CounterpartyApIs_listAddresses
+    post: V2CounterpartyApIs_createAddress
+  /v2/public/counter_parties/{counterparty_id}/addresses/{address_id}/:
+    patch: V2CounterpartyApIs_updateAddress
+  /v2/public/counter_parties/{counterparty_id}/contacts:
+    get: V2CounterpartyApIs_listCounterpartyContacts
+    post: V2CounterpartyApIs_createContact
+  /v2/public/counter_parties/{counterparty_id}/contacts/bulk/:
+    patch: V2CounterpartyApIs_bulkUpdateContacts
+  /v2/public/counter_parties/{counterparty_id}/contacts/{contact_id}/:
+    delete: V2CounterpartyApIs_deleteCounterpartyContact
+    patch: V2CounterpartyApIs_updateCounterpartyContact
+  /v2/public/key_pointers/:
+    get: V2KeyPointerApIs_getAll
+  /v2/public/organizations/entities/:
+    get: V2OrganizationApIs_getAllEntities
+    post: V2OrganizationApIs_createEntity
+  /v2/public/organizations/types/:
+    get: V2OrganizationApIs_listOrganizationTypes
+  /v2/public/supported_documents/{contract_id}/:
+    post: V2ContractApIs_uploadSupportedDocuments
+  /v2/public/templates/:
+    get: V2TemplateApIs_list
+  /v2/public/templates/{template_id}/:
+    get: V2TemplateApIs_getDetails
+    patch: V2TemplateApIs_updateContractData
+  /v2/public/templates/{template_id}/metadata:
+    get: V2TemplateApIs_getMetadata
+  /v2/public/user_tasks/:
+    post: V2TasksAndRemindersApIs_createUserTasksList
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /v1/public/webhook-sample:
+    post:
+      application/json: V1WebhooksCreateWebhookSampleRequest
+  /v2.1/public/auth/roles/{role_id}/members:
+    delete:
+      application/json: V21UserApIsDeleteRoleMemberRequest
+    post:
+      application/json: V21UserApIsAddRoleMemberRequest
+  /v2.1/public/clickwrap/{clickwrap_public_id}/consent_status:
+    post:
+      application/json: V21ClickwrapApIsGetUserConsentStatusRequest
+  /v2.1/public/contracts/approvals/{contract_id}:
+    post:
+      application/json: V21ContractApIsCreateAdhocApprovalsRequest
+  /v2.1/public/contracts/executed_contracts:
+    post:
+      application/json: V21ContractApIsUploadExecutedContractRequest
+  /v2.1/public/contracts/preview:
+    post:
+      application/json: V21ContractApIsGenerateContractPreviewRequest
+  /v2.1/public/contracts/upload_review_contracts:
+    post:
+      application/json: V21ContractApIsUploadContractForReviewRequest
+  /v2.1/public/contracts/upload_sign_contracts:
+    post:
+      application/json: V21ContractApIsUploadContractForSignatureRequest
+  /v2.1/public/contracts/webhooks/re_trigger_latest:
+    post:
+      application/json: V21ContractApIsReTriggerLatestContractsWebhooksRequest
+  /v2.1/public/contracts/{composite_id}/key_pointers/bulk:
+    post:
+      application/json: V21ContractApIsBulkUpdateKeyPointersRequest
+  /v2.1/public/contracts/{composite_id}/signatories/resend_email:
+    post:
+      application/json: V21ContractApIsResendEmailToSignatoryRequest
+  /v2.1/public/contracts/{composite_id}/unmark_for_execution:
+    post:
+      application/json: V21ContractApIsUnmarkForExecutionRequest
+  /v2.1/public/contracts/{contract_id}/comments:
+    post:
+      application/json: V21ContractApIsAddCommentToActivityLogRequest
+  /v2.1/public/contracts/{contract_id}/contract_data:
+    patch:
+      application/json: V21ContractApIsUpdateContractDataRequest
+  /v2.1/public/contracts/{contract_id}/contract_relation:
+    post:
+      application/json: V21ContractApIsCreateContractRelationRequest
+  /v2.1/public/contracts/{contract_id}/contract_version:
+    post:
+      application/json: V21ContractVersionApIsUploadVersionRequest
+  /v2.1/public/contracts/{contract_id}/external_metadata:
+    post:
+      application/json: V21ContractApIsCreateOrUpdateExternalMetadataRequest
+  /v2.1/public/contracts/{contract_id}/invite:
+    post:
+      application/json: V21ContractApIsInviteUsersRolesRequest
+  /v2.1/public/contracts/{contract_id}/key_pointers/{contract_key_pointer_id}:
+    patch:
+      application/json: V21ContractApIsUpdateKeyPointerValueRequest
+  /v2.1/public/contracts/{contract_id}/notes/{note_id}:
+    put:
+      application/json: V21ContractApIsUpdateContractNoteRequest
+  /v2.1/public/contracts/{contract_id}/review_request:
+    post:
+      application/json: V21ContractApIsCreateLegalReviewTaskRequest
+  /v2.1/public/contracts/{contract_id}/uninvite:
+    post:
+      application/json: V21ContractApIsUninviteUserOrRoleRequest
+  /v2.1/public/counter_parties:
+    post:
+      application/json: V21CounterpartyApIsCreateCounterPartyRequest
+  /v2.1/public/counter_parties/{counterparty_id}:
+    patch:
+      application/json: V21CounterpartyApIsUpdateCounterpartyDetailsRequest
+  /v2.1/public/counter_parties/{counterparty_id}/addresses:
+    post:
+      application/json: V21CounterpartyApIsCreateAddressRequest
+  /v2.1/public/counter_parties/{counterparty_id}/addresses/{address_id}:
+    patch:
+      application/json: V21CounterpartyApIsUpdateAddressRequest
+  /v2.1/public/counter_parties/{counterparty_id}/contacts:
+    post:
+      application/json: V21CounterpartyApIsCreateContactRequest
+  /v2.1/public/counter_parties/{counterparty_id}/contacts/bulk:
+    patch:
+      application/json: V21CounterpartyApIsBulkUpdateContactsRequest
+  /v2.1/public/counter_parties/{counterparty_id}/contacts/{contact_id}:
+    patch:
+      application/json: V21CounterpartyApIsUpdateContactRequest
+  /v2.1/public/organizations/entities:
+    post:
+      application/json: V21OrganizationApIsCreateEntityRequest
+  /v2.1/public/supported_documents/{contract_id}:
+    post:
+      application/json: V21ContractApIsUploadSupportedDocumentsRequest
+  /v2.1/public/templates/{template_id}:
+    patch:
+      application/json: V21TemplateApIsUpdateTemplateDataRequest
+  /v2.1/public/user_tasks:
+    post:
+      application/json: V21TasksAndRemindersApIsCreateUserTasksListRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /v1/public/auth/roles:
+    get:
+      '200':
+        application/json: V1UserApIsGetRolesResponse
+  /v1/public/contracts/by_external_metadata/{external_metadata_id}:
+    get:
+      '200':
+        application/json: V1ContractApIsGetByExternalMetadataIdResponse
+  /v1/public/contracts/{contract_id}/download:
+    post:
+      '200':
+        application/json: V1ContractApIsDownloadContractFileResponse
+  /v1/public/templates:
+    get:
+      '200':
+        application/json: V1TemplateApIsGetTemplateListResponse
+  /v1/public/templates/{template_id}/metadata:
+    get:
+      '200':
+        application/json: V1TemplateApIsGetMetadataResponse
+  /v1/public/webhook-sample:
+    post:
+      '200':
+        application/json: V1WebhooksCreateWebhookSampleResponse
+  /v2.1/public/auth/roles:
+    get:
+      '200':
+        application/json: V21UserApIsListActiveRolesResponse
+  /v2.1/public/auth/roles/{role_id}/members:
+    post:
+      '200':
+        application/json: V21UserApIsAddRoleMemberResponse
+  /v2.1/public/auth/users:
+    get:
+      '200':
+        application/json: V21UserApIsGetUserListResponse
+  /v2.1/public/clickwrap/{clickwrap_public_id}/consent_status:
+    post:
+      '200':
+        application/json: V21ClickwrapApIsGetUserConsentStatusResponse
+  /v2.1/public/contract_types:
+    get:
+      '200':
+        application/json: V21ContractTypeApIsGetListResponse
+  /v2.1/public/contract_types/{contract_type_id}/entities:
+    get:
+      '200':
+        application/json: V21ContractTypeApIsListEntitiesResponse
+  /v2.1/public/contract_types/{contract_type_id}/intake_form/questionnaire:
+    get:
+      '200':
+        application/json: V21ContractTypeApIsGetIntakeFormQuestionnaireDetailsResponse
+  /v2.1/public/contracts:
+    get:
+      '200':
+        application/json: V21ContractApIsGetListResponse
+  /v2.1/public/contracts/approvals/{contract_id}:
+    get:
+      '200':
+        application/json: V21ContractApIsGetApprovalsResponse
+    post:
+      '201':
+        application/json: V21ContractApIsCreateAdhocApprovalsResponse
+  /v2.1/public/contracts/by_external_metadata/{external_metadata_id}:
+    get:
+      '200':
+        application/json: V21ContractApIsGetByExternalMetadataIdResponse
+  /v2.1/public/contracts/embedded/contracts/{contract_id}/counter_party:
+    get:
+      '200':
+        application/json: V21ContractApIsGetCounterpartyEmbeddedUrlResponse
+  /v2.1/public/contracts/executed_contracts:
+    post:
+      '201':
+        application/json: V21ContractApIsUploadExecutedContractResponse
+  /v2.1/public/contracts/preview:
+    post:
+      '200':
+        application/json: V21ContractApIsGenerateContractPreviewResponse
+  /v2.1/public/contracts/upload_review_contracts:
+    post:
+      '201':
+        application/json: V21ContractApIsUploadContractForReviewResponse
+  /v2.1/public/contracts/upload_sign_contracts:
+    post:
+      '201':
+        application/json: V21ContractApIsUploadContractForSignatureResponse
+  /v2.1/public/contracts/webhooks/re_trigger_latest:
+    post:
+      '200':
+        application/json: V21ContractApIsReTriggerLatestContractsWebhooksResponse
+      '404':
+        application/json: V21ContractApIsReTriggerLatestContractsWebhooks404Response
+  /v2.1/public/contracts/{composite_id}/download:
+    post:
+      '200':
+        application/json: V21ContractApIsDownloadContractFileResponse
+  /v2.1/public/contracts/{composite_id}/key_pointers/bulk:
+    post:
+      '200':
+        application/json: V21ContractApIsBulkUpdateKeyPointersResponse
+  /v2.1/public/contracts/{contract_id}/comments:
+    get:
+      '200':
+        application/json: V21ContractApIsGetCommentsResponse
+    post:
+      '201':
+        application/json: V21ContractApIsAddCommentToActivityLogResponse
+  /v2.1/public/contracts/{contract_id}/contract_data:
+    patch:
+      '200':
+        application/json: V21ContractApIsUpdateContractDataResponse
+      '400':
+        application/json: V21ContractApIsUpdateContractData400Response
+  /v2.1/public/contracts/{contract_id}/contract_relation:
+    post:
+      '201':
+        application/json: V21ContractApIsCreateContractRelationResponse
+      '400':
+        application/json: V21ContractApIsCreateContractRelation400Response
+  /v2.1/public/contracts/{contract_id}/external_metadata:
+    post:
+      '200':
+        application/json: V21ContractApIsCreateOrUpdateExternalMetadataResponse
+  /v2.1/public/contracts/{contract_id}/invite:
+    post:
+      '200':
+        application/json: V21ContractApIsInviteUsersRolesResponse
+  /v2.1/public/contracts/{contract_id}/key_pointers:
+    get:
+      '200':
+        application/json: V21ContractApIsGetKeyPointersResponse
+  /v2.1/public/contracts/{contract_id}/key_pointers/{contract_key_pointer_id}:
+    patch:
+      '200':
+        application/json: V21ContractApIsUpdateKeyPointerValueResponse
+  /v2.1/public/contracts/{contract_id}/notes:
+    get:
+      '200':
+        application/json: V21ContractApIsGetContractNotesResponse
+  /v2.1/public/contracts/{contract_id}/notes/{note_id}:
+    put:
+      '200':
+        application/json: V21ContractApIsUpdateContractNoteResponse
+  /v2.1/public/contracts/{contract_id}/questionnaire/responses:
+    get:
+      '200':
+        application/json: V21ContractApIsGetQuestionnaireResponsesResponse
+  /v2.1/public/contracts/{contract_id}/recipients/recipient_link:
+    get:
+      '200':
+        application/json: V21ContractApIsGetRecipientLinkResponse
+  /v2.1/public/counter_parties:
+    get:
+      '200':
+        application/json: V21CounterpartyApIsGetListResponse
+    post:
+      '201':
+        application/json: V21CounterpartyApIsCreateCounterPartyResponse
+  /v2.1/public/counter_parties/{counterparty_id}:
+    get:
+      '200':
+        application/json: V21CounterpartyApIsGetByIdResponse
+    patch:
+      '200':
+        application/json: V21CounterpartyApIsUpdateCounterpartyDetailsResponse
+  /v2.1/public/counter_parties/{counterparty_id}/addresses:
+    get:
+      '200':
+        application/json: V21CounterpartyApIsListAddressesResponse
+    post:
+      '201':
+        application/json: V21CounterpartyApIsCreateAddressResponse
+  /v2.1/public/counter_parties/{counterparty_id}/addresses/{address_id}:
+    patch:
+      '200':
+        application/json: V21CounterpartyApIsUpdateAddressResponse
+  /v2.1/public/counter_parties/{counterparty_id}/contacts:
+    get:
+      '200':
+        application/json: V21CounterpartyApIsListCounterpartyContactsResponse
+    post:
+      '201':
+        application/json: V21CounterpartyApIsCreateContactResponse
+  /v2.1/public/counter_parties/{counterparty_id}/contacts/bulk:
+    patch:
+      '200':
+        application/json: V21CounterpartyApIsBulkUpdateContactsResponse
+  /v2.1/public/counter_parties/{counterparty_id}/contacts/{contact_id}:
+    patch:
+      '200':
+        application/json: V21CounterpartyApIsUpdateContactResponse
+  /v2.1/public/key_pointers:
+    get:
+      '200':
+        application/json: V21KeyPointerApIsGetKeyPointersResponse
+  /v2.1/public/organizations/entities:
+    get:
+      '200':
+        application/json: V21OrganizationApIsGetAllEntityResponse
+    post:
+      '201':
+        application/json: V21OrganizationApIsCreateEntityResponse
+  /v2.1/public/organizations/types:
+    get:
+      '200':
+        application/json: V21OrganizationApIsGetTypesResponse
+  /v2.1/public/supported_documents/{contract_id}:
+    post:
+      '201':
+        application/json: V21ContractApIsUploadSupportedDocumentsResponse
+  /v2.1/public/templates:
+    get:
+      '200':
+        application/json: V21TemplateApIsGetListResponse
+  /v2.1/public/templates/{template_id}:
+    get:
+      '200':
+        application/json: V21TemplateApIsGetDetailsResponse
+    patch:
+      '200':
+        application/json: V21TemplateApIsUpdateTemplateDataResponse
+  /v2.1/public/templates/{template_id}/metadata:
+    get:
+      '200':
+        application/json: V21TemplateApIsGetTemplateMetadataResponse
+  /v2.1/public/user_tasks:
+    post:
+      '201':
+        application/json: V21TasksAndRemindersApIsCreateUserTasksListResponse
+  /v2/public/auth/roles:
+    get:
+      '200':
+        application/json: V2UserApIsGetActiveRolesResponse
+  /v2/public/auth/roles/{role_id}/members:
+    post:
+      '200':
+        application/json: V2UserApIsAddRoleMemberResponse
+  /v2/public/auth/users:
+    get:
+      '200':
+        application/json: V2UserApIsGetUserListResponse
+  /v2/public/contract_types:
+    get:
+      '200':
+        application/json: V2ContractTypeApIsGetListResponse
+  /v2/public/contract_types/{contract_type_id}/entities:
+    get:
+      '200':
+        application/json: V2ContractTypeApIsListEntitiesResponse
+  /v2/public/contract_types/{contract_type_id}/intake_form/questionnaire:
+    get:
+      '200':
+        application/json: V2ContractTypeApIsGetIntakeFormQuestionnaireDetailsResponse
+  /v2/public/contracts:
+    get:
+      '200':
+        application/json: V2ContractApIsGetContractListResponse
+  /v2/public/contracts/approvals/{contract_id}:
+    get:
+      '200':
+        application/json: V2ContractApIsGetApprovalsResponse
+    post:
+      '201':
+        application/json: V2ContractApIsCreateAdhocApprovalsResponse
+  /v2/public/contracts/by_external_metadata/{external_metadata_id}:
+    get:
+      '200':
+        application/json: V2ContractApIsGetByExternalMetadataIdResponse
+  /v2/public/contracts/embedded/contracts/{contract_id}/counter_party:
+    get:
+      '200':
+        application/json: V2ContractApIsGetCounterPartyEmbeddedUrlResponse
+  /v2/public/contracts/preview:
+    post:
+      '200':
+        application/json: V2ContractApIsGenerateContractPreviewResponse
+  /v2/public/contracts/upload_review_contracts:
+    post:
+      '201':
+        application/json: V2ContractApIsUploadReviewContractsResponse
+  /v2/public/contracts/upload_sign_contracts:
+    post:
+      '201':
+        application/json: V2ContractApIsUploadSignContractsResponse
+  /v2/public/contracts/webhooks/re_trigger_latest:
+    post:
+      '200':
+        application/json: V2ContractApIsReTriggerLatestResponse
+      '404':
+        application/json: V2ContractApIsReTriggerLatest404Response
+  /v2/public/contracts/{composite_id}/download:
+    post:
+      '200':
+        application/json: V2ContractApIsDownloadContractFileResponse
+  /v2/public/contracts/{contract_id}/comments:
+    get:
+      '200':
+        application/json: V2ContractApIsGetCommentsInActivityLogResponse
+    post:
+      '201':
+        application/json: V2ContractApIsAddCommentToActivityLogResponse
+  /v2/public/contracts/{contract_id}/contract_data:
+    patch:
+      '200':
+        application/json: V2ContractApIsUpdateContractDataResponse
+      '400':
+        application/json: V2ContractApIsUpdateContractData400Response
+  /v2/public/contracts/{contract_id}/invite:
+    post:
+      '200':
+        application/json: V2ContractApIsInviteUsersRolesResponse
+  /v2/public/contracts/{contract_id}/key_pointers:
+    get:
+      '200':
+        application/json: V2ContractApIsGetKeyPointersResponse
+  /v2/public/contracts/{contract_id}/key_pointers/{contract_key_pointer_id}:
+    patch:
+      '200':
+        application/json: V2ContractApIsUpdateKeyPointerValueResponse
+  /v2/public/contracts/{contract_id}/notes:
+    get:
+      '200':
+        application/json: V2ContractApIsGetContractNotesResponse
+  /v2/public/contracts/{contract_id}/notes/{note_id}:
+    put:
+      '200':
+        application/json: V2ContractApIsUpdateContractNoteResponse
+  /v2/public/contracts/{contract_id}/questionnaire/responses:
+    get:
+      '200':
+        application/json: V2ContractApIsGetQuestionnaireResponsesResponse
+  /v2/public/contracts/{contract_id}/recipients/recipient_link:
+    get:
+      '200':
+        application/json: V2ContractApIsGetRecipientLinkResponse
+  /v2/public/counter_parties:
+    get:
+      '200':
+        application/json: V2CounterpartyApIsGetListResponse
+    post:
+      '201':
+        application/json: V2CounterpartyApIsCreateCounterpartyResponse
+  /v2/public/counter_parties/{counterparty_id}:
+    get:
+      '200':
+        application/json: V2CounterpartyApIsGetCounterpartyByIdResponse
+    patch:
+      '200':
+        application/json: V2CounterpartyApIsUpdateDetailsResponse
+  /v2/public/counter_parties/{counterparty_id}/addresses:
+    get:
+      '200':
+        application/json: V2CounterpartyApIsListAddressesResponse
+    post:
+      '201':
+        application/json: V2CounterpartyApIsCreateAddressResponse
+  /v2/public/counter_parties/{counterparty_id}/addresses/{address_id}:
+    patch:
+      '200':
+        application/json: V2CounterpartyApIsUpdateAddressResponse
+  /v2/public/counter_parties/{counterparty_id}/contacts:
+    get:
+      '200':
+        application/json: V2CounterpartyApIsListCounterpartyContactsResponse
+    post:
+      '201':
+        application/json: V2CounterpartyApIsCreateContactResponse
+  /v2/public/counter_parties/{counterparty_id}/contacts/bulk:
+    patch:
+      '200':
+        application/json: V2CounterpartyApIsBulkUpdateContactsResponse
+  /v2/public/counter_parties/{counterparty_id}/contacts/{contact_id}:
+    patch:
+      '200':
+        application/json: V2CounterpartyApIsUpdateCounterpartyContactResponse
+  /v2/public/key_pointers:
+    get:
+      '200':
+        application/json: V2KeyPointerApIsGetAllResponse
+  /v2/public/organizations/entities:
+    get:
+      '200':
+        application/json: V2OrganizationApIsGetAllEntitiesResponse
+    post:
+      '201':
+        application/json: V2OrganizationApIsCreateEntityResponse
+  /v2/public/organizations/types:
+    get:
+      '200':
+        application/json: V2OrganizationApIsListOrganizationTypesResponse
+  /v2/public/supported_documents/{contract_id}:
+    post:
+      '201':
+        application/json: V2ContractApIsUploadSupportedDocumentsResponse
+  /v2/public/templates:
+    get:
+      '200':
+        application/json: V2TemplateApIsListResponse
+  /v2/public/templates/{template_id}:
+    get:
+      '200':
+        application/json: V2TemplateApIsGetDetailsResponse
+    patch:
+      '200':
+        application/json: V2TemplateApIsUpdateContractDataResponse
+  /v2/public/templates/{template_id}/metadata:
+    get:
+      '200':
+        application/json: V2TemplateApIsGetMetadataResponse
+  /v2/public/user_tasks:
+    post:
+      '201':
+        application/json: V2TasksAndRemindersApIsCreateUserTasksListResponse
+securityParameters:
+  contract_type_id:
+    query: false
+  cp_email_id:
+    query: false
+  filter__client_email_address:
+    query: false
+  filter__client_name:
+    query: false
+  filter_custom__<custom_field_name>:
+    query: false
+  is_external:
+    query: false
+  jurisdiction_iso_code:
+    query: false
+  limit:
+    query: false
+  page:
+    query: false
+  questionnaire_type:
+    query: false
+  recipient_email:
+    query: false
+  tags:
+    query: false
+  tags_all:
+    query: false
+  user-email:
+    header: false
+  user_email:
+    query: false
+validServerUrls: {}
