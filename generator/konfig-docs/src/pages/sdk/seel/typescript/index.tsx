@@ -17,7 +17,7 @@ export default function SeelTypeScriptSdk() {
       companyKebabCase="seel"
       clientNameCamelCase="seel"
       homepage="seel.com"
-      lastUpdated={new Date("2024-03-21T03:46:43.100Z")}
+      lastUpdated={new Date("2024-03-27T16:32:49.329Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/seel/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
@@ -2269,7 +2269,7 @@ export default function SeelTypeScriptSdk() {
       sdkMethods={29}
       schemas={37}
       parameters={261}
-      difficulty="Medium"
+      difficulty="Easy"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/seel/openapi.yaml"
       openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/seel/openapi.yaml"
       developerDocumentation="developer.seel.com/reference/introduction"
