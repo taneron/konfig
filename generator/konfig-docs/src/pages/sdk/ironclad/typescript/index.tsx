@@ -1,0 +1,1742 @@
+import React from "react";
+import { HttpMethodsEnum } from "konfig-lib/dist/forEachOperation";
+// @ts-ignore
+import GettingStarted from "./_getting-started.mdx";
+// @ts-ignore
+import FirstRequest from "./_first-request.mdx"
+import { SdkNew } from "@site/src/components/SdkNew";
+
+export default function IroncladTypeScriptSdk() {
+  return (
+    <SdkNew
+      sdkName="ironclad-typescript-sdk"
+      metaDescription={`Ironclad is a California-based digital contracting platform that offers solutions such as data reporting and lifecycle management for sectors including legal and finance.`}
+      company="Ironclad"
+      // Missing serviceName
+      logo="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/ironclad/logo.png"
+      companyKebabCase="ironclad"
+      clientNameCamelCase="ironclad"
+      homepage="ironcladapp.com"
+      lastUpdated={new Date("2024-03-27T22:17:14.011Z")}
+      faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/ironclad/favicon.png"
+      // Missing contactUrl
+      contactEmail="support@ironcladapp.com"
+      previewLinkImage="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/ironclad/imagePreview.png"
+      GettingStarted={GettingStarted}
+      FirstRequest={FirstRequest}
+      categories={["digital_contracting_platform","doc_management","esigned_documents"]}
+      methods={[
+  {
+    "url": "/workflows",
+    "method": "listAll",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "Workflows",
+    "typeScriptTag": "workflows",
+    "description": "List All Workflows",
+    "parameters": [
+      {
+        "name": "page",
+        "schema": "integer",
+        "description": "The page number used when paginating through a list of results.",
+        "default": 0
+      },
+      {
+        "name": "pageSize",
+        "schema": "integer",
+        "description": "A limit of the number of results to return.",
+        "default": 20
+      },
+      {
+        "name": "status",
+        "schema": "string",
+        "description": "Filter the workflows that are listed based on their status. If this parameter is omitted, `active` workflows will be returned. Active workflows include workflows in the Create, Review, Sign, and Archive stages."
+      },
+      {
+        "name": "template",
+        "schema": "string",
+        "description": "Filter workflows to a specific Template ID."
+      },
+      {
+        "name": "lastUpdated",
+        "schema": "string",
+        "description": "Retrieve workflows that have been updated since a UTC date."
+      },
+      {
+        "name": "filter",
+        "schema": "string",
+        "description": "Filter workflows using a formula. The workflow attribute ID should be enclosed in brackets `[ ]` and the value should be enclosed in single quotes `' '`.\n\nWorkflow attributes for a specific workflow design can be identified using the [List All Workflow Schemas](https://developer.ironcladapp.com/reference/list-all-workflow-schemas) endpoint.\n\nSupported formula operations include:\n\n<ul>\n  <li><code>Equals</code></li>\n  <li><code>Contains</code></li>\n  <li><code>And</code></li>\n  <li><code>Or</code></li>\n</ul>\nFor more information on writing formulas, please refer to\n<a href=\"https://ironcladapp.com/formulas/#company%20display%20name\">this article</a>.",
+        "example": "Equals([counterpartyName], 'Harley Quinn')"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "url": "/workflows",
+    "method": "createSyncWorkflow",
+    "httpMethod": HttpMethodsEnum.POST,
+    "tag": "Workflows",
+    "typeScriptTag": "workflows",
+    "description": "Create a Workflow Synchronously",
+    "parameters": [
+      {
+        "name": "template",
+        "schema": "string",
+        "required": true,
+        "description": "",
+        "example": "600b296c3e15a234ab88f884"
+      },
+      {
+        "name": "creator",
+        "schema": "object",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "attributes",
+        "schema": "object",
+        "required": true,
+        "description": ""
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": "The response from a successful workflow launch."
+      },
+      {
+        "statusCode": "400",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "url": "/workflows/async",
+    "method": "launchAsynchronously",
+    "httpMethod": HttpMethodsEnum.POST,
+    "tag": "Workflows",
+    "typeScriptTag": "workflows",
+    "description": "Create a Workflow Asynchronously",
+    "parameters": [
+      {
+        "name": "template",
+        "schema": "string",
+        "required": true,
+        "description": "",
+        "example": "600b296c3e15a234ab88f884"
+      },
+      {
+        "name": "creator",
+        "schema": "object",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "attributes",
+        "schema": "object",
+        "required": true,
+        "description": ""
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "url": "/workflows/async/{asyncJobId}",
+    "method": "getAsyncJobStatus",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "Workflows",
+    "typeScriptTag": "workflows",
+    "description": "Retrieve the Status of an Async Workflow Create Job",
+    "parameters": [
+      {
+        "name": "asyncJobId",
+        "schema": "string",
+        "required": true,
+        "description": "The identifier provided in the response of creating a Workflow asynchronously.",
+        "example": "ASYNCJOBID"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": "The current status of the launch workflow job."
+      },
+      {
+        "statusCode": "404",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "url": "/workflows/{id}",
+    "method": "getWorkflow",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "Workflows",
+    "typeScriptTag": "workflows",
+    "description": "Retrieve a Workflow",
+    "parameters": [
+      {
+        "name": "id",
+        "schema": "string",
+        "required": true,
+        "description": "The unique identifier or Ironclad ID of a workflow.",
+        "example": "abcd1234"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": "The response from a successful workflow retrieval."
+      },
+      {
+        "statusCode": "400",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "url": "/workflows/{id}/approvals",
+    "method": "listApprovals",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "Workflows",
+    "typeScriptTag": "workflows",
+    "description": "List All Workflow Approvals",
+    "parameters": [
+      {
+        "name": "id",
+        "schema": "string",
+        "required": true,
+        "description": "The unique identifier or Ironclad ID of a workflow.",
+        "example": "abcd1234"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "url": "/workflows/{id}/approval-requests",
+    "method": "getApprovalRequests",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "Workflows",
+    "typeScriptTag": "workflows",
+    "description": "Retrieve the Approval Requests on a Workflow",
+    "parameters": [
+      {
+        "name": "id",
+        "schema": "string",
+        "required": true,
+        "description": "The unique identifier or Ironclad ID of a workflow.",
+        "example": "ID"
+      },
+      {
+        "name": "page",
+        "schema": "integer",
+        "description": "The page number used when paginating through a list of results.",
+        "default": 0
+      },
+      {
+        "name": "pageSize",
+        "schema": "integer",
+        "description": "A limit of the number of results to return.",
+        "default": 20
+      },
+      {
+        "name": "actorDetails",
+        "schema": "boolean",
+        "required": false,
+        "description": "An optional boolean parameter that adds additional information about the actor to each item in the response. Defaults to false.",
+        "example": false,
+        "default": false
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "403",
+        "description": ""
+      },
+      {
+        "statusCode": "404",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "url": "/workflows/{id}/approvals/{roleId}",
+    "method": "updateApprovalStatus",
+    "httpMethod": HttpMethodsEnum.PATCH,
+    "tag": "Workflows",
+    "typeScriptTag": "workflows",
+    "description": "Update Approval on a Workflow",
+    "parameters": [
+      {
+        "name": "id",
+        "schema": "string",
+        "required": true,
+        "description": "The unique identifier or Ironclad ID of a workflow.",
+        "example": "abcd1234"
+      },
+      {
+        "name": "roleId",
+        "schema": "string",
+        "required": true,
+        "description": "The unique identifier of the approver role whose status should be changed. This identifier can be retrieved using the `GET /workflows/{id}/approvals` endpoint.",
+        "example": "ROLEID"
+      },
+      {
+        "name": "user",
+        "schema": "object",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "status",
+        "schema": "string",
+        "required": true,
+        "description": "",
+        "example": "STATUS"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "url": "/workflows/{id}/turn-history",
+    "method": "getTurnHistory",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "Workflows",
+    "typeScriptTag": "workflows",
+    "description": "Retrieve the Turn History on a Workflow",
+    "parameters": [
+      {
+        "name": "id",
+        "schema": "string",
+        "required": true,
+        "description": "The unique identifier or Ironclad ID of a workflow.",
+        "example": "ID"
+      },
+      {
+        "name": "page",
+        "schema": "integer",
+        "description": "The page number used when paginating through a list of results.",
+        "default": 0
+      },
+      {
+        "name": "pageSize",
+        "schema": "integer",
+        "description": "A limit of the number of results to return.",
+        "default": 20
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "403",
+        "description": ""
+      },
+      {
+        "statusCode": "404",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "url": "/workflows/{id}/signatures",
+    "method": "listSignatures",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "Workflows",
+    "typeScriptTag": "workflows",
+    "description": "List All Workflow Signers",
+    "parameters": [
+      {
+        "name": "id",
+        "schema": "string",
+        "required": true,
+        "description": "The unique identifier or Ironclad ID of a workflow.",
+        "example": "ID"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": ""
+      },
+      {
+        "statusCode": "403",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "url": "/workflows/{id}/participants",
+    "method": "listAllParticipants",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "Workflows",
+    "typeScriptTag": "workflows",
+    "description": "List All Workflow Participants",
+    "parameters": [
+      {
+        "name": "id",
+        "schema": "string",
+        "required": true,
+        "description": "The unique identifier or Ironclad ID of a workflow.",
+        "example": "ID"
+      },
+      {
+        "name": "page",
+        "schema": "integer",
+        "description": "The page number used when paginating through a list of results.",
+        "default": 0
+      },
+      {
+        "name": "pageSize",
+        "schema": "integer",
+        "description": "A limit of the number of results to return.",
+        "default": 20
+      },
+      {
+        "name": "email",
+        "schema": "string",
+        "description": "The Ironclad user's email address."
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "403",
+        "description": ""
+      },
+      {
+        "statusCode": "404",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "url": "/workflows/{id}/revert-to-review",
+    "method": "revertToReview",
+    "httpMethod": HttpMethodsEnum.PATCH,
+    "tag": "Workflows",
+    "typeScriptTag": "workflows",
+    "description": "Revert a Workflow to the Review Step",
+    "parameters": [
+      {
+        "name": "id",
+        "schema": "string",
+        "required": true,
+        "description": "The unique identifier or Ironclad ID of a workflow.",
+        "example": "ID"
+      },
+      {
+        "name": "xAsUserEmail",
+        "schema": "string",
+        "required": false,
+        "description": "Filters the list of workflow schemas based on the permissions of a user associated with the specified user email. Permissions can be launch, view, or both. Corresponds to the permissions here: https://support.ironcladapp.com/s/article/Understanding-and-Managing-Permissions",
+        "example": "jane.doe@test.com"
+      },
+      {
+        "name": "xAsUserId",
+        "schema": "string",
+        "required": false,
+        "description": "Filters the list of workflow schemas based on the permissions of a user associated with the specified user id. Permissions can be launch, view, or both. Corresponds to the permissions here: https://support.ironcladapp.com/s/article/Understanding-and-Managing-Permissions",
+        "example": "5f0375c4cdc1927a3c5edcd3"
+      },
+      {
+        "name": "user",
+        "schema": "object",
+        "required": true,
+        "description": ""
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "204",
+        "description": "204"
+      },
+      {
+        "statusCode": "400",
+        "description": ""
+      },
+      {
+        "statusCode": "403",
+        "description": ""
+      },
+      {
+        "statusCode": "404",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "url": "/workflows/{id}/comment",
+    "method": "createComment",
+    "httpMethod": HttpMethodsEnum.POST,
+    "tag": "Workflows",
+    "typeScriptTag": "workflows",
+    "description": "Create a Comment on a Workflow",
+    "parameters": [
+      {
+        "name": "id",
+        "schema": "string",
+        "required": true,
+        "description": "The unique identifier or Ironclad ID of a workflow.",
+        "example": "ID"
+      },
+      {
+        "name": "creator",
+        "schema": "object",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "comment",
+        "schema": "string",
+        "required": true,
+        "description": "",
+        "example": "COMMENT"
+      },
+      {
+        "name": "addUsersToWorkflow",
+        "schema": "boolean",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "repliedToActivityFeedMessageId",
+        "schema": "string",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "204",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "url": "/workflows/{id}/comments",
+    "method": "createComment",
+    "httpMethod": HttpMethodsEnum.POST,
+    "tag": "Workflows",
+    "typeScriptTag": "workflows",
+    "description": "Create a Comment on a Workflow",
+    "parameters": [
+      {
+        "name": "id",
+        "schema": "string",
+        "required": true,
+        "description": "The unique identifier or Ironclad ID of a workflow.",
+        "example": "ID"
+      },
+      {
+        "name": "creator",
+        "schema": "object",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "comment",
+        "schema": "string",
+        "required": true,
+        "description": "",
+        "example": "COMMENT"
+      },
+      {
+        "name": "addUsersToWorkflow",
+        "schema": "boolean",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "repliedToActivityFeedMessageId",
+        "schema": "string",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "url": "/workflows/{id}/attributes",
+    "method": "updateMetadata",
+    "httpMethod": HttpMethodsEnum.PATCH,
+    "tag": "Workflows",
+    "typeScriptTag": "workflows",
+    "description": "Update Workflow Metadata",
+    "parameters": [
+      {
+        "name": "id",
+        "schema": "string",
+        "required": true,
+        "description": "The unique identifier or Ironclad ID of a workflow.",
+        "example": "ID"
+      },
+      {
+        "name": "xAsUserEmail",
+        "schema": "string",
+        "required": false,
+        "description": "Filters the list of workflow schemas based on the permissions of a user associated with the specified user email. Permissions can be launch, view, or both. Corresponds to the permissions here: https://support.ironcladapp.com/s/article/Understanding-and-Managing-Permissions",
+        "example": "jane.doe@test.com"
+      },
+      {
+        "name": "xAsUserId",
+        "schema": "string",
+        "required": false,
+        "description": "Filters the list of workflow schemas based on the permissions of a user associated with the specified user id. Permissions can be launch, view, or both. Corresponds to the permissions here: https://support.ironcladapp.com/s/article/Understanding-and-Managing-Permissions",
+        "example": "5f0375c4cdc1927a3c5edcd3"
+      },
+      {
+        "name": "updates",
+        "schema": "array",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "comment",
+        "schema": "string",
+        "required": false,
+        "description": "",
+        "example": "Changing attribute on a Workflow."
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": ""
+      },
+      {
+        "statusCode": "403",
+        "description": ""
+      },
+      {
+        "statusCode": "404",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "url": "/workflows/{id}/document/{key}/download",
+    "method": "getDocumentByKey",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "Workflows",
+    "typeScriptTag": "workflows",
+    "description": "Retrieve a Workflow Document",
+    "parameters": [
+      {
+        "name": "id",
+        "schema": "string",
+        "required": true,
+        "description": "The unique identifier or Ironclad ID of a workflow.",
+        "example": "ID"
+      },
+      {
+        "name": "key",
+        "schema": "string",
+        "required": true,
+        "description": "The unique identifier for the attachment. This key can be located using the [Retrieve a Workflow](https://developer.ironcladapp.com/reference/retrieve-a-workflow) endpoint. In the response, locate the file attribute (e.g., `draft`) and look at its `download` parameter. The download parameter includes the key at the end of the URL `.../document/{ATTACHMENT_KEY}/download`",
+        "example": "KEY"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "url": "/workflows/{id}/emails",
+    "method": "getEmailThreads",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "Workflows",
+    "typeScriptTag": "workflows",
+    "description": "Retrieve Email Threads from A Workflow",
+    "parameters": [
+      {
+        "name": "id",
+        "schema": "string",
+        "required": true,
+        "description": "The unique identifier of a workflow",
+        "example": "ID"
+      },
+      {
+        "name": "page",
+        "schema": "integer",
+        "description": "The page number used when paginating through a list of results.",
+        "default": 0
+      },
+      {
+        "name": "pageSize",
+        "schema": "integer",
+        "description": "A limit of the number of results to return.",
+        "default": 20
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "404",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "url": "/workflows/{id}/emails/{emailThreadId}",
+    "method": "getEmailThread",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "Workflows",
+    "typeScriptTag": "workflows",
+    "description": "Retrieve an Email Thread from a Specified Workflow",
+    "parameters": [
+      {
+        "name": "id",
+        "schema": "string",
+        "required": true,
+        "description": "The unique identifier of a workflow",
+        "example": "ID"
+      },
+      {
+        "name": "emailThreadId",
+        "schema": "string",
+        "required": true,
+        "description": "The unique identifier of an email thread",
+        "example": "EMAILTHREADID"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "404",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "url": "/workflows/{id}/emails/{emailThreadId}/attachments/{attachmentId}",
+    "method": "getAttachmentFromEmailThread",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "Workflows",
+    "typeScriptTag": "workflows",
+    "description": "Retrieve an Attachment from an Email Thread",
+    "parameters": [
+      {
+        "name": "id",
+        "schema": "string",
+        "required": true,
+        "description": "The unique identifier of a workflow",
+        "example": "ID"
+      },
+      {
+        "name": "emailThreadId",
+        "schema": "string",
+        "required": true,
+        "description": "The unique identifier of an email thread",
+        "example": "EMAILTHREADID"
+      },
+      {
+        "name": "attachmentId",
+        "schema": "string",
+        "required": true,
+        "description": "The unique identifier for the attachment. This key can be located using the [Retrieve email threads from workflow](https://developer.ironcladapp.com/reference/retrieve-emails) endpoint. In the response, locate the file attribute (e.g., `attachments`) and look at its `download` parameter. The download parameter includes the key at the end of the URL `...emails/{emailThreadId}/attachment/{ATTACHMENT_ID}`",
+        "example": "ATTACHMENTID"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "404",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "url": "/workflow-schemas",
+    "method": "listAllWorkflowSchemas",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "Workflows",
+    "typeScriptTag": "workflows",
+    "description": "List All Workflow Schemas",
+    "parameters": [
+      {
+        "name": "form",
+        "schema": "string",
+        "required": true,
+        "description": "The launch form is the only form supported at this time.",
+        "example": "FORM",
+        "default": "launch"
+      },
+      {
+        "name": "xAsUserEmail",
+        "schema": "string",
+        "required": false,
+        "description": "Filters the list of workflow schemas based on the permissions of a user associated with the specified user email. Permissions can be launch, view, or both. Corresponds to the permissions here: https://support.ironcladapp.com/s/article/Understanding-and-Managing-Permissions",
+        "example": "jane.doe@test.com"
+      },
+      {
+        "name": "xAsUserId",
+        "schema": "string",
+        "required": false,
+        "description": "Filters the list of workflow schemas based on the permissions of a user associated with the specified user id. Permissions can be launch, view, or both. Corresponds to the permissions here: https://support.ironcladapp.com/s/article/Understanding-and-Managing-Permissions",
+        "example": "5f0375c4cdc1927a3c5edcd3"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "url": "/workflow-schemas/{id}",
+    "method": "getWorkflowSchema",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "Workflows",
+    "typeScriptTag": "workflows",
+    "description": "Retrieve a Workflow Schema",
+    "parameters": [
+      {
+        "name": "id",
+        "schema": "string",
+        "required": true,
+        "description": "The unique identifier of a schema (see explanation of [Template ID](https://developer.ironcladapp.com/reference/getting-started-api)). A list of identifiers can be retrieved using the `GET /workflow-schemas` endpoint. Only published workflows will have an identifier. ",
+        "example": "ID"
+      },
+      {
+        "name": "form",
+        "schema": "string",
+        "description": "",
+        "default": "launch"
+      },
+      {
+        "name": "xAsUserEmail",
+        "schema": "string",
+        "required": false,
+        "description": "Filters the list of workflow schemas based on the permissions of a user associated with the specified user email. Permissions can be launch, view, or both. Corresponds to the permissions here: https://support.ironcladapp.com/s/article/Understanding-and-Managing-Permissions",
+        "example": "jane.doe@test.com"
+      },
+      {
+        "name": "xAsUserId",
+        "schema": "string",
+        "required": false,
+        "description": "Filters the list of workflow schemas based on the permissions of a user associated with the specified user id. Permissions can be launch, view, or both. Corresponds to the permissions here: https://support.ironcladapp.com/s/article/Understanding-and-Managing-Permissions",
+        "example": "5f0375c4cdc1927a3c5edcd3"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "url": "/records",
+    "method": "listAll",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "Records",
+    "typeScriptTag": "records",
+    "description": "List All Records",
+    "parameters": [
+      {
+        "name": "page",
+        "schema": "integer",
+        "description": "The page number used when paginating through a list of results.",
+        "default": 0
+      },
+      {
+        "name": "pageSize",
+        "schema": "integer",
+        "description": "A limit of the number of results to return.",
+        "default": 20
+      },
+      {
+        "name": "types",
+        "schema": "string",
+        "description": "Comma separated (no spaces) record types to export. Use the [Retrieve Records Schema](https://developer.ironcladapp.com/reference/list-all-records-metadata) endpoint to retrieve a list of types.",
+        "example": "mutualNDA,consultingAgreement"
+      },
+      {
+        "name": "lastUpdated",
+        "schema": "string",
+        "description": "Get records updated since (https://developer.ironcladapp.com/",
+        "example": "2018-03-10T00:00:00.000Z"
+      },
+      {
+        "name": "filter",
+        "schema": "string",
+        "description": "Filter records for those that contain (https://developer.ironcladapp.com/ the specified property with (https://developer.ironcladapp.com/ the specified value. The record property ID should be enclosed in brackets `[ ]` and the value should be enclosed in single quotes `' '`.",
+        "example": "Equals([counterpartyName], 'Test LLC')"
+      },
+      {
+        "name": "sortField",
+        "schema": "string",
+        "description": "The field to sort Records. Only one field is supported in the sort operation.",
+        "default": "agreementDate"
+      },
+      {
+        "name": "sortDirection",
+        "schema": "string",
+        "description": "The direction the records are sorted by in correlation with the `sortField`.",
+        "default": "DESC"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "url": "/records",
+    "method": "createRecord",
+    "httpMethod": HttpMethodsEnum.POST,
+    "tag": "Records",
+    "typeScriptTag": "records",
+    "description": "Create a Record",
+    "parameters": [
+      {
+        "name": "type",
+        "schema": "string",
+        "required": true,
+        "description": "",
+        "example": "TYPE"
+      },
+      {
+        "name": "name",
+        "schema": "string",
+        "required": true,
+        "description": "",
+        "example": "NAME"
+      },
+      {
+        "name": "properties",
+        "schema": "object",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "links",
+        "schema": "array",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "parent",
+        "schema": "object",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "children",
+        "schema": "array",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "url": "/records/smart-import",
+    "method": "getPredictions",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "Records",
+    "typeScriptTag": "records",
+    "description": "Retrieve Predictions",
+    "parameters": [
+      {
+        "name": "recordId",
+        "schema": "string",
+        "required": false,
+        "description": "The ID of the Record for prediction status."
+      },
+      {
+        "name": "importId",
+        "schema": "string",
+        "required": false,
+        "description": "The ID of the Import for prediction statuses."
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": ""
+      },
+      {
+        "statusCode": "403",
+        "description": ""
+      },
+      {
+        "statusCode": "404",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "url": "/records/smart-import",
+    "method": "uploadSmartImportRecord",
+    "httpMethod": HttpMethodsEnum.POST,
+    "tag": "Records",
+    "typeScriptTag": "records",
+    "description": "Create a Smart Import Record",
+    "parameters": [
+      {
+        "name": "attachment",
+        "schema": "string",
+        "required": true,
+        "description": "",
+        "example": "ATTACHMENT"
+      },
+      {
+        "name": "recordType",
+        "schema": "string",
+        "required": false,
+        "description": "",
+        "default": "imported"
+      },
+      {
+        "name": "newRecordTypeId",
+        "schema": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "newRecordTypeDisplayName",
+        "schema": "string",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": ""
+      },
+      {
+        "statusCode": "403",
+        "description": ""
+      },
+      {
+        "statusCode": "404",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "url": "/records/smart-import/{importId}",
+    "method": "uploadSmartImportRecordWithPredictions",
+    "httpMethod": HttpMethodsEnum.POST,
+    "tag": "Records",
+    "typeScriptTag": "records",
+    "description": "Upload a Smart Import Record to an existing Import",
+    "parameters": [
+      {
+        "name": "importId",
+        "schema": "string",
+        "required": true,
+        "description": "The Import Id. You can upload a record to an existing import in the repository. ",
+        "example": "IMPORTID"
+      },
+      {
+        "name": "attachment",
+        "schema": "string",
+        "required": true,
+        "description": "",
+        "example": "ATTACHMENT"
+      },
+      {
+        "name": "recordType",
+        "schema": "string",
+        "required": true,
+        "description": "",
+        "example": "RECORDTYPE",
+        "default": "imported"
+      },
+      {
+        "name": "newRecordTypeId",
+        "schema": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "newRecordTypeDisplayName",
+        "schema": "string",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": ""
+      },
+      {
+        "statusCode": "403",
+        "description": ""
+      },
+      {
+        "statusCode": "404",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "url": "/records/{id}",
+    "method": "deleteRecord",
+    "httpMethod": HttpMethodsEnum.DELETE,
+    "tag": "Records",
+    "typeScriptTag": "records",
+    "description": "Delete a Record",
+    "parameters": [
+      {
+        "name": "id",
+        "schema": "string",
+        "required": true,
+        "description": "The ID or Ironclad ID of the Record.",
+        "example": "ID"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "204",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "url": "/records/{id}",
+    "method": "getRecordData",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "Records",
+    "typeScriptTag": "records",
+    "description": "Retrieve a Record",
+    "parameters": [
+      {
+        "name": "id",
+        "schema": "string",
+        "required": true,
+        "description": "The ID or Ironclad ID of the Record.",
+        "example": "ID"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "url": "/records/{id}",
+    "method": "updateMetadata",
+    "httpMethod": HttpMethodsEnum.PATCH,
+    "tag": "Records",
+    "typeScriptTag": "records",
+    "description": "Update Record Metadata",
+    "parameters": [
+      {
+        "name": "id",
+        "schema": "string",
+        "required": true,
+        "description": "The ID or Ironclad ID of the Record.",
+        "example": "ID"
+      },
+      {
+        "name": "type",
+        "schema": "string",
+        "description": ""
+      },
+      {
+        "name": "name",
+        "schema": "string",
+        "description": ""
+      },
+      {
+        "name": "addProperties",
+        "schema": "object",
+        "description": ""
+      },
+      {
+        "name": "removeProperties",
+        "schema": "array",
+        "description": ""
+      },
+      {
+        "name": "addLinks",
+        "schema": "array",
+        "description": ""
+      },
+      {
+        "name": "removeLinks",
+        "schema": "array",
+        "description": ""
+      },
+      {
+        "name": "setParent",
+        "schema": "object",
+        "description": ""
+      },
+      {
+        "name": "addChildren",
+        "schema": "array",
+        "description": ""
+      },
+      {
+        "name": "removeParent",
+        "schema": "boolean",
+        "description": "",
+        "example": false
+      },
+      {
+        "name": "removeChildren",
+        "schema": "array",
+        "description": ""
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": ""
+      },
+      {
+        "statusCode": "404",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "url": "/records/{id}",
+    "method": "replaceMetadata",
+    "httpMethod": HttpMethodsEnum.PUT,
+    "tag": "Records",
+    "typeScriptTag": "records",
+    "description": "Replace a Record",
+    "parameters": [
+      {
+        "name": "id",
+        "schema": "string",
+        "required": true,
+        "description": "The ID or Ironclad ID of the Record.",
+        "example": "ID"
+      },
+      {
+        "name": "type",
+        "schema": "string",
+        "required": true,
+        "description": "",
+        "example": "TYPE"
+      },
+      {
+        "name": "name",
+        "schema": "string",
+        "required": true,
+        "description": "",
+        "example": "NAME"
+      },
+      {
+        "name": "properties",
+        "schema": "object",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "parent",
+        "schema": "object",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "children",
+        "schema": "array",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "url": "/records/metadata",
+    "method": "getSchema",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "Records",
+    "typeScriptTag": "records",
+    "description": "Retrieve Records Schema",
+    "parameters": [],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "url": "/records/{id}/attachments/{key}",
+    "method": "removeAttachment",
+    "httpMethod": HttpMethodsEnum.DELETE,
+    "tag": "Records",
+    "typeScriptTag": "records",
+    "description": "Delete an Attachment on a Record",
+    "parameters": [
+      {
+        "name": "id",
+        "schema": "string",
+        "required": true,
+        "description": "The ID or Ironclad ID of the Record.",
+        "example": "ID"
+      },
+      {
+        "name": "key",
+        "schema": "string",
+        "required": true,
+        "description": "The attachment key.",
+        "example": "KEY",
+        "default": "signedCopy"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "204",
+        "description": "204"
+      },
+      {
+        "statusCode": "404",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "url": "/records/{id}/attachments/{key}",
+    "method": "getAttachment",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "Records",
+    "typeScriptTag": "records",
+    "description": "Retrieve an Attachment on a Record",
+    "parameters": [
+      {
+        "name": "id",
+        "schema": "string",
+        "required": true,
+        "description": "The ID or Ironclad ID of the Record.",
+        "example": "ID"
+      },
+      {
+        "name": "key",
+        "schema": "string",
+        "required": true,
+        "description": "The attachment key.",
+        "example": "KEY",
+        "default": "signedCopy"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "url": "/records/{id}/attachments/{key}",
+    "method": "createAttachment",
+    "httpMethod": HttpMethodsEnum.POST,
+    "tag": "Records",
+    "typeScriptTag": "records",
+    "description": "Create an Attachment on a Record",
+    "parameters": [
+      {
+        "name": "id",
+        "schema": "string",
+        "required": true,
+        "description": "The ID or Ironclad ID of the Record. For an explanation of Record IDs or Ironclad IDs and how to find them, see [Getting Started](https://developer.ironcladapp.com/reference/getting-started-api).",
+        "example": "ID"
+      },
+      {
+        "name": "key",
+        "schema": "string",
+        "required": true,
+        "description": "The attachment key. You can retrieve a list of available attachment keys with the [Retrieve Records Schema](https://developer.ironcladapp.com/reference/list-all-records-metadata) endpoint.",
+        "example": "KEY",
+        "default": "signedCopy"
+      },
+      {
+        "name": "attachment",
+        "schema": "string",
+        "description": ""
+      },
+      {
+        "name": "metadata",
+        "schema": "object",
+        "description": ""
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "url": "/records/export",
+    "method": "getXlsxExportFile",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "Records",
+    "typeScriptTag": "records",
+    "description": "Retrieve XLSX Export File of Records",
+    "parameters": [
+      {
+        "name": "types",
+        "schema": "string",
+        "description": "Comma separated list of record types to export. Example: `mutualNDA,NDA`"
+      },
+      {
+        "name": "properties",
+        "schema": "string",
+        "description": "IDs of properties to export, comma separated. Example: `counterpartyName,agreementDate`"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "url": "/webhooks",
+    "method": "listAll",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "Webhooks",
+    "typeScriptTag": "webhooks",
+    "description": "List All Webhooks",
+    "parameters": [
+      {
+        "name": "page",
+        "schema": "integer",
+        "description": "The page number used when paginating through a list of results.",
+        "default": 0
+      },
+      {
+        "name": "pageSize",
+        "schema": "integer",
+        "description": "A limit of the number of results to return.",
+        "default": 20
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "url": "/webhooks",
+    "method": "createNew",
+    "httpMethod": HttpMethodsEnum.POST,
+    "tag": "Webhooks",
+    "typeScriptTag": "webhooks",
+    "description": "Create a Webhook",
+    "parameters": [
+      {
+        "name": "events",
+        "schema": "array",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "targetURL",
+        "schema": "string",
+        "required": true,
+        "description": "",
+        "example": "TARGETURL"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "url": "/webhooks/{id}",
+    "method": "deleteSpecific",
+    "httpMethod": HttpMethodsEnum.DELETE,
+    "tag": "Webhooks",
+    "typeScriptTag": "webhooks",
+    "description": "Delete a Webhook",
+    "parameters": [
+      {
+        "name": "id",
+        "schema": "string",
+        "required": true,
+        "description": "The ID of the webhook.",
+        "example": "ID"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "url": "/webhooks/{id}",
+    "method": "getData",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "Webhooks",
+    "typeScriptTag": "webhooks",
+    "description": "Retrieve a Webhook",
+    "parameters": [
+      {
+        "name": "id",
+        "schema": "string",
+        "required": true,
+        "description": "The ID of the webhook.",
+        "example": "ID"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "url": "/webhooks/{id}",
+    "method": "updateWebhookData",
+    "httpMethod": HttpMethodsEnum.PATCH,
+    "tag": "Webhooks",
+    "typeScriptTag": "webhooks",
+    "description": "Update a Webhook",
+    "parameters": [
+      {
+        "name": "id",
+        "schema": "string",
+        "required": true,
+        "description": "The ID of the webhook.",
+        "example": "ID"
+      },
+      {
+        "name": "events",
+        "schema": "array",
+        "description": ""
+      },
+      {
+        "name": "targetURL",
+        "schema": "string",
+        "description": ""
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "url": "/webhooks/verification-key",
+    "method": "getVerificationKey",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "Webhooks",
+    "typeScriptTag": "webhooks",
+    "description": "Retrieve Webhook Verification Key",
+    "parameters": [],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "400",
+        "description": ""
+      }
+    ]
+  }
+]
+    }
+      language="TypeScript"
+      apiTitle="Ironclad Public API"
+      apiBaseUrl="https://ironcladapp.com/public/api/v1"
+      apiVersion="1"
+      endpoints={30}
+      sdkMethods={41}
+      schemas={142}
+      parameters={129}
+      difficulty="Easy"
+      openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/ironclad/openapi.yaml"
+      openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/ironclad/openapi.yaml"
+      developerDocumentation="developer.ironcladapp.com/"
+    />
+  );
+}
+  
