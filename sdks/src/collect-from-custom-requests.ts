@@ -1666,6 +1666,14 @@ const customRequests: Record<string, CustomRequest> = {
     type: "GET",
     url: "https://height-api.xyz/redocusaurus/default.yaml",
   },
+  "hive.com": {
+    lambda: async () => {
+      const urls = await collectEndpointsFromReadme({
+        url: "https://developers.hive.com/reference",
+      });
+      return downloadOpenApiSpecFromReadme({ urls });
+    },
+  },
   "atlassian.com_Jira": {
     type: "GET",
     url: "https://dac-static.atlassian.com/cloud/jira/platform/swagger-v3.v3.json",

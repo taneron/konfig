@@ -1,0 +1,807 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignoreObjectsWithNoProperties: true
+ignorePotentialIncorrectType: true
+operationIds:
+  /actions/create:
+    post: Action_listActions
+  /actions/{actionId}:
+    delete: Action_removeById
+    get: Action_getDetails
+    put: Action_updateActionById
+  /actions/{actionId}/action-history:
+    get: Action_getActionHistory
+  /actions/{actionId}/apply-template:
+    post: Action_applyTemplate
+  /actions/{actionId}/attachments:
+    get: Action_getAttachments
+    post: Action_attachFile
+  /actions/{actionId}/attachments/{attachmentId}:
+    get: Action_getAttachmentById
+  /actions/{actionId}/comments:
+    get: Action_getComments
+    post: Action_createComment
+  /messages/create:
+    post: Message_createNewMessage
+  /project-statuses:
+    post: Project_createStatus
+  /project-statuses/{projectStatusId}:
+    get: Project_getStatus
+  /projects:
+    post: Project_createNewProject
+  /projects/{projectId}:
+    delete: Project_removeById
+    get: Project_getById
+    put: Project_updateById
+  /projects/{projectId}/project-custom-field:
+    post: Project_addCustomField
+  /projects/{projectId}/project-custom-field/{customFieldId}:
+    put: Project_updateCustomField
+  /projects/{projectId}/project-status:
+    post: Project_setStatus
+  /resource-assignments:
+    post: ResourceAssignment_createNewAssignment
+  /resource-assignments/{resourceAssignmentId}:
+    delete: ResourceAssignment_removeById
+    get: ResourceAssignment_getById
+    put: ResourceAssignment_updateAssignmentById
+  /teams:
+    post: Team_addNewTeam
+  /teams/{teamId}:
+    delete: Team_deleteTeam
+    put: Team_updateTeamById
+  /teams/{teamId}/add-members:
+    post: Team_addMembers
+  /teams/{teamId}/remove-members:
+    post: Team_removeMembers
+  /users:
+    get: User_listByEmail
+  /users/{userId}:
+    get: User_getUserById
+    put: User_updateUser
+  /webhooks:
+    post: Webhook_createHandler
+  /webhooks/{webhookId}:
+    delete: Webhook_removeHandler
+  /workspaces:
+    get: Workspace_listAllWorkspaces
+  /workspaces/{workspaceId}/actions:
+    get: Workspace_getActions
+  /workspaces/{workspaceId}/actiontemplates:
+    get: Workspace_getActionTemplates
+  /workspaces/{workspaceId}/custom-fields:
+    get: Workspace_getCustomFields
+    post: Workspace_createCustomField
+  /workspaces/{workspaceId}/custom-fields/{customFieldId}:
+    get: Workspace_getCustomField
+  /workspaces/{workspaceId}/custom-tags:
+    get: Workspace_getCustomTags
+    post: Workspace_createCustomTag
+  /workspaces/{workspaceId}/custom-tags/{customTagId}:
+    delete: Workspace_deleteCustomTag
+    get: Workspace_getCustomTag
+    put: Workspace_updateCustomTag
+  /workspaces/{workspaceId}/external-users:
+    get: User_listExternalUsers
+  /workspaces/{workspaceId}/groups:
+    get: Workspace_getChatGroups
+  /workspaces/{workspaceId}/labels:
+    get: Workspace_getAllLabels
+    post: Workspace_createLabel
+  /workspaces/{workspaceId}/labels/{labelId}:
+    delete: Workspace_deleteLabel
+    get: Workspace_getLabelRoleTags
+    put: Workspace_updateLabel
+  /workspaces/{workspaceId}/project-statuses:
+    get: Project_getStatuses
+  /workspaces/{workspaceId}/projects:
+    get: Project_listForWorkspace
+  /workspaces/{workspaceId}/projects/{projectId}/project-tags:
+    get: Project_getTags
+  /workspaces/{workspaceId}/projects/{projectId}/project-tags/{projectTagId}:
+    get: Project_getTagById
+    put: Project_updateTag
+  /workspaces/{workspaceId}/resource-assignments:
+    get: Workspace_listResourceAssignments
+  /workspaces/{workspaceId}/role-tags:
+    get: Workspace_listRoleTags
+    post: Workspace_createRoleTag
+  /workspaces/{workspaceId}/role-tags/{roleTagId}:
+    delete: Workspace_removeRoleTag
+    put: Workspace_updateRoleTag
+  /workspaces/{workspaceId}/teams:
+    get: Team_getAll
+  /workspaces/{workspaceId}/user-settings/{userId}:
+    get: User_getUserTagByWorkspace
+    put: User_updateUserSettings
+  /workspaces/{workspaceId}/users:
+    delete: User_removeFromWorkspace
+    get: User_getWorkspaceUsers
+    post: User_inviteNewUser
+  /workspaces/{workspaceId}/users/{userId}/role-tags:
+    get: User_getUserRoleTag
+  /workspaces/{workspaceId}/users/{userId}/role-tags/{roleTagId}:
+    put: User_updateRoleTag
+  /workspaces/{workspaceId}/users/{userId}/user-tags:
+    get: User_getUserTags
+  /workspaces/{workspaceId}/users/{userId}/user-tags/{userTagId}:
+    get: User_getUserTag
+    put: User_updateTag
+operationTags:
+  /actions/create:
+    post: Action
+  /actions/{actionId}:
+    delete: Action
+    get: Action
+    put: Action
+  /actions/{actionId}/action-history:
+    get: Action
+  /actions/{actionId}/apply-template:
+    post: Action
+  /actions/{actionId}/attachments:
+    get: Action
+    post: Action
+  /actions/{actionId}/attachments/{attachmentId}:
+    get: Action
+  /actions/{actionId}/comments:
+    get: Action
+    post: Action
+  /messages/create:
+    post: Message
+  /project-statuses:
+    post: Project
+  /project-statuses/{projectStatusId}:
+    get: Project
+  /projects:
+    post: Project
+  /projects/{projectId}:
+    delete: Project
+    get: Project
+    put: Project
+  /projects/{projectId}/project-custom-field:
+    post: Project
+  /projects/{projectId}/project-custom-field/{customFieldId}:
+    put: Project
+  /projects/{projectId}/project-status:
+    post: Project
+  /resource-assignments:
+    post: ResourceAssignment
+  /resource-assignments/{resourceAssignmentId}:
+    delete: ResourceAssignment
+    get: ResourceAssignment
+    put: ResourceAssignment
+  /teams:
+    post: Team
+  /teams/{teamId}:
+    delete: Team
+    put: Team
+  /teams/{teamId}/add-members:
+    post: Team
+  /teams/{teamId}/remove-members:
+    post: Team
+  /users:
+    get: User
+  /users/{userId}:
+    get: User
+    put: User
+  /webhooks:
+    post: Webhook
+  /webhooks/{webhookId}:
+    delete: Webhook
+  /workspaces:
+    get: Workspace
+  /workspaces/{workspaceId}/actions:
+    get: Workspace
+  /workspaces/{workspaceId}/actiontemplates:
+    get: Workspace
+  /workspaces/{workspaceId}/custom-fields:
+    get: Workspace
+    post: Workspace
+  /workspaces/{workspaceId}/custom-fields/{customFieldId}:
+    get: Workspace
+  /workspaces/{workspaceId}/custom-tags:
+    get: Workspace
+    post: Workspace
+  /workspaces/{workspaceId}/custom-tags/{customTagId}:
+    delete: Workspace
+    get: Workspace
+    put: Workspace
+  /workspaces/{workspaceId}/external-users:
+    get: User
+  /workspaces/{workspaceId}/groups:
+    get: Workspace
+  /workspaces/{workspaceId}/labels:
+    get: Workspace
+    post: Workspace
+  /workspaces/{workspaceId}/labels/{labelId}:
+    delete: Workspace
+    get: Workspace
+    put: Workspace
+  /workspaces/{workspaceId}/project-statuses:
+    get: Project
+  /workspaces/{workspaceId}/projects:
+    get: Project
+  /workspaces/{workspaceId}/projects/{projectId}/project-tags:
+    get: Project
+  /workspaces/{workspaceId}/projects/{projectId}/project-tags/{projectTagId}:
+    get: Project
+    put: Project
+  /workspaces/{workspaceId}/resource-assignments:
+    get: Workspace
+  /workspaces/{workspaceId}/role-tags:
+    get: Workspace
+    post: Workspace
+  /workspaces/{workspaceId}/role-tags/{roleTagId}:
+    delete: Workspace
+    put: Workspace
+  /workspaces/{workspaceId}/teams:
+    get: Team
+  /workspaces/{workspaceId}/user-settings/{userId}:
+    get: User
+    put: User
+  /workspaces/{workspaceId}/users:
+    delete: User
+    get: User
+    post: User
+  /workspaces/{workspaceId}/users/{userId}/role-tags:
+    get: User
+  /workspaces/{workspaceId}/users/{userId}/role-tags/{roleTagId}:
+    put: User
+  /workspaces/{workspaceId}/users/{userId}/user-tags:
+    get: User
+  /workspaces/{workspaceId}/users/{userId}/user-tags/{userTagId}:
+    get: User
+    put: User
+renameTags: {}
+requestSchemaNames:
+  /actions/create:
+    post:
+      application/json: ActionListActionsRequest
+  /actions/{actionId}:
+    put:
+      application/json: ActionUpdateActionByIdRequest
+  /actions/{actionId}/apply-template:
+    post:
+      application/json: ActionApplyTemplateRequest
+  /actions/{actionId}/attachments:
+    post:
+      application/json: ActionAttachFileRequest
+  /actions/{actionId}/comments:
+    post:
+      application/json: ActionCreateCommentRequest
+  /messages/create:
+    post:
+      application/json: MessageCreateNewMessageRequest
+  /project-statuses:
+    post:
+      application/json: ProjectCreateStatusRequest
+  /projects:
+    post:
+      application/json: ProjectCreateNewProjectRequest
+  /projects/{projectId}:
+    put:
+      application/json: ProjectUpdateByIdRequest
+  /projects/{projectId}/project-custom-field:
+    post:
+      application/json: ProjectAddCustomFieldRequest
+  /projects/{projectId}/project-custom-field/{customFieldId}:
+    put:
+      application/json: ProjectUpdateCustomFieldRequest
+  /projects/{projectId}/project-status:
+    post:
+      application/json: ProjectSetStatusRequest
+  /resource-assignments:
+    post:
+      application/json: ResourceAssignmentCreateNewAssignmentRequest
+  /resource-assignments/{resourceAssignmentId}:
+    put:
+      application/json: ResourceAssignmentUpdateAssignmentByIdRequest
+  /teams:
+    post:
+      application/json: TeamAddNewTeamRequest
+  /teams/{teamId}:
+    put:
+      application/json: TeamUpdateTeamByIdRequest
+  /teams/{teamId}/add-members:
+    post:
+      application/json: TeamAddMembersRequest
+  /teams/{teamId}/remove-members:
+    post:
+      application/json: TeamRemoveMembersRequest
+  /users/{userId}:
+    put:
+      application/json: UserUpdateUserRequest
+  /webhooks:
+    post:
+      application/json: WebhookCreateHandlerRequest
+  /workspaces/{workspaceId}/activity-feeds:
+    post:
+      application/json: WorkspacesworkspaceidactivityFeedsRequest
+  /workspaces/{workspaceId}/custom-fields:
+    post:
+      application/json: WorkspaceCreateCustomFieldRequest
+  /workspaces/{workspaceId}/custom-tags:
+    post:
+      application/json: WorkspaceCreateCustomTagRequest
+  /workspaces/{workspaceId}/custom-tags/{customTagId}:
+    put:
+      application/json: WorkspaceUpdateCustomTagRequest
+  /workspaces/{workspaceId}/labels:
+    post:
+      application/json: WorkspaceCreateLabelRequest
+  /workspaces/{workspaceId}/labels/{labelId}:
+    put:
+      application/json: WorkspaceUpdateLabelRequest
+  /workspaces/{workspaceId}/projects/{projectId}/project-tags/{projectTagId}:
+    put:
+      application/json: ProjectUpdateTagRequest
+  /workspaces/{workspaceId}/role-tags:
+    post:
+      application/json: WorkspaceCreateRoleTagRequest
+  /workspaces/{workspaceId}/role-tags/{roleTagId}:
+    put:
+      application/json: WorkspaceUpdateRoleTagRequest
+  /workspaces/{workspaceId}/user-settings/{userId}:
+    put:
+      application/json: UserUpdateUserSettingsRequest
+  /workspaces/{workspaceId}/users:
+    delete:
+      application/json: UserRemoveFromWorkspaceRequest
+    post:
+      application/json: UserInviteNewUserRequest
+  /workspaces/{workspaceId}/users/{userId}/user-tags/{userTagId}:
+    put:
+      application/json: UserUpdateTagRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /actions/create:
+    post:
+      '200':
+        application/json: ActionListActionsResponse
+      '400':
+        application/json: ActionListActions400Response
+  /actions/{actionId}:
+    delete:
+      '200':
+        application/json: ActionRemoveByIdResponse
+      '400':
+        application/json: ActionRemoveById400Response
+    get:
+      '200':
+        application/json: ActionGetDetailsResponse
+      '400':
+        application/json: ActionGetDetails400Response
+    put:
+      '200':
+        application/json: ActionUpdateActionByIdResponse
+      '400':
+        application/json: ActionUpdateActionById400Response
+  /actions/{actionId}/action-history:
+    get:
+      '200':
+        application/json: ActionGetActionHistoryResponse
+      '400':
+        application/json: ActionGetActionHistory400Response
+  /actions/{actionId}/apply-template:
+    post:
+      '200':
+        application/json: ActionApplyTemplateResponse
+      '400':
+        application/json: ActionApplyTemplate400Response
+  /actions/{actionId}/attachments:
+    get:
+      '200':
+        application/json: ActionGetAttachmentsResponse
+      '400':
+        application/json: ActionGetAttachments400Response
+    post:
+      '200':
+        application/json: ActionAttachFileResponse
+      '400':
+        application/json: ActionAttachFile400Response
+  /actions/{actionId}/attachments/{attachmentId}:
+    get:
+      '200':
+        application/json: ActionGetAttachmentByIdResponse
+      '400':
+        application/json: ActionGetAttachmentById400Response
+  /actions/{actionId}/comments:
+    get:
+      '200':
+        application/json: ActionGetCommentsResponse
+      '400':
+        application/json: ActionGetComments400Response
+    post:
+      '200':
+        application/json: ActionCreateCommentResponse
+      '400':
+        application/json: ActionCreateComment400Response
+  /messages/create:
+    post:
+      '200':
+        application/json: MessageCreateNewMessageResponse
+      '400':
+        application/json: MessageCreateNewMessage400Response
+  /project-statuses:
+    post:
+      '200':
+        application/json: ProjectCreateStatusResponse
+      '400':
+        application/json: ProjectCreateStatus400Response
+  /project-statuses/{projectStatusId}:
+    get:
+      '200':
+        application/json: ProjectGetStatusResponse
+      '400':
+        application/json: ProjectGetStatus400Response
+  /projects:
+    post:
+      '200':
+        application/json: ProjectCreateNewProjectResponse
+      '400':
+        application/json: ProjectCreateNewProject400Response
+  /projects/{projectId}:
+    delete:
+      '200':
+        application/json: ProjectRemoveByIdResponse
+      '400':
+        application/json: ProjectRemoveById400Response
+    get:
+      '200':
+        application/json: ProjectGetByIdResponse
+      '400':
+        application/json: ProjectGetById400Response
+    put:
+      '200':
+        application/json: ProjectUpdateByIdResponse
+      '400':
+        application/json: ProjectUpdateById400Response
+  /projects/{projectId}/project-custom-field:
+    post:
+      '200':
+        application/json: ProjectAddCustomFieldResponse
+      '400':
+        application/json: ProjectAddCustomField400Response
+  /projects/{projectId}/project-custom-field/{customFieldId}:
+    put:
+      '200':
+        application/json: ProjectUpdateCustomFieldResponse
+      '400':
+        application/json: ProjectUpdateCustomField400Response
+  /projects/{projectId}/project-status:
+    post:
+      '200':
+        application/json: ProjectSetStatusResponse
+      '400':
+        application/json: ProjectSetStatus400Response
+  /resource-assignments:
+    post:
+      '200':
+        application/json: ResourceAssignmentCreateNewAssignmentResponse
+      '400':
+        application/json: ResourceAssignmentCreateNewAssignment400Response
+  /resource-assignments/{resourceAssignmentId}:
+    delete:
+      '200':
+        application/json: ResourceAssignmentRemoveByIdResponse
+      '400':
+        application/json: ResourceAssignmentRemoveById400Response
+    get:
+      '200':
+        application/json: ResourceAssignmentGetByIdResponse
+      '400':
+        application/json: ResourceAssignmentGetById400Response
+    put:
+      '200':
+        application/json: ResourceAssignmentUpdateAssignmentByIdResponse
+      '400':
+        application/json: ResourceAssignmentUpdateAssignmentById400Response
+  /teams:
+    post:
+      '200':
+        application/json: TeamAddNewTeamResponse
+      '400':
+        application/json: TeamAddNewTeam400Response
+  /teams/{teamId}:
+    delete:
+      '200':
+        application/json: TeamDeleteTeamResponse
+      '400':
+        application/json: TeamDeleteTeam400Response
+    put:
+      '200':
+        application/json: TeamUpdateTeamByIdResponse
+      '400':
+        application/json: TeamUpdateTeamById400Response
+  /teams/{teamId}/add-members:
+    post:
+      '200':
+        application/json: TeamAddMembersResponse
+      '400':
+        application/json: TeamAddMembers400Response
+  /teams/{teamId}/remove-members:
+    post:
+      '200':
+        application/json: TeamRemoveMembersResponse
+      '400':
+        application/json: TeamRemoveMembers400Response
+  /users:
+    get:
+      '200':
+        application/json: UserListByEmailResponse
+      '400':
+        application/json: UserListByEmail400Response
+  /users/{userId}:
+    get:
+      '200':
+        application/json: UserGetUserByIdResponse
+      '400':
+        application/json: UserGetUserById400Response
+    put:
+      '200':
+        application/json: UserUpdateUserResponse
+      '400':
+        application/json: UserUpdateUser400Response
+  /webhooks:
+    post:
+      '201':
+        application/json: WebhookCreateHandlerResponse
+      '400':
+        application/json: WebhookCreateHandler400Response
+  /webhooks/{webhookId}:
+    delete:
+      '200':
+        application/json: WebhookRemoveHandlerResponse
+      '400':
+        application/json: WebhookRemoveHandler400Response
+  /workspaces:
+    get:
+      '200':
+        application/json: WorkspaceListAllWorkspacesResponse
+      '400':
+        application/json: WorkspaceListAllWorkspaces400Response
+  /workspaces/{workspaceId}/actions:
+    get:
+      '200':
+        application/json: WorkspaceGetActionsResponse
+      '400':
+        application/json: WorkspaceGetActions400Response
+  /workspaces/{workspaceId}/actiontemplates:
+    get:
+      '200':
+        application/json: WorkspaceGetActionTemplatesResponse
+      '400':
+        application/json: WorkspaceGetActionTemplates400Response
+  /workspaces/{workspaceId}/activity-feeds:
+    post:
+      '200':
+        application/json: WorkspacesworkspaceidactivityFeedsResponse
+      '400':
+        application/json: WorkspacesworkspaceidactivityFeeds400Response
+  /workspaces/{workspaceId}/custom-fields:
+    get:
+      '200':
+        application/json: WorkspaceGetCustomFieldsResponse
+      '400':
+        application/json: WorkspaceGetCustomFields400Response
+    post:
+      '200':
+        application/json: WorkspaceCreateCustomFieldResponse
+      '400':
+        application/json: WorkspaceCreateCustomField400Response
+  /workspaces/{workspaceId}/custom-fields/{customFieldId}:
+    get:
+      '200':
+        application/json: WorkspaceGetCustomFieldResponse
+      '400':
+        application/json: WorkspaceGetCustomField400Response
+  /workspaces/{workspaceId}/custom-tags:
+    get:
+      '200':
+        application/json: WorkspaceGetCustomTagsResponse
+      '400':
+        application/json: WorkspaceGetCustomTags400Response
+    post:
+      '200':
+        application/json: WorkspaceCreateCustomTagResponse
+      '400':
+        application/json: WorkspaceCreateCustomTag400Response
+  /workspaces/{workspaceId}/custom-tags/{customTagId}:
+    delete:
+      '200':
+        application/json: WorkspaceDeleteCustomTagResponse
+      '400':
+        application/json: WorkspaceDeleteCustomTag400Response
+    get:
+      '200':
+        application/json: WorkspaceGetCustomTagResponse
+      '400':
+        application/json: WorkspaceGetCustomTag400Response
+    put:
+      '200':
+        application/json: WorkspaceUpdateCustomTagResponse
+      '400':
+        application/json: WorkspaceUpdateCustomTag400Response
+  /workspaces/{workspaceId}/external-users:
+    get:
+      '200':
+        application/json: UserListExternalUsersResponse
+      '400':
+        application/json: UserListExternalUsers400Response
+  /workspaces/{workspaceId}/groups:
+    get:
+      '200':
+        application/json: WorkspaceGetChatGroupsResponse
+      '400':
+        application/json: WorkspaceGetChatGroups400Response
+  /workspaces/{workspaceId}/labels:
+    get:
+      '200':
+        application/json: WorkspaceGetAllLabelsResponse
+      '400':
+        application/json: WorkspaceGetAllLabels400Response
+    post:
+      '200':
+        application/json: WorkspaceCreateLabelResponse
+      '400':
+        application/json: WorkspaceCreateLabel400Response
+  /workspaces/{workspaceId}/labels/{labelId}:
+    delete:
+      '200':
+        application/json: WorkspaceDeleteLabelResponse
+      '400':
+        application/json: WorkspaceDeleteLabel400Response
+    get:
+      '200':
+        application/json: WorkspaceGetLabelRoleTagsResponse
+      '400':
+        application/json: WorkspaceGetLabelRoleTags400Response
+    put:
+      '200':
+        application/json: WorkspaceUpdateLabelResponse
+      '400':
+        application/json: WorkspaceUpdateLabel400Response
+  /workspaces/{workspaceId}/project-statuses:
+    get:
+      '200':
+        application/json: ProjectGetStatusesResponse
+      '400':
+        application/json: ProjectGetStatuses400Response
+  /workspaces/{workspaceId}/projects:
+    get:
+      '200':
+        application/json: ProjectListForWorkspaceResponse
+      '400':
+        application/json: ProjectListForWorkspace400Response
+  /workspaces/{workspaceId}/projects/{projectId}/project-tags:
+    get:
+      '200':
+        application/json: ProjectGetTagsResponse
+      '400':
+        application/json: ProjectGetTags400Response
+  /workspaces/{workspaceId}/projects/{projectId}/project-tags/{projectTagId}:
+    get:
+      '200':
+        application/json: ProjectGetTagByIdResponse
+      '400':
+        application/json: ProjectGetTagById400Response
+    put:
+      '200':
+        application/json: ProjectUpdateTagResponse
+      '400':
+        application/json: ProjectUpdateTag400Response
+  /workspaces/{workspaceId}/resource-assignments:
+    get:
+      '200':
+        application/json: WorkspaceListResourceAssignmentsResponse
+      '400':
+        application/json: WorkspaceListResourceAssignments400Response
+  /workspaces/{workspaceId}/role-tags:
+    get:
+      '200':
+        application/json: WorkspaceListRoleTagsResponse
+      '400':
+        application/json: WorkspaceListRoleTags400Response
+    post:
+      '200':
+        application/json: WorkspaceCreateRoleTagResponse
+      '400':
+        application/json: WorkspaceCreateRoleTag400Response
+  /workspaces/{workspaceId}/role-tags/{roleTagId}:
+    delete:
+      '200':
+        application/json: WorkspaceRemoveRoleTagResponse
+      '400':
+        application/json: WorkspaceRemoveRoleTag400Response
+    put:
+      '200':
+        application/json: WorkspaceUpdateRoleTagResponse
+      '400':
+        application/json: WorkspaceUpdateRoleTag400Response
+  /workspaces/{workspaceId}/teams:
+    get:
+      '200':
+        application/json: TeamGetAllResponse
+      '400':
+        application/json: TeamGetAll400Response
+  /workspaces/{workspaceId}/user-settings/{userId}:
+    get:
+      '200':
+        application/json: UserGetUserTagByWorkspaceResponse
+      '400':
+        application/json: UserGetUserTagByWorkspace400Response
+    put:
+      '200':
+        application/json: UserUpdateUserSettingsResponse
+      '400':
+        application/json: UserUpdateUserSettings400Response
+  /workspaces/{workspaceId}/users:
+    delete:
+      '204':
+        application/json: UserRemoveFromWorkspaceResponse
+      '400':
+        application/json: UserRemoveFromWorkspace400Response
+    get:
+      '200':
+        application/json: UserGetWorkspaceUsersResponse
+      '400':
+        application/json: UserGetWorkspaceUsers400Response
+    post:
+      '200':
+        application/json: UserInviteNewUserResponse
+      '400':
+        application/json: UserInviteNewUser400Response
+  /workspaces/{workspaceId}/users/{userId}/role-tags:
+    get:
+      '200':
+        application/json: UserGetUserRoleTagResponse
+      '400':
+        application/json: UserGetUserRoleTag400Response
+  /workspaces/{workspaceId}/users/{userId}/role-tags/{roleTagId}:
+    put:
+      '200':
+        application/json: UserUpdateRoleTagResponse
+      '400':
+        application/json: UserUpdateRoleTag400Response
+  /workspaces/{workspaceId}/users/{userId}/user-tags:
+    get:
+      '200':
+        application/json: UserGetUserTagsResponse
+      '400':
+        application/json: UserGetUserTags400Response
+  /workspaces/{workspaceId}/users/{userId}/user-tags/{userTagId}:
+    get:
+      '200':
+        application/json: UserGetUserTagResponse
+      '400':
+        application/json: UserGetUserTag400Response
+    put:
+      '200':
+        application/json: UserUpdateTagResponse
+      '400':
+        application/json: UserUpdateTag400Response
+securityParameters:
+  after:
+    query: false
+  before:
+    query: false
+  email:
+    query: false
+  filters:
+    query: false
+  first:
+    query: false
+  last:
+    query: false
+  limit:
+    query: false
+  projectId:
+    query: false
+  skip:
+    query: false
+  sortBy:
+    query: false
+  type:
+    query: false
+validServerUrls: {}
