@@ -1,0 +1,1086 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+operationIds:
+  /projects/api/v3/activity/{activityLogId}:
+    delete: Activity_deleteActivityItem
+  /projects/api/v3/allocations/{allocationId}/time.json:
+    get: TimeTracking_getTimeEntriesForAllocation
+  /projects/api/v3/budget/notifications/{notificationId}.json:
+    delete: Budgets_deleteNotification
+    patch: Budgets_updateNotification
+  /projects/api/v3/budgets/:id/tasklists/budgets/bulk/add.json:
+    post: Budgets_createTasklistBudgets
+  /projects/api/v3/calendar/events.csv:
+    get: CalendarEvents_generateAgendaReportCsv
+  /projects/api/v3/calendar/events.html:
+    get: CalendarEvents_generateAgendaReportHtml
+  /projects/api/v3/calendar/events.pdf:
+    get: CalendarEvents_generateAgendaReportPdf
+  /projects/api/v3/calendar/events.xlsx:
+    get: CalendarEvents_generateAgendaReportXlsx
+  /projects/api/v3/companies.json:
+    get: Companies_getAll
+    post: Companies_createNewCompany
+  /projects/api/v3/companies/time.json:
+    get: TimeTracking_getAllEntriesGroupedByCompany
+  /projects/api/v3/companies/{companyId}.json:
+    delete: Companies_deleteExistingCompany
+    get: Companies_getSpecificCompany
+    patch: Companies_updateProperties
+  /projects/api/v3/companies/{companyId}/customfields.json:
+    get: CustomFields_getValues
+    post: CustomFields_addValue
+  /projects/api/v3/companies/{companyId}/customfields/bulk/delete.json:
+    post: CustomFields_bulkDelete
+  /projects/api/v3/companies/{companyId}/customfields/bulk/update.json:
+    post: CustomFields_updateManyValues
+  /projects/api/v3/companies/{companyId}/customfields/{customFieldId}.json:
+    delete: CustomFields_deleteCompanyCustomFieldValue
+    get: CustomFields_getCompanyCustomFieldValue
+    patch: CustomFields_updateCompanyCustomFieldValue
+  /projects/api/v3/customfields.json:
+    get: CustomFields_listAll
+    post: CustomFields_createNewField
+  /projects/api/v3/customfields/bulk/delete.json:
+    post: CustomFields_deleteManyAtOnce
+  /projects/api/v3/customfields/{customFieldId}.json:
+    delete: CustomFields_deleteField
+    get: CustomFields_getById
+    patch: CustomFields_updateExistingField
+    put: CustomFields_updateExistingField
+  /projects/api/v3/dashboards.json:
+    get: Dashboards_getAll
+  /projects/api/v3/features.json:
+    get: Features_listAccessible
+  /projects/api/v3/files/{fileId}/comments.json:
+    get: FileComments_getList
+  /projects/api/v3/fileversions/{id}/comments.json:
+    get: FileVersionComments_getList
+  /projects/api/v3/forms.json:
+    get: Forms_getAll
+    post: Forms_createNewForm
+  /projects/api/v3/forms/public/{token}.json:
+    get: FormsPublic_getByToken
+  /projects/api/v3/forms/{formID}/copy.json:
+    post: FormsPublic_copyForm
+  /projects/api/v3/forms/{formId}.json:
+    delete: Forms_deleteExistingForm
+    get: Forms_getSpecificForm
+    patch: Forms_updateExistingForm
+  /projects/api/v3/forms/{formId}/draft.json:
+    get: Forms_getDraftForm
+  /projects/api/v3/importer/stats.json:
+    get: Importers_getStats
+  /projects/api/v3/latestactivity.json:
+    get: Activity_listAllProjectsActivity
+  /projects/api/v3/me/timers.json:
+    get: TimeTracking_getAllRunningTimers
+    post: TimeTracking_createNewTimer
+  /projects/api/v3/me/timers/{timerId}.json:
+    delete: TimeTracking_deleteTimerById
+    put: TimeTracking_editTimerFields
+  /projects/api/v3/me/timers/{timerId}/complete.json:
+    put: TimeTracking_completeTimerById
+  /projects/api/v3/me/timers/{timerId}/pause.json:
+    put: TimeTracking_pauseTimerById
+  /projects/api/v3/me/timers/{timerId}/resume.json:
+    put: TimeTracking_resumeTimerById
+  /projects/api/v3/me/timers/{timerId}/undelete.json:
+    put: TimeTracking_restoreTimerItem
+  /projects/api/v3/messages.json:
+    get: Messages_getAll
+  /projects/api/v3/messages/{messageId}.json:
+    get: Messages_getSpecificMessage
+    patch: Messages_updateFields
+  /projects/api/v3/milestones.json:
+    get: Milestones_getAll
+  /projects/api/v3/milestones/metrics/deadlines.json:
+    get: Milestones_getMilestonesByDueDate
+  /projects/api/v3/milestones/{milestonId}.json:
+    get: Milestones_getById
+  /projects/api/v3/milestones/{milestoneId}/comments.json:
+    get: MilestoneComments_getList
+  /projects/api/v3/notebooks.json:
+    get: Notebooks_listNotebooks
+  /projects/api/v3/notebooks/{notebookId}.json:
+    delete: Notebooks_deleteExistingNotebook
+    get: Notebooks_getSpecificNotebook
+    patch: Notebooks_editFields
+  /projects/api/v3/notebooks/{notebookId}/comments.json:
+    get: NotebookComments_getList
+  /projects/api/v3/notebooks/{notebookId}/compare.json:
+    get: Notebooks_compareVersionsContentDiff
+  /projects/api/v3/notebooks/{notebookId}/lock.json:
+    put: Notebooks_lockNotebook
+  /projects/api/v3/notebooks/{notebookId}/unlock.json:
+    put: Notebooks_unlockNotebook
+  /projects/api/v3/notebooks/{notebookId}/versions.json:
+    delete: Notebooks_deleteVersions
+    get: Notebooks_getVersionsList
+  /projects/api/v3/notebooks/{notebookId}/versions/{versionId}.json:
+    get: Notebooks_getVersion
+  /projects/api/v3/people.json:
+    get: People_getAll
+  /projects/api/v3/people/metrics/performance.json:
+    get: People_listCompletedUserTasks
+  /projects/api/v3/people/utilization.json:
+    get: People_getUserUtilization
+  /projects/api/v3/people/{personId}.json:
+    delete: People_deletePerson
+    get: Person_getRecord
+  /projects/api/v3/projectcategories.json:
+    get: Categories_list
+  /projects/api/v3/projectcategories/{categoryId}.json:
+    get: Categories_getSpecificCategory
+  /projects/api/v3/projects.json:
+    get: Projects_listProjectsFilteredByCustomFields
+  /projects/api/v3/projects/budgets/:budgetId/tasklists/budgets/:tasklistId.json:
+    patch: Budgets_updateTasklistBudget
+  /projects/api/v3/projects/budgets/:id/tasklists/budgets.json:
+    get: Budgets_getAllTasklistBudgets
+    put: Budgets_addOrUpdateTaskListBudgets
+  /projects/api/v3/projects/featureorder.json:
+    put: Projects_setDefaultFeaturesOrder
+  /projects/api/v3/projects/metrics/active.json:
+    get: Projects_getActiveCount
+  /projects/api/v3/projects/metrics/billable.json:
+    get: Projects_getTotalBillableTime
+  /projects/api/v3/projects/metrics/healths.json:
+    get: Projects_getAllHealthSummaries
+  /projects/api/v3/projects/metrics/invoice.json:
+    get: Projects_getAllOpenInvoices
+  /projects/api/v3/projects/metrics/owners.json:
+    get: Projects_countOwnedProjects
+  /projects/api/v3/projects/metrics/unbilled.json:
+    get: Projects_getUnbilledExpenses
+  /projects/api/v3/projects/starred.json:
+    get: Projects_listStarredProjects
+  /projects/api/v3/projects/teamwork/categories.json:
+    get: Categories_list
+  /projects/api/v3/projects/teamwork/samples.json:
+    get: Projects_listTeamworkSamples
+  /projects/api/v3/projects/templates.json:
+    get: Projects_listProjectTemplates
+  /projects/api/v3/projects/tentative/{projectId}/convert.json:
+    put: Projects_convertTentativeProject
+  /projects/api/v3/projects/updates.json:
+    get: ProjectUpdates_getAllUpdates
+  /projects/api/v3/projects/{projectIds}/updates.json:
+    get: ProjectUpdates_getAllUpdates
+  /projects/api/v3/projects/{projectId}.json:
+    get: Projects_getProjectByCustomFields
+  /projects/api/v3/projects/{projectId}/activity:
+    delete: Activity_deleteProjectActivityLog
+  /projects/api/v3/projects/{projectId}/customfields.json:
+    get: CustomFields_getProjectCustomFieldValues
+    post: CustomFields_addValue
+  /projects/api/v3/projects/{projectId}/customfields/bulk/delete.json:
+    post: CustomFields_deleteManyValues
+  /projects/api/v3/projects/{projectId}/customfields/bulk/update.json:
+    post: CustomFields_updateManyValues
+  /projects/api/v3/projects/{projectId}/customfields/{customFieldId}.json:
+    delete: CustomFields_deleteExistingValue
+    get: CustomFields_getProjectCustomFieldValue
+    patch: CustomFields_updateValue
+  /projects/api/v3/projects/{projectId}/featureorder.json:
+    get: Projects_getFeatureOrder
+    put: Projects_updateFeatureOrder
+  /projects/api/v3/projects/{projectId}/latestactivity:
+    get: Activity_listProjectLatestActivity
+  /projects/api/v3/projects/{projectId}/milestones.json:
+    get: Milestones_list
+  /projects/api/v3/projects/{projectId}/notebooks.json:
+    post: Notebooks_createNewNotebook
+  /projects/api/v3/projects/{projectId}/people.json:
+    get: People_getAllOnProject
+    put: People_addToProject
+  /projects/api/v3/projects/{projectId}/people/{personId}.json:
+    get: Person_getRecord
+  /projects/api/v3/projects/{projectId}/risks:
+    get: Risks_forProjectGet
+  /projects/api/v3/projects/{projectId}/risks/copy:
+    put: Risks_copyProjectRiskRegister
+  /projects/api/v3/projects/{projectId}/summary.json:
+    get: Summary_getProjectSummaryDashboardByProjectCustomFields
+  /projects/api/v3/projects/{projectId}/tasklists:
+    get: TaskLists_getInProject
+  /projects/api/v3/projects/{projectId}/tasklists.csv:
+    get: TaskLists_generateCsvReport
+  /projects/api/v3/projects/{projectId}/tasklists.html:
+    get: TaskLists_generateHtmlReport
+  /projects/api/v3/projects/{projectId}/tasklists.pdf:
+    get: TaskLists_generatePdfReport
+  /projects/api/v3/projects/{projectId}/tasklists.xlsx:
+    get: TaskLists_generateXlsxReport
+  /projects/api/v3/projects/{projectId}/tasks.json:
+    get: Tasks_getSpecificProjectTasksFilteredByCustomFields
+  /projects/api/v3/projects/{projectId}/time.json:
+    get: TimeTracking_getProjectTimeEntries
+    post: TimeTracking_createEntry
+  /projects/api/v3/projects/{projectId}/time/total.json:
+    get: TimeTracking_getTimelogTotals
+  /projects/api/v3/reporting/precanned/companytime.json:
+    get: TimeTracking_getAllEntriesGroupedByCompany
+  /projects/api/v3/reporting/precanned/health/projects.csv:
+    get: Projects_generateProjectReportCsv
+  /projects/api/v3/reporting/precanned/health/projects.html:
+    get: Projects_generateProjectReportHtml
+  /projects/api/v3/reporting/precanned/health/projects.pdf:
+    get: Projects_generateProjectReportPdf
+  /projects/api/v3/reporting/precanned/health/projects.xlsx:
+    get: Projects_generateProjectReportXlsx
+  /projects/api/v3/reporting/precanned/plannedvsactual/milestones.csv:
+    get: Milestones_generateCsvReport
+  /projects/api/v3/reporting/precanned/plannedvsactual/milestones.html:
+    get: Milestones_generateHtmlReport
+  /projects/api/v3/reporting/precanned/plannedvsactual/milestones.pdf:
+    get: Milestones_generateMilestoneReportPdf
+  /projects/api/v3/reporting/precanned/plannedvsactual/milestones.xlsx:
+    get: Milestones_generateXlsxReport
+  /projects/api/v3/reporting/precanned/plannedvsactual/tasks.csv:
+    get: Tasks_generatePlannedVsActualReportCsv
+  /projects/api/v3/reporting/precanned/plannedvsactual/tasks.html:
+    get: Tasks_generatePlannedVsActualReportHtml
+  /projects/api/v3/reporting/precanned/plannedvsactual/tasks.pdf:
+    get: Tasks_generatePlannedVsActualPdf
+  /projects/api/v3/reporting/precanned/plannedvsactual/tasks.xlsx:
+    get: Tasks_generatePlannedVsActualXlsx
+  /projects/api/v3/reporting/precanned/usertaskcompletion.json:
+    get: People_getTaskCompletions
+  /projects/api/v3/reporting/precanned/usertaskcompletion/{userId}.json:
+    get: Person_getTaskCompletionsByUser
+  /projects/api/v3/reporting/precanned/utilization.csv:
+    get: People_getUtilizationReportCsv
+  /projects/api/v3/reporting/precanned/utilization.html:
+    get: People_generateUtilizationReportHtml
+  /projects/api/v3/reporting/precanned/utilization.pdf:
+    get: People_generateUtilizationReportPdf
+  /projects/api/v3/reporting/precanned/utilization.xlsx:
+    get: People_generateUtilizationXlsx
+  /projects/api/v3/risks.json:
+    get: Risks_getAll
+  /projects/api/v3/statuses.json:
+    get: PeopleStatus_getAllStatuses
+  /projects/api/v3/statuses/timeline.json:
+    get: PeopleStatus_listTimeline
+  /projects/api/v3/summary.json:
+    get: Summary_dashboardDataByProjectCustomFields
+  /projects/api/v3/tags.json:
+    get: Tags_getAll
+    post: Tags_createTag
+  /projects/api/v3/tags/bulk/delete.json:
+    post: Tags_deleteManyTags
+  /projects/api/v3/tags/{tagId}.json:
+    delete: Tags_removeTag
+    get: Tags_getTagDetails
+    patch: Tags_updateTag
+  /projects/api/v3/tasklists:
+    get: TaskLists_getAll
+  /projects/api/v3/tasklists/{tasklistId}:
+    get: TaskLists_getSpecificTasklist
+  /projects/api/v3/tasklists/{tasklistId}.json:
+    delete: Tasklists_deleteTasklist
+  /projects/api/v3/tasklists/{tasklistId}/tasks.json:
+    get: Tasks_getByCustomFields
+    post: Tasks_createNewTask
+  /projects/api/v3/tasklists/{tasklistId}/time/total.json:
+    get: TimeTracking_getTimelogTotalsForTask
+  /projects/api/v3/tasks.json:
+    get: Tasks_getAllTasks
+  /projects/api/v3/tasks/metrics/complete.json:
+    get: Tasks_getCompletedCount
+  /projects/api/v3/tasks/metrics/late.json:
+    get: Tasks_getLateTaskCount
+  /projects/api/v3/tasks/{taskId}.json:
+    delete: Tasks_deleteTask
+    get: Tasks_getSpecificTask
+    patch: Tasks_updateExistingTask
+  /projects/api/v3/tasks/{taskId}/comments.json:
+    get: TaskComments_getList
+  /projects/api/v3/tasks/{taskId}/customfields.json:
+    get: CustomFields_getValuesFromTask
+    post: CustomFields_addTaskCustomFieldValue
+  /projects/api/v3/tasks/{taskId}/customfields/bulk/delete.json:
+    post: CustomFields_deleteManyTaskCustomFieldValues
+  /projects/api/v3/tasks/{taskId}/customfields/bulk/update.json:
+    post: CustomFields_updateManyValues
+  /projects/api/v3/tasks/{taskId}/customfields/{customFieldId}.json:
+    delete: CustomFields_deleteTaskCustomFieldValue
+    get: CustomFields_getTaskCustomFieldValue
+    patch: CustomFields_updateTaskCustomFieldValue
+  /projects/api/v3/tasks/{taskId}/subtasks.json:
+    get: Tasks_getSubtasks
+    post: Tasks_createSubtask
+  /projects/api/v3/tasks/{taskId}/time.json:
+    get: TimeTracking_getTaskTimeEntries
+    post: TimeTracking_createLinkedEntry
+  /projects/api/v3/tasks/{taskId}/time/total.json:
+    get: TimeTracking_getTimelogTotals
+  /projects/api/v3/teams/{teamId}/statuses/timeline.json:
+    get: PeopleStatus_listTimeline
+  /projects/api/v3/time.json:
+    get: TimeTracking_getAllEntries
+  /projects/api/v3/time/total.json:
+    get: TimeTracking_getTimelogTotals
+  /projects/api/v3/time/{timelogId}.json:
+    delete: TimeTracking_deleteTimelog
+    get: TimeTracking_getSpecificTimeEntry
+    patch: TimeTracking_updateExistingTimeEntry
+  /projects/api/v3/timers.json:
+    get: TimeTracking_getAllRunningTimers
+  /projects/api/v3/timers/{timerId}.json:
+    get: TimeTracking_getSpecificTimer
+  /projects/api/v3/timesheets.json:
+    get: Timesheets_getList
+  /projects/api/v3/timesheets/totals.json:
+    get: Timesheets_getTotals
+  /projects/api/v3/workload/planners.json:
+    get: Workload_getPlanner
+operationTags: {}
+renameTags: {}
+requestSchemaNames: {}
+responseDescriptions: {}
+responseSchemaNames: {}
+securityParameters:
+  CustomFields:
+    query: false
+  activeOnly:
+    query: false
+  activityTypes:
+    query: false
+  allocationId:
+    query: false
+  allowAssigneesOutsideProject:
+    query: false
+  alwaysIncludeFiltering:
+    query: false
+  applySinceOnUnread:
+    query: false
+  applyTaskAssigneeUsersToSince:
+    query: false
+  archivedOnly:
+    query: false
+  assignedTeamIds:
+    query: false
+  assignedToCompanyIds:
+    query: false
+  assignedToTeamIds:
+    query: false
+  assignedToTeams:
+    query: false
+  assignedToUserIds:
+    query: false
+  assigneeCompanyIds:
+    query: false
+  assigneeTeamIds:
+    query: false
+  assigneeUserIds:
+    query: false
+  attendingOnly:
+    query: false
+  billableType:
+    query: false
+  budgetId:
+    query: false
+  budgetRanges:
+    query: false
+  calendar:
+    query: false
+  catchupFromId:
+    query: false
+  categoryIds:
+    query: false
+  checkForReminders:
+    query: false
+  clientManagedByUserIds:
+    query: false
+  commentStatus:
+    query: false
+  commentsOrderMode:
+    query: false
+  companyId:
+    query: false
+  companyIds:
+    query: false
+  completedAfter:
+    query: false
+  completedBefore:
+    query: false
+  completedByUserId:
+    query: false
+  completedOnly:
+    query: false
+  content.state:
+    query: false
+  countUnreadComments:
+    query: false
+  createdAfter:
+    query: false
+  createdAfterDate:
+    query: false
+  createdBefore:
+    query: false
+  createdByUserIds:
+    query: false
+  createdDateCode:
+    query: false
+  createdFilter:
+    query: false
+  creatorIds:
+    query: false
+  crmDealIds:
+    query: false
+  currencySymbol:
+    query: false
+  customFieldIds:
+    query: false
+  dashboardIds:
+    query: false
+  deletedAfter:
+    query: false
+  deskTicketId:
+    query: false
+  distribute:
+    query: false
+  dueAfter:
+    query: false
+  dueAfterDate:
+    query: false
+  dueBefore:
+    query: false
+  dueBeforeDate:
+    query: false
+  emoji:
+    query: false
+  endDate:
+    query: false
+  entities:
+    query: false
+  eventsAttendingOnly:
+    query: false
+  eventsDaysAhead:
+    query: false
+  excludeAssigneeNotOnProjectTeams:
+    query: false
+  excludeContacts:
+    query: false
+  excludeIds:
+    query: false
+  excludeOwnerCompany:
+    query: false
+  excludeProjectIds:
+    query: false
+  excludeTagIds:
+    query: false
+  excludeTimeframes:
+    query: false
+  expandedIds:
+    query: false
+  extractTemplateRoleName:
+    query: false
+  fallbackToMilestoneDueDate:
+    query: false
+  featuresEnabled:
+    query: false
+  fields[ProjectPermissions]:
+    query: false
+  fields[activities]:
+    query: false
+  fields[calendarEvents]:
+    query: false
+  fields[cards]:
+    query: false
+  fields[columns]:
+    query: false
+  fields[comments]:
+    query: false
+  fields[companies]:
+    query: false
+  fields[countries]:
+    query: false
+  fields[customfieldProjects]:
+    query: false
+  fields[customfields]:
+    query: false
+  fields[dashboardPanelSettings]:
+    query: false
+  fields[dashboardPanels]:
+    query: false
+  fields[dashboardSettings]:
+    query: false
+  fields[dashboards]:
+    query: false
+  fields[events]:
+    query: false
+  fields[files]:
+    query: false
+  fields[forms]:
+    query: false
+  fields[health]:
+    query: false
+  fields[industries]:
+    query: false
+  fields[lockdowns]:
+    query: false
+  fields[messageReplies]:
+    query: false
+  fields[milestones]:
+    query: false
+  fields[notebookCategories]:
+    query: false
+  fields[notebooks]:
+    query: false
+  fields[people]:
+    query: false
+  fields[person]:
+    query: false
+  fields[portfolioBoards]:
+    query: false
+  fields[portfolioCards]:
+    query: false
+  fields[portfolioColumns]:
+    query: false
+  fields[projectBudgets]:
+    query: false
+  fields[projectUpdates]:
+    query: false
+  fields[projectcategories]:
+    query: false
+  fields[projects]:
+    query: false
+  fields[risks]:
+    query: false
+  fields[sampleprojects]:
+    query: false
+  fields[since]:
+    query: false
+  fields[stages]:
+    query: false
+  fields[statuses]:
+    query: false
+  fields[tags]:
+    query: false
+  fields[taskSequences]:
+    query: false
+  fields[taskgroups]:
+    query: false
+  fields[tasklistBudgetNotifications]:
+    query: false
+  fields[tasklists]:
+    query: false
+  fields[tasks]:
+    query: false
+  fields[teams]:
+    query: false
+  fields[time]:
+    query: false
+  fields[timelogs]:
+    query: false
+  fields[timers]:
+    query: false
+  fields[unread]:
+    query: false
+  fields[users]:
+    query: false
+  fields[utilizations]:
+    query: false
+  fields[workflows]:
+    query: false
+  fields[workingHourEntries]:
+    query: false
+  fields[workingHours]:
+    query: false
+  filter:
+    query: false
+  filterBoardColumnIds:
+    query: false
+  filterId:
+    query: false
+  filterTagIds:
+    query: false
+  firstLetter:
+    query: false
+  followedByUserIds:
+    query: false
+  followerIds:
+    query: false
+  formatMarkdown:
+    query: false
+  fullProfile:
+    query: false
+  getEmoji:
+    query: false
+  getFiles:
+    query: false
+  getReactionsCount:
+    query: false
+  getStats:
+    query: false
+  getSubTasks:
+    query: false
+  groupBy:
+    query: false
+  groupByTaskgroup:
+    query: false
+  groupByTasklist:
+    query: false
+  groupByTasklists:
+    query: false
+  groupCommentActivityType:
+    query: false
+  hasTimeLogged:
+    query: false
+  health:
+    query: false
+  hideObservedProjects:
+    query: false
+  hostObject.id:
+    query: false
+  hostObject.type:
+    query: false
+  ids:
+    query: false
+  ignoreStartDates:
+    query: false
+  impactCost:
+    query: false
+  impactFrom:
+    query: false
+  impactPerformance:
+    query: false
+  impactSchedule:
+    query: false
+  impactTo:
+    query: false
+  include:
+    query: false
+  includeAllComments:
+    query: false
+  includeAnytimeTasks:
+    query: false
+  includeArchivedProjects:
+    query: false
+  includeAssigneeCompanies:
+    query: false
+  includeAssigneeTeams:
+    query: false
+  includeAttachmentCommentStats:
+    query: false
+  includeBlocked:
+    query: false
+  includeBudgetDistribution:
+    query: false
+  includeCalendarEvents:
+    query: false
+  includeClients:
+    query: false
+  includeCollaborators:
+    query: false
+  includeColumns:
+    query: false
+  includeCommentAvatars:
+    query: false
+  includeCommentStats:
+    query: false
+  includeComments:
+    query: false
+  includeCompanyUserIds:
+    query: false
+  includeCompleted:
+    query: false
+  includeCompletedStatus:
+    query: false
+  includeCompletedTasks:
+    query: false
+  includeContents:
+    query: false
+  includeCounts:
+    query: false
+  includeCustomFieldIds:
+    query: false
+  includeCustomFields:
+    query: false
+  includeDeleted:
+    query: false
+  includeDescendants:
+    query: false
+  includeEstimatedTime:
+    query: false
+  includeLateTasks:
+    query: false
+  includeObservers:
+    query: false
+  includeOriginalDueDate:
+    query: false
+  includeOverdueTasks:
+    query: false
+  includePercentageComplete:
+    query: false
+  includePermissions:
+    query: false
+  includePrivateItems:
+    query: false
+  includeProfitability:
+    query: false
+  includeProgress:
+    query: false
+  includeProjectDates:
+    query: false
+  includeProjectProfitability:
+    query: false
+  includeProjectUserInfo:
+    query: false
+  includeRelatedTasks:
+    query: false
+  includeServiceAccounts:
+    query: false
+  includeSiteLevel:
+    query: false
+  includeStats:
+    query: false
+  includeSubCategories:
+    query: false
+  includeSubteams:
+    query: false
+  includeTags:
+    query: false
+  includeTaskId:
+    query: false
+  includeTasksFromDeletedLists:
+    query: false
+  includeTasksWithCards:
+    query: false
+  includeTasksWithoutDates:
+    query: false
+  includeTasksWithoutDueDates:
+    query: false
+  includeTeamUserIds:
+    query: false
+  includeTentativeProjects:
+    query: false
+  includeTime:
+    query: false
+  includeToday:
+    query: false
+  includeTomorrow:
+    query: false
+  includeTotals:
+    query: false
+  includeUnavailableTimes:
+    query: false
+  includeUntaggedCompanies:
+    query: false
+  includeUntaggedTasks:
+    query: false
+  includeUpdate:
+    query: false
+  invoicedType:
+    query: false
+  isCustomDateRange:
+    query: false
+  isReportDownload:
+    query: false
+  itemType:
+    query: false
+  lastLoginAfter:
+    query: false
+  lockedOnly:
+    query: false
+  matchAllExcludedTags:
+    query: false
+  matchAllProjectTags:
+    query: false
+  matchAllTags:
+    query: false
+  matchAllTaskTags:
+    query: false
+  maxBudgetCapacityUsedPercent:
+    query: false
+  maxId:
+    query: false
+  maxLastActivityDate:
+    query: false
+  memberOfProjectIds:
+    query: false
+  milestoneAssigneeUserIds:
+    query: false
+  minBudgetCapacityUsedPercent:
+    query: false
+  minLastActivityDate:
+    query: false
+  name:
+    query: false
+  nestSubTasks:
+    query: false
+  notCompletedBefore:
+    query: false
+  notifiedUserIds:
+    query: false
+  onlyAdminProjects:
+    query: false
+  onlyArchivedProjects:
+    query: false
+  onlyCompletedTasks:
+    query: false
+  onlyMyProjects:
+    query: false
+  onlyOwnerCompany:
+    query: false
+  onlyProjectEvents:
+    query: false
+  onlyProjectLevel:
+    query: false
+  onlyProjectsThatCanLogTime:
+    query: false
+  onlyProjectsWithExplicitMembership:
+    query: false
+  onlySiteLevel:
+    query: false
+  onlySiteOwner:
+    query: false
+  onlyStarredProjects:
+    query: false
+  onlyTasksWithEstimatedTime:
+    query: false
+  onlyTasksWithTickets:
+    query: false
+  onlyTasksWithUnreadComments:
+    query: false
+  onlyUnplanned:
+    query: false
+  onlyUntaggedCompanies:
+    query: false
+  onlyUntaggedTasks:
+    query: false
+  orderBy:
+    query: false
+  orderByCustomFieldId:
+    query: false
+  orderMode:
+    query: false
+  orderPrioritiseCurrentUser:
+    query: false
+  page:
+    query: false
+  pageSize:
+    query: false
+  parentTaskId:
+    query: false
+  priority:
+    query: false
+  probabilityFrom:
+    query: false
+  probabilityTo:
+    query: false
+  progress:
+    query: false
+  projectBudgetId:
+    query: false
+  projectCategoryIds:
+    query: false
+  projectCompanyIds:
+    query: false
+  projectFeaturesEnabled:
+    query: false
+  projectHealth:
+    query: false
+  projectHealths:
+    query: false
+  projectId:
+    query: false
+  projectIds:
+    query: false
+  projectOwnerIds:
+    query: false
+  projectStatus:
+    query: false
+  projectStatuses:
+    query: false
+  projectTagIds:
+    query: false
+  projectType:
+    query: false
+  projectsFromCompanyId:
+    query: false
+  prorating:
+    query: false
+  publishedEndDate:
+    query: false
+  publishedStartDate:
+    query: false
+  reactions:
+    query: false
+  reportFormat:
+    query: false
+  reportTimezone:
+    query: false
+  reportType:
+    query: false
+  resetImporters:
+    query: false
+  responsiblePartyIds:
+    query: false
+  returnLetters:
+    query: false
+  runningTimersOnly:
+    query: false
+  searchAssignees:
+    query: false
+  searchByLetter:
+    query: false
+  searchClientManagers:
+    query: false
+  searchCompanies:
+    query: false
+  searchCompaniesTeams:
+    query: false
+  searchRightOnly:
+    query: false
+  searchTaskName:
+    query: false
+  searchTerm:
+    query: false
+  searchUserName:
+    query: false
+  secureOnly:
+    query: false
+  selectedColumns:
+    query: false
+  showAttachedTasklists:
+    query: false
+  showCompleted:
+    query: false
+  showCompletedLists:
+    query: false
+  showDeleted:
+    query: false
+  showEveryone:
+    query: false
+  showPrivate:
+    query: false
+  skipCRMDealIds:
+    query: false
+  skipCounts:
+    query: false
+  skipIds:
+    query: false
+  skipSpecial:
+    query: false
+  sort:
+    query: false
+  sortActiveListsFirst:
+    query: false
+  sortOrder:
+    query: false
+  startDate:
+    query: false
+  status:
+    query: false
+  statuses:
+    query: false
+  strictHTML:
+    query: false
+  subTaskStatuses:
+    query: false
+  subtractLoggedTimeFromEstimates:
+    query: false
+  tagIds:
+    query: false
+  tags:
+    query: false
+  targetProjectIDs:
+    query: false
+  targetUserIDs:
+    query: false
+  taskAssigneeUserIds:
+    query: false
+  taskDate:
+    query: false
+  taskFilter:
+    query: false
+  taskId:
+    query: false
+  taskIds:
+    query: false
+  taskIncludedSet:
+    query: false
+  taskStatus:
+    query: false
+  taskTagIds:
+    query: false
+  taskgroupIds:
+    query: false
+  tasklistId:
+    query: false
+  tasklistIds:
+    query: false
+  tasksSelectedColumns:
+    query: false
+  teamId:
+    query: false
+  teamIds:
+    query: false
+  ticketId:
+    query: false
+  timeLoggedByUserIds:
+    query: false
+  timeRange:
+    query: false
+  timeRangeEnd:
+    query: false
+  timeRangeStart:
+    query: false
+  today:
+    query: false
+  token.state:
+    query: false
+  typeIDs:
+    query: false
+  unattachedTimelogs:
+    query: false
+  unreadCommentsMineOnly:
+    query: false
+  unreadMessagesMineOnly:
+    query: false
+  unreadOnly:
+    query: false
+  until:
+    query: false
+  updatedAfter:
+    query: false
+  updatedAfterDate:
+    query: false
+  updatedAfterIncludesReplies:
+    query: false
+  updatedBefore:
+    query: false
+  updatedBy:
+    query: false
+  updatedByUserId:
+    query: false
+  useAllProjects:
+    query: false
+  useStartDatesForTodaysTasks:
+    query: false
+  userId:
+    query: false
+  userIds:
+    query: false
+  userType:
+    query: false
+  weekDate:
+    query: false
+  withCounters:
+    query: false
+  withEvents:
+    query: false
+  withMilestones:
+    query: false
+  withTasks:
+    query: false
+  zoom:
+    query: false
+validServerUrls:
+  https://{site_name}.teamwork.com:
+    url: https://{site_name}.teamwork.com

@@ -1690,6 +1690,16 @@ const customRequests: Record<string, CustomRequest> = {
       return await downloadOpenApiSpecFromReadme({ urls });
     },
   },
+  "teamwork.com": {
+    type: "GET",
+    url: "https://contento-assets.s3.eu-west-1.amazonaws.com/oas/teamwork_docs/projects/reference/projects-api-v3.oas2.yml",
+    servers: [
+      {
+        url: "https://{site_name}.teamwork.com",
+        variables: { site_name: { default: "your-site" } },
+      },
+    ],
+  },
   "kenjo.io": {
     type: "GET",
     url: "https://static.kenjo.io/kenjo-api.yml",
