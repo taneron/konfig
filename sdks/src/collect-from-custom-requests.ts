@@ -501,6 +501,10 @@ const customRequests: Record<string, CustomRequest> = {
     type: "GET",
     url: "https://developers.pipedrive.com/docs/api/v1/openapi.yaml",
   },
+  "pipelinersales.com": {
+    type: "GET",
+    url: "https://stoplight.io/api/v1/projects/pipeliner/api-docs/nodes/openapi.json?fromExportButton=true&snapshotType=http_service&deref=optimizedBundle",
+  },
   "keap.com": {
     type: "GET",
     url: "https://api.infusionsoft.com/info-service/crm/docs/rest/V1",
