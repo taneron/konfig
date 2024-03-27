@@ -1,0 +1,581 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignoreObjectsWithNoProperties: true
+ignorePotentialIncorrectType: true
+operationIds:
+  /Groups:
+    get: Groups_getAll
+    post: Groups_createGroup
+  /Groups/{groupId}:
+    delete: Groups_deleteGroupViaSCIM
+    get: Groups_getGroupData
+    patch: Groups_updateMembership
+  /Schemas:
+    get: Schemas_listAll
+  /Users:
+    get: Users_listAll
+    post: Users_createUserViaSCIM
+  /Users/{userId}:
+    delete: Users_deleteUser
+    get: Users_getUserInfoViaSCIM
+    patch: Users_updateUserData
+  /exports:
+    post: Exports_launchNewOfflineExport
+  /oauth/userinfo:
+    get: Oauth2_getUserInfo
+  /records:
+    get: Records_listAll
+    post: Records_createRecord
+  /records/export:
+    get: Records_getXlsxExportFile
+  /records/metadata:
+    get: Records_getSchema
+  /records/smart-import:
+    get: Records_getPredictions
+    post: Records_uploadSmartImportRecord
+  /records/smart-import/{importId}:
+    post: Records_uploadSmartImportRecordWithPredictions
+  /records/{id}:
+    delete: Records_deleteRecord
+    get: Records_getRecordData
+    patch: Records_updateMetadata
+    put: Records_replaceMetadata
+  /records/{id}/attachments/{key}:
+    delete: Records_removeAttachment
+    get: Records_getAttachment
+    post: Records_createAttachment
+  /userinfo:
+    get: Authentication_getUserInfo
+  /webhooks:
+    get: Webhooks_listAll
+    post: Webhooks_createNew
+  /webhooks/verification-key:
+    get: Webhooks_getVerificationKey
+  /webhooks/{id}:
+    delete: Webhooks_deleteSpecific
+    get: Webhooks_getData
+    patch: Webhooks_updateWebhookData
+  /workflow-schemas:
+    get: Workflows_listAllWorkflowSchemas
+  /workflow-schemas/{id}:
+    get: Workflows_getWorkflowSchema
+  /workflows:
+    get: Workflows_listAll
+    post: Workflows_createSyncWorkflow
+  /workflows/async:
+    post: Workflows_launchAsynchronously
+  /workflows/async/{asyncJobId}:
+    get: Workflows_getAsyncJobStatus
+  /workflows/{id}:
+    get: Workflows_getWorkflow
+  /workflows/{id}/approval-requests:
+    get: Workflows_getApprovalRequests
+  /workflows/{id}/approvals:
+    get: Workflows_listApprovals
+  /workflows/{id}/approvals/{roleId}:
+    patch: Workflows_updateApprovalStatus
+  /workflows/{id}/attributes:
+    patch: Workflows_updateMetadata
+  /workflows/{id}/cancel:
+    post: Workflows_cancelWorkflow
+  /workflows/{id}/comment:
+    post: Workflows_createComment
+  /workflows/{id}/comments:
+    get: Workflows_listComments
+    post: Workflows_createComment
+  /workflows/{id}/comments/{commentId}:
+    get: Workflows_getComment
+  /workflows/{id}/document/{key}/download:
+    get: Workflows_getDocumentByKey
+  /workflows/{id}/documents/{attributeId}:
+    post: Workflows_createDocumentOnAttribute
+  /workflows/{id}/emails:
+    get: Workflows_getEmailThreads
+  /workflows/{id}/emails/{emailThreadId}:
+    get: Workflows_getEmailThread
+  /workflows/{id}/emails/{emailThreadId}/attachments/{attachmentId}:
+    get: Workflows_getAttachmentFromEmailThread
+  /workflows/{id}/participants:
+    get: Workflows_listAllParticipants
+  /workflows/{id}/pause:
+    post: Workflows_pauseWorkflow
+  /workflows/{id}/resume:
+    post: Workflows_resumeWorkflow
+  /workflows/{id}/revert-to-review:
+    patch: Workflows_revertToReview
+  /workflows/{id}/signatures:
+    get: Workflows_listSignatures
+  /workflows/{id}/turn-history:
+    get: Workflows_getTurnHistory
+  /workflows/{id}/upload-signed:
+    post: Workflows_uploadSignedDocument
+operationTags:
+  /userinfo:
+    get: Authentication
+renameTags: {}
+requestSchemaNames:
+  /Groups:
+    post:
+      application/json: GroupsCreateGroupRequest
+  /Groups/{groupId}:
+    patch:
+      application/json: GroupsUpdateMembershipRequest
+  /Users:
+    post:
+      application/json: UsersCreateUserViaScimRequest
+  /Users/{userId}:
+    patch:
+      application/json: UsersUpdateUserDataRequest
+  /records:
+    post:
+      application/json: RecordsCreateRecordRequest
+  /records/smart-import:
+    post:
+      multipart/form-data: RecordsUploadSmartImportRecordRequest
+  /records/smart-import/{importId}:
+    post:
+      multipart/form-data: RecordsUploadSmartImportRecordWithPredictionsRequest
+  /records/{id}:
+    patch:
+      application/json: RecordsUpdateMetadataRequest
+    put:
+      application/json: RecordsReplaceMetadataRequest
+  /records/{id}/attachments/{key}:
+    post:
+      multipart/form-data: RecordsCreateAttachmentRequest
+  /webhooks:
+    post:
+      application/json: WebhooksCreateNewRequest
+  /webhooks/{id}:
+    patch:
+      application/json: WebhooksUpdateWebhookDataRequest
+  /workflows/{id}/approvals/{roleId}:
+    patch:
+      application/json: WorkflowsUpdateApprovalStatusRequest
+  /workflows/{id}/attributes:
+    patch:
+      application/json: WorkflowsUpdateMetadataRequest
+  /workflows/{id}/cancel:
+    post:
+      application/json: WorkflowsCancelWorkflowRequest
+  /workflows/{id}/comment:
+    post:
+      application/json: WorkflowsCreateCommentRequest
+  /workflows/{id}/comments:
+    post:
+      application/json: WorkflowsCreateCommentRequest1
+  /workflows/{id}/documents/{attributeId}:
+    post:
+      multipart/form-data: WorkflowsCreateDocumentOnAttributeRequest
+  /workflows/{id}/pause:
+    post:
+      application/json: WorkflowsPauseWorkflowRequest
+  /workflows/{id}/resume:
+    post:
+      application/json: WorkflowsResumeWorkflowRequest
+  /workflows/{id}/revert-to-review:
+    patch:
+      application/json: WorkflowsRevertToReviewRequest
+  /workflows/{id}/upload-signed:
+    post:
+      multipart/form-data: WorkflowsUploadSignedDocumentRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /Groups:
+    get:
+      '200':
+        application/json: GroupsGetAllResponse
+    post:
+      '201':
+        application/json: GroupsCreateGroupResponse
+      '400':
+        application/json: GroupsCreateGroup400Response
+  /Groups/{groupId}:
+    delete:
+      '204':
+        application/json: GroupsDeleteGroupViaScimResponse
+      '404':
+        application/json: GroupsDeleteGroupViaScim404Response
+    get:
+      '200':
+        application/json: GroupsGetGroupDataResponse
+      '404':
+        application/json: GroupsGetGroupData404Response
+    patch:
+      '200':
+        application/json: GroupsUpdateMembershipResponse
+      '400':
+        application/json: GroupsUpdateMembership400Response
+  /Schemas:
+    get:
+      '200':
+        application/json: SchemasListAllResponse
+  /Users:
+    get:
+      '200':
+        application/json: UsersListAllResponse
+      '400':
+        application/json: UsersListAll400Response
+    post:
+      '201':
+        application/json: UsersCreateUserViaScimResponse
+      '403':
+        application/json: UsersCreateUserViaScim403Response
+      '409':
+        application/json: UsersCreateUserViaScim409Response
+  /Users/{userId}:
+    delete:
+      '204':
+        application/json: UsersDeleteUserResponse
+      '404':
+        application/json: UsersDeleteUser404Response
+    get:
+      '200':
+        application/json: UsersGetUserInfoViaScimResponse
+      '500':
+        application/json: UsersGetUserInfoViaScim500Response
+    patch:
+      '200':
+        application/json: UsersUpdateUserDataResponse
+      '400':
+        application/json: UsersUpdateUserData400Response
+      '500':
+        application/json: UsersUpdateUserData500Response
+  /exports:
+    post:
+      '200':
+        application/json: ExportsLaunchNewOfflineExportResponse
+      '400':
+        text/plain: ExportsLaunchNewOfflineExport400Response
+  /oauth/userinfo:
+    get:
+      '401':
+        application/json: Oauth2GetUserInfoResponse
+      '404':
+        application/json: Oauth2GetUserInfo404Response
+  /records:
+    get:
+      '200':
+        application/json: RecordsListAllResponse
+      '400':
+        application/json: RecordsListAll400Response
+    post:
+      '400':
+        application/json: RecordsCreateRecordResponse
+  /records/export:
+    get:
+      '200':
+        application/json: RecordsGetXlsxExportFileResponse
+      '400':
+        application/json: RecordsGetXlsxExportFile400Response
+  /records/metadata:
+    get:
+      '200':
+        application/json: RecordsGetSchemaResponse
+      '400':
+        application/json: RecordsGetSchema400Response
+  /records/smart-import:
+    get:
+      '200':
+        application/json: RecordsGetPredictionsResponse
+      '400':
+        application/json: RecordsGetPredictions400Response
+      '403':
+        application/json: RecordsGetPredictions403Response
+      '404':
+        application/json: RecordsGetPredictions404Response
+    post:
+      '200':
+        application/json: RecordsUploadSmartImportRecordResponse
+      '400':
+        application/json: RecordsUploadSmartImportRecord400Response
+      '403':
+        application/json: RecordsUploadSmartImportRecord403Response
+      '404':
+        application/json: RecordsUploadSmartImportRecord404Response
+  /records/smart-import/{importId}:
+    post:
+      '200':
+        application/json: RecordsUploadSmartImportRecordWithPredictionsResponse
+      '400':
+        application/json: RecordsUploadSmartImportRecordWithPredictions400Response
+      '403':
+        application/json: RecordsUploadSmartImportRecordWithPredictions403Response
+      '404':
+        application/json: RecordsUploadSmartImportRecordWithPredictions404Response
+  /records/{id}:
+    delete:
+      '204':
+        application/json: RecordsDeleteRecordResponse
+      '400':
+        application/json: RecordsDeleteRecord400Response
+    get:
+      '400':
+        application/json: RecordsGetRecordDataResponse
+    patch:
+      '400':
+        application/json: RecordsUpdateMetadataResponse
+      '404':
+        application/json: RecordsUpdateMetadata404Response
+    put:
+      '400':
+        application/json: RecordsReplaceMetadataResponse
+  /records/{id}/attachments/{key}:
+    delete:
+      '404':
+        application/json: RecordsRemoveAttachmentResponse
+    get:
+      '200':
+        application/json: RecordsGetAttachmentResponse
+      '400':
+        application/json: RecordsGetAttachment400Response
+    post:
+      '200':
+        application/json: RecordsCreateAttachmentResponse
+      '400':
+        application/json: RecordsCreateAttachment400Response
+  /userinfo:
+    get:
+      '200':
+        application/json: AuthenticationGetUserInfoResponse
+      '401':
+        application/json: AuthenticationGetUserInfo401Response
+      '404':
+        application/json: AuthenticationGetUserInfo404Response
+  /webhooks:
+    get:
+      '200':
+        application/json: WebhooksListAllResponse
+      '400':
+        application/json: WebhooksListAll400Response
+    post:
+      '200':
+        application/json: WebhooksCreateNewResponse
+      '400':
+        application/json: WebhooksCreateNew400Response
+  /webhooks/verification-key:
+    get:
+      '400':
+        application/json: WebhooksGetVerificationKeyResponse
+  /webhooks/{id}:
+    delete:
+      '200':
+        application/json: WebhooksDeleteSpecificResponse
+      '400':
+        application/json: WebhooksDeleteSpecific400Response
+    get:
+      '200':
+        application/json: WebhooksGetDataResponse
+      '400':
+        application/json: WebhooksGetData400Response
+    patch:
+      '200':
+        application/json: WebhooksUpdateWebhookDataResponse
+      '400':
+        application/json: WebhooksUpdateWebhookData400Response
+  /workflow-schemas:
+    get:
+      '200':
+        application/json: WorkflowsListAllWorkflowSchemasResponse
+      '400':
+        application/json: WorkflowsListAllWorkflowSchemas400Response
+  /workflow-schemas/{id}:
+    get:
+      '200':
+        application/json: WorkflowsGetWorkflowSchemaResponse
+      '400':
+        application/json: WorkflowsGetWorkflowSchema400Response
+  /workflows:
+    get:
+      '200':
+        application/json: WorkflowsListAllResponse
+  /workflows/async:
+    post:
+      '200':
+        application/json: WorkflowsLaunchAsynchronouslyResponse
+      '400':
+        application/json: WorkflowsLaunchAsynchronously400Response
+  /workflows/async/{asyncJobId}:
+    get:
+      '200':
+        application/json: WorkflowsGetAsyncJobStatusResponse
+      '404':
+        application/json: WorkflowsGetAsyncJobStatus404Response
+  /workflows/{id}:
+    get:
+      '400':
+        application/json: WorkflowsGetWorkflowResponse
+  /workflows/{id}/approval-requests:
+    get:
+      '200':
+        application/json: WorkflowsGetApprovalRequestsResponse
+      '403':
+        application/json: WorkflowsGetApprovalRequests403Response
+      '404':
+        application/json: WorkflowsGetApprovalRequests404Response
+  /workflows/{id}/approvals:
+    get:
+      '200':
+        application/json: WorkflowsListApprovalsResponse
+      '400':
+        application/json: WorkflowsListApprovals400Response
+  /workflows/{id}/approvals/{roleId}:
+    patch:
+      '200':
+        application/json: WorkflowsUpdateApprovalStatusResponse
+      '400':
+        application/json: WorkflowsUpdateApprovalStatus400Response
+  /workflows/{id}/attributes:
+    patch:
+      '200':
+        application/json: WorkflowsUpdateMetadataResponse
+      '400':
+        application/json: WorkflowsUpdateMetadata400Response
+      '403':
+        application/json: WorkflowsUpdateMetadata403Response
+      '404':
+        application/json: WorkflowsUpdateMetadata404Response
+  /workflows/{id}/cancel:
+    post:
+      '204':
+        application/json: WorkflowsCancelWorkflowResponse
+  /workflows/{id}/comment:
+    post:
+      '204':
+        application/json: WorkflowsCreateCommentResponse
+      '400':
+        application/json: WorkflowsCreateComment400Response
+  /workflows/{id}/comments:
+    get:
+      '200':
+        application/json: WorkflowsListCommentsResponse
+      '403':
+        application/json: WorkflowsListComments403Response
+      '404':
+        application/json: WorkflowsListComments404Response
+    post:
+      '400':
+        application/json: WorkflowsCreateComment400Response
+  /workflows/{id}/comments/{commentId}:
+    get:
+      '403':
+        application/json: WorkflowsGetCommentResponse
+      '404':
+        application/json: WorkflowsGetComment404Response
+  /workflows/{id}/document/{key}/download:
+    get:
+      '200':
+        application/json: WorkflowsGetDocumentByKeyResponse
+      '400':
+        application/json: WorkflowsGetDocumentByKey400Response
+  /workflows/{id}/documents/{attributeId}:
+    post:
+      '204':
+        application/json: WorkflowsCreateDocumentOnAttributeResponse
+      '400':
+        application/json: WorkflowsCreateDocumentOnAttribute400Response
+      '404':
+        application/json: WorkflowsCreateDocumentOnAttribute404Response
+  /workflows/{id}/emails:
+    get:
+      '200':
+        application/json: WorkflowsGetEmailThreadsResponse
+  /workflows/{id}/emails/{emailThreadId}:
+    get:
+      '404':
+        application/json: WorkflowsGetEmailThreadResponse
+  /workflows/{id}/emails/{emailThreadId}/attachments/{attachmentId}:
+    get:
+      '200':
+        application/json: WorkflowsGetAttachmentFromEmailThreadResponse
+      '404':
+        application/json: WorkflowsGetAttachmentFromEmailThread404Response
+  /workflows/{id}/participants:
+    get:
+      '200':
+        application/json: WorkflowsListAllParticipantsResponse
+      '403':
+        application/json: WorkflowsListAllParticipants403Response
+      '404':
+        application/json: WorkflowsListAllParticipants404Response
+  /workflows/{id}/pause:
+    post:
+      '400':
+        application/json: WorkflowsPauseWorkflowResponse
+  /workflows/{id}/resume:
+    post:
+      '400':
+        application/json: WorkflowsResumeWorkflowResponse
+  /workflows/{id}/revert-to-review:
+    patch:
+      '400':
+        application/json: WorkflowsRevertToReviewResponse
+      '403':
+        application/json: WorkflowsRevertToReview403Response
+      '404':
+        application/json: WorkflowsRevertToReview404Response
+  /workflows/{id}/signatures:
+    get:
+      '200':
+        application/json: WorkflowsListSignaturesResponse
+      '400':
+        application/json: WorkflowsListSignatures400Response
+      '403':
+        application/json: WorkflowsListSignatures403Response
+  /workflows/{id}/turn-history:
+    get:
+      '200':
+        application/json: WorkflowsGetTurnHistoryResponse
+      '403':
+        application/json: WorkflowsGetTurnHistory403Response
+      '404':
+        application/json: WorkflowsGetTurnHistory404Response
+  /workflows/{id}/upload-signed:
+    post:
+      '400':
+        application/json: WorkflowsUploadSignedDocumentResponse
+      '404':
+        application/json: WorkflowsUploadSignedDocument404Response
+securityParameters:
+  actorDetails:
+    query: false
+  count:
+    query: false
+  email:
+    query: false
+  excludedAttributes:
+    query: false
+  filter:
+    query: false
+  form:
+    query: false
+  importId:
+    query: false
+  lastUpdated:
+    query: false
+  page:
+    query: false
+  pageSize:
+    query: false
+  properties:
+    query: false
+  recordId:
+    query: false
+  sortDirection:
+    query: false
+  sortField:
+    query: false
+  startIndex:
+    query: false
+  status:
+    query: false
+  template:
+    query: false
+  types:
+    query: false
+  x-as-user-email:
+    header: false
+  x-as-user-id:
+    header: false
+validServerUrls: {}

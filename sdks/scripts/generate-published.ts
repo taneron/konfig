@@ -647,7 +647,7 @@ function removeRelativeLinks({
     `(${developerDocumentation}`
   );
   specString = specString.replace(
-    /\((?!https?:\/\/)([^)]+)\)/g,
+    /\((?!https?:\/\/)([a-zA-Z0-9-_/?#%]+)\)/g,
     `(${developerDocumentation}`
   );
   return specString;

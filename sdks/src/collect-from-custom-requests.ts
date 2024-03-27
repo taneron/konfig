@@ -517,6 +517,10 @@ const customRequests: Record<string, CustomRequest> = {
     type: "GET",
     url: "https://raw.githubusercontent.com/intercom/Intercom-OpenAPI/main/descriptions/2.9/api.intercom.io.yaml",
   },
+  "ironcladapp.com": {
+    type: "GET",
+    url: "https://raw.githubusercontent.com/Ironclad/openapi/main/openapi/openapi.json",
+  },
   "hubspot.com_CRM": {
     lambda: async () => {
       const indexUrl = "https://api.hubspot.com/api-catalog-public/v1/apis";
