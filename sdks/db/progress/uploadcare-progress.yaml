@@ -1,0 +1,111 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignoreObjectsWithNoProperties: true
+ignorePotentialIncorrectType: true
+operationIds:
+  /<presigned-url-x>:
+    put: Upload_individualFilePartsPut
+  /base/:
+    post: Upload_directUpload
+  /from_url/:
+    post: Upload_fromUrlFiles
+  /from_url/status/:
+    get: Upload_urlStatusGet
+  /group/:
+    post: Groups_createFileGroup
+  /group/info/:
+    get: Groups_getInfo
+  /info/:
+    get: Upload_fileInfo
+  /multipart/complete/:
+    post: Upload_completeMultipartUpload
+  /multipart/start/:
+    post: Upload_startMultipart
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /<presigned-url-x>:
+    put:
+      application/octet-stream: UploadIndividualFilePartsPutRequest
+  /base:
+    post:
+      multipart/form-data: UploadDirectUploadRequest
+  /from_url:
+    post:
+      multipart/form-data: UploadFromUrlFilesRequest
+  /group:
+    post:
+      multipart/form-data: GroupsCreateFileGroupRequest
+  /multipart/complete:
+    post:
+      multipart/form-data: UploadCompleteMultipartUploadRequest
+  /multipart/start:
+    post:
+      multipart/form-data: UploadStartMultipartRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /base:
+    post:
+      '200':
+        application/json: UploadDirectUploadResponse
+      '400':
+        text/plain: UploadDirectUpload400Response
+      '403':
+        text/plain: UploadDirectUpload403Response
+      '413':
+        text/plain: UploadDirectUpload413Response
+      '429':
+        text/plain: UploadDirectUpload429Response
+  /from_url:
+    post:
+      '200':
+        application/json: UploadFromUrlFilesResponse
+      '400':
+        text/plain: UploadFromUrlFiles400Response
+      '403':
+        text/plain: UploadFromUrlFiles403Response
+  /from_url/status:
+    get:
+      '200':
+        application/json: UploadUrlStatusGetResponse
+  /group:
+    post:
+      '400':
+        text/plain: GroupsCreateFileGroupResponse
+      '403':
+        text/plain: GroupsCreateFileGroup403Response
+  /group/info:
+    get:
+      '400':
+        text/plain: GroupsGetInfoResponse
+      '403':
+        text/plain: GroupsGetInfo403Response
+  /info:
+    get:
+      '400':
+        text/plain: UploadFileInfoResponse
+      '403':
+        text/plain: UploadFileInfo403Response
+  /multipart/complete:
+    post:
+      '400':
+        text/plain: UploadCompleteMultipartUploadResponse
+      '403':
+        text/plain: UploadCompleteMultipartUpload403Response
+  /multipart/start:
+    post:
+      '200':
+        application/json: UploadStartMultipartResponse
+      '400':
+        text/plain: UploadStartMultipart400Response
+securityParameters:
+  file_id:
+    query: false
+  group_id:
+    query: false
+  pub_key:
+    query: false
+  token:
+    query: false
+validServerUrls: {}

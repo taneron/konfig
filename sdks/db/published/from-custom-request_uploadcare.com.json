@@ -1,0 +1,526 @@
+{
+  "securitySchemes": {},
+  "apiBaseUrl": "https://upload.uploadcare.com",
+  "apiVersion": "2024-02-12",
+  "apiDescription": "### Summary\nUpload API provides several ways of uploading files to Uploadcare servers in a\nsecure and reliable way.\n\n### API endpoints\nUpload API's root is located at `https://upload.uploadcare.com/`.\n**Note**: All API endpoints end with a forward slash `/`. Please do not forget to include it.\n\n### API clients\nPlease checkout [API clients](https://uploadcare.com/docs/integrations/) page for a\nlist of official and third party Upload API clients.\n\n### File storage\nEvery uploaded file is **temporary** by nature and subject to be deleted within a\n24-hour period. **Mark the file as stored** to make it permanent:\n* On upload via the [`UPLOADCARE_STORE` flag](https://uploadcare.com/api-refs/upload-api/)\n* [Store](https://uploadcare.com/api-refs/upload-api/) or\n  [copy](https://uploadcare.com/api-refs/upload-api/) an already uploaded\n  file via [REST API](https://uploadcare.com/api-refs/upload-api/).\n\n**Note**: `UPLOADCARE_STORE=auto` parameter delegates the choice of the\nfile storing behavior to a project\n[auto-store](https://app.uploadcare.com/projects/-/settings/#storage)\nsetting (which is enabled by default). \n\n### File delivery\nOnce uploaded, your files become available via our [CDN](https://uploadcare.com/docs/delivery/).\nThe CDN includes on the fly image processing features and can work as a proxy.\nPlease check the referenced page to learn more.\n",
+  "apiTitle": "Upload API Reference",
+  "endpoints": 9,
+  "sdkMethods": 9,
+  "schemas": 106,
+  "parameters": 35,
+  "contactEmail": "help@uploadcare.com",
+  "originalCustomRequest": {
+    "lambda": true
+  },
+  "customRequestSpecFilename": "uploadcare.com.yaml",
+  "difficultyScore": 58.25,
+  "difficulty": "Easy",
+  "company": "Uploadcare",
+  "sdkName": "uploadcare-{language}-sdk",
+  "clientName": "Uploadcare",
+  "metaDescription": "Uploadcare is file management platform and a CDN for user-generated content. It is a robust file API for uploading, managing, processing, rendering, optimizing, and delivering users' content.",
+  "apiStatusUrls": "inherit",
+  "homepage": "uploadcare.com/",
+  "developerDocumentation": "uploadcare.com/api-refs/upload-api/",
+  "categories": [
+    "file_sharing",
+    "cdn",
+    "developer_tools",
+    "file_management",
+    "digital_media",
+    "content_delivery_network"
+  ],
+  "category": "File Management & Storage",
+  "methods": [
+    {
+      "url": "/<presigned-url-x>",
+      "method": "individualFilePartsPut",
+      "httpMethod": "put",
+      "tag": "Upload",
+      "typeScriptTag": "upload",
+      "description": "Upload individual file parts",
+      "parameters": [],
+      "responses": [
+        {
+          "statusCode": "2XX",
+          "description": "A file part has been uploaded successfully"
+        }
+      ]
+    },
+    {
+      "url": "/base",
+      "method": "directUpload",
+      "httpMethod": "post",
+      "tag": "Upload",
+      "typeScriptTag": "upload",
+      "description": "Direct uploads",
+      "parameters": [
+        {
+          "name": "UPLOADCARE_PUB_KEY",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "caa9d29da887ee88ffe6"
+        },
+        {
+          "name": "UPLOADCARE_STORE",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "1",
+          "default": "auto"
+        },
+        {
+          "name": "{filename}",
+          "schema": "array",
+          "required": true,
+          "description": ""
+        },
+        {
+          "name": "metadata[{key}]",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "#/components/examples/metadataValue/value"
+        },
+        {
+          "name": "signature",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "04b29480233f4def5c875875b6bdc3b1"
+        },
+        {
+          "name": "expire",
+          "schema": "number",
+          "required": false,
+          "description": "",
+          "example": 1454902434
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": "JSON object where the key is the file name of the uploaded file and\nthe value is the unique ID of the file on our systems.\n"
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        },
+        {
+          "statusCode": "403",
+          "description": ""
+        },
+        {
+          "statusCode": "413",
+          "description": ""
+        },
+        {
+          "statusCode": "429",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/multipart/start",
+      "method": "startMultipart",
+      "httpMethod": "post",
+      "tag": "Upload",
+      "typeScriptTag": "upload",
+      "description": "Start multipart upload",
+      "parameters": [
+        {
+          "name": "UPLOADCARE_PUB_KEY",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "caa9d29da887ee88ffe6"
+        },
+        {
+          "name": "UPLOADCARE_STORE",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "1",
+          "default": "auto"
+        },
+        {
+          "name": "filename",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "myfile.mp4"
+        },
+        {
+          "name": "size",
+          "schema": "integer",
+          "required": true,
+          "description": "",
+          "example": 27796904
+        },
+        {
+          "name": "part_size",
+          "schema": "integer",
+          "required": false,
+          "description": "",
+          "example": 10485760,
+          "default": 5242880
+        },
+        {
+          "name": "content_type",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "video/mp4"
+        },
+        {
+          "name": "metadata[{key}]",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "#/components/examples/metadataValue/value"
+        },
+        {
+          "name": "signature",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "04b29480233f4def5c875875b6bdc3b1"
+        },
+        {
+          "name": "expire",
+          "schema": "number",
+          "required": false,
+          "description": "",
+          "example": 1454902434
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        },
+        {
+          "statusCode": "403",
+          "description": ""
+        },
+        {
+          "statusCode": "429",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/multipart/complete",
+      "method": "completeMultipartUpload",
+      "httpMethod": "post",
+      "tag": "Upload",
+      "typeScriptTag": "upload",
+      "description": "Complete multipart upload",
+      "parameters": [
+        {
+          "name": "UPLOADCARE_PUB_KEY",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "caa9d29da887ee88ffe6"
+        },
+        {
+          "name": "uuid",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "67947755-1584-4e3f-902b-d4e2bf76a841"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": "Information about an uploaded file."
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        },
+        {
+          "statusCode": "403",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/from_url",
+      "method": "fromUrlFiles",
+      "httpMethod": "post",
+      "tag": "Upload",
+      "typeScriptTag": "upload",
+      "description": "Upload files from URLs",
+      "parameters": [
+        {
+          "name": "pub_key",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "caa9d29da887ee88ffe6"
+        },
+        {
+          "name": "source_url",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "https://source.unsplash.com/featured"
+        },
+        {
+          "name": "store",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "1",
+          "default": "auto"
+        },
+        {
+          "name": "filename",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "googlelogo_color_272x92dp.png"
+        },
+        {
+          "name": "check_URL_duplicates",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "1",
+          "default": "0"
+        },
+        {
+          "name": "save_URL_duplicates",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "1"
+        },
+        {
+          "name": "metadata[{key}]",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "#/components/examples/metadataValue/value"
+        },
+        {
+          "name": "signature",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "04b29480233f4def5c875875b6bdc3b1"
+        },
+        {
+          "name": "expire",
+          "schema": "number",
+          "required": false,
+          "description": "",
+          "example": 1454902434
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        },
+        {
+          "statusCode": "403",
+          "description": ""
+        },
+        {
+          "statusCode": "429",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/from_url/status",
+      "method": "urlStatusGet",
+      "httpMethod": "get",
+      "tag": "Upload",
+      "typeScriptTag": "upload",
+      "description": "Check the status of a task to fetch/upload a file from a URL",
+      "parameters": [
+        {
+          "name": "token",
+          "schema": "string",
+          "required": true,
+          "description": "Token returned by the `/from_url/` endpoint that identifies a request to fetch/upload a file from a URL.",
+          "example": "945ebb27-1fd6-46c6-a859-b9893712d650"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": ""
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/info",
+      "method": "fileInfo",
+      "httpMethod": "get",
+      "tag": "Upload",
+      "typeScriptTag": "upload",
+      "description": "Get information about an uploaded file",
+      "parameters": [
+        {
+          "name": "pubKey",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "YOUR_PUBLIC_KEY"
+        },
+        {
+          "name": "fileId",
+          "schema": "string",
+          "required": true,
+          "description": "File's unique ID.",
+          "example": "67947755-1584-4e3f-902b-d4e2bf76a841"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": "Information about an uploaded file."
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        },
+        {
+          "statusCode": "403",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/group",
+      "method": "createFileGroup",
+      "httpMethod": "post",
+      "tag": "Groups",
+      "typeScriptTag": "groups",
+      "description": "Create a file group",
+      "parameters": [
+        {
+          "name": "pub_key",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "caa9d29da887ee88ffe6"
+        },
+        {
+          "name": "files[]",
+          "schema": "array",
+          "required": true,
+          "description": ""
+        },
+        {
+          "name": "signature",
+          "schema": "string",
+          "required": false,
+          "description": "",
+          "example": "04b29480233f4def5c875875b6bdc3b1"
+        },
+        {
+          "name": "expire",
+          "schema": "number",
+          "required": false,
+          "description": "",
+          "example": 1454902434
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": "File group information object."
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        },
+        {
+          "statusCode": "403",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "url": "/group/info",
+      "method": "getInfo",
+      "httpMethod": "get",
+      "tag": "Groups",
+      "typeScriptTag": "groups",
+      "description": "Get information about a file group",
+      "parameters": [
+        {
+          "name": "pubKey",
+          "schema": "string",
+          "required": true,
+          "description": "",
+          "example": "YOUR_PUBLIC_KEY"
+        },
+        {
+          "name": "groupId",
+          "schema": "string",
+          "required": true,
+          "description": "Group's unique ID. Group IDs look like `UUID~N`, where the `~N` part reflects the number of the files in the group.\n",
+          "example": "d52d7136-a2e5-4338-9f45-affbf83b857d~2"
+        }
+      ],
+      "responses": [
+        {
+          "statusCode": "200",
+          "description": "File group information object."
+        },
+        {
+          "statusCode": "400",
+          "description": ""
+        },
+        {
+          "statusCode": "403",
+          "description": ""
+        },
+        {
+          "statusCode": "404",
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "repositoryDescription": "Uploadcare is file management platform and a CDN for user-generated content. It is a robust file API for uploading, managing, processing, rendering, optimizing, and delivering users' content. Uploadcare's {language} SDK generated by Konfig (https://konfigthis.com/).",
+  "logo": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/uploadcare/logo.png",
+  "openApiRaw": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/uploadcare/openapi.yaml",
+  "openApiGitHubUi": "https://github.com/konfig-sdks/openapi-examples/tree/HEAD/uploadcare/openapi.yaml",
+  "previewLinkImage": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/uploadcare/imagePreview.png",
+  "faviconUrl": "https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/uploadcare/favicon.png",
+  "clientNameCamelCase": "uploadcare",
+  "lastUpdated": "2024-03-27T22:25:13.064Z",
+  "typescriptSdkUsageCode": "import { Uploadcare } from 'uploadcare-typescript-sdk';\n\nconst uploadcare = new Uploadcare()",
+  "typescriptSdkFirstRequestCode": "// Upload individual file parts\nconst individualFilePartsPutResponse = uploadcare.upload.individualFilePartsPut()",
+  "fixedSpecFileName": "uploadcare-fixed-spec.yaml"
+}

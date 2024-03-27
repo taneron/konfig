@@ -1898,6 +1898,15 @@ const customRequests: Record<string, CustomRequest> = {
       });
     },
   },
+  "uploadcare.com": {
+    lambda: async ({ browser }) => {
+      return downloadOpenApiSpecFromRedoclyEmbedded({
+        url: "https://uploadcare.com/api-refs/upload-api/",
+        browser,
+        filename: "openapi.json",
+      });
+    },
+  },
 };
 
 async function downloadOpenApiSpecFromMintlify({
