@@ -1,0 +1,213 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+operationIds:
+  /:subscriptionId/charges?{parameters}:
+    get: Subscription_listCharges
+  /agreements/debit/{region}/{type}:
+    post: Agreement_createDebitForAusCan
+  /agreements/prenotification/{transactionId}:
+    get: Transaction_getPreNotificationDebitAgreement
+  /agreements/{agreementId}:
+    get: Agreement_getDebit
+  /alt-transactions:
+    post: Transaction_createSofortTransaction
+    put: Transaction_updatePaypalTransaction
+  /alt-transactions/resolve:
+    get: Transaction_getSofortTransaction
+  /alt-transactions/resolve?orderId={orderId}:
+    get: Transaction_getPaypalTransaction
+  /alt-transactions/{transactionId}:
+    get: Transaction_getSepaDd
+  /batch-transactions:
+    post: Transaction_createBatchTransaction
+  /batch-transactions/{batchId}:
+    get: Transaction_getBatchTransaction
+  /recurring/ondemand:
+    post: Subscription_createMerchantManagedSubscription
+  /recurring/ondemand/{subscriptionId}:
+    post: Subscription_createMerchantManagedCharge
+  /recurring/plans:
+    post: Plan_createRecurringPlan
+  /recurring/plans/{planId}:
+    get: Plan_getSpecific
+    put: Plan_updateRecurringPlan
+  /recurring/plans?{parameters}:
+    get: Plan_getAll
+  /recurring/subscriptions:
+    post: Subscription_createNew
+  /recurring/subscriptions/:subscriptionId/switch-charge-amount:
+    get: Subscription_getSwitchChargeAmount
+  /recurring/subscriptions/{subscriptionId}:
+    get: Subscription_getSpecific
+    put: Subscription_updateSubscription
+  /recurring/subscriptions?{parameters}:
+    get: Subscription_listAllSubscriptions
+  /transactions:
+    post: Authorization_createTransaction
+    put: Reversal_authTransaction
+  /transactions/approval:
+    put: Transaction_approveMerchantTransaction
+  /transactions/pending-refund/{transactionId}:
+    delete: Transaction_cancelPendingRefund
+  /transactions/refund/{transactionId}:
+    post: Transaction_initiateRefund
+  /transactions/{transactionId}:
+    get: Transaction_getById
+  /vaulted-shoppers:
+    post: Shopper_createVaultedShopper
+  /vaulted-shoppers/{vaultedShopperId}:
+    delete: Shopper_deleteVaultedShopper
+    get: Shopper_get
+    put: Shopper_updateVaultedShopper
+  /vendors:
+    post: Vendor_create
+  /vendors/{vendorId}:
+    get: Vendor_getVendor
+    put: Vendor_updateVendor
+  /vendors?{parameters}:
+    get: Vendor_getAllVendors
+operationTags:
+  /:subscriptionId/charges?{parameters}:
+    get: Subscription
+  /agreements/debit/{region}/{type}:
+    post: Agreement
+  /agreements/prenotification/{transactionId}:
+    get: Transaction
+  /agreements/{agreementId}:
+    get: Agreement
+  /alt-transactions:
+    post: Transaction
+    put: Transaction
+  /alt-transactions/resolve:
+    get: Transaction
+  /alt-transactions/resolve?orderId={orderId}:
+    get: Transaction
+  /alt-transactions/{transactionId}:
+    get: Transaction
+  /batch-transactions:
+    post: Transaction
+  /batch-transactions/{batchId}:
+    get: Transaction
+  /recurring/ondemand:
+    post: Subscription
+  /recurring/ondemand/{subscriptionId}:
+    post: Subscription
+  /recurring/plans:
+    post: Plan
+  /recurring/plans/{planId}:
+    get: Plan
+    put: Plan
+  /recurring/plans?{parameters}:
+    get: Plan
+  /recurring/subscriptions:
+    post: Subscription
+  /recurring/subscriptions/:subscriptionId/switch-charge-amount:
+    get: Subscription
+  /recurring/subscriptions/{subscriptionId}:
+    get: Subscription
+    put: Subscription
+  /recurring/subscriptions?{parameters}:
+    get: Subscription
+  /transactions:
+    post: Authorization
+    put: Reversal
+  /transactions/approval:
+    put: Transaction
+  /transactions/pending-refund/{transactionId}:
+    delete: Transaction
+  /transactions/refund/{transactionId}:
+    post: Transaction
+  /transactions/{transactionId}:
+    get: Transaction
+  /vaulted-shoppers:
+    post: Shopper
+  /vaulted-shoppers/{vaultedShopperId}:
+    delete: Shopper
+    get: Shopper
+    put: Shopper
+  /vendors:
+    post: Vendor
+  /vendors/{vendorId}:
+    get: Vendor
+    put: Vendor
+  /vendors?{parameters}:
+    get: Vendor
+renameTags: {}
+requestSchemaNames:
+  /alt-transactions:
+    post:
+      application/json: TransactionCreateSofortTransactionRequest
+    put:
+      application/json: TransactionUpdatePaypalTransactionRequest
+  /batch-transactions:
+    post:
+      application/json: TransactionCreateBatchTransactionRequest
+  /recurring/ondemand:
+    post:
+      application/json: SubscriptionCreateMerchantManagedSubscriptionRequest
+  /recurring/ondemand/{subscriptionId}:
+    post:
+      application/json: SubscriptionCreateMerchantManagedChargeRequest
+  /recurring/plans:
+    post:
+      application/json: PlanCreateRecurringPlanRequest
+  /recurring/plans/{planId}:
+    put:
+      application/json: PlanUpdateRecurringPlanRequest
+  /recurring/subscriptions:
+    post:
+      application/json: SubscriptionCreateNewRequest
+  /recurring/subscriptions/{subscriptionId}:
+    put:
+      application/json: SubscriptionUpdateSubscriptionRequest
+  /transactions:
+    post:
+      application/json: AuthorizationCreateTransactionRequest
+    put:
+      application/json: ReversalAuthTransactionRequest
+  /transactions/refund/{transactionId}:
+    post:
+      application/json: TransactionInitiateRefundRequest
+  /vaulted-shoppers:
+    post:
+      application/json: ShopperCreateVaultedShopperRequest
+  /vaulted-shoppers/{vaultedShopperId}:
+    put:
+      application/json: ShopperUpdateVaultedShopperRequest
+  /vendors:
+    post:
+      application/json: VendorCreateRequest
+  /vendors/{vendorId}:
+    put:
+      application/json: VendorUpdateVendorRequest
+responseDescriptions: {}
+responseSchemaNames: {}
+securityParameters:
+  after:
+    query: false
+  agreementId:
+    query: false
+  approvetransaction:
+    query: false
+  fulldescription:
+    query: false
+  gettotal:
+    query: false
+  newplanid:
+    query: false
+  newquantity:
+    query: false
+  orderId:
+    query: false
+  overriderecurringchargeamount:
+    query: false
+  pagesize:
+    query: false
+  planid:
+    query: false
+  transactionId:
+    query: false
+  transactionid:
+    query: false
+validServerUrls: {}

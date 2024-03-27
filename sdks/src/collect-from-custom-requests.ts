@@ -1661,6 +1661,14 @@ const customRequests: Record<string, CustomRequest> = {
     type: "GET",
     url: "https://raw.githubusercontent.com/paypal/paypal-rest-api-specifications/main/openapi/payments_payment_v2.json",
   },
+  "bluesnap.com": {
+    lambda: async () => {
+      const urls = await collectEndpointsFromReadme({
+        url: "https://developers.bluesnap.com/v8976-JSON/reference/",
+      });
+      return await downloadOpenApiSpecFromReadme({ urls });
+    },
+  },
 };
 
 async function downloadOpenApiSpecFromMintlify({
