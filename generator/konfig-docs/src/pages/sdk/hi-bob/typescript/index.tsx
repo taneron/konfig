@@ -19,7 +19,7 @@ Since late 2015, trusted and empowered "Bobbers" from around the world have brou
       companyKebabCase="hi-bob"
       clientNameCamelCase="hiBob"
       homepage="hibob.com"
-      lastUpdated={new Date("2024-03-26T06:56:00.998Z")}
+      lastUpdated={new Date("2024-03-27T16:12:23.868Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/hibob/favicon.png"
       // Missing contactUrl
       // Missing contactEmail
@@ -1799,6 +1799,51 @@ Since late 2015, trusted and empowered "Bobbers" from around the world have brou
     ]
   },
   {
+    "url": "/docs/people/{id}/custom/{folderId}",
+    "method": "uploadEmployeeCustomFolder",
+    "httpMethod": HttpMethodsEnum.POST,
+    "tag": "Documents",
+    "typeScriptTag": "documents",
+    "description": "Upload a document to an employee's custom folder",
+    "parameters": [
+      {
+        "name": "id",
+        "schema": "string",
+        "required": true,
+        "description": "Employee ID.",
+        "example": "ID"
+      },
+      {
+        "name": "folderId",
+        "schema": "string",
+        "required": true,
+        "description": "Folder ID.",
+        "example": "FOLDERID"
+      },
+      {
+        "name": "tags",
+        "schema": "array",
+        "description": ""
+      },
+      {
+        "name": "documentName",
+        "schema": "string",
+        "description": ""
+      },
+      {
+        "name": "documentUrl",
+        "schema": "string",
+        "description": ""
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "default",
+        "description": ""
+      }
+    ]
+  },
+  {
     "url": "/docs/people/{id}/shared/upload",
     "method": "uploadToSharedFolder",
     "httpMethod": HttpMethodsEnum.POST,
@@ -1842,6 +1887,43 @@ Since late 2015, trusted and empowered "Bobbers" from around the world have brou
         "required": true,
         "description": "employee id",
         "example": "ID"
+      },
+      {
+        "name": "file",
+        "schema": "string",
+        "required": true,
+        "description": "",
+        "example": "FILE"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "default",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "url": "/docs/people/{id}/folders/{folderId}/upload",
+    "method": "uploadFileToFolder",
+    "httpMethod": HttpMethodsEnum.POST,
+    "tag": "Documents",
+    "typeScriptTag": "documents",
+    "description": "Upload a file to an employee's custom folder.",
+    "parameters": [
+      {
+        "name": "id",
+        "schema": "string",
+        "required": true,
+        "description": "employee id",
+        "example": "ID"
+      },
+      {
+        "name": "folderId",
+        "schema": "string",
+        "required": true,
+        "description": "folder id",
+        "example": "FOLDERID"
       },
       {
         "name": "file",
@@ -1909,6 +1991,43 @@ Since late 2015, trusted and empowered "Bobbers" from around the world have brou
         "required": true,
         "description": "Document ID.",
         "example": "DOCID"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "default",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "url": "/docs/people/{id}/folders/{folderId}/{docId}",
+    "method": "deleteSpecificDocument",
+    "httpMethod": HttpMethodsEnum.DELETE,
+    "tag": "Documents",
+    "typeScriptTag": "documents",
+    "description": "Delete a specific document from an employee's custom folder.",
+    "parameters": [
+      {
+        "name": "id",
+        "schema": "string",
+        "required": true,
+        "description": "Employee ID.",
+        "example": "ID"
+      },
+      {
+        "name": "docId",
+        "schema": "string",
+        "required": true,
+        "description": "Document ID.",
+        "example": "DOCID"
+      },
+      {
+        "name": "folderId",
+        "schema": "string",
+        "required": true,
+        "description": "Folder ID.",
+        "example": "FOLDERID"
       }
     ],
     "responses": [
@@ -2676,11 +2795,11 @@ Since late 2015, trusted and empowered "Bobbers" from around the world have brou
       apiTitle="Bob API"
       apiBaseUrl="https://api.hibob.com/v1"
       apiVersion="1.0.0"
-      endpoints={67}
-      sdkMethods={88}
-      schemas={92}
-      parameters={199}
-      difficulty="Medium"
+      endpoints={70}
+      sdkMethods={91}
+      schemas={93}
+      parameters={210}
+      difficulty="Hard"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/hibob/openapi.yaml"
       openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/hibob/openapi.yaml"
       developerDocumentation="apidocs.hibob.com/reference/getting-started-1"

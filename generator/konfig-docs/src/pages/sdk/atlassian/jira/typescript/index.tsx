@@ -17,7 +17,7 @@ export default function AtlassianJiraTypeScriptSdk() {
       companyKebabCase="atlassian"
       clientNameCamelCase="atlassianJira"
       homepage="www.atlassian.com/software/jira"
-      lastUpdated={new Date("2024-03-26T05:42:20.370Z")}
+      lastUpdated={new Date("2024-03-27T06:26:22.306Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/atlassian/jira/favicon.png"
       // Missing contactUrl
       contactEmail="ecosystem@atlassian.com"
@@ -24989,7 +24989,7 @@ export default function AtlassianJiraTypeScriptSdk() {
       language="TypeScript"
       apiTitle="The Jira Cloud platform REST API"
       apiBaseUrl="https://your-domain.atlassian.net"
-      apiVersion="1001.0.0-SNAPSHOT-5ae13026e4437b49229e23bd14d748ef5a25fc99"
+      apiVersion="1001.0.0-SNAPSHOT-a572a3fccec16cd1001dd8745ee0a174a9866605"
       endpoints={352}
       sdkMethods={532}
       schemas={1033}
