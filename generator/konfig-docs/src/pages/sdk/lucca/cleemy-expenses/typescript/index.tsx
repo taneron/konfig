@@ -19,7 +19,7 @@ Créée en décembre 2011, Nereo propose déjà une solution complète de gestio
       companyKebabCase="lucca"
       clientNameCamelCase="luccaCleemyExpenses"
       homepage="lucca-hr.com"
-      lastUpdated={new Date("2024-03-26T19:55:14.920Z")}
+      lastUpdated={new Date("2024-03-27T22:36:36.651Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/lucca/cleemy-expenses/favicon.png"
       contactUrl="https://www.lucca.fr"
       contactEmail="developers@lucca.fr"
@@ -39,7 +39,7 @@ Créée en décembre 2011, Nereo propose déjà une solution complète de gestio
       {
         "name": "ownerId",
         "schema": "array",
-        "description": "Comma-separated list of user identifiers (int)."
+        "description": "Comma-separated list of user identifiers (https://developers.lucca.fr/."
       },
       {
         "name": "orderBy",
@@ -489,7 +489,7 @@ Créée en décembre 2011, Nereo propose déjà une solution complète de gestio
       {
         "name": "ownerId",
         "schema": "array",
-        "description": "Comma-separated list of user identifiers (int)."
+        "description": "Comma-separated list of user identifiers (https://developers.lucca.fr/."
       },
       {
         "name": "orderBy",
@@ -543,7 +543,7 @@ Créée en décembre 2011, Nereo propose déjà une solution complète de gestio
       sdkMethods={8}
       schemas={23}
       parameters={53}
-      difficulty="Easy"
+      difficulty="Very Easy"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/lucca/cleemy-expenses/openapi.yaml"
       openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/lucca/cleemy-expenses/openapi.yaml"
       developerDocumentation="developers.lucca.fr/"

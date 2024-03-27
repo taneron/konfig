@@ -4,7 +4,7 @@ import { Company } from '../../../components/Company';
 const sdks = [
   {
     "name": "ClickFunnels",
-    "numberOfMethods": 153,
+    "numberOfMethods": 159,
     "categories": [
       "marketing",
       "workspace"
@@ -17,7 +17,7 @@ const sdks = [
   },
   {
     "name": "ClickFunnels",
-    "numberOfMethods": 153,
+    "numberOfMethods": 159,
     "categories": [
       "marketing",
       "workspace"
@@ -30,7 +30,7 @@ const sdks = [
   },
   {
     "name": "ClickFunnels",
-    "numberOfMethods": 153,
+    "numberOfMethods": 159,
     "categories": [
       "marketing",
       "workspace"

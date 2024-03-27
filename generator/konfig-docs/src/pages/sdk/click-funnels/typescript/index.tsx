@@ -17,7 +17,7 @@ export default function ClickFunnelsTypeScriptSdk() {
       companyKebabCase="click-funnels"
       clientNameCamelCase="clickFunnels"
       homepage="www.clickfunnels.com/"
-      lastUpdated={new Date("2024-03-27T01:23:25.425Z")}
+      lastUpdated={new Date("2024-03-27T22:36:36.651Z")}
       faviconUrl="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/clickfunnels/favicon.png"
       contactUrl="https://developers.myclickfunnels.com"
       // Missing contactEmail
@@ -44,7 +44,7 @@ export default function ClickFunnelsTypeScriptSdk() {
         "name": "sortOrder",
         "schema": "string",
         "required": false,
-        "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (ascending) sort order."
+        "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (https://developers.myclickfunnels.com/ sort order."
       }
     ],
     "responses": [
@@ -156,7 +156,7 @@ export default function ClickFunnelsTypeScriptSdk() {
         "name": "sortOrder",
         "schema": "string",
         "required": false,
-        "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (ascending) sort order."
+        "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (https://developers.myclickfunnels.com/ sort order."
       }
     ],
     "responses": [
@@ -221,9 +221,9 @@ export default function ClickFunnelsTypeScriptSdk() {
         "schema": "object",
         "description": "",
         "example": {
-          "email": "huong@stroman-kuhlman.co",
-          "first_name": "Louis",
-          "last_name": "Von",
+          "email": "lani@hermann.io",
+          "first_name": "Ashanti",
+          "last_name": "Hills",
           "time_zone": "Pacific Time (US & Canada)",
           "locale": "en"
         }
@@ -269,7 +269,7 @@ export default function ClickFunnelsTypeScriptSdk() {
         "name": "sortOrder",
         "schema": "string",
         "required": false,
-        "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (ascending) sort order."
+        "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (https://developers.myclickfunnels.com/ sort order."
       }
     ],
     "responses": [
@@ -427,7 +427,7 @@ export default function ClickFunnelsTypeScriptSdk() {
         "name": "sortOrder",
         "schema": "string",
         "required": false,
-        "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (ascending) sort order."
+        "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (https://developers.myclickfunnels.com/ sort order."
       },
       {
         "name": "filter",
@@ -471,10 +471,10 @@ export default function ClickFunnelsTypeScriptSdk() {
         "schema": "object",
         "description": "",
         "example": {
-          "email_address": "test-1d4db4ce8f9f3c561a5e@example.com",
-          "first_name": "Solomon",
+          "email_address": "test-cffecbe1838afd32016e@example.com",
+          "first_name": "Oswaldo",
           "last_name": "Little",
-          "phone_number": "(652) 729-2659",
+          "phone_number": "267.675.3083 x142",
           "time_zone": "Pacific Time (US & Canada)",
           "fb_url": "https://www.facebook.com/example",
           "twitter_url": "https://twitter.com/example",
@@ -580,10 +580,10 @@ export default function ClickFunnelsTypeScriptSdk() {
         "schema": "object",
         "description": "",
         "example": {
-          "email_address": "test-1d4db4ce8f9f3c561a5e@example.com",
-          "first_name": "Solomon",
+          "email_address": "test-cffecbe1838afd32016e@example.com",
+          "first_name": "Oswaldo",
           "last_name": "Little",
-          "phone_number": "(652) 729-2659",
+          "phone_number": "267.675.3083 x142",
           "time_zone": "Pacific Time (US & Canada)",
           "fb_url": "https://www.facebook.com/example",
           "twitter_url": "https://twitter.com/example",
@@ -699,7 +699,7 @@ export default function ClickFunnelsTypeScriptSdk() {
         "name": "sortOrder",
         "schema": "string",
         "required": false,
-        "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (ascending) sort order."
+        "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (https://developers.myclickfunnels.com/ sort order."
       }
     ],
     "responses": [
@@ -843,7 +843,7 @@ export default function ClickFunnelsTypeScriptSdk() {
         "name": "sortOrder",
         "schema": "string",
         "required": false,
-        "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (ascending) sort order."
+        "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (https://developers.myclickfunnels.com/ sort order."
       }
     ],
     "responses": [
@@ -882,7 +882,7 @@ export default function ClickFunnelsTypeScriptSdk() {
         "description": "",
         "example": {
           "name": "Example Tag",
-          "color": "#044662"
+          "color": "#7c8863"
         }
       }
     ],
@@ -984,7 +984,7 @@ export default function ClickFunnelsTypeScriptSdk() {
         "description": "",
         "example": {
           "name": "Example Tag",
-          "color": "#044662"
+          "color": "#7c8863"
         }
       }
     ],
@@ -1032,7 +1032,7 @@ export default function ClickFunnelsTypeScriptSdk() {
         "name": "sortOrder",
         "schema": "string",
         "required": false,
-        "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (ascending) sort order."
+        "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (https://developers.myclickfunnels.com/ sort order."
       }
     ],
     "responses": [
@@ -1106,7 +1106,7 @@ export default function ClickFunnelsTypeScriptSdk() {
         "name": "sortOrder",
         "schema": "string",
         "required": false,
-        "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (ascending) sort order."
+        "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (https://developers.myclickfunnels.com/ sort order."
       }
     ],
     "responses": [
@@ -1264,7 +1264,7 @@ export default function ClickFunnelsTypeScriptSdk() {
         "name": "sortOrder",
         "schema": "string",
         "required": false,
-        "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (ascending) sort order."
+        "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (https://developers.myclickfunnels.com/ sort order."
       }
     ],
     "responses": [
@@ -1382,7 +1382,7 @@ export default function ClickFunnelsTypeScriptSdk() {
         "name": "sortOrder",
         "schema": "string",
         "required": false,
-        "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (ascending) sort order."
+        "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (https://developers.myclickfunnels.com/ sort order."
       }
     ],
     "responses": [
@@ -1499,7 +1499,7 @@ export default function ClickFunnelsTypeScriptSdk() {
         "name": "sortOrder",
         "schema": "string",
         "required": false,
-        "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (ascending) sort order."
+        "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (https://developers.myclickfunnels.com/ sort order."
       }
     ],
     "responses": [
@@ -1686,7 +1686,7 @@ export default function ClickFunnelsTypeScriptSdk() {
         "name": "sortOrder",
         "schema": "string",
         "required": false,
-        "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (ascending) sort order."
+        "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (https://developers.myclickfunnels.com/ sort order."
       }
     ],
     "responses": [
@@ -1873,7 +1873,7 @@ export default function ClickFunnelsTypeScriptSdk() {
         "name": "sortOrder",
         "schema": "string",
         "required": false,
-        "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (ascending) sort order."
+        "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (https://developers.myclickfunnels.com/ sort order."
       }
     ],
     "responses": [
@@ -2062,7 +2062,7 @@ export default function ClickFunnelsTypeScriptSdk() {
         "name": "sortOrder",
         "schema": "string",
         "required": false,
-        "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (ascending) sort order."
+        "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (https://developers.myclickfunnels.com/ sort order."
       }
     ],
     "responses": [
@@ -2100,7 +2100,7 @@ export default function ClickFunnelsTypeScriptSdk() {
         "schema": "object",
         "description": "",
         "example": {
-          "label": "accusamus"
+          "label": "praesentium"
         }
       }
     ],
@@ -2201,7 +2201,7 @@ export default function ClickFunnelsTypeScriptSdk() {
         "schema": "object",
         "description": "",
         "example": {
-          "label": "accusamus"
+          "label": "praesentium"
         }
       }
     ],
@@ -2249,7 +2249,7 @@ export default function ClickFunnelsTypeScriptSdk() {
         "name": "sortOrder",
         "schema": "string",
         "required": false,
-        "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (ascending) sort order."
+        "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (https://developers.myclickfunnels.com/ sort order."
       }
     ],
     "responses": [
@@ -2436,7 +2436,7 @@ export default function ClickFunnelsTypeScriptSdk() {
         "name": "sortOrder",
         "schema": "string",
         "required": false,
-        "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (ascending) sort order."
+        "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (https://developers.myclickfunnels.com/ sort order."
       }
     ],
     "responses": [
@@ -2603,6 +2603,207 @@ export default function ClickFunnelsTypeScriptSdk() {
     ]
   },
   {
+    "url": "/workspaces/{workspace_id}/form_submissions",
+    "method": "listSubmissions",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "FormSubmission",
+    "typeScriptTag": "formSubmission",
+    "description": "List Form Submissions",
+    "parameters": [
+      {
+        "name": "workspaceId",
+        "schema": "integer",
+        "required": true,
+        "description": "",
+        "example": 0
+      },
+      {
+        "name": "after",
+        "schema": "string",
+        "required": false,
+        "description": "ID of item after which the collection should be returned"
+      },
+      {
+        "name": "sortOrder",
+        "schema": "string",
+        "required": false,
+        "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (https://developers.myclickfunnels.com/ sort order."
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "401",
+        "description": ""
+      },
+      {
+        "statusCode": "404",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "url": "/workspaces/{workspace_id}/form_submissions",
+    "method": "createSubmission",
+    "httpMethod": HttpMethodsEnum.POST,
+    "tag": "FormSubmission",
+    "typeScriptTag": "formSubmission",
+    "description": "Create Form Submission",
+    "parameters": [
+      {
+        "name": "workspaceId",
+        "schema": "integer",
+        "required": true,
+        "description": "",
+        "example": 0
+      },
+      {
+        "name": "form_submission",
+        "schema": "object",
+        "description": "",
+        "example": {
+          "contact_id": 6,
+          "page_id": 1,
+          "data": {
+            "email": "test@example.com",
+            "phone": "123-456-7890",
+            "full_name": "Test User",
+            "t_shirt_size": "L"
+          }
+        }
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "201",
+        "description": "Form submissions"
+      },
+      {
+        "statusCode": "400",
+        "description": ""
+      },
+      {
+        "statusCode": "401",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "url": "/form_submissions/{id}",
+    "method": "removeById",
+    "httpMethod": HttpMethodsEnum.DELETE,
+    "tag": "FormSubmission",
+    "typeScriptTag": "formSubmission",
+    "description": "Remove Form Submission",
+    "parameters": [
+      {
+        "name": "id",
+        "schema": "string",
+        "required": true,
+        "description": "",
+        "example": "ID"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "204",
+        "description": "No Content"
+      },
+      {
+        "statusCode": "401",
+        "description": ""
+      },
+      {
+        "statusCode": "404",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "url": "/form_submissions/{id}",
+    "method": "getSubmission",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "FormSubmission",
+    "typeScriptTag": "formSubmission",
+    "description": "Fetch Form Submission",
+    "parameters": [
+      {
+        "name": "id",
+        "schema": "string",
+        "required": true,
+        "description": "",
+        "example": "ID"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": "Form submissions"
+      },
+      {
+        "statusCode": "401",
+        "description": ""
+      },
+      {
+        "statusCode": "404",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "url": "/form_submissions/{id}",
+    "method": "updateById",
+    "httpMethod": HttpMethodsEnum.PUT,
+    "tag": "FormSubmission",
+    "typeScriptTag": "formSubmission",
+    "description": "Update Form Submission",
+    "parameters": [
+      {
+        "name": "id",
+        "schema": "string",
+        "required": true,
+        "description": "",
+        "example": "ID"
+      },
+      {
+        "name": "form_submission",
+        "schema": "object",
+        "description": "",
+        "example": {
+          "contact_id": 6,
+          "page_id": 1,
+          "data": {
+            "email": "test@example.com",
+            "phone": "123-456-7890",
+            "full_name": "Test User",
+            "t_shirt_size": "L"
+          }
+        }
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": "Form submissions"
+      },
+      {
+        "statusCode": "400",
+        "description": ""
+      },
+      {
+        "statusCode": "401",
+        "description": ""
+      },
+      {
+        "statusCode": "404",
+        "description": ""
+      }
+    ]
+  },
+  {
     "url": "/workspaces/{workspace_id}/fulfillments",
     "method": "list",
     "httpMethod": HttpMethodsEnum.GET,
@@ -2627,7 +2828,7 @@ export default function ClickFunnelsTypeScriptSdk() {
         "name": "sortOrder",
         "schema": "string",
         "required": false,
-        "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (ascending) sort order."
+        "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (https://developers.myclickfunnels.com/ sort order."
       }
     ],
     "responses": [
@@ -2665,7 +2866,7 @@ export default function ClickFunnelsTypeScriptSdk() {
         "schema": "object",
         "description": "",
         "example": {
-          "contact_id": 6,
+          "contact_id": 7,
           "tracking_url": "https://usps.com/track/1234567890",
           "shipping_provider": "USPS",
           "tracking_code": "1234567890",
@@ -2739,7 +2940,7 @@ export default function ClickFunnelsTypeScriptSdk() {
         "schema": "object",
         "description": "",
         "example": {
-          "contact_id": 6,
+          "contact_id": 7,
           "tracking_url": "https://usps.com/track/1234567890",
           "shipping_provider": "USPS",
           "tracking_code": "1234567890",
@@ -2826,7 +3027,7 @@ export default function ClickFunnelsTypeScriptSdk() {
         "name": "sortOrder",
         "schema": "string",
         "required": false,
-        "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (ascending) sort order."
+        "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (https://developers.myclickfunnels.com/ sort order."
       }
     ],
     "responses": [
@@ -2866,8 +3067,8 @@ export default function ClickFunnelsTypeScriptSdk() {
         "example": {
           "name": "Example Location",
           "address_name": "Example Address",
-          "email_address": "myemail1710866918@example.com",
-          "phone_number": "(123)-555-4567"
+          "email_address": "myemail1711566236@example.com",
+          "phone_number": "(https://developers.myclickfunnels.com/-555-4567"
         }
       }
     ],
@@ -2970,8 +3171,8 @@ export default function ClickFunnelsTypeScriptSdk() {
         "example": {
           "name": "Example Location",
           "address_name": "Example Address",
-          "email_address": "myemail1710866918@example.com",
-          "phone_number": "(123)-555-4567"
+          "email_address": "myemail1711566236@example.com",
+          "phone_number": "(https://developers.myclickfunnels.com/-555-4567"
         }
       }
     ],
@@ -3019,7 +3220,7 @@ export default function ClickFunnelsTypeScriptSdk() {
         "name": "sortOrder",
         "schema": "string",
         "required": false,
-        "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (ascending) sort order."
+        "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (https://developers.myclickfunnels.com/ sort order."
       }
     ],
     "responses": [
@@ -3210,7 +3411,7 @@ export default function ClickFunnelsTypeScriptSdk() {
         "name": "sortOrder",
         "schema": "string",
         "required": false,
-        "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (ascending) sort order."
+        "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (https://developers.myclickfunnels.com/ sort order."
       },
       {
         "name": "filter",
@@ -3285,7 +3486,7 @@ export default function ClickFunnelsTypeScriptSdk() {
         "schema": "object",
         "description": "",
         "example": {
-          "notes": "Recusandae et dolores autem."
+          "notes": "Quisquam reiciendis mollitia ea."
         }
       }
     ],
@@ -3333,7 +3534,7 @@ export default function ClickFunnelsTypeScriptSdk() {
         "name": "sortOrder",
         "schema": "string",
         "required": false,
-        "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (ascending) sort order."
+        "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (https://developers.myclickfunnels.com/ sort order."
       }
     ],
     "responses": [
@@ -3407,7 +3608,7 @@ export default function ClickFunnelsTypeScriptSdk() {
         "name": "sortOrder",
         "schema": "string",
         "required": false,
-        "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (ascending) sort order."
+        "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (https://developers.myclickfunnels.com/ sort order."
       }
     ],
     "responses": [
@@ -3551,7 +3752,7 @@ export default function ClickFunnelsTypeScriptSdk() {
         "name": "sortOrder",
         "schema": "string",
         "required": false,
-        "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (ascending) sort order."
+        "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (https://developers.myclickfunnels.com/ sort order."
       }
     ],
     "responses": [
@@ -3625,7 +3826,7 @@ export default function ClickFunnelsTypeScriptSdk() {
         "name": "sortOrder",
         "schema": "string",
         "required": false,
-        "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (ascending) sort order."
+        "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (https://developers.myclickfunnels.com/ sort order."
       }
     ],
     "responses": [
@@ -3699,7 +3900,7 @@ export default function ClickFunnelsTypeScriptSdk() {
         "name": "sortOrder",
         "schema": "string",
         "required": false,
-        "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (ascending) sort order."
+        "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (https://developers.myclickfunnels.com/ sort order."
       }
     ],
     "responses": [
@@ -3738,7 +3939,7 @@ export default function ClickFunnelsTypeScriptSdk() {
         "description": "",
         "example": {
           "name": "Example Tag",
-          "color": "#4f4ca7"
+          "color": "#8895e6"
         }
       }
     ],
@@ -3840,7 +4041,7 @@ export default function ClickFunnelsTypeScriptSdk() {
         "description": "",
         "example": {
           "name": "Example Tag",
-          "color": "#4f4ca7"
+          "color": "#8895e6"
         }
       }
     ],
@@ -3888,7 +4089,7 @@ export default function ClickFunnelsTypeScriptSdk() {
         "name": "sortOrder",
         "schema": "string",
         "required": false,
-        "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (ascending) sort order."
+        "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (https://developers.myclickfunnels.com/ sort order."
       }
     ],
     "responses": [
@@ -3926,11 +4127,11 @@ export default function ClickFunnelsTypeScriptSdk() {
         "schema": "object",
         "description": "",
         "example": {
-          "name": "Small Steel Bottle 41972f",
+          "name": "Small Granite Wallet a3ebb2",
           "visible_in_store": true,
           "visible_in_customer_center": true,
-          "seo_title": "Totam et dolores rerum.",
-          "seo_description": "Nostrum laborum provident et.",
+          "seo_title": "Doloribus consequatur sit officia.",
+          "seo_description": "Atque sunt maiores et.",
           "commissionable": true
         }
       }
@@ -4001,11 +4202,11 @@ export default function ClickFunnelsTypeScriptSdk() {
         "schema": "object",
         "description": "",
         "example": {
-          "name": "Small Steel Bottle 41972f",
+          "name": "Small Granite Wallet a3ebb2",
           "visible_in_store": true,
           "visible_in_customer_center": true,
-          "seo_title": "Totam et dolores rerum.",
-          "seo_description": "Nostrum laborum provident et.",
+          "seo_title": "Doloribus consequatur sit officia.",
+          "seo_description": "Atque sunt maiores et.",
           "commissionable": true
         }
       }
@@ -4100,58 +4301,15 @@ export default function ClickFunnelsTypeScriptSdk() {
     ]
   },
   {
-    "url": "/products/{product_id}/prices",
-    "method": "listForVariant",
-    "httpMethod": HttpMethodsEnum.GET,
-    "tag": "Products::Price",
-    "typeScriptTag": "products::price",
-    "description": "List Prices",
-    "parameters": [
-      {
-        "name": "productId",
-        "schema": "integer",
-        "required": true,
-        "description": "",
-        "example": 0
-      },
-      {
-        "name": "after",
-        "schema": "string",
-        "required": false,
-        "description": "ID of item after which the collection should be returned"
-      },
-      {
-        "name": "sortOrder",
-        "schema": "string",
-        "required": false,
-        "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (ascending) sort order."
-      }
-    ],
-    "responses": [
-      {
-        "statusCode": "200",
-        "description": ""
-      },
-      {
-        "statusCode": "401",
-        "description": ""
-      },
-      {
-        "statusCode": "404",
-        "description": ""
-      }
-    ]
-  },
-  {
-    "url": "/products/{product_id}/prices",
-    "method": "createVariantPrice",
+    "url": "/products/variants/{variant_id}/prices",
+    "method": "createNewPrice",
     "httpMethod": HttpMethodsEnum.POST,
     "tag": "Products::Price",
     "typeScriptTag": "products::price",
     "description": "Create Price",
     "parameters": [
       {
-        "name": "productId",
+        "name": "variantId",
         "schema": "integer",
         "required": true,
         "description": "",
@@ -4189,6 +4347,49 @@ export default function ClickFunnelsTypeScriptSdk() {
       },
       {
         "statusCode": "401",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "url": "/products/{product_id}/prices",
+    "method": "listForVariant",
+    "httpMethod": HttpMethodsEnum.GET,
+    "tag": "Products::Price",
+    "typeScriptTag": "products::price",
+    "description": "List Prices",
+    "parameters": [
+      {
+        "name": "productId",
+        "schema": "integer",
+        "required": true,
+        "description": "",
+        "example": 0
+      },
+      {
+        "name": "after",
+        "schema": "string",
+        "required": false,
+        "description": "ID of item after which the collection should be returned"
+      },
+      {
+        "name": "sortOrder",
+        "schema": "string",
+        "required": false,
+        "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (https://developers.myclickfunnels.com/ sort order."
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": ""
+      },
+      {
+        "statusCode": "401",
+        "description": ""
+      },
+      {
+        "statusCode": "404",
         "description": ""
       }
     ]
@@ -4304,7 +4505,7 @@ export default function ClickFunnelsTypeScriptSdk() {
         "name": "sortOrder",
         "schema": "string",
         "required": false,
-        "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (ascending) sort order."
+        "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (https://developers.myclickfunnels.com/ sort order."
       }
     ],
     "responses": [
@@ -4342,15 +4543,15 @@ export default function ClickFunnelsTypeScriptSdk() {
         "schema": "object",
         "description": "",
         "example": {
-          "description": "Dolores asperiores eveniet expedita.",
-          "name": "Lightweight Bronze Clock variant e702",
-          "sku": "AhMTx0yMQkbdFNVr",
+          "description": "Molestiae reiciendis debitis nulla.",
+          "name": "Sleek Marble Plate variant dc50",
+          "sku": "KP6DOH5kFkFBljFa",
           "product_type": "physical",
-          "weight": "20.0",
+          "weight": "83.0",
           "weight_unit": "lb",
-          "height": "46.0",
-          "width": "805.0",
-          "length": "47.0",
+          "height": "63.0",
+          "width": "219.0",
+          "length": "79.0",
           "dimensions_unit": "inches",
           "visible": true
         }
@@ -4422,15 +4623,15 @@ export default function ClickFunnelsTypeScriptSdk() {
         "schema": "object",
         "description": "",
         "example": {
-          "description": "Dolores asperiores eveniet expedita.",
-          "name": "Lightweight Bronze Clock variant e702",
-          "sku": "AhMTx0yMQkbdFNVr",
+          "description": "Molestiae reiciendis debitis nulla.",
+          "name": "Sleek Marble Plate variant dc50",
+          "sku": "KP6DOH5kFkFBljFa",
           "product_type": "physical",
-          "weight": "20.0",
+          "weight": "83.0",
           "weight_unit": "lb",
-          "height": "46.0",
-          "width": "805.0",
-          "length": "47.0",
+          "height": "63.0",
+          "width": "219.0",
+          "length": "79.0",
           "dimensions_unit": "inches",
           "visible": true
         }
@@ -4480,7 +4681,7 @@ export default function ClickFunnelsTypeScriptSdk() {
         "name": "sortOrder",
         "schema": "string",
         "required": false,
-        "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (ascending) sort order."
+        "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (https://developers.myclickfunnels.com/ sort order."
       }
     ],
     "responses": [
@@ -4519,7 +4720,7 @@ export default function ClickFunnelsTypeScriptSdk() {
         "description": "",
         "example": {
           "name": "Example Tag",
-          "color": "emerald"
+          "color": "pink"
         }
       }
     ],
@@ -4621,7 +4822,7 @@ export default function ClickFunnelsTypeScriptSdk() {
         "description": "",
         "example": {
           "name": "Example Tag",
-          "color": "emerald"
+          "color": "pink"
         }
       }
     ],
@@ -4669,7 +4870,7 @@ export default function ClickFunnelsTypeScriptSdk() {
         "name": "sortOrder",
         "schema": "string",
         "required": false,
-        "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (ascending) sort order."
+        "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (https://developers.myclickfunnels.com/ sort order."
       }
     ],
     "responses": [
@@ -4743,7 +4944,7 @@ export default function ClickFunnelsTypeScriptSdk() {
         "name": "sortOrder",
         "schema": "string",
         "required": false,
-        "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (ascending) sort order."
+        "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (https://developers.myclickfunnels.com/ sort order."
       }
     ],
     "responses": [
@@ -4944,7 +5145,7 @@ export default function ClickFunnelsTypeScriptSdk() {
         "name": "sortOrder",
         "schema": "string",
         "required": false,
-        "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (ascending) sort order."
+        "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (https://developers.myclickfunnels.com/ sort order."
       }
     ],
     "responses": [
@@ -5131,7 +5332,7 @@ export default function ClickFunnelsTypeScriptSdk() {
         "name": "sortOrder",
         "schema": "string",
         "required": false,
-        "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (ascending) sort order."
+        "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (https://developers.myclickfunnels.com/ sort order."
       }
     ],
     "responses": [
@@ -5169,7 +5370,7 @@ export default function ClickFunnelsTypeScriptSdk() {
         "schema": "object",
         "description": "",
         "example": {
-          "provider_name": "Gov. Shanda Dach",
+          "provider_name": "Msgr. Willy Larkin",
           "price": "10.00",
           "price_currency": "USD",
           "rates_name_id": 1
@@ -5273,7 +5474,7 @@ export default function ClickFunnelsTypeScriptSdk() {
         "schema": "object",
         "description": "",
         "example": {
-          "provider_name": "Gov. Shanda Dach",
+          "provider_name": "Msgr. Willy Larkin",
           "price": "10.00",
           "price_currency": "USD",
           "rates_name_id": 1
@@ -5324,7 +5525,7 @@ export default function ClickFunnelsTypeScriptSdk() {
         "name": "sortOrder",
         "schema": "string",
         "required": false,
-        "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (ascending) sort order."
+        "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (https://developers.myclickfunnels.com/ sort order."
       }
     ],
     "responses": [
@@ -5362,7 +5563,7 @@ export default function ClickFunnelsTypeScriptSdk() {
         "schema": "object",
         "description": "",
         "example": {
-          "name": "Bruce Marquardt"
+          "name": "Peter Hills"
         }
       }
     ],
@@ -5463,7 +5664,7 @@ export default function ClickFunnelsTypeScriptSdk() {
         "schema": "object",
         "description": "",
         "example": {
-          "name": "Bruce Marquardt"
+          "name": "Peter Hills"
         }
       }
     ],
@@ -5511,7 +5712,7 @@ export default function ClickFunnelsTypeScriptSdk() {
         "name": "sortOrder",
         "schema": "string",
         "required": false,
-        "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (ascending) sort order."
+        "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (https://developers.myclickfunnels.com/ sort order."
       }
     ],
     "responses": [
@@ -5698,7 +5899,7 @@ export default function ClickFunnelsTypeScriptSdk() {
         "name": "sortOrder",
         "schema": "string",
         "required": false,
-        "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (ascending) sort order."
+        "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (https://developers.myclickfunnels.com/ sort order."
       }
     ],
     "responses": [
@@ -5737,7 +5938,10 @@ export default function ClickFunnelsTypeScriptSdk() {
         "description": "",
         "example": {
           "url": "https://example.com/some-endpoint-url",
-          "name": "Example Endpoint"
+          "name": "Example Endpoint",
+          "event_type_ids": [
+            "contact.identified"
+          ]
         }
       }
     ],
@@ -5752,6 +5956,37 @@ export default function ClickFunnelsTypeScriptSdk() {
       },
       {
         "statusCode": "401",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "url": "/webhooks/outgoing/endpoints/{id}",
+    "method": "remove",
+    "httpMethod": HttpMethodsEnum.DELETE,
+    "tag": "Webhooks::Outgoing::Endpoint",
+    "typeScriptTag": "webhooks::outgoing::endpoint",
+    "description": "Remove Endpoint",
+    "parameters": [
+      {
+        "name": "id",
+        "schema": "string",
+        "required": true,
+        "description": "",
+        "example": "ID"
+      }
+    ],
+    "responses": [
+      {
+        "statusCode": "204",
+        "description": "No Content"
+      },
+      {
+        "statusCode": "401",
+        "description": ""
+      },
+      {
+        "statusCode": "404",
         "description": ""
       }
     ]
@@ -5808,7 +6043,10 @@ export default function ClickFunnelsTypeScriptSdk() {
         "description": "",
         "example": {
           "url": "https://example.com/some-endpoint-url",
-          "name": "Example Endpoint"
+          "name": "Example Endpoint",
+          "event_type_ids": [
+            "contact.identified"
+          ]
         }
       }
     ],
@@ -5856,7 +6094,7 @@ export default function ClickFunnelsTypeScriptSdk() {
         "name": "sortOrder",
         "schema": "string",
         "required": false,
-        "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (ascending) sort order."
+        "description": "Sort order of a list response. Use 'desc' to reverse the default 'asc' (https://developers.myclickfunnels.com/ sort order."
       }
     ],
     "responses": [
@@ -5911,10 +6149,10 @@ export default function ClickFunnelsTypeScriptSdk() {
       apiTitle="ClickFunnels API"
       apiBaseUrl="https://{subdomain}.myclickfunnels.com/api/v2"
       apiVersion="V2"
-      endpoints={79}
-      sdkMethods={153}
-      schemas={492}
-      parameters={283}
+      endpoints={82}
+      sdkMethods={159}
+      schemas={510}
+      parameters={293}
       difficulty="Hard"
       openApiRaw="https://raw.githubusercontent.com/konfig-sdks/openapi-examples/HEAD/clickfunnels/openapi.yaml"
       openApiGitHubUi="https://github.com/konfig-sdks/openapi-examples/tree/HEAD/clickfunnels/openapi.yaml"
