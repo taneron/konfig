@@ -311,7 +311,7 @@ function HeroSection({
           />
         </div>
         <h1 className="mt-8 text-white text-4xl sm:text-6xl leading-tight">
-          Move faster with <span className="whitespace-nowrap">{company}</span>{" "}
+          Build faster with <span className="whitespace-nowrap">{company}</span>{" "}
           SDKs
         </h1>
         <p className="text-[hsl(214_97%_90%)] text-xl sm:text-2xl max-w-[550px] mx-auto font-semibold">
