@@ -940,6 +940,15 @@ const customRequests: Record<string, CustomRequest> = {
     type: "GET",
     url: "https://www.readypayonline.com/CompanyAPI/swagger/docs/v1",
   },
+  "remote.com": {
+    lambda: async ({ browser }) => {
+      return downloadOpenApiSpecFromRedoclyEmbedded({
+        url: "https://gateway.remote.com/v1/docs/openapi.html",
+        filename: "openapi.json",
+        browser,
+      });
+    },
+  },
   "brex.com_Transactions": {
     lambda: async ({ browser }) => {
       return downloadOpenApiSpecFromRedoclyEmbedded({

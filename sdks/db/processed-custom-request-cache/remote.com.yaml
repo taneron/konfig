@@ -1,0 +1,39 @@
+processed:
+  securitySchemes:
+    OAuth2:
+      description: >
+        Authenticate using OAuth 2.0 protocol.
+
+
+        When interacting with the production server, the routes must be prefixed
+        with `https://gateway.remote.com/`.
+
+        To work with our sandbox environment, the server must be
+        `https://gateway.remote-sandbox.com/`.
+
+        This only applies to the request routes, i.e., you don't need to change
+        the server URL in the authorization scopes.
+      flows:
+        authorizationCode:
+          authorizationUrl: /auth/oauth2/authorize
+          scopes:
+            https://gateway.remote.com/employment.manage: Create, read, update and delete employments
+            https://gateway.remote.com/employment.read: Read employment data
+          tokenUrl: /auth/oauth2/token
+        clientCredentials:
+          scopes:
+            https://gateway.remote.com/employment.manage: Create, read, update and delete employments
+            https://gateway.remote.com/employment.read: Read employment data
+          tokenUrl: /auth/oauth2/token
+      type: oauth2
+  apiBaseUrl: https://gateway.remote.com/
+  apiVersion: 0.1.0
+  apiTitle: Remote API
+  endpoints: 55
+  sdkMethods: 78
+  schemas: 188
+  parameters: 248
+  originalCustomRequest:
+    lambda: true
+  customRequestSpecFilename: remote.com.yaml
+  difficultyScore: 234

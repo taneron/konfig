@@ -1,0 +1,187 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignoreObjectsWithNoProperties: true
+operationIds:
+  /auth/oauth2/token:
+    post: OAuth2_exchangeToken
+  /v1/benefits/country-summary:
+    get: BenefitsCountrySummary_listSummary
+  /v1/billing-documents:
+    get: BillingDocuments_list
+  /v1/billing-documents/{billing_document_id}:
+    get: BillingDocuments_showDetails
+  /v1/billing-documents/{billing_document_id}/pdf:
+    get: BillingDocuments_downloadPdf
+  /v1/companies:
+    get: Companies_listAll
+    post: Companies_createNewCompany
+  /v1/companies/{company_id}:
+    get: Companies_showCompany
+    patch: Companies_updateCompany
+    put: Companies_updateCompany
+  /v1/company-departments:
+    get: CompanyDepartment_list
+    post: CompanyDepartment_createNewDepartment
+  /v1/company-managers:
+    get: CompanyManagers_listManagers
+    post: CompanyManagers_createInvite
+  /v1/company-managers/{user_id}:
+    delete: CompanyManagers_deleteUser
+    get: CompanyManagers_showUser
+  /v1/contract-amendments:
+    get: ContractAmendments_listRequests
+    post: ContractAmendments_createRequest
+  /v1/contract-amendments/automatable:
+    post: ContractAmendments_checkAutomatability
+  /v1/contract-amendments/schema:
+    post: ContractAmendments_getFormSchema
+  /v1/contract-amendments/{id}:
+    get: ContractAmendments_showSingleRequest
+  /v1/cost-calculator/countries:
+    get: CostCalculator_listCountries
+  /v1/cost-calculator/estimation:
+    post: CostCalculator_createEmploymentEstimation
+  /v1/cost-calculator/estimation-pdf:
+    post: CostCalculator_generateEstimationPdf
+  /v1/cost-calculator/regions/{slug}/fields:
+    get: CostCalculator_showRegionFields
+  /v1/countries:
+    get: Countries_listAlphabetically
+  /v1/countries/{country_code}/holidays/{year}:
+    get: Countries_listHolidaysByYear
+  /v1/countries/{country_code}/{form}:
+    get: Countries_getFormSchema
+  /v1/custom-fields:
+    get: CustomFields_listDefinitions
+  /v1/custom-fields/{custom_field_id}/values/{employment_id}:
+    get: CustomFields_showValue
+  /v1/documents:
+    post: Files_uploadEmploymentFile
+  /v1/employment-contracts/{employment_id}/pending-changes:
+    get: EmploymentContracts_getPendingChanges
+  /v1/employments:
+    get: Employments_listAll
+    post: Employments_createEmployment
+  /v1/employments/{employment_id}:
+    get: Employments_getEmploymentInfo
+    patch: Employments_updateData
+    put: Employments_updateDetails
+  /v1/employments/{employment_id}/invite:
+    post: Employments_inviteStartEnrollment
+  /v1/expenses:
+    get: Expenses_listRecords
+    post: Expenses_createApprovedExpense
+  /v1/expenses/{expense_id}/receipt:
+    get: Expenses_downloadReceipt
+  /v1/expenses/{expense_id}/receipts/{receipt_id}:
+    get: Expenses_downloadReceiptById
+  /v1/expenses/{id}:
+    get: Expenses_showRecord
+    patch: Expenses_updateRecord
+    put: Expenses_updateExpense
+  /v1/files/{id}:
+    get: Files_downloadFile
+  /v1/identity/current:
+    get: Identity_getTokenInfo
+  /v1/incentives:
+    get: Incentives_listAll
+    post: Incentives_createIncentive
+  /v1/incentives/recurring:
+    get: RecurringIncentives_listIncentives
+    post: RecurringIncentives_createMonthlyIncentive
+  /v1/incentives/recurring/{id}:
+    delete: RecurringIncentives_deleteScheduled
+  /v1/incentives/{id}:
+    delete: Incentives_removeIncentive
+    get: Incentives_showDetails
+    patch: Incentives_updateIncentive
+    put: Incentives_updateIncentive
+  /v1/offboardings:
+    get: Offboarding_listRequests
+    post: Offboarding_createRequest
+  /v1/offboardings/{id}:
+    get: Offboarding_showRequest
+  /v1/payslips:
+    get: Payslips_listAll
+  /v1/payslips/{id}:
+    get: Payslips_showPayslip
+  /v1/payslips/{payslip_id}/pdf:
+    get: Payslips_downloadPdf
+  /v1/ready:
+    post: Employments_completeOnboarding
+  /v1/resignations/{employment_request_id}/resignation-letter:
+    get: Resignation_downloadLetter
+  /v1/sandbox/contract-amendments/{contract_amendment_request_id}/approve:
+    put: ContractAmendments_approveAmendment
+  /v1/sandbox/employments:
+    post: Sandbox_createEmploymentWithoutValidations
+  /v1/sandbox/employments/{employment_id}:
+    patch: Sandbox_updateEmploymentState
+    put: Sandbox_employmentUpdate
+  /v1/sandbox/webhook-callbacks/trigger:
+    post: Sandbox_triggerWebhookCallback
+  /v1/timeoff:
+    get: TimeOff_listRecords
+    post: TimeOff_recordCreate
+  /v1/timeoff-balances/{employment_id}:
+    get: TimeOffBalances_showBalance
+  /v1/timeoff/types:
+    get: TimeOff_listTypes
+  /v1/timeoff/{id}:
+    get: TimeOff_getRecord
+    patch: TimeOff_updateRecord
+    put: TimeOff_updateRecord
+  /v1/webhook-callbacks:
+    post: WebhookCallbacks_registerCallback
+  /v1/webhook-callbacks/{id}:
+    delete: WebhookCallbacks_deleteCallback
+operationTags: {}
+renameTags: {}
+requestSchemaNames: {}
+responseDescriptions: {}
+responseSchemaNames: {}
+securityParameters:
+  action:
+    query: false
+  company_id:
+    query: false
+  country_subdivision_code:
+    query: false
+  email:
+    query: false
+  employment_id:
+    query: false
+  end_date:
+    query: false
+  expected_payout_end_date:
+    query: false
+  expected_payout_start_date:
+    query: false
+  include_confidential:
+    query: false
+  note:
+    query: false
+  order:
+    query: false
+  page:
+    query: false
+  page_size:
+    query: false
+  paginate:
+    query: false
+  period:
+    query: false
+  recurring_incentive_id:
+    query: false
+  sort_by:
+    query: false
+  start_date:
+    query: false
+  status:
+    query: false
+  timeoff_type:
+    query: false
+  type:
+    query: false
+validServerUrls: {}
