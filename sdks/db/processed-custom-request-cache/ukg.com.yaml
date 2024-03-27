@@ -1,0 +1,38 @@
+processed:
+  securitySchemes:
+    basicAuth:
+      type: apiKey
+      name: US-CUSTOMER-API-KEY
+      in: header
+      scheme: basic
+    basic:
+      type: http
+      name: US-CUSTOMER-API-KEY
+      in: header
+      description: Basic HTTP Authentication
+      scheme: basic
+    BasicAuth:
+      type: http
+      scheme: basic
+    OauthSecurity:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://login-dev.ultipro.com/introspect
+          tokenUrl: https://identity.mia.ucloud.int/t/ulticonnect/token
+          scopes:
+            recruiting.domain.third-party-job-board-integrations.auto-feed: Needed for all read requests
+  apiBaseUrl: '{hostname}'
+  apiVersion: v1
+  apiDescription: >-
+    Configure your UKG Pro Configuration Codes through UKG Pro APIs. Status: R1
+    deployment
+  apiTitle: User Profile Details
+  endpoints: 171
+  sdkMethods: 203
+  schemas: 170
+  parameters: 932
+  originalCustomRequest:
+    lambda: true
+  customRequestSpecFilename: ukg.com.yaml
+  difficultyScore: 521

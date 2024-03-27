@@ -1479,6 +1479,14 @@ const customRequests: Record<string, CustomRequest> = {
       return downloadOpenApiSpecFromReadme({ urls });
     },
   },
+  "ukg.com": {
+    lambda: async () => {
+      const urls = await collectEndpointsFromReadme({
+        url: "https://developer.ukg.com/hcm/reference",
+      });
+      return downloadOpenApiSpecFromReadme({ urls });
+    },
+  },
   // "squareup.com": {
   //   lambda: async () => {
   //     const url =
