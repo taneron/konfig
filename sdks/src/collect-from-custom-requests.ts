@@ -1487,6 +1487,14 @@ const customRequests: Record<string, CustomRequest> = {
       return downloadOpenApiSpecFromReadme({ urls });
     },
   },
+  "activecampaign.com": {
+    lambda: async () => {
+      const urls = await collectEndpointsFromReadme({
+        url: "https://developers.activecampaign.com/reference",
+      });
+      return downloadOpenApiSpecFromReadme({ urls });
+    },
+  },
   "workday.com_Staffing": {
     type: "GET",
     url: "https://community.workday.com/sites/default/files/file-hosting/restapi/staffing_v6_20240323_oas2.json",

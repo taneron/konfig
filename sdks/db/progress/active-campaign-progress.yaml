@@ -1,0 +1,2729 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignoreObjectsWithNoProperties: true
+ignorePotentialIncorrectType: true
+operationIds:
+  /accountContacts:
+    get: List_accountAssociations
+    post: Account_createAssociation
+  /accountContacts/{id}:
+    delete: Account_deleteAssociation
+    get: Account_getAssociation
+    put: Account_updateAssociation
+  /accountCustomFieldData:
+    get: List_customFieldValues
+    post: Field_createCustomFieldValue
+  /accountCustomFieldData/bulkCreate:
+    post: Field_bulkCreateCustomAccountFieldValue
+  /accountCustomFieldData/bulkUpdate:
+    patch: Field_bulkUpdateCustomFieldValue
+  /accountCustomFieldData/{id}:
+    delete: Field_deleteCustomFieldValue
+    get: Field_getCustomValue
+    put: Field_updateCustomFieldValue
+  /accountCustomFieldMeta:
+    get: List_allCustomFieldMeta
+    post: Field_createCustomFieldMeta
+  /accountCustomFieldMeta/{id}:
+    delete: Field_deleteCustomFieldMeta
+    get: Field_getCustomField
+    put: Field_updateCustomFieldMeta
+  /accounts:
+    get: List_allAccounts
+    post: Account_createNewAccount
+  /accounts/bulk_delete:
+    delete: Account_bulkDelete
+  /accounts/{id}:
+    delete: Account_deleteById
+    get: Account_getById
+    put: Account_updateExisting
+  /accounts/{id}/notes:
+    post: Note_createAccountNote
+  /accounts/{id}/notes/{noteid}:
+    put: Note_updateNote
+  /activities:
+    get: List_contactActivities
+  /addressGroups/{id}:
+    delete: User_deleteAddressGroup
+  /addressLists/{id}:
+    delete: List_deleteAssociatedAddress
+  /addresses:
+    get: List_addresses
+    post: Address_createNewAddress
+  /addresses/{id}:
+    delete: Address_deleteAddress
+    get: Address_getById
+    put: Address_updateAddress
+  /automations:
+    get: List_allAutomations
+  /brandings:
+    get: List_brandings
+  /brandings/{id}:
+    get: Branding_getBranding
+    put: Branding_updateExistingResource
+  /calendars:
+    get: List_calendarFeeds
+    post: Calendar_createFeed
+  /calendars/{id}:
+    delete: Calendar_deleteFeed
+    get: Calendar_getFeed
+    put: Calendar_updateFeed
+  /campaigns:
+    get: List_allCampaigns
+  /campaigns/{id}:
+    get: Campaign_getCampaignById
+  /campaigns/{id}/links:
+    get: Campaign_getLinks
+  /configs/{id}:
+    put: Config_updateSettings
+  /connections:
+    get: List_allConnections
+    post: Connection_createNewResource
+  /connections/{id}:
+    delete: Connection_deleteConnectionResource
+    get: Connection_getById
+    put: Connection_updateExistingConnection
+  /contact/sync:
+    post: Contact_syncData
+  /contactAutomations:
+    get: List_contactAutomations
+    post: Contact_addToAutomation
+  /contactAutomations/{id}:
+    delete: Contact_removeFromAutomation
+    get: Contact_getInAutomation
+  /contactDeals:
+    get: Deal_listAllSecondaryContacts
+    post: Deal_createSecondaryContact
+  /contactDeals/{id}:
+    delete: Deal_deleteSecondaryContact
+    get: Deal_getSecondaryContact
+    put: Deal_updateSecondaryContact
+  /contactLists:
+    post: List_updateListStatusForContact
+  /contactTags:
+    post: Tag_addContactTag
+  /contactTags/{id}:
+    delete: Tag_removeTagFromContact
+  /contacts:
+    get: List_contacts
+    post: Contact_createNewContact
+  /contacts/{contactId}/trackingLogs:
+    get: Event_getTrackingLogs
+  /contacts/{id}:
+    delete: Contact_deleteById
+    get: Contact_getById
+    put: Contact_updateContact
+  /contacts/{id}/accountContacts:
+    get: Account_getAccountContacts
+  /contacts/{id}/automationEntryCounts:
+    get: Contact_getAutomationEntryCounts
+  /contacts/{id}/bounceLogs:
+    get: Contact_getBounceLogs
+  /contacts/{id}/contactAutomations:
+    get: List_contactAutomations
+  /contacts/{id}/contactData:
+    get: Contact_getData
+  /contacts/{id}/contactDeals:
+    get: Deal_getContactDeals
+  /contacts/{id}/contactGoals:
+    get: Contact_getGoals
+  /contacts/{id}/contactLists:
+    get: List_getContactListMemberships
+  /contacts/{id}/contactLogs:
+    get: Contact_getLogs
+  /contacts/{id}/deals:
+    get: Deal_getContactDeals
+  /contacts/{id}/fieldValues:
+    get: Field_getValues
+  /contacts/{id}/geoIps:
+    get: List_contactGeoIps
+  /contacts/{id}/notes:
+    get: Note_getContactsNotes
+  /contacts/{id}/organization:
+    get: Contact_getOrganization
+  /contacts/{id}/plusAppend:
+    get: Contact_getPlusAppend
+  /contacts/{id}/scoreValues:
+    get: Contact_getScoreValues
+  /contacts/{id}/trackingLogs:
+    get: Contact_getTrackingLogs
+  /customObjects/records/{schemaId}:
+    get: List_bySchemaRecords
+    post: Schema_createOrUpdateRecord
+  /customObjects/records/{schemaId}/external/{externalId}:
+    delete: Schema_deleteRecordByExternalId
+  /customObjects/records/{schemaId}/{recordId}:
+    delete: Schema_deleteRecordById
+    get: Schema_getById
+  /customObjects/schemas:
+    get: List_allSchemas
+    post: Schema_createNew
+  /customObjects/schemas/public:
+    post: Schema_createPublicSchema
+  /customObjects/schemas/{id}:
+    delete: Schema_deleteSchemaById
+    get: Schema_getById
+  /customObjects/schemas/{id}/child:
+    post: Schema_createChildSchema
+  /customObjects/schemas/{schemaId}:
+    put: Schema_updateSchema
+  /customObjects/schemas/{schemaId}/fields/{fieldId}:
+    delete: Field_deleteField
+  /dealActivities:
+    get: Deal_listActivities
+  /dealCustomFieldData:
+    get: Deal_listCustomFieldData
+    post: Deal_createCustomFieldValue
+  /dealCustomFieldData/bulkCreate:
+    post: Deal_bulkCreateCustomFieldValues
+  /dealCustomFieldData/bulkUpdate:
+    patch: Deal_bulkUpdateCustomFieldData
+  /dealCustomFieldData/{id}:
+    delete: Deal_deleteCustomFieldValue
+    get: Deal_getCustomFieldValue
+    put: Deal_updateCustomFieldValue
+  /dealCustomFieldMeta:
+    get: Deal_listCustomFieldMeta
+    post: Deal_createCustomFieldMeta
+  /dealCustomFieldMeta/{id}:
+    delete: Deal_deleteCustomFieldMeta
+    get: Deal_getCustomFieldMeta
+    put: Deal_updateCustomFieldMeta
+  /dealGroups:
+    get: Deal_getAllPipelines
+    post: Deal_createPipeline
+  /dealGroups/{id}:
+    delete: Deal_deletePipeline
+    get: Deal_getPipeline
+    put: Deal_updatePipeline
+  /dealRoles:
+    get: Deal_listAllRoles
+    post: Deal_roleCreation
+  /dealRoles/{id}:
+    delete: Deal_deleteRole
+  /dealStages:
+    get: Deal_listAllStages
+    post: Deal_createStage
+  /dealStages/{id}:
+    delete: Deal_deleteStageById
+    get: Deal_getStageById
+    put: Deal_updateStage
+  /dealStages/{id}/deals:
+    put: Deal_moveDealsToAnotherStage
+  /dealTasks:
+    get: Deal_getAllTasks
+    post: Deal_createNewTask
+  /dealTasks/{id}:
+    delete: Deal_deleteTask
+    get: Deal_getTaskById
+    put: Deal_updateTaskById
+  /dealTasktypes:
+    get: Deal_listAllTaskTypes
+    post: Deal_createTaskType
+  /dealTasktypes/{id}:
+    delete: Deal_deleteTaskType
+    get: Deal_getTaskType
+    put: Deal_updateTaskType
+  /dealTasktypes/{id}/dealTasks:
+    put: Deal_moveTasksToAnotherTaskType
+  /deals:
+    get: Deal_getAll
+    post: Deal_newDealCreation
+  /deals/bulkUpdate:
+    patch: Deal_bulkUpdateOwners
+  /deals/{id}:
+    delete: Deal_removeById
+    get: Deal_getDeal
+    put: Deal_updateExistingDeal
+  /deals/{id}/notes:
+    post: Deal_createNote
+  /deals/{id}/notes/{noteId}:
+    put: Deal_updateNote
+  /ecomCustomers:
+    get: List_allCustomers
+    post: Customer_createNewCustomer
+  /ecomCustomers/{id}:
+    delete: Customer_deleteCustomerResource
+    get: Customer_get
+    put: Customer_updateResource
+  /ecomOrderProducts:
+    get: List_ecomOrderProducts
+  /ecomOrderProducts/{id}:
+    get: Order_getProductById
+  /ecomOrders:
+    get: List_allOrders
+    post: Order_createNewOrder
+  /ecomOrders/{ecomOrderId}:
+    delete: Order_deleteOrder
+    get: Order_getOrder
+  /ecomOrders/{id}:
+    put: Order_updateOrderResource
+  /ecomOrders/{id}/orderProducts:
+    get: List_orderProductsForSpecificOrder
+  /emailActivities:
+    get: List_emailActivities
+  /event:
+    post: Event_trackEvent
+  /eventTracking:
+    get: Event_getStatus
+    put: Event_toggleStatus
+  /eventTrackingEvents:
+    get: List_eventNames
+    post: Event_createNewEvent
+  /eventTrackingEvents/{eventName}:
+    delete: Event_deleteEventName
+  /fieldOption/bulk:
+    post: Field_createCustomFieldOptions
+  /fieldRels:
+    post: List_createFieldRelationshipToLists
+  /fieldRels/{fieldRelId}:
+    delete: List_deleteFieldRelationToList
+  /fieldValues:
+    get: List_customFieldValues
+    post: Field_createCustomValue
+  /fieldValues/{id}:
+    delete: Field_deleteCustomValue
+    get: Field_getCustomValue
+    put: Field_updateCustomValue
+  /fields:
+    get: Field_listAllCustom
+    post: Field_createCustomField
+  /fields/{id}:
+    delete: Field_deleteCustomField
+    get: Field_getCustomField
+    put: Field_updateCustomField
+  /forms:
+    get: Form_listAll
+  /forms/{id}:
+    get: Form_getForm
+  /geoIps/{geoAddressID}/geoAddress:
+    get: Contact_getGeoIpAddress
+  /groupLimits:
+    get: List_groupLimits
+  /groupMembers:
+    post: Field_addGroupMember
+  /groupMembers/{groupID}:
+    delete: Field_deleteFieldGroup
+  /groupMembers/{groupID} (COPY):
+    get: Field_getFieldGroup
+  /groupMembers/{groupId}:
+    put: Field_updateCustomFieldGroup
+  /groups:
+    get: List_allGroups
+    post: Group_createNewGroup
+  /groups/{id}:
+    delete: Group_deleteGroup
+    get: Group_getGroup
+    put: Group_updateGroupById
+  /import/bulk_import:
+    get: List_bulkImportStatus
+    post: Contact_bulkImportContacts
+  /import/info:
+    get: Import_statusInfo
+  /listGroups:
+    post: List_groupPermissionCreate
+  /lists:
+    get: List_getAll
+    post: List_createNewList
+  /lists/{id}:
+    delete: List_deleteById
+    get: List_getById
+  /messages:
+    get: List_messages
+    post: Message_createNewMessage
+  /messages/{id}:
+    delete: Message_removeById
+    get: Message_getById
+    put: Message_updateById
+  /notes:
+    get: Note_listAll
+    post: Note_createNew
+  /notes/{id}:
+    delete: Note_deleteNoteById
+    get: Note_getById
+    put: Note_updateNoteById
+  /records/{schemdId}/external/{externalId}:
+    get: Record_getByExternalId
+  /savedResponses:
+    get: List_savedResponses
+    post: Response_createSavedResponse
+  /savedResponses/{id}:
+    delete: Response_removeById
+    get: Response_getById
+    put: Response_updateSavedResponse
+  /scores:
+    get: List_allScores
+  /scores/{id}:
+    get: Score_getScoreById
+  /segments:
+    get: List_allSegments
+  /segments/{id}:
+    get: Segment_getById
+  /siteTracking:
+    get: Status_getSiteTrackingStatus
+    put: Tracking_enableDisableSite
+  /siteTracking/code:
+    get: Tracking_getSiteCode
+  /siteTrackingDomains:
+    get: List_whitelistedDomains
+    post: List_whitelistedDomainCreate
+  /siteTrackingDomains/{name}:
+    delete: List_removeDomain
+  /tags:
+    get: Tag_listAllTags
+    post: Tag_createTag
+  /tags/{id}:
+    delete: Tag_removeTag
+    get: Tag_getTag
+    put: Tag_updateTag
+  /taskNotifications:
+    post: Reminder_createTaskOutcome
+  /taskOutccomes/{id}:
+    delete: Outcome_deleteTaskOutcome
+    put: Outcome_updateTaskOutcome
+  /taskOutcomes:
+    get: List_taskOutcomes
+    post: Outcome_createTaskOutcome
+  /taskOutcomes/{id}:
+    get: Outcome_getTaskOutcome
+  /tasktypeOutcomeRels:
+    get: List_taskTypeOutcomeRelations
+  /tasktypeOutcomeRels/{id}:
+    delete: Outcome_deleteTaskTypeOutcomeRelation
+    get: Outcome_getTaskTypeOutcome
+  /template/share:
+    get: Template_createShareableLink
+  /templates/{id}:
+    get: Template_getById
+  /trackingLogs/{eventId}/contact:
+    get: Event_getContactByEventId
+  /users:
+    get: User_listAllUsers
+    post: User_createNewUser
+  /users/email/{email}:
+    get: User_getByEmail
+  /users/me:
+    get: User_getLoggedInUser
+  /users/username/{username}:
+    get: User_getByUsername
+  /users/{id}:
+    delete: User_deleteUser
+    get: User_getById
+    put: User_updateExistingUser
+  /webhook/events:
+    get: List_webhookEvents
+  /webhooks:
+    get: List_webhooks
+    post: Webhook_createNewWebhook
+  /webhooks/{id}:
+    delete: Webhook_deleteExisting
+    get: Webhook_getById
+    put: Webhook_updateExisting
+operationTags:
+  /accountContacts:
+    get: List
+    post: Account
+  /accountContacts/{id}:
+    delete: Account
+    get: Account
+    put: Account
+  /accountCustomFieldData:
+    get: List
+    post: Field
+  /accountCustomFieldData/bulkCreate:
+    post: Field
+  /accountCustomFieldData/bulkUpdate:
+    patch: Field
+  /accountCustomFieldData/{id}:
+    delete: Field
+    get: Field
+    put: Field
+  /accountCustomFieldMeta:
+    get: List
+    post: Field
+  /accountCustomFieldMeta/{id}:
+    delete: Field
+    get: Field
+    put: Field
+  /accounts:
+    get: List
+    post: Account
+  /accounts/bulk_delete:
+    delete: Account
+  /accounts/{id}:
+    delete: Account
+    get: Account
+    put: Account
+  /accounts/{id}/notes:
+    post: Note
+  /accounts/{id}/notes/{noteid}:
+    put: Note
+  /activities:
+    get: List
+  /addressGroups/{id}:
+    delete: User
+  /addressLists/{id}:
+    delete: List
+  /addresses:
+    get: List
+    post: Address
+  /addresses/{id}:
+    delete: Address
+    get: Address
+    put: Address
+  /automations:
+    get: List
+  /brandings:
+    get: List
+  /brandings/{id}:
+    get: Branding
+    put: Branding
+  /calendars:
+    get: List
+    post: Calendar
+  /calendars/{id}:
+    delete: Calendar
+    get: Calendar
+    put: Calendar
+  /campaigns:
+    get: List
+  /campaigns/{id}:
+    get: Campaign
+  /campaigns/{id}/links:
+    get: Campaign
+  /configs/{id}:
+    put: Config
+  /connections:
+    get: List
+    post: Connection
+  /connections/{id}:
+    delete: Connection
+    get: Connection
+    put: Connection
+  /contact/sync:
+    post: Contact
+  /contactAutomations:
+    get: List
+    post: Contact
+  /contactAutomations/{id}:
+    delete: Contact
+    get: Contact
+  /contactDeals:
+    get: Deal
+    post: Deal
+  /contactDeals/{id}:
+    delete: Deal
+    get: Deal
+    put: Deal
+  /contactLists:
+    post: List
+  /contactTags:
+    post: Tag
+  /contactTags/{id}:
+    delete: Tag
+  /contacts:
+    get: List
+    post: Contact
+  /contacts/{contactId}/trackingLogs:
+    get: Event
+  /contacts/{id}:
+    delete: Contact
+    get: Contact
+    put: Contact
+  /contacts/{id}/accountContacts:
+    get: Account
+  /contacts/{id}/automationEntryCounts:
+    get: Contact
+  /contacts/{id}/bounceLogs:
+    get: Contact
+  /contacts/{id}/contactAutomations:
+    get: List
+  /contacts/{id}/contactData:
+    get: Contact
+  /contacts/{id}/contactDeals:
+    get: Deal
+  /contacts/{id}/contactGoals:
+    get: Contact
+  /contacts/{id}/contactLists:
+    get: List
+  /contacts/{id}/contactLogs:
+    get: Contact
+  /contacts/{id}/deals:
+    get: Deal
+  /contacts/{id}/fieldValues:
+    get: Field
+  /contacts/{id}/geoIps:
+    get: List
+  /contacts/{id}/notes:
+    get: Note
+  /contacts/{id}/organization:
+    get: Contact
+  /contacts/{id}/plusAppend:
+    get: Contact
+  /contacts/{id}/scoreValues:
+    get: Contact
+  /contacts/{id}/trackingLogs:
+    get: Contact
+  /customObjects/records/{schemaId}:
+    get: List
+    post: Schema
+  /customObjects/records/{schemaId}/external/{externalId}:
+    delete: Schema
+  /customObjects/records/{schemaId}/{recordId}:
+    delete: Schema
+    get: Schema
+  /customObjects/schemas:
+    get: List
+    post: Schema
+  /customObjects/schemas/public:
+    post: Schema
+  /customObjects/schemas/{id}:
+    delete: Schema
+    get: Schema
+  /customObjects/schemas/{id}/child:
+    post: Schema
+  /customObjects/schemas/{schemaId}:
+    put: Schema
+  /customObjects/schemas/{schemaId}/fields/{fieldId}:
+    delete: Field
+  /dealActivities:
+    get: Deal
+  /dealCustomFieldData:
+    get: Deal
+    post: Deal
+  /dealCustomFieldData/bulkCreate:
+    post: Deal
+  /dealCustomFieldData/bulkUpdate:
+    patch: Deal
+  /dealCustomFieldData/{id}:
+    delete: Deal
+    get: Deal
+    put: Deal
+  /dealCustomFieldMeta:
+    get: Deal
+    post: Deal
+  /dealCustomFieldMeta/{id}:
+    delete: Deal
+    get: Deal
+    put: Deal
+  /dealGroups:
+    get: Deal
+    post: Deal
+  /dealGroups/{id}:
+    delete: Deal
+    get: Deal
+    put: Deal
+  /dealRoles:
+    get: Deal
+    post: Deal
+  /dealRoles/{id}:
+    delete: Deal
+  /dealStages:
+    get: Deal
+    post: Deal
+  /dealStages/{id}:
+    delete: Deal
+    get: Deal
+    put: Deal
+  /dealStages/{id}/deals:
+    put: Deal
+  /dealTasks:
+    get: Deal
+    post: Deal
+  /dealTasks/{id}:
+    delete: Deal
+    get: Deal
+    put: Deal
+  /dealTasktypes:
+    get: Deal
+    post: Deal
+  /dealTasktypes/{id}:
+    delete: Deal
+    get: Deal
+    put: Deal
+  /dealTasktypes/{id}/dealTasks:
+    put: Deal
+  /deals:
+    get: Deal
+    post: Deal
+  /deals/bulkUpdate:
+    patch: Deal
+  /deals/{id}:
+    delete: Deal
+    get: Deal
+    put: Deal
+  /deals/{id}/notes:
+    post: Deal
+  /deals/{id}/notes/{noteId}:
+    put: Deal
+  /ecomCustomers:
+    get: List
+    post: Customer
+  /ecomCustomers/{id}:
+    delete: Customer
+    get: Customer
+    put: Customer
+  /ecomOrderProducts:
+    get: List
+  /ecomOrderProducts/{id}:
+    get: Order
+  /ecomOrders:
+    get: List
+    post: Order
+  /ecomOrders/{ecomOrderId}:
+    delete: Order
+    get: Order
+  /ecomOrders/{id}:
+    put: Order
+  /ecomOrders/{id}/orderProducts:
+    get: List
+  /emailActivities:
+    get: List
+  /event:
+    post: Event
+  /eventTracking:
+    get: Event
+    put: Event
+  /eventTrackingEvents:
+    get: List
+    post: Event
+  /eventTrackingEvents/{eventName}:
+    delete: Event
+  /fieldOption/bulk:
+    post: Field
+  /fieldRels:
+    post: List
+  /fieldRels/{fieldRelId}:
+    delete: List
+  /fieldValues:
+    get: List
+    post: Field
+  /fieldValues/{id}:
+    delete: Field
+    get: Field
+    put: Field
+  /fields:
+    get: Field
+    post: Field
+  /fields/{id}:
+    delete: Field
+    get: Field
+    put: Field
+  /forms:
+    get: Form
+  /forms/{id}:
+    get: Form
+  /geoIps/{geoAddressID}/geoAddress:
+    get: Contact
+  /groupLimits:
+    get: List
+  /groupMembers:
+    post: Field
+  /groupMembers/{groupID}:
+    delete: Field
+  /groupMembers/{groupID} (COPY):
+    get: Field
+  /groupMembers/{groupId}:
+    put: Field
+  /groups:
+    get: List
+    post: Group
+  /groups/{id}:
+    delete: Group
+    get: Group
+    put: Group
+  /import/bulk_import:
+    get: List
+    post: Contact
+  /import/info:
+    get: Import
+  /listGroups:
+    post: List
+  /lists:
+    get: List
+    post: List
+  /lists/{id}:
+    delete: List
+    get: List
+  /messages:
+    get: List
+    post: Message
+  /messages/{id}:
+    delete: Message
+    get: Message
+    put: Message
+  /notes:
+    get: Note
+    post: Note
+  /notes/{id}:
+    delete: Note
+    get: Note
+    put: Note
+  /records/{schemdId}/external/{externalId}:
+    get: Record
+  /savedResponses:
+    get: List
+    post: Response
+  /savedResponses/{id}:
+    delete: Response
+    get: Response
+    put: Response
+  /scores:
+    get: List
+  /scores/{id}:
+    get: Score
+  /segments:
+    get: List
+  /segments/{id}:
+    get: Segment
+  /siteTracking:
+    get: Status
+    put: Tracking
+  /siteTracking/code:
+    get: Tracking
+  /siteTrackingDomains:
+    get: List
+    post: List
+  /siteTrackingDomains/{name}:
+    delete: List
+  /tags:
+    get: Tag
+    post: Tag
+  /tags/{id}:
+    delete: Tag
+    get: Tag
+    put: Tag
+  /taskNotifications:
+    post: Reminder
+  /taskOutccomes/{id}:
+    delete: Outcome
+    put: Outcome
+  /taskOutcomes:
+    get: List
+    post: Outcome
+  /taskOutcomes/{id}:
+    get: Outcome
+  /tasktypeOutcomeRels:
+    get: List
+  /tasktypeOutcomeRels/{id}:
+    delete: Outcome
+    get: Outcome
+  /template/share:
+    get: Template
+  /templates/{id}:
+    get: Template
+  /trackingLogs/{eventId}/contact:
+    get: Event
+  /users:
+    get: User
+    post: User
+  /users/email/{email}:
+    get: User
+  /users/me:
+    get: User
+  /users/username/{username}:
+    get: User
+  /users/{id}:
+    delete: User
+    get: User
+    put: User
+  /webhook/events:
+    get: List
+  /webhooks:
+    get: List
+    post: Webhook
+  /webhooks/{id}:
+    delete: Webhook
+    get: Webhook
+    put: Webhook
+renameTags: {}
+requestSchemaNames:
+  /accountContacts:
+    post:
+      application/json: AccountCreateAssociationRequest
+  /accountContacts/{id}:
+    put:
+      application/json: AccountUpdateAssociationRequest
+  /accountCustomFieldData:
+    post:
+      application/json: FieldCreateCustomFieldValueRequest
+  /accountCustomFieldData/bulkCreate:
+    post:
+      application/json: FieldBulkCreateCustomAccountFieldValueRequest
+  /accountCustomFieldData/bulkUpdate:
+    patch:
+      application/json: FieldBulkUpdateCustomFieldValueRequest
+  /accountCustomFieldData/{id}:
+    put:
+      application/json: FieldUpdateCustomFieldValueRequest
+  /accountCustomFieldMeta:
+    post:
+      application/json: FieldCreateCustomFieldMetaRequest
+  /accountCustomFieldMeta/{id}:
+    put:
+      application/json: FieldUpdateCustomFieldMetaRequest
+  /accounts:
+    post:
+      application/json: AccountCreateNewAccountRequest
+  /accounts/{id}:
+    put:
+      application/json: AccountUpdateExistingRequest
+  /accounts/{id}/notes:
+    post:
+      application/json: NoteCreateAccountNoteRequest
+  /accounts/{id}/notes/{noteid}:
+    put:
+      application/json: NoteUpdateNoteRequest
+  /addresses:
+    post:
+      application/json: AddressCreateNewAddressRequest
+  /addresses/{id}:
+    put:
+      application/json: AddressUpdateAddressRequest
+  /brandings/{id}:
+    put:
+      application/json: BrandingUpdateExistingResourceRequest
+  /calendars:
+    post:
+      application/json: CalendarCreateFeedRequest
+  /calendars/{id}:
+    put:
+      application/json: CalendarUpdateFeedRequest
+  /connections:
+    post:
+      application/json: ConnectionCreateNewResourceRequest
+  /connections/{id}:
+    put:
+      application/json: ConnectionUpdateExistingConnectionRequest
+  /contact/sync:
+    post:
+      application/json: ContactSyncDataRequest
+  /contactAutomations:
+    post:
+      application/json: ContactAddToAutomationRequest
+  /contactDeals:
+    post:
+      application/json: DealCreateSecondaryContactRequest
+  /contactDeals/{id}:
+    put:
+      application/json: DealUpdateSecondaryContactRequest
+  /contactLists:
+    post:
+      application/json: ListUpdateListStatusForContactRequest
+  /contactTags:
+    post:
+      application/json: TagAddContactTagRequest
+  /contacts:
+    post:
+      application/json: ContactCreateNewContactRequest
+  /contacts/{id}:
+    put:
+      application/json: ContactUpdateContactRequest
+  /customObjects/records/{schemaId}:
+    post:
+      application/json: SchemaCreateOrUpdateRecordRequest
+  /customObjects/schemas:
+    post:
+      application/json: SchemaCreateNewRequest
+  /customObjects/schemas/public:
+    post:
+      application/json: SchemaCreatePublicSchemaRequest
+  /customObjects/schemas/{schemaId}:
+    put:
+      application/json: SchemaUpdateSchemaRequest
+  /dealCustomFieldData:
+    post:
+      application/json: DealCreateCustomFieldValueRequest
+  /dealCustomFieldData/bulkCreate:
+    post:
+      application/json: DealBulkCreateCustomFieldValuesRequest
+  /dealCustomFieldData/bulkUpdate:
+    patch:
+      application/json: DealBulkUpdateCustomFieldDataRequest
+  /dealCustomFieldData/{id}:
+    put:
+      application/json: DealUpdateCustomFieldValueRequest
+  /dealCustomFieldMeta:
+    post:
+      application/json: DealCreateCustomFieldMetaRequest
+  /dealCustomFieldMeta/{id}:
+    put:
+      application/json: DealUpdateCustomFieldMetaRequest
+  /dealGroups:
+    post:
+      application/json: DealCreatePipelineRequest
+  /dealGroups/{id}:
+    put:
+      application/json: DealUpdatePipelineRequest
+  /dealRoles:
+    post:
+      application/json: DealRoleCreationRequest
+  /dealStages:
+    post:
+      application/json: DealCreateStageRequest
+  /dealStages/{id}:
+    put:
+      application/json: DealUpdateStageRequest
+  /dealStages/{id}/deals:
+    put:
+      application/json: DealMoveDealsToAnotherStageRequest
+  /dealTasks:
+    post:
+      application/json: DealCreateNewTaskRequest
+  /dealTasks/{id}:
+    put:
+      application/json: DealUpdateTaskByIdRequest
+  /dealTasktypes:
+    post:
+      application/json: DealCreateTaskTypeRequest
+  /dealTasktypes/{id}:
+    put:
+      application/json: DealUpdateTaskTypeRequest
+  /dealTasktypes/{id}/dealTasks:
+    put:
+      application/json: DealMoveTasksToAnotherTaskTypeRequest
+  /deals:
+    post:
+      application/json: DealNewDealCreationRequest
+  /deals/bulkUpdate:
+    patch:
+      application/json: DealBulkUpdateOwnersRequest
+  /deals/{id}:
+    put:
+      application/json: DealUpdateExistingDealRequest
+  /deals/{id}/notes:
+    post:
+      application/json: DealCreateNoteRequest
+  /deals/{id}/notes/{noteId}:
+    put:
+      application/json: DealUpdateNoteRequest
+  /ecomCustomers:
+    post:
+      application/json: CustomerCreateNewCustomerRequest
+  /ecomCustomers/{id}:
+    put:
+      application/json: CustomerUpdateResourceRequest
+  /ecomOrders:
+    post:
+      application/json: OrderCreateNewOrderRequest
+  /ecomOrders/{id}:
+    put:
+      application/json: OrderUpdateOrderResourceRequest
+  /event:
+    post:
+      application/json: EventTrackEventRequest
+  /eventTracking:
+    put:
+      application/json: EventToggleStatusRequest
+  /eventTrackingEvents:
+    post:
+      application/json: EventCreateNewEventRequest
+  /fieldOption/bulk:
+    post:
+      application/json: FieldCreateCustomFieldOptionsRequest
+  /fieldRels:
+    post:
+      application/json: ListCreateFieldRelationshipToListsRequest
+  /fieldValues:
+    post:
+      application/json: FieldCreateCustomValueRequest
+  /fieldValues/{id}:
+    put:
+      application/json: FieldUpdateCustomValueRequest
+  /fields:
+    post:
+      application/json: FieldCreateCustomFieldRequest
+  /fields/{id}:
+    put:
+      application/json: FieldUpdateCustomFieldRequest
+  /groupMembers:
+    post:
+      application/json: FieldAddGroupMemberRequest
+  /groupMembers/{groupID}:
+    delete:
+      application/json: FieldDeleteFieldGroupRequest
+  /groupMembers/{groupID} (COPY):
+    get:
+      application/json: FieldGetFieldGroupRequest
+  /groupMembers/{groupId}:
+    put:
+      application/json: FieldUpdateCustomFieldGroupRequest
+  /groups:
+    post:
+      application/json: GroupCreateNewGroupRequest
+  /groups/{id}:
+    put:
+      application/json: GroupUpdateGroupByIdRequest
+  /import/bulk_import:
+    post:
+      application/json: ContactBulkImportContactsRequest
+  /listGroups:
+    post:
+      application/json: ListGroupPermissionCreateRequest
+  /lists:
+    post:
+      application/json: ListCreateNewListRequest
+  /messages:
+    post:
+      application/json: MessageCreateNewMessageRequest
+  /messages/{id}:
+    put:
+      application/json: MessageUpdateByIdRequest
+  /notes:
+    post:
+      application/json: NoteCreateNewRequest
+  /notes/{id}:
+    put:
+      application/json: NoteUpdateNoteByIdRequest
+  /savedResponses:
+    post:
+      application/json: ResponseCreateSavedResponseRequest
+  /savedResponses/{id}:
+    put:
+      application/json: ResponseUpdateSavedResponseRequest
+  /siteTracking:
+    put:
+      application/json: TrackingEnableDisableSiteRequest
+  /siteTrackingDomains:
+    post:
+      application/json: ListWhitelistedDomainCreateRequest
+  /tags:
+    post:
+      application/json: TagCreateTagRequest
+  /tags/{id}:
+    put:
+      application/json: TagUpdateTagRequest
+  /taskNotifications:
+    post:
+      application/json: ReminderCreateTaskOutcomeRequest
+  /taskOutccomes/{id}:
+    put:
+      application/json: OutcomeUpdateTaskOutcomeRequest
+  /taskOutcomes:
+    post:
+      application/json: OutcomeCreateTaskOutcomeRequest
+  /users:
+    post:
+      application/json: UserCreateNewUserRequest
+  /users/{id}:
+    put:
+      application/json: UserUpdateExistingUserRequest
+  /webhooks:
+    post:
+      application/json: WebhookCreateNewWebhookRequest
+  /webhooks/{id}:
+    put:
+      application/json: WebhookUpdateExistingRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /accountContacts:
+    get:
+      '200':
+        application/json: ListAccountAssociationsResponse
+    post:
+      '201':
+        application/json: AccountCreateAssociationResponse
+      '422':
+        application/json: AccountCreateAssociation422Response
+        text/plain: AccountCreateAssociation422Response1
+  /accountContacts/{id}:
+    delete:
+      '200':
+        application/json: AccountDeleteAssociationResponse
+      '404':
+        application/json: AccountDeleteAssociation404Response
+    get:
+      '200':
+        application/json: AccountGetAssociationResponse
+      '404':
+        text/plain: AccountGetAssociation404Response
+    put:
+      '200':
+        application/json: AccountUpdateAssociationResponse
+  /accountCustomFieldData:
+    get:
+      '200':
+        application/json: ListCustomFieldValuesResponse
+    post:
+      '200':
+        application/json: FieldCreateCustomFieldValueResponse
+  /accountCustomFieldData/bulkCreate:
+    post:
+      '200':
+        application/json: FieldBulkCreateCustomAccountFieldValueResponse
+  /accountCustomFieldData/bulkUpdate:
+    patch:
+      '200':
+        application/json: FieldBulkUpdateCustomFieldValueResponse
+  /accountCustomFieldData/{id}:
+    delete:
+      '200':
+        application/json: FieldDeleteCustomFieldValueResponse
+      '404':
+        text/plain: FieldDeleteCustomFieldValue404Response
+    get:
+      '200':
+        application/json: FieldGetCustomValueResponse
+      '404':
+        application/json: FieldGetCustomValue404Response
+    put:
+      '200':
+        application/json: FieldUpdateCustomFieldValueResponse
+      '404':
+        application/json: FieldUpdateCustomFieldValue404Response
+  /accountCustomFieldMeta:
+    get:
+      '200':
+        application/json: ListAllCustomFieldMetaResponse
+    post:
+      '200':
+        application/json: FieldCreateCustomFieldMetaResponse
+      '422':
+        application/json: FieldCreateCustomFieldMeta422Response
+  /accountCustomFieldMeta/{id}:
+    delete:
+      '200':
+        application/json: FieldDeleteCustomFieldMetaResponse
+      '404':
+        application/json: FieldDeleteCustomFieldMeta404Response
+    get:
+      '200':
+        application/json: FieldGetCustomFieldResponse
+      '404':
+        application/json: FieldGetCustomField404Response
+    put:
+      '200':
+        application/json: FieldUpdateCustomFieldMetaResponse
+      '404':
+        application/json: FieldUpdateCustomFieldMeta404Response
+  /accounts:
+    get:
+      '200':
+        application/json: ListAllAccountsResponse
+      '400':
+        application/json: ListAllAccounts400Response
+    post:
+      '201':
+        application/json: AccountCreateNewAccountResponse
+      '422':
+        application/json: AccountCreateNewAccount422Response
+        text/plain: AccountCreateNewAccount422Response1
+  /accounts/bulk_delete:
+    delete:
+      '200':
+        application/json: AccountBulkDeleteResponse
+      '400':
+        application/json: AccountBulkDelete400Response
+  /accounts/{id}:
+    delete:
+      '200':
+        application/json: AccountDeleteByIdResponse
+      '400':
+        application/json: AccountDeleteById400Response
+    get:
+      '200':
+        application/json: AccountGetByIdResponse
+    put:
+      '200':
+        application/json: AccountUpdateExistingResponse
+      '400':
+        application/json: AccountUpdateExisting400Response
+  /accounts/{id}/notes:
+    post:
+      '201':
+        application/json: NoteCreateAccountNoteResponse
+  /accounts/{id}/notes/{noteid}:
+    put:
+      '200':
+        application/json: NoteUpdateNoteResponse
+  /activities:
+    get:
+      '200':
+        application/json: ListContactActivitiesResponse
+      '400':
+        application/json: ListContactActivities400Response
+  /addressGroups/{id}:
+    delete:
+      '200':
+        application/json: UserDeleteAddressGroupResponse
+      '404':
+        application/json: UserDeleteAddressGroup404Response
+  /addressLists/{id}:
+    delete:
+      '200':
+        application/json: ListDeleteAssociatedAddressResponse
+      '404':
+        application/json: ListDeleteAssociatedAddress404Response
+  /addresses:
+    get:
+      '200':
+        application/json: ListAddressesResponse
+      '400':
+        application/json: ListAddresses400Response
+    post:
+      '200':
+        application/json: AddressCreateNewAddressResponse
+      '400':
+        application/json: AddressCreateNewAddress400Response
+  /addresses/{id}:
+    delete:
+      '200':
+        application/json: AddressDeleteAddressResponse
+      '404':
+        application/json: AddressDeleteAddress404Response
+    get:
+      '200':
+        application/json: AddressGetByIdResponse
+      '400':
+        application/json: AddressGetById400Response
+    put:
+      '200':
+        application/json: AddressUpdateAddressResponse
+      '404':
+        application/json: AddressUpdateAddress404Response
+  /automations:
+    get:
+      '200':
+        application/json: ListAllAutomationsResponse
+      '400':
+        application/json: ListAllAutomations400Response
+  /brandings:
+    get:
+      '200':
+        application/json: ListBrandingsResponse
+      '400':
+        application/json: ListBrandings400Response
+  /brandings/{id}:
+    get:
+      '200':
+        application/json: BrandingGetBrandingResponse
+      '400':
+        application/json: BrandingGetBranding400Response
+    put:
+      '200':
+        application/json: BrandingUpdateExistingResourceResponse
+      '400':
+        application/json: BrandingUpdateExistingResource400Response
+  /calendars:
+    get:
+      '200':
+        application/json: ListCalendarFeedsResponse
+    post:
+      '200':
+        application/json: CalendarCreateFeedResponse
+  /calendars/{id}:
+    delete:
+      '200':
+        application/json: CalendarDeleteFeedResponse
+    get:
+      '200':
+        application/json: CalendarGetFeedResponse
+      '404':
+        text/plain: CalendarGetFeed404Response
+    put:
+      '200':
+        application/json: CalendarUpdateFeedResponse
+  /campaigns:
+    get:
+      '200':
+        application/json: ListAllCampaignsResponse
+      '400':
+        application/json: ListAllCampaigns400Response
+  /campaigns/{id}:
+    get:
+      '200':
+        application/json: CampaignGetCampaignByIdResponse
+  /campaigns/{id}/links:
+    get:
+      '200':
+        application/json: CampaignGetLinksResponse
+      '404':
+        application/json: CampaignGetLinks404Response
+  /configs/{id}:
+    put:
+      '200':
+        application/json: ConfigUpdateSettingsResponse
+      '404':
+        application/json: ConfigUpdateSettings404Response
+  /connections:
+    get:
+      '200':
+        application/json: ListAllConnectionsResponse
+      '400':
+        application/json: ListAllConnections400Response
+    post:
+      '200':
+        application/json: ConnectionCreateNewResourceResponse
+  /connections/{id}:
+    delete:
+      '200':
+        application/json: ConnectionDeleteConnectionResourceResponse
+      '400':
+        application/json: ConnectionDeleteConnectionResource400Response
+    get:
+      '200':
+        application/json: ConnectionGetByIdResponse
+      '400':
+        application/json: ConnectionGetById400Response
+    put:
+      '200':
+        application/json: ConnectionUpdateExistingConnectionResponse
+      '400':
+        application/json: ConnectionUpdateExistingConnection400Response
+  /contact/sync:
+    post:
+      '201':
+        application/json: ContactSyncDataResponse
+      '400':
+        application/json: ContactSyncData400Response
+  /contactAutomations:
+    get:
+      '200':
+        application/json: ListContactAutomations200Response
+    post:
+      '201':
+        application/json: ContactAddToAutomationResponse
+      '403':
+        application/json: ContactAddToAutomation403Response
+  /contactAutomations/{id}:
+    delete:
+      '200':
+        application/json: ContactRemoveFromAutomationResponse
+      '403':
+        application/json: ContactRemoveFromAutomation403Response
+    get:
+      '200':
+        application/json: ContactGetInAutomationResponse
+      '404':
+        application/json: ContactGetInAutomation404Response
+  /contactDeals:
+    get:
+      '200':
+        application/json: DealListAllSecondaryContactsResponse
+      '400':
+        application/json: DealListAllSecondaryContacts400Response
+    post:
+      '200':
+        application/json: DealCreateSecondaryContactResponse
+      '422':
+        application/json: DealCreateSecondaryContact422Response
+        text/plain: DealCreateSecondaryContact422Response1
+  /contactDeals/{id}:
+    delete:
+      '200':
+        application/json: DealDeleteSecondaryContactResponse
+      '404':
+        application/json: DealDeleteSecondaryContact404Response
+    get:
+      '200':
+        application/json: DealGetSecondaryContactResponse
+      '404':
+        application/json: DealGetSecondaryContact404Response
+    put:
+      '200':
+        application/json: DealUpdateSecondaryContactResponse
+      '404':
+        text/plain: DealUpdateSecondaryContact404Response
+      '422':
+        application/json: DealUpdateSecondaryContact422Response
+        text/plain: DealUpdateSecondaryContact422Response1
+  /contactLists:
+    post:
+      '200':
+        application/json: ListUpdateListStatusForContactResponse
+      '400':
+        application/json: ListUpdateListStatusForContact400Response
+  /contactTags:
+    post:
+      '201':
+        application/json: TagAddContactTagResponse
+      '404':
+        application/json: TagAddContactTag404Response
+      '422':
+        application/json: TagAddContactTag422Response
+  /contactTags/{id}:
+    delete:
+      '200':
+        application/json: TagRemoveTagFromContactResponse
+      '404':
+        application/json: TagRemoveTagFromContact404Response
+  /contacts:
+    get:
+      '200':
+        application/json: ListContactsResponse
+      '400':
+        application/json: ListContacts400Response
+    post:
+      '201':
+        application/json: ContactCreateNewContactResponse
+      '404':
+        application/json: ContactCreateNewContact404Response
+      '422':
+        application/json: ContactCreateNewContact422Response
+  /contacts/{contactId}/trackingLogs:
+    get:
+      '200':
+        application/json: EventGetTrackingLogsResponse
+  /contacts/{id}:
+    delete:
+      '200':
+        application/json: ContactDeleteByIdResponse
+      '404':
+        application/json: ContactDeleteById404Response
+    get:
+      '200':
+        application/json: ContactGetByIdResponse
+      '404':
+        application/json: ContactGetById404Response
+    put:
+      '200':
+        application/json: ContactUpdateContactResponse
+      '404':
+        application/json: ContactUpdateContact404Response
+  /contacts/{id}/accountContacts:
+    get:
+      '200':
+        application/json: AccountGetAccountContactsResponse
+      '404':
+        application/json: AccountGetAccountContacts404Response
+  /contacts/{id}/automationEntryCounts:
+    get:
+      '200':
+        application/json: ContactGetAutomationEntryCountsResponse
+      '404':
+        application/json: ContactGetAutomationEntryCounts404Response
+  /contacts/{id}/bounceLogs:
+    get:
+      '200':
+        application/json: ContactGetBounceLogsResponse
+      '404':
+        application/json: ContactGetBounceLogs404Response
+  /contacts/{id}/contactAutomations:
+    get:
+      '200':
+        application/json: ListContactAutomationsResponse
+      '404':
+        application/json: ListContactAutomations404Response
+  /contacts/{id}/contactData:
+    get:
+      '200':
+        application/json: ContactGetDataResponse
+      '404':
+        application/json: ContactGetData404Response
+  /contacts/{id}/contactDeals:
+    get:
+      '200':
+        application/json: DealGetContactDealsResponse
+      '404':
+        application/json: DealGetContactDeals404Response
+  /contacts/{id}/contactGoals:
+    get:
+      '200':
+        application/json: ContactGetGoalsResponse
+      '404':
+        application/json: ContactGetGoals404Response
+  /contacts/{id}/contactLists:
+    get:
+      '200':
+        application/json: ListGetContactListMembershipsResponse
+      '404':
+        application/json: ListGetContactListMemberships404Response
+  /contacts/{id}/contactLogs:
+    get:
+      '200':
+        application/json: ContactGetLogsResponse
+      '404':
+        application/json: ContactGetLogs404Response
+  /contacts/{id}/deals:
+    get:
+      '200':
+        application/json: DealGetContactDeals200Response
+      '404':
+        application/json: DealGetContactDeals404Response
+  /contacts/{id}/fieldValues:
+    get:
+      '200':
+        application/json: FieldGetValuesResponse
+      '404':
+        application/json: FieldGetValues404Response
+  /contacts/{id}/geoIps:
+    get:
+      '200':
+        application/json: ListContactGeoIpsResponse
+      '404':
+        application/json: ListContactGeoIps404Response
+  /contacts/{id}/notes:
+    get:
+      '200':
+        application/json: NoteGetContactsNotesResponse
+      '404':
+        application/json: NoteGetContactsNotes404Response
+  /contacts/{id}/organization:
+    get:
+      '200':
+        application/json: ContactGetOrganizationResponse
+      '404':
+        application/json: ContactGetOrganization404Response
+  /contacts/{id}/plusAppend:
+    get:
+      '200':
+        application/json: ContactGetPlusAppendResponse
+      '404':
+        application/json: ContactGetPlusAppend404Response
+  /contacts/{id}/scoreValues:
+    get:
+      '200':
+        application/json: ContactGetScoreValuesResponse
+      '404':
+        application/json: ContactGetScoreValues404Response
+  /contacts/{id}/trackingLogs:
+    get:
+      '200':
+        application/json: ContactGetTrackingLogsResponse
+      '404':
+        application/json: ContactGetTrackingLogs404Response
+  /customObjects/records/{schemaId}:
+    get:
+      '200':
+        application/json: ListBySchemaRecordsResponse
+      '400':
+        application/json: ListBySchemaRecords400Response
+      '404':
+        text/plain: ListBySchemaRecords404Response
+    post:
+      '201':
+        application/json: SchemaCreateOrUpdateRecordResponse
+      '400':
+        application/json: SchemaCreateOrUpdateRecord400Response
+      '422':
+        text/plain: SchemaCreateOrUpdateRecord422Response
+  /customObjects/records/{schemaId}/external/{externalId}:
+    delete:
+      '202':
+        application/json: SchemaDeleteRecordByExternalIdResponse
+      '400':
+        application/json: SchemaDeleteRecordByExternalId400Response
+  /customObjects/records/{schemaId}/{recordId}:
+    delete:
+      '202':
+        application/json: SchemaDeleteRecordByIdResponse
+      '400':
+        application/json: SchemaDeleteRecordById400Response
+    get:
+      '200':
+        application/json: SchemaGetById200Response
+      '400':
+        application/json: SchemaGetById400Response
+  /customObjects/schemas:
+    get:
+      '200':
+        application/json: ListAllSchemasResponse
+      '400':
+        application/json: ListAllSchemas400Response
+    post:
+      '201':
+        application/json: SchemaCreateNewResponse
+      '422':
+        application/json: SchemaCreateNew422Response
+  /customObjects/schemas/public:
+    post:
+      '200':
+        application/json: SchemaCreatePublicSchemaResponse
+      '400':
+        application/json: SchemaCreatePublicSchema400Response
+  /customObjects/schemas/{id}:
+    delete:
+      '200':
+        application/json: SchemaDeleteSchemaByIdResponse
+      '404':
+        application/json: SchemaDeleteSchemaById404Response
+    get:
+      '200':
+        application/json: SchemaGetByIdResponse
+      '404':
+        application/json: SchemaGetById404Response
+  /customObjects/schemas/{id}/child:
+    post:
+      '200':
+        application/json: SchemaCreateChildSchemaResponse
+      '400':
+        application/json: SchemaCreateChildSchema400Response
+  /customObjects/schemas/{schemaId}:
+    put:
+      '200':
+        application/json: SchemaUpdateSchemaResponse
+      '404':
+        application/json: SchemaUpdateSchema404Response
+      '422':
+        application/json: SchemaUpdateSchema422Response
+  /customObjects/schemas/{schemaId}/fields/{fieldId}:
+    delete:
+      '202':
+        application/json: FieldDeleteFieldResponse
+  /dealActivities:
+    get:
+      '200':
+        application/json: DealListActivitiesResponse
+      '400':
+        application/json: DealListActivities400Response
+  /dealCustomFieldData:
+    get:
+      '200':
+        application/json: DealListCustomFieldDataResponse
+    post:
+      '200':
+        application/json: DealCreateCustomFieldValueResponse
+      '422':
+        application/json: DealCreateCustomFieldValue422Response
+  /dealCustomFieldData/bulkCreate:
+    post:
+      '200':
+        application/json: DealBulkCreateCustomFieldValuesResponse
+  /dealCustomFieldData/bulkUpdate:
+    patch:
+      '200':
+        application/json: DealBulkUpdateCustomFieldDataResponse
+  /dealCustomFieldData/{id}:
+    delete:
+      '200':
+        application/json: DealDeleteCustomFieldValueResponse
+      '404':
+        text/plain: DealDeleteCustomFieldValue404Response
+    get:
+      '200':
+        application/json: DealGetCustomFieldValueResponse
+      '404':
+        application/json: DealGetCustomFieldValue404Response
+    put:
+      '200':
+        application/json: DealUpdateCustomFieldValueResponse
+      '404':
+        application/json: DealUpdateCustomFieldValue404Response
+      '422':
+        application/json: DealUpdateCustomFieldValue422Response
+  /dealCustomFieldMeta:
+    get:
+      '200':
+        application/json: DealListCustomFieldMetaResponse
+    post:
+      '200':
+        application/json: DealCreateCustomFieldMetaResponse
+      '422':
+        application/json: DealCreateCustomFieldMeta422Response
+  /dealCustomFieldMeta/{id}:
+    delete:
+      '200':
+        application/json: DealDeleteCustomFieldMetaResponse
+      '404':
+        application/json: DealDeleteCustomFieldMeta404Response
+    get:
+      '200':
+        application/json: DealGetCustomFieldMetaResponse
+      '404':
+        application/json: DealGetCustomFieldMeta404Response
+    put:
+      '200':
+        application/json: DealUpdateCustomFieldMetaResponse
+      '404':
+        application/json: DealUpdateCustomFieldMeta404Response
+  /dealGroups:
+    get:
+      '200':
+        application/json: DealGetAllPipelinesResponse
+      '400':
+        application/json: DealGetAllPipelines400Response
+    post:
+      '200':
+        application/json: DealCreatePipelineResponse
+      '400':
+        application/json: DealCreatePipeline400Response
+  /dealGroups/{id}:
+    delete:
+      '200':
+        application/json: DealDeletePipelineResponse
+    get:
+      '200':
+        application/json: DealGetPipelineResponse
+      '400':
+        application/json: DealGetPipeline400Response
+    put:
+      '200':
+        application/json: DealUpdatePipelineResponse
+      '400':
+        application/json: DealUpdatePipeline400Response
+  /dealRoles:
+    get:
+      '200':
+        application/json: DealListAllRolesResponse
+      '400':
+        application/json: DealListAllRoles400Response
+    post:
+      '200':
+        application/json: DealRoleCreationResponse
+      '400':
+        application/json: DealRoleCreation400Response
+  /dealRoles/{id}:
+    delete:
+      '200':
+        application/json: DealDeleteRoleResponse
+      '400':
+        application/json: DealDeleteRole400Response
+  /dealStages:
+    get:
+      '200':
+        application/json: DealListAllStagesResponse
+      '400':
+        application/json: DealListAllStages400Response
+    post:
+      '200':
+        application/json: DealCreateStageResponse
+      '400':
+        application/json: DealCreateStage400Response
+  /dealStages/{id}:
+    delete:
+      '200':
+        application/json: DealDeleteStageByIdResponse
+    get:
+      '200':
+        application/json: DealGetStageByIdResponse
+      '400':
+        application/json: DealGetStageById400Response
+    put:
+      '200':
+        application/json: DealUpdateStageResponse
+      '400':
+        application/json: DealUpdateStage400Response
+  /dealStages/{id}/deals:
+    put:
+      '200':
+        application/json: DealMoveDealsToAnotherStageResponse
+      '422':
+        application/json: DealMoveDealsToAnotherStage422Response
+  /dealTasks:
+    get:
+      '201':
+        application/json: DealGetAllTasksResponse
+      '400':
+        application/json: DealGetAllTasks400Response
+    post:
+      '201':
+        application/json: DealCreateNewTaskResponse
+      '400':
+        application/json: DealCreateNewTask400Response
+  /dealTasks/{id}:
+    delete:
+      '200':
+        application/json: DealDeleteTaskResponse
+      '400':
+        application/json: DealDeleteTask400Response
+    get:
+      '201':
+        application/json: DealGetTaskByIdResponse
+      '400':
+        application/json: DealGetTaskById400Response
+    put:
+      '201':
+        application/json: DealUpdateTaskByIdResponse
+      '400':
+        application/json: DealUpdateTaskById400Response
+  /dealTasktypes:
+    get:
+      '200':
+        application/json: DealListAllTaskTypesResponse
+      '400':
+        application/json: DealListAllTaskTypes400Response
+    post:
+      '200':
+        application/json: DealCreateTaskTypeResponse
+      '400':
+        application/json: DealCreateTaskType400Response
+  /dealTasktypes/{id}:
+    delete:
+      '403':
+        application/json: DealDeleteTaskTypeResponse
+    get:
+      '200':
+        application/json: DealGetTaskTypeResponse
+      '400':
+        application/json: DealGetTaskType400Response
+    put:
+      '200':
+        application/json: DealUpdateTaskTypeResponse
+      '400':
+        application/json: DealUpdateTaskType400Response
+  /dealTasktypes/{id}/dealTasks:
+    put:
+      '200':
+        application/json: DealMoveTasksToAnotherTaskTypeResponse
+      '400':
+        application/json: DealMoveTasksToAnotherTaskType400Response
+  /deals:
+    get:
+      '200':
+        application/json: DealGetAllResponse
+      '400':
+        application/json: DealGetAll400Response
+    post:
+      '201':
+        application/json: DealNewDealCreationResponse
+      '400':
+        application/json: DealNewDealCreation400Response
+  /deals/bulkUpdate:
+    patch:
+      '200':
+        application/json: DealBulkUpdateOwnersResponse
+      '422':
+        application/json: DealBulkUpdateOwners422Response
+        text/plain: DealBulkUpdateOwners422Response1
+  /deals/{id}:
+    delete:
+      '200':
+        application/json: DealRemoveByIdResponse
+      '400':
+        application/json: DealRemoveById400Response
+    get:
+      '200':
+        application/json: DealGetDealResponse
+    put:
+      '200':
+        application/json: DealUpdateExistingDealResponse
+      '400':
+        application/json: DealUpdateExistingDeal400Response
+  /deals/{id}/notes:
+    post:
+      '201':
+        application/json: DealCreateNoteResponse
+  /deals/{id}/notes/{noteId}:
+    put:
+      '200':
+        application/json: DealUpdateNoteResponse
+  /ecomCustomers:
+    get:
+      '200':
+        application/json: ListAllCustomersResponse
+    post:
+      '201':
+        application/json: CustomerCreateNewCustomerResponse
+      '400':
+        application/json: CustomerCreateNewCustomer400Response
+  /ecomCustomers/{id}:
+    delete:
+      '200':
+        application/json: CustomerDeleteCustomerResourceResponse
+      '400':
+        application/json: CustomerDeleteCustomerResource400Response
+    get:
+      '200':
+        application/json: CustomerGetResponse
+      '400':
+        application/json: CustomerGet400Response
+    put:
+      '200':
+        application/json: CustomerUpdateResourceResponse
+  /ecomOrderProducts:
+    get:
+      '200':
+        application/json: ListEcomOrderProductsResponse
+      '400':
+        application/json: ListEcomOrderProducts400Response
+  /ecomOrderProducts/{id}:
+    get:
+      '200':
+        application/json: OrderGetProductByIdResponse
+      '400':
+        application/json: OrderGetProductById400Response
+      '404':
+        text/plain: OrderGetProductById404Response
+  /ecomOrders:
+    get:
+      '200':
+        application/json: ListAllOrdersResponse
+      '422':
+        application/json: ListAllOrders422Response
+    post:
+      '201':
+        application/json: OrderCreateNewOrderResponse
+  /ecomOrders/{ecomOrderId}:
+    delete:
+      '200':
+        application/json: OrderDeleteOrderResponse
+    get:
+      '200':
+        application/json: OrderGetOrderResponse
+  /ecomOrders/{id}:
+    put:
+      '200':
+        application/json: OrderUpdateOrderResourceResponse
+  /ecomOrders/{id}/orderProducts:
+    get:
+      '200':
+        application/json: ListOrderProductsForSpecificOrderResponse
+      '400':
+        application/json: ListOrderProductsForSpecificOrder400Response
+  /emailActivities:
+    get:
+      '200':
+        application/json: ListEmailActivitiesResponse
+      '400':
+        application/json: ListEmailActivities400Response
+  /event:
+    post:
+      '200':
+        application/json: EventTrackEventResponse
+      '400':
+        application/json: EventTrackEvent400Response
+  /eventTracking:
+    get:
+      '200':
+        application/json: EventGetStatusResponse
+    put:
+      '200':
+        application/json: EventToggleStatusResponse
+      '400':
+        application/json: EventToggleStatus400Response
+  /eventTrackingEvents:
+    get:
+      '200':
+        application/json: ListEventNamesResponse
+      '400':
+        application/json: ListEventNames400Response
+    post:
+      '201':
+        application/json: EventCreateNewEventResponse
+  /eventTrackingEvents/{eventName}:
+    delete:
+      '200':
+        application/json: EventDeleteEventNameResponse
+      '400':
+        application/json: EventDeleteEventName400Response
+  /fieldOption/bulk:
+    post:
+      '201':
+        application/json: FieldCreateCustomFieldOptionsResponse
+      '422':
+        application/json: FieldCreateCustomFieldOptions422Response
+  /fieldRels:
+    post:
+      '201':
+        application/json: ListCreateFieldRelationshipToListsResponse
+      '403':
+        application/json: ListCreateFieldRelationshipToLists403Response
+  /fieldRels/{fieldRelId}:
+    delete:
+      '200':
+        application/json: ListDeleteFieldRelationToListResponse
+      '403':
+        application/json: ListDeleteFieldRelationToList403Response
+  /fieldValues:
+    get:
+      '200':
+        application/json: ListCustomFieldValues200Response
+      '400':
+        application/json: ListCustomFieldValues400Response
+    post:
+      '200':
+        application/json: FieldCreateCustomValueResponse
+      '403':
+        application/json: FieldCreateCustomValue403Response
+  /fieldValues/{id}:
+    delete:
+      '200':
+        application/json: FieldDeleteCustomValueResponse
+      '403':
+        application/json: FieldDeleteCustomValue403Response
+    get:
+      '200':
+        application/json: FieldGetCustomValue200Response
+      '403':
+        application/json: FieldGetCustomValue403Response
+    put:
+      '200':
+        application/json: FieldUpdateCustomValueResponse
+      '400':
+        application/json: FieldUpdateCustomValue400Response
+  /fields:
+    get:
+      '200':
+        application/json: FieldListAllCustomResponse
+    post:
+      '201':
+        application/json: FieldCreateCustomFieldResponse
+      '403':
+        application/json: FieldCreateCustomField403Response
+      '422':
+        application/json: FieldCreateCustomField422Response
+  /fields/{id}:
+    delete:
+      '200':
+        application/json: FieldDeleteCustomFieldResponse
+      '404':
+        application/json: FieldDeleteCustomField404Response
+    get:
+      '200':
+        application/json: FieldGetCustomField200Response
+      '400':
+        application/json: FieldGetCustomField400Response
+    put:
+      '200':
+        application/json: FieldUpdateCustomFieldResponse
+      '403':
+        application/json: FieldUpdateCustomField403Response
+  /forms:
+    get:
+      '200':
+        application/json: FormListAllResponse
+      '400':
+        application/json: FormListAll400Response
+  /forms/{id}:
+    get:
+      '200':
+        application/json: FormGetFormResponse
+      '403':
+        application/json: FormGetForm403Response
+  /geoIps/{geoAddressID}/geoAddress:
+    get:
+      '200':
+        application/json: ContactGetGeoIpAddressResponse
+      '404':
+        application/json: ContactGetGeoIpAddress404Response
+  /groupLimits:
+    get:
+      '200':
+        application/json: ListGroupLimitsResponse
+  /groupMembers:
+    post:
+      '200':
+        application/json: FieldAddGroupMemberResponse
+      '403':
+        application/json: FieldAddGroupMember403Response
+      '404':
+        application/json: FieldAddGroupMember404Response
+      '422':
+        application/json: FieldAddGroupMember422Response
+  /groupMembers/{groupID}:
+    delete:
+      '200':
+        application/json: FieldDeleteFieldGroupResponse
+      '404':
+        application/json: FieldDeleteFieldGroup404Response
+  /groupMembers/{groupID} (COPY):
+    get:
+      '200':
+        application/json: FieldGetFieldGroupResponse
+      '404':
+        application/json: FieldGetFieldGroup404Response
+  /groupMembers/{groupId}:
+    put:
+      '200':
+        application/json: FieldUpdateCustomFieldGroupResponse
+      '403':
+        application/json: FieldUpdateCustomFieldGroup403Response
+      '404':
+        application/json: FieldUpdateCustomFieldGroup404Response
+      '422':
+        application/json: FieldUpdateCustomFieldGroup422Response
+  /groups:
+    get:
+      '200':
+        application/json: ListAllGroupsResponse
+    post:
+      '200':
+        application/json: GroupCreateNewGroupResponse
+  /groups/{id}:
+    delete:
+      '200':
+        application/json: GroupDeleteGroupResponse
+      '400':
+        application/json: GroupDeleteGroup400Response
+    get:
+      '200':
+        application/json: GroupGetGroupResponse
+      '403':
+        application/json: GroupGetGroup403Response
+    put:
+      '200':
+        application/json: GroupUpdateGroupByIdResponse
+        text/plain: GroupUpdateGroupById200Response
+      '403':
+        application/json: GroupUpdateGroupById403Response
+  /import/bulk_import:
+    get:
+      '200':
+        application/json: ListBulkImportStatusResponse
+    post:
+      '200':
+        application/json: ContactBulkImportContactsResponse
+      '400':
+        application/json: ContactBulkImportContacts400Response
+  /import/info:
+    get:
+      '200':
+        application/json: ImportStatusInfoResponse
+      '400':
+        application/json: ImportStatusInfo400Response
+  /listGroups:
+    post:
+      '201':
+        application/json: ListGroupPermissionCreateResponse
+      '403':
+        application/json: ListGroupPermissionCreate403Response
+  /lists:
+    get:
+      '200':
+        application/json: ListGetAllResponse
+      '403':
+        text/plain: ListGetAll403Response
+    post:
+      '200':
+        application/json: ListCreateNewListResponse
+      '400':
+        application/json: ListCreateNewList400Response
+      '403':
+        text/plain: ListCreateNewList403Response
+  /lists/{id}:
+    delete:
+      '200':
+        application/json: ListDeleteByIdResponse
+      '403':
+        application/json: ListDeleteById403Response
+    get:
+      '200':
+        application/json: ListGetByIdResponse
+      '403':
+        application/json: ListGetById403Response
+      '404':
+        application/json: ListGetById404Response
+  /messages:
+    get:
+      '200':
+        application/json: ListMessagesResponse
+      '400':
+        application/json: ListMessages400Response
+    post:
+      '201':
+        application/json: MessageCreateNewMessageResponse
+      '400':
+        application/json: MessageCreateNewMessage400Response
+  /messages/{id}:
+    delete:
+      '200':
+        application/json: MessageRemoveByIdResponse
+      '400':
+        application/json: MessageRemoveById400Response
+    get:
+      '200':
+        application/json: MessageGetByIdResponse
+      '404':
+        application/json: MessageGetById404Response
+    put:
+      '200':
+        application/json: MessageUpdateByIdResponse
+      '404':
+        application/json: MessageUpdateById404Response
+  /notes:
+    get:
+      '200':
+        application/json: NoteListAllResponse
+    post:
+      '201':
+        application/json: NoteCreateNewResponse
+      '400':
+        application/json: NoteCreateNew400Response
+  /notes/{id}:
+    delete:
+      '200':
+        application/json: NoteDeleteNoteByIdResponse
+      '403':
+        application/json: NoteDeleteNoteById403Response
+    get:
+      '200':
+        application/json: NoteGetByIdResponse
+      '400':
+        application/json: NoteGetById400Response
+    put:
+      '200':
+        application/json: NoteUpdateNoteByIdResponse
+      '403':
+        application/json: NoteUpdateNoteById403Response
+  /records/{schemdId}/external/{externalId}:
+    get:
+      '200':
+        application/json: RecordGetByExternalIdResponse
+      '400':
+        application/json: RecordGetByExternalId400Response
+  /savedResponses:
+    get:
+      '200':
+        application/json: ListSavedResponsesResponse
+    post:
+      '201':
+        application/json: ResponseCreateSavedResponseResponse
+      '422':
+        application/json: ResponseCreateSavedResponse422Response
+  /savedResponses/{id}:
+    delete:
+      '200':
+        application/json: ResponseRemoveByIdResponse
+      '404':
+        text/plain: ResponseRemoveById404Response
+    get:
+      '200':
+        application/json: ResponseGetByIdResponse
+      '400':
+        application/json: ResponseGetById400Response
+    put:
+      '200':
+        application/json: ResponseUpdateSavedResponseResponse
+      '422':
+        application/json: ResponseUpdateSavedResponse422Response
+  /scores:
+    get:
+      '200':
+        application/json: ListAllScoresResponse
+  /scores/{id}:
+    get:
+      '200':
+        application/json: ScoreGetScoreByIdResponse
+      '404':
+        application/json: ScoreGetScoreById404Response
+  /segments:
+    get:
+      '200':
+        application/json: ListAllSegmentsResponse
+      '400':
+        application/json: ListAllSegments400Response
+  /segments/{id}:
+    get:
+      '200':
+        application/json: SegmentGetByIdResponse
+  /siteTracking:
+    get:
+      '200':
+        application/json: StatusGetSiteTrackingStatusResponse
+      '400':
+        application/json: StatusGetSiteTrackingStatus400Response
+    put:
+      '200':
+        application/json: TrackingEnableDisableSiteResponse
+      '400':
+        application/json: TrackingEnableDisableSite400Response
+  /siteTracking/code:
+    get:
+      '400':
+        application/json: TrackingGetSiteCodeResponse
+  /siteTrackingDomains:
+    get:
+      '200':
+        application/json: ListWhitelistedDomainsResponse
+    post:
+      '200':
+        application/json: ListWhitelistedDomainCreateResponse
+      '400':
+        application/json: ListWhitelistedDomainCreate400Response
+  /siteTrackingDomains/{name}:
+    delete:
+      '204':
+        application/json: ListRemoveDomainResponse
+  /tags:
+    get:
+      '200':
+        application/json: TagListAllTagsResponse
+      '400':
+        application/json: TagListAllTags400Response
+    post:
+      '201':
+        application/json: TagCreateTagResponse
+  /tags/{id}:
+    delete:
+      '200':
+        application/json: TagRemoveTagResponse
+      '404':
+        application/json: TagRemoveTag404Response
+    get:
+      '200':
+        application/json: TagGetTagResponse
+      '404':
+        application/json: TagGetTag404Response
+    put:
+      '200':
+        application/json: TagUpdateTagResponse
+  /taskNotifications:
+    post:
+      '200':
+        application/json: ReminderCreateTaskOutcomeResponse
+      '422':
+        application/json: ReminderCreateTaskOutcome422Response
+        text/plain: ReminderCreateTaskOutcome422Response1
+  /taskOutccomes/{id}:
+    delete:
+      '200':
+        application/json: OutcomeDeleteTaskOutcomeResponse
+      '404':
+        text/plain: OutcomeDeleteTaskOutcome404Response
+    put:
+      '200':
+        application/json: OutcomeUpdateTaskOutcomeResponse
+      '422':
+        text/plain: OutcomeUpdateTaskOutcome422Response
+  /taskOutcomes:
+    get:
+      '200':
+        application/json: ListTaskOutcomesResponse
+      '400':
+        application/json: ListTaskOutcomes400Response
+    post:
+      '200':
+        application/json: OutcomeCreateTaskOutcomeResponse
+      '422':
+        application/json: OutcomeCreateTaskOutcome422Response
+        text/plain: OutcomeCreateTaskOutcome422Response1
+  /taskOutcomes/{id}:
+    get:
+      '200':
+        application/json: OutcomeGetTaskOutcomeResponse
+      '404':
+        application/json: OutcomeGetTaskOutcome404Response
+  /tasktypeOutcomeRels:
+    get:
+      '200':
+        application/json: ListTaskTypeOutcomeRelationsResponse
+      '400':
+        application/json: ListTaskTypeOutcomeRelations400Response
+  /tasktypeOutcomeRels/{id}:
+    delete:
+      '200':
+        application/json: OutcomeDeleteTaskTypeOutcomeRelationResponse
+      '404':
+        text/plain: OutcomeDeleteTaskTypeOutcomeRelation404Response
+    get:
+      '200':
+        application/json: OutcomeGetTaskTypeOutcomeResponse
+      '404':
+        application/json: OutcomeGetTaskTypeOutcome404Response
+  /template/share:
+    get:
+      '200':
+        application/json: TemplateCreateShareableLinkResponse
+  /templates/{id}:
+    get:
+      '200':
+        application/json: TemplateGetByIdResponse
+      '404':
+        application/json: TemplateGetById404Response
+  /trackingLogs/{eventId}/contact:
+    get:
+      '200':
+        application/json: EventGetContactByEventIdResponse
+  /users:
+    get:
+      '200':
+        application/json: UserListAllUsersResponse
+      '400':
+        application/json: UserListAllUsers400Response
+    post:
+      '201':
+        application/json: UserCreateNewUserResponse
+      '400':
+        application/json: UserCreateNewUser400Response
+  /users/email/{email}:
+    get:
+      '200':
+        application/json: UserGetByEmailResponse
+      '400':
+        application/json: UserGetByEmail400Response
+  /users/me:
+    get:
+      '200':
+        application/json: UserGetLoggedInUserResponse
+      '400':
+        application/json: UserGetLoggedInUser400Response
+  /users/username/{username}:
+    get:
+      '200':
+        application/json: UserGetByUsernameResponse
+      '400':
+        application/json: UserGetByUsername400Response
+  /users/{id}:
+    delete:
+      '200':
+        application/json: UserDeleteUserResponse
+      '400':
+        application/json: UserDeleteUser400Response
+    get:
+      '200':
+        application/json: UserGetByIdResponse
+      '400':
+        application/json: UserGetById400Response
+    put:
+      '200':
+        application/json: UserUpdateExistingUserResponse
+      '400':
+        application/json: UserUpdateExistingUser400Response
+  /webhook/events:
+    get:
+      '200':
+        application/json: ListWebhookEventsResponse
+  /webhooks:
+    get:
+      '200':
+        application/json: ListWebhooksResponse
+      '400':
+        application/json: ListWebhooks400Response
+    post:
+      '201':
+        application/json: WebhookCreateNewWebhookResponse
+  /webhooks/{id}:
+    delete:
+      '200':
+        application/json: WebhookDeleteExistingResponse
+    get:
+      '200':
+        application/json: WebhookGetByIdResponse
+    put:
+      '200':
+        application/json: WebhookUpdateExistingResponse
+      '400':
+        application/json: WebhookUpdateExisting400Response
+securityParameters:
+  Fitlers[due_before]:
+    query: false
+  '[]ids':
+    query: false
+  after:
+    query: false
+  api_key:
+    query: false
+  batchId:
+    query: false
+  contact:
+    query: false
+  count_deals:
+    query: false
+  deal:
+    query: false
+  email:
+    query: false
+  email_like:
+    query: false
+  emails:
+    query: false
+  exclude:
+    query: false
+  exclude=email:
+    query: false
+  filters:
+    query: false
+  filters[account]:
+    query: false
+  filters[assignee_userid]:
+    query: false
+  filters[connectionid]:
+    query: false
+  filters[contact]:
+    query: false
+  filters[created_after]:
+    query: false
+  filters[created_before]:
+    query: false
+  filters[customerAccountId]:
+    query: false
+  filters[customerid]:
+    query: false
+  filters[d_groupid]:
+    query: false
+  filters[d_tasktypeid]:
+    query: false
+  filters[data_id]:
+    query: false
+  filters[data_type]:
+    query: false
+  filters[dealId]:
+    query: false
+  filters[due_after]:
+    query: false
+  filters[duedate]:
+    query: false
+  filters[duedate_range]:
+    query: false
+  filters[email]:
+    query: false
+  filters[external_created_date]:
+    query: false
+  filters[externalcheckoutid]:
+    query: false
+  filters[externalid]:
+    query: false
+  filters[fieldid]:
+    query: false
+  filters[group]:
+    query: false
+  filters[have_stages]:
+    query: false
+  filters[listid]:
+    query: false
+  filters[maximum_value]:
+    query: false
+  filters[minimum_value]:
+    query: false
+  filters[name]:
+    query: false
+  filters[name][<operator>]:
+    query: false
+  filters[nextdate_range]:
+    query: false
+  filters[note]:
+    query: false
+  filters[organization]:
+    query: false
+  filters[outcome_id]:
+    query: false
+  filters[owner]:
+    query: false
+  filters[relid]:
+    query: false
+  filters[reltype]:
+    query: false
+  filters[score]:
+    query: false
+  filters[score_greater_than]:
+    query: false
+  filters[score_less_than]:
+    query: false
+  filters[search]:
+    query: false
+  filters[search][<operator>]:
+    query: false
+  filters[search_field]:
+    query: false
+  filters[sentiment]:
+    query: false
+  filters[seriesid]:
+    query: false
+  filters[service]:
+    query: false
+  filters[stage]:
+    query: false
+  filters[state]:
+    query: false
+  filters[status]:
+    query: false
+  filters[subscriberid]:
+    query: false
+  filters[tag]:
+    query: false
+  filters[tasktype]:
+    query: false
+  filters[title]:
+    query: false
+  filters[updated_after]:
+    query: false
+  filters[updated_before]:
+    query: false
+  filters[url]:
+    query: false
+  filters[userid]:
+    query: false
+  filters[val]:
+    query: false
+  formid:
+    query: false
+  id:
+    query: false
+  id_greater:
+    query: false
+  id_less:
+    query: false
+  ids:
+    query: false
+  in_group_lists:
+    query: false
+  include:
+    query: false
+  limit:
+    query: false
+  listid:
+    query: false
+  message.email:
+    header: false
+  message.fromname:
+    header: false
+  message.preheader_text:
+    header: false
+  message.reply2:
+    header: false
+  message.subject:
+    header: false
+  offset:
+    query: false
+  orders:
+    query: false
+  orders[cdate]:
+    query: false
+  orders[connectionid]:
+    query: false
+  orders[contact_name]:
+    query: false
+  orders[contact_orgname]:
+    query: false
+  orders[customerid]:
+    query: false
+  orders[email]:
+    query: false
+  orders[external_created_date]:
+    query: false
+  orders[externalcheckoutid]:
+    query: false
+  orders[externalid]:
+    query: false
+  orders[first_name]:
+    query: false
+  orders[id]:
+    query: false
+  orders[last_name]:
+    query: false
+  orders[ldate]:
+    query: false
+  orders[name]:
+    query: false
+  orders[next-action]:
+    query: false
+  orders[popular]:
+    query: false
+  orders[score]:
+    query: false
+  orders[sdate]:
+    query: false
+  orders[search]:
+    query: false
+  orders[state]:
+    query: false
+  orders[title]:
+    query: false
+  orders[tstamp]:
+    query: false
+  orders[value]:
+    query: false
+  organization:
+    query: false
+  reorder:
+    query: false
+  search:
+    query: false
+  segmentid:
+    query: false
+  seriesid:
+    query: false
+  showFields:
+    query: false
+  status:
+    query: false
+  tagid:
+    query: false
+  validateOnly:
+    header: false
+  waitid:
+    query: false
+validServerUrls:
+  https://{youraccountname}.api-us1.com/api/3:
+    url: https://{youraccountname}.api-us1.com/api/3
