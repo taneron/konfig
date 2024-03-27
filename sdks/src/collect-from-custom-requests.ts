@@ -1690,6 +1690,10 @@ const customRequests: Record<string, CustomRequest> = {
       return await downloadOpenApiSpecFromReadme({ urls });
     },
   },
+  "zendesk.com": {
+    type: "GET",
+    url: "https://developer.zendesk.com/zendesk/oas.yaml",
+  },
   "teamwork.com": {
     type: "GET",
     url: "https://contento-assets.s3.eu-west-1.amazonaws.com/oas/teamwork_docs/projects/reference/projects-api-v3.oas2.yml",

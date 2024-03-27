@@ -1,0 +1,1063 @@
+examples: {}
+examples_2: {}
+examples_3: {}
+ignoreObjectsWithNoProperties: true
+operationIds:
+  /api/lotus/assignables/autocomplete.json:
+    get: AssigneeFieldAssignableGroups_listMatching
+  /api/lotus/assignables/groups.json:
+    get: AssigneeFieldAssignableAgents_listGroups
+  /api/lotus/assignables/groups/{group_id}/agents.json:
+    get: AssigneeFieldAssignableAgents_listFromGroup
+  /api/v2/account/settings:
+    get: AccountSettings_get
+    put: AccountSettings_updateSettings
+  /api/v2/accounts:
+    post: Reseller_createTrialAccount
+  /api/v2/accounts/available:
+    get: Reseller_checkSubdomainAvailability
+  /api/v2/activities:
+    get: ActivityStream_listActivities
+  /api/v2/activities/count:
+    get: ActivityStream_getAgentActivitiesCount
+  /api/v2/activities/{activity_id}:
+    get: ActivityStream_showSpecificActivity
+  /api/v2/any_channel/channelback/report_error:
+    post: ChannelFramework_reportError
+  /api/v2/any_channel/push:
+    post: ChannelFramework_pushContentSupport
+  /api/v2/any_channel/validate_token:
+    post: ChannelFramework_validateToken
+  /api/v2/attachments/{attachment_id}:
+    get: Attachments_showDetails
+    put: Attachments_updateMalwareAttachment
+  /api/v2/audit_logs:
+    get: AuditLogs_list
+  /api/v2/audit_logs/export:
+    post: AuditLogs_exportLogs
+  /api/v2/audit_logs/{audit_log_id}:
+    get: AuditLogs_showLogById
+  /api/v2/autocomplete/tags:
+    get: Tags_searchTags
+  /api/v2/automations:
+    get: Automations_list
+    post: Automations_createNewAutomation
+  /api/v2/automations/active:
+    get: Automations_listActive
+  /api/v2/automations/destroy_many:
+    delete: Automations_bulkDelete
+  /api/v2/automations/search:
+    get: Automations_search
+  /api/v2/automations/update_many:
+    put: Automations_updateMany
+  /api/v2/automations/{automation_id}:
+    delete: Automations_deleteAutomation
+    get: Automations_show
+    put: Automations_updateAutomation
+  /api/v2/bookmarks:
+    get: Bookmarks_list
+    post: Bookmarks_createNewBookmark
+  /api/v2/bookmarks/{bookmark_id}:
+    delete: Bookmarks_deleteBookmarkById
+  /api/v2/brands:
+    get: Brands_getAll
+    post: Brands_createNewBrand
+  /api/v2/brands/check_host_mapping:
+    get: Brands_checkHostMappingValidity
+  /api/v2/brands/{brand_id}:
+    delete: Brands_deleteBrand
+    get: Brands_showBrand
+    put: Brands_updateBrand
+  /api/v2/brands/{brand_id}/check_host_mapping:
+    get: Brands_checkHostMappingValidity
+  /api/v2/channels/twitter/monitored_twitter_handles:
+    get: XChannel_listMonitoredHandles
+  /api/v2/channels/twitter/monitored_twitter_handles/{monitored_twitter_handle_id}:
+    get: XChannel_showMonitoredHandle
+  /api/v2/channels/twitter/tickets:
+    post: XChannel_tweetToTicket
+  /api/v2/channels/twitter/tickets/{comment_id}/statuses:
+    get: XChannel_listTicketStatuses
+  /api/v2/channels/voice/agents/{agent_id}/tickets/{ticket_id}/display:
+    post: Basics_openAgentTicketDisplay
+  /api/v2/channels/voice/agents/{agent_id}/users/{user_id}/display:
+    post: Basics_openUserProfile
+  /api/v2/channels/voice/tickets:
+    post: Basics_createVoiceTicket
+  /api/v2/chat_file_redactions/{ticket_id}:
+    put: TicketComments_redactAttachment
+  /api/v2/chat_redactions/{ticket_id}:
+    put: TicketComments_redactChatComment
+  /api/v2/comment_redactions/{ticket_comment_id}:
+    put: TicketComments_redactCommentInWorkspace
+  /api/v2/custom_objects:
+    get: CustomObjects_listUndeleted
+    post: CustomObjects_createCustomObjectRecord
+  /api/v2/custom_objects/limits/object_limit:
+    get: CustomObjects_getLimit
+  /api/v2/custom_objects/limits/record_limit:
+    get: CustomObjectRecords_getLimit
+  /api/v2/custom_objects/{custom_object_key}:
+    delete: CustomObjects_deleteObject
+    get: CustomObjects_getByKey
+    patch: CustomObjects_updateObjectProperties
+  /api/v2/custom_objects/{custom_object_key}/fields:
+    get: CustomObjectFields_listUndeleted
+    post: CustomObjectFields_createField
+  /api/v2/custom_objects/{custom_object_key}/fields/reorder:
+    put: CustomObjectFields_reorderFields
+  /api/v2/custom_objects/{custom_object_key}/fields/{custom_object_field_key_or_id}:
+    delete: CustomObjectFields_deleteField
+    get: CustomObjectFields_getFieldInfo
+    patch: CustomObjectFields_updateField
+  /api/v2/custom_objects/{custom_object_key}/jobs:
+    post: CustomObjectRecords_createBulkJobs
+  /api/v2/custom_objects/{custom_object_key}/limits/field_limit:
+    get: CustomObjectFields_getFieldLimit
+  /api/v2/custom_objects/{custom_object_key}/records:
+    delete: CustomObjectRecords_deleteByExternalId
+    get: CustomObjectRecords_list
+    patch: CustomObjectRecords_setByExternalId
+    post: CustomObjectRecords_createNewRecord
+  /api/v2/custom_objects/{custom_object_key}/records/autocomplete:
+    get: CustomObjectRecords_autocompleteSearch
+  /api/v2/custom_objects/{custom_object_key}/records/count:
+    get: CustomObjectRecords_getCount
+  /api/v2/custom_objects/{custom_object_key}/records/search:
+    get: CustomObjectRecords_search
+  /api/v2/custom_objects/{custom_object_key}/records/{custom_object_record_id}:
+    delete: CustomObjectRecords_deleteRecordById
+    get: CustomObjectRecords_getById
+    patch: CustomObjectRecords_updateFields
+  /api/v2/custom_roles:
+    get: CustomRoles_listRoles
+    post: CustomRoles_createRole
+  /api/v2/custom_roles/{custom_role_id}:
+    delete: CustomRoles_deleteRole
+    get: CustomRoles_showRole
+    put: CustomRoles_updateRole
+  /api/v2/custom_status/default:
+    put: CustomTicketStatuses_bulkUpdateDefault
+  /api/v2/custom_statuses:
+    get: CustomTicketStatuses_listUndeleted
+    post: CustomTicketStatuses_createNewStatus
+  /api/v2/custom_statuses/{custom_status_id}:
+    get: CustomTicketStatuses_getObject
+    put: CustomTicketStatuses_updateStatus
+  /api/v2/deleted_tickets:
+    get: Tickets_listDeleted
+  /api/v2/deleted_tickets/destroy_many:
+    delete: Tickets_deleteMany
+  /api/v2/deleted_tickets/restore_many:
+    put: Tickets_restoreBulkTickets
+  /api/v2/deleted_tickets/{ticket_id}:
+    delete: Tickets_deletePermanently
+  /api/v2/deleted_tickets/{ticket_id}/restore:
+    put: Tickets_restoreTicket
+  /api/v2/deleted_users:
+    get: Users_listDeleted
+  /api/v2/deleted_users/count:
+    get: Users_countDeleted
+  /api/v2/deleted_users/{deleted_user_id}:
+    delete: Users_permanentlyDelete
+    get: Users_getDeletedUser
+  /api/v2/dynamic_content/items:
+    get: DynamicContent_listItems
+    post: DynamicContent_createItemWithVariants
+  /api/v2/dynamic_content/items/show_many:
+    get: DynamicContent_showManyItems
+  /api/v2/dynamic_content/items/{dynamic_content_item_id}:
+    delete: DynamicContent_deleteItem
+    get: DynamicContent_showItem
+    put: DynamicContent_updateItemName
+  /api/v2/dynamic_content/items/{dynamic_content_item_id}/variants:
+    get: DynamicContentItemVariants_list
+    post: DynamicContentItemVariants_createNewVariant
+  /api/v2/dynamic_content/items/{dynamic_content_item_id}/variants/create_many:
+    post: DynamicContentItemVariants_createMany
+  /api/v2/dynamic_content/items/{dynamic_content_item_id}/variants/update_many:
+    put: DynamicContentItemVariants_updateMany
+  /api/v2/dynamic_content/items/{dynamic_content_item_id}/variants/{dynammic_content_variant_id}:
+    delete: DynamicContentItemVariants_deleteVariant
+    get: DynamicContentItemVariants_show
+    put: DynamicContentItemVariants_updateVariant
+  /api/v2/group_memberships:
+    get: GroupMemberships_listMemberships
+    post: GroupMemberships_assignAgentToGroup
+  /api/v2/group_memberships/assignable:
+    get: GroupMemberships_listAssignableMemberships
+  /api/v2/group_memberships/create_many:
+    post: GroupMemberships_bulkAssignAgentsToGroups
+  /api/v2/group_memberships/destroy_many:
+    delete: GroupMemberships_bulkDelete
+  /api/v2/group_memberships/{group_membership_id}:
+    delete: GroupMemberships_removeUserFromGroup
+    get: GroupMemberships_showDetails
+  /api/v2/group_slas/policies:
+    get: GroupSlaPolicies_list
+    post: GroupSlaPolicies_createNewPolicy
+  /api/v2/group_slas/policies/definitions:
+    get: GroupSlaPolicies_getSupportedFilterDefinitionItems
+  /api/v2/group_slas/policies/reorder:
+    put: GroupSlaPolicies_reorder
+  /api/v2/group_slas/policies/{group_sla_policy_id}:
+    delete: GroupSlaPolicies_deletePolicy
+    get: GroupSlaPolicies_showPolicy
+    put: GroupSlaPolicies_updatePolicy
+  /api/v2/groups:
+    get: Groups_list
+    post: Groups_createNewGroup
+  /api/v2/groups/assignable:
+    get: Groups_listAssignableGroups
+  /api/v2/groups/count:
+    get: Groups_getCount
+  /api/v2/groups/{group_id}:
+    delete: Groups_deleteGroup
+    get: Groups_showGroup
+    put: Groups_updateGroup
+  /api/v2/imports/tickets:
+    post: TicketImport_executeTicketImport
+  /api/v2/imports/tickets/create_many:
+    post: TicketImport_bulkCreateMany
+  /api/v2/incremental/organizations:
+    get: IncrementalExport_organizationsGet
+  /api/v2/incremental/routing/attribute_values:
+    get: IncrementalSkillBasedRouting_getAttributeValues
+  /api/v2/incremental/routing/attributes:
+    get: IncrementalSkillBasedRouting_exportChanges
+  /api/v2/incremental/routing/instance_values:
+    get: IncrementalSkillBasedRouting_routingInstanceValuesGet
+  /api/v2/incremental/ticket_events:
+    get: IncrementalExport_ticketEventsGetStream
+  /api/v2/incremental/ticket_metric_events:
+    get: TicketMetricEvents_list
+  /api/v2/incremental/tickets:
+    get: IncrementalExport_timeBasedTickets
+  /api/v2/incremental/tickets/cursor:
+    get: IncrementalExport_ticketsChangedSinceStart
+  /api/v2/incremental/users:
+    get: IncrementalExport_userExportTimeBased
+  /api/v2/incremental/users/cursor:
+    get: IncrementalExport_userCursorGet
+  /api/v2/incremental/{incremental_resource}/sample:
+    get: IncrementalExport_sampleGet
+  /api/v2/job_statuses:
+    get: JobStatuses_list
+  /api/v2/job_statuses/show_many:
+    get: JobStatuses_getMany
+  /api/v2/job_statuses/{job_status_id}:
+    get: JobStatuses_showStatus
+  /api/v2/locales:
+    get: Locales_listAvailable
+  /api/v2/locales/agent:
+    get: Locales_listForAgent
+  /api/v2/locales/current:
+    get: Locales_getCurrentLocale
+  /api/v2/locales/detect_best_locale:
+    get: Locales_detectBestLocale
+  /api/v2/locales/public:
+    get: Locales_listPublicAvailable
+  /api/v2/locales/{locale_id}:
+    get: Locales_showLocale
+  /api/v2/macros:
+    get: Macros_list
+    post: Macros_createNewMacro
+  /api/v2/macros/actions:
+    get: Macros_listSupportedActions
+  /api/v2/macros/active:
+    get: Macros_listActive
+  /api/v2/macros/attachments:
+    post: Macros_createUnassociatedAttachment
+  /api/v2/macros/attachments/{attachment_id}:
+    get: Macros_showAttachmentProperties
+  /api/v2/macros/categories:
+    get: Macros_listCategories
+  /api/v2/macros/definitions:
+    get: Macros_listActionDefinitions
+  /api/v2/macros/destroy_many:
+    delete: Macros_deleteMany
+  /api/v2/macros/new:
+    get: Macros_showReplica
+  /api/v2/macros/search:
+    get: Macros_searchAgents
+  /api/v2/macros/update_many:
+    put: Macros_updateMany
+  /api/v2/macros/{macro_id}:
+    delete: Macros_deleteMacroById
+    get: Macros_showMacro
+    put: Macros_updateMacroAgent
+  /api/v2/macros/{macro_id}/apply:
+    get: Macros_showChangesToTicket
+  /api/v2/macros/{macro_id}/attachments:
+    get: Macros_listAttachments
+    post: Macros_createAttachment
+  /api/v2/object_layouts/essentials_cards:
+    get: EssentialsCard_listCards
+  /api/v2/object_layouts/{object_type}/essentials_card:
+    delete: EssentialsCard_deleteObjectEssentials
+    get: EssentialsCard_getForObject
+    put: EssentialsCard_updateObjectCard
+  /api/v2/organization_fields:
+    get: OrganizationFields_list
+    post: OrganizationFields_createField
+  /api/v2/organization_fields/reorder:
+    put: OrganizationFields_reorderField
+  /api/v2/organization_fields/{organization_field_id}:
+    delete: OrganizationFields_deleteField
+    get: OrganizationFields_showField
+    put: OrganizationFields_updateDropdown
+  /api/v2/organization_memberships:
+    get: OrganizationMemberships_list
+    post: OrganizationMemberships_assignUserToOrganization
+  /api/v2/organization_memberships/create_many:
+    post: OrganizationMemberships_createMany
+  /api/v2/organization_memberships/destroy_many:
+    delete: OrganizationMemberships_bulkDeleteMany
+  /api/v2/organization_memberships/{organization_membership_id}:
+    delete: OrganizationMemberships_removeMemberAndUnassignTickets
+    get: OrganizationMemberships_showMembership
+  /api/v2/organization_subscriptions:
+    get: OrganizationSubscriptions_list
+    post: OrganizationSubscriptions_createNewSubscription
+  /api/v2/organization_subscriptions/{organization_subscription_id}:
+    delete: OrganizationSubscriptions_deleteSubscription
+    get: OrganizationSubscriptions_showDetails
+  /api/v2/organizations:
+    get: Organizations_list
+    post: Organizations_createNew
+  /api/v2/organizations/autocomplete:
+    get: Organizations_autocomplete
+  /api/v2/organizations/count:
+    get: Organizations_getCount
+  /api/v2/organizations/create_many:
+    post: Organizations_createMany
+  /api/v2/organizations/create_or_update:
+    post: Organizations_createOrUpdate
+  /api/v2/organizations/destroy_many:
+    delete: Organizations_bulkDelete
+  /api/v2/organizations/search:
+    get: Organizations_search
+  /api/v2/organizations/show_many:
+    get: Organizations_listMany
+  /api/v2/organizations/update_many:
+    put: Organizations_updateManyBulk
+  /api/v2/organizations/{organization_id}:
+    delete: Organizations_deleteOrganization
+    get: Organizations_showInfo
+    put: Organizations_updateNotes
+  /api/v2/organizations/{organization_id}/related:
+    get: Organizations_showRelatedInformation
+  /api/v2/problems:
+    get: Tickets_listProblems
+  /api/v2/problems/autocomplete:
+    post: Tickets_autocompleteProblems
+  /api/v2/push_notification_devices/destroy_many:
+    post: PushNotificationDevices_bulkUnregister
+  /api/v2/queues:
+    get: OmnichannelRoutingQueues_list
+    post: OmnichannelRoutingQueues_createNewQueue
+  /api/v2/queues/definitions:
+    get: OmnichannelRoutingQueues_listDefinitions
+  /api/v2/queues/{queue_id}:
+    delete: OmnichannelRoutingQueues_deleteQueue
+    get: OmnichannelRoutingQueues_showQueue
+    put: OmnichannelRoutingQueues_updateQueue
+  /api/v2/recipient_addresses:
+    get: SupportAddresses_list
+    post: SupportAddresses_createSupportAddress
+  /api/v2/recipient_addresses/{support_address_id}:
+    delete: SupportAddresses_deleteSupportAddress
+    get: SupportAddresses_showSupportAddress
+    put: SupportAddresses_updateExistingAddress
+  /api/v2/recipient_addresses/{support_address_id}/verify:
+    put: SupportAddresses_verifyForwarding
+  /api/v2/relationships/definitions/{target_type}:
+    get: LookupRelationships_filterDefinitions
+  /api/v2/requests:
+    get: Requests_list
+    post: Requests_createNewRequest
+  /api/v2/requests/search:
+    get: Requests_searchResults
+  /api/v2/requests/{request_id}:
+    get: Requests_showRequest
+    put: Requests_updateWithComment
+  /api/v2/requests/{request_id}/comments:
+    get: Requests_listComments
+  /api/v2/requests/{request_id}/comments/{ticket_comment_id}:
+    get: Requests_getComments
+  /api/v2/resource_collections:
+    get: ResourceCollections_list
+    post: ResourceCollections_createNewCollection
+  /api/v2/resource_collections/{resource_collection_id}:
+    delete: ResourceCollections_deleteCollection
+    get: ResourceCollections_getDetails
+    put: ResourceCollections_updateResourceCollection
+  /api/v2/routing/agents/{user_id}/instance_values:
+    get: SkillBasedRouting_listAgentAttributeValues
+    post: SkillBasedRouting_setAgentAttributeValues
+  /api/v2/routing/attributes:
+    get: SkillBasedRouting_listAccountAttributes
+    post: SkillBasedRouting_createAttribute
+  /api/v2/routing/attributes/definitions:
+    get: SkillBasedRouting_listAttributeDefinitions
+  /api/v2/routing/attributes/{attribute_id}:
+    delete: SkillBasedRouting_deleteAttribute
+    get: SkillBasedRouting_showAttribute
+    put: SkillBasedRouting_updateAttribute
+  /api/v2/routing/attributes/{attribute_id}/values:
+    get: SkillBasedRouting_listAttributeValues
+    post: SkillBasedRouting_createAttributeValue
+  /api/v2/routing/attributes/{attribute_id}/values/{attribute_value_id}:
+    delete: SkillBasedRouting_deleteAttributeValue
+    get: SkillBasedRouting_showAttributeValue
+    patch: SkillBasedRouting_updateAttributeValue
+  /api/v2/routing/requirements/fulfilled:
+    get: SkillBasedRouting_listFulfilledTickets
+  /api/v2/routing/tickets/{ticket_id}/instance_values:
+    get: SkillBasedRouting_listTicketAttributeValues
+    post: SkillBasedRouting_setTicketAttributeValues
+  /api/v2/satisfaction_ratings:
+    get: SatisfactionRatings_list
+  /api/v2/satisfaction_ratings/count:
+    get: SatisfactionRatings_getCount
+  /api/v2/satisfaction_ratings/{satisfaction_rating_id}:
+    get: SatisfactionRatings_getById
+  /api/v2/satisfaction_reasons:
+    get: SatisfactionReasons_listReasons
+  /api/v2/satisfaction_reasons/{satisfaction_reason_id}:
+    get: SatisfactionReasons_showReasonById
+  /api/v2/search:
+    get: Search_results
+  /api/v2/search/count:
+    get: Search_resultsCount
+  /api/v2/search/export:
+    get: Search_exportResults
+  /api/v2/sessions:
+    get: Sessions_getAll
+  /api/v2/sharing_agreements:
+    get: SharingAgreements_list
+    post: SharingAgreements_createNewAgreement
+  /api/v2/sharing_agreements/{sharing_agreement_id}:
+    delete: SharingAgreements_deleteAgreement
+    get: SharingAgreements_show
+    put: SharingAgreements_updateStatus
+  /api/v2/skips:
+    post: TicketSkips_recordNewSkip
+  /api/v2/slas/policies:
+    get: SlaPolicies_list
+    post: SlaPolicies_createNewPolicy
+  /api/v2/slas/policies/definitions:
+    get: SlaPolicies_getSupportedFilterDefinitionItems
+  /api/v2/slas/policies/reorder:
+    put: SlaPolicies_reorderSlaPolicies
+  /api/v2/slas/policies/{sla_policy_id}:
+    delete: SlaPolicies_deletePolicy
+    get: SlaPolicies_showPolicy
+    put: SlaPolicies_updatePolicy
+  /api/v2/suspended_tickets:
+    get: SuspendedTickets_list
+  /api/v2/suspended_tickets/attachments:
+    post: SuspendedTickets_copyAttachments
+  /api/v2/suspended_tickets/destroy_many:
+    delete: SuspendedTickets_deleteMany
+  /api/v2/suspended_tickets/export:
+    post: SuspendedTickets_exportList
+  /api/v2/suspended_tickets/recover_many:
+    put: SuspendedTickets_recoverMany
+  /api/v2/suspended_tickets/{id}:
+    delete: SuspendedTickets_deleteTicket
+    get: SuspendedTickets_showTicket
+  /api/v2/suspended_tickets/{id}/recover:
+    put: SuspendedTickets_recoverTicket
+  /api/v2/tags:
+    get: Tags_listPopular
+  /api/v2/tags/count:
+    get: Tags_getCount
+  /api/v2/target_failures:
+    get: TargetFailures_listRecent
+  /api/v2/target_failures/{target_failure_id}:
+    get: TargetFailures_showFailure
+  /api/v2/targets:
+    get: Targets_list
+    post: Targets_createNewTarget
+  /api/v2/targets/{target_id}:
+    delete: Targets_remove
+    get: Targets_showDetails
+    put: Targets_updateTarget
+  /api/v2/ticket_audits:
+    get: TicketAudits_listAll
+  /api/v2/ticket_fields:
+    get: TicketFields_listFields
+    post: TicketFields_createField
+  /api/v2/ticket_fields/count:
+    get: TicketFields_count
+  /api/v2/ticket_fields/{ticket_field_id}:
+    delete: TicketFields_deleteField
+    get: TicketFields_showField
+    put: TicketFields_updateFieldOptions
+  /api/v2/ticket_fields/{ticket_field_id}/options:
+    get: TicketFields_listOptions
+    post: TicketFields_createOrUpdateOption
+  /api/v2/ticket_fields/{ticket_field_id}/options/{ticket_field_option_id}:
+    delete: TicketFields_deleteOption
+    get: TicketFields_showOptionById
+  /api/v2/ticket_forms:
+    get: TicketForms_listAllForms
+    post: TicketForms_createNewForm
+  /api/v2/ticket_forms/reorder:
+    put: TicketForms_reorderForms
+  /api/v2/ticket_forms/show_many:
+    get: TicketForms_getMany
+  /api/v2/ticket_forms/{ticket_form_id}:
+    delete: TicketForms_deleteForm
+    get: TicketForms_showForm
+    put: TicketForms_updateForm
+  /api/v2/ticket_forms/{ticket_form_id}/clone:
+    post: TicketForms_cloneExistingForm
+  /api/v2/ticket_metrics:
+    get: TicketMetrics_listMetrics
+  /api/v2/ticket_metrics/{ticket_metric_id}:
+    get: TicketMetrics_showSpecificMetric
+  /api/v2/tickets:
+    get: Tickets_list
+    post: Tickets_createNewTicket
+  /api/v2/tickets/count:
+    get: Tickets_countTickets
+  /api/v2/tickets/create_many:
+    post: Tickets_createMany
+  /api/v2/tickets/destroy_many:
+    delete: Tickets_bulkDelete
+  /api/v2/tickets/mark_many_as_spam:
+    put: Tickets_markManyAsSpam
+  /api/v2/tickets/show_many:
+    get: Tickets_showMany
+  /api/v2/tickets/update_many:
+    put: Tickets_updateMany
+  /api/v2/tickets/{ticket_id}:
+    delete: Tickets_deleteTicket
+    get: Tickets_showTicketDetails
+    put: Tickets_updateTicket
+  /api/v2/tickets/{ticket_id}/audits:
+    get: TicketAudits_list
+  /api/v2/tickets/{ticket_id}/audits/count:
+    get: TicketAudits_getCount
+  /api/v2/tickets/{ticket_id}/audits/{ticket_audit_id}:
+    get: TicketAudits_show
+  /api/v2/tickets/{ticket_id}/audits/{ticket_audit_id}/make_private:
+    put: TicketAudits_convertToPrivate
+  /api/v2/tickets/{ticket_id}/collaborators:
+    get: Tickets_listCollaborators
+  /api/v2/tickets/{ticket_id}/comments:
+    get: TicketComments_list
+  /api/v2/tickets/{ticket_id}/comments/count:
+    get: TicketComments_getCount
+  /api/v2/tickets/{ticket_id}/comments/{comment_id}/attachments/{attachment_id}/redact:
+    put: Attachments_redactCommentAttachment
+  /api/v2/tickets/{ticket_id}/comments/{ticket_comment_id}/make_private:
+    put: TicketComments_makePrivate
+  /api/v2/tickets/{ticket_id}/comments/{ticket_comment_id}/redact:
+    put: TicketComments_redactString
+  /api/v2/tickets/{ticket_id}/email_ccs:
+    get: Tickets_getEmailCCs
+  /api/v2/tickets/{ticket_id}/followers:
+    get: Tickets_listFollowers
+  /api/v2/tickets/{ticket_id}/incidents:
+    get: Tickets_listIncidents
+  /api/v2/tickets/{ticket_id}/macros/{macro_id}/apply:
+    get: Macros_showTicketAfterChanges
+  /api/v2/tickets/{ticket_id}/mark_as_spam:
+    put: Tickets_markAsSpamAndSuspendRequester
+  /api/v2/tickets/{ticket_id}/merge:
+    post: Tickets_mergeIntoTarget
+  /api/v2/tickets/{ticket_id}/related:
+    get: Tickets_getRelatedInfo
+  /api/v2/tickets/{ticket_id}/satisfaction_rating:
+    post: SatisfactionRatings_createNewRating
+  /api/v2/tickets/{ticket_id}/tags:
+    delete: Tags_removeFromTicket
+    get: Tags_listResourceTags
+    post: Tags_setTicketTags
+    put: Tags_addMultiple
+  /api/v2/trigger_categories:
+    get: TriggerCategories_getList
+    post: TriggerCategories_createCategory
+  /api/v2/trigger_categories/jobs:
+    post: TriggerCategories_createBatchJob
+  /api/v2/trigger_categories/{trigger_category_id}:
+    delete: TriggerCategories_deleteById
+    get: TriggerCategories_showById
+    patch: TriggerCategories_updateCategoryById
+  /api/v2/triggers:
+    get: Triggers_list
+    post: Triggers_createNewTrigger
+  /api/v2/triggers/active:
+    get: Triggers_listActiveTriggers
+  /api/v2/triggers/definitions:
+    get: Triggers_listDefinitions
+  /api/v2/triggers/destroy_many:
+    delete: Triggers_bulkDelete
+  /api/v2/triggers/reorder:
+    put: Triggers_reorderFiringOrder
+  /api/v2/triggers/search:
+    get: Triggers_searchGet
+  /api/v2/triggers/update_many:
+    put: Triggers_updateManyPositionStatus
+  /api/v2/triggers/{trigger_id}:
+    delete: Triggers_deleteTrigger
+    get: Triggers_showTrigger
+    put: Triggers_updateTrigger
+  /api/v2/triggers/{trigger_id}/revisions:
+    get: Triggers_listRevisions
+  /api/v2/triggers/{trigger_id}/revisions/{trigger_revision_id}:
+    get: Triggers_showRevision
+  /api/v2/uploads:
+    post: Attachments_uploadFile
+  /api/v2/uploads/{token}:
+    delete: Attachments_deleteUpload
+  /api/v2/user_fields:
+    get: UserFields_list
+    post: UserFields_createField
+  /api/v2/user_fields/reorder:
+    put: UserFields_reorderField
+  /api/v2/user_fields/{user_field_id}:
+    delete: UserFields_deleteField
+    get: UserFields_showField
+    put: UserFields_updateCustomFieldOptions
+  /api/v2/user_fields/{user_field_id}/options:
+    get: UserFields_listOptions
+    post: UserFields_createOrUpdateOption
+  /api/v2/user_fields/{user_field_id}/options/{user_field_option_id}:
+    delete: UserFields_deleteOptionById
+    get: UserFields_showOptionById
+  /api/v2/users:
+    get: Users_list
+    post: Users_createNewUser
+  /api/v2/users/autocomplete:
+    get: Users_autocompleteList
+  /api/v2/users/count:
+    get: Users_countUsers
+  /api/v2/users/create_many:
+    post: Users_createManyUsers
+  /api/v2/users/create_or_update:
+    post: Users_createOrUpdateUser
+  /api/v2/users/create_or_update_many:
+    post: Users_createOrUpdateMany
+  /api/v2/users/destroy_many:
+    delete: Users_bulkDeleteMany
+  /api/v2/users/logout_many:
+    post: Users_logoutManyUsers
+  /api/v2/users/me:
+    get: Users_showSelfInfo
+  /api/v2/users/me/logout:
+    delete: Sessions_deleteAuthenticatedSession
+  /api/v2/users/me/session:
+    get: Sessions_showAuthenticatedSession
+  /api/v2/users/me/session/renew:
+    get: Sessions_renewSession
+  /api/v2/users/request_create:
+    post: Users_requestCreateReminder
+  /api/v2/users/search:
+    get: Users_searchResults
+  /api/v2/users/show_many:
+    get: Users_getMany
+  /api/v2/users/update_many:
+    put: Users_updateMany
+  /api/v2/users/{user_id}:
+    delete: Users_deleteUser
+    get: Users_showUser
+    put: Users_updateUser
+  /api/v2/users/{user_id}/compliance_deletion_statuses:
+    get: Users_showComplianceDeletionStatuses
+  /api/v2/users/{user_id}/group_memberships/{group_membership_id}/make_default:
+    put: GroupMemberships_setAsDefault
+  /api/v2/users/{user_id}/identities:
+    get: UserIdentities_list
+    post: UserIdentities_addIdentityToUser
+  /api/v2/users/{user_id}/identities/{user_identity_id}:
+    delete: UserIdentities_deleteIdentity
+    get: UserIdentities_showIdentity
+    put: UserIdentities_updateIdentity
+  /api/v2/users/{user_id}/identities/{user_identity_id}/make_primary:
+    put: UserIdentities_makePrimary
+  /api/v2/users/{user_id}/identities/{user_identity_id}/request_verification:
+    put: UserIdentities_requestVerificationEmail
+  /api/v2/users/{user_id}/identities/{user_identity_id}/verify:
+    put: UserIdentities_verifyIdentity
+  /api/v2/users/{user_id}/merge:
+    put: Users_mergeEndUser
+  /api/v2/users/{user_id}/organization_memberships/{organization_membership_id}/make_default:
+    put: OrganizationMemberships_setDefaultMembership
+  /api/v2/users/{user_id}/organizations/{organization_id}:
+    delete: OrganizationMemberships_removeUserFromOrganization
+  /api/v2/users/{user_id}/organizations/{organization_id}/make_default:
+    put: OrganizationMemberships_setAsDefault
+  /api/v2/users/{user_id}/password:
+    post: UserPasswords_setNewPassword
+    put: UserPasswords_changePassword
+  /api/v2/users/{user_id}/password/requirements:
+    get: UserPasswords_listRequirements
+  /api/v2/users/{user_id}/related:
+    get: Users_showRelatedInfo
+  /api/v2/users/{user_id}/sessions:
+    delete: Sessions_bulkDelete
+  /api/v2/users/{user_id}/sessions/{session_id}:
+    delete: Sessions_deleteSession
+    get: Sessions_showSession
+  /api/v2/users/{user_id}/skips:
+    get: TicketSkips_list
+  /api/v2/views:
+    get: Views_listAvailable
+    post: Views_createNewView
+  /api/v2/views/active:
+    get: Views_listActiveViews
+  /api/v2/views/compact:
+    get: Views_listCompactViews
+  /api/v2/views/count:
+    get: Views_getCount
+  /api/v2/views/count_many:
+    get: Views_getTicketCountForManyViews
+  /api/v2/views/destroy_many:
+    delete: Views_bulkDelete
+  /api/v2/views/preview:
+    post: Views_previewCreate
+  /api/v2/views/preview/count:
+    post: Views_getTicketCount
+  /api/v2/views/search:
+    get: Views_searchResults
+  /api/v2/views/show_many:
+    get: Views_listByIds
+  /api/v2/views/update_many:
+    put: Views_updateMany
+  /api/v2/views/{view_id}:
+    delete: Views_deleteView
+    get: Views_showView
+    put: Views_updateView
+  /api/v2/views/{view_id}/count:
+    get: Views_countTickets
+  /api/v2/views/{view_id}/execute:
+    get: Views_executeView
+  /api/v2/views/{view_id}/export:
+    get: Views_exportCsv
+  /api/v2/views/{view_id}/tickets:
+    get: Views_listTicketsFromView
+  /api/v2/workspaces:
+    get: Workspaces_list
+    post: Workspaces_createNew
+  /api/v2/workspaces/destroy_many:
+    delete: Workspaces_bulkDelete
+  /api/v2/workspaces/reorder:
+    put: Workspaces_reorderWorkspaces
+  /api/v2/workspaces/{workspace_id}:
+    delete: Workspaces_deleteWorkspace
+    get: Workspaces_getWorkspace
+    put: Workspaces_updateWorkspace
+  /api/v2/{target_type}/{target_id}/relationship_fields/{field_id}/{source_type}:
+    get: LookupRelationships_getSourcesByTarget
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /api/v2/macros:
+    post:
+      application/json: MacrosCreateNewMacroRequest
+  /api/v2/macros/{macro_id}:
+    put:
+      application/json: MacrosUpdateMacroAgentRequest
+  /api/v2/problems/autocomplete:
+    post:
+      application/json: TicketsAutocompleteProblemsRequest
+  /api/v2/trigger_categories:
+    post:
+      application/json: TriggerCategoriesCreateCategoryRequest
+  /api/v2/trigger_categories/{trigger_category_id}:
+    patch:
+      application/json: TriggerCategoriesUpdateCategoryByIdRequest
+  /api/v2/users/update_many:
+    put:
+      application/json: UsersUpdateManyRequest
+  /api/v2/workspaces:
+    post:
+      application/json: WorkspacesCreateNewRequest
+  /api/v2/workspaces/reorder:
+    put:
+      application/json: WorkspacesReorderWorkspacesRequest
+  /api/v2/workspaces/{workspace_id}:
+    put:
+      application/json: WorkspacesUpdateWorkspaceRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /api/v2/accounts/available:
+    get:
+      '200':
+        application/json: ResellerCheckSubdomainAvailabilityResponse
+  /api/v2/any_channel/channelback/report_error:
+    post:
+      '200':
+        application/json: ChannelFrameworkReportErrorResponse
+  /api/v2/any_channel/validate_token:
+    post:
+      '200':
+        application/json: ChannelFrameworkValidateTokenResponse
+  /api/v2/audit_logs/export:
+    post:
+      '202':
+        application/json: AuditLogsExportLogsResponse
+  /api/v2/channels/twitter/tickets:
+    post:
+      '201':
+        application/json: XChannelTweetToTicketResponse
+  /api/v2/channels/voice/agents/{agent_id}/tickets/{ticket_id}/display:
+    post:
+      '200':
+        application/json: BasicsOpenAgentTicketDisplayResponse
+      '404':
+        application/json: BasicsOpenAgentTicketDisplay404Response
+  /api/v2/channels/voice/agents/{agent_id}/users/{user_id}/display:
+    post:
+      '200':
+        application/json: BasicsOpenUserProfileResponse
+      '404':
+        application/json: BasicsOpenUserProfile404Response
+  /api/v2/channels/voice/tickets:
+    post:
+      '404':
+        application/json: BasicsCreateVoiceTicketResponse
+  /api/v2/custom_objects/{custom_object_key}/fields/reorder:
+    put:
+      '200':
+        application/json: CustomObjectFieldsReorderFieldsResponse
+  /api/v2/custom_objects/{custom_object_key}/records/count:
+    get:
+      '200':
+        application/json: CustomObjectRecordsGetCountResponse
+  /api/v2/custom_status/default:
+    put:
+      '200':
+        application/json: CustomTicketStatusesBulkUpdateDefaultResponse
+  /api/v2/deleted_tickets/restore_many:
+    put:
+      '200':
+        application/json: TicketsRestoreBulkTicketsResponse
+  /api/v2/deleted_tickets/{ticket_id}/restore:
+    put:
+      '200':
+        application/json: TicketsRestoreTicketResponse
+  /api/v2/group_slas/policies/reorder:
+    put:
+      '200':
+        application/json: GroupSlaPoliciesReorderResponse
+  /api/v2/macros:
+    post:
+      '200':
+        application/json: MacrosCreateNewMacroResponse
+  /api/v2/macros/actions:
+    get:
+      '200':
+        application/json: MacrosListSupportedActionsResponse
+  /api/v2/macros/definitions:
+    get:
+      '200':
+        application/json: MacrosListActionDefinitionsResponse
+  /api/v2/macros/{macro_id}:
+    put:
+      '200':
+        application/json: MacrosUpdateMacroAgentResponse
+  /api/v2/organization_fields/reorder:
+    put:
+      '200':
+        application/json: OrganizationFieldsReorderFieldResponse
+  /api/v2/push_notification_devices/destroy_many:
+    post:
+      '200':
+        application/json: PushNotificationDevicesBulkUnregisterResponse
+  /api/v2/recipient_addresses/{support_address_id}/verify:
+    put:
+      '200':
+        application/json: SupportAddressesVerifyForwardingResponse
+  /api/v2/slas/policies/reorder:
+    put:
+      '200':
+        application/json: SlaPoliciesReorderSlaPoliciesResponse
+  /api/v2/tickets/count:
+    get:
+      '200':
+        application/json: TicketsCountTicketsResponse
+  /api/v2/tickets/{ticket_id}/audits/{ticket_audit_id}/make_private:
+    put:
+      '200':
+        application/json: TicketAuditsConvertToPrivateResponse
+  /api/v2/tickets/{ticket_id}/comments/{ticket_comment_id}/make_private:
+    put:
+      '200':
+        application/json: TicketCommentsMakePrivateResponse
+  /api/v2/tickets/{ticket_id}/mark_as_spam:
+    put:
+      '200':
+        application/json: TicketsMarkAsSpamAndSuspendRequesterResponse
+  /api/v2/trigger_categories:
+    get:
+      '200':
+        application/json: TriggerCategoriesGetListResponse
+  /api/v2/user_fields/reorder:
+    put:
+      '200':
+        application/json: UserFieldsReorderFieldResponse
+  /api/v2/users/logout_many:
+    post:
+      '202':
+        application/json: UsersLogoutManyUsersResponse
+  /api/v2/users/request_create:
+    post:
+      '200':
+        application/json: UsersRequestCreateReminderResponse
+  /api/v2/users/{user_id}/identities/{user_identity_id}/request_verification:
+    put:
+      '200':
+        application/json: UserIdentitiesRequestVerificationEmailResponse
+  /api/v2/users/{user_id}/password:
+    post:
+      '200':
+        application/json: UserPasswordsSetNewPasswordResponse
+    put:
+      '200':
+        application/json: UserPasswordsChangePasswordResponse
+  /api/v2/workspaces:
+    post:
+      '201':
+        application/json: WorkspacesCreateNewResponse
+  /api/v2/workspaces/destroy_many:
+    delete:
+      '200':
+        application/json: WorkspacesBulkDeleteResponse
+  /api/v2/workspaces/reorder:
+    put:
+      '200':
+        application/json: WorkspacesReorderWorkspacesResponse
+  /api/v2/workspaces/{workspace_id}:
+    get:
+      '200':
+        application/json: WorkspacesGetWorkspaceResponse
+    put:
+      '200':
+        application/json: WorkspacesUpdateWorkspaceResponse
+securityParameters:
+  access:
+    query: false
+  active:
+    query: false
+  application:
+    query: false
+  archive_immediately:
+    query: false
+  assignee_id:
+    query: false
+  associated_to_brand:
+    query: false
+  category:
+    query: false
+  category_id:
+    query: false
+  creator:
+    query: false
+  default:
+    query: false
+  end_user_visible:
+    query: false
+  exclude_deleted:
+    query: false
+  external_id:
+    query: false
+  external_ids:
+    query: false
+  fallback_to_default:
+    query: false
+  field_id:
+    query: false
+  filter[action]:
+    query: false
+  filter[actor_id]:
+    query: false
+  filter[created_at]:
+    query: false
+  filter[external_ids]:
+    query: false
+  filter[ids]:
+    query: false
+  filter[ip_address]:
+    query: false
+  filter[source_id]:
+    query: false
+  filter[source_type]:
+    query: false
+  filter[type]:
+    query: false
+  group_id:
+    query: false
+  group_sla_policy_ids:
+    query: false
+  host_mapping:
+    query: false
+  identifiers:
+    query: false
+  ids:
+    query: false
+  include:
+    query: false
+  include_inline_images:
+    query: false
+  include_standard_fields:
+    query: false
+  limit:
+    query: false
+  locale:
+    query: false
+  name:
+    query: false
+  only_viewable:
+    query: false
+  organization_id:
+    query: false
+  page:
+    query: false
+  page[after]:
+    query: false
+  page[before]:
+    query: false
+  page[size]:
+    query: false
+  permission_set:
+    query: false
+  query:
+    query: false
+  requester_id:
+    query: false
+  role:
+    query: false
+  role[]:
+    query: false
+  since:
+    query: false
+  sla_policy_ids:
+    query: false
+  sort:
+    query: false
+  sort_by:
+    query: false
+  sort_order:
+    query: false
+  source:
+    query: false
+  source_type:
+    query: false
+  start_time:
+    query: false
+  status_categories:
+    query: false
+  subdomain:
+    query: false
+  text:
+    query: false
+  ticket_ids:
+    query: false
+validServerUrls:
+  https://{subdomain}.{domain}.com:
+    url: https://{subdomain}.{domain}.com
