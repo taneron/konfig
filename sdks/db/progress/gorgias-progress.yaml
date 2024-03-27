@@ -1,0 +1,512 @@
+examples: {}
+examples_2: {}
+examples_3:
+  /api/search:
+    post:
+      '201':
+        application/json: {}
+ignoreObjectsWithNoProperties: true
+ignorePotentialIncorrectType: true
+operationIds:
+  /api/account:
+    get: Account_getDetails
+  /api/attachment/download/{resource_name}:
+    get: Files_downloadAttachment
+  /api/custom-fields:
+    get: CustomFields_listMatchingParameters
+    post: CustomFields_createField
+    put: CustomFields_bulkUpdateList
+  /api/custom-fields/{id}/:
+    get: CustomFields_getById
+    put: CustomFields_updateById
+  /api/customers:
+    delete: Customers_deleteCustomer
+    get: Customers_listOrderedCustomers
+    post: Customers_createNewCustomer
+  /api/customers/merge:
+    put: Customers_mergeCustomersInfo
+  /api/customers/{customer_id}/data:
+    put: Customers_setData
+  /api/customers/{id}/:
+    delete: Customers_removeById
+    get: Customers_getById
+    put: Customers_updateCustomerById
+  /api/events:
+    get: Events_listPaginated
+  /api/events/{id}/:
+    get: Events_getEventById
+  /api/integrations:
+    get: Integrations_listMatchingParameters
+    post: Integrations_createIntegration
+  /api/integrations/{id}/:
+    delete: Integrations_deleteIntegration
+    get: Integrations_getById
+    put: Integrations_updateById
+  /api/jobs:
+    get: Jobs_listPaginatedJobs
+    post: Jobs_createJobAndScheduleExecution
+  /api/jobs/{id}/:
+    delete: Jobs_cancelJob
+    get: Jobs_getById
+    put: Jobs_updateById
+  /api/macros:
+    get: Macros_listAllMacros
+    post: Macros_createMacro
+  /api/macros/{id}/:
+    delete: Macros_deleteMacroById
+    get: Macros_getMacroById
+    put: Macros_updateMacroById
+  /api/messages:
+    get: TicketMessages_listMatching
+  /api/phone/voice-call-events:
+    get: VoiceCallEvents_listMatchingParameters
+  /api/phone/voice-call-events/{id}/:
+    get: VoiceCallEvents_getEventById
+  /api/phone/voice-call-recordings:
+    get: VoiceCallRecordings_listMatchingParameters
+  /api/phone/voice-call-recordings/{id}/:
+    delete: VoiceCallRecordings_deleteRecording
+    get: VoiceCallRecordings_getById
+  /api/phone/voice-calls:
+    get: VoiceCalls_listMatchingParameters
+  /api/phone/voice-calls/{id}/:
+    get: VoiceCalls_getById
+  /api/rules:
+    get: Rules_listPaginated
+    post: Rules_createRule
+  /api/rules/priorities:
+    post: Rules_updatePriorities
+  /api/rules/{id}/:
+    delete: Rules_deleteRuleById
+    get: Rules_getRuleById
+    put: Rules_updateRuleById
+  /api/satisfaction-surveys:
+    get: SatisfactionSurveys_listSurveysPaginated
+    post: SatisfactionSurveys_createSurvey
+  /api/satisfaction-surveys/{id}/:
+    get: SatisfactionSurveys_getSurvey
+    put: SatisfactionSurveys_updateSurvey
+  /api/search:
+    post: Search_resourcesPost
+  /api/stats/{name}:
+    post: Statistics_getStatistic
+  /api/stats/{name}/download:
+    post: Statistics_downloadStatisticData
+  /api/tags:
+    delete: Tags_deactivateAll
+    get: Tags_listMatchingParameters
+    post: Tags_createTag
+  /api/tags/{destination_tag_id}/merge:
+    put: Tags_mergeTagsIntoDestination
+  /api/tags/{id}/:
+    delete: Tags_deleteTag
+    get: Tags_getTag
+    put: Tags_updateTagById
+  /api/teams:
+    get: Teams_listMatchingParameters
+    post: Teams_createTeam
+  /api/teams/{id}/:
+    delete: Teams_deleteTeamById
+    get: Teams_getTeamById
+    put: Teams_updateTeamById
+  /api/tickets:
+    get: Tickets_listPaginated
+    post: Tickets_createNewTicket
+  /api/tickets/{id}/:
+    delete: Tickets_deleteById
+    get: Tickets_getById
+    put: Tickets_updateTicketById
+  /api/tickets/{ticket_id}/custom-fields:
+    get: Tickets_listCustomFieldValues
+    put: Tickets_updateCustomFieldsValues
+  /api/tickets/{ticket_id}/custom-fields/{id}/:
+    delete: Tickets_deleteFieldValue
+    put: Tickets_updateCustomFieldValue
+  /api/tickets/{ticket_id}/messages:
+    get: TicketMessages_listOrdered
+    post: TicketMessages_createNewMessage
+  /api/tickets/{ticket_id}/messages/{id}/:
+    delete: TicketMessages_deleteMessageById
+    get: TicketMessages_getMessage
+    put: TicketMessages_updateMessage
+  /api/tickets/{ticket_id}/tags:
+    delete: Tickets_removeTags
+    get: Tickets_listTags
+    post: Tickets_addTagsToTicket
+    put: Tickets_setTags
+  /api/upload:
+    post: Files_uploadMultipleFiles
+  /api/users:
+    get: Users_listPaginated
+    post: Users_createUser
+  /api/users/{id}/:
+    delete: Users_deleteUser
+    get: Users_getUserById
+    put: Users_updateUserById
+  /api/views:
+    get: Views_listOrderedViews
+    post: Views_createNewView
+  /api/views/{id}/:
+    delete: Views_deleteView
+    get: Views_getById
+    put: Views_updateViewById
+  /api/views/{view_id}/items:
+    get: Views_listViewItems
+    put: Views_searchViewItems
+  /api/widgets:
+    get: Widgets_listOrdered
+    post: Widgets_createWidget
+  /api/widgets/{id}/:
+    delete: Widgets_deleteById
+    get: Widgets_getById
+    put: Widgets_updateById
+operationTags: {}
+renameTags: {}
+requestSchemaNames:
+  /api/custom-fields:
+    post:
+      application/json: CustomFieldsCreateFieldRequest
+    put:
+      application/json: CustomFieldsBulkUpdateListRequest
+  /api/custom-fields/{id}:
+    put:
+      application/json: CustomFieldsUpdateByIdRequest
+  /api/customers:
+    delete:
+      application/json: CustomersDeleteCustomerRequest
+    post:
+      application/json: CustomersCreateNewCustomerRequest
+  /api/customers/merge:
+    put:
+      application/json: CustomersMergeCustomersInfoRequest
+  /api/customers/{customer_id}/data:
+    put:
+      application/json: CustomersSetDataRequest
+  /api/customers/{id}:
+    put:
+      application/json: CustomersUpdateCustomerByIdRequest
+  /api/integrations:
+    post:
+      application/json: IntegrationsCreateIntegrationRequest
+  /api/integrations/{id}:
+    put:
+      application/json: IntegrationsUpdateByIdRequest
+  /api/jobs:
+    post:
+      application/json: JobsCreateJobAndScheduleExecutionRequest
+  /api/jobs/{id}:
+    put:
+      application/json: JobsUpdateByIdRequest
+  /api/macros:
+    post:
+      application/json: MacrosCreateMacroRequest
+  /api/macros/{id}:
+    put:
+      application/json: MacrosUpdateMacroByIdRequest
+  /api/rules:
+    post:
+      application/json: RulesCreateRuleRequest
+  /api/rules/priorities:
+    post:
+      application/json: RulesUpdatePrioritiesRequest
+  /api/rules/{id}:
+    put:
+      application/json: RulesUpdateRuleByIdRequest
+  /api/satisfaction-surveys:
+    post:
+      application/json: SatisfactionSurveysCreateSurveyRequest
+  /api/satisfaction-surveys/{id}:
+    put:
+      application/json: SatisfactionSurveysUpdateSurveyRequest
+  /api/search:
+    post:
+      application/json: SearchResourcesPostRequest
+  /api/stats/{name}:
+    post:
+      application/json: StatisticsGetStatisticRequest
+  /api/stats/{name}/download:
+    post:
+      application/json: StatisticsDownloadStatisticDataRequest
+  /api/tags:
+    delete:
+      application/json: TagsDeactivateAllRequest
+    post:
+      application/json: TagsCreateTagRequest
+  /api/tags/{destination_tag_id}/merge:
+    put:
+      application/json: TagsMergeTagsIntoDestinationRequest
+  /api/tags/{id}:
+    put:
+      application/json: TagsUpdateTagByIdRequest
+  /api/teams:
+    post:
+      application/json: TeamsCreateTeamRequest
+  /api/teams/{id}:
+    put:
+      application/json: TeamsUpdateTeamByIdRequest
+  /api/tickets:
+    post:
+      application/json: TicketsCreateNewTicketRequest
+  /api/tickets/{id}:
+    put:
+      application/json: TicketsUpdateTicketByIdRequest
+  /api/tickets/{ticket_id}/custom-fields:
+    put:
+      application/json: TicketsUpdateCustomFieldsValuesRequest
+  /api/tickets/{ticket_id}/custom-fields/{id}:
+    put:
+      application/json: TicketsUpdateCustomFieldValueRequest
+  /api/tickets/{ticket_id}/messages:
+    post:
+      application/json: TicketMessagesCreateNewMessageRequest
+  /api/tickets/{ticket_id}/messages/{id}:
+    put:
+      application/json: TicketMessagesUpdateMessageRequest
+  /api/tickets/{ticket_id}/tags:
+    delete:
+      application/json: TicketsRemoveTagsRequest
+    post:
+      application/json: TicketsAddTagsToTicketRequest
+    put:
+      application/json: TicketsSetTagsRequest
+  /api/upload:
+    post:
+      multipart/form-data: FilesUploadMultipleFilesRequest
+  /api/users:
+    post:
+      application/json: UsersCreateUserRequest
+  /api/users/{id}:
+    put:
+      application/json: UsersUpdateUserByIdRequest
+  /api/views:
+    post:
+      application/json: ViewsCreateNewViewRequest
+  /api/views/{id}:
+    put:
+      application/json: ViewsUpdateViewByIdRequest
+  /api/views/{view_id}/items:
+    put:
+      application/json: ViewsSearchViewItemsRequest
+  /api/widgets:
+    post:
+      application/json: WidgetsCreateWidgetRequest
+  /api/widgets/{id}:
+    put:
+      application/json: WidgetsUpdateByIdRequest
+responseDescriptions: {}
+responseSchemaNames:
+  /api/custom-fields:
+    get:
+      '200':
+        application/json: CustomFieldsListMatchingParametersResponse
+    put:
+      '202':
+        application/json: CustomFieldsBulkUpdateListResponse
+  /api/customers:
+    get:
+      '200':
+        application/json: CustomersListOrderedCustomersResponse
+  /api/customers/merge:
+    put:
+      '202':
+        application/json: CustomersMergeCustomersInfoResponse
+  /api/customers/{id}:
+    get:
+      '200':
+        application/json: CustomersGetByIdResponse
+  /api/events:
+    get:
+      '200':
+        application/json: EventsListPaginatedResponse
+  /api/integrations:
+    get:
+      '200':
+        application/json: IntegrationsListMatchingParametersResponse
+  /api/jobs:
+    get:
+      '200':
+        application/json: JobsListPaginatedJobsResponse
+  /api/macros:
+    get:
+      '200':
+        application/json: MacrosListAllMacrosResponse
+  /api/messages:
+    get:
+      '200':
+        application/json: TicketMessagesListMatchingResponse
+  /api/phone/voice-call-events:
+    get:
+      '200':
+        application/json: VoiceCallEventsListMatchingParametersResponse
+  /api/phone/voice-call-recordings:
+    get:
+      '200':
+        application/json: VoiceCallRecordingsListMatchingParametersResponse
+  /api/phone/voice-calls:
+    get:
+      '200':
+        application/json: VoiceCallsListMatchingParametersResponse
+  /api/rules:
+    get:
+      '200':
+        application/json: RulesListPaginatedResponse
+  /api/rules/priorities:
+    post:
+      '202':
+        application/json: RulesUpdatePrioritiesResponse
+  /api/satisfaction-surveys:
+    get:
+      '200':
+        application/json: SatisfactionSurveysListSurveysPaginatedResponse
+  /api/search:
+    post:
+      '201':
+        application/json: SearchResourcesPostResponse
+  /api/stats/{name}/download:
+    post:
+      '201':
+        text/csv: StatisticsDownloadStatisticDataResponse
+  /api/tags:
+    get:
+      '200':
+        application/json: TagsListMatchingParametersResponse
+  /api/teams:
+    get:
+      '200':
+        application/json: TeamsListMatchingParametersResponse
+  /api/tickets:
+    get:
+      '200':
+        application/json: TicketsListPaginatedResponse
+  /api/tickets/{id}:
+    get:
+      '200':
+        application/json: TicketsGetByIdResponse
+  /api/tickets/{ticket_id}/custom-fields:
+    get:
+      '200':
+        application/json: TicketsListCustomFieldValuesResponse
+    put:
+      '200':
+        application/json: TicketsUpdateCustomFieldsValuesResponse
+  /api/tickets/{ticket_id}/custom-fields/{id}:
+    put:
+      '200':
+        application/json: TicketsUpdateCustomFieldValueResponse
+  /api/tickets/{ticket_id}/messages:
+    get:
+      '200':
+        application/json: TicketMessagesListOrderedResponse
+  /api/tickets/{ticket_id}/tags:
+    get:
+      '200':
+        application/json: TicketsListTagsResponse
+  /api/upload:
+    post:
+      '201':
+        application/json: FilesUploadMultipleFilesResponse
+  /api/users:
+    get:
+      '200':
+        application/json: UsersListPaginatedResponse
+  /api/views:
+    get:
+      '200':
+        application/json: ViewsListOrderedViewsResponse
+  /api/views/{view_id}/items:
+    get:
+      '200':
+        application/json: ViewsListViewItemsResponse
+    put:
+      '202':
+        application/json: ViewsSearchViewItemsResponse
+  /api/widgets:
+    get:
+      '200':
+        application/json: WidgetsListOrderedResponse
+securityParameters:
+  _fallback_order_by:
+    query: false
+  action:
+    query: false
+  app_id:
+    query: false
+  archived:
+    query: false
+  call_id:
+    query: false
+  created_datetime:
+    query: false
+  cursor:
+    query: false
+  customer_id:
+    query: false
+  direction:
+    query: false
+  email:
+    query: false
+  external_id:
+    query: false
+  id:
+    query: false
+  ignored_item:
+    query: false
+  integration_id:
+    query: false
+  language:
+    query: false
+  languages:
+    query: false
+  limit:
+    query: false
+  message_id:
+    query: false
+  name:
+    query: false
+  number_predictions:
+    query: false
+  object_id:
+    query: false
+  object_type:
+    query: false
+  order_by:
+    query: false
+  order_dir:
+    query: false
+  page:
+    query: false
+  per_page:
+    query: false
+  relationships:
+    query: false
+  roles:
+    query: false
+  rule_id:
+    query: false
+  search:
+    query: false
+  source_id:
+    query: false
+  status:
+    query: false
+  tags:
+    query: false
+  target_id:
+    query: false
+  ticket_id:
+    query: false
+  ticket_ids:
+    query: false
+  timezone:
+    query: false
+  type:
+    query: false
+  types:
+    query: false
+  user_ids:
+    query: false
+  view_id:
+    query: false
+validServerUrls:
+  https://{domain}.gorgias.com:
+    url: https://{domain}.gorgias.com
